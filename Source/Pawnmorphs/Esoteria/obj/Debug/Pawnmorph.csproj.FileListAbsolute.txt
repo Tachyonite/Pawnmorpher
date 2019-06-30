@@ -1,0 +1,8 @@
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer\Assemblies\Pawnmorph.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer\Source\Pawnmorphs\Esoteria\obj\Debug\Pawnmorph.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer\Source\Pawnmorphs\Esoteria\obj\Debug\Pawnmorph.csprojResolveAssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Assemblies\Pawnmorph.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\Pawnmorphs\Esoteria\obj\Debug\Pawnmorph.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\Pawnmorphs\Esoteria\obj\Debug\Pawnmorph.csprojAssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\Pawnmorphs\Esoteria\obj\Debug\Pawnmorph.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\Pawnmorphs\Esoteria\obj\Debug\Pawnmorph.csproj.CopyComplete

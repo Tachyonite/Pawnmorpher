@@ -1,0 +1,6 @@
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Esoteria\Source\EtherGuns\obj\Debug\EtherGun.csprojResolveAssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Esoteria\Assemblies\Plague.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Esoteria\Source\EtherGuns\obj\Debug\Plague.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Assemblies\Plague.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\EtherGuns\obj\Debug\EtherGun.csprojResolveAssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\EtherGuns\obj\Debug\Plague.dll

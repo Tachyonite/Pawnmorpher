@@ -1,0 +1,4 @@
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Esoteria\Source\Assemblies\Esoteria.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Esoteria\Source\Esoteria\Esoteria\obj\Debug\Esoteria.csprojResolveAssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Esoteria\Source\Esoteria\Esoteria\obj\Debug\Esoteria.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Esoteria\Assemblies\Esoteria.dll
