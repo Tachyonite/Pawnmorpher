@@ -7,6 +7,7 @@ using Verse;
 using Verse.Sound;
 using static RimWorld.MoteMaker;
 using RimWorld;
+using Multiplayer.API;
 
 namespace Pawnmorph
 {

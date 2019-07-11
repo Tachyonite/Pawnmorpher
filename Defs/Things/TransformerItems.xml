@@ -1,0 +1,231 @@
+<Defs>
+
+	<ThingDef ParentName="OrganicProductBase">
+    <defName>TFMilk</defName>
+    <label>cowmorph milk</label>
+    <description>Milk from a cowmorph. Smells odd, but not off. I'd be careful of drinking this.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/Milk</texPath>
+    </graphicData>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <statBases>
+      <MarketValue>3.1</MarketValue>
+      <Mass>0.045</Mass>
+			<MaxHitPoints>60</MaxHitPoints>
+      <Flammability>0.2</Flammability>
+      <Nutrition>0.05</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>14</daysToRotStart>
+		<rotDestroys>true</rotDestroys>
+      </li>
+	  <li Class="CompProperties_Drug">
+        <chemical>TFMilk</chemical>
+        <addictiveness>0.10</addictiveness>
+		<minToleranceToAddict>0.15</minToleranceToAddict>
+		<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+		<needLevelOffset>1</needLevelOffset>
+        <listOrder>1010</listOrder>
+      </li>
+    </comps>
+    <ingestible>
+      <preferability>DesperateOnly</preferability>
+      <foodType>AnimalProduct, Fluid</foodType>
+	  <outcomeDoers>
+		  <li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+			  <hediffDefs><li>PawnmorphCowTFPartial</li></hediffDefs>
+			  <hediffDefsComplete><li>PawnmorphCowTF</li></hediffDefsComplete>
+			  <severity>1</severity>
+		  </li>
+	  </outcomeDoers>
+    </ingestible>
+    <thingCategories>
+      <li>AnimalProductRaw</li>
+    </thingCategories>
+  </ThingDef>
+  
+  <ChemicalDef>
+    <defName>TFMilk</defName>
+    <label></label>
+    <addictionHediff>TFMilkAddiction</addictionHediff>
+    <canBinge>true</canBinge>
+  </ChemicalDef>
+
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_TFMilk</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>milkdrunk</label>
+    <description>This person is under the strange effects of cowmorph milk. They will require more (which will change them), but failure to keep them sated will push them over the edge.</description>
+    <listPriority>45</listPriority>
+    <fallPerDay>0.15</fallPerDay>
+  </NeedDef>
+
+	<HediffDef ParentName="AddictionBase">
+    <defName>TFMilkAddiction</defName>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <label>milk addiction</label>
+    <causesNeed>Chemical_TFMilk</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.0333</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>withdrawal</label>
+        <painFactor>1</painFactor>
+        <hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
+        <socialFightChanceFactor>25</socialFightChanceFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.3</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+		<hediffGivers>
+		<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>EtherFoxEye</hediff>
+						<pawnkind>Cow</pawnkind>
+						<forceGender>Female</forceGender>
+						<forceGenderChance>50</forceGenderChance>
+						
+						<mtbDays>8</mtbDays>
+		</li>
+		</hediffGivers>
+        <mentalStateGivers>
+          <li>
+            <mentalState>Binging_Food</mentalState>
+            <mtbDays>5</mtbDays>
+          </li>
+        </mentalStateGivers>
+        <statOffsets>
+          <GlobalLearningFactor>-0.9</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+	<ThingDef ParentName="OrganicProductBase">
+    <defName>TFEgg</defName>
+    <label>chookmorph egg</label>
+    <description>An odd egg laid by a chookmorph. It can hatch, but can also be eaten if you were wanting to do that...</description>
+    <graphicData>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Resource/TFEgg</texPath>
+	  <color>(245,245,245)</color>
+    </graphicData>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <statBases>
+      <MarketValue>3.1</MarketValue>
+      <Mass>0.045</Mass>
+			<MaxHitPoints>60</MaxHitPoints>
+      <Flammability>0.2</Flammability>
+      <Nutrition>0.05</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>14</daysToRotStart>
+		<rotDestroys>true</rotDestroys>
+      </li>
+	  <li Class="CompProperties_Drug">
+        <chemical>TFEgg</chemical>
+        <addictiveness>0.10</addictiveness>
+		<minToleranceToAddict>0.15</minToleranceToAddict>
+		<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+		<needLevelOffset>1</needLevelOffset>
+        <listOrder>1010</listOrder>
+      </li>
+	 <li Class="CompProperties_Hatcher">
+        <hatcherDaystoHatch>3.5</hatcherDaystoHatch>
+        <hatcherPawn>Chicken</hatcherPawn>
+      </li>
+    </comps>
+    <ingestible>
+      <preferability>DesperateOnly</preferability>
+      <foodType>AnimalProduct, Fluid</foodType>
+	  <outcomeDoers>
+		  <li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+			  <hediffDefs><li>PawnmorphChickenTFPartial</li></hediffDefs>
+			  <hediffDefsComplete><li>PawnmorphChickenTF</li></hediffDefsComplete>
+			  <severity>1</severity>
+		  </li>
+	  </outcomeDoers>
+    </ingestible>
+    <thingCategories>
+      <li>AnimalProductRaw</li>
+    </thingCategories>
+  </ThingDef>
+  
+  <ChemicalDef>
+    <defName>TFEgg</defName>
+    <label></label>
+    <addictionHediff>TFEggAddiction</addictionHediff>
+    <canBinge>true</canBinge>
+  </ChemicalDef>
+
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_TFEgg</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>eggflicted</label>
+    <description>This person is under the strange effects of a chookmorph's egg. They will require more (which will change them), but failure to keep them sated will push them over the edge.</description>
+    <listPriority>45</listPriority>
+    <fallPerDay>0.15</fallPerDay>
+  </NeedDef>
+
+	<HediffDef ParentName="AddictionBase">
+    <defName>TFEggAddiction</defName>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <label>egg addiction</label>
+    <causesNeed>Chemical_TFEgg</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.0333</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>withdrawal</label>
+        <painFactor>1</painFactor>
+        <hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
+        <socialFightChanceFactor>25</socialFightChanceFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.3</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+		<hediffGivers>
+		<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>EtherFoxEye</hediff>
+						<pawnkind>Chicken</pawnkind>
+						<forceGender>Female</forceGender>
+						<forceGenderChance>50</forceGenderChance>
+						
+						<mtbDays>8</mtbDays>
+		</li>
+		</hediffGivers>
+        <mentalStateGivers>
+          <li>
+            <mentalState>Binging_Food</mentalState>
+            <mtbDays>5</mtbDays>
+          </li>
+        </mentalStateGivers>
+        <statOffsets>
+          <GlobalLearningFactor>-0.9</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

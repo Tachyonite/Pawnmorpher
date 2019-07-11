@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
+using Multiplayer.API;
 
 namespace Pawnmorph
 {
@@ -53,7 +54,7 @@ namespace Pawnmorph
                 PawnKindDef kind2 = kind;
                 int tile = forTile;
 
-                Pawn pawnOriginal = Find.WorldPawns.AllPawnsAlive.Where(p => PawnUtility.ForSaleBySettlement(p) || p.kindDef == PawnKindDefOf.Slave || (PawnUtility.IsKidnappedPawn(p) && p.RaceProps.Humanlike) && !PawnUtility.IsFactionLeader(p)).RandomElement();
+                Pawn pawnOriginal = Find.WorldPawns.AllPawnsAlive.Where(p => !p.IsPlayerControlledCaravanMember() && (PawnUtility.ForSaleBySettlement(p) || p.kindDef == PawnKindDefOf.Slave || (PawnUtility.IsKidnappedPawn(p) && p.RaceProps.Humanlike) && !PawnUtility.IsFactionLeader(p))).RandomElement();
                 
                 PawnGenerationRequest request = new PawnGenerationRequest(kind2, null, PawnGenerationContext.NonPlayer, tile); 
                 Pawn pawn = PawnGenerator.GeneratePawn(request); //Generate the animal!

@@ -2,6 +2,7 @@
 using System;
 using System.Text;
 using Verse;
+using Multiplayer.API;
 
 namespace Pawnmorph
 {
@@ -35,16 +36,12 @@ namespace Pawnmorph
         {
             if (def.description == null)
             {
-                builder.AppendLine("RadiologyTooltipNoDescription".Translate());
+                builder.AppendLine("PawnmorphTooltipNoDescription".Translate());
                 return;
             }
 
-            string res = def.description;
-            res = res.Replace("PART", Part.customLabel == null ? Part.def.label : Part.customLabel);
-            res = res.Replace("NAME", pawn.LabelShortCap);
-            res = res.Replace("HE", pawn.gender == Gender.Female ? "RadiologyTooltipShe".Translate() : "RadiologyTooltipHe".Translate());
-            res = res.Replace("HIS", pawn.gender == Gender.Female ? "RadiologyTooltipHisHer".Translate() : "RadiologyTooltipHis".Translate());
-            res = res.Replace("HIM", pawn.gender == Gender.Female ? "RadiologyTooltipHer".Translate() : "RadiologyTooltipHim".Translate());
+
+            string res = def.description.AdjustedFor(pawn);
             builder.AppendLine(res);
         }
 

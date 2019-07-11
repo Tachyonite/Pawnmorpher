@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+<PawnmorpherModName>Pawnmorpher</PawnmorpherModName>
+
+<MutagenChamberProgress>Mutation progress</MutagenChamberProgress>
+<EnterMutagenChamber>Enter mutation chamber</EnterMutagenChamber>
+
+<LetterLabelChaomorphPasses>{0}s wander in</LetterLabelChaomorphPasses>
+<LetterChaomorphPasses>A group of {0}s has wandered into the area. They will stay for a while and then leave. You can choose to hunt, tame or revert them if you have the serum for it.</LetterChaomorphPasses>
+
+<LetterHediffFromTransformationLabel>{0} -> {1}</LetterHediffFromTransformationLabel>
+<LetterHediffFromTransformation>{0} has turned into a {1}!</LetterHediffFromTransformation>
+
+<LetterHediffFromTransformationLabel>{0} -> {1}</LetterHediffFromTransformationLabel>
+<LetterHediffFromTransformation>{0} has turned into a {1}! \n\n {0} has bonded with {2} because of their good relationship.</LetterHediffFromTransformation>
+
+<LetterHediffFromTransformationMergeLabel>{0} + {1} -> {2}</LetterHediffFromTransformationMergeLabel>
+<LetterHediffFromTransformationMerge>{0} and {1} have melded into a {2}!</LetterHediffFromTransformationMerge>
+
+<LetterHediffFromPermanentTFLabel>{0} permanently feral</LetterHediffFromPermanentTFLabel>
+<LetterHediffFromPermanentTF>There is no visible change in {0}'s body as the mutagenic mechanites in their system simultaneously purge their memory of the original form. {0} can no longer be turned human with reversion serum -- they will remain an animal forever now.</LetterHediffFromPermanentTF>
+
+<LetterHediffFromDietChangeLabel>{0} is now a {1}</LetterHediffFromDietChangeLabel>
+<LetterHediffFromDietChange>{0}'s diet has now changed to be a {1}! Remember to feed them right.</LetterHediffFromDietChange>
+
+<LetterHediffFromEtherBondLabel>Etherbonded: {0}</LetterHediffFromEtherBondLabel>
+<LetterHediffFromEtherBond>Constant production has caused {0} to accept change, and for some reason will now enjoy producing.</LetterHediffFromEtherBond>
+
+<LetterHediffFromEtherBrokenLabel>Etherbroken: {0}</LetterHediffFromEtherBrokenLabel>
+<LetterHediffFromEtherBroken>Constant production has caused {0} to become numb and submit to their fate.</LetterHediffFromEtherBroken>
+
+<CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
+<CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
+
+<PawnmorphTooltipShe>She</PawnmorphTooltipShe>
+<PawnmorphTooltipHe>He</PawnmorphTooltipHe>
+<PawnmorphTooltipHer>Her</PawnmorphTooltipHer>
+<PawnmorphTooltipHim>Him</PawnmorphTooltipHim>
+<PawnmorphTooltipHis>His</PawnmorphTooltipHis>
+</LanguageData>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
+using Multiplayer.API;
 
 namespace Pawnmorph
 {
@@ -15,11 +16,9 @@ namespace Pawnmorph
     [HarmonyPatch(typeof(HealthCardUtility), "DrawHediffRow")]
     public static class PatchHealthCardUtilityDrawHediffRow
     {
-        private static readonly Texture2D icon = ContentFinder<Texture2D>.Get("Icons/Info", true);
+        private static readonly Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/Info", true);
         static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
         {
-            Log.Message(diffs.OfType<Hediff_AddedMutation>().Count().ToString());
-
             if (diffs.OfType<Hediff_AddedMutation>().Where(x => x.def.description != null).FirstOrDefault() == null) return;
 
             float firstRowWidth = rect.width * 0.375f;

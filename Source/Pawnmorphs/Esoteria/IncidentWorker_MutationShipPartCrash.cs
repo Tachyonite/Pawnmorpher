@@ -7,6 +7,7 @@ using Verse;
 using Verse.Sound;
 using static RimWorld.MoteMaker;
 using RimWorld;
+using Multiplayer.API;
 
 namespace Pawnmorph
 {
@@ -48,33 +49,36 @@ namespace Pawnmorph
 
         public override void CompTick()
         {
-            if (!this.parent.Spawned)
+            if (this.parent.IsHashIntervalTick(60))
             {
-                return;
-            }
-            this.plantHarmAge++;
-            this.ticksToPlantHarm--;
-            if (this.ticksToPlantHarm <= 0)
-            {
-                float x = (float)this.plantHarmAge / 60000f;
-                float num = this.PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x);
-                float num2 = 3.14159274f * num * num;
-                float num3 = num2 * this.PropsPlantHarmRadius.harmFrequencyPerArea;
-                float num4 = 60f / num3;
-                int num5;
-                if (num4 >= 1f)
+                if (!this.parent.Spawned)
                 {
-                    this.ticksToPlantHarm = GenMath.RoundRandom(num4);
-                    num5 = 1;
+                    return;
                 }
-                else
+                this.plantHarmAge++;
+                this.ticksToPlantHarm--;
+                if (this.ticksToPlantHarm <= 0)
                 {
-                    this.ticksToPlantHarm = 1;
-                    num5 = GenMath.RoundRandom(1f / num4);
-                }
-                for (int i = 0; i < num5; i++)
-                {
-                    this.MutateInRadius(num,this.PropsPlantHarmRadius.hediff);
+                    float x = (float)this.plantHarmAge / 60000f;
+                    float num = this.PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x);
+                    float num2 = 3.14159274f * num * num;
+                    float num3 = num2 * this.PropsPlantHarmRadius.harmFrequencyPerArea;
+                    float num4 = 60f / num3;
+                    int num5;
+                    if (num4 >= 1f)
+                    {
+                        this.ticksToPlantHarm = GenMath.RoundRandom(num4);
+                        num5 = 1;
+                    }
+                    else
+                    {
+                        this.ticksToPlantHarm = 1;
+                        num5 = GenMath.RoundRandom(1f / num4);
+                    }
+                    for (int i = 0; i < num5; i++)
+                    {
+                        this.MutateInRadius(num, this.PropsPlantHarmRadius.hediff);
+                    }
                 }
             }
         }

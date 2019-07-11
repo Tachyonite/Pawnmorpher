@@ -34,9 +34,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Assemblies\0Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="0MultiplayerAPI, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\0MultiplayerAPI.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Numbers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\Numbers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChaomorphPassWorker.cs" />
+    <Compile Include="InteractionWorkers.cs" />
+    <Compile Include="MutagenChamber.cs" />
+    <Compile Include="MutagenModulator.cs" />
     <Compile Include="ProductionComps.cs" />
     <Compile Include="IncidentWorker_MutationShipPartCrash.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />
@@ -65,7 +76,9 @@
     <Compile Include="PawnmorphGameComp.cs" />
     <Compile Include="CompProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Relationships.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
+    <Compile Include="TransformerUtility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

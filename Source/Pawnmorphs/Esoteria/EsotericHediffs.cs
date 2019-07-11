@@ -7,6 +7,7 @@ using Verse;
 using Verse.Sound;
 using static RimWorld.MoteMaker;
 using RimWorld;
+using Multiplayer.API;
 
 namespace Pawnmorph
 {
@@ -364,7 +365,6 @@ namespace Pawnmorph
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-            chance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance;
             if ((Rand.RangeInclusive(0, 100) <= chance && !triggered) && (mtbDays == 0.0f || Rand.MTBEventOccurs(mtbDays, 60000f, 60f)) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 PawnKindDef pawnTFKind = PawnKindDef.Named(pawnkind);
@@ -401,7 +401,7 @@ namespace Pawnmorph
                 }
 
                 float lifeExpectancyDelta = pawn.def.race.lifeExpectancy / pawnTFKind.race.race.lifeExpectancy;
-                float lifeExpectancy = pawn.def.race.lifeExpectancy / lifeExpectancyDelta;
+                float lifeExpectancy = pawnTFKind.race.race.lifeExpectancy / lifeExpectancyDelta;
 
                 Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(lifeExpectancy), new float?(pawn.ageTracker.AgeChronologicalYearsFloat), new Gender?(newGender), null, null));
                 if (tale != null)
@@ -434,9 +434,22 @@ namespace Pawnmorph
                     pawn3.health.AddHediff(hediff, null, null, null);
                     
                 }
+                if (TransformerUtility.TryGivePostTransformationBondRelation(ref pawn3, pawn, out Pawn otherPawn))
+                {
+                    Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationBondLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformationBond".Translate(pawn.LabelShort, pawnTFKind.LabelCap, otherPawn.LabelShort).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+                }
+                else
+                {
+                    Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+
+                }
+
                 pawn.health.RemoveHediff(cause);
                 PawnMorphInstance pm = new PawnMorphInstance(pawn, pawn3); //pawn is human, pawn3 is animal
                 Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm);
+                if (pawn.ownership.OwnedBed != null) { 
+                    pawn.ownership.UnclaimBed();
+                }
                 pawn.DeSpawn();
                 Find.TickManager.slower.SignalForceNormalSpeedShort();
             }
@@ -454,13 +467,12 @@ namespace Pawnmorph
         public float forceGenderChance = 50;
         private bool triggered = false;
         private string hediffDef = "TransformedHuman";
-        
+        public string faction;
         public MentalStateDef mentalState = null;
         public float mentalStateChance;
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-            chance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance;
             if (((Rand.RangeInclusive(0, 100) <= chance || chance == 100) && !triggered) && (mtbDays == 0.0f || Rand.MTBEventOccurs(mtbDays, 60000f, 60f)) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
 
@@ -499,7 +511,7 @@ namespace Pawnmorph
                 }
 
                 float lifeExpectancyDelta = pawn.def.race.lifeExpectancy / pawnTFKind.race.race.lifeExpectancy;
-                float lifeExpectancy = pawn.def.race.lifeExpectancy / lifeExpectancyDelta;
+                float lifeExpectancy = pawnTFKind.race.race.lifeExpectancy / lifeExpectancyDelta;
 
                 if (lifeExpectancy > pawn.ageTracker.AgeChronologicalYears)
                 {
@@ -518,20 +530,11 @@ namespace Pawnmorph
                     IntermittentMagicSprayer.ThrowMagicPuffUp(pawn3.Position.ToVector3(), pawn3.MapHeld);
                 }
 
-                int faction = Rand.RangeInclusive(0, 2);
-
-                if (faction == 0)
+                if (faction == "wild")
                 {
                     pawn3.SetFaction(null, null);
                 }
-                if (faction == 1)
-                {
-                    pawn3.SetFaction(Faction.OfPlayer, null);
-                }
-                if (faction == 2)
-                {
-                    pawn3.SetFaction(Faction.OfAncients, null);
-                }
+
                 if (pawn.Faction == Faction.OfPlayer)
                 {
                     pawn3.SetFaction(Faction.OfPlayer, null);
@@ -546,9 +549,22 @@ namespace Pawnmorph
                     pawn3.health.AddHediff(hediff, null, null, null);
 
                 }
+                if (TransformerUtility.TryGivePostTransformationBondRelation(ref pawn3, pawn, out Pawn otherPawn))
+                {
+                    Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationBondLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformationBond".Translate(pawn.LabelShort, pawnTFKind.LabelCap, otherPawn.LabelShort).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+                }
+                else
+                {
+                    Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+
+                }
                 pawn.health.RemoveHediff(cause);
                 PawnMorphInstance pm = new PawnMorphInstance(pawn, pawn3); //pawn is human, pawn3 is animal
                 Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm);
+                if (pawn.ownership.OwnedBed != null)
+                {
+                    pawn.ownership.UnclaimBed();
+                }
                 pawn.DeSpawn();
                 Find.TickManager.slower.SignalForceNormalSpeedShort();
             }
@@ -559,6 +575,7 @@ namespace Pawnmorph
     public class HediffGiver_EsotericInstant : HediffGiver
     {
         public float mtbDays;
+
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {

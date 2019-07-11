@@ -7,6 +7,7 @@ using Verse;
 using Verse.Sound;
 using static RimWorld.MoteMaker;
 using RimWorld;
+using Multiplayer.API;
 
 
 namespace Pawnmorph
@@ -16,9 +17,9 @@ namespace Pawnmorph
     {
         public float daysToProduce = 1;
         public int amount = 1;
-        public string resource = "EtherCrystal";
+        public string resource = "Chemfuel";
         public float chance = 50;
-        public string rareResource = "EtherCrystal";
+        public string rareResource = "Chemfuel";
         public ThoughtDef thought = null;
 
     }
@@ -50,34 +51,46 @@ namespace Pawnmorph
         }
 
     }
-    
+
+
     public class Comp_AlwaysFormerHuman : ThingComp
     {
-
+        public HediffCompProperties_AlwaysFormerHuman Props
+        {
+            get
+            {
+                return (HediffCompProperties_AlwaysFormerHuman)this.props;
+            }
+        }
         public override void CompTick()
         {
-            Pawn pawn = this.parent as Pawn;
-            if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("TransformedHuman")) && !pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")))
+            HediffDef hediff = HediffDef.Named("TransformedHuman");
+            if (this.Props.hediff != null)
             {
-                Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named("TransformedHuman"), pawn, null);
-                hediff.Severity = Rand.Range(0.00f, 1.00f);
-                pawn.health.AddHediff(hediff, null, null, null);
+                hediff = this.Props.hediff;
+            }
+            Pawn pawn = this.parent as Pawn;
+            if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && !pawn.health.hediffSet.HasHediff(hediff))
+            {
+                Hediff xhediff = HediffMaker.MakeHediff(hediff, pawn, null);
+                xhediff.Severity = Rand.Range(0.00f, 1.00f);
+                pawn.health.AddHediff(xhediff, null, null, null);
 
             }
-            if (pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && pawn.health.hediffSet.HasHediff(HediffDef.Named("TransformedHuman")))
+            if (pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && pawn.health.hediffSet.HasHediff(hediff))
             {
-                Hediff hediff = pawn.health.hediffSet.hediffs.Find(x => x.def == HediffDef.Named("TransformedHuman"));
-                pawn.health.RemoveHediff(hediff);
+                Hediff xhediff = pawn.health.hediffSet.hediffs.Find(x => x.def == hediff);
+                pawn.health.RemoveHediff(xhediff);
 
-            }   
-
+            }
+            
         }
 
     }
 
     public class HediffCompProperties_AlwaysFormerHuman : CompProperties
     {
-
+        public HediffDef hediff;
         public HediffCompProperties_AlwaysFormerHuman()
         {
             this.compClass = typeof(Comp_AlwaysFormerHuman);
@@ -95,10 +108,13 @@ namespace Pawnmorph
             }
         }
         private bool triggered = false;
+
         public override void CompTick()
         {
+            base.Initialize(props);
             Pawn pawn = this.parent as Pawn;
-            if (Rand.RangeInclusive(0,100) <= this.Props.chance && !triggered && LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers) { 
+            if (Rand.RangeInclusive(0, 100) <= this.Props.chance && !triggered && LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers && pawn.Faction == null)
+            {
                 if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("TransformedHuman")) && !pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")))
                 {
                     Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named("TransformedHuman"), pawn, null);
@@ -112,7 +128,7 @@ namespace Pawnmorph
                     pawn.health.RemoveHediff(hediff);
 
                 }
-                
+
             }
             triggered = true;
         }
@@ -127,6 +143,7 @@ namespace Pawnmorph
         }
 
     }
+
 
     public class HediffComp_Remove : HediffComp
     {
@@ -143,7 +160,7 @@ namespace Pawnmorph
         public override void CompPostTick(ref float severityAdjustment)
         {
 
-            List<Hediff> hS = new List<Hediff> (this.parent.pawn.health.hediffSet.hediffs);
+            List<Hediff> hS = new List<Hediff>(this.parent.pawn.health.hediffSet.hediffs);
 
             foreach (Hediff hD in hS)
             {
@@ -171,6 +188,7 @@ namespace Pawnmorph
         }
 
     }
+
 
     public class TerrainBasedMorphComp : HediffComp
     {
@@ -264,14 +282,14 @@ namespace Pawnmorph
 
         public float daysToProduce = 1f;
         public int amount = 1;
-        public int chance = 10;
+        public int chance = 0;
         public ThoughtDef thought = null;
         public ThoughtDef wrongGenderThought = null;
         public ThoughtDef etherBondThought = null;
         public ThoughtDef etherBrokenThought = null;
         public Gender genderAversion = Gender.None;
-        public string resource = "EtherCrystal";
-        public string rareResource = "EtherCrystal";
+        public string resource = "Chemfuel";
+        public string rareResource = "Chemfuel";
         public List<HediffCompStage> stages = null;
 
         public HediffCompProperties_Production()
@@ -306,6 +324,14 @@ namespace Pawnmorph
             else { Produce(); }
 
             
+        }
+
+        public override void CompExposeData()
+        {
+            Scribe_Values.Look(ref HatchingTicker, "hatchingTicker");
+            Scribe_Values.Look(ref brokenChance, "brokenChance");
+            Scribe_Values.Look(ref bondChance, "bondChance");
+            base.CompExposeData();
         }
 
         public void ProduceStaged()

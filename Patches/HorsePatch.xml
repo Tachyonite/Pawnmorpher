@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Horses (1.0)</li>
+	</mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
+				<value>
+					<li>
+						<path>Parts/None/None</path>
+						<bodyPart>Jaw</bodyPart>
+						<inFrontOfBody>true</inFrontOfBody>
+						<hediffGraphics>
+							<EtherHorseSnout>Parts/horseface/horseface</EtherHorseSnout>
+						</hediffGraphics>
+						<layerOffset>-0.271</layerOffset>
+						<offsets>
+							<south>
+								<bodyTypes>
+									<Male>(-0.39,0.34)</Male>
+									<Female>(-0.39,0.34)</Female>
+									<Fat>(-0.39,0.34)</Fat>
+									<Thin>(-0.39,0.34)</Thin>
+									<Hulk>(-0.39,0.34)</Hulk>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(-0.42,0.47)</Normal_Average>
+								</crownTypes>
+							</south>
+							<north>
+								<bodyTypes>
+									<Male>(0,0)</Male>
+									<Female>(0,0)</Female>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(0,0)</Normal_Average>
+								</crownTypes>
+							</north>
+							<east>
+								<bodyTypes>
+									<Male>(-0.78,0.44)</Male>
+									<Female>(-0.78,0.44)</Female>
+									<Fat>(-0.78,0.44)</Fat>
+									<Thin>(-0.78,0.44)</Thin>
+									<Hulk>(-0.78,0.44)</Hulk>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(-0.59,0.40)</Normal_Average>
+								</crownTypes>
+							</east>
+						</offsets>
+					</li>
+					<li>
+						<path>Parts/None/None</path>
+						<bodyPart>Ear</bodyPart>
+						<inFrontOfBody>true</inFrontOfBody>
+						<hediffGraphics>
+							<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
+						</hediffGraphics>
+						<layerOffset>-0.24</layerOffset>
+						<offsets>
+							<south>
+								<bodyTypes>
+									<Male>(-0.39,0.73)</Male>
+									<Female>(-0.39,0.73)</Female>
+									<Fat>(-0.39,0.73)</Fat>
+									<Thin>(-0.39,0.73)</Thin>
+									<Hulk>(-0.39,0.73)</Hulk>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(-0.42,0.63)</Normal_Average>
+								</crownTypes>
+							</south>
+							<north>
+								<bodyTypes>
+									<Male>(0,1)</Male>
+									<Female>(0,1)</Female>
+									<Fat>(0,1)</Fat>
+									<Thin>(0,1)</Thin>
+									<Hulk>(0,1)</Hulk>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(0,1)</Normal_Average>
+								</crownTypes>
+							</north>
+							<east>
+								<bodyTypes>
+									<Male>(-0.57,0.83)</Male>
+									<Female>(-0.57,0.83)</Female>
+									<Fat>(-0.57,0.83)</Fat>
+									<Thin>(-0.57,0.83)</Thin>
+									<Hulk>(-0.57,0.83)</Hulk>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(-0.45,0.65)</Normal_Average>
+								</crownTypes>
+							</east>
+						</offsets>
+					</li>
+					<li>
+						<path>Parts/None/None</path>
+						<bodyPart>Tail</bodyPart>
+						<inFrontOfBody>true</inFrontOfBody>
+						<hediffGraphics>
+							<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
+						</hediffGraphics>
+						<layerOffset>-0.33</layerOffset>
+						<offsets>
+							<south>
+								<bodyTypes>
+									<Male>(0,0)</Male>
+									<Female>(0,0)</Female>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(0,0)</Normal_Average>
+								</crownTypes>
+							</south>
+							<north>
+								<bodyTypes>
+									<Male>(-0.04,0.04)</Male>
+									<Female>(-0.04,0.04)</Female>
+									<Fat>(-0.04,0.04)</Fat>
+									<Thin>(-0.04,0.04)</Thin>
+									<Hulk>(-0.04,0.04)</Hulk>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(0,0.04)</Normal_Average>
+								</crownTypes>
+							</north>
+							<east>
+								<bodyTypes>
+									<Male>(-0.22,-0.22)</Male>
+									<Female>(-0.16,-0.12)</Female>
+									<Fat>(0,-0.21)</Fat>
+									<Thin>(-0.24,-0.21)</Thin>
+									<Hulk>(0.04,-0.28)</Hulk>
+								</bodyTypes>
+								<crownTypes>
+									<Normal_Average>(-0.45,0.65)</Normal_Average>
+								</crownTypes>
+							</east>
+						</offsets>
+						<drawnInBed>false</drawnInBed>
+					</li>		
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+				<value>
+					<HediffDef ParentName="PawnmorphPart">
+						<defName>EtherHorseSnout</defName>
+						<label>equine snout</label>
+						<description>A snout graces NAME's face.</description>
+						<stages>
+							<li>
+								<capMods>
+									<li>
+										<capacity>Talking</capacity>
+										<offset>-0.40</offset>
+									</li>
+									<li>
+										<capacity>Eating</capacity>
+										<offset>0.40</offset>
+									</li>
+								</capMods>
+							</li>
+						</stages>
+						<comps>
+							<li Class="HediffCompProperties_VerbGiver">
+								<tools>
+									<li>
+										<label>teeth</label>
+										<labelUsedInLogging>False</labelUsedInLogging>
+										<capacities>
+											<li>Bite</li>
+										</capacities>
+										<power>7.0</power>
+										<cooldownTime>1.5</cooldownTime>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+								</tools>
+							</li>
+						</comps>
+					</HediffDef>
+					
+					<HediffDef ParentName="PawnmorphPart">
+						<defName>EtherHorseTail</defName>
+						<label>horse tail</label>
+						<description>A regular tail.</description>
+						<stages>
+							<li>
+								<capMods>
+									<li>
+										<capacity>Moving</capacity>
+										<offset>0.01</offset>
+									</li>
+								</capMods>
+							</li>
+						</stages>
+					</HediffDef>
+					
+					<HediffDef ParentName="PawnmorphPart">
+						<defName>EtherHorseEar</defName>
+						<label>equine</label>
+						<stages>
+							<li>
+								<capMods>
+									<li>
+										<capacity>Hearing</capacity>
+										<offset>0.1</offset>
+									</li>
+								</capMods>
+							</li>
+						</stages>
+					</HediffDef>
+									
+					<HediffDef>
+						<defName>PawnmorphHorseTF</defName>
+						<hediffClass>HediffWithComps</hediffClass>
+						<label>horsemorph</label>
+						<makesAlert>true</makesAlert>
+						<defaultLabelColor>(179,86,132)</defaultLabelColor>
+						<scenarioCanAdd>true</scenarioCanAdd>
+						<maxSeverity>1</maxSeverity>
+						<initialSeverity>1</initialSeverity>
+						<comps>
+							<li Class="HediffCompProperties_SeverityPerDay">
+								<severityPerDay>-0.1</severityPerDay>
+							</li>
+							<li Class="HediffCompProperties_Immunizable">
+							</li>
+						</comps>
+						<stages>
+							<li>
+								<label>reeling</label>
+								<becomeVisible>true</becomeVisible>
+								<minSeverity>0</minSeverity>
+								<hungerRateFactor>1.6</hungerRateFactor>
+								<painOffset>0.05</painOffset>
+								<capMods>
+									<li>
+										<capacity>Moving</capacity>
+										<offset>-0.05</offset>
+									</li>
+								</capMods>
+								<hediffGivers>
+									<li Class="Pawnmorph.HediffGiver_TFRandom">
+										<hediff>EtherFoxEye</hediff>
+										<pawnkinds>
+											<li>QuarterHorse</li>
+											<li>BlackHorse</li>
+											<li>WhiteHorse</li>
+											<li>Palomino</li>
+										</pawnkinds>
+										
+									</li>
+									<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+										<hediff>EtherHoofHand</hediff>
+										<mtbDays>0.02</mtbDays>
+										<chance>70</chance>
+										<partsToAffect>
+											<li>Hand</li>
+										</partsToAffect>
+										<countToAffect>2</countToAffect>
+									</li>
+								</hediffGivers>
+							</li>
+							<li>
+								<label>changing</label>
+								<becomeVisible>false</becomeVisible>
+								<minSeverity>0.65</minSeverity>
+								<painOffset>0.1</painOffset>
+								<vomitMtbDays>1</vomitMtbDays>
+								<capMods>
+									<li>
+										<capacity>Moving</capacity>
+										<offset>-0.05</offset>
+									</li>
+									<li>
+										<capacity>Sight</capacity>
+										<offset>-0.05</offset>
+									</li>
+									<li>
+										<capacity>Manipulation</capacity>
+										<offset>-0.05</offset>
+									</li>
+								</capMods>
+								<hediffGivers>
+
+									<li Class="Pawnmorph.HediffGiver_Esoteric">
+										<hediff>EtherHorseSnout</hediff>
+										<mtbDays>2</mtbDays>
+										<partsToAffect>
+											<li>Jaw</li>
+										</partsToAffect>
+										<countToAffect>1</countToAffect>
+									</li>
+
+									<li Class="Pawnmorph.HediffGiver_Esoteric">
+										<hediff>EtherUnclovenHoofFoot</hediff>
+										<mtbDays>2</mtbDays>
+										<partsToAffect>
+											<li>Foot</li>
+										</partsToAffect>
+										<countToAffect>2</countToAffect>
+									</li>
+
+									<li Class="Pawnmorph.HediffGiver_Esoteric">
+										<hediff>EtherHideLimb</hediff>
+										<mtbDays>1</mtbDays>
+										<partsToAffect>
+											<li>Arm</li>
+										</partsToAffect>
+										<countToAffect>2</countToAffect>
+									</li>
+
+									<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
+										<hediff>EtherHorseTail</hediff>
+										<mtbDays>1</mtbDays>
+										<fixedParts>
+											<li>Tail</li>
+										</fixedParts>
+										<tale>GrewTail</tale>
+									</li>
+
+									<li Class="Pawnmorph.HediffGiver_Esoteric">
+										<hediff>EtherHorseEar</hediff>
+										<mtbDays>1</mtbDays>
+										<partsToAffect>
+											<li>Ear</li>
+										</partsToAffect>
+										<countToAffect>2</countToAffect>
+									</li>
+
+									<li Class="Pawnmorph.HediffGiver_Esoteric">
+										<hediff>EtherDigitigradeLeg</hediff>
+										<mtbDays>1</mtbDays>
+										<partsToAffect>
+											<li>Leg</li>
+										</partsToAffect>
+										<countToAffect>2</countToAffect>
+									</li>
+								</hediffGivers>
+							</li>
+						</stages>
+					</HediffDef>
+					<ThingDef ParentName="InjectorBase">
+						<defName>HorseTransformer</defName>
+						<label>mutagenic mechanite injector, horse</label>
+						<description>An injector filled with mutagenic injector, targeted for a specific type of animal.</description>
+						<graphicData>
+							<texPath>Things/Item/Drug/Specific</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<ingestible>
+							<drugCategory>Medical</drugCategory>
+							<outcomeDoers>
+								<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+									<hediffDefs>
+										<li>PawnmorphHorseTF</li>
+									</hediffDefs>
+									<severity>1.00</severity>
+								</li>
+							</outcomeDoers>
+						</ingestible>	
+					</ThingDef>
+				</value>				
+			</li>
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>Defs/ThingDef[defName="RandomTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+				<value>
+				<li>PawnmorphHorseTF</li>
+				
+				</value>
+			
+			</li>
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+				<value>
+				<li>PawnmorphHorseTF</li>
+				</value>
+			
+			</li>
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/outcomeDoers[first()]/pawnkinds</xpath>
+				<value>
+					<li>QuarterHorse</li>
+					<li>BlackHorse</li>
+					<li>WhiteHorse</li>
+					<li>Palomino</li>				
+				</value>
+			
+			</li>
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="StabiliserHigh"]/comps[last()]/makeImmuneTo</xpath>
+				<value>
+					<li>PawnmorphHorseTF</li>			
+				</value>
+			
+			</li>
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="StabiliserHigh"]/stages/li/makeImmuneTo</xpath>
+				<value>
+					<li>PawnmorphHorseTF</li>			
+				</value>
+			
+			</li>
+		</operations>
+	</match>
+</Operation>
+
+</Patch>

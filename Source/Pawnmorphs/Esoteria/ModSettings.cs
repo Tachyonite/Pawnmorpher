@@ -7,6 +7,7 @@ using Verse;
 using Verse.Sound;
 using static RimWorld.MoteMaker;
 using RimWorld;
+using Multiplayer.API;
 
 namespace Pawnmorph
 {
@@ -126,4 +127,18 @@ namespace Pawnmorph
             Log.Message(cowfluIncident.baseChance.ToString());
         }
     }
+
+    [StaticConstructorOnStartup]
+    public static class PawnmorphMPCompat
+    {
+
+        static PawnmorphMPCompat()
+        {
+            if (!MP.enabled) return;
+
+            MP.RegisterAll();
+        }
+
+    }
+
 }

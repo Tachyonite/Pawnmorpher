@@ -7,6 +7,7 @@ using Verse;
 using Verse.Sound;
 using static RimWorld.MoteMaker;
 using RimWorld;
+using Multiplayer.API;
 
 namespace Pawnmorph
 {
@@ -23,6 +24,26 @@ namespace Pawnmorph
         public void ExposeData()
         {
             Scribe_Deep.Look(ref this.origin, true, "origin");
+            Scribe_References.Look(ref this.replacement, "replacement", true);
+        }
+    }
+
+    public class PawnMorphInstanceMerged : IExposable
+    {
+        public Pawn origin;
+        public Pawn origin2;
+        public Pawn replacement;
+        public PawnMorphInstanceMerged() { }
+        public PawnMorphInstanceMerged(Pawn original, Pawn original2, Pawn polymorph)
+        {
+            origin = original;
+            origin2 = original2;
+            replacement = polymorph;
+        }
+        public void ExposeData()
+        {
+            Scribe_Deep.Look(ref this.origin, true, "origin");
+            Scribe_Deep.Look(ref this.origin2, true, "origin2");
             Scribe_References.Look(ref this.replacement, "replacement", true);
         }
     }

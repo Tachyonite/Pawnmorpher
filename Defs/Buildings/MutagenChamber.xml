@@ -1,0 +1,153 @@
+<Defs>
+
+  <JobDef>
+    <defName>EnterMutagenChamber</defName>
+    <driverClass>Pawnmorph.JobDriver_EnterMutagenChamber</driverClass>
+    <reportString>entering mutagen chamber.</reportString>
+    <taleOnCompletion>EnteredCryptosleep</taleOnCompletion>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  
+  <JobDef>
+    <defName>CarryToMutagenChamber</defName>
+    <driverClass>Pawnmorph.JobDriver_CarryToMutagenChamber</driverClass>
+    <reportString>carrying TargetA to mutagen chamber.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <taleOnCompletion>PutIntoCryptosleep</taleOnCompletion>
+  </JobDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>MutagenicChamber</defName>
+    <label>mutagenic chamber</label>
+    <description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time.</description>
+    <thingClass>Pawnmorph.Building_MutagenChamber</thingClass>
+    <graphicData>
+      <texPath>Things/Building/MutagenChamber/TFChamber</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1,2)</drawSize>
+      <shadowData>
+        <volume>(0.83, 0.3, 1.7)</volume>
+      </shadowData>
+    </graphicData>
+    <researchPrerequisites><li>MutagenChambers</li></researchPrerequisites>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>0.5</fillPercent>
+    <canOverlapZones>false</canOverlapZones>
+    <statBases>
+      <WorkToBuild>8000</WorkToBuild>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Flammability>0</Flammability>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <size>(1,2)</size>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(1,0,0)</interactionCellOffset>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+		<basePowerConsumption>100</basePowerConsumption>
+      </li>
+	  <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>2.66</explosiveRadius>
+        <explosiveDamageType>Flame</explosiveDamageType>
+      </li>
+	  <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>0</fuelConsumptionRate>
+        <fuelCapacity>1.0</fuelCapacity>
+        <fuelFilter>
+          <thingDefs>
+            <li>MechaniteSlurry</li>
+          </thingDefs>
+        </fuelFilter>
+        <initialFuelPercent>0</initialFuelPercent>
+      </li>
+	  <li Class="CompProperties_Facility">
+        <maxSimultaneous>2</maxSimultaneous>
+		<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
+      </li>
+
+    </comps>
+    <defaultPlacingRot>South</defaultPlacingRot>
+	<designationCategory>Production</designationCategory>
+    <building>
+      <isPlayerEjectable>false</isPlayerEjectable>
+    </building>
+    <costList>
+      <Steel>120</Steel>
+			<Mutanite>14</Mutanite>
+			<MechaniteSlurry>3</MechaniteSlurry>
+			<ComponentIndustrial>3</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </costList>
+	<placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+    </placeWorkers>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationHotKey>Misc2</designationHotKey>
+    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
+  </ThingDef>
+  
+  <ThingDef ParentName="BuildingBase">
+    <defName>MutagenicModulator</defName>
+    <label>mutagenic modulator</label>
+    <description>Don't want people to come out of the chamber as random or chaotic animals? This modulator allows you to control the outcome...and even perform some very, very strange techniques.</description>
+    <graphicData>
+      <texPath>Things/Building/MutagenChamber/Monitor</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1.2,1.2)</drawSize>
+      <shadowData>
+        <volume>(0.83, 0.83, 0.83)</volume>
+      </shadowData>
+    </graphicData>
+	<thingClass>Pawnmorph.Building_MutagenModulator</thingClass>
+    <researchPrerequisites><li>ChamberModulator</li></researchPrerequisites>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>0.5</fillPercent>
+    <canOverlapZones>false</canOverlapZones>
+    <statBases>
+      <WorkToBuild>8000</WorkToBuild>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Flammability>0</Flammability>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <size>(1,1)</size>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+		<basePowerConsumption>25</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>2.66</explosiveRadius>
+        <explosiveDamageType>Flame</explosiveDamageType>
+      </li>
+	  <li Class="CompProperties_Flickable"/>
+	  	  <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>MutagenicChamber</li>
+        </linkableFacilities>
+      </li>
+    </comps>
+    <defaultPlacingRot>South</defaultPlacingRot>
+	<designationCategory>Production</designationCategory>
+    <costList>
+      <Steel>120</Steel>
+			<Mutanite>14</Mutanite>
+			<MechaniteSlurry>3</MechaniteSlurry>
+			<ComponentIndustrial>3</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </costList>
+	<placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+    </placeWorkers>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationHotKey>Misc2</designationHotKey>
+    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
+  </ThingDef>
+</Defs>

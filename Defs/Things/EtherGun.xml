@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+	<ThingDef ParentName="MakeableShellBase">
+    <defName>Shell_Mutagenic</defName>
+    <label>mutagenic shell</label>
+    <description>---</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/Shell/Shell_Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>2.9</explosiveRadius>
+        <explosiveDamageType>MutagenCloud</explosiveDamageType>
+        <explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+        <wickTicks>
+          <min>30</min>
+          <max>60</max>
+        </wickTicks>
+      </li>
+    </comps>
+    <projectileWhenLoaded>Bullet_Shell_Mutagen</projectileWhenLoaded>
+    <costList>
+      <Steel>15</Steel>
+      <MechaniteSlurry>1</MechaniteSlurry>
+    </costList>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Shell_Mutagen</defName>
+    <label>mutagenic shell</label>
+    <graphicData>
+      <texPath>Things/Projectile/ShellFirefoam</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>MutagenCloud</damageDef>
+      <damageAmountBase>1</damageAmountBase>
+      <speed>41</speed>
+      <explosionRadius>5</explosionRadius>
+      <flyOverhead>true</flyOverhead>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+      <soundExplode>Explosion_EMP</soundExplode>
+      <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+      <soundAmbient>MortarRound_Ambient</soundAmbient>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <explosionEffect>ExtinguisherExplosion</explosionEffect>
+    </projectile>
+  </ThingDef>
+
+	<DamageDef>
+		<defName>MutagenCloud</defName>
+		<label>mutagen cloud</label>
+		<canInterruptJobs>false</canInterruptJobs>
+		<makesBlood>false</makesBlood>
+		<hediff>PawnmorphGunshotTF</hediff>
+		<hediffSolid>PawnmorphGunshotTF</hediffSolid>
+		<externalViolence>true</externalViolence>
+		<defaultDamage>1</defaultDamage>
+		<explosionCellMote>Mote_BlastExtinguisher</explosionCellMote>
+		<explosionColorEdge>(0, 1, 0, 0.05)</explosionColorEdge>
+		<harmsHealth>true</harmsHealth>
+		<soundExplosion>Explosion_Smoke</soundExplosion>
+		<combatLogRules>Damage_Smoke</combatLogRules>
+	</DamageDef>
+	
+	<ThingDef ParentName="BaseGas">
+    <defName>Gas_Mutagen</defName>
+    <label>mutagen cloud</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.2</drawSize>
+      <color>(0.0,1.0,0.0,0.5)</color>
+    </graphicData>
+    <gas>
+      <expireSeconds>
+        <min>29</min>
+        <max>31</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.7</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+    </gas>
+  </ThingDef>
+
+	<ThingDef Class="EtherGun.ThingDef_EtherBullet" ParentName="BaseBullet">
+		<defName>Bullet_EtherGun</defName>
+		<label>Ether bullet</label>
+		<graphicData>
+			<texPath>Things/Projectiles/GelCapsule</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<stoppingPower>10</stoppingPower>
+			<speed>15</speed>
+		</projectile>
+		<AddHediffChance>0.7</AddHediffChance>
+		<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+		<thingClass>EtherGun.Projectile_EtherBullet</thingClass>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>TST_Gun_EtherGun</defName>
+		<label>Mutagun</label>
+		<description>Forged from mutanite and charged with mutagenic syringes, the Ether Lance can force a person hit by it to begin to mutate.</description>
+		<graphicData>
+			<texPath>Things/Item/TFGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<MarketValue>650</MarketValue>
+			<WorkToMake>8000</WorkToMake>
+			<Mass>3</Mass>
+			<AccuracyTouch>80</AccuracyTouch>
+			<AccuracyShort>70</AccuracyShort>
+			<AccuracyMedium>60</AccuracyMedium>
+			<AccuracyLong>50</AccuracyLong>
+			<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
+		</statBases>
+		<weaponTags>
+			<li>IndustrialGunAdvanced</li>
+		</weaponTags>
+		<costList>
+			<Mutanite>5</Mutanite>
+			<Steel>50</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_EtherGun</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<range>30</range>
+				<soundCast>Shot_ChargeRifle</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+</Defs>
