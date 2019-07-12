@@ -144,7 +144,7 @@ namespace Pawnmorph
     public class Building_MutagenChamber : Building_Casket
     {
         public static JobDef EnterMutagenChamber;
-        public float daysToIncubate = 1f;
+        public float daysToIncubate = 0.05f;
         public CompFacility compLinked;
         public Building_MutagenModulator modulator;
         public float daysIn = 0f;
@@ -168,6 +168,7 @@ namespace Pawnmorph
         public override string GetInspectString()
         {
             base.GetInspectString();
+            
             if (this.modulator != null)
             {
                 if (this.modulator.merging && this != this.modulator.Chambers.First())
@@ -249,9 +250,18 @@ namespace Pawnmorph
                     EjectContents();
                     fuelComp.ConsumeFuel(fuelComp.Fuel);
                     if (this.modulator != null)
-                    { this.modulator.triggered = true; }
+                    {
+                        this.modulator.triggered = true;
+                        if (this.modulator.random)
+                        {
+                            PickRandom();
+                        }
+                        else
+                        {
+                            PickRandom();
+                        }
+                    }
                     daysIn = 0;
-
                 }
                 else if (doNotEject && this.modulator.triggered)
                 {
@@ -260,11 +270,20 @@ namespace Pawnmorph
                     innerContainer.ClearAndDestroyContentsOrPassToWorld();
                     this.modulator.triggered = false;
                 }
+                
             }
         }
+
+        public void PickRandom()
+        {
+            pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
+        }
+
         public override void ExposeData()
         {
             Scribe_Values.Look(ref this.daysIn, "daysIn");
+            Scribe_Defs.Look(ref this.pawnTFKind, "pawnTFKind");
+            Scribe_References.Look(ref this.modulator, "modulator");
             base.ExposeData();
         }
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
@@ -336,14 +355,14 @@ namespace Pawnmorph
                         }
                     }
 
-                    float lifeExpectancyDelta = pawn.def.race.lifeExpectancy / pawnTFKind.race.race.lifeExpectancy;
-                    float lifeExpectancy = pawnTFKind.race.race.lifeExpectancy / lifeExpectancyDelta;
+                    float humanLE = pawn.def.race.lifeExpectancy;
+                    float animalLE = pawnTFKind.race.race.lifeExpectancy;
+                    float humanAge = pawn.ageTracker.AgeBiologicalYears;
 
-                    if (lifeExpectancy > pawn.ageTracker.AgeChronologicalYears)
-                    {
-                        lifeExpectancy = pawn.ageTracker.AgeChronologicalYears;
-                    }
-                    Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(lifeExpectancy), new float?(pawn.ageTracker.AgeChronologicalYearsFloat), new Gender?(newGender), null, null));
+                    float animalDelta = humanAge / humanLE;
+                    float animalAge = animalLE * animalDelta;
+
+                    Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(animalAge), new float?(pawn.ageTracker.AgeChronologicalYearsFloat), new Gender?(newGender), null, null));
                     pawnTF.needs.food.CurLevel = pawn.needs.food.CurLevel;
                     pawnTF.needs.rest.CurLevel = pawn.needs.rest.CurLevel;
                     pawnTF.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
@@ -503,7 +522,7 @@ namespace Pawnmorph
                 {
                     LocalTargetInfo localTargetInfo4 = localTargetInfo3;
                     Pawn victim = (Pawn)localTargetInfo4.Thing;
-                    if (victim.Downed && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true) && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
+                    if (victim.RaceProps.intelligence == Intelligence.Humanlike && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true) && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
                     {
                         string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
                         JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;

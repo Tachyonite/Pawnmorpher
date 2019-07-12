@@ -37,13 +37,7 @@ namespace EtherGun
                     //This checks to see if the character has a heal differential, or hediff on them already.
                     var etherOnPawn = hitPawn.health?.hediffSet?.GetFirstHediffOfDef(Def.HediffToAdd);
                     var randomSeverity = 1f;
-                    if (etherOnPawn != null)
-                    {
-                        //If they already have plague, add a random range to its severity.
-                        //If severity reaches 1.0f, or 100%, plague kills the target.
-                        etherOnPawn.Severity += randomSeverity;
-                    }
-                    else
+                    if (etherOnPawn == null)
                     {
                         //These three lines create a new health differential or Hediff,
                         //put them on the character, and increase its severity by a random amount.

@@ -21,6 +21,7 @@ namespace Pawnmorph
         public bool triggered;
         public bool merging = false;
         public bool random = true;
+        public float maxBodySize = 2.9f;
         public CompPowerTrader powerComp = null;
         public CompFlickable flickableComp = null;
 
@@ -102,7 +103,10 @@ namespace Pawnmorph
 
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            base.GetGizmos();
+            foreach (Gizmo gizmo in base.GetGizmos())
+            {
+                yield return gizmo;
+            }
             Command_Action commandAction = new Command_Action
             {
                 defaultLabel = "Set Animal",
@@ -137,7 +141,7 @@ namespace Pawnmorph
                     }
                 }
             };
-
+            
             yield return commandAction;
             
         }
@@ -147,7 +151,16 @@ namespace Pawnmorph
 
             List<FloatMenuOption> menuOptions = new List<FloatMenuOption>();
 
-            IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && x.label != "chaomeld");
+            if (Chambers.First().def == ThingDef.Named("BigMutagenicChamber"))
+            {
+                maxBodySize = 5.0f;
+            }
+            else
+            {
+                maxBodySize = 2.5f;
+            }
+
+            IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= maxBodySize && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && (x.label != "chaomeld" && x.label != "chaofusion"));
 
             if (Chambers.All(x => x.ContainedThing != null) && Chambers.Count > 1)
             {
@@ -182,8 +195,9 @@ namespace Pawnmorph
                     }
 
                     menuOptions.Add(new FloatMenuOption(pk.LabelCap, Action));
-
+                    
                 }
+                menuOptions = menuOptions.OrderBy(o=>o.Label).ToList();
             }
 
             return menuOptions;

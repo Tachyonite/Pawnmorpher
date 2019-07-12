@@ -1,0 +1,10 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingSetMakerDef[defName="MapGen_PrisonCellStockpile"]/root/options[last()]/thingSetMaker/fixedParams/filter/disallowedThingDefs</xpath>
+		<success>Always</success>
+		<value>
+			  <li>TFEgg</li>
+			  <li>TFMilk</li>
+		</value>
+	</Operation>
+</Patch>

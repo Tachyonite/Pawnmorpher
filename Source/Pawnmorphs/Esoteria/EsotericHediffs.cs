@@ -400,10 +400,15 @@ namespace Pawnmorph
                     }
                 }
 
-                float lifeExpectancyDelta = pawn.def.race.lifeExpectancy / pawnTFKind.race.race.lifeExpectancy;
-                float lifeExpectancy = pawnTFKind.race.race.lifeExpectancy / lifeExpectancyDelta;
+                float humanLE = pawn.def.race.lifeExpectancy;
+                float animalLE = pawnTFKind.race.race.lifeExpectancy;
+                float humanAge = pawn.ageTracker.AgeBiologicalYears;
 
-                Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(lifeExpectancy), new float?(pawn.ageTracker.AgeChronologicalYearsFloat), new Gender?(newGender), null, null));
+                float animalDelta = humanAge / humanLE;
+                float animalAge = animalLE * animalDelta;
+
+                Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(animalAge), new float?(pawn.ageTracker.AgeChronologicalYearsFloat), new Gender?(newGender), null, null));
+
                 if (tale != null)
                 {
                     TaleRecorder.RecordTale(tale, new object[]
@@ -432,17 +437,17 @@ namespace Pawnmorph
                     Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(hediffDef), pawn3, null);
                     hediff.Severity = Rand.Range(0.00f, 1.00f);
                     pawn3.health.AddHediff(hediff, null, null, null);
-                    
-                }
+
+                }/*
                 if (TransformerUtility.TryGivePostTransformationBondRelation(ref pawn3, pawn, out Pawn otherPawn))
                 {
                     Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationBondLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformationBond".Translate(pawn.LabelShort, pawnTFKind.LabelCap, otherPawn.LabelShort).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
                 }
                 else
-                {
-                    Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+                {*/
+                Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
 
-                }
+                //}
 
                 pawn.health.RemoveHediff(cause);
                 PawnMorphInstance pm = new PawnMorphInstance(pawn, pawn3); //pawn is human, pawn3 is animal
@@ -509,15 +514,15 @@ namespace Pawnmorph
                             break;
                     }
                 }
+                float humanLE = pawn.def.race.lifeExpectancy;
+                float animalLE = pawnTFKind.race.race.lifeExpectancy;
+                float humanAge = pawn.ageTracker.AgeBiologicalYears;
 
-                float lifeExpectancyDelta = pawn.def.race.lifeExpectancy / pawnTFKind.race.race.lifeExpectancy;
-                float lifeExpectancy = pawnTFKind.race.race.lifeExpectancy / lifeExpectancyDelta;
+                float animalDelta = humanAge / humanLE;
+                float animalAge = animalLE * animalDelta;
 
-                if (lifeExpectancy > pawn.ageTracker.AgeChronologicalYears)
-                {
-                    lifeExpectancy = pawn.ageTracker.AgeChronologicalYears;
-                }
-                Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(lifeExpectancy), new float?(pawn.ageTracker.AgeChronologicalYearsFloat), new Gender?(newGender), null, null));
+                Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(animalAge), new float?(pawn.ageTracker.AgeChronologicalYearsFloat), new Gender?(newGender), null, null));
+
                 pawnTF.needs.food.CurLevel = pawn.needs.food.CurLevel;
                 pawnTF.needs.rest.CurLevel = pawn.needs.rest.CurLevel;
                 pawnTF.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
@@ -542,22 +547,23 @@ namespace Pawnmorph
                 Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
                 pawn.apparel.DropAll(pawn.PositionHeld);
                 pawn.equipment.DropAllEquipment(pawn.PositionHeld);
+                pawn.DropAndForbidEverything();
                 if (pawn.RaceProps.intelligence == Intelligence.Humanlike)
                 {
                     Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(hediffDef), pawn3, null);
                     hediff.Severity = Rand.Range(0.00f, 1.00f);
                     pawn3.health.AddHediff(hediff, null, null, null);
 
-                }
+                }/*
                 if (TransformerUtility.TryGivePostTransformationBondRelation(ref pawn3, pawn, out Pawn otherPawn))
                 {
                     Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationBondLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformationBond".Translate(pawn.LabelShort, pawnTFKind.LabelCap, otherPawn.LabelShort).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
                 }
                 else
-                {
+                {*/
                     Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
 
-                }
+                //}
                 pawn.health.RemoveHediff(cause);
                 PawnMorphInstance pm = new PawnMorphInstance(pawn, pawn3); //pawn is human, pawn3 is animal
                 Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm);
@@ -566,6 +572,7 @@ namespace Pawnmorph
                     pawn.ownership.UnclaimBed();
                 }
                 pawn.DeSpawn();
+                
                 Find.TickManager.slower.SignalForceNormalSpeedShort();
             }
             else { triggered = true; }

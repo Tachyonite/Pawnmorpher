@@ -16,9 +16,18 @@ namespace Pawnmorph
     {
         public HashSet<PawnMorphInstance> pawnmorphs = new HashSet<PawnMorphInstance>(){};
         public HashSet<PawnMorphInstanceMerged> mergedpawnmorphs = new HashSet<PawnMorphInstanceMerged>() { };
+        public HashSet<PawnKindDef> taggedAnimals = new HashSet<PawnKindDef>() { };
 
         public PawnmorphGameComp(World world) : base(world)
         {
+        }
+
+        public void tagPawn(PawnKindDef pawnkind)
+        {
+            if (!taggedAnimals.Contains(pawnkind))
+            {
+                taggedAnimals.Add(pawnkind);
+            }
         }
 
         public void addPawn(PawnMorphInstance pm)
@@ -45,6 +54,7 @@ namespace Pawnmorph
         {
             Scribe_Collections.Look(ref this.pawnmorphs, "pawnmorphs", LookMode.Deep);
             Scribe_Collections.Look(ref this.mergedpawnmorphs, "pawnmorphs", LookMode.Deep);
+            Scribe_Collections.Look(ref this.taggedAnimals, "taggedAnimals", LookMode.Deep);
         }
     }
 }

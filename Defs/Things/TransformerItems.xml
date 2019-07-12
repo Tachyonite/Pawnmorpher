@@ -7,7 +7,7 @@
     <graphicData>
       <texPath>Things/Item/Resource/Milk</texPath>
     </graphicData>
-    <socialPropernessMatters>true</socialPropernessMatters>
+    <socialPropernessMatters>false</socialPropernessMatters>
     <statBases>
       <MarketValue>3.1</MarketValue>
       <Mass>0.045</Mass>
@@ -120,7 +120,7 @@
       <texPath>Things/Item/Resource/TFEgg</texPath>
 	  <color>(245,245,245)</color>
     </graphicData>
-    <socialPropernessMatters>true</socialPropernessMatters>
+    <socialPropernessMatters>false</socialPropernessMatters>
     <statBases>
       <MarketValue>3.1</MarketValue>
       <Mass>0.045</Mass>

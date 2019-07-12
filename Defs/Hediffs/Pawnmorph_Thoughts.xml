@@ -484,7 +484,7 @@
 	<ThoughtDef>
 		<defName>EtherReactionCowTFHooves</defName>
 		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>EtherUnclovenHoofFoot</hediff>
+		<hediff>EtherHoofHand</hediff>
 		<stages>
 			<li>
 				<label>hoof-hands</label>
@@ -594,9 +594,9 @@
 		<durationDays>1</durationDays>
 		<stages>
 			<li>
-				<label>shaved myself</label>
-				<description>Yep, that's wool...</description>
-				<baseMoodEffect>-2</baseMoodEffect>
+				<label>clean shaven</label>
+				<description>It's weird, but it feels kinda good to shave all that wool off.</description>
+				<baseMoodEffect>5</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>

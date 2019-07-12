@@ -95,11 +95,25 @@
 			<li>PowerfulSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+	<!--
+	<ResearchProjectDef>
+		<defName>AdvancedMutagenChambers</defName>
+		<label>Advanced chambers</label>
+		<description>A bigger chamber, for bigger beasts. Note that you will need to build a different modulator for this one, fortunately this research also unlocks it.</description>
+		<baseCost>2000</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>6</researchViewX>
+		<researchViewY>1.5</researchViewY>
+		<prerequisites>
+			<li>ChamberModulator</li>
+		</prerequisites>
+	</ResearchProjectDef>
+	-->
 	<ResearchProjectDef>
 		<defName>ChamberModulator</defName>
 		<label>Chamber modulation</label>
-		<description>It didn't take long to come up with this, because apparently the top scientists wanted to be able to determine exactly what came out the other end. This unlocks the modulator, which in turn allows you to pick an animal for the chamber to turn a pawn into. You will also be able to connect two pods together via the modulator.</description>
+		<description>It didn't take long to come up with this, because apparently the top scientists wanted to be able to determine exactly what came out the other end. This unlocks the modulator, which in turn allows you to pick an animal for the chamber to turn a pawn into. You will also be able to connect two pods together via the modulator. Once two pawns are in the connected chambers, this should unlock another option...</description>
 		<baseCost>200</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>

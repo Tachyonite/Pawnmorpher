@@ -1590,7 +1590,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherFoxEye</defName>
 		<label>vulpine eye</label>
-		<description>Bright, foxy eyes are now [PAWN_nameDef]'s. HE will see better, and charm people with their exotic appearance.</description>
+		<description>Bright, foxy eyes are now [PAWN_nameDef]'s. [PAWN_pronoun] will see better, and charm people with their exotic appearance.</description>
 		<stages>
 			<li>
 				<statOffsets>
@@ -1881,6 +1881,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherPawHand</defName>
 		<label>paw</label>
+		<description>Cute but inflexible paws have replaced [PAWN_nameDef]'s hands. They lack a thumb, which has receded into a useless dewclaw.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -1912,6 +1913,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherElephantFoot</defName>
 		<label>elephant foot</label>
+		<description>Thunderous stomping follows [PAWN_nameDef] everywhere they go.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -1944,6 +1946,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherBearPawHand</defName>
 		<label>huge paw</label>
+		<description>Massive, clawed and deadly paws have replaced the finer thumbed hands of a human. While less useful for manipulation, they make [PAWN_nameDef] a beast in a fight.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -1975,6 +1978,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherDextrousPawHand</defName>
 		<label>dextrous paw</label>
+		<description>Thankfully, this more manipulative paw allows [PAWN_nameDef] to keep their thumbs.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -2006,6 +2010,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherWingTip</defName>
 		<label>wingtip</label>
+		<description>[PAWN_nameDef]'s fingers have disappeared into a lump of bird-skinned flesh, with many feathers protruding from the nub.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -2021,6 +2026,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherWing</defName>
 		<label>wing</label>
+		<description>[PAWN_nameDef]'s entire arm has contorted and feathered into a wing, however it is not strong enough to allow them to fly. But that's like, the best bit dude!</description>
 		<stages>
 			<li>
 				<capMods>
@@ -2035,11 +2041,16 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherAvianFoot</defName>
 		<label>avian</label>
+		<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
 		<stages>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
+						<offset>0.1</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
 						<offset>0.1</offset>
 					</li>
 				</capMods>
@@ -2066,6 +2077,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherPawFoot</defName>
 		<label>paw</label>
+		<description>[PAWN_nameDef]'s feet have stretched out, growing a coat of fur, the toes shorteningto clawed digits.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -2081,6 +2093,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherRatFoot</defName>
 		<label>rodent</label>
+		<description>[PAWN_nameDef]'s feet are dextrous and elongated, but hairless and pale.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -2096,6 +2109,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherElephantLeg</defName>
 		<label>elephantine</label>
+		<description>[PAWN_nameDef]'s leg is thick and covered in a solid grey hide.</description>
 		<stages>
 			<li>
 				<capMods>
