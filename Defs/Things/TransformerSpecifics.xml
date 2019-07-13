@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
 	<ThingDef ParentName="DrugPillBase" Name="InjectorBase" Abstract="True">
@@ -10,6 +11,7 @@
 			<li>Artifacts</li>
 		</thingCategories>
 		<statBases>
+			<WorkToMake>800</WorkToMake>
 			<MarketValue>500</MarketValue>
 			<Mass>0.01</Mass>
 		</statBases>

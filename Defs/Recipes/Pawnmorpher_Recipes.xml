@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
   <RecipeDef>
 		<defName>Make_SlurryFromMutonite</defName>
 		<label>make slurry from mutonite</label>
