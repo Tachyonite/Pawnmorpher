@@ -16,6 +16,8 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -121,6 +123,8 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -213,6 +217,8 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -304,6 +310,8 @@
 				<severityPerDay>-0.1</severityPerDay>
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
 			</li>
 		</comps>
 		<stages>
@@ -399,6 +407,8 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -490,6 +500,8 @@
 				<severityPerDay>-0.1</severityPerDay>
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
 			</li>
 		</comps>
 		<stages>
@@ -584,6 +596,8 @@
 				<severityPerDay>-0.1</severityPerDay>
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
 			</li>
 		</comps>
 		<stages>
@@ -708,6 +722,8 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -805,6 +821,8 @@
 				<severityPerDay>-0.1</severityPerDay>
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
 			</li>
 		</comps>
 		<stages>
@@ -904,6 +922,8 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -1001,6 +1021,8 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -1087,6 +1109,8 @@
 				<severityPerDay>-0.1</severityPerDay>
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
 			</li>
 		</comps>
 		<stages>
@@ -1186,6 +1210,8 @@
 				<severityPerDay>-0.1</severityPerDay>
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Single">
 			</li>
 		</comps>
 		<stages>
