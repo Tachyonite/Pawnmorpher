@@ -54,6 +54,23 @@
 		<thingClass>EtherGun.Projectile_EtherBullet</thingClass>
 	</ThingDef>
 
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_TaggingGun</defName>
+		<label>genetic tagger</label>
+		<graphicData>
+			<texPath>Things/Projectiles/GelCapsule</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<stoppingPower>10</stoppingPower>
+			<speed>15</speed>
+		</projectile>
+		<thingClass>EtherGun.Projectile_TaggingBullet</thingClass>
+	</ThingDef>
+
 	<ThingDef ParentName="BaseHumanMakeableGun">
 		<defName>TST_Gun_EtherGun</defName>
 		<label>Mutagun</label>

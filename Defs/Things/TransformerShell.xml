@@ -4,7 +4,7 @@
 		<defName>Shell_TF</defName>
 		<label>mutagenic shell</label>
 		<description>A shell filled with a chaotic mix of DNA and mechanites that aerosolizes on impact. The mist can mutate any organics caught in it. Can be fired from mortars or installed as a trap. Bursts when damaged.</description>
-		<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+		
 		<graphicData>
 			<texPath>Things/Item/Resource/TFShell</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -24,6 +24,9 @@
 			</li>
 		</comps>
 		<projectileWhenLoaded>Bullet_Shell_TF</projectileWhenLoaded>
+		<recipeMaker>
+		<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+		</recipeMaker>
 		<costList>
 			<Steel>20</Steel>
 			<MechaniteSlurry>2</MechaniteSlurry>

@@ -4,7 +4,9 @@
 		<defName>Weapon_GrenadeTF</defName>
 		<label>mutagenic grenades</label>
 		<description>A highly presurized canister filled with DNA and mechanites that aerosolizes when thrown. The resulting mist can mutate any organics caught in it.</description>
+		<recipeMaker>
 		<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+		</recipeMaker>
 		<tickerType>Normal</tickerType>
 		<graphicData>
 			<texPath>Things/Item/MutagenGrenadeBelt</texPath>
