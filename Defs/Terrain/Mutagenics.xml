@@ -1,6 +1,6 @@
 <Defs>
 
-<ThingDef ParentName="UglyRockBase" Name="GraniteBase">
+<ThingDef ParentName="UglyRockBase">
     <defName>Mutonite</defName>
     <label>mutonite</label>
     <thingClass>Pawnmorph.MutagenicStone</thingClass>

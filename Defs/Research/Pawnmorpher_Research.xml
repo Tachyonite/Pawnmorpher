@@ -84,7 +84,8 @@
 	<ResearchProjectDef>
 		<defName>MutagenChambers</defName>
 		<label>Chambers</label>
-		<description>Unlocks a bath of mutagen which pawns can enter or be carried to. It transforms them into random animals in a much shorter time than usual, and only at the cost of a vial of mechanite slurry.</description>
+		<description>Unlocks a bath of mutagen which pawns can enter or be carried to. It transforms them into random animals in a much shorter time than usual, and only at the cost of a vial of mechanite slurry. However, we will need to collect
+		the	genetic information of the animal before we can turn someone into it. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to our database.</description>
 		<baseCost>1500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>
@@ -95,7 +96,6 @@
 			<li>PowerfulSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	<!--
 	<ResearchProjectDef>
 		<defName>AdvancedMutagenChambers</defName>
 		<label>Advanced chambers</label>
@@ -109,11 +109,10 @@
 			<li>ChamberModulator</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	-->
 	<ResearchProjectDef>
 		<defName>ChamberModulator</defName>
 		<label>Chamber modulation</label>
-		<description>It didn't take long to come up with this, because apparently the top scientists wanted to be able to determine exactly what came out the other end. This unlocks the modulator, which in turn allows you to pick an animal for the chamber to turn a pawn into. You will also be able to connect two pods together via the modulator. Once two pawns are in the connected chambers, this should unlock another option...</description>
+		<description>It didn't take long to come up with this, because apparently the top scientists wanted to be able to determine exactly what came out the other end. This unlocks the modulator, which in turn allows you to pick an animal for the chamber to turn a pawn into provided they've already been tagged. You will also be able to connect two pods together via the modulator. Once two pawns are in the connected chambers, this should unlock another option...</description>
 		<baseCost>200</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>

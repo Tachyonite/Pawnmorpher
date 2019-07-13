@@ -10,7 +10,7 @@ namespace Pawnmorph
     public static class TransformerUtility
     {
 
-        public static bool TryGivePostTransformationBondRelation(ref Pawn thrumbo, Pawn pawn, out Pawn otherPawn)
+        public static bool TryGivePostTransformationBondRelations(ref Pawn thrumbo, Pawn pawn, out Pawn otherPawn)
         {
             otherPawn = null;
             int minimumOpinion = 20;

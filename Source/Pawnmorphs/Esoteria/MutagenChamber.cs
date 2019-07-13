@@ -144,7 +144,7 @@ namespace Pawnmorph
     public class Building_MutagenChamber : Building_Casket
     {
         public static JobDef EnterMutagenChamber;
-        public float daysToIncubate = 0.05f;
+        public float daysToIncubate = 1f;
         public CompFacility compLinked;
         public Building_MutagenModulator modulator;
         public float daysIn = 0f;
@@ -276,7 +276,9 @@ namespace Pawnmorph
 
         public void PickRandom()
         {
-            pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
+            IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && (x.label.StartsWith("chao") && x.label != "chaomeld" && x.label != "chaofusion"));
+            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals.ToArray();
+            pawnTFKind = pks.Concat(pks2).RandomElement();
         }
 
         public override void ExposeData()
@@ -425,7 +427,9 @@ namespace Pawnmorph
                     {
                         PawnMorphInstance pmm = new PawnMorphInstance((Pawn)this.innerContainer.First(), pawn3);
                         Find.World.GetComponent<PawnmorphGameComp>().addPawn(pmm);
-                        pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
+                        IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && (x.label.ToLower().StartsWith("chao") && x.label.ToLower() != "chaomeld" && x.label.ToLower() != "chaofusion"));
+                        IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals.ToArray();
+                        pks = pks.Concat(pks2);
                     }
                     
                     Find.TickManager.slower.SignalForceNormalSpeedShort();
