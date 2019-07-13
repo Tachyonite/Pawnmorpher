@@ -119,4 +119,69 @@
 			</li>
 		</tools>
 	</ThingDef>
+	
+	
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>TST_Gun_TaggingGun</defName>
+		<label>Tagging rifle</label>
+		<description>Use this rifle to add animals to your genetic database. Not to be used as an actual weapon, but can still trigger manhunter as, well, it does kinda hurt to be shot by it.</description>
+		<graphicData>
+			<texPath>Things/Item/TaggingRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<MarketValue>650</MarketValue>
+			<WorkToMake>8000</WorkToMake>
+			<Mass>3</Mass>
+			<AccuracyTouch>80</AccuracyTouch>
+			<AccuracyShort>70</AccuracyShort>
+			<AccuracyMedium>60</AccuracyMedium>
+			<AccuracyLong>50</AccuracyLong>
+			<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Mutanite>1</Mutanite>
+			<Steel>25</Steel>
+			<Gun_BoltActionRifle>1</Gun_BoltActionRifle>
+		</costList>
+		<recipeMaker>
+		<researchPrerequisite>MutagenChambers</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_TaggingGun</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<range>30</range>
+				<soundCast>Shot_ChargeRifle</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+	
 </Defs>
