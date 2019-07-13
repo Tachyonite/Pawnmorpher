@@ -1,58 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <Defs>
-
-	<ThingDef ParentName="MakeableShellBase">
-    <defName>Shell_Mutagenic</defName>
-    <label>mutagenic shell</label>
-    <description>---</description>
-    <graphicData>
-      <texPath>Things/Item/Resource/Shell/Shell_Incendiary</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <comps>
-      <li Class="CompProperties_Explosive">
-        <explosiveRadius>2.9</explosiveRadius>
-        <explosiveDamageType>MutagenCloud</explosiveDamageType>
-        <explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
-        <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-        <wickTicks>
-          <min>30</min>
-          <max>60</max>
-        </wickTicks>
-      </li>
-    </comps>
-    <projectileWhenLoaded>Bullet_Shell_Mutagen</projectileWhenLoaded>
-    <costList>
-      <Steel>15</Steel>
-      <MechaniteSlurry>1</MechaniteSlurry>
-    </costList>
-  </ThingDef>
-  
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_Shell_Mutagen</defName>
-    <label>mutagenic shell</label>
-    <graphicData>
-      <texPath>Things/Projectile/ShellFirefoam</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>TransparentPostLight</shaderType>
-    </graphicData>
-    <thingClass>Projectile_Explosive</thingClass>
-    <projectile>
-      <damageDef>MutagenCloud</damageDef>
-      <damageAmountBase>1</damageAmountBase>
-      <speed>41</speed>
-      <explosionRadius>5</explosionRadius>
-      <flyOverhead>true</flyOverhead>
-      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-      <soundExplode>Explosion_EMP</soundExplode>
-      <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-      <soundAmbient>MortarRound_Ambient</soundAmbient>
-      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      <explosionEffect>ExtinguisherExplosion</explosionEffect>
-    </projectile>
-  </ThingDef>
-
 	<DamageDef>
 		<defName>MutagenCloud</defName>
 		<label>mutagen cloud</label>
