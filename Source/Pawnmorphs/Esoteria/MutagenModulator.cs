@@ -167,7 +167,14 @@ namespace Pawnmorph
             {
                 void Action()
                 {
-                    Chambers.First().pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaomeld").RandomElement();
+                    if (maxBodySize == 5.0f)
+                    {
+                        Chambers.First().pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaofusion").RandomElement();
+                    }
+                    else
+                    {
+                        Chambers.First().pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaomeld").RandomElement();
+                    }
                     Chambers.Last().pawnTFKind = null;
                     Chambers.Last().doNotEject = true;
                     Chambers.First().linkTo = Chambers.Last();

@@ -168,26 +168,32 @@ namespace Pawnmorph
         public override string GetInspectString()
         {
             base.GetInspectString();
-            
+            StringBuilder stringBuilder = new StringBuilder();
+            string inspectString = base.GetInspectString();
+
             if (this.modulator != null)
             {
                 if (this.modulator.merging && this != this.modulator.Chambers.First())
                 {
-                    return "MutagenChamberProgress".Translate() + ": Merging with linked pod";
+                    stringBuilder.AppendLine("MutagenChamberProgress".Translate() + ": Merging with linked pod");
                 }
                 else
                 {
                     if (this.modulator.random)
                     {
-                        return "MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " ???";
+                        stringBuilder.AppendLine("MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " ???");
                     }
-                    return "MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " " + pawnTFKind.LabelCap;
+                    stringBuilder.AppendLine("MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " " + pawnTFKind.LabelCap);
                 }
             }
             else
             {
-                return "MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " ???";
+                stringBuilder.AppendLine("MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " ???");
             }
+            stringBuilder.AppendLine("Slurry contained: " + fuelComp.Fuel + "/" + fuelComp.TargetFuelLevel);
+            stringBuilder.AppendLine("(requires " + fuelComp.TargetFuelLevel + " to begin)");
+
+            return stringBuilder.ToString().TrimEndNewlines();
             
         }
 
@@ -220,7 +226,7 @@ namespace Pawnmorph
                 foreach (Thing item in (IEnumerable<Thing>)innerContainer)
                 {
                     Pawn pawn = item as Pawn;
-                    if (!fuelComp.HasFuel || !powerComp.PowerOn)
+                    if ((!fuelComp.HasFuel || !powerComp.PowerOn) && fuelComp.FuelPercentOfMax != 1f)
                         return;
                     if (this.modulator != null)
                     {
