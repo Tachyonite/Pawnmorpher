@@ -12,4 +12,10 @@ namespace EtherGun
         public float AddHediffChance = 0.99f;
         public HediffDef HediffToAdd = null;
     }
+
+    public class CompProperties_EtherExplosive : CompProperties_Explosive
+    {
+        public float AddHediffChance = 0.99f;
+        public HediffDef HediffToAdd = null;
+    }
 }

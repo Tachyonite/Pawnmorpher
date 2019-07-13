@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="BaseMakeableGrenade">
+		<defName>Weapon_GrenadeTF</defName>
+		<label>mutagenic grenades</label>
+		<description>A highly presurized canister filled with DNA and mechanites that aerosolizes when thrown. The resulting mist can mutate any organics caught in it.</description>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Item/MutagenGrenadeBelt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Grenade</soundInteract>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<Mass>1</Mass>
+			<RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+			<WorkToMake>12000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>20</Steel>
+			<MechaniteSlurry>5</MechaniteSlurry>
+		</costList>
+		<thingCategories>
+			<li>Grenades</li>
+		</thingCategories>
+		<verbs>
+			<li>
+				<label>throw mutagenic grenade</label>
+				<verbClass>Verb_LaunchProjectile</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeTF</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="EtherGun.CompProperties_EtherExplosive">
+				<explosiveRadius>2.66</explosiveRadius>
+				<explosiveDamageType>MutagenCloud</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+				<AddHediffChance>0.7</AddHediffChance>
+				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="EtherGun.ThingDef_EtherBullet" ParentName="BaseGrenadeProjectile">
+		<defName>Proj_GrenadeTF</defName>
+		<label>mutagenic grenade</label>
+		<thingClass>EtherGun.Projectile_EtherExplosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectiles/MutagenGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<explosionRadius >1.9</explosionRadius >
+			<damageDef>MutagenCloud</damageDef>
+			<explosionDelay>100</explosionDelay>
+		</projectile>
+		<AddHediffChance>0.7</AddHediffChance>
+		<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+	</ThingDef>
+</Defs>

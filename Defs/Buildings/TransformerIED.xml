@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>  
+	<ThingDef ParentName="TrapIEDBase">
+		<defName>TrapIED_TF</defName>
+		<label>IED mutagen trap</label>
+		<description>A pair of mutagenic shells connected to a touch-activated trigger. The explosion can mutate organics caught in the blast. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
+		<graphicData>
+			<texPath>Things/Item/tfIED</texPath>
+		</graphicData>
+		<costList>
+			<Shell_TF>2</Shell_TF>
+		</costList>
+		<comps>
+			<li Class="EtherGun.CompProperties_EtherExplosive">
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>MutagenCloud</explosiveDamageType>
+				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+				<wickTicks>
+					<min>15</min>
+					<max>15</max>
+				</wickTicks>
+				<AddHediffChance>0.7</AddHediffChance>
+				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+			</li>
+		</comps>
+		<specialDisplayRadius>3.9</specialDisplayRadius>
+	</ThingDef>
+</Defs>
