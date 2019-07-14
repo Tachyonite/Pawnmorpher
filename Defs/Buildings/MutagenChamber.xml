@@ -137,11 +137,9 @@
     <defaultPlacingRot>South</defaultPlacingRot>
 	<designationCategory>Production</designationCategory>
     <costList>
-      <Steel>120</Steel>
-			<Mutanite>14</Mutanite>
-			<MechaniteSlurry>3</MechaniteSlurry>
-			<ComponentIndustrial>3</ComponentIndustrial>
-      <ComponentSpacer>1</ComponentSpacer>
+      <Steel>50</Steel>
+	<Mutanite>1</Mutanite>
+	<ComponentIndustrial>5</ComponentIndustrial>
     </costList>
 	<placeWorkers>
       <li>PlaceWorker_ShowFacilitiesConnections</li>
@@ -197,11 +195,11 @@
     <defaultPlacingRot>South</defaultPlacingRot>
 	<designationCategory>Production</designationCategory>
     <costList>
-      <Steel>120</Steel>
-			<Mutanite>14</Mutanite>
-			<MechaniteSlurry>3</MechaniteSlurry>
-			<ComponentIndustrial>3</ComponentIndustrial>
-      <ComponentSpacer>1</ComponentSpacer>
+      <Steel>70</Steel>
+      <Plasteel>10</Plasteel>
+	<Mutanite>1</Mutanite>
+	<ComponentIndustrial>5</ComponentIndustrial>
+	<ComponentSpacer>1</ComponentSpacer>
     </costList>
 	<placeWorkers>
       <li>PlaceWorker_ShowFacilitiesConnections</li>

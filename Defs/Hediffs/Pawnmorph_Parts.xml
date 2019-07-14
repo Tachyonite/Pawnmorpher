@@ -572,6 +572,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherUdder</defName>
 		<label>udder</label>
+		<description>This really needs no explanation. [PAWN_nameDef] now produces milk.</description>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>MilkedMyself</thought>
@@ -650,6 +651,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherChemfuelUdder</defName>
 		<label>chemical udder</label>
+		<description>Not so much an udder as a sac full of chemfuel, [PAWN_nameDef] now produces chemfuel.</description>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ChemMilkedMyself</thought>
@@ -717,6 +719,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherWooly</defName>
 		<label>wooly</label>
+		<description>Thick wool grows over [PAWN_nameDef]'s body constantly. They can shave themselves.</description>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<daysToProduce>1</daysToProduce>
@@ -728,6 +731,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherEggLayer</defName>
 		<label>egglayer</label>
+		<description>[PAWN_nameDef] can now lay eggs. Don't ask, don't tell. It's rather embarrassing.</description>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<daysToProduce>1</daysToProduce>
@@ -1390,6 +1394,19 @@
 			</li>
 		</stages>
 		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<daysToProduce>0.5</daysToProduce>
+				<resource>RawFungus</resource>
+				<amount>25</amount>
+				<thought>FoundTruffles</thought>
+				<terrains>
+				<li>Soil</li>
+				<li>MossyTerrain</li>
+				<li>MarshyTerrain</li>
+				<li>SoilRich</li>
+				<li>Mud</li>
+				</terrains>
+			</li>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
@@ -1426,6 +1443,19 @@
 			</li>
 		</stages>
 		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<daysToProduce>0.5</daysToProduce>
+				<resource>RawFungus</resource>
+				<amount>25</amount>
+				<thought>FoundTruffles</thought>
+				<terrains>
+				<li>Soil</li>
+				<li>MossyTerrain</li>
+				<li>MarshyTerrain</li>
+				<li>SoilRich</li>
+				<li>Mud</li>
+				</terrains>
+			</li>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
@@ -1884,12 +1914,7 @@
 		<description>Cute but inflexible paws have replaced [PAWN_nameDef]'s hands. They lack a thumb, which has receded into a useless dewclaw.</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.35</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
 			</li>
 		</stages>
 		<comps>
@@ -1916,12 +1941,7 @@
 		<description>Thunderous stomping follows [PAWN_nameDef] everywhere they go.</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.5</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
 			</li>
 		</stages>
 		<comps>
@@ -1949,12 +1969,7 @@
 		<description>Massive, clawed and deadly paws have replaced the finer thumbed hands of a human. While less useful for manipulation, they make [PAWN_nameDef] a beast in a fight.</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.7</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
 			</li>
 		</stages>
 		<comps>
@@ -1981,12 +1996,7 @@
 		<description>Thankfully, this more manipulative paw allows [PAWN_nameDef] to keep their thumbs.</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 		<comps>
@@ -2013,12 +2023,7 @@
 		<description>[PAWN_nameDef]'s fingers have disappeared into a lump of bird-skinned flesh, with many feathers protruding from the nub.</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.3</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2029,12 +2034,7 @@
 		<description>[PAWN_nameDef]'s entire arm has contorted and feathered into a wing, however it is not strong enough to allow them to fly. But that's like, the best bit dude!</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.45</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>-0.7</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2044,11 +2044,8 @@
 		<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
 		<stages>
 			<li>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.1</offset>
-					</li>
 					<li>
 						<capacity>Manipulation</capacity>
 						<offset>0.1</offset>
@@ -2077,7 +2074,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherPawFoot</defName>
 		<label>paw</label>
-		<description>[PAWN_nameDef]'s feet have stretched out, growing a coat of fur, the toes shorteningto clawed digits.</description>
+		<description>[PAWN_nameDef]'s feet have stretched out, growing a coat of fur, the toes shortening to clawed digits.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -2119,7 +2116,7 @@
 					</li>
 				</capMods>
 				<statOffsets>
-					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
@@ -2128,6 +2125,7 @@
 
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherClovenHoofFoot</defName>
+		<description>[PAWN_nameDef]'s toenails have thickened and grown into a veritable hoof, with a split down the middle.</description>
 		<label>cloven hoof</label>
 		<stages>
 			<li>
@@ -2145,6 +2143,7 @@
 	</HediffDef>
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherUnclovenHoofFoot</defName>
+		<description>[PAWN_nameDef]'s feet have shifted into a single-toed hoof, like a horse's.</description>
 		<label>hoof</label>
 		<stages>
 			<li>
@@ -2160,14 +2159,10 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherHoofHand</defName>
 		<label>hoof</label>
+		<description>It's terrifying, but [PAWN_nameDef]'s hands are nothing more than hooves now. Holding things, grabbing things and doing anything requiring thumbs is going to be a lot more difficult.</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.45</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2175,14 +2170,10 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherTrotterHand</defName>
 		<label>trotter</label>
+		<description>[PAWN_nameDef]'s hands resemble trotters more than anything else, leaving them with little in the way of grasping ability.</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>-0.35</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>-0.6</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2190,12 +2181,13 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherTrotterFoot</defName>
 		<label>trotter</label>
+		<description>Smaller hooves now sit where [PAWN_nameDef]'s feet once were. Pointed things, they are.</description>
 		<stages>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
-						<offset>-0.1</offset>
+						<offset>0.05</offset>
 					</li>
 				</capMods>
 			</li>
@@ -2205,12 +2197,13 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherDigitigradeLeg</defName>
 		<label>digitigrade</label>
+		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
 		<stages>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
-						<offset>0.1</offset>
+						<offset>0.2</offset>
 					</li>
 				</capMods>
 			</li>
@@ -2220,14 +2213,10 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherBearEar</defName>
 		<label>ursine</label>
+		<description>Rounded, fuzzy ears sit atop [PAWN_nameDef]'s head. They're very slightly better at hearing than a human's ears.</description>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2237,12 +2226,7 @@
 		<label>thrumbic</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2252,12 +2236,7 @@
 		<label>cervine</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2267,12 +2246,7 @@
 		<label>ratty</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.05</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2300,12 +2274,7 @@
 		<label>woolen</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.025</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2315,27 +2284,18 @@
 		<label>lupine</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.15</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherFoxEar</defName>
+		<description>Big fuzzy triangles crown [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're very sensitive, so please don't shout.</description>
 		<label>vulpine</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.2</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.3</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2345,12 +2305,7 @@
 		<label>bovine</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.05</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2390,12 +2345,7 @@
 		<label>porcine</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2404,12 +2354,7 @@
 		<label>porcine</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2419,12 +2364,7 @@
 		<label>canine</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.2</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.3</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2434,12 +2374,7 @@
 		<label>warglike</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.2</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.25</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2449,12 +2384,7 @@
 		<label>floppy</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
@@ -2464,12 +2394,7 @@
 		<label>boomalopic</label>
 		<stages>
 			<li>
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.05</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
