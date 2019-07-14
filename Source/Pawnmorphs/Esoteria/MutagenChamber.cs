@@ -158,6 +158,7 @@ namespace Pawnmorph
         private string hediffDef = "TransformedHuman";
         private CompRefuelable fuelComp = null;
         private CompPowerTrader powerComp = null;
+        private CompFlickable flickComp = null;
         public Building_MutagenChamber linkTo;
 
         public Building_MutagenChamber()
@@ -215,6 +216,7 @@ namespace Pawnmorph
             base.SpawnSetup(map, respawningAfterLoad);
             fuelComp = this.GetComp<CompRefuelable>();
             powerComp = this.GetComp<CompPowerTrader>();
+            flickComp = this.GetComp<CompFlickable>();
         }
 
         public override void Tick()
@@ -483,7 +485,7 @@ namespace Pawnmorph
                 Building_MutagenChamber building_MutagenChamber = (Building_MutagenChamber)GenClosest.ClosestThingReachable(p.Position, p.Map, ThingRequest.ForDef(item), PathEndMode.InteractionCell, TraverseParms.For(traveler), 9999f, delegate (Thing x)
                 {
                     int result;
-                    if (!((Building_MutagenChamber)x).HasAnyContents)
+                    if (!((Building_MutagenChamber)x).HasAnyContents && ((Building_MutagenChamber)x).flickComp.SwitchIsOn)
                     {
                         Pawn p2 = traveler;
                         LocalTargetInfo target = x;
