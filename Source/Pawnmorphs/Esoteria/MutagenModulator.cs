@@ -157,16 +157,24 @@ namespace Pawnmorph
             }
             else
             {
-                maxBodySize = 2.5f;
+                maxBodySize = 2.9f;
             }
-
-            IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= maxBodySize && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && (x.label != "chaomeld" && x.label != "chaofusion"));
+            IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= maxBodySize && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && (x.label.ToLower().StartsWith("chao") && x.label.ToLower() != "chaomeld" && x.label.ToLower() != "chaofusion"));
+            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals.ToArray();
+            pks = pks.Concat(pks2);
 
             if (Chambers.All(x => x.ContainedThing != null) && Chambers.Count > 1)
             {
                 void Action()
                 {
-                    Chambers.First().pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaomeld").RandomElement();
+                    if (maxBodySize == 5.0f)
+                    {
+                        Chambers.First().pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaofusion").RandomElement();
+                    }
+                    else
+                    {
+                        Chambers.First().pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaomeld").RandomElement();
+                    }
                     Chambers.Last().pawnTFKind = null;
                     Chambers.Last().doNotEject = true;
                     Chambers.First().linkTo = Chambers.Last();

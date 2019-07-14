@@ -444,10 +444,9 @@ namespace Pawnmorph
                     Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationBondLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformationBond".Translate(pawn.LabelShort, pawnTFKind.LabelCap, otherPawn.LabelShort).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
                 }
                 else
-                {*/
-                Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+                {
 
-                //}
+                }*/
 
                 pawn.health.RemoveHediff(cause);
                 PawnMorphInstance pm = new PawnMorphInstance(pawn, pawn3); //pawn is human, pawn3 is animal
@@ -475,6 +474,8 @@ namespace Pawnmorph
         public string faction;
         public MentalStateDef mentalState = null;
         public float mentalStateChance;
+
+
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
@@ -560,19 +561,18 @@ namespace Pawnmorph
                     Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationBondLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformationBond".Translate(pawn.LabelShort, pawnTFKind.LabelCap, otherPawn.LabelShort).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
                 }
                 else
-                {*/
-                    Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+                {
 
-                //}
+                }*/
                 pawn.health.RemoveHediff(cause);
                 PawnMorphInstance pm = new PawnMorphInstance(pawn, pawn3); //pawn is human, pawn3 is animal
                 Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm);
                 if (pawn.ownership.OwnedBed != null)
                 {
-                    pawn.ownership.UnclaimBed();
+                    pawn.ownership.UnclaimAll();
                 }
                 pawn.DeSpawn();
-                
+
                 Find.TickManager.slower.SignalForceNormalSpeedShort();
             }
             else { triggered = true; }
@@ -600,7 +600,6 @@ namespace Pawnmorph
             }
             catch { }
         }
-    }
+    }    
 
-    
 }

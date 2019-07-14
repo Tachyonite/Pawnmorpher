@@ -601,4 +601,16 @@
 		</stages>
 	</ThoughtDef>
 	
+	<ThoughtDef>
+		<defName>FoundTruffles</defName>
+		<durationDays>0.5</durationDays>
+		<stages>
+			<li>
+				<label>found truffles</label>
+				<description>I managed to find some food while sniffing around in the dirt. Kinda dirty, but tasty.</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

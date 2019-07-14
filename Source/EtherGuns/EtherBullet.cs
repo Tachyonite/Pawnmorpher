@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
+using Pawnmorph;
 
 namespace EtherGun
 {
@@ -11,5 +12,8 @@ namespace EtherGun
     {
         public float AddHediffChance = 0.99f;
         public HediffDef HediffToAdd = null;
+    }
+    public class ThingDef_TaggingBullet : ThingDef
+    {
     }
 }

@@ -7,4 +7,19 @@
 			  <li>TFMilk</li>
 		</value>
 	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Milk"]/socialPropernessMatters</xpath>
+		<success>Always</success>
+		<value><socialPropernessMatters>false</socialPropernessMatters></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="EggChickenUnfertilized"]/socialPropernessMatters</xpath>
+		<success>Always</success>
+		<value><socialPropernessMatters>false</socialPropernessMatters></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Milk"]/ingestible/preferability</xpath>
+		<success>Always</success>
+		<value><preferability>DesperateOnlyForHumanlikes</preferability></value>
+	</Operation>
 </Patch>

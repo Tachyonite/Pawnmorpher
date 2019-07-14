@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="MakeableShellBase">
+		<defName>Shell_TF</defName>
+		<label>mutagenic shell</label>
+		<description>A shell filled with a chaotic mix of DNA and mechanites that aerosolizes on impact. The mist can mutate any organics caught in it. Can be fired from mortars or installed as a trap. Bursts when damaged.</description>
+		
+		<graphicData>
+			<texPath>Things/Item/Resource/TFShell</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="EtherGun.CompProperties_EtherExplosive">
+				<explosiveRadius>2.9</explosiveRadius>
+				<explosiveDamageType>MutagenCloud</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<wickTicks>
+					<min>30</min>
+					<max>60</max>
+				</wickTicks>
+				<AddHediffChance>0.7</AddHediffChance>
+				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+			</li>
+		</comps>
+		<projectileWhenLoaded>Bullet_Shell_TF</projectileWhenLoaded>
+		<recipeMaker>
+		<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>20</Steel>
+			<MechaniteSlurry>2</MechaniteSlurry>
+		</costList>
+	</ThingDef>
+  
+	<ThingDef Class="EtherGun.ThingDef_EtherBullet" ParentName="BaseBullet">
+		<defName>Bullet_Shell_TF</defName>
+		<label>mutagenic shell</label>
+		<graphicData>
+			<texPath>Things/Projectiles/ShellMutagenic</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>EtherGun.Projectile_EtherExplosive</thingClass>
+		<projectile>
+			<damageDef>MutagenCloud</damageDef>
+			<speed>41</speed>
+			<explosionRadius>3.5</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+		</projectile>
+		<AddHediffChance>0.7</AddHediffChance>
+		<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+	</ThingDef>
+</Defs>

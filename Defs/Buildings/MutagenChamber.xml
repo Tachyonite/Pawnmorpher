@@ -137,11 +137,9 @@
     <defaultPlacingRot>South</defaultPlacingRot>
 	<designationCategory>Production</designationCategory>
     <costList>
-      <Steel>120</Steel>
-			<Mutanite>14</Mutanite>
-			<MechaniteSlurry>3</MechaniteSlurry>
-			<ComponentIndustrial>3</ComponentIndustrial>
-      <ComponentSpacer>1</ComponentSpacer>
+      <Steel>50</Steel>
+	<Mutanite>1</Mutanite>
+	<ComponentIndustrial>5</ComponentIndustrial>
     </costList>
 	<placeWorkers>
       <li>PlaceWorker_ShowFacilitiesConnections</li>
@@ -150,13 +148,13 @@
     <designationHotKey>Misc2</designationHotKey>
     <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
   </ThingDef>
-  <!--
+
   <ThingDef ParentName="BuildingBase">
     <defName>PowerfulMutagenicModulator</defName>
     <label>powerful mutagenic modulator</label>
-    <description>A more advanced modulator needed to link two larger chambers together. By more advanced, we mean "green coat of paint", until the artist catches up.</description>
+    <description>A more advanced modulator needed to link two larger chambers together. A bigger screen and some fancy buttons should allow for us to control mechanites over a much larger scale.</description>
     <graphicData>
-      <texPath>Things/Building/MutagenChamber/Monitor</texPath>
+      <texPath>Things/Building/MutagenChamber/advmonitor</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(1.2,1.2)</drawSize>
       <shadowData>
@@ -197,11 +195,11 @@
     <defaultPlacingRot>South</defaultPlacingRot>
 	<designationCategory>Production</designationCategory>
     <costList>
-      <Steel>120</Steel>
-			<Mutanite>14</Mutanite>
-			<MechaniteSlurry>3</MechaniteSlurry>
-			<ComponentIndustrial>3</ComponentIndustrial>
-      <ComponentSpacer>1</ComponentSpacer>
+      <Steel>70</Steel>
+      <Plasteel>10</Plasteel>
+	<Mutanite>1</Mutanite>
+	<ComponentIndustrial>5</ComponentIndustrial>
+	<ComponentSpacer>1</ComponentSpacer>
     </costList>
 	<placeWorkers>
       <li>PlaceWorker_ShowFacilitiesConnections</li>
@@ -288,5 +286,5 @@
     <designationHotKey>Misc2</designationHotKey>
     <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
   </ThingDef>
-  -->
+  
 </Defs>

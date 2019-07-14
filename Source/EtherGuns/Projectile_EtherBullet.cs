@@ -54,4 +54,43 @@ namespace EtherGun
         }
         #endregion Overrides
     }
+
+    public class Projectile_TaggingBullet : Bullet
+    {
+        #region Properties
+        public ThingDef_TaggingBullet Def
+        {
+            get
+            {
+                //Case sensitive! If you use Def it will return Def, which is this getter. This will cause a never ending cycle and a stack overflow.
+                return this.def as ThingDef_TaggingBullet;
+            }
+        }
+        #endregion
+
+        #region Overrides
+        protected override void Impact(Thing hitThing)
+        {
+
+            base.Impact(hitThing);
+            Pawn hitPawn;
+            PawnmorphGameComp pgc = Find.World.GetComponent<PawnmorphGameComp>();
+            if (Def != null && hitThing != null && hitThing is Pawn)
+            {
+                hitPawn = hitThing as Pawn;
+                if (hitPawn.RaceProps.intelligence != Intelligence.Humanlike && hitPawn.RaceProps.intelligence != Intelligence.ToolUser)
+                {
+                    if (pgc.taggedAnimals.Contains(hitPawn.kindDef))
+                    {
+                        Messages.Message("{0} already in genetic database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.CautionInput);
+                        return;
+                    }
+                    pgc.tagPawn(hitPawn.kindDef);
+                    Messages.Message("{0} added to database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.TaskCompletion);
+                }
+            }
+        }
+        #endregion Overrides
+    }
+
 }
