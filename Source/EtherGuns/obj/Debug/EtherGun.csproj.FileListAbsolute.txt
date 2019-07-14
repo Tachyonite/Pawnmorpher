@@ -6,3 +6,8 @@ D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\EtherGu
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\EtherGuns\obj\Debug\EtherGun.csprojAssemblyReference.cache
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\EtherGuns\obj\Debug\EtherGun.csproj.CoreCompileInputs.cache
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\[1.0] Pawnformer 2\Source\EtherGuns\obj\Debug\EtherGun.csproj.CopyComplete
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Pawnmorpher\Assemblies\Plague.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Pawnmorpher\Source\EtherGuns\obj\Debug\EtherGun.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Pawnmorpher\Source\EtherGuns\obj\Debug\EtherGun.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Pawnmorpher\Source\EtherGuns\obj\Debug\EtherGun.csproj.CopyComplete
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Pawnmorpher\Source\EtherGuns\obj\Debug\Plague.dll

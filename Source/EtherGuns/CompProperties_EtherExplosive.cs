@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
-using Pawnmorph;
 
 namespace EtherGun
 {
-    public class ThingDef_EtherBullet : ThingDef
+    public class CompProperties_EtherExplosive : CompProperties_Explosive
     {
+        public CompProperties_EtherExplosive()
+        {
+            this.compClass = typeof(CompEtherExplosive);
+        }
+
         public float AddHediffChance = 0.99f;
         public HediffDef HediffToAdd = null;
-    }
-    public class ThingDef_TaggingBullet : ThingDef
-    {
     }
 }

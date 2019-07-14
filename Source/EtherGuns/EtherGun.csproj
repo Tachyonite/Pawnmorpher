@@ -52,10 +52,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Building_TrapTransforming.cs" />
+    <Compile Include="CompEtherExplosive.cs" />
+    <Compile Include="CompProperties_EtherExplosive.cs" />
     <Compile Include="Projectile_EtherBullet.cs" />
     <Compile Include="EtherBullet.cs" />
     <Compile Include="Projectile_EtherExplosive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransformPawn.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
