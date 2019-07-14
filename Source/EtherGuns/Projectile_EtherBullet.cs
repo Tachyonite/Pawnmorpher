@@ -75,9 +75,12 @@ namespace EtherGun
             base.Impact(hitThing);
             Pawn hitPawn;
             PawnmorphGameComp pgc = Find.World.GetComponent<PawnmorphGameComp>();
-            if (Def != null && hitThing != null && hitThing is Pawn)
+            Log.Message("Hit shit");
+            if (hitThing != null && hitThing is Pawn)
             {
+
                 hitPawn = hitThing as Pawn;
+                Log.Message("Shot " + hitPawn.KindLabel);
                 if (hitPawn.RaceProps.intelligence != Intelligence.Humanlike && hitPawn.RaceProps.intelligence != Intelligence.ToolUser)
                 {
                     if (pgc.taggedAnimals.Contains(hitPawn.kindDef))

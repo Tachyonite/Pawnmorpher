@@ -184,7 +184,10 @@ namespace Pawnmorph
                     {
                         stringBuilder.AppendLine("MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " ???");
                     }
-                    stringBuilder.AppendLine("MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " " + pawnTFKind.LabelCap);
+                    else
+                    {
+                        stringBuilder.AppendLine("MutagenChamberProgress".Translate() + ": " + daysIn.ToStringPercent() + " " + pawnTFKind.LabelCap);
+                    }
                 }
             }
             else
@@ -271,12 +274,15 @@ namespace Pawnmorph
                     }
                     daysIn = 0;
                 }
-                else if (doNotEject && this.modulator.triggered)
+                else if (this.modulator != null)
                 {
-                    fuelComp.ConsumeFuel(fuelComp.Fuel);
-                    daysIn = 0;
-                    innerContainer.ClearAndDestroyContentsOrPassToWorld();
-                    this.modulator.triggered = false;
+                    if (doNotEject && this.modulator.triggered)
+                    {
+                        fuelComp.ConsumeFuel(fuelComp.Fuel);
+                        daysIn = 0;
+                        innerContainer.ClearAndDestroyContentsOrPassToWorld();
+                        this.modulator.triggered = false;
+                    }
                 }
                 
             }
@@ -292,6 +298,7 @@ namespace Pawnmorph
         public override void ExposeData()
         {
             Scribe_Values.Look(ref this.daysIn, "daysIn");
+            Scribe_Values.Look(ref this.doNotEject, "doNotEject");
             Scribe_Defs.Look(ref this.pawnTFKind, "pawnTFKind");
             Scribe_References.Look(ref this.modulator, "modulator");
             base.ExposeData();
@@ -442,9 +449,16 @@ namespace Pawnmorph
                     
                     Find.TickManager.slower.SignalForceNormalSpeedShort();
                     PawnComponentsUtility.AddComponentsForSpawn(pawn3);
-                    if(this.modulator != null)
+                    pawn.ownership.UnclaimAll();
+                    if (this.modulator != null)
                     {
                         this.modulator.triggered = true;
+                        if (this.modulator.merging)
+                        {
+                            this.modulator.merging = false;
+                            this.modulator.random = true;
+                        }
+                        
                     }
                     
 
@@ -467,7 +481,8 @@ namespace Pawnmorph
                     this.linkTo.EjectContents();
                 }
             }
-            if (daysIn > 1f && pawn.Spawned) { 
+            if (daysIn > 1f && pawn.Spawned) {
+                pawn.ownership.UnclaimAll();
                 pawn.DeSpawn();
             }
             daysIn = 0;

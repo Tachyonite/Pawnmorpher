@@ -1399,6 +1399,7 @@
 				<resource>RawFungus</resource>
 				<amount>25</amount>
 				<thought>FoundTruffles</thought>
+				<!--
 				<terrains>
 				<li>Soil</li>
 				<li>MossyTerrain</li>
@@ -1406,6 +1407,7 @@
 				<li>SoilRich</li>
 				<li>Mud</li>
 				</terrains>
+				-->
 			</li>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -1448,6 +1450,7 @@
 				<resource>RawFungus</resource>
 				<amount>25</amount>
 				<thought>FoundTruffles</thought>
+				<!--
 				<terrains>
 				<li>Soil</li>
 				<li>MossyTerrain</li>
@@ -1455,6 +1458,7 @@
 				<li>SoilRich</li>
 				<li>Mud</li>
 				</terrains>
+				-->
 			</li>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>

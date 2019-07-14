@@ -56,6 +56,13 @@ namespace Pawnmorph
             base.Destroy(mode);
 
         }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref this.merging, "merging");
+            Scribe_Values.Look(ref this.random, "random");
+        }
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
             if (Chambers.Count() > 0)
@@ -160,8 +167,13 @@ namespace Pawnmorph
                 maxBodySize = 2.9f;
             }
             IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= maxBodySize && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && (x.label.ToLower().StartsWith("chao") && x.label.ToLower() != "chaomeld" && x.label.ToLower() != "chaofusion"));
-            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals.ToArray();
-            pks = pks.Concat(pks2);
+            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals;
+            if (pks2 != null)
+            {
+                pks2 = pks2.ToArray();
+                pks = pks.Concat(pks2);
+            }
+            
 
             if (Chambers.All(x => x.ContainedThing != null) && Chambers.Count > 1)
             {
@@ -195,8 +207,7 @@ namespace Pawnmorph
                         foreach (Building_MutagenChamber chamber in Chambers)
                         {
                             chamber.pawnTFKind = pk;
-                            Chambers.First().linkTo = null;
-                            Chambers.Last().linkTo = null;
+                            chamber.linkTo = null;
                             this.merging = false;
                             this.random = false;
                         }

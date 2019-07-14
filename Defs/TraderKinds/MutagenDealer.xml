@@ -80,6 +80,20 @@
 					<max>5</max>
 				</countRange>
 			</li>
+			<li Class="Pawnmorph.StockGenerator_Morphs">
+				<checkTemperature>false</checkTemperature>
+				<tradeTagsSell>
+					<li>AnimalChaoticMerged</li>
+				</tradeTagsSell>
+				<kindCountRange>
+					<min>-1</min>
+					<max>-1</max>
+				</kindCountRange>
+				<countRange>
+					<min>-1</min>
+					<max>-1</max>
+				</countRange>
+			</li>
 			<li Class="StockGenerator_Slaves">
 				<respectPopulationIntent>true</respectPopulationIntent>
 				<countRange>
