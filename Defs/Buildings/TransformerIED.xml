@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>  
-	<ThingDef ParentName="TrapIEDBase">
+	<!--<ThingDef ParentName="TrapIEDBase">
 		<thingClass>EtherGun.Building_TrapTransforming</thingClass>
 		<defName>TrapIED_TF</defName>
 		<label>IED mutagen trap</label>
@@ -25,5 +25,5 @@
 			</li>
 		</comps>
 		<specialDisplayRadius>3.9</specialDisplayRadius>
-	</ThingDef>
+	</ThingDef>-->
 </Defs>
