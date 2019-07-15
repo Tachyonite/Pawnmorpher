@@ -7,13 +7,14 @@ using Verse;
 
 namespace EtherGun
 {
+    //What this is SUPPOSED to do is overide the CompExplosive's Detonate() method with our own custom method and call the base method at the end.
     public class CompEtherExplosive : CompExplosive
     {
         public new CompProperties_EtherExplosive Props
         {
             get
             {
-                return this.props as CompProperties_EtherExplosive;
+                return (CompProperties_EtherExplosive)this.props;
             }
         }
 
@@ -36,16 +37,5 @@ namespace EtherGun
             TransformPawn.ApplyHediff(pawnsAffected, map, hediff, chance);
             base.Detonate(map);
         }
-
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Defs.Look<HediffDef>(ref HediffToAdd, "HediffToAdd");
-            Scribe_Values.Look<float>(ref AddHediffChance, "AddHediffChance", 0.99f, false);
-        }
-
-        public HediffDef HediffToAdd;
-        public float AddHediffChance;
     }
 }

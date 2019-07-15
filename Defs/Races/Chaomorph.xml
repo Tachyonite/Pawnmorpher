@@ -1,16 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
 	<IncidentDef>
-    <defName>ChaomorphPasses</defName>
-    <label>Chaomorphs pass</label>
+		<defName>ChaomorphPasses</defName>
+		<label>Chaomorphs pass</label>
 		<category>Misc</category>
-    <targetTags>
-      <li>Map_PlayerHome</li>
-    </targetTags>
-    <workerClass>Pawnmorph.IncidentWorker_ChaomorphPasses</workerClass>
-    <baseChance>0.4</baseChance>
-    <minRefireDays>20</minRefireDays>
-  </IncidentDef>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>Pawnmorph.IncidentWorker_ChaomorphPasses</workerClass>
+		<baseChance>0.4</baseChance>
+		<minRefireDays>20</minRefireDays>
+	</IncidentDef>
 
 	<ThingDef ParentName="AnimalThingBase">
 		<defName>Chaocow</defName>

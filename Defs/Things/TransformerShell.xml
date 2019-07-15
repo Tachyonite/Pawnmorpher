@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
 	<ThingDef ParentName="MakeableShellBase">
 		<defName>Shell_TF</defName>
 		<label>mutagenic shell</label>
