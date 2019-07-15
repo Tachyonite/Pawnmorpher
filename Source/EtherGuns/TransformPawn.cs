@@ -8,10 +8,8 @@ using Pawnmorph;
 
 namespace EtherGun
 {
-    //Custom class to allow me to re-use code. Made it static so I didn't have to instantiate it every time I wanted to use it.
     public static class TransformPawn
     {
-        //Applies a hediff to a single pawn.
         public static void ApplyHediff(Pawn pawn, Map map, HediffDef hediff, float chance)
         {
             var rand = Rand.Value;
@@ -33,7 +31,6 @@ namespace EtherGun
             }
         }
 
-        //Overridde to apply hediffs to a list of pawns.
         public static void ApplyHediff(List<Pawn> pawns, Map map, HediffDef hediff, float chance)
         {
             for (int i = 0; i < pawns.Count(); i++)

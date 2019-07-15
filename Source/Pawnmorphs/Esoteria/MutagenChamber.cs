@@ -231,7 +231,7 @@ namespace Pawnmorph
                 foreach (Thing item in (IEnumerable<Thing>)innerContainer)
                 {
                     Pawn pawn = item as Pawn;
-                    if ((!fuelComp.HasFuel || !powerComp.PowerOn) && fuelComp.FuelPercentOfMax != 1f)
+                    if ((!fuelComp.HasFuel || !powerComp.PowerOn) || fuelComp.FuelPercentOfMax != 1f)
                         return;
                     if (this.modulator != null)
                     {
@@ -483,7 +483,7 @@ namespace Pawnmorph
             }
             if (daysIn > 1f && pawn.Spawned) {
                 pawn.ownership.UnclaimAll();
-                pawn.DeSpawn();
+                pawn.Destroy();
             }
             daysIn = 0;
         }

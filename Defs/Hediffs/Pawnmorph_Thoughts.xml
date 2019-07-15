@@ -1,122 +1,122 @@
  <Defs>
-  
-	<!-- ========== Merged Relationships ========== -->
  
-	<PawnRelationDef>
-		<workerClass>Pawnmorph.PawnRelationWorker_MergeMate</workerClass>
-		<defName>MergeMate</defName>
-		<label>meldmate</label>
-		<importance>200</importance>
-		<diedThought>MyMergeMateDied</diedThought>
-		<killedThought>KilledMyMergeMate</killedThought>
-		<soldThought>SoldMyMergeMate</soldThought>
-		<opinionOffset>35</opinionOffset>
-		<generationChanceFactor>0</generationChanceFactor>
-		<implied>false</implied>
-		<reflexive>true</reflexive>
-	</PawnRelationDef>
+  <PawnRelationDef>
+    <workerClass>Pawnmorph.PawnRelationWorker_MergeMate</workerClass>
+    <defName>MergeMate</defName>
+    <label>meldmate</label>
+    <importance>200</importance>
+    <diedThought>MyMergeMateDied</diedThought>
+    <killedThought>KilledMyMergeMate</killedThought>
+    <soldThought>SoldMyMergeMate</soldThought>
+    <opinionOffset>35</opinionOffset>
+    <generationChanceFactor>0</generationChanceFactor>
+    <implied>false</implied>
+    <reflexive>true</reflexive>
+  </PawnRelationDef>
   
-	<PawnRelationDef>
-		<workerClass>Pawnmorph.PawnRelationWorker_ExMerged</workerClass>
-		<defName>ExMerged</defName>
-		<label>ex-melded</label>
-		<importance>200</importance>
-		<diedThought>MyExMergeDied</diedThought>
-		<killedThought>KilledMyExMerge</killedThought>
-		<soldThought>SoldMyExMerge</soldThought>
-		<opinionOffset>-35</opinionOffset>
-		<generationChanceFactor>0</generationChanceFactor>
-		<implied>false</implied>
-		<reflexive>true</reflexive>
-	</PawnRelationDef>
+  <PawnRelationDef>
+    <workerClass>Pawnmorph.PawnRelationWorker_ExMerged</workerClass>
+    <defName>ExMerged</defName>
+    <label>ex-melded</label>
+    <importance>200</importance>
+    <diedThought>MyExMergeDied</diedThought>
+    <killedThought>KilledMyExMerge</killedThought>
+    <soldThought>SoldMyExMerge</soldThought>
+    <opinionOffset>-35</opinionOffset>
+    <generationChanceFactor>0</generationChanceFactor>
+    <implied>false</implied>
+    <reflexive>true</reflexive>
+  </PawnRelationDef>
   
-	<!-- ========== Merge Mate Thoughts ========== -->
+ <!-- -->
  
-	<ThoughtDef ParentName="DeathMemoryFamily">
-		<defName>MyMergeMateDied</defName>
-		<stages>
-			<li>
-				<label>my meldmate {0} died</label>
-				<description>My meldmate died. It feels a bit like dying myself.</description>
-				<baseMoodEffect>-16</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
+ <ThoughtDef ParentName="DeathMemoryFamily">
+    <defName>MyMergeMateDied</defName>
+    <stages>
+      <li>
+        <label>my meldmate {0} died</label>
+        <description>My meldmate died. It feels a bit like dying myself.</description>
+        <baseMoodEffect>-16</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
   
-	<ThoughtDef>
-		<defName>KilledMyMergeMate</defName>
-		<thoughtClass>Thought_MemorySocial</thoughtClass>
-		<durationDays>120</durationDays>
-		<stackLimit>300</stackLimit>
-		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
-		<stages>
-			<li>
-				<label>killed my meldmate</label>
-				<baseOpinionOffset>-50</baseOpinionOffset>
-			</li>
-		</stages>
-	</ThoughtDef>
+   <ThoughtDef>
+    <defName>KilledMyMergeMate</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>120</durationDays>
+    <stackLimit>300</stackLimit>
+    <stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>killed my meldmate</label>
+        <baseOpinionOffset>-50</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
   
-	<ThoughtDef>
-		<defName>SoldMyMergeMate</defName>
-		<thoughtClass>Thought_MemorySocial</thoughtClass>
-		<durationDays>120</durationDays>
-		<stackLimit>10</stackLimit>
-		<stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-		<stages>
-			<li>
-				<label>meldmate sold</label>
-				<labelSocial>sold my meldmate</labelSocial>
-				<description>My other half was sold to a trader! It was like I was sold too!</description>
-				<baseOpinionOffset>-10</baseOpinionOffset>
-				<baseMoodEffect>-10</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
+  <ThoughtDef>
+    <defName>SoldMyMergeMate</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>120</durationDays>
+    <stackLimit>10</stackLimit>
+    <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>meldmate sold</label>
+        <labelSocial>sold my meldmate</labelSocial>
+        <description>My other half was sold to a trader! It was like I was sold too!</description>
+        <baseOpinionOffset>-10</baseOpinionOffset>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  
  
-	<ThoughtDef ParentName="DeathMemoryFamily">
-		<defName>MyExMergeDied</defName>
-		<stages>
-			<li>
-				<label>ex-meld {0} died</label>
-				<description>The person I was melded to died. It feels sort of good that my darkest secrets are now only mine.</description>
-				<baseMoodEffect>5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
+ <ThoughtDef ParentName="DeathMemoryFamily">
+    <defName>MyExMergeDied</defName>
+    <stages>
+      <li>
+        <label>ex-meld {0} died</label>
+        <description>The person I was melded to died. It feels sort of good that my darkest secrets are now only mine.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
   
-	<ThoughtDef>
-		<defName>KilledMyExMerge</defName>
-		<thoughtClass>Thought_MemorySocial</thoughtClass>
-		<durationDays>120</durationDays>
-		<stackLimit>300</stackLimit>
-		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
-		<stages>
-			<li>
-				<label>killed my ex-meld</label>
-				<baseOpinionOffset>10</baseOpinionOffset>
-			</li>
-		</stages>
-	</ThoughtDef>
+   <ThoughtDef>
+    <defName>KilledMyExMerge</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>120</durationDays>
+    <stackLimit>300</stackLimit>
+    <stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>killed my ex-meld</label>
+        <baseOpinionOffset>10</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
   
-	<ThoughtDef>
-		<defName>SoldMyExMerge</defName>
-		<thoughtClass>Thought_MemorySocial</thoughtClass>
-		<durationDays>120</durationDays>
-		<stackLimit>10</stackLimit>
-		<stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-		<stages>
-			<li>
-				<label>ex-meld sold</label>
-				<labelSocial>sold my ex-meld</labelSocial>
-				<description>We're better off apart...with all that we know about each other.</description>
-				<baseOpinionOffset>10</baseOpinionOffset>
-				<baseMoodEffect>3</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
+  <ThoughtDef>
+    <defName>SoldMyExMerge</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>120</durationDays>
+    <stackLimit>10</stackLimit>
+    <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>ex-meld sold</label>
+        <labelSocial>sold my ex-meld</labelSocial>
+        <description>We're better off apart...with all that we know about each other.</description>
+        <baseOpinionOffset>10</baseOpinionOffset>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
  
-	<!-- ========== Production Thoughts ========== -->
+  <!-- -->
  
 	<ThoughtDef>
 		<defName>ProductiveBliss</defName>
@@ -129,177 +129,6 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-
-	<ThoughtDef>
-		<defName>LaidEgg</defName>
-		<durationDays>0.2</durationDays>
-		<stages>
-			<li>
-				<label>laid an egg</label>
-				<description>This is humiliating...and it doesn't feel like the last.</description>
-				<baseMoodEffect>-10</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef>
-		<defName>LaidEggMale</defName>
-		<durationDays>0.2</durationDays>
-		<stages>
-			<li>
-				<label>laid an egg</label>
-				<description>This is humiliating...and how does this even work?</description>
-				<baseMoodEffect>-20</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef>
-		<defName>LaidEggBond</defName>
-		<durationDays>0.2</durationDays>
-		<stages>
-			<li>
-				<label>laid an egg (etherbond)</label>
-				<description>Egg...! Bok bwark!</description>
-				<baseMoodEffect>+10</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef>
-		<defName>LaidEggBroken</defName>
-		<durationDays>0.2</durationDays>
-		<stages>
-			<li>
-				<label>laid an egg (etherbroken)</label>
-				<description>B..bok...egg...gh..bwark...</description>
-				<baseMoodEffect>0</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>MilkedMyself</defName>
-		<durationDays>1</durationDays>
-		<stages>
-			<li>
-				<label>milked myself</label>
-				<description>I'm so embarrased.</description>
-				<baseMoodEffect>-10</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>MilkedMyselfMale</defName>
-		<durationDays>1</durationDays>
-		<stages>
-			<li>
-				<label>milked myself</label>
-				<description>For the love of...not milk!</description>
-				<baseMoodEffect>-20</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>MilkedMyselfBond</defName>
-		<durationDays>0.2</durationDays>
-		<stages>
-			<li>
-				<label>milked myself(etherbond)</label>
-				<description>Mmmmooooooo!</description>
-				<baseMoodEffect>+10</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef>
-		<defName>MilkedMyselfBroken</defName>
-		<durationDays>0.2</durationDays>
-		<stages>
-			<li>
-				<label>milked myself(etherbroken)</label>
-				<description>Mm..mooo...mmilk...?</description>
-				<baseMoodEffect>0</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>ChemMilkedMyself</defName>
-		<durationDays>1</durationDays>
-		<stages>
-			<li>
-				<label>milked myself</label>
-				<description>I'm so embarrased.</description>
-				<baseMoodEffect>-10</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>ChemMilkedMyselfMale</defName>
-		<durationDays>1</durationDays>
-		<stages>
-			<li>
-				<label>milked myself</label>
-				<description>For the love of...not chemfuel!</description>
-				<baseMoodEffect>-20</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>ChemMilkedMyselfBond</defName>
-		<durationDays>0.2</durationDays>
-		<stages>
-			<li>
-				<label>milked myself(etherbond)</label>
-				<description>Boom!</description>
-				<baseMoodEffect>+10</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef>
-		<defName>ChemMilkedMyselfBroken</defName>
-		<durationDays>0.2</durationDays>
-		<stages>
-			<li>
-				<label>milked myself(etherbroken)</label>
-				<description>B...boom...b...oom?</description>
-				<baseMoodEffect>0</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	
-	<ThoughtDef>
-		<defName>ShavedMyself</defName>
-		<durationDays>1</durationDays>
-		<stages>
-			<li>
-				<label>clean shaven</label>
-				<description>It's weird, but it feels kinda good to shave all that wool off.</description>
-				<baseMoodEffect>5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>FoundTruffles</defName>
-		<durationDays>0.5</durationDays>
-		<stages>
-			<li>
-				<label>found truffles</label>
-				<description>I managed to find some food while sniffing around in the dirt. Kinda dirty, but tasty.</description>
-				<baseMoodEffect>5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<!-- ========== Ex-Transformed Thoughts ========== -->
 	
 	<ThoughtDef>
 		<defName>WasAnimal</defName>
@@ -383,122 +212,12 @@
 			<li>
 				<label>was a sapient animal</label>
 				<description>I was trapped in the body of a beast with another person right next to me! I knew what they were thinking and they knew everything about me...I'm almost traumatised!</description>
-				<baseMoodEffect>-15</baseMoodEffect>
+				<baseMoodEffect>15</baseMoodEffect>
 			</li>
 			<li>
 				<label>was a mad animal</label>
 				<description>I'm sorry! It was the other guy I swear!</description>
 				<baseMoodEffect>-4</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<!-- ========== Morph Thoughts ========== -->
-	
-	<ThoughtDef>
-		<defName>EtherReactionAlpacaTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphAlpacaTF</hediff>
-		<stages>
-			<li>
-				<label>changed</label>
-				<description>What noise does an alpaca even make?</description>
-				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-			<li>
-				<label>feeling odd</label>
-				<description>I feel real...wooly?</description>
-				<baseMoodEffect>-5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>EtherReactionBoomalopeTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphBoomalopeTF</hediff>
-		<stages>
-			<li>
-				<label>changed</label>
-				<description>Boom?</description>
-				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-			<li>
-				<label>feeling odd</label>
-				<description>I feel...like I'm about to blow up...</description>
-				<baseMoodEffect>-5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>EtherReactionChickenTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphChickenTF</hediff>
-		<stages>
-			<li>
-				<label>changed</label>
-				<description>Bwark!? I feel all feathery...</description>
-				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-			<li>
-				<label>feeling odd</label>
-				<description>I have a sudden urge to bok...bok?</description>
-				<baseMoodEffect>-5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>EtherReactionCowTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphCowTF</hediff>
-		<stages>
-			<li>
-				<label>changed</label>
-				<description>M...moo?</description>
-				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-			<li>
-				<label>feeling odd</label>
-				<description>That grass is looking...tasty...</description>
-				<baseMoodEffect>-5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>EtherReactionDeerTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphDeerTF</hediff>
-		<stages>
-			<li>
-				<label>changed</label>
-				<description>*snort*!</description>
-				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-			<li>
-				<label>feeling odd</label>
-				<description>I have a sudden urge to run, to jump...</description>
-				<baseMoodEffect>-5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef>
-		<defName>EtherReactionElephantTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphElephantTF</hediff>
-		<stages>
-			<li>
-				<label>changed</label>
-				<description>I can touch my elbow with my trunk!</description>
-				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-			<li>
-				<label>feeling powerful</label>
-				<description>I have a sudden urge to spray water on myself...</description>
-				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -534,6 +253,73 @@
 			<li>
 				<label>feeling odd</label>
 				<description>I have a sudden urge to pull sleds...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionWargTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphWargTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>Howrrrlll!</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I have a sudden urge to howl...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionNoHands</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>EtherPawHand</hediff>
+		<stages>
+			<li>
+				<label>paws</label>
+				<description>How am I supposed to do anything with paws for hands?</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionChickenTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphChickenTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>Bwark!? I feel all feathery...</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I have a sudden urge to bok...bok?</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionDeerTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphDeerTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>*snort*!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I have a sudden urge to run, to jump...</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
@@ -576,34 +362,121 @@
 	</ThoughtDef>
 	
 	<ThoughtDef>
-		<defName>EtherReactionWargTF</defName>
+		<defName>EtherReactionElephantTF</defName>
 		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphWargTF</hediff>
+		<hediff>PawnmorphElephantTF</hediff>
 		<stages>
 			<li>
 				<label>changed</label>
-				<description>Howrrrlll!</description>
-				<baseMoodEffect>-1</baseMoodEffect>
+				<description>I can touch my elbow with my trunk!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 			<li>
-				<label>feeling odd</label>
-				<description>I have a sudden urge to howl...</description>
+				<label>feeling powerful</label>
+				<description>I have a sudden urge to spray water on myself...</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
 	
-	<!-- ========== "Look ma, no hands!" Thoughts ========== -->
-	
 	<ThoughtDef>
-		<defName>EtherReactionNoHands</defName>
+		<defName>EtherReactionAlpacaTF</defName>
 		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>EtherPawHand</hediff>
+		<hediff>PawnmorphAlpacaTF</hediff>
 		<stages>
 			<li>
-				<label>paws</label>
-				<description>How am I supposed to do anything with paws for hands?</description>
-				<baseMoodEffect>-6</baseMoodEffect>
+				<label>changed</label>
+				<description>What noise does an alpaca even make?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I feel real...wooly?</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>LaidEgg</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>laid an egg</label>
+				<description>This is humiliating...and it doesn't feel like the last.</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>LaidEggMale</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>laid an egg</label>
+				<description>This is humiliating...and how does this even work?</description>
+				<baseMoodEffect>-20</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>LaidEggBond</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>laid an egg (etherbond)</label>
+				<description>Egg...! Bok bwark!</description>
+				<baseMoodEffect>+10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>LaidEggBroken</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>laid an egg (etherbroken)</label>
+				<description>B..bok...egg...gh..bwark...</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionCowTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphCowTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>M...moo?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>That grass is looking...tasty...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionBoomalopeTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphBoomalopeTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>Boom?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I feel...like I'm about to blow up...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -617,6 +490,125 @@
 				<label>hoof-hands</label>
 				<description>I can't do anything with hooves...!</description>
 				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>MilkedMyself</defName>
+		<durationDays>1</durationDays>
+		<stages>
+			<li>
+				<label>milked myself</label>
+				<description>I'm so embarrased.</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef>
+		<defName>MilkedMyselfMale</defName>
+		<durationDays>1</durationDays>
+		<stages>
+			<li>
+				<label>milked myself</label>
+				<description>For the love of...not milk!</description>
+				<baseMoodEffect>-20</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>MilkedMyselfBond</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>milked myself(etherbond)</label>
+				<description>Mmmmooooooo!</description>
+				<baseMoodEffect>+10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>MilkedMyselfBroken</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>milked myself(etherbroken)</label>
+				<description>Mm..mooo...mmilk...?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>ChemMilkedMyself</defName>
+		<durationDays>1</durationDays>
+		<stages>
+			<li>
+				<label>milked myself</label>
+				<description>I'm so embarrased.</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef>
+		<defName>ChemMilkedMyselfMale</defName>
+		<durationDays>1</durationDays>
+		<stages>
+			<li>
+				<label>milked myself</label>
+				<description>For the love of...not chemfuel!</description>
+				<baseMoodEffect>-20</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>ChemMilkedMyselfBond</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>milked myself(etherbond)</label>
+				<description>Boom!</description>
+				<baseMoodEffect>+10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>ChemMilkedMyselfBroken</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>milked myself(etherbroken)</label>
+				<description>B...boom...b...oom?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<ThoughtDef>
+		<defName>ShavedMyself</defName>
+		<durationDays>1</durationDays>
+		<stages>
+			<li>
+				<label>clean shaven</label>
+				<description>It's weird, but it feels kinda good to shave all that wool off.</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>FoundTruffles</defName>
+		<durationDays>0.5</durationDays>
+		<stages>
+			<li>
+				<label>found truffles</label>
+				<description>I managed to find some food while sniffing around in the dirt. Kinda dirty, but tasty.</description>
+				<baseMoodEffect>5</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>

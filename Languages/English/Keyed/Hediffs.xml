@@ -12,8 +12,8 @@
 <LetterHediffFromTransformationLabel>{0} -> {1}</LetterHediffFromTransformationLabel>
 <LetterHediffFromTransformation>{0} has turned into a {1}!</LetterHediffFromTransformation>
 
-<!-- <LetterHediffFromTransformationLabel>{0} -> {1}</LetterHediffFromTransformationLabel>
-<LetterHediffFromTransformation>{0} has turned into a {1}! \n\n {0} has bonded with {2} because of their good relationship.</LetterHediffFromTransformation> -->
+<LetterHediffFromTransformationLabel>{0} -> {1}</LetterHediffFromTransformationLabel>
+<LetterHediffFromTransformation>{0} has turned into a {1}! \n\n {0} has bonded with {2} because of their good relationship.</LetterHediffFromTransformation>
 
 <LetterHediffFromTransformationMergeLabel>{0} + {1} -> {2}</LetterHediffFromTransformationMergeLabel>
 <LetterHediffFromTransformationMerge>{0} and {1} have melded into a {2}!</LetterHediffFromTransformationMerge>

@@ -2201,7 +2201,7 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherDigitigradeLeg</defName>
 		<label>digitigrade</label>
-		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which have elongated. This does however, put a spring in their step.</description>
+		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
 		<stages>
 			<li>
 				<capMods>

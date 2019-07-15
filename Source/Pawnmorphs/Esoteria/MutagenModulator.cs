@@ -69,9 +69,8 @@ namespace Pawnmorph
             {
                 foreach (Building_MutagenChamber c in Chambers)
                 {
-
+                    c.EjectContents();
                     c.modulator = null;
-
                 }
             }
             base.DeSpawn(mode);

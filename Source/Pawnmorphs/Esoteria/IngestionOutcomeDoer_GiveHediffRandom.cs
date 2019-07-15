@@ -184,7 +184,8 @@ namespace Pawnmorph
                         pawn3.SetFaction(Faction.OfPlayer);
                         pawn4.SetFaction(Faction.OfPlayer);
                         pm.replacement.DeSpawn(0);
-                        
+                        loader.removePawnMerged(pm);
+
 
                     }
                     else
@@ -314,6 +315,7 @@ namespace Pawnmorph
                         }
 
                         pawn3.health.AddHediff(h);
+                        loader.removePawn(pm);
                         pm.replacement.DeSpawn(0);
                     }
                     else

@@ -94,7 +94,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>MutagenicModulator</defName>
     <label>mutagenic modulator</label>
-    <description>Don't want people to come out of the chamber as random or chaotic animals? This modulator allows you to control the outcome...and even perform some very, very strange techniques. Place directly next to a chamber.</description>
+    <description>Don't want people to come out of the chamber as random or chaotic animals? This modulator allows you to control the outcome...and even perform some very, very strange techniques. Place directly next to a chamber. WARNING: Deconstructing this while a pawn is inside will eject them and waste any fuel inserted!</description>
     <graphicData>
       <texPath>Things/Building/MutagenChamber/Monitor</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -152,7 +152,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>PowerfulMutagenicModulator</defName>
     <label>powerful mutagenic modulator</label>
-    <description>A more advanced modulator needed to link two larger chambers together. A bigger screen and some fancy buttons should allow for us to control mechanites over a much larger scale.</description>
+    <description>A more advanced modulator needed to link two larger chambers together. A bigger screen and some fancy buttons should allow for us to control mechanites over a much larger scale. WARNING: Deconstructing this while a pawn is inside will eject them and waste any fuel inserted!</description>
     <graphicData>
       <texPath>Things/Building/MutagenChamber/advmonitor</texPath>
       <graphicClass>Graphic_Multi</graphicClass>

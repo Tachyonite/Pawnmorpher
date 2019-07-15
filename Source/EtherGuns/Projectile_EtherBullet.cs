@@ -75,21 +75,23 @@ namespace EtherGun
             base.Impact(hitThing);
             Pawn hitPawn;
             PawnmorphGameComp pgc = Find.World.GetComponent<PawnmorphGameComp>();
-            Log.Message("Hit shit");
             if (hitThing != null && hitThing is Pawn)
             {
 
                 hitPawn = hitThing as Pawn;
-                Log.Message("Shot " + hitPawn.KindLabel);
-                if (hitPawn.RaceProps.intelligence != Intelligence.Humanlike && hitPawn.RaceProps.intelligence != Intelligence.ToolUser)
+                if (hitPawn.RaceProps.intelligence != Intelligence.Humanlike && hitPawn.RaceProps.intelligence != Intelligence.ToolUser && !hitPawn.KindLabel.ToLower().StartsWith("chao"))
                 {
                     if (pgc.taggedAnimals.Contains(hitPawn.kindDef))
                     {
-                        Messages.Message("{0} already in genetic database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.CautionInput);
+                        Messages.Message("{0} already in genetic database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.RejectInput);
                         return;
                     }
                     pgc.tagPawn(hitPawn.kindDef);
                     Messages.Message("{0} added to database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.TaskCompletion);
+                }
+                if (hitPawn.KindLabel.ToLower().StartsWith("chao"))
+                {
+                    Messages.Message("{0} is too genetically corrupted to be added".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.RejectInput);
                 }
             }
         }

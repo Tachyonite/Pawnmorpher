@@ -7,7 +7,6 @@ using Verse;
 
 namespace EtherGun
 {
-    //Custom CompProperties to allow for extra arguements.
     public class CompProperties_EtherExplosive : CompProperties_Explosive
     {
         public CompProperties_EtherExplosive()
