@@ -42,8 +42,8 @@ namespace Pawnmorph
         }
         public void ExposeData()
         {
-            Scribe_Deep.Look(ref this.origin, true, "origin");
-            Scribe_Deep.Look(ref this.origin2, true, "origin2");
+            Scribe_Deep.Look(ref this.origin, true, "originmerged");
+            Scribe_Deep.Look(ref this.origin2, true, "originmerged2");
             Scribe_References.Look(ref this.replacement, "replacement", true);
         }
     }

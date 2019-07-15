@@ -29,6 +29,7 @@
         <volume>(0.83, 0.3, 1.7)</volume>
       </shadowData>
     </graphicData>
+	<minifiedDef>MinifiedThing</minifiedDef>
     <researchPrerequisites><li>MutagenChambers</li></researchPrerequisites>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
@@ -36,10 +37,14 @@
     <blockWind>true</blockWind>
     <fillPercent>0.5</fillPercent>
     <canOverlapZones>false</canOverlapZones>
+	<thingCategories>
+      <li>BuildingsProduction</li>
+    </thingCategories>
     <statBases>
       <WorkToBuild>8000</WorkToBuild>
       <MaxHitPoints>200</MaxHitPoints>
       <Flammability>0</Flammability>
+	  <Mass>200</Mass>
     </statBases>
     <tickerType>Normal</tickerType>
     <size>(1,2)</size>
@@ -94,7 +99,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>MutagenicModulator</defName>
     <label>mutagenic modulator</label>
-    <description>Don't want people to come out of the chamber as random or chaotic animals? This modulator allows you to control the outcome...and even perform some very, very strange techniques. Place directly next to a chamber.</description>
+    <description>Don't want people to come out of the chamber as random or chaotic animals? This modulator allows you to control the outcome...and even perform some very, very strange techniques. Place directly next to a chamber. WARNING: Deconstructing this while a pawn is inside will eject them and waste any fuel inserted!</description>
     <graphicData>
       <texPath>Things/Building/MutagenChamber/Monitor</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -103,6 +108,7 @@
         <volume>(0.83, 0.83, 0.83)</volume>
       </shadowData>
     </graphicData>
+	<minifiedDef>MinifiedThing</minifiedDef>
 	<thingClass>Pawnmorph.Building_MutagenModulator</thingClass>
     <researchPrerequisites><li>ChamberModulator</li></researchPrerequisites>
     <altitudeLayer>Building</altitudeLayer>
@@ -111,10 +117,14 @@
     <blockWind>true</blockWind>
     <fillPercent>0.5</fillPercent>
     <canOverlapZones>false</canOverlapZones>
+	<thingCategories>
+      <li>BuildingsProduction</li>
+    </thingCategories>
     <statBases>
       <WorkToBuild>8000</WorkToBuild>
       <MaxHitPoints>200</MaxHitPoints>
       <Flammability>0</Flammability>
+	  <Mass>30</Mass>
     </statBases>
     <tickerType>Normal</tickerType>
     <size>(1,1)</size>
@@ -152,7 +162,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>PowerfulMutagenicModulator</defName>
     <label>powerful mutagenic modulator</label>
-    <description>A more advanced modulator needed to link two larger chambers together. A bigger screen and some fancy buttons should allow for us to control mechanites over a much larger scale.</description>
+    <description>A more advanced modulator needed to link two larger chambers together. A bigger screen and some fancy buttons should allow for us to control mechanites over a much larger scale. WARNING: Deconstructing this while a pawn is inside will eject them and waste any fuel inserted!</description>
     <graphicData>
       <texPath>Things/Building/MutagenChamber/advmonitor</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -161,6 +171,10 @@
         <volume>(0.83, 0.83, 0.83)</volume>
       </shadowData>
     </graphicData>
+	<thingCategories>
+      <li>BuildingsProduction</li>
+    </thingCategories>
+	<minifiedDef>MinifiedThing</minifiedDef>
 	<thingClass>Pawnmorph.Building_MutagenModulator</thingClass>
     <researchPrerequisites><li>AdvancedMutagenChambers</li></researchPrerequisites>
     <altitudeLayer>Building</altitudeLayer>
@@ -173,6 +187,7 @@
       <WorkToBuild>8000</WorkToBuild>
       <MaxHitPoints>200</MaxHitPoints>
       <Flammability>0</Flammability>
+	  <Mass>50</Mass>
     </statBases>
     <tickerType>Normal</tickerType>
     <size>(1,1)</size>
@@ -224,6 +239,10 @@
         <volume>(0.83, 0.3, 1.7)</volume>
       </shadowData>
     </graphicData>
+	<thingCategories>
+      <li>BuildingsProduction</li>
+    </thingCategories>
+	<minifiedDef>MinifiedThing</minifiedDef>
     <researchPrerequisites><li>AdvancedMutagenChambers</li></researchPrerequisites>
     <altitudeLayer>Building</altitudeLayer>
 	<rotatable>false</rotatable>
@@ -236,6 +255,7 @@
       <WorkToBuild>8000</WorkToBuild>
       <MaxHitPoints>200</MaxHitPoints>
       <Flammability>0</Flammability>
+		<Mass>250</Mass>
     </statBases>
     <tickerType>Normal</tickerType>
     <size>(2,2)</size>

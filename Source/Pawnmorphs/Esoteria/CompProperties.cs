@@ -12,7 +12,6 @@ using Multiplayer.API;
 
 namespace Pawnmorph
 {
-
     public class HediffCompStage
     {
         public float daysToProduce = 1;
@@ -26,7 +25,6 @@ namespace Pawnmorph
 
     public class HediffComp_Single : HediffComp
     {
-
         public HediffCompProperties_Single Props
         {
             get
@@ -37,19 +35,15 @@ namespace Pawnmorph
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-
         }
-
     }
 
     public class HediffCompProperties_Single : HediffCompProperties
     {
-
         public HediffCompProperties_Single()
         {
             this.compClass = typeof(HediffComp_Single);
         }
-
     }
 
 
@@ -62,6 +56,7 @@ namespace Pawnmorph
                 return (HediffCompProperties_AlwaysFormerHuman)this.props;
             }
         }
+
         public override void CompTick()
         {
             HediffDef hediff = HediffDef.Named("TransformedHuman");
@@ -69,23 +64,21 @@ namespace Pawnmorph
             {
                 hediff = this.Props.hediff;
             }
+
             Pawn pawn = this.parent as Pawn;
             if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && !pawn.health.hediffSet.HasHediff(hediff))
             {
                 Hediff xhediff = HediffMaker.MakeHediff(hediff, pawn, null);
                 xhediff.Severity = Rand.Range(0.00f, 1.00f);
                 pawn.health.AddHediff(xhediff, null, null, null);
-
             }
+
             if (pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && pawn.health.hediffSet.HasHediff(hediff))
             {
                 Hediff xhediff = pawn.health.hediffSet.hediffs.Find(x => x.def == hediff);
-                pawn.health.RemoveHediff(xhediff);
-
-            }
-            
+                pawn.health.RemoveHediff(xhediff);                
+            }            
         }
-
     }
 
     public class HediffCompProperties_AlwaysFormerHuman : CompProperties
@@ -95,7 +88,6 @@ namespace Pawnmorph
         {
             this.compClass = typeof(Comp_AlwaysFormerHuman);
         }
-
     }
 
     public class Comp_FormerHumanChance : ThingComp
@@ -122,13 +114,13 @@ namespace Pawnmorph
                     pawn.health.AddHediff(hediff, null, null, null);
 
                 }
+
                 if (pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && pawn.health.hediffSet.HasHediff(HediffDef.Named("TransformedHuman")))
                 {
                     Hediff hediff = pawn.health.hediffSet.hediffs.Find(x => x.def == HediffDef.Named("TransformedHuman"));
                     pawn.health.RemoveHediff(hediff);
 
                 }
-
             }
             triggered = true;
         }
@@ -141,14 +133,11 @@ namespace Pawnmorph
         {
             this.compClass = typeof(Comp_FormerHumanChance);
         }
-
     }
 
 
     public class HediffComp_Remove : HediffComp
     {
-
-
         public HediffCompProperties_Remove Props
         {
             get
@@ -159,40 +148,31 @@ namespace Pawnmorph
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-
             List<Hediff> hS = new List<Hediff>(this.parent.pawn.health.hediffSet.hediffs);
 
             foreach (Hediff hD in hS)
             {
-
                 if (this.Props.makeImmuneTo.Contains(hD.def))
                 {
                     this.parent.pawn.health.RemoveHediff(hD);
-
                 }
-
             }
-
         }
-
     }
 
     public class HediffCompProperties_Remove : HediffCompProperties
     {
-
         public List<HediffDef> makeImmuneTo;
 
         public HediffCompProperties_Remove()
         {
             this.compClass = typeof(HediffComp_Remove);
         }
-
     }
 
 
     public class TerrainBasedMorphComp : HediffComp
     {
-
         public TerrainBasedMorph Props
         {
             get
@@ -203,50 +183,43 @@ namespace Pawnmorph
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-
             if (parent.pawn.Position.GetTerrain(parent.pawn.Map) == this.Props.terrain)
             {
                 Hediff hediff = HediffMaker.MakeHediff(this.Props.hediffDef, parent.pawn, null);
                 hediff.Severity = 1f;
                 parent.pawn.health.AddHediff(hediff, null, null, null);
             }
-
         }
-
     }
 
     public class TerrainBasedMorph : HediffCompProperties
     {
-
-        public HediffDef hediffDef = null;
-        public TerrainDef terrain = null;
-
         public TerrainBasedMorph()
         {
             this.compClass = typeof(TerrainBasedMorphComp);
         }
 
+        public HediffDef hediffDef = null;
+
+        public TerrainDef terrain = null;
     }
 
     public class HediffCompProperties_AddSeverity : HediffCompProperties
     {
-
-        public HediffDef hediff = null;
-        public float severity = 0;
-        public float mtbDays = 0;
-
         public HediffCompProperties_AddSeverity()
         {
             this.compClass = typeof(HediffComp_AddSeverity);
         }
 
+        public HediffDef hediff = null;
+
+        public float severity = 0;
+
+        public float mtbDays = 0;
     }
 
     public class HediffComp_AddSeverity : HediffComp
     {
-
-        private bool triggered = false;
-
         public HediffCompProperties_AddSeverity Props
         {
             get
@@ -257,9 +230,7 @@ namespace Pawnmorph
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-
             AddSeverity();
-
         }
 
         public void AddSeverity()
@@ -267,19 +238,16 @@ namespace Pawnmorph
 
             if (Rand.MTBEventOccurs(this.Props.mtbDays, 60000f, 60f) && !triggered && this.parent.pawn.health.hediffSet.HasHediff(this.Props.hediff))
             {
-
                 HealthUtility.AdjustSeverity(this.parent.pawn, this.Props.hediff, this.Props.severity);
                 triggered = true;
-
             }
-
-
         }
+
+        private bool triggered = false;
     }
 
     public class HediffCompProperties_Production : HediffCompProperties
     {
-
         public float daysToProduce = 1f;
         public int amount = 1;
         public int chance = 0;
@@ -301,7 +269,6 @@ namespace Pawnmorph
 
     public class HediffComp_Production : HediffComp
     {
-
         private int HatchingTicker = 0;
         private float brokenChance = 0f;
         private float bondChance = 0f;
@@ -317,13 +284,11 @@ namespace Pawnmorph
         public override void CompPostTick(ref float severityAdjustment)
         {
             if(this.Props.stages != null){
-
                 ProduceStaged();
-
             }
-            else { Produce(); }
-
-            
+            else {
+                Produce();
+            }            
         }
 
         public override void CompExposeData()
@@ -336,15 +301,12 @@ namespace Pawnmorph
 
         public void ProduceStaged()
         {
-
             var hediff = this.parent;
             var index = hediff.CurStageIndex;
             var selectStage = this.Props.stages.ElementAt(index);
             var useThought = this.Props.thought;
             if (selectStage.thought != null) {
-
                 useThought = selectStage.thought;
-
             }
 
             if (HatchingTicker < (selectStage.daysToProduce * 60000))
@@ -359,17 +321,15 @@ namespace Pawnmorph
                     {
                         if (Rand.RangeInclusive(0, 100) <= (selectStage.chance))
                         {
-
                             GenSpawn.Spawn(ThingDef.Named(selectStage.rareResource), this.parent.pawn.Position, this.parent.pawn.Map);
                         }
-                        else { GenSpawn.Spawn(ThingDef.Named(selectStage.resource), this.parent.pawn.Position, this.parent.pawn.Map); }
-
+                        else {
+                            GenSpawn.Spawn(ThingDef.Named(selectStage.resource), this.parent.pawn.Position, this.parent.pawn.Map);
+                        }
 
                         if (selectStage.thought != null)
                         {
-
                             this.parent.pawn.needs.mood.thoughts.memories.TryGainMemory(useThought);
-
                         }
 
                         else if (selectStage.resource != null && (!this.parent.pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBroken")) || !this.parent.pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBond"))))
@@ -404,22 +364,15 @@ namespace Pawnmorph
                         {
                             this.parent.pawn.health.AddHediff(HediffDef.Named("EtherBond"));
                             Find.LetterStack.ReceiveLetter("LetterHediffFromEtherBondLabel".Translate(this.parent.pawn).CapitalizeFirst(), "LetterHediffFromEtherBond".Translate(this.parent.pawn).CapitalizeFirst(), LetterDefOf.NeutralEvent, this.parent.pawn, null, null);
-
                         }
-
-
-
                     }
                 }
                 HatchingTicker = 0;
-
             }
-
         }
 
         public void Produce()
         {
-
             if (HatchingTicker < (this.Props.daysToProduce * 60000))
             {
                 HatchingTicker += 1;
@@ -454,36 +407,26 @@ namespace Pawnmorph
                         {
                             this.parent.pawn.needs.mood.thoughts.memories.TryGainMemory(this.Props.etherBondThought);
                         }
-
                         else if (this.parent.pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBroken")))
                         {
                             this.parent.pawn.needs.mood.thoughts.memories.TryGainMemory(this.Props.etherBrokenThought);
                         }
+
                         if (Rand.RangeInclusive(0,100) <= brokenChance && (!this.parent.pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBroken")) && !this.parent.pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBond"))))
                         {
                             this.parent.pawn.health.AddHediff(HediffDef.Named("EtherBroken"));
                             Find.LetterStack.ReceiveLetter("LetterHediffFromEtherBrokenLabel".Translate(this.parent.pawn).CapitalizeFirst(), "LetterHediffFromEtherBroken".Translate(this.parent.pawn).CapitalizeFirst(), LetterDefOf.NeutralEvent, this.parent.pawn, null, null);
-
                         }
                         if (Rand.RangeInclusive(0, 100) <= bondChance && (!this.parent.pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBroken")) && !this.parent.pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBond"))))
                         {
                             this.parent.pawn.health.AddHediff(HediffDef.Named("EtherBond"));
                             Find.LetterStack.ReceiveLetter("LetterHediffFromEtherBondLabel".Translate(this.parent.pawn).CapitalizeFirst(), "LetterHediffFromEtherBond".Translate(this.parent.pawn).CapitalizeFirst(), LetterDefOf.NeutralEvent, this.parent.pawn, null, null);
-
                         }
-
-
-
                     }
                 }
                 HatchingTicker = 0;
-
             }
-
-
             //this.parent.Destroy(DestroyMode.Vanish);
         }
-
-
     }
 }

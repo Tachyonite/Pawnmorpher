@@ -331,7 +331,7 @@ namespace Pawnmorph
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn3.Position.ToVector3(), pawn3.MapHeld);
                 Find.TickManager.slower.SignalForceNormalSpeedShort();
                 Find.LetterStack.ReceiveLetter("LetterHediffFromDietChangeLabel".Translate(pawn.LabelShort, newFood).CapitalizeFirst(), "LetterHediffFromDietChange".Translate(pawn.LabelShort, newFood).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
-                pawn.Destroy(0);
+                pawn.DeSpawn(0);
                 triggered = true;         
     
                 }
@@ -454,6 +454,13 @@ namespace Pawnmorph
                 if (pawn.ownership.OwnedBed != null) { 
                     pawn.ownership.UnclaimBed();
                 }
+                if (pawn.CarriedBy != null)
+                {
+                    Pawn carryingPawn = pawn.CarriedBy;
+                    Thing outPawn;
+                    carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position,ThingPlaceMode.Direct, out outPawn);
+                    
+                }
                 pawn.DeSpawn();
                 Find.TickManager.slower.SignalForceNormalSpeedShort();
             }
@@ -570,6 +577,13 @@ namespace Pawnmorph
                 if (pawn.ownership.OwnedBed != null)
                 {
                     pawn.ownership.UnclaimAll();
+                }
+                if (pawn.CarriedBy != null)
+                {
+                    Pawn carryingPawn = pawn.CarriedBy;
+                    Thing outPawn;
+                    carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct, out outPawn);
+
                 }
                 pawn.DeSpawn();
 

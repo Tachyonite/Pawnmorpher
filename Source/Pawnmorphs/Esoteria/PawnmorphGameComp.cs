@@ -38,6 +38,16 @@ namespace Pawnmorph
         {
             this.mergedpawnmorphs.Add(pmm);
         }
+
+        public void removePawn(PawnMorphInstance pm)
+        {
+            this.pawnmorphs.Remove(pm);
+        }
+        public void removePawnMerged(PawnMorphInstanceMerged pmm)
+        {
+            this.mergedpawnmorphs.Remove(pmm);
+        }
+
         public PawnMorphInstance retrieve(Pawn animal)
         {
             PawnMorphInstance pm = this.pawnmorphs.FirstOrDefault(instance => instance.replacement == animal);
@@ -54,7 +64,7 @@ namespace Pawnmorph
         {
             Scribe_Collections.Look(ref this.pawnmorphs, "pawnmorphs", LookMode.Deep);
             Scribe_Collections.Look(ref this.mergedpawnmorphs, "pawnmorphs", LookMode.Deep);
-            Scribe_Collections.Look(ref this.taggedAnimals, "taggedAnimals", LookMode.Deep);
+            Scribe_Collections.Look(ref this.taggedAnimals, "taggedAnimals");
         }
     }
 }

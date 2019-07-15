@@ -10,7 +10,7 @@ namespace EtherGun
 {
     class Projectile_EtherExplosive : Projectile_Explosive
     {
-        #region Properties
+        // Reuse of the ThingDef for EtherBullet because it needs the same information.
         public ThingDef_EtherBullet Def
         {
             get
@@ -18,9 +18,8 @@ namespace EtherGun
                 return this.def as ThingDef_EtherBullet;
             }
         }
-        #endregion
 
-        #region Overrides
+        // An override of the Explode method that allows us to insert our own custom code first.
         protected override void Explode()
         {
             List<Thing> thingList = GenRadial.RadialDistinctThingsAround(Position, Map, def.projectile.explosionRadius, true).ToList();
@@ -38,8 +37,9 @@ namespace EtherGun
             }
 
             TransformPawn.ApplyHediff(pawnsAffected, Map, hediff, chance);
+
+            // No idea why, but it errors if we call the underride before the custom check.
             base.Explode();
         }
-        #endregion Overrides
     }
 }
