@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChaomorphPassWorker.cs" />
+    <Compile Include="HediffComp_Production.cs" />
     <Compile Include="InteractionWorkers.cs" />
     <Compile Include="MutagenChamber.cs" />
     <Compile Include="MutagenModulator.cs" />
