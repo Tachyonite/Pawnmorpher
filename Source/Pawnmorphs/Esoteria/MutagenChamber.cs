@@ -299,8 +299,9 @@ namespace Pawnmorph
         {
             Scribe_Values.Look(ref this.daysIn, "daysIn");
             Scribe_Values.Look(ref this.doNotEject, "doNotEject");
-            Scribe_Defs.Look(ref this.pawnTFKind, "pawnTFKind");
+            Scribe_Defs.Look(ref pawnTFKind, "pawnTFKind");
             Scribe_References.Look(ref this.modulator, "modulator");
+            Scribe_References.Look(ref this.linkTo, "linkTo");
             base.ExposeData();
         }
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)

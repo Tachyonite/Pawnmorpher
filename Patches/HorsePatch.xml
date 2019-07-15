@@ -238,7 +238,6 @@
 						<stages>
 							<li>
 								<label>reeling</label>
-								<becomeVisible>true</becomeVisible>
 								<minSeverity>0</minSeverity>
 								<hungerRateFactor>1.6</hungerRateFactor>
 								<painOffset>0.05</painOffset>
@@ -272,7 +271,6 @@
 							</li>
 							<li>
 								<label>changing</label>
-								<becomeVisible>false</becomeVisible>
 								<minSeverity>0.65</minSeverity>
 								<painOffset>0.1</painOffset>
 								<vomitMtbDays>1</vomitMtbDays>
@@ -369,6 +367,23 @@
 							</outcomeDoers>
 						</ingestible>	
 					</ThingDef>
+					<ThoughtDef>
+		<defName>EtherReactionHorseTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphHorseTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>N...neigh!?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I feel like I should be pulling a plough...or galloping across a steppe.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 				</value>				
 			</li>
 			<li Class="PatchOperationAdd">
