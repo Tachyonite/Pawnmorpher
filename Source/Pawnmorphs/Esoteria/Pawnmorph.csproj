@@ -54,15 +54,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChaomorphPassWorker.cs" />
+    <Compile Include="HediffGiver_Esoteric.cs" />
+    <Compile Include="HediffGiver_EsotericInstant.cs" />
+    <Compile Include="HediffGiver_Esoteric_Chance.cs" />
+    <Compile Include="HediffGiver_Esoteric_Diet.cs" />
+    <Compile Include="HediffGiver_Esoteric_Fixed.cs" />
+    <Compile Include="HediffGiver_Esoteric_GenderChance.cs" />
+    <Compile Include="HediffGiver_Esoteric_GenderChanceFixed.cs" />
+    <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
+    <Compile Include="HediffGiver_PermanentFeral.cs" />
+    <Compile Include="HediffGiver_TF.cs" />
+    <Compile Include="HediffGiver_TFRandom.cs" />
+    <Compile Include="IncidentWorker_ChaomorphPasses.cs" />
+    <Compile Include="CompProperties_FormerHumanChance.cs" />
+    <Compile Include="CompFormerHumanChance.cs" />
+    <Compile Include="CompAlwaysFormerHuman.cs" />
+    <Compile Include="HediffCompProperties_AddSeverity.cs" />
+    <Compile Include="CompProperties_AlwaysFormerHuman.cs" />
+    <Compile Include="HediffCompProperties_Production.cs" />
+    <Compile Include="HediffCompProperties_Remove.cs" />
+    <Compile Include="HediffCompProperties_Single.cs" />
+    <Compile Include="HediffCompProperties_TerrainBasedMorph.cs" />
+    <Compile Include="HediffComp_AddSeverity.cs" />
     <Compile Include="HediffComp_Production.cs" />
+    <Compile Include="HediffComp_Remove.cs" />
+    <Compile Include="HediffComp_Single.cs" />
+    <Compile Include="HediffComp_TerrainBasedMorph.cs" />
     <Compile Include="InteractionWorkers.cs" />
     <Compile Include="MutagenChamber.cs" />
     <Compile Include="MutagenModulator.cs" />
     <Compile Include="ProductionComps.cs" />
     <Compile Include="IncidentWorker_MutationShipPartCrash.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />
-    <Compile Include="EsotericHediffs.cs" />
+    <Compile Include="PawnmorphHediffGiverUtility.cs" />
     <Compile Include="Hediff_AddedMutation.cs" />
     <Compile Include="IntermittentMagicSprayer.cs" />
     <Compile Include="ModSettings.cs" />
@@ -71,7 +95,7 @@
     <Compile Include="PatchHealthCardWarps.cs" />
     <Compile Include="PawnMorph.cs" />
     <Compile Include="PawnmorphGameComp.cs" />
-    <Compile Include="CompProperties.cs" />
+    <Compile Include="HediffComp_Staged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationships.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />

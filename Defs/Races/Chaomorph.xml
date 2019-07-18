@@ -27,7 +27,8 @@
 				<milkIntervalDays>1</milkIntervalDays>
 				<milkAmount>15</milkAmount>
 			</li>
-			<li Class="Pawnmorph.HediffCompProperties_AlwaysFormerHuman">
+			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
+				<hediff>TransformedHuman</hediff>
 			</li>
 		</comps>
 		<tools>
@@ -257,7 +258,8 @@
 			<MarketValue>1200</MarketValue>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_AlwaysFormerHuman">
+			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
+				<hediff>TransformedHuman</hediff>
 			</li>
 		</comps>
 		<tools>
@@ -469,7 +471,8 @@
 			<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_AlwaysFormerHuman">
+			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
+				<hediff>TransformedHuman</hediff>
 			</li>
 			<li Class="CompProperties_EggLayer">
 				<eggUnfertilizedDef>TFEgg</eggUnfertilizedDef>
@@ -685,7 +688,7 @@
 			<MarketValue>3000</MarketValue>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_AlwaysFormerHuman">
+			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
 				<hediff>2xMergedHuman</hediff>
 			</li>
 			<li Class="CompProperties_EggLayer">
@@ -923,7 +926,7 @@
 			<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_AlwaysFormerHuman">
+			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
 				<hediff>2xMergedHuman</hediff>
 			</li>
 			<li Class="CompProperties_EggLayer">
@@ -1158,7 +1161,7 @@
 			<MarketValue>3000</MarketValue>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_AlwaysFormerHuman">
+			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
 				<hediff>2xMergedHuman</hediff>
 			</li>
 			<li Class="CompProperties_Milkable">
@@ -1371,7 +1374,7 @@
 			<ArmorRating_Heat>0.30</ArmorRating_Heat>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_AlwaysFormerHuman">
+			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
 				<hediff>2xMergedHuman</hediff>
 			</li>
 			<!--

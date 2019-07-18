@@ -47,5 +47,26 @@ namespace Pawnmorph
             }
             return dictionary;
         }
+
+        public static void AddHediffIfNotPermanentlyFeral(Pawn pawn, HediffDef hediff)
+        {
+            if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && !pawn.health.hediffSet.HasHediff(hediff))
+            // If a pawn does not have the PermanentlyFeral hediff nor the provided hediff...
+            {
+                Hediff xhediff = HediffMaker.MakeHediff(hediff, pawn); // ...create an initialized version of the provided hediff...
+                xhediff.Severity = Rand.Range(0.00f, 1.00f); // ...set it to a random severity...
+                pawn.health.AddHediff(xhediff); // ...then apply it...
+            }
+        }
+
+        public static void RemoveHediffIfPermanentlyFeral(Pawn pawn, HediffDef hediff)
+        {
+            if (pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && pawn.health.hediffSet.HasHediff(hediff))
+            // If the pawn has become permanently feral but still has the provided hediff...
+            {
+                Hediff xhediff = pawn.health.hediffSet.hediffs.Find(x => x.def == hediff); // ...find a hediff on the pawn that matches the provided one...
+                pawn.health.RemoveHediff(xhediff); // ...and remove it.
+            }
+        }
     }
 }

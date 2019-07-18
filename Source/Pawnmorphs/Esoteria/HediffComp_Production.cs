@@ -22,7 +22,7 @@ namespace Pawnmorph
         {
             if (Props.stages != null)
             {
-                HediffCompStage stage = Props.stages.ElementAt(parent.CurStageIndex);
+                HediffComp_Staged stage = Props.stages.ElementAt(parent.CurStageIndex);
                 Produce(stage.daysToProduce, stage.amount, stage.chance, ThingDef.Named(stage.resource), ThingDef.Named(stage.rareResource), stage.thought);
             }
             else
