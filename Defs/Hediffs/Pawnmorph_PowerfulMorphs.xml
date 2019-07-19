@@ -1,6 +1,4 @@
 <Defs>
-
-
 	<HediffDef>
 		<defName>PawnmorphElephantTF</defName>
 		<hediffClass>HediffWithComps</hediffClass>
@@ -32,9 +30,9 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Elephant</pawnkind>
-						
+						<tale>TransformationMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherElephantFoot</hediff>
@@ -150,9 +148,9 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Thrumbo</pawnkind>
-						
+						<tale>TransformationMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherHoofHand</hediff>

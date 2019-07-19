@@ -32,7 +32,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Fox_Red</pawnkind>
 						<tale>TransformationCanid</tale>
 					</li>
@@ -166,7 +166,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Husky</pawnkind>
 						<tale>TransformationCanid</tale>
 					</li>
@@ -287,9 +287,8 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Warg</pawnkind>
-						<chance>70</chance>
 						<tale>TransformationCanid</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
@@ -409,7 +408,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Wolf_Timber</pawnkind>
 						<tale>TransformationCanid</tale>
 					</li>
@@ -532,7 +531,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Bear_Grizzly</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
@@ -653,11 +652,11 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Chicken</pawnkind>
+						<tale>TransformationChicken</tale>
 						<forceGender>Female</forceGender>
 						<forceGenderChance>70</forceGenderChance>
-						<tale>TransformationChicken</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherWing</hediff>
@@ -778,11 +777,11 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Cow</pawnkind>
+						<tale>TransformationCow</tale>
 						<forceGender>Female</forceGender>
 						<forceGenderChance>70</forceGenderChance>
-						<tale>TransformationCow</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherHoofHand</hediff>
@@ -924,7 +923,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Pig</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
@@ -1051,7 +1050,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>WildBoar</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
@@ -1178,7 +1177,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Deer</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
@@ -1304,7 +1303,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Rat</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
@@ -1420,7 +1419,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Boomalope</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
@@ -1548,7 +1547,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Alpaca</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
