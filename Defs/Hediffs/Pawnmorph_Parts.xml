@@ -728,6 +728,7 @@
 			</li>
 		</comps>
 	</HediffDef>
+	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherEggLayer</defName>
 		<label>egglayer</label>

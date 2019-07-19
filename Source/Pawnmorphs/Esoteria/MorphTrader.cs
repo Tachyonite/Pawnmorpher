@@ -15,7 +15,7 @@ namespace Pawnmorph
 
         private IntRange kindCountRange = new IntRange(1, 1);
 
-        private float minWildness;
+        private float minWildness = 0f;
 
         private float maxWildness = 1f;
 

@@ -153,7 +153,6 @@ namespace Pawnmorph
         public string forceGender = "Original";
         public float forceGenderChance = 50;
         public PawnKindDef pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
-        private bool triggered = false;
         public bool doNotEject = false;
         private string hediffDef = "TransformedHuman";
         private CompRefuelable fuelComp = null;

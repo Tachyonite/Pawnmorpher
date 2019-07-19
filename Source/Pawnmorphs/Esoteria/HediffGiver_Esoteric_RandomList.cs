@@ -15,7 +15,6 @@ namespace Pawnmorph
         public bool divideByBodySize = false;
         public float mtbDays;
         public bool once = false;
-        private bool triggered = false;
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
