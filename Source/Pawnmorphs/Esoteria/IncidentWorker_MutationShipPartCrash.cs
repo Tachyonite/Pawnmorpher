@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
-using Verse.Sound;
-using static RimWorld.MoteMaker;
 using RimWorld;
-using Multiplayer.API;
 
 namespace Pawnmorph
 {
-
     public class CompProperties_MutagenicRadius : CompProperties
     {
         public SimpleCurve radiusPerDayCurve;

@@ -23,7 +23,7 @@ namespace Pawnmorph
             // If we haven't checked already if the pawn is a former human...
             {
                 triggered = true; // Set the flag so that we don't endlessly check.
-                if (LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers && Rand.RangeInclusive(0, 100) <= Props.chance && parent.Faction == null)
+                if (LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers && Rand.RangeInclusive(0, 100) <= Props.Chance && parent.Faction == null)
                 // Give the pawn a chance to be a former human if the setting is enabled and it doesn't already belong to a faction (i.e. a wild animal).
                 {
                     TransformerUtility.AddHediffIfNotPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman")); // Add the TransformedHuman hediff if the pawn is not permanently feral.

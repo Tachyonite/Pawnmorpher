@@ -9,7 +9,7 @@ namespace Pawnmorph
 {
     public class HediffGiver_TF : HediffGiver
     {
-        public float chance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance; // The current chance for a full transformation as determined by the settings.
+        public float chance; // Unused.
         public PawnKindDef pawnkind; // The pawnKind of the animal to be transformed into.
         public TaleDef tale; // Tale to add to the tales.
         public TFGender forceGender; // The gender that will be forced (i.e. a ChookMorph will be forced female).
@@ -19,6 +19,7 @@ namespace Pawnmorph
         public override void OnIntervalPassed(Pawn transformedPawn, Hediff cause)
         // Whenever the timer expires.
         {
+            float chance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance; // The current chance for a full transformation as determined by the settings.
             if (transformedPawn.Map == null) // If the pawn is not currently in the world (i.e. is on caravan)...
             {
                 transformedPawn.health.RemoveHediff(cause); // ...remove the hediff that would otherwise cause a transformation.
@@ -57,7 +58,7 @@ namespace Pawnmorph
                 }
 
                 Pawn animalToSpawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(
-                    pawnkind, transformedPawn.Faction, PawnGenerationContext.NonPlayer, -1, false, false,
+                    pawnkind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false,
                     false, false, true, false, 1f, false, true, true, false, false, false,
                     false, null, null, null, animalAge, transformedPawn.ageTracker.AgeChronologicalYearsFloat, animalGender));
                 // Creates a new animal of pawnkind type, with some of its stats set as those calculated above.

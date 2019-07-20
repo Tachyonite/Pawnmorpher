@@ -15,7 +15,6 @@ namespace Pawnmorph
     {
         public List<HediffDef> hediffDefs;
         public List<HediffDef> hediffDefsComplete;
-        public float completeChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().partialChance;
         private HediffDef hediffDef;
 
         public float severity = -1f;
@@ -28,34 +27,31 @@ namespace Pawnmorph
         {
             try
             {
-
+                float completeChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().partialChance;
                 if (Rand.RangeInclusive(0, 100) <= completeChance)
                 {
-
                     hediffDef = hediffDefsComplete.RandomElement();
-
                 }
                 else
                 {
                     hediffDef = hediffDefs.RandomElement();
-
                 }
 
                 Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn, null);
                 float num;
-                if (this.severity > 0f)
+                if (severity > 0f)
                 {
-                    num = this.severity;
+                    num = severity;
                 }
                 else
                 {
                     num = hediffDef.initialSeverity;
                 }
-                if (this.divideByBodySize)
+                if (divideByBodySize)
                 {
                     num /= pawn.BodySize;
                 }
-                AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, this.toleranceChemical, ref num);
+                AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
                 hediff.Severity = num;
                 pawn.health.AddHediff(hediff, null, null, null);
             }

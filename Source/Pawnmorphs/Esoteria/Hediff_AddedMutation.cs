@@ -55,21 +55,19 @@ namespace Pawnmorph
         }
 
         public override void PostAdd(DamageInfo? dinfo)
+        // After the hediff has been applied.
         {
-            base.PostAdd(dinfo);
+            base.PostAdd(dinfo); // Do the inherited method.
+            IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
 
-            for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++)
+            for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++) // Loop through the hediffs on the pawn.
             {
                 Hediff_AddedMutation hediff = pawn.health.hediffSet.hediffs[i] as Hediff_AddedMutation;
                 if (hediff != null && hediff != this && hediff.Part == Part)
+                // If one of the hediffs shares a part with this hediff and is a Hediff_AddedMutation...
                 {
-                    pawn.health.hediffSet.hediffs.Remove(pawn.health.hediffSet.hediffs[i]);
+                    pawn.health.hediffSet.hediffs.Remove(pawn.health.hediffSet.hediffs[i]); // ...remove it.
                 }
-            }
-
-            for (int i = 0; i < Part.parts.Count; i++)
-            {
-                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
             }
         }
 
