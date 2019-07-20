@@ -54,6 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hediff_Morph.cs" />
+    <Compile Include="IngestationOutcomeDoer_CompleteTF.cs" />
     <Compile Include="TFGender.cs" />
     <Compile Include="HediffGiver_Esoteric.cs" />
     <Compile Include="HediffGiver_EsotericInstant.cs" />

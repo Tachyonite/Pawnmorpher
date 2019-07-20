@@ -479,42 +479,4 @@ namespace Pawnmorph
             catch { }
         }
     }
-
-
-    public class IngestionOutcomeDoer_CompleteTF : IngestionOutcomeDoer
-    {
-
-        protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
-        {
-            try
-            {
-
-                foreach (Hediff hD in pawn.health.hediffSet.hediffs.Where(x => x.Label.Contains("morph")))
-                {
-                    
-
-                    HediffGiver_TF checkHed = (HediffGiver_TF)hD.def.stages.First().hediffGivers.Find(x => x.GetType() == typeof(HediffGiver_TF));
-                    if (checkHed == null)
-                    {
-                        continue;
-                    }
-                    if (checkHed != null && hD.Severity <= hD.def.stages[1].minSeverity)
-                    {
-                        checkHed.chance = 100f;
-                        checkHed.OnIntervalPassed(pawn, hD);
-
-                    }
-                    
-                    
-
-                }
-
-                        
-
-            }
-            catch { }
-        }
-    }
-
-    
 }

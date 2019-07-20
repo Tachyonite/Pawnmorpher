@@ -1,6 +1,6 @@
 <Defs>
 	<HediffDef Name="MorphParent" Abstract="True">
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediff_Morph</hediffClass>
 		<makesAlert>true</makesAlert>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
 		<scenarioCanAdd>true</scenarioCanAdd>

@@ -350,6 +350,7 @@
 			<drugCategory>Medical</drugCategory>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_CompleteTF">
+					<chance>100</chance>
 				</li>
 			</outcomeDoers>
 		</ingestible>
