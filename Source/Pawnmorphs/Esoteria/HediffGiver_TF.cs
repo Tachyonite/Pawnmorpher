@@ -24,7 +24,7 @@ namespace Pawnmorph
                 transformedPawn.health.RemoveHediff(cause); // ...remove the hediff that would otherwise cause a transformation.
                 // (We do it this way because it's a little hard to check for and this keeps the hediff from erroring out.)
             }
-            // && Rand.MTBEventOccurs(mtbDays, 60000f, 60f) 
+
             else if (!triggered && transformedPawn.RaceProps.intelligence == Intelligence.Humanlike && Rand.RangeInclusive(0, 100) <= chance)
             // If we haven't already checked for the pawn to be tf'd and it possesses humanlike intellegence, give it a chance to transform.
             {

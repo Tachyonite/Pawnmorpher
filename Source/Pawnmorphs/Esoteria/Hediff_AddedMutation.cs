@@ -57,6 +57,16 @@ namespace Pawnmorph
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
+
+            for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++)
+            {
+                Hediff_AddedMutation hediff = pawn.health.hediffSet.hediffs[i] as Hediff_AddedMutation;
+                if (hediff != null && hediff != this && hediff.Part == Part)
+                {
+                    pawn.health.hediffSet.hediffs.Remove(pawn.health.hediffSet.hediffs[i]);
+                }
+            }
+
             for (int i = 0; i < Part.parts.Count; i++)
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
@@ -66,10 +76,10 @@ namespace Pawnmorph
         public override void ExposeData()
         {
             base.ExposeData();
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && base.Part == null)
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
                 Log.Error("Hediff_AddedPart has null part after loading.", false);
-                this.pawn.health.hediffSet.hediffs.Remove(this);
+                pawn.health.hediffSet.hediffs.Remove(this);
                 return;
             }
         }

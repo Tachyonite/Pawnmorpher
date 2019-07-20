@@ -1,10 +1,6 @@
 <Defs>
-	<!--               TRANSFORMATIONS                 -->
-
-	<HediffDef>
-		<defName>PawnmorphFoxTF</defName>
+	<HediffDef Name="MorphParent" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
-		<label>foxmorph</label>
 		<makesAlert>true</makesAlert>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
 		<scenarioCanAdd>true</scenarioCanAdd>
@@ -17,11 +13,37 @@
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
 		</comps>
+	</HediffDef>
+	
+	<HediffDef ParentName="MorphParent">
+		<defName>PawnmorphFoxTF</defName>
+		<label>foxmorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherPawHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -36,20 +58,10 @@
 						<pawnkind>Fox_Red</pawnkind>
 						<tale>TransformationCanid</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherPawHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -68,13 +80,11 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherFoxMuzzle</hediff>
 						<mtbDays>2.5</mtbDays>
 						<fixedParts><li>Jaw</li></fixedParts>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>2</mtbDays>
@@ -83,8 +93,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherPawFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -93,7 +101,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFurredLimb</hediff>
 						<mtbDays>3</mtbDays>
@@ -102,16 +109,12 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherFluffyTail</hediff>
 						<mtbDays>2</mtbDays>
 						<fixedParts><li>Tail</li></fixedParts>
 						<tale>GrewTail</tale>
-					</li>					
-
-
+					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFoxEye</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -120,7 +123,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFoxEar</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -129,28 +131,14 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 				</hediffGivers>
 			</li>
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphHuskyTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>huskymorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
@@ -173,7 +161,6 @@
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherPawHand</hediff>
 						<mtbDays>0.02</mtbDays>
-						
 						<partsToAffect>
 							<li>Hand</li>
 						</partsToAffect>
@@ -182,8 +169,26 @@
 				</hediffGivers>
 			</li>
 			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
+						<pawnkind>Husky</pawnkind>
+						<tale>TransformationCanid</tale>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -202,13 +207,11 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherHuskyMuzzle</hediff>
 						<mtbDays>3</mtbDays>
 						<fixedParts><li>Jaw</li></fixedParts>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>2</mtbDays>
@@ -217,7 +220,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherPawFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -226,7 +228,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFurredLimb</hediff>
 						<mtbDays>3</mtbDays>
@@ -235,14 +236,12 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherHuskyTail</hediff>
 						<mtbDays>2</mtbDays>
 						<fixedParts><li>Tail</li></fixedParts>
 						<tale>GrewTail</tale>
-					</li>					
-
+					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherHuskyEar</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -256,27 +255,35 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphWargTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>wargmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherPawHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -291,20 +298,10 @@
 						<pawnkind>Warg</pawnkind>
 						<tale>TransformationCanid</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherPawHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -323,13 +320,11 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherWargMuzzle</hediff>
 						<mtbDays>3</mtbDays>
 						<fixedParts><li>Jaw</li></fixedParts>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>2</mtbDays>
@@ -338,7 +333,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherPawFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -347,7 +341,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherThickFurLimb</hediff>
 						<mtbDays>3</mtbDays>
@@ -356,14 +349,12 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherWargTail</hediff>
 						<mtbDays>2</mtbDays>
 						<fixedParts><li>Tail</li></fixedParts>
 						<tale>GrewTail</tale>
-					</li>					
-
+					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherWargEar</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -377,27 +368,36 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphWolfTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>wolfmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherPawHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -412,20 +412,10 @@
 						<pawnkind>Wolf_Timber</pawnkind>
 						<tale>TransformationCanid</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherPawHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -444,13 +434,11 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherWolfMuzzle</hediff>
 						<mtbDays>3</mtbDays>
 						<fixedParts><li>Jaw</li></fixedParts>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>2</mtbDays>
@@ -459,7 +447,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherPawFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -468,7 +455,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherThickFurLimb</hediff>
 						<mtbDays>3</mtbDays>
@@ -477,14 +463,12 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherWolfTail</hediff>
 						<mtbDays>2</mtbDays>
 						<fixedParts><li>Tail</li></fixedParts>
 						<tale>GrewTail</tale>
-					</li>					
-
+					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherWolfEar</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -493,34 +477,40 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-					
 				</hediffGivers>
-
 			</li>
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphBearTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>bearmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherBearPawHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -535,20 +525,10 @@
 						<pawnkind>Bear_Grizzly</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherBearPawHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -567,13 +547,11 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherBearMuzzle</hediff>
 						<mtbDays>3</mtbDays>
 						<fixedParts><li>Jaw</li></fixedParts>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherThickFurLimb</hediff>
 						<mtbDays>2</mtbDays>
@@ -582,7 +560,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherPawFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -591,7 +568,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherThickFurLimb</hediff>
 						<mtbDays>3</mtbDays>
@@ -600,14 +576,12 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherBearTail</hediff>
 						<mtbDays>2</mtbDays>
 						<fixedParts><li>Tail</li></fixedParts>
 						<tale>GrewTail</tale>
-					</li>					
-
+					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherBearEar</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -621,27 +595,44 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphChickenTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>chookmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherWing</hediff>
+						<mtbDays>0.02</mtbDays>
+						<partsToAffect>
+							<li>Arm</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_GenderChance">
+						<hediff>EtherEggLayer</hediff>
+						<mtbDays>0.02</mtbDays>
+						<gender>Female</gender>
+						<partsToAffect>
+							<li>Pelvis</li>
+						</partsToAffect>
+						<countToAffect>1</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -658,30 +649,10 @@
 						<forceGender>Female</forceGender>
 						<forceGenderChance>70</forceGenderChance>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherWing</hediff>
-						<mtbDays>0.02</mtbDays>
-						
-						<partsToAffect>
-							<li>Arm</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_GenderChance">
-						<hediff>EtherEggLayer</hediff>
-						<mtbDays>0.02</mtbDays>
-						
-						<gender>Female</gender>
-						<partsToAffect>
-							<li>Pelvis</li>
-						</partsToAffect>
-						<countToAffect>1</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -713,7 +684,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherTailfeathers</hediff>
 						<mtbDays>1</mtbDays>
@@ -722,7 +692,6 @@
 						</fixedParts>
 						<tale>GrewTail</tale>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFeatheredLimb</hediff>
 						<mtbDays>1</mtbDays>
@@ -731,7 +700,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherWingTip</hediff>
 						<mtbDays>2</mtbDays>
@@ -740,33 +708,41 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 				</hediffGivers>
 			</li>
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphCowTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>cowmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherHoofHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<chance>70</chance>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -783,20 +759,10 @@
 						<forceGender>Female</forceGender>
 						<forceGenderChance>70</forceGenderChance>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherHoofHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						<chance>70</chance>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -815,7 +781,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherCowSnout</hediff>
 						<mtbDays>2</mtbDays>
@@ -824,7 +789,6 @@
 						</partsToAffect>
 						<countToAffect>1</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherClovenHoofFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -833,7 +797,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherHideLimb</hediff>
 						<mtbDays>1</mtbDays>
@@ -842,7 +805,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherCowTail</hediff>
 						<mtbDays>1</mtbDays>
@@ -858,7 +820,6 @@
 							<li>Skull</li>
 						</fixedParts>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherCowEar</hediff>
 						<mtbDays>1</mtbDays>
@@ -867,7 +828,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>1</mtbDays>
@@ -876,11 +836,9 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_GenderChanceFixed">
 						<hediff>EtherUdder</hediff>
 						<mtbDays>0.5</mtbDays>
-						
 						<gender>Female</gender>
 						<fixedParts>
 							<li>Waist</li>
@@ -892,27 +850,36 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphPigTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>pigmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherTrotterHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<chance>70</chance>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -927,20 +894,10 @@
 						<pawnkind>Pig</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherTrotterHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						<chance>70</chance>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -959,7 +916,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherPigSnout</hediff>
 						<mtbDays>2</mtbDays>
@@ -968,7 +924,6 @@
 						</partsToAffect>
 						<countToAffect>1</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherTrotterFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -977,7 +932,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherHideLimb</hediff>
 						<mtbDays>1</mtbDays>
@@ -986,7 +940,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherPigEar</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -995,7 +948,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherCurlyTail</hediff>
 						<mtbDays>1</mtbDays>
@@ -1004,7 +956,6 @@
 						</fixedParts>
 						<tale>GrewTail</tale>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>1</mtbDays>
@@ -1013,33 +964,41 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 				</hediffGivers>
 			</li>
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphBoarTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>boarmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherTrotterHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<chance>70</chance>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -1054,20 +1013,10 @@
 						<pawnkind>WildBoar</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherTrotterHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						<chance>70</chance>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -1086,7 +1035,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherBoarSnout</hediff>
 						<mtbDays>2</mtbDays>
@@ -1095,7 +1043,6 @@
 						</partsToAffect>
 						<countToAffect>1</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherTrotterFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -1104,7 +1051,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherHideLimb</hediff>
 						<mtbDays>1</mtbDays>
@@ -1113,7 +1059,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherBoarEar</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -1122,7 +1067,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherRoughCurlyTail</hediff>
 						<mtbDays>1</mtbDays>
@@ -1131,7 +1075,6 @@
 						</fixedParts>
 						<tale>GrewTail</tale>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>1</mtbDays>
@@ -1140,32 +1083,17 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 				</hediffGivers>
 			</li>
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphDeerTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>deermorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -1193,8 +1121,26 @@
 				</hediffGivers>
 			</li>
 			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
+						<pawnkind>Deer</pawnkind>
+						<tale>TransformationMisc</tale>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -1213,7 +1159,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDeerSnout</hediff>
 						<mtbDays>2</mtbDays>
@@ -1222,7 +1167,6 @@
 						</partsToAffect>
 						<countToAffect>1</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherClovenHoofFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -1231,7 +1175,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherHideLimb</hediff>
 						<mtbDays>1</mtbDays>
@@ -1240,7 +1183,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>1</mtbDays>
@@ -1272,27 +1214,36 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphRatTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>ratmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherDextrousPawHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<chance>70</chance>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -1307,20 +1258,10 @@
 						<pawnkind>Rat</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherDextrousPawHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						<chance>70</chance>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -1339,7 +1280,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherRatSnout</hediff>
 						<mtbDays>2</mtbDays>
@@ -1348,7 +1288,6 @@
 						</partsToAffect>
 						<countToAffect>1</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherRatFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -1357,7 +1296,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFurredLimb</hediff>
 						<mtbDays>1</mtbDays>
@@ -1366,7 +1304,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>1</mtbDays>
@@ -1388,27 +1325,36 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphBoomalopeTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>boommorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherHoofHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<chance>70</chance>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -1423,20 +1369,10 @@
 						<pawnkind>Boomalope</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherHoofHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						<chance>70</chance>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -1455,7 +1391,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherBoomalopeSnout</hediff>
 						<mtbDays>2</mtbDays>
@@ -1464,7 +1399,6 @@
 						</partsToAffect>
 						<countToAffect>1</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherClovenHoofFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -1481,7 +1415,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherHideLimb</hediff>
 						<mtbDays>1</mtbDays>
@@ -1490,7 +1423,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>1</mtbDays>
@@ -1499,7 +1431,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_GenderChanceFixed">
 						<hediff>EtherChemfuelUdder</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -1510,33 +1441,41 @@
 						</fixedParts>
 						<countToAffect>1</countToAffect>
 					</li>
-
 				</hediffGivers>
 			</li>
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphAlpacaTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>alpacamorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.1</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
+						<hediff>EtherHoofHand</hediff>
+						<mtbDays>0.02</mtbDays>
+						<chance>70</chance>
+						<partsToAffect>
+							<li>Hand</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -1551,20 +1490,10 @@
 						<pawnkind>Alpaca</pawnkind>
 						<tale>TransformationMisc</tale>
 					</li>
-					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-						<hediff>EtherHoofHand</hediff>
-						<mtbDays>0.02</mtbDays>
-						<chance>70</chance>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -1583,8 +1512,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherAlpacaSnout</hediff>
 						<mtbDays>2</mtbDays>
@@ -1593,7 +1520,6 @@
 						</partsToAffect>
 						<countToAffect>1</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherClovenHoofFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -1602,14 +1528,12 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-					
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherAlpacaTail</hediff>
 						<mtbDays>2</mtbDays>
 						<fixedParts><li>Tail</li></fixedParts>
 						<tale>GrewTail</tale>
-					</li>		
-
+					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFurredLimb</hediff>
 						<mtbDays>1</mtbDays>
@@ -1618,7 +1542,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>1</mtbDays>
@@ -1635,7 +1558,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherWooly</hediff>
 						<mtbDays>0.2</mtbDays>
