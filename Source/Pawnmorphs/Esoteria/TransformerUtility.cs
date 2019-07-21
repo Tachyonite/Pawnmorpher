@@ -122,9 +122,13 @@ namespace Pawnmorph
 
                 animalToSpawn.needs.food.CurLevel = transformedPawn.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
                 animalToSpawn.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
-                animalToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience, true); // Sets obediance training to on for the animal.
-                animalToSpawn.training.Train(TrainableDefOf.Obedience, null, true); // Sets the animal's obedience to be fully trained.
                 animalToSpawn.Name = transformedPawn.Name; // Copies the original pawn's name to the animal's.
+
+                if (animalToSpawn.Faction != null)
+                {
+                    animalToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience, true); // Sets obediance training to on for the animal.
+                    animalToSpawn.training.Train(TrainableDefOf.Obedience, null, true); // Sets the animal's obedience to be fully trained.
+                }
 
                 Pawn spawnedAnimal = (Pawn)GenSpawn.Spawn(animalToSpawn, transformedPawn.PositionHeld, transformedPawn.MapHeld, 0); // Spawns the animal into the map.
                 Hediff hediff = HediffMaker.MakeHediff(hediffForAnimal, spawnedAnimal, null); // Create a hediff from the one provided (i.e. TransformedHuman)...
@@ -148,7 +152,6 @@ namespace Pawnmorph
                     Thing outPawn;
                     carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct, out outPawn); // ...drop them so they can be removed.
                 }
-                transformedPawn.DeSpawn(); // Remove the original pawn from the current map.
 
                 for (int i = 0; i < 10; i++) // Create a cloud of magic.
                 {
@@ -169,6 +172,8 @@ namespace Pawnmorph
                     "LetterHediffFromTransformation".Translate(transformedPawn.LabelShort, pawnkind.LabelCap).CapitalizeFirst(),
                     LetterDefOf.NeutralEvent, spawnedAnimal, null, null); // Creates a letter saying "Oh no! Pawn X has transformed into a Y!"
                 Find.TickManager.slower.SignalForceNormalSpeedShort(); // Slow down the speed of the game.
+
+                transformedPawn.DeSpawn(); // Remove the original pawn from the current map.
             }
         }
     }
