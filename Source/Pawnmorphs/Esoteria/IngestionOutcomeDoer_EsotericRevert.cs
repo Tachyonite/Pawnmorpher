@@ -150,24 +150,7 @@ namespace Pawnmorph
                             }
                             spawned.Add(pawn3);
                             pawn3.health.AddHediff(h);
-                            List<Hediff> hS2 = new List<Hediff>(pawn3.health.hediffSet.hediffs);
-
-                            foreach (Hediff hediffx in hS2)
-                            {
-                                if (hediffx.def.hediffClass == typeof(Hediff_AddedMutation))
-                                {
-                                    pawn3.health.RemoveHediff(hediffx);
-                                }
-                                if (hediffx.def.hediffClass == typeof(HediffGiver_TFRandom))
-                                {
-                                    pawn3.health.RemoveHediff(hediffx);
-                                }
-                                if (hediffx.def.hediffClass == typeof(HediffGiver_TF))
-                                {
-                                    pawn3.health.RemoveHediff(hediffx);
-                                }
-                            }
-
+                            RemoveHediffs(pawn3);
                         }
                         pawn.DeSpawn(0);
                         if (rThought == HediffDef.Named("WasMerged"))
@@ -276,51 +259,25 @@ namespace Pawnmorph
 
                         pawn3.health.AddHediff(h);
                         pawn.DeSpawn(0);
-
                     }
-
-                    List<Hediff> hS2 = new List<Hediff>(pawn3.health.hediffSet.hediffs);
-
-                    foreach (Hediff hediffx in hS2)
-                    {
-                        if (hediffx.def.hediffClass == typeof(Hediff_AddedMutation))
-                        {
-                            pawn3.health.RemoveHediff(hediffx);
-                        }
-                        if (hediffx.def.hediffClass == typeof(HediffGiver_TFRandom))
-                        {
-                            pawn3.health.RemoveHediff(hediffx);
-                        }
-                        if (hediffx.def.hediffClass == typeof(HediffGiver_TF))
-                        {
-                            pawn3.health.RemoveHediff(hediffx);
-                        }
-                    }
-
+                    RemoveHediffs(pawn3);
                 }
             }
             else
             {
-                List<Hediff> hS2 = new List<Hediff>(pawn.health.hediffSet.hediffs);
+                RemoveHediffs(pawn);
+            }
+        }
 
-                foreach (Hediff hediffx in hS2)
+        private void RemoveHediffs(Pawn pawn)
+        {
+            List<Hediff> hS2 = new List<Hediff>(pawn.health.hediffSet.hediffs);
+            foreach (Hediff hediff in hS2)
+            {
+                Type hediffClass = hediff.def.hediffClass;
+                if (hediffClass == typeof(Hediff_AddedMutation) || hediffClass == typeof(Hediff_ProductionThought) || hediffClass == typeof(HediffGiver_TF) || hediffClass == typeof(HediffGiver_TFRandom))
                 {
-                    if (hediffx.def.hediffClass == typeof(Hediff_AddedMutation))
-                    {
-                        pawn.health.RemoveHediff(hediffx);
-                    }
-                    if (hediffx.def.hediffClass == typeof(HediffGiver_TFRandom))
-                    {
-                        pawn.health.RemoveHediff(hediffx);
-                    }
-                    if (hediffx.def.hediffClass == typeof(HediffGiver_TF))
-                    {
-                        pawn.health.RemoveHediff(hediffx);
-                    }
-                    if (hediffx.def.hediffClass == typeof(Hediff_ProductionThought))
-                    {
-                        pawn.health.RemoveHediff(hediffx);
-                    }
+                    pawn.health.RemoveHediff(hediff);
                 }
             }
         }
