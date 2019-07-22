@@ -438,9 +438,10 @@
 
 	<HediffDef>
 		<defName>EtherBroken</defName>
+		<label>etherbroken</label>
 		<hediffClass>Pawnmorph.Hediff_ProductionThought</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>etherbroken</label>
+		<isBad>false</isBad>
 		<stages>
 			<li>
 				<capMods>
@@ -455,9 +456,10 @@
 
 	<HediffDef>
 		<defName>EtherProductiveBliss</defName>
+		<label>etherbroken</label>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>etherbroken</label>
+		<isBad>false</isBad>
 		<stages>
 			<li>
 				<capMods>
@@ -472,9 +474,10 @@
 
 	<HediffDef>
 		<defName>EtherBond</defName>
+		<label>etherbond</label>
 		<hediffClass>Pawnmorph.Hediff_ProductionThought</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>etherbond</label>
+		<isBad>false</isBad>
 		<stages>
 			<li>
 				<capMods>
