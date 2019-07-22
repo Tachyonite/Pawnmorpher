@@ -401,8 +401,14 @@
 					<severity>1.00</severity>
 				</li>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_EsotericRevert">
-					<revertThoughts><li>WasAnimal</li><li>WasAnimalRelieved</li></revertThoughts>
-					<mergeRevertThoughts><li>WasMerged</li><li>WasMergedRelieved</li></mergeRevertThoughts>
+					<revertThoughts>
+						<li>WasAnimal</li>
+						<li>WasAnimalRelieved</li>
+					</revertThoughts>
+					<mergeRevertThoughts>
+						<li>WasMerged</li>
+						<li>WasMergedRelieved</li>
+					</mergeRevertThoughts>
 					<defsToRevert>
 						<li>TransformedHuman</li>
 						<li>2xMergedHuman</li>

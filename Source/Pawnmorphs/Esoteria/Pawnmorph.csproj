@@ -55,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hediff_Morph.cs" />
+    <Compile Include="Hediff_ProductionThought.cs" />
     <Compile Include="IngestationOutcomeDoer_CompleteTF.cs" />
+    <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
     <Compile Include="TFGender.cs" />
     <Compile Include="HediffGiver_Esoteric.cs" />
     <Compile Include="HediffGiver_EsotericInstant.cs" />

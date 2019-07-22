@@ -64,6 +64,26 @@ namespace Pawnmorph
                     }
                 }
 
+                if (!hasEtherBond && !hasEtherBroken)
+                {
+                    if (Rand.RangeInclusive(0, 100) <= bondChance)
+                    {
+                        Pawn.health.AddHediff(HediffDef.Named("EtherBond"));
+                        Find.LetterStack.ReceiveLetter(
+                            "LetterHediffFromEtherBondLabel".Translate(Pawn).CapitalizeFirst(),
+                            "LetterHediffFromEtherBond".Translate(Pawn).CapitalizeFirst(),
+                            LetterDefOf.NeutralEvent, Pawn, null, null);
+                    }
+                    else if (Rand.RangeInclusive(0, 100) <= brokenChance)
+                    {
+                        Pawn.health.AddHediff(HediffDef.Named("EtherBroken"));
+                        Find.LetterStack.ReceiveLetter(
+                            "LetterHediffFromEtherBrokenLabel".Translate(Pawn).CapitalizeFirst(),
+                            "LetterHediffFromEtherBroken".Translate(Pawn).CapitalizeFirst(),
+                            LetterDefOf.NeutralEvent, Pawn, null, null);
+                    }
+                }
+
                 if (stageThought != null)
                 {
                     thoughts.TryGainMemory(stageThought);
@@ -89,26 +109,6 @@ namespace Pawnmorph
                     }
                     brokenChance += 0.5f;
                     bondChance += 0.2f;
-                }
-
-                if (!hasEtherBond && !hasEtherBroken)
-                {
-                    if (Rand.RangeInclusive(0, 100) <= bondChance)
-                    {
-                        Pawn.health.AddHediff(HediffDef.Named("EtherBond"));
-                        Find.LetterStack.ReceiveLetter(
-                            "LetterHediffFromEtherBondLabel".Translate(Pawn).CapitalizeFirst(),
-                            "LetterHediffFromEtherBond".Translate(Pawn).CapitalizeFirst(),
-                            LetterDefOf.NeutralEvent, Pawn, null, null);
-                    }
-                    else if (Rand.RangeInclusive(0, 100) <= brokenChance)
-                    {
-                        Pawn.health.AddHediff(HediffDef.Named("EtherBroken"));
-                        Find.LetterStack.ReceiveLetter(
-                            "LetterHediffFromEtherBrokenLabel".Translate(Pawn).CapitalizeFirst(),
-                            "LetterHediffFromEtherBroken".Translate(Pawn).CapitalizeFirst(),
-                            LetterDefOf.NeutralEvent, Pawn, null, null);
-                    }
                 }
             }
         }
