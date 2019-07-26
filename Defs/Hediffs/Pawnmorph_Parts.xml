@@ -492,7 +492,6 @@
 
 	<!--       PRODUCTION INCREASES -->
 
-
 	<HediffDef>
 		<defName>ProductionPillUdderEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
@@ -602,7 +601,7 @@
 						<amount>6</amount>
 						<resource>Milk</resource>
 						<rareResource>TFMilk</rareResource>
-						
+						<chance>15</chance>
 					</li>
 					<li>
 						<daysToProduce>0.1</daysToProduce>
@@ -737,8 +736,6 @@
 		<description>[PAWN_nameDef] can now lay eggs. Don't ask, don't tell. It's rather embarrassing.</description>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
-				<daysToProduce>1</daysToProduce>
-				<resource>EggChickenUnfertilized</resource>
 				<thought>LaidEgg</thought>
 				<genderAversion>Male</genderAversion>
 				<wrongGenderThought>LaidEggMale</wrongGenderThought>
@@ -751,7 +748,6 @@
 						<resource>EggChickenUnfertilized</resource>
 						<rareResource>TFEgg</rareResource>
 						<chance>50</chance>
-						
 					</li>
 					<li>
 						<daysToProduce>0.5</daysToProduce>
@@ -778,6 +774,8 @@
 				</stages>
 			</li>
 		</comps>
+		<maxSeverity>1</maxSeverity>
+		<initialSeverity>0.01</initialSeverity>	
 		<stages>
 			<li>
 				<minSeverity>0</minSeverity>
@@ -802,6 +800,9 @@
 						<hediff>CatatonicBreakdown</hediff>
 						<minSeverity>0.50</minSeverity>
 						<baseMtbDays>2</baseMtbDays>
+						<partsToAffect>
+							<li>Brain</li>
+						</partsToAffect>
 					</li>
 				</hediffGivers>
 			</li>
