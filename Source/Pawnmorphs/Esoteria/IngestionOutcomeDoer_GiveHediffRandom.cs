@@ -152,8 +152,6 @@ namespace Pawnmorph
                     hediff.Severity = num;
                     pawn.health.AddHediff(hediff, null, null, null);
                 }
-
-
             }
             catch { }
         }

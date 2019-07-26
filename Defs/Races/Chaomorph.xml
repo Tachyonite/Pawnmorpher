@@ -680,7 +680,7 @@
 	<ThingDef ParentName="AnimalThingBase">
 		<defName>Chaomeld</defName>
 		<label>Chaomeld</label>
-		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement.</description>
+		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arrangement.</description>
 		<statBases>
 			<MoveSpeed>5</MoveSpeed>
 			<ComfyTemperatureMin>-20</ComfyTemperatureMin>
