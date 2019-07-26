@@ -440,7 +440,7 @@
 			<li>
 				<label>laid an egg (etherbroken)</label>
 				<description>B..bok...egg...gh..bwark...</description>
-				<baseMoodEffect>0</baseMoodEffect>
+				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -536,7 +536,7 @@
 			<li>
 				<label>milked myself(etherbroken)</label>
 				<description>Mm..mooo...mmilk...?</description>
-				<baseMoodEffect>0</baseMoodEffect>
+				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -583,7 +583,7 @@
 			<li>
 				<label>milked myself(etherbroken)</label>
 				<description>B...boom...b...oom?</description>
-				<baseMoodEffect>0</baseMoodEffect>
+				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>

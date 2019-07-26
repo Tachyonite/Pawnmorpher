@@ -1,6 +1,4 @@
 <Defs>
-	<!--               TRANSFORMATIONS                 -->
-
 	<HediffDef>
 		<defName>PawnmorphFoxTFPartial</defName>
 		<hediffClass>HediffWithComps</hediffClass>
@@ -22,7 +20,6 @@
 		<stages>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
@@ -41,13 +38,11 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherFoxMuzzle</hediff>
 						<mtbDays>2.5</mtbDays>
 						<fixedParts><li>Jaw</li></fixedParts>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherDigitigradeLeg</hediff>
 						<mtbDays>2</mtbDays>
@@ -56,8 +51,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherPawFoot</hediff>
 						<mtbDays>2</mtbDays>
@@ -66,7 +59,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFurredLimb</hediff>
 						<mtbDays>3</mtbDays>
@@ -75,16 +67,12 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
 						<hediff>EtherFluffyTail</hediff>
 						<mtbDays>2</mtbDays>
 						<fixedParts><li>Tail</li></fixedParts>
 						<tale>GrewTail</tale>
-					</li>					
-
-
+					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFoxEye</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -93,7 +81,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 					<li Class="Pawnmorph.HediffGiver_Esoteric">
 						<hediff>EtherFoxEar</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -102,7 +89,6 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 					</li>
-
 				</hediffGivers>
 			</li>
 		</stages>
@@ -129,7 +115,6 @@
 		<stages>
 			<li>
 				<label>changing</label>
-				
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>

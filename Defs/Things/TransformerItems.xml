@@ -63,53 +63,51 @@
   </NeedDef>
 
 	<HediffDef ParentName="AddictionBase">
-    <defName>TFMilkAddiction</defName>
-    <hediffClass>Hediff_Addiction</hediffClass>
-    <label>milk addiction</label>
-    <causesNeed>Chemical_TFMilk</causesNeed>
-    <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.0333</severityPerDay>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <label>withdrawal</label>
-        <painFactor>1</painFactor>
-        <hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
-        <socialFightChanceFactor>25</socialFightChanceFactor>
-        <capMods>
-          <li>
-            <capacity>Consciousness</capacity>
-            <offset>-0.3</offset>
-          </li>
-          <li>
-            <capacity>Moving</capacity>
-            <offset>-0.1</offset>
-          </li>
-        </capMods>
-		<hediffGivers>
-		<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+		<defName>TFMilkAddiction</defName>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<label>milk addiction</label>
+		<causesNeed>Chemical_TFMilk</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0333</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>withdrawal</label>
+				<painFactor>1</painFactor>
+				<hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
+				<socialFightChanceFactor>25</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Cow</pawnkind>
 						<forceGender>Female</forceGender>
 						<forceGenderChance>50</forceGenderChance>
-						
-						<mtbDays>8</mtbDays>
-		</li>
-		</hediffGivers>
-        <mentalStateGivers>
-          <li>
-            <mentalState>Binging_Food</mentalState>
-            <mtbDays>5</mtbDays>
-          </li>
-        </mentalStateGivers>
-        <statOffsets>
-          <GlobalLearningFactor>-0.9</GlobalLearningFactor>
-        </statOffsets>
-      </li>
-    </stages>
-  </HediffDef>
+					</li>
+				</hediffGivers>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_Food</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+				<statOffsets>
+					<GlobalLearningFactor>-0.9</GlobalLearningFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
 
 	<ThingDef ParentName="OrganicProductBase">
     <defName>TFEgg</defName>
@@ -180,52 +178,49 @@
   </NeedDef>
 
 	<HediffDef ParentName="AddictionBase">
-    <defName>TFEggAddiction</defName>
-    <hediffClass>Hediff_Addiction</hediffClass>
-    <label>egg addiction</label>
-    <causesNeed>Chemical_TFEgg</causesNeed>
-    <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.0333</severityPerDay>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <label>withdrawal</label>
-        <painFactor>1</painFactor>
-        <hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
-        <socialFightChanceFactor>25</socialFightChanceFactor>
-        <capMods>
-          <li>
-            <capacity>Consciousness</capacity>
-            <offset>-0.3</offset>
-          </li>
-          <li>
-            <capacity>Moving</capacity>
-            <offset>-0.1</offset>
-          </li>
-        </capMods>
-		<hediffGivers>
-		<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>EtherFoxEye</hediff>
+		<defName>TFEggAddiction</defName>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<label>egg addiction</label>
+		<causesNeed>Chemical_TFEgg</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0333</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>withdrawal</label>
+				<painFactor>1</painFactor>
+				<hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
+				<socialFightChanceFactor>25</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
 						<pawnkind>Chicken</pawnkind>
 						<forceGender>Female</forceGender>
 						<forceGenderChance>50</forceGenderChance>
-						
-						<mtbDays>8</mtbDays>
-		</li>
-		</hediffGivers>
-        <mentalStateGivers>
-          <li>
-            <mentalState>Binging_Food</mentalState>
-            <mtbDays>5</mtbDays>
-          </li>
-        </mentalStateGivers>
-        <statOffsets>
-          <GlobalLearningFactor>-0.9</GlobalLearningFactor>
-        </statOffsets>
-      </li>
-    </stages>
-  </HediffDef>
-
+					</li>
+				</hediffGivers>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_Food</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+				<statOffsets>
+					<GlobalLearningFactor>-0.9</GlobalLearningFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
 </Defs>

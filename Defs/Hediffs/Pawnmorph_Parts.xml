@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<HediffDef Name="PawnmorphPart" Abstract="True">
 		<hediffClass>Pawnmorph.Hediff_AddedMutation</hediffClass>
@@ -439,9 +438,10 @@
 
 	<HediffDef>
 		<defName>EtherBroken</defName>
-		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
 		<label>etherbroken</label>
+		<hediffClass>Pawnmorph.Hediff_ProductionThought</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<isBad>false</isBad>
 		<stages>
 			<li>
 				<capMods>
@@ -456,9 +456,10 @@
 
 	<HediffDef>
 		<defName>EtherProductiveBliss</defName>
+		<label>etherbroken</label>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>etherbroken</label>
+		<isBad>false</isBad>
 		<stages>
 			<li>
 				<capMods>
@@ -473,9 +474,10 @@
 
 	<HediffDef>
 		<defName>EtherBond</defName>
-		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
 		<label>etherbond</label>
+		<hediffClass>Pawnmorph.Hediff_ProductionThought</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<isBad>false</isBad>
 		<stages>
 			<li>
 				<capMods>
@@ -728,6 +730,7 @@
 			</li>
 		</comps>
 	</HediffDef>
+	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherEggLayer</defName>
 		<label>egglayer</label>

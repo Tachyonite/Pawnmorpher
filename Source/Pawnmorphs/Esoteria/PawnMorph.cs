@@ -15,16 +15,21 @@ namespace Pawnmorph
     {
         public Pawn origin;
         public Pawn replacement;
-        public PawnMorphInstance(){}
+
+        public PawnMorphInstance()
+        {
+        }
+
         public PawnMorphInstance(Pawn original, Pawn polymorph)
         {
             origin = original;
             replacement = polymorph;
         }
+
         public void ExposeData()
         {
-            Scribe_Deep.Look(ref this.origin, true, "origin");
-            Scribe_References.Look(ref this.replacement, "replacement", true);
+            Scribe_Deep.Look(ref origin, true, "origin");
+            Scribe_References.Look(ref replacement, "replacement", true);
         }
     }
 

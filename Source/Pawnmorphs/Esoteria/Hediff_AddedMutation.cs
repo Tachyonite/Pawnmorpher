@@ -1,13 +1,14 @@
-﻿using RimWorld;
-using System;
-using System.Text;
+﻿using System.Text;
+using UnityEngine;
+using RimWorld;
 using Verse;
-using Multiplayer.API;
 
 namespace Pawnmorph
 {
     public class Hediff_AddedMutation : HediffWithComps
     {
+        public string mutationDescription;
+
         public override bool ShouldRemove
         {
             get
@@ -15,8 +16,7 @@ namespace Pawnmorph
                 return false;
             }
         }
-        
-        string mutationDescription;
+
         public string MutationDescription
         {
             get
@@ -27,7 +27,6 @@ namespace Pawnmorph
                     CreateDescription(builder);
                     mutationDescription = builder.ToString();
                 }
-
                 return mutationDescription;
             }
         }
@@ -40,7 +39,6 @@ namespace Pawnmorph
                 return;
             }
 
-
             string res = def.description.AdjustedFor(pawn);
             builder.AppendLine(res);
         }
@@ -51,33 +49,35 @@ namespace Pawnmorph
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append(base.TipStringExtra);
-                stringBuilder.AppendLine("Efficiency".Translate() + ": " + this.def.addedPartProps.partEfficiency.ToStringPercent());
+                stringBuilder.AppendLine("Efficiency".Translate() + ": " + def.addedPartProps.partEfficiency.ToStringPercent());
                 return stringBuilder.ToString();
             }
         }
 
         public override void PostAdd(DamageInfo? dinfo)
+        // After the hediff has been applied.
         {
-            if (base.Part == null)
+            base.PostAdd(dinfo); // Do the inherited method.
+            IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
+
+            for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++) // Loop through the hediffs on the pawn.
             {
-                Log.Error("Part is null. It should be set before PostAdd for " + this.def + ".", false);
-                return;
-            }
-            this.pawn.health.RestorePart(base.Part, this, false);
-            for (int i = 0; i < base.Part.parts.Count; i++)
-            {
-                Hediff_MissingPart hediff_MissingPart = (Hediff_MissingPart)HediffMaker.MakeHediff(HediffDefOf.MissingBodyPart, this.pawn, null);
-                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
+                Hediff_AddedMutation hediff = pawn.health.hediffSet.hediffs[i] as Hediff_AddedMutation;
+                if (hediff != null && hediff != this && hediff.Part == Part)
+                // If one of the hediffs shares a part with this hediff and is a Hediff_AddedMutation...
+                {
+                    pawn.health.hediffSet.hediffs.Remove(pawn.health.hediffSet.hediffs[i]); // ...remove it.
+                }
             }
         }
 
         public override void ExposeData()
         {
             base.ExposeData();
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && base.Part == null)
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
                 Log.Error("Hediff_AddedPart has null part after loading.", false);
-                this.pawn.health.hediffSet.hediffs.Remove(this);
+                pawn.health.hediffSet.hediffs.Remove(this);
                 return;
             }
         }
