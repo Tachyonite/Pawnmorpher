@@ -136,6 +136,11 @@
 		<hediff>WasAnimal</hediff>
 		<stages>
 			<li>
+				<label>permanently feral</label>
+				<description>AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH I'M A DOG FOREVER (also you should never see this thought)</description>
+				<baseMoodEffect>-100</baseMoodEffect>
+			</li>
+			<li>
 				<label>was a wild animal</label>
 				<description>I was trapped as a beast...mindless and feral! I'm human again, but I don't think I'll get over this for a long time.</description>
 				<baseMoodEffect>-3</baseMoodEffect>
@@ -158,6 +163,11 @@
 		<workerClass>ThoughtWorker_Hediff</workerClass>
 		<hediff>WasAnimalRelieved</hediff>
 		<stages>
+			<li>
+				<label>permanently feral</label>
+				<description>I shouldn't have this thought, but it was exhilarating to know I'd never turn back.</description>
+				<baseMoodEffect>100</baseMoodEffect>
+			</li>
 			<li>
 				<label>was a wild animal</label>
 				<description>I was trapped as a beast...mindless and feral! I'm human again, but the experience was...not as bad as I thought?</description>
@@ -182,6 +192,11 @@
 		<hediff>WasMerged</hediff>
 		<stages>
 			<li>
+				<label>was melded and permanently feral</label>
+				<description>This thought should like, never happen.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
 				<label>was melded and feral</label>
 				<description>It was surreal...I was merged with another person and left with the combined minds of two animals. I feel like we know each other better.</description>
 				<baseMoodEffect>3</baseMoodEffect>
@@ -204,6 +219,12 @@
 		<workerClass>ThoughtWorker_Hediff</workerClass>
 		<hediff>WasMergedRelieved</hediff>
 		<stages>
+		
+			<li>
+				<label>was melded and permanently feral</label>
+				<description>This thought should like, never happen.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
 			<li>
 				<label>was melded and feral</label>
 				<description>I was trapped as a beast in the same body as another! It was horribly uncomfortable to forget my humanity and I can't look them in the eyes for the things they made us do!</description>
