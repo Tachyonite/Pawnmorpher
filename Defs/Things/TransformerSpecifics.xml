@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
 	<ThingDef ParentName="DrugPillBase" Name="InjectorBase" Abstract="True">
 		<graphicData>
 			<texPath>Things/Item/Drug/Specific</texPath>
@@ -142,6 +140,7 @@
 			</outcomeDoers>
 		</ingestible>	
 	</ThingDef>
+	
 	<ThingDef ParentName="InjectorBase">
 		<defName>ChickenTransformer</defName>
 		<label>mutasyringe, chicken</label>
