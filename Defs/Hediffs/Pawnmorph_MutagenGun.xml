@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef>
 		<defName>PawnmorphGunshotTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediff_Morph</hediffClass>
 		<label>ethermorph</label>
 		<makesAlert>true</makesAlert>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
@@ -42,6 +42,8 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
+						
+						<changeChance>90</changeChance>
 						<pawnkinds>
 							<li>Fox_Red</li>
 							<li>Fox_Arctic</li>
