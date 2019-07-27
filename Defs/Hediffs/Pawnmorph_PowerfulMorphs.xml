@@ -1,20 +1,7 @@
 <Defs>
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphElephantTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>elephantmorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.05</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
@@ -127,22 +114,9 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphThrumboTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
 		<label>thrumbomorph</label>
-		<makesAlert>true</makesAlert>
-		<defaultLabelColor>(179,86,132)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<maxSeverity>1</maxSeverity>
-		<initialSeverity>1</initialSeverity>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.05</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Immunizable">
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<label>reeling</label>
