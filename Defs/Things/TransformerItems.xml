@@ -101,7 +101,10 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Cow</pawnkind>
+						<pawnkinds>
+							<li>Cow</li>
+						</pawnkinds>
+						<tale>TransformationCow</tale>
 						<forceGender>Female</forceGender>
 						<forceGenderChance>70</forceGenderChance>
 					</li>
@@ -196,7 +199,10 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Chicken</pawnkind>
+						<pawnkinds>
+							<li>Chicken</li>
+						</pawnkinds>
+						<tale>TransformationChicken</tale>
 						<forceGender>Female</forceGender>
 						<forceGenderChance>70</forceGenderChance>
 					</li>

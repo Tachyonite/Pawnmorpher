@@ -70,7 +70,7 @@ namespace Pawnmorph
             }
         }
 
-        public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, PawnKindDef pawnkind, TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f)
+        public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds, TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f)
         {
             if (transformedPawn.RaceProps.intelligence == Intelligence.Humanlike)
             // If we haven't already checked for the pawn to be tf'd and it possesses humanlike intellegence, give it a chance to transform.
@@ -81,6 +81,7 @@ namespace Pawnmorph
                     return; // ...and stop the transformation. (We do it this way because it's a little hard to check for and this keeps the hediff from erroring out.)
                 }
 
+                PawnKindDef pawnkind = pawnkinds.RandomElement();
                 float animalAge = pawnkind.race.race.lifeExpectancy * transformedPawn.ageTracker.AgeBiologicalYears / transformedPawn.def.race.lifeExpectancy; // The animal is the same percent of the way through it's life as the source pawn is.
 
                 Gender animalGender = transformedPawn.gender;

@@ -69,7 +69,6 @@
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
     <Compile Include="HediffGiver_PermanentFeral.cs" />
     <Compile Include="HediffGiver_TF.cs" />
-    <Compile Include="HediffGiver_TFRandom.cs" />
     <Compile Include="IncidentWorker_ChaomorphPasses.cs" />
     <Compile Include="CompProperties_FormerHumanChance.cs" />
     <Compile Include="CompFormerHumanChance.cs" />
