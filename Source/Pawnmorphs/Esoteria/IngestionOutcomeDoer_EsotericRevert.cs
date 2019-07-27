@@ -227,7 +227,7 @@ namespace Pawnmorph
 
                         List<PawnKindDef> pkds = new List<PawnKindDef>();
                         pkds.Add(PawnKindDefOf.Slave);
-                        pkds.Add(PawnKindDefOf.WildMan);
+                        //pkds.Add(PawnKindDefOf.WildMan); wild man causes problems 
                         pkds.Add(PawnKindDefOf.Colonist);
                         pkds.Add(PawnKindDefOf.SpaceRefugee);
                         pkds.Add(PawnKindDefOf.Villager);
@@ -269,6 +269,7 @@ namespace Pawnmorph
             }
         }
 
+        
         private void RemoveHediffs(Pawn pawn)
         {
             List<Hediff> hS2 = new List<Hediff>(pawn.health.hediffSet.hediffs);
