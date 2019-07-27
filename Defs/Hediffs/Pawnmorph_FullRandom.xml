@@ -865,7 +865,7 @@
 	
 	<HediffDef>
 		<defName>FullRandomTFAnyOutcome</defName>
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediff_Morph</hediffClass>
 		<label>Chaomorph</label>
 		<makesAlert>true</makesAlert>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
