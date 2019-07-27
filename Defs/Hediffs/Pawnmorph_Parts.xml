@@ -26,7 +26,6 @@
 			<li>
 				<minSeverity>0</minSeverity>
 				<label>feral</label>
-				
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_PermanentFeral">
 						<hediff>PermanentlyFeral</hediff>
@@ -62,16 +61,8 @@
 						<mtbDays>3</mtbDays>
 					</li>
 					<li>
-						<mentalState>BedroomTantrum</mentalState>
-						<mtbDays>9</mtbDays>
-					</li>
-					<li>
 						<mentalState>Wander_Sad</mentalState>
 						<mtbDays>15</mtbDays>
-					</li>
-					<li>
-						<mentalState>Wander_OwnRoom</mentalState>
-						<mtbDays>18</mtbDays>
 					</li>
 				</mentalStateGivers>
 			</li>
@@ -145,16 +136,8 @@
 						<mtbDays>3</mtbDays>
 					</li>
 					<li>
-						<mentalState>BedroomTantrum</mentalState>
-						<mtbDays>9</mtbDays>
-					</li>
-					<li>
 						<mentalState>Wander_Sad</mentalState>
 						<mtbDays>15</mtbDays>
-					</li>
-					<li>
-						<mentalState>Wander_OwnRoom</mentalState>
-						<mtbDays>18</mtbDays>
 					</li>
 				</mentalStateGivers>
 			</li>
