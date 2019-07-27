@@ -56,7 +56,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Fox_Red</pawnkind>
+						<pawnkinds>
+							<li>Fox_Red</li>
+						</pawnkinds>
 						<tale>TransformationCanid</tale>
 					</li>
 				</hediffGivers>
@@ -154,11 +156,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkind>Husky</pawnkind>
-						<tale>TransformationCanid</tale>
-					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherPawHand</hediff>
 						<mtbDays>0.02</mtbDays>
@@ -183,7 +180,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Husky</pawnkind>
+						<pawnkinds>
+							<li>Husky</li>
+						</pawnkinds>
 						<tale>TransformationCanid</tale>
 					</li>
 				</hediffGivers>
@@ -296,7 +295,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Warg</pawnkind>
+						<pawnkinds>
+							<li>Warg</li>
+						</pawnkinds>
 						<tale>TransformationCanid</tale>
 					</li>
 				</hediffGivers>
@@ -388,7 +389,6 @@
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherPawHand</hediff>
 						<mtbDays>0.02</mtbDays>
-						
 						<partsToAffect>
 							<li>Hand</li>
 						</partsToAffect>
@@ -410,7 +410,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Wolf_Timber</pawnkind>
+						<pawnkinds>
+							<li>Wolf_Timber</li>
+						</pawnkinds>
 						<tale>TransformationCanid</tale>
 					</li>
 				</hediffGivers>
@@ -523,7 +525,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Bear_Grizzly</pawnkind>
+						<pawnkinds>
+							<li>Bear_Grizzly</li>
+						</pawnkinds>
 						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>
@@ -645,7 +649,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Chicken</pawnkind>
+						<pawnkinds>
+							<li>Chicken</li>
+						</pawnkinds>
 						<tale>TransformationChicken</tale>
 						<forceGender>Female</forceGender>
 						<forceGenderChance>70</forceGenderChance>
@@ -755,7 +761,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Cow</pawnkind>
+						<pawnkinds>
+							<li>Cow</li>
+						</pawnkinds>
 						<tale>TransformationCow</tale>
 						<forceGender>Female</forceGender>
 						<forceGenderChance>70</forceGenderChance>
@@ -892,7 +900,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Pig</pawnkind>
+						<pawnkinds>
+							<li>Pig</li>
+						</pawnkinds>
 						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>
@@ -1011,7 +1021,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>WildBoar</pawnkind>
+						<pawnkinds>
+							<li>WildBoar</li>
+						</pawnkinds>
 						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>
@@ -1105,11 +1117,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkind>Deer</pawnkind>
-						<tale>TransformationMisc</tale>
-					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherHoofHand</hediff>
 						<mtbDays>0.02</mtbDays>
@@ -1135,7 +1142,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Deer</pawnkind>
+						<pawnkinds>
+							<li>Deer</li>
+						</pawnkinds>
 						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>
@@ -1256,7 +1265,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Rat</pawnkind>
+						<pawnkinds>
+							<li>Rat</li>
+						</pawnkinds>
 						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>
@@ -1367,7 +1378,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Boomalope</pawnkind>
+						<pawnkinds>
+							<li>Boomalope</li>
+						</pawnkinds>
 						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>
@@ -1488,7 +1501,9 @@
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
-						<pawnkind>Alpaca</pawnkind>
+						<pawnkinds>
+							<li>Alpaca</li>
+						</pawnkinds>
 						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>

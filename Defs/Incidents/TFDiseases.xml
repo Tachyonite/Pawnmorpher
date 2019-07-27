@@ -1,41 +1,40 @@
 <Defs>
-
 	<IncidentDef Name="DiseaseIncidentMutation" Abstract="True">
-    <workerClass>IncidentWorker_DiseaseHuman</workerClass>
-    <category>DiseaseHuman</category>
-    <targetTags>
-      <li>Map_PlayerHome</li>
-      <li>Map_TempIncident</li>
-      <li>Map_Misc</li>
-      <li>Map_RaidBeacon</li>
-      <li>Caravan</li>
-    </targetTags>
-    <diseaseVictimFractionRange>
-      <min>0.1</min>
-      <max>0.2</max>
-    </diseaseVictimFractionRange>
-    <letterText>{0} of your {1} have gotten sick from {2}.\n\nEnsure you have mutagen stabiliser, or you may end up with your pawns being significantly more animal.\n\nThe following {1} have gotten sick:\n\n{3}</letterText>
-    <letterDef>NegativeEvent</letterDef>
-  </IncidentDef>
+		<workerClass>IncidentWorker_DiseaseHuman</workerClass>
+		<category>DiseaseHuman</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+			<li>Map_TempIncident</li>
+			<li>Map_Misc</li>
+			<li>Map_RaidBeacon</li>
+			<li>Caravan</li>
+		</targetTags>
+		<diseaseVictimFractionRange>
+			<min>0.1</min>
+			<max>0.2</max>
+		</diseaseVictimFractionRange>
+		<letterText>{0} of your {1} have gotten sick from {2}.\n\nEnsure you have mutagen stabiliser, or you may end up with your pawns being significantly more animal.\n\nThe following {1} have gotten sick:\n\n{3}</letterText>
+		<letterDef>NegativeEvent</letterDef>
+	</IncidentDef>
   
-  <IncidentDef ParentName="DiseaseIncidentMutation">
-    <defName>Disease_Cowflu</defName>
-    <label>cowflu</label>
-	  <diseaseIncident>PawnmorphCowTF</diseaseIncident>
-    <letterLabel>Mutagion (cowflu)</letterLabel>
-  </IncidentDef>
-  <IncidentDef ParentName="DiseaseIncidentMutation">
-    <defName>Disease_Foxflu</defName>
-    <label>foxflu</label>
-	  <diseaseIncident>PawnmorphFoxTF</diseaseIncident>
-    <letterLabel>Mutagion (foxflu)</letterLabel>
-  </IncidentDef>
-  <IncidentDef ParentName="DiseaseIncidentMutation">
-    <defName>Disease_Chookflu</defName>
-    <label>chookflu</label>
-	  <diseaseIncident>PawnmorphChickenTF</diseaseIncident>
-    <letterLabel>Mutagion (chookflu)</letterLabel>
-  </IncidentDef>
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_Cowflu</defName>
+		<label>cowflu</label>
+		<diseaseIncident>PawnmorphCowTF</diseaseIncident>
+		<letterLabel>Mutagion (cowflu)</letterLabel>
+	</IncidentDef>
+	
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_Foxflu</defName>
+		<label>foxflu</label>
+		<diseaseIncident>PawnmorphFoxTF</diseaseIncident>
+		<letterLabel>Mutagion (foxflu)</letterLabel>
+	</IncidentDef>
 
-
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_Chookflu</defName>
+		<label>chookflu</label>
+		<diseaseIncident>PawnmorphChickenTF</diseaseIncident>
+		<letterLabel>Mutagion (chookflu)</letterLabel>
+	</IncidentDef>
 </Defs>
