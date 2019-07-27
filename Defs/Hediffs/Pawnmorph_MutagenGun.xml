@@ -18,7 +18,6 @@
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -31,7 +30,7 @@
 			</li>
 			<li>
 				<label>transforming</label>
-				<minSeverity>0.49</minSeverity>
+				<minSeverity>0.4</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
 				<capMods>
@@ -64,7 +63,6 @@
 			</li>
 			<li>
 				<label>transformation-paralysis</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0.5</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
