@@ -29,7 +29,10 @@ namespace EtherGun
             Pawn hitPawn;
             if (Def != null && hitThing != null && hitThing is Pawn)
             {
-            hitPawn = hitThing as Pawn;
+                hitPawn = (Pawn) hitThing; //already checked above 
+
+                if (!Def.CanAddHediffToPawn(hitPawn)) return; //if the hediff can't be added to the hit pawn just abort 
+
                 var rand = Rand.Value; // This is a random percentage between 0% and 100%
                 if (rand <= Def.AddHediffChance) // If the percentage falls under the chance, success!
                 {

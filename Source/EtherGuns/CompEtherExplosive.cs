@@ -33,16 +33,16 @@ namespace EtherGun
             HediffDef hediff = Props.HediffToAdd;
             float chance = Props.AddHediffChance;
 
-            foreach (Thing thing in thingList)
+            foreach (Pawn pawn in thingList.OfType<Pawn>())
             {
-                Pawn pawn = thing as Pawn;
-                if (pawn != null && !pawnsAffected.Contains(pawn))
+               
+                if (!pawnsAffected.Contains(pawn) && Props.CanAddHediffToPawn(pawn))
                 {
                     pawnsAffected.Add(pawn);
                 }
             }
 
-            TransformPawn.ApplyHediff(pawnsAffected, parent.Map, hediff, chance);
+            TransformPawn.ApplyHediff(pawnsAffected, parent.Map, hediff, chance); //does the list need clearing? 
         }
     }
 }

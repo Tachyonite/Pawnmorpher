@@ -70,7 +70,9 @@ namespace Pawnmorph
             }
         }
 
-        public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds, TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f)
+
+        public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
+                                     TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 
         {
             if (transformedPawn.RaceProps.intelligence == Intelligence.Humanlike)
             // If we haven't already checked for the pawn to be tf'd and it possesses humanlike intellegence, give it a chance to transform.

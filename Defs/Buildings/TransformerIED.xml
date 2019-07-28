@@ -22,6 +22,11 @@
 				</wickTicks>
 				<AddHediffChance>0.7</AddHediffChance>
 				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+				<raceBlackList>
+				<li>Mech_Centipede</li>
+				<li>Mech_Lancer</li>
+				<li>Mech_Scyther</li>
+				</raceBlackList>
 			</li>
 		</comps>
 		<specialDisplayRadius>5.9</specialDisplayRadius>
