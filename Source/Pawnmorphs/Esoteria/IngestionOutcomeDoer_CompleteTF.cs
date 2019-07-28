@@ -22,7 +22,7 @@ namespace Pawnmorph
                         {
                             if (giver is HediffGiver_TF giverTF) // ...until you find one that is of type HediffGiver_TF.
                             {
-                                TransformerUtility.Transform(pawn, morph, giverTF.hediff, giverTF.pawnkind, giverTF.tale); // When you do, use it's infor to transform the pawn.
+                                TransformerUtility.Transform(pawn, morph, giverTF.hediff, giverTF.pawnkinds, giverTF.tale); // When you do, use it's infor to transform the pawn.
                                 return;
                             }
                         }

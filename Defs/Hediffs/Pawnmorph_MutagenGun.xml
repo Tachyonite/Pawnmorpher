@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef>
 		<defName>PawnmorphGunshotTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediff_Morph</hediffClass>
 		<label>ethermorph</label>
 		<makesAlert>true</makesAlert>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
@@ -18,7 +18,6 @@
 		<stages>
 			<li>
 				<label>reeling</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -28,9 +27,23 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.4</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
 				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TFRandom">
-						<hediff>EtherFoxEye</hediff>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
+						
+						<changeChance>90</changeChance>
 						<pawnkinds>
 							<li>Fox_Red</li>
 							<li>Fox_Arctic</li>
@@ -46,16 +59,12 @@
 							<li>Rat</li>
 							<li>Squirrel</li>
 						</pawnkinds>
-						<chance>99</chance>
-						<faction>wild</faction>
-						<mentalState>ManhunterPermanent</mentalState>
-						<mentalStateChance>20</mentalStateChance>
+						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>
 			</li>
 			<li>
 				<label>transformation-paralysis</label>
-				<becomeVisible>true</becomeVisible>
 				<minSeverity>0.5</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
