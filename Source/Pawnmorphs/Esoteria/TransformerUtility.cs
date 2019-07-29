@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using RimWorld;
 using Verse;
+using Verse.AI.Group;
 
 namespace Pawnmorph
 {
@@ -70,7 +70,9 @@ namespace Pawnmorph
             }
         }
 
-        public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, PawnKindDef pawnkind, TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f)
+
+        public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
+                                     TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 
         {
             if (transformedPawn.RaceProps.intelligence == Intelligence.Humanlike)
             // If we haven't already checked for the pawn to be tf'd and it possesses humanlike intellegence, give it a chance to transform.
@@ -81,6 +83,7 @@ namespace Pawnmorph
                     return; // ...and stop the transformation. (We do it this way because it's a little hard to check for and this keeps the hediff from erroring out.)
                 }
 
+                PawnKindDef pawnkind = pawnkinds.RandomElement();
                 float animalAge = pawnkind.race.race.lifeExpectancy * transformedPawn.ageTracker.AgeBiologicalYears / transformedPawn.def.race.lifeExpectancy; // The animal is the same percent of the way through it's life as the source pawn is.
 
                 Gender animalGender = transformedPawn.gender;
@@ -135,23 +138,11 @@ namespace Pawnmorph
                 hediff.Severity = Rand.Range(0.00f, 1.00f); // ...give it a random severity...
                 spawnedAnimal.health.AddHediff(hediff); // ...and apply it to the new animal.
 
-                transformedPawn.apparel.DropAll(transformedPawn.PositionHeld); // Makes the original pawn drop all apparel...
-                transformedPawn.equipment.DropAllEquipment(transformedPawn.PositionHeld); // ... and equipment (i.e. guns).
-                transformedPawn.health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
+
                 PawnMorphInstance pm = new PawnMorphInstance(transformedPawn, spawnedAnimal); // Put the original pawn somewhere safe and tie it to the animal.
                 Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm); // ...and put this data somewhere safe.
 
-                if (transformedPawn.ownership.OwnedBed != null) // If the original pawn owned a bed somewhere...
-                {
-                    transformedPawn.ownership.UnclaimBed(); // ...unclaim it.
-                }
-
-                if (transformedPawn.CarriedBy != null) // If the original pawn was being carried when they transformed...
-                {
-                    Pawn carryingPawn = transformedPawn.CarriedBy;
-                    Thing outPawn;
-                    carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct, out outPawn); // ...drop them so they can be removed.
-                }
+            
 
                 for (int i = 0; i < 10; i++) // Create a cloud of magic.
                 {
@@ -168,13 +159,68 @@ namespace Pawnmorph
                     });
                 }
 
+                CleanUpHumanPawnPostTf(transformedPawn, cause);  //now clean up the original pawn (remove apparel, drop'em, ect) 
+
                 Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(transformedPawn.LabelShort, pawnkind.LabelCap).CapitalizeFirst(),
                     "LetterHediffFromTransformation".Translate(transformedPawn.LabelShort, pawnkind.LabelCap).CapitalizeFirst(),
                     LetterDefOf.NeutralEvent, spawnedAnimal, null, null); // Creates a letter saying "Oh no! Pawn X has transformed into a Y!"
                 Find.TickManager.slower.SignalForceNormalSpeedShort(); // Slow down the speed of the game.
 
                 transformedPawn.DeSpawn(); // Remove the original pawn from the current map.
+                
             }
         }
+
+        /// <summary>
+        /// just cleans up all references to the original human pawn after creating the animal pawn
+        ///  This does not call pawn.DeSpawn 
+        /// </summary>
+        ///     
+        /// <param name="originalPawn"></param>
+        static void CleanUpHumanPawnPostTf(Pawn originalPawn, Hediff cause)
+        {
+            originalPawn.apparel.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
+            originalPawn.equipment.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
+            originalPawn
+               .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
+
+            originalPawn.health.surgeryBills?.Clear(); //if this pawn has any additional surgery bills, get rid of them 
+
+            if (originalPawn.ownership.OwnedBed != null) // If the original pawn owned a bed somewhere...
+                originalPawn.ownership.UnclaimBed(); // ...unclaim it.
+
+            if (originalPawn.CarriedBy != null) // If the original pawn was being carried when they transformed...
+            {
+                Pawn carryingPawn = originalPawn.CarriedBy;
+                Thing outPawn;
+                carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct,
+                                                              out outPawn); // ...drop them so they can be removed.
+            }
+
+            if (originalPawn.IsPrisonerOfColony)
+                originalPawn.guest.SetGuestStatus(null);
+          
+
+
+            //TODO notify faction that their pawn became an animal somehow (this should damage relations maybe?) 
+
+            originalPawn.GetLord()
+                       ?.Notify_PawnLost(originalPawn,
+                                         PawnLostCondition
+                                            .Vanished); //make sure any current lords know they can't use this pawn anymore 
+
+            if (originalPawn.Faction != Faction.OfPlayer) return; //past here is only relevant for colonists 
+
+            bool IsMasterOfOriginal(Pawn animalPawn) //function to find all animals our pawn is a master of 
+            {
+                if (animalPawn.playerSettings != null) return animalPawn.playerSettings.Master == originalPawn;
+
+                return false;
+            }
+
+            foreach (Pawn animalPawn in PawnsFinder.AllMapsWorldAndTemporary_Alive.Where(IsMasterOfOriginal))
+                animalPawn.playerSettings.Master = null; //set to null, these animals don't have a master anymore 
+        }
+
     }
 }

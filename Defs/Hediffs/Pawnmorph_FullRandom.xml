@@ -865,7 +865,7 @@
 	
 	<HediffDef>
 		<defName>FullRandomTFAnyOutcome</defName>
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediff_Morph</hediffClass>
 		<label>Chaomorph</label>
 		<makesAlert>true</makesAlert>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
@@ -882,7 +882,6 @@
 		<stages>
 			<li>
 				<label>reeling</label>
-				
 				<minSeverity>0</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -893,20 +892,6 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TFRandom">
-						<hediff>EtherFoxEye</hediff>
-						<pawnkinds>
-							<li>Chaocow</li>
-							<li>Chaocow</li>
-							<li>Chaofox</li>
-							<li>Chaofox</li>
-							<li>Chaocow</li>							
-							<li>Chaodino</li>
-						</pawnkinds>
-						<chance>90</chance>
-						<forceGender>Switch</forceGender>
-						<forceGenderChance>25</forceGenderChance>
-					</li>
 					<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
 						<hediff>EtherPawHand</hediff>
 						<mtbDays>2</mtbDays>
@@ -970,6 +955,34 @@
 							<li>Hand</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.64</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
+						<pawnkinds>
+							<li>Chaocow</li>
+							<li>Chaocow</li>
+							<li>Chaocow</li>
+							<li>Chaofox</li>
+							<li>Chaofox</li>							
+							<li>Chaodino</li>
+						</pawnkinds>
+						<tale>TransformationMisc</tale>
+						<forceGender>Switch</forceGender>
+						<forceGenderChance>25</forceGenderChance>
 					</li>
 				</hediffGivers>
 			</li>

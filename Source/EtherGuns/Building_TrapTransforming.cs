@@ -9,11 +9,10 @@ namespace EtherGun
 {
     class Building_TrapTransforming : Building_TrapExplosive
     {
-        #region Overrides
         protected override void SpringSub(Pawn p)
         {
-            base.GetComp<CompEtherExplosive>().StartWick(null);
+            Log.Error("Building_TrapTransforming.SpringSub()");
+            GetComp<CompEtherExplosive>().StartWick(null);
         }
-        #endregion
     }
 }

@@ -13,39 +13,36 @@ namespace EtherGun
         {
             get
             {
-                return this.props as CompProperties_EtherExplosive;
+                return (CompProperties_EtherExplosive)props;
             }
         }
 
-        protected new void Detonate(Map map)
+        public override void CompTick()
         {
-            List<Thing> thingList = GenRadial.RadialDistinctThingsAround(parent.Position, map, Props.explosiveRadius, true).ToList();
+            base.CompTick();
+            if (wickStarted && wickTicksLeft <= 1)
+            {
+                transformArea();
+            }
+        }
+
+        public void transformArea()
+        {
+            List<Thing> thingList = GenRadial.RadialDistinctThingsAround(parent.PositionHeld, parent.Map, Props.explosiveRadius, true).ToList();
             List<Pawn> pawnsAffected = new List<Pawn>();
             HediffDef hediff = Props.HediffToAdd;
             float chance = Props.AddHediffChance;
 
-            for (int i = 0; i < thingList.Count; i++)
+            foreach (Pawn pawn in thingList.OfType<Pawn>())
             {
-                Pawn pawn = thingList[i] as Pawn;
-                if (pawn != null && !pawnsAffected.Contains(pawn))
+               
+                if (!pawnsAffected.Contains(pawn) && Props.CanAddHediffToPawn(pawn))
                 {
                     pawnsAffected.Add(pawn);
                 }
             }
 
-            TransformPawn.ApplyHediff(pawnsAffected, map, hediff, chance);
-            base.Detonate(map);
+            TransformPawn.ApplyHediff(pawnsAffected, parent.Map, hediff, chance); //does the list need clearing? 
         }
-
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Defs.Look<HediffDef>(ref HediffToAdd, "HediffToAdd");
-            Scribe_Values.Look<float>(ref AddHediffChance, "AddHediffChance", 0.99f, false);
-        }
-
-        public HediffDef HediffToAdd;
-        public float AddHediffChance;
     }
 }

@@ -15,7 +15,7 @@ namespace EtherGun
         {
             get
             {
-                return this.def as ThingDef_EtherBullet;
+                return def as ThingDef_EtherBullet;
             }
         }
 

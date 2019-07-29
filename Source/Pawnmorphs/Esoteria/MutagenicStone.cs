@@ -41,9 +41,10 @@ namespace Pawnmorph
                     if (!pawn2.Spawned || !thingList.Contains(pawn2))
                     {
                         this.touchingPawns.Remove(pawn2);
-                        if (pawn2.health.hediffSet.hediffs.Where(x => x.def == hediff).First() != null)
+                        var targetHediff = pawn2.health.hediffSet.hediffs.FirstOrDefault(x => x.def == hediff); //need to use FirstOrDefault, First throws InvalidOperationException when run on an empty enumerable
+                        if ( targetHediff != null) 
                         {
-                            pawn2.health.RemoveHediff(pawn2.health.hediffSet.hediffs.Where(x => x.def == hediff).First());
+                            pawn2.health.RemoveHediff(targetHediff);
                         }
                         
                     }
