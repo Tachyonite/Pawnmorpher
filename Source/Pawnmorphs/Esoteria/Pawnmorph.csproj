@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EtherState.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
     <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
@@ -102,9 +103,12 @@
     <Compile Include="HediffComp_Staged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationships.cs" />
+    <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
+    <Compile Include="Thoughts\Thought_EtherMemory.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

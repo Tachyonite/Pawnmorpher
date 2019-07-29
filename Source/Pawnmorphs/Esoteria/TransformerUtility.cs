@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -69,6 +70,8 @@ namespace Pawnmorph
                 pawn.health.RemoveHediff(xhediff); // ...and remove it.
             }
         }
+
+
 
 
         public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
@@ -222,5 +225,61 @@ namespace Pawnmorph
                 animalPawn.playerSettings.Master = null; //set to null, these animals don't have a master anymore 
         }
 
+
+        private const string ETHER_BOND_DEF_NAME = "EtherBond";
+        private const string ETHER_BROKEN_DEF_NAME = "EtherBroken"; 
+
+        /// <summary>
+        /// get the "ether state" of the pawn (whether they have the ether broken or bonded hediff 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static EtherState GetEtherState([NotNull] this Pawn pawn)
+        {
+            HediffSet hediffs = pawn.health.hediffSet;
+            if (hediffs.HasHediff(HediffDef.Named(ETHER_BOND_DEF_NAME)))
+            {
+                return EtherState.Bond; 
+            }
+
+            if (hediffs.HasHediff(HediffDef.Named(ETHER_BROKEN_DEF_NAME)))
+            {
+                return EtherState.Broken; 
+            }
+
+            return EtherState.None; 
+        }
+
+        /// <summary>
+        /// try to give this pawn a new memory
+        /// (this is the same as pawn.needs.mood.thoughts.memories.TryGainMemory just more convenient)
+        /// </summary>
+        /// if pawn does not have needs/mood/thoughts ect this call does nothing 
+        /// 
+        /// <param name="pawn"></param>
+        /// <param name="thought"></param>
+        /// <param name="otherPawn"></param>
+        public static void TryGainMemory([NotNull] this Pawn pawn, Thought_Memory thought, Pawn otherPawn=null) //move extension methods elsewhere? 
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thought, otherPawn);
+            
+        }
+
+        /// <summary>
+        /// try to give this pawn a new memory
+        /// (this is the same as pawn.needs.mood.thoughts.memories.TryGainMemory just more convenient)
+        /// </summary>
+        /// if pawn does not have needs/mood/thoughts ect this call does nothing 
+        /// <param name="pawn"></param>
+        /// <param name="thoughtDef"></param>
+        /// <param name="otherPawn"></param>
+        public static void TryGainMemory([NotNull] this Pawn pawn, ThoughtDef thoughtDef, Pawn otherPawn = null)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thoughtDef, otherPawn); 
+        }
+        
     }
 }
