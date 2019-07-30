@@ -101,6 +101,7 @@
 			<researchPrerequisite>SerumSynthesis</researchPrerequisite>
 			<recipeUsers>
 				<li>MutagenLab</li>
+				<li>DrugLab</li>
 			</recipeUsers>
 		</recipeMaker>
 		<costList>
