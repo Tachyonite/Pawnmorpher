@@ -16,10 +16,8 @@ namespace Pawnmorph
 
         public float forceGenderChance = 50f; // If forceGender is provided, this is the chance the gender will be forced.
 
-        private float changeChance = -1; 
-
-        //[Unsaved] private bool triggered = false; // A flag to prevent us from checking endlessly.
-        //not one to one, instances of this class are pooled!!!!
+        private float changeChance = -1;
+        
 
 
         public bool TryTf(Pawn pawn, Hediff cause)
@@ -33,7 +31,7 @@ namespace Pawnmorph
 
             if (Rand.RangeInclusive(0, 100) <= chance)
             {
-                TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance);
+                TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
                 return true; 
             }
 

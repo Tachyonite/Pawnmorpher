@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
@@ -104,6 +105,8 @@
     <Compile Include="HediffComp_Staged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationships.cs" />
+    <Compile Include="Thoughts\ReactionsHelper.cs" />
+    <Compile Include="Thoughts\RelationshipDefExtension.cs" />
     <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />

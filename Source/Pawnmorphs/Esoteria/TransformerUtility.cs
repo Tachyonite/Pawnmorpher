@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Thoughts;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -75,7 +76,8 @@ namespace Pawnmorph
 
 
         public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
-                                     TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 
+                                     TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f
+                                     ) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 
         {
             if (transformedPawn.RaceProps.intelligence == Intelligence.Humanlike)
             // If we haven't already checked for the pawn to be tf'd and it possesses humanlike intellegence, give it a chance to transform.
@@ -161,7 +163,8 @@ namespace Pawnmorph
                             animalToSpawn
                     });
                 }
-
+                
+                bool wasPrisoner = transformedPawn.IsPrisonerOfColony; 
                 CleanUpHumanPawnPostTf(transformedPawn, cause);  //now clean up the original pawn (remove apparel, drop'em, ect) 
 
                 Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(transformedPawn.LabelShort, pawnkind.LabelCap).CapitalizeFirst(),
@@ -171,6 +174,8 @@ namespace Pawnmorph
 
                 transformedPawn.DeSpawn(); // Remove the original pawn from the current map.
                 
+                ReactionsHelper.OnPawnTransforms(transformedPawn, animalToSpawn, wasPrisoner);
+
             }
         }
 

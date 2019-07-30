@@ -982,6 +982,7 @@
 						</pawnkinds>
 						<tale>TransformationMisc</tale>
 						<forceGender>Switch</forceGender>
+            <changeChance>90</changeChance>
 						<forceGenderChance>25</forceGenderChance>
 					</li>
 				</hediffGivers>
