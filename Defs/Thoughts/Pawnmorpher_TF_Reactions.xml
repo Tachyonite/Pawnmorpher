@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThoughtDef>
-    <defName>ColonistTransformed</defName>
+    <defName>ColonistTransformedThought</defName>
     <durationDays>10</durationDays>
     <stackLimit>4</stackLimit>
     <stages>
@@ -15,7 +15,7 @@
   </ThoughtDef>
 
   <ThoughtDef>
-    <defName>PrisonerTransformed</defName>
+    <defName>PrisonerTransformedThought</defName>
     <durationDays>4</durationDays>
     <stackLimit>2</stackLimit>
     <stages>
@@ -29,7 +29,7 @@
   </ThoughtDef>
 
  <ThoughtDef>
-    <defName>RivalTransformed</defName>
+    <defName>RivalTransformedThought</defName>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
     <stages>
@@ -42,7 +42,7 @@
   </ThoughtDef>
 
   <ThoughtDef>
-    <defName>FriendTransformed</defName>
+    <defName>FriendTransformedThought</defName>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
     <stages>

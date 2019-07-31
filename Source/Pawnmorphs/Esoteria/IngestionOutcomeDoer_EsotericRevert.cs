@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Thoughts;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -82,6 +83,11 @@ namespace Pawnmorph
                         }
                         pawn3.SetFaction(Faction.OfPlayer);
                         pawn4.SetFaction(Faction.OfPlayer);
+
+                        ReactionsHelper.OnPawnReverted(pawn3, pm.replacement);
+                        ReactionsHelper.OnPawnReverted(pawn4, pm.replacement);
+
+
                         pm.replacement.DeSpawn(0);
                         loader.removePawnMerged(pm);
                     }
@@ -194,6 +200,9 @@ namespace Pawnmorph
                         }
 
                         pawn3.health.AddHediff(h);
+
+                        ReactionsHelper.OnPawnReverted(pawn3, pm.replacement); 
+
                         loader.removePawn(pm);
                         pm.replacement.DeSpawn(0);
                     }

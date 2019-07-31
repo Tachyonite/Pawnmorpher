@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+  <ThoughtDef>
+    <defName>ColonistRevertedThought</defName>
+    <durationDays>10</durationDays>
+    <stages>
+      <li>
+        <label>colonist reverted</label>
+        <description>TODO</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>FriendRevertedThought</defName>
+    <durationDays>10</durationDays>
+    <stages>
+      <li>
+        <label>friend reverted</label>
+        <description>TODO</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+
+  <ThoughtDef>
+    <defName>RivalRevertedThought</defName>
+    <durationDays>10</durationDays>
+    <stages>
+      <li>
+        <label>rival reverted</label>
+        <description>TODO</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
