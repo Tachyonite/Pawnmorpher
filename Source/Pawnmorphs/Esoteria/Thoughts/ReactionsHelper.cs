@@ -20,7 +20,9 @@ namespace Pawnmorph.Thoughts
             Transformation,
             Reverted,
 
-            PermanentlyFeral
+            PermanentlyFeral,
+
+            Merged
             //any others? 
         }
 
@@ -36,6 +38,8 @@ namespace Pawnmorph.Thoughts
                     return isFemale ? modExtension.revertedThoughtFemale : modExtension.revertedThought;
                 case EventType.PermanentlyFeral:
                     return isFemale ? modExtension.permanentlyFeralFemale : modExtension.permanentlyFeral;
+                case EventType.Merged:
+                    return isFemale ? modExtension.mergedThoughtFemale : modExtension.mergedThought;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
@@ -55,7 +59,7 @@ namespace Pawnmorph.Thoughts
         [CanBeNull]
         private static ThoughtDef GetOpinionThought(Pawn originalPawn, Pawn reactorPawn, EventType type)
         {
-            if (PawnUtility.ShouldGetThoughtAbout(reactorPawn, originalPawn)) return null;
+            //if (PawnUtility.ShouldGetThoughtAbout(reactorPawn, originalPawn)) return null;
             int opinion = reactorPawn.relations.OpinionOf(originalPawn);
 
             if (opinion <= -20)
@@ -67,6 +71,8 @@ namespace Pawnmorph.Thoughts
                         return ReactionDefs.RivalRevertedThought;
                     case EventType.PermanentlyFeral:
                         return ReactionDefs.RivalPermFeralThought;
+                    case EventType.Merged:
+                        return ReactionDefs.RivalMergedThought;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
                 }
@@ -80,6 +86,8 @@ namespace Pawnmorph.Thoughts
                         return ReactionDefs.FriendRevertedThought;
                     case EventType.PermanentlyFeral:
                         return ReactionDefs.FriendPermFeralThought;
+                    case EventType.Merged:
+                        return ReactionDefs.FriendMergedThought;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
                 }
@@ -122,8 +130,80 @@ namespace Pawnmorph.Thoughts
             HandleRelatedPawnsReaction(originalPawn, animalPawn, EventType.PermanentlyFeral);
         }
 
-        private static void HandleColonistReactions(Pawn original, Pawn transformedPawn, bool wasPrisoner, EventType type)
+        /// <summary>
+        ///     call when 2 pawns are merged into one meld/merge to handle giving the correct thoughts to colonists
+        /// </summary>
+        /// <param name="merge0">the first pawn of the merge</param>
+        /// <param name="wasPrisoner0">if the first pawn was a prisoner</param>
+        /// <param name="merge1">the second pawn of the merge</param>
+        /// <param name="wasPrisoner1">if the second pawn was a prisoner</param>
+        /// <param name="animalPawn">the resulting animal pawn</param>
+        public static void OnPawnsMerged(Pawn merge0, bool wasPrisoner0, Pawn merge1, bool wasPrisoner1, Pawn animalPawn)
         {
+            _scratchList.Clear();
+            _scratchList.AddRange(PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
+                                             .Where(p => p != merge0 && p != merge1));
+            //don't give the merged pawns thoughts about themselves 
+
+            HandleColonistReactions(merge0, animalPawn, wasPrisoner0, EventType.Merged, _scratchList);
+            HandleColonistReactions(merge1, animalPawn, wasPrisoner1, EventType.Merged, _scratchList);
+
+
+            //need to handle relationships manually 
+
+            _scratchList.Clear();
+
+            bool IsValidRelation(Pawn p)
+            {
+                return p != merge0 && p != merge1 && p.needs?.mood != null && p.relations != null;
+            }
+
+
+            IEnumerable<Pawn> linq = merge0.relations.PotentiallyRelatedPawns.Where(IsValidRelation);
+
+
+            foreach (Pawn rPawn in linq)
+            {
+                PawnRelationDef relation = rPawn.GetMostImportantRelation(merge0);
+                var modExt = relation?.GetModExtension<RelationshipDefExtension>();
+                if (modExt == null) continue;
+
+                ThoughtDef thought = modExt.GetThoughtDef(EventType.Merged, merge0.gender);
+                if (thought == null)
+                {
+                    Log.Warning($"relationship {relation.defName} has (pawnmorpher) extension but no thought for morphing, is this intentional?");
+                    continue;
+                }
+
+                rPawn.TryGainMemory(thought);
+            }
+
+            foreach (Pawn rPawn in merge1.relations.PotentiallyRelatedPawns.Where(IsValidRelation))
+            {
+                PawnRelationDef relation = rPawn.GetMostImportantRelation(merge1);
+                var modExt = relation?.GetModExtension<RelationshipDefExtension>();
+                if (modExt == null) continue;
+
+                ThoughtDef thought = modExt.GetThoughtDef(EventType.Merged, merge0.gender);
+                if (thought == null)
+                {
+                    Log.Warning($"relationship {relation.defName} has (pawnmorpher) extension but no thought for morphing, is this intentional?");
+                    continue;
+                }
+
+                rPawn.TryGainMemory(thought);
+            }
+        }
+
+        private static readonly List<Pawn> _scratchList = new List<Pawn>();
+
+
+        private static void HandleColonistReactions(Pawn original, Pawn transformedPawn, bool wasPrisoner, EventType type,
+                                                    IEnumerable<Pawn> pawns = null)
+        {
+            pawns = pawns
+                 ?? PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
+                               .Where(p => p != original); //use all colonists except the original pawn as the default 
             ThoughtDef defaultThought;
             if (original.IsColonist || wasPrisoner)
                 switch (type)
@@ -139,16 +219,15 @@ namespace Pawnmorph.Thoughts
                     case EventType.PermanentlyFeral:
                         defaultThought = wasPrisoner ? null : ReactionDefs.ColonistPermFeralThought;
                         break;
+                    case EventType.Merged:
+                        defaultThought = wasPrisoner ? ReactionDefs.PrisonerMergedThought : ReactionDefs.ColonistMergedThought;
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
                 }
             else
                 defaultThought = null;
 
-
-            IEnumerable<Pawn> pawns =
-                PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
-                           .Where(p => p != original); //don't give the original a thought about themselves 
 
             foreach (Pawn reactor in pawns)
             {

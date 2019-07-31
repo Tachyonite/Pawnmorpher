@@ -16,8 +16,12 @@ namespace Pawnmorph.Thoughts
         public ThoughtDef revertedThought;
         public ThoughtDef revertedThoughtFemale;
         public ThoughtDef permanentlyFeral;
-        public ThoughtDef permanentlyFeralFemale; 
-        //others? like changed/merged/ect. 
+        public ThoughtDef permanentlyFeralFemale;
+
+        public ThoughtDef mergedThoughtFemale;
+
+        public ThoughtDef mergedThought;
+        
         
     }
 }

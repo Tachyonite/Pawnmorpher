@@ -31,5 +31,11 @@ namespace Pawnmorph.Thoughts
         public static ThoughtDef ColonistPermFeralThought;
         public static ThoughtDef FriendPermFeralThought;
         public static ThoughtDef RivalPermFeralThought; 
+
+        //merging 
+        public static ThoughtDef ColonistMergedThought;
+        public static ThoughtDef PrisonerMergedThought;
+        public static ThoughtDef FriendMergedThought;
+        public static ThoughtDef RivalMergedThought; 
     }
 }

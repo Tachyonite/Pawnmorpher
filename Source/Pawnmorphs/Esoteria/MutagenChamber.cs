@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
 using Harmony;
+using Pawnmorph.Thoughts;
 using RimWorld.Planet;
 
 namespace Pawnmorph
@@ -428,7 +429,12 @@ namespace Pawnmorph
                     {
                         if (this.modulator.merging)
                         {
-                            PawnMorphInstanceMerged pm = new PawnMorphInstanceMerged((Pawn)this.linkTo.innerContainer.First(), (Pawn)this.innerContainer.First(), pawn3);
+                            var first = (Pawn)this.linkTo.innerContainer.First();
+                            var second = (Pawn)this.innerContainer.First();
+
+                            ReactionsHelper.OnPawnsMerged(first, first.IsPrisoner, second, second.IsPrisoner, pawn3); 
+
+                            PawnMorphInstanceMerged pm = new PawnMorphInstanceMerged(first, second, pawn3);
                             Find.World.GetComponent<PawnmorphGameComp>().addPawnMerged(pm);
                         }
                         else
