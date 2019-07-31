@@ -63,7 +63,8 @@ namespace Pawnmorph.Thoughts
                 original.IsColonist ? ThoughtDef.Named(DEFAULT_COLONIST_TF_THOUGHT) : null;
             foreach (Pawn reactorPawn in pawns)
             {
-                reactorPawn.TryGainMemory(defaultDef);
+                if(defaultDef != null)
+                    reactorPawn.TryGainMemory(defaultDef);
 
 
                 if (PawnUtility.ShouldGetThoughtAbout(reactorPawn, original))
