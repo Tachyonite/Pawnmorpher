@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Pawnmorph.Thoughts;
 using UnityEngine;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI.Group;
 
@@ -212,10 +213,12 @@ namespace Pawnmorph
 
             //TODO notify faction that their pawn became an animal somehow (this should damage relations maybe?) 
 
+            //originalPawn.GetCaravan()?.Notify_PawnRemoved(originalPawn); 
+
             originalPawn.GetLord()
                        ?.Notify_PawnLost(originalPawn,
                                          PawnLostCondition
-                                            .Vanished); //make sure any current lords know they can't use this pawn anymore 
+                                            .IncappedOrKilled); //make sure any current lords know they can't use this pawn anymore 
 
             if (originalPawn.Faction != Faction.OfPlayer) return; //past here is only relevant for colonists 
 
@@ -285,6 +288,8 @@ namespace Pawnmorph
 
             pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thoughtDef, otherPawn); 
         }
+
+       
         
     }
 }
