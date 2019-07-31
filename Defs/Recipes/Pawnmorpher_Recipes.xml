@@ -151,7 +151,7 @@
 		<defName>Make_GlitterMedsFromMutonite</defName>
 		<label>make glitterworld medicine from slurry (5:1)</label>
 		<description>Reshape mechanites into glitterworld medicine from slurry. This does require quite a lot, and neutralises the mutagenic effect they have.</description>
-		<jobString>Refining slurry from mutonite.</jobString>
+		<jobString>Refining slurry into glitterworld medicine</jobString>
 		<effectWorking>Cremate</effectWorking>
 		<soundWorking>Recipe_Cremate</soundWorking>
 		<workAmount>2000</workAmount>
