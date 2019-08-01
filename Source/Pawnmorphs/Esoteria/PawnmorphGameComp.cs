@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -15,8 +16,24 @@ namespace Pawnmorph
     public class PawnmorphGameComp : WorldComponent
     {
         public HashSet<PawnMorphInstance> pawnmorphs = new HashSet<PawnMorphInstance>(){};
-        public HashSet<PawnMorphInstanceMerged> mergedpawnmorphs = new HashSet<PawnMorphInstanceMerged>() { };
+        public HashSet<PawnMorphInstanceMerged> mergedpawnmorphs = new HashSet<PawnMorphInstanceMerged>() { }; //why are we using hashsets? 
         public HashSet<PawnKindDef> taggedAnimals = new HashSet<PawnKindDef>() { };
+
+        public IEnumerable<PawnMorphInstance> MorphInstances => pawnmorphs;
+        public IEnumerable<PawnMorphInstanceMerged> MergeInstances => mergedpawnmorphs;  
+
+
+        [CanBeNull]
+        public PawnMorphInstanceMerged GetMergeInstanceWithOriginal(Pawn original)
+        {
+            return mergedpawnmorphs.FirstOrDefault(i => i.origin == original || i.origin2 == original); 
+        }
+
+        [CanBeNull]
+        public PawnMorphInstance GetInstanceWithOriginal(Pawn original)
+        {
+            return pawnmorphs.FirstOrDefault(i => i.origin == original); 
+        }
 
         public PawnmorphGameComp(World world) : base(world)
         {

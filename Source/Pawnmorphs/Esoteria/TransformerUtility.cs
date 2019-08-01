@@ -73,6 +73,19 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// returns true if this pawn is currently an animal or merged morph 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static bool IsAnimalOrMerged([NotNull] this Pawn pawn)
+        {
+            var comp = Find.World.GetComponent<PawnmorphGameComp>();
+            var pm = comp.GetInstanceWithOriginal(pawn);
+            if (pm != null) return true;
+            var pm1 = comp.GetMergeInstanceWithOriginal(pawn);
+            return pm1 != null; 
+        }
 
 
 
