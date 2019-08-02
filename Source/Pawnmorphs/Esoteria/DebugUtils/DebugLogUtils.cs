@@ -57,7 +57,7 @@ namespace Pawnmorph.DebugUtils
         public static void ListAllMorphTfHediffs()
         {
             var builder = new StringBuilder();
-            IEnumerable<HediffDef> morphs = MorphDefs.AllMorphs;
+            IEnumerable<HediffDef> morphs = TfDefOf.AllMorphs;
             foreach (HediffDef morph in morphs)
                 builder.AppendLine($"defName:{morph.defName} label:{morph.label} class:{morph.hediffClass.Name}");
 
@@ -86,6 +86,17 @@ namespace Pawnmorph.DebugUtils
                 builder.AppendLine($"{hediffDef.defName}: ");
                 builder.AppendLine($"\t\tlabel:{hediffDef.label}");
                 builder.AppendLine($"\t\tdescription:{hediffDef.description}");
+
+                var comp = hediffDef.comps?.OfType<Hediffs.CompProperties_MorphInfluence>().FirstOrDefault();
+                if (comp != null)
+                {
+                    builder.AppendLine($"\t\tmorph:{comp.morph.defName}\n\t\tinfluence:{comp.influence}"); 
+                }
+                else
+                {
+                    builder.AppendLine("\t\tno morph influence component"); 
+                }
+
                 //builder.AppendLine($"\t\tcategory: {MorphUtils.GetMorphType(hediffDef)?.ToString() ?? "No category"}");
                 builder.AppendLine("");
             }
@@ -110,7 +121,7 @@ namespace Pawnmorph.DebugUtils
         public static void GetExpectedMorphsAndParts()
         {
             IEnumerable<HediffDef> morphs =
-                MorphDefs.AllMorphs.Where(def => def.defName != CHAOMORPH_DEF_NAME && def.defName != DAMAGE_DEF_NAME);
+                TfDefOf.AllMorphs.Where(def => def.defName != CHAOMORPH_DEF_NAME && def.defName != DAMAGE_DEF_NAME);
 
             Dictionary<HediffDef, List<HediffDef>> dict = morphs.Select(m => new
                                                                  {
@@ -239,5 +250,32 @@ namespace Pawnmorph.DebugUtils
             else
                 Log.Message(builder.ToString());
         }
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [ModeRestrictionPlay, DebugOutput]
+        public static void LogColonyPawnStatuses()
+        {
+
+            StringBuilder builder = new StringBuilder();
+            Dictionary<MorphDef, float> dict = new Dictionary<MorphDef, float>(); 
+            foreach (Pawn colonyPawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
+            {
+                colonyPawn.GetMorphInfluences(dict);
+
+                builder.AppendLine(colonyPawn.Name.ToStringFull + ":");
+                foreach (KeyValuePair<MorphDef, float> keyValuePair in dict)
+                {
+                    builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}"); 
+
+                }
+
+                builder.AppendLine($"is human:{colonyPawn.ShouldBeConsideredHuman()}\n"); 
+
+
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
     }
 }

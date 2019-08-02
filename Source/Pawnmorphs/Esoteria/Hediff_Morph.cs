@@ -9,7 +9,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    class Hediff_Morph : HediffWithComps
+    public class Hediff_Morph : HediffWithComps
     {
         private int _lastStage = -1;
         public override void PostTick()

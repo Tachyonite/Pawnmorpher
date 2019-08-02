@@ -758,7 +758,7 @@
 		</stages>
 	</HediffDef>
 
-	<!--       PARTS      -->
+	<!--       PARTS      --> <!-- should these be in their own file? -->
 
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherClaws</defName>
@@ -929,6 +929,7 @@
 					</li>
 				</tools>
 			</li>
+ 
 		</comps>
 	</HediffDef>
 
@@ -965,6 +966,10 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>WargMorph</morph>
+        <influence>0.5</influence>
+      </li>
 		</comps>
 	</HediffDef>
 
@@ -1000,7 +1005,11 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
-			</li>
+      </li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>WolfMorph</morph>
+        <influence>0.5</influence>
+      </li>
 		</comps>
 	</HediffDef>
 
@@ -1037,6 +1046,10 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>HuskyMorph</morph>
+        <influence>0.5</influence>
+      </li>
 		</comps>
 	</HediffDef>
 
@@ -1073,6 +1086,10 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>FoxMorph</morph>
+        <influence>0.5</influence>
+      </li>
 		</comps>
 	</HediffDef>
 
@@ -1591,6 +1608,12 @@
 				</capMods>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>FoxMorph</morph>
+        <influence>0.5</influence>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -1661,6 +1684,11 @@
 				</capMods>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>WolfMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -1746,6 +1774,11 @@
 			</li>
 
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>FoxMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -1766,6 +1799,11 @@
 			</li>
 
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>HuskyMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -1786,7 +1824,12 @@
 			</li>
 
 		</stages>
-	</HediffDef>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>WargMorph</morph>
+      </li>
+    </comps>
+  </HediffDef>
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherFurredLimb</defName>
 		<description>Fur has covered the entirety of [PAWN_nameDef]'s limb, giving it a soft fine coat that helps retain warmth.</description>
@@ -2244,6 +2287,11 @@
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>WolfMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -2255,6 +2303,11 @@
 				<partEfficiencyOffset>0.3</partEfficiencyOffset>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>FoxMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -2324,6 +2377,11 @@
 				<partEfficiencyOffset>0.3</partEfficiencyOffset>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>HuskyMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -2334,6 +2392,11 @@
 				<partEfficiencyOffset>0.25</partEfficiencyOffset>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>WargMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">

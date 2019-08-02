@@ -56,12 +56,16 @@
   <ItemGroup>
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="EtherState.cs" />
-    <Compile Include="Hediffs\MorphDefs.cs" />
+    <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
+    <Compile Include="Hediffs\TfDefOf.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
     <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
     <Compile Include="Hediffs\IPostTfHediffComp.cs" />
+    <Compile Include="MorphDef.cs" />
+    <Compile Include="MorphDefOfs.cs" />
+    <Compile Include="MorphUtilities.cs" />
     <Compile Include="TFGender.cs" />
     <Compile Include="HediffGiver_Esoteric.cs" />
     <Compile Include="HediffGiver_EsotericInstant.cs" />

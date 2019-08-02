@@ -12,7 +12,7 @@ namespace Pawnmorph.Hediffs
     ///     static def of class containing morph defs
     /// </summary>
     [DefOf]
-    public static class MorphDefs
+    public static class TfDefOf
     {
         public static HediffDef PawnmorphWolfTF;
         public static HediffDef PawnmorphWargTF;
@@ -48,7 +48,7 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public static int AllMorphsCachedCount { get; }
 
-        static MorphDefs()
+        static TfDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
 
