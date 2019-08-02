@@ -16,5 +16,21 @@ namespace Pawnmorph
         /// </summary>
         public List<string> categories = new List<string>(); 
         public ThingDef race; //the animal race of the morph 
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (string configError in base.ConfigErrors())
+            {
+                yield return configError;
+            }
+
+            if (race == null)
+            {
+                yield return $"no race def found!"; 
+            }else if (race.race == null)
+            {
+                yield return $"race {race.defName} has no race properties! are you sure this is a race?"; 
+            }
+        }
     }
 }
