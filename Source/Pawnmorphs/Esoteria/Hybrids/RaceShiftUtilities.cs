@@ -9,6 +9,9 @@ namespace Pawnmorph.Hybrids
 {
     public static class RaceShiftUtilities
     {
+        public const string RACE_CHANGE_LETTER_LABEL = "LetterRaceChangeToMorphLabel";
+        public const string RACE_CHANGE_LETTER_CONTENT = "LetterRaceChangeToMorphContent"; 
+
         public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));

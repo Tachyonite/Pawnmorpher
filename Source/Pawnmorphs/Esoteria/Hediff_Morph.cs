@@ -45,18 +45,12 @@ namespace Pawnmorph
             Log.Message($"{pawn.Name.ToStringFull} has finished transforming!");
             foreach (IPostTfHediffComp postTfHediffComp in comps.OfType<IPostTfHediffComp>())
             {
-                postTfHediffComp.FinishedTransformation();
+                postTfHediffComp.FinishedTransformation(pawn, this); 
             }
 
-            CheckPawnRace();
         }
 
-        void CheckPawnRace()
-        {
-            //TODO
-        }
-
-
+       
 
         public override void PostRemoved()
         {
