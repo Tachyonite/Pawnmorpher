@@ -277,5 +277,13 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString()); 
         }
 
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        [ModeRestrictionPlay]
+        public static void OpenActionMenu()
+        {
+            Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
+        }
+
     }
 }

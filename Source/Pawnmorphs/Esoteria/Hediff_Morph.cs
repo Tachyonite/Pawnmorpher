@@ -47,7 +47,16 @@ namespace Pawnmorph
             {
                 postTfHediffComp.FinishedTransformation();
             }
+
+            CheckPawnRace();
         }
+
+        void CheckPawnRace()
+        {
+            //TODO
+        }
+
+
 
         public override void PostRemoved()
         {

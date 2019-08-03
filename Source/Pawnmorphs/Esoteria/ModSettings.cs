@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 using static RimWorld.MoteMaker;
 using RimWorld;
 using Multiplayer.API;
+using Pawnmorph.Hybrids;
 
 namespace Pawnmorph
 {
@@ -95,6 +97,15 @@ namespace Pawnmorph
         static PawnmorpherModInit() //our constructor
         {
             NotifySettingsChanged();
+            GenerateImplicitRaces(); 
+        }
+
+        private static void GenerateImplicitRaces()
+        {
+            foreach (ThingDef_AlienRace thingDefAlienRace in RaceGenerator.ImplicitRaces)
+            {
+                DefGenerator.AddImpliedDef(thingDefAlienRace); 
+            }
         }
 
         public static void NotifySettingsChanged()

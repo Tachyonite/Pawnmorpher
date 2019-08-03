@@ -66,13 +66,13 @@ namespace Pawnmorph.Thoughts
                 switch (type)
                 {
                     case EventType.Transformation:
-                        return ReactionDefs.RivalTransformedThought;
+                        return ThoughtDefOfs.RivalTransformedThought;
                     case EventType.Reverted:
-                        return ReactionDefs.RivalRevertedThought;
+                        return ThoughtDefOfs.RivalRevertedThought;
                     case EventType.PermanentlyFeral:
-                        return ReactionDefs.RivalPermFeralThought;
+                        return ThoughtDefOfs.RivalPermFeralThought;
                     case EventType.Merged:
-                        return ReactionDefs.RivalMergedThought;
+                        return ThoughtDefOfs.RivalMergedThought;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
                 }
@@ -81,13 +81,13 @@ namespace Pawnmorph.Thoughts
                 switch (type)
                 {
                     case EventType.Transformation:
-                        return ReactionDefs.FriendTransformedThought;
+                        return ThoughtDefOfs.FriendTransformedThought;
                     case EventType.Reverted:
-                        return ReactionDefs.FriendRevertedThought;
+                        return ThoughtDefOfs.FriendRevertedThought;
                     case EventType.PermanentlyFeral:
-                        return ReactionDefs.FriendPermFeralThought;
+                        return ThoughtDefOfs.FriendPermFeralThought;
                     case EventType.Merged:
-                        return ReactionDefs.FriendMergedThought;
+                        return ThoughtDefOfs.FriendMergedThought;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
                 }
@@ -210,17 +210,17 @@ namespace Pawnmorph.Thoughts
                 {
                     case EventType.Transformation:
                         defaultThought = wasPrisoner
-                            ? ReactionDefs.PrisonerTransformedThought
-                            : ReactionDefs.ColonistTransformedThought;
+                            ? ThoughtDefOfs.PrisonerTransformedThought
+                            : ThoughtDefOfs.ColonistTransformedThought;
                         break;
                     case EventType.Reverted:
-                        defaultThought = wasPrisoner ? null : ReactionDefs.ColonistRevertedThought;
+                        defaultThought = wasPrisoner ? null : ThoughtDefOfs.ColonistRevertedThought;
                         break;
                     case EventType.PermanentlyFeral:
-                        defaultThought = wasPrisoner ? null : ReactionDefs.ColonistPermFeralThought;
+                        defaultThought = wasPrisoner ? null : ThoughtDefOfs.ColonistPermFeralThought;
                         break;
                     case EventType.Merged:
-                        defaultThought = wasPrisoner ? ReactionDefs.PrisonerMergedThought : ReactionDefs.ColonistMergedThought;
+                        defaultThought = wasPrisoner ? ThoughtDefOfs.PrisonerMergedThought : ThoughtDefOfs.ColonistMergedThought;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);

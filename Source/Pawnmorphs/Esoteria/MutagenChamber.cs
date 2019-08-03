@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 using System.Text;
+using AlienRace;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -537,11 +538,52 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     internal static class PawnmorphPatches
     {
+        private static readonly Type patchType = typeof(PawnmorphPatches);
         static PawnmorphPatches()
         {
-            HarmonyInstance harmonyInstance = HarmonyInstance.Create("com.BioReactor.rimworld.mod");
+            HarmonyInstance harmonyInstance = HarmonyInstance.Create("com.BioReactor.rimworld.mod"); //shouldn't this be different? 
+            harmonyInstance.Patch(original: AccessTools.Method(type: typeof(FoodUtility), name: nameof(FoodUtility.ThoughtsFromIngesting)),
+                 prefix: null,
+                 postfix: new HarmonyMethod(type: patchType, name: nameof(ThoughtsFromIngestingPostfix)));
             harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
         }
+
+
+
+        public static void ThoughtsFromIngestingPostfix(Pawn ingester, Thing foodSource, ref List<ThoughtDef> __result)
+        {
+            if (Hybrids.RaceGenerator.TryGetMorphOfRace(ingester.def, out MorphDef morphDef))
+            {
+                AteThought cannibalThought = morphDef.raceSettings?.thoughtSettings?.ateAnimalThought;  
+                if (cannibalThought == null) return;
+                bool cannibal = ingester.story.traits.HasTrait(TraitDefOf.Cannibal);
+
+                
+                
+                if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
+                {
+                    __result.Add(ThoughtDef.Named(cannibalThought.thought));
+                    return; 
+                }
+
+                var comp = foodSource.TryGetComp<CompIngredients>()
+                                    ?.ingredients?.FirstOrDefault(def => def == morphDef.race.race.meatDef);
+                if (comp != null && !cannibal)
+                {
+                    __result.Add(ThoughtDef.Named(cannibalThought.ingredientThought)); 
+                }
+
+
+
+            }
+
+
+
+        }
+
+
+
+
     }
     [HarmonyPatch(typeof(FloatMenuMakerMap)), HarmonyPatch("AddHumanlikeOrders")]
     internal class FloatMenuMakerMapPatches

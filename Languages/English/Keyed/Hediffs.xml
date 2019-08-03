@@ -30,6 +30,8 @@
 <LetterHediffFromEtherBrokenLabel>Etherbroken: {0}</LetterHediffFromEtherBrokenLabel>
 <LetterHediffFromEtherBroken>Constant production has caused {0} to become numb and submit to their fate.</LetterHediffFromEtherBroken>
 
+  <LetterRaceChangeToMorphLabel>{0} is no longer considered human!</LetterRaceChangeToMorphLabel>
+  <LetterRaceChangeToMorphContent>TODO</LetterRaceChangeToMorphContent>
 <CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
 <CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
 

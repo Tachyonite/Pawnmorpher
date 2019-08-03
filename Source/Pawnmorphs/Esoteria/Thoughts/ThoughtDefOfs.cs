@@ -9,9 +9,9 @@ namespace Pawnmorph.Thoughts
     /// static class containing default/frequently used thoughtDefs 
     /// </summary>
     [DefOf]
-    public static class ReactionDefs
+    public static class ThoughtDefOfs
     {
-        static ReactionDefs()
+        static ThoughtDefOfs()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDef));
         }
@@ -37,5 +37,7 @@ namespace Pawnmorph.Thoughts
         public static ThoughtDef PrisonerMergedThought;
         public static ThoughtDef FriendMergedThought;
         public static ThoughtDef RivalMergedThought; 
+
+        
     }
 }

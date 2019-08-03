@@ -1,0 +1,218 @@
+﻿// RaceGenerator.cs modified by Iron Wolf for Pawnmorph on 08/02/2019 7:12 PM
+// last updated 08/02/2019  7:12 PM
+
+using System.Collections.Generic;
+using System.Linq;
+using AlienRace;
+using RimWorld;
+using UnityEngine;
+using Verse;
+
+namespace Pawnmorph.Hybrids
+{
+    /// <summary>
+    ///     static class responsible for generating the implicit races
+    /// </summary>
+    public static class RaceGenerator
+    {
+        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces { get; }
+
+        private static Dictionary<ThingDef, MorphDef> _raceLookupTable = new Dictionary<ThingDef, MorphDef>();
+
+        /// <summary>
+        /// try to find the morph def associated with the given race 
+        /// </summary>
+        /// <param name="race"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static bool TryGetMorphOfRace(ThingDef race, out MorphDef result)
+        {
+            return _raceLookupTable.TryGetValue(race, out result); 
+        }
+
+
+        static RaceGenerator()
+        {
+            List<ThingDef_AlienRace> lst = GenerateAllImpliedRaces().ToList();
+            ImplicitRaces = lst;
+        }
+
+
+        private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
+        {
+            return new RaceProperties
+            {
+                thinkTreeMain = human.thinkTreeMain, //most of these are just guesses, have to figure out what's safe to change and what isn't 
+                thinkTreeConstant = human.thinkTreeConstant,
+                intelligence = human.intelligence,
+                makesFootprints = true,
+                lifeExpectancy = human.lifeExpectancy,
+                leatherDef = animal.leatherDef,
+                nameCategory = human.nameCategory,
+                body = human.body,
+                baseBodySize = human.baseBodySize,
+                baseHealthScale = human.baseHealthScale,
+                foodType = animal.foodType,
+                gestationPeriodDays = human.gestationPeriodDays,
+                meatColor = animal.meatColor,
+                meatMarketValue = animal.meatMarketValue,
+                manhunterOnDamageChance = animal.manhunterOnDamageChance,
+                manhunterOnTameFailChance = animal.manhunterOnTameFailChance,
+                litterSizeCurve = human.litterSizeCurve,
+                lifeStageAges = human.lifeStageAges,
+                soundMeleeHitPawn = animal.soundMeleeHitPawn,
+                soundMeleeHitBuilding = animal.soundMeleeHitBuilding,
+                soundMeleeMiss = animal.soundMeleeMiss,
+                specialShadowData = human.specialShadowData,
+                soundCallIntervalRange = animal.soundCallIntervalRange,
+                ageGenerationCurve = human.ageGenerationCurve,
+                hediffGiverSets = human.hediffGiverSets,
+                meatDef = animal.meatDef,
+                meatLabel = animal.meatLabel,
+                useMeatFrom = animal.useMeatFrom
+            };
+        }
+
+
+        private static IEnumerable<ThingDef_AlienRace> GenerateAllImpliedRaces()
+        {
+            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
+            var human = (ThingDef_AlienRace) ThingDef.Named("Human");
+            foreach (MorphDef morphDef in morphs)
+            {
+                if (morphDef.hybridRaceDef != null)
+                {
+                    Log.Warning($"trying to generate race for {morphDef.defName} but it's hybrid race def is already set?");
+                    continue;
+                }
+
+
+                Log.Message($"generating implied race for {morphDef.defName}");
+                var race =  GenerateImplicitRace(human, morphDef);
+                morphDef.hybridRaceDef = race;
+                _raceLookupTable[race] = morphDef; 
+                yield return race; 
+            }
+        }
+
+
+        /// <summary>
+        ///     generate general settings for the hybrid race given the human settings and morph def
+        /// </summary>
+        /// <param name="human"></param>
+        /// <param name="morph"></param>
+        /// <returns></returns>
+        private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph)
+        {
+            
+            return new GeneralSettings
+            {
+                alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph),
+                humanRecipeImport = true //TODO traits and stuff 
+            };
+        }
+
+        private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph)
+        {
+            return new AlienPartGenerator
+            {
+                alienbodytypes = human.alienbodytypes, //this is where we'd force skin colors and stuff 
+                aliencrowntypes = human.aliencrowntypes,
+                bodyAddons = human.bodyAddons
+            };
+        }
+
+        /// <summary>
+        ///     generate the alien race restriction setting from the human default and the given morph
+        /// </summary>
+        /// <param name="human"></param>
+        /// <param name="morph"></param>
+        /// <returns></returns>
+        private static RaceRestrictionSettings GenerateHybridRestrictionSettings(RaceRestrictionSettings human, MorphDef morph)
+        {
+            return new RaceRestrictionSettings(); //TODO restriction settings like apparel and stuff  
+        }
+
+        private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human,
+                                                                                    MorphDef morph)
+        {
+            return new ThingDef_AlienRace.AlienSettings
+            {
+                generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph),
+                graphicPaths = human.graphicPaths, //TODO put some of these in morph def or generate from the animal 
+                hairSettings = human.hairSettings,
+                raceRestriction =GenerateHybridRestrictionSettings(human.raceRestriction, morph),
+                relationSettings = human.relationSettings,
+                thoughtSettings = morph.raceSettings.GenerateThoughtSettings(human.thoughtSettings, morph)
+            };
+        }
+
+        static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers)
+        {
+            humanModifiers = humanModifiers ?? new List<StatModifier>();
+            animalModifiers = animalModifiers ?? new List<StatModifier>();
+
+            Dictionary<StatDef, float> valDict = new Dictionary<StatDef, float>();
+            foreach (StatModifier humanModifier in humanModifiers)
+            {
+                valDict[humanModifier.stat] = humanModifier.value; 
+            }
+
+
+            //just average them for now 
+
+            foreach (StatModifier animalModifier in animalModifiers)
+            {
+                float val;
+                if (valDict.TryGetValue(animalModifier.stat, out val))
+                {
+                    val = Mathf.Lerp(val, animalModifier.value, 0.5f); //average the 2 
+                }
+                else val = animalModifier.value;
+
+                valDict[animalModifier.stat] = val; 
+            }
+
+            List<StatModifier> outMods = new List<StatModifier>();
+            foreach (KeyValuePair<StatDef, float> keyValuePair in valDict)
+            {
+                outMods.Add(new StatModifier()
+                {
+                    stat = keyValuePair.Key,
+                    value = keyValuePair.Value
+                });
+            }
+
+            return outMods; 
+
+
+        }
+
+        private static ThingDef_AlienRace GenerateImplicitRace(ThingDef_AlienRace humanDef, MorphDef morph)
+        {
+            return new ThingDef_AlienRace
+            {
+                defName = morph.defName + "Race_Implied", //most of these are guesses, should figure out what's safe to change and what isn't 
+                label = morph.label,
+                race = GenerateHybridProperties(humanDef.race, morph.race.race),
+                thingCategories = humanDef.thingCategories,
+                thingClass = humanDef.thingClass,
+                category = humanDef.category,
+                selectable = humanDef.selectable,
+                tickerType = humanDef.tickerType,
+                altitudeLayer = humanDef.altitudeLayer,
+                useHitPoints = humanDef.useHitPoints,
+                hasTooltip = humanDef.hasTooltip,
+                soundImpactDefault = morph.race.soundImpactDefault,
+                statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases),
+                inspectorTabs = humanDef.inspectorTabs, //do we want any custom tabs? 
+                comps = humanDef.comps,
+                drawGUIOverlay = humanDef.drawGUIOverlay,
+                description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
+                alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph),
+                modContentPack = morph.modContentPack,
+                inspectorTabsResolved = humanDef.inspectorTabsResolved
+            };
+        }
+    }
+}
