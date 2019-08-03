@@ -290,6 +290,12 @@ namespace Pawnmorph
                     pawn.health.RemoveHediff(hediff);
                 }
             }
+
+            foreach (Hediff_Morph hediffMorph in hS2.OfType<Hediff_Morph>()) //do this second so the morph hediff can cleanup properly 
+            {
+                pawn.health.RemoveHediff(hediffMorph); //remove ongoing morph hediffs 
+            }
+
         }
     }
 }
