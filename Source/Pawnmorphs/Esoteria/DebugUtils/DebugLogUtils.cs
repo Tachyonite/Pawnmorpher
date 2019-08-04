@@ -87,15 +87,11 @@ namespace Pawnmorph.DebugUtils
                 builder.AppendLine($"\t\tlabel:{hediffDef.label}");
                 builder.AppendLine($"\t\tdescription:{hediffDef.description}");
 
-                var comp = hediffDef.comps?.OfType<Hediffs.CompProperties_MorphInfluence>().FirstOrDefault();
+                CompProperties_MorphInfluence comp = hediffDef.comps?.OfType<CompProperties_MorphInfluence>().FirstOrDefault();
                 if (comp != null)
-                {
-                    builder.AppendLine($"\t\tmorph:{comp.morph.defName}\n\t\tinfluence:{comp.influence}"); 
-                }
+                    builder.AppendLine($"\t\tmorph:{comp.morph.defName}\n\t\tinfluence:{comp.influence}");
                 else
-                {
-                    builder.AppendLine("\t\tno morph influence component"); 
-                }
+                    builder.AppendLine("\t\tno morph influence component");
 
                 //builder.AppendLine($"\t\tcategory: {MorphUtils.GetMorphType(hediffDef)?.ToString() ?? "No category"}");
                 builder.AppendLine("");
@@ -252,29 +248,24 @@ namespace Pawnmorph.DebugUtils
         }
 
         [Category(MAIN_CATEGORY_NAME)]
-        [ModeRestrictionPlay, DebugOutput]
+        [ModeRestrictionPlay]
+        [DebugOutput]
         public static void LogColonyPawnStatuses()
         {
-
-            StringBuilder builder = new StringBuilder();
-            Dictionary<MorphDef, float> dict = new Dictionary<MorphDef, float>(); 
+            var builder = new StringBuilder();
+            var dict = new Dictionary<MorphDef, float>();
             foreach (Pawn colonyPawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
                 colonyPawn.GetMorphInfluences(dict);
 
                 builder.AppendLine(colonyPawn.Name.ToStringFull + ":");
                 foreach (KeyValuePair<MorphDef, float> keyValuePair in dict)
-                {
-                    builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}"); 
+                    builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}");
 
-                }
-
-                builder.AppendLine($"is human:{colonyPawn.ShouldBeConsideredHuman()}\n"); 
-
-
+                builder.AppendLine($"is human:{colonyPawn.ShouldBeConsideredHuman()}\n");
             }
 
-            Log.Message(builder.ToString()); 
+            Log.Message(builder.ToString());
         }
 
         [Category(MAIN_CATEGORY_NAME)]
@@ -285,5 +276,33 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
         }
 
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void CheckForMissingPartialMorphs()
+        {
+            IEnumerable<HediffDef> morphTfs =
+                TfDefOf.AllMorphs.Where(def => !def.defName.Contains("Random")
+                                            && !def.defName.Contains("random")
+                                            && !def.defName.Contains("Gunshot"));
+
+            var missing = new List<string>();
+            foreach (HediffDef morphTf in morphTfs)
+            {
+                HediffDef partial =
+                    DefDatabase<HediffDef>.GetNamed(morphTf.defName + "Partial", false); //don't error if it fails 
+                if (partial == null) missing.Add(morphTf.defName);
+            }
+
+            if (missing.Count > 0)
+            {
+                string msg = string.Join(",", missing.ToArray());
+                Log.Message($"the following morphs were missing a Partial tf hediff\n{msg}");
+            }
+            else
+            {
+                Log.Message("all morphs have a partial tf associated with them");
+            }
+        }
     }
 }
