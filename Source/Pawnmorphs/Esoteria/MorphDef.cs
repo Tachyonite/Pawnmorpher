@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using AlienRace;
 using Pawnmorph.Hybrids;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -13,6 +14,17 @@ namespace Pawnmorph
     /// </summary>
     public class MorphDef : Def
     {
+        /// <summary>
+        /// setting to control how this morph transforms 
+        /// </summary>
+        public class TransformSettings
+        {
+            public TaleDef transformTale;
+            public string transformLetterLabelId;
+            public string transformLetterContentId;
+            public LetterDef letterDef; 
+        }
+
         /// <summary>
         /// all categories the morph belongs to (canid, carnivore, ect) 
         /// </summary>
@@ -40,6 +52,9 @@ namespace Pawnmorph
         }
 
         public HybridRaceSettings raceSettings = new HybridRaceSettings(); 
+
+        public TransformSettings transformSettings = new TransformSettings(); 
+
 
         [Unsaved] public ThingDef_AlienRace hybridRaceDef; 
 

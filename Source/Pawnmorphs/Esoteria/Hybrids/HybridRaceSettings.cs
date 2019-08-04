@@ -31,6 +31,8 @@ namespace Pawnmorph.Hybrids
         public HybridThoughtSettings thoughtSettings;
         public RaceRestrictionSettings restrictionSettings;
 
+        
+
         /// <summary>
         /// generate AlienRace thought settings with the given morph def 
         /// </summary>

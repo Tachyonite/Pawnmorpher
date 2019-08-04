@@ -36,15 +36,12 @@ namespace Pawnmorph.Hediffs
                     max = tuple.influence;
                 }
 
-            if (morph == null) return; 
+            if (morph == null)
+            { //null means there is no clear dominant morph even thought the pawn isn't "human" anymore
+                return; //TODO chimera race? 
+            }
 
-            if (morph.hybridRaceDef == null) Log.Error($"morph def {morph.defName} has no hybrid race attached to it!");
-
-            RaceShiftUtilities.ChangePawnRace(pawn, morph.hybridRaceDef);
-            string label = RaceShiftUtilities.RACE_CHANGE_LETTER_LABEL.Translate(pawn.LabelShort).CapitalizeFirst();
-            string content = RaceShiftUtilities.RACE_CHANGE_LETTER_CONTENT.Translate(pawn.LabelShort).CapitalizeFirst();
-
-            Find.LetterStack.ReceiveLetter(label, content, LetterDefOf.PositiveEvent, pawn);
+            RaceShiftUtilities.ChangePawnToMorph(pawn, morph); 
         }
 
         /// <summary>
