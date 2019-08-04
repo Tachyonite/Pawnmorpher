@@ -51,11 +51,15 @@ namespace Pawnmorph
             PawnmorpherModInit.NotifySettingsChanged();
         }
 
+        
+
         PawnmorpherSettings settings;
 
         public PawnmorpherMod(ModContentPack content) : base(content)
         {
             this.settings = GetSettings<PawnmorpherSettings>();
+
+
         }
 
         /// <param name="inRect">A Unity Rect with the size of the settings window.</param>
@@ -104,7 +108,8 @@ namespace Pawnmorph
         {
             foreach (ThingDef_AlienRace thingDefAlienRace in RaceGenerator.ImplicitRaces)
             {
-                DefGenerator.AddImpliedDef(thingDefAlienRace); 
+                DefGenerator.AddImpliedDef((ThingDef) thingDefAlienRace); //loading "fixed", there is still a hash collision error on load 
+                                //need to do something with DirectXmlCrossRefLoader.RegisterListWantsCrossRef ?? 
             }
         }
 

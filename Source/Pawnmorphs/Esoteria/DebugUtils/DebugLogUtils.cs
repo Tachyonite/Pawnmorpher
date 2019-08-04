@@ -285,5 +285,6 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
         }
 
+        
     }
 }
