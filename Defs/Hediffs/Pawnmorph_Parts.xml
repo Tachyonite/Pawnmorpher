@@ -562,6 +562,10 @@
 					</li>
 				</stages>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>CowMorph</morph>
+        <influence>2</influence>
+      </li>
 		</comps>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>				
@@ -633,6 +637,10 @@
 					</li>
 				</stages>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>BoomalopeMorph</morph>
+        <influence>2</influence>
+      </li>
 		</comps>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>				
@@ -722,6 +730,10 @@
 					</li>
 				</stages>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>ChookMorph</morph>
+        <influence>2</influence>
+      </li>
 		</comps>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>	
@@ -1306,6 +1318,10 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>BoomalopeMorph</morph>
+        <influence>0.5</influence>
+      </li>
 		</comps>
 	</HediffDef>
 	
@@ -1536,6 +1552,10 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>CowMorph</morph>
+        <influence>0.5</influence>
+      </li>
 		</comps>
 	</HediffDef>
 	<HediffDef ParentName="PawnmorphPart">
@@ -1571,6 +1591,10 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>ChookMorph</morph>
+        <influence>0.5</influence>
+      </li>
 		</comps>
 	</HediffDef>
 	<HediffDef ParentName="PawnmorphPart">
@@ -1705,6 +1729,12 @@
 				</capMods>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>CowMorph</morph>
+        
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -1865,6 +1895,11 @@
 				</statOffsets>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>ChookMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherThickFurLimb</defName>
@@ -2037,6 +2072,11 @@
 				<partEfficiencyOffset>-0.7</partEfficiencyOffset>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>ChookMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherAvianFoot</defName>
@@ -2068,6 +2108,10 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>ChookMorph</morph>
+        <influence>0.5</influence>
+      </li>
 		</comps>
 	</HediffDef>
 	
@@ -2140,6 +2184,12 @@
 				</statOffsets>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>CowMorph</morph>
+        <influence>0.5</influence>
+      </li>
+    </comps>
 	</HediffDef>
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherUnclovenHoofFoot</defName>
@@ -2318,6 +2368,12 @@
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>CowMorph</morph>
+        <influence>0.5</influence>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -2417,6 +2473,12 @@
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>BoomalopeMorph</morph>
+        <influence>0.5</influence>
+      </li>
+    </comps>
 	</HediffDef>
 
 </Defs>

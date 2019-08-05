@@ -76,6 +76,7 @@
     <Compile Include="MorphUtilities.cs" />
     <Compile Include="Hybrids\RaceGenerator.cs" />
     <Compile Include="Hybrids\RaceShiftUtilities.cs" />
+    <Compile Include="TaleDefOf.cs" />
     <Compile Include="TFGender.cs" />
     <Compile Include="HediffGiver_Esoteric.cs" />
     <Compile Include="HediffGiver_EsotericInstant.cs" />
