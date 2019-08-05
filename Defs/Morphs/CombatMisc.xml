@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Pawnmorph.MorphDef>
+    <defName>DeerMorph</defName>
+    <label>deer morph</label>
+    <race>Deer</race>
+    <categories>
+      <li>deer</li>
+    </categories>
+  </Pawnmorph.MorphDef>
+  <Pawnmorph.MorphDef>
+    <defName>BearMorph</defName>
+    <label>bear morph</label>
+    <race>Bear_Grizzly</race>
+    <categories>
+      <li>ursine</li>
+    </categories>
+  </Pawnmorph.MorphDef>
+  <Pawnmorph.MorphDef>
+    <defName>BoarMorph</defName>
+    <label>boar morph</label>
+    <race>WildBoar</race>
+    <categories>
+      <li>pig</li>
+    </categories>
+  </Pawnmorph.MorphDef>
+</Defs>

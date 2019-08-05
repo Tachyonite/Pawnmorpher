@@ -37,4 +37,14 @@
     </categories>
   </Pawnmorph.MorphDef>
 
+
+  <Pawnmorph.MorphDef>
+    <defName>PigMorph</defName>
+    <label>pig morph</label>
+    <race>Pig</race>
+    <categories>
+      <li>farm</li>
+      <li>pig</li>
+    </categories>
+  </Pawnmorph.MorphDef>
 </Defs>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Pawnmorphe.MorphDef>
+    <defName>ThrumboMorph</defName>
+    <label>thrumbo morph</label>
+    <race>Thrumbo</race>
+    <categories>
+      <li>thrumbo</li>
+      <li>powerful</li>
+    </categories>
+  </Pawnmorphe.MorphDef>
+  <Pawnmorph.MorphDef>
+    <defName>ElephantMorph</defName>
+    <label>elephant morph</label>
+    <race>Elephant</race>
+    <categories>
+      <li>elephant</li>
+    </categories>
+  </Pawnmorph.MorphDef>
+</Defs>
