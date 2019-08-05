@@ -1212,6 +1212,14 @@
 						</fixedParts>
 						<countToAffect>1</countToAffect>
 					</li>
+					<li Class="Pawnmorph.HediffGiver_Esoteric">
+						<hediff>EtherDeerEar</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Ear</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
 				</hediffGivers>
 			</li>
 		</stages>
@@ -1324,6 +1332,14 @@
 							<li>Tail</li>
 						</fixedParts>
 						<tale>GrewTail</tale>
+					<li Class="Pawnmorph.HediffGiver_Esoteric">
+						<hediff>EtherRatEar</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Ear</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
 					</li>
 				</hediffGivers>
 			</li>
