@@ -140,6 +140,64 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// calculate all the influences on this pawn by morph category
+        /// us this if there are many calculations, it's more efficient and easier on memory
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <param name="fillDict"></param>
+        /// <param name="normalize">if the resulting dict should be normalized </param>
+        public static void GetMorphCategoriesInfluences([NotNull] this Pawn pawn, Dictionary<string, float> fillDict,
+                                                         bool normalize = false)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (pawn.health?.hediffSet?.hediffs == null) return;
+            var comps = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>()
+                            .SelectMany(h => h.comps ?? Enumerable.Empty<HediffComp>())
+                            .OfType<Hediffs.Comp_MorphInfluence>(); 
+
+            fillDict.Clear();
+            float total = 0; 
+            foreach (Comp_MorphInfluence comp in comps)
+            {
+                var influence = comp.Props.influence;
+                var morph = comp.Props.morph;
+                
+                foreach (string morphCategory in morph.categories)
+                {
+                    float accum;
+                    fillDict.TryGetValue(morphCategory, out accum);
+                    accum += influence;
+                    fillDict[morphCategory] = accum;
+                    total += influence; 
+                }
+
+
+
+            }
+
+            if (normalize && total > 0.001f) //prevent division by zero 
+            {
+                foreach (string fillDictKey in fillDict.Keys)
+                {
+                    fillDict[fillDictKey] /= total; 
+                }
+            }
+        }
+
+        /// <summary>
+        /// calculate all the influences on this pawn by morph category
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <param name="normalize">if the resulting dict should be normalized</param>
+        /// <returns></returns>
+        public static Dictionary<string, float> GetMorphCategoriesInfluences([NotNull] this Pawn pawn, bool normalize = false)
+        {
+            Dictionary<string, float> dict = new Dictionary<string, float>();
+            GetMorphCategoriesInfluences(pawn, dict, normalize);
+            return dict; 
+        }
+
+        /// <summary>
         ///     calculate all morph influences on a pawn
         /// </summary>
         /// <param name="p"></param>
