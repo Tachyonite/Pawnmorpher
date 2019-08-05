@@ -1,17 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Defs>
 
   <Pawnmorph.MorphDef Abstract="True" Name="CanidMorph">
     <categories>
       <li>canid</li>
     </categories>
+    <raceSettings>
+      <traitSettings>
+        <forcedTraits>
+          <li>
+            <defName>NaturalHunter</defName>
+            <chance>100</chance>
+          </li>
+        </forcedTraits>
+      </traitSettings>
+    </raceSettings>
   </Pawnmorph.MorphDef>
+
+
   <Pawnmorph.MorphDef ParentName="CanidMorph">
     <defName>WolfMorph</defName>
     <label>wolf morph</label>
     <race>Wolf_Timber</race>
   </Pawnmorph.MorphDef>
-  
+
   <Pawnmorph.MorphDef ParentName="CanidMorph">
     <defName>FoxMorph</defName>
     <label>fox morph</label>
@@ -25,8 +38,8 @@
       </thoughtSettings>
     </raceSettings>
   </Pawnmorph.MorphDef>
-  
-  
+
+
   <Pawnmorph.MorphDef ParentName="CanidMorph">
     <defName>WargMorph</defName>
     <label>warg morph</label>
@@ -44,8 +57,8 @@
       </thoughtSettings>
     </raceSettings>
   </Pawnmorph.MorphDef>
-  
-  
+
+
   <Pawnmorph.MorphDef ParentName="CanidMorph">
     <defName>HuskyMorph</defName>
     <label>husky morph</label>

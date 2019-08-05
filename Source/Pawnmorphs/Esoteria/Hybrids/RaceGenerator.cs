@@ -104,11 +104,14 @@ namespace Pawnmorph.Hybrids
         /// <returns></returns>
         private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph)
         {
-            
+            var traitSettings = morph.raceSettings.traitSettings;
             return new GeneralSettings
             {
                 alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph),
-                humanRecipeImport = true //TODO traits and stuff 
+                humanRecipeImport = true ,
+                forcedRaceTraitEntries = traitSettings?.forcedTraits
+                //black list is not currently supported, Rimworld doesn't like it when you remove traits 
+               
             };
         }
 

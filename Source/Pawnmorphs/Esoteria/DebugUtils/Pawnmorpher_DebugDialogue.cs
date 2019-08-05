@@ -53,7 +53,7 @@ namespace Pawnmorph.DebugUtils
                     var pawn = Find.CurrentMap.thingGrid.ThingsAt(UI.MouseCell()).OfType<Pawn>().FirstOrDefault();
                     if (pawn != null && pawn.RaceProps.intelligence == Intelligence.Humanlike)
                     {
-                        RaceShiftUtilities.ChangePawnRace(pawn, local); 
+                        RaceShiftUtilities.ChangePawnRace(pawn, local, true); 
                     }
 
 

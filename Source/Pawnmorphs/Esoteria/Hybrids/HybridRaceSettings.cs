@@ -31,7 +31,15 @@ namespace Pawnmorph.Hybrids
         public HybridThoughtSettings thoughtSettings;
         public RaceRestrictionSettings restrictionSettings;
 
-        
+        public TraitSettings traitSettings; 
+
+        public class TraitSettings
+        {
+            public List<AlienTraitEntry> forcedTraits;
+            //public List<string> disallowedTraits; removing traits not supported right now, rimworld doesn't like it when you remove them  
+        }
+
+
 
         /// <summary>
         /// generate AlienRace thought settings with the given morph def 

@@ -2,9 +2,12 @@
 // last updated 08/02/2019  7:34 PM
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hybrids
@@ -14,7 +17,20 @@ namespace Pawnmorph.Hybrids
         public const string RACE_CHANGE_LETTER_LABEL = "LetterRaceChangeToMorphLabel";
         public const string RACE_CHANGE_LETTER_CONTENT = "LetterRaceChangeToMorphContent";
 
-        public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race)
+        private const string RACE_REVERT_LETTER = "LetterPawnHumanAgain";
+        private static string RaceRevertLetterLabel => RACE_REVERT_LETTER + "Label";
+        private static string RaceRevertLetterContent => RACE_REVERT_LETTER + "Content";
+
+        private static LetterDef RevertToHumanLetterDef => LetterDefOf.PositiveEvent; 
+
+
+        /// <summary>
+        /// safely change the pawns race 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <param name="race"></param>
+        /// <param name="reRollTraits">if race related traits should be reRolled</param>
+        public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
@@ -30,11 +46,78 @@ namespace Pawnmorph.Hybrids
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
+
+
+            if (reRollTraits && race is ThingDef_AlienRace alienDef)
+            {
+                ReRollRaceTraits(pawn, alienDef); 
+            }
+
+
+
             //save location 
             pawn.ExposeData();
             if (pawn.Faction != faction) pawn.SetFaction(faction);
         }
 
+        static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)
+        {
+            var traitSet = pawn.story?.traits;
+            if (traitSet == null) return;
+            var allAlienTraits = newRace.alienRace.generalSettings?.forcedRaceTraitEntries;
+            if (allAlienTraits == null || allAlienTraits.Count == 0) return; 
+           //removing traits not supported right now, Rimworld doesn't like it when you remove traits 
+
+
+           var traitsToAdd = allAlienTraits;
+           foreach (AlienTraitEntry alienTraitEntry in traitsToAdd)
+           {
+               var def = TraitDef.Named(alienTraitEntry.defName);
+                if (traitSet.HasTrait(def)) continue; //don't add traits that are already added 
+
+               var add = (Rand.RangeInclusive(0, 100) <= alienTraitEntry.chance);
+
+               if (add && pawn.gender == Gender.Male && alienTraitEntry.commonalityMale > 0)
+               {
+                   add = Rand.RangeInclusive(0, 100) <= alienTraitEntry.commonalityMale; 
+               }else if ( add && pawn.gender == Gender.Female && alienTraitEntry.commonalityFemale > 0) //only check gender chance if the add roll has passed 
+               {                                                                                        //this is consistent with how the alien race framework handles it  
+                   add =  Rand.RangeInclusive(0, 100) <= alienTraitEntry.commonalityMale; 
+               }
+
+
+               if (add)
+               {
+                   var degree = def.degreeDatas[alienTraitEntry.degree]; 
+                   
+                   traitSet.GainTrait(new Trait(def, alienTraitEntry.degree, true));
+                   if(degree.skillGains != null)
+                       UpdateSkillsPostAdd(pawn, degree.skillGains); //need to update the skills manually 
+
+
+               }
+               
+
+           }
+
+          
+
+
+        }
+
+        static void UpdateSkillsPostAdd(Pawn pawn, Dictionary<SkillDef, int> skillDict)
+        {
+
+            var skills = pawn.skills;
+            if (skills == null) return;
+
+            foreach (KeyValuePair<SkillDef, int> keyValuePair in skillDict)
+            {
+                var skRecord= skills.GetSkill(keyValuePair.Key);
+                skRecord.Level += keyValuePair.Value; 
+            }
+
+        }
 
         public static void ChangePawnToMorph([NotNull] Pawn pawn, [NotNull] MorphDef morph)
         {
@@ -46,7 +129,7 @@ namespace Pawnmorph.Hybrids
             ThingDef_AlienRace hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
 
-            ChangePawnRace(pawn, hRace);
+            ChangePawnRace(pawn, hRace, true);
 
             string labelId = string.IsNullOrEmpty(tfSettings.transformLetterLabelId)
                 ? RACE_CHANGE_LETTER_LABEL
@@ -62,5 +145,40 @@ namespace Pawnmorph.Hybrids
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
         }
+
+        /// <summary>
+        /// change the race of the pawn back to human 
+        /// </summary>
+        /// <param name="pawn"></param>
+        public static void RevertPawnToHuman([NotNull] Pawn pawn)
+        {
+            var race = pawn.def;
+
+            var human = ThingDefOf.Human;
+            if (race == human) return; //do nothing 
+
+            if (!RaceGenerator.TryGetMorphOfRace(race, out MorphDef morph))
+            {
+                Log.Warning($"Trying to convert pawn {pawn.Name.ToStringFull} to human but they are not currently a morph!");
+            }
+
+            ChangePawnRace(pawn, human); 
+
+            //TODO traits or something? 
+
+
+
+
+
+            var letterLabel = RaceRevertLetterLabel.Translate(pawn.LabelShort).CapitalizeFirst();
+            var letterContent = RaceRevertLetterContent.Translate(pawn.LabelShort).CapitalizeFirst();
+
+            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, RevertToHumanLetterDef, pawn); 
+
+
+
+
+        }
+
     }
 }
