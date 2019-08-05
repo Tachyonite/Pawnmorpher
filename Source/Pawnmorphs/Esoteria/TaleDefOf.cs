@@ -11,6 +11,14 @@ namespace Pawnmorph
     [DefOf]
     public static class TaleDefOf
     {
+        //misc transformation tale 
         public static TaleDef TransformationMisc; 
+        
+        //misc part tales 
+
+        public static TaleDef GrewMuzzleMisc;
+        public static TaleDef EarsChangedTaleMisc; 
+
+
     }
 }
