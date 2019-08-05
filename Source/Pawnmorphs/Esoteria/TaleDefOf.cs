@@ -17,7 +17,7 @@ namespace Pawnmorph
         //misc part tales 
 
         public static TaleDef GrewMuzzleMisc;
-        public static TaleDef EarsChangedTaleMisc; 
+        public static TaleDef EarsChangedMisc; 
 
 
     }
