@@ -684,6 +684,10 @@
 				<resource>WoolAlpaca</resource>
 				<thought>ShavedMyself</thought>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>AlpacaMorph</morph>
+        <influence>2</influence>
+      </li>
 		</comps>
 	</HediffDef>
 	
@@ -1282,6 +1286,9 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>AlpacaMorph</morph>
+      </li>
 		</comps>
 	</HediffDef>
 
@@ -1784,6 +1791,11 @@
 		<defName>EtherAlpacaTail</defName>
 		<label>wooly tail</label>
 		<description>A wooly tail, it feels like a cloud.</description>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>AlpacaMorph</morph>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -2327,6 +2339,12 @@
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>AlpacaMorph</morph>
+        <influence>0.5</influence>
+      </li>
+    </comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">

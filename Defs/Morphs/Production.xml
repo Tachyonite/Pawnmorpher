@@ -6,6 +6,7 @@
     <race>Cow</race>
     <categories>
       <li>bovine</li>
+      <li>farm</li>
     </categories>
   </Pawnmorph.MorphDef>
   <Pawnmorph.MorphDef>
@@ -22,6 +23,18 @@
     <race>Chicken</race>
     <categories>
       <li>avian</li>
+      <li>farm</li>
     </categories>
   </Pawnmorph.MorphDef>
+
+  <Pawnmorph.MorphDef>
+    <defName>AlpacaMorph</defName>
+    <label>alpaca morph</label>
+    <race>Alpaca</race>
+    <categories>
+      <li>farm</li>
+      <li>alpaca</li>
+    </categories>
+  </Pawnmorph.MorphDef>
+
 </Defs>
