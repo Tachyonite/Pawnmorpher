@@ -252,5 +252,20 @@ namespace Pawnmorph
 
         }
 
+        /// <summary>
+        /// check if this pawn is one of the hybrid races 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static bool IsHybridRace([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefs)
+            {
+                if (pawn.def == morphDef.hybridRaceDef) return true; 
+            }
+
+            return false; 
+        }
     }
 }

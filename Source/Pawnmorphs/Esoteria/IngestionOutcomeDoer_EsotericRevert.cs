@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Hybrids;
 using Pawnmorph.Thoughts;
 using UnityEngine;
 using RimWorld;
@@ -201,7 +202,13 @@ namespace Pawnmorph
 
                         pawn3.health.AddHediff(h);
 
-                        ReactionsHelper.OnPawnReverted(pawn3, pm.replacement); 
+                        ReactionsHelper.OnPawnReverted(pawn3, pm.replacement);
+
+                        if (pawn3.IsHybridRace())
+                        {
+                            RaceShiftUtilities.RevertPawnToHuman(pawn3); //if they are a hybrid race change them back to human 
+                        }
+
 
                         loader.removePawn(pm);
                         pm.replacement.DeSpawn(0);

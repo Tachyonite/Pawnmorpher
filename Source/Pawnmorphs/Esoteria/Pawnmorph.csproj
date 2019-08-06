@@ -63,6 +63,7 @@
     <Compile Include="EtherState.cs" />
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
+    <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
     <Compile Include="Hediffs\TfDefOf.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />

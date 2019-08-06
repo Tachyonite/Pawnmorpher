@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -58,6 +59,23 @@ namespace Pawnmorph.Hybrids
             //save location 
             pawn.ExposeData();
             if (pawn.Faction != faction) pawn.SetFaction(faction);
+        }
+
+        /// <summary>
+        /// got through the mutations the pawn has and try to trigger any
+        /// that change if the pawn's race changes 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <param name="def"></param>
+        static void TryTriggerMutations(Pawn pawn, MorphDef def)
+        {
+            var comps = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>()
+                            .Select(h => h.TryGetComp<Comp_MorphTrigger>())
+                            .Where(c => c != null);
+            foreach (Comp_MorphTrigger trigger in comps)
+            {
+                trigger.TryTrigger(def); 
+            }
         }
 
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)
@@ -119,6 +137,11 @@ namespace Pawnmorph.Hybrids
 
         }
 
+        /// <summary>
+        /// change the given pawn to the hybrid race of the desired morph 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <param name="morph">the morph to change the pawn to</param>
         public static void ChangePawnToMorph([NotNull] Pawn pawn, [NotNull] MorphDef morph)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -142,6 +165,10 @@ namespace Pawnmorph.Hybrids
             string content = contentID.Translate(pawn.LabelShort).CapitalizeFirst();
             LetterDef letterDef = tfSettings.letterDef ?? LetterDefOf.PositiveEvent;
             Find.LetterStack.ReceiveLetter(label, content, letterDef, pawn);
+
+            //now try to trigger any mutations
+            if(pawn.health?.hediffSet?.hediffs != null)
+                TryTriggerMutations(pawn, morph); 
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
         }
