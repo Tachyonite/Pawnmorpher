@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
+  <!--Main Morph-->
   <HediffDef ParentName="MorphParent">
     <defName>PawnmorphElephantTF</defName>
     <label>elephantMorph</label>
@@ -127,7 +129,7 @@
     </stages>
   </HediffDef>
 
-
+  <!--Partial Morph-->
   <HediffDef ParentName="PartialMorphParent">
     <defName>PawnmorphElephantTFPartial</defName>
     <label>elephantMorph partial</label>
