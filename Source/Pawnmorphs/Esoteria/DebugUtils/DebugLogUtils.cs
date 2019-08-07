@@ -106,94 +106,7 @@ namespace Pawnmorph.DebugUtils
 
         private const string CHAOMORPH_DEF_NAME = "FullRandomTFAnyOutcome";
         private const string DAMAGE_DEF_NAME = "PawnmorphGunshotTF";
-
-        /// <summary>
-        ///     this outputs a collection of all mutations that are given by only one mutation hediff grouped by mutation hediff to
-        ///     the log.
-        ///     this is to generate the "expected" morphs and their unique parts for debug and development use
-        /// </summary>
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        public static void GetExpectedMorphsAndParts()
-        {
-            IEnumerable<HediffDef> morphs =
-                TfDefOf.AllMorphs.Where(def => def.defName != CHAOMORPH_DEF_NAME && def.defName != DAMAGE_DEF_NAME);
-
-            Dictionary<HediffDef, List<HediffDef>> dict = morphs.Select(m => new
-                                                                 {
-                                                                     morph = m,
-                                                                     mutations =
-                                                                         m.stages?.SelectMany(s => s.hediffGivers
-                                                                                                ?? Enumerable
-                                                                                                      .Empty<HediffGiver>())
-                                                ?
-                                               .Where(h => typeof(Hediff_AddedMutation)
-                                                         .IsAssignableFrom(h.hediff
-                                                                            .hediffClass))
-                                                                         ?.Select(h => h.hediff)
-                                                                      ?? Enumerable
-                                                                            .Empty<HediffDef
-                                                                             >() //get all givers that give a mutation
-                                                                 })
-                                                                .GroupBy(a => a.morph,
-                                                                         a => a
-                                                                            .mutations) //group by morph but select only the mutations 
-                                                                .ToDictionary(g => g.Key,
-                                                                              g => g?.SelectMany(c => c)
-                                                                                     .ToList()); //convert to a dictionary 
-
-
-            var nonUnique = new HashSet<HediffDef>();
-
-            List<HediffDef> keys = dict.Keys.ToList();
-
-            for (var i = 0; i < keys.Count - 1; i++) //now get all the mutations that are in two or more mutation hediffs 
-            {
-                HediffDef iMorph = keys[i];
-
-                for (int j = i + 1; j < keys.Count; j++)
-                {
-                    HediffDef jMorph = keys[j];
-
-                    foreach (HediffDef mutation in dict[iMorph])
-                    {
-                        if (nonUnique.Contains(mutation)) continue; //if already added we don't need to check again 
-                        if (dict[jMorph].Contains(mutation))
-                            nonUnique.Add(mutation);
-                    }
-                }
-            }
-
-            //now get rid of all the non unique ones 
-            foreach (HediffDef nonUniqueDef in nonUnique)
-            foreach (List<HediffDef> hediffDefs in dict.Values)
-                hediffDefs.Remove(nonUniqueDef);
-
-            //now generate the log Message 
-            var builder = new StringBuilder();
-
-
-            foreach (KeyValuePair<HediffDef, List<HediffDef>> keyValuePair in dict)
-            {
-                List<HediffDef> lst = keyValuePair.Value;
-                if (lst.Count == 0)
-                {
-                    builder.AppendLine($"morph {keyValuePair.Key.defName} has no unique parts!\n");
-                }
-                else
-                {
-                    builder.AppendLine($"morph {keyValuePair.Key.defName}:");
-                    foreach (HediffDef mutation in lst) builder.AppendLine($"\t\tdef:{mutation.defName} label:{mutation.label}");
-
-                    builder.AppendLine("");
-                }
-            }
-
-            if (builder.Length == 0)
-                Log.Warning("there are not morphs?");
-            else
-                Log.Message($"unique morph mutations:\n{builder}");
-        }
+        
 
 
         [Category(MAIN_CATEGORY_NAME)]
@@ -276,33 +189,50 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
         }
 
-
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        public static void CheckForMissingPartialMorphs()
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        public static void LogMissingMutationTales()
         {
-            IEnumerable<HediffDef> morphTfs =
-                TfDefOf.AllMorphs.Where(def => !def.defName.Contains("Random")
-                                            && !def.defName.Contains("random")
-                                            && !def.defName.Contains("Gunshot"));
+            var allMutations = TfDefOf.AllMorphs;
+            StringBuilder mainBuilder = new StringBuilder();
 
-            var missing = new List<string>();
-            foreach (HediffDef morphTf in morphTfs)
+            foreach (var transformHediff in allMutations)
             {
-                HediffDef partial =
-                    DefDatabase<HediffDef>.GetNamed(morphTf.defName + "Partial", false); //don't error if it fails 
-                if (partial == null) missing.Add(morphTf.defName);
+                var missingGivers = transformHediff.stages?.Select((s, i) => new
+                {
+                    givers = s.hediffGivers?.OfType<HediffGiver_Mutation>().Where(g => g.tale == null) ??
+                             Enumerable
+                                 .Empty<HediffGiver_Mutation
+                                 >(), //get all givers that are missing a tale, keep the index to
+                    stageIndex = i 
+                }).Select(a => new
+                {
+                    giversLst = a.givers.ToList(), //get how many and keep'em around to loop again 
+                    index = a.stageIndex
+                }).Where(a => a.giversLst.Count > 0).ToList(); //evil linq statement is ok because this is only a debug command 
+
+                if (missingGivers == null) continue; 
+                if(missingGivers.Count == 0) continue;
+
+                mainBuilder.AppendLine($"in hediff {transformHediff.defName}:");
+                foreach (var missingGiver in missingGivers)
+                {
+                    mainBuilder.AppendLine($"in stage {missingGiver.index}"); 
+                    foreach (var hediffGiverMutation in missingGiver.giversLst)
+                    {
+                        mainBuilder.AppendLine($"\t\tgiver of {hediffGiverMutation.hediff.defName} is missing a tale"); 
+                    }
+
+                    mainBuilder.AppendLine(""); 
+                }
+
+                if (mainBuilder.Length > 0)
+                    Log.Message(mainBuilder.ToString());
+                else
+                    Log.Message("no missing tales in transformations!"); 
             }
 
-            if (missing.Count > 0)
-            {
-                string msg = string.Join(",", missing.ToArray());
-                Log.Message($"the following morphs were missing a Partial tf hediff\n{msg}");
-            }
-            else
-            {
-                Log.Message("all morphs have a partial tf associated with them");
-            }
+
+
         }
     }
 }
