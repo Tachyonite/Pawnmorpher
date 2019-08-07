@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
+  <HediffDef Abstract="True" ParentName="PawnmorphPart" Name="WargPart">
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>WargMorph</morph>
+      </li>
+    </comps>
+  </HediffDef>
 
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef ParentName="WargPart">
     <defName>EtherWargMuzzle</defName>
     <label>warg muzzle</label>
     <description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
@@ -34,14 +41,20 @@
           </li>
         </tools>
       </li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>WargMorph</morph>
-        <influence>0.5</influence>
-      </li>
     </comps>
   </HediffDef>
-  
-  <HediffDef ParentName="PawnmorphPart">
+
+  <HediffDef ParentName="WargPart">
+    <defName>EtherWargEar</defName>
+    <label>warglike</label>
+    <stages>
+      <li>
+        <partEfficiencyOffset>0.25</partEfficiencyOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="WargPart">
     <defName>EtherWargTail</defName>
     <label>tufted tail</label>
     <description>A thin tail with a tuft of fur at the end.</description>
@@ -57,27 +70,6 @@
           </li>
         </capMods>
       </li>
-
     </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>WargMorph</morph>
-      </li>
-    </comps>
-  </HediffDef>
-
-  <HediffDef ParentName="PawnmorphPart">
-    <defName>EtherWargEar</defName>
-    <label>warglike</label>
-    <stages>
-      <li>
-        <partEfficiencyOffset>0.25</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>WargMorph</morph>
-      </li>
-    </comps>
   </HediffDef>
 </Defs>

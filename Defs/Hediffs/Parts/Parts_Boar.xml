@@ -9,7 +9,8 @@
     </comps>
   </HediffDef>
 
-  <HediffDef ParentName="PawnmorphPart">
+  <!--Morph Parts-->
+  <HediffDef ParentName="PawnmorphBoarPart">
     <defName>EtherBoarSnout</defName>
     <label>tusked snout</label>
     <description>A snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables.</description>
@@ -67,17 +68,9 @@
           </li>
         </tools>
       </li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>BoarMorph</morph>
-        <influence>0.5</influence>
-      </li>
     </comps>
   </HediffDef>
-  <HediffDef ParentName="PawnmorphBoarPart">
-    <defName>EtherRoughCurlyTail</defName>
-    <label>hairy curled tail</label>
-    <description>A boar's curly tail, it twangs when a truffle is detected.</description>
-  </HediffDef>
+	
   <HediffDef ParentName="PawnmorphBoarPart">
     <defName>EtherBoarEar</defName>
     <label>porcine</label>
@@ -86,5 +79,11 @@
         <partEfficiencyOffset>0.1</partEfficiencyOffset>
       </li>
     </stages>
+  </HediffDef>
+	
+  <HediffDef ParentName="PawnmorphBoarPart">
+    <defName>EtherRoughCurlyTail</defName>
+    <label>hairy curled tail</label>
+    <description>A boar's curly tail, it twangs when a truffle is detected.</description>
   </HediffDef>
 </Defs>

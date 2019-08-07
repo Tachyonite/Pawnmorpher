@@ -16,5 +16,11 @@
       <li Class="Pawnmorph.Hediffs.CompProperties_CheckRace"></li>
 		</comps>
 	</HediffDef>
+
+  <HediffDef Name="PartialMorphParent" ParentName="MorphParent" Abstract="True">
+    <comps>
+      <li Class="Pawnmorph.HediffCompProperties_Single" />
+    </comps>
+  </HediffDef>
 	
 </Defs>

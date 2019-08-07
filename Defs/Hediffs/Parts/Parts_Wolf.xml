@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef Abstract="True" ParentName="PawnmorphPart" Name="WolfPart">
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>WolfMorph</morph>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef ParentName="WolfPart">
     <defName>EtherWolfMuzzle</defName>
     <label>wolf muzzle</label>
     <description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
@@ -34,14 +42,20 @@
           </li>
         </tools>
       </li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>WolfMorph</morph>
-        <influence>0.5</influence>
-      </li>
     </comps>
   </HediffDef>
 
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef ParentName="WolfPart">
+    <defName>EtherWolfEar</defName>
+    <label>lupine</label>
+    <stages>
+      <li>
+        <partEfficiencyOffset>0.2</partEfficiencyOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="WolfPart">
     <defName>EtherWolfTail</defName>
     <label>wolfish tail</label>
     <description>A regular tail.</description>
@@ -55,69 +69,6 @@
         </capMods>
       </li>
     </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>WolfMorph</morph>
-      </li>
-    </comps>
   </HediffDef>
 
-  <HediffDef ParentName="PawnmorphPart">
-    <defName>EtherWolfEar</defName>
-    <label>lupine</label>
-    <stages>
-      <li>
-        <partEfficiencyOffset>0.2</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>WolfMorph</morph>
-      </li>
-    </comps>
-  </HediffDef>
-
-  <HediffDef ParentName="PawnmorphPart">
-    <defName>EtherPawHand</defName>
-    <label>paw</label>
-    <description>Cute but inflexible paws have replaced [PAWN_nameDef]'s hands. They lack a thumb, which has receded into a useless dewclaw.</description>
-    <stages>
-      <li>
-        <partEfficiencyOffset>-0.5</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="HediffCompProperties_VerbGiver">
-        <tools>
-          <li>
-            <label>claws</label>
-            <labelUsedInLogging>False</labelUsedInLogging>
-            <capacities>
-              <li>Scratch</li>
-            </capacities>
-            <power>5.0</power>
-            <cooldownTime>1.5</cooldownTime>
-            <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-          </li>
-        </tools>
-      </li>
-    </comps>
-  </HediffDef>
-
-  
-  <HediffDef ParentName="PawnmorphPart">
-    <defName>EtherPawFoot</defName>
-    <label>paw</label>
-    <description>[PAWN_nameDef]'s feet have stretched out, growing a coat of fur, the toes shortening to clawed digits.</description>
-    <stages>
-      <li>
-        <capMods>
-          <li>
-            <capacity>Moving</capacity>
-            <offset>0.1</offset>
-          </li>
-        </capMods>
-      </li>
-    </stages>
-  </HediffDef>
 </Defs>

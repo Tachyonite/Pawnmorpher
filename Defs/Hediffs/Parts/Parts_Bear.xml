@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef Abstract="True" Name="BearPart" ParentName="PawnmorphPart">
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>BearMorph</morph>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef ParentName="BearPart">
     <defName>EtherBearMuzzle</defName>
     <label>ursine muzzle</label>
     <description>A massive snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
@@ -34,14 +42,21 @@
           </li>
         </tools>
       </li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>BearMorph</morph>
-        <influence>0.5</influence>
-      </li>
     </comps>
   </HediffDef>
 
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef ParentName="BearPart">
+    <defName>EtherBearEar</defName>
+    <label>ursine</label>
+    <description>Rounded, fuzzy ears sit atop [PAWN_nameDef]'s head. They're very slightly better at hearing than a human's ears.</description>
+    <stages>
+      <li>
+        <partEfficiencyOffset>0.1</partEfficiencyOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="BearPart">
     <defName>EtherBearTail</defName>
     <label>bear tail</label>
     <description>A short tail, like that of a bear. Not much of a tail, really.</description>
@@ -55,15 +70,9 @@
         </capMods>
       </li>
     </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>BearMorph</morph>
-      </li>
-    </comps>
   </HediffDef>
 
-
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef ParentName="BearPart">
     <defName>EtherBearPawHand</defName>
     <label>huge paw</label>
     <description>Massive, clawed and deadly paws have replaced the finer thumbed hands of a human. While less useful for manipulation, they make [PAWN_nameDef] a beast in a fight.</description>
@@ -87,25 +96,6 @@
           </li>
         </tools>
       </li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>BearMorph</morph>
-      </li>
     </comps>
   </HediffDef>
-  <HediffDef ParentName="PawnmorphPart">
-    <defName>EtherBearEar</defName>
-    <label>ursine</label>
-    <description>Rounded, fuzzy ears sit atop [PAWN_nameDef]'s head. They're very slightly better at hearing than a human's ears.</description>
-    <stages>
-      <li>
-        <partEfficiencyOffset>0.1</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>BearMorph</morph>
-      </li>
-    </comps>
-  </HediffDef>
-
 </Defs>

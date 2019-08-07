@@ -8,7 +8,9 @@
     </comps>
   </HediffDef>
 
-  <HediffDef ParentName="PawnmorphPart">
+
+  <!--Morph Parts-->
+  <HediffDef ParentName="PawnmorphPigPart">
     <defName>EtherPigSnout</defName>
     <label>porcine snout</label>
     <description>A snout graces [PAWN_nameDef]'s face, snorting and snuffling for roots and berries, oinking at things that [PAWN_pronoun] likes.</description>
@@ -56,20 +58,8 @@
           </li>
         </tools>
       </li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>PigMorph</morph>
-        <influence>0.5</influence>
-      </li>
     </comps>
   </HediffDef>
-
-
-  <HediffDef ParentName="PawnmorphPigPart">
-    <defName>EtherCurlyTail</defName>
-    <label>curly tail</label>
-    <description>A pig's curly tail, it twitches when food is near.</description>
-  </HediffDef>
-
 
   <HediffDef ParentName="PawnmorphPigPart">
     <defName>EtherPigEar</defName>
@@ -79,6 +69,12 @@
         <partEfficiencyOffset>0.1</partEfficiencyOffset>
       </li>
     </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="PawnmorphPigPart">
+    <defName>EtherCurlyTail</defName>
+    <label>curly tail</label>
+    <description>A pig's curly tail, it twitches when food is near.</description>
   </HediffDef>
 
 </Defs>

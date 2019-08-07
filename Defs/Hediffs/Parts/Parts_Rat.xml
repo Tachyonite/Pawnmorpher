@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef ParentName="PawnmorphPart" Name="RatPart" Abstract="True">
+    <comps>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+        <morph>RatMorph</morph>
+      </li>
+    </comps>
+  </HediffDef>
+  
+  <HediffDef ParentName="RatPart">
     <defName>EtherRatSnout</defName>
     <label>rodent snout</label>
     <description>A ratty snout graces [PAWN_nameDef]'s face, long teeth for chewing through anything.</description>
@@ -34,15 +41,20 @@
           </li>
         </tools>
       </li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>RatMorph</morph>
-        <influence>0.5</influence>
-      </li>
     </comps>
   </HediffDef>
 
+  <HediffDef ParentName="RatPart">
+    <defName>EtherRatEar</defName>
+    <label>ratty</label>
+    <stages>
+      <li>
+        <partEfficiencyOffset>0.1</partEfficiencyOffset>
+      </li>
+    </stages>
+  </HediffDef>
 
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef ParentName="RatPart">
     <defName>EtherRatTail</defName>
     <label>hairless tail</label>
     <description>A ratty tail, hairless, long and snaking.</description>
@@ -56,15 +68,9 @@
         </capMods>
       </li>
     </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>RatMorph</morph>
-      </li>
-    </comps>
   </HediffDef>
 
-
-  <HediffDef ParentName="PawnmorphPart">
+  <HediffDef ParentName="RatPart">
     <defName>EtherDextrousPawHand</defName>
     <label>dextrous paw</label>
     <description>Thankfully, this more manipulative paw allows [PAWN_nameDef] to keep their thumbs.</description>
@@ -88,12 +94,10 @@
           </li>
         </tools>
       </li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>RatMorph</morph>
-      </li>
     </comps>
   </HediffDef>
-  <HediffDef ParentName="PawnmorphPart">
+
+  <HediffDef ParentName="RatPart">
     <defName>EtherRatFoot</defName>
     <label>rodent</label>
     <description>[PAWN_nameDef]'s feet are dextrous and elongated, but hairless and pale.</description>
@@ -107,25 +111,5 @@
         </capMods>
       </li>
     </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>RatMorph</morph>
-      </li>
-    </comps>
-  </HediffDef>
-
-  <HediffDef ParentName="PawnmorphPart">
-    <defName>EtherRatEar</defName>
-    <label>ratty</label>
-    <stages>
-      <li>
-        <partEfficiencyOffset>0.1</partEfficiencyOffset>
-      </li>
-    </stages>
-    <comps>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-        <morph>RatMorph</morph>
-      </li>
-    </comps>
   </HediffDef>
 </Defs>
