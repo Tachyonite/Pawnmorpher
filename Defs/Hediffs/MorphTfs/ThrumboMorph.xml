@@ -75,6 +75,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+            <tale>GrewMuzzleMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThrumboEar</hediff>
@@ -83,6 +84,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+            <tale>EarsChangedMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThrumboTail</hediff>
@@ -131,6 +133,7 @@
 						<partsToAffect>
 							<li>Skull</li>
 						</partsToAffect>
+            <tale>GrewThrumboHorn</tale>
 					</li>
 				</hediffGivers>
 			</li>
@@ -167,6 +170,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+            <tale>GrewMuzzleMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThrumboEar</hediff>
@@ -175,6 +179,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+            <tale>EarsChangedMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThrumboTail</hediff>
@@ -214,6 +219,7 @@
 						<partsToAffect>
 							<li>Skull</li>
 						</partsToAffect>
+            <tale>GrewThrumboHorn</tale>
 					</li>
 				</hediffGivers>
 			</li>
