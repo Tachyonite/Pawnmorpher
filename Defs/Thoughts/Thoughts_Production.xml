@@ -1,4 +1,16 @@
 <Defs>
+	<ThoughtDef>
+		<defName>ProductiveBliss</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>productive bliss</label>
+				<description>Can't think...feeling so good...</description>
+				<baseMoodEffect>+50</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 	<!--Egglayer-->
 	<ThoughtDef>
 		<defName>LaidEgg</defName>
