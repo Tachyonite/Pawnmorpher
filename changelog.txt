@@ -76,7 +76,7 @@ Made ChaoMorph more like the other morphs.
 	-Chaomorph parts have no gender bias.
 	
 Fixed EtherAntlers not appearing.
-	-They were erroniously attached to the jaw part.
+	-They were erroneously  attached to the jaw part.
 	
 Changed elephant ears to raise ComfyTemperatureMax.
 	-I belive this was the original intention, as the flapping ears cool elephant's bodies.
@@ -119,6 +119,7 @@ Change morph labels from "animalmorph" to "animalMorph"
 	
 Made morphs mutate at the same rate.
 	-Jaws have an mtb of 0.5
+	-Productive mutations have an mtb of 0.5
 	-Ears and tails have an mtb of 1
 	-Eyes have an mtb of 1.5
 	-Limbs have an mtb of 2
