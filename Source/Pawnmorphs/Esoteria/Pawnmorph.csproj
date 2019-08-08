@@ -62,9 +62,11 @@
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="HediffGiver_Mutation.cs" />
+    <Compile Include="Hediffs\CompProperties_ImmuneToType.cs" />
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
     <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
+    <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
     <Compile Include="Hediffs\TfDefOf.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
