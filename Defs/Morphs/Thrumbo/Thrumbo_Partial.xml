@@ -75,6 +75,7 @@
 						<partsToAffect>
 							<li>Skull</li>
 						</partsToAffect>
+            <tale>GrewThrumboHorn</tale>
 					</li>
 				</hediffGivers>
 			</li>

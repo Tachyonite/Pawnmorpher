@@ -122,14 +122,15 @@
   </TaleDef>
 
   <TaleDef ParentName="HandMutationBase">
-    <defName>HandsBecomePawsDextrous</defName>
-    <label>hands become paws</label>
+    <defName>HandsBecomeHooves</defName>
+    <label>hands become hooves</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->[PAWN_nameDef]'s nails grow into claws</li>
-        <li>image->[PAWN_nameFull] examines [PAWN_possessive] hands [circumstance_group]</li>
-        <li>image->[PAWN_nameFull] scratches something with [PAWN_possessive] new claws [circumstance_group]</li>
-        <li>desc_sentence->[PAWN_pronoun] is thankful [PAWN_possessive] still have thumbs</li>
+        <li>tale_noun->[PAWN_nameDef]'s hands begin to harden</li>
+        <li>tale_noun->[PAWN_nameDef]'s fingers beginning to join together</li>
+        <li>image->[PAWN_nameFull] tries to pull their fingers apart [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] tries fruitlessly to grasp something [circumstance_group]</li>
+        <li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] hands</li>
       </rulesStrings>
     </rulePack>
   </TaleDef>
@@ -137,32 +138,6 @@
 
 <!--      MISC      -->
 
-  <TaleDef ParentName="MutationTaleBase">
-    <defName>GrewAntlers</defName>
-    <label>grew antlers</label>
-    <rulePack>
-      <rulesStrings>
-        <li>tale_noun->antlers begin pushing from [PAWN_nameDef]'s forehead</li>
-        <li>image->[PAWN_nameFull] examining the growing antlers on [PAWN_possessive] head [circumstance_group]</li>
-        <li>image->[PAWN_nameFull] unaware of the growing antlers on [PAWN_possessive] head [circumstance_group]</li>
-        <li>circumstance_phrase->as someone touches [PAWN_possessive] growing antlers</li>
-        <li>desc_sentence->[PAWN_pronoun] is trying to pull then out</li>
-        <li>desc_sentence->[PAWN_pronoun] is rubbing then against a wall</li>
-      </rulesStrings>
-    </rulePack>
-  </TaleDef>
 
-  <TaleDef ParentName="MutationTaleBase">
-    <defName>GrewThrumboHorn</defName>
-    <label>grew thrumbo horn</label>
-    <rulePack>
-      <rulesStrings>
-        <li>tale_noun->a large horn crowing from [PAWN_nameDef]'s head</li>
-        <li>image->[PAWN_nameFull] rubs [PAWN_possessive] forehead [circumstance_group]</li>
-        <li>circumstance_phrase->while others stair at [PAWN_possessive] horn</li>
-        <li>circumstance_phrase->while someone begins polishing [PAWN_possessive] horn</li>
-        <li>circumstance_phrase->while someone rubs [PAWN_possessive] new horn</li>
-      </rulesStrings>
-    </rulePack>
-  </TaleDef>
+ 
 </Defs>
