@@ -71,6 +71,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+            <tale>GrewBeak</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherTailfeathers</hediff>
@@ -96,7 +97,8 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-					</li>
+            <tale>ArmsBecomeWings</tale>
+          </li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherWingTip</hediff>
 						<mtbDays>3</mtbDays>

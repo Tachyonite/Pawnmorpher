@@ -109,7 +109,7 @@
 
   <TaleDef ParentName="HandMutationBase">
     <defName>HandsBecomePaws</defName>
-    <label>hands become paws</label>
+    <label>hands became paws</label>
     <rulePack>
       <rulesStrings>
         <li>tale_noun->[PAWN_nameDef]'s thumbs shrink and move back, becoming dewclaws </li>
@@ -123,7 +123,7 @@
 
   <TaleDef ParentName="HandMutationBase">
     <defName>HandsBecomeHooves</defName>
-    <label>hands become hooves</label>
+    <label>hands became hooves</label>
     <rulePack>
       <rulesStrings>
         <li>tale_noun->[PAWN_nameDef]'s hands begin to harden</li>

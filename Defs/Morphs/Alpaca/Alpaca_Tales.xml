@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TaleDef ParentName="MutationTaleBase">
+    <defName>StartsGrowingWool</defName>
+    <label>started growing wool</label>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[PAWN_nameDef] hair thickening into fur</li>
+        <li>tale_noun->thick fur beginning to cover [PAWN_nameDef]</li>
+        <li>image->[PAWN_nameFull] begins scratching at the thickening fur [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] begins to feel very warm [circumstance_group]</li>
+        <li>circumstance_phrase->as someone begins petting [PAWN_possessive] fur</li>
+        <li>circumstance_phrase->as someone reaches for a brush</li>
+        
+        <li>desc_sentence->[PAWN_pronoun] begins brushing [PAWN_possessive] fur</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+</Defs>

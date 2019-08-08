@@ -74,6 +74,7 @@
 						<partsToAffect>
 							<li>Torso</li>
 						</partsToAffect>
+            <tale>StartsGrowingWool</tale>
 					</li>
 				</hediffGivers>
 			</li>
