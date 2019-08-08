@@ -153,7 +153,7 @@
 					<xpath>Defs</xpath>
 					<value>
 						<!--Morph Def-->
-						<Pawnmorph.MorphDef>
+						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 							<defName>HorseMorph</defName>
 							<label>horse morph</label>
 							<race>QuarterHorse</race>

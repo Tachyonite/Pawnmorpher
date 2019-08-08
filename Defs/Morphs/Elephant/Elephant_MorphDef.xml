@@ -1,5 +1,5 @@
 ﻿<Defs>
-	<Pawnmorph.MorphDef>
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>ElephantMorph</defName>
 		<label>elephant morph</label>
 		<race>Elephant</race>
