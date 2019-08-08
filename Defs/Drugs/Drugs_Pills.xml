@@ -1,0 +1,315 @@
+<Defs>
+	<!--Production Pills-->
+	<ThingDef ParentName="SerumBase">
+		<defName>UdderPill</defName>
+		<label>mutapill, booster</label>
+		<description>A pill to boost production mutations. Side effects may include increased discomfort, hair growth, hunger, coma, and in rare cases, fiery explosions.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Pills1</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffAll">
+					<hediffDefs>
+						<li>ProductionPillChemfuelUdderEffect</li>
+						<li>ProductionPillEggEffect</li>
+						<li>ProductionPillUdderEffect</li>
+						<li>ProductionPillWoolEffect</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+			<TFMilk>1</TFMilk>
+			<TFEgg>1</TFEgg>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<HediffDef>
+		<defName>ProductionPillUdderEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>production increasing</label>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherUdder</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+		</stages>
+	</HediffDef>	
+
+	<HediffDef>
+		<defName>ProductionPillChemfuelUdderEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>production increasing</label>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherChemfuelUdder</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+		</stages>
+	</HediffDef>	
+
+	<HediffDef>
+		<defName>ProductionPillEggEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>production increasing</label>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherEggLayer</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<HediffDef>
+		<defName>ProductionPillWoolEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>production increasing</label>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherWooly</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<!--Feral Pills-->
+	<ThingDef ParentName="SerumBase">
+		<defName>FeralPill</defName>
+		<label>mutapill, feral</label>
+		<description>A pill to tip the scales on morphs that are reeling, but did not change fully. Use this if you really, really want a pawn to be an animal instead of a human.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Pillbox_1</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_CompleteTF" />
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--Stabilizer Pills-->
+	<ThingDef ParentName="DrugPillBase">
+		<defName>MutagenStabiliser</defName>
+		<label>mutapill, stabiliser</label>
+		<description>These pills will neutralize any active mechanites in the body and prevent mutations for five days.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/pills2</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<statBases>
+			<WorkToMake>600</WorkToMake>
+			<MarketValue>18</MarketValue>
+			<Mass>0.005</Mass>
+			<Flammability>0.7</Flammability>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>StabiliserHigh</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>Stabilisation</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>2</Neutroamine>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+				<overdoseSeverityOffset>
+					<min>0.08</min>
+					<max>0.14</max>
+				</overdoseSeverityOffset>
+			</li>
+		</comps>
+	</ThingDef>
+  
+	<HediffDef>
+		<defName>StabiliserHigh</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>mutagen stabilised</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.18</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_Remove">
+				<makeImmuneTo>
+					<li>FullRandomTF</li>
+					<li>FullRandomTFAnyOutcome</li>
+					<li>PawnmorphAlpacaTF</li>
+					<li>PawnmorphAlpacaTFPartial</li>
+					<li>PawnmorphBearTF</li>
+					<li>PawnmorphBearTFPartial</li>
+					<li>PawnmorphBoarTF</li>
+					<li>PawnmorphBoarTFPartial</li>
+					<li>PawnmorphBoomalopeTF</li>
+					<li>PawnmorphBoomalopeTFPartial</li>
+					<li>PawnmorphChickenTF</li>
+					<li>PawnmorphChickenTFPartial</li>
+					<li>PawnmorphCowTF</li>
+					<li>PawnmorphCowTFPartial</li>
+					<li>PawnmorphDeerTF</li>
+					<li>PawnmorphDeerTFPartial</li>
+					<li>PawnmorphElephantTF</li>
+					<li>PawnmorphElephantTFPartial</li>
+					<li>PawnmorphFoxTF</li>
+					<li>PawnmorphFoxTFPartial</li>
+					<li>PawnmorphHuskyTF</li>
+					<li>PawnmorphHuskyTFPartial</li>
+					<li>PawnmorphPigTF</li>
+					<li>PawnmorphPigTFPartial</li>
+					<li>PawnmorphRatTF</li>
+					<li>PawnmorphRatTFPartial</li>
+					<li>PawnmorphThrumboTF</li>
+					<li>PawnmorphThrumboTFPartial</li>
+					<li>PawnmorphWargTF</li>
+					<li>PawnmorphWargTFPartial</li>
+					<li>PawnmorphWolfTF</li>
+					<li>PawnmorphWolfTFPartial</li>
+				</makeImmuneTo>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<makeImmuneTo>
+					<li>FullRandomTF</li>
+					<li>FullRandomTFAnyOutcome</li>
+					<li>PawnmorphAlpacaTF</li>
+					<li>PawnmorphAlpacaTFPartial</li>
+					<li>PawnmorphBearTF</li>
+					<li>PawnmorphBearTFPartial</li>
+					<li>PawnmorphBoarTF</li>
+					<li>PawnmorphBoarTFPartial</li>
+					<li>PawnmorphBoomalopeTF</li>
+					<li>PawnmorphBoomalopeTFPartial</li>
+					<li>PawnmorphChickenTF</li>
+					<li>PawnmorphChickenTFPartial</li>
+					<li>PawnmorphCowTF</li>
+					<li>PawnmorphCowTFPartial</li>
+					<li>PawnmorphDeerTF</li>
+					<li>PawnmorphDeerTFPartial</li>
+					<li>PawnmorphElephantTF</li>
+					<li>PawnmorphElephantTFPartial</li>
+					<li>PawnmorphFoxTF</li>
+					<li>PawnmorphFoxTFPartial</li>
+					<li>PawnmorphHuskyTF</li>
+					<li>PawnmorphHuskyTFPartial</li>
+					<li>PawnmorphPigTF</li>
+					<li>PawnmorphPigTFPartial</li>
+					<li>PawnmorphRatTF</li>
+					<li>PawnmorphRatTFPartial</li>
+					<li>PawnmorphThrumboTF</li>
+					<li>PawnmorphThrumboTFPartial</li>
+					<li>PawnmorphWargTF</li>
+					<li>PawnmorphWargTFPartial</li>
+					<li>PawnmorphWolfTF</li>
+					<li>PawnmorphWolfTFPartial</li>
+				</makeImmuneTo>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

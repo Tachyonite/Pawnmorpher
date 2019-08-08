@@ -178,4 +178,22 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
+	<HediffDef>
+		<defName>EtherProductiveBliss</defName>
+		<label>etherbroken</label>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>		
+	</HediffDef>
 </Defs>

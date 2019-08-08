@@ -1,0 +1,10 @@
+﻿<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>RatMorph</defName>
+		<label>rat morph</label>
+		<categories>
+			<li>rodent</li>
+		</categories>
+		<race>Rat</race>
+	</Pawnmorph.MorphDef>
+</Defs>

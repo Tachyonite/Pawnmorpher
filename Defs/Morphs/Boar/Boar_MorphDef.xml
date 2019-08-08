@@ -1,0 +1,10 @@
+<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>BoarMorph</defName>
+		<label>boar morph</label>
+		<race>WildBoar</race>
+		<categories>
+			<li>pig</li>
+		</categories>
+	</Pawnmorph.MorphDef>
+</Defs>

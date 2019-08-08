@@ -1,0 +1,11 @@
+<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>ChookMorph</defName>
+		<label>chook morph</label>
+		<race>Chicken</race>
+		<categories>
+			<li>avian</li>
+			<li>farm</li>
+		</categories>
+	</Pawnmorph.MorphDef>
+</Defs>

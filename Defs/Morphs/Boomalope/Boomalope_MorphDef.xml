@@ -1,0 +1,10 @@
+<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>BoomalopeMorph</defName>
+		<label>boomalope morph</label>
+		<race>Boomalope</race>
+		<categories>
+			<li>boom</li>
+		</categories>
+	</Pawnmorph.MorphDef>
+</Defs>

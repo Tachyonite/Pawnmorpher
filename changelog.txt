@@ -1,0 +1,140 @@
+Seperated morphs into their own files.
+	-This makes it easier to create new morphs and find bugs with existing ones.
+	-These files containg the full and partial hediffs, reaction thought, mutations and their injector.
+	
+Added missing changing thoughts.
+	-WolfMorphs, BearMorphs, BoarMorphs and PigMorphs lacked a thought for changing.
+	-Feel free to change the descriptions, I just put something that matched pervious thoughts.
+	
+Added a partial morph parent.
+	-This dramatically reduces the number of redundant lines in the xmls.
+	
+Added partial morphs for Thrumbo, Elephant and Horse.
+	-Just did this to maintain consistancy with other morph types.
+	-Currently the partial morphs for thrumbo and elephant are unused.
+	
+Removed the label from partial morph's first (and only) stage.
+	-Did this to shorten the hediff's label.
+	
+Changed all hediffgivers to the a new "HediffGiver_Mutation" class.
+	-Has the functionality of many of the old "HeddiffGiver_Esoteric" classes rolled into one.
+	-Did this to simplify finding bugs in the future.
+
+Added RatMorph to mutagen stabalizer
+	-It, along with the partial BoarMorph, were missing.
+	-Added partial Thrumbo and ElephantMorph while I was at it.
+
+Moved hand mutations from reeling stage to the changing stage.
+	-If a pawn fully tf'd, there was no chance to see this effect.
+	-A smart player could use the mutagen stabalizers to completely ignore this effect.
+	-All hands hediffs now only have a 5% chance of occuring to compensate (probably a little low).
+	-The partial morphs, which are based on the changing stage, still do not have these hand parts.
+	
+Changed transforming stage's use to be a warning rather than a bug patch.
+	-After Iron Wolf's changes to the HediffGiver_TF class, this stage was no longer necessary.
+	-Though as one helpful steam comment noted, there was no "heads up" for when a pawn was about to tf.
+	-As a result, the actual tf now happens in the realing stage (as it orignonally did) and the transforming 
+		stage is now used as a "grace period" between changing and reeling.
+
+Moved egglayer to the changing stage like the rest of the production morphs.
+	-I could not think of a design reason for this inconsitancy, so I changed it.
+	
+Made EtherWing and EtherWingTip a 5% chance.
+	-Just like I did for the other hand changes, but thought I would mention it seperately.
+	-This idea is rather unique and I would love more of these for the other morphs.
+
+Changed cow horns and deer antlers to prioritize males.
+	-This is similar to how the production mutations prioritze females.
+	-I just made sense that males are more likely to have antlers than females.
+	-Currently set to 50% on females.
+	-Thrumbo horns remain unaffected.
+	
+Added a elephant hands counterpart to the elephant feet.
+	-Noticed some complaints about this in the comments.
+	-It made sense to have another hediff for the hands specifically.
+	-Added a thought for elaphant hands while I was at it.
+
+Added more tf animals to morphs.
+	-BearMorphs can now turn into Bear_Grizzly and Bear_Polar.
+	-FoxMorphs can now turn into Fox_Red, Fox_Arctic and Fox_Fennec.
+	-WolfMorphs can now turn into Wolf_Timber and Wolf_Arctic.
+	
+Updated GunshotTf.
+	-Changed Transformation-paralysis capmods from -99% moving to max 5% moving
+		-It worked incosistantly in the -99% state.
+	-Removed the transforming stage (it was no longer necessary).
+	-Changed the pawnkinds list to only contain non-powerful morph types (mostly for flavor).
+	
+Added a negitive thgought for wing tips.
+	-Didn't add one for the wing arms though...
+	
+Made ChaoMorph more like the other morphs.
+	-Added a changing thought.
+	-Can now give every morph's parts (except the powerful morph parts).
+	-FullRandomTF is now treated like a partial morph
+	-FullrandomTFAnyOutcome is now treated like a full morph, cinluding transformations.
+	-Chaomorph parts have no gender bias.
+	
+Fixed EtherAntlers not appearing.
+	-They were erroniously attached to the jaw part.
+	
+Changed elephant ears to raise ComfyTemperatureMax.
+	-I belive this was the original intention, as the flapping ears cool elephant's bodies.
+	-It does make sense for them to lower cold tolerance however, so each ear does so by 2 degrees now.
+
+Changed injector's description to be less generic.
+	-now read "A mutagenic injector filled with mechanites and [animal_type] DNA. Use with caution, as leaving the mechanites unchecked may transform the user."
+	
+Added SerumBase.
+	-simplifies the xmls.
+	
+Changed the descriptions of the serums to be shorter.
+	-Now read "A serum filled with mechanites and animal DNA that causes [type] mutations. Use with caution, as leaving the mechanites unchecked may transform the user."
+	-Powerful serum remains unchanged.
+	
+Changed Mutagen stabalizers.
+	-Are now considered more of a pill than serum.
+	-They now use the perviously unused pill2 graphic rather than penoxycyline.
+	-Changed label to "mutapill, stabiliser".
+	-Changed description to "These pills will neutralize any active mechanites in the body and prevent mutations for five days."
+
+Changed production cost of the injectors.
+	-Normal Injectors now cost 3 mechanite slurry rather than 1.
+		-These were cheeper than the random items, It just didn't make sense.
+		-Combat and production serums both cost 2 for comparison.
+	-Powerful injectors now costs 6 mechanite slurry rather than 1.
+		-It didn't make sense for these to be so easily aquireable.
+		-Powerful mutaserum costs 5 for comparison.
+
+Changed udderpill's description for the lols.
+	-Now reads "A pill to boost production mutations. Side effects may include increased discomfort, hair growth, hunger, coma, and in rare cases, fiery explosions."
+
+Updated ADogSaidPatch to include new chaomelds and fusions.
+	-Also removed everything but the chaodino from the tail patch as it's the only one with a tail part def.
+
+Change morph labels from "animalmorph" to "animalMorph"
+	-Could I have left it alone? Yes.
+	-Should I have left it alone? Yes.
+	-Why didn't I? 'cause it looks better that way.
+	
+Made morphs mutate at the same rate.
+	-Jaws have an mtb of 0.5
+	-Ears and tails have an mtb of 1
+	-Eyes have an mtb of 1.5
+	-Limbs have an mtb of 2
+	-Hands and feet have an mtb of 3
+	-Horns have an mtb of 3
+
+
+--To-Do--
+-add a tutorial for when a pawn is changing.
+-add cat and megasloth morphs.
+-change category of the mutagen weapons to avoid raiders getting them.
+-antler-like changes to things (get better over time).
+	-definatly do this with jaws.
+-rat needs uses.
+-make ether wing add etherwingtip.
+-figure out why horsemorph doesn't stabilize.
+-seperate BodyAddons into seperate morphs and double check the numbers.
+-More useful descriptions?
+-remove injectors from drug list and make them not addictive.

@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Defs>
+﻿<Defs>
   <TaleDef Name="MutationTaleBase" Abstract="True">
     <type>Volatile</type>
     <baseInterest>3</baseInterest>

@@ -1,0 +1,30 @@
+<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>WargMorph</defName>
+		<label>warg morph</label>
+		<race>Warg</race>
+		<categories>
+			<li>canid</li>
+		</categories>
+		<raceSettings>
+			<thoughtSettings>
+				<replacerList>
+					<li>
+						<original>AteCorpse</original>
+						<replacer>WargMorphAteCorpse</replacer>
+					</li>
+				</replacerList>
+				<canEatRaw>true</canEatRaw>
+				<suppressHumanlikeCannibalThoughts>true</suppressHumanlikeCannibalThoughts>
+			</thoughtSettings>
+			<traitSettings>
+				<forcedTraits>
+					<li>
+						<defName>NaturalHunter</defName>
+						<chance>100</chance>
+					</li>
+				</forcedTraits>
+			</traitSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,19 @@
+<Defs>
+	<ThoughtDef>
+		<defName>EtherReactionBoomalopeTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphBoomalopeTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>Boom?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I feel...like I'm about to blow up...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

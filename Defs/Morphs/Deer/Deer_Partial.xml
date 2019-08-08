@@ -1,0 +1,84 @@
+<Defs>
+	<HediffDef ParentName="PartialMorphParent">
+		<defName>PawnmorphDeerTFPartial</defName>
+		<label>deerMorph partial</label>
+		<stages>
+			<li>
+				<painOffset>0.1</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherDeerSnout</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Jaw</li>
+						</partsToAffect>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherDeerEar</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Ear</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherShortTail</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Tail</li>
+						</partsToAffect>
+						<tale>GrewTail</tale>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherHideLimb</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Arm</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherDigitigradeLeg</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Leg</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherClovenHoofFoot</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Foot</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherAntlers</hediff>
+						<mtbDays>0.5</mtbDays>
+						<gender>Male</gender>
+						<chance>50</chance>
+						<partsToAffect>
+							<li>Skull</li>
+						</partsToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

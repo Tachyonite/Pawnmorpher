@@ -1,0 +1,20 @@
+﻿<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>HuskyMorph</defName>
+		<label>husky morph</label>
+		<race>Husky</race>
+		<categories>
+			<li>canid</li>
+		</categories>
+		<raceSettings>
+			<traitSettings>
+				<forcedTraits>
+					<li>
+						<defName>NaturalHunter</defName>
+						<chance>100</chance>
+					</li>
+				</forcedTraits>
+			</traitSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -152,6 +152,17 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
+						<!--Morph Def-->
+						<Pawnmorph.MorphDef>
+							<defName>HorseMorph</defName>
+							<label>horse morph</label>
+							<race>QuarterHorse</race>
+							<categories>
+								<li>bovine</li>
+								<li>farm</li>
+							</categories>
+						</Pawnmorph.MorphDef>
+						
 						<!--Morph Reaction-->
 						<ThoughtDef>
 							<defName>EtherReactionHorseTF</defName>
@@ -171,7 +182,7 @@
 							</stages>
 						</ThoughtDef>
 						
-						<!--Main Morph-->
+						<!--Full Morph-->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTF</defName>
 							<label>horseMorph</label>
@@ -241,7 +252,7 @@
 									<hediffGivers>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHorseSnout</hediff>
-											<mtbDays>2</mtbDays>
+											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
@@ -264,7 +275,7 @@
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHideLimb</hediff>
-											<mtbDays>1</mtbDays>
+											<mtbDays>2</mtbDays>
 											<partsToAffect>
 												<li>Arm</li>
 											</partsToAffect>
@@ -272,7 +283,7 @@
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHoofHand</hediff>
-											<mtbDays>2</mtbDays>
+											<mtbDays>3</mtbDays>
 											<chance>5</chance>
 											<partsToAffect>
 												<li>Hand</li>
@@ -281,7 +292,7 @@
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherDigitigradeLeg</hediff>
-											<mtbDays>1</mtbDays>
+											<mtbDays>2</mtbDays>
 											<partsToAffect>
 												<li>Leg</li>
 											</partsToAffect>
@@ -289,7 +300,7 @@
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherUnclovenHoofFoot</hediff>
-											<mtbDays>2</mtbDays>
+											<mtbDays>3</mtbDays>
 											<partsToAffect>
 												<li>Foot</li>
 											</partsToAffect>
@@ -300,6 +311,7 @@
 							</stages>
 						</HediffDef>
 						
+						<!--Partial Morph-->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTFPartial</defName>
 							<label>horseMorph partial</label>
@@ -324,14 +336,14 @@
 									<hediffGivers>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHorseSnout</hediff>
-											<mtbDays>2</mtbDays>
+											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHorseEar</hediff>
-											<mtbDays>1</mtbDays>
+											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Ear</li>
 											</partsToAffect>
@@ -339,7 +351,7 @@
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHorseTail</hediff>
-											<mtbDays>1</mtbDays>
+											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Tail</li>
 											</partsToAffect>
@@ -347,24 +359,15 @@
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHideLimb</hediff>
-											<mtbDays>1</mtbDays>
+											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Arm</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHoofHand</hediff>
-											<mtbDays>2</mtbDays>
-											<chance>5</chance>
-											<partsToAffect>
-												<li>Hand</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherDigitigradeLeg</hediff>
-											<mtbDays>1</mtbDays>
+											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Leg</li>
 											</partsToAffect>
@@ -372,7 +375,7 @@
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherUnclovenHoofFoot</hediff>
-											<mtbDays>2</mtbDays>
+											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Foot</li>
 											</partsToAffect>
@@ -384,10 +387,17 @@
 						</HediffDef>
 						
 						<!--Morph Parts-->
-						<HediffDef ParentName="PawnmorphPart">
+						<HediffDef Name="HorsePart" ParentName="PawnmorphPart" Abstract="True">
+							<comps>
+								<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+									<morph>HorseMorph</morph>
+								</li>
+							</comps>
+						</HediffDef>
+						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseSnout</defName>
 							<label>equine snout</label>
-							<description>A snout graces NAME's face.</description>
+							<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_pronoun] teeth are squared off, and this makes speaking more difficult, yet eating is easier.</description>
 							<stages>
 								<li>
 									<capMods>
@@ -419,8 +429,7 @@
 								</li>
 							</comps>
 						</HediffDef>
-						
-						<HediffDef ParentName="PawnmorphPart">
+						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseEar</defName>
 							<label>equine</label>
 							<stages>
@@ -434,11 +443,10 @@
 								</li>
 							</stages>
 						</HediffDef>
-						
-						<HediffDef ParentName="PawnmorphPart">
+						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseTail</defName>
 							<label>horse tail</label>
-							<description>A regular tail.</description>
+							<description>A horselike tail. It swats at flies occasionally.</description>
 							<stages>
 								<li>
 									<capMods>
@@ -451,10 +459,11 @@
 							</stages>
 						</HediffDef>
 						
+						<!--Morph Injector-->
 						<ThingDef ParentName="InjectorBase">
 							<defName>HorseTransformer</defName>
 							<label>mutasyringe, horse</label>
-							<description>An injector filled with mutagenic injector, targeted for a specific type of animal.</description>
+							<description>A mutagenic injector filled with mechanites and horse DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 							<graphicData>
 								<texPath>Things/Item/Drug/Specific</texPath>
 								<graphicClass>Graphic_Single</graphicClass>

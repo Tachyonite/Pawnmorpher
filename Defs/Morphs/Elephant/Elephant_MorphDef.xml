@@ -1,0 +1,11 @@
+﻿<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>ElephantMorph</defName>
+		<label>elephant morph</label>
+		<race>Elephant</race>
+		<categories>
+			<li>elephant</li>
+			<li>powerful</li>
+		</categories>
+	</Pawnmorph.MorphDef>
+</Defs>

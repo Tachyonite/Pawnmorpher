@@ -1,0 +1,11 @@
+<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>ThrumboMorph</defName>
+		<label>thrumbo morph</label>
+		<race>Thrumbo</race>
+		<categories>
+			<li>thrumbo</li>
+			<li>powerful</li>
+		</categories>
+	</Pawnmorph.MorphDef>
+</Defs>

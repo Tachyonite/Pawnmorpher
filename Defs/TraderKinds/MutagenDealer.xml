@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
 	<TraderKindDef>
 		<defName>PawnmorpherTrader</defName>
 		<label>Morph trader</label>
@@ -484,5 +482,4 @@
 			<li Class="StockGenerator_BuyWeirdOrganic" />
 		</stockGenerators>
 	</TraderKindDef>
-
 </Defs>
