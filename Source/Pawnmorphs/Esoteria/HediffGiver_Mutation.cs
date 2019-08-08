@@ -26,6 +26,7 @@ namespace Pawnmorph
                 if ((gender == pawn.gender || (!triggered.TryGetValue(cause, false) && Rand.RangeInclusive(0, 100) <= chance)) && TryApply(pawn))
                 {
                     IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+                    triggered[cause] = true;
                     if (cause.def.HasComp(typeof(HediffComp_Single)))
                     {
                         pawn.health.RemoveHediff(cause);

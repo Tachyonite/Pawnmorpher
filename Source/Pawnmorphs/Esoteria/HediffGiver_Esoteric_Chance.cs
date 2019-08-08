@@ -5,6 +5,7 @@ using System.Text;
 using Verse;
 using RimWorld;
 
+//Depricated, use HedifGiver_Mutaions instead.
 namespace Pawnmorph
 {
     public class HediffGiver_Esoteric_Chance : HediffGiver

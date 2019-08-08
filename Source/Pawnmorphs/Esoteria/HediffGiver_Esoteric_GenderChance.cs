@@ -1,5 +1,6 @@
 ﻿using Verse;
 
+//Depricated, use HedifGiver_Mutaions instead.
 namespace Pawnmorph
 {
     public class HediffGiver_Esoteric_GenderChance : HediffGiver
