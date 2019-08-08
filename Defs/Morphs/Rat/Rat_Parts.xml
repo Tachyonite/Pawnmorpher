@@ -73,10 +73,17 @@
 		<defName>EtherDextrousPawHand</defName>
 		<label>dextrous paw</label>
 		<description>Thankfully, this more manipulative paw allows [PAWN_nameDef] to keep their thumbs.</description>
+    <initialSeverity>0</initialSeverity>
 		<stages>
 			<li>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-			</li>
+				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
+        <label>new</label>
+      </li>
+      <li>
+        <minSeverity>0.5</minSeverity>
+        <partEfficiencyOffset>0.1</partEfficiencyOffset>
+        <label>adapted</label>
+      </li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
@@ -93,6 +100,10 @@
 					</li>
 				</tools>
 			</li>
+      <li Class="Pawnmorph.Hediffs.CompProperties_MorphTrigger">
+        <morph>RatMorph</morph>
+        <severityValue>1</severityValue>
+      </li>
 		</comps>
 	</HediffDef>
 	

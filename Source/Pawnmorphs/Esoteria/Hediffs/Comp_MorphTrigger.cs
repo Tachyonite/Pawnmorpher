@@ -8,51 +8,27 @@ namespace Pawnmorph.Hediffs
 {
     public class Comp_MorphTrigger : HediffComp
     {
-        private float _severityForIndex = -1; 
 
 
         public CompProperties_MorphTrigger Props => (CompProperties_MorphTrigger) props;
 
-        public override void CompPostPostAdd(DamageInfo? dinfo)
+       
+
+        public void TryTrigger(MorphDef def)
         {
-            base.CompPostPostAdd(dinfo);
+           
 
-            var def = parent.def;
+            if (def != Props.morph) return;
 
-            var stage = def.stages[Props.stageIndex]; //calculate the correct severity to use to jump to the given index 
-            var minSeverityStage = stage.minSeverity; 
-
-            float minSeverityNext;
-            if (Props.stageIndex == def.stages.Count - 1) //get the last and current index, averaging the severities should put the hediff in the middle of the desired stage
-            {
-                minSeverityNext = 0; 
-            }
-            else
-            {
-                minSeverityNext = def.stages[Props.stageIndex + 1].minSeverity; 
-            }
-
-            _severityForIndex = (minSeverityNext + minSeverityStage) / 2;
+            parent.Severity = Props.severityValue; 
 
 
 
         }
 
-
-        public void TryTrigger(MorphDef def)
+        public void Reset()
         {
-            if (_severityForIndex < 0)
-            {
-                Log.Error($"in {parent.def.defName} Comp_MorphTrigger was not set yet?");
-                return;
-            }
-
-            if (def != Props.morph) return;
-
-            parent.Severity = _severityForIndex; 
-
-
-
+            parent.Severity = parent.def.initialSeverity; 
         }
 
 
@@ -62,7 +38,7 @@ namespace Pawnmorph.Hediffs
     public class CompProperties_MorphTrigger : HediffCompProperties
     {
         public MorphDef morph;
-        public int stageIndex;
+        public float severityValue;
 
 
         public override void PostLoad()
@@ -80,11 +56,7 @@ namespace Pawnmorph.Hediffs
 
         public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
         {
-            if (stageIndex == 0)
-            {
-                Log.Warning($"in {parentDef.defName}, morph trigger has trigger stage of 0. This is most likely not intentional!");
-            }
-
+           
 
 
 
@@ -93,15 +65,18 @@ namespace Pawnmorph.Hediffs
                 yield return configError;
             }
 
-            if (stageIndex < 0 || stageIndex >= (parentDef.stages?.Count ?? 0))
-            {
-                yield return $"stageIndex:{stageIndex} is out of bounds";
-            }
-
-
+           
             if (morph == null)
             {
-                yield return "there is no morph set!"; 
+
+                var comp = parentDef.CompProps<CompProperties_MorphInfluence>();
+                if (comp != null)
+                {
+                    morph = comp.morph; 
+                }
+
+                if(morph == null)
+                    yield return "there is no morph set for Comp_MorphTrigger and no MorphInfluence component with a set morph!"; 
             }
 
         }
