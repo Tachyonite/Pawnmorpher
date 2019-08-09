@@ -579,7 +579,11 @@ namespace Pawnmorph
             }), null, new HarmonyMethod(patchType, nameof(WillEatDefPostfix)));
 
             harmonyInstance.Patch(AccessTools.Method(typeof(FoodUtility), nameof(FoodUtility.FoodOptimality)),
-                                  null, new HarmonyMethod(patchType, nameof(FoodOptimalityPostfix)));   
+                                  null, new HarmonyMethod(patchType, nameof(FoodOptimalityPostfix)));
+
+            harmonyInstance.Patch(AccessTools.Method(typeof(FoodUtility), nameof(FoodUtility.BestFoodSourceOnMap)),
+                                  new HarmonyMethod(patchType, nameof(BestFoodSourceOnMapPrefix))); 
+
 #endif
           
 
@@ -720,23 +724,25 @@ namespace Pawnmorph
         {
             if (RaceGenerator.TryGetMorphOfRace(eater.def, out MorphDef def))
             {
-                __result = FoodOptimality(eater, foodSource, foodDef, dist, takingToInventory, def); 
+                var fOverride = def.GetOverride(foodDef);
+                if (fOverride != null)
+                    __result = FoodOptimality(eater, foodSource, foodDef, dist, takingToInventory, def, fOverride.Value); 
             }
 
 
         }
 
         static float FoodOptimality(Pawn eater, Thing foodSource, ThingDef foodDef, float dist, bool takingToInventory,
-                                   MorphDef morph)
+                                   MorphDef morph, FoodPreferability fOverride)
         {
             float num = 300f;
             num -= dist;
-            FoodPreferability preferability = foodDef.ingestible.preferability;
+            FoodPreferability preferability = fOverride;
 
-            var fOverride = morph.GetOverride(foodDef);
+            //var fOverride = morph.GetOverride(foodDef);
           
 
-            preferability = fOverride ?? preferability; 
+            //preferability = fOverride ?? preferability; 
 
             if (preferability != FoodPreferability.NeverForNutrition)
             {
@@ -782,11 +788,12 @@ namespace Pawnmorph
                     
                 }
 
-                if (fOverride != null)
-                {
-                    var diff = 5.5f * ((int) fOverride.Value - (int) foodDef.ingestible.preferability); //constant is a guess at how large the optimality should be 
-                    num += FoodOptimalityEffectFromMoodCurve.Evaluate(diff); 
-                }
+                var diff = 5.5f * ((int) fOverride - (int) foodDef.ingestible.preferability); //constant is a guess at how large the optimality should be 
+                num += FoodOptimalityEffectFromMoodCurve.Evaluate(diff); 
+                Log.Message($"{eater.Name} has preferability for {foodDef.defName} of {num}");
+            
+
+               
 
                 
 
@@ -796,7 +803,133 @@ namespace Pawnmorph
 
 
 
+            
+        }
 
+        static bool BestFoodSourceOnMapPrefix(
+            Pawn getter,
+            Pawn eater,
+            bool desperate,
+            ref ThingDef foodDef,
+            FoodPreferability maxPref,
+            bool allowPlant,
+            bool allowDrug,
+            bool allowCorpse,
+            bool allowDispenserFull,
+            bool allowDispenserEmpty,
+            bool allowForbidden,
+            bool allowSociallyImproper,
+            bool allowHarvest,
+            bool forceScanWholeMap,
+            ref Thing __result)
+        {
+
+            if (!RaceGenerator.TryGetMorphOfRace(eater.def, out MorphDef def))
+            {
+                return true; 
+            }
+
+            foodDef = (ThingDef)null;
+            bool getterCanManipulate = getter.RaceProps.ToolUser && getter.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
+            if (!getterCanManipulate && getter != eater)
+            {
+                return true; 
+            }
+            FoodPreferability minPref = !eater.NonHumanlikeOrWildMan() ? (!desperate ? (eater.needs.food.CurCategory < HungerCategory.UrgentlyHungry ? FoodPreferability.MealAwful : FoodPreferability.RawBad) : FoodPreferability.DesperateOnly) : FoodPreferability.NeverForNutrition;
+            Predicate<Thing> foodValidator = (Predicate<Thing>)(t =>
+            {
+                Building_NutrientPasteDispenser nutrientPasteDispenser = t as Building_NutrientPasteDispenser;
+                if (nutrientPasteDispenser != null)
+                {
+                    if (!allowDispenserFull || !getterCanManipulate || (ThingDefOf.MealNutrientPaste.ingestible.preferability < minPref || ThingDefOf.MealNutrientPaste.ingestible.preferability > maxPref) || (!eater.WillEat(ThingDefOf.MealNutrientPaste, getter) || t.Faction != getter.Faction && t.Faction != getter.HostFaction) || (!allowForbidden && t.IsForbidden(getter) || !nutrientPasteDispenser.powerComp.PowerOn || (!allowDispenserEmpty && !nutrientPasteDispenser.HasEnoughFeedstockInHoppers() || (!t.InteractionCell.Standable(t.Map) || !IsFoodSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)))) || (getter.IsWildMan() || !getter.Map.reachability.CanReachNonLocal(getter.Position, new TargetInfo(t.InteractionCell, t.Map, false), PathEndMode.OnCell, TraverseParms.For(getter, Danger.Some, TraverseMode.ByPawn, false))))
+                        return false;
+                }
+                else
+                {
+                    FoodPreferability ingestiblePreferability =  def.GetOverride(t.def) ?? t.def.ingestible.preferability;
+                    
+
+
+                    if (ingestiblePreferability < minPref || ingestiblePreferability > maxPref || (!eater.WillEat(t, getter) || !t.def.IsNutritionGivingIngestible) || (!t.IngestibleNow || !allowCorpse && t is Corpse) || (!allowDrug && t.def.IsDrug || !allowForbidden && t.IsForbidden(getter) || (!desperate && t.IsNotFresh() || (t.IsDessicated() || !IsFoodSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)))) || (!getter.AnimalAwareOf(t) && !forceScanWholeMap || !getter.CanReserve((LocalTargetInfo)t, 1, -1, (ReservationLayerDef)null, false)))
+                        return false;
+                }
+
+                return true;
+            });
+            ThingRequest req = (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) == FoodTypeFlags.None || !allowPlant ? ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree) : ThingRequest.ForGroup(ThingRequestGroup.FoodSource);
+            Thing bestThing;
+
+            bestThing = SpawnedFoodSearchInnerScan(eater, getter.Position, getter.Map.listerThings.ThingsMatching(req), PathEndMode.ClosestTouch, TraverseParms.For(getter, Danger.Deadly, TraverseMode.ByPawn, false), 9999f, foodValidator);
+            if (allowHarvest && getterCanManipulate)
+            {
+                int searchRegionsMax = !forceScanWholeMap || bestThing != null ? 30 : -1;
+                Thing foodSource = GenClosest.ClosestThingReachable(getter.Position, getter.Map, ThingRequest.ForGroup(ThingRequestGroup.HarvestablePlant), PathEndMode.Touch, TraverseParms.For(getter, Danger.Deadly, TraverseMode.ByPawn, false), 9999f, (Predicate<Thing>)(x =>
+                {
+                    Plant t = (Plant)x;
+                    if (!t.HarvestableNow)
+                    {  return false;}
+                    ThingDef harvestedThingDef = t.def.plant.harvestedThingDef;
+                    return harvestedThingDef.IsNutritionGivingIngestible && eater.WillEat(harvestedThingDef, getter) && getter.CanReserve((LocalTargetInfo)((Thing)t), 1, -1, (ReservationLayerDef)null) && ((allowForbidden || !t.IsForbidden(getter)) && (bestThing == null || FoodUtility.GetFinalIngestibleDef(bestThing, false).ingestible.preferability < harvestedThingDef.ingestible.preferability));
+                }), (IEnumerable<Thing>)null, 0, searchRegionsMax, false, RegionType.Set_Passable, false);
+                if (foodSource != null)
+                {
+                    bestThing = foodSource;
+                    foodDef = FoodUtility.GetFinalIngestibleDef(foodSource, true);
+                }
+            }
+            if (foodDef == null && bestThing != null)
+                foodDef = FoodUtility.GetFinalIngestibleDef(bestThing, false);
+
+            __result = bestThing;
+            return false; 
+        }
+        private static bool IsFoodSourceOnMapSociallyProper(
+            Thing t,
+            Pawn getter,
+            Pawn eater,
+            bool allowSociallyImproper)
+        {
+            if (!allowSociallyImproper)
+            {
+                bool animalsCare = !getter.RaceProps.Animal;
+                if (!t.IsSociallyProper(getter) && !t.IsSociallyProper(eater, eater.IsPrisonerOfColony, animalsCare))
+                    return false;
+            }
+            return true;
+        }
+        private static Thing SpawnedFoodSearchInnerScan(
+            Pawn eater,
+            IntVec3 root,
+            List<Thing> searchSet,
+            PathEndMode peMode,
+            TraverseParms traverseParams,
+            float maxDistance = 9999f,
+            Predicate<Thing> validator = null)
+        {
+            if (searchSet == null)
+                return (Thing)null;
+            Pawn pawn = traverseParams.pawn ?? eater;
+            int num1 = 0;
+            int num2 = 0;
+            Thing thing = (Thing)null;
+            float num3 = float.MinValue;
+            for (int index = 0; index < searchSet.Count; ++index)
+            {
+                Thing search = searchSet[index];
+                ++num2;
+                float lengthManhattan = (float)(root - search.Position).LengthManhattan;
+                if ((double)lengthManhattan <= (double)maxDistance)
+                {
+                    float num4 = FoodUtility.FoodOptimality(eater, search, FoodUtility.GetFinalIngestibleDef(search, false), lengthManhattan, false);
+                    if ((double)num4 >= (double)num3 && pawn.Map.reachability.CanReach(root, (LocalTargetInfo)search, peMode, traverseParams) && search.Spawned && (validator == null || validator(search)))
+                    {
+                        thing = search;
+                        num3 = num4;
+                        ++num1;
+                    }
+                }
+            }
+            return thing;
         }
 
         private static readonly SimpleCurve FoodOptimalityEffectFromMoodCurve = new SimpleCurve
