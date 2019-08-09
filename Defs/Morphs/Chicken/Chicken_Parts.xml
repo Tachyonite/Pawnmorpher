@@ -78,6 +78,19 @@
 				<partEfficiencyOffset>-0.7</partEfficiencyOffset>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
+				<mutationDependency>
+					<hediff>EtherWingTip</hediff>
+					<mtbDays>3</mtbDays>
+					<chance>5</chance>
+					<partsToAffect>
+						<li>Hand</li>
+					</partsToAffect>
+					<countToAffect>2</countToAffect>
+				</mutationDependency>
+			</li>
+		</comps>
 	</HediffDef>
 
 	<HediffDef ParentName="ChookPart">

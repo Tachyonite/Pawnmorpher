@@ -62,12 +62,14 @@
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="HediffGiver_Mutation.cs" />
+    <Compile Include="Hediffs\CompProperties_DependentPart.cs" />
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
     <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
     <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
     <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
     <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
+    <Compile Include="Hediffs\MutationDependency.cs" />
     <Compile Include="Hediffs\TfDefOf.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />
+    <Compile Include="Utilities\HediffCompBase.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
