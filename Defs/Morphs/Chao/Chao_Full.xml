@@ -68,7 +68,8 @@
 				</capMods>
 				<hediffGivers>
           <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
-            <blackListCategories>
+	          <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+	          <blackListCategories>
               <li>powerful</li>
             </blackListCategories>
           </li>
