@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Thoughts;
 using RimWorld;
@@ -106,7 +107,6 @@ namespace Pawnmorph.DebugUtils
 
         private const string CHAOMORPH_DEF_NAME = "FullRandomTFAnyOutcome";
         private const string DAMAGE_DEF_NAME = "PawnmorphGunshotTF";
-        
 
 
         [Category(MAIN_CATEGORY_NAME)]
@@ -189,50 +189,115 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
         }
 
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
         public static void LogMissingMutationTales()
         {
-            var allMutations = TfDefOf.AllMorphs;
-            StringBuilder mainBuilder = new StringBuilder();
+            IEnumerable<HediffDef> allMutations = TfDefOf.AllMorphs;
+            var mainBuilder = new StringBuilder();
 
-            foreach (var transformHediff in allMutations)
+            foreach (HediffDef transformHediff in allMutations)
             {
                 var missingGivers = transformHediff.stages?.Select((s, i) => new
-                {
-                    givers = s.hediffGivers?.OfType<HediffGiver_Mutation>().Where(g => g.tale == null) ??
-                             Enumerable
-                                 .Empty<HediffGiver_Mutation
-                                 >(), //get all givers that are missing a tale, keep the index to
-                    stageIndex = i 
-                }).Select(a => new
-                {
-                    giversLst = a.givers.ToList(), //get how many and keep'em around to loop again 
-                    index = a.stageIndex
-                }).Where(a => a.giversLst.Count > 0).ToList(); //evil linq statement is ok because this is only a debug command 
+                                                    {
+                                                        givers = s.hediffGivers?.OfType<HediffGiver_Mutation>()
+                                                                  .Where(g => g.tale == null)
+                                                              ?? Enumerable
+                                                                    .Empty<HediffGiver_Mutation
+                                                                     >(), //get all givers that are missing a tale, keep the index to
+                                                        stageIndex = i
+                                                    })
+                                                   .Select(a => new
+                                                    {
+                                                        giversLst = a.givers
+                                                                     .ToList(), //get how many and keep'em around to loop again 
+                                                        index = a.stageIndex
+                                                    })
+                                                   .Where(a => a.giversLst.Count > 0)
+                                                   .ToList(); //evil linq statement is ok because this is only a debug command 
 
-                if (missingGivers == null) continue; 
-                if(missingGivers.Count == 0) continue;
+                if (missingGivers == null) continue;
+                if (missingGivers.Count == 0) continue;
 
                 mainBuilder.AppendLine($"in hediff {transformHediff.defName}:");
                 foreach (var missingGiver in missingGivers)
                 {
-                    mainBuilder.AppendLine($"in stage {missingGiver.index}"); 
-                    foreach (var hediffGiverMutation in missingGiver.giversLst)
-                    {
-                        mainBuilder.AppendLine($"\t\tgiver of {hediffGiverMutation.hediff.defName} is missing a tale"); 
-                    }
+                    mainBuilder.AppendLine($"in stage {missingGiver.index}");
+                    foreach (HediffGiver_Mutation hediffGiverMutation in missingGiver.giversLst)
+                        mainBuilder.AppendLine($"\t\tgiver of {hediffGiverMutation.hediff.defName} is missing a tale");
 
-                    mainBuilder.AppendLine(""); 
+                    mainBuilder.AppendLine("");
                 }
 
                 if (mainBuilder.Length > 0)
                     Log.Message(mainBuilder.ToString());
                 else
-                    Log.Message("no missing tales in transformations!"); 
+                    Log.Message("no missing tales in transformations!");
+            }
+        }
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        public static void CheckBodyHediffGraphics()
+        {
+            IEnumerable<HediffGiver_Mutation> GetMutationGivers(IEnumerable<HediffStage> stages)
+            {
+                return stages.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>()).OfType<HediffGiver_Mutation>();
             }
 
 
+            var givers = DefDatabase<HediffDef>.AllDefs.Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass))
+                                               .Select(def => new
+                                                {
+                                                    def,
+                                                    givers = GetMutationGivers(def.stages ?? Enumerable.Empty<HediffStage>())
+                                                       .ToList() //grab all mutation givers but keep the def it came from around 
+                                                })
+                                               .Where(a => a.givers.Count
+                                                         > 0); //keep only the entries that have some givers in them 
 
+            var human = (ThingDef_AlienRace) ThingDefOf.Human;
+
+            List<AlienPartGenerator.BodyAddon> bodyAddons = human.alienRace.generalSettings.alienPartGenerator.bodyAddons;
+
+
+            var lookupDict = new Dictionary<string, string>();
+
+            foreach (AlienPartGenerator.BodyAddon bodyAddon in bodyAddons)
+            foreach (AlienPartGenerator.BodyAddonHediffGraphic bodyAddonHediffGraphic in bodyAddon.hediffGraphics)
+                lookupDict[bodyAddonHediffGraphic.hediff] =
+                    bodyAddon.bodyPart; //find out what parts what hediffs are assigned to in the patch file 
+
+            var builder = new StringBuilder();
+            var errStrs = new List<string>();
+            foreach (var giverEntry in givers)
+            {
+                errStrs.Clear();
+                foreach (HediffGiver_Mutation hediffGiverMutation in giverEntry.givers)
+                {
+                    HediffDef hediff = hediffGiverMutation.hediff;
+
+                    BodyPartDef addPart = hediffGiverMutation.partsToAffect.FirstOrDefault();
+                    if (addPart == null) continue; //if there are no parts to affect just skip 
+
+                    if (lookupDict.TryGetValue(hediff.defName, out string part))
+                        if (part != addPart.defName)
+                            errStrs.Add($"hediff {hediff.defName} is being attached to {addPart.defName} but is assigned to {part} in patch file");
+                }
+
+                if (errStrs.Count > 0)
+                {
+                    builder.AppendLine($"in def {giverEntry.def.defName}: ");
+                    foreach (string errStr in errStrs) builder.AppendLine($"\t\t{errStr}");
+
+                    builder.AppendLine("");
+                }
+            }
+
+            if (builder.Length > 0)
+                Log.Warning(builder.ToString());
+            else
+                Log.Message("no inconsistencies found");
         }
     }
 }
