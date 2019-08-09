@@ -216,7 +216,7 @@ namespace Pawnmorph.Hybrids
                 alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph),
                 modContentPack = morph.modContentPack,
                 inspectorTabsResolved = humanDef.inspectorTabsResolved,
-                recipes = humanDef.recipes, //this is where the surgery operations live
+                recipes = new List<RecipeDef>(humanDef.AllRecipes), //this is where the surgery operations live
                 filth = morph.race.filth,
                 filthLeaving = morph.race.filthLeaving
             };
