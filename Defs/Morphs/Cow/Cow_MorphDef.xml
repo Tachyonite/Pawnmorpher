@@ -1,0 +1,11 @@
+<Defs>
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>CowMorph</defName>
+		<label>cow morph</label>
+		<race>Cow</race>
+		<categories>
+			<li>bovine</li>
+			<li>farm</li>
+		</categories>
+	</Pawnmorph.MorphDef>
+</Defs>

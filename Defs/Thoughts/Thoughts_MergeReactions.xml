@@ -1,0 +1,49 @@
+﻿<Defs>
+	<ThoughtDef>
+		<defName>ColonistMergedThought</defName>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>colonist merged</label>
+				<description>TODO</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>FriendMergedThought</defName>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>friend merged</label>
+				<description>TODO</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>RivalMergedThought</defName>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>rival merged</label>
+				<description>TODO</description>
+				<baseMoodEffect>8</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>PrisonerMergedThought</defName>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>prisoner merged</label>
+				<description>TODO</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

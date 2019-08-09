@@ -69,7 +69,8 @@ namespace Pawnmorph.Hybrids
                 hediffGiverSets = human.hediffGiverSets,
                 meatDef = animal.meatDef,
                 meatLabel = animal.meatLabel,
-                useMeatFrom = animal.useMeatFrom
+                useMeatFrom = animal.useMeatFrom,
+                deathActionWorkerClass = human.deathActionWorkerClass,
             };
         }
 
@@ -104,11 +105,14 @@ namespace Pawnmorph.Hybrids
         /// <returns></returns>
         private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph)
         {
-            
+            var traitSettings = morph.raceSettings.traitSettings;
             return new GeneralSettings
             {
                 alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph),
-                humanRecipeImport = true //TODO traits and stuff 
+                humanRecipeImport = true ,
+                forcedRaceTraitEntries = traitSettings?.forcedTraits
+                //black list is not currently supported, Rimworld doesn't like it when you remove traits 
+               
             };
         }
 
@@ -211,7 +215,8 @@ namespace Pawnmorph.Hybrids
                 description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
                 alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph),
                 modContentPack = morph.modContentPack,
-                inspectorTabsResolved = humanDef.inspectorTabsResolved
+                inspectorTabsResolved = humanDef.inspectorTabsResolved,
+                recipes = humanDef.recipes //this is where the surgery operations live 
             };
         }
     }

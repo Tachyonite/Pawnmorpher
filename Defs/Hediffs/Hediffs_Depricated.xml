@@ -1,0 +1,180 @@
+<Defs>
+<!--These hediffs are currently unused but had a purpose in pervious versions of the mod and old saves may still contain them-->
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherMuzzle</defName>
+		<label>muzzle</label>
+		<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.50</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherSnout</defName>
+		<label>snout</label>
+		<description>A snout graces [PAWN_nameDef]'s face.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.40</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</HediffDef>
+	
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherClaws</defName>
+		<label>clawed</label>
+		<description>Sharp, catlike claws have replaced the shed nails of [PAWN_nameDef]. This gives [PAWN_objective] a combat advantage, and makes it harder to wipe [PAWN_pronoun] ass.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>tip</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>15.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</HediffDef>
+	
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherTail</defName>
+		<label>tail</label>
+		<description>A regular tail.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.01</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherFurryEar</defName>
+		<label>fuzzy</label>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherPointedEar</defName>
+		<label>pointed</label>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherDogEar</defName>
+		<label>floppy</label>
+		<stages>
+			<li>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<HediffDef>
+		<defName>EtherProductiveBliss</defName>
+		<label>etherbroken</label>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>		
+	</HediffDef>
+</Defs>

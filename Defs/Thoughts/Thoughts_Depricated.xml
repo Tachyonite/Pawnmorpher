@@ -1,0 +1,13 @@
+<Defs>
+	<ThoughtDef>
+		<defName>ChemMilkedMyselfMale</defName>
+		<durationDays>1</durationDays>
+		<stages>
+			<li>
+				<label>milked myself</label>
+				<description>For the love of...not chemfuel!</description>
+				<baseMoodEffect>-20</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

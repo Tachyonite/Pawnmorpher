@@ -1,0 +1,53 @@
+<Defs>
+	<ThoughtDef>
+		<defName>EtherReactionNoHands</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>EtherPawHand</hediff>
+		<stages>
+			<li>
+				<label>paw-hands</label>
+				<description>How am I supposed to do anything with paws for hands?</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionCowTFHooves</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>EtherHoofHand</hediff>
+		<stages>
+			<li>
+				<label>hoof-hands</label>
+				<description>I can't do anything with hooves...!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionElephantTFStumps</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>EtherElephantHand</hediff>
+		<stages>
+			<li>
+				<label>stump-hands</label>
+				<description>I break everything I touch!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>EtherReactionChickenTFWings</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>EtherWingTip</hediff>
+		<stages>
+			<li>
+				<label>stump-hands</label>
+				<description>I don't have any fingers, what am I supposed to do?!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

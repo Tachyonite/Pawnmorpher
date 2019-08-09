@@ -1,0 +1,19 @@
+<Defs>
+	<ThoughtDef>
+		<defName>EtherReactionDeerTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphDeerTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>*snort*!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I have a sudden urge to run, to jump...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

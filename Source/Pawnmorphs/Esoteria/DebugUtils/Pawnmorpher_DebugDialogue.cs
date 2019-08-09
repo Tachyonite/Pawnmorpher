@@ -42,23 +42,20 @@ namespace Pawnmorph.DebugUtils
 
         List<DebugMenuOption> GetRaceChangeOptions()
         {
-            var races = RaceGenerator.ImplicitRaces;
+            //var races = RaceGenerator.ImplicitRaces;
             List<DebugMenuOption> lst = new List<DebugMenuOption>(); 
-            foreach (ThingDef_AlienRace thingDefAlienRace in races)
+            foreach (var morph in DefDatabase<MorphDef>.AllDefs)
             {
-                var local = thingDefAlienRace; 
+                var local = morph; 
 
                 lst.Add(new DebugMenuOption(local.label, DebugMenuOptionMode.Tool, () =>
                 {
                     var pawn = Find.CurrentMap.thingGrid.ThingsAt(UI.MouseCell()).OfType<Pawn>().FirstOrDefault();
                     if (pawn != null && pawn.RaceProps.intelligence == Intelligence.Humanlike)
                     {
-                        RaceShiftUtilities.ChangePawnRace(pawn, local); 
+                        RaceShiftUtilities.ChangePawnToMorph(pawn, local); 
                     }
-
-
-
-
+                    
                 }));
 
             }

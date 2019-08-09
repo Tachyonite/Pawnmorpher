@@ -1,0 +1,19 @@
+<Defs>
+	<ThoughtDef>
+		<defName>EtherReactionElephantTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphElephantTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>I can touch my elbow with my trunk!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling powerful</label>
+				<description>I have a sudden urge to spray water on myself...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

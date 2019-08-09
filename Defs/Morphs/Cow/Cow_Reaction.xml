@@ -1,0 +1,19 @@
+<Defs>
+	<ThoughtDef>
+		<defName>EtherReactionCowTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphCowTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>M...moo?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>That grass is looking...tasty...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

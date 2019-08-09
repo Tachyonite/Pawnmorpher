@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
+//Depricated, use HedifGiver_Mutaions instead.
 namespace Pawnmorph
 {
+    [Obsolete("Use HediffGiver_Mutation instead")]
     public class HediffGiver_Esoteric_GenderChanceFixed : HediffGiver
     {
         public float mtbDays;

@@ -1,7 +1,10 @@
-﻿using Verse;
+﻿using System;
+using Verse;
 
+//Depricated, use HedifGiver_Mutaions instead.
 namespace Pawnmorph
 {
+    [Obsolete("use HediffGiver_Mutation")]
     public class HediffGiver_Esoteric_GenderChance : HediffGiver
     {
         public float mtbDays;

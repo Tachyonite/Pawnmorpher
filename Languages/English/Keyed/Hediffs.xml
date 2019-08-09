@@ -32,6 +32,10 @@
 
   <LetterRaceChangeToMorphLabel>{0} is no longer considered human!</LetterRaceChangeToMorphLabel>
   <LetterRaceChangeToMorphContent>TODO</LetterRaceChangeToMorphContent>
+
+  <LetterPawnHumanAgainLabel>{0} is human again!</LetterPawnHumanAgainLabel>
+  <LetterPawnHumanAgainContent>TODO</LetterPawnHumanAgainContent>
+
 <CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
 <CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
 
