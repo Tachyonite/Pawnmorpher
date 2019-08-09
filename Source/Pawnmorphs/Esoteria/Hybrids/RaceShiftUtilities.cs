@@ -148,7 +148,11 @@ namespace Pawnmorph.Hybrids
             if (morph == null) throw new ArgumentNullException(nameof(morph));
             if (morph.hybridRaceDef == null)
                 Log.Error($"tried to change pawn {pawn.Name.ToStringFull} to morph {morph.defName} but morph has no hybridRace!");
-
+            if (pawn.def != ThingDefOf.Human)
+            {
+                Log.Warning($"hybrids of non human pawns are currently not supported");
+                return; 
+            }
             ThingDef_AlienRace hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
 
