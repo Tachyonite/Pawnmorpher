@@ -6,6 +6,11 @@
 		<hediff>WasMergedRelieved</hediff>
 		<stages>
 			<li>
+				<label>was melded and feral (permanent)</label>
+				<description>I was trapped as a beast in the same body as another! It was horribly uncomfortable to forget my humanity and I can't look them in the eyes for the things they made us do!</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+			<li>
 				<label>was melded and feral</label>
 				<description>I was trapped as a beast in the same body as another! It was horribly uncomfortable to forget my humanity and I can't look them in the eyes for the things they made us do!</description>
 				<baseMoodEffect>-8</baseMoodEffect>

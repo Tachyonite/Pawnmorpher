@@ -5,8 +5,8 @@
     <durationDays>10</durationDays>
     <stages>
       <li>
-        <label>colonist perm feral</label>
-        <description>TODO</description>
+        <label>colonist permanently feral</label>
+        <description>We knew it was coming...but now they can never be human again.</description>
         <baseMoodEffect>-1</baseMoodEffect>
       </li>
     </stages>
@@ -16,8 +16,8 @@
     <durationDays>10</durationDays>
     <stages>
       <li>
-        <label>friend perm feral</label>
-        <description>TODO</description>
+        <label>friend permanently feral</label>
+        <description>My friend is stuck in the body of an animal...forever!</description>
         <baseMoodEffect>-1</baseMoodEffect>
       </li>
     </stages>
@@ -27,8 +27,8 @@
     <durationDays>10</durationDays>
     <stages>
       <li>
-        <label>rival perm feral</label>
-        <description>TODO</description>
+        <label>rival permanently feral</label>
+        <description>My rival can never come back from that beastly form now. Suits them.</description>
         <baseMoodEffect>-1</baseMoodEffect>
       </li>
     </stages>

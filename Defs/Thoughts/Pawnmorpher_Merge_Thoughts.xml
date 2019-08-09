@@ -6,7 +6,7 @@
     <stages>
       <li>
         <label>colonist merged</label>
-        <description>TODO</description>
+        <description>We did mad science on one of our own, and now they're...horrifying.</description>
         <baseMoodEffect>-8</baseMoodEffect>
 
       </li>
@@ -19,7 +19,7 @@
     <stages>
       <li>
         <label>friend merged</label>
-        <description>TODO</description>
+        <description>The colony did mad science on my friend and now they're a monster!</description>
         <baseMoodEffect>-8</baseMoodEffect>
 
       </li>
@@ -32,7 +32,7 @@
     <stages>
       <li>
         <label>rival merged</label>
-        <description>TODO</description>
+        <description>We did mad science on my rival...serves them right.</description>
         <baseMoodEffect>8</baseMoodEffect>
 
       </li>
@@ -45,8 +45,8 @@
     <stages>
       <li>
         <label>prisoner merged</label>
-        <description>TODO</description>
-        <baseMoodEffect>-8</baseMoodEffect>
+        <description>We did mad science on a captive. It just feels wrong to make them a monster...</description>
+        <baseMoodEffect>-4</baseMoodEffect>
 
       </li>
     </stages>

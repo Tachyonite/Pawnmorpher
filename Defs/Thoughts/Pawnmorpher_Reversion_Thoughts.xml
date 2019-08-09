@@ -7,8 +7,8 @@
     <stages>
       <li>
         <label>colonist reverted</label>
-        <description>TODO</description>
-        <baseMoodEffect>-1</baseMoodEffect>
+        <description>A colonist is human again, we did a good deed.</description>
+        <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
@@ -18,8 +18,8 @@
     <stages>
       <li>
         <label>friend reverted</label>
-        <description>TODO</description>
-        <baseMoodEffect>-1</baseMoodEffect>
+        <description>My friend is human again! Praise Randy!</description>
+        <baseMoodEffect>15</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
@@ -31,8 +31,8 @@
     <stages>
       <li>
         <label>rival reverted</label>
-        <description>TODO</description>
-        <baseMoodEffect>-1</baseMoodEffect>
+        <description>Agh, it was somewhat fun seeing them on all-fours though!</description>
+        <baseMoodEffect>-3</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
