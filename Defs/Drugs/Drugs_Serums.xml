@@ -44,7 +44,7 @@
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
-				<chemical>RandomTransformerChemical</chemical>
+				
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
@@ -89,7 +89,6 @@
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
-				<chemical>RandomTransformerChemical</chemical>
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
@@ -132,7 +131,6 @@
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
-				<chemical>RandomTransformerChemical</chemical>
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
@@ -172,7 +170,6 @@
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
-				<chemical>RandomTransformerChemical</chemical>
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
