@@ -1052,7 +1052,7 @@
 									</li>
 									<li>
 										<path>Parts/None/None</path>
-										<bodyPart>Jaw</bodyPart>
+										<bodyPart>Skull</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
 										<hediffGraphics>
 											<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
