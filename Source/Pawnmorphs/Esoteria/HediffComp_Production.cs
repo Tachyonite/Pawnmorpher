@@ -54,7 +54,7 @@ namespace Pawnmorph
                 HatchingTicker = 0;
                 for (int i = 0; i < amount; i++)
                 {
-                    if (Rand.RangeInclusive(0, 100) <= (chance))
+                    if (Rand.RangeInclusive(0, 100) <= (chance) && rareResource != null)
                     {
                         GenSpawn.Spawn(rareResource, Pawn.Position, Pawn.Map);
                     }

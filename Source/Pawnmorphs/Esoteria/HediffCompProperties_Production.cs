@@ -15,7 +15,7 @@ namespace Pawnmorph
         public ThoughtDef etherBrokenThought = null;
         public Gender genderAversion = Gender.None;
         public string resource = "Chemfuel";
-        public string rareResource = "Chemfuel";
+        public string rareResource;
         public List<HediffComp_Staged> stages = null;
 
         public HediffCompProperties_Production()

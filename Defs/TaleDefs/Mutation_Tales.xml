@@ -1,8 +1,8 @@
 ﻿<Defs>
   <TaleDef Name="MutationTaleBase" Abstract="True">
     <type>Volatile</type>
-    <baseInterest>3</baseInterest>
-    <ignoreChance>0.2</ignoreChance>
+    <baseInterest>6</baseInterest>
+    <ignoreChance>0.1</ignoreChance>
     <taleClass>Tale_SinglePawn</taleClass>
     <rulePack>
       <rulesStrings>
