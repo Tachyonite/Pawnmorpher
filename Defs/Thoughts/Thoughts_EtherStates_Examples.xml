@@ -28,29 +28,4 @@
         </stages>
     </ThoughtDef>
 
-	<ThoughtDef>
-		<defName>EtherHediffThoughtExample</defName>
-		<workerClass>Pawnmorph.Thoughts.ThoughtWorker_EtherHediff</workerClass>
-		<hediff>PawnmorphFoxTF</hediff>
-		<!-- stages are always in order of none, broken, bond -->
-		<stages>
-			<li>
-				<label>changed (none)</label>
-				<description>I have am neither bonded or broken</description>
-				<baseMoodEffect>-4</baseMoodEffect>
-			</li>
-			<li>
-				<label>changed (broken)</label>
-				<description>I have the EtherBroken hediff</description>
-				<baseMoodEffect>0</baseMoodEffect>
-				<visible>true</visible>
-				<!-- still doesn't show up for some reason-->
-			</li>
-			<li>
-				<label>changed (bonded)</label>
-				<description>I have the EtherBond hediff</description>
-				<baseMoodEffect>4</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
 </Defs>
