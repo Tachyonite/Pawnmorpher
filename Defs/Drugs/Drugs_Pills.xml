@@ -224,8 +224,9 @@
 		</comps>
 	</ThingDef>
   
-	<HediffDef>
+	<HediffDef Class="Pawnmorph.Hediffs.Def_ImmuneToType">
 		<defName>StabiliserHigh</defName>
+		<immuneToType>Pawnmorph.Hediff_Morph</immuneToType>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>mutagen stabilised</label>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
@@ -236,81 +237,13 @@
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.18</severityPerDay>
 			</li>
-			<li Class="Pawnmorph.HediffCompProperties_Remove">
-				<makeImmuneTo>
-					<li>FullRandomTF</li>
-					<li>FullRandomTFAnyOutcome</li>
-					<li>PawnmorphAlpacaTF</li>
-					<li>PawnmorphAlpacaTFPartial</li>
-					<li>PawnmorphBearTF</li>
-					<li>PawnmorphBearTFPartial</li>
-					<li>PawnmorphBoarTF</li>
-					<li>PawnmorphBoarTFPartial</li>
-					<li>PawnmorphBoomalopeTF</li>
-					<li>PawnmorphBoomalopeTFPartial</li>
-					<li>PawnmorphCatTF</li>
-					<li>PawnmorphCatTFPartial</li>
-					<li>PawnmorphChickenTF</li>
-					<li>PawnmorphChickenTFPartial</li>
-					<li>PawnmorphCowTF</li>
-					<li>PawnmorphCowTFPartial</li>
-					<li>PawnmorphDeerTF</li>
-					<li>PawnmorphDeerTFPartial</li>
-					<li>PawnmorphElephantTF</li>
-					<li>PawnmorphElephantTFPartial</li>
-					<li>PawnmorphFoxTF</li>
-					<li>PawnmorphFoxTFPartial</li>
-					<li>PawnmorphHuskyTF</li>
-					<li>PawnmorphHuskyTFPartial</li>
-					<li>PawnmorphPigTF</li>
-					<li>PawnmorphPigTFPartial</li>
-					<li>PawnmorphRatTF</li>
-					<li>PawnmorphRatTFPartial</li>
-					<li>PawnmorphThrumboTF</li>
-					<li>PawnmorphThrumboTFPartial</li>
-					<li>PawnmorphWargTF</li>
-					<li>PawnmorphWargTFPartial</li>
-					<li>PawnmorphWolfTF</li>
-					<li>PawnmorphWolfTFPartial</li>
-				</makeImmuneTo>
+			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
+				<removeType>Pawnmorph.Hediff_Morph</removeType>
 			</li>
 		</comps>
 		<stages>
 			<li>
-				<makeImmuneTo>
-					<li>FullRandomTF</li>
-					<li>FullRandomTFAnyOutcome</li>
-					<li>PawnmorphAlpacaTF</li>
-					<li>PawnmorphAlpacaTFPartial</li>
-					<li>PawnmorphBearTF</li>
-					<li>PawnmorphBearTFPartial</li>
-					<li>PawnmorphBoarTF</li>
-					<li>PawnmorphBoarTFPartial</li>
-					<li>PawnmorphBoomalopeTF</li>
-					<li>PawnmorphBoomalopeTFPartial</li>
-					<li>PawnmorphChickenTF</li>
-					<li>PawnmorphChickenTFPartial</li>
-					<li>PawnmorphCowTF</li>
-					<li>PawnmorphCowTFPartial</li>
-					<li>PawnmorphDeerTF</li>
-					<li>PawnmorphDeerTFPartial</li>
-					<li>PawnmorphElephantTF</li>
-					<li>PawnmorphElephantTFPartial</li>
-					<li>PawnmorphFoxTF</li>
-					<li>PawnmorphFoxTFPartial</li>
-					<li>PawnmorphHuskyTF</li>
-					<li>PawnmorphHuskyTFPartial</li>
-					<li>PawnmorphPigTF</li>
-					<li>PawnmorphPigTFPartial</li>
-					<li>PawnmorphRatTF</li>
-					<li>PawnmorphRatTFPartial</li>
-					<li>PawnmorphThrumboTF</li>
-					<li>PawnmorphThrumboTFPartial</li>
-					<li>PawnmorphWargTF</li>
-					<li>PawnmorphWargTFPartial</li>
-					<li>PawnmorphWolfTF</li>
-					<li>PawnmorphWolfTFPartial</li>
-				</makeImmuneTo>
+				
 			</li>
 		</stages>
 	</HediffDef>

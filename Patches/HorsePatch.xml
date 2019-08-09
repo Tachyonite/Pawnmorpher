@@ -506,22 +506,6 @@
 						<li>Palomino</li>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs/HediffDef[defName="StabiliserHigh"]/stages/li/makeImmuneTo</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>
-						<li>PawnmorphHorseTFPartial</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs/HediffDef[defName="StabiliserHigh"]/comps[last()]/makeImmuneTo</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>
-						<li>PawnmorphHorseTFPartial</li>
-					</value>
-				</li>
 			</operations>
 		</match>
 	</Operation>
