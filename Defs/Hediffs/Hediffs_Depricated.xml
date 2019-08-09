@@ -105,25 +105,6 @@
 	</HediffDef>
 	
 	<HediffDef ParentName="PawnmorphPart">
-		<defName>EtherCatEye</defName>
-		<label>feline eye</label>
-		<description>Slitted, yellow eyes are now [PAWN_nameDef]'s to keep. They are keener and rather enticing to look at.</description>
-		<stages>
-			<li>
-				<statOffsets>
-					<SocialImpact>+0.05</SocialImpact>
-				</statOffsets>
-				<capMods>
-					<li>
-						<capacity>Sight</capacity>
-						<offset>0.2</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</HediffDef>
-	
-	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherTail</defName>
 		<label>tail</label>
 		<description>A regular tail.</description>

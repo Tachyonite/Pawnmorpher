@@ -163,21 +163,7 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>FoxTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>HuskyTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>WargTransformer</thingDef>
+				<thingDef>AlpacaTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -185,6 +171,27 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>BearTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>BoarTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>BoomalopeTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>CatTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -205,13 +212,6 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>PigTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
 				<thingDef>DeerTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -219,21 +219,21 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>AlpacaTransformer</thingDef>
+				<thingDef>FoxTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>BoomalopeTransformer</thingDef>
+				<thingDef>HuskyTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>BoarTransformer</thingDef>
+				<thingDef>PigTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -247,7 +247,14 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>PigTransformer</thingDef>
+				<thingDef>WargTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>WolfTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>

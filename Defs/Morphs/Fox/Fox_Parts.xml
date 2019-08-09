@@ -11,11 +11,11 @@
 		<defName>EtherFoxMuzzle</defName>
 		<label>vulpine muzzle</label>
 		<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
-    <initialSeverity>0</initialSeverity>
-    <stages>
+		<initialSeverity>0</initialSeverity>
+		<stages>
 			<li>
-        <label>new</label>
-        <capMods>
+				<label>new</label>
+				<capMods>
 					<li>
 						<capacity>Talking</capacity>
 						<offset>-0.50</offset>
@@ -26,19 +26,19 @@
 					</li>
 				</capMods>
 			</li>
-      <li>
-        <minSeverity>0.5</minSeverity>
-        <label>adapted</label>
-        <capMods>
-          <li>
-            <capacity>Eating</capacity>
-            <offset>0.50</offset>
-          </li>
-        </capMods>
-        <statOffsets>
-          <SocialImpact>+0.10</SocialImpact>
-        </statOffsets>
-      </li>
+			<li>
+				<minSeverity>0.5</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<SocialImpact>+0.10</SocialImpact>
+				</statOffsets>
+			</li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
@@ -55,9 +55,9 @@
 					</li>
 				</tools>
 			</li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphTrigger">
-        <severityValue>1</severityValue>
-      </li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MorphTrigger">
+				<severityValue>1</severityValue>
+			</li>
 		</comps>
 	</HediffDef>
 

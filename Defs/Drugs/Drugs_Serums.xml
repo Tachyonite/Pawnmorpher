@@ -18,6 +18,7 @@
 						<li>PawnmorphBearTF</li>
 						<li>PawnmorphBoarTF</li>
 						<li>PawnmorphBoomalopeTF</li>
+						<li>PawnmorphCatTF</li>
 						<li>PawnmorphChickenTF</li>
 						<li>PawnmorphCowTF</li>
 						<li>PawnmorphDeerTF</li>
@@ -66,6 +67,7 @@
 					<hediffDefs>
 						<li>PawnmorphBearTF</li>
 						<li>PawnmorphBoarTF</li>
+						<li>PawnmorphCatTF</li>
 						<li>PawnmorphDeerTF</li>
 						<li>PawnmorphFoxTF</li>
 						<li>PawnmorphHuskyTF</li>

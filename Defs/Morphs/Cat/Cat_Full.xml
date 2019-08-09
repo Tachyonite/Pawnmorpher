@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="MorphParent">
-		<defName>PawnmorphFoxTF</defName>
-		<label>foxMorph</label>
+		<defName>PawnmorphCatTF</defName>
+		<label>catMorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>
@@ -17,11 +17,12 @@
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
 						<pawnkinds>
-							<li>Fox_Red</li>
-							<li>Fox_Arctic</li>
-							<li>Fox_Fennec</li>
+							<li>Cat</li>
+							<li>Cougar</li>
+							<li>Panther</li>
+							<li>Lynx</li>
 						</pawnkinds>
-						<tale>TransformationCanid</tale>
+						<tale>TransformationMisc</tale>
 					</li>
 				</hediffGivers>
 			</li>
@@ -66,24 +67,22 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherFoxMuzzle</hediff>
+						<hediff>EtherCatMuzzle</hediff>
 						<mtbDays>0.5</mtbDays>
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
-						<tale>GrewCanidMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherFoxEar</hediff>
+						<hediff>EtherCatEar</hediff>
 						<mtbDays>1</mtbDays>
 						<partsToAffect>
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-						<tale>EarsChangedCanid</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherFluffyTail</hediff>
+						<hediff>EtherCatTail</hediff>
 						<mtbDays>1</mtbDays>
 						<partsToAffect>
 							<li>Tail</li>
@@ -99,14 +98,13 @@
 						<countToAffect>2</countToAffect>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherPawHand</hediff>
+						<hediff>EtherCatClaws</hediff>
 						<mtbDays>3</mtbDays>
-						<chance>5</chance>
 						<partsToAffect>
 							<li>Hand</li>
 						</partsToAffect>
+						<chance>5</chance>
 						<countToAffect>2</countToAffect>
-						<tale>HandsBecomePaws</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>
@@ -125,7 +123,7 @@
 						<countToAffect>2</countToAffect>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherFoxEye</hediff>
+						<hediff>EtherCatEye</hediff>
 						<mtbDays>1.5</mtbDays>
 						<partsToAffect>
 							<li>Eye</li>
