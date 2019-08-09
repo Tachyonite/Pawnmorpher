@@ -2,8 +2,8 @@
 <!--These hediffs are currently unused but had a purpose in pervious versions of the mod and old saves may still contain them-->
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherMuzzle</defName>
-		<label>muzzle</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<label>muzzle (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -38,8 +38,8 @@
 
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherSnout</defName>
-		<label>snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face.</description>
+		<label>snout (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -74,8 +74,8 @@
 	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherClaws</defName>
-		<label>clawed</label>
-		<description>Sharp, catlike claws have replaced the shed nails of [PAWN_nameDef]. This gives [PAWN_objective] a combat advantage, and makes it harder to wipe [PAWN_pronoun] ass.</description>
+		<label>clawed (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -106,8 +106,8 @@
 	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherTail</defName>
-		<label>tail</label>
-		<description>A regular tail.</description>
+		<label>tail (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -122,7 +122,8 @@
 
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherFurryEar</defName>
-		<label>fuzzy</label>
+		<label>fuzzy (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -137,7 +138,8 @@
 
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherPointedEar</defName>
-		<label>pointed</label>
+		<label>pointed (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -152,7 +154,8 @@
 
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherDogEar</defName>
-		<label>floppy</label>
+		<label>floppy (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
