@@ -52,7 +52,7 @@ namespace Pawnmorph.Hybrids
                 body = human.body,
                 baseBodySize = human.baseBodySize,
                 baseHealthScale = human.baseHealthScale,
-                foodType = animal.foodType,
+                foodType = animal.foodType | FoodTypeFlags.Meal, //make sure they can always eat meals 
                 gestationPeriodDays = human.gestationPeriodDays,
                 meatColor = animal.meatColor,
                 meatMarketValue = animal.meatMarketValue,

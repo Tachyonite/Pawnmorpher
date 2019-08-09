@@ -56,7 +56,20 @@ namespace Pawnmorph
         public TransformSettings transformSettings = new TransformSettings(); 
 
 
-        [Unsaved] public ThingDef_AlienRace hybridRaceDef; 
+        [Unsaved] public ThingDef_AlienRace hybridRaceDef;
 
+        public FoodPreferability? GetOverride(ThingDef food) //note, RawTasty is 5, RawBad is 4 
+        {
+            if (food?.ingestible == null) return null; 
+            foreach (HybridRaceSettings.FoodCategoryOverride foodOverride in raceSettings.foodSettings.foodOverrides)
+            {
+                if ((food.ingestible.foodType & foodOverride.foodFlags) != 0)
+                    return foodOverride.preferability;
+            }
+
+            return null; 
+
+        }
+        
     }
 }

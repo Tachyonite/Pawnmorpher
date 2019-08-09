@@ -10,6 +10,7 @@ using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
 using Harmony;
+using Pawnmorph.Hybrids;
 using Pawnmorph.Thoughts;
 using RimWorld.Planet;
 
@@ -545,6 +546,45 @@ namespace Pawnmorph
             harmonyInstance.Patch(original: AccessTools.Method(type: typeof(FoodUtility), name: nameof(FoodUtility.ThoughtsFromIngesting)),
                  prefix: null,
                  postfix: new HarmonyMethod(type: patchType, name: nameof(ThoughtsFromIngestingPostfix)));
+
+
+            //untested changes below 
+            //trying to change the preferability of the morphs, so they'll eat raw food before starving themselves (only really effects the warg morph) 
+#if false
+            harmonyInstance.Patch( AccessTools.Method(typeof(CaravanPawnsNeedsUtility), nameof(CaravanPawnsNeedsUtility.GetFoodScore),
+                                                      new Type[]
+                                                      {
+                                                          typeof(ThingDef), typeof(Pawn), typeof(float)
+                                                      })
+                                  , null, new HarmonyMethod(patchType, nameof(GetFoodScoreDefPostfix)));
+            harmonyInstance
+               .Patch(AccessTools.Method(typeof(CaravanPawnsNeedsUtility), nameof(CaravanPawnsNeedsUtility.CanEatForNutritionEver)),
+                      null, new HarmonyMethod(patchType, nameof(CanEatForNutritionEverPostfix)));
+            harmonyInstance.Patch(AccessTools.Method(typeof(CaravanPawnsNeedsUtility),
+                                                     nameof(CaravanPawnsNeedsUtility.CanEatForNutritionNow),
+                                                     new Type[]
+                                                     {
+                                                         typeof(ThingDef), typeof(Pawn)
+                                                     }),
+                                  null, new HarmonyMethod(patchType, nameof(CanEatForNutritionNowDefPostfix)));
+
+            harmonyInstance.Patch(AccessTools.Method(typeof(FoodUtility), nameof(FoodUtility.WillEat), new[]
+            {
+                typeof(Pawn), typeof(Thing), typeof(Pawn)
+            }), null, new HarmonyMethod(patchType, nameof(WillEatThingPostfix)));
+
+            harmonyInstance.Patch(AccessTools.Method(typeof(FoodUtility), nameof(FoodUtility.WillEat), new[]
+            {
+                typeof(Pawn), typeof(ThingDef), typeof(Pawn)
+            }), null, new HarmonyMethod(patchType, nameof(WillEatDefPostfix)));
+
+            harmonyInstance.Patch(AccessTools.Method(typeof(FoodUtility), nameof(FoodUtility.FoodOptimality)),
+                                  null, new HarmonyMethod(patchType, nameof(FoodOptimalityPostfix)));   
+#endif
+          
+
+            //end untested changes 
+
             harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
         }
 
@@ -581,6 +621,223 @@ namespace Pawnmorph
 
         }
 
+        public static void GetFoodScoreDefPostfix(ThingDef food, Pawn pawn, float singleFoodNutrition, ref float __result)
+        {
+            if (RaceGenerator.TryGetMorphOfRace(pawn.def, out MorphDef morph))
+            {
+                var prefOverride = morph.GetOverride(food);
+                if (prefOverride != null)
+                {
+                    __result = (float) prefOverride.Value; 
+                }
+            }
+
+
+            
+        }
+
+        public static void CanEatForNutritionEverPostfix(ThingDef food, Pawn pawn, ref bool __result)
+        {
+            if (RaceGenerator.TryGetMorphOfRace(pawn.def, out MorphDef def))
+            {
+
+                var pref = pawn.GetOverride(food) ?? food.ingestible.preferability;
+                __result =  food.IsNutritionGivingIngestible
+                         && pawn.WillEat(food)
+                         && pref > FoodPreferability.NeverForNutrition
+                         && (!food.IsDrug || pawn.IsTeetotaler());
+                
+            }
+
+
+
+        }
+
+        public static void CanEatForNutritionNowDefPostfix(ThingDef food, Pawn pawn, ref bool __result)
+        {
+            if (RaceGenerator.TryGetMorphOfRace(pawn.def, out MorphDef def))
+            {
+                __result = CaravanPawnsNeedsUtility.CanEatForNutritionEver(food, pawn); 
+            }
+        }
+
+
+        public static void WillEatThingPostfix(Pawn p, Thing food, Pawn getter, ref bool __result)
+        {
+            if (RaceGenerator.TryGetMorphOfRace(p.def, out MorphDef def))
+            {
+
+                if (!def.race.race.CanEverEat(food))
+                {
+                    __result = false;
+                    return; 
+                }
+                if (p.foodRestriction != null)
+                {
+                    FoodRestriction currentRespectedRestriction = p.foodRestriction.GetCurrentRespectedRestriction(getter);
+                    if (currentRespectedRestriction != null && !currentRespectedRestriction.Allows(food) && (food.def.IsWithinCategory(ThingCategoryDefOf.Foods)))
+                    {
+                        __result =  false;
+                        return; 
+                    }
+                }
+
+                __result = true; 
+
+            }
+        }
+
+
+        public static void WillEatDefPostfix(Pawn p, ThingDef food, Pawn getter, ref bool __result)
+        {
+            if (RaceGenerator.TryGetMorphOfRace(p.def, out MorphDef def))
+            {
+                if (!def.race.race.CanEverEat(food))
+                {
+                    __result = false;
+                    return; 
+                }
+
+                if (p.foodRestriction != null)
+                {
+                    FoodRestriction currentRespectedRestriction = p.foodRestriction.GetCurrentRespectedRestriction(getter);
+                    if (currentRespectedRestriction != null && !currentRespectedRestriction.Allows(food) && (food.IsWithinCategory(ThingCategoryDefOf.Foods)))
+                    {
+                        __result = false;
+                        return; 
+                    }
+                }
+
+                __result = true; 
+
+            }
+
+
+        }
+
+        public static void FoodOptimalityPostfix(Pawn eater, Thing foodSource, ThingDef foodDef, float dist,
+                                                 bool takingToInventory, ref float __result)
+        {
+            if (RaceGenerator.TryGetMorphOfRace(eater.def, out MorphDef def))
+            {
+                __result = FoodOptimality(eater, foodSource, foodDef, dist, takingToInventory, def); 
+            }
+
+
+        }
+
+        static float FoodOptimality(Pawn eater, Thing foodSource, ThingDef foodDef, float dist, bool takingToInventory,
+                                   MorphDef morph)
+        {
+            float num = 300f;
+            num -= dist;
+            FoodPreferability preferability = foodDef.ingestible.preferability;
+
+            var fOverride = morph.GetOverride(foodDef);
+          
+
+            preferability = fOverride ?? preferability; 
+
+            if (preferability != FoodPreferability.NeverForNutrition)
+            {
+                if (preferability != FoodPreferability.DesperateOnly)
+                {
+                    if (preferability == FoodPreferability.DesperateOnlyForHumanlikes)
+                    {
+                        if (eater.RaceProps.Humanlike)
+                        {
+                            num -= 150f;
+                        }
+                    }
+                }
+                else
+                {
+                    num -= 150f;
+                }
+                CompRottable compRottable = foodSource.TryGetComp<CompRottable>();
+                if (compRottable != null)
+                {
+                    if (compRottable.Stage == RotStage.Dessicated)
+                    {
+                        return -9999999f;
+                    }
+                    if (!takingToInventory && compRottable.Stage == RotStage.Fresh && compRottable.TicksUntilRotAtCurrentTemp < 30000)
+                    {
+                        num += 12f;
+                    }
+                }
+                if (eater.needs != null && eater.needs.mood != null)
+                {
+                    List<ThoughtDef> list = FoodUtility.ThoughtsFromIngesting(eater, foodSource, foodDef);
+                    for (int i = 0; i < list.Count; i++)  
+                    {
+                        num += FoodOptimalityEffectFromMoodCurve.Evaluate(list[i].stages[0].baseMoodEffect); 
+                    }
+                }
+                if (foodDef.ingestible != null)
+                {
+                    
+                    
+                        num += foodDef.ingestible.optimalityOffsetFeedingAnimals;
+                    
+                }
+
+                if (fOverride != null)
+                {
+                    var diff = 5.5f * ((int) fOverride.Value - (int) foodDef.ingestible.preferability); //constant is a guess at how large the optimality should be 
+                    num += FoodOptimalityEffectFromMoodCurve.Evaluate(diff); 
+                }
+
+                
+
+                return num;
+            }
+            return -9999999f;
+
+
+
+
+        }
+
+        private static readonly SimpleCurve FoodOptimalityEffectFromMoodCurve = new SimpleCurve
+        {
+            {
+                new CurvePoint(-100f, -600f),
+                true
+            },
+            {
+                new CurvePoint(-10f, -100f),
+                true
+            },
+            {
+                new CurvePoint(-5f, -70f),
+                true
+            },
+            {
+                new CurvePoint(-1f, -50f),
+                true
+            },
+            {
+                new CurvePoint(0f, 0f),
+                true
+            },
+            {
+                new CurvePoint(100f, 800f),
+                true
+            }
+        };
+
+
+        static FoodPreferability? GetOverride(this Pawn pawn, ThingDef food)
+        {
+            if (RaceGenerator.TryGetMorphOfRace(pawn.def, out MorphDef morph))
+            {
+                var prefOverride = morph.GetOverride(food);
+                return prefOverride; 
+            }
+
+            return null; 
+        }
 
 
 

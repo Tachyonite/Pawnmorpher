@@ -7,6 +7,18 @@
 			<li>canid</li>
 		</categories>
 		<raceSettings>
+			<foodSettings>
+				<foodOverrides>
+					<li>
+						<foodFlags>Corpse</foodFlags>
+						<preferability>RawTasty</preferability>
+					</li>
+					<li>
+						<foodFlags>Meat</foodFlags>
+						<preferability>MealFine</preferability>
+					</li>
+				</foodOverrides>
+			</foodSettings>
 			<thoughtSettings>
 				<replacerList>
 					<li>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
 using RimWorld;
+using Verse;
 
 namespace Pawnmorph.Hybrids
 {
@@ -28,6 +29,24 @@ namespace Pawnmorph.Hybrids
 
         }
 
+
+        public class FoodCategoryOverride
+        {
+
+            public FoodTypeFlags foodFlags;
+            public FoodPreferability preferability; 
+
+        }
+
+        public class FoodSettings
+        {
+            public List<FoodCategoryOverride> foodOverrides = new List<FoodCategoryOverride>(); 
+
+        }
+
+        public FoodSettings foodSettings = new FoodSettings(); 
+
+
         public HybridThoughtSettings thoughtSettings;
         public RaceRestrictionSettings restrictionSettings;
 
@@ -38,8 +57,6 @@ namespace Pawnmorph.Hybrids
             public List<AlienTraitEntry> forcedTraits;
             //public List<string> disallowedTraits; removing traits not supported right now, rimworld doesn't like it when you remove them  
         }
-
-
 
         /// <summary>
         /// generate AlienRace thought settings with the given morph def 
