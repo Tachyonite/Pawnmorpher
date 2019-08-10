@@ -209,13 +209,13 @@ namespace Pawnmorph.Hybrids
                 hasTooltip = humanDef.hasTooltip,
                 soundImpactDefault = morph.race.soundImpactDefault,
                 statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases),
-                inspectorTabs = humanDef.inspectorTabs, //do we want any custom tabs? 
+                inspectorTabs = humanDef.inspectorTabs.ToList(), //do we want any custom tabs? 
                 comps = humanDef.comps,
                 drawGUIOverlay = humanDef.drawGUIOverlay,
                 description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
                 alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph),
                 modContentPack = morph.modContentPack,
-                inspectorTabsResolved = humanDef.inspectorTabsResolved,
+                inspectorTabsResolved = humanDef.inspectorTabsResolved.ToList(),
                 recipes = new List<RecipeDef>(humanDef.AllRecipes), //this is where the surgery operations live
                 filth = morph.race.filth,
                 filthLeaving = morph.race.filthLeaving
