@@ -11,12 +11,13 @@ namespace Pawnmorph
 {
     public class Hediff_Morph : HediffWithComps
     {
-        private int _lastStage = -1;
+        [Unsaved]
+        private int _lastStage = -1; //ToDO can we save this?
         public override void PostTick()
         {
             base.PostTick();
 
-            if (_lastStage != CurStageIndex)
+            if (_lastStage != CurStageIndex && _lastStage != -1)
             {
 
                 _lastStage = CurStageIndex;
@@ -34,6 +35,8 @@ namespace Pawnmorph
 
 
             }
+
+            if (_lastStage == -1) _lastStage = CurStageIndex; //this means the above branch cannot be triggered on load 
         }
 
         /// <summary>
