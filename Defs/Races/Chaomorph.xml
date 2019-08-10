@@ -795,6 +795,105 @@
 		</tradeTags>
 	</ThingDef>
 
+
+  <ThingDef ParentName="AnimalThingBase"> <!-- ChaomeldDog was missing a thingDef, most values are taken from ChaomeldCow and will need tweaking -->
+    <defName>ChaomeldDog</defName>
+    <label>chaomeld</label>
+    <description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement.</description>
+    <statBases>
+      <MoveSpeed>5</MoveSpeed>
+      <ComfyTemperatureMin>-20</ComfyTemperatureMin>
+      <ComfyTemperatureMax>40</ComfyTemperatureMax>
+      <MarketValue>3000</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
+        <hediff>2xMergedHuman</hediff>
+      </li>
+    </comps>
+    <tools>
+      <li>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>15</power>
+        <cooldownTime>2.6</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.7</chanceFactor>
+      </li>
+      <li>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2.6</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.7</chanceFactor>
+      </li>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>4</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+     
+    </tools>
+    <race>
+      <body>Chaomeld</body>
+      <herdAnimal>true</herdAnimal>
+      <baseBodySize>2</baseBodySize>
+      <baseHungerRate>1.7</baseHungerRate>
+      <baseHealthScale>1.5</baseHealthScale>
+      <foodType>OmnivoreAnimal</foodType>
+      <leatherDef>Leather_Fox</leatherDef>
+      <wildness>0.1</wildness>
+      <trainability>Advanced</trainability>
+      <meatLabel>chaomeat</meatLabel>
+      <gestationPeriodDays>20</gestationPeriodDays>
+      <lifeExpectancy>22</lifeExpectancy>
+      <mateMtbHours>99999999</mateMtbHours>
+      <manhunterOnDamageChance>0.10</manhunterOnDamageChance>
+      <manhunterOnTameFailChance>0.02</manhunterOnTameFailChance>
+      <lifeStageAges>
+        <li>
+          <def>AnimalBaby</def>
+          <minAge>0</minAge>
+        </li>
+        <li>
+          <def>AnimalJuvenile</def>
+          <minAge>0.2</minAge>
+        </li>
+        <li>
+          <def>AnimalAdult</def>
+          <minAge>0.45</minAge>
+        </li>
+      </lifeStageAges>
+      <soundMeleeHitPawn>Pawn_Melee_BigBash_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_BigBash_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_BigBash_Miss</soundMeleeMiss>
+    </race>
+    <tradeTags>
+      <li>AnimalChaoticMerged</li>
+    </tradeTags>
+  </ThingDef>
+
+
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>ChaomeldDog</defName>
 		<label>chaomeld</label>

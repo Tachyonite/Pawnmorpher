@@ -1,0 +1,75 @@
+<Defs>
+	<!--Idividual injectors can be found in the morph's xml file-->
+	<ThingDef ParentName="DrugPillBase" Name="InjectorBase" Abstract="True">
+		<graphicData>
+			<texPath>Things/Item/Drug/Specific</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<rotatable>false</rotatable>
+		<thingCategories>
+			<li>Artifacts</li>
+		</thingCategories>
+		<statBases>
+			<WorkToMake>800</WorkToMake>
+			<MarketValue>500</MarketValue>
+			<Mass>0.01</Mass>
+		</statBases>
+		<techLevel>Ultra</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+		</ingestible>
+		<tradeTags>
+			<li>ExoticMisc</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisite>Injectors</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>3</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="InjectorBase" Name="PowerfulInjectorBase" Abstract="True">
+		<statBases>
+			<MarketValue>1000</MarketValue>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>PowerfulInjectors</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>6</MechaniteSlurry>
+		</costList>
+	</ThingDef>
+	
+	<ThingDef ParentName="DrugPillBase" Name="SerumBase" Abstract="True">
+		<rotatable>false</rotatable>
+		<techLevel>Ultra</techLevel>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.01</Mass>
+		</statBases>
+		<thingCategories>
+			<li>Artifacts</li>
+		</thingCategories>
+		<tradeTags>
+			<li>ExoticMisc</li>
+		</tradeTags>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+		</ingestible>
+	</ThingDef>
+</Defs>

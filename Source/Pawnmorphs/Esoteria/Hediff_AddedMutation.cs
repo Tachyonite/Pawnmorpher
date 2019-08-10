@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
+using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -8,6 +11,14 @@ namespace Pawnmorph
     public class Hediff_AddedMutation : HediffWithComps
     {
         public string mutationDescription;
+
+
+        /// <summary>
+        /// the influence this mutation exerts on a pawn  
+        /// </summary>
+        [CanBeNull]
+        public Comp_MorphInfluence Influence => (comps?.OfType<Comp_MorphInfluence>().FirstOrDefault());
+
 
         public override bool ShouldRemove
         {
@@ -69,6 +80,9 @@ namespace Pawnmorph
                     pawn.health.hediffSet.hediffs.Remove(pawn.health.hediffSet.hediffs[i]); // ...remove it.
                 }
             }
+
+      
+
         }
 
         public override void ExposeData()

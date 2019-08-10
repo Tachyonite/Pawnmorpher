@@ -6,6 +6,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationAdd">
+					<!--Graphics-->
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
 					<value>
 						<li>
@@ -146,13 +147,257 @@
 						</li>		
 					</value>
 				</li>
+				
+				<!--Hediffs-->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-						<HediffDef ParentName="PawnmorphPart">
+						<!--Morph Def-->
+						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+							<defName>HorseMorph</defName>
+							<label>horse morph</label>
+							<race>QuarterHorse</race>
+							<categories>
+								<li>bovine</li>
+								<li>farm</li>
+							</categories>
+						</Pawnmorph.MorphDef>
+						
+						<!--Morph Reaction-->
+						<ThoughtDef>
+							<defName>EtherReactionHorseTF</defName>
+							<workerClass>ThoughtWorker_Hediff</workerClass>
+							<hediff>PawnmorphHorseTF</hediff>
+							<stages>
+								<li>
+									<label>changed</label>
+									<description>N...neigh!?</description>
+									<baseMoodEffect>-3</baseMoodEffect>
+								</li>
+								<li>
+									<label>feeling odd</label>
+									<description>I feel like I should be pulling a plough...or galloping across a steppe.</description>
+									<baseMoodEffect>-5</baseMoodEffect>
+								</li>
+							</stages>
+						</ThoughtDef>
+						
+						<!--Full Morph-->
+						<HediffDef ParentName="MorphParent">
+							<defName>PawnmorphHorseTF</defName>
+							<label>horseMorph</label>
+							<stages>
+								<li>
+									<label>reeling</label>
+									<hungerRateFactor>1.6</hungerRateFactor>
+									<painOffset>0.05</painOffset>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+									<hediffGivers>
+										<li Class="Pawnmorph.HediffGiver_TF">
+											<hediff>TransformedHuman</hediff>
+											<pawnkinds>
+												<li>QuarterHorse</li>
+												<li>BlackHorse</li>
+												<li>WhiteHorse</li>
+												<li>Palomino</li>
+											</pawnkinds>
+											<tale>TransformationMisc</tale>
+										</li>
+									</hediffGivers>
+								</li>
+								<li>
+									<label>transforming</label>
+									<minSeverity>0.6</minSeverity>
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+								</li>
+								<li>
+									<label>changing</label>
+									<minSeverity>0.65</minSeverity>
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+									<hediffGivers>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHorseSnout</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Jaw</li>
+											</partsToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHorseEar</hediff>
+											<mtbDays>1</mtbDays>
+											<partsToAffect>
+												<li>Ear</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHorseTail</hediff>
+											<mtbDays>1</mtbDays>
+											<partsToAffect>
+												<li>Tail</li>
+											</partsToAffect>
+											<tale>GrewTail</tale>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHideLimb</hediff>
+											<mtbDays>2</mtbDays>
+											<partsToAffect>
+												<li>Arm</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHoofHand</hediff>
+											<mtbDays>3</mtbDays>
+											<chance>5</chance>
+											<partsToAffect>
+												<li>Hand</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherDigitigradeLeg</hediff>
+											<mtbDays>2</mtbDays>
+											<partsToAffect>
+												<li>Leg</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherUnclovenHoofFoot</hediff>
+											<mtbDays>3</mtbDays>
+											<partsToAffect>
+												<li>Foot</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+									</hediffGivers>
+								</li>
+							</stages>
+						</HediffDef>
+						
+						<!--Partial Morph-->
+						<HediffDef ParentName="MorphParent">
+							<defName>PawnmorphHorseTFPartial</defName>
+							<label>horseMorph partial</label>
+							<stages>
+								<li>
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+									<hediffGivers>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHorseSnout</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Jaw</li>
+											</partsToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHorseEar</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Ear</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHorseTail</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Tail</li>
+											</partsToAffect>
+											<tale>GrewTail</tale>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherHideLimb</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Arm</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherDigitigradeLeg</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Leg</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherUnclovenHoofFoot</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Foot</li>
+											</partsToAffect>
+											<countToAffect>2</countToAffect>
+										</li>
+									</hediffGivers>
+								</li>
+							</stages>
+						</HediffDef>
+						
+						<!--Morph Parts-->
+						<HediffDef Name="HorsePart" ParentName="PawnmorphPart" Abstract="True">
+							<comps>
+								<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+									<morph>HorseMorph</morph>
+								</li>
+							</comps>
+						</HediffDef>
+						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseSnout</defName>
 							<label>equine snout</label>
-							<description>A snout graces NAME's face.</description>
+							<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_pronoun] teeth are squared off, and this makes speaking more difficult, yet eating is easier.</description>
 							<stages>
 								<li>
 									<capMods>
@@ -184,24 +429,7 @@
 								</li>
 							</comps>
 						</HediffDef>
-						
-						<HediffDef ParentName="PawnmorphPart">
-							<defName>EtherHorseTail</defName>
-							<label>horse tail</label>
-							<description>A regular tail.</description>
-							<stages>
-								<li>
-									<capMods>
-										<li>
-											<capacity>Moving</capacity>
-											<offset>0.01</offset>
-										</li>
-									</capMods>
-								</li>
-							</stages>
-						</HediffDef>
-						
-						<HediffDef ParentName="PawnmorphPart">
+						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseEar</defName>
 							<label>equine</label>
 							<stages>
@@ -215,135 +443,27 @@
 								</li>
 							</stages>
 						</HediffDef>
-										
-						<HediffDef ParentName="MorphParent">
-							<defName>PawnmorphHorseTF</defName>
-							<label>horsemorph</label>
+						<HediffDef ParentName="HorsePart">
+							<defName>EtherHorseTail</defName>
+							<label>horse tail</label>
+							<description>A horselike tail. It swats at flies occasionally.</description>
 							<stages>
 								<li>
-									<label>reeling</label>
-									<minSeverity>0</minSeverity>
-									<hungerRateFactor>1.6</hungerRateFactor>
-									<painOffset>0.05</painOffset>
 									<capMods>
 										<li>
 											<capacity>Moving</capacity>
-											<offset>-0.05</offset>
+											<offset>0.01</offset>
 										</li>
 									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_Esoteric_Chance">
-											<hediff>EtherHoofHand</hediff>
-											<mtbDays>0.02</mtbDays>
-											<chance>70</chance>
-											<partsToAffect>
-												<li>Hand</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-										</li>
-									</hediffGivers>
-								</li>
-								<li>
-									<label>transforming</label>
-									<minSeverity>0.64</minSeverity>
-									<hungerRateFactor>1.6</hungerRateFactor>
-									<painOffset>0.05</painOffset>
-									<capMods>
-										<li>
-											<capacity>Moving</capacity>
-											<offset>-0.05</offset>
-										</li>
-									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_TF">
-											<hediff>TransformedHuman</hediff>
-											<pawnkinds>
-												<li>QuarterHorse</li>
-												<li>BlackHorse</li>
-												<li>WhiteHorse</li>
-												<li>Palomino</li>
-											</pawnkinds>
-											<tale>TransformationMisc</tale>
-										</li>
-									</hediffGivers>
-								</li>
-								<li>
-									<label>changing</label>
-									<minSeverity>0.65</minSeverity>
-									<painOffset>0.1</painOffset>
-									<vomitMtbDays>1</vomitMtbDays>
-									<capMods>
-										<li>
-											<capacity>Moving</capacity>
-											<offset>-0.05</offset>
-										</li>
-										<li>
-											<capacity>Sight</capacity>
-											<offset>-0.05</offset>
-										</li>
-										<li>
-											<capacity>Manipulation</capacity>
-											<offset>-0.05</offset>
-										</li>
-									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_Esoteric">
-											<hediff>EtherHorseSnout</hediff>
-											<mtbDays>2</mtbDays>
-											<partsToAffect>
-												<li>Jaw</li>
-											</partsToAffect>
-											<countToAffect>1</countToAffect>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Esoteric">
-											<hediff>EtherUnclovenHoofFoot</hediff>
-											<mtbDays>2</mtbDays>
-											<partsToAffect>
-												<li>Foot</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Esoteric">
-											<hediff>EtherHideLimb</hediff>
-											<mtbDays>1</mtbDays>
-											<partsToAffect>
-												<li>Arm</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Esoteric_Fixed">
-											<hediff>EtherHorseTail</hediff>
-											<mtbDays>1</mtbDays>
-											<fixedParts>
-												<li>Tail</li>
-											</fixedParts>
-											<tale>GrewTail</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Esoteric">
-											<hediff>EtherHorseEar</hediff>
-											<mtbDays>1</mtbDays>
-											<partsToAffect>
-												<li>Ear</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Esoteric">
-											<hediff>EtherDigitigradeLeg</hediff>
-											<mtbDays>1</mtbDays>
-											<partsToAffect>
-												<li>Leg</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-										</li>
-									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
 						
+						<!--Morph Injector-->
 						<ThingDef ParentName="InjectorBase">
 							<defName>HorseTransformer</defName>
 							<label>mutasyringe, horse</label>
-							<description>An injector filled with mutagenic injector, targeted for a specific type of animal.</description>
+							<description>A mutagenic injector filled with mechanites and horse DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 							<graphicData>
 								<texPath>Things/Item/Drug/Specific</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
@@ -360,24 +480,6 @@
 								</outcomeDoers>
 							</ingestible>	
 						</ThingDef>
-						
-						<ThoughtDef>
-							<defName>EtherReactionHorseTF</defName>
-							<workerClass>ThoughtWorker_Hediff</workerClass>
-							<hediff>PawnmorphHorseTF</hediff>
-							<stages>
-								<li>
-									<label>changed</label>
-									<description>N...neigh!?</description>
-									<baseMoodEffect>-3</baseMoodEffect>
-								</li>
-								<li>
-									<label>feeling odd</label>
-									<description>I feel like I should be pulling a plough...or galloping across a steppe.</description>
-									<baseMoodEffect>-5</baseMoodEffect>
-								</li>
-							</stages>
-						</ThoughtDef>
 					</value>				
 				</li>
 				<li Class="PatchOperationAdd">
@@ -401,21 +503,7 @@
 						<li>QuarterHorse</li>
 						<li>BlackHorse</li>
 						<li>WhiteHorse</li>
-						<li>Palomino</li>				
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs/HediffDef[defName="StabiliserHigh"]/comps[last()]/makeImmuneTo</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>			
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs/HediffDef[defName="StabiliserHigh"]/stages/li/makeImmuneTo</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>			
+						<li>Palomino</li>
 					</value>
 				</li>
 			</operations>

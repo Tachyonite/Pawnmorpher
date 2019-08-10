@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TaleDef ParentName="MutationTaleBase">
+    <defName>GrewThrumboHorn</defName>
+    <label>grew thrumbo horn</label>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->a large horn crowing from [PAWN_nameDef]'s head</li>
+        <li>image->[PAWN_nameFull] rubs [PAWN_possessive] forehead [circumstance_group]</li>
+        <li>circumstance_phrase->while others stair at [PAWN_possessive] horn</li>
+        <li>circumstance_phrase->while someone begins polishing [PAWN_possessive] horn</li>
+        <li>circumstance_phrase->while someone rubs [PAWN_possessive] new horn</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+</Defs>

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Hybrids;
+using Pawnmorph.Thoughts;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -82,6 +84,11 @@ namespace Pawnmorph
                         }
                         pawn3.SetFaction(Faction.OfPlayer);
                         pawn4.SetFaction(Faction.OfPlayer);
+
+                        ReactionsHelper.OnPawnReverted(pawn3, pm.replacement);
+                        ReactionsHelper.OnPawnReverted(pawn4, pm.replacement);
+
+
                         pm.replacement.DeSpawn(0);
                         loader.removePawnMerged(pm);
                     }
@@ -194,6 +201,15 @@ namespace Pawnmorph
                         }
 
                         pawn3.health.AddHediff(h);
+
+                        ReactionsHelper.OnPawnReverted(pawn3, pm.replacement);
+
+                        if (pawn3.IsHybridRace())
+                        {
+                            RaceShiftUtilities.RevertPawnToHuman(pawn3); //if they are a hybrid race change them back to human 
+                        }
+
+
                         loader.removePawn(pm);
                         pm.replacement.DeSpawn(0);
                     }
@@ -281,6 +297,12 @@ namespace Pawnmorph
                     pawn.health.RemoveHediff(hediff);
                 }
             }
+
+            foreach (Hediff_Morph hediffMorph in hS2.OfType<Hediff_Morph>()) //do this second so the morph hediff can cleanup properly 
+            {
+                pawn.health.RemoveHediff(hediffMorph); //remove ongoing morph hediffs 
+            }
+
         }
     }
 }

@@ -1,0 +1,19 @@
+<Defs>
+	<ThoughtDef>
+		<defName>EtherReactionChaosTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>FullRandomTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>What have I become?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>My insides are churning...am I going to be alright?</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

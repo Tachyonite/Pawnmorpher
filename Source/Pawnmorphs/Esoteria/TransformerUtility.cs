@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using Pawnmorph.Thoughts;
 using UnityEngine;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI.Group;
 
@@ -70,9 +73,25 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// returns true if this pawn is currently an animal or merged morph 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static bool IsAnimalOrMerged([NotNull] this Pawn pawn)
+        {
+            var comp = Find.World.GetComponent<PawnmorphGameComp>();
+            var pm = comp.GetInstanceWithOriginal(pawn);
+            if (pm != null) return true;
+            var pm1 = comp.GetMergeInstanceWithOriginal(pawn);
+            return pm1 != null; 
+        }
+
+
 
         public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
-                                     TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 
+                                     TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f
+                                     ) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 
         {
             if (transformedPawn.RaceProps.intelligence == Intelligence.Humanlike)
             // If we haven't already checked for the pawn to be tf'd and it possesses humanlike intellegence, give it a chance to transform.
@@ -158,7 +177,8 @@ namespace Pawnmorph
                             animalToSpawn
                     });
                 }
-
+                
+                bool wasPrisoner = transformedPawn.IsPrisonerOfColony; 
                 CleanUpHumanPawnPostTf(transformedPawn, cause);  //now clean up the original pawn (remove apparel, drop'em, ect) 
 
                 Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(transformedPawn.LabelShort, pawnkind.LabelCap).CapitalizeFirst(),
@@ -168,6 +188,8 @@ namespace Pawnmorph
 
                 transformedPawn.DeSpawn(); // Remove the original pawn from the current map.
                 
+                ReactionsHelper.OnPawnTransforms(transformedPawn, animalToSpawn, wasPrisoner);
+
             }
         }
 
@@ -204,10 +226,12 @@ namespace Pawnmorph
 
             //TODO notify faction that their pawn became an animal somehow (this should damage relations maybe?) 
 
+            //originalPawn.GetCaravan()?.Notify_PawnRemoved(originalPawn); 
+
             originalPawn.GetLord()
                        ?.Notify_PawnLost(originalPawn,
                                          PawnLostCondition
-                                            .Vanished); //make sure any current lords know they can't use this pawn anymore 
+                                            .IncappedOrKilled); //make sure any current lords know they can't use this pawn anymore 
 
             if (originalPawn.Faction != Faction.OfPlayer) return; //past here is only relevant for colonists 
 
@@ -222,5 +246,63 @@ namespace Pawnmorph
                 animalPawn.playerSettings.Master = null; //set to null, these animals don't have a master anymore 
         }
 
+
+        private const string ETHER_BOND_DEF_NAME = "EtherBond";
+        private const string ETHER_BROKEN_DEF_NAME = "EtherBroken"; 
+
+        /// <summary>
+        /// get the "ether state" of the pawn (whether they have the ether broken or bonded hediff 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static EtherState GetEtherState([NotNull] this Pawn pawn)
+        {
+            HediffSet hediffs = pawn.health.hediffSet;
+            if (hediffs.HasHediff(HediffDef.Named(ETHER_BOND_DEF_NAME)))
+            {
+                return EtherState.Bond; 
+            }
+
+            if (hediffs.HasHediff(HediffDef.Named(ETHER_BROKEN_DEF_NAME)))
+            {
+                return EtherState.Broken; 
+            }
+
+            return EtherState.None; 
+        }
+
+        /// <summary>
+        /// try to give this pawn a new memory
+        /// (this is the same as pawn.needs.mood.thoughts.memories.TryGainMemory just more convenient)
+        /// </summary>
+        /// if pawn does not have needs/mood/thoughts ect this call does nothing 
+        /// 
+        /// <param name="pawn"></param>
+        /// <param name="thought"></param>
+        /// <param name="otherPawn"></param>
+        public static void TryGainMemory([NotNull] this Pawn pawn, Thought_Memory thought, Pawn otherPawn=null) //move extension methods elsewhere? 
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thought, otherPawn);
+            
+        }
+
+        /// <summary>
+        /// try to give this pawn a new memory
+        /// (this is the same as pawn.needs.mood.thoughts.memories.TryGainMemory just more convenient)
+        /// </summary>
+        /// if pawn does not have needs/mood/thoughts ect this call does nothing 
+        /// <param name="pawn"></param>
+        /// <param name="thoughtDef"></param>
+        /// <param name="otherPawn"></param>
+        public static void TryGainMemory([NotNull] this Pawn pawn, ThoughtDef thoughtDef, Pawn otherPawn = null)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thoughtDef, otherPawn); 
+        }
+
+       
+        
     }
 }

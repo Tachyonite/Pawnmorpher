@@ -1,0 +1,26 @@
+<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>WolfMorph</defName>
+		<label>wolf morph</label>
+		<race>Wolf_Timber</race>
+		<categories>
+			<li>canid</li>
+		</categories>
+		<raceSettings>
+      <thoughtSettings>
+        <ateAnimalThought>
+          <thought>MorphAteAnimalMeatDirect</thought>
+          <ingredientThought>MorphAteAnimalMeatAsIngredient</ingredientThought>
+        </ateAnimalThought>
+      </thoughtSettings>
+      <traitSettings>
+				<forcedTraits>
+					<li>
+						<defName>NaturalHunter</defName>
+						<chance>100</chance>
+					</li>
+				</forcedTraits>
+			</traitSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -38,6 +38,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Assemblies\0MultiplayerAPI.dll</HintPath>
     </Reference>
+    <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0473c1c409d3997, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\AlienRace.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -54,10 +58,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DebugUtils\DebugLogUtils.cs" />
+    <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
+    <Compile Include="EtherState.cs" />
+    <Compile Include="HediffGiver_Mutation.cs" />
+    <Compile Include="Hediffs\CompProperties_DependentPart.cs" />
+    <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
+    <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
+    <Compile Include="Hediffs\Comp_CheckRace.cs" />
+    <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
+    <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
+    <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
+    <Compile Include="Hediffs\MutationDependency.cs" />
+    <Compile Include="Hediffs\TfDefOf.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
+    <Compile Include="Hybrids\HThoughtDefOf.cs" />
+    <Compile Include="Hybrids\HTraitDefOf.cs" />
+    <Compile Include="Hybrids\HybridRaceSettings.cs" />
     <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
+    <Compile Include="Hediffs\IPostTfHediffComp.cs" />
+    <Compile Include="MorphDef.cs" />
+    <Compile Include="MorphDefOfs.cs" />
+    <Compile Include="MorphUtilities.cs" />
+    <Compile Include="Hybrids\RaceGenerator.cs" />
+    <Compile Include="Hybrids\RaceShiftUtilities.cs" />
+    <Compile Include="TaleDefOf.cs" />
     <Compile Include="TFGender.cs" />
     <Compile Include="HediffGiver_Esoteric.cs" />
     <Compile Include="HediffGiver_EsotericInstant.cs" />
@@ -102,9 +129,16 @@
     <Compile Include="HediffComp_Staged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationships.cs" />
+    <Compile Include="Thoughts\ReactionsHelper.cs" />
+    <Compile Include="Thoughts\RelationshipDefExtension.cs" />
+    <Compile Include="Thoughts\ThoughtDefOfs.cs" />
+    <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
+    <Compile Include="Thoughts\Thought_EtherMemory.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />
+    <Compile Include="Utilities\HediffCompBase.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
