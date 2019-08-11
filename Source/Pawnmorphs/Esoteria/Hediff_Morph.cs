@@ -45,10 +45,10 @@ namespace Pawnmorph
         /// this is only called when the hediff is removed after reaching a severity of zero, not when the pawn it's self is removed 
         protected virtual void OnFinishedTransformation()
         {
-            Log.Message($"{pawn.Name.ToStringFull} has finished transforming!");
+            //Log.Message($"{pawn.Name.ToStringFull} has finished transforming!");
             foreach (IPostTfHediffComp postTfHediffComp in comps.OfType<IPostTfHediffComp>())
             {
-                postTfHediffComp.FinishedTransformation(pawn, this); 
+                //postTfHediffComp.FinishedTransformation(pawn, this); 
             }
 
         }
