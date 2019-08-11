@@ -139,6 +139,32 @@
   </ThoughtDef>
   
   <ThoughtDef>
+    <defName>SonTransformed</defName>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>transformed son</label>
+        <description>My son was turned into an animal! My poor boy...</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>SonTransformed</defName>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>transformed daughter</label>
+        <description>My daughter was turned into an animal! My darling girl...</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
     <defName>FriendTransformed</defName>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
