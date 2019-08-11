@@ -152,7 +152,7 @@
   </ThoughtDef>
   
   <ThoughtDef>
-    <defName>SonTransformed</defName>
+    <defName>DaughterTransformed</defName>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
     <stages>

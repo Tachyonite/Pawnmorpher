@@ -28,4 +28,11 @@
       </li>
     </value>
   </Operation>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnRelationDef[defName="Child"]</xpath>
+		<li Class="Pawnmorph.Thoughts.RelationshipDefExtension">
+			<transformThought>SonTransformed</transformThought>
+			<transformThought>DaughterTransformed</transformThought>
+		</li>
+	</Operation>
 </Patch>
