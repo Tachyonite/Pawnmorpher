@@ -14,27 +14,19 @@ namespace Pawnmorph
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-            ThingDef rareResource;
 
             if (Props.stages != null)
             {
                 HediffComp_Staged stage = Props.stages.ElementAt(parent.CurStageIndex);
-                if (!string.IsNullOrEmpty(stage.rareResource))
-                    rareResource = ThingDef.Named(stage.rareResource);
-                else
-                    rareResource = null;
-                Produce(stage.daysToProduce, stage.amount, stage.chance, ThingDef.Named(stage.resource), rareResource,
+               
+                Produce(stage.daysToProduce, stage.amount, stage.chance, ThingDef.Named(stage.resource), stage.RareResource,
                         stage.thought);
             }
             else
             {
-                if (!string.IsNullOrEmpty(Props.rareResource))
-                    rareResource = ThingDef.Named(Props.rareResource);
-                else
-                    rareResource = null;
+              
 
-
-                Produce(Props.daysToProduce, Props.amount, Props.chance, ThingDef.Named(Props.resource), rareResource);
+                Produce(Props.daysToProduce, Props.amount, Props.chance, ThingDef.Named(Props.resource), Props.RareResource);
             }
         }
 
