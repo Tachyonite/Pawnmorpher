@@ -220,7 +220,7 @@ namespace Pawnmorph.Hybrids
                 soundImpactDefault = morph.race.soundImpactDefault,
                 statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases),
                 inspectorTabs = humanDef.inspectorTabs.ToList(), //do we want any custom tabs? 
-                comps = humanDef.comps,
+                comps = humanDef.comps.ToList(),
                 drawGUIOverlay = humanDef.drawGUIOverlay,
                 description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
                 alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph),
