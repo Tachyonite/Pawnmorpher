@@ -59,18 +59,19 @@ namespace Pawnmorph.Hybrids
                 manhunterOnDamageChance = animal.manhunterOnDamageChance,
                 manhunterOnTameFailChance = animal.manhunterOnTameFailChance,
                 litterSizeCurve = human.litterSizeCurve,
-                lifeStageAges = human.lifeStageAges,
+                lifeStageAges = human.lifeStageAges.ToList(),
                 soundMeleeHitPawn = animal.soundMeleeHitPawn,
                 soundMeleeHitBuilding = animal.soundMeleeHitBuilding,
                 soundMeleeMiss = animal.soundMeleeMiss,
                 specialShadowData = human.specialShadowData,
                 soundCallIntervalRange = animal.soundCallIntervalRange,
                 ageGenerationCurve = human.ageGenerationCurve,
-                hediffGiverSets = human.hediffGiverSets,
+                hediffGiverSets = human.hediffGiverSets.ToList(),
                 meatDef = animal.meatDef,
                 meatLabel = animal.meatLabel,
                 useMeatFrom = animal.useMeatFrom,
                 deathActionWorkerClass = human.deathActionWorkerClass,
+                corpseDef = human.corpseDef,
             };
         }
 
