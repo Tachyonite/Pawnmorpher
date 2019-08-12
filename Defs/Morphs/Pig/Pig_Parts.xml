@@ -26,20 +26,30 @@
 			</li>
 		</stages>
 		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_Production">
-				<daysToProduce>0.5</daysToProduce>
-				<resource>RawFungus</resource>
-				<amount>25</amount>
-				<thought>FoundTruffles</thought>
-				<!--
-				<terrains>
-				<li>Soil</li>
-				<li>MossyTerrain</li>
-				<li>MarshyTerrain</li>
-				<li>SoilRich</li>
-				<li>Mud</li>
-				</terrains>
-				-->
+			<li Class="Pawnmorph.Hediffs.CompProperties_TerrainProduction">
+				<entries>
+					<li>
+						<terrain>Soil</terrain>
+						<mtb>5.4</mtb>
+						<resource>RawFungus</resource>
+						<amount>15</amount>
+						<thought>FoundTruffles</thought>
+					</li>
+					<li>
+						<terrain>MarshyTerrain</terrain>
+						<mtb>5.4</mtb>
+						<resource>RawFungus</resource>
+						<amount>15</amount>
+						<thought>FoundTruffles</thought>
+					</li>
+					<li>
+						<terrain>SoilRich</terrain>
+						<mtb>5.2</mtb>
+						<resource>RawFungus</resource>
+						<amount>20</amount>
+						<thought>FoundTruffles</thought>
+					</li>
+				</entries>
 			</li>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>

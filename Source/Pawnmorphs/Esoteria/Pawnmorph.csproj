@@ -67,6 +67,7 @@
     <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
     <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
+    <Compile Include="Hediffs\Comp_TerrainProduction.cs" />
     <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
     <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
+    <Compile Include="Utilities\Tuple.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
