@@ -228,7 +228,12 @@ namespace Pawnmorph.Hybrids
                 inspectorTabsResolved = humanDef.inspectorTabsResolved.ToList(),
                 recipes = new List<RecipeDef>(humanDef.AllRecipes), //this is where the surgery operations live
                 filth = morph.race.filth,
-                filthLeaving = morph.race.filthLeaving
+                filthLeaving = morph.race.filthLeaving,
+                soundDrop = morph.race.soundDrop,
+                soundInteract = morph.race.soundInteract,
+                soundPickup = morph.race.soundPickup,
+                socialPropernessMatters = humanDef.socialPropernessMatters,
+                
             };
         }
     }
