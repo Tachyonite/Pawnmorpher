@@ -26,10 +26,18 @@ namespace Pawnmorph.Hediffs
 
             var lst = Props.Dict.TryGetValue(terrain);
             if (lst == null) return;
-            foreach (var dictEntry in lst)
-                if (Rand.MTBEventOccurs(dictEntry.Mtb, 6e4f, 30f))
-                    for (var i = 0; i < dictEntry.Amount; i++)
-                        GenSpawn.Spawn(dictEntry.Resource, pos, Pawn.Map);
+
+            var elem = lst.RandElement();
+
+            if (Rand.MTBEventOccurs(elem.Mtb, 6E+4f, 60)) //can't check mtb more then once per tick 
+            {
+                for (var i = 0; i < elem.Mtb; i++)
+                {
+                    GenSpawn.Spawn(elem.Resource, pos, Pawn.Map); 
+                }
+            }
+
+
         }
     }
 
