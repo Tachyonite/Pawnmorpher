@@ -22,11 +22,11 @@ namespace Pawnmorph
 
         public bool TryTf(Pawn pawn, Hediff cause)
         {
-
             float chance = changeChance < 0 //if changeChance wasn't overriden use the default from the settings 
                 ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
                 : changeChance;
-            
+            Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
+
             
 
             if (Rand.RangeInclusive(0, 100) <= chance)

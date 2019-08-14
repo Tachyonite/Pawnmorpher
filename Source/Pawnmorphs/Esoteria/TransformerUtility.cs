@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
 using UnityEngine;
 using RimWorld;
-using RimWorld.Planet;
 using Verse;
 using Verse.AI.Group;
 
@@ -81,10 +81,8 @@ namespace Pawnmorph
         public static bool IsAnimalOrMerged([NotNull] this Pawn pawn)
         {
             var comp = Find.World.GetComponent<PawnmorphGameComp>();
-            var pm = comp.GetInstanceWithOriginal(pawn);
-            if (pm != null) return true;
-            var pm1 = comp.GetMergeInstanceWithOriginal(pawn);
-            return pm1 != null; 
+            var status = comp.GetPawnStatus(pawn);
+            return status == TransformedStatus.Transformed; 
         }
 
 
@@ -159,8 +157,9 @@ namespace Pawnmorph
 
 
                 PawnMorphInstance pm = new PawnMorphInstance(transformedPawn, spawnedAnimal); // Put the original pawn somewhere safe and tie it to the animal.
-                Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm); // ...and put this data somewhere safe.
-
+                var tfPair = TfSys.TransformedPawn.Create(transformedPawn, spawnedAnimal); 
+                //Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm); // ...and put this data somewhere safe.
+                Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(tfPair); //doesn't do much right now 
             
 
                 for (int i = 0; i < 10; i++) // Create a cloud of magic.

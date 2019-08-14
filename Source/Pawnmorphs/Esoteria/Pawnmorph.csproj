@@ -69,6 +69,7 @@
     <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
     <Compile Include="Hediffs\Comp_TerrainProduction.cs" />
     <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
+    <Compile Include="Hediffs\Def_MorphTf.cs" />
     <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
     <Compile Include="Hediffs\TfDefOf.cs" />
@@ -85,7 +86,11 @@
     <Compile Include="MorphUtilities.cs" />
     <Compile Include="Hybrids\RaceGenerator.cs" />
     <Compile Include="Hybrids\RaceShiftUtilities.cs" />
+    <Compile Include="MutagenDef.cs" />
+    <Compile Include="MutagenDefOf.cs" />
+    <Compile Include="MutagenUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
+    <Compile Include="RaceMutagenExtension.cs" />
     <Compile Include="TaleDefOf.cs" />
     <Compile Include="TFGender.cs" />
     <Compile Include="HediffGiver_Esoteric.cs" />
@@ -131,6 +136,9 @@
     <Compile Include="HediffComp_Staged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationships.cs" />
+    <Compile Include="TfHediffDefOf.cs" />
+    <Compile Include="TfSys\TransformedPawn.cs" />
+    <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
     <Compile Include="Thoughts\ThoughtDefOfs.cs" />

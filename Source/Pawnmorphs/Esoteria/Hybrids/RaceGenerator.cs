@@ -196,7 +196,7 @@ namespace Pawnmorph.Hybrids
         static FoodTypeFlags GenerateFoodFlags(FoodTypeFlags animalFlags)
         {
             animalFlags |= FoodTypeFlags.Meal; //make sure all hybrids can eat meals 
-            var platFlags = FoodTypeFlags.Plant | FoodTypeFlags.Tree; //make sure hybrids can't eat plants or trees, at least for now 
+            //var platFlags = FoodTypeFlags.Plant | FoodTypeFlags.Tree; //make sure hybrids can't eat plants or trees, at least for now 
                         //need to figure out a way to let them graze but not pick up plants 
             //animalFlags =  animalFlags & ~platFlags;
             return animalFlags; 

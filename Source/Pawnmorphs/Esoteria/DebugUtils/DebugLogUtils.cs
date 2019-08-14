@@ -1,6 +1,7 @@
 ﻿// DebugLogUtils.cs modified by Iron Wolf for Pawnmorph on 07/30/2019 6:01 PM
 // last updated 07/30/2019  6:01 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,6 +69,27 @@ namespace Pawnmorph.DebugUtils
                 Log.Message(builder.ToString());
         }
 
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void ListNewTfPawns()
+        {
+            var comp = Find.World.GetComponent<PawnmorphGameComp>();
+
+            List<string> strs = new List<string>();
+            foreach (var tfPawn in comp.TransformedPawns)
+            {
+                strs.Add($"{tfPawn.ToDebugString()} of type {tfPawn.GetType().FullName}");
+            }
+
+            if (strs.Count > 0)
+            {
+                Log.Message($"transformed pawns:\n\t{string.Join("\n\t", strs.ToArray())}");
+            }
+            else
+            {
+                Log.Message("no transformed pawns");
+            }
+        }
 
         /// <summary>
         ///     list all defined mutations (hediffs of the class Hediff_AddedMutation or a subtype there of)
@@ -112,6 +134,7 @@ namespace Pawnmorph.DebugUtils
         [Category(MAIN_CATEGORY_NAME)]
         [ModeRestrictionPlay]
         [DebugOutput]
+        [Obsolete]
         public static void LogAllTransformedPawns()
         {
             var builder = new StringBuilder();
