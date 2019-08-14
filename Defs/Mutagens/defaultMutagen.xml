@@ -3,6 +3,11 @@
 	<Pawnmorph.MutagenDef>
 		<defName>defaultMutagen</defName>
 		<label>mechanite mutagen</label>
-		
+		<mutagenType>Pawnmorph.TfSys.SimpleMechaniteMutagen</mutagenType>
+	</Pawnmorph.MutagenDef>
+	<Pawnmorph.MutagenDef>
+		<defName>MergeMutagen</defName>
+		<label>merge mutagen</label>
+		<mutagenType>Pawnmorph.TfSys.MergeMutagen</mutagenType>
 	</Pawnmorph.MutagenDef>
 </Defs>

@@ -8,7 +8,12 @@ namespace Pawnmorph
     [DefOf]
     public static class MutagenDefOf
     {
-        public static MutagenDef defaultMutagen; 
+        public static MutagenDef defaultMutagen;
+        public static MutagenDef MergeMutagen;
 
+        static MutagenDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(MutagenDef)); 
+        }
     }
 }
