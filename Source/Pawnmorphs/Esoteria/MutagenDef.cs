@@ -1,6 +1,9 @@
 ﻿// MutagenDef.cs created by Nick M(Iron Wolf) for Blue Moon (Pawnmorph) on 08/13/2019 4:02 PM
 // last updated 08/13/2019  4:02 PM
 
+using System;
+using System.Collections.Generic;
+using Pawnmorph.TfSys;
 using Verse;
 
 namespace Pawnmorph
@@ -14,19 +17,33 @@ namespace Pawnmorph
     public class MutagenDef : Def
     {
         public bool canInfectAnimals;
-        public bool canInfectMechanoids; 
+        public bool canInfectMechanoids;
+        public Type mutagenType;
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+
+
+            foreach (var configError in base.ConfigErrors())
+            {
+                yield return configError; 
+            }
+
+            if (mutagenType == null)
+                yield return "no mutagen type"; 
+            else if (!typeof(Mutagen).IsAssignableFrom(mutagenType))
+                yield return $"type {mutagenType.Name} is not a subtype of Mutagen"; 
+        }
+
+        [Unsaved] private Mutagen _mutagenCached;
+
+        
+        public Mutagen MutagenCached => _mutagenCached ?? (_mutagenCached = (Mutagen) Activator.CreateInstance(mutagenType));
+
 
         public bool CanInfect(Pawn pawn)
         {
-            if (!canInfectAnimals && pawn.RaceProps.Animal) return false;
-            if (!canInfectMechanoids && pawn.RaceProps.IsMechanoid) return false;
-            var ext = pawn.def.GetModExtension<RaceMutagenExtension>();
-            if (ext != null)
-            {
-                return !ext.immuneToAll && !ext.blackList.Contains(this); 
-            }
-
-            return true; 
+            return MutagenCached.CanInfect(pawn); 
         }
     }
 }
