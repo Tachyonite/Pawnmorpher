@@ -17,7 +17,7 @@ namespace Pawnmorph
         {
             base.PostTick();
 
-            if (_lastStage != CurStageIndex && _lastStage != -1)
+            if (_lastStage != CurStageIndex)
             {
 
                 _lastStage = CurStageIndex;
@@ -36,7 +36,7 @@ namespace Pawnmorph
 
             }
 
-            if (_lastStage == -1) _lastStage = CurStageIndex; //this means the above branch cannot be triggered on load 
+          
         }
 
         /// <summary>
@@ -53,7 +53,12 @@ namespace Pawnmorph
 
         }
 
-       
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref _lastStage, "lastStage", -1); 
+        }
+
 
         public override void PostRemoved()
         {

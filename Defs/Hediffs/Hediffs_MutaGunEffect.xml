@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef>
 		<defName>PawnmorphGunshotTF</defName>
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediff_Morph</hediffClass>
 		<label>etherMorph</label>
 		<makesAlert>true</makesAlert>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
