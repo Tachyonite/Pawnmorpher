@@ -13,7 +13,10 @@ namespace Pawnmorph.TfSys
     /// </summary>
     public abstract class TransformedPawn : IExposable
     {
-        //TODO tie this into mutagen def         
+
+        public MutagenDef mutagenDef; 
+
+
         /// <summary>
         ///     Gets the original pawns.
         /// </summary>
@@ -132,7 +135,10 @@ namespace Pawnmorph.TfSys
                 $"originals [{string.Join(",", OriginalsDebugString.ToArray())}]\ntransformed [{string.Join(",", TransformedDebugString.ToArray())}]";
         }
 
-        public abstract void ExposeData();
+        public virtual void ExposeData()
+        {
+            Scribe_Defs.Look(ref mutagenDef, nameof(mutagenDef)); 
+        }
     }
 
     /// <summary>
@@ -171,6 +177,7 @@ namespace Pawnmorph.TfSys
 
         public override void ExposeData()
         {
+            base.ExposeData();
             Scribe_Deep.Look(ref original, true, nameof(original));
             Scribe_References.Look(ref animal, nameof(animal), true); 
 
@@ -211,6 +218,7 @@ namespace Pawnmorph.TfSys
 
         public override void ExposeData()
         {
+            base.ExposeData();
            Scribe_Collections.Look(ref originals,  true, nameof(originals), LookMode.Deep);
            Scribe_References.Look(ref meld, nameof(meld), true); 
         }
