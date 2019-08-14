@@ -30,13 +30,15 @@ namespace Pawnmorph
                     PawnRelationDef MergeMate = DefDatabase<PawnRelationDef>.GetNamed("MergeMate");
                     PawnRelationDef ExMerge = DefDatabase<PawnRelationDef>.GetNamed("ExMerged");
 
-                    PawnMorphInstanceMerged pm = loader.retrieveMerged(pawn);
+                    //PawnMorphInstanceMerged pm = loader.retrieveMerged(pawn);
+                    var inst = loader.GetTransformedPawnContaining(pawn)?.First as TfSys.MergedPawns; 
+
                     Pawn pawn3 = null;
                     Pawn pawn4 = null;
                     HediffDef rThought = mergeRevertThoughts.RandomElement();
-                    if (pm != null)
+                    if (inst != null)
                     {
-                        pawn3 = (Pawn)GenSpawn.Spawn(pm.origin, pm.replacement.PositionHeld, pm.replacement.MapHeld, 0);
+                        pawn3 = (Pawn)GenSpawn.Spawn(inst.originals[0], inst.meld.PositionHeld, inst.meld.MapHeld, 0);
                         pawn3.apparel.DestroyAll();
                         pawn3.equipment.DestroyAllEquipment();
                         for (int i = 0; i < 10; i++)
@@ -47,7 +49,7 @@ namespace Pawnmorph
 
                         Hediff h = HediffMaker.MakeHediff(rThought, pawn3, null);
 
-                        Hediff hf = pm.replacement.health.hediffSet.hediffs.Find(x => x.def == HediffDef.Named("2xMergedHuman"));
+                        Hediff hf = inst.meld.health.hediffSet.hediffs.Find(x => x.def == HediffDef.Named("2xMergedHuman"));
 
                         if (hf != null)
                         {
@@ -56,7 +58,7 @@ namespace Pawnmorph
 
                         pawn3.health.AddHediff(h);
 
-                        pawn4 = (Pawn)GenSpawn.Spawn(pm.origin2, pm.replacement.PositionHeld, pm.replacement.MapHeld, 0);
+                        pawn4 = (Pawn)GenSpawn.Spawn(inst.originals[1], inst.meld.PositionHeld, inst.meld.MapHeld, 0);
                         pawn4.apparel.DestroyAll();
                         pawn4.equipment.DestroyAllEquipment();
                         for (int i = 0; i < 10; i++)
@@ -85,12 +87,13 @@ namespace Pawnmorph
                         pawn3.SetFaction(Faction.OfPlayer);
                         pawn4.SetFaction(Faction.OfPlayer);
 
-                        ReactionsHelper.OnPawnReverted(pawn3, pm.replacement);
-                        ReactionsHelper.OnPawnReverted(pawn4, pm.replacement);
+                        ReactionsHelper.OnPawnReverted(pawn3, inst.meld);
+                        ReactionsHelper.OnPawnReverted(pawn4, inst.meld);
 
 
-                        pm.replacement.DeSpawn(0);
-                        loader.removePawnMerged(pm);
+                        inst.meld.DeSpawn(0);
+                        loader.RemoveInstance(inst); 
+                        //loader.removePawnMerged(pm);
                     }
                     else
                     {
@@ -177,12 +180,13 @@ namespace Pawnmorph
                 {
                     PawnmorphGameComp loader = Find.World.GetComponent<PawnmorphGameComp>();
 
-                    PawnMorphInstance pm = loader.retrieve(pawn);
+                    var inst = loader.GetTransformedPawnContaining(pawn)?.First as TfSys.TransformedPawnSingle; 
+                    //PawnMorphInstance pm = loader.retrieve(pawn);
                     Pawn pawn3 = null;
                     HediffDef rThought = revertThoughts.RandomElement();
-                    if (pm != null)
+                    if (inst != null)
                     {
-                        pawn3 = (Pawn)GenSpawn.Spawn(pm.origin, pawn.PositionHeld, pawn.MapHeld, 0);
+                        pawn3 = (Pawn)GenSpawn.Spawn(inst.original, pawn.PositionHeld, pawn.MapHeld, 0);
                         pawn3.apparel.DestroyAll();
                         pawn3.equipment.DestroyAllEquipment();
                         for (int i = 0; i < 10; i++)
@@ -193,7 +197,7 @@ namespace Pawnmorph
 
                         Hediff h = HediffMaker.MakeHediff(rThought, pawn, null);
 
-                        Hediff hf = pm.replacement.health.hediffSet.hediffs.Find(x => x.def == HediffDef.Named(transformedHuman));
+                        Hediff hf = inst.animal.health.hediffSet.hediffs.Find(x => x.def == HediffDef.Named(transformedHuman));
 
                         if (hf != null)
                         {
@@ -202,7 +206,7 @@ namespace Pawnmorph
 
                         pawn3.health.AddHediff(h);
 
-                        ReactionsHelper.OnPawnReverted(pawn3, pm.replacement);
+                        ReactionsHelper.OnPawnReverted(pawn3, inst.animal);
 
                         if (pawn3.IsHybridRace())
                         {
@@ -210,8 +214,10 @@ namespace Pawnmorph
                         }
 
 
-                        loader.removePawn(pm);
-                        pm.replacement.DeSpawn(0);
+                        loader.RemoveInstance(inst);
+                        inst.animal.DeSpawn(0); 
+                        //loader.removePawn(pm);
+                        //pm.replacement.DeSpawn(0);
                     }
                     else
                     {

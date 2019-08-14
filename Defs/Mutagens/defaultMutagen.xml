@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<Pawnmorph.MutagenDef>
+		<defName>defaultMutagen</defName>
+		<label>mechanite mutagen</label>
+	</Pawnmorph.MutagenDef>
+</Defs>
