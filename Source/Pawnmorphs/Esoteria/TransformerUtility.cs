@@ -86,6 +86,22 @@ namespace Pawnmorph
         }
 
 
+        /// <summary>
+        /// Converts the age of the given pawn into an equivalent age of the given race 
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="race">The end race.</param>
+        /// <returns></returns>
+        public static float ConvertAge([NotNull] Pawn originalPawn, [NotNull] RaceProperties race)
+        {
+            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
+            if (race == null) throw new ArgumentNullException(nameof(race));
+            var age = originalPawn.ageTracker.AgeBiologicalYearsFloat;
+            var originalRaceExpectancy = originalPawn.RaceProps.lifeExpectancy;
+            return age * race.lifeExpectancy / originalRaceExpectancy; 
+        }
+
+        
 
         public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
                                      TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f
@@ -103,30 +119,7 @@ namespace Pawnmorph
                 PawnKindDef pawnkind = pawnkinds.RandomElement();
                 float animalAge = pawnkind.race.race.lifeExpectancy * transformedPawn.ageTracker.AgeBiologicalYears / transformedPawn.def.race.lifeExpectancy; // The animal is the same percent of the way through it's life as the source pawn is.
 
-                Gender animalGender = transformedPawn.gender;
-                if (forceGender != TFGender.Original && Rand.RangeInclusive(0, 100) <= forceGenderChance)
-                // If forceGender was provided, give it a chance to be applied.
-                {
-                    if (forceGender == TFGender.Male)
-                    {
-                        animalGender = Gender.Male;
-                    }
-                    else if (forceGender == TFGender.Female)
-                    {
-                        animalGender = Gender.Female;
-                    }
-                    else if (forceGender == TFGender.Switch)
-                    {
-                        if (transformedPawn.gender == Gender.Male)
-                        {
-                            animalGender = Gender.Female;
-                        }
-                        else if (transformedPawn.gender == Gender.Female)
-                        {
-                            animalGender = Gender.Male;
-                        }
-                    }
-                }
+                var animalGender = GetTransformedGender(transformedPawn, forceGender, forceGenderChance);
 
                 Faction faction = null;
                 if (transformedPawn.IsColonist)
@@ -192,13 +185,43 @@ namespace Pawnmorph
             }
         }
 
+        public static Gender GetTransformedGender(Pawn original, TFGender forceGender, float forceGenderChance)
+        {
+            Gender animalGender = original.gender;
+            if (forceGender != TFGender.Original && Rand.RangeInclusive(0, 100) <= forceGenderChance)
+                // If forceGender was provided, give it a chance to be applied.
+            {
+                if (forceGender == TFGender.Male)
+                {
+                    animalGender = Gender.Male;
+                }
+                else if (forceGender == TFGender.Female)
+                {
+                    animalGender = Gender.Female;
+                }
+                else if (forceGender == TFGender.Switch)
+                {
+                    if (original.gender == Gender.Male)
+                    {
+                        animalGender = Gender.Female;
+                    }
+                    else if (original.gender == Gender.Female)
+                    {
+                        animalGender = Gender.Male;
+                    }
+                }
+            }
+
+            return animalGender;
+        }
+
         /// <summary>
         /// just cleans up all references to the original human pawn after creating the animal pawn
         ///  This does not call pawn.DeSpawn 
         /// </summary>
         ///     
         /// <param name="originalPawn"></param>
-        static void CleanUpHumanPawnPostTf(Pawn originalPawn, Hediff cause)
+        public static void CleanUpHumanPawnPostTf(Pawn originalPawn, Hediff cause)
         {
             originalPawn.apparel.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
             originalPawn.equipment.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
