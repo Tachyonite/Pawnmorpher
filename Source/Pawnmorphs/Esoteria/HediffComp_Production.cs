@@ -24,8 +24,6 @@ namespace Pawnmorph
             }
             else
             {
-              
-
                 Produce(Props.daysToProduce, Props.amount, Props.chance, ThingDef.Named(Props.resource), Props.RareResource);
             }
         }
@@ -63,6 +61,7 @@ namespace Pawnmorph
                     if (Rand.RangeInclusive(0, 100) <= bondChance)
                     {
                         Pawn.health.AddHediff(HediffDef.Named("EtherBond"));
+                        hasEtherBond = true;
                         Find.LetterStack.ReceiveLetter(
                                                        "LetterHediffFromEtherBondLabel".Translate(Pawn).CapitalizeFirst(),
                                                        "LetterHediffFromEtherBond".Translate(Pawn).CapitalizeFirst(),
@@ -71,6 +70,7 @@ namespace Pawnmorph
                     else if (Rand.RangeInclusive(0, 100) <= brokenChance)
                     {
                         Pawn.health.AddHediff(HediffDef.Named("EtherBroken"));
+                        hasEtherBroken = true;
                         Find.LetterStack.ReceiveLetter(
                                                        "LetterHediffFromEtherBrokenLabel".Translate(Pawn).CapitalizeFirst(),
                                                        "LetterHediffFromEtherBroken".Translate(Pawn).CapitalizeFirst(),
