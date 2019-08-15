@@ -41,5 +41,19 @@ namespace Pawnmorph
             return mutagen.CanInfect(pawn); 
         }
 
+        /// <summary>
+        /// Gets the mutagen associated with this tf hediff 
+        /// </summary>
+        /// <param name="morphTf">The morph tf.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">morphTf</exception>
+        [NotNull]
+        public static MutagenDef GetMutagenDef([NotNull] this Hediff_Morph morphTf)
+        {
+            if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
+
+            var def = morphTf.def as Hediffs.Def_MorphTf;
+            return def?.mutagenSource ?? MutagenDefOf.defaultMutagen; 
+        }
     }
 }

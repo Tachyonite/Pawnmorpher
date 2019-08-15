@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using Pawnmorph.TfSys;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -19,6 +20,8 @@ namespace Pawnmorph
         public bool canInfectAnimals;
         public bool canInfectMechanoids;
         public Type mutagenType;
+
+        public List<HediffDef> reversionThoughts = new List<HediffDef>();  
 
         public override IEnumerable<string> ConfigErrors()
         {
