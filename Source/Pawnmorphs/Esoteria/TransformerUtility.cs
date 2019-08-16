@@ -221,12 +221,13 @@ namespace Pawnmorph
         /// </summary>
         ///     
         /// <param name="originalPawn"></param>
-        public static void CleanUpHumanPawnPostTf(Pawn originalPawn, Hediff cause)
+        /// <param name="cause"></param>
+        public static void CleanUpHumanPawnPostTf(Pawn originalPawn,[CanBeNull] Hediff cause)
         {
             originalPawn.apparel.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
             originalPawn.equipment.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
-            originalPawn
-               .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
+            if(cause != null)
+                originalPawn.health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
 
             originalPawn.health.surgeryBills?.Clear(); //if this pawn has any additional surgery bills, get rid of them 
 
