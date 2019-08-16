@@ -45,16 +45,34 @@ namespace Pawnmorph
 
             if (HatchingTicker < daysToProduce * 60000)
             {
-                HatchingTicker += 1;
+                HatchingTicker++;
             }
             else if (Pawn.Map != null)
             {
                 HatchingTicker = 0;
+
+                int thingCount = 0;
+                int rareThingCount = 0;
+
                 for (var i = 0; i < amount; i++)
                     if (Rand.RangeInclusive(0, 100) <= chance && rareResource != null)
-                        GenSpawn.Spawn(rareResource, Pawn.Position, Pawn.Map);
+                        rareThingCount++;
                     else
-                        GenSpawn.Spawn(resource, Pawn.Position, Pawn.Map);
+                        thingCount++;
+
+                Thing thing = ThingMaker.MakeThing(resource);
+                thing.stackCount = thingCount;
+                if (thing.stackCount > 0)
+                    GenPlace.TryPlaceThing(thing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
+
+                if (rareResource != null)
+                {
+                    Thing rareThing = ThingMaker.MakeThing(rareResource);
+                    rareThing.stackCount = rareThingCount;
+                    if (rareThing.stackCount > 0)
+                        GenPlace.TryPlaceThing(rareThing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
+                }
+
 
                 if (!hasEtherBond && !hasEtherBroken)
                 {
