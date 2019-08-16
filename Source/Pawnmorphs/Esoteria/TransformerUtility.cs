@@ -101,8 +101,19 @@ namespace Pawnmorph
             return age * race.lifeExpectancy / originalRaceExpectancy; 
         }
 
-        
+        private static List<Pawn> _pawnScratchPawns = new List<Pawn>(); 
 
+        public static TransformedPawn TransformPawn([NotNull] this Mutagen mutagen, Pawn original, PawnKindDef outputPawnKind,
+                                                TFGender forcedGender = TFGender.Original, float forceGenderChance = 50F,
+                                                [CanBeNull] Hediff_Morph cause = null, [CanBeNull] TaleDef tale = null)
+        {
+            _pawnScratchPawns.Clear();
+            _pawnScratchPawns.Add(original);
+            return mutagen.TransformPawns(_pawnScratchPawns, outputPawnKind, forcedGender, forceGenderChance, cause, tale); 
+        }
+
+
+        [Obsolete("Use Mutagen system")]
         public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
                                      TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f
                                      ) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 

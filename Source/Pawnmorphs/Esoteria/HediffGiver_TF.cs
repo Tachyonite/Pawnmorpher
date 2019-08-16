@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -25,13 +26,27 @@ namespace Pawnmorph
             float chance = changeChance < 0 //if changeChance wasn't overriden use the default from the settings 
                 ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
                 : changeChance;
-            Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
+            //Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
 
             
 
             if (Rand.RangeInclusive(0, 100) <= chance)
             {
-                TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
+                var hediffMorph = (cause as Hediff_Morph);
+                var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+
+                var inst = mutagen.MutagenCached.TransformPawn(pawn, pawnkinds.RandElement(), forceGender, forceGenderChance,
+                                                               hediffMorph, tale);
+
+
+                if (inst != null)
+                {
+                    var comp = Find.World.GetComponent<PawnmorphGameComp>();
+                    comp.AddTransformedPawn(inst); 
+                }
+
+
+                //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
                 return true; 
             }
 
