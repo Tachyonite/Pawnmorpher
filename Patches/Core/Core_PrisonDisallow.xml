@@ -3,23 +3,29 @@
 		<xpath>/Defs/ThingSetMakerDef[defName="MapGen_PrisonCellStockpile"]/root/options[last()]/thingSetMaker/fixedParams/filter/disallowedThingDefs</xpath>
 		<success>Always</success>
 		<value>
-			  <li>TFEgg</li>
-			  <li>TFMilk</li>
+			<li>TFEgg</li>
+			<li>TFMilk</li>
 		</value>
 	</Operation>
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="Milk"]/socialPropernessMatters</xpath>
 		<success>Always</success>
-		<value><socialPropernessMatters>false</socialPropernessMatters></value>
+		<value>
+			<socialPropernessMatters>false</socialPropernessMatters>
+		</value>
 	</Operation>
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="EggChickenUnfertilized"]/socialPropernessMatters</xpath>
 		<success>Always</success>
-		<value><socialPropernessMatters>false</socialPropernessMatters></value>
+		<value>
+			<socialPropernessMatters>false</socialPropernessMatters>
+		</value>
 	</Operation>
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="Milk"]/ingestible/preferability</xpath>
 		<success>Always</success>
-		<value><preferability>DesperateOnlyForHumanlikes</preferability></value>
+		<value>
+			<preferability>DesperateOnlyForHumanlikes</preferability>
+		</value>
 	</Operation>
 </Patch>
