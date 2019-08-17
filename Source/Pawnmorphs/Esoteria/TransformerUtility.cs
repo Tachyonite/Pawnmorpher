@@ -4,6 +4,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -14,6 +15,45 @@ namespace Pawnmorph
     public static class TransformerUtility
     // A class full of useful methods.
     {
+        static TransformerUtility()
+        {
+            PossiblePawnKinds = new[]
+            {
+                PawnKindDefOf.Slave,
+                PawnKindDefOf.Colonist,
+                PawnKindDefOf.SpaceRefugee,
+                PawnKindDefOf.Villager, 
+                PawnKindDefOf.Drifter,
+                PawnKindDefOf.AncientSoldier
+            };
+
+
+
+        }
+        /// <summary>
+        /// Removes all mutations from a pawn (used post reversion) 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        public static void RemoveAllMutations(Pawn pawn)
+        {
+            List<Hediff> hS2 = new List<Hediff>(pawn.health.hediffSet.hediffs);
+            foreach (Hediff hediff in hS2)
+            {
+                Type hediffClass = hediff.def.hediffClass;
+                if (hediffClass == typeof(Hediff_AddedMutation) || hediffClass == typeof(Hediff_ProductionThought) || hediffClass == typeof(HediffGiver_TF))
+                {
+                    pawn.health.RemoveHediff(hediff);
+                }
+            }
+
+            foreach (Hediff_Morph hediffMorph in hS2.OfType<Hediff_Morph>()) //do this second so the morph hediff can cleanup properly 
+            {
+                pawn.health.RemoveHediff(hediffMorph); //remove ongoing morph hediffs 
+            }
+
+        }
+       
+
         public static bool TryGivePostTransformationBondRelations(ref Pawn thrumbo, Pawn pawn, out Pawn otherPawn)
         {
             otherPawn = null;
@@ -112,6 +152,46 @@ namespace Pawnmorph
             return mutagen.TransformPawns(_pawnScratchPawns, outputPawnKind, forcedGender, forceGenderChance, cause, tale); 
         }
 
+
+        private static readonly PawnKindDef[] PossiblePawnKinds;
+
+
+        /// <summary>
+        /// Generates the random human pawn from a given animal pawn.
+        /// </summary>
+        /// <param name="animal">The animal.</param>
+        /// <returns></returns>
+        public static PawnGenerationRequest GenerateRandomPawnFromAnimal(Pawn animal)
+        {
+            
+            var convertedAge = ConvertAge(animal, ThingDefOf.Human.race);
+            var gender = animal.gender;
+            if (Rand.RangeInclusive(0, 100) <= 50)
+            {
+                switch (gender)
+                {
+                    
+                    case Gender.Male:
+                        gender = Gender.Female; 
+                        break;
+                    case Gender.Female:
+                        gender =  Gender.Male;
+                        break;
+                    case Gender.None:
+                    default:
+                        break;
+                }
+            }
+
+            var kind = PossiblePawnKinds.RandElement();
+
+            return new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer,
+                                             fixedBiologicalAge: convertedAge,
+                                             fixedChronologicalAge: Rand.Range(convertedAge, convertedAge + 200),
+                                             fixedGender: gender, fixedMelanin: null);
+
+
+        }
 
         [Obsolete("Use Mutagen system")]
         public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,

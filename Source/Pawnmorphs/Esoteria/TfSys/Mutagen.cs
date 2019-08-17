@@ -23,6 +23,7 @@ namespace Pawnmorph.TfSys
         protected static PawnmorphGameComp GameComp => _comp ?? (_comp = Find.World.GetComponent<PawnmorphGameComp>());
 
 
+
         public MutagenDef def;
 
         /// <summary>
@@ -40,6 +41,8 @@ namespace Pawnmorph.TfSys
             PawnKindDef outputPawnKind, TFGender forcedGender = TFGender.Original, float forceGenderChance = 50F,
             [CanBeNull] Hediff_Morph cause = null, [CanBeNull] TaleDef tale = null); //might be worth creating a TransformationRequest struct to keep these parameters in 
 
+
+      
 
         /// <summary>
         /// Determines whether this instance can infect the specified pawn.
@@ -89,6 +92,13 @@ namespace Pawnmorph.TfSys
         /// <param name="transformedPawn">The transformed pawn.</param>
         /// <returns></returns>
         public abstract bool TryRevert([NotNull]TransformedPawn transformedPawn);
+
+        /// <summary>
+        /// Tries to revert the given pawn.
+        /// </summary>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <returns></returns>
+        public abstract bool TryRevert([NotNull] Pawn transformedPawn); 
 
         /// <summary>
         /// Determines whether this instance can revert the specified transformed pawn.

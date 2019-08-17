@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
@@ -139,13 +140,19 @@ namespace Pawnmorph.TfSys
         /// <returns></returns>
         protected override bool TryRevertImpl(TransformedPawnSingle transformedPawn)
         {
+            if(transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
             if (!transformedPawn.IsValid) return false;
 
-            if (!transformedPawn.animal.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman)) return false;
+
+            
 
             var animal = transformedPawn.animal;
-            var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
 
+            var tfHumanHediff = animal?.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            if (tfHumanHediff == null) return false;
+
+            var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
+          
             for (int i = 0; i < 10; i++)
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(spawned.Position.ToVector3(), spawned.MapHeld);
@@ -155,11 +162,12 @@ namespace Pawnmorph.TfSys
             if (def.reversionThoughts.Count > 0)
             {
                 var hediff = HediffMaker.MakeHediff(def.reversionThoughts.RandElement(), spawned);
-                var tfHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-                hediff.Severity = tfHumanHediff.Severity;
 
+                hediff.Severity = tfHumanHediff.Severity;
                 spawned.health.AddHediff(hediff); 
             }
+
+            TransformerUtility.RemoveAllMutations(spawned); 
 
             ReactionsHelper.OnPawnReverted(spawned, animal);
 
@@ -169,6 +177,60 @@ namespace Pawnmorph.TfSys
 
             animal.Destroy();
             return true;
+
+        }
+
+        /// <summary>
+        /// Tries to revert the given pawn.
+        /// </summary>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <returns></returns>
+        public override bool TryRevert(Pawn transformedPawn)
+        {
+            var status = GameComp.GetTransformedPawnContaining(transformedPawn);
+            if (status != null)
+            {
+                if (status.Second != TransformedStatus.Transformed) return false;
+                if (status.First is TransformedPawnSingle inst)
+                {
+                    if (TryRevertImpl(inst))
+                    {
+                        GameComp.RemoveInstance(inst); 
+                        return true; 
+                    }
+                }
+
+                return false; 
+            }
+
+            var formerHuman =
+                transformedPawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == TfHediffDefOf.TransformedHuman);
+            if (formerHuman == null) return false;
+
+            var request = TransformerUtility.GenerateRandomPawnFromAnimal(transformedPawn);
+            var pawnTf = PawnGenerator.GeneratePawn(request);
+
+            pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurLevel;
+            pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel;
+
+            var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.PositionHeld, transformedPawn.MapHeld);
+            spawned.equipment.DestroyAllEquipment();
+            spawned.apparel.DestroyAll();
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                IntermittentMagicSprayer.ThrowMagicPuffDown(spawned.Position.ToVector3(), spawned.MapHeld);
+                IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
+            }
+
+            var rThought = def.reversionThoughts.RandElement();
+            var rThoughtHediff = HediffMaker.MakeHediff(rThought, transformedPawn);
+
+            rThoughtHediff.Severity = formerHuman.Severity;
+            spawned.health.AddHediff(rThoughtHediff);
+            transformedPawn.Destroy();
+            return true; 
 
         }
     }

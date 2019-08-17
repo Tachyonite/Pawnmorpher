@@ -41,7 +41,22 @@ namespace Pawnmorph
         [Unsaved] private Mutagen _mutagenCached;
 
         
-        public Mutagen MutagenCached => _mutagenCached ?? (_mutagenCached = (Mutagen) Activator.CreateInstance(mutagenType));
+        public Mutagen MutagenCached
+        {
+            get
+            {
+                Mutagen cached = _mutagenCached;
+                if (cached != null)
+                {
+                    return cached;
+                }
+
+                _mutagenCached = (Mutagen) Activator.CreateInstance(mutagenType);
+                _mutagenCached.def = this;
+                return _mutagenCached; 
+
+            }
+        }
 
 
         public bool CanInfect(Pawn pawn)
