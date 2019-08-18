@@ -19,43 +19,48 @@ namespace Pawnmorph.TfSys
     {
         private const string FORMER_HUMAN_HEDIFF = "2xMergedHuman"; //can't put this in a hediffDefOf because of the name 
 
-        private readonly List<Pawn> _scratchList = new List<Pawn>();
 
         
 
 
         /// <summary>
-        ///     Transforms the pawns into a TransformedPawn instance of the given ace .
+        ///     Determines whether this instance can revert pawn the specified transformed pawn.
         /// </summary>
-        /// <param name="originals">The originals.</param>
-        /// <param name="outputPawnKind"></param>
-        /// <param name="forcedGender"></param>
-        /// <param name="forcedGenderChance"></param>
-        /// <param name="cause">The cause.</param>
-        /// <param name="tale"></param>
-        /// <returns></returns>
-        protected override MergedPawns TransformPawnsImpl(IEnumerable<Pawn> originals, PawnKindDef outputPawnKind,
-                                                          TFGender forcedGender,
-                                                          float forcedGenderChance, Hediff_Morph cause, TaleDef tale)
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <returns>
+        ///     <c>true</c> if this instance can revert pawn  the specified transformed pawn; otherwise, <c>false</c>.
+        /// </returns>
+        protected override bool CanRevertPawnImp(MergedPawns transformedPawn)
         {
-            _scratchList.Clear();
-            _scratchList.AddRange(originals);
-            if (_scratchList.Count != 2)
-            {
-                Log.Warning($"trying to merge {_scratchList.Count} pawns, this is not currently supported!");
-                return null;
-            }
+            if (!transformedPawn.IsValid) return false;
 
-            Pawn firstPawn = _scratchList[0];
-            Pawn secondPawn = _scratchList[1];
+            HediffDef def = HediffDef.Named(FORMER_HUMAN_HEDIFF);
+
+            return transformedPawn.meld.health.hediffSet.HasHediff(def);
+        }
+
+        protected override bool IsValid(TransformationRequest request)
+        {
+            return base.IsValid(request) && request.originals.Length == 2;
+        }
+
+        /// <summary>
+        /// preform the requested transform 
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        protected override MergedPawns TransformImpl(TransformationRequest request)
+        {
+            Pawn firstPawn = request.originals[0];
+            Pawn secondPawn = request.originals[1];
             float averageAge = firstPawn.ageTracker.AgeBiologicalYearsFloat
                              + secondPawn.ageTracker.AgeBiologicalYearsFloat;
             averageAge /= 2;
 
 
-            float newAge = averageAge * outputPawnKind.race.race.lifeExpectancy / firstPawn.RaceProps.lifeExpectancy;
+            float newAge = averageAge * request.outputDef.race.race.lifeExpectancy / firstPawn.RaceProps.lifeExpectancy;
 
-            var request = new PawnGenerationRequest(outputPawnKind, Faction.OfPlayer,
+            var pRequest = new PawnGenerationRequest(request.outputDef, Faction.OfPlayer,
                                                     PawnGenerationContext.NonPlayer, -1, false,
                                                     false, false, false, true, false, 1f,
                                                     false, true, true, false, false, false,
@@ -63,7 +68,7 @@ namespace Pawnmorph.TfSys
                                                     newAge, averageAge);
 
 
-            Pawn meldToSpawn = PawnGenerator.GeneratePawn(request);
+            Pawn meldToSpawn = PawnGenerator.GeneratePawn(pRequest);
 
             Pawn_NeedsTracker needs = meldToSpawn.needs;
             needs.food.CurLevel = firstPawn.needs.food.CurLevel;
@@ -71,7 +76,7 @@ namespace Pawnmorph.TfSys
             meldToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
             meldToSpawn.training.Train(TrainableDefOf.Obedience, null, true);
             meldToSpawn.Name = firstPawn.Name;
-            var meld = (Pawn) GenSpawn.Spawn(meldToSpawn, firstPawn.PositionHeld, firstPawn.MapHeld);
+            var meld = (Pawn)GenSpawn.Spawn(meldToSpawn, firstPawn.PositionHeld, firstPawn.MapHeld);
             for (var i = 0; i < 10; i++)
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(meld.Position.ToVector3(), meld.MapHeld);
@@ -94,28 +99,16 @@ namespace Pawnmorph.TfSys
 
             var inst = new MergedPawns
             {
-                originals = _scratchList.ToList(),
+                originals = request.originals.ToList(), //we want to make a copy here 
                 meld = meld,
                 mutagenDef = def
             };
             return inst;
+
+
+
         }
-
-        /// <summary>
-        ///     Determines whether this instance can revert pawn the specified transformed pawn.
-        /// </summary>
-        /// <param name="transformedPawn">The transformed pawn.</param>
-        /// <returns>
-        ///     <c>true</c> if this instance can revert pawn  the specified transformed pawn; otherwise, <c>false</c>.
-        /// </returns>
-        protected override bool CanRevertPawnImp(MergedPawns transformedPawn)
-        {
-            if (!transformedPawn.IsValid) return false;
-
-            HediffDef def = HediffDef.Named(FORMER_HUMAN_HEDIFF);
-
-            return transformedPawn.meld.health.hediffSet.HasHediff(def);
-        }
+        
 
         /// <summary>
         ///     Tries to revert the transformed pawn instance, implementation.
@@ -127,7 +120,6 @@ namespace Pawnmorph.TfSys
             if (!transformedPawn.IsValid) return false;
 
 
-            _scratchList.Clear();
             if (transformedPawn.originals.Count != 2) return false;
             HediffDef hDef = HediffDef.Named(FORMER_HUMAN_HEDIFF);
             Pawn meld = transformedPawn.meld;

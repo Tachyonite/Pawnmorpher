@@ -27,22 +27,11 @@ namespace Pawnmorph.TfSys
         public MutagenDef def;
 
         /// <summary>
-        /// Transforms the pawns into one instance of the given race.
+        /// Transforms the specified request.
         /// </summary>
-        /// <param name="originals">The originals.</param>
-        /// <param name="outputPawnKind">The output race.</param>
-        /// <param name="forcedGender"></param>
-        /// <param name="forceGenderChance"></param>
-        /// <param name="cause">The cause of the transformation.</param>
-        /// <param name="tale"></param>
-        /// <returns>the transformed pawn instance to be placed into the game comp, null if the pawn couldn't be transformed</returns>
-        [CanBeNull]
-        public abstract TransformedPawn TransformPawns(IEnumerable<Pawn> originals,
-            PawnKindDef outputPawnKind, TFGender forcedGender = TFGender.Original, float forceGenderChance = 50F,
-            [CanBeNull] Hediff_Morph cause = null, [CanBeNull] TaleDef tale = null); //might be worth creating a TransformationRequest struct to keep these parameters in 
-
-
-      
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        public abstract TransformedPawn Transform(TransformationRequest request); 
 
         /// <summary>
         /// Determines whether this instance can infect the specified pawn.
@@ -115,24 +104,6 @@ namespace Pawnmorph.TfSys
     public abstract class Mutagen<T> : Mutagen where T: TransformedPawn
     {
         /// <summary>
-        /// Transforms the pawns into a TransformedPawn instance of the given race .
-        /// </summary>
-        /// Implementers can return null if the transformation couldn't happen, and should also clean up the original pawn, but should not
-        /// place the TransformedPawn instance into the
-        /// <param name="originals">The originals.</param>
-        /// <param name="outputPawnKind"></param>
-        /// <param name="forcedGender"></param>
-        /// <param name="forcedGenderChance"></param>
-        /// <param name="cause">The cause.</param>
-        /// <param name="tale"></param>
-        /// <returns></returns>
-        [CanBeNull]
-        protected abstract T TransformPawnsImpl(IEnumerable<Pawn> originals, PawnKindDef outputPawnKind,
-            TFGender forcedGender, float forcedGenderChance,
-            Hediff_Morph cause, TaleDef tale);
-
-
-        /// <summary>
         /// Determines whether this instance can revert pawn the specified transformed pawn.
         /// </summary>
         /// <param name="transformedPawn">The transformed pawn.</param>
@@ -142,26 +113,34 @@ namespace Pawnmorph.TfSys
         protected abstract bool CanRevertPawnImp(T transformedPawn);
 
         /// <summary>
-        /// Transforms the pawns into one instance of the given race.
+        /// preform the requested transform 
         /// </summary>
-        /// <param name="originals">The originals.</param>
-        /// <param name="outputPawnKind">The output race.</param>
-        /// <param name="forcedGender"></param>
-        /// <param name="forceGenderChance"></param>
-        /// <param name="cause">The cause of the transformation.</param>
-        /// <param name="tale"></param>
+        /// <param name="request">The request.</param>
         /// <returns></returns>
-        public sealed override TransformedPawn TransformPawns(IEnumerable<Pawn> originals, PawnKindDef outputPawnKind,
-            TFGender forcedGender = TFGender.Original, float forceGenderChance = 50F,
-            [CanBeNull] Hediff_Morph cause = null, TaleDef tale=null)
+        protected abstract T TransformImpl(TransformationRequest request); 
+
+        protected virtual bool IsValid(TransformationRequest request)
         {
-            var tfPawn = TransformPawnsImpl(originals, outputPawnKind, forcedGender, forceGenderChance,  cause, tale);
-            if(tfPawn != null)
-                tfPawn.mutagenDef = def; //base class will always assign the correct def, so we don't forget 
-            return tfPawn; 
+            return request.IsValid; 
         }
 
-        
+        /// <summary>
+        /// Transforms the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        public sealed override TransformedPawn Transform(TransformationRequest request)
+        {
+            if (!IsValid(request))
+            {
+                Log.Warning($"{def.defName} received an invalid transformation request!");
+
+                return null;
+            } 
+            return TransformImpl(request); 
+        }
+
+
         public sealed override bool CanRevert(TransformedPawn pawn)
         {
             if (pawn == null)

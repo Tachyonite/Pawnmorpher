@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -35,8 +36,15 @@ namespace Pawnmorph
                 var hediffMorph = (cause as Hediff_Morph);
                 var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
-                var inst = mutagen.MutagenCached.TransformPawn(pawn, pawnkinds.RandElement(), forceGender, forceGenderChance,
-                                                               hediffMorph, tale);
+                var request = new TransformationRequest(pawnkinds.RandElement(), pawn)
+                {
+                    forcedGender = forceGender,
+                    forcedGenderChance = forceGenderChance,
+                    cause = hediffMorph,
+                    tale = tale
+                };
+
+                var inst = mutagen.MutagenCached.Transform(request);
 
 
                 if (inst != null)

@@ -143,14 +143,7 @@ namespace Pawnmorph
 
         private static List<Pawn> _pawnScratchPawns = new List<Pawn>(); 
 
-        public static TransformedPawn TransformPawn([NotNull] this Mutagen mutagen, Pawn original, PawnKindDef outputPawnKind,
-                                                TFGender forcedGender = TFGender.Original, float forceGenderChance = 50F,
-                                                [CanBeNull] Hediff_Morph cause = null, [CanBeNull] TaleDef tale = null)
-        {
-            _pawnScratchPawns.Clear();
-            _pawnScratchPawns.Add(original);
-            return mutagen.TransformPawns(_pawnScratchPawns, outputPawnKind, forcedGender, forceGenderChance, cause, tale); 
-        }
+      
 
 
         private static readonly PawnKindDef[] PossiblePawnKinds;

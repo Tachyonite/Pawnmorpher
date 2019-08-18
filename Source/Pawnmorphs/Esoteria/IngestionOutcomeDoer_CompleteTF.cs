@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
@@ -27,8 +28,13 @@ namespace Pawnmorph
 
                                 pawn.health.RemoveHediff(morph);
 
-                                var inst = mutagen.MutagenCached.TransformPawn(pawn, giverTF.pawnkinds.RandElement(),
-                                                                               tale:giverTF.tale);
+
+                                var request = new TransformationRequest(giverTF.pawnkinds.RandElement(), pawn)
+                                {
+                                    tale = giverTF.tale
+                                };
+
+                                var inst = mutagen.MutagenCached.Transform(request);
 
                                 if (inst != null)
                                 {

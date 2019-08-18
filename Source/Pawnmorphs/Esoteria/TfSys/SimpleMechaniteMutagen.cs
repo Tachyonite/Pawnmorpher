@@ -18,7 +18,6 @@ namespace Pawnmorph.TfSys
     /// <seealso cref="TransformedPawnSingle" />
     public class SimpleMechaniteMutagen : Mutagen<TransformedPawnSingle>
     {
-        private static List<Pawn> _scratchList = new List<Pawn>();
 
         /// <summary>
         ///     Determines whether this instance can revert pawn the specified transformed pawn.
@@ -33,50 +32,33 @@ namespace Pawnmorph.TfSys
             return transformedPawn.animal.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman);
         }
 
-        /// <summary>
-        ///     Transforms the pawns into a TransformedPawn instance of the given ace .
-        /// </summary>
-        /// <param name="originals">The originals.</param>
-        /// <param name="outputPawnKind"></param>
-        /// <param name="forcedGender"></param>
-        /// <param name="forcedGenderChance"></param>
-        /// <param name="cause">The cause.</param>
-        /// <param name="tale"></param>
-        /// <returns></returns>
-        protected override TransformedPawnSingle TransformPawnsImpl(IEnumerable<Pawn> originals,
-            PawnKindDef outputPawnKind, TFGender forcedGender,
-            float forcedGenderChance, Hediff_Morph cause, TaleDef tale)
+        protected override bool IsValid(TransformationRequest request)
         {
-            _scratchList.Clear();
-            _scratchList.AddRange(originals);
-            if (_scratchList.Count > 1)
-            {
-                Log.Warning(
-                    $"Mutagen {def.defName} is trying to transform more then one pawn into a meld but this is not supported by {nameof(SimpleMechaniteMutagen)}");
-                return null;
-            }
+            return base.IsValid(request) && request.originals.Length == 1; 
+        }
 
-            if (_scratchList.Count == 0)
-            {
-                Log.Warning($"Mutagen {def.defName} received an empty enumeration of pawns to transform!");
-                return null;
-            }
+        /// <summary>
+        /// preform the requested transform 
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        protected override TransformedPawnSingle TransformImpl(TransformationRequest request)
+        {
+            var original = request.originals[0];
 
-            var original = _scratchList[0];
-
-            var newAge = TransformerUtility.ConvertAge(original, outputPawnKind.race.race);
+            var newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
 
             var faction = original.IsColonist ? original.Faction : null;
 
-            var newGender = TransformerUtility.GetTransformedGender(original, forcedGender, forcedGenderChance);
+            var newGender = TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
 
-            var request = new PawnGenerationRequest( //create the request 
-                outputPawnKind, faction, PawnGenerationContext.NonPlayer, -1, false, false,
+            var pRequest = new PawnGenerationRequest( //create the request 
+                request.outputDef, faction, PawnGenerationContext.NonPlayer, -1, false, false,
                 false, false, true, false, 1f, false, true, true, false, false, false,
                 false, null, null, null, newAge, original.ageTracker.AgeChronologicalYearsFloat, newGender);
 
 
-            var animalToSpawn = PawnGenerator.GeneratePawn(request); //make the temp pawn 
+            var animalToSpawn = PawnGenerator.GeneratePawn(pRequest); //make the temp pawn 
 
 
             animalToSpawn.needs.food.CurLevel = original.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
@@ -108,9 +90,9 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawnedAnimal.Position.ToVector3(), spawnedAnimal.MapHeld);
             }
 
-            if (tale != null) // If a tale was provided, push it to the tale recorder.
+            if (request.tale != null) // If a tale was provided, push it to the tale recorder.
             {
-                TaleRecorder.RecordTale(tale, new object[]
+                TaleRecorder.RecordTale(request.tale, new object[]
                 {
                     original,
                     animalToSpawn
@@ -118,10 +100,10 @@ namespace Pawnmorph.TfSys
             }
 
             bool wasPrisoner = original.IsPrisonerOfColony;
-            TransformerUtility.CleanUpHumanPawnPostTf(original, cause);  //now clean up the original pawn (remove apparel, drop'em, ect) 
+            TransformerUtility.CleanUpHumanPawnPostTf(original, request.cause);  //now clean up the original pawn (remove apparel, drop'em, ect) 
 
-            Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(original.LabelShort, outputPawnKind.LabelCap).CapitalizeFirst(),
-                "LetterHediffFromTransformation".Translate(original.LabelShort, outputPawnKind.LabelCap).CapitalizeFirst(),
+            Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(original.LabelShort, request.outputDef.LabelCap).CapitalizeFirst(),
+                "LetterHediffFromTransformation".Translate(original.LabelShort, request.outputDef.LabelCap).CapitalizeFirst(),
                 LetterDefOf.NeutralEvent, spawnedAnimal, null, null); // Creates a letter saying "Oh no! Pawn X has transformed into a Y!"
             Find.TickManager.slower.SignalForceNormalSpeedShort(); // Slow down the speed of the game.
 
@@ -129,10 +111,11 @@ namespace Pawnmorph.TfSys
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner);
 
-            return inst; 
-            
+            return inst;
+
         }
 
+        
         /// <summary>
         ///     Tries to revert the transformed pawn instance, implementation.
         /// </summary>

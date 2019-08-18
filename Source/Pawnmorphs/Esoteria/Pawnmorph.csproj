@@ -141,6 +141,7 @@
     <Compile Include="TfSys\MergeMutagen.cs" />
     <Compile Include="TfSys\Mutagen.cs" />
     <Compile Include="TfSys\SimpleMechaniteMutagen.cs" />
+    <Compile Include="TfSys\TransformationRequest.cs" />
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
