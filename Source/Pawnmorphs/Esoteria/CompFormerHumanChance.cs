@@ -31,5 +31,11 @@ namespace Pawnmorph
             }
             TransformerUtility.RemoveHediffIfPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman")); // Remove the TransformedHuman hediff if the pawn becomes permanently feral.
         }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref triggered, nameof(triggered)); 
+        }
     }
 }
