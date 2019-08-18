@@ -41,7 +41,7 @@
 		<durationDays>0.2</durationDays>
 		<stages>
 			<li>
-				<label>laid an egg (etherbond)</label>
+				<label>laid an egg</label>
 				<description>Egg...! Bok bwark!</description>
 				<baseMoodEffect>+10</baseMoodEffect>
 			</li>
@@ -53,7 +53,7 @@
 		<durationDays>0.2</durationDays>
 		<stages>
 			<li>
-				<label>laid an egg (etherbroken)</label>
+				<label>laid an egg</label>
 				<description>B..bok...egg...gh..bwark...</description>
 				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
@@ -89,7 +89,7 @@
 		<durationDays>0.2</durationDays>
 		<stages>
 			<li>
-				<label>milked myself(etherbond)</label>
+				<label>milked myself</label>
 				<description>Mmmmooooooo!</description>
 				<baseMoodEffect>+10</baseMoodEffect>
 			</li>
@@ -101,7 +101,7 @@
 		<durationDays>0.2</durationDays>
 		<stages>
 			<li>
-				<label>milked myself(etherbroken)</label>
+				<label>milked myself</label>
 				<description>Mm..mooo...mmilk...?</description>
 				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
@@ -114,7 +114,7 @@
 		<durationDays>1</durationDays>
 		<stages>
 			<li>
-				<label>Drained my chemcyst.</label>
+				<label>drained my chemcyst</label>
 				<description>This is disgusting.</description>
 				<baseMoodEffect>-10</baseMoodEffect>
 			</li>
@@ -126,7 +126,7 @@
 		<durationDays>0.2</durationDays>
 		<stages>
 			<li>
-				<label>Drained my chemcyst!</label>
+				<label>drained my chemcyst</label>
 				<description>Boom!</description>
 				<baseMoodEffect>+10</baseMoodEffect>
 			</li>
@@ -138,7 +138,7 @@
 		<durationDays>0.2</durationDays>
 		<stages>
 			<li>
-				<label>Drained my chemcyst...</label>
+				<label>drained my chemcyst</label>
 				<description>B...boom...b...oom?</description>
 				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
