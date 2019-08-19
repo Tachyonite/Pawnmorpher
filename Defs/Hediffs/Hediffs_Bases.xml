@@ -31,5 +31,7 @@
 			<solid>true</solid>
 		</addedPartProps>
 		<isBad>false</isBad>
+		<maxSeverity>1</maxSeverity>
+
 	</HediffDef>
 </Defs>

@@ -24,6 +24,20 @@
 					</li>
 				</capMods>
 			</li>
+			<li>
+				<minSeverity>0.99</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.08</offset> <!-- I'm using 20% of the base reduction for the adapted across the board, might need balancing though-->
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+				<label>adapted</label>
+			</li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
@@ -39,6 +53,10 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
+				<!-- takes 2 days to progress -->
 			</li>
 		</comps>
 	</HediffDef>
