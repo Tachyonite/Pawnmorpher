@@ -195,7 +195,6 @@
 				<hiddenUnderApparelFor>
 					<li>Torso</li>
 				</hiddenUnderApparelFor>
-				<layerOffset>0</layerOffset>
 				<offsets>
 					<south>
 						<bodyTypes>
