@@ -27,7 +27,7 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.5</minSeverity>
+				<minSeverity>0.99</minSeverity>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -55,8 +55,8 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphTrigger">
-				<severityValue>1</severityValue>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
