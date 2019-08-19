@@ -6,33 +6,127 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 				</hediffGraphics>
-				<layerOffset>-0.271</layerOffset>
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.44,0.44)</Male>
-							<Female>(-0.44,0.44)</Female>
-							<Thin>(-0.44,0.44)</Thin>
-							<Hulk>(-0.44,0.44)</Hulk>
-							<Fat>(-0.44,0.44)</Fat>
+							<Male>(-0.445,0.42)</Male>
+							<Female>(-0.445,0.42)</Female>
+							<Thin>(-0.445,0.42)</Thin>
+							<Hulk>(-0.445,0.42)</Hulk>
+							<Fat>(-0.445,0.42)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+						</crownTypes>
+					</south>
+					<north />
+					<east>
+						<bodyTypes>
+							<Male>(-0.75,0.43)</Male>
+							<Female>(-0.81,0.43)</Female>
+							<Thin>(-0.8,0.43)</Thin>
+							<Hulk>(-0.81,0.43)</Hulk>
+							<Fat>(-0.8,0.43)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0)</Average_Wide>
+							<Average_Pointy>(0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0.065,-0.055)</Narrow_Normal>
+							<Narrow_Wide>(0.065,-0.055)</Narrow_Wide>
+							<Narrow_Pointy>(0.07,-0.06)</Narrow_Pointy>
+						</crownTypes>
+					</east>
+				</offsets>
+			</li>
+			<li>
+				<path>Parts/None/None</path>
+				<bodyPart>Jaw</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawForMale>false</drawForMale>
+				<hediffGraphics>
+					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
+				</hediffGraphics>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.445,0.42)</Male>
+							<Female>(-0.445,0.42)</Female>
+							<Thin>(-0.445,0.42)</Thin>
+							<Hulk>(-0.445,0.42)</Hulk>
+							<Fat>(-0.445,0.42)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,0.02)</Narrow_Normal>
+							<Narrow_Wide>(-0.015,0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
+						</crownTypes>
+					</south>
+					<north />
+					<east>
+						<bodyTypes>
+							<Male>(-0.71,0.43)</Male>
+							<Female>(-0.77,0.43)</Female>
+							<Thin>(-0.76,0.43)</Thin>
+							<Hulk>(-0.77,0.43)</Hulk>
+							<Fat>(-0.76,0.43)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(0.005,0)</Average_Pointy>
+							<Narrow_Normal>(0.025,-0.03)</Narrow_Normal>
+							<Narrow_Wide>(0.025,-0.03)</Narrow_Wide>
+							<Narrow_Pointy>(0.025,-0.06)</Narrow_Pointy>
+						</crownTypes>
+					</east>
+				</offsets>
+			</li>
+			<li>
+				<path>Parts/None/None</path>
+				<bodyPart>Ear</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawForFemale>false</drawForFemale>
+				<hediffGraphics>
+					<EtherCatEar>Parts/catface/catears</EtherCatEar>
+				</hediffGraphics>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.405,0.63)</Male>
+							<Female>(-0.405,0.63)</Female>
+							<Thin>(-0.405,0.63)</Thin>
+							<Hulk>(-0.405,0.63)</Hulk>
+							<Fat>(-0.405,0.63)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+						</crownTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0)</Male>
-							<Female>(0,0)</Female>
+							<Male>(0.015,1)</Male>
+							<Female>(0.015,1)</Female>
+							<Thin>(0.015,1)</Thin>
+							<Hulk>(0.015,1)</Hulk>
+							<Fat>(0.015,1)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+						</crownTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.75,0.40)</Male>
-							<Female>(-0.75,0.40)</Female>
-							<Thin>(-0.80,0.40)</Thin>
-							<Hulk>(-0.80,0.40)</Hulk>
-							<Fat>(-0.80,0.40)</Fat>
+							<Male>(-0.45,0.65)</Male>
+							<Female>(-0.51,0.65)</Female>
+							<Thin>(-0.5,0.65)</Thin>
+							<Hulk>(-0.51,0.65)</Hulk>
+							<Fat>(-0.5,0.65)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -41,37 +135,52 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherCatEar>Parts/catface/catears</EtherCatEar>
 				</hediffGraphics>
-				<layerOffset>-0.24</layerOffset>
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.41,0.63)</Male>
-							<Female>(-0.40,0.63)</Female>
-							<Thin>(-0.42,0.63)</Thin>
-							<Hulk>(-0.41,0.63)</Hulk>
-							<Fat>(-0.41,0.63)</Fat>
+							<Male>(-0.405,0.63)</Male>
+							<Female>(-0.405,0.63)</Female>
+							<Thin>(-0.405,0.63)</Thin>
+							<Hulk>(-0.405,0.63)</Hulk>
+							<Fat>(-0.405,0.63)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,-0.01)</Narrow_Normal>
+							<Narrow_Wide>(-0.015,-0.01)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.03)</Narrow_Pointy>
+						</crownTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,1)</Male>
-							<Female>(0,1)</Female>
-							<Thin>(0,1)</Thin>
-							<Hulk>(0,1)</Hulk>
-							<Fat>(0,1)</Fat>
+							<Male>(0.015,1)</Male>
+							<Female>(0.015,1)</Female>
+							<Thin>(0.015,1)</Thin>
+							<Hulk>(0.015,1)</Hulk>
+							<Fat>(0.015,1)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,-0.01)</Narrow_Normal>
+							<Narrow_Wide>(0,-0.01)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
+						</crownTypes>
 					</north>
 					<east>
 						<bodyTypes>
 							<Male>(-0.45,0.65)</Male>
-							<Female>(-0.45,0.65)</Female>
-							<Thin>(-0.45,0.65)</Thin>
-							<Hulk>(-0.45,0.65)</Hulk>
-							<Fat>(-0.45,0.65)</Fat>
+							<Female>(-0.51,0.65)</Female>
+							<Thin>(-0.5,0.65)</Thin>
+							<Hulk>(-0.51,0.65)</Hulk>
+							<Fat>(-0.5,0.65)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Narrow_Pointy>(0,-0.02)</Narrow_Pointy>
+						</crownTypes>
 					</east>
 				</offsets>
 			</li>
@@ -83,30 +192,25 @@
 				<hediffGraphics>
 					<EtherCatTail>Parts/catface/cattail</EtherCatTail>
 				</hediffGraphics>
-				<layerOffset>-0.32</layerOffset>
+				<layerOffset>-0.3</layerOffset>
 				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(0,0)</Male>
-							<Female>(0,0)</Female>
-						</bodyTypes>
-					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0.05,0.10)</Male>
-							<Female>(0.05,0.05)</Female>
-							<Thin>(0.05,0.10)</Thin>
-							<Hulk>(0.05,-0.05)</Hulk>
-							<Fat>(0.05,0.05)</Fat>
+							<Male>(0.06,0.06)</Male>
+							<Female>(0.06,0.03)</Female>
+							<Thin>(0.06,0.06)</Thin>
+							<Hulk>(0.06,-0.13)</Hulk>
+							<Fat>(0.06,0.03)</Fat>
 						</bodyTypes>
 					</north>
+					<south />
 					<east>
 						<bodyTypes>
-							<Male>(-0.25,-0.20)</Male>
-							<Female>(-0.20,-0.10)</Female>
-							<Thin>(-0.25,-0.20)</Thin>
-							<Hulk>(-0.05,-0.30)</Hulk>
-							<Fat>(0.00,-0.20)</Fat>
+							<Male>(-0.235,-0.17)</Male>
+							<Female>(-0.125,-0.17)</Female>
+							<Thin>(-0.205,-0.17)</Thin>
+							<Hulk>(-0.025,-0.35)</Hulk>
+							<Fat>(0.035,-0.2)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>

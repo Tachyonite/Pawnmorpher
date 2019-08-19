@@ -31,7 +31,7 @@ namespace Pawnmorph
 
             
 
-            if (Rand.RangeInclusive(0, 100) < chance)
+            if (Rand.Range(0, 100) < chance)
             {
                 var hediffMorph = (cause as Hediff_Morph);
                 var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;

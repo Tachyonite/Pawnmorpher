@@ -6,33 +6,127 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
 				</hediffGraphics>
-				<layerOffset>-0.271</layerOffset>
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.38,0.47)</Male>
-							<Female>(-0.39,0.49)</Female>
-							<Fat>(-0.39,0.47)</Fat>
-							<Thin>(-0.39,0.47)</Thin>
-							<Hulk>(-0.39,0.47)</Hulk>
+							<Male>(-0.42,0.47)</Male>
+							<Female>(-0.42,0.47)</Female>
+							<Thin>(-0.42,0.47)</Thin>
+							<Hulk>(-0.42,0.47)</Hulk>
+							<Fat>(-0.42,0.47)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+						</crownTypes>
+					</south>
+					<north />
+					<east>
+						<bodyTypes>
+							<Male>(-0.61,0.38)</Male>
+							<Female>(-0.65,0.38)</Female>
+							<Thin>(-0.64,0.38)</Thin>
+							<Hulk>(-0.65,0.38)</Hulk>
+							<Fat>(-0.64,0.38)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0)</Average_Wide>
+							<Average_Pointy>(0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0.065,-0.055)</Narrow_Normal>
+							<Narrow_Wide>(0.065,-0.055)</Narrow_Wide>
+							<Narrow_Pointy>(0.07,-0.06)</Narrow_Pointy>
+						</crownTypes>
+					</east>
+				</offsets>
+			</li>
+			<li>
+				<path>Parts/None/None</path>
+				<bodyPart>Jaw</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawForMale>false</drawForMale>
+				<hediffGraphics>
+					<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
+				</hediffGraphics>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.42,0.47)</Male>
+							<Female>(-0.42,0.47)</Female>
+							<Thin>(-0.42,0.47)</Thin>
+							<Hulk>(-0.42,0.47)</Hulk>
+							<Fat>(-0.42,0.47)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,0.02)</Narrow_Normal>
+							<Narrow_Wide>(-0.015,0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
+						</crownTypes>
+					</south>
+					<north />
+					<east>
+						<bodyTypes>
+							<Male>(-0.57,0.38)</Male>
+							<Female>(-0.61,0.38)</Female>
+							<Thin>(-0.6,0.38)</Thin>
+							<Hulk>(-0.61,0.38)</Hulk>
+							<Fat>(-0.6,0.38)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(0.005,0)</Average_Pointy>
+							<Narrow_Normal>(0.025,-0.03)</Narrow_Normal>
+							<Narrow_Wide>(0.025,-0.03)</Narrow_Wide>
+							<Narrow_Pointy>(0.025,-0.06)</Narrow_Pointy>
+						</crownTypes>
+					</east>
+				</offsets>
+			</li>
+			<li>
+				<path>Parts/None/None</path>
+				<bodyPart>Ear</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawForFemale>false</drawForFemale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/foxface/foxears</EtherFoxEar>
+				</hediffGraphics>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.43,0.63)</Male>
+							<Female>(-0.43,0.63)</Female>
+							<Thin>(-0.43,0.63)</Thin>
+							<Hulk>(-0.43,0.63)</Hulk>
+							<Fat>(-0.43,0.63)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+						</crownTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0)</Male>
-							<Female>(0,0)</Female>
+							<Male>(-0.01,1)</Male>
+							<Female>(-0.01,1)</Female>
+							<Thin>(-0.01,1)</Thin>
+							<Hulk>(-0.01,1)</Hulk>
+							<Fat>(-0.01,1)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+						</crownTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.59,0.40)</Male>
-							<Female>(-0.61,0.40)</Female>
-							<Fat>(-0.59,0.40)</Fat>
-							<Thin>(-0.59,0.40)</Thin>
-							<Hulk>(-0.65,0.40)</Hulk>
+							<Male>(-0.45,0.65)</Male>
+							<Female>(-0.51,0.65)</Female>
+							<Thin>(-0.5,0.65)</Thin>
+							<Hulk>(-0.51,0.65)</Hulk>
+							<Fat>(-0.5,0.65)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -41,37 +135,52 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherFoxEar>Parts/foxface/foxears</EtherFoxEar>
 				</hediffGraphics>
-				<layerOffset>-0.24</layerOffset>
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.42,0.63)</Male>
-							<Female>(-0.40,0.63)</Female>
-							<Fat>(-0.42,0.63)</Fat>
-							<Thin>(-0.42,0.63)</Thin>
-							<Hulk>(-0.42,0.63)</Hulk>
+							<Male>(-0.43,0.63)</Male>
+							<Female>(-0.43,0.63)</Female>
+							<Thin>(-0.43,0.63)</Thin>
+							<Hulk>(-0.43,0.63)</Hulk>
+							<Fat>(-0.43,0.63)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,-0.01)</Narrow_Normal>
+							<Narrow_Wide>(-0.015,-0.01)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.03)</Narrow_Pointy>
+						</crownTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,1)</Male>
-							<Female>(0,1)</Female>
-							<Fat>(0,1)</Fat>
-							<Thin>(0,1)</Thin>
-							<Hulk>(0,1)</Hulk>
+							<Male>(-0.01,1)</Male>
+							<Female>(-0.01,1)</Female>
+							<Thin>(-0.01,1)</Thin>
+							<Hulk>(-0.01,1)</Hulk>
+							<Fat>(-0.01,1)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,-0.01)</Narrow_Normal>
+							<Narrow_Wide>(0,-0.01)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
+						</crownTypes>
 					</north>
 					<east>
 						<bodyTypes>
 							<Male>(-0.45,0.65)</Male>
-							<Female>(-0.45,0.65)</Female>
-							<Fat>(-0.45,0.65)</Fat>
-							<Thin>(-0.45,0.65)</Thin>
-							<Hulk>(-0.45,0.65)</Hulk>
+							<Female>(-0.51,0.65)</Female>
+							<Thin>(-0.5,0.65)</Thin>
+							<Hulk>(-0.51,0.65)</Hulk>
+							<Fat>(-0.5,0.65)</Fat>
 						</bodyTypes>
+						<crownTypes>
+							<Narrow_Pointy>(0,-0.02)</Narrow_Pointy>
+						</crownTypes>
 					</east>
 				</offsets>
 			</li>
@@ -83,30 +192,25 @@
 				<hediffGraphics>
 					<EtherFluffyTail>Parts/foxface/foxtail</EtherFluffyTail>
 				</hediffGraphics>
-				<layerOffset>-0.32</layerOffset>
+				<layerOffset>-0.3</layerOffset>
 				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(0,0)</Male>
-							<Female>(0,0)</Female>
-						</bodyTypes>
-					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.04)</Male>
-							<Female>(0,0.04)</Female>
-							<Fat>(0,0.04)</Fat>
-							<Thin>(0,0.04)</Thin>
-							<Hulk>(0,0.04)</Hulk>
+							<Male>(-0.02,0.06)</Male>
+							<Female>(-0.02,0.03)</Female>
+							<Thin>(-0.02,0.06)</Thin>
+							<Hulk>(-0.02,-0.13)</Hulk>
+							<Fat>(-0.02,0.03)</Fat>
 						</bodyTypes>
 					</north>
+					<south />
 					<east>
 						<bodyTypes>
-							<Male>(-0.17,-0.21)</Male>
-							<Female>(-0.08,-0.12)</Female>
-							<Fat>(0,-0.21)</Fat>
-							<Thin>(-0.23,-0.21)</Thin>
-							<Hulk>(0,-0.21)</Hulk>
+							<Male>(-0.19,-0.14)</Male>
+							<Female>(-0.08,-0.14)</Female>
+							<Thin>(-0.16,-0.14)</Thin>
+							<Hulk>(0.02,-0.32)</Hulk>
+							<Fat>(0.08,-0.17)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
