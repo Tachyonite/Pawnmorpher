@@ -14,6 +14,9 @@ namespace Pawnmorph.Hediffs
     [DefOf]
     public static class TfDefOf
     {
+        public static HediffDef FullRandomTF; 
+
+
         public static HediffDef PawnmorphWolfTF;
         public static HediffDef PawnmorphWargTF;
         public static HediffDef PawnmorphHuskyTF;
@@ -27,6 +30,10 @@ namespace Pawnmorph.Hediffs
         public static HediffDef PawnmorphRatTF;
         public static HediffDef PawnmorphBoomalopeTF;
         public static HediffDef PawnmorphAlpacaTF; //these are initialized by rimworld at load time 
+
+
+        public static HediffDef StabiliserHigh; 
+
 
 
         /// <summary>

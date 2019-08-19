@@ -8,25 +8,27 @@ using Verse.Sound;
 using static RimWorld.MoteMaker;
 using RimWorld;
 using Multiplayer.API;
+using Pawnmorph.Hediffs;
 
 namespace Pawnmorph
 {
     public class MutagenicStone : Mineable
     {
         private List<Pawn> touchingPawns = new List<Pawn>();
-        public static HediffDef hediff = HediffDef.Named("FullRandomTF");
+        public static HediffDef hediff = TfDefOf.FullRandomTF; //def of classes are better, pushes errors to load time not play time 
                 
         public override void TickRare()
         {
             if (Spawned && LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableMutagenMeteor)
             {
                 IEnumerable<Verse.Thing> enumerable = GenRadial.RadialDistinctThingsAround(Position, Map, 2.0f, true);
-                List<Thing> thingList = enumerable.ToList();
+                List<Pawn> pawnList = enumerable.OfType<Pawn>().ToList(); //don't need to keep the non pawns 
 
-                for (int i = 0; i < thingList.Count; i++)
+                if (pawnList.Count == 0) return; 
+
+                foreach (Pawn pawn in pawnList)
                 {
-                    Pawn pawn = thingList[i] as Pawn;
-                    if (pawn != null && !this.touchingPawns.Contains(pawn))
+                    if (!this.touchingPawns.Contains(pawn) && !pawn.health.hediffSet.HasHediff(TfDefOf.StabiliserHigh))
                     {
                         touchingPawns.Add(pawn);
                     }
@@ -34,7 +36,7 @@ namespace Pawnmorph
                 for (int j = 0; j < touchingPawns.Count; j++)
                 {
                     Pawn pawn2 = touchingPawns[j];
-                    if (!pawn2.Spawned || !thingList.Contains(pawn2))
+                    if (!pawn2.Spawned || !pawnList.Contains(pawn2))
                     {
                         touchingPawns.Remove(pawn2);
                         var targetHediff = pawn2.health.hediffSet.hediffs.FirstOrDefault(x => x.def == hediff); //need to use FirstOrDefault, First throws InvalidOperationException when run on an empty enumerable
