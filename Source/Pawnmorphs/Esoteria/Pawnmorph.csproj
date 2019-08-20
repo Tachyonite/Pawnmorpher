@@ -38,9 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Assemblies\0MultiplayerAPI.dll</HintPath>
     </Reference>
-    <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0473c1c409d3997, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Assemblies\AlienRace.dll</HintPath>
+    <Reference Include="AlienRace">
+      <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>

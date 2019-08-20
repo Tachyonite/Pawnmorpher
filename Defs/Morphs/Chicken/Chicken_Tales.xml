@@ -5,9 +5,8 @@
     <label>grew a beak</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->[PAWN_nameDef]'s lips beginning to harden</li>
-        <li>tale_noun->[PAWN_nameDef]'s skin around their face beginning to harden</li>
-        <li>tale_noun->[PAWN_nameDef]'s mouth pushing out into a beak</li>
+        <li>tale_noun->[PAWN_nameDef]'s lips hardening into a beak</li>
+        <li>tale_noun->[PAWN_nameDef]'s face growing into an avian beak</li>
         <li>image->[PAWN_nameFull] yells becoming squawks [circumstance_group]</li>
         <li>image->[PAWN_nameFull] begins to bok involuntarily [circumstance_group]</li>
         <li>desc_sentence->[PAWN_pronoun] lets out a few sad boks</li>
@@ -22,8 +21,8 @@
     <label>arms became wings</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->feathers begin growing from [PAWN_nameDef]'s arms</li>
-        <li>tale_noun->feathers begin covering [PAWN_nameDef]'s arms</li>
+        <li>tale_noun->feathers growing from [PAWN_nameDef]'s arms</li>
+        <li>tale_noun->feathers covering [PAWN_nameDef]'s arms</li>
         <li>image->[PAWN_nameFull] arms begins to change [circumstance_phrase]</li>
         <li>image->[PAWN_nameFull] arms change into wings [circumstance_phrase]</li>
         <li>desc_sentence->[PAWN_pronoun] rubs [PAWN_possessive] new wings</li>

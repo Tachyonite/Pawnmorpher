@@ -5,8 +5,9 @@
     <label>grew a rat muzzle</label>
     <rulePack>
       <rulesStrings> <!-- still not entirely sure how these are supposed to go together-->
-        <li>tale_noun->whiskers growing from [PAWN_nameDef]'s face</li>
-        <li>image->[PAWN_nameFull]'s terrified yells becoming squeaks [circumstance_group]</li>
+        <li>tale_noun->[PAWN_nameDef]'s face becoming a rat muzzle</li>
+				<li>tale_noun->[PAWN_nameDef]'s face becoming rat-like</li>
+	      <li>image->[PAWN_nameFull]'s terrified yells becoming squeaks [circumstance_group]</li>
         <li>image->[PAWN_nameFull] starts to make rat like squeaks</li>
         <li>circumstance_phrase->as someone plays with [PAWN_possessive] growing whiskers</li>
         <li>circumstance_phrase->as someone tries to offer them cheese</li>
@@ -20,8 +21,10 @@
     <label>hands become paws</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->[PAWN_nameDef]'s nails grow into claws</li>
-        <li>image->[PAWN_nameFull] examines [PAWN_possessive] hands [circumstance_group]</li>
+        <li>tale_noun->[PAWN_nameDef]'s nails growing into claws</li>
+				<li>tale_noun->[PAWN_nameDef]'s hands becoming rat like paws</li>
+				<li>tale_noun->[PAWN_nameDef]'s hands becoming dextrous, rat-like, paws</li>
+	      <li>image->[PAWN_nameFull] examines [PAWN_possessive] hands [circumstance_group]</li>
         <li>image->[PAWN_nameFull] scratches something with [PAWN_possessive] new claws [circumstance_group]</li>
         <li>desc_sentence->[PAWN_pronoun] is thankful [PAWN_possessive] still have thumbs</li>
       </rulesStrings>

@@ -6,8 +6,9 @@
     <label>grew antlers</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->antlers begin pushing from [PAWN_nameDef]'s forehead</li>
-        <li>image->[PAWN_nameFull] examining the growing antlers on [PAWN_possessive] head [circumstance_group]</li>
+        <li>tale_noun->antlers beginning to grow from [PAWN_nameDef]'s forehead</li>
+				<li>tale_noun->[PAWN_nameDef] growing small antlers</li>
+	      <li>image->[PAWN_nameFull] examining the growing antlers on [PAWN_possessive] head [circumstance_group]</li>
         <li>image->[PAWN_nameFull] unaware of the growing antlers on [PAWN_possessive] head [circumstance_group]</li>
         <li>circumstance_phrase->as someone touches [PAWN_possessive] growing antlers</li>
         <li>desc_sentence->[PAWN_pronoun] is trying to pull then out</li>

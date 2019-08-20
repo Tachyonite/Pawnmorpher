@@ -15,7 +15,20 @@ namespace Pawnmorph.Hybrids
     /// </summary>
     public static class RaceGenerator
     {
-        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces { get; }
+        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces
+        {
+            get
+            {
+                if (_lst == null)
+                {
+                    _lst = GenerateAllImpliedRaces().ToList(); 
+
+                }
+
+                return _lst; 
+            }
+        }
+        private static List<ThingDef_AlienRace> _lst;
 
         private static Dictionary<ThingDef, MorphDef> _raceLookupTable = new Dictionary<ThingDef, MorphDef>();
 
@@ -31,12 +44,7 @@ namespace Pawnmorph.Hybrids
         }
 
 
-        static RaceGenerator()
-        {
-            List<ThingDef_AlienRace> lst = GenerateAllImpliedRaces().ToList();
-            ImplicitRaces = lst;
-        }
-
+        
 
         private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
         {

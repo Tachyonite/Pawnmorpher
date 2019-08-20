@@ -1,4 +1,13 @@
 ﻿<Defs>
+	
+	<!-- 
+	tale_noun: fits in the "this tells the story of [tale_noun]" 
+	
+	
+	
+	-->
+	
+	
   <TaleDef Name="MutationTaleBase" Abstract="True">
     <type>Volatile</type>
     <baseInterest>6</baseInterest>
@@ -19,7 +28,6 @@
     <rulePack>
       <rulesStrings>
         <li>tale_noun->[PAWN_nameDef] face becoming a muzzle</li>
-       
         <li>image->[PAWN_nameFull] feeling [PAWN_possessive] face [circumstance_group]</li>
         <li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
         <li>circumstance_phrase->as [PAWN_possessive] face pushes out into a muzzle</li>
@@ -40,8 +48,8 @@
     <label>grew a muzzle</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->[PAWN_nameDef] nose becoming moist and black</li>
-        <li>tale_noun->[PAWN_nameDef] canine teeth becoming larger</li>
+        <li>tale_noun->[PAWN_nameDef] growing an canine muzzle</li>
+				<li>tale_noun->[PAWN_nameDef] head taking the shape of a canine</li>
         <li>image->[PAWN_nameFull] yells becoming barks [circumstance_group]</li>
         <li>image->[PAWN_nameFull] begins to sniff intensely at all the new smells from [circumstance_group] </li>
         <li>desc_sentence->[PAWN_pronoun] face becoming a canine muzzle</li>
@@ -58,7 +66,7 @@
   <TaleDef ParentName="MutationTaleBase" Abstract="True" Name="EarMutationBase">
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->[PAWN_nameDef]'s ears begin to change</li>
+        <li>tale_noun->[PAWN_nameDef]'s ears changing</li>
         <li>image->[PAWN_nameFull] examines [PAWN_possessive] ears [circumstance_group] </li>
         <li>circumstance_phrase->as [PAWN_possessive] ears twitch</li>
         <li>circumstance_phrase->while someone touches [PAWN_possessive] ears</li>
@@ -80,7 +88,8 @@
     <rulePack>
       <rulesStrings>
         <li>tale_noun->[PAWN_nameDef]'s ears growing fur and becoming pointed</li>
-        <li>tale_noun->[PAWN_nameDef]'s hearing markedly improves</li>
+        <li>tale_noun->[PAWN_nameDef] growing dog ears</li>
+				<li>tale_noun->[PAWN_nameDef]'s ears chaning to those of a canine</li>
         <li>image->[PAWN_nameFull] looks distracted by the sounds coming from [circumstance_group]</li>
         <li>circumstance_phrase->[PAWN_possessive] canine ears lie flat in fear</li>
         <li>circumstance_phrase->[PAWN_possessive] canine ears pricked up </li>
@@ -94,7 +103,7 @@
   <TaleDef Name="HandMutationBase" ParentName="MutationTaleBase" Abstract="True">
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->[PAWN_nameDef]'s hands begin to shift</li>
+				<li>tale_noun->[PAWN_nameDef]'s hands changing</li>
         <li>image->[PAWN_nameFull] examines [PAWN_possessive] hands [circumstance_group]</li>
         <li>desc_sentence->[PAWN_pronoun] tries to pick something up</li>
         <li>desc_sentence->[PAWN_pronoun] tests their new hands</li>
@@ -112,7 +121,8 @@
     <label>hands became paws</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->[PAWN_nameDef]'s thumbs shrink and move back, becoming dewclaws </li>
+        <li>tale_noun->[PAWN_nameDef]'s thumbs shrinking and becoming dewclaws </li>
+				<li>tale_noun->[PAWN_nameDef]'s hands becoming paws</li>
         <li>image->[PAWN_nameFull] tries to grasp something [circumstance_group]</li>
         <li>circumstance_phrase->while someone pats [PAWN_possessive] paws</li>
         <li>circumstance_phrase->while someone rubs [PAWN_possessive] paw pads</li>
@@ -126,8 +136,8 @@
     <label>hands became hooves</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->[PAWN_nameDef]'s hands begin to harden</li>
-        <li>tale_noun->[PAWN_nameDef]'s fingers beginning to join together</li>
+        <li>tale_noun->[PAWN_nameDef]'s hands harding into hoves</li>
+        <li>tale_noun->[PAWN_nameDef]'s hands becoming near useless hooves</li>
         <li>image->[PAWN_nameFull] tries to pull their fingers apart [circumstance_group]</li>
         <li>image->[PAWN_nameFull] tries fruitlessly to grasp something [circumstance_group]</li>
         <li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] hands</li>
