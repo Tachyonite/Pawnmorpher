@@ -17,6 +17,7 @@
 		</stages>
 	</ThoughtDef>
 
+	<!--
   <ThoughtDef>
     <defName>RatPawsReaction</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
@@ -24,15 +25,16 @@
     <stages>
       <li>
         <label>rat paws (new)</label>
-        <description>TODO</description>
-        <baseMoodEffect>-1</baseMoodEffect>
+        <description>it's so much harder to get work done</description>
+        <baseMoodEffect>-2</baseMoodEffect>
       </li>
       <li>
         <label>rat paws (adapted)</label>
-        <description>TODO</description>
+        <description>my hands are nimbler now</description>
         <visible>true</visible>
-        <baseMoodEffect>0</baseMoodEffect>
+        <baseMoodEffect>2</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>
+  </ThoughtDef> -->
+
 </Defs>
