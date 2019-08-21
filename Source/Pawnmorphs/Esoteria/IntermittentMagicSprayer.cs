@@ -46,6 +46,7 @@ public class IntermittentMagicSprayer
 
         public static void ThrowMagicPuffUp(Vector3 loc, Map map)
         {
+            if (map == null) return; 
             if (!loc.ToIntVec3().ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
@@ -59,6 +60,7 @@ public class IntermittentMagicSprayer
 
         public static void ThrowMagicPuffDown(Vector3 loc, Map map)
         {
+            if (map == null) return; //make sure we don't try an put smoke down if there's no map 
             if (!loc.ToIntVec3().ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
