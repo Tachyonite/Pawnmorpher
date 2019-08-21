@@ -175,7 +175,8 @@ namespace Pawnmorph.Thoughts
                     continue;
                 }
 
-                rPawn.TryGainMemory(thought);
+                if (ThoughtUtility.CanGetThought(rPawn, thought))
+                    rPawn.TryGainMemory(thought);
             }
 
             foreach (Pawn rPawn in merge1.relations.PotentiallyRelatedPawns.Where(IsValidRelation))
@@ -191,7 +192,8 @@ namespace Pawnmorph.Thoughts
                     continue;
                 }
 
-                rPawn.TryGainMemory(thought);
+                if (ThoughtUtility.CanGetThought(rPawn, thought))
+                    rPawn.TryGainMemory(thought);
             }
         }
 
@@ -233,7 +235,10 @@ namespace Pawnmorph.Thoughts
             {
                 ThoughtDef opinionThought = GetOpinionThought(original, reactor, type);
                 ThoughtDef def = opinionThought ?? defaultThought;
-                if (def != null) reactor.TryGainMemory(def);
+
+                if (def == null) continue;
+                if (ThoughtUtility.CanGetThought(reactor, def))
+                    reactor.TryGainMemory(def);
             }
         }
 
@@ -257,7 +262,8 @@ namespace Pawnmorph.Thoughts
                         continue;
                     }
 
-                    pReactor.TryGainMemory(thought);
+                    if (ThoughtUtility.CanGetThought(pReactor, thought))
+                        pReactor.TryGainMemory(thought);
                 }
             }
 

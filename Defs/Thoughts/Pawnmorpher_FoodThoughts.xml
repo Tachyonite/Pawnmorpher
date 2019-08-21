@@ -5,6 +5,9 @@
     <showBubble>true</showBubble>
     <durationDays>0.7</durationDays>
     <icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
     <stages>
       <li>
         <label>ate kin-animal</label>
@@ -21,6 +24,9 @@
     <showBubble>true</showBubble>
     <durationDays>0.7</durationDays>
     <icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
     <stages>
       <li>
         <label>ate kinsman</label>

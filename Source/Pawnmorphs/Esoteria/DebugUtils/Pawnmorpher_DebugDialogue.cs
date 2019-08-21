@@ -37,7 +37,28 @@ namespace Pawnmorph.DebugUtils
 
         void ListPlayOptions()
         {
-            DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); }); 
+            DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
+            DebugToolMapForPawns("force full transformation", ForceTransformation); 
+        }
+
+        void ForceTransformation(Pawn pawn)
+        {
+            var morphHediff = pawn?.health.hediffSet.hediffs.FirstOrDefault(h => h is Hediff_Morph);
+            if (morphHediff != null)
+            {
+                var giverTf = morphHediff.def.stages?.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
+                                         .OfType<HediffGiver_TF>()
+                                         .FirstOrDefault();
+
+
+                giverTf?.TryTf(pawn, morphHediff);
+
+
+
+
+            }
+
+
         }
 
         List<DebugMenuOption> GetRaceChangeOptions()
