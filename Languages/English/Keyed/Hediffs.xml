@@ -31,10 +31,10 @@
 <LetterHediffFromEtherBroken>Constant production has caused {0} to become numb and submit to their fate.</LetterHediffFromEtherBroken>
 
   <LetterRaceChangeToMorphLabel>{0} is no longer considered human!</LetterRaceChangeToMorphLabel>
-  <LetterRaceChangeToMorphContent>TODO</LetterRaceChangeToMorphContent>
+  <LetterRaceChangeToMorphContent>{0} has mutated so much that they and others no longer consider them human</LetterRaceChangeToMorphContent>
 
   <LetterPawnHumanAgainLabel>{0} is human again!</LetterPawnHumanAgainLabel>
-  <LetterPawnHumanAgainContent>TODO</LetterPawnHumanAgainContent>
+  <LetterPawnHumanAgainContent>with {0}'s mutations gone they are a regular human again</LetterPawnHumanAgainContent>
 
 <CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
 <CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
