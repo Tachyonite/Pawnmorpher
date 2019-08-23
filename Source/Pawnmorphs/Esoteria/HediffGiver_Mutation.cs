@@ -27,10 +27,7 @@ namespace Pawnmorph
                 {
                     IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
                     triggered[cause] = true;
-                    if (cause.def.HasComp(typeof(HediffComp_Single)))
-                    {
-                        pawn.health.RemoveHediff(cause);
-                    }
+                    
                     if (tale != null)
                     {
                         TaleRecorder.RecordTale(tale, new object[] { pawn });
@@ -39,6 +36,11 @@ namespace Pawnmorph
                 else
                 {
                     triggered[cause] = true;
+                }
+
+                if (cause.def.HasComp(typeof(HediffComp_Single))) //should either be given or triggered 
+                {
+                    pawn.health.RemoveHediff(cause);
                 }
             }
         }

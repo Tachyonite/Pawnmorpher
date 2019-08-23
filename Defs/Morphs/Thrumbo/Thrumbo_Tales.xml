@@ -5,7 +5,9 @@
     <label>grew thrumbo horn</label>
     <rulePack>
       <rulesStrings>
-        <li>tale_noun->a large horn crowing from [PAWN_nameDef]'s head</li>
+        <li>tale_noun->[PAWN_nameDef] growing a large horn</li>
+				<li>tale_noun->[PAWN_nameDef] growing a large, sharp, horn</li>
+				<li>tale_noun->[PAWN_nameDef] growing a thrumbo horn</li>
         <li>image->[PAWN_nameFull] rubs [PAWN_possessive] forehead [circumstance_group]</li>
         <li>circumstance_phrase->while others stair at [PAWN_possessive] horn</li>
         <li>circumstance_phrase->while someone begins polishing [PAWN_possessive] horn</li>

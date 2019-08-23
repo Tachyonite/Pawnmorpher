@@ -29,7 +29,7 @@ namespace Pawnmorph
             
             
 
-            if (Rand.RangeInclusive(0, 100) <= chance)
+            if (Rand.Range(0, 100) < chance)
             {
                 TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
                 return true; 

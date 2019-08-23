@@ -7,7 +7,7 @@
 		</graphicData>
 		<rotatable>false</rotatable>
 		<thingCategories>
-			<li>Artifacts</li>
+			<li>Injector</li>
 		</thingCategories>
 		<statBases>
 			<WorkToMake>800</WorkToMake>

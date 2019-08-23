@@ -15,7 +15,20 @@ namespace Pawnmorph.Hybrids
     /// </summary>
     public static class RaceGenerator
     {
-        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces { get; }
+        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces
+        {
+            get
+            {
+                if (_lst == null)
+                {
+                    _lst = GenerateAllImpliedRaces().ToList(); 
+
+                }
+
+                return _lst; 
+            }
+        }
+        private static List<ThingDef_AlienRace> _lst;
 
         private static Dictionary<ThingDef, MorphDef> _raceLookupTable = new Dictionary<ThingDef, MorphDef>();
 
@@ -31,12 +44,7 @@ namespace Pawnmorph.Hybrids
         }
 
 
-        static RaceGenerator()
-        {
-            List<ThingDef_AlienRace> lst = GenerateAllImpliedRaces().ToList();
-            ImplicitRaces = lst;
-        }
-
+        
 
         private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
         {
@@ -52,25 +60,26 @@ namespace Pawnmorph.Hybrids
                 body = human.body,
                 baseBodySize = human.baseBodySize,
                 baseHealthScale = human.baseHealthScale,
-                foodType = animal.foodType | FoodTypeFlags.Meal, //make sure they can always eat meals 
+                foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 meatColor = animal.meatColor,
                 meatMarketValue = animal.meatMarketValue,
                 manhunterOnDamageChance = animal.manhunterOnDamageChance,
                 manhunterOnTameFailChance = animal.manhunterOnTameFailChance,
                 litterSizeCurve = human.litterSizeCurve,
-                lifeStageAges = human.lifeStageAges,
+                lifeStageAges = human.lifeStageAges.ToList(),
                 soundMeleeHitPawn = animal.soundMeleeHitPawn,
                 soundMeleeHitBuilding = animal.soundMeleeHitBuilding,
                 soundMeleeMiss = animal.soundMeleeMiss,
                 specialShadowData = human.specialShadowData,
                 soundCallIntervalRange = animal.soundCallIntervalRange,
                 ageGenerationCurve = human.ageGenerationCurve,
-                hediffGiverSets = human.hediffGiverSets,
+                hediffGiverSets = human.hediffGiverSets.ToList(),
                 meatDef = animal.meatDef,
                 meatLabel = animal.meatLabel,
                 useMeatFrom = animal.useMeatFrom,
                 deathActionWorkerClass = human.deathActionWorkerClass,
+                corpseDef = human.corpseDef,
             };
         }
 
@@ -192,6 +201,15 @@ namespace Pawnmorph.Hybrids
 
         }
 
+        static FoodTypeFlags GenerateFoodFlags(FoodTypeFlags animalFlags)
+        {
+            animalFlags |= FoodTypeFlags.Meal; //make sure all hybrids can eat meals 
+            var platFlags = FoodTypeFlags.Plant | FoodTypeFlags.Tree; //make sure hybrids can't eat plants or trees, at least for now 
+                        //need to figure out a way to let them graze but not pick up plants 
+            //animalFlags =  animalFlags & ~platFlags;
+            return animalFlags; 
+        }
+
         private static ThingDef_AlienRace GenerateImplicitRace(ThingDef_AlienRace humanDef, MorphDef morph)
         {
             return new ThingDef_AlienRace
@@ -210,7 +228,7 @@ namespace Pawnmorph.Hybrids
                 soundImpactDefault = morph.race.soundImpactDefault,
                 statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases),
                 inspectorTabs = humanDef.inspectorTabs.ToList(), //do we want any custom tabs? 
-                comps = humanDef.comps,
+                comps = humanDef.comps.ToList(),
                 drawGUIOverlay = humanDef.drawGUIOverlay,
                 description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
                 alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph),
@@ -218,7 +236,12 @@ namespace Pawnmorph.Hybrids
                 inspectorTabsResolved = humanDef.inspectorTabsResolved.ToList(),
                 recipes = new List<RecipeDef>(humanDef.AllRecipes), //this is where the surgery operations live
                 filth = morph.race.filth,
-                filthLeaving = morph.race.filthLeaving
+                filthLeaving = morph.race.filthLeaving,
+                soundDrop = morph.race.soundDrop,
+                soundInteract = morph.race.soundInteract,
+                soundPickup = morph.race.soundPickup,
+                socialPropernessMatters = humanDef.socialPropernessMatters,
+                
             };
         }
     }

@@ -38,9 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Assemblies\0MultiplayerAPI.dll</HintPath>
     </Reference>
-    <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0473c1c409d3997, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Assemblies\AlienRace.dll</HintPath>
+    <Reference Include="AlienRace">
+      <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -67,6 +67,7 @@
     <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
     <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
+    <Compile Include="Hediffs\Comp_TerrainProduction.cs" />
     <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
     <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="MorphUtilities.cs" />
     <Compile Include="Hybrids\RaceGenerator.cs" />
     <Compile Include="Hybrids\RaceShiftUtilities.cs" />
+    <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="TaleDefOf.cs" />
     <Compile Include="TFGender.cs" />
     <Compile Include="HediffGiver_Esoteric.cs" />
@@ -137,6 +139,8 @@
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
+    <Compile Include="Utilities\LinqUtils.cs" />
+    <Compile Include="Utilities\Tuple.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

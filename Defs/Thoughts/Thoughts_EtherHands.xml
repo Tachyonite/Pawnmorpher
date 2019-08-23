@@ -44,7 +44,7 @@
 		<hediff>EtherWingTip</hediff>
 		<stages>
 			<li>
-				<label>stump-hands</label>
+				<label>wing tip-hands</label>
 				<description>I don't have any fingers, what am I supposed to do?!</description>
 				<baseMoodEffect>-10</baseMoodEffect>
 			</li>

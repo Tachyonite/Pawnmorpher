@@ -16,7 +16,6 @@ namespace Pawnmorph.Hediffs
 
         public List<HediffDef> blackList = new List<HediffDef>(); //list of hediffs to make immune to the effect 
 
-        public List<Hediff> ScratchList { get; } = new List<Hediff>(); //scratch list for the comp to use, saves on memory 
 
 
 
@@ -50,24 +49,20 @@ namespace Pawnmorph.Hediffs
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-            base.CompPostTick(ref severityAdjustment);
 
             var hediffs = Pawn.health.hediffSet.hediffs; 
 
-            Props.ScratchList.Clear();
             foreach (Hediff hediff in hediffs)
             {
                 if (!Props.blackList.Contains(hediff.def) && Props.removeType.IsInstanceOfType(hediff))
                 {
-                    Props.ScratchList.Add(hediff);
+                    Pawn.health.RemoveHediff(hediff); //we can only remove one hediff per tick 
+                    return; 
                 }
             }
 
 
-            foreach (Hediff hediff in Props.ScratchList)
-            {
-                Pawn.health.RemoveHediff(hediff); 
-            }
+         
 
 
         }

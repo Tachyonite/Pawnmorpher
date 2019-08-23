@@ -5,6 +5,9 @@
     <showBubble>true</showBubble>
     <durationDays>0.7</durationDays>
     <icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
     <stages>
       <li>
         <label>ate kin-animal</label>
@@ -21,6 +24,9 @@
     <showBubble>true</showBubble>
     <durationDays>0.7</durationDays>
     <icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
     <stages>
       <li>
         <label>ate kinsman</label>
@@ -44,5 +50,39 @@
       </li>
     </stages>
   </ThoughtDef>
+
+	<ThoughtDef>
+		<defName>AteChaoMeatDirect</defName>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<showBubble>true</showBubble>
+		<durationDays>0.5</durationDays>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>ate chao meat</label>
+				<description>TODO</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>AteChaoMeatAsIngredient</defName>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<showBubble>true</showBubble>
+		<durationDays>0.3</durationDays>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>ate chao meat</label>
+				<description>TODO</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 
 </Defs>
