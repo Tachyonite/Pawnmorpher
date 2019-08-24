@@ -264,11 +264,12 @@ namespace Pawnmorph.DebugUtils
 
             if (builder.Length > 0)
             {
-                builder.AppendLine($"-------------------{missingLst.Count} parts need tales----------------"); //summary for convenience 
-                builder.AppendLine(string.Join(",", missingLst.Select(def => def.defName).ToArray()));
-
-
                 Log.Message(builder.ToString());
+                builder = new StringBuilder(); 
+                builder.AppendLine($"-------------------{missingLst.Count} parts need tales----------------"); //summary for convenience 
+                builder.AppendLine(string.Join("\n", missingLst.Select(def => def.defName).ToArray()));
+                Log.Message(builder.ToString());
+
             }
             else
                 Log.Message("All parts have a tale");
