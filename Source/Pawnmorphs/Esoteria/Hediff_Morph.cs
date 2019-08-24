@@ -11,6 +11,9 @@ namespace Pawnmorph
 {
     public class Hediff_Morph : HediffWithComps
     {
+        private const int TRANSFORMATION_STAGE_INDEX = 1;
+        private const string TRANSFORMATION_WARNING_LETTER_ID = "TransformationStageWarning"; 
+
         [Unsaved]
         private int _lastStage = -1; //ToDO can we save this?
         public override void PostTick()
@@ -21,6 +24,15 @@ namespace Pawnmorph
             {
 
                 _lastStage = CurStageIndex;
+
+                if (_lastStage == TRANSFORMATION_STAGE_INDEX)
+                {
+                    SendLetter(); 
+
+
+
+                }
+
 
 
                 if (CurStage.hediffGivers == null) return; 
@@ -37,6 +49,16 @@ namespace Pawnmorph
             }
 
           
+        }
+
+        private void SendLetter()
+        {
+            var letterDef = LetterDefOf.NeutralEvent; //not sure what to use here 
+
+            var letterLabel = (TRANSFORMATION_WARNING_LETTER_ID + "Label").Translate(pawn);
+            var letterContent = (TRANSFORMATION_WARNING_LETTER_ID + "Content").Translate(pawn);
+            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, letterDef, pawn); 
+
         }
 
         /// <summary>

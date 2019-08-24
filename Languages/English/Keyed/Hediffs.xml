@@ -36,7 +36,9 @@
   <LetterPawnHumanAgainLabel>{0} is human again!</LetterPawnHumanAgainLabel>
   <LetterPawnHumanAgainContent>with {0}'s mutations gone they are a regular human again</LetterPawnHumanAgainContent>
 
-<CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
+	<TransformationStageWarningLabel>TODO</TransformationStageWarningLabel>
+	<TransformationStageWarningContent>TODO</TransformationStageWarningContent>
+	<CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
 <CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
 
 <PawnmorphTooltipShe>She</PawnmorphTooltipShe>
