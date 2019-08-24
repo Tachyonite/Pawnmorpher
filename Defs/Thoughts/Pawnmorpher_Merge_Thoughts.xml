@@ -1,55 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Defs>
-  <ThoughtDef>
-    <defName>ColonistMergedThought</defName>
-    <durationDays>10</durationDays>
-    <stages>
-      <li>
-        <label>colonist merged</label>
-        <description>We did mad science on one of our own, and now they're...horrifying.</description>
-        <baseMoodEffect>-8</baseMoodEffect>
+	<ThoughtDef>
+		<defName>ColonistMergedThought</defName>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>colonist merged</label>
+				<description>We did mad science on one of our own, and now they're...horrifying.</description>
+				<baseMoodEffect>-8</baseMoodEffect>
 
-      </li>
-    </stages>
-  </ThoughtDef>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>FriendMergedThought</defName>
-    <durationDays>10</durationDays>
-    <stages>
-      <li>
-        <label>friend merged</label>
-        <description>The colony did mad science on my friend and now they're a monster!</description>
-        <baseMoodEffect>-8</baseMoodEffect>
+	<ThoughtDef>
+		<defName>FriendMergedThought</defName>
+		<durationDays>10</durationDays>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>friend merged</label>
+				<description>The colony did mad science on my friend and now they're a monster!</description>
+				<baseMoodEffect>-8</baseMoodEffect>
 
-      </li>
-    </stages>
-  </ThoughtDef>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>RivalMergedThought</defName>
-    <durationDays>10</durationDays>
-    <stages>
-      <li>
-        <label>rival merged</label>
-        <description>We did mad science on my rival...serves them right.</description>
-        <baseMoodEffect>8</baseMoodEffect>
+	<ThoughtDef>
+		<defName>RivalMergedThought</defName>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>rival merged</label>
+				<description>We did mad science on my rival...serves them right.</description>
+				<baseMoodEffect>8</baseMoodEffect>
 
-      </li>
-    </stages>
-  </ThoughtDef>
+			</li>
+		</stages>
+	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>PrisonerMergedThought</defName>
-    <durationDays>10</durationDays>
-    <stages>
-      <li>
-        <label>prisoner merged</label>
-        <description>We did mad science on a captive. It just feels wrong to make them a monster...</description>
-        <baseMoodEffect>-4</baseMoodEffect>
+	<ThoughtDef>
+		<defName>PrisonerMergedThought</defName>
+		<durationDays>10</durationDays>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>prisoner merged</label>
+				<description>We did mad science on a captive. It just feels wrong to make them a monster...</description>
+				<baseMoodEffect>-4</baseMoodEffect>
 
-      </li>
-    </stages>
-  </ThoughtDef>
+			</li>
+		</stages>
+	</ThoughtDef>
 
 </Defs>

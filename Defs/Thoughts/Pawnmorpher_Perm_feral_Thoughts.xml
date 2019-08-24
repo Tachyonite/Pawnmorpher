@@ -3,6 +3,9 @@
   <ThoughtDef>
     <defName>ColonistPermFeralThought</defName>
     <durationDays>10</durationDays>
+	  <nullifyingTraits>
+		  <li>Psychopath</li>
+	  </nullifyingTraits>
     <stages>
       <li>
         <label>colonist permanently feral</label>
@@ -14,6 +17,9 @@
   <ThoughtDef>
     <defName>FriendPermFeralThought</defName>
     <durationDays>10</durationDays>
+	  <nullifyingTraits>
+		  <li>Psychopath</li>
+	  </nullifyingTraits>
     <stages>
       <li>
         <label>friend permanently feral</label>
@@ -29,7 +35,7 @@
       <li>
         <label>rival permanently feral</label>
         <description>My rival can never come back from that beastly form now. Suits them.</description>
-        <baseMoodEffect>-1</baseMoodEffect>
+        <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

@@ -9,6 +9,7 @@ using UnityEngine;
 using RimWorld;
 using Verse;
 using Verse.AI.Group;
+using Verse.Profile;
 
 namespace Pawnmorph
 {
@@ -382,14 +383,17 @@ namespace Pawnmorph
         /// try to give this pawn a new memory
         /// (this is the same as pawn.needs.mood.thoughts.memories.TryGainMemory just more convenient)
         /// </summary>
-        /// if pawn does not have needs/mood/thoughts ect this call does nothing 
-        /// 
+        /// if pawn does not have needs/mood/thoughts ect this call does nothing
         /// <param name="pawn"></param>
         /// <param name="thought"></param>
         /// <param name="otherPawn"></param>
-        public static void TryGainMemory([NotNull] this Pawn pawn, Thought_Memory thought, Pawn otherPawn=null) //move extension methods elsewhere? 
+        /// <param name="respectTraits">if ThoughtUtility.CanGetThought should be checked before giving the thought</param>
+        public static void TryGainMemory([NotNull] this Pawn pawn, Thought_Memory thought, Pawn otherPawn=null, bool respectTraits=true) //move extension methods elsewhere? 
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (respectTraits && !ThoughtUtility.CanGetThought(pawn, thought.def)) return; 
+
+
             pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thought, otherPawn);
             
         }
