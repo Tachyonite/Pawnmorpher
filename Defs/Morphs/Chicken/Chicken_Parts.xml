@@ -123,11 +123,16 @@
 		<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
 		<stages>
 			<li>
+				<label>new</label>
+			</li>
+			<li>
+				<label>adapted</label>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<minSeverity>0.99</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>
-						<offset>0.1</offset>
+						<offset>0.2</offset>
 					</li>
 				</capMods>
 			</li>
@@ -146,6 +151,9 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
