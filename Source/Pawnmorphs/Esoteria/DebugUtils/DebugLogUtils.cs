@@ -91,6 +91,23 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void FindMissingDescriptions()
+        {
+            bool SelectionFunc(HediffDef def)
+            {
+                if (!typeof(Hediff_AddedMutation).IsAssignableFrom(def.hediffClass)) return false; //must be mutation hediff 
+                return string.IsNullOrEmpty(def.description); 
+            }
+
+            var mutations = DefDatabase<HediffDef>.AllDefs.Where(SelectionFunc);
+
+            var str = string.Join("\n\t", mutations.Select(m => m.defName).ToArray());
+
+            Log.Message(string.IsNullOrEmpty(str) ? "no parts with missing description" : str);
+        }
+
         /// <summary>
         ///     list all defined mutations (hediffs of the class Hediff_AddedMutation or a subtype there of)
         /// </summary>
