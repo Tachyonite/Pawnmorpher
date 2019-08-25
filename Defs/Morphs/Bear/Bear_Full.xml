@@ -121,6 +121,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>FootBecomesCanidPaw</tale>
 					</li>
 				</hediffGivers>
 			</li>

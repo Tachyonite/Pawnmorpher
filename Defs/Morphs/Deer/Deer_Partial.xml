@@ -67,6 +67,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>FootBecomesHooves</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherAntlers</hediff>
