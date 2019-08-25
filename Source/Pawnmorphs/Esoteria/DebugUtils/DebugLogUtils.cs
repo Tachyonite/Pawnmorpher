@@ -84,9 +84,30 @@ namespace Pawnmorph.DebugUtils
                 Log.Message("no transformed pawns");
         }
 
+
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
-        public static void FindMissingDescriptions()
+        public static void FindMissingMorphDescriptions()
+        {
+            var morphs = DefDatabase<MorphDef>.AllDefs.Where(def => string.IsNullOrEmpty(def.description)).ToList();
+            if (morphs.Count == 0)
+            {
+                Log.Message("all morphs have descriptions c:");
+            }
+            else
+            {
+                var str = string.Join("\n", morphs.Select(def => def.defName).ToArray()); 
+                Log.Message($"Morphs Missing descriptions:\n{str}");
+            }
+
+
+
+        }
+
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void FindMissingMutationDescriptions()
         {
             bool SelectionFunc(HediffDef def)
             {
