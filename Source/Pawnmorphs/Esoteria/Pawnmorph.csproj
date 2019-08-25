@@ -81,8 +81,10 @@
     <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
     <Compile Include="Hediffs\IPostTfHediffComp.cs" />
+    <Compile Include="IngestionOutcomeDoer_MultipleTfBase.cs" />
     <Compile Include="MorphDef.cs" />
     <Compile Include="MorphDefOfs.cs" />
+    <Compile Include="MorphTransformationTypes.cs" />
     <Compile Include="MorphUtilities.cs" />
     <Compile Include="Hybrids\RaceGenerator.cs" />
     <Compile Include="Hybrids\RaceShiftUtilities.cs" />
