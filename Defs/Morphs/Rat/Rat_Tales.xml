@@ -31,4 +31,15 @@
     </rulePack>
   </TaleDef>
 
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FeetBecomeRatPaws</defName>
+		<label>feet became rat paws</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s feet becoming rat paws</li>
+				<li>image->[PAWN_nameDef]'s toes lengthening into rat like digits [circumstance_phrase]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance themself on [PAWN_possessive] new rat feet</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>
