@@ -43,7 +43,7 @@ namespace Pawnmorph
                     loader.RemoveInstance(inst); 
                 }
 
-                if(inst != null)
+                if(inst != null || pawn.Faction == Faction.OfPlayer)
                     Find.LetterStack.ReceiveLetter("LetterHediffFromPermanentTFLabel".Translate(pawn.LabelShort).CapitalizeFirst(), "LetterHediffFromPermanentTF".Translate(pawn.LabelShort).CapitalizeFirst(), LetterDefOf.NegativeEvent, pawn, null, null);
             }
         }
