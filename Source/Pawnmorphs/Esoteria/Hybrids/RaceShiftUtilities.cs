@@ -41,8 +41,20 @@ namespace Pawnmorph.Hybrids
 
 
             RegionListersUpdater.DeregisterInRegions(pawn, map);
+            bool removed = false;
+            if (map.listerThings.Contains(pawn))
+            {
+                map.listerThings.Remove(pawn); //make sure to update the lister things or else dying will break 
+                removed = true; 
+            } 
             pawn.def = race;
+            if(removed && !map.listerThings.Contains(pawn))
+                map.listerThings.Add(pawn);
+
+
+
             RegionListersUpdater.RegisterInRegions(pawn, map);
+
             map.mapPawns.UpdateRegistryForPawn(pawn);
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
