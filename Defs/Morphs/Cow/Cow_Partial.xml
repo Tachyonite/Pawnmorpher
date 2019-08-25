@@ -27,6 +27,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+						<tale>GrowCowMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherCowEar</hediff>
@@ -76,6 +77,7 @@
 						<partsToAffect>
 							<li>Skull</li>
 						</partsToAffect>
+						<tale>GrowCowHorns</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherUdder</hediff>
