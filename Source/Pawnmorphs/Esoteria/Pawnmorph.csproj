@@ -98,6 +98,7 @@
     <Compile Include="MutagenDefOf.cs" />
     <Compile Include="MutagenUtilities.cs" />
     <Compile Include="Mutagen_JobDefOf.cs" />
+    <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="RaceMutagenExtension.cs" />
     <Compile Include="TaleDefOf.cs" />
