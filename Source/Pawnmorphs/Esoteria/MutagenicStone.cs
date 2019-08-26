@@ -15,7 +15,7 @@ namespace Pawnmorph
     public class MutagenicStone : Mineable
     {
         private List<Pawn> touchingPawns = new List<Pawn>();
-        public static HediffDef hediff = TfDefOf.FullRandomTF; //def of classes are better, pushes errors to load time not play time 
+        public static HediffDef hediff = MorphTransformationDefOf.FullRandomTF; //def of classes are better, pushes errors to load time not play time 
                 
         public override void TickRare()
         {
@@ -28,7 +28,7 @@ namespace Pawnmorph
 
                 foreach (Pawn pawn in pawnList)
                 {
-                    if (!this.touchingPawns.Contains(pawn) && !pawn.health.hediffSet.HasHediff(TfDefOf.StabiliserHigh))
+                    if (!this.touchingPawns.Contains(pawn) && !pawn.health.hediffSet.HasHediff(MorphTransformationDefOf.StabiliserHigh))
                     {
                         touchingPawns.Add(pawn);
                     }

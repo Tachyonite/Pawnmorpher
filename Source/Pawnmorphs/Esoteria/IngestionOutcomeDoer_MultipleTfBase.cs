@@ -98,7 +98,7 @@ namespace Pawnmorph
             var completeSet = new HashSet<HediffDef>(hediffDefsComplete); //use hash sets so we don't have any duplicates 
             var partialSet = new HashSet<HediffDef>(hediffDefs);
 
-            IEnumerable<HediffDef> allTfHediffs = TfDefOf.AllMorphs;
+            IEnumerable<HediffDef> allTfHediffs = MorphTransformationDefOf.AllMorphs;
 
             foreach (HediffDef morphTf in allTfHediffs)
                 if (IsValidTfDef(morphTf))

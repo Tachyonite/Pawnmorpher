@@ -2,146 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.TfSys;
 using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
-using UnityEngine;
-using Harmony;
 using Pawnmorph.Thoughts;
 
 namespace Pawnmorph
 {
-    public class JobDriver_EnterMutagenChamber : JobDriver
-    {
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
-        {
-            Pawn pawn = base.pawn;
-            LocalTargetInfo targetA = base.job.targetA;
-            Job job = base.job;
-            bool errorOnFailed2 = errorOnFailed;
-            return pawn.Reserve(targetA, job, 1, -1, null, errorOnFailed2);
-        }
-
-        protected override IEnumerable<Toil> MakeNewToils()
-        {
-            this.FailOnDespawnedOrNull(TargetIndex.A);
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
-            Toil prepare = Toils_General.Wait(500);
-            prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
-            prepare.WithProgressBarToilDelay(TargetIndex.A);
-            yield return prepare;
-            Toil enter = new Toil();
-            enter.initAction = delegate
-            {
-                Pawn actor = enter.actor;
-                Building_MutagenChamber pod = (Building_MutagenChamber)actor.CurJob.targetA.Thing;
-                Action action = delegate
-                {
-                    actor.DeSpawn();
-                    pod.TryAcceptThing(actor);
-                };
-                if (!pod.def.building.isPlayerEjectable)
-                {
-                    int freeColonistsSpawnedOrInPlayerEjectablePodsCount = Map.mapPawns.FreeColonistsSpawnedOrInPlayerEjectablePodsCount;
-                    if (freeColonistsSpawnedOrInPlayerEjectablePodsCount <= 1)
-                    {
-                        Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CasketWarning".Translate(actor.Named("PAWN")).AdjustedFor(actor), action));
-                    }
-                    else
-                    {
-                        action();
-                    }
-                }
-                else
-                {
-                    action();
-                }
-            };
-            enter.defaultCompleteMode = ToilCompleteMode.Instant;
-            yield return enter;
-        }
-    }
-    public class JobDriver_CarryToMutagenChamber : JobDriver
-    {
-        private const TargetIndex TakeeInd = TargetIndex.A;
-
-        private const TargetIndex DropPodInd = TargetIndex.B;
-
-        protected Pawn Takee
-        {
-            get
-            {
-                return (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
-            }
-        }
-
-        protected Building_MutagenChamber DropPod
-        {
-            get
-            {
-                return (Building_MutagenChamber)this.job.GetTarget(TargetIndex.B).Thing;
-            }
-        }
-
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
-        {
-            Pawn pawn = this.pawn;
-            LocalTargetInfo target = this.Takee;
-            Job job = this.job;
-            bool result;
-            if (pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
-            {
-                pawn = this.pawn;
-                target = this.DropPod;
-                job = this.job;
-                result = pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
-            }
-            else
-            {
-                result = false;
-            }
-            return result;
-        }
-
-
-
-        protected override IEnumerable<Toil> MakeNewToils()
-        {
-            this.FailOnDestroyedOrNull(TargetIndex.A);
-            this.FailOnDestroyedOrNull(TargetIndex.B);
-            this.FailOnAggroMentalState(TargetIndex.A);
-            this.FailOn(() => !this.DropPod.Accepts(this.Takee));
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell).FailOnDestroyedNullOrForbidden(TargetIndex.A).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOn(() => this.DropPod.GetDirectlyHeldThings().Count > 0).FailOn(() => !this.Takee.Downed).FailOn(() => !this.pawn.CanReach(this.Takee, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.ByPawn)).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
-            yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, false, false);
-            yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
-            Toil prepare = Toils_General.Wait(500, TargetIndex.None);
-            prepare.FailOnCannotTouch(TargetIndex.B, PathEndMode.InteractionCell);
-            prepare.WithProgressBarToilDelay(TargetIndex.B, false, -0.5f);
-            yield return prepare;
-            yield return new Toil
-            {
-                initAction = delegate ()
-                {
-                    this.DropPod.TryAcceptThing(this.Takee, true);
-                },
-                defaultCompleteMode = ToilCompleteMode.Instant
-            };
-            yield break;
-        }
-
-        public override object[] TaleParameters()
-        {
-            return new object[]
-            {
-                this.pawn,
-                this.Takee
-            };
-        }
-    }
-
     public class Building_MutagenChamber : Building_Casket
     {
+       
         public static JobDef EnterMutagenChamber;
         public float daysToIncubate = 1f;
         public CompFacility compLinked;
@@ -326,176 +198,206 @@ namespace Pawnmorph
             }
         }
 
-        public override void EjectContents()
+        public override void EjectContents() //should refactor the mutagenic chamber, make it a state machine 
         {
-            if(innerContainer.Count == 0)
+            if (innerContainer.Count == 0) return;
+
+            if (innerContainer.Count > 1)
             {
+                Log.Error("there is more then 1 pawn in mutagenic chamber? ");
                 return;
             }
-            Pawn pawn = null;
-            ThingDef filth_Slime = ThingDefOf.Filth_Slime;
-            foreach (Thing item in (IEnumerable<Thing>)innerContainer)
+
+            var pawn = (Pawn) innerContainer[0];
+            if (pawn == null) return;
+
+            if (daysIn > 1)
             {
-                
-                pawn = item as Pawn;
-                if (pawn != null && daysIn > 1f)
+                TransformPawn(pawn);
+            }
+            else
+            {
+                base.EjectContents();
+                if (!Destroyed)
                 {
+                    SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(SoundInfo.InMap(new TargetInfo(base.Position, base.Map)));
+                    fuelComp.ConsumeFuel(fuelComp.Fuel);
+                }
 
-                    Gender newGender = pawn.gender;
+                pawn.health.AddHediff(Hediffs.MorphTransformationDefOf.FullRandomTFAnyOutcome); 
+                if(IsMerging)
+                    linkTo.EjectContents();
 
-                    if (Rand.RangeInclusive(0, 100) <= forceGenderChance)
-                    {
-                        switch (forceGender)
+
+            }
+
+            daysIn = 0; 
+        }
+
+        private void TransformPawn(Pawn pawn)
+        {
+            TransformationRequest request;
+            Mutagen mutagen;
+
+            if (IsMerging)
+            {
+                request = new TransformationRequest(pawnTFKind, pawn, (Pawn) linkTo.innerContainer[0])
+                {
+                    forcedGenderChance = 50
+                };
+                mutagen = MutagenDefOf.MergeMutagen.MutagenCached;
+            }
+            else
+            {
+                request = new TransformationRequest(pawnTFKind, pawn)
+                {
+                    forcedGenderChance = 50
+                };
+                mutagen = MutagenDefOf.defaultMutagen.MutagenCached;
+            }
+
+            TransformedPawn pmInst = mutagen.Transform(request);
+            if (pmInst == null) return;
+            SendLetter(pawn);
+            base.EjectContents();
+            foreach (Pawn pmInstOriginalPawn in pmInst.OriginalPawns)
+            {
+                if (pmInstOriginalPawn == null) continue;
+                TransformerUtility.CleanUpHumanPawnPostTf(pmInstOriginalPawn, null);
+            }
+
+
+            Find.TickManager.slower.SignalForceNormalSpeedShort();
+            PawnComponentsUtility.AddComponentsForSpawn(pmInst.TransformedPawns.First());
+            pawn.ownership.UnclaimAll();
+            if (modulator != null)
+            {
+                modulator.triggered = true;
+                if (modulator.merging)
+                {
+                    modulator.merging = false;
+                    modulator.random = true;
+                }
+            }
+
+            if (!Destroyed)
+            {
+                SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(SoundInfo.InMap(new TargetInfo(base.Position, base.Map)));
+                fuelComp.ConsumeFuel(fuelComp.Fuel);
+            }
+        }
+
+        bool IsMerging
+        {
+            get { return modulator?.merging ?? false;  }
+        }
+
+        
+
+        private void SendLetter(Pawn pawn)
+        {
+            if (this.modulator != null)
+            {
+                if (this.modulator.merging)
+                {
+                    hediffDef = "2xMergedHuman";
+                    Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationMergeLabel".Translate(pawn.LabelShort, this.linkTo.innerContainer.First().LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformationMerge".Translate(pawn.LabelShort, this.linkTo.innerContainer.First().LabelCap, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+                }
+                else
+                {
+                    hediffDef = "TransformedHuman";
+                    Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+                }
+            }
+            else
+            {
+                Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
+
+            }
+        }
+
+        private Pawn CreateAnimalPawn(Pawn pawn)
+        {
+            Gender newGender = GetNewGender(pawn);
+            PawnGenerationRequest request = GetPawnRequest(pawn, newGender);
+            Pawn pawn3 = SpawnPawn(pawn, request);
+            for (int i = 0; i < 10; i++)
+            {
+                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn3.Position.ToVector3(), pawn3.MapHeld);
+                IntermittentMagicSprayer.ThrowMagicPuffUp(pawn3.Position.ToVector3(), pawn3.MapHeld);
+            }
+
+            int faction = Rand.RangeInclusive(0, 2);
+
+            pawn3.SetFaction(Faction.OfPlayer, null);
+            return pawn3;
+        }
+
+        private static Pawn SpawnPawn(Pawn pawn, PawnGenerationRequest request)
+        {
+            Pawn pawnTF = PawnGenerator.GeneratePawn(request);
+
+
+            pawnTF.needs.food.CurLevel = pawn.needs.food.CurLevel;
+            pawnTF.needs.rest.CurLevel = pawn.needs.rest.CurLevel;
+            pawnTF.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
+            pawnTF.training.Train(TrainableDefOf.Obedience, null, true);
+            pawnTF.Name = pawn.Name;
+            Pawn pawn3 = (Pawn)GenSpawn.Spawn(pawnTF, pawn.PositionHeld, pawn.MapHeld, 0);
+            return pawn3;
+        }
+
+        private PawnGenerationRequest GetPawnRequest(Pawn pawn, Gender newGender)
+        {
+            float humanLE = pawn.def.race.lifeExpectancy;
+            float animalLE = pawnTFKind.race.race.lifeExpectancy;
+            float humanAge = pawn.ageTracker.AgeBiologicalYears;
+
+            float animalDelta = humanAge / humanLE;
+            float animalAge = animalLE * animalDelta;
+            var request = new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1,
+                                                    false, false, false, false, true, false, 1f, false, true, true, false,
+                                                    false, false, false, null, null, null, new float?(animalAge),
+                                                    new float?(pawn.ageTracker.AgeChronologicalYearsFloat),
+                                                    new Gender?(newGender), null, null);
+            return request;
+        }
+
+        private Gender GetNewGender(Pawn pawn)
+        {
+            Gender newGender = pawn.gender;
+
+            if (Rand.RangeInclusive(0, 100) <= forceGenderChance)
+            {
+                switch (forceGender)
+                {
+                    case ("Male"):
+                        newGender = Gender.Male;
+                        break;
+                    case ("Female"):
+                        newGender = Gender.Female;
+                        break;
+                    case ("Switch"):
+                        switch (pawn.gender)
                         {
-                            case ("Male"):
-                                newGender = Gender.Male;
-                                break;
-                            case ("Female"):
+                            case (Gender.Male):
                                 newGender = Gender.Female;
                                 break;
-                            case ("Switch"):
-                                switch (pawn.gender)
-                                {
-                                    case (Gender.Male):
-                                        newGender = Gender.Female;
-                                        break;
-                                    case (Gender.Female):
-                                        newGender = Gender.Male;
-                                        break;
-                                    default:
-                                        break;
-                                }
+                            case (Gender.Female):
+                                newGender = Gender.Male;
                                 break;
                             default:
                                 break;
                         }
-                    }
-
-                    float humanLE = pawn.def.race.lifeExpectancy;
-                    float animalLE = pawnTFKind.race.race.lifeExpectancy;
-                    float humanAge = pawn.ageTracker.AgeBiologicalYears;
-
-                    float animalDelta = humanAge / humanLE;
-                    float animalAge = animalLE * animalDelta;
-
-                    Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(animalAge), new float?(pawn.ageTracker.AgeChronologicalYearsFloat), new Gender?(newGender), null, null));
-                    pawnTF.needs.food.CurLevel = pawn.needs.food.CurLevel;
-                    pawnTF.needs.rest.CurLevel = pawn.needs.rest.CurLevel;
-                    pawnTF.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
-                    pawnTF.training.Train(TrainableDefOf.Obedience, null, true);
-                    pawnTF.Name = pawn.Name;
-                    Pawn pawn3 = (Pawn)GenSpawn.Spawn(pawnTF, pawn.PositionHeld, pawn.MapHeld, 0);
-                    for (int i = 0; i < 10; i++)
-                    {
-                        IntermittentMagicSprayer.ThrowMagicPuffDown(pawn3.Position.ToVector3(), pawn3.MapHeld);
-                        IntermittentMagicSprayer.ThrowMagicPuffUp(pawn3.Position.ToVector3(), pawn3.MapHeld);
-                    }
-
-                    int faction = Rand.RangeInclusive(0, 2);
-
-                    pawn3.SetFaction(Faction.OfPlayer, null);
-
-                    
-                    pawn.apparel.DropAll(pawn.PositionHeld);
-                    pawn.equipment.DropAllEquipment(pawn.PositionHeld);
-                    if (pawn.RaceProps.intelligence == Intelligence.Humanlike)
-                    {
-                        if (this.modulator != null)
-                        {
-                            if (this.modulator.merging)
-                            {
-                                hediffDef = "2xMergedHuman";
-                                Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationMergeLabel".Translate(pawn.LabelShort, this.linkTo.innerContainer.First().LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformationMerge".Translate(pawn.LabelShort, this.linkTo.innerContainer.First().LabelCap, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
-                            }
-                            else
-                            {
-                                hediffDef = "TransformedHuman";
-                                Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
-                            }
-                        }
-                        else
-                        {
-                            Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), "LetterHediffFromTransformation".Translate(pawn.LabelShort, pawnTFKind.LabelCap).CapitalizeFirst(), LetterDefOf.NeutralEvent, pawn, null, null);
-
-                        }
-                        Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(hediffDef), pawn3, null);
-                        hediff.Severity = Rand.Range(0.00f, 1.00f);
-                        pawn3.health.AddHediff(hediff, null, null, null);
-
-                    }
-                    if (this.modulator != null)
-                    {
-                        if (this.modulator.merging)
-                        {
-                            var first = (Pawn)this.linkTo.innerContainer.First();
-                            var second = (Pawn)this.innerContainer.First();
-
-                            ReactionsHelper.OnPawnsMerged(first, first.IsPrisoner, second, second.IsPrisoner, pawn3); 
-
-                            var pm = TfSys.TransformedPawn.Create(first, second, pawn3);
-                            Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(pm);
-                        }
-                        else
-                        {
-                            var pmm = TfSys.TransformedPawn.Create((Pawn)this.innerContainer.First(), pawn3);
-                            Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(pmm);
-                        }
-
-                    }
-                    else
-                    {
-                        //PawnMorphInstance pmm = new PawnMorphInstance((Pawn)this.innerContainer.First(), pawn3);
-                        var inst = TfSys.TransformedPawn.Create((Pawn) innerContainer.First(), pawn3); 
-
-                        //Find.World.GetComponent<PawnmorphGameComp>().addPawn(pmm);
-                        Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(inst); 
-                        IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && (x.label.ToLower().StartsWith("chao") && x.label.ToLower() != "chaomeld" && x.label.ToLower() != "chaofusion"));
-                        IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals.ToArray();
-                        pks = pks.Concat(pks2);
-                    }
-                    
-                    Find.TickManager.slower.SignalForceNormalSpeedShort();
-                    PawnComponentsUtility.AddComponentsForSpawn(pawn3);
-                    pawn.ownership.UnclaimAll();
-                    if (this.modulator != null)
-                    {
-                        this.modulator.triggered = true;
-                        if (this.modulator.merging)
-                        {
-                            this.modulator.merging = false;
-                            this.modulator.random = true;
-                        }
-                        
-                    }
-                    
-
-                }
-            
-            }
-            if (!base.Destroyed)
-            {
-                SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(SoundInfo.InMap(new TargetInfo(base.Position, base.Map)));
-                fuelComp.ConsumeFuel(fuelComp.Fuel);
-
-            }
-            base.EjectContents();
-            
-            if (daysIn < 1f)
-            {
-                pawn.health.AddHediff(HediffDef.Named("FullRandomTFAnyOutcome"));
-                if (this.modulator != null && this.linkTo != null && this.modulator.merging)
-                {
-                    this.linkTo.EjectContents();
+                        break;
+                    default:
+                        break;
                 }
             }
-            if (daysIn > 1f && pawn.Spawned) {
-                pawn.ownership.UnclaimAll();
-                pawn.Destroy();
-            }
-            daysIn = 0;
+
+            return newGender;
         }
 
-        
 
         public static Building_MutagenChamber FindCryptosleepCasketFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false)
         {
@@ -528,54 +430,4 @@ namespace Pawnmorph
             return null;
         }
     }
-    [DefOf]
-    public static class Mutagen_JobDefOf
-    {
-        public static JobDef CarryToMutagenChamber;
-        public static JobDef EnterMutagenChamber;
-    }
-
-    [HarmonyPatch(typeof(FloatMenuMakerMap)), HarmonyPatch("AddHumanlikeOrders")]
-    internal class FloatMenuMakerMapPatches
-    {
-        [HarmonyPrefix]
-        static bool Prefix_AddHumanlikeOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
-        {
-            if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
-            {
-                foreach (LocalTargetInfo localTargetInfo3 in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true))
-                {
-                    LocalTargetInfo localTargetInfo4 = localTargetInfo3;
-                    Pawn victim = (Pawn)localTargetInfo4.Thing;
-                    if (victim.RaceProps.intelligence == Intelligence.Humanlike && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true) && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
-                    {
-                        string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
-                        JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
-                        Action action3 = delegate ()
-                        {
-                            Building_MutagenChamber building_chamber = Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, false);
-                            if (building_chamber == null)
-                            {
-                                building_chamber = Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true);
-                            }
-                            if (building_chamber == null)
-                            {
-                                Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim, MessageTypeDefOf.RejectInput, false);
-                                return;
-                            }
-                            Job job = new Job(jDef, victim, building_chamber);
-                            job.count = 1;
-                            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                        };
-                        string label = text4;
-                        Action action2 = action3;
-                        Pawn revalidateClickTarget = victim;
-                        opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget, 0f, null, null), pawn, victim, "ReservedBy"));
-                    }
-                }
-            }
-            return true;
-        }
-    }
-
 }
