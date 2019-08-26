@@ -1,7 +1,7 @@
 <Defs>
 	<Pawnmorph.MorphDef>
 		<defName>BoarMorph</defName>
-		<label>boar morph</label>
+		<label>boarmorph</label>
 		<race>WildBoar</race>
 		<categories>
 			<li>pig</li>

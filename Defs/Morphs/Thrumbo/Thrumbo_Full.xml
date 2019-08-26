@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphThrumboTF</defName>
-		<label>thrumboMorph</label>
+		<label>thrumbomorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>

@@ -1,7 +1,7 @@
 <Defs>
 	<Pawnmorph.MorphDef>
 		<defName>FoxMorph</defName>
-		<label>fox morph</label>
+		<label>foxmorph</label>
 		<race>Fox_Red</race>
 		<categories>
 			<li>canid</li>

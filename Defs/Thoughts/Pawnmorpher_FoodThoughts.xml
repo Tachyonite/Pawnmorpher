@@ -45,7 +45,7 @@
     <stages>
       <li>
         <label>ate corpse</label>
-        <description>I gave in to the these...beastly thoughts and ate the raw corpse of a fresh kill. Eugh.</description>
+        <description>I gave in to my beastly thoughts and ate the raw corpse of a fresh kill. Eugh.</description>
         <baseMoodEffect>-6</baseMoodEffect>
       </li>
     </stages>
@@ -61,8 +61,8 @@
 		</nullifyingTraits>
 		<stages>
 			<li>
-				<label>ate chao meat</label>
-				<description>TODO</description>
+				<label>ate chaomeat</label>
+				<description>It's slimy, raw meat...and didn't these things use to be human?!</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
@@ -78,8 +78,8 @@
 		</nullifyingTraits>
 		<stages>
 			<li>
-				<label>ate chao meat</label>
-				<description>TODO</description>
+				<label>ate chaomeat</label>
+				<description>It tastes alright, but didn't these things use to be human?!</description>
 				<baseMoodEffect>-2</baseMoodEffect>
 			</li>
 		</stages>
