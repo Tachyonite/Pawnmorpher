@@ -280,7 +280,7 @@
 	<ThingDef ParentName="ChaomorphBase">
 		<defName>Chaofox</defName>
 		<label>Chaofox</label>
-		<description>A large, graceful creature that most resembles a mix of fox and horse that can move quite swiftly. Like all chaomorphs, they are sterile. Also, the wings are non-functional because wing-powered flight as a concept does not exist on the rim.</description>
+		<description>A large, graceful creature that most resembles a mix of fox and horse that can move quite swiftly. Like all chaomorphs, they are sterile. Also, the wings are non-functional because wing-powered flight as a concept does not exist on the rim -- I mean they're far too heavy.</description>
 		<statBases>
 			<MoveSpeed>10</MoveSpeed>
 			<ComfyTemperatureMin>-20</ComfyTemperatureMin>
@@ -490,7 +490,7 @@
 	<ThingDef ParentName="ChaomorphBase">
 		<defName>Chaodino</defName>
 		<label>Chaodino</label>
-		<description>A raptor-like, nimble and clawed carnivore terrifies the local populace. Outrunning most prey, the Chaodino is one of the fastest, and fluffiest killers on the rim. If you planned to revert it, you may have trouble -- they might eat you first.</description>
+		<description>A raptor-like, nimble and clawed carnivore terrifies the local populace. Outrunning most prey, the Chaodino is one of the fastest, and fluffiest killers on the rim. If you planned to revert it, you may have trouble -- they might eat you first. Like all chaomorphs, they are sterile.</description>
 		<statBases>
 			<MoveSpeed>15</MoveSpeed>
 			<ComfyTemperatureMin>-5</ComfyTemperatureMin>
