@@ -1,7 +1,7 @@
 ﻿<Defs>
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>RatMorph</defName>
-		<label>rat morph</label>
+		<label>ratmorph</label>
 		<categories>
 			<li>rodent</li>
 		</categories>

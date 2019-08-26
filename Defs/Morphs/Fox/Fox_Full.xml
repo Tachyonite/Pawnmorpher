@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphFoxTF</defName>
-		<label>foxMorph</label>
+		<label>foxmorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>
