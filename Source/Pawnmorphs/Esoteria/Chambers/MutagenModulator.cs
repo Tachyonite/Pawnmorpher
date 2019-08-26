@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -26,13 +27,51 @@ namespace Pawnmorph
         public CompFlickable flickableComp = null;
 
         public CompAffectedByFacilities CompLinked => compLinked ?? (compLinked = this.GetComp<CompAffectedByFacilities>());
-        public List<Thing> LinkedFacilities => CompLinked.LinkedFacilitiesListForReading;
+        public IEnumerable<Thing> LinkedFacilities => CompLinked.LinkedFacilitiesListForReading ?? Enumerable.Empty<Thing>();
 
+        /// <summary>
+        /// Gets the chambers.
+        /// </summary>
+        /// This property makes a new list every time it's called! be careful calling it 
+        /// <value>
+        /// The chambers.
+        /// </value>
         public List<Building_MutagenChamber> Chambers => LinkedFacilities.Cast<Building_MutagenChamber>().ToList();
 
-        public Building_MutagenModulator()
+
+        /// <summary>
+        /// Gets the nth linked chamber.
+        /// </summary>
+        /// <param name="index">The index of the chamber to get</param>
+        /// <returns>the nth linked chamber, if one exists. Null otherwise </returns>
+        public Building_MutagenChamber GetLinkedChamber(int index=0)
         {
-            
+            int counter = 0;
+            foreach (Thing thing in CompLinked.LinkedFacilitiesListForReading)
+            {
+                if (thing is Building_MutagenChamber chamber)
+                {
+                    if (counter == index) return chamber;
+                    counter++; 
+                }
+            }
+
+            return null; 
+        }
+
+        /// <summary>
+        /// Gets the last chamber if any are linked 
+        /// </summary>
+        /// <returns></returns>
+        [CanBeNull]
+        public Building_MutagenChamber GetLastChamber()
+        {
+            for (int i = CompLinked.LinkedFacilitiesListForReading.Count - 1; i >= 0; i--)
+            {
+                if (CompLinked.LinkedFacilitiesListForReading[i] is Building_MutagenChamber chamber) return chamber; 
+            }
+
+            return null; 
         }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -44,9 +83,10 @@ namespace Pawnmorph
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
-            if (Chambers.Count() > 0)
+            List<Building_MutagenChamber> buildingMutagenChambers = Chambers;
+            if (buildingMutagenChambers.Count > 0)
             {
-                foreach (Building_MutagenChamber c in Chambers)
+                foreach (Building_MutagenChamber c in buildingMutagenChambers)
                 {
 
                     c.modulator = null;
@@ -56,18 +96,22 @@ namespace Pawnmorph
             base.Destroy(mode);
 
         }
+        
+        
 
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look(ref this.merging, "merging");
             Scribe_Values.Look(ref this.random, "random");
+            
         }
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
-            if (Chambers.Count() > 0)
+            List<Building_MutagenChamber> buildingMutagenChambers = Chambers;
+            if (buildingMutagenChambers.Count > 0)
             {
-                foreach (Building_MutagenChamber c in Chambers)
+                foreach (Building_MutagenChamber c in buildingMutagenChambers)
                 {
                     c.EjectContents();
                     c.modulator = null;
@@ -79,9 +123,10 @@ namespace Pawnmorph
         public override string GetInspectString()
         {
             base.GetInspectString();
-            if (Chambers.Count > 0 && !this.random)
+            List<Building_MutagenChamber> buildingMutagenChambers = Chambers;
+            if (buildingMutagenChambers.Count > 0 && !this.random)
             {
-                return "Setting: " + Chambers.First().pawnTFKind.LabelCap;
+                return "Setting: " + buildingMutagenChambers.First().pawnTFKind.LabelCap;
             }
             else if (this.random)
             {
@@ -95,9 +140,10 @@ namespace Pawnmorph
 
         public override void Tick()
         {
-            if (Chambers.Count() > 0)
+            List<Building_MutagenChamber> buildingMutagenChambers = Chambers;
+            if (buildingMutagenChambers.Count > 0)
             {
-                foreach (Building_MutagenChamber c in Chambers)
+                foreach (Building_MutagenChamber c in buildingMutagenChambers)
                 {
 
                     c.modulator = this;
@@ -120,11 +166,15 @@ namespace Pawnmorph
                 icon = ContentFinder<Texture2D>.Get("UI/Commands/Merge", true),
                 action = () =>
                 {
-                    { if (this.Chambers.First().daysIn > 0f || this.Chambers.Last().daysIn > 0f)
+                    {
+                        List<Building_MutagenChamber> chambers = this.Chambers;
+                        Building_MutagenChamber firstChamber = chambers.First();
+                        Building_MutagenChamber lastChamber = chambers.Last();
+                        if (firstChamber.daysIn > 0f || lastChamber.daysIn > 0f)
                         {
-                            if (this.Chambers.First() != this.Chambers.Last())
+                            if (firstChamber != lastChamber)
                             {
-                                if (Chambers.All(x => x.ContainedThing != null) && Chambers.Count > 1)
+                                if (chambers.All(x => x.ContainedThing != null) && chambers.Count > 1)
                                 {
                                     Find.WindowStack.Add(new FloatMenu(GenMenuOptions(true)));
                                 }
@@ -143,7 +193,6 @@ namespace Pawnmorph
                         {
                             Find.WindowStack.Add(new FloatMenu(GenMenuOptions()));
                         }
-                        
                     }
                 }
             };
@@ -157,7 +206,9 @@ namespace Pawnmorph
 
             List<FloatMenuOption> menuOptions = new List<FloatMenuOption>();
 
-            if (Chambers.First().def == ThingDef.Named("BigMutagenicChamber"))
+            List<Building_MutagenChamber> linkedChambers = Chambers;
+            Building_MutagenChamber firstChamber = linkedChambers.First();
+            if (firstChamber.def == BuildingDefOf.BigMutagenicChamber)
             {
                 maxBodySize = 5.0f;
             }
@@ -174,22 +225,27 @@ namespace Pawnmorph
             }
             
 
-            if (Chambers.All(x => x.ContainedThing != null) && Chambers.Count > 1)
+            if (linkedChambers.All(x => x.ContainedThing != null) && linkedChambers.Count > 1)
             {
                 void Action()
                 {
                     if (maxBodySize == 5.0f)
                     {
-                        Chambers.First().pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaofusion").RandomElement();
+                        firstChamber.pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaofusion").RandomElement();
                     }
                     else
                     {
-                        Chambers.First().pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaomeld").RandomElement();
+                        firstChamber.pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.label == "chaomeld").RandomElement();
                     }
-                    Chambers.Last().pawnTFKind = null;
-                    Chambers.Last().doNotEject = true;
-                    Chambers.First().linkTo = Chambers.Last();
-                    Chambers.Last().linkTo = Chambers.First();
+
+                    Building_MutagenChamber lastChamber = linkedChambers.Last();
+                    lastChamber.pawnTFKind = null;
+                    lastChamber.doNotEject = true;
+                    firstChamber.linkTo = lastChamber;
+                    lastChamber.linkTo = firstChamber;
+                    firstChamber.NotifyMerging(true);
+                    lastChamber.NotifyMerging(false); 
+
                     this.merging = true;
                     this.random = false;
                 }
@@ -203,7 +259,7 @@ namespace Pawnmorph
 
                     void Action()
                     {
-                        foreach (Building_MutagenChamber chamber in Chambers)
+                        foreach (Building_MutagenChamber chamber in linkedChambers)
                         {
                             chamber.pawnTFKind = pk;
                             chamber.linkTo = null;

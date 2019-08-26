@@ -58,6 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildingDefOf.cs" />
+    <Compile Include="Chambers\ChamberJobDefOf.cs" />
+    <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="EtherState.cs" />
@@ -83,8 +86,8 @@
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
     <Compile Include="Hediffs\IPostTfHediffComp.cs" />
     <Compile Include="IngestionOutcomeDoer_MultipleTfBase.cs" />
-    <Compile Include="JobDriver_CarryToMutagenChamber.cs" />
-    <Compile Include="JobDriver_EnterMutagenChamber.cs" />
+    <Compile Include="Chambers\JobDriver_CarryToMutagenChamber.cs" />
+    <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="MorphDef.cs" />
     <Compile Include="MorphDefOfs.cs" />
     <Compile Include="MorphTransformationTypes.cs" />
@@ -125,8 +128,8 @@
     <Compile Include="HediffComp_Single.cs" />
     <Compile Include="HediffComp_TerrainBasedMorph.cs" />
     <Compile Include="InteractionWorkers.cs" />
-    <Compile Include="MutagenChamber.cs" />
-    <Compile Include="MutagenModulator.cs" />
+    <Compile Include="Chambers\MutagenChamber.cs" />
+    <Compile Include="Chambers\MutagenModulator.cs" />
     <Compile Include="ProductionComps.cs" />
     <Compile Include="IncidentWorker_MutationShipPartCrash.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />
