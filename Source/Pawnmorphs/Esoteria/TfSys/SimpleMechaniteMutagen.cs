@@ -150,12 +150,10 @@ namespace Pawnmorph.TfSys
                 spawned.health.AddHediff(hediff); 
             }
 
-            TransformerUtility.RemoveAllMutations(spawned); 
 
             ReactionsHelper.OnPawnReverted(spawned, animal);
 
-            if (spawned.IsHybridRace())
-                RaceShiftUtilities.RevertPawnToHuman(spawned);
+            
 
 
             animal.Destroy();
