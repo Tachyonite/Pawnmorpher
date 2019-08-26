@@ -15,4 +15,16 @@
       </rulesStrings>
     </rulePack>
   </TaleDef>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewAlpacaMuzzle</defName>
+		<label>grew alpaca muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] grew an alpaca muzzle</li>
+				<li>tale_noun->[PAWN_nameDef]'s face became like that of an alpaca</li>
+				<li>image->[PAWN_nameDef] teeth start to become larger and blunter [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_nameDef] spits at someone who was annoying [PAWN_pronoun]</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>
