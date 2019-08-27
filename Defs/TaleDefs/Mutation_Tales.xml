@@ -61,6 +61,24 @@
     </rulePack>
   </TaleDef>
 
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewFelineMuzzle</defName>
+		<label>grew a muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing a feline muzzle</li>
+				<li>tale_noun->[PAWN_nameDef]'s face becoming like that of a cat</li>
+				<li>image->[PAWN_nameFull] yells turn into yowls [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] nose begins turning pink [circumstance_group]</li>
+				<li>circumstance_phrase->while someone plays with [PAWN_pronoun] whiskers</li>
+				<li>desc_sentence->[PAWN_pronoun] begins purring contently</li>
+				<li>desc_sentence->[PAWN_pronoun] begins hissing angrily</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows</li>
+			</rulesStrings>
+		</rulePack>
+		
+	</TaleDef>
+
 
   <!--            Ears                -->
   <TaleDef ParentName="MutationTaleBase" Abstract="True" Name="EarMutationBase">
@@ -108,6 +126,7 @@
 				<li>tale_noun->[PAWN_nameDef] growing cat ears</li>
 				<li>image->[PAWN_nameFull] ears begin turning toward loud noises [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] seems distracted by the loud noises [circumstance_group]</li>
+				<li>circumstance_phrase->while someone tries to scratch [PAWN_possessive] ears</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
