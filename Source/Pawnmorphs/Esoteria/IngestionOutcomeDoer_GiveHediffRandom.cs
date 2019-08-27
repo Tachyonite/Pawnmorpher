@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -20,6 +21,11 @@ namespace Pawnmorph
         {
             try
             {
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PushState(RandUtilities.MPSafeSeed);
+                }
+
                 float completeChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().partialChance;
                 if (Rand.RangeInclusive(0, 100) <= completeChance)
                     hediffDef = AllCompleteDefs.RandElement();
@@ -36,9 +42,19 @@ namespace Pawnmorph
                 AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
                 hediff.Severity = num;
                 pawn.health.AddHediff(hediff, null, null);
+
+
+
             }
             catch
             {
+            }
+            finally
+            {
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PopState();
+                }
             }
         }
     }
@@ -95,6 +111,11 @@ namespace Pawnmorph
         {
             try
             {
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PushState(RandUtilities.MPSafeSeed);
+                }
+
                 if (!pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Contains(x.def)))
                 {
                     if (Rand.RangeInclusive(0, 100) <= completeChance)
@@ -116,6 +137,13 @@ namespace Pawnmorph
             }
             catch
             {
+            }
+            finally
+            {
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PopState();
+                }
             }
         }
     }

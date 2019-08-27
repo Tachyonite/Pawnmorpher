@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -144,15 +146,34 @@ namespace Pawnmorph.TfSys
         public sealed override bool CanRevert(TransformedPawn pawn)
         {
             if (pawn == null)
-                throw new ArgumentNullException(nameof(pawn)); 
+                throw new ArgumentNullException(nameof(pawn));
+            bool reverted;
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
             try
             {
-                return CanRevertPawnImp((T) pawn); 
+                
+                reverted = CanRevertPawnImp((T) pawn); 
             }
             catch (InvalidCastException e)
             {
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PopState();
+                }
                 throw new InvalidTransformedPawnInstance($"tfPawn instance of type {pawn.GetType().Name} can not be cast to {typeof(T).Name}", e);
             }
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
+
+            return reverted; 
         }
 
 
@@ -164,15 +185,36 @@ namespace Pawnmorph.TfSys
         public sealed override bool TryRevert(TransformedPawn transformedPawn)
         {
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            bool reverted; 
             try
             {
-                return TryRevertImpl((T) transformedPawn); //this class will handle all casting for us, and error appropriately 
+
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PushState(RandUtilities.MPSafeSeed); 
+                }
+
+                reverted =  TryRevertImpl((T) transformedPawn); //this class will handle all casting for us, and error appropriately 
             }
             catch (InvalidCastException e)
             {
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PopState();
+                }
                 throw new InvalidTransformedPawnInstance(
                     $"tfPawn instance of type {transformedPawn.GetType().Name} can not be cast to {typeof(T).Name}", e); 
             }
+            
+
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
+
+            return reverted; 
+
         }
 
         /// <summary>
