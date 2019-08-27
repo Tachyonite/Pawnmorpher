@@ -149,6 +149,9 @@
 			<texPath>Things/Item/TaggingRifle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
+		<weaponTags>
+			<li>TaggingGun</li>
+		</weaponTags>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
 			<MarketValue>650</MarketValue>
@@ -311,6 +314,9 @@
 				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
 			</li>
 		</comps>
+		<weaponTags>
+			<li>TF_Shell</li>
+		</weaponTags>
 		<projectileWhenLoaded>Bullet_Shell_TF</projectileWhenLoaded>
 		<recipeMaker>
 			<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
