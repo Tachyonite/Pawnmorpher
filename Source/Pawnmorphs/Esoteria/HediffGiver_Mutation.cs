@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using Multiplayer.API;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -16,20 +17,31 @@ namespace Pawnmorph
         public TaleDef tale;
         private Dictionary<Hediff, bool> triggered = new Dictionary<Hediff, bool>();
 
-        [SyncMethod]
         public new bool TryApply(Pawn pawn, List<Hediff> outAddedHediffs = null)
         {
             return PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
         }
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
+
+
             if (Rand.MTBEventOccurs(mtbDays, 60000f, 60f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 TryGiveMutation(pawn, cause);
             }
+
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
         }
 
-        [SyncMethod]
         private void TryGiveMutation(Pawn pawn, Hediff cause)
         {
             if ((gender == pawn.gender || (!triggered.TryGetValue(cause, false) && Rand.RangeInclusive(0, 100) <= chance)) && TryApply(pawn))

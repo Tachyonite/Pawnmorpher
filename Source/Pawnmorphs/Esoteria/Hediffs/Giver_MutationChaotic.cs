@@ -4,6 +4,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -85,6 +87,11 @@ namespace Pawnmorph.Hediffs
         {
             if (Mutations.Count == 0) return;
 
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
             if (Rand.MTBEventOccurs(mtbDays, 6000, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
@@ -101,6 +108,11 @@ namespace Pawnmorph.Hediffs
                         TaleRecorder.RecordTale(mut.tale, pawn); 
                     }
                 }
+            }
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
             }
 
         }
