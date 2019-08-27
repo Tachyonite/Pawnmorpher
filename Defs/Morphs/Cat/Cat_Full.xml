@@ -107,6 +107,7 @@
 						</partsToAffect>
 						<chance>5</chance>
 						<countToAffect>2</countToAffect>
+						<tale>HandsBecomeCatPaws</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>
@@ -132,6 +133,7 @@
 							<li>Eye</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>EyesBecomeFeline</tale>
 					</li>
 				</hediffGivers>
 			</li>

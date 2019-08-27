@@ -78,6 +78,7 @@
 							<li>Eye</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>EyesBecomeVulpine</tale>
 					</li>
 				</hediffGivers>
 			</li>
