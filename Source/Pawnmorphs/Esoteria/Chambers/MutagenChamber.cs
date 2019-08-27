@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
 using Pawnmorph.Chambers;
 using Pawnmorph.TfSys;
 using RimWorld;
@@ -24,11 +25,14 @@ namespace Pawnmorph
         public string pawnkind;
         public string forceGender = "Original";
         public float forceGenderChance = 50;
+        [SyncField]
         public PawnKindDef pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
+        [SyncField]
         public bool doNotEject = false;
         private CompRefuelable fuelComp = null;
         private CompPowerTrader powerComp = null;
         private CompFlickable flickComp = null;
+        [SyncField]
         public Building_MutagenChamber linkTo;
 
         private ChamberState _state; 

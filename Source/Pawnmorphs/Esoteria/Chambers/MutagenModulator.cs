@@ -42,43 +42,35 @@ namespace Pawnmorph
 
         private ThingCompProperties_ModulatorOptions _modulatorOptions;
 
-        ThingCompProperties_ModulatorOptions ModulatorOptions
+        private ThingCompProperties_ModulatorOptions ModulatorOptions
         {
             get
             {
-                if (_modulatorOptions == null)
-                {
-                    _modulatorOptions = def.GetCompProperties<ThingCompProperties_ModulatorOptions>(); 
-                }
+                if (_modulatorOptions == null) _modulatorOptions = def.GetCompProperties<ThingCompProperties_ModulatorOptions>();
 
-                if (_modulatorOptions == null)
-                {
-                    Log.Error($"in {def.defName} there is no modulator option component!");
-                }
+                if (_modulatorOptions == null) Log.Error($"in {def.defName} there is no modulator option component!");
 
-                return _modulatorOptions; 
+                return _modulatorOptions;
             }
         }
 
 
         /// <summary>
-        /// Gets the nth linked chamber.
+        ///     Gets the nth linked chamber.
         /// </summary>
         /// <param name="index">The index of the chamber to get</param>
         /// <returns>the nth linked chamber, if one exists. Null otherwise </returns>
-        public Building_MutagenChamber GetLinkedChamber(int index=0)
+        public Building_MutagenChamber GetLinkedChamber(int index = 0)
         {
-            int counter = 0;
+            var counter = 0;
             foreach (Thing thing in CompLinked.LinkedFacilitiesListForReading)
-            {
                 if (thing is Building_MutagenChamber chamber)
                 {
                     if (counter == index) return chamber;
-                    counter++; 
+                    counter++;
                 }
-            }
 
-            return null; 
+            return null;
         }
 
         /// <summary>
@@ -128,17 +120,17 @@ namespace Pawnmorph
             Scribe_Values.Look(ref this.random, "random");
             
         }
+
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
             List<Building_MutagenChamber> buildingMutagenChambers = Chambers;
             if (buildingMutagenChambers.Count > 0)
-            {
                 foreach (Building_MutagenChamber c in buildingMutagenChambers)
                 {
                     c.EjectContents();
                     c.modulator = null;
                 }
-            }
+
             base.DeSpawn(mode);
         }
 
@@ -146,82 +138,61 @@ namespace Pawnmorph
         {
             base.GetInspectString();
             List<Building_MutagenChamber> buildingMutagenChambers = Chambers;
-            if (buildingMutagenChambers.Count > 0 && !this.random)
-            {
+            if (buildingMutagenChambers.Count > 0 && !random)
                 return "Setting: " + buildingMutagenChambers.First().pawnTFKind.LabelCap;
-            }
-            else if (this.random)
-            {
+            if (random)
                 return "Setting: Random";
-            }
-            else
-            {
-                return "No chambers allocated. Up to two are allowed.";
-            }
+            return "No chambers allocated. Up to two are allowed.";
         }
 
         public override void Tick()
         {
             List<Building_MutagenChamber> buildingMutagenChambers = Chambers;
             if (buildingMutagenChambers.Count > 0)
-            {
                 foreach (Building_MutagenChamber c in buildingMutagenChambers)
-                {
-
                     c.modulator = this;
-
-                }
-            }
             base.Tick();
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            foreach (Gizmo gizmo in base.GetGizmos())
-            {
-                yield return gizmo;
-            }
-            Command_Action commandAction = new Command_Action
+            foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
+            var commandAction = new Command_Action
             {
                 defaultLabel = "Set Animal",
                 defaultDesc = "Set Animal",
-                icon = ContentFinder<Texture2D>.Get("UI/Commands/Merge", true),
+                icon = ContentFinder<Texture2D>.Get("UI/Commands/Merge"),
                 action = GizmoListOptions
             };
-            
+
             yield return commandAction;
-            
         }
 
+        [SyncMethod]
         private void GizmoListOptions()
         {
+            List<Building_MutagenChamber> chambers = Chambers;
+            Building_MutagenChamber firstChamber = chambers.First();
+            Building_MutagenChamber lastChamber = chambers.Last();
+            if (firstChamber.daysIn > 0f || lastChamber.daysIn > 0f)
             {
-                List<Building_MutagenChamber> chambers = this.Chambers;
-                Building_MutagenChamber firstChamber = chambers.First();
-                Building_MutagenChamber lastChamber = chambers.Last();
-                if (firstChamber.daysIn > 0f || lastChamber.daysIn > 0f)
+                if (firstChamber != lastChamber)
                 {
-                    if (firstChamber != lastChamber)
-                    {
-                        if (chambers.All(x => x.ContainedThing != null) && chambers.Count > 1 && ModulatorOptions.merges.Count > 0)
-                        {
-                            Find.WindowStack.Add(new FloatMenu(GenMenuOptions(true)));
-                        }
-                        else
-                        {
-                            Messages.Message("Can't change a morph while there is one in progress.", MessageTypeDefOf.CautionInput);
-                        }
-                    }
+                    if (chambers.All(x => x.ContainedThing != null) && chambers.Count > 1 && ModulatorOptions.merges.Count > 0)
+                        Find.WindowStack.Add(new FloatMenu(GenMenuOptions(true)));
                     else
-                    {
                         Messages.Message("Can't change a morph while there is one in progress.", MessageTypeDefOf.CautionInput);
-                    }
                 }
                 else
                 {
-                    Find.WindowStack.Add(new FloatMenu(GenMenuOptions()));
+                    Messages.Message("Can't change a morph while there is one in progress.", MessageTypeDefOf.CautionInput);
                 }
             }
+            else
+            {
+                Find.WindowStack.Add(new FloatMenu(GenMenuOptions()));
+            }
+            
         }
 
         List<FloatMenuOption> GenMenuOptions(bool merge = false)
@@ -240,45 +211,16 @@ namespace Pawnmorph
                 maxBodySize = 2.9f;
             }
             IEnumerable<PawnKindDef> pks = GetAnimalOptions();
-
-            void MergeChamberAction()
+            
+            if (linkedChambers.All(x => x.ContainedThing != null) && linkedChambers.Count > 1 && ModulatorOptions.merges.Count > 0)
             {
-
-                firstChamber.pawnTFKind = ModulatorOptions.merges.RandElement(); 
-
-                Building_MutagenChamber lastChamber = linkedChambers.Last();
-                lastChamber.pawnTFKind = null;
-                lastChamber.doNotEject = true;
-                firstChamber.linkTo = lastChamber;
-                lastChamber.linkTo = firstChamber;
-                firstChamber.NotifyMerging(true);
-                lastChamber.NotifyMerging(false);
-
-                this.merging = true;
-                this.random = false;
-            }
-
-            if (linkedChambers.All(x => x.ContainedThing != null) && linkedChambers.Count > 1)
-            {
-                menuOptions.Add(new FloatMenuOption("Merge Chambers", MergeChamberAction, priority: MenuOptionPriority.High));
+                menuOptions.Add(new FloatMenuOption("Merge Chambers", () => SetMergeAction(ModulatorOptions.merges), priority: MenuOptionPriority.High));
             }
             if (!merge)
             {
                 foreach (PawnKindDef pk in pks)
                 {
-
-                    void SetAnimalAction()
-                    {
-                        foreach (Building_MutagenChamber chamber in linkedChambers)
-                        {
-                            chamber.pawnTFKind = pk;
-                            chamber.linkTo = null;
-                            this.merging = false;
-                            this.random = false;
-                        }
-                    }
-
-                    menuOptions.Add(new FloatMenuOption(pk.LabelCap, SetAnimalAction));
+                    menuOptions.Add(new FloatMenuOption(pk.LabelCap, () => SetAnimalAction(pk)));
 
                 }
                 menuOptions = menuOptions.OrderBy(o => o.Label).ToList();
@@ -288,7 +230,40 @@ namespace Pawnmorph
 
         }
 
-        
+        [SyncMethod]
+        void SetMergeAction(List<PawnKindDef> mergeOptions)
+        {
+          
+
+            var firstChamber = GetLinkedChamber();
+            var secondChamber = GetLinkedChamber(1);
+            if (firstChamber == null || secondChamber == null) return;
+            
+            secondChamber.pawnTFKind = null;
+            secondChamber.doNotEject = false;
+            firstChamber.linkTo = secondChamber;
+            secondChamber.linkTo = firstChamber;
+            firstChamber.pawnTFKind = mergeOptions.RandElement();
+            firstChamber.NotifyMerging(true);
+            secondChamber.NotifyMerging(false);
+
+            merging = true;
+            random = false; 
+
+        }
+
+        [SyncMethod]
+        void SetAnimalAction(PawnKindDef def)
+        {
+            foreach (Building_MutagenChamber chamber in LinkedFacilities.OfType<Building_MutagenChamber>())
+            {
+                chamber.pawnTFKind = def;
+                chamber.linkTo = null;
+                merging = false;
+                random = false; 
+            }
+        }
+
 
         private IEnumerable<PawnKindDef> GetAnimalOptions()
         {
