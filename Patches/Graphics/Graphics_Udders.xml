@@ -1,0 +1,41 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
+		<value>
+			<li>
+				<path>Parts/None/None</path>
+				<bodyPart>Waist</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawnInBed>false</drawnInBed>
+				<hediffGraphics>
+					<EtherChemfuelUdder>Parts/boomalopeface/boomalopeudder</EtherChemfuelUdder>
+					<EtherUdder>Parts/cowface/cowudder</EtherUdder>
+				</hediffGraphics>
+				<hiddenUnderApparelFor>
+					<li>Torso</li>
+				</hiddenUnderApparelFor>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.421875,0.21875)</Male>
+							<Female>(-0.421875,0.171875)</Female>
+							<Thin>(-0.421875,0.21875)</Thin>
+							<Hulk>(-0.421875,0.0078125)</Hulk>
+							<Fat>(-0.421875,0.15625)</Fat>
+						</bodyTypes>
+					</south>
+					<north />
+					<east>
+						<bodyTypes>
+							<Male>(-0.421875,0.21875)</Male>
+							<Female>(-0.390625,0.15625)</Female>
+							<Thin>(-0.3671875,0.21875)</Thin>
+							<Hulk>(-0.421875,0.0078125)</Hulk>
+							<Fat>(-0.671875,0.1328125)</Fat>
+						</bodyTypes>
+					</east>
+				</offsets>
+			</li>
+		</value>
+	</Operation>
+</Patch>
