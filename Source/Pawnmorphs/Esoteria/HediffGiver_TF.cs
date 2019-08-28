@@ -29,13 +29,7 @@ namespace Pawnmorph
                 ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
                 : changeChance;
             //Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
-
-
+            
             bool transformed = false;  
             if (Rand.Range(0, 100) < chance)
             {
@@ -63,16 +57,9 @@ namespace Pawnmorph
                 //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
                 transformed = true; 
             }
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-                 
-            }
-
+            
             return transformed; 
-
-
+            
         }
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)

@@ -23,22 +23,9 @@ namespace Pawnmorph
         }
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
-
-
-
             if (Rand.MTBEventOccurs(mtbDays, 60000f, 60f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 TryGiveMutation(pawn, cause);
-            }
-
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
             }
         }
 
