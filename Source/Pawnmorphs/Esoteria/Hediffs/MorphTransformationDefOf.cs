@@ -9,13 +9,13 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    ///     static def of class containing morph defs
+    ///     static def of class containing morph transformation defs
     /// </summary>
     [DefOf]
-    public static class TfDefOf
+    public static class MorphTransformationDefOf
     {
-        public static HediffDef FullRandomTF; 
-
+        public static HediffDef FullRandomTF;
+        public static HediffDef FullRandomTFAnyOutcome; 
 
         public static HediffDef PawnmorphWolfTF;
         public static HediffDef PawnmorphWargTF;
@@ -32,7 +32,7 @@ namespace Pawnmorph.Hediffs
         public static HediffDef PawnmorphAlpacaTF; //these are initialized by rimworld at load time 
 
 
-        public static HediffDef StabiliserHigh; 
+        public static HediffDef StabiliserHigh;  //should move this somewhere else 
 
 
 
@@ -55,7 +55,7 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public static int AllMorphsCachedCount { get; }
 
-        static TfDefOf()
+        static MorphTransformationDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
 

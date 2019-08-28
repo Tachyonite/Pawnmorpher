@@ -24,7 +24,7 @@ namespace Pawnmorph
 
         static MorphUtilities() //this is really hacky 
         {
-            IEnumerable<HediffDef> defs = TfDefOf.AllMorphs; 
+            IEnumerable<HediffDef> defs = MorphTransformationDefOf.AllMorphs; 
 
             PossiblePartsLst = defs.SelectMany(def => def.stages ?? Enumerable.Empty<HediffStage>())
                                 .SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())

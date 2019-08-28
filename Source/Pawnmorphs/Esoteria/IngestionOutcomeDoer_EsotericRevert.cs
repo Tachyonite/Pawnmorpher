@@ -21,20 +21,29 @@ namespace Pawnmorph
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
+            var comp = Find.World.GetComponent<PawnmorphGameComp>();
+            var tuple = comp.GetTransformedPawnContaining(pawn); 
 
             foreach (MutagenDef mutagenDef in DefDatabase<MutagenDef>.AllDefs)
             {
                 if (blackList.Contains(mutagenDef)) return; //make it so this reverted can not revert certain kinds of transformations 
+               
+
                 if (mutagenDef.MutagenCached.TryRevert(pawn))
                 {
-                    var comp = Find.World.GetComponent<PawnmorphGameComp>();
-                    
+                    var inst = tuple?.First;
+                    if (inst != null)
+                    {
+                        comp.RemoveInstance(inst); 
+                    }
+
                     return; 
 
 
                 }
 
             }
+
 
             TransformerUtility.RemoveAllMutations(pawn); 
 

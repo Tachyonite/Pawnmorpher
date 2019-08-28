@@ -58,9 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildingDefOf.cs" />
+    <Compile Include="Chambers\ChamberJobDefOf.cs" />
+    <Compile Include="Chambers\ChamberState.cs" />
+    <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="EtherState.cs" />
+    <Compile Include="FloatMenuMakerMapPatches.cs" />
     <Compile Include="HediffGiver_Mutation.cs" />
     <Compile Include="Hediffs\CompProperties_DependentPart.cs" />
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
@@ -72,7 +77,7 @@
     <Compile Include="Hediffs\Def_MorphTf.cs" />
     <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
-    <Compile Include="Hediffs\TfDefOf.cs" />
+    <Compile Include="Hediffs\MorphTransformationDefOf.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
     <Compile Include="Hybrids\HThoughtDefOf.cs" />
@@ -82,6 +87,8 @@
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
     <Compile Include="Hediffs\IPostTfHediffComp.cs" />
     <Compile Include="IngestionOutcomeDoer_MultipleTfBase.cs" />
+    <Compile Include="Chambers\JobDriver_CarryToMutagenChamber.cs" />
+    <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="MorphDef.cs" />
     <Compile Include="MorphDefOfs.cs" />
     <Compile Include="MorphTransformationTypes.cs" />
@@ -91,6 +98,8 @@
     <Compile Include="MutagenDef.cs" />
     <Compile Include="MutagenDefOf.cs" />
     <Compile Include="MutagenUtilities.cs" />
+    <Compile Include="Mutagen_JobDefOf.cs" />
+    <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="RaceMutagenExtension.cs" />
     <Compile Include="TaleDefOf.cs" />
@@ -121,8 +130,8 @@
     <Compile Include="HediffComp_Single.cs" />
     <Compile Include="HediffComp_TerrainBasedMorph.cs" />
     <Compile Include="InteractionWorkers.cs" />
-    <Compile Include="MutagenChamber.cs" />
-    <Compile Include="MutagenModulator.cs" />
+    <Compile Include="Chambers\MutagenChamber.cs" />
+    <Compile Include="Chambers\MutagenModulator.cs" />
     <Compile Include="ProductionComps.cs" />
     <Compile Include="IncidentWorker_MutationShipPartCrash.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />

@@ -58,7 +58,7 @@ namespace Pawnmorph.DebugUtils
         public static void ListAllMorphTfHediffs()
         {
             var builder = new StringBuilder();
-            IEnumerable<HediffDef> morphs = TfDefOf.AllMorphs;
+            IEnumerable<HediffDef> morphs = MorphTransformationDefOf.AllMorphs;
             foreach (HediffDef morph in morphs)
                 builder.AppendLine($"defName:{morph.defName} label:{morph.label} class:{morph.hediffClass.Name}");
 

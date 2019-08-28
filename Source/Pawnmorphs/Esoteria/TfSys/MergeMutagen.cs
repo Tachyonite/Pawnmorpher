@@ -153,8 +153,8 @@ namespace Pawnmorph.TfSys
 
             firstO.SetFaction(Faction.OfPlayer);
             secondO.SetFaction(Faction.OfPlayer);
-            TransformerUtility.RemoveAllMutations(firstO);
-            TransformerUtility.RemoveAllMutations(secondO); 
+            //TransformerUtility.RemoveAllMutations(firstO);
+            //TransformerUtility.RemoveAllMutations(secondO); 
 
             ReactionsHelper.OnPawnReverted(firstO, meld);
             ReactionsHelper.OnPawnReverted(secondO, meld);

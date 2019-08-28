@@ -46,6 +46,7 @@ namespace Pawnmorph
         {
             if (def.description == null)
             {
+                
                 builder.AppendLine("PawnmorphTooltipNoDescription".Translate());
                 return;
             }
@@ -70,6 +71,13 @@ namespace Pawnmorph
         {
             base.PostAdd(dinfo); // Do the inherited method.
             IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
+
+            if (MutationUtilities.AllMutationsWithGraphics.Contains(def) && pawn.IsColonist)
+            {
+                pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+                PortraitsCache.SetDirty(pawn);
+            }
+
 
             for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++) // Loop through the hediffs on the pawn.
             {
