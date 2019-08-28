@@ -55,6 +55,7 @@
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompProperties_EtherExplosive.cs" />
+    <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="Projectile_EtherBullet.cs" />
     <Compile Include="EtherBullet.cs" />
     <Compile Include="Projectile_EtherExplosive.cs" />

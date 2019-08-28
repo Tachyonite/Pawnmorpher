@@ -23,7 +23,7 @@ namespace Pawnmorph
         }
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-            if (Rand.MTBEventOccurs(mtbDays, 60000f, 60f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+            if (Rand.MTBEventOccurs(mtbDays, 60000f, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 TryGiveMutation(pawn, cause);
             }

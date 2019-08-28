@@ -63,6 +63,7 @@
 	<HediffDef ParentName="WargPart">
 		<defName>EtherWargEar</defName>
 		<label>warglike</label>
+		<description>Thick-skinned ears with a tuft at the end have grown from [PAWN_nameDef]'s head. They scan the horizon independently for prey.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.25</partEfficiencyOffset>

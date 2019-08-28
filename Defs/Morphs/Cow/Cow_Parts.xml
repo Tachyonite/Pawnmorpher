@@ -63,6 +63,7 @@
 	<HediffDef ParentName="CowPart">
 		<defName>EtherCowEar</defName>
 		<label>bovine</label>
+		<description>They flick idly, large tan ears that belong to a cow. Maybe you should tag them.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>

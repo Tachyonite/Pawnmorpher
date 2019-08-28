@@ -64,6 +64,7 @@
 	<HediffDef ParentName="HuskyPart">
 		<defName>EtherHuskyEar</defName>
 		<label>canine</label>
+		<description>Triangular, floofy black-and-white dog ears flick around at the sides of [PAWN_nameDef]'s head. They are incredibly cute.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.3</partEfficiencyOffset>

@@ -43,11 +43,7 @@ namespace Pawnmorph
 
         private void SendLetter()
         {
-            var letterDef = LetterDefOf.NeutralEvent; //not sure what to use here 
-
-            var letterLabel = (TRANSFORMATION_WARNING_LETTER_ID + "Label").Translate(pawn);
-            var letterContent = (TRANSFORMATION_WARNING_LETTER_ID + "Content").Translate(pawn);
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, letterDef, pawn); 
+            Messages.Message((TRANSFORMATION_WARNING_LETTER_ID).Translate(pawn),def:MessageTypeDefOf.NegativeHealthEvent);
 
         }
 
