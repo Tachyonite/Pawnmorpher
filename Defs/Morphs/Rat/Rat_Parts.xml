@@ -63,6 +63,7 @@
 	<HediffDef ParentName="RatPart">
 		<defName>EtherRatEar</defName>
 		<label>ratty</label>
+		<description>Grey-furred, rounded ears listen carefully for predators.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
