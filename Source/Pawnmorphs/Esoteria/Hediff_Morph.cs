@@ -39,13 +39,13 @@ namespace Pawnmorph
                 foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
                     if (tfGiver.TryTf(pawn, this))
                         break; //try each one, one by one. break at first one that succeeds  
-
+                End:
+                if (MP.IsInMultiplayer)
+                    Rand.PopState();
             }
 
 
-            End:
-            if(MP.IsInMultiplayer)
-                Rand.PopState();
+          
         }
 
         private void SendLetter()

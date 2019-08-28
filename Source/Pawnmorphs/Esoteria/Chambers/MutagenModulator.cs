@@ -233,11 +233,17 @@ namespace Pawnmorph
         [SyncMethod]
         void SetMergeAction(List<PawnKindDef> mergeOptions)
         {
-          
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
 
             var firstChamber = GetLinkedChamber();
             var secondChamber = GetLinkedChamber(1);
-            if (firstChamber == null || secondChamber == null) return;
+            if (firstChamber == null || secondChamber == null)
+            {
+                goto End;
+            }
             
             secondChamber.pawnTFKind = null;
             secondChamber.doNotEject = false;
@@ -249,6 +255,12 @@ namespace Pawnmorph
 
             merging = true;
             random = false; 
+
+            End:
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
 
         }
 
