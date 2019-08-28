@@ -95,7 +95,7 @@
 		<stages>
 			<li>
 				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
-        <label>new</label>
+        <label>unfamiliar</label>
       </li>
       <li>
         <minSeverity>0.5</minSeverity>

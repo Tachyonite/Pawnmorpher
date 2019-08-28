@@ -91,7 +91,7 @@
 		</include>
 	</RulePackDef>
 	<RulePackDef>
-		<defName>Maneuver_SpitMaterialInEyes_MeleeMiss</defName>
+		<defName>Maneuver_SpitMaterialInMouth_MeleeMiss</defName>
 		<rulePack>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_definite] tried to spit in [RECIPIENT_definite]'s face, but missed.</li>
@@ -106,9 +106,14 @@
 			</rulesStrings>
 		</rulePack>
 	</RulePackDef>
+	
+	
 
 	<ToolCapacityDef>
 		<defName>SpitInEyes</defName>
+	</ToolCapacityDef>
+	<ToolCapacityDef>
+		<defName>SpitInMouth</defName>
 	</ToolCapacityDef>
 
 	<LogEntryDef>

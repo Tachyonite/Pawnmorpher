@@ -123,7 +123,7 @@
 		<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
 		<stages>
 			<li>
-				<label>new</label>
+				<label>unfamiliar</label>
 			</li>
 			<li>
 				<label>adapted</label>
