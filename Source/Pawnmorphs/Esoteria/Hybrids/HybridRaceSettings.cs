@@ -44,9 +44,9 @@ namespace Pawnmorph.Hybrids
 
         }
 
-        public FoodSettings foodSettings = new FoodSettings(); 
+        public FoodSettings foodSettings = new FoodSettings();
 
-
+        public List<StatModifier> statModifiers; 
         public HybridThoughtSettings thoughtSettings;
         public RaceRestrictionSettings restrictionSettings;
 
