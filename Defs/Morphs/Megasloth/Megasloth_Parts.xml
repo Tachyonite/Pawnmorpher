@@ -61,7 +61,7 @@
 		</comps>
 	</HediffDef>
 
-	<HediffDef ParentName="AlpacaPart">
+	<HediffDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothTail</defName>
 		<label>megatherine tail</label>
 		<description>A big, muscular tail, capable of supporting [PAWN_nameDef]'s whole body on its own.</description>
@@ -93,7 +93,7 @@
 		</comps>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothArm</defName>
 		<description>[PAWN_nameDef]'s arm has become muscular and fuzzy, greatly enhancing their strength as well as making them somewhat more resistant to temperature.</description>
 		<label>megatherine arm</label>
@@ -113,7 +113,7 @@
 		</stages>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothHand</defName>
 		<description>[PAWN_nameDef]'s normally agile fingers have been replaced with a trio of long, curved claws that rip through flesh and metal with ease.</description>
 		<label>clawed hand</label>
@@ -145,7 +145,7 @@
 		</comps>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothLeg</defName>
 		<description>[PAWN_nameDef]'s leg has become fuzzy and muscular, enhancing their strength and resistance to temperature, but slowing their movement.</description>
 		<label>megatherine leg</label>
@@ -169,7 +169,7 @@
 		</stages>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothFoot</defName>
 		<description>[PAWN_nameDef]'s feet have grown long, curved claws that protrude in such a way that [PAWN_pronoun] now has to walk on the sides of their feet. As you can imagine, this makes getting anywhere somewhat difficult.</description>
 		<label>clawed foot</label>
@@ -201,7 +201,7 @@
 		</comps>
 	</HediffDef>
 
-	<HediffDef ParentName="AlpacaPart">
+	<HediffDef ParentName="MegaslothPart">
 		<defName>EtherMegawoolly</defName>
 		<label>fuzzy</label>
 		<description>Long, fuzzy hair coats the whole of [PAWN_nameDef]'s body, keeping them warm and comfortable.</description>
