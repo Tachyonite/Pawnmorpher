@@ -2,7 +2,7 @@
 	<ThoughtDef>
 		<defName>EtherReactionChaosTF</defName>
 		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>FullRandomTF</hediff>
+		<hediff>FullRandomTFAnyOutcome</hediff>
 		<stages>
 			<li>
 				<label>changed</label>
