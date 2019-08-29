@@ -263,7 +263,21 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-	
 
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>LimbGrowsHide</defName>
+		<label>limb grows hide</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s skin becoming thick hide</li>
+				<li>tale_noun->[PAWN_nameDef] growing thick hide</li>
+				<li>image->[PAWN_nameFull]'s skin begins to thicken [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] begins to scratch [PAWN_possessive] skin as it thickens into had [circumstance_group]</li>
+				<li>circumstance_phrase->while someone touches [PAWN_pronoun] hide</li>
+				<li>desc_sentence->[PAWN_pronoun] seems displeased with [PAWN_pronoun] new hide</li>
+				<li>desc_sentence->[PAWN_pronoun] seems to like [PAWN_pronoun] thick hide</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
  
 </Defs>
