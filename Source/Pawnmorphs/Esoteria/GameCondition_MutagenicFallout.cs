@@ -65,18 +65,21 @@ namespace Pawnmorph
         private void DoPawnsMutagenicDamage(Map map)
         {
             List<Pawn> allPawnsSpawned = map.mapPawns.AllPawnsSpawned;
+            var mutagen = MutagenDefOf.defaultMutagen; 
             for (int i = 0; i < allPawnsSpawned.Count; i++)
             {
                 Pawn pawn = allPawnsSpawned[i];
-                if (!pawn.Position.Roofed(map) && pawn.def.race.IsFlesh && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+                
+
+                if (!pawn.Position.Roofed(map) && mutagen.CanInfect(pawn))
                 {
                     float num = 0.028758334f;
                     num *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
                     if (num != 0f)
                     {
-                        float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D));
-                        num *= num2;
-                        HealthUtility.AdjustSeverity(pawn, HediffDef.Named("MutagenicBuildup"), num);
+                        float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D)); //this need MP Compatibility 
+                        num *= num2;                                                //what's the magic number? 
+                        HealthUtility.AdjustSeverity(pawn, Hediffs.MorphTransformationDefOf.MutagenicBuildup, num);
                     }
                 }
             }
