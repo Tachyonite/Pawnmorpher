@@ -15,4 +15,19 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
+	<TaleDef ParentName="EarMutationBase">
+		<defName>GrewElephantEars</defName>
+		<label>grew elephant ears</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s ears becoming those of an elephant</li>
+				<li>tale_noun->[PAWN_nameDef] growing elephant ears</li>
+				<li>image->[PAWN_nameFull]'s ears begin to grow [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s ears begin to shift and grow [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uneasy with the size of [PAWN_possessive] new ears</li>
+				<li>desc_sentence->[PAWN_pronoun] begins to flap [PAWN_possessive] elephant ears</li>
+				<li>desc_sentence->[PAWN_pronoun] seems oddly pleased with [PAWN_possessive] elephant ears</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>
