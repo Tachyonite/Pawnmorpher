@@ -1,0 +1,148 @@
+<Defs>
+
+	<IncidentDef>
+		<defName>MutagenicFallout</defName>
+		<label>mutagenic fallout</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>IncidentWorker_MakeGameCondition</workerClass>
+		<gameCondition>MutagenicFallout</gameCondition>
+		<letterLabel>Mutagenic fallout</letterLabel>
+		<letterText>An unknown source far away has released a plume of mutagenic mechanites into the air, which are now passing over the area. Anyone outside will slowly mutate, and as the number of mechanites in their system increases, the mutations will increase in severity. It can last from a few days to over a season.</letterText>
+		<letterDef>ThreatSmall</letterDef>
+		<baseChance>0.15</baseChance>
+		<earliestDay>20</earliestDay>
+		<minRefireDays>90</minRefireDays>
+		<minDifficulty>2</minDifficulty>
+		<durationDays>
+			<min>2.5</min>
+			<max>10.5</max>
+		</durationDays>
+		<tale>ToxicFallout</tale>
+	</IncidentDef>
+
+	<GameConditionDef>
+		<defName>MutagenicFallout</defName>
+		<conditionClass>Pawnmorph.GameCondition_MutagenicFallout</conditionClass>
+		<label>mutagenic fallout</label>
+		<description>A plume of mutagenic mechanites from some distant source is slowly settling over this entire region. Any living thing not under a roof will be slowly mutated, and may eventually become animals.</description>
+		<endMessage>The worst of the toxic fallout has settled.</endMessage>
+		<canBePermanent>true</canBePermanent>
+	</GameConditionDef>
+	
+	
+  <HediffDef>
+    <defName>MutagenicBuildup</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
+    <label>mutagenic buildup</label>
+    <lethalSeverity>1</lethalSeverity>
+    <makesSickThought>true</makesSickThought>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <taleOnVisible>MutationToxicityRevealed</taleOnVisible>
+    <comps>
+      <li Class="HediffCompProperties_Immunizable">
+        <severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <label>initial</label>
+        <minSeverity>0.04</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>minor</label>
+        <minSeverity>0.2</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.40</minSeverity>
+        <vomitMtbDays>5</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+			<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+			<blackListCategories>
+				<li>powerful</li>
+			</blackListCategories>
+		  </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <label>serious</label>
+        <minSeverity>0.60</minSeverity>
+        <vomitMtbDays>1</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.25</offset>
+          </li>
+		  </capMods>
+		  <hediffGivers>
+			  <li Class="Pawnmorph.HediffGiver_Esoteric_RandomList">
+				<hediffDefs>
+					<li>PawnmorphCatTF</li>
+					<li>PawnmorphBoarTF</li>
+					<li>PawnmorphFoxTF</li>
+					<li>PawnmorphHuskyTF</li>
+					<li>PawnmorphBearTF</li>
+					<li>PawnmorphDeerTF</li>
+					<li>PawnmorphChickenTF</li>
+					<li>PawnmorphCowTF</li>
+					<li>PawnmorphAlpacaTF</li>
+					<li>PawnmorphPigTF</li>
+					<li>FullRandomTFAnyOutcome</li>
+					<li>FullRandomTFAnyOutcome</li>
+					<li>FullRandomTFAnyOutcome</li>
+					<li>FullRandomTFAnyOutcome</li>
+				</hediffDefs>
+				<mtbDays>0.001</mtbDays>
+				<once>true</once>
+			  </li>
+        </hediffGivers>
+        
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.80</minSeverity>
+        <vomitMtbDays>0.5</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.30</setMax>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>PawnmorphGunshotTF</hediff>
+            <mtbDays>0.001</mtbDays>
+          </li>
+        </hediffGivers>
+      </li>
+    </stages>
+  </HediffDef>
+  
+</Defs>
