@@ -55,7 +55,7 @@ namespace Pawnmorph
 
 
                 //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
-                return true; 
+                return inst != null; 
             }
 
             return false; 

@@ -136,7 +136,10 @@ namespace Pawnmorph.TfSys
                 Log.Warning($"{def.defName} received an invalid transformation request!");
 
                 return null;
-            } 
+            }
+
+            if (!CanTransform(request.originals)) return null; 
+
             return TransformImpl(request); 
         }
 
