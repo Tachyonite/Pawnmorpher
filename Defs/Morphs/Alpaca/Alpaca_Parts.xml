@@ -6,7 +6,7 @@
 			</li>
 		</comps>
 	</HediffDef>
-  
+
 	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaSnout</defName>
 		<label>wooly snout</label>
@@ -52,6 +52,24 @@
 						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
+					<li>
+						<label>spit</label>
+						<capacities>
+							<li>SpitInEyes</li>
+						</capacities>
+						<hediff>PawnmorphAlpacaTFPartial</hediff>
+						<cooldownTime>0.8</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>spit</label>
+						<capacities>
+							<li>SpitInMouth</li>
+						</capacities>
+						<hediff>PawnmorphAlpacaTF</hediff>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
@@ -60,27 +78,28 @@
 			</li>
 		</comps>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaEar</defName>
 		<label>woolen</label>
+		<description>Wooly ears twitch at the wind, idly.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaTail</defName>
 		<label>wooly tail</label>
 		<description>A wooly tail, it feels like a cloud.</description>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherWooly</defName>
 		<label>wooly</label>
-		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves.</description>
+		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent alpacamorph that don't need no man.</description>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>

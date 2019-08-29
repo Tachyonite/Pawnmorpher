@@ -62,6 +62,7 @@
 	<HediffDef ParentName="DeerPart">
 		<defName>EtherDeerEar</defName>
 		<label>cervine</label>
+		<description>The smooth, long ears of a deer sit atop [PAWN_nameDef]'s head, keeping watch for predators.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>

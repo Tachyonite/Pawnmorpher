@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>PawnmorphBoarTFPartial</defName>
-		<label>boarMorph partial</label>
+		<label>boarmorph partial</label>
 		<stages>
 			<li>
 				<painOffset>0.1</painOffset>

@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>PawnmorphElephantTFPartial</defName>
-		<label>elephantMorph partial</label>
+		<label>elephantmorph partial</label>
 		<stages>
 			<li>
 				<hungerRateFactor>3</hungerRateFactor>
@@ -28,6 +28,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+						<tale>GrewElephantFace</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherElephantEar</hediff>

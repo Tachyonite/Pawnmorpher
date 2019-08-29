@@ -3,6 +3,7 @@
 		<defName>BearMorph</defName>
 		<label>bearmorph</label>
 		<race>Bear_Grizzly</race>
+		<description>Bearmorphs are combat experts. Usually equipped with large claws, paws and maws, they are devastatingly dangerous up close. But they have a tender heart, and a soft spot for plush toys of the ursine variety.</description>
 		<categories>
 			<li>ursine</li>
 		</categories>

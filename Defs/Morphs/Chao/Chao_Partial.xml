@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>FullRandomTF</defName>
-		<label>chaoMorph partial</label>
+		<label>chaomorph partial</label>
 		<stages>
 			<li>
 				<painOffset>0.1</painOffset>

@@ -73,6 +73,7 @@
 	<HediffDef ParentName="ElephantPart">
 		<defName>EtherElephantEar</defName>
 		<label>elephantine</label>
+		<description>Wow, those are big ears, [PAWN_nameDef]. [PAWN_pronoun] looks like a dumbo, doesn't [PAWN_pronoun].</description>
 		<stages>
 			<li>
 				<capMods>

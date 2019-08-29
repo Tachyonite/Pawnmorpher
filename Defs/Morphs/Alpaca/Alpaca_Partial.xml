@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>PawnmorphAlpacaTFPartial</defName>
-		<label>alpacaMorph partial</label>
+		<label>alpacamorph partial</label>
 		<stages>
 			<li>
 				<painOffset>0.1</painOffset>
@@ -53,6 +53,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>

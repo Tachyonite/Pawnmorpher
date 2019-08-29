@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>PawnmorphBoomalopeTFPartial</defName>
-		<label>boomMorph partial</label>
+		<label>boommorph partial</label>
 		<stages>
 			<li>
 				<painOffset>0.1</painOffset>
@@ -27,6 +27,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+						<tale>GrewBoomalopeMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherBoomalopeEar</hediff>

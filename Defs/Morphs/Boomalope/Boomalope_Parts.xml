@@ -64,6 +64,7 @@
 	<HediffDef ParentName="BoomalopePart">
 		<defName>EtherBoomalopeEar</defName>
 		<label>boomalopic</label>
+		<description>Do boomalopes have ears? It seems so, as two ears belonging to one site at the sides of [PAWN_nameDef]'s head.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
