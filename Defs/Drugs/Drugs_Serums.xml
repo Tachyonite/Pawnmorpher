@@ -143,6 +143,7 @@
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
 						<li>PawnmorphElephantTF</li>
+						<li>PawnmorphMegaslothTF</li>
 						<li>PawnmorphThrumboTF</li>
 					</hediffDefs>
 					<severity>1.00</severity>

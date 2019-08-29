@@ -421,6 +421,13 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>CatTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>ChickenTransformer</thingDef>
 				<countRange>
 					<min>-3</min>

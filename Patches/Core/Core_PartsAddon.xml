@@ -42,6 +42,7 @@
 											<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
 											<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
 											<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
+											<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 											<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 											<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
 											<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
@@ -98,6 +99,7 @@
 											<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
 											<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
 											<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
+											<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 											<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 											<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
 											<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
@@ -303,12 +305,13 @@
 											<EtherElephantTail>Parts/elephantface/elephanttail</EtherElephantTail>
 											<EtherFluffyTail>Parts/foxface/foxtail</EtherFluffyTail>
 											<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
+											<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
 											<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 											<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
 											<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 											<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 										</hediffGraphics>
-										<layerOffset>-0.3</layerOffset>
+										<layerOffset>-3</layerOffset>
 										<offsets>
 											<south />
 											<north>
