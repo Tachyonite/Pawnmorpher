@@ -84,6 +84,42 @@ namespace Pawnmorph.DebugUtils
                 Log.Message("no transformed pawns");
         }
 
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void ListHybridStateOffset()
+        {
+            var morphs = DefDatabase<MorphDef>.AllDefs;
+            var human = ThingDefOf.Human;
+
+            Dictionary<StatDef, float> lookup = human.statBases.ToDictionary(s => s.stat, s => s.value); 
+
+
+            StringBuilder builder = new StringBuilder();
+
+
+            foreach (MorphDef morphDef in morphs)
+            {
+                builder.AppendLine($"{morphDef.label}:");
+
+                foreach (StatModifier statModifier in morphDef.hybridRaceDef.statBases ?? Enumerable.Empty<StatModifier>())
+                {
+
+                    float humanVal = lookup.TryGetValue(statModifier.stat);
+                    float diff = statModifier.value - humanVal;
+                    var sym = diff > 0 ? "+" : "";  
+                    var str = $"{statModifier.stat.label}:{sym}{diff}";
+                    builder.AppendLine($"\t\t{str}"); 
+                }
+
+
+
+            }
+
+            Log.Message($"{builder}");
+
+
+        }
+
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]

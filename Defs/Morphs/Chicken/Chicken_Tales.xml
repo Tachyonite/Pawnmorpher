@@ -30,4 +30,19 @@
       </rulesStrings>
     </rulePack>
   </TaleDef>
+
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>LimbGrowsFeathers</defName>
+		<label>limb grows feathers</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s body being covered in feathers</li>
+				<li>tale_noun->[PAWN_nameDef] growing feathers all over [PAWN_possessive] body</li>
+				<li>image->[PAWN_nameFull] begins to itch themselves as feathers start growing [circumstance_phrase]</li>
+				<li>image->feathers begin to grow from [PAWN_nameFull]'s body [circumstance_phrase] </li>
+				<li>desc_sentence->[PAWN_pronoun] seems upset over [PAWN_possessive] new feathers</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] new feathers</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>

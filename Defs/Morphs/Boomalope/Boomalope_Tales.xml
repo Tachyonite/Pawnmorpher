@@ -1,0 +1,13 @@
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewBoomalopeMuzzle</defName>
+		<label>grew boomalope muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] face becoming that of a boomalope</li>
+				<li>tale_noun->[PAWN_nameDef] face pushing out into a boomalope muzzle </li>
+				<li>desc_sentence->[PAWN_pronoun] begins sniffing intently at some nearby chemfuel</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

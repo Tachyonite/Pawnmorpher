@@ -1,0 +1,19 @@
+<Defs>
+	<ThoughtDef>
+		<defName>EtherReactionMegaslothTF</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PawnmorphMegaslothTF</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>I'm so warm and fuzzy right now...Mmm...</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling odd</label>
+				<description>I feel strong...I think could deadlift a mountain right now...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

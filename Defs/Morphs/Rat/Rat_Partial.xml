@@ -27,7 +27,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
-            <tale>GrewRatMuzzle</tale>
+						<tale>GrewRatMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherRatEar</hediff>
@@ -36,6 +36,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>EarsBecomeRatEars</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherRatTail</hediff>
@@ -52,6 +53,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>

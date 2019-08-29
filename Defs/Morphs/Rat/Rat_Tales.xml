@@ -42,4 +42,19 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
+
+	<TaleDef ParentName="EarMutationBase">
+		<defName>EarsBecomeRatEars</defName>
+		<label>grew rat ears</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s ears becoming those of a rat</li>
+				<li>tale_noun->[PAWN_nameDef]'s ears turning into large rat ears</li>
+				<li>image->[PAWN_nameFull]'s ears start growing larger and take on a rounded shape [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s ears start to shift higher up on [PAWN_possessive] head [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems upset over [PAWN_possessive] new rat like ears</li>
+				<li>desc_sentence->[PAWN_pronoun] seems rather ok with [PAWN_possessive] rat ears</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>

@@ -27,6 +27,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+						<tale>GrewBoomalopeMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherBoomalopeEar</hediff>
