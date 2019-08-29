@@ -53,6 +53,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThickFurLimb</hediff>
@@ -61,6 +62,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherPawFoot</hediff>

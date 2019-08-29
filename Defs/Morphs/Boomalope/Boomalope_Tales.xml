@@ -1,0 +1,7 @@
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewBoomalopeMuzzle</defName>
+		<label>grew boomalope muzzle</label>
+				<!-- TODO finish this -->
+	</TaleDef>
+</Defs>

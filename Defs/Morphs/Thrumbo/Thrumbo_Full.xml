@@ -96,6 +96,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherHoofHand</hediff>

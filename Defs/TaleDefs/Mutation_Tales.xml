@@ -204,6 +204,21 @@
 		</rulePack>
 	</TaleDef>
 	<!--      MISC      -->
-
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>LimbGrowsFur</defName>
+		<label>limb becomes furred</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing a coat of fur</li>
+				<li>tale_noun->[PAWN_nameDef]'s limb becoming furred</li>
+				<li>image->the hair on [PAWN_nameFull]'s body begins to thicken into fur [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s hair thickens into animal fur [circumstance_group]</li>
+				<li>circumstance_phrase->while someone feels [PAWN_possessive] fur</li>
+				<li>circumstance_phrase->as someone nearby begins to brush [PAWN_possessive] fur</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uncomfortable in [PAWN_possessive] new fur coat</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] new fur coat</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
  
 </Defs>
