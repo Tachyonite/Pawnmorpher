@@ -103,6 +103,7 @@
     <Compile Include="Mutagen_JobDefOf.cs" />
     <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
+    <Compile Include="PMIncidentDefOf.cs" />
     <Compile Include="RaceMutagenExtension.cs" />
     <Compile Include="TaleDefOf.cs" />
     <Compile Include="TFGender.cs" />
