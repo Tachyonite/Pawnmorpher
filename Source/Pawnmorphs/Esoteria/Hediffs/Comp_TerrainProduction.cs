@@ -20,7 +20,7 @@ namespace Pawnmorph.Hediffs
         {
             base.CompPostTick(ref severityAdjustment);
             if (Find.CurrentMap == null || Pawn.Map != Find.CurrentMap) return; //prevent ticking on caravan trips 
-            var pos = Pawn.Position;
+            var pos = Pawn.PositionHeld;
 
             var terrain = Find.CurrentMap.terrainGrid.TerrainAt(pos);
 
@@ -31,13 +31,11 @@ namespace Pawnmorph.Hediffs
 
             if (Rand.MTBEventOccurs(elem.Mtb, 6E+4f, 60)) //can't check mtb more then once per tick 
             {
-                for (var i = 0; i < elem.Mtb; i++)
-                {
-                    GenSpawn.Spawn(elem.Resource, pos, Pawn.Map); 
-                }
+                Thing thing = ThingMaker.MakeThing(elem.Resource);
+                thing.stackCount = (int)elem.Mtb;
+                if (thing.stackCount > 0)
+                    GenPlace.TryPlaceThing(thing, pos, Pawn.Map, ThingPlaceMode.Near);
             }
-
-
         }
     }
 
