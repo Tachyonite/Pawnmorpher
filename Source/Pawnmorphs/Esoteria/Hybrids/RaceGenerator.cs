@@ -160,7 +160,7 @@ namespace Pawnmorph.Hybrids
             };
         }
 
-        static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers)
+        static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers, List<StatModifier> statMods)
         {
             humanModifiers = humanModifiers ?? new List<StatModifier>();
             animalModifiers = animalModifiers ?? new List<StatModifier>();
@@ -186,6 +186,17 @@ namespace Pawnmorph.Hybrids
                 valDict[animalModifier.stat] = val; 
             }
 
+            //now handle any statMods if they exist 
+            if (statMods != null)
+                foreach (StatModifier statModifier in statMods)
+                {
+                    float v = valDict.TryGetValue(statModifier.stat) + statModifier.value; 
+                    valDict[statModifier.stat] = v; 
+                }
+
+
+
+
             List<StatModifier> outMods = new List<StatModifier>();
             foreach (KeyValuePair<StatDef, float> keyValuePair in valDict)
             {
@@ -195,6 +206,9 @@ namespace Pawnmorph.Hybrids
                     value = keyValuePair.Value
                 });
             }
+
+            
+
 
             return outMods; 
 
@@ -226,7 +240,7 @@ namespace Pawnmorph.Hybrids
                 useHitPoints = humanDef.useHitPoints,
                 hasTooltip = humanDef.hasTooltip,
                 soundImpactDefault = morph.race.soundImpactDefault,
-                statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases),
+                statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases, morph.raceSettings.statModifiers),
                 inspectorTabs = humanDef.inspectorTabs.ToList(), //do we want any custom tabs? 
                 comps = humanDef.comps.ToList(),
                 drawGUIOverlay = humanDef.drawGUIOverlay,
