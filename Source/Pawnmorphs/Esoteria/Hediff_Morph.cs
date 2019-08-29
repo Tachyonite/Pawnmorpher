@@ -11,7 +11,7 @@ namespace Pawnmorph
 {
     public class Hediff_Morph : HediffWithComps
     {
-        private const int TRANSFORMATION_STAGE_INDEX = 1;
+        protected virtual int TransformationWarningStage => 1;
         private const string TRANSFORMATION_WARNING_LETTER_ID = "TransformationStageWarning"; 
 
         [Unsaved]
@@ -22,33 +22,33 @@ namespace Pawnmorph
 
             if (_lastStage != CurStageIndex)
             {
-
                 _lastStage = CurStageIndex;
-
-                if (_lastStage == TRANSFORMATION_STAGE_INDEX)
-                {
-                    SendLetter(); 
-
-
-
-                }
-
-
-
-                if (CurStage.hediffGivers == null) return; 
-
-                foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
-                {
-
-                    if(tfGiver.TryTf(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
-
-
-                }
-
-
+                EnterNextStage();
             }
 
           
+        }
+
+      
+        protected virtual void EnterNextStage()
+        {
+
+
+            if (_lastStage == TransformationWarningStage)
+            {
+                SendLetter();
+            }
+            
+            TryGiveTransformations();
+        }
+
+        protected virtual void TryGiveTransformations()
+        {
+            if (CurStage.hediffGivers == null) return;
+            foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
+            {
+                if (tfGiver.TryTf(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
+            }
         }
 
         private void SendLetter()

@@ -35,7 +35,7 @@
 	
   <HediffDef>
     <defName>MutagenicBuildup</defName>
-    <hediffClass>HediffWithComps</hediffClass>
+    <hediffClass>Pawnmorph.Hediffs.MutagenicBuildup</hediffClass>
     <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
     <label>mutagenic buildup</label>
     <lethalSeverity>1</lethalSeverity>
@@ -101,29 +101,7 @@
             <offset>-0.25</offset>
           </li>
 		  </capMods>
-		  <hediffGivers>
-			  <li Class="Pawnmorph.HediffGiver_Esoteric_RandomList">
-				<hediffDefs>
-					<li>PawnmorphCatTF</li>
-					<li>PawnmorphBoarTF</li>
-					<li>PawnmorphFoxTF</li>
-					<li>PawnmorphHuskyTF</li>
-					<li>PawnmorphBearTF</li>
-					<li>PawnmorphDeerTF</li>
-					<li>PawnmorphChickenTF</li>
-					<li>PawnmorphCowTF</li>
-					<li>PawnmorphAlpacaTF</li>
-					<li>PawnmorphPigTF</li>
-					<li>FullRandomTFAnyOutcome</li>
-					<li>FullRandomTFAnyOutcome</li>
-					<li>FullRandomTFAnyOutcome</li>
-					<li>FullRandomTFAnyOutcome</li>
-				</hediffDefs>
-				<mtbDays>0.001</mtbDays>
-				<once>true</once>
-			  </li>
-        </hediffGivers>
-        
+		 
       </li>
       <li>
         <label>extreme</label>
@@ -135,13 +113,28 @@
             <setMax>0.30</setMax>
           </li>
         </capMods>
-        <hediffGivers>
-          <li Class="HediffGiver_Random">
-            <hediff>PawnmorphGunshotTF</hediff>
-            <mtbDays>0.001</mtbDays>
-          </li>
-        </hediffGivers>
       </li>
+	    <li>
+		    <minSeverity>0.85</minSeverity>
+		    <label>extreme</label>
+		    <capMods>
+			    <li>
+				    <capacity>Moving</capacity>
+				    <setMax>0.05</setMax>
+			    </li>
+		    </capMods>
+
+	    </li>
+	    <li>
+		    <minSeverity>0.99</minSeverity>
+		    <label>extreme</label>
+		    <capMods>
+			    <li>
+				    <capacity>Moving</capacity>
+				    <setMax>0.05</setMax>
+			    </li>
+		    </capMods>
+	    </li>
     </stages>
   </HediffDef>
   

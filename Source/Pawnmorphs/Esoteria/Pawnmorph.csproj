@@ -76,7 +76,9 @@
     <Compile Include="Hediffs\Comp_TerrainProduction.cs" />
     <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
     <Compile Include="Hediffs\Def_MorphTf.cs" />
+    <Compile Include="Hediffs\Giver_ForceTF.cs" />
     <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
+    <Compile Include="Hediffs\MutagenicBuildup.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
     <Compile Include="Hediffs\MorphTransformationDefOf.cs" />
     <Compile Include="Hediff_Morph.cs" />
