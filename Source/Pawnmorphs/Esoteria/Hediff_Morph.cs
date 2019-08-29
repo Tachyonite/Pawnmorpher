@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -44,10 +46,24 @@ namespace Pawnmorph
 
         protected virtual void TryGiveTransformations()
         {
+
+
+
             if (CurStage.hediffGivers == null) return;
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed);
+            }
+
             foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
             {
                 if (tfGiver.TryTf(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
+            }
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
             }
         }
 
