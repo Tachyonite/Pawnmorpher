@@ -40,6 +40,18 @@ namespace Pawnmorph
 
         [Unsaved] private Mutagen _mutagenCached;
 
+        /// <summary>
+        /// Determines whether this instance can transform the specified pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can transform the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanTransform(Pawn pawn)
+        {
+            return MutagenCached.CanTransform(pawn); 
+        }
+
         
         public Mutagen MutagenCached
         {

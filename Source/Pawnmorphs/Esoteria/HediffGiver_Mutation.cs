@@ -17,6 +17,15 @@ namespace Pawnmorph
         public TaleDef tale;
         private Dictionary<Hediff, bool> triggered = new Dictionary<Hediff, bool>();
 
+        /// <summary>
+        /// Clears the triggeredHediff from this giver so it can trigger again on the same hediff.
+        /// </summary>
+        /// <param name="triggeredHediff">The triggered hediff.</param>
+        public void ClearHediff(Hediff triggeredHediff)
+        {
+            triggered.Remove(triggeredHediff); 
+        }
+
         public new bool TryApply(Pawn pawn, List<Hediff> outAddedHediffs = null)
         {
             return PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);

@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -34,6 +35,8 @@ namespace Pawnmorph.Hediffs
 
         public static HediffDef StabiliserHigh;  //should move this somewhere else 
 
+        //special def 
+        public static HediffDef MutagenicBuildup; 
 
 
         /// <summary>
@@ -48,7 +51,20 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         ///     all morphs loaded at the start of the game
         /// </summary>
-        public static IEnumerable<HediffDef> AllMorphsCached { get; }
+        public static IEnumerable<HediffDef> AllMorphsCached => AllTransformationLst;
+
+        /// <summary>
+        /// Gets a random transformation hediff def.
+        /// </summary>
+        /// <returns></returns>
+        public static HediffDef GetRandomTransformation() //needs MP compatibility done in MPCompat branch 
+        {
+            return AllTransformationLst.RandElement();
+        }
+
+
+
+        private static List<HediffDef> AllTransformationLst { get; set; } 
 
         /// <summary>
         ///     the number of morphs loaded at the start of the game
@@ -60,9 +76,8 @@ namespace Pawnmorph.Hediffs
             DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
 
 
-            List<HediffDef> lst = AllMorphs.ToList();
-            AllMorphsCachedCount = lst.Count;
-            AllMorphsCached = lst;
+           AllTransformationLst = AllMorphs.ToList();
+            AllMorphsCachedCount = AllTransformationLst.Count;
 
             if (AllMorphsCachedCount == 0) Log.Warning("there are no morph tf hediffs loaded!");
         }

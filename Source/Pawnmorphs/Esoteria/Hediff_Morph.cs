@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Multiplayer.API;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -13,39 +11,44 @@ namespace Pawnmorph
 {
     public class Hediff_Morph : HediffWithComps
     {
-        private const int TRANSFORMATION_STAGE_INDEX = 1;
+        protected virtual int TransformationWarningStage => 1;
         private const string TRANSFORMATION_WARNING_LETTER_ID = "TransformationStageWarning"; 
 
         [Unsaved]
         private int _lastStage = -1; //ToDO can we save this?
-
         public override void PostTick()
         {
             base.PostTick();
 
             if (_lastStage != CurStageIndex)
             {
-                if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
                 _lastStage = CurStageIndex;
-
-                if (_lastStage == TRANSFORMATION_STAGE_INDEX) SendLetter();
-
-
-                if (CurStage.hediffGivers == null)
-                {
-                   goto End; //goto best solution here 
-                }
-
-                foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
-                    if (tfGiver.TryTf(pawn, this))
-                        break; //try each one, one by one. break at first one that succeeds  
-                End:
-                if (MP.IsInMultiplayer)
-                    Rand.PopState();
+                EnterNextStage();
             }
 
-
           
+        }
+
+      
+        protected virtual void EnterNextStage()
+        {
+
+
+            if (_lastStage == TransformationWarningStage)
+            {
+                SendLetter();
+            }
+            
+            TryGiveTransformations();
+        }
+
+        protected virtual void TryGiveTransformations()
+        {
+            if (CurStage.hediffGivers == null) return;
+            foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
+            {
+                if (tfGiver.TryTf(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
+            }
         }
 
         private void SendLetter()
@@ -67,22 +70,6 @@ namespace Pawnmorph
             }
 
         }
-
-        public override void Tick()
-        {
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed);
-            }
-            base.Tick();
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
-        }
-
-        
 
         public override void ExposeData()
         {
