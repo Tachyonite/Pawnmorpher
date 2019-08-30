@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using RimWorld;
@@ -72,7 +73,7 @@ namespace Pawnmorph.TfSys
 
         public virtual bool CanTransform(Pawn pawn)
         {
-            return CanInfect(pawn); 
+            return CanInfect(pawn) && pawn.Map != null; 
         }
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace Pawnmorph.TfSys
 
         protected virtual bool IsValid(TransformationRequest request)
         {
-            return request.IsValid; 
+            return request.IsValid;
         }
 
         /// <summary>

@@ -45,6 +45,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherMegaslothHand</hediff>
@@ -54,6 +55,7 @@
 						</partsToAffect>
 						<chance>5</chance>
 						<countToAffect>2</countToAffect>
+						<tale>GrewMegaHand</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherMegaslothLeg</hediff>
@@ -62,6 +64,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherMegaslothFoot</hediff>
@@ -70,6 +73,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>GrewMegaslothFoot</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherMegawoolly</hediff>

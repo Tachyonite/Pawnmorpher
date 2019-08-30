@@ -29,4 +29,39 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
+
+	<TaleDef ParentName="HandMutationBase">
+		<defName>GrewMegaHand</defName>
+		<label>hand became clawed</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s fingers becoming long clawed things</li>
+				<li>tale_noun->[PAWN_nameDef]'s hands becoming those of a megasloth</li>
+				<li>tale_noun->[PAWN_nameDef] growing megasloth hands</li>
+				<li>image->[PAWN_nameFull]'s nails begin to lengthen into long claws [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s hands begin to shift, turning into the clawed hands of a megasloth [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uneasy with [PAWN_possessive] claws</li>
+				<li>desc_sentence->[PAWN_pronoun] begins carving something with [PAWN_possessive] claws</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] claws</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="FootMutationBase">
+		<defName>GrewMegaslothFoot</defName>
+		<label>grew clawed foot</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s feet becoming that of a megasloth's</li>
+				<li>tale_noun->[PAWN_nameDef] growing megasloth feet</li>
+				<li>tale_noun->[PAWN_nameDef] growing clawed feet</li>
+				<li>image->[PAWN_nameFull] toes begin to grow long clawed [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s toenails begin to lengthen into long claws [circumstance_group]</li>
+				<li>image->fur begins to cover [PAWN_nameFull]'s feet as they begin to shift [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] looks uneasy with [PAWN_possessive] clawed feet</li>
+				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possessive] new feet</li>
+				<li>desc_sentence->[PAWN_pronoun] seem surprisingly adept on [PAWN_possessive] new clawed feet</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>

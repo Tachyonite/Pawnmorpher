@@ -42,6 +42,33 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Determines whether this instance can infect the specified pawn.
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// mutationDef
+        /// or
+        /// pawn
+        /// </exception>
+        public static bool CanInfect([NotNull] this HediffDef mutationDef, [NotNull] Pawn pawn)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            if (mutationDef is Def_MorphTf morphTf)
+            {
+                return morphTf.mutagenSource.CanInfect(pawn); 
+            }
+
+            return MutagenDefOf.defaultMutagen.CanInfect(pawn); 
+
+        }
+
+        /// <summary>
         /// Gets the mutagen associated with this tf hediff 
         /// </summary>
         /// <param name="morphTf">The morph tf.</param>
