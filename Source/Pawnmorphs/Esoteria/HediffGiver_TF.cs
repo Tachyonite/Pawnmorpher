@@ -33,34 +33,39 @@ namespace Pawnmorph
 
             if (Rand.Range(0, 100) < chance)
             {
-                var hediffMorph = (cause as Hediff_Morph);
-                var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
-
-                var request = new TransformationRequest(pawnkinds.RandElement(), pawn)
-                {
-                    forcedGender = forceGender,
-                    forcedGenderChance = forceGenderChance,
-                    cause = hediffMorph,
-                    tale = tale
-                };
-
-                var inst = mutagen.MutagenCached.Transform(request);
-
-
-                if (inst != null)
-                {
-                    var comp = Find.World.GetComponent<PawnmorphGameComp>();
-                    comp.AddTransformedPawn(inst); 
-                }
-
-
-                //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
-                return inst != null; 
+                return TransformPawn(pawn, cause);
             }
 
             return false; 
 
 
+        }
+
+        public bool TransformPawn(Pawn pawn, Hediff cause)
+        {
+            var hediffMorph = (cause as Hediff_Morph);
+            var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+
+            var request = new TransformationRequest(pawnkinds.RandElement(), pawn)
+            {
+                forcedGender = forceGender,
+                forcedGenderChance = forceGenderChance,
+                cause = hediffMorph,
+                tale = tale
+            };
+
+            var inst = mutagen.MutagenCached.Transform(request);
+
+
+            if (inst != null)
+            {
+                var comp = Find.World.GetComponent<PawnmorphGameComp>();
+                comp.AddTransformedPawn(inst);
+            }
+
+
+            //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
+            return inst != null;
         }
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
