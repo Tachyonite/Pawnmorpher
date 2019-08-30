@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Multiplayer.API;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -29,7 +30,12 @@ namespace Pawnmorph
                 : changeChance;
             //Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
 
-            
+            TransformedPawn inst = null;
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed);
+            }
 
             if (Rand.Range(0, 100) < chance)
             {
@@ -44,7 +50,7 @@ namespace Pawnmorph
                     tale = tale
                 };
 
-                var inst = mutagen.MutagenCached.Transform(request);
+                inst = mutagen.MutagenCached.Transform(request);
 
 
                 if (inst != null)
@@ -55,10 +61,14 @@ namespace Pawnmorph
 
 
                 //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
-                return inst != null; 
+                //return inst != null; 
             }
 
-            return false; 
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
+            return inst != null; 
 
 
         }

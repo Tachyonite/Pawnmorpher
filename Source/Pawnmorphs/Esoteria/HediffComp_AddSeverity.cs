@@ -1,4 +1,6 @@
-﻿using Verse;
+﻿using Multiplayer.API;
+using Pawnmorph.Utilities;
+using Verse;
 
 namespace Pawnmorph
 {
@@ -20,10 +22,20 @@ namespace Pawnmorph
         public void AddSeverity()
         {
 
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
             if (Rand.MTBEventOccurs(Props.mtbDays, 60000f, 60f) && !triggered && Pawn.health.hediffSet.HasHediff(Props.hediff))
             {
                 HealthUtility.AdjustSeverity(Pawn, Props.hediff, Props.severity);
                 triggered = true;
+            }
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
             }
         }
 
