@@ -72,6 +72,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>GrewElephantFoot</tale>
 					</li>
 				</hediffGivers>
 			</li>

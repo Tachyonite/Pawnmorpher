@@ -30,4 +30,32 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
+
+	<TaleDef ParentName="FootMutationBase">
+		<defName>GrewElephantFoot</defName>
+		<label>grew elephant foot</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet changing into that of an elephant</li>
+				<li>tale_noun->[PAWN_nameDef] growing elephant feet</li>
+				<li>image->[PAWN_nameFull] feet begin to shift into large stumpy feet [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uncomfortable with [PAWN_possessive] new feet</li>
+				<li>desc_sentence->[PAWN_pronoun] begins stomping about with [PAWN_possessive] new feet</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsBecameElephantFeet</defName>
+		<label>hands became elephant feet</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] hands becoming elephant feet</li>
+				<li>tale_noun->[PAWN_nameDef] hands becoming large stumpy feet</li>
+				<li>image->[PAWN_nameFull]'s hands begin to shift into stumpy things [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s fingers begin to shrink [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] thumbs</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>
