@@ -54,6 +54,7 @@
 						</partsToAffect>
 						<chance>5</chance>
 						<countToAffect>2</countToAffect>
+						<tale>GrewMegaHand</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherMegaslothLeg</hediff>
