@@ -87,6 +87,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsHide</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherHoofHand</hediff>
@@ -105,6 +106,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LegBecameDigitgrade</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherClovenHoofFoot</hediff>
@@ -121,6 +123,7 @@
 						<partsToAffect>
 							<li>Waist</li>
 						</partsToAffect>
+						<tale>GrewChemfuelUdder</tale>
 					</li>
 				</hediffGivers>
 			</li>

@@ -29,4 +29,22 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
+
+	<TaleDef ParentName="HandMutationBase">
+		<defName>GrewMegaHand</defName>
+		<label>hand became clawed</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s fingers becoming long clawed things</li>
+				<li>tale_noun->[PAWN_nameDef]'s hands becoming those of a megasloth</li>
+				<li>tale_noun->[PAWN_nameDef] growing megasloth hands</li>
+				<li>image->[PAWN_nameFull]'s nails begin to lengthen into long claws [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s hands begin to shift, turning into the clawed hands of a megasloth [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uneasy with [PAWN_possessive] claws</li>
+				<li>desc_sentence->[PAWN_pronoun] begins carving something with [PAWN_possessive] claws</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] claws</li>
+			</rulesStrings>
+		</rulePack>
+
+	</TaleDef>
 </Defs>

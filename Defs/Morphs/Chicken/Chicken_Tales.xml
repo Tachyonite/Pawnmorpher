@@ -45,4 +45,33 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
+
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsBecomeWingTips</defName>
+		<label>hands become wing tips</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] hands becoming wing tips</li>
+				<li>tale_noun->[PAWN_nameDef] hands morphing into wings</li>
+				<li>image->[PAWN_nameFull]'s fingers begin to merge together [circumstance_group]</li>
+				<li>image->feathers begin to cover [PAWN_nameFull]'s hands as they change [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] thumbs</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>GrewEgglayer</defName>
+		<label>grew egglayer</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] begging to lay eggs</li>
+				<li>image->[PAWN_nameFull] sits down and begins laying eggs [circumstance_group]</li> <!-- tales for production events?-->
+				<li>image->[PAWN_nameFull] begins laying eggs in a make shift nest [circumstance_group]</li>
+				<li>circumstance_phrase->as someone begins collecting the eggs</li>
+				<li>desc_sentence->[PAWN_pronoun] is very embarrassed about laying eggs</li>
+				<li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about laying eggs</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>

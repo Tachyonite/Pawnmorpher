@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Multiplayer.API;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -29,8 +28,9 @@ namespace Pawnmorph
                 ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
                 : changeChance;
             //Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
+
             
-            bool transformed = false;  
+
             if (Rand.Range(0, 100) < chance)
             {
                 var hediffMorph = (cause as Hediff_Morph);
@@ -55,11 +55,12 @@ namespace Pawnmorph
 
 
                 //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
-                transformed = true; 
+                return inst != null; 
             }
-            
-            return transformed; 
-            
+
+            return false; 
+
+
         }
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)

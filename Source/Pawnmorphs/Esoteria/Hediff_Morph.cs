@@ -69,7 +69,9 @@ namespace Pawnmorph
 
         private void SendLetter()
         {
-            Messages.Message((TRANSFORMATION_WARNING_LETTER_ID).Translate(pawn),def:MessageTypeDefOf.NegativeHealthEvent);
+            var mutagen = this.GetMutagenDef();
+            if(mutagen.CanTransform(pawn))
+                Messages.Message((TRANSFORMATION_WARNING_LETTER_ID).Translate(pawn),def:MessageTypeDefOf.NegativeHealthEvent);
 
         }
 
