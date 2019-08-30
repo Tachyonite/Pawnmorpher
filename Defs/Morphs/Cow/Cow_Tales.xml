@@ -27,4 +27,20 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
+
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>GrewUdder</defName>
+		<label>grew udder</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing an udder</li>
+				<li>tale_noun->[PAWN_nameDef] begging to produce milk</li>
+				<li>image->an udder begins to grow on [PAWN_nameFull]'s waist [circumstance_group]</li>
+				<li>circumstance_phrase->as someone approaches [PAWN_pronoun] with a bucket</li>
+				<li>circumstance_phrase->as someone approaches [PAWN_pronoun] with an empty glass</li>
+				<li>desc_sentence->[PAWN_pronoun] is embarrassed about [PAWN_possessive] new udder</li>
+				<li>desc_sentence->[PAWN_pronoun] seems surprising content about [PAWN_possessive] udder</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 </Defs>
