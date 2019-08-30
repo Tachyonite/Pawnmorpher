@@ -105,6 +105,9 @@
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
     <Compile Include="RaceMutagenExtension.cs" />
+    <Compile Include="Social\InteractionWorkers.cs" />
+    <Compile Include="Social\PMInteractionWorkerBase.cs" />
+    <Compile Include="Social\PMInteractionDef.cs" />
     <Compile Include="TaleDefOf.cs" />
     <Compile Include="TFGender.cs" />
     <Compile Include="HediffGiver_Esoteric.cs" />
