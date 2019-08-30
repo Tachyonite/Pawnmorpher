@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Defs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="InteractionDef">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="defName" type="xs:string" />
+							<xs:element name="label" type="xs:string" />
+							<xs:element name="workerClass" type="xs:string" />
+							<xs:element name="initiatorWeights">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="mutationWeights">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="li">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="key" type="xs:string" />
+																<xs:element name="value" type="xs:decimal" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="morphWeights">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="li">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="key" type="xs:string" />
+																<xs:element name="value" type="xs:decimal" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="requiresBoth" type="xs:boolean" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="recipientWeights">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="mutationWeights">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="li">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="key" type="xs:string" />
+																<xs:element name="value" type="xs:decimal" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="morphWeights">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="li">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="key" type="xs:string" />
+																<xs:element name="value" type="xs:decimal" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="requiresBoth" type="xs:boolean" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="requiresBoth" type="xs:boolean" />
+						</xs:sequence>
+						<xs:attribute name="Class" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
