@@ -7,9 +7,9 @@
 				<li>tale_noun->[PAWN_nameDef] growing horns</li>
 				<li>image->horns begin to push from [PAWN_nameFull]'s head [circumstance_group]</li>
 				<li>circumstance_phrase->as someone starts touching them</li>
-				<li>desc_sentence->[PAWN_pronoun] examines [PAWN_possessive] new horns</li>
-				<li>desc_sentence->[PAWN_pronoun] looks pleased with [PAWN_possessive] new horns</li>
-				<li>desc_sentence->[PAWN_pronoun] looks uneasy with [PAWN_possessive] new horns</li>
+				<li>desc_sentence->[PAWN_pronoun] examines [PAWN_possessive] new horns.</li>
+				<li>desc_sentence->[PAWN_pronoun] looks pleased with [PAWN_possessive] new horns.</li>
+				<li>desc_sentence->[PAWN_pronoun] looks uneasy with [PAWN_possessive] new horns.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -23,7 +23,7 @@
 				<li>tale_noun->[PAWN_nameDef] growing a bovine muzzle</li>
 				<li>image->[PAWN_nameDef]'s face begins to push out into a muzzle [circumstance_group]</li>
 				<li>image->[PAWN_nameDef]'s excited yells turn into moos [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] continues to moo at though around them</li>
+				<li>desc_sentence->[PAWN_pronoun] continues to moo at though around them.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -38,8 +38,8 @@
 				<li>image->an udder begins to grow on [PAWN_nameFull]'s waist [circumstance_group]</li>
 				<li>circumstance_phrase->as someone approaches [PAWN_pronoun] with a bucket</li>
 				<li>circumstance_phrase->as someone approaches [PAWN_pronoun] with an empty glass</li>
-				<li>desc_sentence->[PAWN_pronoun] is embarrassed about [PAWN_possessive] new udder</li>
-				<li>desc_sentence->[PAWN_pronoun] seems surprising content about [PAWN_possessive] udder</li>
+				<li>desc_sentence->[PAWN_pronoun] is embarrassed about [PAWN_possessive] new udder.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems surprising content about [PAWN_possessive] udder.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>

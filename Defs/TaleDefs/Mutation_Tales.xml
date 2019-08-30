@@ -18,7 +18,7 @@
         <li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
         <li>circumstance_phrase->as people look on in horror</li>
         <li>circumstance_phrase->as people laugh nearby</li>
-        <li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about it</li>
+        <li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about it.</li>
       </rulesStrings>
     </rulePack>
   </TaleDef>
@@ -32,7 +32,7 @@
         <li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
         <li>circumstance_phrase->as [PAWN_possessive] face pushes out into a muzzle</li>
         <li>desc_sentence->[PAWN_pronoun] looks terrified at the change.</li>
-        <li>desc_sentence->[PAWN_pronoun] examines their new animal like face</li>
+        <li>desc_sentence->[PAWN_pronoun] examines their new animal like face.</li>
       </rulesStrings>
     </rulePack>
   </TaleDef>
@@ -51,12 +51,12 @@
         <li>tale_noun->[PAWN_nameDef] growing an canine muzzle</li>
 				<li>tale_noun->[PAWN_nameDef] head taking the shape of a canine</li>
         <li>image->[PAWN_nameFull] yells becoming barks [circumstance_group]</li>
-        <li>image->[PAWN_nameFull] begins to sniff intensely at all the new smells from [circumstance_group] </li>
-        <li>desc_sentence->[PAWN_pronoun] face becoming a canine muzzle</li>
-        <li>desc_sentence->[PAWN_pronoun] begins to pant once the changes stop</li>
-        <li>desc_sentence->[PAWN_pronoun] begins to sniff intensely at something </li>
-        <li>desc_sentence->[PAWN_pronoun] begins to pant happily</li>
-        <li>desc_sentence->[PAWN_pronoun] whines in fright</li>
+        <li>image->[PAWN_nameFull] begins to sniff intensely at all the new smells [circumstance_group] </li>
+        <li>desc_sentence->[PAWN_pronoun] face becoming a canine muzzle.</li>
+        <li>desc_sentence->[PAWN_pronoun] begins to pant once the changes stop.</li>
+        <li>desc_sentence->[PAWN_pronoun] begins to sniff intensely at something.</li>
+        <li>desc_sentence->[PAWN_pronoun] begins to pant happily.</li>
+        <li>desc_sentence->[PAWN_pronoun] whines in fright.</li>
       </rulesStrings>
     </rulePack>
   </TaleDef>
@@ -72,9 +72,9 @@
 				<li>image->[PAWN_nameFull] yells turn into yowls [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] nose begins turning pink [circumstance_group]</li>
 				<li>circumstance_phrase->while someone plays with [PAWN_pronoun] whiskers</li>
-				<li>desc_sentence->[PAWN_pronoun] begins purring contently</li>
-				<li>desc_sentence->[PAWN_pronoun] begins hissing angrily</li>
-				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows</li>
+				<li>desc_sentence->[PAWN_pronoun] begins purring contently.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins hissing angrily.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows.</li>
 			</rulesStrings>
 		</rulePack>
 		
@@ -89,8 +89,8 @@
         <li>image->[PAWN_nameFull] examines [PAWN_possessive] ears [circumstance_group] </li>
         <li>circumstance_phrase->as [PAWN_possessive] ears twitch</li>
         <li>circumstance_phrase->while someone touches [PAWN_possessive] ears</li>
-        <li>desc_sentence->[PAWN_pronoun] is playing with them</li>
-        <li>desc_sentence->[PAWN_pronoun] new ears twitch</li>
+        <li>desc_sentence->[PAWN_pronoun] is playing with them.</li>
+        <li>desc_sentence->[PAWN_pronoun] new ears twitch.</li>
       </rulesStrings>
     </rulePack>
 
@@ -112,7 +112,7 @@
         <li>image->[PAWN_nameFull] looks distracted by the sounds coming [circumstance_group]</li>
         <li>circumstance_phrase->[PAWN_possessive] canine ears lie flat in fear</li>
         <li>circumstance_phrase->[PAWN_possessive] canine ears pricked up </li>
-        <li>desc_sentence->[PAWN_pronoun] is distracted by their improved hearing</li>
+        <li>desc_sentence->[PAWN_pronoun] is distracted by their improved hearing.</li>
       </rulesStrings>
     </rulePack>
   </TaleDef>
@@ -139,8 +139,8 @@
       <rulesStrings>
 				<li>tale_noun->[PAWN_nameDef]'s hands changing</li>
         <li>image->[PAWN_nameFull] examines [PAWN_possessive] hands [circumstance_group]</li>
-        <li>desc_sentence->[PAWN_pronoun] tries to pick something up</li>
-        <li>desc_sentence->[PAWN_pronoun] tests their new hands</li>
+        <li>desc_sentence->[PAWN_pronoun] tries to pick something up.</li>
+        <li>desc_sentence->[PAWN_pronoun] tests their new hands.</li>
       </rulesStrings>
     </rulePack>
   </TaleDef>
@@ -160,7 +160,7 @@
         <li>image->[PAWN_nameFull] tries to grasp something [circumstance_group]</li>
         <li>circumstance_phrase->while someone pats [PAWN_possessive] paws</li>
         <li>circumstance_phrase->while someone rubs [PAWN_possessive] paw pads</li>
-        <li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] thumbs</li>
+        <li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] thumbs.</li>
       </rulesStrings>
     </rulePack>
   </TaleDef>
@@ -174,7 +174,7 @@
         <li>tale_noun->[PAWN_nameDef]'s hands becoming near useless hooves</li>
         <li>image->[PAWN_nameFull] tries to pull their fingers apart [circumstance_group]</li>
         <li>image->[PAWN_nameFull] tries fruitlessly to grasp something [circumstance_group]</li>
-        <li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] hands</li>
+        <li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] hands.</li>
       </rulesStrings>
     </rulePack>
   </TaleDef>
@@ -188,7 +188,7 @@
 				<li>image->[PAWN_nameFull]'s feet begin to change [circumstance_group]</li>
 				<li>circumstance_phrase->as someone watches [PAWN_possessive] feet change</li>
 				<li>circumstance_phrase->while people stare at [PAWN_possessive] feet change</li>
-				<li>desc_sentence->[PAWN_pronoun] tests [PAWN_possessive] new feet</li>
+				<li>desc_sentence->[PAWN_pronoun] tests [PAWN_possessive] new feet.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -201,8 +201,8 @@
 				<li>tale_noun->[PAWN_nameDef] feet becoming paws</li>
 				<li>image->[PAWN_nameFull]'s toes shorten and grow blunt claws [circumstance_group]</li>
 				<li>image->the soles of [PAWN_nameFull]'s feet darken and become rough paw pads [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] feels the rough pads of [PAWN_possessive] new feet</li>
-				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new paws</li>
+				<li>desc_sentence->[PAWN_pronoun] feels the rough pads of [PAWN_possessive] new feet.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new paws.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -215,8 +215,8 @@
 				<li>tale_noun->[PAWN_nameDef] feet becoming paws</li>
 				<li>image->[PAWN_nameFull]'s toes shorten and grow sharp retractable claws [circumstance_group]</li>
 				<li>image->the soles of [PAWN_nameFull]'s feet darken and become smooth paw pads [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] feels the smooth pads of [PAWN_possessive] new feet</li>
-				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new paws</li>
+				<li>desc_sentence->[PAWN_pronoun] feels the smooth pads of [PAWN_possessive] new feet.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new paws.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -228,7 +228,7 @@
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef] feet becoming hooves</li>
 				<li>image->[PAWN_nameFull]'s toes joining and hardening into a single hoof [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new hooves </li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new hooves.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -241,8 +241,8 @@
 				<li>image->the skin on [PAWN_nameFull]'s feet begins to dry out and turn into scales [circumstance_group]</li>
 				<li>image->[PAWN_nameFull]'s toe nails sharpening into large talons [circumstance_group]</li>
 				<li>image->[PAWN_nameFull]'s toes lengthening into large avian feet [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] tries walking with [PAWN_possessive] new talons</li>
-				<li>desc_sentence->[PAWN_pronoun] tries to pick something up with [PAWN_possessive] new talons</li>
+				<li>desc_sentence->[PAWN_pronoun] tries walking with [PAWN_possessive] new talons.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to pick something up with [PAWN_possessive] new talons.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -257,8 +257,8 @@
 				<li>tale_noun->[PAWN_nameDef]'s legs became digitgrade</li>
 				<li>image->[PAWN_nameFull]'s legs begin to change structure [circumstance_group]</li>
 				<li>image->[PAWN_nameFull]'s legs change structure, forcing [PAWN_pronoun] to walk on [PAWN_possessive] toes [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possesive] new legs</li>
-				<li>desc_sentence->[PAWN_pronoun] seems remarkably comfortable with [PAWN_possessive] new legs</li>
+				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possesive] new legs.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems remarkably comfortable with [PAWN_possessive] new legs.</li>
 			</rulesStrings>
 		</rulePack>
 		
@@ -275,8 +275,8 @@
 				<li>image->[PAWN_nameFull]'s hair thickens into animal fur [circumstance_group]</li>
 				<li>circumstance_phrase->while someone feels [PAWN_possessive] fur</li>
 				<li>circumstance_phrase->as someone nearby begins to brush [PAWN_possessive] fur</li>
-				<li>desc_sentence->[PAWN_pronoun] seems uncomfortable in [PAWN_possessive] new fur coat</li>
-				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] new fur coat</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uncomfortable in [PAWN_possessive] new fur coat.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] new fur coat.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -291,8 +291,8 @@
 				<li>image->[PAWN_nameFull]'s skin begins to thicken [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] begins to scratch [PAWN_possessive] skin as it thickens into had [circumstance_group]</li>
 				<li>circumstance_phrase->while someone touches [PAWN_pronoun] hide</li>
-				<li>desc_sentence->[PAWN_pronoun] seems displeased with [PAWN_pronoun] new hide</li>
-				<li>desc_sentence->[PAWN_pronoun] seems to like [PAWN_pronoun] thick hide</li>
+				<li>desc_sentence->[PAWN_pronoun] seems displeased with [PAWN_pronoun] new hide.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems to like [PAWN_pronoun] thick hide.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>

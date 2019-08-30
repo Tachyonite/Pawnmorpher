@@ -10,7 +10,7 @@
 				<li>image->[PAWN_nameFull] begins to feel very warm and fuzzy [circumstance_group]</li>
 				<li>circumstance_phrase->as someone begins petting [PAWN_possessive] fuzzy body</li>
 				<li>circumstance_phrase->as someone reaches for a brush</li>
-				<li>desc_sentence->[PAWN_pronoun] begins brushing [PAWN_possessive] fuzzy body</li>
+				<li>desc_sentence->[PAWN_pronoun] begins brushing [PAWN_possessive] fuzzy body.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -24,8 +24,8 @@
 				<li>image->[PAWN_nameFull] face pushing out into a megatherine muzzle [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] yells becoming megatherine moans [circumstance_group]</li>
 				<li>circumstance_phrase->while someone plays with [PAWN_pronoun] fuzzy face</li>
-				<li>desc_sentence->[PAWN_pronoun] is troubled by [PAWN_possessive] fuzzy face</li>
-				<li>desc_sentence->[PAWN_pronoun] seems pleases with [PAWN_possessive] fuzzy face</li>
+				<li>desc_sentence->[PAWN_pronoun] is troubled by [PAWN_possessive] fuzzy face.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleases with [PAWN_possessive] fuzzy face.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -40,9 +40,9 @@
 				<li>tale_noun->[PAWN_nameDef] growing megasloth hands</li>
 				<li>image->[PAWN_nameFull]'s nails begin to lengthen into long claws [circumstance_group]</li>
 				<li>image->[PAWN_nameFull]'s hands begin to shift, turning into the clawed hands of a megasloth [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] seems uneasy with [PAWN_possessive] claws</li>
-				<li>desc_sentence->[PAWN_pronoun] begins carving something with [PAWN_possessive] claws</li>
-				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] claws</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uneasy with [PAWN_possessive] claws.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins carving something with [PAWN_possessive] claws.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] claws.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -58,9 +58,9 @@
 				<li>image->[PAWN_nameFull] toes begin to grow long clawed [circumstance_group]</li>
 				<li>image->[PAWN_nameFull]'s toenails begin to lengthen into long claws [circumstance_group]</li>
 				<li>image->fur begins to cover [PAWN_nameFull]'s feet as they begin to shift [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] looks uneasy with [PAWN_possessive] clawed feet</li>
-				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possessive] new feet</li>
-				<li>desc_sentence->[PAWN_pronoun] seem surprisingly adept on [PAWN_possessive] new clawed feet</li>
+				<li>desc_sentence->[PAWN_pronoun] looks uneasy with [PAWN_possessive] clawed feet.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possessive] new feet.</li>
+				<li>desc_sentence->[PAWN_pronoun] seem surprisingly adept on [PAWN_possessive] new clawed feet.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
