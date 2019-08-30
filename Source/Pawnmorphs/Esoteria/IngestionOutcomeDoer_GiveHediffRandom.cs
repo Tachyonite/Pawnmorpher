@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -15,16 +16,24 @@ namespace Pawnmorph
 
         public bool divideByBodySize = false;
 
-
+        private static List<HediffDef> _scratchList = new List<HediffDef>(); 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
             try
             {
+               
+
+
                 float completeChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().partialChance;
+                _scratchList.Clear();
+
                 if (Rand.RangeInclusive(0, 100) <= completeChance)
-                    hediffDef = AllCompleteDefs.RandElement();
+                    _scratchList.AddRange(AllCompleteDefs.Where(h => h.CanInfect(pawn)));
                 else
-                    hediffDef = AllPartialDefs.RandElement(); //use randElement as that doesn't make an extra copy
+                    _scratchList.AddRange(AllPartialDefs.Where(h => h.CanInfect(pawn)));
+
+                if (_scratchList.Count == 0) return;
+                hediffDef = _scratchList.RandElement(); 
 
                 Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
                 float num;
@@ -59,6 +68,8 @@ namespace Pawnmorph
             {
                 foreach (HediffDef h in AllCompleteDefs)
                 {
+                    if(!h.CanInfect(pawn)) continue;
+
                     Hediff hediff = HediffMaker.MakeHediff(h, pawn);
                     float num;
                     if (severity > 0f)
@@ -90,17 +101,22 @@ namespace Pawnmorph
         public ChemicalDef toleranceChemical;
 
         public bool divideByBodySize = false;
-
+        private List<HediffDef> _scratchList = new List<HediffDef>(); 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
             try
             {
                 if (!pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Contains(x.def)))
                 {
+                    _scratchList.Clear();
+
                     if (Rand.RangeInclusive(0, 100) <= completeChance)
-                        hediffDef = hediffDefsComplete.RandomElement();
+                        _scratchList.AddRange(hediffDefsComplete.Where(h => h.CanInfect(pawn)));
                     else
-                        hediffDef = hediffDefs.RandomElement();
+                        _scratchList.AddRange( hediffDefs.Where(h => h.CanInfect(pawn)));
+
+                    if (_scratchList.Count == 0) return; 
+                    hediffDef = _scratchList.RandElement(); 
 
                     Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
                     float num;
