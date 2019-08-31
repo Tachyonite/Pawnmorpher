@@ -1,6 +1,4 @@
 <Defs>
-
-
 	<!--make sure to get rid of this example before pushing to master because it will cause errors because it has no graphics or thought def-->
 	<InteractionDef Class="Pawnmorph.Social.PMInteractionDef">
 		<defName>PMInteractionExample</defName>
@@ -14,7 +12,6 @@
 		InteractionWorker_Insult
 	
 	these workers are designed to mimic the workers of the same name in the base game with the additional mutation/morph checks 
-
 -->
 		<initiatorWeights>
 			<mutationWeights>
