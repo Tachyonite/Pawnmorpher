@@ -33,6 +33,7 @@ namespace Pawnmorph.Hybrids
         public class GraphicsSettings
         {
             public Color? skinColorOverride;
+            public Color? skinColorOverrideSecond; 
 
         }
 

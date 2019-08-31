@@ -51,6 +51,7 @@ namespace Pawnmorph.Hybrids
                 }
 
             pawn.def = race;
+
             if (removed && !map.listerThings.Contains(pawn))
                 map.listerThings.Add(pawn);
 
@@ -165,8 +166,14 @@ namespace Pawnmorph.Hybrids
             }
             ThingDef_AlienRace hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
-
+            HandleGraphicsChanges(pawn,  morph);
             ChangePawnRace(pawn, hRace, true);
+
+            if (pawn.IsColonist)
+            {
+                PortraitsCache.SetDirty(pawn);
+
+            }
 
             string labelId = string.IsNullOrEmpty(tfSettings.transformLetterLabelId)
                 ? RACE_CHANGE_LETTER_LABEL
@@ -185,6 +192,13 @@ namespace Pawnmorph.Hybrids
                 TryTriggerMutations(pawn, morph); 
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
+        }
+
+        private static void HandleGraphicsChanges(Pawn pawn,MorphDef morph)
+        {
+            var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+            comp.skinColor = morph.raceSettings.graphicsSettings?.skinColorOverride ?? comp.skinColor;
+            comp.skinColorSecond = morph.raceSettings.graphicsSettings?.skinColorOverrideSecond ?? comp.skinColorSecond; 
         }
 
         /// <summary>
