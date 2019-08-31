@@ -22,10 +22,6 @@
 				<diseaseInc>Disease_Chaoflu</diseaseInc>
 				<commonality>25</commonality>
 			</li>
-			<li>
-				<diseaseInc>Disease_Cowflu</diseaseInc>
-				<commonality>25</commonality>
-			</li>
 		</value>
 	</Operation>
 </Patch>
