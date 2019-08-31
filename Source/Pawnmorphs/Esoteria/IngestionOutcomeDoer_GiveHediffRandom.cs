@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -66,11 +67,14 @@ namespace Pawnmorph
         {
             try
             {
-                foreach (HediffDef h in AllCompleteDefs)
+                StringBuilder builder = new StringBuilder(); 
+                foreach (HediffDef h in AllCompleteDefs.Concat(AllPartialDefs))
                 {
                     if(!h.CanInfect(pawn)) continue;
+                    builder.AppendLine($"adding {h.defName}");
 
                     Hediff hediff = HediffMaker.MakeHediff(h, pawn);
+
                     float num;
                     if (severity > 0f)
                         num = severity;
@@ -81,6 +85,7 @@ namespace Pawnmorph
                     hediff.Severity = num;
                     pawn.health.AddHediff(hediff, null, null);
                 }
+                Log.Message(builder.ToString());
             }
             catch
             {
