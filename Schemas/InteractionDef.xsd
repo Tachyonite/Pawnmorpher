@@ -9,7 +9,7 @@
 							<xs:element name="defName" type="xs:string" />
 							<xs:element name="label" type="xs:string" />
 							<xs:element name="workerClass" type="WorkerTypes" />
-							<xs:element name="initiatorWeights">
+							<xs:element name="initiatorWeights" maxOccurs="1" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="mutationWeights">
@@ -40,11 +40,11 @@
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
-										<xs:element name="requiresBoth" type="xs:boolean" />
+										<xs:element name="requiresBoth" type="xs:boolean" minOccurs="0" maxOccurs="1" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="recipientWeights">
+							<xs:element name="recipientWeights" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="mutationWeights">
@@ -75,11 +75,11 @@
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
-										<xs:element name="requiresBoth" type="xs:boolean" />
+										<xs:element name="requiresBoth" type="xs:boolean" minOccurs="0" maxOccurs="1" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="requiresBoth" type="xs:boolean" />
+							<xs:element name="requiresBoth" type="xs:boolean"  minOccurs="0" maxOccurs="1"/>
 						</xs:sequence>
 						<xs:attribute name="Class" type="ClassTypes" use="optional" />
 					</xs:complexType>
