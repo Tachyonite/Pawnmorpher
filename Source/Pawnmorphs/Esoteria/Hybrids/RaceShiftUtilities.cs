@@ -39,33 +39,31 @@ namespace Pawnmorph.Hybrids
             Faction faction = pawn.Faction;
             Map map = pawn.Map;
 
+            if (map != null)
+                RegionListersUpdater.DeregisterInRegions(pawn, map);
+            var removed = false;
 
-            RegionListersUpdater.DeregisterInRegions(pawn, map);
-            bool removed = false;
-            if (map.listerThings.Contains(pawn))
-            {
-                map.listerThings.Remove(pawn); //make sure to update the lister things or else dying will break 
-                removed = true; 
-            } 
+            if (map != null)
+                if (map.listerThings.Contains(pawn))
+                {
+                    map.listerThings.Remove(pawn); //make sure to update the lister things or else dying will break 
+                    removed = true;
+                }
+
             pawn.def = race;
-            if(removed && !map.listerThings.Contains(pawn))
+            if (removed && !map.listerThings.Contains(pawn))
                 map.listerThings.Add(pawn);
 
 
+            if (map != null)
+                RegionListersUpdater.RegisterInRegions(pawn, map);
 
-            RegionListersUpdater.RegisterInRegions(pawn, map);
-
-            map.mapPawns.UpdateRegistryForPawn(pawn);
+            map?.mapPawns.UpdateRegistryForPawn(pawn);
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
 
-
-            if (reRollTraits && race is ThingDef_AlienRace alienDef)
-            {
-                ReRollRaceTraits(pawn, alienDef); 
-            }
-
+            if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
 
 
             //save location 
