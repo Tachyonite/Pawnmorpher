@@ -10,7 +10,7 @@
 		<defaultDamage>1</defaultDamage>
 		<explosionCellMote>Mote_BlastExtinguisher</explosionCellMote>
 		<explosionColorEdge>(0, 1, 0, 0.05)</explosionColorEdge>
-		<harmsHealth>true</harmsHealth>
+		<harmsHealth>false</harmsHealth>
 		<soundExplosion>Explosion_Smoke</soundExplosion>
 		<combatLogRules>Damage_Smoke</combatLogRules>
 	</DamageDef>
