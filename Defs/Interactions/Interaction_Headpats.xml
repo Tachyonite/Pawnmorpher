@@ -136,6 +136,7 @@
 	
 	<ThoughtDef>
 		<defName>PawnmorphHeadpatsRecipient</defName>
+		<label>gave headpats</label>
 		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
 		<stackLimit>300</stackLimit>
 		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
@@ -153,6 +154,7 @@
 	
 	<ThoughtDef>
     <defName>GotHeadpats</defName>
+		<label>got headpats</label>
     <durationDays>0.5</durationDays>
     <stackLimit>10</stackLimit>
     <stackedEffectMultiplier>0.9</stackedEffectMultiplier>

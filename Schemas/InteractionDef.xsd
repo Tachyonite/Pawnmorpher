@@ -1,104 +1,166 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:element name="Defs">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="InteractionDef">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="defName" type="xs:string" />
-							<xs:element name="label" type="xs:string" />
-							<xs:element name="workerClass" type="WorkerTypes" />
-							<xs:element name="initiatorWeights" maxOccurs="1" minOccurs="0">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="mutationWeights">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="li">
-														<xs:complexType>
-															<xs:sequence>
-																<xs:element name="key" type="xs:string" />
-																<xs:element name="value" type="xs:decimal" />
-															</xs:sequence>
-														</xs:complexType>
-													</xs:element>
-												</xs:sequence>
-											</xs:complexType>
-										</xs:element>
-										<xs:element name="morphWeights">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="li">
-														<xs:complexType>
-															<xs:sequence>
-																<xs:element name="key" type="xs:string" />
-																<xs:element name="value" type="xs:decimal" />
-															</xs:sequence>
-														</xs:complexType>
-													</xs:element>
-												</xs:sequence>
-											</xs:complexType>
-										</xs:element>
-										<xs:element name="requiresBoth" type="xs:boolean" minOccurs="0" maxOccurs="1" />
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="recipientWeights" minOccurs="0" maxOccurs="1">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="mutationWeights">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="li">
-														<xs:complexType>
-															<xs:sequence>
-																<xs:element name="key" type="xs:string" />
-																<xs:element name="value" type="xs:decimal" />
-															</xs:sequence>
-														</xs:complexType>
-													</xs:element>
-												</xs:sequence>
-											</xs:complexType>
-										</xs:element>
-										<xs:element name="morphWeights">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="li">
-														<xs:complexType>
-															<xs:sequence>
-																<xs:element name="key" type="xs:string" />
-																<xs:element name="value" type="xs:decimal" />
-															</xs:sequence>
-														</xs:complexType>
-													</xs:element>
-												</xs:sequence>
-											</xs:complexType>
-										</xs:element>
-										<xs:element name="requiresBoth" type="xs:boolean" minOccurs="0" maxOccurs="1" />
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="requiresBoth" type="xs:boolean"  minOccurs="0" maxOccurs="1"/>
-						</xs:sequence>
-						<xs:attribute name="Class" type="ClassTypes" use="optional" />
-					</xs:complexType>
-				</xs:element>
+				<xs:choice maxOccurs="unbounded" minOccurs="1">
+					<xs:element name="InteractionDef" maxOccurs="unbounded" minOccurs="1">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="defName" type="xs:string" />
+								<xs:element name="label" type="xs:string" />
+								<xs:element name="workerClass" type="WorkerTypes" />
+								<xs:element name="symbol" type="xs:string" />
+								<xs:element name="initiatorThought" type="xs:string" />
+								<xs:element name="initiatorXpGainSkill" type="xs:string" />
+								<xs:element name="initiatorXpGainAmount" type="xs:int" />
+								<xs:element name="recipientThought" type="xs:string" />
+								<xs:element name="logRulesInitiator" type="RulePack" minOccurs="0" maxOccurs="1" />
+								<xs:element name="logRulesRecipient" type="RulePack" minOccurs="0" maxOccurs="1" />
+								<xs:element name="initiatorWeights" maxOccurs="1" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="mutationWeights">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="li" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="key" type="xs:string" />
+																	<xs:element name="value" type="xs:decimal" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="morphWeights">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="li" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="key" type="xs:string" />
+																	<xs:element name="value" type="xs:decimal" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="requiresBoth" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="recipientWeights" minOccurs="0" maxOccurs="1">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="mutationWeights">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="li" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="key" type="xs:string" />
+																	<xs:element name="value" type="xs:decimal" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="morphWeights">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="li" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="key" type="xs:string" />
+																	<xs:element name="value" type="xs:decimal" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="requiresBoth" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="requiresBoth" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false" />
+							</xs:sequence>
+							<xs:attribute name="Class" type="ClassTypes" use="optional" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="ThoughtDef" type="ThoughtDef" minOccurs="0" maxOccurs="unbounded" />
+				</xs:choice>
+
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:simpleType name="WorkerTypes">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="Pawnmorph.Social.InteractionWorker_Chitchat"/>
-			<xs:enumeration value="Pawnmorph.Social.InteractionWorker_KindWords"/>
-			<xs:enumeration value="Pawnmorph.Social.InteractionWorker_Slight"/>
-			<xs:enumeration value="Pawnmorph.Social.InteractionWorker_Insult"/>
+			<xs:enumeration value="Pawnmorph.Social.InteractionWorker_Chitchat" />
+			<xs:enumeration value="Pawnmorph.Social.InteractionWorker_KindWords" />
+			<xs:enumeration value="Pawnmorph.Social.InteractionWorker_Slight" />
+			<xs:enumeration value="Pawnmorph.Social.InteractionWorker_Insult" />
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:simpleType name="ClassTypes">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="Pawnmorph.Social.PMInteractionDef"/>
+			<xs:enumeration value="Pawnmorph.Social.PMInteractionDef" />
 		</xs:restriction>
 	</xs:simpleType>
+
+	<xs:complexType name="RulePack">
+		<xs:sequence>
+			<xs:element name="rulesStrings" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" type="xs:string" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ThoughtDef">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="defName" type="xs:string" />
+				<xs:element name="label" type="xs:string" />
+				<xs:element name="durationDays" type="xs:float" minOccurs="0" maxOccurs="1" />
+				<xs:element name="thoughtClass" type="xs:string" minOccurs="0" maxOccurs="1" />
+				<xs:element name="stackLimit" type="xs:int" />
+				<xs:element name="maxCumulatedOpinionOffset" type="xs:int" minOccurs="0" maxOccurs="1" />
+				<xs:element name="stackedEffectMultiplier" type="xs:float" minOccurs="0" maxOccurs="1" />
+				<xs:element name="nullifyingTraits" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="li" maxOccurs="unbounded" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="stages">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="li" type="ThoughtStage" maxOccurs="unbounded" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="thoughtToMake" type="xs:string" minOccurs="0" maxOccurs="1" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ThoughtStage">
+		<xs:sequence>
+			<xs:element name="label" type="xs:string" />
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="baseMoodEffect" type="xs:float" minOccurs="0" maxOccurs="1" />
+			<xs:element name="baseOpinionOffset" type="xs:float" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>
