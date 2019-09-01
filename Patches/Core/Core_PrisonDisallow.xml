@@ -1,43 +1,38 @@
 <Patch>
 	<Operation Class="PatchOperationAdd">
-		<xpath>/Defs/ThingSetMakerDef[defName="MapGen_PrisonCellStockpile"]/root/options[last()]/thingSetMaker/fixedParams/filter/disallowedThingDefs</xpath>
-		<success>Always</success>
+		<xpath>/Defs/ThingDef[defName="EggChickenUnfertilized"]</xpath>
 		<value>
-			<li>TFEgg</li>
-			<li>TFMilk</li>
+			<socialPropernessMatters>false</socialPropernessMatters>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="EggChickenUnfertilized"]</xpath>
+		<value>
+			<ingestible>
+				<preferability>DesperateOnlyForHumanlikes</preferability>
+			</ingestible>
 		</value>
 	</Operation>
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="Milk"]/socialPropernessMatters</xpath>
-		<success>Always</success>
-		<value>
-			<socialPropernessMatters>false</socialPropernessMatters>
-		</value>
-	</Operation>
-	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="RawFungus"]/socialPropernessMatters</xpath>
-		<success>Always</success>
-		<value>
-			<socialPropernessMatters>false</socialPropernessMatters>
-		</value>
-	</Operation>
-	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="EggChickenUnfertilized"]/socialPropernessMatters</xpath>
-		<success>Always</success>
 		<value>
 			<socialPropernessMatters>false</socialPropernessMatters>
 		</value>
 	</Operation>
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[defName="Milk"]/ingestible/preferability</xpath>
-		<success>Always</success>
 		<value>
 			<preferability>DesperateOnlyForHumanlikes</preferability>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="RawFungus"]/ingestible/preferability</xpath>
-		<success>Always</success>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="RawFungus"]</xpath>
+		<value>
+			<socialPropernessMatters>false</socialPropernessMatters>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="RawFungus"]/ingestible</xpath>
 		<value>
 			<preferability>DesperateOnlyForHumanlikes</preferability>
 		</value>
