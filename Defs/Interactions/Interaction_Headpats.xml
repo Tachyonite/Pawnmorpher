@@ -68,45 +68,45 @@
 			<mutationWeights>
 				<li>
 					<key>EtherHuskyMuzzle</key>
-					<value>0.1</value>
+					<value>0.5</value>
 				</li>
 				<li>
 					<key>EtherWargMuzzle</key>
-					<value>0.1</value>
+					<value>0.5</value>
 				</li>
 				<li>
 					<key>EtherFoxMuzzle</key>
-					<value>0.1</value>
+					<value>0.5</value>
 				</li>
 				<li>
 					<key>EtherCatMuzzle</key>
-					<value>0.1</value>
+					<value>0.5</value>
 				</li>
 				<li>
 					<key>EtherWolfMuzzle</key>
-					<value>0.1</value>
+					<value>0.5</value>
 				</li>
 			</mutationWeights>
 			<morphWeights>
 				<li>
 					<key>HuskyMorph</key>
-					<value>0.1</value>
+					<value>1</value>
 				</li>
 				<li>
 					<key>FoxMorph</key>
-					<value>0.1</value>
+					<value>1</value>
 				</li>
 				<li>
 					<key>WolfMorph</key>
-					<value>0.1</value>
+					<value>1</value>
 				</li>
 				<li>
 					<key>CatMorph</key>
-					<value>0.1</value>
+					<value>1</value>
 				</li>
 				<li>
 					<key>WargMorph</key>
-					<value>0.1</value>
+					<value>1</value>
 				</li>
 			</morphWeights>
 			<requiresBoth>false</requiresBoth>
