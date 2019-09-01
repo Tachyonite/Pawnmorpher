@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
@@ -310,7 +311,7 @@ namespace Pawnmorph
         /// <param name="cause"></param>
         public static void CleanUpHumanPawnPostTf(Pawn originalPawn,[CanBeNull] Hediff cause)
         {
-            HandleAppearlAndEquipment(originalPawn);
+            HandleApparelAndEquipment(originalPawn);
             if (cause != null)
                 originalPawn.health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
 
@@ -327,8 +328,8 @@ namespace Pawnmorph
                                                               out outPawn); // ...drop them so they can be removed.
             }
 
-            if (originalPawn.IsPrisonerOfColony)
-                originalPawn.guest.SetGuestStatus(null);
+            if (originalPawn.IsPrisoner)
+                HandlePrisoner(originalPawn); 
 
 
 
@@ -357,7 +358,15 @@ namespace Pawnmorph
                 animalPawn.playerSettings.Master = null; //set to null, these animals don't have a master anymore 
         }
 
-        private static void HandleAppearlAndEquipment(Pawn originalPawn)
+        static void HandlePrisoner(Pawn pawn)
+        {
+            pawn.guest.Released = true;
+            pawn.guest.SetGuestStatus(null);
+            DebugLogUtils.Assert(!pawn.guest.IsPrisoner, $"{pawn.Name} is being cleaned up but is still a prisoner");
+            
+        }
+
+        private static void HandleApparelAndEquipment(Pawn originalPawn)
         {
             var caravan = originalPawn.GetCaravan();
             var apparelTracker = originalPawn.apparel;
@@ -386,7 +395,7 @@ namespace Pawnmorph
                 }
                 
 
-                equipmentTracker.AllEquipmentListForReading.Clear();
+                //equipmentTracker.AllEquipmentListForReading.Clear();
 
             }
             

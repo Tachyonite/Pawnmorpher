@@ -2,9 +2,8 @@
 // last updated 08/15/2019  1:40 PM
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Pawnmorph.Hybrids;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -124,6 +123,8 @@ namespace Pawnmorph.TfSys
 
             if(original.Spawned)
                 original.DeSpawn(); // Remove the original pawn from the current map.
+
+            DebugLogUtils.Assert(!PrisonBreakUtility.CanParticipateInPrisonBreak(original), $"{original.Name} has been cleaned up and de-spawned but can still participate in prison breaks");
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner);
 

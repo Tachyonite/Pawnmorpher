@@ -15,6 +15,17 @@ namespace Pawnmorph.DebugUtils
     [HasDebugOutput]
     public static class DebugLogUtils
     {
+
+        /// <summary>
+        /// Asserts the specified condition. if false an error message will be displayed
+        /// </summary>
+        /// <param name="condition">if false will display an error message</param>
+        /// <param name="message">The message.</param>
+        public static void Assert(bool condition, string message)
+        {
+            if (!condition) Log.Error(message); 
+        }
+
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
         public static void OutputRelationshipPatches()
