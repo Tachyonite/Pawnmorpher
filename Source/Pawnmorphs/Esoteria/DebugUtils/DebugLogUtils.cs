@@ -69,6 +69,13 @@ namespace Pawnmorph.DebugUtils
         }
 
         [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput, ModeRestrictionPlay]
+        public static void ListInteractionWeights()
+        {
+            Find.WindowStack.Add(new Pawnmorpher_InteractionWeightLogDialogue());
+        }
+
+        [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
         public static void ListNewTfPawns()
         {

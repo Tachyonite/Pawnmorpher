@@ -64,6 +64,7 @@
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
+    <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="FloatMenuMakerMapPatches.cs" />
     <Compile Include="GameCondition_MutagenicFallout.cs" />

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hybrids
@@ -29,6 +30,13 @@ namespace Pawnmorph.Hybrids
 
         }
 
+        public class GraphicsSettings
+        {
+            public Color? skinColorOverride;
+            public Color? skinColorOverrideSecond; 
+
+        }
+
 
         public class FoodCategoryOverride
         {
@@ -49,6 +57,7 @@ namespace Pawnmorph.Hybrids
         public List<StatModifier> statModifiers; 
         public HybridThoughtSettings thoughtSettings;
         public RaceRestrictionSettings restrictionSettings;
+        public GraphicsSettings graphicsSettings; 
 
         public TraitSettings traitSettings; 
 

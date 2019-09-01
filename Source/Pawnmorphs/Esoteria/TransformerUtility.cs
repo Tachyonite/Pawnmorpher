@@ -7,6 +7,7 @@ using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI.Group;
 using Verse.Profile;
@@ -309,9 +310,8 @@ namespace Pawnmorph
         /// <param name="cause"></param>
         public static void CleanUpHumanPawnPostTf(Pawn originalPawn,[CanBeNull] Hediff cause)
         {
-            originalPawn.apparel.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
-            originalPawn.equipment.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
-            if(cause != null)
+            HandleAppearlAndEquipment(originalPawn);
+            if (cause != null)
                 originalPawn.health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
 
             originalPawn.health.surgeryBills?.Clear(); //if this pawn has any additional surgery bills, get rid of them 
@@ -329,12 +329,15 @@ namespace Pawnmorph
 
             if (originalPawn.IsPrisonerOfColony)
                 originalPawn.guest.SetGuestStatus(null);
-          
+
 
 
             //TODO notify faction that their pawn became an animal somehow (this should damage relations maybe?) 
 
-            //originalPawn.GetCaravan()?.Notify_PawnRemoved(originalPawn); 
+
+            Caravan caravan = originalPawn.GetCaravan();
+            caravan?.RemovePawn(originalPawn);
+            caravan?.Notify_PawnRemoved(originalPawn);
 
             originalPawn.GetLord()
                        ?.Notify_PawnLost(originalPawn,
@@ -354,6 +357,40 @@ namespace Pawnmorph
                 animalPawn.playerSettings.Master = null; //set to null, these animals don't have a master anymore 
         }
 
+        private static void HandleAppearlAndEquipment(Pawn originalPawn)
+        {
+            var caravan = originalPawn.GetCaravan();
+            var apparelTracker = originalPawn.apparel;
+            var equipmentTracker = originalPawn.equipment;
+
+            if (originalPawn.Spawned)
+            {
+                apparelTracker.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
+                equipmentTracker.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
+            }
+            else if (caravan != null)
+            {
+                for (int i = apparelTracker.WornApparelCount - 1; i >= 0; i--)
+                {
+                    var apparel = apparelTracker.WornApparel[i];
+                    apparelTracker.Remove(apparel);
+                    caravan.AddPawnOrItem(apparel, false); 
+                }
+
+
+                for (int i = equipmentTracker.AllEquipmentListForReading.Count - 1; i >= 0; i--)
+                {
+                    var equipment = equipmentTracker.AllEquipmentListForReading[i];
+                    equipmentTracker.Remove(equipment);
+                    caravan.AddPawnOrItem(equipment, false); 
+                }
+                
+
+                equipmentTracker.AllEquipmentListForReading.Clear();
+
+            }
+            
+        }
 
         private const string ETHER_BOND_DEF_NAME = "EtherBond";
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken"; 
