@@ -59,12 +59,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildingDefOf.cs" />
+    <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
+    <Compile Include="CompEtherExplosive.cs" />
+    <Compile Include="CompProperties_EtherExplosive.cs" />
+    <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="FloatMenuMakerMapPatches.cs" />
     <Compile Include="GameCondition_MutagenicFallout.cs" />
@@ -105,6 +110,8 @@
     <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
+    <Compile Include="Projectile_EtherBullet.cs" />
+    <Compile Include="Projectile_EtherExplosive.cs" />
     <Compile Include="RaceMutagenExtension.cs" />
     <Compile Include="Social\InteractionWorkers.cs" />
     <Compile Include="Social\PMInteractionWorkerBase.cs" />
@@ -169,6 +176,7 @@
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />
+    <Compile Include="TransformPawn.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
     <Compile Include="Utilities\LinqUtils.cs" />
     <Compile Include="Utilities\Tuple.cs" />
