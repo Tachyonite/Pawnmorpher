@@ -33,6 +33,38 @@ namespace Pawnmorph.Utilities
 
         }
 
-        public static int MPSafeSeed => Find.TickManager.TicksAbs; //is used as a seed in the compatibility examples
+
+        private static int _lastTick;
+        private static int _lastSeed; 
+        public static int MPSafeSeed
+        {
+            get
+            {
+                var ticks = Find.TickManager.TicksAbs;
+                if (ticks != _lastTick)
+                {
+                    _lastTick = ticks;
+                    _lastSeed = ticks; 
+                    return _lastTick;
+                }
+
+                _lastSeed = ZorShift(_lastSeed);
+                return _lastSeed; 
+            }
+        }
+
+        /// <summary>
+        /// preform a zorShift on the given int value 
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns></returns>
+        static int ZorShift(int val)
+        {
+            uint uVal = unchecked((uint) val); //just copy the bit pattern 
+            uVal ^= uVal << 13;
+            uVal ^= uVal >> 17;
+            uVal ^= uVal << 5;
+            return unchecked((int) uVal); //return the shuffled bit pattern 
+        }
     }
 }
