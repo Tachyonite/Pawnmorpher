@@ -255,6 +255,9 @@ namespace Pawnmorph.Hybrids
                 soundInteract = morph.race.soundInteract,
                 soundPickup = morph.race.soundPickup,
                 socialPropernessMatters = humanDef.socialPropernessMatters,
+                stuffCategories = humanDef.stuffCategories?.ToList(),
+                designationCategory = humanDef.designationCategory,
+                tradeTags = humanDef.tradeTags?.ToList()
                 
             };
         }

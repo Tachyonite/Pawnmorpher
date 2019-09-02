@@ -2,12 +2,12 @@
 // last updated 08/15/2019  1:40 PM
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Pawnmorph.Hybrids;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 
 namespace Pawnmorph.TfSys
@@ -35,6 +35,15 @@ namespace Pawnmorph.TfSys
         protected override bool IsValid(TransformationRequest request)
         {
             return base.IsValid(request) && request.originals.Length == 1; 
+        }
+
+        /// <summary>
+        /// Determines whether this instance can transform the specified pawn.
+        /// </summary>
+        /// <param name="pawn">The pawns.</param>
+        public override bool CanTransform(Pawn pawn)
+        {
+            return CanInfect(pawn);
         }
 
         /// <summary>
@@ -70,8 +79,10 @@ namespace Pawnmorph.TfSys
                 animalToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience, true); // Sets obediance training to on for the animal.
                 animalToSpawn.training.Train(TrainableDefOf.Obedience, null, true); // Sets the animal's obedience to be fully trained.
             }
+            Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
 
-            Pawn spawnedAnimal = (Pawn)GenSpawn.Spawn(animalToSpawn, original.PositionHeld, original.MapHeld, 0); // Spawns the animal into the map.
+
+
             Hediff hediff = HediffMaker.MakeHediff(TfHediffDefOf.TransformedHuman, spawnedAnimal, null); // Create a hediff from the one provided (i.e. TransformedHuman)...
             hediff.Severity = Rand.Range(0.00f, 1.00f); // ...give it a random severity...
             spawnedAnimal.health.AddHediff(hediff); // ...and apply it to the new animal.
@@ -84,10 +95,13 @@ namespace Pawnmorph.TfSys
 
 
 
-            for (int i = 0; i < 10; i++) // Create a cloud of magic.
+            if (original.Spawned)
             {
-                IntermittentMagicSprayer.ThrowMagicPuffDown(spawnedAnimal.Position.ToVector3(), spawnedAnimal.MapHeld);
-                IntermittentMagicSprayer.ThrowMagicPuffUp(spawnedAnimal.Position.ToVector3(), spawnedAnimal.MapHeld);
+                for (int i = 0; i < 10; i++) // Create a cloud of magic.
+                {
+                    IntermittentMagicSprayer.ThrowMagicPuffDown(spawnedAnimal.Position.ToVector3(), spawnedAnimal.MapHeld);
+                    IntermittentMagicSprayer.ThrowMagicPuffUp(spawnedAnimal.Position.ToVector3(), spawnedAnimal.MapHeld);
+                }
             }
 
             if (request.tale != null) // If a tale was provided, push it to the tale recorder.
@@ -107,7 +121,10 @@ namespace Pawnmorph.TfSys
                 LetterDefOf.NeutralEvent, spawnedAnimal, null, null); // Creates a letter saying "Oh no! Pawn X has transformed into a Y!"
             Find.TickManager.slower.SignalForceNormalSpeedShort(); // Slow down the speed of the game.
 
-            original.DeSpawn(); // Remove the original pawn from the current map.
+            if(original.Spawned)
+                original.DeSpawn(); // Remove the original pawn from the current map.
+
+            DebugLogUtils.Assert(!PrisonBreakUtility.CanParticipateInPrisonBreak(original), $"{original.Name} has been cleaned up and de-spawned but can still participate in prison breaks");
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner);
 
@@ -115,7 +132,25 @@ namespace Pawnmorph.TfSys
 
         }
 
-        
+        private static Pawn SpawnAnimal(Pawn original, Pawn animalToSpawn)
+        {
+            if (original.IsCaravanMember())
+            {
+                original.GetCaravan().AddPawn(animalToSpawn, true);
+                Find.WorldPawns.PassToWorld(animalToSpawn, PawnDiscardDecideMode.Decide);
+                return animalToSpawn; 
+            }
+
+            if (original.IsWorldPawn())
+            {
+                Find.WorldPawns.PassToWorld(animalToSpawn);
+                return animalToSpawn; 
+            }
+            
+            return (Pawn)GenSpawn.Spawn(animalToSpawn, original.PositionHeld, original.MapHeld, 0);
+        }
+
+
         /// <summary>
         ///     Tries to revert the transformed pawn instance, implementation.
         /// </summary>

@@ -23,8 +23,8 @@
 				<li>image->[PAWN_nameFull] thumb starts shrinking, but stops before going away entirely [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] nails lengthen into sharp claws [circumstance_group]</li>
 				<li>circumstance_phrase->while someone rubs [PAWN_possessive] paw pads</li>
-				<li>desc_sentence->[PAWN_pronoun] is grateful they still have thumbs</li>
-				<li>desc_sentence->[PAWN_pronoun] begins scratching a nearby wall with [PAWN_possessive] new claws</li>
+				<li>desc_sentence->[PAWN_pronoun] is grateful they still have thumbs.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins scratching a nearby wall with [PAWN_possessive] new claws.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Multiplayer.API;
+using System.Linq;
+using System.Text;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -16,21 +17,24 @@ namespace Pawnmorph
 
         public bool divideByBodySize = false;
 
-
+        private static List<HediffDef> _scratchList = new List<HediffDef>(); 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
             try
             {
-                if (MP.IsInMultiplayer)
-                {
-                    Rand.PushState(RandUtilities.MPSafeSeed);
-                }
+               
+
 
                 float completeChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().partialChance;
+                _scratchList.Clear();
+
                 if (Rand.RangeInclusive(0, 100) <= completeChance)
-                    hediffDef = AllCompleteDefs.RandElement();
+                    _scratchList.AddRange(AllCompleteDefs.Where(h => h.CanInfect(pawn)));
                 else
-                    hediffDef = AllPartialDefs.RandElement(); //use randElement as that doesn't make an extra copy
+                    _scratchList.AddRange(AllPartialDefs.Where(h => h.CanInfect(pawn)));
+
+                if (_scratchList.Count == 0) return;
+                hediffDef = _scratchList.RandElement(); 
 
                 Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
                 float num;
@@ -42,19 +46,9 @@ namespace Pawnmorph
                 AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
                 hediff.Severity = num;
                 pawn.health.AddHediff(hediff, null, null);
-
-
-
             }
             catch
             {
-            }
-            finally
-            {
-                if (MP.IsInMultiplayer)
-                {
-                    Rand.PopState();
-                }
             }
         }
     }
@@ -73,9 +67,14 @@ namespace Pawnmorph
         {
             try
             {
-                foreach (HediffDef h in AllCompleteDefs)
+                StringBuilder builder = new StringBuilder(); 
+                foreach (HediffDef h in AllCompleteDefs.Concat(AllPartialDefs))
                 {
+                    if(!h.CanInfect(pawn)) continue;
+                    builder.AppendLine($"adding {h.defName}");
+
                     Hediff hediff = HediffMaker.MakeHediff(h, pawn);
+
                     float num;
                     if (severity > 0f)
                         num = severity;
@@ -86,6 +85,7 @@ namespace Pawnmorph
                     hediff.Severity = num;
                     pawn.health.AddHediff(hediff, null, null);
                 }
+                Log.Message(builder.ToString());
             }
             catch
             {
@@ -106,22 +106,22 @@ namespace Pawnmorph
         public ChemicalDef toleranceChemical;
 
         public bool divideByBodySize = false;
-
+        private List<HediffDef> _scratchList = new List<HediffDef>(); 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
             try
             {
-                if (MP.IsInMultiplayer)
-                {
-                    Rand.PushState(RandUtilities.MPSafeSeed);
-                }
-
                 if (!pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Contains(x.def)))
                 {
+                    _scratchList.Clear();
+
                     if (Rand.RangeInclusive(0, 100) <= completeChance)
-                        hediffDef = hediffDefsComplete.RandomElement();
+                        _scratchList.AddRange(hediffDefsComplete.Where(h => h.CanInfect(pawn)));
                     else
-                        hediffDef = hediffDefs.RandomElement();
+                        _scratchList.AddRange( hediffDefs.Where(h => h.CanInfect(pawn)));
+
+                    if (_scratchList.Count == 0) return; 
+                    hediffDef = _scratchList.RandElement(); 
 
                     Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
                     float num;
@@ -137,13 +137,6 @@ namespace Pawnmorph
             }
             catch
             {
-            }
-            finally
-            {
-                if (MP.IsInMultiplayer)
-                {
-                    Rand.PopState();
-                }
             }
         }
     }

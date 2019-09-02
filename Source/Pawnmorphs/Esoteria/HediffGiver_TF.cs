@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Multiplayer.API;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -30,47 +29,43 @@ namespace Pawnmorph
                 : changeChance;
             //Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
 
-            TransformedPawn inst = null;
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed);
-            }
+            
 
             if (Rand.Range(0, 100) < chance)
             {
-                var hediffMorph = (cause as Hediff_Morph);
-                var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
-
-                var request = new TransformationRequest(pawnkinds.RandElement(), pawn)
-                {
-                    forcedGender = forceGender,
-                    forcedGenderChance = forceGenderChance,
-                    cause = hediffMorph,
-                    tale = tale
-                };
-
-                inst = mutagen.MutagenCached.Transform(request);
-
-
-                if (inst != null)
-                {
-                    var comp = Find.World.GetComponent<PawnmorphGameComp>();
-                    comp.AddTransformedPawn(inst); 
-                }
-
-
-                //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
-                //return inst != null; 
+                return TransformPawn(pawn, cause);
             }
 
-            if (MP.IsInMultiplayer)
+            return false; 
+
+
+        }
+
+        public bool TransformPawn(Pawn pawn, Hediff cause)
+        {
+            var hediffMorph = (cause as Hediff_Morph);
+            var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+
+            var request = new TransformationRequest(pawnkinds.RandElement(), pawn)
             {
-                Rand.PopState();
+                forcedGender = forceGender,
+                forcedGenderChance = forceGenderChance,
+                cause = hediffMorph,
+                tale = tale
+            };
+
+            var inst = mutagen.MutagenCached.Transform(request);
+
+
+            if (inst != null)
+            {
+                var comp = Find.World.GetComponent<PawnmorphGameComp>();
+                comp.AddTransformedPawn(inst);
             }
-            return inst != null; 
 
 
+            //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
+            return inst != null;
         }
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)

@@ -20,8 +20,8 @@
 				<li>tale_noun->[PAWN_nameDef] feet becoming paws</li>
 				<li>image->[PAWN_nameFull]'s toes shorten and grow sharp retractable claws [circumstance_group]</li>
 				<li>image->the soles of [PAWN_nameFull]'s feet darken and become smooth paw pads [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] feels the smooth pads of [PAWN_possessive] new feet</li>
-				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new paws</li>
+				<li>desc_sentence->[PAWN_pronoun] feels the smooth pads of [PAWN_possessive] new feet.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new paws.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -50,9 +50,9 @@
 				<li>image->[PAWN_nameFull] yells turn into yowls [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] nose begins turning pink [circumstance_group]</li>
 				<li>circumstance_phrase->while someone plays with [PAWN_pronoun] whiskers</li>
-				<li>desc_sentence->[PAWN_pronoun] begins purring contently</li>
-				<li>desc_sentence->[PAWN_pronoun] begins hissing angrily</li>
-				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows</li>
+				<li>desc_sentence->[PAWN_pronoun] begins purring contently.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins hissing angrily.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>

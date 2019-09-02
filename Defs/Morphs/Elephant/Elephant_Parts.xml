@@ -118,6 +118,11 @@
 			<li>
 				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
 			</li>
+			<li>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<label>adapted</label>
+				<minSeverity>0.99</minSeverity>
+			</li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
@@ -133,6 +138,9 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
@@ -154,7 +162,22 @@
 					<ArmorRating_Sharp>0.6</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-.04</offset>
+					</li>
+				</capMods>
+				<minSeverity>0.99</minSeverity>
+				<label>adapted</label>
+			</li>
 		</stages>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
+			</li>
+		</comps>
 	</HediffDef>
 		
 	<HediffDef ParentName="ElephantPart">
@@ -164,6 +187,11 @@
 		<stages>
 			<li>
 				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.9</minSeverity>
+				<label>adapted</label>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 		<comps>
@@ -180,6 +208,9 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>

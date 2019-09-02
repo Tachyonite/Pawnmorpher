@@ -45,14 +45,14 @@
 				<entries>
 					<li>
 						<terrain>Soil</terrain>
-						<mtb>5.4</mtb>
+						<mtb>10.4</mtb>
 						<resource>RawFungus</resource>
 						<amount>15</amount>
 						<thought>FoundTruffles</thought>
 					</li>
 					<li>
 						<terrain>MarshyTerrain</terrain>
-						<mtb>5.4</mtb>
+						<mtb>10.4</mtb>
 						<resource>RawFungus</resource>
 						<amount>15</amount>
 						<thought>FoundTruffles</thought>

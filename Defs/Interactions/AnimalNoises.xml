@@ -125,6 +125,7 @@
 				<li>talkedabout->barked to</li>
 				<li>talkedabout->sniffed</li>
 				<li>talkedabout->yipped to</li>
+				<li>talkedabout->gekkered at</li>
 				<li>talkedabout->talked about chickens with</li>
 				<li>talkedabout->swayed [INITIATOR_possessive] tail for</li>
 
@@ -132,10 +133,14 @@
 				<li>askedabout->vixens</li>
 				<li>askedabout->chicken hunting</li>
 				<li>askedabout->climbing fences</li>
+				<li>askedabout->chasing mice</li>
+				<li>askedabout->jumping into snow</li>
+				<li>askedabout->life in dens</li>
+				<li>askedabout->the evolution of thumbs</li>
 				<li>askedabout->digging holes</li>
 				<li>askedabout->paws</li>
-				<li>askedabout->smells</li>
-				<li>askedabout->scents</li>
+				<li>askedabout->delicious smells</li>
+				<li>askedabout->strange scents</li>
 
 			</rulesStrings>
 		</logRulesInitiator>
@@ -182,12 +187,19 @@
 
 				<li>askedabout->patting [INITIATOR_possessive] fur</li>
 				<li>askedabout->dogs</li>
+				<li>askedabout->alphas and betas, in a non-redpilled way</li>
 				<li>askedabout->wolves</li>
+				<li>askedabout->wolfpacks</li>
+				<li>askedabout->sniffing a sensitive place</li>
+				<li>askedabout->sniffing garbage</li>
+				<li>askedabout->eating garbage</li>
+				<li>askedabout->sleeping in a kennel</li>
 				<li>askedabout->the moon</li>
 				<li>askedabout->bones</li>
 				<li>askedabout->fetch</li>
 				<li>askedabout->rolling over</li>
 				<li>askedabout->belly rubs</li>
+				<li>askedabout->licking [INITIATOR_possessive]</li>
 
 			</rulesStrings>
 		</logRulesInitiator>
@@ -204,6 +216,67 @@
 		<stages>
 			<li>
 				<label>bark</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<InteractionDef>
+		<defName>PawnmorphMeow</defName>
+		<label>meow</label>
+		<workerClass>Pawnmorph.InteractionWorker_Meow</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Meow</symbol>
+		<initiatorThought>PawnmorphMeow</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+		<recipientThought>PawnmorphMeow</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [miscabout].</li>
+
+				<li>talkedabout(p=4)->meowed at</li>
+				<li>talkedabout->mewed at</li>
+				<li>talkedabout->purred to</li>
+				<li>talkedabout->licked at</li>
+				<li>talkedabout->yawned at</li>
+				<li>talkedabout->meowed [advb] at</li>
+				<li>talkedabout->sniffed</li>
+				<li>talkedabout->flicked [INITIATOR_possessive] tail at</li>
+				<li>talkedabout->did an UwU face to</li>
+
+				<li>askedabout->patting [INITIATOR_possessive] fur</li>
+				<li>askedabout->cats</li>
+				<li>askedabout->lions</li>
+				<li>askedabout->mice</li>
+				<li>askedabout->mouse traps</li>
+				<li>askedabout->birds</li>
+				<li>askedabout->cleaning [INITIATOR_possessive]self</li>
+				<li>askedabout->a ban on belly rubs</li>
+				
+				<li>advb->hungrily</li>
+				<li>advb->plaintively</li>
+				<li>advb->fearfully</li>
+				<li>advb->protectively</li>
+				<li>advb->affectionately</li>
+				<li>advb->trustingly</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<ThoughtDef>
+		<defName>PawnmorphMeow</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>meow</label>
 				<baseOpinionOffset>0.1</baseOpinionOffset>
 			</li>
 		</stages>

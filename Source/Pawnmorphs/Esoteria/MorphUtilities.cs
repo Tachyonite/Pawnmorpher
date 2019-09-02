@@ -314,7 +314,7 @@ namespace Pawnmorph
 
             var humanInfluence = pawn.health.hediffSet.GetNotMissingParts().Count(p => PossiblePartsLst.Contains(p.def) && !mutatedRecords.Contains(p));
 
-            return humanInfluence > totalInfluence; 
+            return humanInfluence * 0.75f > totalInfluence; 
 
         }
 
