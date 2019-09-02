@@ -119,9 +119,9 @@
 				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
 			</li>
 			<li>
-				<partEfficientyOffset>-0.1</partEfficientyOffset>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 				<label>adapted</label>
-				<minSeverity>-0.99</minSeverity>
+				<minSeverity>0.99</minSeverity>
 			</li>
 		</stages>
 		<comps>
