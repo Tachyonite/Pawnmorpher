@@ -62,6 +62,7 @@
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
+    <Compile Include="Chambers\DatabaseUtilities.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompProperties_EtherExplosive.cs" />
