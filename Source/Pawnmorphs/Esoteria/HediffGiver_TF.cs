@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Pawnmorph.TfSys;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -22,22 +24,48 @@ namespace Pawnmorph
 
         public bool TryTf(Pawn pawn, Hediff cause)
         {
-
             float chance = changeChance < 0 //if changeChance wasn't overriden use the default from the settings 
                 ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
                 : changeChance;
-            
+            //Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
+
             
 
             if (Rand.Range(0, 100) < chance)
             {
-                TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
-                return true; 
+                return TransformPawn(pawn, cause);
             }
 
             return false; 
 
 
+        }
+
+        public bool TransformPawn(Pawn pawn, Hediff cause)
+        {
+            var hediffMorph = (cause as Hediff_Morph);
+            var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+
+            var request = new TransformationRequest(pawnkinds.RandElement(), pawn)
+            {
+                forcedGender = forceGender,
+                forcedGenderChance = forceGenderChance,
+                cause = hediffMorph,
+                tale = tale
+            };
+
+            var inst = mutagen.MutagenCached.Transform(request);
+
+
+            if (inst != null)
+            {
+                var comp = Find.World.GetComponent<PawnmorphGameComp>();
+                comp.AddTransformedPawn(inst);
+            }
+
+
+            //TransformerUtility.Transform(pawn, cause, hediff, pawnkinds, tale, forceGender, forceGenderChance); 
+            return inst != null;
         }
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)

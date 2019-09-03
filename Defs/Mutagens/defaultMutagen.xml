@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<Pawnmorph.MutagenDef>
+		<defName>defaultMutagen</defName>
+		<label>mechanite mutagen</label>
+		<mutagenType>Pawnmorph.TfSys.SimpleMechaniteMutagen</mutagenType>
+		<reversionThoughts>
+			<li>WasAnimal</li>
+			<li>WasAnimalRelieved</li>
+		</reversionThoughts>
+	</Pawnmorph.MutagenDef>
+	
+	<Pawnmorph.MutagenDef>
+		<defName>MergeMutagen</defName>
+		<label>merge mutagen</label>
+		<mutagenType>Pawnmorph.TfSys.MergeMutagen</mutagenType>
+		<reversionThoughts>
+			<li>WasMerged</li>
+			<li>WasMergedRelieved</li>
+		</reversionThoughts>
+	</Pawnmorph.MutagenDef>
+</Defs>

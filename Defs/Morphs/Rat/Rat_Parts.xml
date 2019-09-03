@@ -24,6 +24,20 @@
 					</li>
 				</capMods>
 			</li>
+			<li>
+				<minSeverity>0.99</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.04</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
@@ -40,12 +54,16 @@
 					</li>
 				</tools>
 			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
+			</li>
 		</comps>
 	</HediffDef>
 
 	<HediffDef ParentName="RatPart">
 		<defName>EtherRatEar</defName>
 		<label>ratty</label>
+		<description>Grey-furred, rounded ears listen carefully for predators.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
@@ -77,7 +95,7 @@
 		<stages>
 			<li>
 				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
-        <label>new</label>
+        <label>unfamiliar</label>
       </li>
       <li>
         <minSeverity>0.5</minSeverity>

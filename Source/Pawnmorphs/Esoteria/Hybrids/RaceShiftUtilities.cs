@@ -39,33 +39,32 @@ namespace Pawnmorph.Hybrids
             Faction faction = pawn.Faction;
             Map map = pawn.Map;
 
+            if (map != null)
+                RegionListersUpdater.DeregisterInRegions(pawn, map);
+            var removed = false;
 
-            RegionListersUpdater.DeregisterInRegions(pawn, map);
-            bool removed = false;
-            if (map.listerThings.Contains(pawn))
-            {
-                map.listerThings.Remove(pawn); //make sure to update the lister things or else dying will break 
-                removed = true; 
-            } 
+            if (map != null)
+                if (map.listerThings.Contains(pawn))
+                {
+                    map.listerThings.Remove(pawn); //make sure to update the lister things or else dying will break 
+                    removed = true;
+                }
+
             pawn.def = race;
-            if(removed && !map.listerThings.Contains(pawn))
+
+            if (removed && !map.listerThings.Contains(pawn))
                 map.listerThings.Add(pawn);
 
 
+            if (map != null)
+                RegionListersUpdater.RegisterInRegions(pawn, map);
 
-            RegionListersUpdater.RegisterInRegions(pawn, map);
-
-            map.mapPawns.UpdateRegistryForPawn(pawn);
+            map?.mapPawns.UpdateRegistryForPawn(pawn);
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
 
-
-            if (reRollTraits && race is ThingDef_AlienRace alienDef)
-            {
-                ReRollRaceTraits(pawn, alienDef); 
-            }
-
+            if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
 
 
             //save location 
@@ -160,15 +159,21 @@ namespace Pawnmorph.Hybrids
             if (morph == null) throw new ArgumentNullException(nameof(morph));
             if (morph.hybridRaceDef == null)
                 Log.Error($"tried to change pawn {pawn.Name.ToStringFull} to morph {morph.defName} but morph has no hybridRace!");
-            if (pawn.def != ThingDefOf.Human)
+            if (pawn.def != ThingDefOf.Human && !pawn.IsHybridRace())
             {
                 Log.Warning($"hybrids of non human pawns are currently not supported");
                 return; 
             }
             ThingDef_AlienRace hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
-
+            HandleGraphicsChanges(pawn,  morph);
             ChangePawnRace(pawn, hRace, true);
+
+            if (pawn.IsColonist)
+            {
+                PortraitsCache.SetDirty(pawn);
+
+            }
 
             string labelId = string.IsNullOrEmpty(tfSettings.transformLetterLabelId)
                 ? RACE_CHANGE_LETTER_LABEL
@@ -187,6 +192,13 @@ namespace Pawnmorph.Hybrids
                 TryTriggerMutations(pawn, morph); 
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
+        }
+
+        private static void HandleGraphicsChanges(Pawn pawn,MorphDef morph)
+        {
+            var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+            comp.skinColor = morph.raceSettings.graphicsSettings?.skinColorOverride ?? comp.skinColor;
+            comp.skinColorSecond = morph.raceSettings.graphicsSettings?.skinColorOverrideSecond ?? comp.skinColorSecond; 
         }
 
         /// <summary>

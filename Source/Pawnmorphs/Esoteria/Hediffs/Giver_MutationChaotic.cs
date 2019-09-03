@@ -84,11 +84,11 @@ namespace Pawnmorph.Hediffs
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
             if (Mutations.Count == 0) return;
-
             if (Rand.MTBEventOccurs(mtbDays, 6000, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
+                var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
                 var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
-                if (mut.TryApply(pawn))
+                if (mut.TryApply(pawn, mutagen))
                 {
                     IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
                     if (cause.def.HasComp(typeof(HediffComp_Single)))

@@ -1,12 +1,12 @@
-﻿// DebugLogUtils.cs modified by Iron Wolf for Pawnmorph on 07/30/2019 6:01 PM
-// last updated 07/30/2019  6:01 PM
-
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlienRace;
 using Pawnmorph.Hediffs;
+using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -15,6 +15,17 @@ namespace Pawnmorph.DebugUtils
     [HasDebugOutput]
     public static class DebugLogUtils
     {
+
+        /// <summary>
+        /// Asserts the specified condition. if false an error message will be displayed
+        /// </summary>
+        /// <param name="condition">if false will display an error message</param>
+        /// <param name="message">The message.</param>
+        public static void Assert(bool condition, string message)
+        {
+            if (!condition) Log.Error(message); 
+        }
+
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
         public static void OutputRelationshipPatches()
@@ -58,7 +69,7 @@ namespace Pawnmorph.DebugUtils
         public static void ListAllMorphTfHediffs()
         {
             var builder = new StringBuilder();
-            IEnumerable<HediffDef> morphs = TfDefOf.AllMorphs;
+            IEnumerable<HediffDef> morphs = MorphTransformationDefOf.AllMorphs;
             foreach (HediffDef morph in morphs)
                 builder.AppendLine($"defName:{morph.defName} label:{morph.label} class:{morph.hediffClass.Name}");
 
@@ -68,6 +79,102 @@ namespace Pawnmorph.DebugUtils
                 Log.Message(builder.ToString());
         }
 
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput, ModeRestrictionPlay]
+        public static void ListInteractionWeights()
+        {
+            Find.WindowStack.Add(new Pawnmorpher_InteractionWeightLogDialogue());
+        }
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void ListNewTfPawns()
+        {
+            var comp = Find.World.GetComponent<PawnmorphGameComp>();
+
+            var strs = new List<string>();
+            foreach (TransformedPawn tfPawn in comp.TransformedPawns)
+                strs.Add($"{tfPawn.ToDebugString()} of type {tfPawn.GetType().FullName}");
+
+            if (strs.Count > 0)
+                Log.Message($"transformed pawns:\n\t{string.Join("\n\t", strs.ToArray())}");
+            else
+                Log.Message("no transformed pawns");
+        }
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void ListHybridStateOffset()
+        {
+            var morphs = DefDatabase<MorphDef>.AllDefs;
+            var human = ThingDefOf.Human;
+
+            Dictionary<StatDef, float> lookup = human.statBases.ToDictionary(s => s.stat, s => s.value); 
+
+
+            StringBuilder builder = new StringBuilder();
+
+
+            foreach (MorphDef morphDef in morphs)
+            {
+                builder.AppendLine($"{morphDef.label}:");
+
+                foreach (StatModifier statModifier in morphDef.hybridRaceDef.statBases ?? Enumerable.Empty<StatModifier>())
+                {
+
+                    float humanVal = lookup.TryGetValue(statModifier.stat);
+                    float diff = statModifier.value - humanVal;
+                    var sym = diff > 0 ? "+" : "";  
+                    var str = $"{statModifier.stat.label}:{sym}{diff}";
+                    builder.AppendLine($"\t\t{str}"); 
+                }
+
+
+
+            }
+
+            Log.Message($"{builder}");
+
+
+        }
+
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void FindMissingMorphDescriptions()
+        {
+            var morphs = DefDatabase<MorphDef>.AllDefs.Where(def => string.IsNullOrEmpty(def.description)).ToList();
+            if (morphs.Count == 0)
+            {
+                Log.Message("all morphs have descriptions c:");
+            }
+            else
+            {
+                var str = string.Join("\n", morphs.Select(def => def.defName).ToArray()); 
+                Log.Message($"Morphs Missing descriptions:\n{str}");
+            }
+
+
+
+        }
+
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void FindMissingMutationDescriptions()
+        {
+            bool SelectionFunc(HediffDef def)
+            {
+                if (!typeof(Hediff_AddedMutation).IsAssignableFrom(def.hediffClass)) return false; //must be mutation hediff 
+                return string.IsNullOrEmpty(def.description);
+            }
+
+            IEnumerable<HediffDef> mutations = DefDatabase<HediffDef>.AllDefs.Where(SelectionFunc);
+
+            string str = string.Join("\n\t", mutations.Select(m => m.defName).ToArray());
+
+            Log.Message(string.IsNullOrEmpty(str) ? "no parts with missing description" : str);
+        }
 
         /// <summary>
         ///     list all defined mutations (hediffs of the class Hediff_AddedMutation or a subtype there of)
@@ -105,13 +212,11 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        private const string CHAOMORPH_DEF_NAME = "FullRandomTFAnyOutcome";
-        private const string DAMAGE_DEF_NAME = "PawnmorphGunshotTF";
-
-
+   
         [Category(MAIN_CATEGORY_NAME)]
         [ModeRestrictionPlay]
         [DebugOutput]
+        [Obsolete]
         public static void LogAllTransformedPawns()
         {
             var builder = new StringBuilder();
@@ -193,47 +298,56 @@ namespace Pawnmorph.DebugUtils
         [Category(MAIN_CATEGORY_NAME)]
         public static void LogMissingMutationTales()
         {
-            IEnumerable<HediffDef> allMutations = TfDefOf.AllMorphs;
-            var mainBuilder = new StringBuilder();
-
-            foreach (HediffDef transformHediff in allMutations)
+            bool SelectionFunc(HediffDef def) //local function to grab all morph hediffDefs that have givers that are missing tales 
             {
-                var missingGivers = transformHediff.stages?.Select((s, i) => new
-                                                    {
-                                                        givers = s.hediffGivers?.OfType<HediffGiver_Mutation>()
-                                                                  .Where(g => g.tale == null)
-                                                              ?? Enumerable
-                                                                    .Empty<HediffGiver_Mutation
-                                                                     >(), //get all givers that are missing a tale, keep the index to
-                                                        stageIndex = i
-                                                    })
-                                                   .Select(a => new
-                                                    {
-                                                        giversLst = a.givers
-                                                                     .ToList(), //get how many and keep'em around to loop again 
-                                                        index = a.stageIndex
-                                                    })
-                                                   .Where(a => a.giversLst.Count > 0)
-                                                   .ToList(); //evil linq statement is ok because this is only a debug command 
-
-                if (missingGivers == null) continue;
-                if (missingGivers.Count == 0) continue;
-
-                mainBuilder.AppendLine($"in hediff {transformHediff.defName}:");
-                foreach (var missingGiver in missingGivers)
-                {
-                    mainBuilder.AppendLine($"in stage {missingGiver.index}");
-                    foreach (HediffGiver_Mutation hediffGiverMutation in missingGiver.giversLst)
-                        mainBuilder.AppendLine($"\t\tgiver of {hediffGiverMutation.hediff.defName} is missing a tale");
-
-                    mainBuilder.AppendLine("");
-                }
-
-                if (mainBuilder.Length > 0)
-                    Log.Message(mainBuilder.ToString());
-                else
-                    Log.Message("no missing tales in transformations!");
+                if (!typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)) return false;
+                return (def.stages ?? Enumerable.Empty<HediffStage>())
+                      .SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
+                      .OfType<HediffGiver_Mutation>()
+                      .Any(g => g.tale == null);
             }
+
+            IEnumerable<Tuple<HediffDef, HediffGiver_Mutation>> GetMissing(HediffDef def) //local function that will grab all hediff givers missing a tale 
+            {                                                                           //and keep the def it came from around 
+                IEnumerable<HediffGiver_Mutation> givers =
+                    def.stages?.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
+                       .OfType<HediffGiver_Mutation>()
+                       .Where(g => g.tale == null)
+                 ?? Enumerable.Empty<HediffGiver_Mutation>();
+                foreach (HediffGiver_Mutation hediffGiverMutation in givers)
+                    yield return new Tuple<HediffDef, HediffGiver_Mutation>(def, hediffGiverMutation);
+            }
+
+            IEnumerable<IGrouping<HediffDef, HediffDef>> missingGivers = DefDatabase<HediffDef>.AllDefs.Where(SelectionFunc)
+                                                                                               .SelectMany(GetMissing)
+                                                                                               .GroupBy(tup => tup.Second.hediff, //group by the part that needs a tale  
+                                                                                                        tup => tup.First); //and select the morph tfs their givers are found 
+            var builder = new StringBuilder();
+
+            HashSet<HediffDef> missingLst = new HashSet<HediffDef>(); 
+
+            foreach (IGrouping<HediffDef, HediffDef> missingGiver in missingGivers)
+            {
+                string keyStr = $"{missingGiver.Key.defName} is missing a tale in the following morph hediffs:";
+                missingLst.Add(missingGiver.Key); //keep the keys for the summary later
+                builder.AppendLine(keyStr);
+                foreach (HediffDef hediffDef in missingGiver) builder.AppendLine($"\t\t{hediffDef.defName}");
+            }
+
+             
+            
+
+            if (builder.Length > 0)
+            {
+                Log.Message(builder.ToString());
+                builder = new StringBuilder(); 
+                builder.AppendLine($"-------------------{missingLst.Count} parts need tales----------------"); //summary for convenience 
+                builder.AppendLine(string.Join("\n", missingLst.Select(def => def.defName).ToArray()));
+                Log.Message(builder.ToString());
+
+            }
+            else
+                Log.Message("All parts have a tale");
         }
 
         [DebugOutput]

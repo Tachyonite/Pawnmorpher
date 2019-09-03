@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
+using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
@@ -15,6 +18,45 @@ namespace Pawnmorph
     public static class TransformerUtility
     // A class full of useful methods.
     {
+        static TransformerUtility()
+        {
+            PossiblePawnKinds = new[]
+            {
+                PawnKindDefOf.Slave,
+                PawnKindDefOf.Colonist,
+                PawnKindDefOf.SpaceRefugee,
+                PawnKindDefOf.Villager, 
+                PawnKindDefOf.Drifter,
+                PawnKindDefOf.AncientSoldier
+            };
+
+
+
+        }
+        /// <summary>
+        /// Removes all mutations from a pawn (used post reversion) 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        public static void RemoveAllMutations(Pawn pawn)
+        {
+            List<Hediff> hS2 = new List<Hediff>(pawn.health.hediffSet.hediffs);
+            foreach (Hediff hediff in hS2)
+            {
+                Type hediffClass = hediff.def.hediffClass;
+                if (hediffClass == typeof(Hediff_AddedMutation) || hediffClass == typeof(Hediff_ProductionThought) || hediffClass == typeof(HediffGiver_TF))
+                {
+                    pawn.health.RemoveHediff(hediff);
+                }
+            }
+
+            foreach (Hediff_Morph hediffMorph in hS2.OfType<Hediff_Morph>()) //do this second so the morph hediff can cleanup properly 
+            {
+                pawn.health.RemoveHediff(hediffMorph); //remove ongoing morph hediffs 
+            }
+
+        }
+       
+
         public static bool TryGivePostTransformationBondRelations(ref Pawn thrumbo, Pawn pawn, out Pawn otherPawn)
         {
             otherPawn = null;
@@ -82,14 +124,72 @@ namespace Pawnmorph
         public static bool IsAnimalOrMerged([NotNull] this Pawn pawn)
         {
             var comp = Find.World.GetComponent<PawnmorphGameComp>();
-            var pm = comp.GetInstanceWithOriginal(pawn);
-            if (pm != null) return true;
-            var pm1 = comp.GetMergeInstanceWithOriginal(pawn);
-            return pm1 != null; 
+            var status = comp.GetPawnStatus(pawn);
+            return status == TransformedStatus.Transformed; 
         }
 
 
+        /// <summary>
+        /// Converts the age of the given pawn into an equivalent age of the given race 
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="race">The end race.</param>
+        /// <returns></returns>
+        public static float ConvertAge([NotNull] Pawn originalPawn, [NotNull] RaceProperties race)
+        {
+            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
+            if (race == null) throw new ArgumentNullException(nameof(race));
+            var age = originalPawn.ageTracker.AgeBiologicalYearsFloat;
+            var originalRaceExpectancy = originalPawn.RaceProps.lifeExpectancy;
+            return age * race.lifeExpectancy / originalRaceExpectancy; 
+        }
 
+        private static List<Pawn> _pawnScratchPawns = new List<Pawn>(); 
+
+      
+
+
+        private static readonly PawnKindDef[] PossiblePawnKinds;
+
+
+        /// <summary>
+        /// Generates the random human pawn from a given animal pawn.
+        /// </summary>
+        /// <param name="animal">The animal.</param>
+        /// <returns></returns>
+        public static PawnGenerationRequest GenerateRandomPawnFromAnimal(Pawn animal)
+        {
+            
+            var convertedAge = ConvertAge(animal, ThingDefOf.Human.race);
+            var gender = animal.gender;
+            if (Rand.RangeInclusive(0, 100) <= 50)
+            {
+                switch (gender)
+                {
+                    
+                    case Gender.Male:
+                        gender = Gender.Female; 
+                        break;
+                    case Gender.Female:
+                        gender =  Gender.Male;
+                        break;
+                    case Gender.None:
+                    default:
+                        break;
+                }
+            }
+
+            var kind = PossiblePawnKinds.RandElement();
+
+            return new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer,
+                                             fixedBiologicalAge: convertedAge,
+                                             fixedChronologicalAge: Rand.Range(convertedAge, convertedAge + 200),
+                                             fixedGender: gender, fixedMelanin: null);
+
+
+        }
+
+        [Obsolete("Use Mutagen system")]
         public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
                                      TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f
                                      ) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 
@@ -106,30 +206,7 @@ namespace Pawnmorph
                 PawnKindDef pawnkind = pawnkinds.RandomElement();
                 float animalAge = pawnkind.race.race.lifeExpectancy * transformedPawn.ageTracker.AgeBiologicalYears / transformedPawn.def.race.lifeExpectancy; // The animal is the same percent of the way through it's life as the source pawn is.
 
-                Gender animalGender = transformedPawn.gender;
-                if (forceGender != TFGender.Original && Rand.RangeInclusive(0, 100) <= forceGenderChance)
-                // If forceGender was provided, give it a chance to be applied.
-                {
-                    if (forceGender == TFGender.Male)
-                    {
-                        animalGender = Gender.Male;
-                    }
-                    else if (forceGender == TFGender.Female)
-                    {
-                        animalGender = Gender.Female;
-                    }
-                    else if (forceGender == TFGender.Switch)
-                    {
-                        if (transformedPawn.gender == Gender.Male)
-                        {
-                            animalGender = Gender.Female;
-                        }
-                        else if (transformedPawn.gender == Gender.Female)
-                        {
-                            animalGender = Gender.Male;
-                        }
-                    }
-                }
+                var animalGender = GetTransformedGender(transformedPawn, forceGender, forceGenderChance);
 
                 Faction faction = null;
                 if (transformedPawn.IsColonist)
@@ -160,8 +237,9 @@ namespace Pawnmorph
 
 
                 PawnMorphInstance pm = new PawnMorphInstance(transformedPawn, spawnedAnimal); // Put the original pawn somewhere safe and tie it to the animal.
-                Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm); // ...and put this data somewhere safe.
-
+                var tfPair = TfSys.TransformedPawn.Create(transformedPawn, spawnedAnimal); 
+                //Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm); // ...and put this data somewhere safe.
+                Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(tfPair); //doesn't do much right now 
             
 
                 for (int i = 0; i < 10; i++) // Create a cloud of magic.
@@ -194,18 +272,48 @@ namespace Pawnmorph
             }
         }
 
+        public static Gender GetTransformedGender(Pawn original, TFGender forceGender, float forceGenderChance)
+        {
+            Gender animalGender = original.gender;
+            if (forceGender != TFGender.Original && Rand.RangeInclusive(0, 100) <= forceGenderChance)
+                // If forceGender was provided, give it a chance to be applied.
+            {
+                if (forceGender == TFGender.Male)
+                {
+                    animalGender = Gender.Male;
+                }
+                else if (forceGender == TFGender.Female)
+                {
+                    animalGender = Gender.Female;
+                }
+                else if (forceGender == TFGender.Switch)
+                {
+                    if (original.gender == Gender.Male)
+                    {
+                        animalGender = Gender.Female;
+                    }
+                    else if (original.gender == Gender.Female)
+                    {
+                        animalGender = Gender.Male;
+                    }
+                }
+            }
+
+            return animalGender;
+        }
+
         /// <summary>
         /// just cleans up all references to the original human pawn after creating the animal pawn
         ///  This does not call pawn.DeSpawn 
         /// </summary>
         ///     
         /// <param name="originalPawn"></param>
-        static void CleanUpHumanPawnPostTf(Pawn originalPawn, Hediff cause)
+        /// <param name="cause"></param>
+        public static void CleanUpHumanPawnPostTf(Pawn originalPawn,[CanBeNull] Hediff cause)
         {
-            originalPawn.apparel.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
-            originalPawn.equipment.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
-            originalPawn
-               .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
+            HandleApparelAndEquipment(originalPawn);
+            if (cause != null)
+                originalPawn.health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
 
             originalPawn.health.surgeryBills?.Clear(); //if this pawn has any additional surgery bills, get rid of them 
 
@@ -220,14 +328,17 @@ namespace Pawnmorph
                                                               out outPawn); // ...drop them so they can be removed.
             }
 
-            if (originalPawn.IsPrisonerOfColony)
-                originalPawn.guest.SetGuestStatus(null);
-          
+            if (originalPawn.IsPrisoner)
+                HandlePrisoner(originalPawn); 
+
 
 
             //TODO notify faction that their pawn became an animal somehow (this should damage relations maybe?) 
 
-            //originalPawn.GetCaravan()?.Notify_PawnRemoved(originalPawn); 
+
+            Caravan caravan = originalPawn.GetCaravan();
+            caravan?.RemovePawn(originalPawn);
+            caravan?.Notify_PawnRemoved(originalPawn);
 
             originalPawn.GetLord()
                        ?.Notify_PawnLost(originalPawn,
@@ -247,6 +358,48 @@ namespace Pawnmorph
                 animalPawn.playerSettings.Master = null; //set to null, these animals don't have a master anymore 
         }
 
+        static void HandlePrisoner(Pawn pawn)
+        {
+            pawn.guest.Released = true;
+            pawn.guest.SetGuestStatus(null);
+            DebugLogUtils.Assert(!pawn.guest.IsPrisoner, $"{pawn.Name} is being cleaned up but is still a prisoner");
+            
+        }
+
+        private static void HandleApparelAndEquipment(Pawn originalPawn)
+        {
+            var caravan = originalPawn.GetCaravan();
+            var apparelTracker = originalPawn.apparel;
+            var equipmentTracker = originalPawn.equipment;
+
+            if (originalPawn.Spawned)
+            {
+                apparelTracker.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
+                equipmentTracker.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
+            }
+            else if (caravan != null)
+            {
+                for (int i = apparelTracker.WornApparelCount - 1; i >= 0; i--)
+                {
+                    var apparel = apparelTracker.WornApparel[i];
+                    apparelTracker.Remove(apparel);
+                    caravan.AddPawnOrItem(apparel, false); 
+                }
+
+
+                for (int i = equipmentTracker.AllEquipmentListForReading.Count - 1; i >= 0; i--)
+                {
+                    var equipment = equipmentTracker.AllEquipmentListForReading[i];
+                    equipmentTracker.Remove(equipment);
+                    caravan.AddPawnOrItem(equipment, false); 
+                }
+                
+
+                //equipmentTracker.AllEquipmentListForReading.Clear();
+
+            }
+            
+        }
 
         private const string ETHER_BOND_DEF_NAME = "EtherBond";
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken"; 

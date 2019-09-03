@@ -11,12 +11,27 @@
 		<defName>EtherBearMuzzle</defName>
 		<label>ursine muzzle</label>
 		<description>A massive snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<maxSeverity>1</maxSeverity>
 		<stages>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
 						<offset>-0.60</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.80</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>adapted</label>
+				<minSeverity>0.99</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.12</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
@@ -39,6 +54,9 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>

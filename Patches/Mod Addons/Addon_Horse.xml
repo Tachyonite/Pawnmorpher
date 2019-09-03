@@ -6,145 +6,33 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationAdd">
-					<!--Graphics-->
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[1]/hediffGraphics</xpath>
 					<value>
-						<li>
-							<path>Parts/None/None</path>
-							<bodyPart>Jaw</bodyPart>
-							<inFrontOfBody>true</inFrontOfBody>
-							<hediffGraphics>
-								<EtherHorseSnout>Parts/horseface/horseface</EtherHorseSnout>
-							</hediffGraphics>
-							<layerOffset>-0.271</layerOffset>
-							<offsets>
-								<south>
-									<bodyTypes>
-										<Male>(-0.39,0.34)</Male>
-										<Female>(-0.39,0.34)</Female>
-										<Fat>(-0.39,0.34)</Fat>
-										<Thin>(-0.39,0.34)</Thin>
-										<Hulk>(-0.39,0.34)</Hulk>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(-0.42,0.47)</Normal_Average>
-									</crownTypes>
-								</south>
-								<north>
-									<bodyTypes>
-										<Male>(0,0)</Male>
-										<Female>(0,0)</Female>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(0,0)</Normal_Average>
-									</crownTypes>
-								</north>
-								<east>
-									<bodyTypes>
-										<Male>(-0.78,0.44)</Male>
-										<Female>(-0.78,0.44)</Female>
-										<Fat>(-0.78,0.44)</Fat>
-										<Thin>(-0.78,0.44)</Thin>
-										<Hulk>(-0.78,0.44)</Hulk>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(-0.59,0.40)</Normal_Average>
-									</crownTypes>
-								</east>
-							</offsets>
-						</li>
-						<li>
-							<path>Parts/None/None</path>
-							<bodyPart>Ear</bodyPart>
-							<inFrontOfBody>true</inFrontOfBody>
-							<hediffGraphics>
-								<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
-							</hediffGraphics>
-							<layerOffset>-0.24</layerOffset>
-							<offsets>
-								<south>
-									<bodyTypes>
-										<Male>(-0.39,0.73)</Male>
-										<Female>(-0.39,0.73)</Female>
-										<Fat>(-0.39,0.73)</Fat>
-										<Thin>(-0.39,0.73)</Thin>
-										<Hulk>(-0.39,0.73)</Hulk>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(-0.42,0.63)</Normal_Average>
-									</crownTypes>
-								</south>
-								<north>
-									<bodyTypes>
-										<Male>(0,1)</Male>
-										<Female>(0,1)</Female>
-										<Fat>(0,1)</Fat>
-										<Thin>(0,1)</Thin>
-										<Hulk>(0,1)</Hulk>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(0,1)</Normal_Average>
-									</crownTypes>
-								</north>
-								<east>
-									<bodyTypes>
-										<Male>(-0.57,0.83)</Male>
-										<Female>(-0.57,0.83)</Female>
-										<Fat>(-0.57,0.83)</Fat>
-										<Thin>(-0.57,0.83)</Thin>
-										<Hulk>(-0.57,0.83)</Hulk>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(-0.45,0.65)</Normal_Average>
-									</crownTypes>
-								</east>
-							</offsets>
-						</li>
-						<li>
-							<path>Parts/None/None</path>
-							<bodyPart>Tail</bodyPart>
-							<inFrontOfBody>true</inFrontOfBody>
-							<hediffGraphics>
-								<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
-							</hediffGraphics>
-							<layerOffset>-0.33</layerOffset>
-							<offsets>
-								<south>
-									<bodyTypes>
-										<Male>(0,0)</Male>
-										<Female>(0,0)</Female>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(0,0)</Normal_Average>
-									</crownTypes>
-								</south>
-								<north>
-									<bodyTypes>
-										<Male>(-0.04,0.04)</Male>
-										<Female>(-0.04,0.04)</Female>
-										<Fat>(-0.04,0.04)</Fat>
-										<Thin>(-0.04,0.04)</Thin>
-										<Hulk>(-0.04,0.04)</Hulk>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(0,0.04)</Normal_Average>
-									</crownTypes>
-								</north>
-								<east>
-									<bodyTypes>
-										<Male>(-0.22,-0.22)</Male>
-										<Female>(-0.16,-0.12)</Female>
-										<Fat>(0,-0.21)</Fat>
-										<Thin>(-0.24,-0.21)</Thin>
-										<Hulk>(0.04,-0.28)</Hulk>
-									</bodyTypes>
-									<crownTypes>
-										<Normal_Average>(-0.45,0.65)</Normal_Average>
-									</crownTypes>
-								</east>
-							</offsets>
-							<drawnInBed>false</drawnInBed>
-						</li>		
+						<EtherHorseSnout>Parts/horseface/horseface</EtherHorseSnout>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[2]/hediffGraphics</xpath>
+					<value>
+						<EtherHorseSnout>Parts/horseface/horseface</EtherHorseSnout>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[3]/hediffGraphics</xpath>
+					<value>
+						<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[4]/hediffGraphics</xpath>
+					<value>
+						<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[5]/hediffGraphics</xpath>
+					<value>
+						<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
 					</value>
 				</li>
 				
@@ -297,6 +185,7 @@
 												<li>Leg</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>LegBecameDigitgrade</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherUnclovenHoofFoot</hediff>
@@ -372,6 +261,7 @@
 												<li>Leg</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>LegBecameDigitgrade</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherUnclovenHoofFoot</hediff>

@@ -1,7 +1,8 @@
 <Defs>
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>AlpacaMorph</defName>
-		<label>alpaca morph</label>
+		<label>alpacamorph</label>
+		<description>Alpacamorphs are rather wooly herbivorous humanoids who often have hooves. They produce good amounts of soft wool, which they can shave off themselves...they don't need your help, thank you.</description>
 		<race>Alpaca</race>
 		<categories>
 			<li>farm</li>

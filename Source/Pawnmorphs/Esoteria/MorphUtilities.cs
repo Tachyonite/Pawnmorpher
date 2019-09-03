@@ -24,7 +24,7 @@ namespace Pawnmorph
 
         static MorphUtilities() //this is really hacky 
         {
-            IEnumerable<HediffDef> defs = TfDefOf.AllMorphs; 
+            IEnumerable<HediffDef> defs = MorphTransformationDefOf.AllMorphs; 
 
             PossiblePartsLst = defs.SelectMany(def => def.stages ?? Enumerable.Empty<HediffStage>())
                                 .SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
@@ -37,6 +37,57 @@ namespace Pawnmorph
             
 
         }
+
+        /// <summary>
+        /// get all morphs defs associated with this transformation hediff def 
+        /// </summary>
+        /// <param name="transformationDef">The transformation definition.</param>
+        /// <returns></returns>
+        static IEnumerable<MorphDef> GetAssociatedMorphInternal(HediffDef transformationDef) //might want to add it the hediff defs themselves rather then check at runtime 
+        {
+            var mutationsGiven =
+                transformationDef.stages?.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_Mutation>()
+                                                       ?? Enumerable.Empty<HediffGiver_Mutation>())
+             ?? Enumerable.Empty<HediffGiver_Mutation>(); //all mutations in the def 
+
+            foreach (HediffGiver_Mutation hediffGiverMutation in mutationsGiven)
+            {
+                var comps = hediffGiverMutation.hediff.comps?.OfType<CompProperties_MorphInfluence>();
+
+                if (comps == null) continue;
+
+                foreach (CompProperties_MorphInfluence morphInfluence in comps)
+                {
+                    yield return morphInfluence.morph; 
+                }
+
+            }
+
+
+        }
+
+
+        private static Dictionary<HediffDef, List<MorphDef>> _morphAssociationCache = new Dictionary<HediffDef, List<MorphDef>>(); //don't calculate the associations more then we have to 
+
+        /// <summary>
+        /// Gets all morphDefs associated with the given transformation 
+        /// </summary>
+        /// <param name="transformationDef">The transformation definition.</param>
+        /// <returns></returns>
+        public static IEnumerable<MorphDef> GetAssociatedMorph(HediffDef transformationDef)
+        {
+            if (_morphAssociationCache.TryGetValue(transformationDef, out List<MorphDef> lst))
+            {
+                return lst; 
+            }
+
+            lst = GetAssociatedMorphInternal(transformationDef).ToList();
+            _morphAssociationCache[transformationDef] = lst;
+            return lst; 
+
+
+        }
+
 
 
         public struct Tuple
@@ -106,6 +157,21 @@ namespace Pawnmorph
             }
         }
 
+
+        /// <summary>
+        /// Gets the type of the transformation.
+        /// </summary>
+        /// <param name="inst">The inst.</param>
+        /// <returns>the type of the transformation</returns>
+        /// <exception cref="ArgumentNullException">inst</exception>
+        public static MorphTransformationTypes GetTransformationType([NotNull] this HediffDef inst)
+        {
+            if (inst == null) throw new ArgumentNullException(nameof(inst));
+            if (!typeof(Hediff_Morph).IsAssignableFrom(inst.hediffClass)) return 0;
+
+            var comp = inst.CompProps<HediffCompProperties_Single>();
+            return comp == null ? MorphTransformationTypes.Full : MorphTransformationTypes.Partial;
+        }
 
         /// <summary>
         ///     calculate all morph influences on a pawn
@@ -248,7 +314,7 @@ namespace Pawnmorph
 
             var humanInfluence = pawn.health.hediffSet.GetNotMissingParts().Count(p => PossiblePartsLst.Contains(p.def) && !mutatedRecords.Contains(p));
 
-            return humanInfluence > totalInfluence; 
+            return humanInfluence * 0.75f > totalInfluence; 
 
         }
 

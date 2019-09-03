@@ -1,0 +1,61 @@
+﻿// JobDriver_EnterMutagenChamber.cs modified by Iron Wolf for Pawnmorph on //2019 
+// last updated 08/25/2019  7:06 PM
+
+using System;
+using System.Collections.Generic;
+using Verse;
+using Verse.AI;
+
+namespace Pawnmorph
+{
+    public class JobDriver_EnterMutagenChamber : JobDriver
+    {
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            Pawn pawn = base.pawn;
+            LocalTargetInfo targetA = base.job.targetA;
+            Job job = base.job;
+            bool errorOnFailed2 = errorOnFailed;
+            return pawn.Reserve(targetA, job, 1, -1, null, errorOnFailed2);
+        }
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOnDespawnedOrNull(TargetIndex.A);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
+            Toil prepare = Toils_General.Wait(500);
+            prepare.FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
+            prepare.WithProgressBarToilDelay(TargetIndex.A);
+            yield return prepare;
+            Toil enter = new Toil();
+            enter.initAction = delegate
+            {
+                Pawn actor = enter.actor;
+                Building_MutagenChamber pod = (Building_MutagenChamber)actor.CurJob.targetA.Thing;
+                Action action = delegate
+                {
+                    actor.DeSpawn();
+                    pod.TryAcceptThing(actor);
+                };
+                if (!pod.def.building.isPlayerEjectable)
+                {
+                    int freeColonistsSpawnedOrInPlayerEjectablePodsCount = Map.mapPawns.FreeColonistsSpawnedOrInPlayerEjectablePodsCount;
+                    if (freeColonistsSpawnedOrInPlayerEjectablePodsCount <= 1)
+                    {
+                        Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CasketWarning".Translate(actor.Named("PAWN")).AdjustedFor(actor), action));
+                    }
+                    else
+                    {
+                        action();
+                    }
+                }
+                else
+                {
+                    action();
+                }
+            };
+            enter.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return enter;
+        }
+    }
+}

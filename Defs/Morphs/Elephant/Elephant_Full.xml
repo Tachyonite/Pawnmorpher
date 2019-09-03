@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphElephantTF</defName>
-		<label>elephantMorph</label>
+		<label>elephantmorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>
@@ -71,6 +71,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+						<tale>GrewElephantFace</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherElephantEar</hediff>
@@ -79,6 +80,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>GrewElephantEars</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherElephantTail</hediff>
@@ -95,6 +97,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsHide</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherElephantHand</hediff>
@@ -104,6 +107,7 @@
 							<li>Hand</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>HandsBecameElephantFeet</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherElephantLeg</hediff>
@@ -112,6 +116,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsHide</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherElephantFoot</hediff>
@@ -120,6 +125,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>GrewElephantFoot</tale>
 					</li>
 				</hediffGivers>
 			</li>

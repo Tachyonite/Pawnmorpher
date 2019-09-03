@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>PawnmorphThrumboTFPartial</defName>
-		<label>thrumboMorph partial</label>
+		<label>thrumbomorph partial</label>
 		<stages>
 			<li>
 				<hungerRateFactor>3</hungerRateFactor>
@@ -28,6 +28,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+						<tale>GrewThrumboMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThrumboEar</hediff>
@@ -36,6 +37,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>EarsChangedMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThrumboTail</hediff>
@@ -52,6 +54,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>
@@ -60,6 +63,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LegBecameDigitgrade</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherClovenHoofFoot</hediff>
@@ -68,6 +72,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>FootBecomesHooves</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThrumboHorn</hediff>

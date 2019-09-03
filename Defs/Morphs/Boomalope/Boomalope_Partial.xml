@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>PawnmorphBoomalopeTFPartial</defName>
-		<label>boomMorph partial</label>
+		<label>boommorph partial</label>
 		<stages>
 			<li>
 				<painOffset>0.1</painOffset>
@@ -27,6 +27,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+						<tale>GrewBoomalopeMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherBoomalopeEar</hediff>
@@ -35,6 +36,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>EarsChangedMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherHideLimb</hediff>
@@ -43,6 +45,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsHide</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>
@@ -51,6 +54,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LegBecameDigitgrade</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherClovenHoofFoot</hediff>
@@ -59,6 +63,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>FootBecomesHooves</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherChemfuelUdder</hediff>
@@ -66,6 +71,7 @@
 						<partsToAffect>
 							<li>Waist</li>
 						</partsToAffect>
+						<tale>GrewChemfuelUdder</tale>
 					</li>
 				</hediffGivers>
 			</li>

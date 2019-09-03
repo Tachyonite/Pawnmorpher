@@ -21,6 +21,12 @@ namespace Pawnmorph
 
             try
             {
+                if (pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Any(y => y == x.def))){
+
+                    return;
+
+                }
+
                 if (Rand.RangeInclusive(0, 100) <= completeChance)
                 {
                     hediffDef = hediffDefsComplete.RandomElement();

@@ -15,4 +15,20 @@
       </rulesStrings>
     </rulePack>
   </TaleDef>
+
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewThrumboMuzzle</defName>
+		<label>grew thrumbo muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] grew a thrumbic muzzle</li>
+				<li>tale_noun->[PAWN_nameDef]'s face becoming that of a thrumbo</li>
+				<li>image->[PAWN_nameFull]'s face begins to push out into a large muzzle [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s head begins to reshape into a large muzzle [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems disturbed by [PAWN_possessive] new thrumbic muzzle.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems oddly pleased with [PAWN_possessive] thrumbic muzzle.</li>
+			</rulesStrings>
+		</rulePack>
+
+	</TaleDef>
 </Defs>

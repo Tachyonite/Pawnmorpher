@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>PawnmorphFoxTFPartial</defName>
-		<label>foxMorph partial</label>
+		<label>foxmorph partial</label>
 		<stages>
 			<li>
 				<painOffset>0.1</painOffset>
@@ -53,6 +53,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>
@@ -61,6 +62,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LegBecameDigitgrade</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherPawFoot</hediff>
@@ -69,6 +71,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>FootBecomesCanidPaw</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherFoxEye</hediff>
@@ -77,6 +80,7 @@
 							<li>Eye</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>EyesBecomeVulpine</tale>
 					</li>
 				</hediffGivers>
 			</li>

@@ -160,7 +160,7 @@ namespace Pawnmorph.Hybrids
             };
         }
 
-        static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers)
+        static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers, List<StatModifier> statMods)
         {
             humanModifiers = humanModifiers ?? new List<StatModifier>();
             animalModifiers = animalModifiers ?? new List<StatModifier>();
@@ -186,6 +186,17 @@ namespace Pawnmorph.Hybrids
                 valDict[animalModifier.stat] = val; 
             }
 
+            //now handle any statMods if they exist 
+            if (statMods != null)
+                foreach (StatModifier statModifier in statMods)
+                {
+                    float v = valDict.TryGetValue(statModifier.stat) + statModifier.value; 
+                    valDict[statModifier.stat] = v; 
+                }
+
+
+
+
             List<StatModifier> outMods = new List<StatModifier>();
             foreach (KeyValuePair<StatDef, float> keyValuePair in valDict)
             {
@@ -196,6 +207,9 @@ namespace Pawnmorph.Hybrids
                 });
             }
 
+            
+
+
             return outMods; 
 
 
@@ -204,7 +218,7 @@ namespace Pawnmorph.Hybrids
         static FoodTypeFlags GenerateFoodFlags(FoodTypeFlags animalFlags)
         {
             animalFlags |= FoodTypeFlags.Meal; //make sure all hybrids can eat meals 
-            var platFlags = FoodTypeFlags.Plant | FoodTypeFlags.Tree; //make sure hybrids can't eat plants or trees, at least for now 
+            //var platFlags = FoodTypeFlags.Plant | FoodTypeFlags.Tree; //make sure hybrids can't eat plants or trees, at least for now 
                         //need to figure out a way to let them graze but not pick up plants 
             //animalFlags =  animalFlags & ~platFlags;
             return animalFlags; 
@@ -226,7 +240,7 @@ namespace Pawnmorph.Hybrids
                 useHitPoints = humanDef.useHitPoints,
                 hasTooltip = humanDef.hasTooltip,
                 soundImpactDefault = morph.race.soundImpactDefault,
-                statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases),
+                statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases, morph.raceSettings.statModifiers),
                 inspectorTabs = humanDef.inspectorTabs.ToList(), //do we want any custom tabs? 
                 comps = humanDef.comps.ToList(),
                 drawGUIOverlay = humanDef.drawGUIOverlay,
@@ -241,6 +255,9 @@ namespace Pawnmorph.Hybrids
                 soundInteract = morph.race.soundInteract,
                 soundPickup = morph.race.soundPickup,
                 socialPropernessMatters = humanDef.socialPropernessMatters,
+                stuffCategories = humanDef.stuffCategories?.ToList(),
+                designationCategory = humanDef.designationCategory,
+                tradeTags = humanDef.tradeTags?.ToList()
                 
             };
         }

@@ -11,6 +11,9 @@ namespace Pawnmorph
 {
     public class Hediff_Morph : HediffWithComps
     {
+        protected virtual int TransformationWarningStage => 1;
+        private const string TRANSFORMATION_WARNING_LETTER_ID = "TransformationStageWarning"; 
+
         [Unsaved]
         private int _lastStage = -1; //ToDO can we save this?
         public override void PostTick()
@@ -19,24 +22,41 @@ namespace Pawnmorph
 
             if (_lastStage != CurStageIndex)
             {
-
                 _lastStage = CurStageIndex;
-
-
-                if (CurStage.hediffGivers == null) return; 
-
-                foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
-                {
-
-                    if(tfGiver.TryTf(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
-
-
-                }
-
-
+                EnterNextStage();
             }
 
           
+        }
+
+      
+        protected virtual void EnterNextStage()
+        {
+
+
+            if (_lastStage == TransformationWarningStage)
+            {
+                SendLetter();
+            }
+            
+            TryGiveTransformations();
+        }
+
+        protected virtual void TryGiveTransformations()
+        {
+            if (CurStage.hediffGivers == null) return;
+            foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
+            {
+                if (tfGiver.TryTf(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
+            }
+        }
+
+        private void SendLetter()
+        {
+            var mutagen = this.GetMutagenDef();
+            if(mutagen.CanTransform(pawn))
+                Messages.Message((TRANSFORMATION_WARNING_LETTER_ID).Translate(pawn),def:MessageTypeDefOf.NegativeHealthEvent);
+
         }
 
         /// <summary>

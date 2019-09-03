@@ -11,12 +11,27 @@
 		<defName>EtherCatMuzzle</defName>
 		<label>feline muzzle</label>
 		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a feline. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<maxSeverity>1</maxSeverity>
 		<stages>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
 						<offset>-0.50</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.99</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.10</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
@@ -39,6 +54,9 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>

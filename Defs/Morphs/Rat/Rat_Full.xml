@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphRatTF</defName>
-		<label>ratMorph</label>
+		<label>ratmorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>
@@ -69,7 +69,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
-            <tale>GrewRatMuzzle</tale>
+						<tale>GrewRatMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherRatEar</hediff>
@@ -78,6 +78,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>EarsBecomeRatEars</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherRatTail</hediff>
@@ -94,6 +95,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDextrousPawHand</hediff>
@@ -103,7 +105,7 @@
 							<li>Hand</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-            <tale>HandsBecomePawsDextrous</tale>
+						<tale>HandsBecomePawsDextrous</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>
@@ -112,6 +114,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LegBecameDigitgrade</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherRatFoot</hediff>
@@ -120,6 +123,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>FeetBecomeRatPaws</tale>
 					</li>
 				</hediffGivers>
 			</li>

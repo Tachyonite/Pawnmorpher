@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphBearTF</defName>
-		<label>bearMorph</label>
+		<label>bearmorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>
@@ -70,6 +70,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
+						<tale>GrewBearMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherBearEar</hediff>
@@ -78,6 +79,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>EarsChangedMisc</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherBearTail</hediff>
@@ -94,6 +96,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherBearPawHand</hediff>
@@ -103,6 +106,7 @@
 						</partsToAffect>
 						<chance>5</chance>
 						<countToAffect>2</countToAffect>
+						<tale>HandsBecomeUrsinePaws</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherThickFurLimb</hediff>
@@ -111,6 +115,7 @@
 							<li>Leg</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherPawFoot</hediff>
@@ -119,6 +124,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>FootBecomesCanidPaw</tale>
 					</li>
 				</hediffGivers>
 			</li>

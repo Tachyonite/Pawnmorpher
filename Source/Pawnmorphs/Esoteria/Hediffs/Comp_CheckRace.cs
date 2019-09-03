@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -13,11 +14,10 @@ namespace Pawnmorph.Hediffs
     /// hediff component that checks the race of a pawn at the end of a Hediff_Morph 
     /// </summary>
     /// this is a component because it's set to go off just when a hediff_Morph ends naturally (after reeling) 
-    public class Comp_CheckRace : HediffComp, IPostTfHediffComp
+    public class Comp_CheckRace : HediffCompBase<CompProperties_CheckRace>
     {
         private readonly List<MorphUtilities.Tuple> _scratchList = new List<MorphUtilities.Tuple>();
-        
-        public void CheckRace(Pawn pawn, Hediff_Morph morphTf)
+        public void CheckRace(Pawn pawn)
         {
             if (pawn.ShouldBeConsideredHuman()) return;
 
@@ -43,19 +43,32 @@ namespace Pawnmorph.Hediffs
 
             RaceShiftUtilities.ChangePawnToMorph(pawn, morph); 
         }
-
-        /// <summary>
-        /// called when the morph hediff ends naturally (after reaching 0 or below severity) 
-        /// </summary>
-        public void FinishedTransformation(Pawn pawn, Hediff_Morph hediff)
+        
+        private int _lastStage = -1; 
+        public override void CompPostTick(ref float severityAdjustment)
         {
-            Log.Message($"checking if {pawn.Name.ToStringFull} is still human!");
-            CheckRace(pawn, hediff); 
+            
+            base.CompPostTick(ref severityAdjustment);
+            if (parent.CurStageIndex != _lastStage)
+            {
+                _lastStage = parent.CurStageIndex;
+                if (_lastStage == Props.triggerStage)
+                {
+                    CheckRace(parent.pawn);
+                }
+            }
+        }
+
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_Values.Look(ref _lastStage, nameof(_lastStage), -1);
         }
     }
 
     public class CompProperties_CheckRace : HediffCompProperties
     {
+        public int triggerStage; 
         public CompProperties_CheckRace()
         {
             compClass = typeof(Comp_CheckRace); 

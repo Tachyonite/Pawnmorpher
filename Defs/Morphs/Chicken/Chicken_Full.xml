@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="MorphParent">
 		<defName>PawnmorphChickenTF</defName>
-		<label>chookMorph</label>
+		<label>chookmorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>
@@ -88,6 +88,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>LimbGrowsFeathers</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherWing</hediff>
@@ -107,6 +108,7 @@
 							<li>Hand</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>HandsBecomeWingTips</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherAvianFoot</hediff>
@@ -115,6 +117,7 @@
 							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
+						<tale>FeetBecomeTalons</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherEggLayer</hediff>
@@ -124,6 +127,7 @@
 						<partsToAffect>
 							<li>Pelvis</li>
 						</partsToAffect>
+						<tale>GrewEgglayer</tale>
 					</li>
 				</hediffGivers>
 			</li>

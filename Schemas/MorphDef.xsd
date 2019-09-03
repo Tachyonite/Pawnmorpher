@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Defs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Pawnmorph.MorphDef">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="defName" type="xs:string" />
+							<xs:element name="label" type="xs:string" />
+							<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<xs:element name="race" type="xs:string" />
+							<xs:element name="categories">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" name="li" type="xs:string" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="raceSettings" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="statModifiers" type="StatModifiersList" minOccurs="0" maxOccurs="1" />
+										<xs:element name="thoughtSettings" type="HybridThoughtSettings" maxOccurs="1" minOccurs="0" />
+										<xs:element name="graphicsSettings">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="skinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
+													<xs:element name="SkinColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ParentName" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="StatModifiersList">
+		<xs:sequence>
+			<xs:element name="li" type="StatModifier" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatModifier">
+		<xs:sequence>
+			<xs:element name="stat" type="xs:string" />
+			<xs:element name="value" type="xs:float" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HybridThoughtSettings">
+		<xs:sequence>
+			<xs:element name="replacerList" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="original" type="xs:string" />
+									<xs:element name="replacer" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ateAnimalThought" minOccurs="0" maxOccurs="1" type="AteThought">
+			</xs:element>
+			<xs:element name="butcheredAnimalThought" type="ButcherThought" minOccurs="0" maxOccurs="1" />
+			<xs:element name="suppressHumanlikeCannibalThoughts" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="canEatRaw" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="thoughtsBlackList" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" type="xs:string" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ateThoughtsSpecifics" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" type="AteThought" minOccurs="1" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="butcherThoughtsSpecifics" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" maxOccurs="unbounded" type="ButcherThought" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AteThought">
+		<xs:sequence>
+			<xs:element name="thought" type="xs:string" />
+			<xs:element name="thoughtCannibal" type="xs:string" />
+			<xs:element name="ingredientThought" type="xs:string" />
+			<xs:element name="ingredientThoughtCannibal" type="xs:string" />
+			<xs:element name="raceList" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" type="xs:string" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ButcherThought">
+		<xs:sequence>
+			<xs:element name="thought" type="xs:string" />
+			<xs:element name="knowThought" type="xs:string" />
+			<xs:element name="raceList" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" type="xs:string" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

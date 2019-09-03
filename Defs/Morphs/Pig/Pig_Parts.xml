@@ -24,20 +24,34 @@
 					</li>
 				</capMods>
 			</li>
+			<li>
+				<label>adapted</label>
+				<minSeverity>0.99</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.08</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
 		</stages>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_TerrainProduction">
 				<entries>
 					<li>
 						<terrain>Soil</terrain>
-						<mtb>5.4</mtb>
+						<mtb>10.4</mtb>
 						<resource>RawFungus</resource>
 						<amount>15</amount>
 						<thought>FoundTruffles</thought>
 					</li>
 					<li>
 						<terrain>MarshyTerrain</terrain>
-						<mtb>5.4</mtb>
+						<mtb>10.4</mtb>
 						<resource>RawFungus</resource>
 						<amount>15</amount>
 						<thought>FoundTruffles</thought>
@@ -65,12 +79,16 @@
 					</li>
 				</tools>
 			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
+			</li>
 		</comps>
 	</HediffDef>
 
 	<HediffDef ParentName="PigPart">
 		<defName>EtherPigEar</defName>
 		<label>porcine</label>
+		<description>Large, pink piglike ears sit atop [PAWN_nameDef]'s, covered in a fine hair.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>

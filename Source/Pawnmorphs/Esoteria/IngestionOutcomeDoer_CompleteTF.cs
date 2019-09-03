@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.TfSys;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -22,7 +24,25 @@ namespace Pawnmorph
                         {
                             if (giver is HediffGiver_TF giverTF) // ...until you find one that is of type HediffGiver_TF.
                             {
-                                TransformerUtility.Transform(pawn, morph, giverTF.hediff, giverTF.pawnkinds, giverTF.tale); // When you do, use it's infor to transform the pawn.
+                                var mutagen = morph.GetMutagenDef();
+
+                                pawn.health.RemoveHediff(morph);
+
+
+                                var request = new TransformationRequest(giverTF.pawnkinds.RandElement(), pawn)
+                                {
+                                    tale = giverTF.tale
+                                };
+
+                                var inst = mutagen.MutagenCached.Transform(request);
+
+                                if (inst != null)
+                                {
+                                    var comp = Find.World.GetComponent<PawnmorphGameComp>();
+                                    comp.AddTransformedPawn(inst); 
+                                }
+
+                                //TransformerUtility.Transform(pawn, morph, giverTF.hediff, giverTF.pawnkinds, giverTF.tale); // When you do, use it's infor to transform the pawn.
                                 return;
                             }
                         }

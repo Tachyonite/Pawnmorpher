@@ -15,6 +15,8 @@ namespace Pawnmorph
 {
     public class PawnmorpherSettings : ModSettings
     {
+        private const bool DEFAULT_FALLOUT_SETTING = false; 
+       
         /// <summary>
         /// The three settings our mod has.
         /// </summary>
@@ -22,6 +24,7 @@ namespace Pawnmorph
         public bool enableMutagenDiseases = true;
         public bool enableMutagenMeteor = true;
         public bool enableWildFormers = true;
+        public bool enableFallout = DEFAULT_FALLOUT_SETTING; 
         public float transformChance = 50f;
         public float formerChance = 2f;
         public float partialChance = 5f;
@@ -31,6 +34,7 @@ namespace Pawnmorph
         /// </summary>
         public override void ExposeData()
         {
+            Scribe_Values.Look(ref enableFallout, nameof(enableFallout), DEFAULT_FALLOUT_SETTING); 
             Scribe_Values.Look(ref enableMutagenShipPart, "enableMutagenShipPart", true);
             Scribe_Values.Look(ref enableMutagenDiseases, "enableMutagenDiseases", true);
             Scribe_Values.Look(ref enableMutagenDiseases, "enableMutagenMeteor", true);
@@ -67,6 +71,7 @@ namespace Pawnmorph
         {
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
+            listingStandard.CheckboxLabeled($"Enable Mutagenic Fallout (Work In Progress)", ref settings.enableFallout, "Fallout that will mutate exposed pawns");
             listingStandard.CheckboxLabeled("Enable Mutagenic Ship Parts", ref settings.enableMutagenShipPart, "Ship parts can crash that mutate pawns in an expanding radius");
             listingStandard.CheckboxLabeled("Enable Mutagenic Diseases", ref settings.enableMutagenDiseases, "Whether pawns can become ill with mutagenic diseases that will morph them");
             listingStandard.CheckboxLabeled("Enable Mutagenic Meteorite Morph Radius", ref settings.enableMutagenMeteor, "A mutonite meteor can still spawn, this determines if people getting too close will start to transform.");
@@ -181,8 +186,14 @@ namespace Pawnmorph
                 chookfluIncident.baseChance = 0.5f;
             }
 
+            if (!settings.enableFallout)
+            {
+                PMIncidentDefOf.MutagenicFallout.baseChance = 0; 
+            }
+
             Log.Message(mutagenIncident.baseChance.ToString());
             Log.Message(cowfluIncident.baseChance.ToString());
+            Log.Message($"{PMIncidentDefOf.MutagenicFallout.baseChance}"); 
         }
     }
 

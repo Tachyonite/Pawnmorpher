@@ -111,8 +111,8 @@ namespace Pawnmorph
                     Find.WorldPawns.RemovePawn(pawnOriginal);
                 }
 
-                PawnMorphInstance pm = new PawnMorphInstance(pawnOriginal, pawn); //pawnOriginal is human, pawn is animal
-                Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm);
+                var pm = TfSys.TransformedPawn.Create(pawnOriginal, pawn); //pawnOriginal is human, pawn is animal
+                Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(pm);
 
                 yield return pawn;
             }

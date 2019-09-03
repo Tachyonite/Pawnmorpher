@@ -23,6 +23,19 @@
 						<offset>0.40</offset>
 					</li>
 				</capMods>
+			</li><li>
+				<minSeverity>0.99</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.08</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
 			</li>
 		</stages>
 		<comps>
@@ -40,12 +53,16 @@
 					</li>
 				</tools>
 			</li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.5</severityPerDay>
+			</li>
 		</comps>
 	</HediffDef>
 
 	<HediffDef ParentName="DeerPart">
 		<defName>EtherDeerEar</defName>
 		<label>cervine</label>
+		<description>The smooth, long ears of a deer sit atop [PAWN_nameDef]'s head, keeping watch for predators.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>

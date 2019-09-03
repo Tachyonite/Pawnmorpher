@@ -19,6 +19,7 @@
 						<li>ProductionPillEggEffect</li>
 						<li>ProductionPillUdderEffect</li>
 						<li>ProductionPillWoolEffect</li>
+						<li>ProductionPillMegawoolEffect</li>
 					</hediffDefs>
 					<severity>1.00</severity>
 				</li>
@@ -130,6 +131,30 @@
 			</li>
 			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
 				<hediff>EtherWooly</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<HediffDef>
+		<defName>ProductionPillMegawoolEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>production increasing</label>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherMegawoolly</hediff>
 				<severity>0.3</severity>
 				<mtbDays>0.2</mtbDays>
 			</li>
