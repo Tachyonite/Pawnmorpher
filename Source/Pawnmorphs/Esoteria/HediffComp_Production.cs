@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -39,6 +41,12 @@ namespace Pawnmorph
         public void Produce(float daysToProduce, int amount, float chance, ThingDef resource, ThingDef rareResource,
                             ThoughtDef stageThought = null)
         {
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
+
             MemoryThoughtHandler thoughts = Pawn.needs.mood.thoughts.memories;
             bool hasEtherBond = Pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBond"));
             bool hasEtherBroken = Pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBroken"));
@@ -114,6 +122,12 @@ namespace Pawnmorph
                     brokenChance += 0.5f;
                     bondChance += 0.2f;
                 }
+
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PopState();
+                }
+
             }
         }
     }

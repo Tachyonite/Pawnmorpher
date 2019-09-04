@@ -4,6 +4,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -84,6 +86,12 @@ namespace Pawnmorph.Hediffs
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
             if (Mutations.Count == 0) return;
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
             if (Rand.MTBEventOccurs(mtbDays, 6000, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
@@ -101,6 +109,11 @@ namespace Pawnmorph.Hediffs
                         TaleRecorder.RecordTale(mut.tale, pawn); 
                     }
                 }
+            }
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
             }
 
         }
