@@ -16,9 +16,11 @@ namespace Pawnmorph.Hediffs
     /// this is a component because it's set to go off just when a hediff_Morph ends naturally (after reeling) 
     public class Comp_CheckRace : HediffCompBase<CompProperties_CheckRace>
     {
+        private bool _checked; 
         private readonly List<MorphUtilities.Tuple> _scratchList = new List<MorphUtilities.Tuple>();
         public void CheckRace(Pawn pawn)
         {
+            _checked = true; 
             if (pawn.ShouldBeConsideredHuman()) return;
 
             _scratchList.Clear();
@@ -43,7 +45,18 @@ namespace Pawnmorph.Hediffs
 
             RaceShiftUtilities.ChangePawnToMorph(pawn, morph); 
         }
-        
+
+        public override void CompPostPostRemoved()
+        {
+            base.CompPostPostRemoved();
+
+            if (Pawn.Dead || _checked) return;
+
+            CheckRace(Pawn); 
+
+
+        }
+
         private int _lastStage = -1; 
         public override void CompPostTick(ref float severityAdjustment)
         {
@@ -63,6 +76,7 @@ namespace Pawnmorph.Hediffs
         {
             base.CompExposeData();
             Scribe_Values.Look(ref _lastStage, nameof(_lastStage), -1);
+            Scribe_Values.Look(ref _checked, nameof(_checked), false); 
         }
     }
 

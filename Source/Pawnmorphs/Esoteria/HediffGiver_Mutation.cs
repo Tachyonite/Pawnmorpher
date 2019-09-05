@@ -2,6 +2,7 @@
 // last updated 08/07/2019  10:19 AM
 
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using RimWorld;
 using Verse;
 
@@ -38,7 +39,7 @@ namespace Pawnmorph
 
             return PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
         }
-        public override void OnIntervalPassed(Pawn pawn, Hediff cause)
+        public override void OnIntervalPassed(Pawn pawn, [NotNull] Hediff cause)
         {
             if (Rand.MTBEventOccurs(mtbDays, 60000f, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
@@ -60,9 +61,20 @@ namespace Pawnmorph
                     triggered[cause] = true;
                 }
 
-                if (cause.def.HasComp(typeof(HediffComp_Single))) //should either be given or triggered 
+                var comp = cause.TryGetComp<HediffComp_Single>();
+
+
+                if (comp != null)
                 {
-                    pawn.health.RemoveHediff(cause);
+                    comp.stacks--;
+                    if (comp.stacks == 0)
+                    {
+                        pawn.health.RemoveHediff(cause); 
+                    }
+                    else if(triggered.ContainsKey(cause))
+                    {
+                        triggered.Remove(cause); //make sure the next roll can potentially trigger the mutation again if it has the single component 
+                    }
                 }
             }
         }
