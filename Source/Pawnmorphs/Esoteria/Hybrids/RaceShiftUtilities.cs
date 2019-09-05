@@ -162,18 +162,18 @@ namespace Pawnmorph.Hybrids
             if (pawn.def != ThingDefOf.Human && !pawn.IsHybridRace())
             {
                 Log.Warning($"hybrids of non human pawns are currently not supported");
-                return; 
+                return;
             }
             //apply mutations 
             foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AssociatedMutations)
             {
-                morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen); 
+                morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen);
             }
 
 
             ThingDef_AlienRace hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
-            HandleGraphicsChanges(pawn,  morph);
+            HandleGraphicsChanges(pawn, morph);
             ChangePawnRace(pawn, hRace, true);
 
             if (pawn.IsColonist)
@@ -182,6 +182,18 @@ namespace Pawnmorph.Hybrids
 
             }
 
+            if(pawn.IsColonist || pawn.IsPrisonerOfColony)
+                SendHybridTfMessage(pawn, tfSettings);
+
+            //now try to trigger any mutations
+            if (pawn.health?.hediffSet?.hediffs != null)
+                TryTriggerMutations(pawn, morph);
+
+            if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
+        }
+
+        private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)
+        {
             string labelId = string.IsNullOrEmpty(tfSettings.transformLetterLabelId)
                 ? RACE_CHANGE_LETTER_LABEL
                 : tfSettings.transformLetterLabelId;
@@ -193,12 +205,6 @@ namespace Pawnmorph.Hybrids
             string content = contentID.Translate(pawn.LabelShort).CapitalizeFirst();
             LetterDef letterDef = tfSettings.letterDef ?? LetterDefOf.PositiveEvent;
             Find.LetterStack.ReceiveLetter(label, content, letterDef, pawn);
-
-            //now try to trigger any mutations
-            if(pawn.health?.hediffSet?.hediffs != null)
-                TryTriggerMutations(pawn, morph); 
-
-            if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
         }
 
         private static void HandleGraphicsChanges(Pawn pawn,MorphDef morph)
