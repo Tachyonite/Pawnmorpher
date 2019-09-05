@@ -59,7 +59,7 @@ namespace Pawnmorph
         {
 
 
-            if (_lastStage == TransformationWarningStage)
+            if (_lastStage == TransformationWarningStage && (pawn.IsColonist || pawn.IsPrisonerOfColony))
             {
                 SendLetter();
             }
