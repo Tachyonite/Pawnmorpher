@@ -74,6 +74,13 @@
 				<maxSimultaneous>2</maxSimultaneous>
 				<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
 			</li>
+			<li Class="Pawnmorph.Chambers.ThingCompProperties_ModulatorOptions">
+				<defaultAnimals>
+					<li>Chaocow</li>
+					<li>Chaofox</li>
+					<li>Chaodino</li>
+				</defaultAnimals>
+			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
 		<designationCategory>Production</designationCategory>
@@ -306,7 +313,13 @@
         <maxSimultaneous>2</maxSimultaneous>
 		<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
       </li>
-
+	  <li Class="Pawnmorph.Chambers.ThingCompProperties_ModulatorOptions">
+		  <defaultAnimals>
+			  <li>Chaocow</li>
+			  <li>Chaofox</li>
+			  <li>Chaodino</li>
+		  </defaultAnimals>
+	  </li>
     </comps>
     <defaultPlacingRot>South</defaultPlacingRot>
 	<designationCategory>Production</designationCategory>

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -18,13 +20,20 @@ namespace Pawnmorph
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-
+            bool pushed=false;
             try
             {
-                if (pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Any(y => y == x.def))){
+                if (pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Any(y => y == x.def)))
+                {
 
                     return;
 
+                }
+
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PushState(RandUtilities.MPSafeSeed);
+                    pushed = true;
                 }
 
                 if (Rand.RangeInclusive(0, 100) <= completeChance)
@@ -46,16 +55,25 @@ namespace Pawnmorph
                 {
                     num = hediffDef.initialSeverity;
                 }
+
                 if (this.divideByBodySize)
                 {
                     num /= pawn.BodySize;
                 }
+
                 AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, this.toleranceChemical, ref num);
                 hediff.Severity = num;
                 pawn.health.AddHediff(hediff, null, null, null);
             }
             catch
             {
+            }
+            finally
+            {
+                if (pushed)
+                {
+                    Rand.PopState();
+                }
             }
         }
     }

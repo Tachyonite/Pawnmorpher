@@ -2,7 +2,9 @@
 // last updated 08/02/2019  2:32 PM
 
 using System.Collections.Generic;
+using System.Linq;
 using AlienRace;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
 using RimWorld;
 using Verse;
@@ -53,8 +55,43 @@ namespace Pawnmorph
 
         public HybridRaceSettings raceSettings = new HybridRaceSettings(); 
 
-        public TransformSettings transformSettings = new TransformSettings(); 
+        public TransformSettings transformSettings = new TransformSettings();
 
+
+        [Unsaved]
+        private List<HediffGiver_Mutation> _associatedMutations;
+
+        /// <summary>
+        /// Gets the mutations associated with this morph.
+        /// </summary>
+        /// <value>
+        /// The associated mutations.
+        /// </value>
+        public IEnumerable<HediffGiver_Mutation> AssociatedMutations
+        {
+            get
+            {
+                if (_associatedMutations == null)
+                {
+                    _associatedMutations = GetMutations();
+                }
+
+                return _associatedMutations; 
+            }
+        }
+
+        private List<HediffGiver_Mutation> GetMutations()
+        {
+            var linq = DefDatabase<HediffDef>.AllDefs.Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)) //get all morph hediff defs 
+                                             .SelectMany(def => def.stages ?? Enumerable.Empty<HediffStage>()) //get all stages 
+                                             .SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>()) //get all hediff givers 
+                                             .OfType<HediffGiver_Mutation>() //keep only the mutation givers 
+                                             .Where(mut => mut.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == this); //keep only those associated with this morph 
+            return linq.ToList();
+
+
+
+        }
 
         [Unsaved] public ThingDef_AlienRace hybridRaceDef;
 

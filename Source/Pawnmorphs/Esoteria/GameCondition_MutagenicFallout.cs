@@ -77,7 +77,7 @@ namespace Pawnmorph
                     num *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
                     if (num != 0f)
                     {
-                        float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D)); //this need MP Compatibility 
+                        float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D)); //should be ok
                         num *= num2;                                                //what's the magic number? 
                         HealthUtility.AdjustSeverity(pawn, Hediffs.MorphTransformationDefOf.MutagenicBuildup, num);
                     }

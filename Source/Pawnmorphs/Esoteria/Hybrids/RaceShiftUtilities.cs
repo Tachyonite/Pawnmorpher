@@ -164,6 +164,13 @@ namespace Pawnmorph.Hybrids
                 Log.Warning($"hybrids of non human pawns are currently not supported");
                 return; 
             }
+            //apply mutations 
+            foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AssociatedMutations)
+            {
+                morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen); 
+            }
+
+
             ThingDef_AlienRace hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
             HandleGraphicsChanges(pawn,  morph);

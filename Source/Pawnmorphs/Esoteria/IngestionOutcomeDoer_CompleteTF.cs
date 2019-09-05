@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using UnityEngine;
@@ -14,6 +15,11 @@ namespace Pawnmorph
     {
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
             foreach (Hediff hediff in pawn.health.hediffSet.hediffs) // Loop through all the hediffs on the pawn.
             {
                 if (hediff is Hediff_Morph morph && morph.CurStage == morph.def.stages[0]) // When you find one that is a pawnmorph in the final stage...
@@ -42,6 +48,11 @@ namespace Pawnmorph
                                     comp.AddTransformedPawn(inst); 
                                 }
 
+                                if (MP.IsInMultiplayer)
+                                {
+                                    Rand.PopState();
+                                }
+
                                 //TransformerUtility.Transform(pawn, morph, giverTF.hediff, giverTF.pawnkinds, giverTF.tale); // When you do, use it's infor to transform the pawn.
                                 return;
                             }
@@ -49,6 +60,12 @@ namespace Pawnmorph
                     }
                 }
             }
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
+
         }
     }
 }

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
 
@@ -53,10 +55,17 @@ namespace Pawnmorph.Hediffs
 
             }
 
-            //needs MP Compatibility 
 
-            SetTransformationType(MorphTransformationDefOf.AllMorphsCached.Where(SelectionFunc).RandomElement()); 
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
 
+            SetTransformationType(MorphTransformationDefOf.AllMorphsCached.Where(SelectionFunc).RandomElement());
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
 
         }
 
