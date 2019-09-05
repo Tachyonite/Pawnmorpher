@@ -67,7 +67,7 @@ namespace Pawnmorph
                 if (comp != null)
                 {
                     comp.stacks--;
-                    if (comp.stacks == 0)
+                    if (comp.stacks <= 0)
                     {
                         pawn.health.RemoveHediff(cause); 
                     }
