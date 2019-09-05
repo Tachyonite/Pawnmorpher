@@ -6,7 +6,7 @@ namespace Pawnmorph
     public class HediffComp_Single : HediffComp
     {
 
-        public int stacks;
+        public int stacks = 1;
 
         public override void CompExposeData()
         {
