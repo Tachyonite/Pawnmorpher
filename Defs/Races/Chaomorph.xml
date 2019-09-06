@@ -1043,7 +1043,7 @@
 			<baseBodySize>3.0</baseBodySize>
 			<baseHungerRate>1.7</baseHungerRate>
 			<baseHealthScale>1.5</baseHealthScale>
-			<foodType>OmnivoreAnimal</foodType>
+			<foodType>OmnivoreAnimal, OmnivoreRoughAnimal</foodType>
 			<leatherDef>Leather_Chao</leatherDef>
 			<wildness>0.1</wildness>
 			<trainability>Advanced</trainability>
