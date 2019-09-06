@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Multiplayer.API;
 using Pawnmorph.Chambers;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.TfSys;
 using RimWorld;
 using Verse;
@@ -158,31 +159,43 @@ namespace Pawnmorph
                     throw new ArgumentOutOfRangeException();
             }
             
-            if (daysIn > 1 && !doNotEject)
+            if (IsFinished)
             {
-                EjectContents();
-                fuelComp.ConsumeFuel(fuelComp.Fuel);
+
                 if (modulator != null)
                 {
-                    modulator.triggered = true;
-                    if (modulator.random)
-                        PickRandom();
+                    modulator.NotifyChamberFinished(this); 
+                }
+                else
+                {
+                    EjectContents();
+                    fuelComp.ConsumeFuel(fuelComp.Fuel);
+
+                }
+
+
+                //EjectContents();
+                //fuelComp.ConsumeFuel(fuelComp.Fuel);
+                //if (modulator != null)
+                //{
+                //    modulator.triggered = true;
+                //    if (modulator.random)
+                //        PickRandom();
                     
                         
-                }
+                //}
 
                 daysIn = 0;
             }
-            else if (modulator != null)
-            {
-                if (doNotEject && modulator.triggered)
-                {
-                    fuelComp.ConsumeFuel(fuelComp.Fuel);
-                    daysIn = 0;
-                    innerContainer.ClearAndDestroyContentsOrPassToWorld();
-                    modulator.triggered = false;
-                }
-            }
+           
+        }
+
+        public void ClearContents()
+        {
+            fuelComp.ConsumeFuel(fuelComp.Fuel);
+            daysIn = 0;
+            innerContainer.ClearAndDestroyContentsOrPassToWorld();
+            modulator.triggered = false;
         }
 
         public void PickRandom()
@@ -289,29 +302,25 @@ namespace Pawnmorph
             }
         }
 
-        void EjectBase()
-        {
-            base.EjectContents();
-        }
+        public bool IsFinished => daysIn >= 1; 
+
 
         public override void EjectContents() //should refactor the mutagenic chamber, make it a state machine 
         {
-            if (innerContainer.Count == 0) return;
+            DebugLogUtils.Assert(innerContainer.Count == 1, "innerContainer.Count == 1");
 
-            if (innerContainer.Count > 1)
+            var pawn = (Pawn) innerContainer[0];
+            if (pawn == null)
             {
-                Log.Error("there is more then 1 pawn in mutagenic chamber? ");
+                Log.Warning($"mutagenic chamber ejecting nothing");
+
                 return;
             }
 
-            var pawn = (Pawn) innerContainer[0];
-            if (pawn == null) return;
-
         
 
-            if (daysIn > 1)
+            if (IsFinished)
             {
-                
                 TransformPawn(pawn);
 
 
@@ -377,7 +386,13 @@ namespace Pawnmorph
             }
 
             TransformedPawn pmInst = mutagen.Transform(request);
-            if (pmInst == null) return;
+            if (pmInst == null)
+            {
+                Log.Error($"mutagenic chamber could not transform pawns {string.Join(",",request.originals.Select(p => p.Name.ToStringFull).ToArray())} using mutagen {mutagen.def.defName}");
+
+                return;
+            }
+
             SendLetter(pawn);
             base.EjectContents();
             if(_state == ChamberState.MergeInto)

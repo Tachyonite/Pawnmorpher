@@ -44,6 +44,11 @@ namespace Pawnmorph.TfSys
             return base.IsValid(request) && request.originals.Length == 2;
         }
 
+        public override bool CanTransform(Pawn pawn)
+        {
+            return base.CanInfect(pawn);
+        }
+
         /// <summary>
         /// preform the requested transform 
         /// </summary>

@@ -23,7 +23,7 @@ namespace Pawnmorph.DebugUtils
         /// <param name="message">The message.</param>
         public static void Assert(bool condition, string message)
         {
-            if (!condition) Log.Error(message); 
+            if (!condition) Log.Error($"assertion failed:{message}"); 
         }
 
         [Category(MAIN_CATEGORY_NAME)]

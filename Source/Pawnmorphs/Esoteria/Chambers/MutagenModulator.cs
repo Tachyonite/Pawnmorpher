@@ -295,5 +295,26 @@ namespace Pawnmorph
 
             return options;
         }
+
+        public void NotifyChamberFinished(Building_MutagenChamber chamber)
+        {
+            if (!LinkedFacilities.Contains(chamber))
+            {
+                Log.Error($"mutagen modulator received message from chamber that it was not linked to!");
+                return;
+            }
+
+            
+            chamber.EjectContents();
+            var linkedTo = chamber.linkTo;
+            linkedTo?.ClearContents();
+
+            if (random)
+            {
+                chamber.PickRandom();
+                linkedTo?.PickRandom();
+            }
+
+        }
     }
 }
