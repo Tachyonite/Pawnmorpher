@@ -190,7 +190,8 @@ namespace Pawnmorph
             }
             else
             {
-                Find.WindowStack.Add(new FloatMenu(GenMenuOptions()));
+                if(LinkedFacilities.OfType<Building_MutagenChamber>().Any())
+                    Find.WindowStack.Add(new FloatMenu(GenMenuOptions()));
             }
             
         }
