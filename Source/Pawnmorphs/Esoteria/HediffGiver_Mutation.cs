@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -41,6 +42,8 @@ namespace Pawnmorph
         }
         public override void OnIntervalPassed(Pawn pawn, [NotNull] Hediff cause)
         {
+            RandUtilities.PushState();
+
             if (Rand.MTBEventOccurs(mtbDays, 60000f, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
@@ -77,6 +80,8 @@ namespace Pawnmorph
                     }
                 }
             }
+
+            RandUtilities.PopState();
         }
     }
 }
