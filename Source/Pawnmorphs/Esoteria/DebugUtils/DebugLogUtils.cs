@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using AlienRace;
@@ -21,9 +22,12 @@ namespace Pawnmorph.DebugUtils
         /// </summary>
         /// <param name="condition">if false will display an error message</param>
         /// <param name="message">The message.</param>
-        public static void Assert(bool condition, string message)
+        /// <returns>the condition</returns>
+        [DebuggerHidden]
+        public static bool Assert(bool condition, string message)
         {
-            if (!condition) Log.Error($"assertion failed:{message}"); 
+            if (!condition) Log.Error($"assertion failed:{message}");
+            return condition;
         }
 
         [Category(MAIN_CATEGORY_NAME)]

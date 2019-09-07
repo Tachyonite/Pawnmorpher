@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -22,7 +23,23 @@ namespace Pawnmorph.Hybrids
         private static string RaceRevertLetterLabel => RACE_REVERT_LETTER + "Label";
         private static string RaceRevertLetterContent => RACE_REVERT_LETTER + "Content";
 
-        private static LetterDef RevertToHumanLetterDef => LetterDefOf.PositiveEvent; 
+        private static LetterDef RevertToHumanLetterDef => LetterDefOf.PositiveEvent;
+
+        /// <summary>
+        /// Determines whether this pawn is a morph hybrid 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is a morph hybrid; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsMorphHybrid([NotNull] Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            return RaceGenerator.IsMorphRace(pawn.def); 
+
+        }
 
 
         /// <summary>
@@ -225,10 +242,7 @@ namespace Pawnmorph.Hybrids
             var human = ThingDefOf.Human;
             if (race == human) return; //do nothing 
 
-            if (!RaceGenerator.TryGetMorphOfRace(race, out MorphDef morph))
-            {
-                Log.Warning($"Trying to convert pawn {pawn.Name.ToStringFull} to human but they are not currently a morph!");
-            }
+            if (!DebugLogUtils.Assert(pawn.IsHybridRace(), "pawn.IsHybridRace()")) return;
 
             ChangePawnRace(pawn, human); 
 

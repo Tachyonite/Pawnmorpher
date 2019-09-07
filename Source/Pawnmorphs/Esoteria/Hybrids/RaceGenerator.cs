@@ -1,9 +1,11 @@
 ﻿// RaceGenerator.cs modified by Iron Wolf for Pawnmorph on 08/02/2019 7:12 PM
 // last updated 08/02/2019  7:12 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
+using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -260,6 +262,20 @@ namespace Pawnmorph.Hybrids
                 tradeTags = humanDef.tradeTags?.ToList()
                 
             };
+        }
+
+        /// <summary>
+        /// Determines whether this race is a morph hybrid race
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the race is a morph hybrid race; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">raceDef</exception>
+        public static bool IsMorphRace([NotNull]ThingDef raceDef)
+        {
+            if (raceDef == null) throw new ArgumentNullException(nameof(raceDef));
+            return _raceLookupTable.ContainsKey(raceDef); 
         }
     }
 }
