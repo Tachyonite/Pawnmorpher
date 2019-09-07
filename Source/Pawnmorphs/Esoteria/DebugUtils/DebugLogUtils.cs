@@ -65,6 +65,58 @@ namespace Pawnmorph.DebugUtils
 
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void GetMutationsWithStages()
+        {
+            var allMutations = DefDatabase<HediffDef>.AllDefs.Where(def => typeof(Hediff_AddedMutation).IsAssignableFrom(def.hediffClass))
+                                                     .Where(def => def.stages?.Count > 1 && def.HasComp(typeof(HediffComp_SeverityPerDay)))
+                                                     .ToList();
+
+
+            if (allMutations.Count == 0)
+            {
+                Log.Message($"no mutations with multiple stages");
+                return;
+            }
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine($"mutations:");
+            foreach (HediffDef allMutation in allMutations)
+            {
+                builder.AppendLine($"\t{allMutation.defName}");
+            }
+
+            builder.AppendLine($"\n------------Stats--------------\n");
+
+
+            foreach (HediffDef mutation in allMutations)
+            {
+                var stages = mutation.stages;
+                var severityPerDay = mutation.CompProps<HediffCompProperties_SeverityPerDay>().severityPerDay;
+                builder.AppendLine($"{mutation.defName}:");
+
+                for (int i = 0; i < stages.Count - 1; i++)
+                {
+                    var s = stages[i];
+                    var s1 = stages[i + 1];
+
+                    var diff = s1.minSeverity - s.minSeverity;
+                    builder.AppendLine($"\tstage[{i}] {{{s.minSeverity}}} => stage[{i + 1}] {{{s1.minSeverity}}} takes {diff / severityPerDay} days"); 
+
+                }
+
+
+
+            }
+
+
+
+            Log.Message(builder.ToString());
+
+
+        }
+
         /// <summary>
         ///     list all transformation hediffs defined (hediffs of class Hediff_Morph or a subtype there of
         /// </summary>
