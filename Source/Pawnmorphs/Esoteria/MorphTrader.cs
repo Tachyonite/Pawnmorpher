@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 using Multiplayer.API;
+using Pawnmorph.Utilities;
 
 namespace Pawnmorph
 {
@@ -30,7 +31,12 @@ namespace Pawnmorph
         new CurvePoint(1f, 2f)
     };
 
-        public override IEnumerable<Thing> GenerateThings(int forTile)
+        /// <summary>
+        /// Generates the things for the given forTile 
+        /// </summary>
+        /// <param name="forTile">For tile.</param>
+        /// <returns></returns>
+        IEnumerable<Thing> GenerateThingEnumer(int forTile)
         {
             int numKinds = kindCountRange.RandomInRange;
             int count = countRange.RandomInRange;
@@ -55,12 +61,12 @@ namespace Pawnmorph
                 int tile = forTile;
 
                 Pawn pawnOriginal = Find.WorldPawns.AllPawnsAlive.Where(p => !p.IsPlayerControlledCaravanMember() && (PawnUtility.ForSaleBySettlement(p) || p.kindDef == PawnKindDefOf.Slave || (PawnUtility.IsKidnappedPawn(p) && p.RaceProps.Humanlike) && !PawnUtility.IsFactionLeader(p))).RandomElement();
-                
-                PawnGenerationRequest request = new PawnGenerationRequest(kind2, null, PawnGenerationContext.NonPlayer, tile); 
+
+                PawnGenerationRequest request = new PawnGenerationRequest(kind2, null, PawnGenerationContext.NonPlayer, tile);
                 Pawn pawn = PawnGenerator.GeneratePawn(request); //Generate the animal!
 
-                
-                
+
+
 
                 Hediff h = HediffMaker.MakeHediff(HediffDef.Named("TransformedHuman"), pawn);
                 h.Severity = Rand.Range(0.02f, 0.9f);
@@ -106,7 +112,8 @@ namespace Pawnmorph
                     pawnOriginal = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pkds.RandomElement(), Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(lifeExpectancy), new float?(Rand.Range(lifeExpectancy, lifeExpectancy + 200)), new Gender?(newGender), null, null));
                     pawn.Name = pawnOriginal.Name;
                 }
-                else {
+                else
+                {
                     pawn.Name = pawnOriginal.Name;
                     Find.WorldPawns.RemovePawn(pawnOriginal);
                 }
@@ -116,6 +123,19 @@ namespace Pawnmorph
 
                 yield return pawn;
             }
+        }
+
+
+        public override IEnumerable<Thing> GenerateThings(int forTile)
+        {
+            RandUtilities.PushState();
+
+            IEnumerable<Thing> enumer = GenerateThingEnumer(forTile);
+
+            RandUtilities.PopState();
+
+            return enumer; 
+
         }
 
         private float SelectionChance(PawnKindDef k)

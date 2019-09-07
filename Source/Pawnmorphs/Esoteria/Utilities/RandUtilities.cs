@@ -9,6 +9,32 @@ namespace Pawnmorph.Utilities
     public static class RandUtilities
     {
         /// <summary>
+        /// if the game is in multiplayer pushes a deterministic seed to Rand
+        /// if not in multiplayer this call does nothing 
+        /// </summary>
+        public static void PushState()
+        {
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(MPSafeSeed);
+
+            }
+        }
+
+        /// <summary>
+        /// Pops the Rand state if the game is in multiplayer.
+        /// this does nothing if the game is not in multiplayer
+        /// </summary>
+        public static void PopState()
+        {
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
+        }
+
+
+        /// <summary>
         /// Multiplayer save version of Rand.MTBEventOccurs 
         /// </summary>
         /// <param name="mtb">The MTB.</param>
