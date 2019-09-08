@@ -2,28 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using UnityEngine;
 
 namespace Pawnmorph
 {
-    [StaticConstructorOnStartup]
-    public class WeatherOverlay_Mutagen : SkyOverlay
-    {
-        private static readonly Material FalloutOverlayWorld = MatLoader.LoadMat("Weather/SnowOverlayWorld");
-
-        public WeatherOverlay_Mutagen()
-        {
-            worldOverlayMat = FalloutOverlayWorld;
-            worldOverlayPanSpeed1 = 0.0008f;
-            worldPanDir1 = new Vector2(-0.25f, -1f);
-            worldPanDir1.Normalize();
-            worldOverlayPanSpeed2 = 0.0012f;
-            worldPanDir2 = new Vector2(-0.24f, -1f);
-            worldPanDir2.Normalize();
-        }
-    }
     public class GameCondition_MutagenicFallout : GameCondition
     {
         private const int LerpTicks = 5000;
@@ -103,14 +88,84 @@ namespace Pawnmorph
             return new SkyTarget(0.85f, MutagenicFalloutColors, 1f, 1f);
         }
 
+        private const double PLANT_SUBSTITUTION_CHANCE = 0.0250000013411045;
+
+        public bool IsMutagenicPlant(Plant plant)
+        {
+            return plant.def.In(PMThingDefOf.Plant_ChaoBulb, PMThingDefOf.Plant_GnarledTree); 
+        }
+
+        public override void DoCellSteadyEffects(IntVec3 c, Map map)
+        {
+            base.DoCellSteadyEffects(c, map);
+
+            if (c.Roofed(map)) return;
+
+            var thingList = c.GetThingList(map);
+
+            RandUtilities.PushState(); //mp compatibility check for rand usage 
+
+            for (var index = thingList.Count-1; index > 0; index--)
+            {
+                Thing thing = thingList[index];
+                if (!(thing is Plant plant)) continue;
+                if (IsMutagenicPlant(plant)) continue;
+
+                if (Rand.Value < PLANT_SUBSTITUTION_CHANCE)
+                {
+                    SubstitutePlant(plant);
+                }
+            }
+
+            RandUtilities.PopState();
+        }
+
+        private void SubstitutePlant(Plant plant)
+        {
+            var plantType = plant.def.plant.purpose;
+            var plantProps = plant.def.plant; 
+            ThingDef plantDef;
+
+            if (plantProps.IsTree)
+            {
+                plantDef = PMThingDefOf.Plant_GnarledTree; 
+            }
+            else if(plantProps.harvestedThingDef != null)
+            {
+                plantDef = PMThingDefOf.Plant_ChaoBulb;
+            }
+            else
+            {
+                plantDef = null; 
+            }
+
+
+            var pos = plant.Position;
+            var map = plant.Map;
+
+            if (plantDef != null) //spawn a new plant 
+            {
+                var newPlant = (Plant) GenSpawn.Spawn(plantDef, pos, map);
+                newPlant.Growth = plant.Growth * 0.7f; //make the new plant a little less mature then the one that was substituted 
+                
+            }
+
+            plant.Kill(); 
+
+            
+
+
+
+        }
+
         public override float AnimalDensityFactor(Map map)
         {
-            return 0f;
+            return 0.5f;
         }
 
         public override float PlantDensityFactor(Map map)
         {
-            return 0f;
+            return 0.5f;
         }
 
         public override bool AllowEnjoyableOutsideNow(Map map)

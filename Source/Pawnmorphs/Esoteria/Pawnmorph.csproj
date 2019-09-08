@@ -111,6 +111,7 @@
     <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
+    <Compile Include="PMThingDefOf.cs" />
     <Compile Include="Projectile_EtherBullet.cs" />
     <Compile Include="Projectile_EtherExplosive.cs" />
     <Compile Include="RaceMutagenExtension.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Utilities\LinqUtils.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\Tuple.cs" />
+    <Compile Include="WeatherOverlay_Mutagen.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
