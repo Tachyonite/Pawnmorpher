@@ -227,7 +227,9 @@ namespace Pawnmorph.Hybrids
             //string content = contentID.Translate(pawn.LabelShort).CapitalizeFirst();
             //LetterDef letterDef = tfSettings.letterDef ?? LetterDefOf.PositiveEvent;
             //Find.LetterStack.ReceiveLetter(label, content, letterDef, pawn);
-            Messages.Message(label, pawn, MessageTypeDefOf.NeutralEvent);
+
+            var messageDef = tfSettings.messageDef ?? MessageTypeDefOf.NeutralEvent;
+            Messages.Message(label, pawn, messageDef);
         }
 
         private static void HandleGraphicsChanges(Pawn pawn,MorphDef morph)
