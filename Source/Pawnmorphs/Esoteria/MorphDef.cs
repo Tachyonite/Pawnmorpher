@@ -22,9 +22,8 @@ namespace Pawnmorph
         public class TransformSettings
         {
             public TaleDef transformTale;
-            public string transformLetterLabelId;
-            public string transformLetterContentId;
-            public LetterDef letterDef; 
+            public string transformationMessageID;
+            public MessageTypeDef messageDef; 
         }
 
         /// <summary>

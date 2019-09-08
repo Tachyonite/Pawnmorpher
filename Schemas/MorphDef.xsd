@@ -35,6 +35,7 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
+							<xs:element name="transformSettings" type="TransformationSettings" minOccurs="0" maxOccurs="1" />
 						</xs:sequence>
 						<xs:attribute name="ParentName" type="xs:string" use="required" />
 					</xs:complexType>
@@ -123,6 +124,13 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TransformationSettings">
+		<xs:sequence>
+			<xs:element name="transformationTale" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="transformationMessageID" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="messageDef" type="xs:string" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

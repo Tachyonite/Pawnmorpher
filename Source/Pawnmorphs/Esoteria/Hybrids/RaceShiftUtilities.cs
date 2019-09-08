@@ -16,12 +16,14 @@ namespace Pawnmorph.Hybrids
 {
     public static class RaceShiftUtilities
     {
-        public const string RACE_CHANGE_LETTER_LABEL = "LetterRaceChangeToMorphLabel";
-        public const string RACE_CHANGE_LETTER_CONTENT = "LetterRaceChangeToMorphContent";
+        //public const string RACE_CHANGE_LETTER_LABEL = "LetterRaceChangeToMorphLabel";
+        //public const string RACE_CHANGE_LETTER_CONTENT = "LetterRaceChangeToMorphContent";
 
-        private const string RACE_REVERT_LETTER = "LetterPawnHumanAgain";
-        private static string RaceRevertLetterLabel => RACE_REVERT_LETTER + "Label";
-        private static string RaceRevertLetterContent => RACE_REVERT_LETTER + "Content";
+        public const string RACE_CHANGE_MESSAGE_ID = "RaceChangeMessage"; 
+
+        private const string RACE_REVERT_MESSAGE_ID = "HumanAgainMessage";
+       // private static string RaceRevertLetterLabel => RACE_REVERT_LETTER + "Label";
+        //private static string RaceRevertLetterContent => RACE_REVERT_LETTER + "Content";
 
         private static LetterDef RevertToHumanLetterDef => LetterDefOf.PositiveEvent;
 
@@ -214,9 +216,9 @@ namespace Pawnmorph.Hybrids
 
         private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)
         {
-            string labelId = string.IsNullOrEmpty(tfSettings.transformLetterLabelId)
-                ? RACE_CHANGE_LETTER_LABEL
-                : tfSettings.transformLetterLabelId;//assign the correct default values if none are present 
+            string labelId = string.IsNullOrEmpty(tfSettings.transformationMessageID)
+                ? RACE_CHANGE_MESSAGE_ID
+                : tfSettings.transformationMessageID;//assign the correct default values if none are present 
             //string contentID = string.IsNullOrEmpty(tfSettings.transformLetterContentId)
             //    ? RACE_CHANGE_LETTER_CONTENT
             //    : tfSettings.transformLetterContentId; 
@@ -256,12 +258,13 @@ namespace Pawnmorph.Hybrids
 
 
 
-            var letterLabel = RaceRevertLetterLabel.Translate(pawn.LabelShort).CapitalizeFirst();
-            var letterContent = RaceRevertLetterContent.Translate(pawn.LabelShort).CapitalizeFirst();
+            //var letterLabel = RaceRevertLetterLabel.Translate(pawn.LabelShort).CapitalizeFirst();
+            //var letterContent = RaceRevertLetterContent.Translate(pawn.LabelShort).CapitalizeFirst();
 
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, RevertToHumanLetterDef, pawn); 
+            //Find.LetterStack.ReceiveLetter(letterLabel, letterContent, RevertToHumanLetterDef, pawn); 
 
-
+            var messageStr = RACE_REVERT_MESSAGE_ID.Translate(pawn.LabelShort).CapitalizeFirst();
+            Messages.Message(messageStr, pawn, MessageTypeDefOf.NeutralEvent); 
 
 
         }
