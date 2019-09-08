@@ -1,6 +1,73 @@
 <Defs>
+
+	<ThingDef Name="PM_DrugBase" Abstract="True"> <!-- copied from DrugBase so I could get rid of the drugs category in it -->
+		<thingClass>ThingWithComps</thingClass>
+		<category>Item</category>
+		<useHitPoints>true</useHitPoints>
+		<selectable>true</selectable>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2</DeteriorationRate>
+			<Beauty>-4</Beauty>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<stackLimit>150</stackLimit>
+		<alwaysHaulable>true</alwaysHaulable>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+		</comps>
+		<pathCost>15</pathCost>
+		<resourceReadoutPriority>Last</resourceReadoutPriority>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<ingestible>
+			<preferability>NeverForNutrition</preferability>
+			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+			<chairSearchRadius>8</chairSearchRadius>
+		</ingestible>
+		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
+	</ThingDef>
+
+	<ThingDef Name="PM_Injection" ParentName="PM_DrugBase" Abstract="True">
+		<ingestible>
+			<foodType>Processed</foodType>
+			<drugCategory>Medical</drugCategory>
+			<baseIngestTicks>120</baseIngestTicks>
+			<chairSearchRadius>0</chairSearchRadius>
+			<ingestSound>Ingest_Inject</ingestSound>
+			<ingestHoldUsesTable>false</ingestHoldUsesTable>
+			<ingestCommandString>Inject {0}</ingestCommandString>
+			<ingestReportString>Injecting {0}.</ingestReportString>
+		</ingestible>
+		<socialPropernessMatters>true</socialPropernessMatters>
+	</ThingDef>
+
+	<ThingDef Name="PM_PillBase" ParentName="PM_DrugBase" Abstract="true">
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<foodType>Processed</foodType>
+			<baseIngestTicks>120</baseIngestTicks>
+			<chairSearchRadius>0</chairSearchRadius>
+			<ingestSound>Ingest_Pill</ingestSound>
+			<ingestHoldUsesTable>false</ingestHoldUsesTable>
+			<ingestCommandString>Take {0}</ingestCommandString>
+			<ingestReportString>Taking {0}.</ingestReportString>
+		</ingestible>
+		<thingCategories>
+			<li>Drugs</li>
+		</thingCategories>
+		<rotatable>false</rotatable>
+		<techLevel>Ultra</techLevel>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.01</Mass>
+		</statBases>
+	</ThingDef>
+
 	<!--Idividual injectors can be found in the morph's xml file-->
-	<ThingDef ParentName="DrugPillBase" Name="InjectorBase" Abstract="True">
+	<ThingDef ParentName="PM_Injection" Name="InjectorBase" Abstract="True">
 		<graphicData>
 			<texPath>Things/Item/Drug/Specific</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -53,7 +120,7 @@
 		</costList>
 	</ThingDef>
 	
-	<ThingDef ParentName="DrugPillBase" Name="SerumBase" Abstract="True">
+	<ThingDef ParentName="PM_Injection" Name="SerumBase" Abstract="True">
 		<rotatable>false</rotatable>
 		<techLevel>Ultra</techLevel>
 		<graphicData>
@@ -63,7 +130,7 @@
 			<Mass>0.01</Mass>
 		</statBases>
 		<thingCategories>
-			<li>Artifacts</li>
+			<li>Serum</li>
 		</thingCategories>
 		<tradeTags>
 			<li>ExoticMisc</li>
