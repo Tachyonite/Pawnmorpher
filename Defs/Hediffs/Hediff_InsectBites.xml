@@ -1,0 +1,19 @@
+<Defs>
+	<HediffDef ParentName="InjuryBase">
+		<defName>MegaspiderInjection</defName>
+		<label>stab</label>
+		<hediffClass>Pawnmorph.Hediffs.InsectInjectionInjury</hediffClass>
+		<injuryProps>
+			<painPerSeverity>2</painPerSeverity>
+			<bleedRate>0.01</bleedRate>
+			<canMerge>false</canMerge>
+		</injuryProps>
+		<comps>
+			<li Class="HediffCompProperties_TendDuration">
+				<labelTendedWell>bandaged</labelTendedWell>
+				<labelTendedWellInner>sutured</labelTendedWellInner>
+				<labelSolidTendedWell>set</labelSolidTendedWell>
+			</li>
+		</comps>
+	</HediffDef>
+</Defs>

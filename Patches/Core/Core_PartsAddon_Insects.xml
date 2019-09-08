@@ -1,0 +1,18 @@
+<Patch>
+	<!--
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Megaspider"]/tools</xpath>
+		<value>
+			<li>
+				<label>stinger</label>
+				<capacities>
+					<li>SpiderInjection</li>
+				</capacities>
+				<power>22</power>
+				<cooldownTime>22.6</cooldownTime>
+				<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup> 
+			</li>
+		</value>
+	</Operation>
+		-->
+</Patch>
