@@ -146,7 +146,7 @@ namespace Pawnmorph
             if (plantDef != null) //spawn a new plant 
             {
                 var newPlant = (Plant) GenSpawn.Spawn(plantDef, pos, map);
-                newPlant.Growth = plant.Growth * 0.7f; //make the new plant a little less mature then the one that was substituted 
+                newPlant.Growth = plant.Growth * 1.3f; //make the new plant a little more mature then the one that was substituted 
                 
             }
 
