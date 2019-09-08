@@ -124,8 +124,13 @@ namespace Pawnmorph
         private void SendLetter()
         {
             var mutagen = this.GetMutagenDef();
-            if(mutagen.CanTransform(pawn))
-                Messages.Message((TRANSFORMATION_WARNING_LETTER_ID).Translate(pawn),def:MessageTypeDefOf.NegativeHealthEvent);
+            if (!mutagen.CanTransform(pawn)) return;
+
+            var letterLabel = (TRANSFORMATION_WARNING_LETTER_ID + "Label").Translate(pawn);
+            var letterContent = (TRANSFORMATION_WARNING_LETTER_ID + "Content").Translate(pawn);
+            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent); 
+
+            //Messages.Message((TRANSFORMATION_WARNING_LETTER_ID).Translate(pawn),def:MessageTypeDefOf.NegativeHealthEvent);
 
         }
 

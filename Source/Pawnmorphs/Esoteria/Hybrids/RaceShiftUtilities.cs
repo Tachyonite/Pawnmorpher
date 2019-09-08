@@ -181,6 +181,9 @@ namespace Pawnmorph.Hybrids
                 Log.Warning($"hybrids of non human pawns are currently not supported");
                 return;
             }
+
+            
+
             //apply mutations 
             foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AssociatedMutations)
             {
@@ -213,15 +216,16 @@ namespace Pawnmorph.Hybrids
         {
             string labelId = string.IsNullOrEmpty(tfSettings.transformLetterLabelId)
                 ? RACE_CHANGE_LETTER_LABEL
-                : tfSettings.transformLetterLabelId;
-            string contentID = string.IsNullOrEmpty(tfSettings.transformLetterContentId)
-                ? RACE_CHANGE_LETTER_CONTENT
-                : tfSettings.transformLetterContentId; //assign the correct default values if none are present 
+                : tfSettings.transformLetterLabelId;//assign the correct default values if none are present 
+            //string contentID = string.IsNullOrEmpty(tfSettings.transformLetterContentId)
+            //    ? RACE_CHANGE_LETTER_CONTENT
+            //    : tfSettings.transformLetterContentId; 
 
             string label = labelId.Translate(pawn.LabelShort).CapitalizeFirst();
-            string content = contentID.Translate(pawn.LabelShort).CapitalizeFirst();
-            LetterDef letterDef = tfSettings.letterDef ?? LetterDefOf.PositiveEvent;
-            Find.LetterStack.ReceiveLetter(label, content, letterDef, pawn);
+            //string content = contentID.Translate(pawn.LabelShort).CapitalizeFirst();
+            //LetterDef letterDef = tfSettings.letterDef ?? LetterDefOf.PositiveEvent;
+            //Find.LetterStack.ReceiveLetter(label, content, letterDef, pawn);
+            Messages.Message(label, pawn, MessageTypeDefOf.NeutralEvent);
         }
 
         private static void HandleGraphicsChanges(Pawn pawn,MorphDef morph)

@@ -43,7 +43,9 @@ namespace Pawnmorph.Hediffs
                 return; //TODO chimera race? 
             }
 
-            RaceShiftUtilities.ChangePawnToMorph(pawn, morph); 
+
+            if(morph.hybridRaceDef != pawn.def) //make sure the morph they're begin shifted to is different then they're current race 
+                RaceShiftUtilities.ChangePawnToMorph(pawn, morph); 
         }
 
         public override void CompPostPostRemoved()
