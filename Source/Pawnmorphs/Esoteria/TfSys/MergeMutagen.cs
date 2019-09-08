@@ -113,7 +113,26 @@ namespace Pawnmorph.TfSys
 
 
         }
-        
+
+        void CheckForBrainDamage(Pawn meld, Pawn human0, Pawn human1)
+        {
+            RandUtilities.PushState();
+
+            var brains = meld.health.hediffSet.GetNotMissingParts()
+                             .Where(p => p.def.tags.Contains(BodyPartTagDefOf.ConsciousnessSource))
+                             .ToList();
+            if (brains.Count != 2)
+            {
+                var pawn = Rand.Value < 0.5f ? human0 : human1;
+                //var brain = pawn.health.hediffSet.GetBrain();
+                DamageInfo dInfo = new DamageInfo(DamageDefOf.Stab, 100, 1);
+                pawn.Kill(dInfo);
+                
+            }
+
+            RandUtilities.PopState();
+        }
+
 
         /// <summary>
         ///     Tries to revert the transformed pawn instance, implementation.
@@ -152,7 +171,8 @@ namespace Pawnmorph.TfSys
 
             PawnRelationDef addDef;
 
-            addDef = firstThought.def == def.reversionThoughts[0] ? mergMateDef : mergeMateEx; //first element is "WasMerged"
+            bool relationIsMergeMate = firstThought.def == def.reversionThoughts[0];
+            addDef = relationIsMergeMate ? mergMateDef : mergeMateEx; //first element is "WasMerged"
 
             firstO.relations.AddDirectRelation(addDef, secondO);
 
@@ -163,6 +183,7 @@ namespace Pawnmorph.TfSys
 
             ReactionsHelper.OnPawnReverted(firstO, meld);
             ReactionsHelper.OnPawnReverted(secondO, meld);
+            CheckForBrainDamage(meld, firstO, secondO);
             meld.DeSpawn();
 
             return true;
@@ -238,13 +259,16 @@ namespace Pawnmorph.TfSys
                     spawnedPawn.health.AddHediff(h);
                     _scratchArray[i] = spawnedPawn;
                 }
+                PawnRelationDef relationDef;
+                bool relationIsMergeMate = rThought == def.reversionThoughts[0];
+                relationDef = relationIsMergeMate ? TfRelationDefOf.MergeMate : TfRelationDefOf.ExMerged;
+                _scratchArray[0].relations.AddDirectRelation(relationDef, _scratchArray[1]);
 
+                CheckForBrainDamage(transformedPawn, _scratchArray[0], _scratchArray[1]); 
                 transformedPawn.Destroy();
 
-                PawnRelationDef relationDef;
-                relationDef = rThought == def.reversionThoughts[0] ? TfRelationDefOf.MergeMate : TfRelationDefOf.ExMerged;
+               
 
-                _scratchArray[0].relations.AddDirectRelation(relationDef, _scratchArray[1]);
                 return true;
             }
 
