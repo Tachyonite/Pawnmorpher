@@ -89,6 +89,25 @@ namespace Pawnmorph
         }
 
 
+        /// <summary>
+        /// Gets the morphs in map.
+        /// </summary>
+        /// <param name="map">The map.</param>
+        /// <param name="morph">The morph.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// map
+        /// or
+        /// morph
+        /// </exception>
+        public static IEnumerable<Pawn> GetMorphsInMap([NotNull] this Map map, [NotNull] MorphDef morph)
+        {
+            if (map == null) throw new ArgumentNullException(nameof(map));
+            if (morph == null) throw new ArgumentNullException(nameof(morph));
+
+            return map.listerThings.ThingsOfDef(morph.hybridRaceDef).OfType<Pawn>();
+        }
+
 
         public struct Tuple
         {
