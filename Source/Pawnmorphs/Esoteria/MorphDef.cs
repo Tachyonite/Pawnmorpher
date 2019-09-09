@@ -35,7 +35,9 @@ namespace Pawnmorph
         /// if this is a warg morph then race should be Warg
         /// </summary>
         public ThingDef race; //the animal race of the morph 
-        
+
+        public MorphGroupDef group; //the group the morph belongs to, if any 
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors())
@@ -66,18 +68,7 @@ namespace Pawnmorph
         /// <value>
         /// The associated mutations.
         /// </value>
-        public IEnumerable<HediffGiver_Mutation> AssociatedMutations
-        {
-            get
-            {
-                if (_associatedMutations == null)
-                {
-                    _associatedMutations = GetMutations();
-                }
-
-                return _associatedMutations; 
-            }
-        }
+        public IEnumerable<HediffGiver_Mutation> AssociatedMutations => _associatedMutations ?? (_associatedMutations = GetMutations());
 
         private List<HediffGiver_Mutation> GetMutations()
         {

@@ -1,0 +1,10 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Human"]</xpath>
+		<value>
+			<comps>
+				<li Class="Pawnmorph.MorphTrackingCompProperties"></li>
+			</comps>
+		</value>
+	</Operation>
+</Patch>

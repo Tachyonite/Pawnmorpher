@@ -30,6 +30,56 @@ namespace Pawnmorph.DebugUtils
             return condition;
         }
 
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput, ModeRestrictionPlay]
+        public static void CheckMorphTracker()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (Pawn allMapsFreeColonist in PawnsFinder.AllMaps_FreeColonists)
+            {
+                if (allMapsFreeColonist.GetComp<MorphTrackingComp>() == null)
+                {
+                    builder.AppendLine($"{allMapsFreeColonist.Name} does not have a morphTracker!");
+                }
+            }
+
+            if (builder.Length > 0)
+            {
+                Log.Warning(builder.ToString());
+                builder = new StringBuilder();
+            }
+
+            var map = Find.CurrentMap;
+            if (map == null) return;
+            var comp = map.GetComponent<MorphTracker>();
+
+            foreach (MorphDef morph in DefDatabase<MorphDef>.AllDefs)
+            {
+                var i = comp[morph];
+                builder.AppendLine($"{morph.defName}={i}");
+            }
+
+
+            builder.AppendLine("--------------Groups------------");
+
+            foreach (MorphGroupDef morphGroupDef in DefDatabase<MorphGroupDef>.AllDefs)
+            {
+                int counter = 0;
+                foreach (MorphDef morphDef in morphGroupDef.MorphsInGroup)
+                {
+                    counter += comp[morphDef];
+                }
+
+                builder.AppendLine($"{morphGroupDef.defName}={counter}");
+            }
+
+
+
+            Log.Message(builder.ToString()); 
+
+        }
+
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
         public static void OutputRelationshipPatches()
