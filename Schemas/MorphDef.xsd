@@ -46,7 +46,7 @@
 	</xs:element>
   <xs:simpleType name="MorphGroups">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Canids"/>
+      <xs:enumeration value="Canines"/>
       <xs:enumeration value="HerbivoreHerding"/>
     </xs:restriction>
   </xs:simpleType>
