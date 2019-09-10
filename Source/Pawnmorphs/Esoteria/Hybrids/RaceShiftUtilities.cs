@@ -279,6 +279,9 @@ namespace Pawnmorph.Hybrids
 
             if (!DebugLogUtils.Assert(pawn.IsHybridRace(), "pawn.IsHybridRace()")) return;
 
+            var storedGraphics = pawn.GetComp<GraphicSys.InitialGraphicsComp>(); 
+            storedGraphics.RestoreGraphics();
+
             ChangePawnRace(pawn, human); 
 
             //TODO traits or something? 

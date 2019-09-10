@@ -74,6 +74,7 @@
     <Compile Include="EtherState.cs" />
     <Compile Include="FloatMenuMakerMapPatches.cs" />
     <Compile Include="GameCondition_MutagenicFallout.cs" />
+    <Compile Include="Graphics\InitialGraphics.cs" />
     <Compile Include="HediffGiver_Mutation.cs" />
     <Compile Include="Hediffs\CompProperties_DependentPart.cs" />
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
