@@ -12,6 +12,7 @@
 							<xs:element name="label" type="xs:string" />
 							<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="race" type="xs:string" />
+							<xs:element name="group" type="MorphGroups" minOccurs="0" maxOccurs="1" />
 							<xs:element name="categories">
 								<xs:complexType>
 									<xs:sequence>
@@ -43,6 +44,12 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+  <xs:simpleType name="MorphGroups">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Canids"/>
+      <xs:enumeration value="HerbivoreHerding"/>
+    </xs:restriction>
+  </xs:simpleType>
 	<xs:complexType name="StatModifiersList">
 		<xs:sequence>
 			<xs:element name="li" type="StatModifier" />

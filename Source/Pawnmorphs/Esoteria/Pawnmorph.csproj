@@ -101,6 +101,10 @@
     <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="MorphDef.cs" />
     <Compile Include="MorphDefOfs.cs" />
+    <Compile Include="MorphGroupDef.cs" />
+    <Compile Include="MorphGroupDefOf.cs" />
+    <Compile Include="MorphTracker.cs" />
+    <Compile Include="MorphTrackingComp.cs" />
     <Compile Include="MorphTransformationTypes.cs" />
     <Compile Include="MorphUtilities.cs" />
     <Compile Include="Hybrids\RaceGenerator.cs" />

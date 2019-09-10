@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Hybrids;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -62,6 +64,37 @@ namespace Pawnmorph
                 }
 
             }
+
+
+        }
+
+        [CanBeNull]
+        public static MorphGroupDef GetMorphGroup([NotNull] this Pawn pawn)
+        {
+            if (pawn.def == ThingDefOf.Human) return MorphGroupDefOf.Humans;
+
+            return pawn.def.GetMorphOfRace()?.@group; 
+
+        }
+
+        /// <summary>
+        /// get the morph tracking component on this pawn 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static MorphTrackingComp GetTrackerComp([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            var comp = pawn.GetComp<MorphTrackingComp>();
+            if (comp == null)
+            {
+                comp = new MorphTrackingComp();
+                pawn.AllComps.Add(comp);
+                comp.PostSpawnSetup(true); 
+            }
+
+            return comp; 
 
 
         }

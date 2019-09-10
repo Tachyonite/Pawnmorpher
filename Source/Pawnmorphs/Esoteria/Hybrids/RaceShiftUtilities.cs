@@ -53,6 +53,17 @@ namespace Pawnmorph.Hybrids
         public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var oldMorph = pawn.def.GetMorphOfRace();
+
+            HediffDef oldGroupHediff = oldMorph?.group?.hediff;
+            if (oldGroupHediff != null)
+            {
+                var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(oldGroupHediff);
+                if (hediff != null)
+                {
+                    pawn.health.RemoveHediff(hediff); 
+                }
+            }
 
             //var pos = pawn.Position;
             Faction faction = pawn.Faction;
@@ -79,11 +90,27 @@ namespace Pawnmorph.Hybrids
                 RegionListersUpdater.RegisterInRegions(pawn, map);
 
             map?.mapPawns.UpdateRegistryForPawn(pawn);
+
+            //add the group hediff if applicable 
+            var hediffDef = race.GetMorphOfRace()?.@group?.hediff;
+            if (hediffDef != null)
+            {
+                pawn.health.AddHediff(hediffDef);
+            }
+
+            if (map != null)
+            {
+                var comp = map.GetComponent<MorphTracker>();
+                comp.NotifyPawnRaceChanged(pawn, oldMorph); 
+            }
+
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
 
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
+
+
 
 
             //save location 

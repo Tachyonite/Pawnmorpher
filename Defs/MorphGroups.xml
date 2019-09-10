@@ -1,0 +1,22 @@
+<Defs>
+	<!-- these are for defining the various "morph groups" like packs, herds, ect  -->
+	<Pawnmorph.MorphGroupDef>
+		<defName>Canines</defName>
+		<label>pack</label>
+		<hediff>CanidMind</hediff>
+	</Pawnmorph.MorphGroupDef>
+
+
+
+
+	<Pawnmorph.MorphGroupDef>
+		<defName>HerbivoreHerding</defName>
+		<label>herd</label>
+	</Pawnmorph.MorphGroupDef>
+
+  <!-- special group that should not be assigned to any morphs, but is used to get the number of humans on the map if needed -->
+  <Pawnmorph.MorphGroupDef>
+    <defName>Humans</defName>
+  </Pawnmorph.MorphGroupDef>
+
+</Defs>
