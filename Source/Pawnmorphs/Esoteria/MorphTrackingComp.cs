@@ -26,6 +26,7 @@ namespace Pawnmorph
             if (respawningAfterLoad)
             {
                 HediffDef hediffDef = parent.def.GetMorphOfRace()?.group?.hediff;
+                if (hediffDef == null) return; 
                 var pawn = (Pawn) parent;
                 Hediff firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
                 if (firstHediffOfDef == null)

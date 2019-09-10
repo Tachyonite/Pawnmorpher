@@ -1,8 +1,14 @@
 <Defs>
-  <HediffDef>
+
+  <HediffDef Abstract="true" Name="MorphGroupHediffBase">
+    <hediffClass>HediffWithComps</hediffClass>
+	  <defaultLabelColor>(171, 106, 217)</defaultLabelColor>
+    <isBad>false</isBad>
+  </HediffDef>
+
+	<HediffDef ParentName="MorphGroupHediffBase">
     <defName>CanidMind</defName>
     <label>pack minded</label>
-    <hediffClass>HediffWithComps</hediffClass>
     <stages>
       <li>
         <label>alone</label>
@@ -32,7 +38,8 @@
 
   <ThoughtDef ParentName="GroupThoughtBase">
     <defName>PackMinded</defName>
-    <stages> <!-- should have the same number of stages as the hediff -->
+    <hediff>CanidMind</hediff>
+	  <stages> <!-- should have the same number of stages as the hediff -->
       <li>
         <label>alone</label>
         <description>TODO</description>
