@@ -15,7 +15,7 @@
           <!-- TODO -->
       </li>
       <li>
-        <minSeverity>2</minSeverity>
+        <minSeverity>2</minSeverity> <!-- the severity of the hediff is always going to equal the number of morphs on a map at a time -->
 	      <label>lonely</label>
 	      <!-- TODO -->
       </li>
@@ -41,7 +41,7 @@
     <hediff>CanidMind</hediff>
 	  <stages> <!-- should have the same number of stages as the hediff -->
       <li>
-        <label>alone</label>
+        <label>alone</label> 
         <description>TODO</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
