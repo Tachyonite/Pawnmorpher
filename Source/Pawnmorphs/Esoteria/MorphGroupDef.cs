@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph
@@ -16,7 +17,8 @@ namespace Pawnmorph
         [Unsaved]
         private List<MorphDef> _associatedMorphs;
 
-        public HediffDef hediff;
+        [CanBeNull]
+        public HediffDef hediff; //hediff to give to morphs in this group, 
 
  
 
@@ -24,17 +26,8 @@ namespace Pawnmorph
         /// <summary>
         /// an enumerable collection of all morphs in this group 
         /// </summary>
-        public IEnumerable<MorphDef> MorphsInGroup
-        {
-            get
-            {
-                return _associatedMorphs
-                    ?? (_associatedMorphs = DefDatabase<MorphDef>.AllDefs.Where(def => def.group == this).ToList());
-            }
-        }
-
-
-
-
+        public IEnumerable<MorphDef> MorphsInGroup =>
+            _associatedMorphs
+            ?? (_associatedMorphs = DefDatabase<MorphDef>.AllDefs.Where(def => def.@group == this).ToList());
     }
 }

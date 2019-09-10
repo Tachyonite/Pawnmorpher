@@ -24,6 +24,8 @@ namespace Pawnmorph
         public event MorphCountChangedHandle MorphCountChanged;
 
         private Dictionary<MorphDef, int> _counterDict = new Dictionary<MorphDef, int>(); 
+        
+
 
         public MorphTracker(Map map) : base(map)
         {
@@ -65,7 +67,7 @@ namespace Pawnmorph
             return counter; 
 
         }
-
+        
 
         /// <summary>
         /// get the number of morphs active on this map 

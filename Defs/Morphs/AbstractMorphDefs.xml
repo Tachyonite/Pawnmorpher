@@ -9,4 +9,8 @@
 			</thoughtSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
+
+  <Pawnmorph.MorphDef Abstract="True" Name="CanineMorph" ParentName="SensitiveFoodMorph">
+    <group>Canines</group>
+  </Pawnmorph.MorphDef>
 </Defs>
