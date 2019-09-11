@@ -8,9 +8,9 @@
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
-				<thought>Regurgitated</thought>
-				<etherBondThought>RegurgitatedBond</etherBondThought>
-				<etherBrokenThought>RegurgitatedBroken</etherBrokenThought>
+				<thought>ExoticProduced</thought>
+				<etherBondThought>ExoticProducedBond</etherBondThought>
+				<etherBrokenThought>ExoticProducedBroken</etherBrokenThought>
 				<stages>
 					<li>
 						<daysToProduce>1</daysToProduce>
@@ -76,9 +76,9 @@
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
-				<thought>Regurgitated</thought>
-				<etherBondThought>RegurgitatedBond</etherBondThought>
-				<etherBrokenThought>RegurgitatedBroken</etherBrokenThought>
+				<thought>ExoticProduced</thought>
+				<etherBondThought>ExoticProducedBond</etherBondThought>
+				<etherBrokenThought>ExoticProducedBroken</etherBrokenThought>
 				<stages>
 					<li>
 						<daysToProduce>1</daysToProduce>
@@ -144,9 +144,9 @@
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
-				<thought>Regurgitated</thought>
-				<etherBondThought>RegurgitatedBond</etherBondThought>
-				<etherBrokenThought>RegurgitatedBroken</etherBrokenThought>
+				<thought>ExoticProduced</thought>
+				<etherBondThought>ExoticProducedBond</etherBondThought>
+				<etherBrokenThought>ExoticProducedBroken</etherBrokenThought>
 				<stages>
 					<li>
 						<daysToProduce>2</daysToProduce>
@@ -212,9 +212,9 @@
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
-				<thought>Regurgitated</thought>
-				<etherBondThought>RegurgitatedBond</etherBondThought>
-				<etherBrokenThought>RegurgitatedBroken</etherBrokenThought>
+				<thought>ExoticProduced</thought>
+				<etherBondThought>ExoticProducedBond</etherBondThought>
+				<etherBrokenThought>ExoticProducedBroken</etherBrokenThought>
 				<stages>
 					<li>
 						<daysToProduce>1</daysToProduce>
@@ -280,9 +280,9 @@
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
-				<thought>Regurgitated</thought>
-				<etherBondThought>RegurgitatedBond</etherBondThought>
-				<etherBrokenThought>RegurgitatedBroken</etherBrokenThought>
+				<thought>ExoticProduced</thought>
+				<etherBondThought>ExoticProducedBond</etherBondThought>
+				<etherBrokenThought>ExoticProducedBroken</etherBrokenThought>
 				<stages>
 					<li>
 						<daysToProduce>1</daysToProduce>
