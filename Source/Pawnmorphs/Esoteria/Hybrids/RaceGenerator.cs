@@ -70,7 +70,7 @@ namespace Pawnmorph.Hybrids
                 leatherDef = animal.leatherDef,
                 nameCategory = human.nameCategory,
                 body = human.body,
-                baseBodySize = human.baseBodySize,
+                baseBodySize = animal.baseBodySize, //test to see if this changes the pawn's size?
                 baseHealthScale = human.baseHealthScale,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
@@ -90,7 +90,7 @@ namespace Pawnmorph.Hybrids
                 meatDef = animal.meatDef,
                 meatLabel = animal.meatLabel,
                 useMeatFrom = animal.useMeatFrom,
-                deathActionWorkerClass = human.deathActionWorkerClass,
+                deathActionWorkerClass = animal.deathActionWorkerClass, //boomratmorphs should explode
                 corpseDef = human.corpseDef,
             };
         }
