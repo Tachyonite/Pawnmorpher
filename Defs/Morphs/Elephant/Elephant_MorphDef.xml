@@ -7,5 +7,8 @@
 			<li>elephant</li>
 			<li>powerful</li>
 		</categories>
+		<raceSettings>
+			<skinColorOverride>(208,208,208)</skinColorOverride>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

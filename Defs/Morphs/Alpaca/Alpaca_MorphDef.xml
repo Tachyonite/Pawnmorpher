@@ -8,5 +8,8 @@
 			<li>farm</li>
 			<li>alpaca</li>
 		</categories>
+		<raceSettings>
+			<skinColorOverride>(223,188,126)</skinColorOverride>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

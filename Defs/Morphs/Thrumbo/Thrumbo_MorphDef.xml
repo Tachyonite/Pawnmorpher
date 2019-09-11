@@ -7,5 +7,8 @@
 			<li>thrumbo</li>
 			<li>powerful</li>
 		</categories>
+		<raceSettings>
+			<skinColorOverride>(255,255,255)</skinColorOverride>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

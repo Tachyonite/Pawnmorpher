@@ -6,5 +6,9 @@
 			<li>rodent</li>
 		</categories>
 		<race>Rat</race>
+		<raceSettings>
+			<skinColorOverride>(120,120,120)</skinColorOverride>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
+	
 </Defs>
