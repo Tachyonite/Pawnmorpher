@@ -8,7 +8,9 @@
 			<li>farm</li>
 		</categories>
 		<raceSettings>
-			<skinColorOverride>(202,202,202)</skinColorOverride>
+			<graphicsSettings>
+				<skinColorOverride>(202,202,202)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

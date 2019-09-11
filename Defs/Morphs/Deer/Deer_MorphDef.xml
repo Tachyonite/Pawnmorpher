@@ -7,7 +7,9 @@
 			<li>deer</li>
 		</categories>
 		<raceSettings>
-			<skinColorOverride>(170,121,63)</skinColorOverride>
+			<graphicsSettings>
+				<skinColorOverride>(170,121,63)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

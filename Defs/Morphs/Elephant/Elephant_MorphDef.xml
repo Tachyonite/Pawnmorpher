@@ -8,7 +8,9 @@
 			<li>powerful</li>
 		</categories>
 		<raceSettings>
-			<skinColorOverride>(208,208,208)</skinColorOverride>
+			<graphicsSettings>
+				<skinColorOverride>(208,208,208)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

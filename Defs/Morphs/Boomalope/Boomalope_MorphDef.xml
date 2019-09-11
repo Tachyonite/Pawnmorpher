@@ -7,7 +7,9 @@
 			<li>boom</li>
 		</categories>
 		<raceSettings>
-			<skinColorOverride>(207,207,207)</skinColorOverride>
+			<graphicsSettings>
+				<skinColorOverride>(207,207,207)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

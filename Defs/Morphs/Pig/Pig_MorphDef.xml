@@ -8,7 +8,9 @@
 			<li>pig</li>
 		</categories>
 		<raceSettings>
-			<skinColorOverride>(198,160,160)</skinColorOverride>
+			<graphicsSettings>
+				<skinColorOverride>(198,160,160)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

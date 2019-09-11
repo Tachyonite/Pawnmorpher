@@ -22,7 +22,9 @@
 					</li>
 				</forcedTraits>
 			</traitSettings>
-		<skinColorOverride>(208,208,208)</skinColorOverride>
+		<graphicsSettings>
+				<skinColorOverride>(208,208,208)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

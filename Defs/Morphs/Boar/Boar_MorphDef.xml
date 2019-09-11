@@ -7,7 +7,10 @@
 			<li>pig</li>
 		</categories>
 		<raceSettings>
-			<skinColorOverride>(155,116,89)</skinColorOverride>
+
+			<graphicsSettings>
+				<skinColorOverride>(155,116,89)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

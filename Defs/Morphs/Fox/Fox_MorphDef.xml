@@ -23,7 +23,9 @@
 			</traitSettings>
 		</raceSettings>
 		<raceSettings>
-			<skinColorOverride>(174,128,94)</skinColorOverride>
+			<graphicsSettings>
+				<skinColorOverride>(174,128,94)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

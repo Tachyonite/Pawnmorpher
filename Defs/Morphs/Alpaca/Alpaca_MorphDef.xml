@@ -9,7 +9,10 @@
 			<li>alpaca</li>
 		</categories>
 		<raceSettings>
-			<skinColorOverride>(223,188,126)</skinColorOverride>
+		
+			<graphicsSettings>
+				<skinColorOverride>(223,188,126)<skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>
