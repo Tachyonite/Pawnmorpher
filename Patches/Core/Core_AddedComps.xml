@@ -4,6 +4,9 @@
 		<value>
 			<comps>
 				<li Class="Pawnmorph.MorphTrackingCompProperties"></li>
+        <li>
+          <compClass>Pawnmorph.GraphicSys.InitialGraphicsComp</compClass>
+        </li>
 			</comps>
 		</value>
 	</Operation>
