@@ -33,6 +33,7 @@
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
+										<xs:element name="traitSettings" type="TraitSettings" minOccurs="0" maxOccurs="1" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
@@ -140,4 +141,25 @@
 			<xs:element name="messageDef" type="xs:string" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
+  <xs:complexType name="TraitSettings">
+    <xs:sequence>
+		<xs:element name="forcedTraits" minOccurs="0" maxOccurs="1">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="li" minOccurs="1" maxOccurs="unbounded">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="chance" type="xs:float" minOccurs="0" maxOccurs="1" />
+                <xs:element name="commonalityMale" type="xs:float" minOccurs="0" maxOccurs="1" />
+                <xs:element name="commonalityFemale" type="xs:float" minOccurs="0" maxOccurs="1" />
+				<xs:element name="defName" type="xs:string" maxOccurs="1" minOccurs="1" />
+				<xs:element name="degree" type="xs:int" maxOccurs="1" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+		</xs:element>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

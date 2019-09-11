@@ -7,17 +7,17 @@
 			<li>canid</li>
 		</categories>
 		<raceSettings>
-			<traitSettings>
-				<forcedTraits>
-					<li>
-						<defName>NaturalHunter</defName>
-						<chance>100</chance>
-					</li>
-				</forcedTraits>
-			</traitSettings>
 			<graphicsSettings>
 				<skinColorOverride>(202,196,192)</skinColorOverride>
 			</graphicsSettings>
+			<traitSettings>
+				<forcedTraits>
+					<li>
+						<chance>100</chance>
+						<defName>NaturalHunter</defName>
+					</li>
+				</forcedTraits>
+			</traitSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

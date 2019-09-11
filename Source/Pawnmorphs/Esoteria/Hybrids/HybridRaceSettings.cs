@@ -59,10 +59,12 @@ namespace Pawnmorph.Hybrids
         public RaceRestrictionSettings restrictionSettings;
         public GraphicsSettings graphicsSettings; 
 
-        public TraitSettings traitSettings; 
+        public TraitSettings traitSettings;
 
+        //should this be deprecated? 
         public class TraitSettings
         {
+            //should this be deprecated? 
             public List<AlienTraitEntry> forcedTraits;
             //public List<string> disallowedTraits; removing traits not supported right now, rimworld doesn't like it when you remove them  
         }
