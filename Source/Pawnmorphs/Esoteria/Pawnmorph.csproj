@@ -186,6 +186,7 @@
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
+    <Compile Include="Utilities\HediffDefUtilities.cs" />
     <Compile Include="Utilities\LinqUtils.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\Tuple.cs" />

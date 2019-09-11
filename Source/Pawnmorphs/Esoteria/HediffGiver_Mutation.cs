@@ -11,6 +11,14 @@ namespace Pawnmorph
 {
     public class HediffGiver_Mutation : HediffGiver
     {
+        public delegate void MutationAddedHandle([NotNull] HediffGiver sender, [NotNull] HediffDef mutationDef, [NotNull] Pawn pawn);
+
+
+        /// <summary>
+        /// event raised whenever this giver adds a mutation to a pawn 
+        /// </summary>
+        public event MutationAddedHandle MutationAdded; 
+
         public float mtbDays;
         public Gender gender;
         public int chance = 100;
@@ -34,11 +42,15 @@ namespace Pawnmorph
         /// <param name="mutagenDef">The mutagen definition. used to determine if it's a valid target or not</param>
         /// <param name="outAddedHediffs">The out added hediffs.</param>
         /// <returns></returns>
-        public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null)
+        public bool TryApply(Pawn pawn,  MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause=null)
         {
             if (!mutagenDef.CanInfect(pawn)) return false;
 
-            return PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
+            var added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
+            if (added && cause is Hediff_Morph morphHediff)
+                morphHediff.NotifyMutationAdded(hediff); 
+            return added; 
+
         }
         public override void OnIntervalPassed(Pawn pawn, [NotNull] Hediff cause)
         {
@@ -49,7 +61,7 @@ namespace Pawnmorph
                 var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
 
 
-                if ((gender == pawn.gender || (!triggered.TryGetValue(cause, false) && Rand.RangeInclusive(0, 100) <= chance)) && TryApply(pawn, mutagen))
+                if ((gender == pawn.gender || (!triggered.TryGetValue(cause, false) && Rand.RangeInclusive(0, 100) <= chance)) && TryApply(pawn, mutagen, null, cause))
                 {
                     IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
                     triggered[cause] = true;

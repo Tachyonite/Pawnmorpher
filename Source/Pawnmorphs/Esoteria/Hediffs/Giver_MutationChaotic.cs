@@ -96,7 +96,7 @@ namespace Pawnmorph.Hediffs
             {
                 var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
                 var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
-                if (mut.TryApply(pawn, mutagen))
+                if (mut.TryApply(pawn, mutagen, null, cause))
                 {
                     IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
                     if (cause.def.HasComp(typeof(HediffComp_Single)))

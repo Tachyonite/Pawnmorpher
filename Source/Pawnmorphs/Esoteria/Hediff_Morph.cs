@@ -25,6 +25,11 @@ namespace Pawnmorph
             get { return _comp ?? (_comp = this.TryGetComp<HediffComp_Single>()); }
         }
 
+        public void NotifyMutationAdded(HediffDef mutation)
+        {
+            //TODO 
+        }
+
         public override string LabelBase
         {
             get
