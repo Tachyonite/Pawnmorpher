@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
 using JetBrains.Annotations;
 using Multiplayer.API;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
@@ -25,9 +27,93 @@ namespace Pawnmorph
             get { return _comp ?? (_comp = this.TryGetComp<HediffComp_Single>()); }
         }
 
+        private MorphDef _morph;
+
+        private List<HediffGiver_Mutation> _allGivers;
+
+        List<HediffGiver_Mutation> AllGivers
+        {
+            get
+            {
+                if (_allGivers == null)
+                {
+                    _allGivers = def.GetAllHediffGivers().OfType<HediffGiver_Mutation>().ToList();
+                }
+
+                return _allGivers;
+            }
+        }
+
+        MorphDef AssociatedMorph
+        {
+            get
+            {
+                if (_morph == null)
+                {
+                    _morph = MorphUtilities.GetAssociatedMorph(def).FirstOrDefault();
+                }
+
+                return _morph; 
+            }
+        }
+
         public void NotifyMutationAdded(HediffDef mutation)
         {
-            //TODO 
+            if (AssociatedMorph != null)
+            {
+                if (UpdateMorphSkinColor())
+                {
+                    UpdateGraphics(); 
+                }
+            }
+        }
+
+        private void UpdateGraphics()
+        {
+
+            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            if(pawn.IsColonist)
+                PortraitsCache.SetDirty(pawn);
+        }
+
+        private bool UpdateMorphSkinColor()
+        {
+            if (AssociatedMorph == pawn.def.GetMorphOfRace()) return false;
+
+            var startColor = GetStartSkinColor();
+            var endColor = AssociatedMorph.raceSettings?.graphicsSettings?.skinColorOverride ??
+                           pawn.GetComp<GraphicSys.InitialGraphicsComp>().skinColor; 
+
+            
+
+            float counter = 0;
+            foreach (var hediffGiverMutation in AllGivers) //count how many mutations the pawn has now 
+            {
+                if (pawn.health.hediffSet.GetFirstHediffOfDef(hediffGiverMutation.hediff) != null)
+                {
+                    counter++; 
+                }
+            }
+
+            float lerpVal = counter / AllGivers.Count;
+            var col = Color.Lerp(startColor, endColor, lerpVal);
+
+            var alComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+            alComp.skinColor = col;
+            return true; 
+        }
+
+        private Color GetStartSkinColor()
+        {
+            var pM = pawn.def.GetMorphOfRace();
+            var col = pM?.raceSettings?.graphicsSettings?.skinColorOverride;
+            if (col == null)
+            {
+                var comp = pawn.GetComp<GraphicSys.InitialGraphicsComp>();
+                col = comp.skinColor; 
+            }
+
+            return col.Value; 
         }
 
         public override string LabelBase
