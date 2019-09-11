@@ -8,6 +8,12 @@
 			<li>canid</li>
 		</categories>
 		<raceSettings>
+      <thoughtSettings>
+        <ateAnimalThought>
+          <thought>MorphAteAnimalMeatDirect</thought>
+          <ingredientThought>MorphAteAnimalMeatAsIngredient</ingredientThought>
+        </ateAnimalThought>
+      </thoughtSettings>
 			<traitSettings>
 				<forcedTraits>
 					<li>
@@ -16,9 +22,7 @@
 					</li>
 				</forcedTraits>
 			</traitSettings>
-		</raceSettings>
-		<raceSettings>
-			<skinColorOverride>(208,208,208)</skinColorOverride>
+		<skinColorOverride>(208,208,208)</skinColorOverride>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>
