@@ -11,13 +11,7 @@ namespace Pawnmorph
 {
     public class HediffGiver_Mutation : HediffGiver
     {
-        public delegate void MutationAddedHandle([NotNull] HediffGiver sender, [NotNull] HediffDef mutationDef, [NotNull] Pawn pawn);
-
-
-        /// <summary>
-        /// event raised whenever this giver adds a mutation to a pawn 
-        /// </summary>
-        public event MutationAddedHandle MutationAdded; 
+      
 
         public float mtbDays;
         public Gender gender;
