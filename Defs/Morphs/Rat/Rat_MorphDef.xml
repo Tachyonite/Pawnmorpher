@@ -8,7 +8,7 @@
 		<race>Rat</race>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(120,120,120)<skinColorOverride>
+				<skinColorOverride>(120,120,120)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>

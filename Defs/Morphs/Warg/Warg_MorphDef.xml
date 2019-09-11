@@ -38,7 +38,7 @@
 				</forcedTraits>
 			</traitSettings>
 			<graphicsSettings>
-				<skinColorOverride>(158,124,96)<skinColorOverride>
+				<skinColorOverride>(158,124,96)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>

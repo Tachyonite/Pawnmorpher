@@ -8,7 +8,7 @@
 		</categories>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(170,121,63)<skinColorOverride>
+				<skinColorOverride>(170,121,63)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
