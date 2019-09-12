@@ -319,57 +319,6 @@ namespace Pawnmorph.DebugUtils
 
 
    
-        [Category(MAIN_CATEGORY_NAME)]
-        [ModeRestrictionPlay]
-        [DebugOutput]
-        [Obsolete]
-        public static void LogAllTransformedPawns()
-        {
-            var builder = new StringBuilder();
-            var comp = Find.World.GetComponent<PawnmorphGameComp>();
-
-            foreach (PawnMorphInstance compMorphInstance in comp.MorphInstances)
-            {
-                Pawn animal = compMorphInstance.replacement;
-                Pawn origin = compMorphInstance.origin;
-
-                string originString, animalString;
-
-                originString = origin == null ? "[null pawn]" : origin.Name.ToStringFull;
-
-                animalString = animal == null
-                    ? "[null animal]"
-                    : $"an {animal.kindDef?.race?.label ?? "[no race]"} named {animal.Name.ToStringFull}";
-
-
-                builder.AppendLine($"{originString} is now a {animalString}");
-            }
-
-            foreach (PawnMorphInstanceMerged pawnMorphInstanceMerged in comp.MergeInstances)
-            {
-                Pawn merge = pawnMorphInstanceMerged.replacement;
-                Pawn p0 = pawnMorphInstanceMerged.origin;
-                Pawn p1 = pawnMorphInstanceMerged.origin2;
-
-                string p0Str, p1Str, mergeStr;
-                p0Str = p0 == null ? "[null pawn]" : p0.Name.ToStringFull;
-
-                p1Str = p1 == null ? "[null pawn]" : p1.Name.ToStringFull;
-
-                mergeStr = merge == null
-                    ? "[null animal]"
-                    : $"a {merge.kindDef?.race?.label ?? "[no race]"} called {merge.Name.ToStringFull}";
-
-
-                builder.AppendLine($"{p0Str} and {p1Str} are now {mergeStr}");
-            }
-
-
-            if (builder.Length == 0)
-                Log.Message("there are now transformed or merged pawns");
-            else
-                Log.Message(builder.ToString());
-        }
 
         [Category(MAIN_CATEGORY_NAME)]
         [ModeRestrictionPlay]
@@ -380,12 +329,26 @@ namespace Pawnmorph.DebugUtils
             var dict = new Dictionary<MorphDef, float>();
             foreach (Pawn colonyPawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
-                colonyPawn.GetMorphInfluences(dict);
-
                 builder.AppendLine(colonyPawn.Name.ToStringFull + ":");
-                foreach (KeyValuePair<MorphDef, float> keyValuePair in dict)
-                    builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}");
 
+                var comp = colonyPawn.GetMutationTracker();
+                if (comp != null)
+                {
+                    foreach (var kvp in comp)
+                    {
+                        builder.Append($"\t\t{kvp.Key.defName}:{kvp.Value}");
+                    }
+
+
+
+                }else 
+                {
+                    colonyPawn.GetMorphInfluences(dict);
+
+
+                    foreach (KeyValuePair<MorphDef, float> keyValuePair in dict)
+                        builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}");
+                }
                 builder.AppendLine($"is human:{colonyPawn.ShouldBeConsideredHuman()}\n");
             }
 
