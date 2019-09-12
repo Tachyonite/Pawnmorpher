@@ -1,6 +1,7 @@
 ﻿// MorphDef.cs modified by Iron Wolf for Pawnmorph on 08/02/2019 2:32 PM
 // last updated 08/02/2019  2:32 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
@@ -48,9 +49,9 @@ namespace Pawnmorph
                 if (_totalInfluence == null)
                 {
                     var comps = DefDatabase<HediffDef>.AllDefs
-                        .Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass))
-                        .Select(d => d.CompProps<CompProperties_MorphInfluence>())
-                        .Where(p => p != null);
+                        .Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass)) //get all mutations 
+                        .Select(d => d.CompProps<CompProperties_MorphInfluence>()) //graph the influence components 
+                        .Where(p => p != null); //get rid of nulls 
 
                     var counter = 0.0f; 
                     foreach (var comp in comps)
@@ -112,6 +113,9 @@ namespace Pawnmorph
 
         [Unsaved] public ThingDef_AlienRace hybridRaceDef;
 
+
+
+        [Obsolete("This is no longer used")]
         public FoodPreferability? GetOverride(ThingDef food) //note, RawTasty is 5, RawBad is 4 
         {
             if (food?.ingestible == null) return null; 

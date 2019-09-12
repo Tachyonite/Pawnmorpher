@@ -1,6 +1,7 @@
 ﻿// HybridRaceSettings.cs modified by Iron Wolf for Pawnmorph on 08/03/2019 9:47 AM
 // last updated 08/03/2019  9:47 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
@@ -39,6 +40,7 @@ namespace Pawnmorph.Hybrids
         }
 
 
+        [Obsolete]
         public class FoodCategoryOverride
         {
 
@@ -47,12 +49,14 @@ namespace Pawnmorph.Hybrids
 
         }
 
+        [Obsolete]
         public class FoodSettings
         {
             public List<FoodCategoryOverride> foodOverrides = new List<FoodCategoryOverride>(); 
 
         }
 
+        [Obsolete("Doesn't do anything'")]
         public FoodSettings foodSettings = new FoodSettings();
 
         public List<StatModifier> statModifiers; 

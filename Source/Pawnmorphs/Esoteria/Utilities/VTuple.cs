@@ -5,11 +5,6 @@ namespace Pawnmorph.Utilities
 {
     //value tuples 
 
-    public struct VTuple<T>
-    {
-        public T first; 
-    }
-
     public struct VTuple<TFirst, TSecond>
     {
         public VTuple(TFirst first, TSecond second)
@@ -24,6 +19,12 @@ namespace Pawnmorph.Utilities
 
     public struct VTuple<TFirst, TSecond, TThird>
     {
+        public VTuple(TFirst first, TSecond second, TThird third)
+        {
+            this.first = first;
+            this.second = second;
+            this.third = third; 
+        }
         public TFirst first;
         public TSecond second;
         public TThird third; 

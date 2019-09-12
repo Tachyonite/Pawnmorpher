@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils; 
 namespace Pawnmorph
@@ -54,8 +55,12 @@ namespace Pawnmorph
             Assert(parent is Pawn, "parent is Pawn"); 
         }
 
-        public Pawn Pawn => (Pawn) parent; 
+        public Pawn Pawn => (Pawn) parent;
 
+        /// <summary>
+        /// called to notify this tracker that a mutation has been added 
+        /// </summary>
+            /// <param name="mutation"></param>
         public void NotifyMutationAdded([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
@@ -70,7 +75,10 @@ namespace Pawnmorph
 
             MutationAdded?.Invoke(this, Pawn,  mutation);
         }
-
+        /// <summary>
+        /// called to notify this tracker that a mutation has been removed 
+        /// </summary>
+        /// <param name="mutation"></param>
         public void NotifyMutationRemoved([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
@@ -80,7 +88,15 @@ namespace Pawnmorph
             {
                 Assert(_influenceLookup.ContainsKey(comp.Morph), "_influenceLookup.ContainsKey(comp.Morph)");
 
-                _influenceLookup[comp.Morph] -= comp.Influence; 
+                var val = _influenceLookup[comp.Morph] - comp.Influence;
+                if (Mathf.Abs(val) < 0.1f)
+                {
+                    _influenceLookup.Remove(comp.Morph); 
+                }
+                else
+                {
+                    _influenceLookup[comp.Morph] = val; 
+                }
 
             }
 
