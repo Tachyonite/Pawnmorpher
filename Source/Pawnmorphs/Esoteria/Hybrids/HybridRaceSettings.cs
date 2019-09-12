@@ -33,8 +33,9 @@ namespace Pawnmorph.Hybrids
         public class GraphicsSettings
         {
             public Color? skinColorOverride;
-            public Color? skinColorOverrideSecond; 
-
+            public Color? skinColorOverrideSecond;
+            public Vector2? customDrawSize;
+            public Vector2? customHeadDrawSize; 
         }
 
 

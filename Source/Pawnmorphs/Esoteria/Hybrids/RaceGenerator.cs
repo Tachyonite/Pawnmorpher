@@ -139,12 +139,20 @@ namespace Pawnmorph.Hybrids
 
         private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph)
         {
-            return new AlienPartGenerator
+            var gen = new AlienPartGenerator
             {
                 alienbodytypes = human.alienbodytypes, //this is where we'd force skin colors and stuff 
                 aliencrowntypes = human.aliencrowntypes,
                 bodyAddons = human.bodyAddons
             };
+
+            var graphicsSettings = morph.raceSettings?.graphicsSettings;
+            var customDrawSize = graphicsSettings?.customDrawSize;
+            var headSize = graphicsSettings?.customHeadDrawSize; 
+            gen.customDrawSize = customDrawSize ?? gen.customDrawSize;
+            gen.customHeadDrawSize = headSize ?? gen.customHeadDrawSize; //make sure to apply custom sizes only if they are defined, otherwise use the defaults 
+
+            return gen; 
         }
 
         /// <summary>
