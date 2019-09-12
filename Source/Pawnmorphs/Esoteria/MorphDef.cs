@@ -38,6 +38,33 @@ namespace Pawnmorph
 
         public MorphGroupDef group; //the group the morph belongs to, if any 
 
+
+        private float? _totalInfluence;
+
+        public float TotalInfluence
+        {
+            get
+            {
+                if (_totalInfluence == null)
+                {
+                    var comps = DefDatabase<HediffDef>.AllDefs
+                        .Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass))
+                        .Select(d => d.CompProps<CompProperties_MorphInfluence>())
+                        .Where(p => p != null);
+
+                    var counter = 0.0f; 
+                    foreach (var comp in comps)
+                    {
+                        counter += comp.influence; 
+                    }
+
+                    _totalInfluence = counter; 
+                }
+
+                return _totalInfluence.Value;
+            }
+        }
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors())

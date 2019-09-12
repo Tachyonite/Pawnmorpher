@@ -193,6 +193,7 @@
     <Compile Include="Utilities\LinqUtils.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\Tuple.cs" />
+    <Compile Include="Utilities\VTuple.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
   </ItemGroup>
   <ItemGroup />

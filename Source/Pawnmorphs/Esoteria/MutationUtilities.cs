@@ -7,6 +7,7 @@ using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -76,6 +77,26 @@ namespace Pawnmorph
 
             return highest; 
         }
+
+        /// <summary>
+        /// get the normalized influences on the pawn
+        ///     the values are normalized to the total influences of the morph
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static IEnumerable<VTuple<MorphDef, float>> GetNormalizedInfluences([NotNull] this Pawn pawn)
+        {
+            var comp = pawn.GetMutationTracker();
+            if(comp == null) yield break;
+            foreach (var kvp in comp)
+            {
+                var total = kvp.Value / kvp.Key.TotalInfluence;
+                yield return new VTuple<MorphDef, float>(kvp.Key, total); 
+
+            }
+
+        }
+
 
         public static IEnumerable<HediffDef> AllMutationsWithGraphics
         {
