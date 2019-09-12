@@ -8,7 +8,10 @@ namespace Pawnmorph.Hediffs
 {
     public class Comp_MorphInfluence : HediffComp
     {
-        public CompProperties_MorphInfluence Props => (CompProperties_MorphInfluence) props; 
+        public CompProperties_MorphInfluence Props => (CompProperties_MorphInfluence) props;
+
+        public MorphDef Morph => Props.morph;
+        public float Influence => Props.influence;
     }
 
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlienRace;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -38,6 +39,17 @@ namespace Pawnmorph
         }
 
         private static List<HediffDef> _allMutationsWithGraphics;
+
+        /// <summary>
+        /// try to get the mutation tracker on this pawn, null if the pawn does not have a tracker 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static MutationTracker GetMutationTracker([NotNull]this Pawn pawn)
+        {
+            return pawn.GetComp<MutationTracker>(); 
+        }
 
         public static IEnumerable<HediffDef> AllMutationsWithGraphics
         {

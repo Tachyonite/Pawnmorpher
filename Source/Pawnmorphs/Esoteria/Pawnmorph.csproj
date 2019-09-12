@@ -115,6 +115,7 @@
     <Compile Include="MutagenDefOf.cs" />
     <Compile Include="MutagenUtilities.cs" />
     <Compile Include="Mutagen_JobDefOf.cs" />
+    <Compile Include="MutationTracker.cs" />
     <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
