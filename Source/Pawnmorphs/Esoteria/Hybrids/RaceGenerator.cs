@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using RimWorld;
@@ -100,6 +101,7 @@ namespace Pawnmorph.Hybrids
         {
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             var human = (ThingDef_AlienRace) ThingDef.Named("Human");
+            StringBuilder builder = new StringBuilder(); 
             foreach (MorphDef morphDef in morphs)
             {
                 if (morphDef.hybridRaceDef != null)
@@ -109,12 +111,14 @@ namespace Pawnmorph.Hybrids
                 }
 
 
-                Log.Message($"generating implied race for {morphDef.defName}");
+                builder.AppendLine($"generating implied race for {morphDef.defName}");
                 var race =  GenerateImplicitRace(human, morphDef);
                 morphDef.hybridRaceDef = race;
                 _raceLookupTable[race] = morphDef; 
                 yield return race; 
             }
+
+            Log.Message(builder.ToString()); 
         }
 
 
