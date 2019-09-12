@@ -51,6 +51,32 @@ namespace Pawnmorph
             return pawn.GetComp<MutationTracker>(); 
         }
 
+        /// <summary>
+        /// get the largest influence on this pawn
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static MorphDef GetHighestInfluence([NotNull] this Pawn pawn)
+        {
+            var comp = pawn.GetMutationTracker();
+            if (comp == null) return null;
+
+
+            MorphDef highest = null;
+            float max = float.NegativeInfinity; 
+            foreach (KeyValuePair<MorphDef, float> keyValuePair in comp)
+            {
+                if (max < keyValuePair.Value)
+                {
+                    max = keyValuePair.Value;
+                    highest = keyValuePair.Key; 
+                }
+            }
+
+            return highest; 
+        }
+
         public static IEnumerable<HediffDef> AllMutationsWithGraphics
         {
             get
