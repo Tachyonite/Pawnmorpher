@@ -335,7 +335,7 @@ namespace Pawnmorph.DebugUtils
                 var comp = colonyPawn.GetMutationTracker();
                 if (comp != null)
                 {
-                    foreach (var kvp in comp) builder.Append($"\t\t{kvp.Key.defName}:{kvp.Value}");
+                    foreach (var kvp in comp) builder.AppendLine($"\t\t{kvp.Key.defName}:{kvp.Value}");
                 }
                 else
                 {
