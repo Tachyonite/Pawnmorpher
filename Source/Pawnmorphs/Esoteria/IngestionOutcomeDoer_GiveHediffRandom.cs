@@ -17,6 +17,7 @@ namespace Pawnmorph
 
         public bool divideByBodySize = false;
 
+         
         private static List<HediffDef> _scratchList = new List<HediffDef>(); 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
@@ -42,8 +43,10 @@ namespace Pawnmorph
                     num = severity;
                 else
                     num = hediffDef.initialSeverity;
-                if (divideByBodySize) num /= pawn.BodySize;
-                AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
+
+                if (divideByBodySize) 
+                    AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
+
                 hediff.Severity = num;
                 pawn.health.AddHediff(hediff, null, null);
             }
