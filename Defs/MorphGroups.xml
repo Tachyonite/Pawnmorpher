@@ -6,12 +6,10 @@
 		<hediff>CanidMind</hediff>
 	</Pawnmorph.MorphGroupDef>
 
-
-
-
 	<Pawnmorph.MorphGroupDef>
 		<defName>HerbivoreHerding</defName>
 		<label>herd</label>
+		<hediff>HerdMind</hediff>
 	</Pawnmorph.MorphGroupDef>
 
   <!-- special group that should not be assigned to any morphs, but is used to get the number of humans on the map if needed -->
