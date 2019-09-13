@@ -30,6 +30,8 @@
 												<xs:sequence>
 													<xs:element name="skinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="skinColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
+													<xs:element name="hairColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
+													<xs:element name="hairColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="customDrawSize" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="customHeadDrawSize" type="xs:string" minOccurs="0" maxOccurs="1" />
 												</xs:sequence>

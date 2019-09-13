@@ -35,6 +35,18 @@ namespace Pawnmorph.GraphicSys
             return def.raceSettings?.graphicsSettings?.skinColorOverride;
         }
 
+        public static Color? GetHairColorOverride([NotNull] this MorphDef def)
+        {
+            if (def == null) throw new ArgumentNullException(nameof(def));
+            return def.raceSettings?.graphicsSettings?.hairColorOverride; 
+        }
+
+        public static Color? GetHairColorOverrideSecond([NotNull] this MorphDef def)
+        {
+            if (def == null) throw new ArgumentNullException(nameof(def));
+            return def.raceSettings?.graphicsSettings?.hairColorOverrideSecond; 
+        }
+
         public static Color? GetSkinColorSecondOverride([NotNull] this MorphDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));

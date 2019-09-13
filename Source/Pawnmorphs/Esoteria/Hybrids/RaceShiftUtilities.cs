@@ -7,6 +7,7 @@ using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -262,8 +263,10 @@ namespace Pawnmorph.Hybrids
         private static void HandleGraphicsChanges(Pawn pawn,MorphDef morph)
         {
             var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            comp.skinColor = morph.raceSettings.graphicsSettings?.skinColorOverride ?? comp.skinColor;
-            comp.skinColorSecond = morph.raceSettings.graphicsSettings?.skinColorOverrideSecond ?? comp.skinColorSecond; 
+            comp.skinColor = morph.GetSkinColorOverride() ?? comp.skinColor;
+            comp.skinColorSecond = morph.GetSkinColorSecondOverride() ?? comp.skinColorSecond;
+            comp.hairColorSecond = morph.GetHairColorOverrideSecond() ?? comp.hairColorSecond;
+            pawn.story.hairColor = morph.GetHairColorOverride() ?? pawn.story.hairColor; 
         }
 
         /// <summary>

@@ -35,6 +35,8 @@ namespace Pawnmorph.Hybrids
         {
             public Color? skinColorOverride;
             public Color? skinColorOverrideSecond;
+            public Color? hairColorOverride;
+            public Color? hairColorOverrideSecond; 
             public Vector2? customDrawSize;
             public Vector2? customHeadDrawSize; 
         }

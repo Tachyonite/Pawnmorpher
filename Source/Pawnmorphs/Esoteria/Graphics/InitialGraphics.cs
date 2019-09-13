@@ -17,6 +17,7 @@ namespace Pawnmorph.GraphicSys
         public Vector2 customPortraitDrawSize = Vector2.one;
         public bool fixGenderPostSpawn;
         public Color skinColor;
+        public Color hairColor; 
         public Color skinColorSecond;
         public Color hairColorSecond;
         public string crownType;
@@ -40,8 +41,8 @@ namespace Pawnmorph.GraphicSys
                 skinColor = comp.skinColor;
                 skinColorSecond = comp.skinColorSecond;
                 hairColorSecond = comp.hairColorSecond;
-                crownType = comp.crownType; 
-
+                crownType = comp.crownType;
+                hairColor = ((Pawn) parent).story.hairColor; 
 
             }
         }
@@ -62,8 +63,9 @@ namespace Pawnmorph.GraphicSys
             comp.fixGenderPostSpawn = fixGenderPostSpawn;
             comp.skinColorSecond = skinColorSecond;
             comp.hairColorSecond = hairColorSecond;
-            comp.crownType = crownType; 
-
+            comp.crownType = crownType;
+            comp.hairColorSecond = hairColorSecond;
+            ((Pawn) parent).story.hairColor = hairColor; 
 
         }
 
