@@ -57,8 +57,8 @@ namespace Pawnmorph.Hybrids
         }
 
 
-        
-
+        private const float HEALTH_SCALE_LERP_VALUE = 0.4f;
+        private const float HUNGER_LERP_VALUE = 0.3f; 
         private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
         {
             return new RaceProperties
@@ -71,8 +71,9 @@ namespace Pawnmorph.Hybrids
                 leatherDef = animal.leatherDef,
                 nameCategory = human.nameCategory,
                 body = human.body,
-                baseBodySize = animal.baseBodySize, //test to see if this changes the pawn's size?
-                baseHealthScale = human.baseHealthScale,
+                baseBodySize = Mathf.Lerp(human.baseBodySize, animal.baseBodySize,0.3f), //this is tied to max hunger 
+                baseHealthScale = Mathf.Lerp(human.baseHealthScale, animal.baseHealthScale, HEALTH_SCALE_LERP_VALUE),
+                baseHungerRate = GetHungerRate(animal, human), 
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 meatColor = animal.meatColor,
@@ -93,7 +94,14 @@ namespace Pawnmorph.Hybrids
                 useMeatFrom = animal.useMeatFrom,
                 deathActionWorkerClass = animal.deathActionWorkerClass, //boomratmorphs should explode
                 corpseDef = human.corpseDef,
+                
             };
+        }
+
+        private static float GetHungerRate(RaceProperties animal, RaceProperties human)
+        {
+            var f = Mathf.Lerp(human.baseHungerRate, animal.baseHungerRate, 0.5f);
+            return f; 
         }
 
 
