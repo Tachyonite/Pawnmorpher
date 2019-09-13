@@ -57,17 +57,7 @@ namespace Pawnmorph
             }
         }
 
-        public void NotifyMutationAdded(HediffDef mutation)
-        {
-            if (AssociatedMorph != null)
-            {
-                if (UpdateMorphSkinColor())
-                {
-                    UpdateGraphics(); 
-                }
-            }
-        }
-
+     
         private void UpdateGraphics()
         {
 

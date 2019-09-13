@@ -41,8 +41,7 @@ namespace Pawnmorph
             if (!mutagenDef.CanInfect(pawn)) return false;
 
             var added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
-            if (added && cause is Hediff_Morph morphHediff)
-                morphHediff.NotifyMutationAdded(hediff); 
+            
             return added; 
 
         }
