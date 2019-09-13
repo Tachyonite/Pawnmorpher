@@ -326,29 +326,25 @@ namespace Pawnmorph.DebugUtils
         public static void LogColonyPawnStatuses()
         {
             var builder = new StringBuilder();
-            var dict = new Dictionary<MorphDef, float>();
-            foreach (Pawn colonyPawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
+            foreach (var colonyPawn in PawnsFinder
+                .AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
                 builder.AppendLine(colonyPawn.Name.ToStringFull + ":");
 
                 var comp = colonyPawn.GetMutationTracker();
                 if (comp != null)
                 {
-                    foreach (var kvp in comp)
-                    {
-                        builder.Append($"\t\t{kvp.Key.defName}:{kvp.Value}");
-                    }
-
-
-
-                }else 
+                    foreach (var kvp in comp) builder.Append($"\t\t{kvp.Key.defName}:{kvp.Value}");
+                }
+                else
                 {
-                    colonyPawn.GetMorphInfluences(dict);
+                    var enumer = colonyPawn.GetMutationTracker() ?? Enumerable.Empty<KeyValuePair<MorphDef, float>>();
 
 
-                    foreach (KeyValuePair<MorphDef, float> keyValuePair in dict)
+                    foreach (var keyValuePair in enumer)
                         builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}");
                 }
+
                 builder.AppendLine($"is human:{colonyPawn.ShouldBeConsideredHuman()}\n");
             }
 

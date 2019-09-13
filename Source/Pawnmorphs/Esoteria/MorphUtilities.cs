@@ -232,6 +232,7 @@ namespace Pawnmorph
         /// <param name="pawn"></param>
         /// <param name="fillDict">the dictionary to fill</param>
         /// <param name="normalize">if to normalize the influences</param>
+        [Obsolete("use " + nameof(MutationTracker) + " instead")]
         public static void GetMorphInfluences([NotNull] this Pawn pawn, Dictionary<MorphDef, float> fillDict,
                                               bool normalize = false)
         {
@@ -268,29 +269,20 @@ namespace Pawnmorph
                                                          bool normalize = false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (pawn.health?.hediffSet?.hediffs == null) return;
-            var comps = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>()
-                            .SelectMany(h => h.comps ?? Enumerable.Empty<HediffComp>())
-                            .OfType<Hediffs.Comp_MorphInfluence>(); 
-
             fillDict.Clear();
-            float total = 0; 
-            foreach (Comp_MorphInfluence comp in comps)
+            if (pawn.health?.hediffSet?.hediffs == null) return;
+            var tracker = pawn.GetMutationTracker();
+            if (tracker == null) return;  
+            
+            float total = 0;
+
+
+            foreach (var kvp in tracker)
             {
-                var influence = comp.Props.influence;
-                var morph = comp.Props.morph;
-                
-                foreach (string morphCategory in morph.categories)
+                foreach (var category in kvp.Key.categories ?? Enumerable.Empty<string>())
                 {
-                    float accum;
-                    fillDict.TryGetValue(morphCategory, out accum);
-                    accum += influence;
-                    fillDict[morphCategory] = accum;
-                    total += influence; 
+                    fillDict[category] = fillDict.TryGetValue(category) + kvp.Value; 
                 }
-
-
-
             }
 
             if (normalize && total > 0.001f) //prevent division by zero 
@@ -315,12 +307,17 @@ namespace Pawnmorph
             return dict; 
         }
 
+
+        
+
+
         /// <summary>
         ///     calculate all morph influences on a pawn
         /// </summary>
         /// <param name="p"></param>
         /// <param name="normalize"></param>
         /// <returns></returns>
+        [Obsolete("use " + nameof(MutationTracker) +  " instead")]
         public static Dictionary<MorphDef, float> GetMorphInfluences([NotNull] this Pawn p, bool normalize = false)
         {
             if (p == null) throw new ArgumentNullException(nameof(p));
@@ -352,9 +349,10 @@ namespace Pawnmorph
         public static bool ShouldBeConsideredHuman([NotNull]this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (pawn.health?.hediffSet?.hediffs == null) return false;
+            if (pawn.health?.hediffSet?.hediffs == null) return true;
 
-
+            var tracker = pawn.GetMutationTracker();
+            if (tracker == null) return true; 
             float totalInfluence = 0;
             HashSet<BodyPartRecord> mutatedRecords = new HashSet<BodyPartRecord>(); 
 
@@ -366,7 +364,7 @@ namespace Pawnmorph
 
             var humanInfluence = pawn.health.hediffSet.GetNotMissingParts().Count(p => PossiblePartsLst.Contains(p.def) && !mutatedRecords.Contains(p));
 
-            return humanInfluence * 0.75f > totalInfluence; 
+            return humanInfluence * 0.65f > totalInfluence; 
 
         }
 

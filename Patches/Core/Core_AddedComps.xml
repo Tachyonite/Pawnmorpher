@@ -7,6 +7,9 @@
         <li>
           <compClass>Pawnmorph.GraphicSys.InitialGraphicsComp</compClass>
         </li>
+        <li>
+          <compClass>Pawnmorph.MutationTracker</compClass>
+        </li>
 			</comps>
 		</value>
 	</Operation>
