@@ -277,7 +277,9 @@ namespace Pawnmorph.Hybrids
             var human = ThingDefOf.Human;
             if (race == human) return; //do nothing 
 
-            if (!DebugLogUtils.Assert(pawn.IsHybridRace(), "pawn.IsHybridRace()")) return;
+            var isHybrid = pawn.IsHybridRace();
+            DebugLogUtils.Assert(isHybrid, "pawn.IsHybridRace()");
+            if (!isHybrid) return;
 
             var storedGraphics = pawn.GetComp<GraphicSys.InitialGraphicsComp>(); 
             storedGraphics.RestoreGraphics();

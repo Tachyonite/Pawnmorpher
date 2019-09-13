@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using AlienRace;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
@@ -24,10 +25,10 @@ namespace Pawnmorph.DebugUtils
         /// <param name="message">The message.</param>
         /// <returns>the condition</returns>
         [DebuggerHidden]
-        public static bool Assert(bool condition, string message)
+        [Conditional("DEBUG"), AssertionMethod]
+        public static void Assert(bool condition, string message)
         {
             if (!condition) Log.Error($"assertion failed:{message}");
-            return condition;
         }
 
 

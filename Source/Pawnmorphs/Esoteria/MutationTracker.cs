@@ -55,6 +55,12 @@ namespace Pawnmorph
             Assert(parent is Pawn, "parent is Pawn"); 
         }
 
+        public float GetNormalizedInfluence([NotNull] MorphDef morph)
+        {
+            if (morph == null) throw new ArgumentNullException(nameof(morph));
+            return this[morph] / Mathf.Min(0.001f, morph.TotalInfluence); //prevent division by zero 
+        }
+
         public Pawn Pawn => (Pawn) parent;
 
         /// <summary>
