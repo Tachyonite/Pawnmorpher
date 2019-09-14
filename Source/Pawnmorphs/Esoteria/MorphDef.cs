@@ -73,7 +73,6 @@ namespace Pawnmorph
                     _totalInfluence = counter; 
                 }
 
-                Log.Message($"$$$$ {nameof(TotalInfluence)} for {defName} is {_totalInfluence}");
 
                 return _totalInfluence.Value;
             }

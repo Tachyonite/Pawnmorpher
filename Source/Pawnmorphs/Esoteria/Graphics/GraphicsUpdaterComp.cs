@@ -84,7 +84,6 @@ namespace Pawnmorph.GraphicSys
 
             GComp.skinColor = col;
 
-            Log.Message($"$$$ updating {Pawn.Name} skin color to {col}");
             return true; 
         }
 
