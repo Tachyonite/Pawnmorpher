@@ -19,7 +19,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>MutagenicChamber</defName>
 		<label>mutagenic chamber</label>
-		<description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not in here.</description>
+		<description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not fit in here.</description>
 		<thingClass>Pawnmorph.Building_MutagenChamber</thingClass>
 		<graphicData>
 			<texPath>Things/Building/MutagenChamber/TFChamber</texPath>
