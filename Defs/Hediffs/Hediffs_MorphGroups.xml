@@ -25,7 +25,7 @@
 	      <!-- TODO -->
       </li>
       <li>
-        <minSeverity>4</minSeverity>
+        <minSeverity>5</minSeverity>
         <label>happy</label>
 		  <!-- TODO -->
       </li>
@@ -42,25 +42,80 @@
 	  <stages> <!-- should have the same number of stages as the hediff -->
       <li>
         <label>alone</label> 
-        <description>TODO</description>
+        <description>I'm the only one of my kind, I wish I had a proper pack.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
       <li>
         <label>lonely</label>
-        <description>TODO</description>
+        <description>There's another like me, but we're still only a small pack.</description>
         <baseMoodEffect>-1</baseMoodEffect>
       </li>
       <li>
         <label>comfortable</label>
         <visible>true</visible>
-        <description>TODO</description>
-        <baseMoodEffect>0</baseMoodEffect>
+        <description>There's lots of my kind, strength in numbers.</description>
+        <baseMoodEffect>1</baseMoodEffect>
 		  
       </li>
       <li>
         <label>happy</label>
-        <description>TODO</description>
-        <baseMoodEffect>3</baseMoodEffect>
+        <description>There's plenty of people in my pack, this is great!</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+	<HediffDef ParentName="MorphGroupHediffBase">
+    <defName>HerdMind</defName>
+    <label>herd mentality</label>
+    <stages>
+      <li>
+        <label>alone</label>
+          <!-- TODO -->
+      </li>
+      <li>
+        <minSeverity>2</minSeverity> <!-- the severity of the hediff is always going to equal the number of morphs on a map at a time -->
+	      <label>lonely</label>
+	      <!-- TODO -->
+      </li>
+      <li>
+        <minSeverity>3</minSeverity>
+        <label>comfortable</label>
+	      <!-- TODO -->
+      </li>
+      <li>
+        <minSeverity>5</minSeverity>
+        <label>happy</label>
+		  <!-- TODO -->
+      </li>
+    </stages>
+  </HediffDef>
+  
+  <ThoughtDef ParentName="GroupThoughtBase">
+    <defName>HerdMinded</defName>
+    <hediff>HerdMind</hediff>
+	  <stages> <!-- should have the same number of stages as the hediff -->
+      <li>
+        <label>alone</label> 
+        <description>I'm the only one of my kind, I feel unsafe being all alone.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>lonely</label>
+        <description>There's another like me, but we're still only a small herd.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>comfortable</label>
+        <visible>true</visible>
+        <description>There's lots of my kind, safety in numbers.</description>
+        <baseMoodEffect>1</baseMoodEffect>
+		  
+      </li>
+      <li>
+        <label>happy</label>
+        <description>There's plenty of people in my herd, there's nothing to fear!</description>
+        <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

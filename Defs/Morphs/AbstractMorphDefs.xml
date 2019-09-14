@@ -13,4 +13,8 @@
   <Pawnmorph.MorphDef Abstract="True" Name="CanineMorph" ParentName="SensitiveFoodMorph">
     <group>Canines</group>
   </Pawnmorph.MorphDef>
+
+  <Pawnmorph.MorphDef Abstract="True" Name="HerdMorph" ParentName="SensitiveFoodMorph">
+    <group>HerbivoreHerding</group>
+  </Pawnmorph.MorphDef>
 </Defs>
