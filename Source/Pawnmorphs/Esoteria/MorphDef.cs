@@ -7,6 +7,7 @@ using System.Linq;
 using AlienRace;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -17,6 +18,8 @@ namespace Pawnmorph
     /// </summary>
     public class MorphDef : Def
     {
+        public static IEnumerable<MorphDef> AllDefs => DefDatabase<MorphDef>.AllDefs; 
+
         /// <summary>
         /// setting to control how this morph transforms 
         /// </summary>
@@ -48,19 +51,29 @@ namespace Pawnmorph
             {
                 if (_totalInfluence == null)
                 {
-                    var comps = DefDatabase<HediffDef>.AllDefs
-                        .Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass)) //get all mutations 
-                        .Select(d => d.CompProps<CompProperties_MorphInfluence>()) //graph the influence components 
-                        .Where(p => p != null); //get rid of nulls 
+                    var givers = DefDatabase<HediffDef>.AllDefs
+                                                       .Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass))
+                                                       .SelectMany(def => def.GetAllHediffGivers()
+                                                                             .OfType<HediffGiver_Mutation
+                                                                              >()) //select the givers not the hediffs directly to get where they're assigned to 
+                                                       .Where(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph
+                                                                == this)
+                                                       .GroupBy(g => g.hediff, g => g) //get only distinct values 
+                                                       .Select(g => g.First()); //not get one of each mutation 
+
 
                     var counter = 0.0f; 
-                    foreach (var comp in comps)
+                    foreach (HediffGiver_Mutation hediffGiverMutation in givers)
                     {
-                        counter += comp.influence; 
+                        var inf = hediffGiverMutation.hediff.CompProps<CompProperties_MorphInfluence>().influence;
+                        counter += inf * hediffGiverMutation.countToAffect; 
                     }
+
 
                     _totalInfluence = counter; 
                 }
+
+                Log.Message($"$$$$ {nameof(TotalInfluence)} for {defName} is {_totalInfluence}");
 
                 return _totalInfluence.Value;
             }

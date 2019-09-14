@@ -17,19 +17,7 @@ namespace Pawnmorph
     /// </summary>
     public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<MorphDef, float>>
     {
-        public delegate void MutationChangeHandle(MutationTracker sender, [NotNull] Pawn pawn,
-            Hediff_AddedMutation mutation);
-
-
-        /// <summary>
-        ///     event raised whenever a mutation is added
-        /// </summary>
-        public event MutationChangeHandle MutationAdded;
-
-        /// <summary>
-        ///     event raised whenever a mutation is removed
-        /// </summary>
-        public event MutationChangeHandle MutationRemoved;
+       
 
 
         private Dictionary<MorphDef, float> _influenceLookup = new Dictionary<MorphDef,float>();
@@ -58,7 +46,7 @@ namespace Pawnmorph
         public float GetNormalizedInfluence([NotNull] MorphDef morph)
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
-            return this[morph] / Mathf.Min(0.001f, morph.TotalInfluence); //prevent division by zero 
+            return this[morph] / Mathf.Max(0.001f, morph.TotalInfluence); //prevent division by zero 
         }
 
         public Pawn Pawn => (Pawn) parent;
@@ -79,8 +67,32 @@ namespace Pawnmorph
 
             }
 
-            MutationAdded?.Invoke(this, Pawn,  mutation);
+            NotifyCompsAdded(mutation);
         }
+
+        void NotifyCompsAdded(Hediff_AddedMutation mutation)
+        {
+
+            foreach (ThingComp parentAllComp in parent.AllComps)
+            {
+                if(parentAllComp == this) continue;
+                if(!(parentAllComp is IMutationEventReceiver receiver)) continue;
+                receiver.MutationAdded(mutation, this); 
+            }
+
+        }
+
+        void NotifyCompsRemoved(Hediff_AddedMutation mutation)
+        {
+            foreach (ThingComp parentAllComp in parent.AllComps)
+            {
+                if (parentAllComp == this) continue;
+                if (!(parentAllComp is IMutationEventReceiver receiver)) continue;
+                receiver.MutationRemoved(mutation, this); 
+            }
+        }
+
+
         /// <summary>
         /// called to notify this tracker that a mutation has been removed 
         /// </summary>
@@ -106,7 +118,7 @@ namespace Pawnmorph
 
             }
 
-            MutationRemoved?.Invoke(this, Pawn, mutation); 
+            NotifyCompsRemoved(mutation); 
         }
 
         public override void PostExposeData()

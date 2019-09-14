@@ -51,6 +51,7 @@ namespace Pawnmorph.Hybrids
         /// </summary>
         /// <param name="race"></param>
         /// <returns></returns>
+        [CanBeNull]
         public static MorphDef GetMorphOfRace(this ThingDef race)
         {
             return _raceLookupTable.TryGetValue(race); 

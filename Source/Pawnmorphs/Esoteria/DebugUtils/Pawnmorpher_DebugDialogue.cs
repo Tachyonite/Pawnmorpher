@@ -4,7 +4,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
+using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -38,6 +40,7 @@ namespace Pawnmorph.DebugUtils
         void ListPlayOptions()
         {
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
+            DebugToolMapForPawns("give random mutations", GetRandomMutationsOptions);
             DebugToolMapForPawns("force full transformation", ForceTransformation); 
         }
 
@@ -60,6 +63,79 @@ namespace Pawnmorph.DebugUtils
 
 
         }
+
+
+        void GivePawnRandomMutations(Pawn pawn, [CanBeNull] MorphDef morph)
+        {
+
+            var mutations = morph?.AssociatedMutations;
+            if (mutations == null)
+            {
+                mutations = DefDatabase<HediffDef>.AllDefs
+                                                  .Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass))
+                                                  .SelectMany(d => d.GetAllHediffGivers())
+                                                  .OfType<HediffGiver_Mutation>(); 
+
+
+            }
+
+            bool CanReceiveGiver(HediffGiver_Mutation mutation)
+            {
+                var hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation.hediff);
+
+                return hediffs.Count() < mutation.countToAffect; 
+
+
+
+
+
+            }
+
+
+            var mutList = mutations.Where(CanReceiveGiver).ToList();
+            if (mutList.Count == 0) return; 
+
+            var num = Rand.Range(1, Mathf.Min(10, mutList.Count));
+
+            int i = 0;
+            while (i < num && mutList.Count > 0)
+            {
+                var giver = mutList.RandElement();
+                mutList.Remove(giver);
+
+
+                giver.TryApply(pawn, MutagenDefOf.defaultMutagen);
+
+                i++; 
+
+            }
+
+
+
+        }
+
+
+        void GetRandomMutationsOptions(Pawn pawn)
+        {
+            List<DebugMenuOption> options = new List<DebugMenuOption>()
+                {new DebugMenuOption("none", DebugMenuOptionMode.Tool, () => GivePawnRandomMutations(pawn, null))};
+
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
+                                                 () => GivePawnRandomMutations(pawn, morphDef)); 
+                options.Add(option);
+
+
+
+            }
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+
+
+        }
+
 
         List<DebugMenuOption> GetRaceChangeOptions()
         {

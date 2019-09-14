@@ -1,13 +1,16 @@
 ﻿// GraphicsUpdaterComp.cs created by Iron Wolf for Pawnmorph on 09/13/2019 8:14 AM
 // last updated 09/13/2019  8:14 AM
 
+using System;
+using System.Diagnostics;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
-using static Pawnmorph.DebugUtils.DebugLogUtils; 
+using static Pawnmorph.DebugUtils.DebugLogUtils;
+using Debug = System.Diagnostics.Debug;
 
 namespace Pawnmorph.GraphicSys
 {
@@ -16,41 +19,47 @@ namespace Pawnmorph.GraphicSys
     /// requires that the pawn have a MutationTracker comp to 
     /// </summary>
     [UsedImplicitly]
-    public class GraphicsUpdaterComp : ThingComp 
+    public class GraphicsUpdaterComp : ThingComp , IMutationEventReceiver
     {
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             Assert(parent is Pawn, "parent is Pawn");
-
             
+               
+
 
         }
 
-        private Pawn Pawn => (Pawn) parent; 
+        private bool _subOnce; 
+      
 
+        private Pawn Pawn => (Pawn) parent;
 
 
         public override void PostExposeData()
         {
             base.PostExposeData();
+
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                Assert(_subOnce == false, "_subOnce == false");
+                _subOnce = true;
+
                 var tracker = Pawn.GetMutationTracker();
                 Assert(tracker != null, "tracker != null");
                 Assert(Pawn.GetComp<AlienPartGenerator.AlienComp>() != null, "Pawn.GetComp<AlienPartGenerator.AlienComp>() != null");
-                Assert(InitialGraphics != null, "InitialGraphics != null"); 
-                // ReSharper disable once PossibleNullReferenceException
-                tracker.MutationAdded += OnMutationAdded; //handled by above assertion 
-                tracker.MutationRemoved += OnMutationRemoved; 
+                Assert(InitialGraphics != null, "InitialGraphics != null");
+                
+                
+              
             }
         }
 
 
         private AlienPartGenerator.AlienComp GComp => Pawn.GetComp<AlienPartGenerator.AlienComp>();
 
-        private InitialGraphicsComp InitialGraphics => Pawn.GetComp<InitialGraphicsComp>(); 
-
+        private InitialGraphicsComp InitialGraphics => Pawn.GetComp<InitialGraphicsComp>();
 
 
         bool UpdateSkinColor(MutationTracker tracker)
@@ -61,15 +70,21 @@ namespace Pawnmorph.GraphicSys
                                                                         //that of their current race do nothing 
 
             float lerpVal = tracker.GetNormalizedInfluence(highestInfluence);
-            var baseColor = curMorph.GetSkinColorOverride() ?? InitialGraphics.skinColor;
+            var baseColor = curMorph?.GetSkinColorOverride() ?? InitialGraphics.skinColor;
             var morphColor = highestInfluence.GetSkinColorOverride() ?? InitialGraphics.skinColor;
 
-            if (baseColor == morphColor) return false; //if they're the same color don't  do anything 
+            if (baseColor == morphColor) {
+                Log.Warning($"morphColor and baseColor are the same for morph {highestInfluence.defName} and {curMorph}");
+
+                return false; //if they're the same color don't  do anything 
+}
 
 
             var col = Color.Lerp(baseColor, morphColor, lerpVal); //blend the 2 by the normalized colors 
 
             GComp.skinColor = col;
+
+            Log.Message($"$$$ updating {Pawn.Name} skin color to {col}");
             return true; 
         }
 
@@ -81,7 +96,7 @@ namespace Pawnmorph.GraphicSys
             //that of their current race do nothing 
 
             float lerpVal = tracker.GetNormalizedInfluence(highestInfluence);
-            var baseColor = curMorph.GetHairColorOverride() ?? InitialGraphics.hairColor;
+            var baseColor = curMorph?.GetHairColorOverride() ?? InitialGraphics.hairColor;
             var morphColor = highestInfluence.GetHairColorOverride() ?? InitialGraphics.hairColor;
 
             if (baseColor == morphColor) return false; //if they're the same color don't  do anything 
@@ -89,12 +104,15 @@ namespace Pawnmorph.GraphicSys
 
             var col = Color.Lerp(baseColor, morphColor, lerpVal); //blend the 2 by the normalized colors 
 
+            Pawn.story.hairColor = col; 
+
+
             return true; 
         }
 
-        private void OnMutationAdded(MutationTracker sender, Pawn pawn, Hediff_AddedMutation mutation)
+         void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
-            RefreshGraphics(sender, pawn);
+            RefreshGraphics(tracker,Pawn);
         }
 
         private void RefreshGraphics(MutationTracker sender, Pawn pawn)
@@ -108,9 +126,9 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
-        private void OnMutationRemoved(MutationTracker sender, Pawn pawn, Hediff_AddedMutation mutation)
+         void IMutationEventReceiver.MutationRemoved(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
-            RefreshGraphics(sender, pawn); 
+            RefreshGraphics(tracker, Pawn); 
         }
     }
 }

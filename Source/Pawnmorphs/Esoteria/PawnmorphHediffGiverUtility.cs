@@ -19,21 +19,26 @@ namespace Pawnmorph
                     for (int i = 0; i < countToAffect; i++)
                     {
 
-                        IEnumerable<BodyPartRecord> source = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null, null);
+                        IEnumerable<BodyPartRecord> source =
+                            pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null,
+                                                                     null);
                         if (partsToAffect != null)
                         {
                             source = from p in source
                                      where partsToAffect.Contains(p.def)
                                      select p;
                         }
+
                         if (canAffectAnyLivePart)
                         {
                             source = from p in source
                                      where p.def.alive
                                      select p;
                         }
+
                         source = from p in source
-                                 where !pawn.health.hediffSet.HasHediff(hediff, p, false) && !pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(p)
+                                 where !pawn.health.hediffSet.HasHediff(hediff, p, false)
+                                    && !pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(p)
                                  select p;
                         if (!source.Any<BodyPartRecord>())
                         {
@@ -47,10 +52,13 @@ namespace Pawnmorph
                         {
                             outAddedHediffs.Add(hediff2);
                         }
+
                         result = true;
                     }
+
                     return result;
                 }
+
                 if (!pawn.health.hediffSet.HasHediff(hediff, false))
                 {
                     Hediff hediff3 = HediffMaker.MakeHediff(hediff, pawn, null);
@@ -59,11 +67,18 @@ namespace Pawnmorph
                     {
                         outAddedHediffs.Add(hediff3);
                     }
+
                     return true;
                 }
+
                 return false;
             }
-            catch { return false; }
+            catch (Exception exception)
+            {
+                Log.Warning($"exception {exception.GetType().Name} caught while giving {hediff.defName} to {pawn.Name}, message follows \n{exception}");
+
+                return false;
+            }
         }
     }
 }

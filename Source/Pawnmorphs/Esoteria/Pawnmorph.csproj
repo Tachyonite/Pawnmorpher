@@ -96,6 +96,7 @@
     <Compile Include="Hybrids\HThoughtDefOf.cs" />
     <Compile Include="Hybrids\HTraitDefOf.cs" />
     <Compile Include="Hybrids\HybridRaceSettings.cs" />
+    <Compile Include="IMutationEventReceiver.cs" />
     <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
     <Compile Include="Hediffs\IPostTfHediffComp.cs" />
