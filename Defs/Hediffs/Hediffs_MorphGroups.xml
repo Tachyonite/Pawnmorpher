@@ -66,7 +66,7 @@
   </ThoughtDef>
 
 	<HediffDef ParentName="MorphGroupHediffBase">
-    <defName>PreyMind</defName>
+    <defName>HerdMind</defName>
     <label>herd mentality</label>
     <stages>
       <li>
@@ -96,7 +96,7 @@
   </ThoughtDef>
 
   <ThoughtDef ParentName="GroupThoughtBase">
-    <defName>HerdMinded</defName>
+    <defName>HerdMind</defName>
     <hediff>PreyMind</hediff>
 	  <stages> <!-- should have the same number of stages as the hediff -->
       <li>
