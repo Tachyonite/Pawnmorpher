@@ -614,6 +614,7 @@
 			<mateMtbHours>99999999</mateMtbHours>
 			<manhunterOnDamageChance>0.3</manhunterOnDamageChance>
 			<manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+      <packAnimal>true</packAnimal>
 			<lifeStageAges>
 				<li>
 					<def>AnimalBaby</def>

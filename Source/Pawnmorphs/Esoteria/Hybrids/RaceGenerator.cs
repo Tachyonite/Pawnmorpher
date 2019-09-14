@@ -71,7 +71,7 @@ namespace Pawnmorph.Hybrids
                 leatherDef = animal.leatherDef,
                 nameCategory = human.nameCategory,
                 body = human.body,
-                baseBodySize = Mathf.Lerp(human.baseBodySize, animal.baseBodySize,0.3f), //this is tied to max hunger 
+                baseBodySize = GetBodySize(animal, human),
                 baseHealthScale = Mathf.Lerp(human.baseHealthScale, animal.baseHealthScale, HEALTH_SCALE_LERP_VALUE),
                 baseHungerRate = GetHungerRate(animal, human), 
                 foodType = GenerateFoodFlags(animal.foodType),
@@ -94,8 +94,14 @@ namespace Pawnmorph.Hybrids
                 useMeatFrom = animal.useMeatFrom,
                 deathActionWorkerClass = animal.deathActionWorkerClass, //boomratmorphs should explode
                 corpseDef = human.corpseDef,
-                
+                packAnimal = animal.packAnimal
             };
+        }
+
+        private static float GetBodySize(RaceProperties animal, RaceProperties human)
+        {
+            var f = Mathf.Lerp(human.baseBodySize, animal.baseBodySize, 0.5f);
+            return Mathf.Max(f, human.baseBodySize / 0.7f); 
         }
 
         private static float GetHungerRate(RaceProperties animal, RaceProperties human)
@@ -290,7 +296,6 @@ namespace Pawnmorph.Hybrids
                 stuffCategories = humanDef.stuffCategories?.ToList(),
                 designationCategory = humanDef.designationCategory,
                 tradeTags = humanDef.tradeTags?.ToList()
-                
             };
         }
 
