@@ -30,3 +30,4 @@ Compress-Archive -Path "$buildDir/Tmp/*" -CompressionLevel Optimal -DestinationP
 
 
 Remove-Item -Path "$buildDir/Tmp" -Recurse -Force 
+Write-Output "file $buildDir/$buildName created successfully" 
