@@ -24,6 +24,7 @@ namespace Pawnmorph
 
         public bool TryTf(Pawn pawn, Hediff cause)
         {
+            RandUtilities.PushState();
             float chance = changeChance < 0 //if changeChance wasn't overriden use the default from the settings 
                 ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
                 : changeChance;
@@ -35,6 +36,8 @@ namespace Pawnmorph
             {
                 return TransformPawn(pawn, cause);
             }
+
+            RandUtilities.PopState();
 
             return false; 
 
