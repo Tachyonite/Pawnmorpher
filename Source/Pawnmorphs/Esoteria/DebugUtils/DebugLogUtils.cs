@@ -136,7 +136,7 @@ namespace Pawnmorph.DebugUtils
             builder.AppendLine($"mutations:");
             foreach (HediffDef allMutation in allMutations)
             {
-                builder.AppendLine($"\t{allMutation.defName}");
+                builder.AppendLine($"\t{allMutation.defName}[{allMutation.stages.Count}]");
             }
 
             builder.AppendLine($"\n------------Stats--------------\n");
@@ -147,15 +147,20 @@ namespace Pawnmorph.DebugUtils
                 var stages = mutation.stages;
                 var severityPerDay = mutation.CompProps<HediffCompProperties_SeverityPerDay>().severityPerDay;
                 builder.AppendLine($"{mutation.defName}:");
-
+                float total = 0;  
                 for (int i = 0; i < stages.Count - 1; i++)
                 {
                     var s = stages[i];
                     var s1 = stages[i + 1];
-
+                    var sLabel = string.IsNullOrEmpty(s.label) ? i.ToString() : s.label;
+                    var s1Label = string.IsNullOrEmpty(s1.label) ? (i + 1).ToString() : s1.label; //if the label is null just use the index  
                     var diff = s1.minSeverity - s.minSeverity;
-                    builder.AppendLine($"\tstage[{i}] {{{s.minSeverity}}} => stage[{i + 1}] {{{s1.minSeverity}}} takes {diff / severityPerDay} days");
+                    var tDiff = diff / severityPerDay;
+                    total += tDiff; 
+                    builder.AppendLine($"\t\tstage[{sLabel}] {{{s.minSeverity}}} => stage[{s1Label}] {{{s1.minSeverity}}} takes {tDiff} days");
                 }
+
+                builder.AppendLine($"\ttotal time is {total} days");
             }
 
             Log.Message(builder.ToString());

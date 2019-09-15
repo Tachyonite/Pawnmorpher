@@ -25,7 +25,7 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -55,7 +55,7 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
