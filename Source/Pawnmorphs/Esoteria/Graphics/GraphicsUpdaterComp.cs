@@ -70,8 +70,8 @@ namespace Pawnmorph.GraphicSys
                                                                         //that of their current race do nothing 
 
             float lerpVal = tracker.GetNormalizedInfluence(highestInfluence);
-            var baseColor = curMorph?.GetSkinColorOverride() ?? InitialGraphics.skinColor;
-            var morphColor = highestInfluence.GetSkinColorOverride() ?? InitialGraphics.skinColor;
+            var baseColor = curMorph?.GetSkinColorOverride() ?? InitialGraphics.SkinColor;
+            var morphColor = highestInfluence.GetSkinColorOverride() ?? InitialGraphics.SkinColor;
 
             if (baseColor == morphColor) {
                 Log.Warning($"morphColor and baseColor are the same for morph {highestInfluence.defName} and {curMorph}");
@@ -95,8 +95,8 @@ namespace Pawnmorph.GraphicSys
             //that of their current race do nothing 
 
             float lerpVal = tracker.GetNormalizedInfluence(highestInfluence);
-            var baseColor = curMorph?.GetHairColorOverride() ?? InitialGraphics.hairColor;
-            var morphColor = highestInfluence.GetHairColorOverride() ?? InitialGraphics.hairColor;
+            var baseColor = curMorph?.GetHairColorOverride() ?? InitialGraphics.HairColor;
+            var morphColor = highestInfluence.GetHairColorOverride() ?? InitialGraphics.HairColor;
 
             if (baseColor == morphColor) return false; //if they're the same color don't  do anything 
 

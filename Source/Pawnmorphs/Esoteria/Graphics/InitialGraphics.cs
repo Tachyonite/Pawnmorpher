@@ -3,100 +3,179 @@
 
 using System.Text;
 using AlienRace;
-using JetBrains.Annotations;
-using Pawnmorph.DebugUtils;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph.GraphicSys
 {
-    public class InitialGraphicsComp: ThingComp
+    public class InitialGraphicsComp : ThingComp
     {
-        private bool _scanned; 
+        private bool _scanned;
 
-        public Vector2 customDrawSize = Vector2.one;
-        public Vector2 customPortraitDrawSize = Vector2.one;
-        public bool fixGenderPostSpawn;
-        public Color skinColor;
-        public Color hairColor; 
-        public Color skinColorSecond;
-        public Color hairColorSecond;
-        public string crownType;
+        private Vector2 _customDrawSize = Vector2.one;
+        private Vector2 _customPortraitDrawSize = Vector2.one;
+        private bool _fixedGenderPostSpawn;
+        private Color _skinColor;
+        private Color _skinColorSecond;
+        private Color _hairColorSecond;
+        private Color _hairColor;
+        private string _crownType;
 
-
-        
-        public override void PostSpawnSetup(bool respawningAfterLoad)
+        public Vector2 CustomDrawSize
         {
-            base.PostSpawnSetup(respawningAfterLoad);
-            if (!_scanned)
+            get
             {
-                ScanGraphics();
+                if (!_scanned)
+                    ScanGraphics();
+                return _customDrawSize;
             }
         }
 
+        public Vector2 CustomPortraitDrawSize
+        {
+            get
+            {
+                if (!_scanned)
+                    ScanGraphics();
+                return _customPortraitDrawSize;
+            }
+        }
+
+        public bool FixGenderPostSpawn
+        {
+            get
+            {
+                if (!_scanned)
+                    ScanGraphics();
+                return _fixedGenderPostSpawn;
+            }
+        }
+
+        public Color SkinColor
+        {
+            get
+            {
+                if (!_scanned) ScanGraphics();
+                return _skinColor;
+            }
+        }
+
+        public Color HairColor
+        {
+            get
+            {
+                if (!_scanned) ScanGraphics();
+                if (_hairColor == default)
+                    _hairColor = Pawn.story.hairColor; //fix for hair color not being saved in previous saves 
+
+                return _hairColor;
+            }
+        }
+
+        public Color SkinColorSecond
+        {
+            get
+            {
+                if (!_scanned)
+                    ScanGraphics();
+                return _skinColorSecond;
+            }
+        }
+
+        public Color HairColorSecond
+        {
+            get
+            {
+                if (!_scanned) ScanGraphics();
+                return _hairColorSecond;
+            }
+        }
+
+        public string CrownType
+        {
+            get
+            {
+                if (!_scanned) ScanGraphics();
+
+                return _crownType;
+            }
+        }
+
+        private Pawn Pawn => (Pawn) parent;
+
         public string GetDebugStr()
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
 
-            builder.AppendLine($"{nameof(skinColor)} {skinColor}");
-            builder.AppendLine($"{nameof(hairColor)} {hairColor}");
-            builder.AppendLine($"{nameof(crownType)} {crownType}");
-            return builder.ToString(); 
+            builder.AppendLine($"{nameof(SkinColor)} {SkinColor}");
+            builder.AppendLine($"{nameof(HairColor)} {HairColor}");
+            builder.AppendLine($"{nameof(CrownType)} {CrownType}");
+            return builder.ToString();
         }
 
-        private void ScanGraphics()
+        public override void Initialize(CompProperties props)
         {
-
-            _scanned = true;
-            var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
-            if (comp == null) return;
-
-            customDrawSize = comp.customDrawSize;
-            customPortraitDrawSize = comp.customPortraitDrawSize;
-            fixGenderPostSpawn = comp.fixGenderPostSpawn;
-            skinColor = comp.skinColor;
-            skinColorSecond = comp.skinColorSecond;
-            hairColorSecond = comp.hairColorSecond;
-            crownType = comp.crownType;
-            hairColor = ((Pawn) parent).story.hairColor;
-        }
-
-        /// <summary>
-        /// Restores the alien Comp attached to the parent from the ones stored earlier
-        /// this does not resolve the graphics, that is the job of the caller 
-        /// </summary>
-        public void RestoreGraphics()
-        {
-            DebugLogUtils.Assert(_scanned, "_scanned");
-
-            var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
-
-            comp.skinColor = skinColor;
-            comp.customDrawSize = customDrawSize;
-            comp.customPortraitDrawSize = customPortraitDrawSize;
-            comp.fixGenderPostSpawn = fixGenderPostSpawn;
-            comp.skinColorSecond = skinColorSecond;
-            comp.hairColorSecond = hairColorSecond;
-            comp.crownType = crownType;
-            comp.hairColorSecond = hairColorSecond;
-            ((Pawn) parent).story.hairColor = hairColor; 
-
+            base.Initialize(props);
+            Assert(parent is Pawn, "parent is Pawn");
         }
 
 
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look(ref customDrawSize, nameof(customDrawSize));
-            Scribe_Values.Look(ref customPortraitDrawSize, nameof(customPortraitDrawSize));
-            Scribe_Values.Look(ref fixGenderPostSpawn, nameof(fixGenderPostSpawn));
-            Scribe_Values.Look(ref skinColor, nameof(skinColor));
-            Scribe_Values.Look(ref skinColorSecond, nameof(skinColorSecond));
-            Scribe_Values.Look(ref hairColorSecond, nameof(hairColorSecond));
-            Scribe_Values.Look(ref crownType, nameof(crownType));
+            Scribe_Values.Look(ref _customDrawSize, "customDrawSize");
+            Scribe_Values.Look(ref _customPortraitDrawSize, "customPortraitDrawSize");
+            Scribe_Values.Look(ref _fixedGenderPostSpawn, nameof(FixGenderPostSpawn));
+            Scribe_Values.Look(ref _skinColor, "skinColor");
+            Scribe_Values.Look(ref _skinColorSecond, "skinColorSecond");
+            Scribe_Values.Look(ref _hairColorSecond, "hairColorSecond");
+            Scribe_Values.Look(ref _crownType, "crownType");
+            Scribe_Values.Look(ref _hairColor, nameof(HairColor));
             Scribe_Values.Look(ref _scanned, nameof(_scanned));
         }
-    }
 
-    
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if (!_scanned) ScanGraphics();
+        }
+
+        /// <summary>
+        ///     Restores the alien Comp attached to the parent from the ones stored earlier
+        ///     this does not resolve the graphics, that is the job of the caller
+        /// </summary>
+        public void RestoreGraphics()
+        {
+            Assert(_scanned, "_scanned");
+
+            var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
+
+            comp.skinColor = SkinColor;
+            comp.customDrawSize = CustomDrawSize;
+            comp.customPortraitDrawSize = CustomPortraitDrawSize;
+            comp.fixGenderPostSpawn = FixGenderPostSpawn;
+            comp.skinColorSecond = SkinColorSecond;
+            comp.hairColorSecond = HairColorSecond;
+            comp.crownType = CrownType;
+            comp.hairColorSecond = HairColorSecond;
+            ((Pawn) parent).story.hairColor = HairColor;
+        }
+
+        private void ScanGraphics()
+        {
+            _scanned = true;
+            var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
+            if (comp == null) return;
+
+            _customDrawSize = comp.customDrawSize;
+            _customPortraitDrawSize = comp.customPortraitDrawSize;
+            _fixedGenderPostSpawn = comp.fixGenderPostSpawn;
+            _skinColor = comp.skinColor;
+            _skinColorSecond = comp.skinColorSecond;
+            _hairColorSecond = comp.hairColorSecond;
+            _crownType = comp.crownType;
+            _hairColorSecond = Pawn.story.hairColor;
+        }
+    }
 }

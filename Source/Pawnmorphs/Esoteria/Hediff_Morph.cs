@@ -72,7 +72,7 @@ namespace Pawnmorph
 
             var startColor = GetStartSkinColor();
             var endColor = AssociatedMorph.raceSettings?.graphicsSettings?.skinColorOverride ??
-                           pawn.GetComp<GraphicSys.InitialGraphicsComp>().skinColor; 
+                           pawn.GetComp<GraphicSys.InitialGraphicsComp>().SkinColor; 
 
             
 
@@ -100,7 +100,7 @@ namespace Pawnmorph
             if (col == null)
             {
                 var comp = pawn.GetComp<GraphicSys.InitialGraphicsComp>();
-                col = comp.skinColor; 
+                col = comp.SkinColor; 
             }
 
             return col.Value; 
