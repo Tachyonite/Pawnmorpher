@@ -32,6 +32,14 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
+        void ListPawnInitialGraphics(Pawn pawn)
+        {
+            var initialComp = pawn.GetComp<GraphicSys.InitialGraphicsComp>();
+            if (initialComp == null) return ;
+
+            Log.Message(initialComp.GetDebugStr()); 
+        }
+
         public Pawnmorpher_DebugDialogue()
         {
             forcePause = true; 
@@ -41,7 +49,8 @@ namespace Pawnmorph.DebugUtils
         {
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
             DebugToolMapForPawns("give random mutations", GetRandomMutationsOptions);
-            DebugToolMapForPawns("force full transformation", ForceTransformation); 
+            DebugToolMapForPawns("force full transformation", ForceTransformation);
+            DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics); 
         }
 
         void ForceTransformation(Pawn pawn)
@@ -53,11 +62,7 @@ namespace Pawnmorph.DebugUtils
                                          .OfType<HediffGiver_TF>()
                                          .FirstOrDefault();
 
-
                 giverTf?.TryTf(pawn, morphHediff);
-
-
-
 
             }
 
@@ -83,31 +88,24 @@ namespace Pawnmorph.DebugUtils
             {
                 var hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation.hediff);
 
-                return hediffs.Count() < mutation.countToAffect; 
-
-
-
-
-
+                return hediffs.Count() < mutation.countToAffect;
             }
 
+            List<HediffGiver_Mutation> mutList = mutations.Where(CanReceiveGiver).ToList();
+            if (mutList.Count == 0) return;
 
-            var mutList = mutations.Where(CanReceiveGiver).ToList();
-            if (mutList.Count == 0) return; 
+            int num = Rand.Range(1, Mathf.Min(10, mutList.Count));
 
-            var num = Rand.Range(1, Mathf.Min(10, mutList.Count));
-
-            int i = 0;
+            var i = 0;
             while (i < num && mutList.Count > 0)
             {
-                var giver = mutList.RandElement();
+                HediffGiver_Mutation giver = mutList.RandElement();
                 mutList.Remove(giver);
 
 
                 giver.TryApply(pawn, MutagenDefOf.defaultMutagen);
 
-                i++; 
-
+                i++;
             }
 
 

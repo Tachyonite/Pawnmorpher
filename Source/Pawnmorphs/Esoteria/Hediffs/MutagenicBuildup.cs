@@ -114,6 +114,7 @@ namespace Pawnmorph.Hediffs
 
         }
 
+        [SyncMethod]
         void SetTransformationType([NotNull] HediffDef tfDef)
         {
             
