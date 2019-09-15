@@ -31,6 +31,8 @@ namespace Pawnmorph.GraphicSys
             base.PostSpawnSetup(respawningAfterLoad);
             if (!_scanned)
             {
+                Log.Warning($"{ ((Pawn) parent).Name} graphics are being saved ");
+
                 _scanned = true;
                 var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
                 if (comp == null) return;
