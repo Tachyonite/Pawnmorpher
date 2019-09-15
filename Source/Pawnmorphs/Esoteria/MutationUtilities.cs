@@ -19,6 +19,12 @@ namespace Pawnmorph
     /// </summary>
     public static class MutationUtilities
     {
+        /// <summary>
+        /// an enumerable collection of all mutations 
+        /// </summary>
+        public static IEnumerable<HediffDef> AllMutations =>
+            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass)); 
+
         static IEnumerable<HediffDef> GetAllMutationsWithGraphics()
         {
             
