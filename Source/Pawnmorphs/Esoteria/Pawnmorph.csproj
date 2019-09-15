@@ -123,6 +123,7 @@
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
     <Compile Include="PMThingDefOf.cs" />
+    <Compile Include="PMUtilities.cs" />
     <Compile Include="Projectile_EtherBullet.cs" />
     <Compile Include="Projectile_EtherExplosive.cs" />
     <Compile Include="RaceMutagenExtension.cs" />

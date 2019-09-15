@@ -23,7 +23,36 @@ namespace Pawnmorph
         /// an enumerable collection of all mutations 
         /// </summary>
         public static IEnumerable<HediffDef> AllMutations =>
-            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass)); 
+            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass));
+
+        private static List<ThoughtDef> _allThoughts;
+
+        /// <summary>
+        /// an enumerable collection of all morph hediffs 
+        /// </summary>
+        public static IEnumerable<HediffDef> AllMorphHediffs =>
+            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass)); 
+
+        /// <summary>
+        /// an enumerable collection of all mutation related thoughts 
+        /// </summary>
+        public static IEnumerable<ThoughtDef> AllMutationThoughts
+        {
+            get
+            {
+                if (_allThoughts == null)
+                {
+                    _allThoughts = DefDatabase<HediffDef>.AllDefs.SelectMany(d => d.GetAllHediffGivers()
+                                                                                   .OfType<HediffGiver_Mutation>())
+                                                         .Select(g => g.memory)
+                                                         .Where(t => t != null)
+                                                         .Distinct()
+                                                         .ToList();
+                }
+
+                return _allThoughts; 
+            }
+        }
 
         static IEnumerable<HediffDef> GetAllMutationsWithGraphics()
         {
