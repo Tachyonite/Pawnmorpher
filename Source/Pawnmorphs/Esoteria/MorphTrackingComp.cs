@@ -21,23 +21,21 @@ namespace Pawnmorph
             {
                 comp.NotifySpawned((Pawn) parent);
                 comp.MorphCountChanged += MorphCountChanged;
+                RecalculateMorphCount(comp); 
             }
 
-            if (respawningAfterLoad)
+            if (respawningAfterLoad && comp == null)
             {
-                HediffDef hediffDef = parent.def.GetMorphOfRace()?.group?.hediff;
+                MorphGroupDef group = parent.def.GetMorphOfRace()?.@group;
+                HediffDef hediffDef = group?.hediff;
                 if (hediffDef == null) return; 
                 var pawn = (Pawn) parent;
                 Hediff firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
                 if (firstHediffOfDef == null)
                 {
                     Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
-                    MorphGroupDef group = pawn.GetMorphGroup();
 
-                    if (group == null)
-                        hediff.Severity = 0;
-                    else
-                        hediff.Severity = (comp?.GetGroupCount(group) ?? 0) + EPSILON; //TODO caravans 
+                    hediff.Severity = 1;
                     //add an small offset so minSeverity in hediffStages works as expected 
                     pawn.health.AddHediff(hediff);
                 }
@@ -46,6 +44,29 @@ namespace Pawnmorph
 
         private const float EPSILON = 0.001f;
 
+        private Pawn Pawn => (Pawn) parent; 
+
+        void RecalculateMorphCount(MorphTracker tracker)
+        {
+            var myMorph = parent.def.GetMorphOfRace();
+            var group = myMorph?.@group;
+            var groupHediff = @group?.hediff;
+            if (groupHediff == null) return;
+
+            Hediff hediff = Pawn.health.hediffSet.GetFirstHediffOfDef(groupHediff);
+            if (hediff == null) //if the hediff is missing for some reason add it again 
+            {
+                hediff = HediffMaker.MakeHediff(groupHediff, Pawn);
+                Pawn.health.AddHediff(hediff);
+            }
+
+           
+            hediff.Severity = tracker.GetGroupCount(group) + EPSILON; //add a small offset so minSeverity acts as expected 
+
+
+
+
+        }
 
         private void MorphCountChanged(MorphTracker sender, MorphDef morph)
         {
@@ -54,7 +75,7 @@ namespace Pawnmorph
 
             var pawn = (Pawn) parent;
 
-            HediffDef groupHediff = morph.group?.hediff;
+            HediffDef groupHediff = morph?.group?.hediff;
             if (groupHediff == null) return;
 
             Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(groupHediff);

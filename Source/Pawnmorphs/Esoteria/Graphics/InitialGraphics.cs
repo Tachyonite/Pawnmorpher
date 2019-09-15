@@ -46,7 +46,6 @@ namespace Pawnmorph.GraphicSys
 
         private void ScanGraphics()
         {
-            Log.Warning($"{((Pawn) parent).Name} graphics are being saved ");
 
             _scanned = true;
             var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
