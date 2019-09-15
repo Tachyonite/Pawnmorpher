@@ -30,16 +30,16 @@ namespace Pawnmorph
                 : changeChance;
             //Log.Message($"{cause.def} tf is being triggered with prob of {chance}");
 
-            
+            bool changed=false; 
 
             if (Rand.Range(0, 100) < chance)
             {
-                return TransformPawn(pawn, cause);
+                changed= TransformPawn(pawn, cause);
             }
 
             RandUtilities.PopState();
 
-            return false; 
+            return changed; 
 
 
         }
