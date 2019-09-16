@@ -19,6 +19,26 @@ namespace Pawnmorph
     /// </summary>
     public static class MutationUtilities
     {
+        private static List<HediffGiver_Mutation> _allGivers;
+
+        /// <summary>
+        /// returns an enumerable collection of all hediffGiver_Mutations active
+        /// note, this does <i>not</i> check for givers that give the same hediff 
+        /// </summary>
+        public static IEnumerable<HediffGiver_Mutation> AllGivers
+        {
+            get
+            {
+                if (_allGivers == null)
+                {
+                    _allGivers = AllMorphHediffs.SelectMany(def => def.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
+                                                .ToList();
+                }
+
+                return _allGivers; 
+            }
+        }
+
         /// <summary>
         /// an enumerable collection of all mutations 
         /// </summary>
