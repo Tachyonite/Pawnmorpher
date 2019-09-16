@@ -1,6 +1,7 @@
 ﻿// MutationUtilities.cs modified by Iron Wolf for Pawnmorph on 08/26/2019 2:19 PM
 // last updated 08/26/2019  2:19 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,50 @@ namespace Pawnmorph
                 return _allGivers; 
             }
         }
+
+
+        private static Dictionary<HediffDef, List<BodyPartDef>> _partLookupDict = new Dictionary<HediffDef, List<BodyPartDef>>();
+
+
+        /// <summary>
+        ///     get the body parts this hediff can be assigned to
+        /// </summary>
+        /// <param name="def"></param>
+        /// <returns>
+        ///     an enumerable collection of all parts this hediff can be assigned to, Note the elements can contain duplicates
+        ///     and null
+        /// </returns>
+        [NotNull]
+        public static IEnumerable<BodyPartDef> GetPossibleParts([NotNull] this HediffDef def)
+        {
+            if (def == null) throw new ArgumentNullException(nameof(def));
+            List<BodyPartDef> lst;
+            if (_partLookupDict.TryGetValue(def, out lst)) return lst;
+
+            lst = new List<BodyPartDef>();
+
+            IEnumerable<HediffGiver> givers =
+                DefDatabase<HediffDef>.AllDefs.SelectMany(d => d.GetAllHediffGivers().Where(g => g.hediff == def));
+
+            foreach (HediffGiver hediffGiver in givers)
+                if (hediffGiver.partsToAffect == null)
+                    lst.Add(null);
+                else
+                    lst.AddRange(hediffGiver.partsToAffect);
+
+            var ext = def.GetModExtension<MutationHediffExtension>();
+            if (ext != null)
+            {
+                if (ext.parts == null)
+                    lst.Add(null);
+                else
+                    lst.AddRange(ext.parts);
+            }
+
+            _partLookupDict[def] = lst; //cache the value so subsequent lookups are fast 
+            return lst;
+        }
+
 
         /// <summary>
         /// an enumerable collection of all mutations 
