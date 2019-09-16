@@ -2,6 +2,7 @@
 	<Pawnmorph.MorphDef>
 		<defName>PigMorph</defName>
 		<label>pigmorph</label>
+		<description>A humanoid race resulting from a human being exposed to pig specific mutagens. They are often fond of looking through dirt and grass to find edible mushrooms</description>
 		<race>Pig</race>
 		<categories>
 			<li>Farm</li>
