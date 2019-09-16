@@ -1,0 +1,16 @@
+﻿// MutationMemory.cs created by Iron Wolf for Pawnmorph on 09/16/2019 2:47 PM
+// last updated 09/16/2019  2:47 PM
+
+using RimWorld;
+using UnityEngine;
+
+namespace Pawnmorph.Thoughts
+{
+    /// <summary>
+    /// memory who's stage depends on the pawn's current mutation outlook 
+    /// </summary>
+    public class MutationMemory : Thought_Memory
+    {
+        public override int CurStageIndex => Mathf.Min(def.stages.Count, (int) pawn.GetOutlook());
+    }
+}

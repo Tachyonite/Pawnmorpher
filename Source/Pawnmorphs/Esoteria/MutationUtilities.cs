@@ -23,6 +23,23 @@ namespace Pawnmorph
         private static List<HediffGiver_Mutation> _allGivers;
 
         /// <summary>
+        /// get the pawn's outlook toward being mutated 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static MutationOutlook GetOutlook([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            var traits = pawn.story?.traits;
+            if (traits == null) return MutationOutlook.Neutral;
+            if (traits.HasTrait(PMTraitDefOf.FurryTrait)) return MutationOutlook.Furry;
+            if (traits.HasTrait(TraitDefOf.BodyPurist)) return MutationOutlook.BodyPurist;
+            return MutationOutlook.Neutral;
+
+        }
+
+        /// <summary>
         /// returns an enumerable collection of all hediffGiver_Mutations active
         /// note, this does <i>not</i> check for givers that give the same hediff 
         /// </summary>

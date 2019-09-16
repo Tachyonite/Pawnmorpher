@@ -1,0 +1,16 @@
+<Defs>
+  <TraitDef>
+    <defName>FurryTrait</defName>
+    <commonality>0.9</commonality>
+    <degreeDatas>
+      <li>
+        <label>TODO</label>
+        <description>TODO</description>
+      </li>
+    </degreeDatas>
+    <conflictingTraits>
+      <li>Transhumanist</li>
+      <li>BodyPurist</li>
+    </conflictingTraits>
+  </TraitDef>
+</Defs>

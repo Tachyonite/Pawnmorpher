@@ -123,11 +123,13 @@
     <Compile Include="Mutagen_JobDefOf.cs" />
     <Compile Include="MutationCategoryDef.cs" />
     <Compile Include="MutationHediffExtension.cs" />
+    <Compile Include="MutationOutlook.cs" />
     <Compile Include="MutationTracker.cs" />
     <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
     <Compile Include="PMThingDefOf.cs" />
+    <Compile Include="PMTraitDefOf.cs" />
     <Compile Include="PMUtilities.cs" />
     <Compile Include="Projectile_EtherBullet.cs" />
     <Compile Include="Projectile_EtherExplosive.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="TfSys\TransformationRequest.cs" />
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
+    <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
     <Compile Include="Thoughts\ThoughtDefOfs.cs" />
