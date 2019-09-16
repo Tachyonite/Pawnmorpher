@@ -1,0 +1,7 @@
+<Defs>
+	<ThoughtDef Name="MutationMemoryBase" Abstract="true">
+		<showBubble>false</showBubble> <!-- should we make a bubble for the mutation thoughts? -->
+		<durationDays>4</durationDays>
+		<!-- should probably be about as long as it takes pawns to "get used to" the mutation -->
+	</ThoughtDef>
+</Defs>
