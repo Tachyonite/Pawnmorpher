@@ -2,10 +2,11 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>RatMorph</defName>
 		<label>ratmorph</label>
+    <description>A smaller, ratlike humanoid. These former humans share many characteristics with rats, usually making them fragile in combat, but good crafters and artists</description>
+		<race>Rat</race>
 		<categories>
 			<li>Crafter</li>
 		</categories>
-		<race>Rat</race>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(120,120,120)</skinColorOverride>
