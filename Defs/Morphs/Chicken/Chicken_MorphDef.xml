@@ -4,8 +4,9 @@
 		<label>chookmorph</label>
 		<race>Chicken</race>
 		<categories>
-			<li>avian</li>
-			<li>farm</li>
+			<li>Avian</li>
+			<li>Production</li>
+			<li>Farm</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

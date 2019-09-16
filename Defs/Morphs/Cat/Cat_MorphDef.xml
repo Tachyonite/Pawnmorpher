@@ -4,7 +4,8 @@
 		<label>catmorph</label>
 		<race>Cat</race>
 		<categories>
-			<li>feline</li>
+			<li>Feline</li>
+			<li>Combat</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

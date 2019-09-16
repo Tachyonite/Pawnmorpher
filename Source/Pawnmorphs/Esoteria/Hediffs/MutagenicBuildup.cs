@@ -25,7 +25,7 @@ namespace Pawnmorph.Hediffs
                 if (tfDef == def) return false;
                 if (tfDef.GetTransformationType() == MorphTransformationTypes.Partial) return false; 
                 var morphs = MorphUtilities.GetAssociatedMorph(tfDef);
-                if (morphs.Any(m => m.categories.Contains("powerful"))) return false; //don't apply powerful morphs 
+                if (morphs.Any(m => m.categories.Contains(MorphCategoryDefOf.Powerful))) return false; //don't apply powerful morphs 
 
 
 

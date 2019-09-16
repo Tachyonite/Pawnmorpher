@@ -4,8 +4,8 @@
 		<label>pigmorph</label>
 		<race>Pig</race>
 		<categories>
-			<li>farm</li>
-			<li>pig</li>
+			<li>Farm</li>
+			<li>Production</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

@@ -16,7 +16,7 @@
 							<xs:element name="categories">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element maxOccurs="unbounded" name="li" type="xs:string" />
+										<xs:element maxOccurs="unbounded" name="li" type="MorphCategory" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
@@ -49,12 +49,28 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-  <xs:simpleType name="MorphGroups">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Canines"/>
-      <xs:enumeration value="HerbivoreHerding"/>
-    </xs:restriction>
-  </xs:simpleType>
+	<xs:simpleType name="MorphGroups">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Canines" />
+			<xs:enumeration value="HerbivoreHerding" />
+		</xs:restriction>
+
+	</xs:simpleType>
+	<xs:simpleType name="MorphCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Powerful" />
+			<xs:enumeration value="Farm" />
+			<xs:enumeration value="Combat" />
+			<xs:enumeration value="Production" />
+			<xs:enumeration value="Social" />
+			<xs:enumeration value="Crafter" />
+			<xs:enumeration value="Ursine" />
+			<xs:enumeration value="Feline" />
+			<xs:enumeration value="Avian" />
+			<xs:enumeration value="Canid" />
+
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="StatModifiersList">
 		<xs:sequence>
 			<xs:element name="li" type="StatModifier" />
@@ -145,25 +161,25 @@
 			<xs:element name="messageDef" type="xs:string" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
-  <xs:complexType name="TraitSettings">
-    <xs:sequence>
-		<xs:element name="forcedTraits" minOccurs="0" maxOccurs="1">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="li" minOccurs="1" maxOccurs="unbounded">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="chance" type="xs:float" minOccurs="0" maxOccurs="1" />
-                <xs:element name="commonalityMale" type="xs:float" minOccurs="0" maxOccurs="1" />
-                <xs:element name="commonalityFemale" type="xs:float" minOccurs="0" maxOccurs="1" />
-				<xs:element name="defName" type="xs:string" maxOccurs="1" minOccurs="1" />
-				<xs:element name="degree" type="xs:int" maxOccurs="1" minOccurs="0" />
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
-      </xs:complexType>
-		</xs:element>
-    </xs:sequence>
-  </xs:complexType>
+	<xs:complexType name="TraitSettings">
+		<xs:sequence>
+			<xs:element name="forcedTraits" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" minOccurs="1" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="chance" type="xs:float" minOccurs="0" maxOccurs="1" />
+									<xs:element name="commonalityMale" type="xs:float" minOccurs="0" maxOccurs="1" />
+									<xs:element name="commonalityFemale" type="xs:float" minOccurs="0" maxOccurs="1" />
+									<xs:element name="defName" type="xs:string" maxOccurs="1" minOccurs="1" />
+									<xs:element name="degree" type="xs:int" maxOccurs="1" minOccurs="0" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>

@@ -4,7 +4,8 @@
 		<label>wargmorph</label>
 		<race>Warg</race>
 		<categories>
-			<li>canid</li>
+			<li>Canid</li>
+			<li>Combat</li>
 		</categories>
 		<raceSettings>
 			<foodSettings>

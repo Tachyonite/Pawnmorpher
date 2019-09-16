@@ -4,7 +4,8 @@
 		<label>huskymorph</label>
 		<race>Husky</race>
 		<categories>
-			<li>canid</li>
+			<li>Canid</li>
+			<li>Combat</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

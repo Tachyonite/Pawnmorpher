@@ -4,8 +4,7 @@
 		<label>elephantmorph</label>
 		<race>Elephant</race>
 		<categories>
-			<li>elephant</li>
-			<li>powerful</li>
+			<li>Powerful</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

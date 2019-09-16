@@ -265,7 +265,7 @@ namespace Pawnmorph
         /// <param name="pawn"></param>
         /// <param name="fillDict"></param>
         /// <param name="normalize">if the resulting dict should be normalized </param>
-        public static void GetMorphCategoriesInfluences([NotNull] this Pawn pawn, Dictionary<string, float> fillDict,
+        public static void GetMorphCategoriesInfluences([NotNull] this Pawn pawn, Dictionary<MorphCategoryDef, float> fillDict,
                                                          bool normalize = false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -279,7 +279,7 @@ namespace Pawnmorph
 
             foreach (var kvp in tracker)
             {
-                foreach (var category in kvp.Key.categories ?? Enumerable.Empty<string>())
+                foreach (var category in kvp.Key.categories ?? Enumerable.Empty<MorphCategoryDef>())
                 {
                     fillDict[category] = fillDict.TryGetValue(category) + kvp.Value; 
                 }
@@ -287,7 +287,7 @@ namespace Pawnmorph
 
             if (normalize && total > 0.001f) //prevent division by zero 
             {
-                foreach (string fillDictKey in fillDict.Keys)
+                foreach (var fillDictKey in fillDict.Keys)
                 {
                     fillDict[fillDictKey] /= total; 
                 }
@@ -300,9 +300,9 @@ namespace Pawnmorph
         /// <param name="pawn"></param>
         /// <param name="normalize">if the resulting dict should be normalized</param>
         /// <returns></returns>
-        public static Dictionary<string, float> GetMorphCategoriesInfluences([NotNull] this Pawn pawn, bool normalize = false)
+        public static Dictionary<MorphCategoryDef, float> GetMorphCategoriesInfluences([NotNull] this Pawn pawn, bool normalize = false)
         {
-            Dictionary<string, float> dict = new Dictionary<string, float>();
+            Dictionary<MorphCategoryDef, float> dict = new Dictionary<MorphCategoryDef, float>();
             GetMorphCategoriesInfluences(pawn, dict, normalize);
             return dict; 
         }

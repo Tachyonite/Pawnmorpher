@@ -5,8 +5,7 @@
 		<description>Megamorphs are massive herbivorous humanoids covered in fluff. Their fur is very insulating, and can be shaved to make clothing, bedrolls and other fluffy stuff. And no, they won't be your pillow, so don't ask them (it's rude).</description>
 		<race>Megasloth</race>
 		<categories>
-			<li>megasloth</li>
-			<li>powerful</li>
+			<li>Powerful</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

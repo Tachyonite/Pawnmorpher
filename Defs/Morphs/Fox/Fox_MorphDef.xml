@@ -4,7 +4,9 @@
 		<label>foxmorph</label>
 		<race>Fox_Red</race>
 		<categories>
-			<li>canid</li>
+			<li>Canid</li>
+			<li>Combat</li>
+			<li>Social</li>
 		</categories>
 		<raceSettings>
 			<thoughtSettings>

@@ -20,7 +20,7 @@ namespace Pawnmorph.Hediffs
 
         public System.Type morphType = typeof(Hediff_Morph); //the hediff type to get possible mutations from 
 
-        public List<string> blackListCategories = new List<string>();
+        public List<MorphCategoryDef> blackListCategories = new List<MorphCategoryDef>();
         public List<HediffDef> blackListDefs = new List<HediffDef>();
         public List<MorphDef> blackListMorphs = new List<MorphDef>();
 
@@ -40,7 +40,7 @@ namespace Pawnmorph.Hediffs
             if (comp != null)
             {
                 if (blackListMorphs.Contains(comp.morph)) return false;
-                foreach (string morphCategory in comp.morph.categories)
+                foreach (var morphCategory in comp.morph.categories)
                 {
                     if (blackListCategories.Contains(morphCategory)) return false;
                 }

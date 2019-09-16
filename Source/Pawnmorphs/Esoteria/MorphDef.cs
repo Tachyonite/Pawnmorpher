@@ -18,7 +18,9 @@ namespace Pawnmorph
     /// </summary>
     public class MorphDef : Def
     {
-        public static IEnumerable<MorphDef> AllDefs => DefDatabase<MorphDef>.AllDefs; 
+        public static IEnumerable<MorphDef> AllDefs => DefDatabase<MorphDef>.AllDefs;
+
+        public List<MorphCategoryDef> categories = new List<MorphCategoryDef>(); 
 
         /// <summary>
         /// setting to control how this morph transforms 
@@ -30,10 +32,8 @@ namespace Pawnmorph
             public MessageTypeDef messageDef; 
         }
 
-        /// <summary>
-        /// all categories the morph belongs to (canid, carnivore, ect) 
-        /// </summary>
-        public List<string> categories = new List<string>(); 
+        
+        
         /// <summary>
         /// the race of the animal this morph is to
         /// if this is a warg morph then race should be Warg

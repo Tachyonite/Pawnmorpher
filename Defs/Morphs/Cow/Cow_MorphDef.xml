@@ -4,8 +4,8 @@
 		<label>cowmorph</label>
 		<race>Cow</race>
 		<categories>
-			<li>bovine</li>
-			<li>farm</li>
+			<li>Farm</li>
+      <li>Production</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

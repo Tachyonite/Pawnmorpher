@@ -22,7 +22,7 @@ namespace Pawnmorph
         {
             public MorphTransformationTypes types;
             public bool isBlackList = true; //if the category list is a black list 
-            public List<string> categories = new List<string>();
+            public List<MorphCategoryDef> categories = new List<MorphCategoryDef>();
         }
 
 
