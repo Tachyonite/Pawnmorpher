@@ -2,6 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="CanineMorph">
 		<defName>HuskyMorph</defName>
 		<label>huskymorph</label>
+		<description>a large humanoid canine resembling a husky. These former humans now share many mental traits with their animal counterparts like pack-mindedness and keen hunting instincts</description>
 		<race>Husky</race>
 		<categories>
 			<li>Canid</li>
