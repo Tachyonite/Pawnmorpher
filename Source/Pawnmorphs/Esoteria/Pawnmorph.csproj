@@ -110,6 +110,7 @@
     <Compile Include="MorphDefOfs.cs" />
     <Compile Include="MorphGroupDef.cs" />
     <Compile Include="MorphGroupDefOf.cs" />
+    <Compile Include="MorphPawnKindExtension.cs" />
     <Compile Include="MorphTracker.cs" />
     <Compile Include="MorphTrackingComp.cs" />
     <Compile Include="MorphTransformationTypes.cs" />
