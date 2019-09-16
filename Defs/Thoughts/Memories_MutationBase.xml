@@ -4,4 +4,48 @@
 		<durationDays>4</durationDays>
 		<!-- should probably be about as long as it takes pawns to "get used to" the mutation -->
 	</ThoughtDef>
+
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>CanidPawHandMemory</defName>
+		<stages>
+			<li>
+				<label>paw-hands</label>
+				<description>How am I supposed to do anything with paws for hands?</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>HoofHandMemory</defName>
+		<stages>
+			<li>
+				<label>hoof-hands</label>
+				<description>I can't do anything with hooves...!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>StumpHandMemory</defName>
+		<stages>
+			<li>
+				<label>stump-hands</label>
+				<description>I break everything I touch!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>WingTipMemory</defName>
+		<stages>
+			<li>
+				<label>wing tip-hands</label>
+				<description>I don't have any fingers, what am I supposed to do?!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 </Defs>

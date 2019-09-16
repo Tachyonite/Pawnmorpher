@@ -107,7 +107,8 @@
 							<li>Hand</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-            			<tale>HandsBecomeHooves</tale>
+						<tale>HandsBecomeHooves</tale>
+						<memory>HoofHandMemory</memory>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherDigitigradeLeg</hediff>
@@ -133,7 +134,7 @@
 						<partsToAffect>
 							<li>Skull</li>
 						</partsToAffect>
-            <tale>GrewThrumboHorn</tale>
+						<tale>GrewThrumboHorn</tale>
 					</li>
 				</hediffGivers>
 			</li>

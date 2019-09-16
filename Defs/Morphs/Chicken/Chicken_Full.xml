@@ -71,7 +71,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
-            <tale>GrewBeak</tale>
+						<tale>GrewBeak</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherTailfeathers</hediff>
@@ -98,8 +98,8 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-            <tale>ArmsBecomeWings</tale>
-          </li>
+						<tale>ArmsBecomeWings</tale>
+					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherWingTip</hediff>
 						<mtbDays>3</mtbDays>
@@ -109,6 +109,7 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 						<tale>HandsBecomeWingTips</tale>
+						<memory>WingTipMemory</memory>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherAvianFoot</hediff>
