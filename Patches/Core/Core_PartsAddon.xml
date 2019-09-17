@@ -517,18 +517,28 @@
 					</alienRace>
 				</value>
 			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/BodyDef[defName="Human"]/corePart/parts</xpath>
-				<value>
-					<li>
-						<def>Tail</def>
-						<coverage>0</coverage>
-						<height>Bottom</height>
-						<groups>
-							<li>Torso</li>
-						</groups>
-					</li>
-				</value>
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+
+				<li Class="PatchOperationTest">
+					<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li/def[text()="Tail"]</xpath>
+					<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Human"]/corePart/parts</xpath>
+					<value>
+						<li>
+							<def>Tail</def>
+							<coverage>0</coverage>
+							<height>Bottom</height>
+							<groups>
+								<li>Torso</li>
+							</groups>
+						</li>
+					</value>
+				</li>
+				</operations>
 			</li>
 		</operations>
 	</Operation>
