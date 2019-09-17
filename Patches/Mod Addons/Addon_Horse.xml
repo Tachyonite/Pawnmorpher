@@ -46,8 +46,7 @@
 							<label>horse morph</label>
 							<race>QuarterHorse</race>
 							<categories>
-								<li>bovine</li>
-								<li>farm</li>
+								<li>Farm</li>
 							</categories>
 						</Pawnmorph.MorphDef>
 						
