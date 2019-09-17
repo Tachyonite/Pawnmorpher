@@ -1,8 +1,7 @@
 <Defs>
-	<ThoughtDef>
+	<ThoughtDef ParentName="MorphReactionThoughtBaseNone">
 		<defName>EtherReactionFoxTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphFoxTF</hediff>
+    <hediff>PawnmorphFoxTF</hediff>
 		<stages>
 			<li>
 				<label>changed</label>
@@ -17,9 +16,8 @@
 		</stages>
 	</ThoughtDef>
 
-  <ThoughtDef>
+  <ThoughtDef ParentName="MorphReactionThoughtBaseNone">
     <defName>FoxMuzzleReaction</defName>
-    <workerClass>ThoughtWorker_Hediff</workerClass>
     <hediff>EtherFoxMuzzle</hediff>
     <stages>
       <li>
@@ -30,8 +28,8 @@
       <li>
         <label>fox muzzle (adapted)</label>
         <description>i can talk again</description> <!-- needs better description -->
-        <baseMoodEffect>0</baseMoodEffect>
         <visible>true</visible>
+        <baseMoodEffect>0</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

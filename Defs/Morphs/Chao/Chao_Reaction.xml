@@ -1,7 +1,6 @@
 <Defs>
-	<ThoughtDef>
+	<ThoughtDef ParentName="MorphReactionThoughtBaseNone">
 		<defName>EtherReactionChaosTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
 		<hediff>FullRandomTFAnyOutcome</hediff>
 		<stages>
 			<li>

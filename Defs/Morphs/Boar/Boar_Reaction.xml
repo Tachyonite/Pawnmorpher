@@ -1,7 +1,6 @@
 <Defs>
-	<ThoughtDef>
+	<ThoughtDef ParentName="MorphReactionThoughtBaseNone">
 		<defName>EtherReactionBoarTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
 		<hediff>PawnmorphBoarTF</hediff>
 		<stages>
 			<li>

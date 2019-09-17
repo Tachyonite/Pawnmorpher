@@ -196,6 +196,7 @@
     <Compile Include="Thoughts\ThoughtDefOfs.cs" />
     <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
+    <Compile Include="Thoughts\Worker_HediffTrait.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
