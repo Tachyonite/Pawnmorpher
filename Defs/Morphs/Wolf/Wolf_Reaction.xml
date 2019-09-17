@@ -1,4 +1,5 @@
-<Defs>
+<Defs  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef-MorphReaction.xsd"> <!-- weird attributes are for telling VS/VSCode where the schema is -->
 	<ThoughtDef ParentName="MorphReactionThoughtBaseNone">
 		<defName>EtherReactionWolfTF</defName>
 		<hediff>PawnmorphWolfTF</hediff>
@@ -15,4 +16,39 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+
+  <ThoughtDef ParentName="MorphReactionThoughtBaseFurry">
+    <defName>ReactionWolfTfFurry</defName>
+    <hediff>PawnmorphWolfTF</hediff>
+    <stages>
+      <li>
+        <label>TODO</label>
+        <description>TODO</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+      <li>
+        <label>TODO</label>
+        <description>TODO</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="MorphReactionThoughtBaseBodyPurist">
+    <defName>ReactionWolfTfBodyPurist</defName>
+    <hediff>PawnmorphWolfTF</hediff>
+    <stages>
+      <li>
+        <label>TODO</label>
+        <description>TODO</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+      <li>
+        <label>TODO</label>
+        <description>TODO</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>
