@@ -1,5 +1,5 @@
 <Defs>
-<ResearchProjectDef>
+	<ResearchProjectDef>
 		<defName>MutagenExtraction</defName>
 		<label>Mutagen extraction</label>
 		<description>It should be possible to extract mechanites from eggs and milk produced by partially morphed pawns. This can be done at a drug lab.</description>
@@ -8,8 +8,11 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>0</researchViewX>
 		<researchViewY>1.5</researchViewY>
+		<prerequisites>
+			<li>DrugProduction</li>
+		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>SerumSynthesis</defName>
 		<label>Serum synthesis</label>
@@ -23,7 +26,7 @@
 			<li>MutagenExtraction</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>AdvancedSerumSynthesis</defName>
 		<label>Targeted serums</label>
@@ -37,7 +40,7 @@
 			<li>SerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>PowerfulSerumSynthesis</defName>
 		<label>Powerful serums</label>
@@ -51,7 +54,7 @@
 			<li>AdvancedSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>AdvancedExtraction</defName>
 		<label>Advanced synthesis</label>
@@ -65,7 +68,7 @@
 			<li>AdvancedSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>Injectors</defName>
 		<label>Injectors</label>
@@ -80,12 +83,14 @@
 			<li>Stabilisation</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>MutagenChambers</defName>
 		<label>Chambers</label>
-		<description>Unlocks a bath of mutagen which pawns can enter or be carried to. It transforms them into random animals in a much shorter time than usual, and only at the cost of a vial of mechanite slurry. However, we will need to collect
-		the	genetic information of the animal before we can turn someone into it. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to our database.</description>
+		<description>
+			Unlocks a bath of mutagen which pawns can enter or be carried to. It transforms them into random animals in a much shorter time than usual, and only at the cost of a vial of mechanite slurry. However, we will need to collect
+			the	genetic information of the animal before we can turn someone into it. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to our database.
+		</description>
 		<baseCost>1500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>
@@ -122,7 +127,7 @@
 			<li>MutagenChambers</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>MutagenicWeapons</defName>
 		<label>Mutagenic weaponry</label>
@@ -136,7 +141,7 @@
 			<li>Injectors</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>PowerfulInjectors</defName>
 		<label>Powerful injectors</label>
@@ -151,7 +156,7 @@
 			<li>PowerfulSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>Stabilisation</defName>
 		<label>Mutagen stabilisation</label>
@@ -165,7 +170,7 @@
 			<li>SerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>Reversion</defName>
 		<label>Reversion</label>
@@ -179,7 +184,7 @@
 			<li>Stabilisation</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>LozengeProduction</defName>
 		<label>Booster lozenges</label>
@@ -193,5 +198,5 @@
 			<li>SerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 </Defs>
