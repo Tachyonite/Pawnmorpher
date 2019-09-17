@@ -39,7 +39,7 @@
   <LetterPawnHumanAgainContent>with {0}'s mutations gone they are a regular human again</LetterPawnHumanAgainContent>
 	-->
 	<TransformationStageWarningLabel>{0} is at risk of fully changing very soon.</TransformationStageWarningLabel>
-	<TransformationStageWarningContent>TODO</TransformationStageWarningContent>
+	<TransformationStageWarningContent>{0} is at risk of transforming into an animal soon. You can use stabilizer to prevent this</TransformationStageWarningContent>
 	
 	<CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
 	<CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
