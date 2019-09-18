@@ -16,7 +16,7 @@
 					<runtime>
 						<types>Full</types>
 						<categories>
-							<li>powerful</li>
+							<li>Powerful</li>
 						</categories>
 					</runtime>
 					<severity>1.00</severity>
@@ -34,7 +34,6 @@
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
-				
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>

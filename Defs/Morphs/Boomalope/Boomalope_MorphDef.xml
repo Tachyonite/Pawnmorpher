@@ -1,10 +1,16 @@
 <Defs>
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>BoomalopeMorph</defName>
 		<label>boomalopemorph</label>
+    <description>a humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel</description>
 		<race>Boomalope</race>
 		<categories>
-			<li>boom</li>
+			<li>Production</li>
 		</categories>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(207,207,207)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
 
@@ -23,7 +25,7 @@ namespace Pawnmorph.Hediffs
                 if (tfDef == def) return false;
                 if (tfDef.GetTransformationType() == MorphTransformationTypes.Partial) return false; 
                 var morphs = MorphUtilities.GetAssociatedMorph(tfDef);
-                if (morphs.Any(m => m.categories.Contains("powerful"))) return false; //don't apply powerful morphs 
+                if (morphs.Any(m => m.categories.Contains(MorphCategoryDefOf.Powerful))) return false; //don't apply powerful morphs 
 
 
 
@@ -53,10 +55,17 @@ namespace Pawnmorph.Hediffs
 
             }
 
-            //needs MP Compatibility 
 
-            SetTransformationType(MorphTransformationDefOf.AllMorphsCached.Where(SelectionFunc).RandomElement()); 
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
 
+            SetTransformationType(MorphTransformationDefOf.AllMorphsCached.Where(SelectionFunc).RandomElement());
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
 
         }
 
@@ -105,6 +114,7 @@ namespace Pawnmorph.Hediffs
 
         }
 
+        [SyncMethod]
         void SetTransformationType([NotNull] HediffDef tfDef)
         {
             

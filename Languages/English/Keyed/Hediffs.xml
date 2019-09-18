@@ -30,16 +30,19 @@
 <LetterHediffFromEtherBrokenLabel>Etherbroken: {0}</LetterHediffFromEtherBrokenLabel>
 <LetterHediffFromEtherBroken>Constant production has caused {0} to become numb and submit to their fate.</LetterHediffFromEtherBroken>
 
-  <LetterRaceChangeToMorphLabel>{0} is no longer considered human!</LetterRaceChangeToMorphLabel>
+	<RaceChangeMessage>{0} is no longer considered human!</RaceChangeMessage>
+	<!-- Depricated 
   <LetterRaceChangeToMorphContent>{0} has mutated so much that they and others no longer consider them human</LetterRaceChangeToMorphContent>
-
-  <LetterPawnHumanAgainLabel>{0} is human again!</LetterPawnHumanAgainLabel>
+	-->
+	<HumanAgainMessage>{0} is human again!</HumanAgainMessage>
+	<!-- Depricated
   <LetterPawnHumanAgainContent>with {0}'s mutations gone they are a regular human again</LetterPawnHumanAgainContent>
-
-	<TransformationStageWarning>{0} is at risk of fully changing very soon.</TransformationStageWarning>
+	-->
+	<TransformationStageWarningLabel>{0} is at risk of fully changing very soon.</TransformationStageWarningLabel>
+	<TransformationStageWarningContent>{0} is at risk of transforming into an animal soon. You can use stabilizer to prevent this</TransformationStageWarningContent>
 	
 	<CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
-<CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
+	<CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
 
 <PawnmorphTooltipShe>She</PawnmorphTooltipShe>
 <PawnmorphTooltipHe>He</PawnmorphTooltipHe>

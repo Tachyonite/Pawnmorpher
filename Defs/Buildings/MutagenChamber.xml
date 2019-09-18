@@ -19,7 +19,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>MutagenicChamber</defName>
 		<label>mutagenic chamber</label>
-		<description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not in here.</description>
+		<description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not fit in here.</description>
 		<thingClass>Pawnmorph.Building_MutagenChamber</thingClass>
 		<graphicData>
 			<texPath>Things/Building/MutagenChamber/TFChamber</texPath>
@@ -73,6 +73,13 @@
 			<li Class="CompProperties_Facility">
 				<maxSimultaneous>2</maxSimultaneous>
 				<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
+			</li>
+			<li Class="Pawnmorph.Chambers.ThingCompProperties_ModulatorOptions">
+				<defaultAnimals>
+					<li>Chaocow</li>
+					<li>Chaofox</li>
+					<li>Chaodino</li>
+				</defaultAnimals>
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
@@ -306,7 +313,13 @@
         <maxSimultaneous>2</maxSimultaneous>
 		<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
       </li>
-
+	  <li Class="Pawnmorph.Chambers.ThingCompProperties_ModulatorOptions">
+		  <defaultAnimals>
+			  <li>Chaocow</li>
+			  <li>Chaofox</li>
+			  <li>Chaodino</li>
+		  </defaultAnimals>
+	  </li>
     </comps>
     <defaultPlacingRot>South</defaultPlacingRot>
 	<designationCategory>Production</designationCategory>

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -15,14 +17,32 @@ namespace Pawnmorph.Hybrids
 {
     public static class RaceShiftUtilities
     {
-        public const string RACE_CHANGE_LETTER_LABEL = "LetterRaceChangeToMorphLabel";
-        public const string RACE_CHANGE_LETTER_CONTENT = "LetterRaceChangeToMorphContent";
+        //public const string RACE_CHANGE_LETTER_LABEL = "LetterRaceChangeToMorphLabel";
+        //public const string RACE_CHANGE_LETTER_CONTENT = "LetterRaceChangeToMorphContent";
 
-        private const string RACE_REVERT_LETTER = "LetterPawnHumanAgain";
-        private static string RaceRevertLetterLabel => RACE_REVERT_LETTER + "Label";
-        private static string RaceRevertLetterContent => RACE_REVERT_LETTER + "Content";
+        public const string RACE_CHANGE_MESSAGE_ID = "RaceChangeMessage"; 
 
-        private static LetterDef RevertToHumanLetterDef => LetterDefOf.PositiveEvent; 
+        private const string RACE_REVERT_MESSAGE_ID = "HumanAgainMessage";
+       // private static string RaceRevertLetterLabel => RACE_REVERT_LETTER + "Label";
+        //private static string RaceRevertLetterContent => RACE_REVERT_LETTER + "Content";
+
+        private static LetterDef RevertToHumanLetterDef => LetterDefOf.PositiveEvent;
+
+        /// <summary>
+        /// Determines whether this pawn is a morph hybrid 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is a morph hybrid; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsMorphHybrid([NotNull] Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            return RaceGenerator.IsMorphRace(pawn.def); 
+
+        }
 
 
         /// <summary>
@@ -34,6 +54,17 @@ namespace Pawnmorph.Hybrids
         public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var oldMorph = pawn.def.GetMorphOfRace();
+
+            HediffDef oldGroupHediff = oldMorph?.group?.hediff;
+            if (oldGroupHediff != null)
+            {
+                var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(oldGroupHediff);
+                if (hediff != null)
+                {
+                    pawn.health.RemoveHediff(hediff); 
+                }
+            }
 
             //var pos = pawn.Position;
             Faction faction = pawn.Faction;
@@ -60,11 +91,27 @@ namespace Pawnmorph.Hybrids
                 RegionListersUpdater.RegisterInRegions(pawn, map);
 
             map?.mapPawns.UpdateRegistryForPawn(pawn);
+
+            //add the group hediff if applicable 
+            var hediffDef = race.GetMorphOfRace()?.@group?.hediff;
+            if (hediffDef != null)
+            {
+                pawn.health.AddHediff(hediffDef);
+            }
+
+            if (map != null)
+            {
+                var comp = map.GetComponent<MorphTracker>();
+                comp.NotifyPawnRaceChanged(pawn, oldMorph); 
+            }
+
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
 
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
+
+
 
 
             //save location 
@@ -162,11 +209,21 @@ namespace Pawnmorph.Hybrids
             if (pawn.def != ThingDefOf.Human && !pawn.IsHybridRace())
             {
                 Log.Warning($"hybrids of non human pawns are currently not supported");
-                return; 
+                return;
             }
+
+            
+
+            //apply mutations 
+            foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AssociatedMutations)
+            {
+                morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen);
+            }
+
+
             ThingDef_AlienRace hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
-            HandleGraphicsChanges(pawn,  morph);
+            HandleGraphicsChanges(pawn, morph);
             ChangePawnRace(pawn, hRace, true);
 
             if (pawn.IsColonist)
@@ -175,30 +232,41 @@ namespace Pawnmorph.Hybrids
 
             }
 
-            string labelId = string.IsNullOrEmpty(tfSettings.transformLetterLabelId)
-                ? RACE_CHANGE_LETTER_LABEL
-                : tfSettings.transformLetterLabelId;
-            string contentID = string.IsNullOrEmpty(tfSettings.transformLetterContentId)
-                ? RACE_CHANGE_LETTER_CONTENT
-                : tfSettings.transformLetterContentId; //assign the correct default values if none are present 
-
-            string label = labelId.Translate(pawn.LabelShort).CapitalizeFirst();
-            string content = contentID.Translate(pawn.LabelShort).CapitalizeFirst();
-            LetterDef letterDef = tfSettings.letterDef ?? LetterDefOf.PositiveEvent;
-            Find.LetterStack.ReceiveLetter(label, content, letterDef, pawn);
+            if(pawn.IsColonist || pawn.IsPrisonerOfColony)
+                SendHybridTfMessage(pawn, tfSettings);
 
             //now try to trigger any mutations
-            if(pawn.health?.hediffSet?.hediffs != null)
-                TryTriggerMutations(pawn, morph); 
+            if (pawn.health?.hediffSet?.hediffs != null)
+                TryTriggerMutations(pawn, morph);
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
+        }
+
+        private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)
+        {
+            string labelId = string.IsNullOrEmpty(tfSettings.transformationMessageID)
+                ? RACE_CHANGE_MESSAGE_ID
+                : tfSettings.transformationMessageID;//assign the correct default values if none are present 
+            //string contentID = string.IsNullOrEmpty(tfSettings.transformLetterContentId)
+            //    ? RACE_CHANGE_LETTER_CONTENT
+            //    : tfSettings.transformLetterContentId; 
+
+            string label = labelId.Translate(pawn.LabelShort).CapitalizeFirst();
+            //string content = contentID.Translate(pawn.LabelShort).CapitalizeFirst();
+            //LetterDef letterDef = tfSettings.letterDef ?? LetterDefOf.PositiveEvent;
+            //Find.LetterStack.ReceiveLetter(label, content, letterDef, pawn);
+
+            var messageDef = tfSettings.messageDef ?? MessageTypeDefOf.NeutralEvent;
+            Messages.Message(label, pawn, messageDef);
         }
 
         private static void HandleGraphicsChanges(Pawn pawn,MorphDef morph)
         {
             var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            comp.skinColor = morph.raceSettings.graphicsSettings?.skinColorOverride ?? comp.skinColor;
-            comp.skinColorSecond = morph.raceSettings.graphicsSettings?.skinColorOverrideSecond ?? comp.skinColorSecond; 
+            comp.skinColor = morph.GetSkinColorOverride() ?? comp.skinColor;
+            comp.skinColorSecond = morph.GetSkinColorSecondOverride() ?? comp.skinColorSecond;
+            comp.hairColorSecond = morph.GetHairColorOverrideSecond() ?? comp.hairColorSecond;
+            pawn.story.hairColor = morph.GetHairColorOverride() ?? pawn.story.hairColor; 
         }
 
         /// <summary>
@@ -212,10 +280,12 @@ namespace Pawnmorph.Hybrids
             var human = ThingDefOf.Human;
             if (race == human) return; //do nothing 
 
-            if (!RaceGenerator.TryGetMorphOfRace(race, out MorphDef morph))
-            {
-                Log.Warning($"Trying to convert pawn {pawn.Name.ToStringFull} to human but they are not currently a morph!");
-            }
+            var isHybrid = pawn.IsHybridRace();
+            DebugLogUtils.Assert(isHybrid, "pawn.IsHybridRace()");
+            if (!isHybrid) return;
+
+            var storedGraphics = pawn.GetComp<GraphicSys.InitialGraphicsComp>(); 
+            storedGraphics.RestoreGraphics();
 
             ChangePawnRace(pawn, human); 
 
@@ -225,12 +295,13 @@ namespace Pawnmorph.Hybrids
 
 
 
-            var letterLabel = RaceRevertLetterLabel.Translate(pawn.LabelShort).CapitalizeFirst();
-            var letterContent = RaceRevertLetterContent.Translate(pawn.LabelShort).CapitalizeFirst();
+            //var letterLabel = RaceRevertLetterLabel.Translate(pawn.LabelShort).CapitalizeFirst();
+            //var letterContent = RaceRevertLetterContent.Translate(pawn.LabelShort).CapitalizeFirst();
 
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, RevertToHumanLetterDef, pawn); 
+            //Find.LetterStack.ReceiveLetter(letterLabel, letterContent, RevertToHumanLetterDef, pawn); 
 
-
+            var messageStr = RACE_REVERT_MESSAGE_ID.Translate(pawn.LabelShort).CapitalizeFirst();
+            Messages.Message(messageStr, pawn, MessageTypeDefOf.NeutralEvent); 
 
 
         }

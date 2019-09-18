@@ -1,4 +1,6 @@
-﻿using Verse;
+﻿using Multiplayer.API;
+using Pawnmorph.Utilities;
+using Verse;
 
 namespace Pawnmorph
 {
@@ -19,6 +21,12 @@ namespace Pawnmorph
         public override void CompTick()
         // Every tick, check if the Thing needs to have the TransformHuman hediff set (There is probably a better method to put this in).
         {
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
             if (!triggered)
             // If we haven't checked already if the pawn is a former human...
             {
@@ -30,6 +38,12 @@ namespace Pawnmorph
                 }
             }
             TransformerUtility.RemoveHediffIfPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman")); // Remove the TransformedHuman hediff if the pawn becomes permanently feral.
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
+
         }
 
         public override void PostExposeData()

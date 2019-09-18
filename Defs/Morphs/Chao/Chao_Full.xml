@@ -70,7 +70,7 @@
           <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
 	          <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
 	          <blackListCategories>
-              <li>powerful</li>
+              <li>Powerful</li>
             </blackListCategories>
           </li>
 				</hediffGivers>

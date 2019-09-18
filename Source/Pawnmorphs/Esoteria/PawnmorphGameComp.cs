@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
@@ -126,12 +127,14 @@ namespace Pawnmorph
         /// </summary>
         void ValidateTransformedPawns()
         {
-            int invalidCount = 0; 
+
+            StringBuilder builder = new StringBuilder(); 
             for (int i = TransformedPawnsLst.Count - 1; i >= 0; i--)
             {
                 var inst = TransformedPawnsLst[i];
                 if (!inst.IsValid)
                 {
+                    builder.AppendLine($"encountered invalid transformed pawn instance: {inst}");
                     foreach (var pawn in inst.OriginalPawns.Where(p => !p.DestroyedOrNull()))
                     {
                         if(!pawn.Spawned)
@@ -139,15 +142,15 @@ namespace Pawnmorph
                     }
 
                     TransformedPawnsLst.RemoveAt(i);
-                    invalidCount++; 
                 }
             }
 
-            if (invalidCount > 0)
+            if (builder.Length > 0)
             {
-                Log.Warning($"found {invalidCount} invalid instances of transformed pawns! purged");
-
+                Log.Warning($"encountered invalid transformed pawn instances:\n{builder}");
             }
+
+            
 
 
         }

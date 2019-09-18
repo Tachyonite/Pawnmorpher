@@ -25,7 +25,7 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -65,7 +65,7 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
@@ -121,7 +121,7 @@
 			<li>
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 				<label>adapted</label>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 			</li>
 		</stages>
 		<comps>
@@ -140,7 +140,7 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
@@ -169,13 +169,13 @@
 						<offset>-.04</offset>
 					</li>
 				</capMods>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 			</li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
@@ -189,7 +189,7 @@
 				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
 			</li>
 			<li>
-				<minSeverity>0.9</minSeverity>
+				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 			</li>
@@ -210,7 +210,7 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>

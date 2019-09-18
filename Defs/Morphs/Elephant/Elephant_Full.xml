@@ -108,6 +108,7 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 						<tale>HandsBecameElephantFeet</tale>
+						<memory>StumpHandMemory</memory>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherElephantLeg</hediff>

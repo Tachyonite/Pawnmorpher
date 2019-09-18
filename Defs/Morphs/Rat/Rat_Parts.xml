@@ -25,7 +25,7 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -55,7 +55,7 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
@@ -98,7 +98,7 @@
         <label>unfamiliar</label>
       </li>
       <li>
-        <minSeverity>0.5</minSeverity>
+        <minSeverity>1</minSeverity>
         <partEfficiencyOffset>0.1</partEfficiencyOffset>
         <label>adapted</label>
       </li>
@@ -118,10 +118,9 @@
 					</li>
 				</tools>
 			</li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_MorphTrigger">
-        <morph>RatMorph</morph>
-        <severityValue>1</severityValue>
-      </li>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
 		</comps>
 	</HediffDef>
 	

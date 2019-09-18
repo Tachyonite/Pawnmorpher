@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using AlienRace;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
@@ -21,9 +23,105 @@ namespace Pawnmorph.DebugUtils
         /// </summary>
         /// <param name="condition">if false will display an error message</param>
         /// <param name="message">The message.</param>
+        /// <returns>the condition</returns>
+        [DebuggerHidden]
+        [Conditional("DEBUG"), AssertionMethod]
         public static void Assert(bool condition, string message)
         {
-            if (!condition) Log.Error(message); 
+            if (!condition) Log.Error($"assertion failed:{message}");
+        }
+
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void GetThoughtlessMutations()
+        {
+            IEnumerable<VTuple<HediffDef, HediffGiver_Mutation>> SelectionFunc(HediffDef def)
+            {
+                foreach (HediffGiver_Mutation hediffGiverMutation in def.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
+                {
+                    if (hediffGiverMutation.memory != null) continue; //if it has a memory associated with it ignore it 
+
+                    yield return new VTuple<HediffDef, HediffGiver_Mutation>(def, hediffGiverMutation);
+                }
+            }
+
+            List<IGrouping<HediffDef, HediffGiver_Mutation>> allGiversWithData = DefDatabase<HediffDef>
+                                                                                .AllDefs
+                                                                                .Where(d =>
+                                                                                           typeof(Hediff_Morph)
+                                                                                              .IsAssignableFrom(d.hediffClass)) //grab all morph hediffs 
+                                                                                .SelectMany(SelectionFunc) //select all hediffGivers but keep the morph hediff around 
+                                                                                .GroupBy(vT => vT.first,
+                                                                                         vT => vT.second) //group by morph Hediff 
+                                                                                .ToList(); //save it as a list 
+
+
+            if (allGiversWithData.Count == 0) Log.Message("All mutations have memories");
+            var builder = new StringBuilder();
+            IEnumerable<HediffDef> allMuts = allGiversWithData.SelectMany(g => g.Select(mG => mG.hediff)).Distinct();
+            foreach (HediffDef mutation in allMuts) builder.AppendLine(mutation.defName);
+
+
+            builder.AppendLine("---------Giver Locations----------------");
+
+            foreach (IGrouping<HediffDef, HediffGiver_Mutation> group in allGiversWithData)
+            {
+                builder.AppendLine($"{group.Key.defName} contains givers of the following mutations that do not have memories with them:");
+                foreach (HediffDef mutation in group.Select(g => g.hediff)) builder.AppendLine($"\t\t{mutation.defName}");
+            }
+
+            Log.Message(builder.ToString());
+        }
+
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput, ModeRestrictionPlay]
+        public static void CheckMorphTracker()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (Pawn allMapsFreeColonist in PawnsFinder.AllMaps_FreeColonists)
+            {
+                if (allMapsFreeColonist.GetComp<MorphTrackingComp>() == null)
+                {
+                    builder.AppendLine($"{allMapsFreeColonist.Name} does not have a morphTracker!");
+                }
+            }
+
+            if (builder.Length > 0)
+            {
+                Log.Warning(builder.ToString());
+                builder = new StringBuilder();
+            }
+
+            var map = Find.CurrentMap;
+            if (map == null) return;
+            var comp = map.GetComponent<MorphTracker>();
+
+            foreach (MorphDef morph in DefDatabase<MorphDef>.AllDefs)
+            {
+                var i = comp[morph];
+                builder.AppendLine($"{morph.defName}={i}");
+            }
+
+
+            builder.AppendLine("--------------Groups------------");
+
+            foreach (MorphGroupDef morphGroupDef in DefDatabase<MorphGroupDef>.AllDefs)
+            {
+                int counter = 0;
+                foreach (MorphDef morphDef in morphGroupDef.MorphsInGroup)
+                {
+                    counter += comp[morphDef];
+                }
+
+                builder.AppendLine($"{morphGroupDef.defName}={counter}");
+            }
+
+
+
+            Log.Message(builder.ToString()); 
+
         }
 
         [Category(MAIN_CATEGORY_NAME)]
@@ -60,6 +158,55 @@ namespace Pawnmorph.DebugUtils
         }
 
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void GetMutationsWithStages()
+        {
+            var allMutations = DefDatabase<HediffDef>.AllDefs.Where(def => typeof(Hediff_AddedMutation).IsAssignableFrom(def.hediffClass))
+                                                     .Where(def => def.stages?.Count > 1 && def.HasComp(typeof(HediffComp_SeverityPerDay)))
+                                                     .ToList();
+
+
+            if (allMutations.Count == 0)
+            {
+                Log.Message($"no mutations with multiple stages");
+                return;
+            }
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine($"mutations:");
+            foreach (HediffDef allMutation in allMutations)
+            {
+                builder.AppendLine($"\t{allMutation.defName}[{allMutation.stages.Count}]");
+            }
+
+            builder.AppendLine($"\n------------Stats--------------\n");
+
+
+            foreach (HediffDef mutation in allMutations)
+            {
+                var stages = mutation.stages;
+                var severityPerDay = mutation.CompProps<HediffCompProperties_SeverityPerDay>().severityPerDay;
+                builder.AppendLine($"{mutation.defName}:");
+                float total = 0;  
+                for (int i = 0; i < stages.Count - 1; i++)
+                {
+                    var s = stages[i];
+                    var s1 = stages[i + 1];
+                    var sLabel = string.IsNullOrEmpty(s.label) ? i.ToString() : s.label;
+                    var s1Label = string.IsNullOrEmpty(s1.label) ? (i + 1).ToString() : s1.label; //if the label is null just use the index  
+                    var diff = s1.minSeverity - s.minSeverity;
+                    var tDiff = diff / severityPerDay;
+                    total += tDiff; 
+                    builder.AppendLine($"\t\tstage[{sLabel}] {{{s.minSeverity}}} => stage[{s1Label}] {{{s1.minSeverity}}} takes {tDiff} days");
+                }
+
+                builder.AppendLine($"\ttotal time is {total} days");
+            }
+
+            Log.Message(builder.ToString());
+        }
 
         /// <summary>
         ///     list all transformation hediffs defined (hediffs of class Hediff_Morph or a subtype there of
@@ -106,14 +253,12 @@ namespace Pawnmorph.DebugUtils
         [DebugOutput]
         public static void ListHybridStateOffset()
         {
-            var morphs = DefDatabase<MorphDef>.AllDefs;
-            var human = ThingDefOf.Human;
+            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
+            ThingDef human = ThingDefOf.Human;
 
-            Dictionary<StatDef, float> lookup = human.statBases.ToDictionary(s => s.stat, s => s.value); 
+            Dictionary<StatDef, float> lookup = human.statBases.ToDictionary(s => s.stat, s => s.value);
 
-
-            StringBuilder builder = new StringBuilder();
-
+            var builder = new StringBuilder();
 
             foreach (MorphDef morphDef in morphs)
             {
@@ -121,21 +266,15 @@ namespace Pawnmorph.DebugUtils
 
                 foreach (StatModifier statModifier in morphDef.hybridRaceDef.statBases ?? Enumerable.Empty<StatModifier>())
                 {
-
                     float humanVal = lookup.TryGetValue(statModifier.stat);
                     float diff = statModifier.value - humanVal;
-                    var sym = diff > 0 ? "+" : "";  
-                    var str = $"{statModifier.stat.label}:{sym}{diff}";
-                    builder.AppendLine($"\t\t{str}"); 
+                    string sym = diff > 0 ? "+" : "";
+                    string str = $"{statModifier.stat.label}:{sym}{diff}";
+                    builder.AppendLine($"\t\t{str}");
                 }
-
-
-
             }
 
             Log.Message($"{builder}");
-
-
         }
 
 
@@ -143,19 +282,16 @@ namespace Pawnmorph.DebugUtils
         [DebugOutput]
         public static void FindMissingMorphDescriptions()
         {
-            var morphs = DefDatabase<MorphDef>.AllDefs.Where(def => string.IsNullOrEmpty(def.description)).ToList();
+            List<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs.Where(def => string.IsNullOrEmpty(def.description)).ToList();
             if (morphs.Count == 0)
             {
                 Log.Message("all morphs have descriptions c:");
             }
             else
             {
-                var str = string.Join("\n", morphs.Select(def => def.defName).ToArray()); 
+                string str = string.Join("\n", morphs.Select(def => def.defName).ToArray());
                 Log.Message($"Morphs Missing descriptions:\n{str}");
             }
-
-
-
         }
 
 
@@ -212,73 +348,32 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-   
-        [Category(MAIN_CATEGORY_NAME)]
-        [ModeRestrictionPlay]
-        [DebugOutput]
-        [Obsolete]
-        public static void LogAllTransformedPawns()
-        {
-            var builder = new StringBuilder();
-            var comp = Find.World.GetComponent<PawnmorphGameComp>();
-
-            foreach (PawnMorphInstance compMorphInstance in comp.MorphInstances)
-            {
-                Pawn animal = compMorphInstance.replacement;
-                Pawn origin = compMorphInstance.origin;
-
-                string originString, animalString;
-
-                originString = origin == null ? "[null pawn]" : origin.Name.ToStringFull;
-
-                animalString = animal == null
-                    ? "[null animal]"
-                    : $"an {animal.kindDef?.race?.label ?? "[no race]"} named {animal.Name.ToStringFull}";
-
-
-                builder.AppendLine($"{originString} is now a {animalString}");
-            }
-
-            foreach (PawnMorphInstanceMerged pawnMorphInstanceMerged in comp.MergeInstances)
-            {
-                Pawn merge = pawnMorphInstanceMerged.replacement;
-                Pawn p0 = pawnMorphInstanceMerged.origin;
-                Pawn p1 = pawnMorphInstanceMerged.origin2;
-
-                string p0Str, p1Str, mergeStr;
-                p0Str = p0 == null ? "[null pawn]" : p0.Name.ToStringFull;
-
-                p1Str = p1 == null ? "[null pawn]" : p1.Name.ToStringFull;
-
-                mergeStr = merge == null
-                    ? "[null animal]"
-                    : $"a {merge.kindDef?.race?.label ?? "[no race]"} called {merge.Name.ToStringFull}";
-
-
-                builder.AppendLine($"{p0Str} and {p1Str} are now {mergeStr}");
-            }
-
-
-            if (builder.Length == 0)
-                Log.Message("there are now transformed or merged pawns");
-            else
-                Log.Message(builder.ToString());
-        }
-
         [Category(MAIN_CATEGORY_NAME)]
         [ModeRestrictionPlay]
         [DebugOutput]
         public static void LogColonyPawnStatuses()
         {
             var builder = new StringBuilder();
-            var dict = new Dictionary<MorphDef, float>();
-            foreach (Pawn colonyPawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
+            foreach (Pawn colonyPawn in PawnsFinder
+               .AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
-                colonyPawn.GetMorphInfluences(dict);
-
                 builder.AppendLine(colonyPawn.Name.ToStringFull + ":");
-                foreach (KeyValuePair<MorphDef, float> keyValuePair in dict)
-                    builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}");
+
+                MutationTracker comp = colonyPawn.GetMutationTracker();
+                if (comp != null)
+                {
+                    foreach (KeyValuePair<MorphDef, float> kvp in comp)
+                        builder.AppendLine($"\t\t{kvp.Key.defName}:{kvp.Value} normalized:{comp.GetNormalizedInfluence(kvp.Key)}");
+                }
+                else
+                {
+                    IEnumerable<KeyValuePair<MorphDef, float>> enumer =
+                        colonyPawn.GetMutationTracker() ?? Enumerable.Empty<KeyValuePair<MorphDef, float>>();
+
+
+                    foreach (KeyValuePair<MorphDef, float> keyValuePair in enumer)
+                        builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}");
+                }
 
                 builder.AppendLine($"is human:{colonyPawn.ShouldBeConsideredHuman()}\n");
             }
@@ -298,7 +393,9 @@ namespace Pawnmorph.DebugUtils
         [Category(MAIN_CATEGORY_NAME)]
         public static void LogMissingMutationTales()
         {
-            bool SelectionFunc(HediffDef def) //local function to grab all morph hediffDefs that have givers that are missing tales 
+            bool
+                SelectionFunc(
+                    HediffDef def) //local function to grab all morph hediffDefs that have givers that are missing tales 
             {
                 if (!typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)) return false;
                 return (def.stages ?? Enumerable.Empty<HediffStage>())
@@ -307,8 +404,10 @@ namespace Pawnmorph.DebugUtils
                       .Any(g => g.tale == null);
             }
 
-            IEnumerable<Tuple<HediffDef, HediffGiver_Mutation>> GetMissing(HediffDef def) //local function that will grab all hediff givers missing a tale 
-            {                                                                           //and keep the def it came from around 
+            IEnumerable<Tuple<HediffDef, HediffGiver_Mutation>>
+                GetMissing(HediffDef def) //local function that will grab all hediff givers missing a tale 
+            {
+                //and keep the def it came from around 
                 IEnumerable<HediffGiver_Mutation> givers =
                     def.stages?.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
                        .OfType<HediffGiver_Mutation>()
@@ -321,10 +420,11 @@ namespace Pawnmorph.DebugUtils
             IEnumerable<IGrouping<HediffDef, HediffDef>> missingGivers = DefDatabase<HediffDef>.AllDefs.Where(SelectionFunc)
                                                                                                .SelectMany(GetMissing)
                                                                                                .GroupBy(tup => tup.Second.hediff, //group by the part that needs a tale  
-                                                                                                        tup => tup.First); //and select the morph tfs their givers are found 
+                                                                                                        tup => tup
+                                                                                                           .First); //and select the morph tfs their givers are found 
             var builder = new StringBuilder();
 
-            HashSet<HediffDef> missingLst = new HashSet<HediffDef>(); 
+            var missingLst = new HashSet<HediffDef>();
 
             foreach (IGrouping<HediffDef, HediffDef> missingGiver in missingGivers)
             {
@@ -334,20 +434,19 @@ namespace Pawnmorph.DebugUtils
                 foreach (HediffDef hediffDef in missingGiver) builder.AppendLine($"\t\t{hediffDef.defName}");
             }
 
-             
-            
 
             if (builder.Length > 0)
             {
                 Log.Message(builder.ToString());
-                builder = new StringBuilder(); 
+                builder = new StringBuilder();
                 builder.AppendLine($"-------------------{missingLst.Count} parts need tales----------------"); //summary for convenience 
                 builder.AppendLine(string.Join("\n", missingLst.Select(def => def.defName).ToArray()));
                 Log.Message(builder.ToString());
-
             }
             else
+            {
                 Log.Message("All parts have a tale");
+            }
         }
 
         [DebugOutput]
@@ -412,6 +511,21 @@ namespace Pawnmorph.DebugUtils
                 Log.Warning(builder.ToString());
             else
                 Log.Message("no inconsistencies found");
+        }
+
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        public static void GetMutationsWithoutStages()
+        {
+            var allMutations = MutationUtilities.AllMutations.Where(def => (def.stages?.Count ?? 0) <= 1); //all mutations without stages 
+            StringBuilder builder = new StringBuilder();
+
+
+            foreach (HediffDef allMutation in allMutations)
+            {
+                builder.AppendLine($"{allMutation.defName}"); 
+            }
+
+            Log.Message(builder.ToString()); 
         }
     }
 }

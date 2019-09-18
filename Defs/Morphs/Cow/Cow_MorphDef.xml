@@ -1,11 +1,17 @@
 <Defs>
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>CowMorph</defName>
 		<label>cowmorph</label>
+    <description>A bovine humanoid resulting when a human is exposed to cow specific mutagens. Usually capable of producing milk</description>
 		<race>Cow</race>
 		<categories>
-			<li>bovine</li>
-			<li>farm</li>
+			<li>Farm</li>
+      <li>Production</li>
 		</categories>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(255,255,255)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

@@ -26,7 +26,7 @@
 			</li>
 			<li>
 				<label>adapted</label>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -80,7 +80,7 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
@@ -88,7 +88,7 @@
 	<HediffDef ParentName="PigPart">
 		<defName>EtherPigEar</defName>
 		<label>porcine</label>
-		<description>Large, pink piglike ears sit atop [PAWN_nameDef]'s, covered in a fine hair.</description>
+		<description>Large, pink piglike ears sit atop [PAWN_nameDef]'s head, covered in a fine hair.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>

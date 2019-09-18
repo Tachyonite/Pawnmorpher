@@ -1,9 +1,12 @@
 ﻿// RaceGenerator.cs modified by Iron Wolf for Pawnmorph on 08/02/2019 7:12 PM
 // last updated 08/02/2019  7:12 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AlienRace;
+using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -43,9 +46,20 @@ namespace Pawnmorph.Hybrids
             return _raceLookupTable.TryGetValue(race, out result); 
         }
 
+        /// <summary>
+        /// get the morph Def associated with this race, if any 
+        /// </summary>
+        /// <param name="race"></param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static MorphDef GetMorphOfRace(this ThingDef race)
+        {
+            return _raceLookupTable.TryGetValue(race); 
+        }
 
-        
 
+        private const float HEALTH_SCALE_LERP_VALUE = 0.4f;
+        private const float HUNGER_LERP_VALUE = 0.3f; 
         private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
         {
             return new RaceProperties
@@ -58,8 +72,9 @@ namespace Pawnmorph.Hybrids
                 leatherDef = animal.leatherDef,
                 nameCategory = human.nameCategory,
                 body = human.body,
-                baseBodySize = human.baseBodySize,
-                baseHealthScale = human.baseHealthScale,
+                baseBodySize = GetBodySize(animal, human),
+                baseHealthScale = Mathf.Lerp(human.baseHealthScale, animal.baseHealthScale, HEALTH_SCALE_LERP_VALUE),
+                baseHungerRate = GetHungerRate(animal, human), 
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 meatColor = animal.meatColor,
@@ -78,9 +93,22 @@ namespace Pawnmorph.Hybrids
                 meatDef = animal.meatDef,
                 meatLabel = animal.meatLabel,
                 useMeatFrom = animal.useMeatFrom,
-                deathActionWorkerClass = human.deathActionWorkerClass,
+                deathActionWorkerClass = animal.deathActionWorkerClass, //boomratmorphs should explode
                 corpseDef = human.corpseDef,
+                packAnimal = animal.packAnimal
             };
+        }
+
+        private static float GetBodySize(RaceProperties animal, RaceProperties human)
+        {
+            var f = Mathf.Lerp(human.baseBodySize, animal.baseBodySize, 0.5f);
+            return Mathf.Max(f, human.baseBodySize / 0.7f); 
+        }
+
+        private static float GetHungerRate(RaceProperties animal, RaceProperties human)
+        {
+            var f = Mathf.Lerp(human.baseHungerRate, animal.baseHungerRate, 0.5f);
+            return f; 
         }
 
 
@@ -88,6 +116,7 @@ namespace Pawnmorph.Hybrids
         {
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             var human = (ThingDef_AlienRace) ThingDef.Named("Human");
+            StringBuilder builder = new StringBuilder(); 
             foreach (MorphDef morphDef in morphs)
             {
                 if (morphDef.hybridRaceDef != null)
@@ -97,12 +126,14 @@ namespace Pawnmorph.Hybrids
                 }
 
 
-                Log.Message($"generating implied race for {morphDef.defName}");
+                builder.AppendLine($"generating implied race for {morphDef.defName}");
                 var race =  GenerateImplicitRace(human, morphDef);
                 morphDef.hybridRaceDef = race;
                 _raceLookupTable[race] = morphDef; 
                 yield return race; 
             }
+
+            Log.Message(builder.ToString()); 
         }
 
 
@@ -127,12 +158,20 @@ namespace Pawnmorph.Hybrids
 
         private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph)
         {
-            return new AlienPartGenerator
+            var gen = new AlienPartGenerator
             {
                 alienbodytypes = human.alienbodytypes, //this is where we'd force skin colors and stuff 
                 aliencrowntypes = human.aliencrowntypes,
                 bodyAddons = human.bodyAddons
             };
+
+            var graphicsSettings = morph.raceSettings?.graphicsSettings;
+            var customDrawSize = graphicsSettings?.customDrawSize;
+            var headSize = graphicsSettings?.customHeadDrawSize; 
+            gen.customDrawSize = customDrawSize ?? gen.customDrawSize;
+            gen.customHeadDrawSize = headSize ?? gen.customHeadDrawSize; //make sure to apply custom sizes only if they are defined, otherwise use the defaults 
+
+            return gen; 
         }
 
         /// <summary>
@@ -258,8 +297,21 @@ namespace Pawnmorph.Hybrids
                 stuffCategories = humanDef.stuffCategories?.ToList(),
                 designationCategory = humanDef.designationCategory,
                 tradeTags = humanDef.tradeTags?.ToList()
-                
             };
+        }
+
+        /// <summary>
+        /// Determines whether this race is a morph hybrid race
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the race is a morph hybrid race; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">raceDef</exception>
+        public static bool IsMorphRace([NotNull]ThingDef raceDef)
+        {
+            if (raceDef == null) throw new ArgumentNullException(nameof(raceDef));
+            return _raceLookupTable.ContainsKey(raceDef); 
         }
     }
 }

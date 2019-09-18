@@ -614,6 +614,7 @@
 			<mateMtbHours>99999999</mateMtbHours>
 			<manhunterOnDamageChance>0.3</manhunterOnDamageChance>
 			<manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+      <packAnimal>true</packAnimal>
 			<lifeStageAges>
 				<li>
 					<def>AnimalBaby</def>
@@ -1043,7 +1044,7 @@
 			<baseBodySize>3.0</baseBodySize>
 			<baseHungerRate>1.7</baseHungerRate>
 			<baseHealthScale>1.5</baseHealthScale>
-			<foodType>OmnivoreAnimal</foodType>
+			<foodType>OmnivoreAnimal, OmnivoreRoughAnimal</foodType>
 			<leatherDef>Leather_Chao</leatherDef>
 			<wildness>0.1</wildness>
 			<trainability>Advanced</trainability>

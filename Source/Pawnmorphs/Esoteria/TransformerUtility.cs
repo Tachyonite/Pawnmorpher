@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
@@ -54,6 +55,10 @@ namespace Pawnmorph
                 pawn.health.RemoveHediff(hediffMorph); //remove ongoing morph hediffs 
             }
 
+            if (pawn.IsHybridRace())
+            {
+                RaceShiftUtilities.RevertPawnToHuman(pawn); 
+            }
         }
        
 

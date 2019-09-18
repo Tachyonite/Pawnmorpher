@@ -23,7 +23,8 @@ namespace Pawnmorph
                 {
                     LocalTargetInfo localTargetInfo4 = localTargetInfo3;
                     Pawn victim = (Pawn)localTargetInfo4.Thing;
-                    if (victim.RaceProps.intelligence == Intelligence.Humanlike && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true) && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
+                    var mutagen = MutagenDefOf.MergeMutagen; 
+                    if (mutagen.CanTransform(victim) && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true) && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
                     {
                         string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
                         JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;

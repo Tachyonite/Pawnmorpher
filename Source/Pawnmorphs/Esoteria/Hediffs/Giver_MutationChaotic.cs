@@ -4,6 +4,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -18,7 +20,7 @@ namespace Pawnmorph.Hediffs
 
         public System.Type morphType = typeof(Hediff_Morph); //the hediff type to get possible mutations from 
 
-        public List<string> blackListCategories = new List<string>();
+        public List<MorphCategoryDef> blackListCategories = new List<MorphCategoryDef>();
         public List<HediffDef> blackListDefs = new List<HediffDef>();
         public List<MorphDef> blackListMorphs = new List<MorphDef>();
 
@@ -38,7 +40,7 @@ namespace Pawnmorph.Hediffs
             if (comp != null)
             {
                 if (blackListMorphs.Contains(comp.morph)) return false;
-                foreach (string morphCategory in comp.morph.categories)
+                foreach (var morphCategory in comp.morph.categories)
                 {
                     if (blackListCategories.Contains(morphCategory)) return false;
                 }
@@ -84,11 +86,17 @@ namespace Pawnmorph.Hediffs
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
             if (Mutations.Count == 0) return;
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+
             if (Rand.MTBEventOccurs(mtbDays, 6000, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
                 var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
-                if (mut.TryApply(pawn, mutagen))
+                if (mut.TryApply(pawn, mutagen, null, cause))
                 {
                     IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
                     if (cause.def.HasComp(typeof(HediffComp_Single)))
@@ -101,6 +109,11 @@ namespace Pawnmorph.Hediffs
                         TaleRecorder.RecordTale(mut.tale, pawn); 
                     }
                 }
+            }
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
             }
 
         }

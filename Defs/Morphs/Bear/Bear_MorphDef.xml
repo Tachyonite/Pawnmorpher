@@ -5,7 +5,14 @@
 		<race>Bear_Grizzly</race>
 		<description>Bearmorphs are combat experts. Usually equipped with large claws, paws and maws, they are devastatingly dangerous up close. But they have a tender heart, and a soft spot for plush toys of the ursine variety.</description>
 		<categories>
-			<li>ursine</li>
+			<li>Combat</li>
+			<li>Ursine</li>
 		</categories>
+		<raceSettings>
+		
+			<graphicsSettings>
+				<skinColorOverride>(155,116,89)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Multiplayer.API;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -19,12 +21,12 @@ namespace Pawnmorph
             {
                 HediffComp_Staged stage = Props.stages.ElementAt(parent.CurStageIndex);
                
-                Produce(stage.daysToProduce, stage.amount, stage.chance, ThingDef.Named(stage.resource), stage.RareResource,
+                TryProduce(stage.daysToProduce, stage.amount, stage.chance, ThingDef.Named(stage.resource), stage.RareResource,
                         stage.thought);
             }
             else
             {
-                Produce(Props.daysToProduce, Props.amount, Props.chance, ThingDef.Named(Props.resource), Props.RareResource);
+                TryProduce(Props.daysToProduce, Props.amount, Props.chance, ThingDef.Named(Props.resource), Props.RareResource);
             }
         }
 
@@ -35,86 +37,111 @@ namespace Pawnmorph
             Scribe_Values.Look(ref bondChance, "bondChance");
             base.CompExposeData();
         }
-
-        public void Produce(float daysToProduce, int amount, float chance, ThingDef resource, ThingDef rareResource,
+        
+        void TryProduce(float daysToProduce, int amount, float chance, ThingDef resource, ThingDef rareResource,
                             ThoughtDef stageThought = null)
         {
+
+            if (HatchingTicker < daysToProduce * 60000)
+                HatchingTicker++;
+            else if (Pawn.Map != null) Produce(amount, chance, resource, rareResource, stageThought);
+
+            
+        }
+
+        /// <summary>
+        /// spawns in the products at the parent's current location 
+        /// </summary>
+        public void Produce()
+        {
+            var curStage = Props.stages?.ElementAt(parent.CurStageIndex);
+
+            int amount = curStage?.amount ?? Props.amount;
+            float chance = curStage?.chance ?? Props.chance;
+            ThingDef resource = curStage?.Resource ?? Props.Resource;
+            ThingDef rareResource = curStage?.RareResource ?? Props.RareResource;
+            ThoughtDef thought = curStage?.thought;
+            Produce(amount, chance, resource, rareResource, thought); 
+
+        }
+
+
+        private void Produce(int amount, float chance, ThingDef resource, ThingDef rareResource, ThoughtDef stageThought)
+        {
+            RandUtilities.PushState();
+
             MemoryThoughtHandler thoughts = Pawn.needs.mood.thoughts.memories;
             bool hasEtherBond = Pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBond"));
             bool hasEtherBroken = Pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBroken"));
 
-            if (HatchingTicker < daysToProduce * 60000)
-            {
-                HatchingTicker++;
-            }
-            else if (Pawn.Map != null)
-            {
-                HatchingTicker = 0;
+            HatchingTicker = 0;
 
-                int thingCount = 0;
-                int rareThingCount = 0;
+            int thingCount = 0;
+            int rareThingCount = 0;
 
-                for (var i = 0; i < amount; i++)
-                    if (Rand.RangeInclusive(0, 100) <= chance && rareResource != null)
-                        rareThingCount++;
-                    else
-                        thingCount++;
-
-                Thing thing = ThingMaker.MakeThing(resource);
-                thing.stackCount = thingCount;
-                if (thing.stackCount > 0)
-                    GenPlace.TryPlaceThing(thing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
-
-                if (rareResource != null)
-                {
-                    Thing rareThing = ThingMaker.MakeThing(rareResource);
-                    rareThing.stackCount = rareThingCount;
-                    if (rareThing.stackCount > 0)
-                        GenPlace.TryPlaceThing(rareThing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
-                }
-
-
-                if (!hasEtherBond && !hasEtherBroken)
-                {
-                    if (Rand.RangeInclusive(0, 100) <= bondChance)
-                    {
-                        Pawn.health.AddHediff(HediffDef.Named("EtherBond"));
-                        hasEtherBond = true;
-                        Find.LetterStack.ReceiveLetter(
-                                                       "LetterHediffFromEtherBondLabel".Translate(Pawn).CapitalizeFirst(),
-                                                       "LetterHediffFromEtherBond".Translate(Pawn).CapitalizeFirst(),
-                                                       LetterDefOf.NeutralEvent, Pawn);
-                    }
-                    else if (Rand.RangeInclusive(0, 100) <= brokenChance)
-                    {
-                        Pawn.health.AddHediff(HediffDef.Named("EtherBroken"));
-                        hasEtherBroken = true;
-                        Find.LetterStack.ReceiveLetter(
-                                                       "LetterHediffFromEtherBrokenLabel".Translate(Pawn).CapitalizeFirst(),
-                                                       "LetterHediffFromEtherBroken".Translate(Pawn).CapitalizeFirst(),
-                                                       LetterDefOf.NeutralEvent, Pawn);
-                    }
-                }
-
-                if (stageThought != null) thoughts.TryGainMemory(stageThought);
-
-                if (hasEtherBond && Props.etherBondThought != null)
-                {
-                    thoughts.TryGainMemory(Props.etherBondThought);
-                }
-                else if (hasEtherBroken && Props.etherBrokenThought != null)
-                {
-                    thoughts.TryGainMemory(Props.etherBrokenThought);
-                }
+            for (var i = 0; i < amount; i++)
+                if (Rand.RangeInclusive(0, 100) <= chance && rareResource != null)
+                    rareThingCount++;
                 else
+                    thingCount++;
+
+            Thing thing = ThingMaker.MakeThing(resource);
+            thing.stackCount = thingCount;
+            if (thing.stackCount > 0)
+                GenPlace.TryPlaceThing(thing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
+
+            if (rareResource != null)
+            {
+                Thing rareThing = ThingMaker.MakeThing(rareResource);
+                rareThing.stackCount = rareThingCount;
+                if (rareThing.stackCount > 0)
+                    GenPlace.TryPlaceThing(rareThing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
+            }
+
+
+            if (!hasEtherBond && !hasEtherBroken)
+            {
+                if (Rand.RangeInclusive(0, 100) <= bondChance)
                 {
-                    if (Props.genderAversion == Pawn.gender && Props.wrongGenderThought != null)
-                        thoughts.TryGainMemory(Props.wrongGenderThought);
-                    else if (Props.thought != null) thoughts.TryGainMemory(Props.thought);
-                    brokenChance += 0.5f;
-                    bondChance += 0.2f;
+                    Pawn.health.AddHediff(HediffDef.Named("EtherBond"));
+                    hasEtherBond = true;
+                    Find.LetterStack.ReceiveLetter(
+                                                   "LetterHediffFromEtherBondLabel".Translate(Pawn).CapitalizeFirst(),
+                                                   "LetterHediffFromEtherBond".Translate(Pawn).CapitalizeFirst(),
+                                                   LetterDefOf.NeutralEvent, Pawn);
+                }
+                else if (Rand.RangeInclusive(0, 100) <= brokenChance)
+                {
+                    Pawn.health.AddHediff(HediffDef.Named("EtherBroken"));
+                    hasEtherBroken = true;
+                    Find.LetterStack.ReceiveLetter(
+                                                   "LetterHediffFromEtherBrokenLabel".Translate(Pawn).CapitalizeFirst(),
+                                                   "LetterHediffFromEtherBroken".Translate(Pawn).CapitalizeFirst(),
+                                                   LetterDefOf.NeutralEvent, Pawn);
                 }
             }
+
+            if (stageThought != null) thoughts.TryGainMemory(stageThought);
+
+            if (hasEtherBond && Props.etherBondThought != null)
+            {
+                thoughts.TryGainMemory(Props.etherBondThought);
+            }
+            else if (hasEtherBroken && Props.etherBrokenThought != null)
+            {
+                thoughts.TryGainMemory(Props.etherBrokenThought);
+            }
+            else
+            {
+                if (Props.genderAversion == Pawn.gender && Props.wrongGenderThought != null)
+                    thoughts.TryGainMemory(Props.wrongGenderThought);
+                else if (Props.thought != null) thoughts.TryGainMemory(Props.thought);
+                brokenChance += 0.5f;
+                bondChance += 0.2f;
+            }
+
+            RandUtilities.PopState();
+
         }
     }
 }

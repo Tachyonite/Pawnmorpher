@@ -1,6 +1,6 @@
 <Defs>
 	<!--Production Pills-->
-	<ThingDef ParentName="SerumBase">
+	<ThingDef ParentName="PM_PillBase">
 		<defName>UdderPill</defName>
 		<label>mutapill, booster</label>
 		<description>A pill to boost production mutations. Side effects may include increased discomfort, hair growth, hunger, coma, and in rare cases, fiery explosions.</description>
@@ -166,7 +166,7 @@
 	</HediffDef>
 	
 	<!--Feral Pills-->
-	<ThingDef ParentName="SerumBase">
+	<ThingDef ParentName="PM_PillBase">
 		<defName>FeralPill</defName>
 		<label>mutapill, feral</label>
 		<description>A pill to tip the scales on morphs that are reeling, but did not change fully. Use this if you really, really want a pawn to be an animal instead of a human.</description>
@@ -201,7 +201,7 @@
 	</ThingDef>
 
 	<!--Stabilizer Pills-->
-	<ThingDef ParentName="DrugPillBase">
+	<ThingDef ParentName="PM_PillBase">
 		<defName>MutagenStabiliser</defName>
 		<label>mutapill, stabiliser</label>
 		<description>These pills will neutralize any active mechanites in the body and prevent mutations for five days.</description>

@@ -78,6 +78,14 @@ namespace Pawnmorph.TfSys
             get { return TransformedPawns.Select(p => p?.Name.ToStringFull ?? "[Null]"); }
         }
 
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return
+                $"[{string.Join(",", OriginalsDebugString.ToArray())}] => [{string.Join(",", TransformedDebugString.ToArray())}]";
+        }
+
         public static TransformedPawn Create(Pawn original, Pawn transformed)
         {
             return new

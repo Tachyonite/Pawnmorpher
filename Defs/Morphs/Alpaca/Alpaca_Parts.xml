@@ -25,7 +25,7 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -73,8 +73,8 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
-				<!-- takes 2 days to progress -->
+				<severityPerDay>0.25</severityPerDay>
+				<!-- takes 4 days to progress -->
 			</li>
 		</comps>
 	</HediffDef>

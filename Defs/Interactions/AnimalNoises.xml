@@ -23,17 +23,17 @@
 				<li>talkedabout->quietly mooed at</li>
 				<li>talkedabout->moaned like a cow at</li>
 
-				<li>askedabout->milking [INITIATOR_possessive]</li>
+				<li>askedabout->milking [INITIATOR_objective]</li>
 				<li>askedabout->milk</li>
 				<li>askedabout->eating grass</li>
 				<li>askedabout->chewing cud</li>
 				<li>askedabout->dairy farms</li>
 
-				<li>askedaboutme->milk [INITIATOR_possessive]</li>
-				<li>askedaboutme->feed [INITIATOR_possessive] grass</li>
-				<li>askedaboutme->change [INITIATOR_possessive] back</li>
-				<li>askedaboutme->give [INITIATOR_possessive] hay</li>
-				<li>askedaboutme->give [INITIATOR_possessive] a bell</li>
+				<li>askedaboutme->milk [INITIATOR_objective]</li>
+				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
+				<li>askedaboutme->change [INITIATOR_objective] back</li>
+				<li>askedaboutme->give [INITIATOR_objective] hay</li>
+				<li>askedaboutme->give [INITIATOR_objective] a bell</li>
 
 			</rulesStrings>
 		</logRulesInitiator>
@@ -76,7 +76,7 @@
 				<li>talkedabout->cawed at</li>
 				<li>talkedabout->talked about eggs with</li>
 				<li>talkedabout->chatted about plumage styling tips with</li>
-				<li>talkedabout->preened [INITIATOR_possessive] his feathers towards</li>
+				<li>talkedabout->preened [INITIATOR_objective] feathers towards</li>
 
 				<li>askedabout->laying eggs for [INITIATOR_possessive]</li>
 				<li>askedabout->collecting eggs</li>

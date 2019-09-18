@@ -1,6 +1,7 @@
 ﻿// HybridRaceSettings.cs modified by Iron Wolf for Pawnmorph on 08/03/2019 9:47 AM
 // last updated 08/03/2019  9:47 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
@@ -33,11 +34,15 @@ namespace Pawnmorph.Hybrids
         public class GraphicsSettings
         {
             public Color? skinColorOverride;
-            public Color? skinColorOverrideSecond; 
-
+            public Color? skinColorOverrideSecond;
+            public Color? hairColorOverride;
+            public Color? hairColorOverrideSecond; 
+            public Vector2? customDrawSize;
+            public Vector2? customHeadDrawSize; 
         }
 
 
+        [Obsolete]
         public class FoodCategoryOverride
         {
 
@@ -46,12 +51,14 @@ namespace Pawnmorph.Hybrids
 
         }
 
+        [Obsolete]
         public class FoodSettings
         {
             public List<FoodCategoryOverride> foodOverrides = new List<FoodCategoryOverride>(); 
 
         }
 
+        [Obsolete("Doesn't do anything'")]
         public FoodSettings foodSettings = new FoodSettings();
 
         public List<StatModifier> statModifiers; 
@@ -59,10 +66,12 @@ namespace Pawnmorph.Hybrids
         public RaceRestrictionSettings restrictionSettings;
         public GraphicsSettings graphicsSettings; 
 
-        public TraitSettings traitSettings; 
+        public TraitSettings traitSettings;
 
+        //should this be deprecated? 
         public class TraitSettings
         {
+            //should this be deprecated? 
             public List<AlienTraitEntry> forcedTraits;
             //public List<string> disallowedTraits; removing traits not supported right now, rimworld doesn't like it when you remove them  
         }

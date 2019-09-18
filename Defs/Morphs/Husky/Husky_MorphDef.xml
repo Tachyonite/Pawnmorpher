@@ -1,17 +1,22 @@
 ﻿<Defs>
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="CanineMorph">
 		<defName>HuskyMorph</defName>
 		<label>huskymorph</label>
+		<description>a large humanoid canine resembling a husky. These former humans now share many mental traits with their animal counterparts like pack-mindedness and keen hunting instincts</description>
 		<race>Husky</race>
 		<categories>
-			<li>canid</li>
+			<li>Canid</li>
+			<li>Combat</li>
 		</categories>
 		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(202,196,192)</skinColorOverride>
+			</graphicsSettings>
 			<traitSettings>
 				<forcedTraits>
 					<li>
-						<defName>NaturalHunter</defName>
 						<chance>100</chance>
+						<defName>NaturalHunter</defName>
 					</li>
 				</forcedTraits>
 			</traitSettings>

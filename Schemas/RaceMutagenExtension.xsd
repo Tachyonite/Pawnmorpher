@@ -1,0 +1,24 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Pawnmorph.RaceMutagenExtension">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="immuneToAll" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+				<xs:element name="blacklist" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="li" type="MutagenType" minOccurs="1" maxOccurs="unbounded" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="MutagenType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="defaultMutagen" />
+			<xs:enumeration value="MergeMutagen" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

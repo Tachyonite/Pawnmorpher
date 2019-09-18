@@ -4,7 +4,13 @@
 		<label>catmorph</label>
 		<race>Cat</race>
 		<categories>
-			<li>feline</li>
+			<li>Feline</li>
+			<li>Combat</li>
 		</categories>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(216,216,216)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

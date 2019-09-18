@@ -29,6 +29,8 @@ namespace Pawnmorph
         public float formerChance = 2f;
         public float partialChance = 5f;
 
+        public int maxMutationThoughts=3; 
+
         /// <summary>
         /// The part that writes our settings to file. Note that saving is by ref.
         /// </summary>
@@ -42,6 +44,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref transformChance, "transformChance");
             Scribe_Values.Look(ref formerChance, "formerChance");
             Scribe_Values.Look(ref partialChance, "partialChance");
+            Scribe_Values.Look(ref maxMutationThoughts, nameof(maxMutationThoughts), 1); 
             base.ExposeData();
         }
     }
@@ -83,6 +86,8 @@ namespace Pawnmorph
             settings.formerChance = listingStandard.Slider(settings.formerChance, 0f, 100f);
             listingStandard.Label(string.Format("Chance for morph eggs/milk to trigger a complete transformation instead of a single mutation: {0}%", settings.partialChance.ToString("F1")));
             settings.partialChance = listingStandard.Slider(settings.partialChance, 0f, 100f);
+            listingStandard.Label($"How many mutation related thoughts will show up at once: {settings.maxMutationThoughts}");
+            settings.maxMutationThoughts = (int) listingStandard.Slider(settings.maxMutationThoughts, 1, 10);
             listingStandard.End();
             base.DoSettingsWindowContents(inRect);
         }

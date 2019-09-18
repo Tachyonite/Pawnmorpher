@@ -4,7 +4,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
+using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -30,6 +32,14 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
+        void ListPawnInitialGraphics(Pawn pawn)
+        {
+            var initialComp = pawn.GetComp<GraphicSys.InitialGraphicsComp>();
+            if (initialComp == null) return ;
+
+            Log.Message(initialComp.GetDebugStr()); 
+        }
+
         public Pawnmorpher_DebugDialogue()
         {
             forcePause = true; 
@@ -38,7 +48,9 @@ namespace Pawnmorph.DebugUtils
         void ListPlayOptions()
         {
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
-            DebugToolMapForPawns("force full transformation", ForceTransformation); 
+            DebugToolMapForPawns("give random mutations", GetRandomMutationsOptions);
+            DebugToolMapForPawns("force full transformation", ForceTransformation);
+            DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics); 
         }
 
         void ForceTransformation(Pawn pawn)
@@ -50,16 +62,78 @@ namespace Pawnmorph.DebugUtils
                                          .OfType<HediffGiver_TF>()
                                          .FirstOrDefault();
 
-
                 giverTf?.TryTf(pawn, morphHediff);
-
-
-
 
             }
 
 
         }
+
+
+        void GivePawnRandomMutations(Pawn pawn, [CanBeNull] MorphDef morph)
+        {
+
+            var mutations = morph?.AssociatedMutations;
+            if (mutations == null)
+            {
+                mutations = DefDatabase<HediffDef>.AllDefs
+                                                  .Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass))
+                                                  .SelectMany(d => d.GetAllHediffGivers())
+                                                  .OfType<HediffGiver_Mutation>(); 
+
+
+            }
+
+            bool CanReceiveGiver(HediffGiver_Mutation mutation)
+            {
+                var hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation.hediff);
+
+                return hediffs.Count() < mutation.countToAffect;
+            }
+
+            List<HediffGiver_Mutation> mutList = mutations.Where(CanReceiveGiver).ToList();
+            if (mutList.Count == 0) return;
+
+            int num = Rand.Range(1, Mathf.Min(10, mutList.Count));
+
+            var i = 0;
+            while (i < num && mutList.Count > 0)
+            {
+                HediffGiver_Mutation giver = mutList.RandElement();
+                mutList.Remove(giver);
+
+
+                giver.TryApply(pawn, MutagenDefOf.defaultMutagen);
+
+                i++;
+            }
+
+
+
+        }
+
+
+        void GetRandomMutationsOptions(Pawn pawn)
+        {
+            List<DebugMenuOption> options = new List<DebugMenuOption>()
+                {new DebugMenuOption("none", DebugMenuOptionMode.Tool, () => GivePawnRandomMutations(pawn, null))};
+
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
+                                                 () => GivePawnRandomMutations(pawn, morphDef)); 
+                options.Add(option);
+
+
+
+            }
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+
+
+        }
+
 
         List<DebugMenuOption> GetRaceChangeOptions()
         {

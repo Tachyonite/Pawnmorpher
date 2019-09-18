@@ -6,7 +6,7 @@
 			</li>
 		</comps>
 	</HediffDef>
-  
+
 	<HediffDef ParentName="ChookPart">
 		<defName>EtherBeak</defName>
 		<label>beak</label>
@@ -25,7 +25,7 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -51,11 +51,11 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="ChookPart">
 		<defName>EtherTailfeathers</defName>
 		<description>A plume of feathers sprout from a dimpled chicken tail above [PAWN_nameDef]'s butt.</description>
@@ -68,7 +68,7 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="ChookPart">
 		<defName>EtherFeatheredLimb</defName>
 		<label>feathered</label>
@@ -101,6 +101,8 @@
 						<li>Hand</li>
 					</partsToAffect>
 					<countToAffect>2</countToAffect>
+					<memory>WingTipMemory</memory>
+					<tale>HandsBecomeWingTips</tale>
 				</mutationDependency>
 			</li>
 		</comps>
@@ -116,7 +118,7 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="ChookPart">
 		<defName>EtherAvianFoot</defName>
 		<label>avian</label>
@@ -128,7 +130,7 @@
 			<li>
 				<label>adapted</label>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>1</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>
@@ -153,11 +155,11 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.5</severityPerDay>
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="ChookPart">
 		<defName>EtherEggLayer</defName>
 		<label>egglayer</label>
@@ -203,7 +205,7 @@
 			</li>
 		</comps>
 		<maxSeverity>1</maxSeverity>
-		<initialSeverity>0.01</initialSeverity>	
+		<initialSeverity>0.01</initialSeverity>
 		<stages>
 			<li>
 				<minSeverity>0</minSeverity>

@@ -1,11 +1,12 @@
 <Defs>
-	<Pawnmorph.MorphDef>
+	<Pawnmorph.MorphDef ParentName="CanineMorph">
 		<defName>WolfMorph</defName>
 		<label>wolfmorph</label>
 		<race>Wolf_Timber</race>
 		<description>[PAWN_nameDef] is more like a wolf than a human. Wolfmorphs usually stand on their paws, keen nose seeking prey and grey or brown fur covering them. They make excellent fighters.</description>
 		<categories>
-			<li>canid</li>
+			<li>Canid</li>
+      <li>Combat</li>
 		</categories>
 		<raceSettings>
       <thoughtSettings>
@@ -14,7 +15,7 @@
           <ingredientThought>MorphAteAnimalMeatAsIngredient</ingredientThought>
         </ateAnimalThought>
       </thoughtSettings>
-      <traitSettings>
+			<traitSettings>
 				<forcedTraits>
 					<li>
 						<defName>NaturalHunter</defName>
@@ -22,6 +23,9 @@
 					</li>
 				</forcedTraits>
 			</traitSettings>
+		<graphicsSettings>
+				<skinColorOverride>(208,208,208)</skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

@@ -2,9 +2,16 @@
 	<Pawnmorph.MorphDef>
 		<defName>BoarMorph</defName>
 		<label>boarmorph</label>
+    <description>a humanoid with many boar like characteristics resulting when a human is exposed to boar specific mutagens. Usually found with thick hide and large tusks making them dangerous combatants</description>
 		<race>WildBoar</race>
 		<categories>
-			<li>pig</li>
+			<li>Combat</li>
 		</categories>
+		<raceSettings>
+
+			<graphicsSettings>
+				<skinColorOverride>(155,116,89)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

@@ -37,7 +37,8 @@
 		<hediffClass>Pawnmorph.Hediffs.MutagenicBuildup</hediffClass>
 		<defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
 		<label>mutagenic buildup</label>
-		<lethalSeverity>1</lethalSeverity>
+		<lethalSeverity>2</lethalSeverity>
+		<maxSeverity>1</maxSeverity>
 		<makesSickThought>true</makesSickThought>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<taleOnVisible>MutationToxicityRevealed</taleOnVisible>
@@ -85,7 +86,7 @@
 					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
 						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
 						<blackListCategories>
-							<li>powerful</li>
+							<li>Powerful</li>
 						</blackListCategories>
 					</li>
 				</hediffGivers>

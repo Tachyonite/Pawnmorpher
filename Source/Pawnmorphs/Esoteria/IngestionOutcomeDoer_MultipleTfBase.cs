@@ -22,7 +22,7 @@ namespace Pawnmorph
         {
             public MorphTransformationTypes types;
             public bool isBlackList = true; //if the category list is a black list 
-            public List<string> categories = new List<string>();
+            public List<MorphCategoryDef> categories = new List<MorphCategoryDef>();
         }
 
 
@@ -94,7 +94,6 @@ namespace Pawnmorph
                 return;
             }
 
-
             var completeSet = new HashSet<HediffDef>(hediffDefsComplete); //use hash sets so we don't have any duplicates 
             var partialSet = new HashSet<HediffDef>(hediffDefs);
 
@@ -111,8 +110,6 @@ namespace Pawnmorph
 
             _allCompleteDefs = completeSet.ToList(); //now convert them back to lists 
             _allPartialDefs = completeSet.ToList();
-            
-
         }
     }
 }

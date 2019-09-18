@@ -2,9 +2,12 @@
 	<Pawnmorph.MorphDef>
 		<defName>FoxMorph</defName>
 		<label>foxmorph</label>
+    <description>A roughly human sized, humanoid fox-like creature often the result of exposure to fox specific mutagens. In addition to physical changes, these humanoids now share many traits with their feral counterparts like their keen hunting instincts, especially towards chickens</description>
 		<race>Fox_Red</race>
 		<categories>
-			<li>canid</li>
+			<li>Canid</li>
+			<li>Combat</li>
+			<li>Social</li>
 		</categories>
 		<raceSettings>
 			<thoughtSettings>
@@ -21,6 +24,9 @@
 					</li>
 				</forcedTraits>
 			</traitSettings>
+			<graphicsSettings>
+				<skinColorOverride>(174,128,94)</skinColorOverride>
+			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

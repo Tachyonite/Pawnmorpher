@@ -2,7 +2,6 @@
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using UnityEngine;
 using RimWorld;
 using Verse;
 
@@ -89,7 +88,15 @@ namespace Pawnmorph
                 }
             }
 
-      
+            pawn.GetMutationTracker()?.NotifyMutationAdded(this); 
+
+        }
+
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+
+            pawn.GetMutationTracker()?.NotifyMutationRemoved(this); 
 
         }
 

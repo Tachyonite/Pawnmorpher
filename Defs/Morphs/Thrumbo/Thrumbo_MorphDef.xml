@@ -2,10 +2,15 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>ThrumboMorph</defName>
 		<label>thrumbomorph</label>
+    <description>A large humanoid often resembling a bipedial thrumbo, usually sporting the characteristic horn. Much like feral thrumbos they are exceptionally dangerous in combat, and enjoy eating trees</description>
 		<race>Thrumbo</race>
 		<categories>
-			<li>thrumbo</li>
-			<li>powerful</li>
+			<li>Powerful</li>
 		</categories>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(255,255,255)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

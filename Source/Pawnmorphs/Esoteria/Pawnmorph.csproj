@@ -74,6 +74,9 @@
     <Compile Include="EtherState.cs" />
     <Compile Include="FloatMenuMakerMapPatches.cs" />
     <Compile Include="GameCondition_MutagenicFallout.cs" />
+    <Compile Include="Graphics\GraphicsUpdaterComp.cs" />
+    <Compile Include="Graphics\InitialGraphics.cs" />
+    <Compile Include="Graphics\MorphGraphicsUtils.cs" />
     <Compile Include="HediffGiver_Mutation.cs" />
     <Compile Include="Hediffs\CompProperties_DependentPart.cs" />
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
     <Compile Include="Hediffs\Def_MorphTf.cs" />
     <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
+    <Compile Include="Hediffs\InsectInjectionInjury.cs" />
     <Compile Include="Hediffs\MutagenicBuildup.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
     <Compile Include="Hediffs\MorphTransformationDefOf.cs" />
@@ -92,14 +96,23 @@
     <Compile Include="Hybrids\HThoughtDefOf.cs" />
     <Compile Include="Hybrids\HTraitDefOf.cs" />
     <Compile Include="Hybrids\HybridRaceSettings.cs" />
+    <Compile Include="IMutationEventReceiver.cs" />
     <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
     <Compile Include="Hediffs\IPostTfHediffComp.cs" />
     <Compile Include="IngestionOutcomeDoer_MultipleTfBase.cs" />
     <Compile Include="Chambers\JobDriver_CarryToMutagenChamber.cs" />
     <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
+    <Compile Include="IngestionOutcomeDoer_BoostSeverity.cs" />
+    <Compile Include="MorphCategoryDef.cs" />
+    <Compile Include="MorphCategoryDefOf.cs" />
     <Compile Include="MorphDef.cs" />
     <Compile Include="MorphDefOfs.cs" />
+    <Compile Include="MorphGroupDef.cs" />
+    <Compile Include="MorphGroupDefOf.cs" />
+    <Compile Include="MorphPawnKindExtension.cs" />
+    <Compile Include="MorphTracker.cs" />
+    <Compile Include="MorphTrackingComp.cs" />
     <Compile Include="MorphTransformationTypes.cs" />
     <Compile Include="MorphUtilities.cs" />
     <Compile Include="Hybrids\RaceGenerator.cs" />
@@ -108,9 +121,14 @@
     <Compile Include="MutagenDefOf.cs" />
     <Compile Include="MutagenUtilities.cs" />
     <Compile Include="Mutagen_JobDefOf.cs" />
+    <Compile Include="MutationCategoryDef.cs" />
+    <Compile Include="MutationHediffExtension.cs" />
+    <Compile Include="MutationTracker.cs" />
     <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
+    <Compile Include="PMThingDefOf.cs" />
+    <Compile Include="PMUtilities.cs" />
     <Compile Include="Projectile_EtherBullet.cs" />
     <Compile Include="Projectile_EtherExplosive.cs" />
     <Compile Include="RaceMutagenExtension.cs" />
@@ -178,9 +196,14 @@
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
+    <Compile Include="Utilities\Filter.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
+    <Compile Include="Utilities\HediffDefUtilities.cs" />
     <Compile Include="Utilities\LinqUtils.cs" />
+    <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\Tuple.cs" />
+    <Compile Include="Utilities\VTuple.cs" />
+    <Compile Include="WeatherOverlay_Mutagen.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

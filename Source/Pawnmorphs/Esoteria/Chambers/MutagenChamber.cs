@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
 using Pawnmorph.Chambers;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.TfSys;
 using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
 using Pawnmorph.Thoughts;
+using Pawnmorph.Utilities;
 
 namespace Pawnmorph
 {
@@ -24,7 +27,7 @@ namespace Pawnmorph
         public string pawnkind;
         public string forceGender = "Original";
         public float forceGenderChance = 50;
-        public PawnKindDef pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
+        public PawnKindDef pawnTFKind;
         public bool doNotEject = false;
         private CompRefuelable fuelComp = null;
         private CompPowerTrader powerComp = null;
@@ -36,6 +39,19 @@ namespace Pawnmorph
 
         public Building_MutagenChamber()
         {
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed); 
+            }
+            pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
+
+
             EnterMutagenChamber = DefDatabase<JobDef>.GetNamed("EnterMutagenChamber");
         }
 
@@ -143,38 +159,78 @@ namespace Pawnmorph
                     throw new ArgumentOutOfRangeException();
             }
             
-            if (daysIn > 1 && !doNotEject)
+            if (IsFinished)
             {
-                EjectContents();
-                fuelComp.ConsumeFuel(fuelComp.Fuel);
+
                 if (modulator != null)
                 {
-                    modulator.triggered = true;
-                    if (modulator.random)
-                        PickRandom();
-                    else
-                        PickRandom();
+                    modulator.NotifyChamberFinished(this); 
                 }
+                else
+                {
+                    EjectContents();
+                    fuelComp.ConsumeFuel(fuelComp.Fuel);
+
+                }
+
+
+                //EjectContents();
+                //fuelComp.ConsumeFuel(fuelComp.Fuel);
+                //if (modulator != null)
+                //{
+                //    modulator.triggered = true;
+                //    if (modulator.random)
+                //        PickRandom();
+                    
+                        
+                //}
 
                 daysIn = 0;
             }
-            else if (modulator != null)
-            {
-                if (doNotEject && modulator.triggered)
-                {
-                    fuelComp.ConsumeFuel(fuelComp.Fuel);
-                    daysIn = 0;
-                    innerContainer.ClearAndDestroyContentsOrPassToWorld();
-                    modulator.triggered = false;
-                }
-            }
+           
+        }
+
+        public void ClearContents()
+        {
+            fuelComp.ConsumeFuel(fuelComp.Fuel);
+            daysIn = 0;
+            innerContainer.ClearAndDestroyContentsOrPassToWorld();
+            modulator.triggered = false;
         }
 
         public void PickRandom()
         {
-            IEnumerable<PawnKindDef> pks = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal && (x.label.StartsWith("chao") && x.label != "chaomeld" && x.label != "chaofusion"));
-            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals.ToArray();
-            pawnTFKind = pks.Concat(pks2).RandomElement();
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PushState(RandUtilities.MPSafeSeed);
+            }
+
+            var comp = def.GetCompProperties<ThingCompProperties_ModulatorOptions>();
+            var defaultAnimals = comp.defaultAnimals;
+
+            var taggedAnimals = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals;
+            if (taggedAnimals == null || taggedAnimals.Count == 0)
+            {
+                pawnTFKind = defaultAnimals.RandElement();
+                goto End;
+            }
+            
+
+            
+
+            var tmpLst = new List<PawnKindDef>(defaultAnimals);
+            tmpLst.AddRange(taggedAnimals);
+
+            pawnTFKind = tmpLst.RandElement();
+
+
+            End:
+
+            if (MP.IsInMultiplayer)
+            {
+                Rand.PopState();
+            }
         }
 
         void CheckState()
@@ -246,29 +302,25 @@ namespace Pawnmorph
             }
         }
 
-        void EjectBase()
-        {
-            base.EjectContents();
-        }
+        public bool IsFinished => daysIn >= 1; 
+
 
         public override void EjectContents() //should refactor the mutagenic chamber, make it a state machine 
         {
-            if (innerContainer.Count == 0) return;
+            DebugLogUtils.Assert(innerContainer.Count == 1, "innerContainer.Count == 1");
 
-            if (innerContainer.Count > 1)
+            var pawn = (Pawn) innerContainer[0];
+            if (pawn == null)
             {
-                Log.Error("there is more then 1 pawn in mutagenic chamber? ");
+                Log.Warning($"mutagenic chamber ejecting nothing");
+
                 return;
             }
 
-            var pawn = (Pawn) innerContainer[0];
-            if (pawn == null) return;
-
         
 
-            if (daysIn > 1)
+            if (IsFinished)
             {
-                
                 TransformPawn(pawn);
 
 
@@ -334,7 +386,13 @@ namespace Pawnmorph
             }
 
             TransformedPawn pmInst = mutagen.Transform(request);
-            if (pmInst == null) return;
+            if (pmInst == null)
+            {
+                Log.Error($"mutagenic chamber could not transform pawns {string.Join(",",request.originals.Select(p => p.Name.ToStringFull).ToArray())} using mutagen {mutagen.def.defName}");
+
+                return;
+            }
+
             SendLetter(pawn);
             base.EjectContents();
             if(_state == ChamberState.MergeInto)
