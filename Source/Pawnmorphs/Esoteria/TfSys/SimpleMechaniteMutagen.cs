@@ -179,7 +179,7 @@ namespace Pawnmorph.TfSys
 
             if (def.reversionThoughts.Count > 0)
             {
-                var hediff = HediffMaker.MakeHediff(def.reversionThoughts.RandElement(), spawned);
+                var hediff = GetReversionHediff(spawned);
 
                 hediff.Severity = tfHumanHediff.Severity;
                 spawned.health.AddHediff(hediff); 
@@ -194,6 +194,31 @@ namespace Pawnmorph.TfSys
             animal.Destroy();
             return true;
 
+        }
+
+        private Hediff GetReversionHediff(Pawn spawned)
+        {
+            HediffDef hediffDef; 
+
+            if (spawned.story.traits.HasTrait(PMTraitDefOf.FurryTrait))
+            {
+                hediffDef = def.reversionThoughts[1]; //good thoughts are the second element 
+            }else if (spawned.story.traits.HasTrait(TraitDefOf.BodyPurist))
+            { 
+                hediffDef = def.reversionThoughts[0]; //bad thoughts are the first element 
+            }
+            else
+            {
+                hediffDef = def.reversionThoughts.RandElement(); 
+            }
+
+
+
+            var hediff = HediffMaker.MakeHediff(hediffDef, spawned);
+
+
+
+            return hediff;
         }
 
         /// <summary>
@@ -240,8 +265,8 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
 
-            var rThought = def.reversionThoughts.RandElement();
-            var rThoughtHediff = HediffMaker.MakeHediff(rThought, transformedPawn);
+
+            var rThoughtHediff = GetReversionHediff(spawned);
 
             rThoughtHediff.Severity = formerHuman.Severity;
             spawned.health.AddHediff(rThoughtHediff);
