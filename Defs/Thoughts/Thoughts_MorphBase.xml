@@ -1,6 +1,6 @@
 <Defs>
 	<ThoughtDef Abstract="true" Name="MorphReactionThoughtBase">
-		<thoughtWorker>Pawnmorph.Thoughts.Worker_HediffTraits</thoughtWorker>
+		<workerClass>Pawnmorph.Thoughts.Worker_HediffTrait</workerClass>
 	</ThoughtDef>
 	<ThoughtDef Abstract="true" Name="MorphReactionThoughtBaseNone" ParentName="MorphReactionThoughtBase" > <!-- base thoughtDef for reactions to Morph Hediffs when the pawn has no special outlook -->
 		<nullifyingTraits>

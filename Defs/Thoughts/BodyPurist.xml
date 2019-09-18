@@ -3,7 +3,7 @@
 <Defs>
 	<ThoughtDef>
 		<defName>BodyPuristMutationSad</defName>
-		<workerClass>Pawnmorph.Thoughts.Worker_HasMutation</workerClass>
+		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<requiredTraits>
 			<li>BodyPurist</li>

@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Defs>
-	<ThougthDef> <!-- opinion offset furries will have toward mutated pawns -->
+	<ThougthDef>
+		<!-- opinion offset furries will have toward mutated pawns -->
 		<defName>FurryAppreciation</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>Pawnmorph.Thoughts.Worker_FurryAppreciation</workerClass>
@@ -14,16 +15,19 @@
 			</li>
 		</stages>
 	</ThougthDef>
-	<ThoughtDef> <!-- opinion offset body purists will have toward mutated pawns -->
+	<ThoughtDef>
+		<!-- opinion offset body purists will have toward mutated pawns -->
 		<defName>BodyPuristDisgustMutation</defName>
 		<thoughtClass>Thought_SituationalSocial</thoughtClass>
 		<workerClass>Pawnmorph.Thoughts.Worker_BodyPuristDisgust</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<stages>
-			<label>TODO</label>
-			<!-- stage number is going to be equal to the number of mutations the other pawn has  -->
-			<description>TODO</description>
-			<baseOpinionOffset>-10</baseOpinionOffset>
+			<li>
+				<label>TODO</label>
+				<!-- stage number is going to be equal to the number of mutations the other pawn has  -->
+				<description>TODO</description>
+				<baseOpinionOffset>-10</baseOpinionOffset>
+			</li>
 		</stages>
 	</ThoughtDef>
 </Defs>

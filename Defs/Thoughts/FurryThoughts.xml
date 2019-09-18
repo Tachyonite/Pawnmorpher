@@ -1,7 +1,7 @@
 <Defs>
 	<ThoughtDef>
 		<defName>FurryMutationThoughtsSad</defName>
-		<workerClass>Pawnmorph.Thoughts.Worker_HasMutation</workerClass>
+		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
 		<requiredTraits>
 			<li>FurryTrait</li>
 		</requiredTraits>
@@ -18,7 +18,7 @@
 
 	<ThoughtDef>
 		<defName>FurryMutationThoughtsHappy</defName>
-		<workerClass>Pawnmorph.Thoughts.Worker_HasMutation</workerClass>
+		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<requiredTraits>
 			<li>FurryTrait</li>
