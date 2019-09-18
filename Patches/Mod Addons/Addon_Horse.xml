@@ -35,7 +35,6 @@
 						<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
 					</value>
 				</li>
-				
 				<!--Hediffs-->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
@@ -49,7 +48,6 @@
 								<li>Farm</li>
 							</categories>
 						</Pawnmorph.MorphDef>
-						
 						<!--Morph Reaction-->
 						<ThoughtDef>
 							<defName>EtherReactionHorseTF</defName>
@@ -68,7 +66,6 @@
 								</li>
 							</stages>
 						</ThoughtDef>
-						
 						<!--Full Morph-->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTF</defName>
@@ -198,7 +195,6 @@
 								</li>
 							</stages>
 						</HediffDef>
-						
 						<!--Partial Morph-->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTFPartial</defName>
@@ -274,7 +270,6 @@
 								</li>
 							</stages>
 						</HediffDef>
-						
 						<!--Morph Parts-->
 						<HediffDef Name="HorsePart" ParentName="PawnmorphPart" Abstract="True">
 							<comps>
@@ -347,7 +342,6 @@
 								</li>
 							</stages>
 						</HediffDef>
-						
 						<!--Morph Injector-->
 						<ThingDef ParentName="InjectorBase">
 							<defName>HorseTransformer</defName>
@@ -373,13 +367,6 @@
 				</li>
 				<li Class="PatchOperationAdd">
 					<success>Always</success>
-					<xpath>Defs/ThingDef[defName="RandomTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<success>Always</success>
 					<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
 					<value>
 						<li>PawnmorphHorseTF</li>
@@ -387,7 +374,7 @@
 				</li>
 				<li Class="PatchOperationAdd">
 					<success>Always</success>
-					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/outcomeDoers[first()]/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[1]/hedifGivers/li/pawnkinds</xpath>
 					<value>
 						<li>QuarterHorse</li>
 						<li>BlackHorse</li>
