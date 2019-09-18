@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+	<ThoughtDef>
+		<defName>BodyPuristMutationSad</defName>
+		<workerClass>Pawnmorph.Thoughts.Worker_HasMutation</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<requiredTraits>
+			<li>BodyPurist</li>
+		</requiredTraits>
+		<stages>
+			<li> <!-- ths stage number is going to be equal to the number of mutation the pawn has -->
+				<label>TODO</label>
+				<description>TODO</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

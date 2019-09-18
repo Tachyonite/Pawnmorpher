@@ -1,0 +1,59 @@
+<Defs>
+	<ThoughtDef>
+		<defName>FurryMutationThoughtsSad</defName>
+		<workerClass>Pawnmorph.Thoughts.Worker_HasMutation</workerClass>
+		<requiredTraits>
+			<li>FurryTrait</li>
+		</requiredTraits>
+		<validWhileDespawned>true</validWhileDespawned>
+		<invert>true</invert>
+		<stages>
+			<li>
+				<label>TODO</label> <!-- negative thought gos here -->
+				<description>TODO</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>FurryMutationThoughtsHappy</defName>
+		<workerClass>Pawnmorph.Thoughts.Worker_HasMutation</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<requiredTraits>
+			<li>FurryTrait</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>TODO</label>
+				<description>TODO</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+			<li> <!-- stage number is equal to the number of mutations the pawn has  -->
+				<label>TODO</label>
+				<description>TODO</description>
+				<baseMoodEffect>7</baseMoodEffect>
+			</li>
+			<li>
+				<label>TODO</label>
+				<description>TODO</description>
+				<baseMoodEffect>9</baseMoodEffect>
+			</li>
+			<li>
+				<label>TODO</label>
+				<description>TODO</description>
+				<baseMoodEffect>11</baseMoodEffect>
+			</li>
+			<li>
+				<label>TODO</label>
+				<description>TODO</description>
+				<baseMoodEffect>12</baseMoodEffect>
+			</li>
+			<li>
+				<label>TODO</label>
+				<description>TODO</description>
+				<baseMoodEffect>13</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

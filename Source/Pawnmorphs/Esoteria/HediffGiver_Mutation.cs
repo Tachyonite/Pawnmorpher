@@ -100,7 +100,7 @@ namespace Pawnmorph
             if (!ignoreThoughtLimit)
                 foreach (Thought_Memory thought in thoughts.memories.Memories)
                 {
-                    if (MutationUtilities.AllMutationThoughts.Contains(thought.def)) counter++;
+                    if (MutationUtilities.AllMutationMemories.Contains(thought.def)) counter++;
 
                     counter++;
                     if (counter >= max) return; //make sure to only add so many thoughts at once 
