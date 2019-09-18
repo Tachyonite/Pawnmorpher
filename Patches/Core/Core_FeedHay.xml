@@ -1,0 +1,21 @@
+ <Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Hay"]/ingestible</xpath>
+        <value>
+            <preferability>RawTasty</preferability>
+        </value>
+    </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Hay"]</xpath>
+		<value>
+			<socialPropernessMatters>true</socialPropernessMatters>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name="PlantBase"]/ingestible/preferability</xpath>
+        <value>
+            <preferability>DesperateOnlyForHumanlikes</preferability>
+        </value>
+    </Operation>
+</Patch>
