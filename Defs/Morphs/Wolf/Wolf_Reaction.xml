@@ -1,5 +1,5 @@
 <Defs  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef-MorphReaction.xsd"> <!-- weird attributes are for telling VS/VSCode where the schema is -->
+       xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef-MorphReaction.xsd"> <!-- weird attributes are for telling VS,VSCode,N++ where the schema is -->
 	<ThoughtDef ParentName="MorphReactionThoughtBaseNone">
 		<defName>EtherReactionWolfTF</defName>
 		<hediff>PawnmorphWolfTF</hediff>
