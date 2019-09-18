@@ -94,7 +94,6 @@ namespace Pawnmorph
                 return;
             }
 
-
             var completeSet = new HashSet<HediffDef>(hediffDefsComplete); //use hash sets so we don't have any duplicates 
             var partialSet = new HashSet<HediffDef>(hediffDefs);
 
@@ -111,8 +110,6 @@ namespace Pawnmorph
 
             _allCompleteDefs = completeSet.ToList(); //now convert them back to lists 
             _allPartialDefs = completeSet.ToList();
-            
-
         }
     }
 }
