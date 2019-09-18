@@ -51,7 +51,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<ThoughtDef>
 		<defName>SoldMyMergeMate</defName>
 		<thoughtClass>Thought_MemorySocial</thoughtClass>
@@ -68,7 +68,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<ThoughtDef ParentName="DeathMemoryFamily">
 		<defName>MyExMergeDied</defName>
 		<stages>
@@ -79,8 +79,8 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-  
-   <ThoughtDef>
+
+	<ThoughtDef>
 		<defName>KilledMyExMerge</defName>
 		<thoughtClass>Thought_MemorySocial</thoughtClass>
 		<durationDays>120</durationDays>
@@ -93,7 +93,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-  
+
 	<ThoughtDef>
 		<defName>SoldMyExMerge</defName>
 		<thoughtClass>Thought_MemorySocial</thoughtClass>
@@ -110,11 +110,9 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
-	<ThoughtDef>
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
 		<defName>WasMerged</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>WasMerged</hediff>
 		<stages>
 			<li>
 				<label>was melded and permanently feral</label>
@@ -138,13 +136,11 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
-	<ThoughtDef>
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
 		<defName>WasMergedRelieved</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>WasMergedRelieved</hediff>
 		<stages>
-		
+
 			<li>
 				<label>was melded and permanently feral</label>
 				<description>This thought should like, never happen.</description>

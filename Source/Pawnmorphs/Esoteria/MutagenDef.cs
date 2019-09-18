@@ -21,7 +21,11 @@ namespace Pawnmorph
         public bool canInfectMechanoids;
         public Type mutagenType;
 
-        public List<HediffDef> reversionThoughts = new List<HediffDef>();  
+        //public List<HediffDef> reversionThoughts = new List<HediffDef>();
+
+
+        public ThoughtDef revertedThoughtGood;
+        public ThoughtDef revertedThoughtBad; 
 
         public override IEnumerable<string> ConfigErrors()
         {

@@ -7,7 +7,8 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="defName" type="xs:string" minOccurs="0" maxOccurs="1" />
-              <xs:element name="hediff" type="xs:string" minOccurs="1" maxOccurs="1" />
+			  <xs:element name="durationDays" type="xs:float"  minOccurs="0" maxOccurs="1"/>
+              <xs:element name="hediff" type="xs:string" minOccurs="0" maxOccurs="1" />
               <xs:element name="stages" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                   <xs:sequence>
@@ -17,6 +18,8 @@
               </xs:element>
             </xs:sequence>
             <xs:attribute name="ParentName" type="AbstractThoughts" use="optional" />
+            <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+            <xs:attribute name="Name" type="xs:string" use="optional" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>
@@ -29,6 +32,7 @@
       <xs:enumeration value="MorphReactionThoughtBaseNone" />
       <xs:enumeration value="MorphReactionThoughtBaseFurry" />
       <xs:enumeration value="MorphReactionThoughtBaseBodyPurist" />
+      <xs:enumeration value="RevertedThoughtBase" />
     </xs:restriction>
   </xs:simpleType>
 
