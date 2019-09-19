@@ -49,6 +49,10 @@
 											<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
 											<EtherWolfMuzzle>Parts/wolfface/wolfface</EtherWolfMuzzle>
 										</hediffGraphics>
+										<layerOffset>-0.271</layerOffset>
+										<hiddenUnderApparelFor>
+											<li>FullHead</li>
+										</hiddenUnderApparelFor>
 										<offsets>
 											<south>
 												<bodyTypes>
@@ -520,24 +524,23 @@
 			<li Class="PatchOperationSequence">
 				<success>Always</success>
 				<operations>
-
-				<li Class="PatchOperationTest">
-					<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li/def[text()="Tail"]</xpath>
-					<success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="Human"]/corePart/parts</xpath>
-					<value>
-						<li>
-							<def>Tail</def>
-							<coverage>0</coverage>
-							<height>Bottom</height>
-							<groups>
-								<li>Torso</li>
-							</groups>
-						</li>
-					</value>
-				</li>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li/def[text()="Tail"]</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="Human"]/corePart/parts</xpath>
+						<value>
+							<li>
+								<def>Tail</def>
+								<coverage>0</coverage>
+								<height>Bottom</height>
+								<groups>
+									<li>Torso</li>
+								</groups>
+							</li>
+						</value>
+					</li>
 				</operations>
 			</li>
 		</operations>
