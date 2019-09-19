@@ -490,9 +490,7 @@
 											<EtherChemfuelUdder>Parts/boomalopeface/boomalopeudder</EtherChemfuelUdder>
 											<EtherUdder>Parts/cowface/cowudder</EtherUdder>
 										</hediffGraphics>
-										<hiddenUnderApparelFor>
-											<li>Torso</li>
-										</hiddenUnderApparelFor>
+										<layerOffset>-0.29</layerOffset>
 										<offsets>
 											<south>
 												<bodyTypes>
