@@ -29,6 +29,20 @@
 	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherHideLimb</defName>
+		<label>scales</label>
+		<description>Smooth, glossy scales now cover this limb, adding some natural defense.</description>
+		<stages>
+			<li>
+				<statOffsets>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherScaledLimb</defName>
 		<label>hide</label>
 		<description>A thick leathery hide has formed over this limb, adding some natural defense.</description>
 		<stages>
@@ -64,6 +78,54 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+		</comps>
+	</HediffDef>
+	
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherHoofHand</defName>
+		<label>hoof</label>
+		<description>It's terrifying, but [PAWN_nameDef]'s hands are nothing more than hooves now. Holding things, grabbing things and doing anything requiring thumbs is going to be a lot more difficult.</description>
+		<stages>
+			<li>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherTrotterHand</defName>
+		<label>trotter</label>
+		<description>[PAWN_nameDef]'s hands resemble trotters more than anything else, leaving them with little in the way of grasping ability.</description>
+		<stages>
+			<li>
+				<partEfficiencyOffset>-0.6</partEfficiencyOffset>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherDigitigradeLeg</defName>
+		<label>digitigrade</label>
+		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
+		<stages>
+			<li>
+				<label>new</label>
+			</li>
+			<li>
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.3</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
@@ -118,28 +180,6 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
-	<HediffDef ParentName="PawnmorphPart">
-		<defName>EtherHoofHand</defName>
-		<label>hoof</label>
-		<description>It's terrifying, but [PAWN_nameDef]'s hands are nothing more than hooves now. Holding things, grabbing things and doing anything requiring thumbs is going to be a lot more difficult.</description>
-		<stages>
-			<li>
-				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
-			</li>
-		</stages>
-	</HediffDef>
-
-	<HediffDef ParentName="PawnmorphPart">
-		<defName>EtherTrotterHand</defName>
-		<label>trotter</label>
-		<description>[PAWN_nameDef]'s hands resemble trotters more than anything else, leaving them with little in the way of grasping ability.</description>
-		<stages>
-			<li>
-				<partEfficiencyOffset>-0.6</partEfficiencyOffset>
-			</li>
-		</stages>
-	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherTrotterFoot</defName>
@@ -155,31 +195,5 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
-
-	<HediffDef ParentName="PawnmorphPart">
-		<defName>EtherDigitigradeLeg</defName>
-		<label>digitigrade</label>
-		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
-		<stages>
-			<li>
-				<label>new</label>
-			</li>
-			<li>
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.3</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
 	</HediffDef>
 </Defs>

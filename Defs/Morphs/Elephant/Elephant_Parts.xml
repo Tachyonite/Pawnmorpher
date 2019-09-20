@@ -163,14 +163,18 @@
 				</statOffsets>
 			</li>
 			<li>
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
 						<offset>-.02</offset>
 					</li>
 				</capMods>
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
+				<statOffsets>
+					<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.6</ArmorRating_Sharp>
+				</statOffsets>
 			</li>
 		</stages>
 		<comps>
