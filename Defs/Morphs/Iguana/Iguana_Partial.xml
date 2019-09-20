@@ -30,10 +30,10 @@
 						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherIguanaSpikes</hediff>
+						<hediff>EtherIguanaHorns</hediff>
 						<mtbDays>0.5</mtbDays>
 						<partsToAffect>
-							<li>Head</li>
+							<li>Skull</li>
 						</partsToAffect>
 						<tale><!--Needs Tale--></tale>
 					</li>

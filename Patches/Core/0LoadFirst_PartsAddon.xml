@@ -42,6 +42,7 @@
 											<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
 											<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
 											<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
+											<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 											<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 											<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 											<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
@@ -104,6 +105,7 @@
 											<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
 											<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
 											<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
+											<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 											<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 											<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 											<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
@@ -347,8 +349,9 @@
 										<drawnInBed>false</drawnInBed>
 										<hediffGraphics>
 											<EtherSnakeTail>Parts/snakeface/snaketail</EtherSnakeTail>
+											<EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
 										</hediffGraphics>
-										<layerOffset>-3</layerOffset>
+										<layerOffset>0</layerOffset>
 										<offsets>
 											<south />
 											<north>
@@ -463,6 +466,7 @@
 											<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
 											<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
 											<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
+											<EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns>
 										</hediffGraphics>
 										<offsets>
 											<south>
@@ -581,6 +585,7 @@
 										<drawForMale>false</drawForMale>
 										<hediffGraphics>
 											<EtherSnakeHood>Parts/snakeface/snakehood</EtherSnakeHood>
+											<EtherIguanaHorns>Parts/iguanaface/iguanahorn</EtherIguanaHorns>
 										</hediffGraphics>
 										<layerOffset>1.0</layerOffset>
 										<offsets>

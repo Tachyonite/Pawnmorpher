@@ -62,7 +62,7 @@
 	</HediffDef>
 
 	<HediffDef ParentName="SnakePart">
-		<defName>EtherIguanaSpikes</defName>
+		<defName>EtherIguanaHorns</defName>
 		<description>A series of spines drapes down [PAWN_nameDef]'s back.</description>
 		<label>spines</label>
 		<!--Needs Stats-->
@@ -70,7 +70,7 @@
 
 	<HediffDef ParentName="IguanaPart">
 		<defName>EtherIguanaTail</defName>
-		<label>fluffy tail</label>
+		<label>iguana tail</label>
 		<description>A spiney green tail.</description>
 		<!--Needs stats-->
 	</HediffDef>
@@ -116,7 +116,7 @@
 	
 	<HediffDef ParentName="IguanaPart">
 		<defName>EtherIguanaFoot</defName>
-		<label>Reptilian Foot</label>
+		<label>reptilian foot</label>
 		<description>The whole of [PAWN_nameDef]'s feet have become toes.</description>
 		<stages>
 			<li />
@@ -125,7 +125,7 @@
 				<label>adapted</label>
 				<capMods>
 					<li>
-						<capacity>Movement</capacity>
+						<capacity>Moving</capacity>
 						<offset>0.1</offset>
 					</li>
 				</capMods>
