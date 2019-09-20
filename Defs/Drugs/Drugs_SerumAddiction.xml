@@ -20,6 +20,7 @@
 		<hediffClass>Hediff_Addiction</hediffClass>
 		<label>serum addiction</label>
 		<causesNeed>Chemical_TransformerSerums</causesNeed>
+		<scenarioCanAdd>false</scenarioCanAdd>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.0333</severityPerDay>
