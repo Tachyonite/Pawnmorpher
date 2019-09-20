@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:element name="Defs">
 		<xs:complexType>
 			<xs:sequence>
@@ -22,12 +24,23 @@
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
-						<xs:attribute name="ParentName" type="xs:string" use="optional" />
-						<xs:attribute name="Name" type="xs:string" use="optional"/>
-						<xs:attribute name="Abstract" type="xs:boolean"	use="optional"/>					
+						<xs:attribute name="ParentName" type="AbstractTales" use="optional" />
+						<xs:attribute name="Name" type="xs:string" use="optional" />
+						<xs:attribute name="Abstract" type="xs:boolean" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
+	<xs:simpleType name="AbstractTales">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MutationTaleBase" />
+			<xs:enumeration value="MuzzleTaleBase" />
+			<xs:enumeration value="EarMutationBase" />
+			<xs:enumeration value="HandMutationBase" />
+			<xs:enumeration value="FootMutationBase" />
+			<xs:enumeration value="GrowTailBase" />
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>

@@ -233,6 +233,13 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>IguanaTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>PigTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -241,6 +248,13 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>RatTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>SnakeTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>

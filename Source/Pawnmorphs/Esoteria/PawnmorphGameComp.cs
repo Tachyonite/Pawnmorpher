@@ -147,7 +147,7 @@ namespace Pawnmorph
 
             if (builder.Length > 0)
             {
-                Log.Warning($"encountered invalid transformed pawn instances:\n{builder}");
+                Log.Error($"encountered invalid transformed pawns instances:\n{builder}");
             }
 
             

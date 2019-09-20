@@ -16,8 +16,6 @@ namespace Pawnmorph
         public static MorphCategoryDef Combat;
         public static MorphCategoryDef Production;
         public static MorphCategoryDef Social;
-        public static MorphCategoryDef Crafter; 
-
-
+        public static MorphCategoryDef Crafter;
     }
 }
