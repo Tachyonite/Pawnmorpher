@@ -1,0 +1,16 @@
+<Defs>
+	<Pawnmorph.MorphDef>
+		<defName>IguanaMorph</defName>
+		<label>iguanamorph</label>
+    <description>A scaly reptile morph with traits similar to that of an iguana.</description>
+		<race>Iguana</race>
+		<categories>
+			<li>Crafter</li>
+		</categories>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(101,115,57)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

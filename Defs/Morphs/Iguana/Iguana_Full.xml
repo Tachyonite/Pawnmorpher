@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="MorphParent">
-		<defName>PawnmorphSnakeTF</defName>
-		<label>snakemorph</label>
+		<defName>PawnmorphIguanaTF</defName>
+		<label>iguanamorph</label>
 		<stages>
 			<li>
 				<label>reeling</label>
@@ -17,7 +17,7 @@
 					<li Class="Pawnmorph.HediffGiver_TF">
 						<hediff>TransformedHuman</hediff>
 						<pawnkinds>
-							<li>Cobra</li>
+							<li>Iguana</li>
 						</pawnkinds>
 						<tale>TransformationMisc</tale>
 					</li>
@@ -64,7 +64,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeJaw</hediff>
+						<hediff>EtherIguanaSnout</hediff>
 						<mtbDays>0.5</mtbDays>
 						<partsToAffect>
 							<li>Jaw</li>
@@ -72,7 +72,7 @@
 						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeHood</hediff>
+						<hediff>EtherIguanaSpikes</hediff>
 						<mtbDays>1</mtbDays>
 						<partsToAffect>
 							<li>Head</li>
@@ -80,7 +80,7 @@
 						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeTail</hediff>
+						<hediff>EtherIguanaTail</hediff>
 						<mtbDays>1</mtbDays>
 						<partsToAffect>
 							<li>Tail</li>
@@ -97,7 +97,7 @@
 						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeHand</hediff>
+						<hediff>EtherIguanaHand</hediff>
 						<mtbDays>3</mtbDays>
 						<chance>5</chance>
 						<partsToAffect>
@@ -105,13 +105,21 @@
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 						<tale><!--Needs Tale--></tale>
-						<memory><!--Needs Memory--></memory>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeEye</hediff>
-						<mtbDays>1.5</mtbDays>
+						<hediff>EtherScaledLimb</hediff>
+						<mtbDays>2</mtbDays>
 						<partsToAffect>
-							<li>Eye</li>
+							<li>Leg</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+						<tale><!--Needs Tale--></tale>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherIguanaFoot</hediff>
+						<mtbDays>3</mtbDays>
+						<partsToAffect>
+							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 						<tale><!--Needs Tale--></tale>

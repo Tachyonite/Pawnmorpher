@@ -9,7 +9,7 @@
 
 	<HediffDef ParentName="SnakePart">
 		<defName>EtherSnakeJaw</defName>
-		<label>venomous mout</label>
+		<label>venomous bite</label>
 		<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips.</description>
 		<initialSeverity>0</initialSeverity>
 		<stages>
@@ -84,7 +84,7 @@
 
 	<HediffDef ParentName="SnakePart">
 		<defName>EtherSnakeTail</defName>
-		<label>fluffy tail</label>
+		<label>snake tail</label>
 		<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
 		<stages>
 			<li>
@@ -121,7 +121,7 @@
 		</comps>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="SnakePart">
 		<defName>EtherSnakeHand</defName>
 		<label>snake head</label>
 		<description>The venomous head of a snake has replaced [PAWN_nameDef]'s hand.</description>
@@ -140,12 +140,13 @@
 				<tools>
 					<li>
 						<label>snake hand</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>ToxicBite</li>
 						</capacities>
 						<power>8</power>
 						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 						<surpriseAttack>
 							<extraMeleeDamages>
 								<li>
@@ -156,9 +157,6 @@
 						</surpriseAttack>
 					</li>
 				</tools>
-			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>

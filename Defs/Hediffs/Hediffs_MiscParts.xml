@@ -196,4 +196,18 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
+	<HediffDef ParentName="PawnmorphPart">
+		<defName>EtherColdBlooded</defName>
+		<label>cold blooded</label>
+		<description>[PAWN_nameDef]'s body no longer naturally regulates it's body temperature.</description>
+		<stages>
+			<li>
+				<statOffsets>
+					<ComfyTemperatureMin>10</ComfyTemperatureMin>
+					<ComfyTemperatureMax>-10</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
 </Defs>

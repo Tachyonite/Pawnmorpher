@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
-		<defName>PawnmorphSnakeTFPartial</defName>
-		<label>snakemorph partial</label>
+		<defName>PawnmorphIguanaTFPartial</defName>
+		<label>iguanamorph partial</label>
 		<stages>
 			<li>
 				<painOffset>0.1</painOffset>
@@ -22,7 +22,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeJaw</hediff>
+						<hediff>EtherIguanaSnout</hediff>
 						<mtbDays>0.5</mtbDays>
 						<partsToAffect>
 							<li>Jaw</li>
@@ -30,7 +30,7 @@
 						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeHood</hediff>
+						<hediff>EtherIguanaSpikes</hediff>
 						<mtbDays>0.5</mtbDays>
 						<partsToAffect>
 							<li>Head</li>
@@ -38,7 +38,7 @@
 						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeTail</hediff>
+						<hediff>EtherIguanaTail</hediff>
 						<mtbDays>0.5</mtbDays>
 						<partsToAffect>
 							<li>Tail</li>
@@ -55,10 +55,19 @@
 						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnakeEye</hediff>
+						<hediff>EtherScaledLimb</hediff>
 						<mtbDays>0.5</mtbDays>
 						<partsToAffect>
-							<li>Eye</li>
+							<li>Leg</li>
+						</partsToAffect>
+						<countToAffect>2</countToAffect>
+						<tale><!--Needs Tale--></tale>
+					</li>
+					<li Class="Pawnmorph.HediffGiver_Mutation">
+						<hediff>EtherIguanaFoot</hediff>
+						<mtbDays>0.5</mtbDays>
+						<partsToAffect>
+							<li>Foot</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
 						<tale><!--Needs Tale--></tale>
