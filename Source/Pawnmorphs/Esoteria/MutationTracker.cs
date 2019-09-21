@@ -45,7 +45,7 @@ namespace Pawnmorph
                                                                                 //some morphs have more unique parts then others after all 
                 }
 
-                accum += Pawn.GetHumanInfluence(true) * MorphUtilities.HUMAN_CHANGE_FACTOR;  
+                accum += Pawn.GetHumanInfluence(true) * MorphUtilities.HUMAN_CHANGE_FACTOR;  //add in the remaining human influence, if any
 
 
                 foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
@@ -53,8 +53,8 @@ namespace Pawnmorph
                     float nVal;
                     if (accum < 0.0001f) nVal = 0; //prevent division by zero 
                     else
-                        nVal = keyValuePair.Value / (accum * keyValuePair.Key.TotalInfluence);
-                    yield return new VTuple<MorphDef, float>(keyValuePair.Key, nVal); 
+                        nVal = keyValuePair.Value / (accum * keyValuePair.Key.TotalInfluence); //now normalize the morph influences against the total 
+                    yield return new VTuple<MorphDef, float>(keyValuePair.Key, nVal);  
                 }
 
             }

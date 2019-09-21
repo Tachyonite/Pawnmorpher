@@ -13,15 +13,17 @@
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffAll">
-					<hediffDefs>
-						<li>ProductionPillChemfuelUdderEffect</li>
-						<li>ProductionPillEggEffect</li>
-						<li>ProductionPillUdderEffect</li>
-						<li>ProductionPillWoolEffect</li>
-						<li>ProductionPillMegawoolEffect</li>
-					</hediffDefs>
-					<severity>1.00</severity>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_BoostSeverity">
+					<hediffFilter>
+						<filterList>
+							<li>EtherChemfuelUdder</li>
+							<li>EtherEggLayer</li>
+							<li>EtherUdder</li>
+							<li>EtherWooly</li>
+							<li>EtherMegawoolly</li>
+						</filterList>
+					</hediffFilter>
+					<severityToAdd>0.33</severityToAdd>
 				</li>
 			</outcomeDoers>
 		</ingestible>
@@ -64,10 +66,9 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-			</li>
+			<li></li>
 		</stages>
-	</HediffDef>	
+	</HediffDef>
 
 	<HediffDef>
 		<defName>ProductionPillChemfuelUdderEffect</defName>
@@ -88,10 +89,9 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-			</li>
+			<li></li>
 		</stages>
-	</HediffDef>	
+	</HediffDef>
 
 	<HediffDef>
 		<defName>ProductionPillEggEffect</defName>
@@ -112,11 +112,10 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-			</li>
+			<li></li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef>
 		<defName>ProductionPillWoolEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
@@ -136,11 +135,10 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-			</li>
+			<li></li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef>
 		<defName>ProductionPillMegawoolEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
@@ -160,11 +158,10 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-			</li>
+			<li></li>
 		</stages>
 	</HediffDef>
-	
+
 	<!--Feral Pills-->
 	<ThingDef ParentName="PM_PillBase">
 		<defName>FeralPill</defName>
@@ -248,7 +245,7 @@
 			</li>
 		</comps>
 	</ThingDef>
-  
+
 	<HediffDef Class="Pawnmorph.Hediffs.Def_ImmuneToType">
 		<defName>StabiliserHigh</defName>
 		<immuneToType>Pawnmorph.Hediff_Morph</immuneToType>
@@ -267,9 +264,7 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-				
-			</li>
+			<li></li>
 		</stages>
 	</HediffDef>
 </Defs>
