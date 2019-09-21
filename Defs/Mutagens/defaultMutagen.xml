@@ -4,19 +4,15 @@
 		<defName>defaultMutagen</defName>
 		<label>mechanite mutagen</label>
 		<mutagenType>Pawnmorph.TfSys.SimpleMechaniteMutagen</mutagenType>
-		<reversionThoughts>
-			<li>WasAnimal</li>
-			<li>WasAnimalRelieved</li>
-		</reversionThoughts>
+		<revertedThoughtGood>WasAnimalRelieved</revertedThoughtGood>
+		<revertedThoughtBad>WasAnimal</revertedThoughtBad>
 	</Pawnmorph.MutagenDef>
 	
 	<Pawnmorph.MutagenDef>
 		<defName>MergeMutagen</defName>
 		<label>merge mutagen</label>
 		<mutagenType>Pawnmorph.TfSys.MergeMutagen</mutagenType>
-		<reversionThoughts>
-			<li>WasMerged</li>
-			<li>WasMergedRelieved</li>
-		</reversionThoughts>
+		<revertedThoughtGood>WasMergedRelieved</revertedThoughtGood>
+		<revertedThoughtBad>WasMerged</revertedThoughtBad>
 	</Pawnmorph.MutagenDef>
 </Defs>
