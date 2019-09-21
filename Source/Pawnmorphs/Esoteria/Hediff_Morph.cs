@@ -120,12 +120,7 @@ namespace Pawnmorph
             }
         }
 
-        public override void PostAdd(DamageInfo? dinfo)
-        {
-            base.PostAdd(dinfo);
-
-            Log.Message($"{def.defName} added to {pawn.Name} with severity {Severity}");
-        }
+      
 
         [Unsaved]
         private int _lastStage = -1; //ToDO can we save this?
