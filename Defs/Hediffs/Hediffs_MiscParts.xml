@@ -28,7 +28,7 @@
 	</HediffDef>
 	
 	<HediffDef ParentName="PawnmorphPart">
-		<defName>EtherHideLimb</defName>
+		<defName>EtherScaledLimb</defName>
 		<label>scales</label>
 		<description>Smooth, glossy scales now cover this limb, adding some natural defense.</description>
 		<stages>
@@ -42,7 +42,7 @@
 	</HediffDef>
 	
 	<HediffDef ParentName="PawnmorphPart">
-		<defName>EtherScaledLimb</defName>
+		<defName>EtherHideLimb</defName>
 		<label>hide</label>
 		<description>A thick leathery hide has formed over this limb, adding some natural defense.</description>
 		<stages>
