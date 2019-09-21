@@ -203,7 +203,7 @@ namespace Pawnmorph.Hybrids
                 morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen);
             }
 
-            ThingDef_AlienRace hRace = morph.hybridRaceDef;
+            var hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
             HandleGraphicsChanges(pawn, morph);
             ChangePawnRace(pawn, hRace, true);

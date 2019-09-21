@@ -18,19 +18,7 @@ namespace Pawnmorph.Hybrids
     /// </summary>
     public static class RaceGenerator
     {
-        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces
-        {
-            get
-            {
-                if (_lst == null)
-                {
-                    _lst = GenerateAllImpliedRaces().ToList(); 
-
-                }
-
-                return _lst; 
-            }
-        }
+        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces => _lst ?? (_lst = GenerateAllImpliedRaces().ToList());
         private static List<ThingDef_AlienRace> _lst;
 
         private static Dictionary<ThingDef, MorphDef> _raceLookupTable = new Dictionary<ThingDef, MorphDef>();
@@ -119,17 +107,21 @@ namespace Pawnmorph.Hybrids
             StringBuilder builder = new StringBuilder(); 
             foreach (MorphDef morphDef in morphs)
             {
-                if (morphDef.hybridRaceDef != null)
-                {
-                    Log.Warning($"trying to generate race for {morphDef.defName} but it's hybrid race def is already set?");
-                    continue;
-                }
+                
 
 
                 builder.AppendLine($"generating implied race for {morphDef.defName}");
                 var race =  GenerateImplicitRace(human, morphDef);
-                morphDef.hybridRaceDef = race;
-                _raceLookupTable[race] = morphDef; 
+                if (morphDef.explicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
+                {
+                    
+                    morphDef.hybridRaceDef = race;
+                    _raceLookupTable[race] = morphDef;
+                }
+                else
+                {
+                    builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.explicitHybridRace.defName}, {race.defName} will not be used but still generated");
+                }
                 yield return race; 
             }
 

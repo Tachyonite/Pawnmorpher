@@ -40,6 +40,8 @@ namespace Pawnmorph
         /// </summary>
         public ThingDef race; //the animal race of the morph 
 
+        public ThingDef explicitHybridRace; 
+
         public MorphGroupDef group; //the group the morph belongs to, if any 
 
 
@@ -76,6 +78,16 @@ namespace Pawnmorph
 
                 return _totalInfluence.Value;
             }
+        }
+
+        public override void ResolveReferences()
+        {
+            if (explicitHybridRace != null)
+            {
+                hybridRaceDef = explicitHybridRace;
+            }
+
+            //TODO patch explicit race based on hybrid race settings? 
         }
 
         public override IEnumerable<string> ConfigErrors()
@@ -123,7 +135,7 @@ namespace Pawnmorph
 
         }
 
-        [Unsaved] public ThingDef_AlienRace hybridRaceDef;
+        [Unsaved] public ThingDef hybridRaceDef;
 
 
 
