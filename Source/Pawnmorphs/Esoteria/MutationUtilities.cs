@@ -168,7 +168,9 @@ namespace Pawnmorph
         [CanBeNull]
         public static MutationTracker GetMutationTracker([NotNull]this Pawn pawn)
         {
-            return pawn.GetComp<MutationTracker>(); 
+            var comp = pawn.GetComp<MutationTracker>();
+            if(comp == null) Log.Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
+            return comp; 
         }
 
         /// <summary>
@@ -206,7 +208,7 @@ namespace Pawnmorph
         {
 
             var comp = pawn.GetMutationTracker();
-            if (comp == null) yield break;
+            if (comp == null){ yield break;}
             foreach (var mutation in comp.AllMutations)
             {
 
@@ -214,7 +216,7 @@ namespace Pawnmorph
                 {
                     yield return mutation;
                 }
-                else { yield break; }
+           
 
             }
 

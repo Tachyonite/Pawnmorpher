@@ -116,13 +116,13 @@ namespace Pawnmorph
                 col2.y += 24f;
             }
 
-            foreach (Hediff prodMutation in MutationUtilities.GetProductionMutations(PawnToShowMutationsFor))
+            foreach (Hediff prodMutation in PawnToShowMutationsFor.GetProductionMutations())
             {
                 HediffComp_Production prodcomp = prodMutation.TryGetComp<HediffComp_Production>();
                 string stageString = "";
                 if (prodMutation.CurStageIndex > 0)
                 {
-                    stageString = " (" + new String('+', prodMutation.CurStageIndex) + ")";
+                    stageString = " (" + new string('+', prodMutation.CurStageIndex) + ")";
                 }
 
                 HediffComp_Staged stage = prodcomp.Props.stages.ElementAt(prodMutation.CurStageIndex);
