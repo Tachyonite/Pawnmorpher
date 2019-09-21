@@ -104,6 +104,7 @@
     <Compile Include="Chambers\JobDriver_CarryToMutagenChamber.cs" />
     <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="IngestionOutcomeDoer_BoostSeverity.cs" />
+    <Compile Include="ITab_Pawn_Mutations.cs" />
     <Compile Include="MorphCategoryDef.cs" />
     <Compile Include="MorphCategoryDefOf.cs" />
     <Compile Include="MorphDef.cs" />

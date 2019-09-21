@@ -86,7 +86,6 @@ namespace Pawnmorph.Hybrids
             if (removed && !map.listerThings.Contains(pawn))
                 map.listerThings.Add(pawn);
 
-
             if (map != null)
                 RegionListersUpdater.RegisterInRegions(pawn, map);
 
@@ -108,11 +107,7 @@ namespace Pawnmorph.Hybrids
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
-
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
-
-
-
 
             //save location 
             pawn.ExposeData();
@@ -168,22 +163,13 @@ namespace Pawnmorph.Hybrids
                    
                    traitSet.GainTrait(new Trait(def, alienTraitEntry.degree, true));
                    if(degree.skillGains != null)
-                       UpdateSkillsPostAdd(pawn, degree.skillGains); //need to update the skills manually 
-
-
+                       UpdateSkillsPostAdd(pawn, degree.skillGains); //need to update the skills manually
                }
-               
-
            }
-
-          
-
-
         }
 
         static void UpdateSkillsPostAdd(Pawn pawn, Dictionary<SkillDef, int> skillDict)
         {
-
             var skills = pawn.skills;
             if (skills == null) return;
 
@@ -192,7 +178,6 @@ namespace Pawnmorph.Hybrids
                 var skRecord= skills.GetSkill(keyValuePair.Key);
                 skRecord.Level += keyValuePair.Value; 
             }
-
         }
 
         /// <summary>
@@ -212,14 +197,11 @@ namespace Pawnmorph.Hybrids
                 return;
             }
 
-            
-
             //apply mutations 
             foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AssociatedMutations)
             {
                 morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen);
             }
-
 
             ThingDef_AlienRace hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
@@ -229,7 +211,6 @@ namespace Pawnmorph.Hybrids
             if (pawn.IsColonist)
             {
                 PortraitsCache.SetDirty(pawn);
-
             }
 
             if(pawn.IsColonist || pawn.IsPrisonerOfColony)

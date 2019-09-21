@@ -1,8 +1,8 @@
 <Defs>
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>BoomalopeMorph</defName>
-		<label>boomalopemorph</label>
-    <description>a humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel</description>
+		<label>boomamorph</label>
+		<description>a humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel</description>
 		<race>Boomalope</race>
 		<categories>
 			<li>Production</li>

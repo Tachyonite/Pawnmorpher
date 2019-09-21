@@ -58,15 +58,11 @@ namespace Pawnmorph
             PawnmorpherModInit.NotifySettingsChanged();
         }
 
-        
-
         PawnmorpherSettings settings;
 
         public PawnmorpherMod(ModContentPack content) : base(content)
         {
-            this.settings = GetSettings<PawnmorpherSettings>();
-
-
+            settings = GetSettings<PawnmorpherSettings>();
         }
 
         /// <param name="inRect">A Unity Rect with the size of the settings window.</param>
@@ -101,8 +97,6 @@ namespace Pawnmorph
         {
             return "PawnmorpherModName".Translate();
         }
-
-        
     }
 
     [StaticConstructorOnStartup]
@@ -125,22 +119,17 @@ namespace Pawnmorph
             {
                 var race = (ThingDef) thingDefAlienRace;
                 genRaces.Add(race); 
-                DefGenerator.AddImpliedDef(race); 
-                
+                DefGenerator.AddImpliedDef(race);
             }
 
             foreach (ThingDef thingDef in genRaces)
             {
                 GiveHash(thingDef, takenHashes); 
             }
-
-
-
         }
 
         static void GiveHash(ThingDef defToGiveHashTo, HashSet<ushort> takenHashes)
         {
-
             var num = (ushort) (GenText.StableStringHash(defToGiveHashTo.defName) % 65535);
 
             var num2 = 0;
@@ -153,21 +142,15 @@ namespace Pawnmorph
                 {
                     Log.Message("Short hashes are saturated. There are probably too many Defs.", false);
                 }
-
-
-
             }
 
             defToGiveHashTo.shortHash = num;
-            takenHashes.Add(num); 
-
-
+            takenHashes.Add(num);
         }
 
 
         public static void NotifySettingsChanged()
         {
-
             PawnmorpherSettings settings = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
             IncidentDef mutagenIncident = IncidentDef.Named("MutagenicShipPartCrash");
             IncidentDef cowfluIncident = IncidentDef.Named("Disease_Cowflu");
@@ -175,7 +158,6 @@ namespace Pawnmorph
             IncidentDef chookfluIncident = IncidentDef.Named("Disease_Chookflu");
             if (!settings.enableMutagenShipPart)
             {
-                
                 mutagenIncident.baseChance = 0.0f;
             }
             else { mutagenIncident.baseChance = 2.0f; }
@@ -195,10 +177,6 @@ namespace Pawnmorph
             {
                 PMIncidentDefOf.MutagenicFallout.baseChance = 0; 
             }
-
-            Log.Message(mutagenIncident.baseChance.ToString());
-            Log.Message(cowfluIncident.baseChance.ToString());
-            Log.Message($"{PMIncidentDefOf.MutagenicFallout.baseChance}"); 
         }
     }
 
@@ -212,7 +190,5 @@ namespace Pawnmorph
 
             MP.RegisterAll();
         }
-
     }
-
 }
