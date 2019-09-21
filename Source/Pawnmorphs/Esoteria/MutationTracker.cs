@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils; 
@@ -17,10 +18,11 @@ namespace Pawnmorph
     /// </summary>
     public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<MorphDef, float>>
     {
-       
 
 
-        private Dictionary<MorphDef, float> _influenceLookup = new Dictionary<MorphDef,float>();
+
+        private Dictionary<MorphDef, float> _influenceLookup = new Dictionary<MorphDef, float>();
+
 
         /// <summary>
         /// get the current influence associated with the given key 
@@ -29,6 +31,36 @@ namespace Pawnmorph
         /// <returns></returns>
         public float this[MorphDef key] => _influenceLookup.TryGetValue(key);
 
+        /// <summary>
+        /// an enumerable collection of influences normalized against each other and the remaining human influence 
+        /// </summary>
+        public IEnumerable<VTuple<MorphDef, float>> NormalizedInfluences
+        {
+            get
+            {
+                float accum = 0;
+                foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
+                {
+                    accum += keyValuePair.Value / keyValuePair.Key.TotalInfluence; //use the normalized value so we're comparing apples to apples 
+                                                                                //some morphs have more unique parts then others after all 
+                }
+
+                accum += Pawn.GetHumanInfluence(true) * MorphUtilities.HUMAN_CHANGE_FACTOR;  
+
+
+                foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
+                {
+                    float nVal;
+                    if (accum < 0.0001f) nVal = 0; //prevent division by zero 
+                    else
+                        nVal = keyValuePair.Value / (accum * keyValuePair.Key.TotalInfluence);
+                    yield return new VTuple<MorphDef, float>(keyValuePair.Key, nVal); 
+                }
+
+            }
+        }
+
+      
 
 
         /// <summary>
@@ -142,6 +174,9 @@ namespace Pawnmorph
 
             }
         }
+
+
+      
 
         /// <summary>Returns an enumerator that iterates through the collection.</summary>
         /// <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>

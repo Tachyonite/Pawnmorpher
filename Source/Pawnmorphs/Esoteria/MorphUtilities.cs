@@ -24,7 +24,7 @@ namespace Pawnmorph
         public static IEnumerable<BodyPartDef> PartsWithPossibleMutations => PossiblePartsLst;
         public static int NumPartsWithPossibleMutations => PossiblePartsLst.Count;
 
-        public static float HumanChangeFactor = 0.65f;
+        public const float HUMAN_CHANGE_FACTOR = 0.65f;
 
         static MorphUtilities() //this is really hacky 
         {
@@ -364,15 +364,17 @@ namespace Pawnmorph
 
             var humanInfluence = GetHumanInfluence(pawn);
 
-            return humanInfluence * HumanChangeFactor > totalInfluence; 
+            return humanInfluence * HUMAN_CHANGE_FACTOR > totalInfluence; 
 
         }
+
         /// <summary>
         /// gets the amount of influence a pawn has that's still human
         /// </summary>
         /// <param name="pawn"></param>
+        /// <param name="normalize">if the resulting influence should be normalized between [0,1]</param>
         /// <returns></returns>
-        public static float GetHumanInfluence([NotNull]Pawn pawn)
+        public static float GetHumanInfluence( [NotNull] this Pawn pawn, bool normalize=false)
         {
 
             HashSet<BodyPartRecord> mutatedRecords = new HashSet<BodyPartRecord>();
@@ -382,10 +384,37 @@ namespace Pawnmorph
                 mutatedRecords.Add(hediffAddedMutation.Part);
             }
 
-            var humanInfluence = pawn.health.hediffSet.GetNotMissingParts().Count(p => PossiblePartsLst.Contains(p.def) && !mutatedRecords.Contains(p));
+            var humanInfluence = (float) pawn.health.hediffSet.GetNotMissingParts().Count(p => PossiblePartsLst.Contains(p.def) && !mutatedRecords.Contains(p));
+
+            if (normalize)
+                humanInfluence /= MaxHumanInfluence;
 
             return humanInfluence;
         }
+
+
+        private static float? _maxHumanInfluence;
+
+        /// <summary>
+        /// the maximum possible human influence 
+        /// </summary>
+        public static float MaxHumanInfluence
+        {
+            get
+            {
+                if (_maxHumanInfluence == null)
+                {
+                    var body = BodyDefOf.Human;
+                    _maxHumanInfluence = body.AllParts.Count(p => PossiblePartsLst.Contains(p.def)); 
+
+
+
+                }
+
+                return _maxHumanInfluence.Value; 
+            }
+        }
+
 
         /// <summary>
         /// check if this pawn is one of the hybrid races 

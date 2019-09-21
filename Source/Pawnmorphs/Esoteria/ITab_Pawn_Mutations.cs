@@ -6,7 +6,7 @@ using UnityEngine;
 using RimWorld;
 using Verse;
 using Pawnmorph.Utilities;
-
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {
@@ -50,8 +50,10 @@ namespace Pawnmorph
 
         protected bool ShouldShowTab(Pawn pawn)
         {
-            return (pawn.IsColonist || pawn.IsPrisonerOfColony) && (pawn.GetMutationTracker().AllMutations.Count() > 0);
+            return (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker()?.AllMutations.Count() ?? 0)> 0);
         }
+
+        private const float EPSILON = 0.0001f; //all numbers smaller then this should be considered '0'
 
         protected override void FillTab()
         {
@@ -73,37 +75,39 @@ namespace Pawnmorph
             DrawColumnHeader(ref col2, rect2.width / 3, "TraitsITabHeader".Translate(), PawnToShowMutationsFor);
             DrawColumnHeader(ref col3, rect2.width / 3, "ProductionITabHeader".Translate(), PawnToShowMutationsFor);
 
-            IEnumerable<VTuple<MorphDef, float>> influences = MutationUtilities.GetNormalizedInfluences(PawnToShowMutationsFor);
+            MutationTracker mutationTracker = PawnToShowMutationsFor.GetMutationTracker();
 
-            float humInf = MorphUtilities.GetHumanInfluence(PawnToShowMutationsFor) * MorphUtilities.HumanChangeFactor;
-            float totalSum = (from inf in influences select inf.second).Sum() + humInf;
+            Assert(mutationTracker != null, "mutationTracker != null"); //mutationTracker should never be null
 
-            if (humInf != 0) {
+            IEnumerable<VTuple<MorphDef, float>> influences = mutationTracker.NormalizedInfluences.ToList();
+
+            float nInfluenceSum = 0;
+            foreach (VTuple<MorphDef, float> influence in influences)
+            {
+                nInfluenceSum += influence.second; //the normalized influences will not always add to 1 if there is any "human" influence left 
+            }
+
+
+            float humInf = 1 - nInfluenceSum; //1 - the normalized morphInfluence is the remaining human influence 
+
+
+            if (humInf > EPSILON) {
                 GUI.color = Color.green;
-                Widgets.Label(new Rect(col1.x, col1.y, rect2.width / 3, 24f), (String.Format("Human ({0})", (humInf / totalSum).ToStringPercent())));
+                Widgets.Label(new Rect(col1.x, col1.y, rect2.width / 3, 24f), ($"Human ({(humInf).ToStringPercent()})"));
                 col1.y += 24f;
                 GUI.color = Color.white;
             }
 
+
+            foreach (VTuple<MorphDef, float> influence in influences.OrderByDescending(x => x.second))
+            {
+                if (Math.Abs(influence.second - influences.MaxBy(x => x.second).second) < EPSILON) GUI.color = Color.cyan;
+                Widgets.Label(new Rect(col1.x, col1.y, rect2.width / 3, 24f),
+                              $"{influence.first.race.LabelCap} ({influence.second.ToStringPercent()})");
+                col1.y += 24f;
+                GUI.color = Color.white;
+            }
             
-            if (PawnToShowMutationsFor.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("FullRandomTFAnyOutcome")) != null)
-            {
-
-                GUI.color = Color.red;
-                Widgets.Label(new Rect(col1.x, col1.y, rect2.width / 3, 24f), (String.Format("Chaos ({0})", ((totalSum - humInf) / totalSum).ToStringPercent())));
-                col1.y += 24f;
-                GUI.color = Color.white;
-
-            } else
-            {
-                foreach (VTuple<MorphDef, float> influence in influences.OrderByDescending(x => x.second))
-                {
-                    if (influence.second == influences.MaxBy(x => x.second).second) { GUI.color = Color.cyan; }
-                    Widgets.Label(new Rect(col1.x, col1.y, rect2.width / 3, 24f), (String.Format("{0} ({1})", influence.first.race.LabelCap, (influence.second / totalSum).ToStringPercent())));
-                    col1.y += 24f;
-                    GUI.color = Color.white;
-                }
-            }
             
 
             for (int i = 0; i < 20; i++)
