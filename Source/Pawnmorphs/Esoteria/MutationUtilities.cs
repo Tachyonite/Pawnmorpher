@@ -179,6 +179,29 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// get the production hediffs of the pawn
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static IEnumerable<Hediff> GetProductionMutations([NotNull] this Pawn pawn)
+        {
+
+            var comp = pawn.GetMutationTracker();
+            if (comp == null) yield break;
+            foreach (var mutation in comp.AllMutations)
+            {
+
+                if (mutation.TryGetComp<HediffComp_Production>() != null)
+                {
+                    yield return mutation;
+                }
+                else { yield break; }
+
+            }
+
+        }
+
+        /// <summary>
         /// get the normalized influences on the pawn
         ///     the values are normalized to the total influences of the morph
         /// </summary>

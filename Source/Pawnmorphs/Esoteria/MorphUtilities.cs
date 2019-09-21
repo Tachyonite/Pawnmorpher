@@ -22,7 +22,9 @@ namespace Pawnmorph
         private static List<BodyPartDef> PossiblePartsLst { get; }
 
         public static IEnumerable<BodyPartDef> PartsWithPossibleMutations => PossiblePartsLst;
-        public static int NumPartsWithPossibleMutations => PossiblePartsLst.Count; 
+        public static int NumPartsWithPossibleMutations => PossiblePartsLst.Count;
+
+        public static float HumanChangeFactor = 0.65f;
 
         static MorphUtilities() //this is really hacky 
         {
@@ -352,20 +354,37 @@ namespace Pawnmorph
             if (pawn.health?.hediffSet?.hediffs == null) return true;
 
             var tracker = pawn.GetMutationTracker();
-            if (tracker == null) return true; 
+            if (tracker == null) return true;
             float totalInfluence = 0;
-            HashSet<BodyPartRecord> mutatedRecords = new HashSet<BodyPartRecord>(); 
 
             foreach (Hediff_AddedMutation hediffAddedMutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
             {
                 totalInfluence += hediffAddedMutation.Influence?.Props?.influence ?? 1;
-                mutatedRecords.Add(hediffAddedMutation.Part); 
+            }
+
+            var humanInfluence = GetHumanInfluence(pawn);
+
+            return humanInfluence * HumanChangeFactor > totalInfluence; 
+
+        }
+        /// <summary>
+        /// gets the amount of influence a pawn has that's still human
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static float GetHumanInfluence([NotNull]Pawn pawn)
+        {
+
+            HashSet<BodyPartRecord> mutatedRecords = new HashSet<BodyPartRecord>();
+
+            foreach (Hediff_AddedMutation hediffAddedMutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
+            {
+                mutatedRecords.Add(hediffAddedMutation.Part);
             }
 
             var humanInfluence = pawn.health.hediffSet.GetNotMissingParts().Count(p => PossiblePartsLst.Contains(p.def) && !mutatedRecords.Contains(p));
 
-            return humanInfluence * 0.65f > totalInfluence; 
-
+            return humanInfluence;
         }
 
         /// <summary>

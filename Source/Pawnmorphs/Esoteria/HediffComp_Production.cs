@@ -8,7 +8,7 @@ namespace Pawnmorph
 {
     public class HediffComp_Production : HediffComp
     {
-        private int HatchingTicker = 0;
+        public int HatchingTicker = 0;
         private float brokenChance = 0f;
         private float bondChance = 0f;
 
