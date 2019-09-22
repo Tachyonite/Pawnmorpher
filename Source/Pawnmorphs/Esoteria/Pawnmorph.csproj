@@ -58,6 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Affinity.cs" />
+    <Compile Include="AffinityTracker.cs" />
+    <Compile Include="AffinityUtils.cs" />
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Chambers\JobDriver_CarryToMutagenChamber.cs" />
     <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="IngestionOutcomeDoer_BoostSeverity.cs" />
+    <Compile Include="IRaceChangeEventReceiver.cs" />
     <Compile Include="ITab_Pawn_Mutations.cs" />
     <Compile Include="Jobs\Driver_LayEgg.cs" />
     <Compile Include="Jobs\Giver_LayEgg.cs" />

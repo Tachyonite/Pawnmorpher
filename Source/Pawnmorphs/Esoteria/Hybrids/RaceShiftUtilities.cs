@@ -55,7 +55,7 @@ namespace Pawnmorph.Hybrids
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             var oldMorph = pawn.def.GetMorphOfRace();
-
+            var oldRace = pawn.def; 
             HediffDef oldGroupHediff = oldMorph?.group?.hediff;
             if (oldGroupHediff != null)
             {
@@ -112,6 +112,10 @@ namespace Pawnmorph.Hybrids
             //save location 
             pawn.ExposeData();
             if (pawn.Faction != faction) pawn.SetFaction(faction);
+            foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
+            {
+                raceChangeEventReceiver.OnRaceChange(oldRace); 
+            }
         }
 
         /// <summary>
