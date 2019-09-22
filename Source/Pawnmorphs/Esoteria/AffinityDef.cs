@@ -14,6 +14,33 @@ namespace Pawnmorph
     public class AffinityDef : Def
     {
         public Type affinityType;
+
+        public override void ResolveReferences()
+        {
+            base.ResolveReferences();
+            affinityType = affinityType ?? typeof(Affinity);
+            if (!typeof(Affinity).IsAssignableFrom(affinityType))
+            {
+                Log.Error($"in {defName}: affinityType {affinityType.Name} can not be converted to type {nameof(Affinity)}");
+            }
+        }
+
+        /// <summary>
+        /// get the affinity def with the given defName
+        /// </summary>
+        /// <param name="defName"></param>
+        /// <returns></returns>
+        public static AffinityDef Named(string defName)
+        {
+            return DefDatabase<AffinityDef>.GetNamed(defName); 
+        }
+
+        public Affinity CreateInstance()
+        {
+            var affinity = (Affinity) Activator.CreateInstance(affinityType);
+            affinity.def = this;
+            return affinity; 
+        }
         
     }
 }

@@ -12,6 +12,10 @@ namespace Pawnmorph
     /// affinities are things that are more global than hediffs but more temporary than traits
     public class Affinity : IExposable
     {
+        public AffinityDef def;
+
+        public string Label => def.label; 
+
         private Pawn _pawn;
 
         private bool _shouldRemove;
@@ -21,6 +25,7 @@ namespace Pawnmorph
         {
             Scribe_References.Look(ref _pawn, nameof(Pawn));
             Scribe_Values.Look(ref _shouldRemove, nameof(ShouldRemove));
+            Scribe_Defs.Look(ref def, nameof(def)); 
             ExposeData();
         }
 
