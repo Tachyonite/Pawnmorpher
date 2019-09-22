@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hybrids;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
@@ -15,9 +16,8 @@ namespace Pawnmorph
     /// </summary>
     public class AffinityTracker : ThingComp, IMutationEventReceiver, IRaceChangeEventReceiver
     {
-        private List<Affinity> _affinities = new List<Affinity>();
-
         private readonly List<Affinity> _rmCache = new List<Affinity>();
+        private List<Affinity> _affinities = new List<Affinity>();
 
         void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
@@ -33,6 +33,11 @@ namespace Pawnmorph
 
         void IRaceChangeEventReceiver.OnRaceChange(ThingDef oldRace)
         {
+            var oldMorph = oldRace.GetMorphOfRace();
+            var curMorph = parent.def.GetMorphOfRace();
+            HandleMorphChangeAffinities(oldMorph, curMorph); 
+
+
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in _affinities.OfType<IRaceChangeEventReceiver>())
                 raceChangeEventReceiver.OnRaceChange(oldRace);
         }
@@ -91,6 +96,16 @@ namespace Pawnmorph
             }
         }
 
+        public bool Contains(Affinity affinity)
+        {
+            return _affinities.Contains(affinity);
+        }
+
+        public bool Contains(AffinityDef affinity)
+        {
+            return _affinities.Any(a => a.def == affinity);
+        }
+
         /// <summary>
         ///     get the first affinity with the given def
         /// </summary>
@@ -130,6 +145,36 @@ namespace Pawnmorph
         {
             Affinity af = _affinities.FirstOrDefault(a => a.def == def);
             if (af != null) _rmCache.Add(af);
+        }
+
+        /// <summary>
+        /// handle affinities that need to be removed or added after a pawn changes race 
+        /// </summary>
+        /// <param name="lastMorph"></param>
+        /// <param name="curMorph"></param>
+        private void HandleMorphChangeAffinities([CanBeNull] MorphDef lastMorph, [CanBeNull] MorphDef curMorph)
+        {
+            bool ShouldRemove(MorphDef.AddedAffinity a)
+            {
+                if (!Contains(a.def)) return false;
+                if (a.keepOnReversion) return false;
+                if (curMorph?.addedAffinities.Any(aa => aa.def == a.def) == true)
+                    return false; //if the morph the pawn turned into adds the same affinity don't remove it 
+                return true;
+            }
+
+            if (lastMorph != null)
+            {
+                IEnumerable<Affinity> rmAffinities = lastMorph.addedAffinities.Where(ShouldRemove)
+                                                              .Select(a => GetAffinityOfDef(a.def)); //select the instances from the _affinity list  
+                _rmCache.AddRange(rmAffinities);
+            }
+
+            if (curMorph != null)
+            {
+                IEnumerable<AffinityDef> addAf = curMorph.addedAffinities.Where(a => !Contains(a.def)).Select(a => a.def);
+                foreach (AffinityDef affinityDef in addAf) Add(affinityDef);
+            }
         }
     }
 }
