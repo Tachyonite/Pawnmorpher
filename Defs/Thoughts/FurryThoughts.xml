@@ -3,7 +3,7 @@
 		<defName>FurryMutationThoughtsSad</defName>
 		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
 		<requiredTraits>
-			<li>FurryTrait</li>
+			<li>MutationAffinity</li>
 		</requiredTraits>
 		<validWhileDespawned>true</validWhileDespawned>
 		<invert>true</invert>
@@ -21,7 +21,7 @@
 		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<requiredTraits>
-			<li>FurryTrait</li>
+			<li>MutationAffinity</li>
 		</requiredTraits>
 		<stages>
 			<li>

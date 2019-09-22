@@ -15,6 +15,6 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(TraitDefOf));
         }
-        public static TraitDef FurryTrait;
+        public static TraitDef MutationAffinity;
     }
 }

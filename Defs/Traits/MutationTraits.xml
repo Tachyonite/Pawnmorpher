@@ -1,11 +1,11 @@
 <Defs>
   <TraitDef>
-    <defName>FurryTrait</defName>
+    <defName>MutationAffinity</defName>
     <commonality>0.9</commonality>
     <degreeDatas>
       <li>
-        <label>TODO</label>
-        <description>TODO</description>
+        <label>mutation affinity</label>
+        <description>{PAWN_nameDef} if intrigued about the idea of becoming something other than human</description>
       </li>
     </degreeDatas>
     <conflictingTraits>

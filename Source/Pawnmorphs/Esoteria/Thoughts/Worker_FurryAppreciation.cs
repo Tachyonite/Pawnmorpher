@@ -17,7 +17,7 @@ namespace Pawnmorph.Thoughts
         {
             if (!p.RaceProps.Humanlike) return false;
             if (!otherPawn.RaceProps.Humanlike) return false; //make sure only humanlike pawns are affected by this 
-            if (!p.story.traits.HasTrait(PMTraitDefOf.FurryTrait)) return false;
+            if (!p.story.traits.HasTrait(PMTraitDefOf.MutationAffinity)) return false;
             if (!RelationsUtility.PawnsKnowEachOther(p, otherPawn)) return false; //the pawns have to know each other 
             var numMutation = otherPawn.health.hediffSet.hediffs.Count(h => h is Hediff_AddedMutation); //get the number of mutations on the other pawn 
             if (numMutation == 0) return false;

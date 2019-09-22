@@ -194,7 +194,7 @@ namespace Pawnmorph.TfSys
         {
             var traits = p.story.traits;
             ThoughtDef thoughtDef; 
-            if (traits.HasTrait(PMTraitDefOf.FurryTrait))
+            if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
             {
                 thoughtDef= def.revertedThoughtGood;
             }else if (traits.HasTrait(TraitDefOf.BodyPurist))

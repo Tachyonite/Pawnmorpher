@@ -33,7 +33,7 @@ namespace Pawnmorph
 
             var traits = pawn.story?.traits;
             if (traits == null) return MutationOutlook.Neutral;
-            if (traits.HasTrait(PMTraitDefOf.FurryTrait)) return MutationOutlook.Furry;
+            if (traits.HasTrait(PMTraitDefOf.MutationAffinity)) return MutationOutlook.Furry;
             if (traits.HasTrait(TraitDefOf.BodyPurist)) return MutationOutlook.BodyPurist;
             return MutationOutlook.Neutral;
 

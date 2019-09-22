@@ -230,7 +230,7 @@ namespace Pawnmorph.TfSys
         {
             TraitSet traits = spawned.story.traits;
             ThoughtDef thoughtDef;
-            if (traits.HasTrait(PMTraitDefOf.FurryTrait))
+            if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
                 thoughtDef = def.revertedThoughtGood;
             else if (traits.HasTrait(TraitDefOf.BodyPurist))
                 thoughtDef = def.revertedThoughtBad;
