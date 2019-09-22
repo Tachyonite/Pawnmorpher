@@ -94,10 +94,13 @@ namespace Pawnmorph
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
 
-                _transformedPawns =
-                    _transformedPawns ??
-                    new List<TransformedPawn>(); //Scribe can set the references to null if it's an old save 
+                if (_transformedPawns == null)
+                {
+                    Log.Warning($"_transformedPawns is null in PawnmorphGameComp, this should not happen unless this is an old save or Pawnmorph was just added");
+                    _transformedPawns = new List<TransformedPawn>(); 
+                }
 
+               
 
 
 
