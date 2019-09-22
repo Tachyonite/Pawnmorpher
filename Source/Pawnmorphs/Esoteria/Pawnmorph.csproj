@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Affinity.cs" />
+    <Compile Include="AffinityDef.cs" />
     <Compile Include="AffinityTracker.cs" />
     <Compile Include="AffinityUtils.cs" />
     <Compile Include="BuildingDefOf.cs" />
