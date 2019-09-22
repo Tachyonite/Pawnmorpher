@@ -42,7 +42,7 @@
 						<!--Morph Def-->
 						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 							<defName>HorseMorph</defName>
-							<label>horse morph</label>
+							<label>horsemorph</label>
 							<race>QuarterHorse</race>
 							<categories>
 								<li>Farm</li>
