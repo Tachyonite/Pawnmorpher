@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -120,6 +121,7 @@ namespace Pawnmorph
             RandUtilities.PopState();
         }
 
+        [SyncMethod]
         private void SubstitutePlant(Plant plant)
         {
             var plantType = plant.def.plant.purpose;
