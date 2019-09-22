@@ -86,18 +86,21 @@ namespace Pawnmorph
             taggedAnimals = taggedAnimals ?? new HashSet<PawnKindDef>();
             mergedpawnmorphs = mergedpawnmorphs ?? new HashSet<PawnMorphInstanceMerged>();
             pawnmorphs = pawnmorphs ?? new HashSet<PawnMorphInstance>();
-            _transformedPawns =
-                _transformedPawns ??
-                new List<TransformedPawn>(); //Scribe can set the references to null if it's an old save 
-
-
-          
+           
 
 
            
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+
+                _transformedPawns =
+                    _transformedPawns ??
+                    new List<TransformedPawn>(); //Scribe can set the references to null if it's an old save 
+
+
+
+
                 //transfer the old ones to the new system 
                 foreach (var pawnMorphInstance in pawnmorphs)
                 {
