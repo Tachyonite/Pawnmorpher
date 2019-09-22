@@ -167,6 +167,7 @@
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>LaidEgg</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_LayEgg</jobGiver>
 				<genderAversion>Male</genderAversion>
 				<wrongGenderThought>LaidEggMale</wrongGenderThought>
 				<etherBondThought>LaidEggBond</etherBondThought>

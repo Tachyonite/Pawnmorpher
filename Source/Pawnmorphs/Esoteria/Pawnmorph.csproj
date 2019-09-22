@@ -105,6 +105,8 @@
     <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="IngestionOutcomeDoer_BoostSeverity.cs" />
     <Compile Include="ITab_Pawn_Mutations.cs" />
+    <Compile Include="Jobs\Driver_LayEgg.cs" />
+    <Compile Include="Jobs\Giver_LayEgg.cs" />
     <Compile Include="MorphCategoryDef.cs" />
     <Compile Include="MorphCategoryDefOf.cs" />
     <Compile Include="MorphDef.cs" />
@@ -123,12 +125,14 @@
     <Compile Include="MutagenUtilities.cs" />
     <Compile Include="Mutagen_JobDefOf.cs" />
     <Compile Include="MutationCategoryDef.cs" />
+    <Compile Include="MutationsDefOf.cs" />
     <Compile Include="MutationHediffExtension.cs" />
     <Compile Include="MutationOutlook.cs" />
     <Compile Include="MutationTracker.cs" />
     <Compile Include="MutationUtilities.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
+    <Compile Include="PMJobDefOf.cs" />
     <Compile Include="PMThingDefOf.cs" />
     <Compile Include="PMTraitDefOf.cs" />
     <Compile Include="PMUtilities.cs" />

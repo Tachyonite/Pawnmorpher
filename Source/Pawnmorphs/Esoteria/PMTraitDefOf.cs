@@ -9,8 +9,12 @@ namespace Pawnmorph
     /// static class containing references to commonly used Traits 
     /// </summary>
     [DefOf]
-    public class PMTraitDefOf
+    public static class PMTraitDefOf
     {
+        static PMTraitDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(TraitDefOf));
+        }
         public static TraitDef FurryTrait;
     }
 }

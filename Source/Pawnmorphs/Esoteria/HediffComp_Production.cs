@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using JetBrains.Annotations;
 using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Pawnmorph
 {
@@ -11,6 +14,8 @@ namespace Pawnmorph
         public int HatchingTicker = 0;
         private float brokenChance = 0f;
         private float bondChance = 0f;
+        
+
 
         public HediffCompProperties_Production Props => (HediffCompProperties_Production) props;
 
@@ -44,9 +49,39 @@ namespace Pawnmorph
 
             if (HatchingTicker < daysToProduce * 60000)
                 HatchingTicker++;
-            else if (Pawn.Map != null) Produce(amount, chance, resource, rareResource, stageThought);
+            else if (Pawn.Map != null)
+            {
+                if (Props.JobGiver != null) 
+                {
+                    GiveJob();
+
+                }
+                else
+                {
+                    Produce(amount, chance, resource, rareResource, stageThought);
+
+                }
+
+
+            }
 
             
+        }
+
+        private void GiveJob()
+        {
+            HatchingTicker = 0;
+            var jobPkg = Props.JobGiver.TryIssueJobPackage(Pawn, default); //caller already checked this 
+
+            if (jobPkg.Job == null)
+            {
+                Produce(); 
+            }
+            else
+            {
+                Pawn.jobs.StartJob(jobPkg.Job, JobCondition.InterruptForced, resumeCurJobAfterwards: true); 
+            }
+
         }
 
         /// <summary>

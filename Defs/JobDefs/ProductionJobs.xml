@@ -1,0 +1,9 @@
+<Defs>
+    <JobDef>
+        <defName>PMLayEgg</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_LayEgg</driverClass>
+        <reportString>laying egg.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+</Defs>
