@@ -90,14 +90,12 @@ namespace Pawnmorph
         public void Produce()
         {
             var curStage = Props.stages?.ElementAt(parent.CurStageIndex);
-
             int amount = curStage?.amount ?? Props.amount;
             float chance = curStage?.chance ?? Props.chance;
             ThingDef resource = curStage?.Resource ?? Props.Resource;
             ThingDef rareResource = curStage?.RareResource ?? Props.RareResource;
             ThoughtDef thought = curStage?.thought;
-            Produce(amount, chance, resource, rareResource, thought); 
-
+            Produce(amount, chance, resource, rareResource, thought);
         }
 
 

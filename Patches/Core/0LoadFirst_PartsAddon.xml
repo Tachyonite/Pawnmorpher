@@ -405,6 +405,7 @@
 										<hediffGraphics>
 											<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
 											<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
+											<EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns>
 											<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 										</hediffGraphics>
 										<offsets>
@@ -466,8 +467,8 @@
 										<hediffGraphics>
 											<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
 											<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
-											<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 											<EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns>
+											<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 										</hediffGraphics>
 										<offsets>
 											<south>
