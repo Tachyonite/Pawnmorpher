@@ -61,7 +61,7 @@
 		</comps>
 	</HediffDef>
 
-	<HediffDef ParentName="SnakePart">
+	<HediffDef ParentName="IguanaPart">
 		<defName>EtherIguanaHorns</defName>
 		<description>A series of spines drapes down [PAWN_nameDef]'s back.</description>
 		<label>spines</label>
