@@ -11,7 +11,7 @@ namespace Pawnmorph
     {
         
         [CanBeNull]
-        public static AspectTracker GetAffinityTracker([NotNull] this Pawn pawn)
+        public static AspectTracker GetAspectTracker([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
