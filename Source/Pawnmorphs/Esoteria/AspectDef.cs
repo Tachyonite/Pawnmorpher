@@ -14,6 +14,7 @@ namespace Pawnmorph
     public class AspectDef : Def
     {
         public Type affinityType;
+        public List<AspectStage> stages = new List<AspectStage>(); 
 
         public override void ResolveReferences()
         {

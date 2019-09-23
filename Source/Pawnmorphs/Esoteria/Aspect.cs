@@ -1,8 +1,9 @@
-﻿// Aspect.cs modified by Iron Wolf for Pawnmorph on 09/22/2019 11:26 AM
-// last updated 09/22/2019  11:26 AM
+﻿// Aspect.cs created by Iron Wolf for Pawnmorph on 09/23/2019 8:07 AM
+// last updated 09/23/2019  12:39 PM
 
+using System.Collections.Generic;
+using UnityEngine;
 using Verse;
-using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {
@@ -14,20 +15,55 @@ namespace Pawnmorph
     {
         public AspectDef def;
 
-        public string Label => def.label; 
+        private int _stage;
 
         private Pawn _pawn;
 
         private bool _shouldRemove;
         private bool _wasStarted;
 
-        void IExposable.ExposeData()
+        protected List<AspectStage> Stages => def.stages;
+
+
+        /// <summary>
+        ///     the current stage index
+        /// </summary>
+        public int StageIndex
         {
-            Scribe_References.Look(ref _pawn, nameof(Pawn));
-            Scribe_Values.Look(ref _shouldRemove, nameof(ShouldRemove));
-            Scribe_Defs.Look(ref def, nameof(def)); 
-            ExposeData();
+            get => _stage;
+            set
+            {
+                var st = Mathf.Clamp(value, 0, Stages.Count - 1);
+                if (_stage != st)
+                {
+                    _stage = st;
+                    StageChanged(_stage);
+                }
+            }
         }
+
+        /// <summary>
+        ///     the current stage
+        /// </summary>
+        public AspectStage CurrentStage => Stages[StageIndex];
+
+
+        public string Label
+        {
+            get
+            {
+                var lBase = string.IsNullOrEmpty(CurrentStage.label) ? def.label : CurrentStage.label;
+                if (!string.IsNullOrEmpty(CurrentStage.modifier)) lBase = $"{lBase} ({CurrentStage.modifier})";
+
+                return lBase;
+            }
+        }
+
+        /// <summary>
+        ///     the description of the aspect, taking into account it's current stage
+        /// </summary>
+        public string Description =>
+            string.IsNullOrEmpty(CurrentStage.description) ? def.description : CurrentStage.description;
 
         /// <summary>
         ///     the pawn this is attached to
@@ -73,8 +109,6 @@ namespace Pawnmorph
             }
         }
 
-
-     
 
         /// <summary>
         ///     called after the pawn is despawned
@@ -143,11 +177,30 @@ namespace Pawnmorph
         {
         }
 
+        protected virtual void PostStageChanged(int lastStage)
+        {
+        }
+
         /// <summary>
         ///     called once during the startup of this instance, either after initialization or after being added to the pawn
         /// </summary>
         protected virtual void Start()
         {
+        }
+
+        private void StageChanged(int lastStage)
+        {
+            PostStageChanged(lastStage);
+            //TODO
+        }
+
+        void IExposable.ExposeData()
+        {
+            Scribe_References.Look(ref _pawn, nameof(Pawn));
+            Scribe_Values.Look(ref _shouldRemove, nameof(ShouldRemove));
+            Scribe_Defs.Look(ref def, nameof(def));
+            Scribe_Values.Look(ref _stage, nameof(StageIndex));
+            ExposeData();
         }
     }
 }
