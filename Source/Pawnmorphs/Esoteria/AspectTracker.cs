@@ -127,9 +127,14 @@ namespace Pawnmorph
         {
             base.PostExposeData();
             Scribe_Collections.Look(ref _affinities, "affinities", LookMode.Deep);
+
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (_affinities == null) _affinities = new List<Aspect>(); 
                 foreach (Aspect affinity in _affinities)
                     affinity.Initialize();
+
+            }
         }
 
         public void Remove(Aspect aspect)
