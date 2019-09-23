@@ -33,7 +33,7 @@ namespace Pawnmorph
 
         public TransformSettings transformSettings = new TransformSettings();
 
-        public List<AddedAffinity> addedAffinities = new List<AddedAffinity>();  
+        public List<AddedAspect> addedAspects = new List<AddedAspect>();  
 
         [Unsaved] public ThingDef hybridRaceDef;
 
@@ -150,9 +150,9 @@ namespace Pawnmorph
             public MessageTypeDef messageDef;
         }
 
-        public class AddedAffinity
+        public class AddedAspect
         {
-            public AffinityDef def;
+            public AspectDef def;
             public bool keepOnReversion; //if the affinity should be kept even if the pawn switches race 
         }
     }

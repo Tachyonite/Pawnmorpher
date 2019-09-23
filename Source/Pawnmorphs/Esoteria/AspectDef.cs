@@ -1,4 +1,4 @@
-﻿// AffinityDef.cs modified by Iron Wolf for Pawnmorph on 09/22/2019 12:24 PM
+﻿// AspectDef.cs modified by Iron Wolf for Pawnmorph on 09/22/2019 12:24 PM
 // last updated 09/22/2019  12:24 PM
 
 using System;
@@ -11,17 +11,17 @@ namespace Pawnmorph
     /// <summary>
     /// def for all affinities 
     /// </summary>
-    public class AffinityDef : Def
+    public class AspectDef : Def
     {
         public Type affinityType;
 
         public override void ResolveReferences()
         {
             base.ResolveReferences();
-            affinityType = affinityType ?? typeof(Affinity);
-            if (!typeof(Affinity).IsAssignableFrom(affinityType))
+            affinityType = affinityType ?? typeof(Aspect);
+            if (!typeof(Aspect).IsAssignableFrom(affinityType))
             {
-                Log.Error($"in {defName}: affinityType {affinityType.Name} can not be converted to type {nameof(Affinity)}");
+                Log.Error($"in {defName}: affinityType {affinityType.Name} can not be converted to type {nameof(Aspect)}");
             }
         }
 
@@ -30,14 +30,14 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="defName"></param>
         /// <returns></returns>
-        public static AffinityDef Named(string defName)
+        public static AspectDef Named(string defName)
         {
-            return DefDatabase<AffinityDef>.GetNamed(defName); 
+            return DefDatabase<AspectDef>.GetNamed(defName); 
         }
 
-        public Affinity CreateInstance()
+        public Aspect CreateInstance()
         {
-            var affinity = (Affinity) Activator.CreateInstance(affinityType);
+            var affinity = (Aspect) Activator.CreateInstance(affinityType);
             affinity.def = this;
             return affinity; 
         }

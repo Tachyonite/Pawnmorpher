@@ -1,4 +1,4 @@
-﻿// Affinity.cs modified by Iron Wolf for Pawnmorph on 09/22/2019 11:26 AM
+﻿// Aspect.cs modified by Iron Wolf for Pawnmorph on 09/22/2019 11:26 AM
 // last updated 09/22/2019  11:26 AM
 
 using Verse;
@@ -10,9 +10,9 @@ namespace Pawnmorph
     ///     base class for all "mutation affinities"
     /// </summary>
     /// affinities are things that are more global than hediffs but more temporary than traits
-    public class Affinity : IExposable
+    public class Aspect : IExposable
     {
-        public AffinityDef def;
+        public AspectDef def;
 
         public string Label => def.label; 
 
