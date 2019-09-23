@@ -13,6 +13,9 @@
 				<li>
 					<compClass>Pawnmorph.GraphicSys.GraphicsUpdaterComp</compClass>
 				</li>
+				<li> 
+					<compClass>Pawnmorph.AspectTracker</compClass>
+				</li>
 			</comps>
 		</value>
 	</Operation>
