@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -14,7 +15,9 @@ namespace Pawnmorph
     public class AspectDef : Def
     {
         public Type affinityType;
-        public List<AspectStage> stages = new List<AspectStage>(); 
+        public List<AspectStage> stages = new List<AspectStage>();
+
+        public Color labelColor = Color.white; 
 
         public override void ResolveReferences()
         {
