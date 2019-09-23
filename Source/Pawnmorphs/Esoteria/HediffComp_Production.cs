@@ -51,7 +51,7 @@ namespace Pawnmorph
                 HatchingTicker++;
             else if (Pawn.Map != null)
             {
-                if (Props.JobGiver != null) 
+                if (Props.JobGiver != null && !Pawn.Downed) 
                 {
                     GiveJob();
 
