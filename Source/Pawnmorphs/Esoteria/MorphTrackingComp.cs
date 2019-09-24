@@ -1,9 +1,11 @@
 ﻿// MorphTrackingComp.cs modified by Iron Wolf for Pawnmorph on //2019 
 // last updated 09/09/2019  7:38 PM
 
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {
@@ -12,33 +14,60 @@ namespace Pawnmorph
     /// </summary>
     public class MorphTrackingComp : ThingComp
     {
-        public override void PostSpawnSetup(bool respawningAfterLoad)
+        private bool _isAwake; 
+
+        void Awake()
         {
-            base.PostSpawnSetup(respawningAfterLoad);
-
             var comp = parent.Map?.GetComponent<MorphTracker>();
-            if (comp != null)
-            {
-                comp.NotifySpawned((Pawn) parent);
-                comp.MorphCountChanged += MorphCountChanged;
-                RecalculateMorphCount(comp); 
-            }
 
-            if (respawningAfterLoad && comp == null)
+            if (comp == null)
             {
                 MorphGroupDef group = parent.def.GetMorphOfRace()?.@group;
                 HediffDef hediffDef = group?.hediff;
-                if (hediffDef == null) return; 
-                var pawn = (Pawn) parent;
-                Hediff firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
+                if (hediffDef == null) return;
+                var pawn = (Pawn)parent;
+                Hediff firstHediffOfDef = pawn?.health?.hediffSet?.GetFirstHediffOfDef(hediffDef);
                 if (firstHediffOfDef == null)
                 {
                     Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
 
                     hediff.Severity = 1;
                     //add an small offset so minSeverity in hediffStages works as expected 
-                    pawn.health.AddHediff(hediff);
+                    pawn?.health?.AddHediff(hediff);
                 }
+            }
+
+           
+        }
+
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+            if (!_isAwake)
+            {
+                _isAwake = true; 
+                Awake();
+            }
+        }
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+
+            if (!_isAwake)
+            {
+                _isAwake = true; 
+                Awake();
+            }
+
+            var comp = parent.Map?.GetComponent<MorphTracker>();
+
+            if (comp != null)
+            {
+                comp.NotifySpawned((Pawn)parent);
+                comp.MorphCountChanged -= MorphCountChanged; //make sure we only subscribe once 
+                comp.MorphCountChanged += MorphCountChanged;
+                RecalculateMorphCount(comp);
             }
         }
 
@@ -70,8 +99,11 @@ namespace Pawnmorph
 
         private void MorphCountChanged(MorphTracker sender, MorphDef morph)
         {
+           
+
             MorphDef myMorph = parent.def.GetMorphOfRace();
-            if (myMorph != morph) return;
+            if (myMorph?.@group == null) return; 
+            if (myMorph.@group != morph?.@group) return;
 
             var pawn = (Pawn) parent;
 
