@@ -20,6 +20,7 @@ namespace Pawnmorph.Utilities
         /// <param name="hediffDef"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">hediffDef</exception>
+        [NotNull]
         public static IEnumerable<HediffGiver> GetAllHediffGivers([NotNull] this HediffDef hediffDef)
         {
             if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
