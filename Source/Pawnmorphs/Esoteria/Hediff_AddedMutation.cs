@@ -96,7 +96,7 @@ namespace Pawnmorph
             base.ExposeData();
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
-                Log.Error("Hediff_AddedPart has null part after loading.", false);
+                Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.", false);
                 pawn.health.hediffSet.hediffs.Remove(this);
                 return;
             }
