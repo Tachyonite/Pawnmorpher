@@ -46,7 +46,7 @@
 							<xs:element name="addedAffinities" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="li" type="AddedAffinity" minOccurs="1" maxOccurs="unbounded" />
+										<xs:element name="li" type="AddedAspect" minOccurs="1" maxOccurs="unbounded" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
@@ -190,7 +190,7 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="AddedAffinity">
+	<xs:complexType name="AddedAspect">
 		<xs:sequence>
 			<xs:element name="def" type="xs:string" minOccurs="1" maxOccurs="1" />
 			<xs:element name="keepOnReversion" type="xs:boolean" minOccurs="0" maxOccurs="1" />

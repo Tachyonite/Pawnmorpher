@@ -58,10 +58,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Affinity.cs" />
-    <Compile Include="AffinityDef.cs" />
-    <Compile Include="AffinityTracker.cs" />
-    <Compile Include="AffinityUtils.cs" />
+    <Compile Include="Aspect.cs" />
+    <Compile Include="AspectDef.cs" />
+    <Compile Include="AspectStage.cs" />
+    <Compile Include="AspectTracker.cs" />
+    <Compile Include="AspectUtils.cs" />
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />

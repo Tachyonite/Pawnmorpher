@@ -33,7 +33,7 @@ namespace Pawnmorph
 
         public TransformSettings transformSettings = new TransformSettings();
 
-        public List<AddedAffinity> addedAffinities = new List<AddedAffinity>();  
+        public List<AddedAspect> addedAspects = new List<AddedAspect>();  
 
         [Unsaved] public ThingDef hybridRaceDef;
 
@@ -86,6 +86,43 @@ namespace Pawnmorph
                 return _totalInfluence.Value;
             }
         }
+
+
+        private List<HediffGiver_Mutation> _adjacentMutations;
+
+
+        /// <summary>
+        /// get an enumerable collection of HediffGiver_Mutations that are either associated or 'adjacent' to this morph 
+        /// </summary>
+        /// an 'adjacent' HediffGiver is one that is found in the same HediffDef as another HediffGiver that gives a part associated with this morph 
+        /// 
+        public IEnumerable<HediffGiver_Mutation> AllAssociatedAndAdjacentMutations
+        {
+            get
+            {
+                if (_adjacentMutations == null) //use lazy initialization 
+                {
+                    bool Selector(HediffDef def)
+                    {
+                        if (!typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)) return false; //only select morph tf hediffs 
+                        if (def.CompProps<HediffCompProperties_Single>() != null) return false; //ignore partial tfs 
+                        var givers = def.GetAllHediffGivers();
+                        return givers.Any(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == this); 
+                            //make sure that the morph has at least one part associated with this morph 
+                    }
+
+                    var allGivers = DefDatabase<HediffDef>.AllDefs.Where(Selector)
+                        .SelectMany(h => h.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
+                        .GroupBy(g => g.hediff, g => g) //group all hediff givers that give the same mutation together 
+                        .Select(g => g.First()); //only keep one giver per mutation 
+                    _adjacentMutations = new List<HediffGiver_Mutation>(allGivers); 
+
+                }
+
+                return _adjacentMutations; 
+            }
+        }
+
 
         /// <summary>
         ///     Gets the mutations associated with this morph.
@@ -150,9 +187,9 @@ namespace Pawnmorph
             public MessageTypeDef messageDef;
         }
 
-        public class AddedAffinity
+        public class AddedAspect
         {
-            public AffinityDef def;
+            public AspectDef def;
             public bool keepOnReversion; //if the affinity should be kept even if the pawn switches race 
         }
     }
