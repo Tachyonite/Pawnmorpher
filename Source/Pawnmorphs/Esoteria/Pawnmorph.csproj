@@ -96,6 +96,7 @@
     <Compile Include="Hediffs\MutagenicBuildup.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
     <Compile Include="Hediffs\MorphTransformationDefOf.cs" />
+    <Compile Include="Hediffs\RemoveFromPartComp.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
     <Compile Include="Hybrids\HThoughtDefOf.cs" />

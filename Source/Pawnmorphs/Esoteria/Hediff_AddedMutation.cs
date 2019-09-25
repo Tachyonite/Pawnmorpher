@@ -79,30 +79,6 @@ namespace Pawnmorph
             }
 
 
-            var hediffs = pawn.health.hediffSet.hediffs;
-            for (int i = hediffs.Count - 1; i >= 0; i--)
-            {
-                var hediff = hediffs[i] as Hediff_AddedMutation;
-                if(hediff == null) continue;
-                if(hediff == this) continue;
-
-                if (hediff.Part == Part)
-                {
-                    pawn.health.RemoveHediff(hediff); 
-                }
-            }
-
-
-            //for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++) // Loop through the hediffs on the pawn.
-            //{
-            //    Hediff_AddedMutation hediff = pawn.health.hediffSet.hediffs[i] as Hediff_AddedMutation;
-            //    if (hediff != null && hediff != this && hediff.Part == Part)
-            //    // If one of the hediffs shares a part with this hediff and is a Hediff_AddedMutation...
-            //    {
-            //        pawn.health.hediffSet.hediffs.Remove(pawn.health.hediffSet.hediffs[i]); // ...remove it.
-            //    }
-            //}
-
             pawn.GetMutationTracker()?.NotifyMutationAdded(this); 
 
         }
