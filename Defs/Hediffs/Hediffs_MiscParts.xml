@@ -1,6 +1,6 @@
 <Defs>
 	<!--Morph-specific parts are located in the individual morph's files-->
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFurredLimb</defName>
 		<description>Fur has covered the entirety of [PAWN_nameDef]'s limb, giving it a soft fine coat that helps retain warmth.</description>
 		<label>fur</label>
@@ -50,7 +50,7 @@
 		</stages>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherThickFurLimb</defName>
 		<label>fur</label>
 		<description>A heavy coat of fur drapes across this limb, insulating a lot of heat.</description>
@@ -99,7 +99,7 @@
 		</stages>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherScaledLimb</defName>
 		<label>scales</label>
 		<description>Smooth, glossy scales now cover this limb, adding some natural defense and dissipating heat.</description>
@@ -147,7 +147,7 @@
 		</stages>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherHideLimb</defName>
 		<label>hide</label>
 		<description>A thick leathery hide has formed over this limb, adding some natural defense.</description>
