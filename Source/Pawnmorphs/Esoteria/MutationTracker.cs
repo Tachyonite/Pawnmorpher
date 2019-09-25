@@ -136,8 +136,7 @@ namespace Pawnmorph
             var comp = mutation.TryGetComp<Comp_MorphInfluence>();
             if (comp != null)
             {
-                Assert(_influenceLookup.ContainsKey(comp.Morph), "_influenceLookup.ContainsKey(comp.Morph)");
-
+                if (!_influenceLookup.ContainsKey(comp.Morph)) return;  
                 var val = _influenceLookup[comp.Morph] - comp.Influence;
                 if (Mathf.Abs(val) < 0.1f)
                 {

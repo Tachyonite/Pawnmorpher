@@ -21,6 +21,12 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        public override void CompPostMake()
+        {
+            base.CompPostMake();
+            _addedTick = Find.TickManager.TicksAbs; 
+        }
+
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
@@ -29,13 +35,19 @@ namespace Pawnmorph.Hediffs
             {
                 if (hediff == parent) return false; //don't remove the parent 
                 if (hediff.Part != parent.Part) return false; //remove only parts on the same part 
-                if (!(Props.hediffTypeFilter.PassesFilter(hediff.GetType()))) return false; // get parts that match the filter 
+                if (!Props.hediffTypeFilter.PassesFilter(hediff.GetType())) return false; // get parts that match the filter 
 
                 var oComp = hediff.TryGetComp<RemoveFromPartComp>();
-                if (oComp == null) return false; //the hediffs must have this comp to 
+                if (oComp == null)
+                {
+                    Log.Message($"$$$$$$$$$$$$$$ {hediff.Label} does not have a RemoveFromPartComp");
 
-                if (oComp._addedTick <= _addedTick) return false; //the part to be removed must be older or the same age as this comp 
-                return (oComp.Props.layers & Props.layers) != 0;  // the hediffs must be on the same layer(s) 
+                    return false; //the hediffs must have this comp to 
+                }
+
+                if (oComp._addedTick > _addedTick)
+                    return false; //the part to be removed must be older or the same age as this comp 
+                return (oComp.Props.layers & Props.layers) != 0; // the hediffs must be on the same layer(s) 
 
 
             }

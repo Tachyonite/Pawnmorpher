@@ -9,6 +9,8 @@ namespace Pawnmorph
 {
     public static class PawnmorphHediffGiverUtility
     {
+        private static List<BodyPartRecord> _scratchList = new List<BodyPartRecord>(); 
+
         public static bool TryApply(Pawn pawn, HediffDef hediff, List<BodyPartDef> partsToAffect = null, bool canAffectAnyLivePart = false, int countToAffect = 1, List<Hediff> outAddedHediffs = null)
         {
             try
@@ -40,12 +42,15 @@ namespace Pawnmorph
                                  where !pawn.health.hediffSet.HasHediff(hediff, p, false)
                                     && !pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(p)
                                  select p;
-                        if (!source.Any<BodyPartRecord>())
+                        _scratchList.Clear();
+                        _scratchList.AddRange(source); //use a scratch list here, can't enumerate over IEnumerable more then once in all cases 
+                       
+                        if (_scratchList.Count == 0)
                         {
                             break;
                         }
 
-                        BodyPartRecord partRecord = source.First();
+                        BodyPartRecord partRecord = _scratchList[0];
                         Hediff hediff2 = HediffMaker.MakeHediff(hediff, pawn, partRecord);
                         pawn.health.AddHediff(hediff2, null, null, null);
                         if (outAddedHediffs != null)
