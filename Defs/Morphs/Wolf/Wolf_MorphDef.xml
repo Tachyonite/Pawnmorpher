@@ -3,7 +3,7 @@
 		<defName>WolfMorph</defName>
 		<label>wolfmorph</label>
 		<race>Wolf_Timber</race>
-		<description>[PAWN_nameDef] is more like a wolf than a human. Wolfmorphs usually stand on their paws, keen nose seeking prey and grey or brown fur covering them. They make excellent fighters.</description>
+		<description>Wolfmorphs usually stand on their paws and possess keen nose seeking prey, with grey or brown fur covering them. They make excellent fighters.</description>
 		<categories>
 			<li>Canid</li>
       <li>Combat</li>
