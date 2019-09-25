@@ -14,35 +14,35 @@
 		<stages>
 			<li>
 				<label>fine</label>
-				<maxSeverity>0.2</maxSeverity>
+				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>dusting</label>
-				<maxSeverity>0.4</maxSeverity>
+				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>thin</label>
-				<maxSeverity>0.6</maxSeverity>
+				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>patches</label>
-				<maxSeverity>0.8</maxSeverity>
+				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>covered</label>
-				<maxSeverity>1</maxSeverity>
+				<minSeverity>1</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
 				</statOffsets>
@@ -62,35 +62,35 @@
 		<stages>
 			<li>
 				<label>fine</label>
-				<maxSeverity>0.2</maxSeverity>
+				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>thin</label>
-				<maxSeverity>0.4</maxSeverity>
+				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>patches</label>
-				<maxSeverity>0.6</maxSeverity>
+				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>dense</label>
-				<maxSeverity>0.8</maxSeverity>
+				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>thick</label>
-				<maxSeverity>1</maxSeverity>
+				<minSeverity>1</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-3</ComfyTemperatureMin>
 					<ComfyTemperatureMax>-1</ComfyTemperatureMax>
@@ -111,35 +111,35 @@
 		<stages>
 			<li>
 				<label>isolated</label>
-				<maxSeverity>0.2</maxSeverity>
+				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.2</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
 				<label>scarce</label>
-				<maxSeverity>0.4</maxSeverity>
+				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.5</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
 				<label>patches</label>
-				<maxSeverity>0.6</maxSeverity>
+				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.8</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
 				<label>swathes</label>
-				<maxSeverity>0.8</maxSeverity>
+				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>1</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
 				<label>covered</label>
-				<maxSeverity>1</maxSeverity>
+				<minSeverity>1</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>2</ComfyTemperatureMax>
 				</statOffsets>
@@ -159,7 +159,7 @@
 		<stages>
 			<li>
 				<label>thin</label>
-				<maxSeverity>0.2</maxSeverity>
+				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
@@ -167,7 +167,7 @@
 			</li>
 			<li>
 				<label>patches</label>
-				<maxSeverity>0.4</maxSeverity>
+				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
@@ -175,7 +175,7 @@
 			</li>
 			<li>
 				<label>bristles</label>
-				<maxSeverity>0.6</maxSeverity>
+				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
@@ -183,7 +183,7 @@
 			</li>
 			<li>
 				<label>leathery</label>
-				<maxSeverity>0.8</maxSeverity>
+				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
@@ -191,17 +191,10 @@
 			</li>
 			<li>
 				<label>covered</label>
-				<maxSeverity>1</maxSeverity>
+				<minSeverity>1</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
-				</statOffsets>
-			</li>
-		</stages>
-		<stages>
-			<li>
-				<statOffsets>
-					
 				</statOffsets>
 			</li>
 		</stages>
