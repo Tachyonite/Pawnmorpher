@@ -343,6 +343,7 @@
 	</HediffDef>
 	
 	<HediffDef ParentName="PawnmorphPart">
+		<hediffClass>HediffWithComps</hediffClass>
 		<defName>EtherColdBlooded</defName>
 		<label>cold blooded</label>
 		<description>[PAWN_nameDef]'s body no longer naturally regulates it's body temperature.</description>

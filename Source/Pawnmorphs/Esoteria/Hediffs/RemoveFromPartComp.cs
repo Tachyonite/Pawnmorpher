@@ -2,6 +2,7 @@
 // last updated 09/25/2019  5:42 PM
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Utilities;
 using Verse;
@@ -26,6 +27,8 @@ namespace Pawnmorph.Hediffs
             base.CompPostMake();
             _addedTick = Find.TickManager.TicksAbs; 
         }
+
+        private List<Hediff> _rmCache;
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
@@ -53,12 +56,16 @@ namespace Pawnmorph.Hediffs
             }
 
 
-            var allHediffs = Pawn.health.hediffSet.hediffs.Where(FilterFunc);
-            foreach (Hediff allHediff in allHediffs)
-            {
-                Pawn.health.RemoveHediff(allHediff); 
-            }
-            
+           _rmCache = Pawn.health.hediffSet.hediffs.Where(FilterFunc).ToList();
+           
+        }
+
+        public override void CompPostTick(ref float severityAdjustment)
+        {
+            if ((_rmCache?.Count ?? 0) == 0) return; //remove hediffs one at a time to not trigger exceptions about invalidating hediff set's internal enumerator 
+            var hm = _rmCache[0];
+            _rmCache.RemoveAt(0);
+            Pawn.health.RemoveHediff(hm); 
         }
     }
 

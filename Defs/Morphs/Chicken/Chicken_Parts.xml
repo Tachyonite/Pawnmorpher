@@ -69,7 +69,7 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef ParentName="ChookPart">
+	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFeatheredLimb</defName>
 		<label>feathered</label>
 		<description>Rows of feathers have sprouted over [PAWN_nameDef]'s arm, keeping in some warmth...and no, it doesn't let them fly.</description>
@@ -80,6 +80,11 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+				<morph>ChookMorph</morph>
+			</li>
+		</comps>
 	</HediffDef>
 
 	<HediffDef ParentName="ChookPart">
