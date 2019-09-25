@@ -3,11 +3,48 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherFurredLimb</defName>
 		<description>Fur has covered the entirety of [PAWN_nameDef]'s limb, giving it a soft fine coat that helps retain warmth.</description>
-		<label>furred</label>
+		<label>fur</label>
+		<maxSeverity>1</maxSeverity>
+		<initialSeverity>0</initialSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 		<stages>
 			<li>
+				<label>fine</label>
+				<maxSeverity>0.2</maxSeverity>
 				<statOffsets>
-					<ComfyTemperatureMin>-4</ComfyTemperatureMin>
+					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>dusting</label>
+				<maxSeverity>0.4</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>thin</label>
+				<maxSeverity>0.6</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>patches</label>
+				<maxSeverity>0.8</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>covered</label>
+				<maxSeverity>1</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 		</stages>
@@ -15,13 +52,48 @@
 	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherThickFurLimb</defName>
-		<label>thickly furred</label>
+		<label>fur</label>
 		<description>A heavy coat of fur drapes across this limb, insulating a lot of heat.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 		<stages>
 			<li>
+				<label>fine</label>
+				<maxSeverity>0.2</maxSeverity>
 				<statOffsets>
-					<ComfyTemperatureMin>-7</ComfyTemperatureMin>
-					<ComfyTemperatureMax>-2</ComfyTemperatureMax>
+					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>thin</label>
+				<maxSeverity>0.4</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>patches</label>
+				<maxSeverity>0.6</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>dense</label>
+				<maxSeverity>0.8</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>thick</label>
+				<maxSeverity>1</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-3</ComfyTemperatureMin>
+					<ComfyTemperatureMax>-1</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 		</stages>
@@ -30,12 +102,46 @@
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherScaledLimb</defName>
 		<label>scales</label>
-		<description>Smooth, glossy scales now cover this limb, adding some natural defense.</description>
+		<description>Smooth, glossy scales now cover this limb, adding some natural defense and dissipating heat.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 		<stages>
 			<li>
+				<label>isolated</label>
+				<maxSeverity>0.2</maxSeverity>
 				<statOffsets>
-					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+					<ComfyTemperatureMax>0.2</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li>
+				<label>scarce</label>
+				<maxSeverity>0.4</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMax>0.5</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li>
+				<label>patches</label>
+				<maxSeverity>0.6</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMax>0.8</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li>
+				<label>swathes</label>
+				<maxSeverity>0.8</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMax>1</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li>
+				<label>covered</label>
+				<maxSeverity>1</maxSeverity>
+				<statOffsets>
+					<ComfyTemperatureMax>2</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 		</stages>
@@ -45,11 +151,57 @@
 		<defName>EtherHideLimb</defName>
 		<label>hide</label>
 		<description>A thick leathery hide has formed over this limb, adding some natural defense.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 		<stages>
 			<li>
+				<label>thin</label>
+				<maxSeverity>0.2</maxSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li>
+				<label>patches</label>
+				<maxSeverity>0.4</maxSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li>
+				<label>bristles</label>
+				<maxSeverity>0.6</maxSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li>
+				<label>leathery</label>
+				<maxSeverity>0.8</maxSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li>
+				<label>covered</label>
+				<maxSeverity>1</maxSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+		</stages>
+		<stages>
+			<li>
+				<statOffsets>
+					
 				</statOffsets>
 			</li>
 		</stages>
