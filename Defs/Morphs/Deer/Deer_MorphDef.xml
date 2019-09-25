@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>DeerMorph</defName>
 		<label>deermorph</label>
-    <description>a humanoid with many deer like characteristics resulting from exposure to deer specific mutagens. They are often uncomfortable without others like them around</description>
+    <description>a humanoid with many deer-like characteristics resulting from exposure to deer specific mutagens. They are often uncomfortable without others like them around.</description>
 		<race>Deer</race>
 		<categories>
 			<li>Combat</li>
