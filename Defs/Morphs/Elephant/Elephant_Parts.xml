@@ -96,15 +96,54 @@
 		<description>A tail of an elephant. It swishes gently at flies that gather.</description>
 	</HediffDef>
 	
-	<HediffDef ParentName="ElephantPart">
+	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherThickHideLimb</defName>
 		<description>A very thick, rough and leathery skin now covers this limb, adding a substantial natural defense.</description>
 		<label>thick hide</label>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 		<stages>
 			<li>
+				<label>spots</label>
+				<minSeverity>0</minSeverity>
 				<statOffsets>
-					<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.6</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li>
+				<label>patches</label>
+				<minSeverity>0.2</minSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li>
+				<label>bristles</label>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li>
+				<label>leathery</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li>
+				<label>covered</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
 		</stages>
@@ -212,7 +251,7 @@
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
-						<label>smash</label>
+						<label>stomp</label>
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Blunt</li>

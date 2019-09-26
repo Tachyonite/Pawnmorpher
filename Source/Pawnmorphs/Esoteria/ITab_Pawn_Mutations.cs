@@ -14,6 +14,7 @@ namespace Pawnmorph
     {
         private float scrollViewHeight;
         private Vector2 scrollPosition = Vector2.zero;
+        private bool toggleLog = false;
 
         public ITab_Pawn_Mutations()
         {
@@ -149,6 +150,8 @@ namespace Pawnmorph
 
         private void DrawMutTabHeader(ref Vector2 curPos, float width, Pawn pawn)
         {
+            
+
             Rect rect = new Rect(0f, curPos.y, width, 50f);
             Text.Anchor = TextAnchor.UpperLeft;
             string nameAndRace = pawn.Name.ToStringShort + " - " + pawn.def.label.CapitalizeFirst();
@@ -160,6 +163,30 @@ namespace Pawnmorph
             Widgets.DrawLineHorizontal(0f, curPos.y, width);
             GUI.color = Color.white;
             curPos.y += 10f;
+            Rect rectLog = new Rect(width-100f, 0f, 100f, 30f);
+            if(Widgets.ButtonText(rectLog, "Log",doMouseoverSound:true))
+            {
+                toggleLog = !toggleLog;
+                Log.Message(toggleLog.ToStringYesNo());
+            }
+            if (toggleLog)
+            {
+                DrawMutationLog(ref curPos,width,PawnToShowMutationsFor);
+            }
+        }
+
+        private void DrawMutationLog(ref Vector2 curPos, float width, Pawn pawn)
+        {
+            Rect rect = new Rect(width+5f, 10f, size.x/.66f, size.y+50f);
+            Rect rect2 = rect.ContractedBy(10f);
+            Rect position = new Rect(rect2.x, rect2.y, rect2.width, rect2.height);
+            GUI.BeginGroup(position);
+            Rect outRect = new Rect(0f, 0f, position.width, position.height - 10f);
+            Rect viewRect = new Rect(0f, 0f, position.width - 16f, scrollViewHeight);
+            Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect, true);
+            Widgets.Label(rect, "test item");
+            Widgets.EndScrollView();
+            GUI.EndGroup();
         }
 
         private void DrawColumnHeader(ref Vector2 curPos, float width, string text, Pawn pawn)

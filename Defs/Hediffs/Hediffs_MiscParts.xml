@@ -14,35 +14,35 @@
 		<stages>
 			<li>
 				<label>fine</label>
-				<minSeverity>0.2</minSeverity>
+				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>dusting</label>
-				<minSeverity>0.4</minSeverity>
+				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>thin</label>
-				<minSeverity>0.6</minSeverity>
+				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>patches</label>
-				<minSeverity>0.8</minSeverity>
+				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>covered</label>
-				<minSeverity>1</minSeverity>
+				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
 				</statOffsets>
@@ -62,35 +62,35 @@
 		<stages>
 			<li>
 				<label>fine</label>
-				<minSeverity>0.2</minSeverity>
+				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>thin</label>
-				<minSeverity>0.4</minSeverity>
+				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>patches</label>
-				<minSeverity>0.6</minSeverity>
+				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>dense</label>
-				<minSeverity>0.8</minSeverity>
+				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>thick</label>
-				<minSeverity>1</minSeverity>
+				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-3</ComfyTemperatureMin>
 					<ComfyTemperatureMax>-1</ComfyTemperatureMax>
@@ -111,35 +111,35 @@
 		<stages>
 			<li>
 				<label>isolated</label>
-				<minSeverity>0.2</minSeverity>
+				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.2</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
 				<label>scarce</label>
-				<minSeverity>0.4</minSeverity>
+				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.5</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
 				<label>patches</label>
-				<minSeverity>0.6</minSeverity>
+				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.8</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
 				<label>swathes</label>
-				<minSeverity>0.8</minSeverity>
+				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>1</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
 				<label>covered</label>
-				<minSeverity>1</minSeverity>
+				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>2</ComfyTemperatureMax>
 				</statOffsets>
@@ -159,7 +159,7 @@
 		<stages>
 			<li>
 				<label>thin</label>
-				<minSeverity>0.2</minSeverity>
+				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
@@ -167,7 +167,7 @@
 			</li>
 			<li>
 				<label>patches</label>
-				<minSeverity>0.4</minSeverity>
+				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
@@ -175,7 +175,7 @@
 			</li>
 			<li>
 				<label>bristles</label>
-				<minSeverity>0.6</minSeverity>
+				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
@@ -183,7 +183,7 @@
 			</li>
 			<li>
 				<label>leathery</label>
-				<minSeverity>0.8</minSeverity>
+				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
@@ -191,7 +191,7 @@
 			</li>
 			<li>
 				<label>covered</label>
-				<minSeverity>1</minSeverity>
+				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
@@ -255,7 +255,13 @@
 		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
 		<stages>
 			<li>
-				<label>new</label>
+				<label>unfamiliar</label>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
 			</li>
 			<li>
 				<minSeverity>1</minSeverity>
@@ -263,7 +269,7 @@
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
-						<offset>0.3</offset>
+						<offset>0.1</offset>
 					</li>
 				</capMods>
 			</li>
@@ -300,7 +306,7 @@
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
-						<offset>0.2</offset>
+						<offset>0.1</offset>
 					</li>
 				</capMods>
 				<statOffsets>
@@ -319,7 +325,7 @@
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
-						<offset>0.2</offset>
+						<offset>0.1</offset>
 					</li>
 				</capMods>
 			</li>
@@ -346,7 +352,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<defName>EtherColdBlooded</defName>
 		<label>cold blooded</label>
-		<description>[PAWN_nameDef]'s body no longer naturally regulates it's body temperature.</description>
+		<description>[PAWN_nameDef]'s body no longer naturally regulates its body temperature.</description>
 		<stages>
 			<li>
 				<statOffsets>

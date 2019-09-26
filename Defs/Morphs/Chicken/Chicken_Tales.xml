@@ -11,6 +11,7 @@
         <li>image->[PAWN_nameFull] begins to bok involuntarily [circumstance_group]</li>
         <li>desc_sentence->[PAWN_pronoun] lets out a few sad boks.</li>
         <li>desc_sentence->[PAWN_pronoun] rubs [PAWN_possessive] new beak.</li>
+        <li>desc_sentence->[PAWN_pronoun] crows and tries to pull the beak off.</li>
         <li>desc_sentence->[PAWN_pronoun] boks absentmindedly.</li>
       </rulesStrings>
     </rulePack>
@@ -69,6 +70,7 @@
 				<li>image->[PAWN_nameFull] sits down and begins laying eggs [circumstance_group]</li> <!-- tales for production events?-->
 				<li>image->[PAWN_nameFull] begins laying eggs in a make shift nest [circumstance_group]</li>
 				<li>circumstance_phrase->as someone begins collecting the eggs</li>
+				<li>circumstance_phrase->while hiding in a corner</li>
 				<li>desc_sentence->[PAWN_pronoun] is very embarrassed about laying eggs.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about laying eggs.</li>
 			</rulesStrings>
