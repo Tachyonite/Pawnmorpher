@@ -49,7 +49,7 @@
 						</hediffTypeFilter>
 				</li>
 				<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
-					<mtb>10</mtb>
+					<mtb>60</mtb>
 					<maxTreeSearchDepth>1</maxTreeSearchDepth>
 				</li>
 		</comps>
