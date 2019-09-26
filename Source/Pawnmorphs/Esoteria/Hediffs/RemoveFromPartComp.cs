@@ -12,6 +12,10 @@ namespace Pawnmorph.Hediffs
     public class RemoveFromPartComp : HediffCompBase<RemoveFromPartCompProperties>
     {
         private int _addedTick = -1 ;
+
+        public int AddedTick => _addedTick;
+        public MutationLayers Layer => Props.layers; 
+
         public override void CompExposeData()
         {
             Scribe_Values.Look(ref _addedTick, "addedTick", -1, true);
@@ -82,7 +86,7 @@ namespace Pawnmorph.Hediffs
     public enum MutationLayers
     {
         None = 0,
-        Core = 1 ,
-        Skin = 1 << 1
+        Core = 1,
+        Skin = 2
     }
 }

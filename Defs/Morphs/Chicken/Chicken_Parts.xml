@@ -80,11 +80,6 @@
 				</statOffsets>
 			</li>
 		</stages>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>ChookMorph</morph>
-			</li>
-		</comps>
 	</HediffDef>
 
 	<HediffDef ParentName="ChookPart">

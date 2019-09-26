@@ -21,6 +21,8 @@ namespace Pawnmorph
     {
         private static List<BodyPartDef> PossiblePartsLst { get; }
 
+        private static List<BodyPartRecord> _possibleRecordsList; 
+
         public static IEnumerable<BodyPartDef> PartsWithPossibleMutations => PossiblePartsLst;
         public static int NumPartsWithPossibleMutations => PossiblePartsLst.Count;
 
@@ -40,6 +42,29 @@ namespace Pawnmorph
             //this feels wrong, but I can't think of a better way to calculate the "human-ness" of a pawn  - Iron 
             
 
+        }
+
+
+        /// <summary>
+        /// an enumerable collection of all body part records in humans that can be affected by a mutation 
+        /// </summary>
+        public static IEnumerable<BodyPartRecord> AllMutableRecords
+        {
+            get
+            {
+                if (_possibleRecordsList == null)
+                {
+                    var body = BodyDefOf.Human;
+                    _possibleRecordsList = body.AllParts.Where(p => PossiblePartsLst.Contains(p.def)).ToList();
+
+                    Log.Message("$$$$$$$$$$$$$$$ " + string.Join(",", _possibleRecordsList.Select(p => p.Label).ToArray()));
+
+                }
+
+                return _possibleRecordsList; 
+
+
+            }
         }
 
         /// <summary>
