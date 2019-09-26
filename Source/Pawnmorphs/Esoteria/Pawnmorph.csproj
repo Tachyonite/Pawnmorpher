@@ -101,6 +101,7 @@
     <Compile Include="Hediffs\SpreadingMutationComp.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
+    <Compile Include="HPatches\PawnCapacityUtilsPatch.cs" />
     <Compile Include="Hybrids\HThoughtDefOf.cs" />
     <Compile Include="Hybrids\HTraitDefOf.cs" />
     <Compile Include="Hybrids\HybridRaceSettings.cs" />

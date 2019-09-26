@@ -2,6 +2,7 @@
 // last updated 09/23/2019  12:39 PM
 
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -24,6 +25,10 @@ namespace Pawnmorph
 
         protected List<AspectStage> Stages => def.stages;
 
+
+        public IEnumerable<PawnCapacityModifier> CapMods => CurrentStage.capMods ?? Enumerable.Empty<PawnCapacityModifier>();
+
+        public bool HasCapMods => CurrentStage.capMods != null && CurrentStage.capMods.Count != 0;  
 
         /// <summary>
         ///     the current stage index
