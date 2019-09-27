@@ -233,7 +233,7 @@ namespace Pawnmorph.DebugUtils
             if (missingBPMorphReactions.Count != 0)
             {
                 builder.AppendLine("--------------- Missing Body Purist Reactions ------------");
-                builder.AppendLine(string.Join("\n", missingFurryMorphReactions.Select(m => m.defName).ToArray()));
+                builder.AppendLine(string.Join("\n", missingBPMorphReactions.Select(m => m.defName).ToArray()));
             }
         }
 
