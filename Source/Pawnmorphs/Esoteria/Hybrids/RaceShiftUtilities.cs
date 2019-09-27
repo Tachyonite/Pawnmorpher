@@ -225,6 +225,7 @@ namespace Pawnmorph.Hybrids
                 TryTriggerMutations(pawn, morph);
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
+            if (tfSettings.transformationMemory != null) pawn.TryGainMemory(tfSettings.transformationMemory); //TODO default memory  
         }
 
         private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)

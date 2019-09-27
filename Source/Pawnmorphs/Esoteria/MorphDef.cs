@@ -185,6 +185,7 @@ namespace Pawnmorph
             public TaleDef transformTale;
             public string transformationMessageID;
             public MessageTypeDef messageDef;
+            public ThoughtDef transformationMemory; //memory added when a pawn shifts to this morph 
         }
 
         public class AddedAspect

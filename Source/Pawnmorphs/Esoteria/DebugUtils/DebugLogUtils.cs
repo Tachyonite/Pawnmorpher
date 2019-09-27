@@ -202,6 +202,10 @@ namespace Pawnmorph.DebugUtils
                                                      .Select(d => d.morph)
                                                      .ToList();
 
+            var morphsMissingMemories = MorphDef.AllDefs
+                                                .Where(d => d.transformSettings?.transformationMemory == null)
+                                                .ToList();
+
             StringBuilder builder = new StringBuilder();
 
 
@@ -218,9 +222,9 @@ namespace Pawnmorph.DebugUtils
             }
 
 
-            if (missingFurryMorphReactions.Count == 0 && missingBPMorphReactions.Count == 0)
+            if (missingFurryMorphReactions.Count == 0 && missingBPMorphReactions.Count == 0 && morphsMissingMemories.Count == 0)
             {
-                Log.Message("no missing morph specific reactions!");
+                Log.Message("no missing morph transformation reactions!");
                 return;
             }
 
@@ -234,6 +238,12 @@ namespace Pawnmorph.DebugUtils
             {
                 builder.AppendLine("--------------- Missing Body Purist Reactions ------------");
                 builder.AppendLine(string.Join("\n", missingBPMorphReactions.Select(m => m.defName).ToArray()));
+            }
+
+            if (morphsMissingMemories.Count != 0)
+            {
+                builder.AppendLine("-------------- Morph Shift Memory --------------");
+                builder.AppendLine(string.Join("\n", morphsMissingMemories.Select(d => d.defName).ToArray()));
             }
 
             Log.Message(builder.ToString()); 
