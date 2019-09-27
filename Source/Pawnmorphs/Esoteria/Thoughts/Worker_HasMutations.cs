@@ -11,15 +11,10 @@ namespace Pawnmorph.Thoughts
 {
     public class Worker_HasMutations : ThoughtWorker
     {
-        private static List<Worker_HasMutations> specificHandlers = new List<Worker_HasMutations>();
 
         private List<Thought> _scratchList = new List<Thought>(); 
 
 
-        public Worker_HasMutations()
-        {
-            specificHandlers.Add(this); 
-        }
 
 
         protected override ThoughtState CurrentStateInternal(Pawn p)
