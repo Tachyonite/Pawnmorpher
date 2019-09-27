@@ -235,6 +235,8 @@ namespace Pawnmorph.DebugUtils
                 builder.AppendLine("--------------- Missing Body Purist Reactions ------------");
                 builder.AppendLine(string.Join("\n", missingBPMorphReactions.Select(m => m.defName).ToArray()));
             }
+
+            Log.Message(builder.ToString()); 
         }
 
         [DebugOutput]
