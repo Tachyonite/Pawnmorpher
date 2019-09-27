@@ -1,23 +1,6 @@
 <Defs>
 	<ThoughtDef>
-		<defName>FurryMutationThoughtsSad</defName>
-		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
-		<requiredTraits>
-			<li>MutationAffinity</li>
-		</requiredTraits>
-		<validWhileDespawned>true</validWhileDespawned>
-		<invert>true</invert>
-		<stages>
-			<li>
-				<label>TODO</label> <!-- negative thought gos here -->
-				<description>TODO</description>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef>
-		<defName>FurryMutationThoughtsHappy</defName>
+		<defName>FurryMutationThoughtsHappy</defName> <!-- this is the default thougths for pawns that have mutations and have the furry trait  -->
 		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<requiredTraits>

@@ -2,14 +2,14 @@
 
 <Defs>
 	<ThoughtDef>
-		<defName>BodyPuristMutationSad</defName>
+		<defName>BodyPuristMutationSad</defName> <!-- this is the default thougth for pawns that have mutations and have the body purist trait-->
 		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
 		<requiredTraits>
 			<li>BodyPurist</li>
 		</requiredTraits>
 		<stages>
-			<li> <!-- ths stage number is going to be equal to the number of mutation the pawn has -->
+			<li> 
 				<label>TODO</label>
 				<description>TODO</description>
 				<baseMoodEffect>-3</baseMoodEffect>

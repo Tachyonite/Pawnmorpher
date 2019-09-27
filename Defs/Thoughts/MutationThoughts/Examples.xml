@@ -22,14 +22,12 @@
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
-
     </ThoughtDef>
-
 
 
     <ThoughtDef ParentName="MorphReactionThoughtBaseFurry" Class="Pawnmorph.Thoughts.Def_MorphThought">
         <defName>MorphTfWolfExample</defName> <!-- this is a situational thought -->
-        <morph>WolfMorph</morph> <!--this should alwayse be active for pawns who's highest influence is the WolfMorph and who have the furry trait  -->
+        <morph>WolfMorph</morph> <!--this should alwayse be active for pawns who's highest influence is the WolfMorph and who has the furry trait  -->
         <stages>
                 <li>
                     <label>TODO</label>
