@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Pawnmorph.Thoughts
 {
-    public class HasMutationsMemory : Thought_Memory
+    public class MorphMemory : Thought_Memory
     {
         public override int CurStageIndex
         {
