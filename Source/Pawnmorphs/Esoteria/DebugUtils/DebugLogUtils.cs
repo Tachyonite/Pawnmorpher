@@ -1,8 +1,10 @@
 ﻿// DebugLogUtils.cs created by Iron Wolf for Pawnmorph on 09/23/2019 7:54 AM
 // last updated 09/27/2019  8:00 AM
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using AlienRace;
@@ -176,6 +178,120 @@ namespace Pawnmorph.DebugUtils
             var str = string.Join("\n\t", mutations.Select(m => m.defName).ToArray());
 
             Log.Message(string.IsNullOrEmpty(str) ? "no parts with missing description" : str);
+        }
+
+        static string CSVFormat(this string str)
+        {
+            if (str == null) return ""; 
+            if (str.Contains('\"') || str.Contains('\n') || str.Contains(','))
+            {
+                str = str.Replace("\"", "\\\"");
+                str = $"\"{str}\"";
+            }
+            return str; 
+
+
+        }
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void GenerateWritingReport()
+        {
+            var builder = new StringBuilder();
+
+            IEnumerable<HediffDef> allMutations =
+                DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass));
+
+            List<HediffDef> allHediffsWithGivers =
+                DefDatabase<HediffDef>.AllDefs.Where(d => d.GetAllHediffGivers().Any(g => g is HediffGiver_Mutation)).ToList();
+
+            List<HediffGiver_Mutation> allGivers = allHediffsWithGivers
+                                                  .SelectMany(h => h.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
+                                                  .ToList();
+
+            IEnumerable<MorphDef> allMorphs = MorphDef.AllDefs;
+            List<Def_MorphThought> allBPReactions = DefDatabase<ThoughtDef>
+                                                   .AllDefs.OfType<Def_MorphThought>()
+                                                   .Where(d => d?.requiredTraits?.Contains(TraitDefOf.BodyPurist) ?? false)
+                                                   .ToList();
+            List<Def_MorphThought> allFurryReactions = DefDatabase<ThoughtDef>
+                                                      .AllDefs.OfType<Def_MorphThought>()
+                                                      .Where(d => d.requiredTraits?.Contains(PMTraitDefOf.MutationAffinity)
+                                                               ?? false)
+                                                      .ToList();
+
+            var mutationRows = new List<string[]>
+            {
+                new[] {"defName", "label", "description", "tale", "memory"}
+            };
+
+            var morphRRows = new List<string[]>
+            {
+                new[]
+                {
+                    "defName", "label", "description", "tfMemory", "tfTale", "furry tf reaction", " body purist tf reaction"
+                }
+            };
+
+            foreach (HediffDef mutation in allMutations)
+            {
+                string defName = mutation.defName;
+                string label = mutation.label;
+                string description = mutation.description;
+
+                HediffGiver_Mutation giver =
+                    allGivers.FirstOrDefault(g => g.hediff == mutation && (g.tale != null || g.memory != null));
+
+                TaleDef tale = giver?.tale;
+                ThoughtDef memory = giver?.memory;
+
+                string taleDefName = tale?.defName ?? "";
+                string memoryDefName = memory?.defName ?? "";
+                mutationRows.Add(new[]
+                {
+                    defName.CSVFormat(), label.CSVFormat(), description.CSVFormat(), taleDefName.CSVFormat(), memoryDefName.CSVFormat()
+                });
+            }
+
+
+            foreach (MorphDef morph in allMorphs)
+            {
+                var defName = morph.defName;
+                var label = morph.label;
+                var description = morph.description;
+                var tfMemory = morph.transformSettings?.transformationMemory?.defName ?? "";
+                var tfTale = morph.transformSettings?.transformTale?.defName ?? "";
+                var furryTfReaction = allFurryReactions.FirstOrDefault(d => d.morph == morph)?.defName ?? "";
+                var bpTfReaction = allBPReactions.FirstOrDefault(d => d.morph == morph)?.defName ?? ""; 
+
+                morphRRows.Add(new []
+                {
+                    defName.CSVFormat(), label.CSVFormat(), description.CSVFormat(), tfMemory.CSVFormat(), tfTale.CSVFormat(), furryTfReaction.CSVFormat(), bpTfReaction.CSVFormat()
+                });
+            }
+
+
+            foreach (string[] row in mutationRows) builder.AppendLine(string.Join(",", row));
+            
+            string dPath = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents");
+            dPath = Path.Combine(dPath, "PawnmorpherReports");
+            Directory.CreateDirectory(dPath);
+
+            string mutationRPath = Path.Combine(dPath, "mutation_report.csv");
+
+            File.WriteAllText(mutationRPath, builder.ToString());
+            builder.Length = 0;
+
+            foreach (string[] row in morphRRows)
+            {
+                builder.AppendLine(string.Join(",", row)); 
+
+            }
+
+            var morphRPath = Path.Combine(dPath, "morph_report.csv");
+            File.WriteAllText(morphRPath, builder.ToString()); 
+
+            Log.Message($"mutation reports written to {dPath}");
         }
 
 

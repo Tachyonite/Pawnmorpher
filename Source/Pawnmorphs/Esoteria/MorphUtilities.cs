@@ -57,8 +57,6 @@ namespace Pawnmorph
                     var body = BodyDefOf.Human;
                     _possibleRecordsList = body.AllParts.Where(p => PossiblePartsLst.Contains(p.def)).ToList();
 
-                    Log.Message("$$$$$$$$$$$$$$$ " + string.Join(",", _possibleRecordsList.Select(p => p.Label).ToArray()));
-
                 }
 
                 return _possibleRecordsList; 

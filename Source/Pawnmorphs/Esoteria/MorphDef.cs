@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
@@ -182,10 +183,10 @@ namespace Pawnmorph
         /// </summary>
         public class TransformSettings
         {
-            public TaleDef transformTale;
-            public string transformationMessageID;
-            public MessageTypeDef messageDef;
-            public ThoughtDef transformationMemory; //memory added when a pawn shifts to this morph 
+            [CanBeNull] public TaleDef transformTale;
+            [CanBeNull] public string transformationMessageID;
+            [CanBeNull] public MessageTypeDef messageDef;
+            [CanBeNull] public ThoughtDef transformationMemory; //memory added when a pawn shifts to this morph 
         }
 
         public class AddedAspect

@@ -37,7 +37,6 @@ namespace Pawnmorph.Hediffs
         {
             if (h.def == Def)
             {
-                Log.Message($"{h.Label} is a blocker for {parent.Label}");
 
                 return true;
             }
