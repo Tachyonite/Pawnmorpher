@@ -214,6 +214,7 @@
     <Compile Include="Thoughts\Worker_BodyPuristDisgust.cs" />
     <Compile Include="Thoughts\Worker_FurryAppreciation.cs" />
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
+    <Compile Include="Thoughts\HasMutationsMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
     <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
     <Compile Include="TransformerUtility.cs" />

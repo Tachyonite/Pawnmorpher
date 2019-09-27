@@ -12,10 +12,18 @@ namespace Pawnmorph.Thoughts
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            var numMutations = p.health.hediffSet.hediffs.Count(h => h is Hediff_AddedMutation);
-            if (numMutations == 0) return false;
+            
+            var mutTracker = p.GetMutationTracker();
+            if (mutTracker == null) return false;
+            if (!mutTracker.AllMutations.Any()) return false;
 
-            var num = Mathf.Min(def.stages.Count - 1, numMutations);
+            var humanInfluence = 1 - mutTracker.TotalNormalizedInfluence;
+
+            //now get the stage number 
+
+
+            var num = Mathf.FloorToInt(humanInfluence * def.stages.Count);
+            num = Mathf.Clamp(num, 0, def.stages.Count - 1); 
             return ThoughtState.ActiveAtStage(num); 
             
         }

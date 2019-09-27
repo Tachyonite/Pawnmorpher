@@ -23,6 +23,9 @@ namespace Pawnmorph
 
         private Dictionary<MorphDef, float> _influenceLookup = new Dictionary<MorphDef, float>();
 
+        private List<VTuple<MorphDef, float>> _normalizedInfluencesCache = new List<VTuple<MorphDef, float>>();
+        private bool _reCalcInfluences = true;
+        private  float _totalNormalizedInfluence;
 
         /// <summary>
         /// get the current influence associated with the given key 
@@ -31,36 +34,63 @@ namespace Pawnmorph
         /// <returns></returns>
         public float this[MorphDef key] => _influenceLookup.TryGetValue(key);
 
-        /// <summary>
-        /// an enumerable collection of influences normalized against each other and the remaining human influence 
-        /// </summary>
-        public IEnumerable<VTuple<MorphDef, float>> NormalizedInfluences
+
+        public float TotalNormalizedInfluence //cache this to help with performance 
         {
             get
             {
-                float accum = 0;
-                foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
+                if (_reCalcInfluences)
                 {
-                    accum += keyValuePair.Value / keyValuePair.Key.TotalInfluence; //use the normalized value so we're comparing apples to apples 
-                                                                                //some morphs have more unique parts then others after all 
+                    _totalNormalizedInfluence = NormalizedInfluences.Sum(f => f.second); 
                 }
 
-                accum += Pawn.GetHumanInfluence(true) * MorphUtilities.HUMAN_CHANGE_FACTOR;  //add in the remaining human influence, if any
-
-
-                foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
-                {
-                    float nVal;
-                    if (accum < 0.0001f) nVal = 0; //prevent division by zero 
-                    else
-                        nVal = keyValuePair.Value / (accum * keyValuePair.Key.TotalInfluence); //now normalize the morph influences against the total 
-                    yield return new VTuple<MorphDef, float>(keyValuePair.Key, nVal);  
-                }
-
+                return _totalNormalizedInfluence;
             }
         }
 
-      
+
+        /// <summary>
+        /// an enumerable collection of influences normalized against each other and the remaining human influence 
+        /// </summary>
+        public IEnumerable<VTuple<MorphDef, float>> NormalizedInfluences //cache this to help with performance 
+        {
+            get
+            {
+                if (_reCalcInfluences)
+                {
+                    _normalizedInfluencesCache.Clear();
+                    _normalizedInfluencesCache.AddRange(CalculateNormalizedInfluences());
+
+                    _totalNormalizedInfluence = _normalizedInfluencesCache.Sum(f => f.second); 
+                }
+
+                return _normalizedInfluencesCache; 
+            }
+        }
+
+        private IEnumerable<VTuple<MorphDef, float>> CalculateNormalizedInfluences()
+        {
+            float accum = 0;
+            foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
+            {
+                accum += keyValuePair.Value
+                       / keyValuePair.Key.TotalInfluence; //use the normalized value so we're comparing apples to apples 
+                //some morphs have more unique parts then others after all 
+            }
+
+            accum += Pawn.GetHumanInfluence(true) * MorphUtilities.HUMAN_CHANGE_FACTOR; //add in the remaining human influence, if any
+
+
+            foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
+            {
+                float nVal;
+                if (accum < 0.0001f) nVal = 0; //prevent division by zero 
+                else
+                    nVal = keyValuePair.Value
+                         / (accum * keyValuePair.Key.TotalInfluence); //now normalize the morph influences against the total 
+                yield return new VTuple<MorphDef, float>(keyValuePair.Key, nVal);
+            }
+        }
 
 
         /// <summary>
@@ -90,7 +120,7 @@ namespace Pawnmorph
         public void NotifyMutationAdded([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-
+            _reCalcInfluences = true;  //we will need to recalculate the total if requested 
             var comp = mutation.TryGetComp<Comp_MorphInfluence>();
             if (comp != null)
             {
@@ -132,7 +162,7 @@ namespace Pawnmorph
         public void NotifyMutationRemoved([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-
+            _reCalcInfluences = true; //we will need to recalculate the total if requested 
             var comp = mutation.TryGetComp<Comp_MorphInfluence>();
             if (comp != null)
             {
@@ -170,7 +200,7 @@ namespace Pawnmorph
 
                 }
 
-
+                _reCalcInfluences = true; 
             }
         }
 
