@@ -73,7 +73,7 @@ namespace Pawnmorph.Thoughts
 
 
 
-            var humanInfluence = 1 - mutTracker.TotalNormalizedInfluence;
+            var animalInfluence = mutTracker.TotalNormalizedInfluence;
 
             
 
@@ -82,7 +82,7 @@ namespace Pawnmorph.Thoughts
 
 
 
-            var num = Mathf.FloorToInt(humanInfluence * def.stages.Count);
+            var num = Mathf.FloorToInt(animalInfluence * def.stages.Count);
             num = Mathf.Clamp(num, 0, def.stages.Count - 1); 
             
             return ThoughtState.ActiveAtStage(num); 

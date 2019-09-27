@@ -14,9 +14,9 @@ namespace Pawnmorph.Thoughts
             {
                 var tracker = pawn.GetMutationTracker();
                 if (tracker == null) return 0;
-                float humanInfluence = 1 - tracker.TotalNormalizedInfluence;
+                float animalInfluence = tracker.TotalNormalizedInfluence;
 
-                int n = Mathf.FloorToInt(humanInfluence * def.stages.Count); //evenly split up the stages between humanInfluence of [0,1] 
+                int n = Mathf.FloorToInt(animalInfluence * def.stages.Count); //evenly split up the stages between humanInfluence of [0,1] 
                 n = Mathf.Clamp(n, 0, def.stages.Count - 1);
                 return n; 
 
