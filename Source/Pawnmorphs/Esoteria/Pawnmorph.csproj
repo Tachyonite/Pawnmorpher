@@ -205,6 +205,7 @@
     <Compile Include="TfSys\TransformationRequest.cs" />
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
+    <Compile Include="Thoughts\Def_MorphThought.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />

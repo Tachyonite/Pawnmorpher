@@ -16,10 +16,25 @@ namespace Pawnmorph.Thoughts
             var mutTracker = p.GetMutationTracker();
             if (mutTracker == null) return false;
             if (!mutTracker.AllMutations.Any()) return false;
+            
+            //check morph if available 
+            if (def is Def_MorphThought morphTDef)
+            {
+                if (mutTracker.HighestInfluence != morphTDef.morph)
+                {
+                    return false; 
+                }
+            }
+
+
 
             var humanInfluence = 1 - mutTracker.TotalNormalizedInfluence;
 
+            
+
+
             //now get the stage number 
+
 
 
             var num = Mathf.FloorToInt(humanInfluence * def.stages.Count);

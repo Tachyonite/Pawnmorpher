@@ -68,6 +68,11 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// the morph with the most influence on this pawn, not necessarily the morph the pawn currently is 
+        /// </summary>
+        [CanBeNull] public MorphDef HighestInfluence { get; private set; }
+
         private IEnumerable<VTuple<MorphDef, float>> CalculateNormalizedInfluences()
         {
             float accum = 0;
@@ -129,6 +134,8 @@ namespace Pawnmorph
 
             }
 
+            HighestInfluence = GetHighestInfluence(); 
+
             NotifyCompsAdded(mutation);
         }
 
@@ -179,6 +186,8 @@ namespace Pawnmorph
 
             }
 
+            HighestInfluence = GetHighestInfluence();
+
             NotifyCompsRemoved(mutation); 
         }
 
@@ -200,12 +209,34 @@ namespace Pawnmorph
 
                 }
 
+                //now find the highest influence 
+
+
+                MorphDef hMorph = GetHighestInfluence();
+
+                HighestInfluence = hMorph; 
+
+
                 _reCalcInfluences = true; 
             }
         }
 
+        private MorphDef GetHighestInfluence()
+        {
+            MorphDef hMorph = null;
+            float max = float.NegativeInfinity;
+            foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
+            {
+                if (max < keyValuePair.Value)
+                {
+                    hMorph = keyValuePair.Key;
+                    max = keyValuePair.Value;
+                }
+            }
 
-      
+            return hMorph;
+        }
+
 
         /// <summary>Returns an enumerator that iterates through the collection.</summary>
         /// <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
