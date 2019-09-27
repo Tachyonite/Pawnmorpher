@@ -60,7 +60,7 @@ namespace Pawnmorph.Thoughts
                 
                 _scratchList.Clear();
                 thoughtHandler.situational.AppendMoodThoughts(_scratchList);
-                if (_scratchList.Any(t => t.def.workerClass == GetType() && t.def is Def_MorphThought))
+                if (_scratchList.Any(t => t.def != def && t.def.workerClass == GetType() && t.def is Def_MorphThought))
                     return false;  //if any thoughts are of this class nad have a specific morph associated with them do no activate the default thought 
 
 

@@ -1,21 +1,22 @@
 <Defs>
 	<ThoughtDef Abstract="true" Name="MorphReactionThoughtBase">
-		<workerClass>Pawnmorph.Thoughts.Worker_HediffTrait</workerClass>
+    <workerClass>Pawnmorph.Thoughts.Worker_HediffTrait</workerClass>
+    <thoughtClass>Thought_Situational</thoughtClass>
 	</ThoughtDef>
 	<ThoughtDef Abstract="true" Name="MorphReactionThoughtBaseNone" ParentName="MorphReactionThoughtBase" > <!-- base thoughtDef for reactions to Morph Hediffs when the pawn has no special outlook -->
-		<nullifyingTraits>
+		<nullifyingTraits> <!-- for giving pawn that have neither traits situational thoughts -->
 			<li>MutationAffinity</li>
 			<li>BodyPurist</li>
 		</nullifyingTraits>
 	</ThoughtDef>
   <ThoughtDef ParentName="MorphReactionThoughtBase" Name="MorphReactionThoughtBaseFurry" Abstract="true"> <!-- base for all morph hediff reaction thoughts for pawns with the furry trait -->
-    <requiredTraits>
+    <requiredTraits> <!-- this is for giving furries situational thoughts -->
       <li>MutationAffinity</li>
     </requiredTraits>
   </ThoughtDef>
 
   <ThoughtDef ParentName="MorphReactionThoughtBase" Name="MorphReactionThoughtBaseBodyPurist" Abstract="true"> <!-- base for all morph hediff reaction thoughts for pawns with the body purist traits -->
-    <requiredTraits>
+    <requiredTraits> <!-- this is for giving body purists situational thoughts  -->
       <li>BodyPurist</li>
     </requiredTraits>
   </ThoughtDef>

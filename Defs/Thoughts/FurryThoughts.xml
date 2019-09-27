@@ -25,11 +25,11 @@
 		</requiredTraits>
 		<stages>
 			<li>
-				<label>TODO</label>
+				<label>TODO</label>  
 				<description>TODO</description>
 				<baseMoodEffect>4</baseMoodEffect>
 			</li>
-			<li> <!-- stage number is equal to the number of mutations the pawn has  -->
+			<li> <!-- stages are evently split between human influence [0,1] -->
 				<label>TODO</label>
 				<description>TODO</description>
 				<baseMoodEffect>7</baseMoodEffect>
