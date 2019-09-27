@@ -29,7 +29,7 @@ namespace Pawnmorph.Thoughts
             if (mutTracker == null) return false;
 
             var morphTDef = def as Def_MorphThought;
-            bool isDefault = morphTDef != null; 
+            bool isDefault = morphTDef == null; 
 
 
 
