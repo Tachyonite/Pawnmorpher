@@ -29,7 +29,7 @@ namespace Pawnmorph.HPatches
                     float offset = 0;
                     float postFix = 1;
                     float setMax = float.PositiveInfinity; 
-                    foreach (Aspect aspect in aspectTracker.Affinities)
+                    foreach (Aspect aspect in aspectTracker.Aspects)
                     {
                         if(!aspect.HasCapMods) continue;
                         foreach (PawnCapacityModifier capMod in aspect.CapMods)

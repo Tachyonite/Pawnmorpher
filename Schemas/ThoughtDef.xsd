@@ -10,7 +10,8 @@
 							<xs:element name="thoughtClass" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="workerClass" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="durationDays" type="xs:float" minOccurs="0" maxOccurs="1" />
-							<xs:element name="morph" type="xs:string" maxOccurs="1" minOccurs="0" />
+							<xs:element name="morph" type="xs:string" maxOccurs="1" minOccurs="0" /> 
+							<xs:element name="aspect" type="xs:string" maxOccurs="1" minOccurs="0" />
 							<xs:element name="hediff" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="requiredTraits" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
@@ -48,6 +49,7 @@
 	<xs:simpleType name="ThoughtDefClasses">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="Pawnmorph.Thoughts.Def_MorphThought" />
+			<xs:enumeration value="Pawnmorph.Thoughts.Def_AspectThought"/>
 		</xs:restriction>
 	</xs:simpleType>
 

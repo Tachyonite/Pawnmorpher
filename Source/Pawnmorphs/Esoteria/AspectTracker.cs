@@ -17,17 +17,17 @@ namespace Pawnmorph
     public class AspectTracker : ThingComp, IMutationEventReceiver, IRaceChangeEventReceiver
     {
         private readonly List<Aspect> _rmCache = new List<Aspect>();
-        private List<Aspect> _affinities = new List<Aspect>();
+        private List<Aspect> _aspects = new List<Aspect>();
 
         void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
-            foreach (IMutationEventReceiver affinity in _affinities.OfType<IMutationEventReceiver>())
+            foreach (IMutationEventReceiver affinity in _aspects.OfType<IMutationEventReceiver>())
                 affinity.MutationAdded(mutation, tracker);
         }
 
         void IMutationEventReceiver.MutationRemoved(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
-            foreach (IMutationEventReceiver affinity in _affinities.OfType<IMutationEventReceiver>())
+            foreach (IMutationEventReceiver affinity in _aspects.OfType<IMutationEventReceiver>())
                 affinity.MutationRemoved(mutation, tracker);
         }
 
@@ -38,30 +38,30 @@ namespace Pawnmorph
             HandleMorphChangeAffinities(oldMorph, curMorph); 
 
 
-            foreach (IRaceChangeEventReceiver raceChangeEventReceiver in _affinities.OfType<IRaceChangeEventReceiver>())
+            foreach (IRaceChangeEventReceiver raceChangeEventReceiver in _aspects.OfType<IRaceChangeEventReceiver>())
                 raceChangeEventReceiver.OnRaceChange(oldRace);
         }
 
 
-        public IEnumerable<Aspect> Affinities => _affinities;
+        public IEnumerable<Aspect> Aspects => _aspects;
 
         private Pawn Pawn => (Pawn) parent;
 
         public void Add([NotNull] Aspect aspect)
         {
-            if (_affinities.Contains(aspect))
+            if (_aspects.Contains(aspect))
             {
                 Log.Warning($"trying to add aspect {aspect.Label} to pawn more then once");
                 return;
             }
 
-            if (_affinities.Count(a => a.def == aspect.def) > 0)
+            if (_aspects.Count(a => a.def == aspect.def) > 0)
             {
                 Log.Warning($"trying to add an aspect with def {aspect.def.defName} to pawn {Pawn.Name} which already has an aspect of that def");
                 return;
             }
 
-            _affinities.Add(aspect);
+            _aspects.Add(aspect);
             aspect.Added(Pawn);
         }
 
@@ -69,7 +69,7 @@ namespace Pawnmorph
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
 
-            if (_affinities.Count(a => a.def == def) > 0)
+            if (_aspects.Count(a => a.def == def) > 0)
             {
                 Log.Warning($"trying to add an aspect with def {def.defName} to pawn {Pawn.Name} which already has an aspect of that def");
                 return;
@@ -82,13 +82,13 @@ namespace Pawnmorph
         {
             base.CompTick();
 
-            foreach (Aspect affinity in _affinities) affinity.PostTick();
+            foreach (Aspect affinity in _aspects) affinity.PostTick();
 
             if (_rmCache.Count != 0)
             {
                 foreach (Aspect affinity in _rmCache) //remove the affinities here so we don't invalidate the enumerator above 
                 {
-                    _affinities.Remove(affinity);
+                    _aspects.Remove(affinity);
                     affinity.PostRemove();
                 }
 
@@ -98,12 +98,12 @@ namespace Pawnmorph
 
         public bool Contains(Aspect aspect)
         {
-            return _affinities.Contains(aspect);
+            return _aspects.Contains(aspect);
         }
 
         public bool Contains(AspectDef aspect)
         {
-            return _affinities.Any(a => a.def == aspect);
+            return _aspects.Any(a => a.def == aspect);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Pawnmorph
         [CanBeNull]
         public Aspect GetAffinityOfDef(AspectDef def)
         {
-            return _affinities.FirstOrDefault(a => a.def == def);
+            return _aspects.FirstOrDefault(a => a.def == def);
         }
 
         public override void Initialize(CompProperties props)
@@ -126,12 +126,12 @@ namespace Pawnmorph
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Collections.Look(ref _affinities, "affinities", LookMode.Deep);
+            Scribe_Collections.Look(ref _aspects, "affinities", LookMode.Deep);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (_affinities == null) _affinities = new List<Aspect>(); 
-                foreach (Aspect affinity in _affinities)
+                if (_aspects == null) _aspects = new List<Aspect>(); 
+                foreach (Aspect affinity in _aspects)
                     affinity.Initialize();
 
             }
@@ -148,7 +148,7 @@ namespace Pawnmorph
         /// <param name="def"></param>
         public void Remove(AspectDef def)
         {
-            Aspect af = _affinities.FirstOrDefault(a => a.def == def);
+            Aspect af = _aspects.FirstOrDefault(a => a.def == def);
             if (af != null) _rmCache.Add(af);
         }
 
@@ -180,6 +180,17 @@ namespace Pawnmorph
                 IEnumerable<AspectDef> addAf = curMorph.addedAspects.Where(a => !Contains(a.def)).Select(a => a.def);
                 foreach (AspectDef affinityDef in addAf) Add(affinityDef);
             }
+        }
+
+        /// <summary>
+        /// get the aspect in this tracker of the given def, if one exists 
+        /// </summary>
+        /// <param name="aspectDef"></param>
+        /// <returns></returns>
+        [CanBeNull]
+        public Aspect GetAspect(AspectDef aspectDef)
+        {
+            return _aspects.FirstOrDefault(d => d.def == aspectDef); 
         }
     }
 }
