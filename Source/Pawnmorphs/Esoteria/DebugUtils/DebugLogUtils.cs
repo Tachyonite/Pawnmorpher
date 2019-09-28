@@ -229,7 +229,8 @@ namespace Pawnmorph.DebugUtils
             {
                 new[]
                 {
-                    "defName", "label", "description", "tfMemory", "tfTale", "furry tf reaction", " body purist tf reaction"
+                    "defName", "label", "description", "tfMemory", "tfTale", "furry tf reaction", " body purist tf reaction",
+                    "default reversion memory", "furry reversion memory", "bp reversion memory"
                 }
             };
 
@@ -249,30 +250,36 @@ namespace Pawnmorph.DebugUtils
                 string memoryDefName = memory?.defName ?? "";
                 mutationRows.Add(new[]
                 {
-                    defName.CSVFormat(), label.CSVFormat(), description.CSVFormat(), taleDefName.CSVFormat(), memoryDefName.CSVFormat()
+                    defName.CSVFormat(), label.CSVFormat(), description.CSVFormat(), taleDefName.CSVFormat(),
+                    memoryDefName.CSVFormat()
                 });
             }
 
 
             foreach (MorphDef morph in allMorphs)
             {
-                var defName = morph.defName;
-                var label = morph.label;
-                var description = morph.description;
-                var tfMemory = morph.transformSettings?.transformationMemory?.defName ?? "";
-                var tfTale = morph.transformSettings?.transformTale?.defName ?? "";
-                var furryTfReaction = allFurryReactions.FirstOrDefault(d => d.morph == morph)?.defName ?? "";
-                var bpTfReaction = allBPReactions.FirstOrDefault(d => d.morph == morph)?.defName ?? ""; 
-
-                morphRRows.Add(new []
+                string defName = morph.defName;
+                string label = morph.label;
+                string description = morph.description;
+                MorphDef.TransformSettings tfSettings = morph.transformSettings;
+                string tfMemory = tfSettings?.transformationMemory?.defName ?? "";
+                string tfTale = tfSettings?.transformTale?.defName ?? "";
+                string furryTfReaction = allFurryReactions.FirstOrDefault(d => d.morph == morph)?.defName ?? "";
+                string bpTfReaction = allBPReactions.FirstOrDefault(d => d.morph == morph)?.defName ?? "";
+                string defaultReversionMem = tfSettings?.revertedMemory?.defName ?? "";
+                string furryReversionMem = tfSettings?.revertedMemoryFurry?.defName ?? "";
+                string bpReversionMem = tfSettings?.revertedMemoryBP?.defName ?? "";
+                morphRRows.Add(new[]
                 {
-                    defName.CSVFormat(), label.CSVFormat(), description.CSVFormat(), tfMemory.CSVFormat(), tfTale.CSVFormat(), furryTfReaction.CSVFormat(), bpTfReaction.CSVFormat()
+                    defName.CSVFormat(), label.CSVFormat(), description.CSVFormat(), tfMemory.CSVFormat(), tfTale.CSVFormat(),
+                    furryTfReaction.CSVFormat(), bpTfReaction.CSVFormat(),
+                    defaultReversionMem.CSVFormat(), furryReversionMem.CSVFormat(), bpReversionMem.CSVFormat()
                 });
             }
 
 
             foreach (string[] row in mutationRows) builder.AppendLine(string.Join(",", row));
-            
+
             string dPath = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents");
             dPath = Path.Combine(dPath, "PawnmorpherReports");
             Directory.CreateDirectory(dPath);
@@ -282,14 +289,10 @@ namespace Pawnmorph.DebugUtils
             File.WriteAllText(mutationRPath, builder.ToString());
             builder.Length = 0;
 
-            foreach (string[] row in morphRRows)
-            {
-                builder.AppendLine(string.Join(",", row)); 
+            foreach (string[] row in morphRRows) builder.AppendLine(string.Join(",", row));
 
-            }
-
-            var morphRPath = Path.Combine(dPath, "morph_report.csv");
-            File.WriteAllText(morphRPath, builder.ToString()); 
+            string morphRPath = Path.Combine(dPath, "morph_report.csv");
+            File.WriteAllText(morphRPath, builder.ToString());
 
             Log.Message($"mutation reports written to {dPath}");
         }
