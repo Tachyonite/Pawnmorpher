@@ -9,9 +9,29 @@
 		<validWhileDespawned>true</validWhileDespawned>
 		<stages>
 			<li>
-				<label>TODO</label> <!-- stage number is going to be equal to the number of mutations the other pawn has  -->
+				<label>morph</label> <!-- stage number is going to be equal to the number of mutations the other pawn has  -->
+				<description>They've got a cool mutation, I like it!</description>
+				<baseOpinionOffset>2</baseOpinionOffset>
+			</li>
+			<li>
+				<label>morph</label> <!-- stage number is going to be equal to the number of mutations the other pawn has  -->
+				<description>TODO</description>
+				<baseOpinionOffset>5</baseOpinionOffset>
+			</li>
+			<li>
+				<label>morph</label> <!-- stage number is going to be equal to the number of mutations the other pawn has  -->
 				<description>TODO</description>
 				<baseOpinionOffset>10</baseOpinionOffset>
+			</li>
+			<li>
+				<label>morph</label> <!-- stage number is going to be equal to the number of mutations the other pawn has  -->
+				<description>TODO</description>
+				<baseOpinionOffset>12</baseOpinionOffset>
+			</li>
+			<li>
+				<label>morph</label> <!-- stage number is going to be equal to the number of mutations the other pawn has  -->
+				<description>TODO</description>
+				<baseOpinionOffset>15</baseOpinionOffset>
 			</li>
 		</stages>
 	</ThougthDef>

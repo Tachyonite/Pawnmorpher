@@ -8,34 +8,34 @@
 		</requiredTraits>
 		<stages>
 			<li>
-				<label>TODO</label>  
-				<description>TODO</description>
+				<label>noticable change</label>  
+				<description>Oh man, it's happening. Yes.</description>
 				<baseMoodEffect>4</baseMoodEffect>
 			</li>
 			<li> <!-- stages are evently split between human influence [0,1] -->
-				<label>TODO</label>
-				<description>TODO</description>
+				<label>neat changes</label>
+				<description>I'm already looking great...can't wait for more!</description>
 				<baseMoodEffect>7</baseMoodEffect>
 			</li>
 			<li>
-				<label>TODO</label>
-				<description>TODO</description>
-				<baseMoodEffect>9</baseMoodEffect>
+				<label>cool changes</label>
+				<description>This is so, so cool. My dream is coming true.</description>
+				<baseMoodEffect>10</baseMoodEffect>
 			</li>
 			<li>
-				<label>TODO</label>
-				<description>TODO</description>
-				<baseMoodEffect>11</baseMoodEffect>
-			</li>
-			<li>
-				<label>TODO</label>
-				<description>TODO</description>
+				<label>awesome changes</label>
+				<description>From my head to my toes, I can feel the changes all over, it's incredible!</description>
 				<baseMoodEffect>12</baseMoodEffect>
 			</li>
 			<li>
-				<label>TODO</label>
-				<description>TODO</description>
-				<baseMoodEffect>13</baseMoodEffect>
+				<label>mutated freak</label>
+				<description>I'm a beastly freak...and I love it!</description>
+				<baseMoodEffect>14</baseMoodEffect>
+			</li>
+			<li>
+				<label>animal affinity</label>
+				<description>I knew life was better on the wild side, this is the best thing ever!</description>
+				<baseMoodEffect>18</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
