@@ -64,6 +64,10 @@
 			<xs:enumeration value="PMMorphMemoryNone" />
 			<xs:enumeration value="PMMorphMemoryFurry" />
 			<xs:enumeration value="PMMorphMemoryBP" />
+			<xs:enumeration value="MorphRevertsToHumanBase"/>
+			<xs:enumeration value="MorphRevertsToHumanBaseNone"/>
+			<xs:enumeration value="MorphRevertsToHumanBaseFurry"/>
+			<xs:enumeration value="MorphRevertsToHumanBaseBP" />
 		</xs:restriction>
 	</xs:simpleType>
 

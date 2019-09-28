@@ -225,7 +225,7 @@ namespace Pawnmorph.Hybrids
                 TryTriggerMutations(pawn, morph);
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
-            if (tfSettings.transformationMemory != null) pawn.TryGainMemory(tfSettings.transformationMemory); //TODO default memory  
+            pawn.TryGainMemory(tfSettings.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
         }
 
         private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)
@@ -266,7 +266,11 @@ namespace Pawnmorph.Hybrids
             var human = ThingDefOf.Human;
             if (race == human) return; //do nothing 
 
-            var isHybrid = pawn.IsHybridRace();
+            
+            var oldMorph = pawn.def.GetMorphOfRace();
+            bool isHybrid = oldMorph != null; 
+
+
             DebugLogUtils.Assert(isHybrid, "pawn.IsHybridRace()");
             if (!isHybrid) return;
 
@@ -286,6 +290,11 @@ namespace Pawnmorph.Hybrids
 
             //Find.LetterStack.ReceiveLetter(letterLabel, letterContent, RevertToHumanLetterDef, pawn); 
 
+            MutationOutlook mutationOutlook = pawn.GetOutlook();
+            var defaultReversionThought = PMThoughtDefOf.GetDefaultMorphRevertThought(mutationOutlook); //get the correct memory to add to the pawn 
+            var morphRThought = oldMorph.transformSettings?.GetReversionMemory(mutationOutlook);
+
+            pawn.TryGainMemory(morphRThought ?? defaultReversionThought); 
             var messageStr = RACE_REVERT_MESSAGE_ID.Translate(pawn.LabelShort).CapitalizeFirst();
             Messages.Message(messageStr, pawn, MessageTypeDefOf.NeutralEvent); 
 

@@ -187,6 +187,35 @@ namespace Pawnmorph
             [CanBeNull] public string transformationMessageID;
             [CanBeNull] public MessageTypeDef messageDef;
             [CanBeNull] public ThoughtDef transformationMemory; //memory added when a pawn shifts to this morph 
+            /// <summary>
+            /// memory added when the pawn reverts from this morph back to human 
+            /// </summary>
+            [CanBeNull] public ThoughtDef revertedMemory;
+
+            [CanBeNull] public ThoughtDef revertedMemoryFurry;
+            [CanBeNull] public ThoughtDef revertedMemoryBP;
+
+
+            /// <summary>
+            /// get the correct memory for when a pawn that was a morph race reverts to being human again 
+            /// </summary>
+            /// <param name="outlook">the mutation outlook of the pawn </param>
+            /// <returns></returns>
+            public ThoughtDef GetReversionMemory(MutationOutlook outlook)
+            {
+                switch (outlook)
+                {
+                    case MutationOutlook.Neutral:
+                        return revertedMemory;
+                    case MutationOutlook.Furry:
+                        return revertedMemoryFurry;
+                    case MutationOutlook.BodyPurist:
+                        return revertedMemoryBP;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(outlook), outlook, null);
+                }
+            }
+
         }
 
         public class AddedAspect

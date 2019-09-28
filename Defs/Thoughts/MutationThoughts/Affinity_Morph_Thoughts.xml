@@ -5,30 +5,32 @@
         <defName>WolfmorphProgressionThought</defName> <!-- this is a situational thought -->
         <morph>WolfMorph</morph> <!--this should always be active for pawns who's highest influence is the WolfMorph and who has the furry trait  -->
         <stages>
-                <li>
-                    <label>TODO</label>
-                    <description>TODO</description>
-                    <baseMoodEffect>1</baseMoodEffect> <!--- stages are always going to be evenly split between a human influence between 0,1 -->
-                </li>
-                <li>
-                    <label>TODO</label>
-                    <description>TODO</description>
-                    <baseMoodEffect>1</baseMoodEffect> <!-- you can have as many stages as you want for as granular thoughts as you want -->
-                </li>
-                <li>
-                    <label>TODO</label>
-                    <description>TODO</description>
-                    <baseMoodEffect>1</baseMoodEffect>
-                <li>
-                    <label>TODO</label>
-                    <description>TODO</description>
-                    <baseMoodEffect>1</baseMoodEffect>
-                <li>
-                    <label>TODO</label>
-                    <description>TODO</description>
-                    <baseMoodEffect>1</baseMoodEffect>
-                </li>
-            </stages>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <baseMoodEffect>1</baseMoodEffect> <!--- stages are always going to be evenly split between a human influence between 0,1 -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <baseMoodEffect>1</baseMoodEffect> <!-- you can have as many stages as you want for as granular thoughts as you want -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+        </stages>
     </ThoughtDef>
 
 

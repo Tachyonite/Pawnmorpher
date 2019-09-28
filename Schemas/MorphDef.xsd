@@ -166,8 +166,11 @@
 		<xs:sequence>
 			<xs:element name="transformationTale" type="xs:string" minOccurs="0" maxOccurs="1" />
 			<xs:element name="transformationMessageID" type="xs:string" minOccurs="0" maxOccurs="1" />
-			<xs:element name="transformationMemory" type="xs:string" minOccurs="0" maxOccurs="1" />
 			<xs:element name="messageDef" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="transformationMemory" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="revertedMemory" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="revertedMemoryFurry" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="revertedMemoryBP" type="xs:string" minOccurs="0" maxOccurs="1"/> 
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TraitSettings">

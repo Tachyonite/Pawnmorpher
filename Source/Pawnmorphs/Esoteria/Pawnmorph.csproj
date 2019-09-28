@@ -144,6 +144,7 @@
     <Compile Include="PMIncidentDefOf.cs" />
     <Compile Include="PMJobDefOf.cs" />
     <Compile Include="PMThingDefOf.cs" />
+    <Compile Include="PMThoughtDefOf.cs" />
     <Compile Include="PMTraitDefOf.cs" />
     <Compile Include="PMUtilities.cs" />
     <Compile Include="Projectile_EtherBullet.cs" />
