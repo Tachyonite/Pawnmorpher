@@ -29,6 +29,17 @@ namespace Pawnmorph
             }
         }
 
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (string configError in base.ConfigErrors())
+            {
+                yield return configError;
+            }
+
+            if (stages == null) yield return "no stages"; 
+        }
+
+
         /// <summary>
         /// get the affinity def with the given defName
         /// </summary>

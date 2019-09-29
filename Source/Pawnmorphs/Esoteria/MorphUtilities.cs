@@ -28,6 +28,13 @@ namespace Pawnmorph
 
         public const float HUMAN_CHANGE_FACTOR = 0.65f;
 
+        /// <summary>
+        /// enumerable collection of all mutation hediffs 
+        /// </summary>
+        public static IEnumerable<HediffDef> AllMutations => DefDatabase<HediffDef>.AllDefs
+                                                                                   .Where(d => typeof(Hediff_AddedMutation)
+                                                                                             .IsAssignableFrom(d.hediffClass));
+
         static MorphUtilities() //this is really hacky 
         {
             IEnumerable<HediffDef> defs = MorphTransformationDefOf.AllMorphs; 

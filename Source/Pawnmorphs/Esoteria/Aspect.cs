@@ -1,6 +1,7 @@
 ﻿// Aspect.cs created by Iron Wolf for Pawnmorph on 09/23/2019 8:07 AM
 // last updated 09/23/2019  12:39 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Utilities;
@@ -24,6 +25,8 @@ namespace Pawnmorph
 
         private bool _shouldRemove;
         private bool _wasStarted;
+
+        public Color LabelColor => CurrentStage.labelColor ?? def.labelColor; 
 
         private Dictionary<SkillDef, float> _addedSkillsActualAmount;
         private Dictionary<SkillDef, Passion> _originalPassions;
@@ -171,6 +174,34 @@ namespace Pawnmorph
         /// </summary>
         public virtual void PostTick()
         {
+            if(CurrentStage.mentalStateGivers != null && Pawn.IsHashIntervalTick(60) && !Pawn.InMentalState)
+                DoMentalStateChecks();
+
+        }
+
+        private const string MENTAL_BREAK_TRANSLATION_LABEL = "MentalStateReason_Aspect";
+
+        private void DoMentalStateChecks()
+        {
+            RandUtilities.PushState();
+            try
+            {
+                var mentalStateHandler = Pawn.mindState.mentalStateHandler; 
+                // ReSharper disable once PossibleNullReferenceException
+                foreach (MentalStateGiver giver in CurrentStage.mentalStateGivers)
+                {
+                    if (Rand.MTBEventOccurs(giver.mtbDays, 60000f, 60))
+                    {
+                        if (mentalStateHandler.TryStartMentalState(giver.mentalState,
+                                                                   MENTAL_BREAK_TRANSLATION_LABEL.Translate(Label)))
+                            return; //only give one mental state 
+                    }
+                }
+            }
+            finally
+            {
+                RandUtilities.PopState(); //whatever happens we need to pop the rand state
+            }
         }
 
         /// <summary>

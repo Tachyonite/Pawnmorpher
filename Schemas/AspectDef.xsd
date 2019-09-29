@@ -5,7 +5,7 @@
     <xs:element name="Defs">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="AspectDef" type="AspectDef" minOccurs="1" maxOccurs="unbounded" />
+                <xs:element name="Pawnmorph.AspectDef" type="AspectDef" minOccurs="1" maxOccurs="unbounded" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -32,9 +32,11 @@
 
     <xs:complexType name="AspectStage">
         <xs:sequence>
-            <xs:element name="label" minOccurs="0" maxOccurs="1" />
-            <xs:element name="modifier" minOccurs="0" maxOccurs="1" />
-            <xs:element name="description" minOccurs="0" maxOccurs="1" />
+            <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="modifier" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="labelColor" type="Color" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="mentalBreakMtbDays" minOccurs="0" maxOccurs="1" />
             <xs:element name="capMods" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
@@ -52,7 +54,14 @@
             <xs:element name="statOffsets" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="li" type="StatModifier" minOccurs="1" maxOccurs="unbounded" />
+                        <xs:any minOccurs="1" maxOccurs="unbounded" processContents="lax"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="mentalStateGivers" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="MentalStateGiver" minOccurs="1" maxOccurs="unbounded"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -77,10 +86,11 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="StatModifier">
+
+    <xs:complexType name="MentalStateGiver">
         <xs:sequence>
-            <xs:element name="stat" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="value" type="xs:float" minOccurs="1" maxOccurs="1" />
+            <xs:element name="mentalState" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="mtbDays" type="xs:float" minOccurs="1" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
 

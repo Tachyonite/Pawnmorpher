@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -17,10 +18,14 @@ namespace Pawnmorph
         public string label;
         public string modifier; //will be added to the label in parentheses
         public string description; //if null or empty the aspect will use the def's description 
+        public float mentalBreakMtbDays;
+        public Color? labelColor; //override for the label color 
 
         [CanBeNull] public List<PawnCapacityModifier> capMods;
         [CanBeNull] public List<SkillMod> skillMods;
-        [CanBeNull] public List<StatModifier> statOffsets; 
+        [CanBeNull] public List<StatModifier> statOffsets;
+        [CanBeNull] public List<MentalStateGiver> mentalStateGivers; 
+
     }
 
     public class AspectCapacityImpactor : PawnCapacityUtility.CapacityImpactor
