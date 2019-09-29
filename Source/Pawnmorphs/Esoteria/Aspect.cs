@@ -3,6 +3,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Pawnmorph.Utilities;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -16,7 +18,7 @@ namespace Pawnmorph
     {
         public AspectDef def;
 
-        private int _stage;
+        private int _stage  = -1;
 
         private Pawn _pawn;
 
@@ -41,8 +43,9 @@ namespace Pawnmorph
                 var st = Mathf.Clamp(value, 0, Stages.Count - 1);
                 if (_stage != st)
                 {
+                    var last = _stage; 
                     _stage = st;
-                    StageChanged(_stage);
+                    StageChanged(last); 
                 }
             }
         }
@@ -89,7 +92,8 @@ namespace Pawnmorph
         ///     called after this affinity is added to the pawn
         /// </summary>
         /// <param name="pawn"></param>
-        public void Added(Pawn pawn)
+        /// <param name="startStage"></param>
+        public void Added(Pawn pawn, int startStage=0)
         {
             _pawn = pawn;
             if (!_wasStarted)
@@ -99,7 +103,9 @@ namespace Pawnmorph
             }
 
             PostAdd();
+            StageIndex = startStage;
         }
+
 
         /// <summary>
         ///     called during startup to initialize all affinities
@@ -135,6 +141,9 @@ namespace Pawnmorph
         /// </summary>
         public virtual void PostRemove()
         {
+            
+
+
         }
 
         /// <summary>
@@ -167,11 +176,16 @@ namespace Pawnmorph
         {
         }
 
+
+        
+
         /// <summary>
         ///     called after this instance is added to the pawn
         /// </summary>
         protected virtual void PostAdd()
         {
+            
+            
         }
 
 
@@ -184,6 +198,62 @@ namespace Pawnmorph
 
         protected virtual void PostStageChanged(int lastStage)
         {
+            if (lastStage >= 0)
+                UndoEffectsOfStage(def.stages[lastStage]);
+
+            CalculateSkillChanges();
+        }
+
+        private void CalculateSkillChanges()
+        {
+            IEnumerable<SkillMod> skillMods = CurrentStage.skillMods ?? Enumerable.Empty<SkillMod>();
+            Pawn_SkillTracker skills = Pawn.skills;
+
+            _addedSkillsActualAmount = new Dictionary<SkillDef, float>();
+            _originalPassions = new Dictionary<SkillDef, Passion>();
+
+            foreach (SkillMod skillMod in skillMods)
+            {
+                SkillRecord skR = skills.GetSkill(skillMod.skillDef);
+                var oldPassion = skR.passion;
+                _originalPassions[skR.def] = oldPassion;
+                var oldXp = skR.XpTotalEarned; //store the original total xp 
+
+                skR.passion = skillMod.GetNewPassion(skR.passion);
+
+                skR.Learn(skillMod.addedXp, true);
+
+                var dXp = skR.XpTotalEarned - oldXp; //now get the delta value 
+                _addedSkillsActualAmount[skR.def] = dXp;
+
+            }
+        }
+
+        private Dictionary<SkillDef, float> _addedSkillsActualAmount;
+        private Dictionary<SkillDef, Passion> _originalPassions; 
+
+        private void UndoEffectsOfStage(AspectStage lastStage)
+        {
+            var addedSkills = _addedSkillsActualAmount ?? Enumerable.Empty<KeyValuePair<SkillDef, float>>();
+            var skillPassions =  _originalPassions ?? Enumerable.Empty<KeyValuePair<SkillDef, Passion>>();
+
+            var skills = Pawn.skills; 
+            
+            foreach (KeyValuePair<SkillDef, Passion> skillPassion in skillPassions) //undo passions first 
+            {
+                var skR = skills.GetSkill(skillPassion.Key);
+                skR.passion = skillPassion.Value;
+            }
+
+
+            foreach (KeyValuePair<SkillDef, float> keyValuePair in addedSkills) //now undo the added exp 
+            {
+                var sk = keyValuePair.Key;
+                var v = keyValuePair.Value;
+                var skR = skills.GetSkill(sk);
+                skR.Learn(-v, true); 
+            }
+
         }
 
         /// <summary>
@@ -205,6 +275,8 @@ namespace Pawnmorph
             Scribe_Values.Look(ref _shouldRemove, nameof(ShouldRemove));
             Scribe_Defs.Look(ref def, nameof(def));
             Scribe_Values.Look(ref _stage, nameof(StageIndex));
+            Scribe_Collections.Look(ref _addedSkillsActualAmount, nameof(_addedSkillsActualAmount), LookMode.Def, LookMode.Value);
+            Scribe_Collections.Look(ref _originalPassions, nameof(_originalPassions), LookMode.Def, LookMode.Value); 
             ExposeData();
         }
     }

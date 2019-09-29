@@ -3,12 +3,13 @@
 
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
 {
     /// <summary>
-    /// class representing a single stage of a mutation 'aspect'
+    ///     class representing a single stage of a mutation 'aspect'
     /// </summary>
     public class AspectStage
     {
@@ -16,26 +17,24 @@ namespace Pawnmorph
         public string modifier; //will be added to the label in parentheses
         public string description; //if null or empty the aspect will use the def's description 
 
-        [CanBeNull] public List<PawnCapacityModifier> capMods; 
-
-        
-
+        [CanBeNull] public List<PawnCapacityModifier> capMods;
+        [CanBeNull] public List<SkillMod> skillMods;
     }
 
     public class AspectCapacityImpactor : PawnCapacityUtility.CapacityImpactor
     {
-        public Aspect Aspect { get; }
-
         public AspectCapacityImpactor(Aspect aspect)
         {
             Aspect = aspect;
         }
 
+        public Aspect Aspect { get; }
+
+        public override bool IsDirect => false;
+
         public override string Readable(Pawn pawn)
         {
             return Aspect.Label;
         }
-
-        public override bool IsDirect => false; 
     }
 }
