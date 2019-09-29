@@ -62,6 +62,7 @@
     <Compile Include="AspectDef.cs" />
     <Compile Include="AspectDefOf.cs" />
     <Compile Include="AspectStage.cs" />
+    <Compile Include="Aspects\MorphGroupAspect.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
     <Compile Include="BuildingDefOf.cs" />

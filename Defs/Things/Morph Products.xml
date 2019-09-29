@@ -18,7 +18,7 @@
 			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
 		</ingestible>
 		<statBases>
-			<MarketValue>15</MarketValue>
+			<MarketValue>7</MarketValue>
 			<Mass>0.045</Mass>
 			<Flammability>0.2</Flammability>
 			<Nutrition>0.05</Nutrition>
