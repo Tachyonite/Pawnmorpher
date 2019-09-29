@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -19,6 +20,7 @@ namespace Pawnmorph
 
         [CanBeNull] public List<PawnCapacityModifier> capMods;
         [CanBeNull] public List<SkillMod> skillMods;
+        [CanBeNull] public List<StatModifier> statOffsets; 
     }
 
     public class AspectCapacityImpactor : PawnCapacityUtility.CapacityImpactor

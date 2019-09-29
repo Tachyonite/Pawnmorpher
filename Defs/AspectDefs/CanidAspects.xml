@@ -1,0 +1,28 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd"> 
+    <AspectDef Abstract="true" Name="CanidAspect">
+        <labelColor>(240,239,235)</labelColor>
+    </AspectDef>
+
+    <AspectDef ParentName="CanidAspect">
+        <defName>NaturalHunter</defName>
+        <label>natural hunter</label>
+        <description>{PAWN_nameDef} is now a natural hunter</description>
+        <stages>
+            <li>
+                <skillMods>
+                    <li>
+                        <skillDef>Animals</skillDef>
+                        <addedXp>500</addedXp>
+                        <passionOffset>1</passionOffset>
+                    </li>
+                </skillMods>
+                <statOffsets>
+                    <li>
+                        <stat>HuntingStealth</stat>
+                        <value>3</value>
+                    </li>
+                </statOffsets>
+            </li>
+        </stages>
+    </AspectDef>
+</Defs>

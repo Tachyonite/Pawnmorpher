@@ -18,19 +18,31 @@ namespace Pawnmorph
     {
         public AspectDef def;
 
-        private int _stage  = -1;
+        private int _stage = -1;
 
         private Pawn _pawn;
 
         private bool _shouldRemove;
         private bool _wasStarted;
 
-        protected List<AspectStage> Stages => def.stages;
+        private Dictionary<SkillDef, float> _addedSkillsActualAmount;
+        private Dictionary<SkillDef, Passion> _originalPassions;
+
+        void IExposable.ExposeData()
+        {
+            Scribe_References.Look(ref _pawn, nameof(Pawn));
+            Scribe_Values.Look(ref _shouldRemove, nameof(ShouldRemove));
+            Scribe_Defs.Look(ref def, nameof(def));
+            Scribe_Values.Look(ref _stage, nameof(StageIndex));
+            Scribe_Collections.Look(ref _addedSkillsActualAmount, nameof(_addedSkillsActualAmount), LookMode.Def, LookMode.Value);
+            Scribe_Collections.Look(ref _originalPassions, nameof(_originalPassions), LookMode.Def, LookMode.Value);
+            ExposeData();
+        }
 
 
         public IEnumerable<PawnCapacityModifier> CapMods => CurrentStage.capMods ?? Enumerable.Empty<PawnCapacityModifier>();
 
-        public bool HasCapMods => CurrentStage.capMods != null && CurrentStage.capMods.Count != 0;  
+        public bool HasCapMods => CurrentStage.capMods != null && CurrentStage.capMods.Count != 0;
 
         /// <summary>
         ///     the current stage index
@@ -40,12 +52,12 @@ namespace Pawnmorph
             get => _stage;
             set
             {
-                var st = Mathf.Clamp(value, 0, Stages.Count - 1);
+                int st = Mathf.Clamp(value, 0, Stages.Count - 1);
                 if (_stage != st)
                 {
-                    var last = _stage; 
+                    int last = _stage;
                     _stage = st;
-                    StageChanged(last); 
+                    StageChanged(last);
                 }
             }
         }
@@ -60,7 +72,7 @@ namespace Pawnmorph
         {
             get
             {
-                var lBase = string.IsNullOrEmpty(CurrentStage.label) ? def.label : CurrentStage.label;
+                string lBase = string.IsNullOrEmpty(CurrentStage.label) ? def.label : CurrentStage.label;
                 if (!string.IsNullOrEmpty(CurrentStage.modifier)) lBase = $"{lBase} ({CurrentStage.modifier})";
 
                 return lBase;
@@ -87,13 +99,15 @@ namespace Pawnmorph
             protected set => _shouldRemove = value;
         }
 
+        protected List<AspectStage> Stages => def.stages;
+
 
         /// <summary>
         ///     called after this affinity is added to the pawn
         /// </summary>
         /// <param name="pawn"></param>
         /// <param name="startStage"></param>
-        public void Added(Pawn pawn, int startStage=0)
+        public void Added(Pawn pawn, int startStage = 0)
         {
             _pawn = pawn;
             if (!_wasStarted)
@@ -141,9 +155,7 @@ namespace Pawnmorph
         /// </summary>
         public virtual void PostRemove()
         {
-            
-
-
+            if (CurrentStage != null) UndoEffectsOfStage(CurrentStage);
         }
 
         /// <summary>
@@ -177,15 +189,11 @@ namespace Pawnmorph
         }
 
 
-        
-
         /// <summary>
         ///     called after this instance is added to the pawn
         /// </summary>
         protected virtual void PostAdd()
         {
-            
-            
         }
 
 
@@ -204,6 +212,23 @@ namespace Pawnmorph
             CalculateSkillChanges();
         }
 
+        
+        public IEnumerable<StatModifier> StatOffsets => CurrentStage?.statOffsets ?? Enumerable.Empty<StatModifier>();
+
+
+
+        /// <summary>
+        ///     called once during the startup of this instance, either after initialization or after being added to the pawn
+        /// </summary>
+        protected virtual void Start()
+        {
+        }
+
+        protected virtual void UndoEffectsOfStage(AspectStage lastStage)
+        {
+            UndoSkillChanges();
+        }
+
         private void CalculateSkillChanges()
         {
             IEnumerable<SkillMod> skillMods = CurrentStage.skillMods ?? Enumerable.Empty<SkillMod>();
@@ -215,52 +240,17 @@ namespace Pawnmorph
             foreach (SkillMod skillMod in skillMods)
             {
                 SkillRecord skR = skills.GetSkill(skillMod.skillDef);
-                var oldPassion = skR.passion;
+                Passion oldPassion = skR.passion;
                 _originalPassions[skR.def] = oldPassion;
-                var oldXp = skR.XpTotalEarned; //store the original total xp 
+                float oldXp = skR.XpTotalEarned; //store the original total xp 
 
                 skR.passion = skillMod.GetNewPassion(skR.passion);
 
                 skR.Learn(skillMod.addedXp, true);
 
-                var dXp = skR.XpTotalEarned - oldXp; //now get the delta value 
+                float dXp = skR.XpTotalEarned - oldXp; //now get the delta value 
                 _addedSkillsActualAmount[skR.def] = dXp;
-
             }
-        }
-
-        private Dictionary<SkillDef, float> _addedSkillsActualAmount;
-        private Dictionary<SkillDef, Passion> _originalPassions; 
-
-        private void UndoEffectsOfStage(AspectStage lastStage)
-        {
-            var addedSkills = _addedSkillsActualAmount ?? Enumerable.Empty<KeyValuePair<SkillDef, float>>();
-            var skillPassions =  _originalPassions ?? Enumerable.Empty<KeyValuePair<SkillDef, Passion>>();
-
-            var skills = Pawn.skills; 
-            
-            foreach (KeyValuePair<SkillDef, Passion> skillPassion in skillPassions) //undo passions first 
-            {
-                var skR = skills.GetSkill(skillPassion.Key);
-                skR.passion = skillPassion.Value;
-            }
-
-
-            foreach (KeyValuePair<SkillDef, float> keyValuePair in addedSkills) //now undo the added exp 
-            {
-                var sk = keyValuePair.Key;
-                var v = keyValuePair.Value;
-                var skR = skills.GetSkill(sk);
-                skR.Learn(-v, true); 
-            }
-
-        }
-
-        /// <summary>
-        ///     called once during the startup of this instance, either after initialization or after being added to the pawn
-        /// </summary>
-        protected virtual void Start()
-        {
         }
 
         private void StageChanged(int lastStage)
@@ -269,15 +259,30 @@ namespace Pawnmorph
             //TODO
         }
 
-        void IExposable.ExposeData()
+
+        private void UndoSkillChanges()
         {
-            Scribe_References.Look(ref _pawn, nameof(Pawn));
-            Scribe_Values.Look(ref _shouldRemove, nameof(ShouldRemove));
-            Scribe_Defs.Look(ref def, nameof(def));
-            Scribe_Values.Look(ref _stage, nameof(StageIndex));
-            Scribe_Collections.Look(ref _addedSkillsActualAmount, nameof(_addedSkillsActualAmount), LookMode.Def, LookMode.Value);
-            Scribe_Collections.Look(ref _originalPassions, nameof(_originalPassions), LookMode.Def, LookMode.Value); 
-            ExposeData();
+            IEnumerable<KeyValuePair<SkillDef, float>> addedSkills =
+                _addedSkillsActualAmount ?? Enumerable.Empty<KeyValuePair<SkillDef, float>>();
+            IEnumerable<KeyValuePair<SkillDef, Passion>> skillPassions =
+                _originalPassions ?? Enumerable.Empty<KeyValuePair<SkillDef, Passion>>();
+
+            Pawn_SkillTracker skills = Pawn.skills;
+
+            foreach (KeyValuePair<SkillDef, Passion> skillPassion in skillPassions) //undo passions first 
+            {
+                SkillRecord skR = skills.GetSkill(skillPassion.Key);
+                skR.passion = skillPassion.Value;
+            }
+
+
+            foreach (KeyValuePair<SkillDef, float> keyValuePair in addedSkills) //now undo the added exp 
+            {
+                SkillDef sk = keyValuePair.Key;
+                float v = keyValuePair.Value;
+                SkillRecord skR = skills.GetSkill(sk);
+                skR.Learn(-v, true);
+            }
         }
     }
 }
