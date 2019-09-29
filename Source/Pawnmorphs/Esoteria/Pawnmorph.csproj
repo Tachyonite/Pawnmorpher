@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Aspect.cs" />
     <Compile Include="AspectDef.cs" />
+    <Compile Include="AspectDefOf.cs" />
     <Compile Include="AspectStage.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />

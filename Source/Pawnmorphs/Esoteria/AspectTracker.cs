@@ -47,7 +47,12 @@ namespace Pawnmorph
 
         private Pawn Pawn => (Pawn) parent;
 
-        public void Add([NotNull] Aspect aspect)
+        /// <summary>
+        /// add the aspect to this pawn  at the given stage 
+        /// </summary>
+        /// <param name="aspect"></param>
+        /// <param name="startStage"></param>
+        public void Add([NotNull] Aspect aspect, int startStage=0)
         {
             if (_aspects.Contains(aspect))
             {
@@ -62,10 +67,15 @@ namespace Pawnmorph
             }
 
             _aspects.Add(aspect);
-            aspect.Added(Pawn);
+            aspect.Added(Pawn, startStage); 
         }
 
-        public void Add([NotNull] AspectDef def)
+        /// <summary>
+        /// add the given aspect to this pawn at the specified stage index 
+        /// </summary>
+        /// <param name="def"></param>
+        /// <param name="startStage"></param>
+        public void Add([NotNull] AspectDef def, int startStage=0)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
 
@@ -75,7 +85,7 @@ namespace Pawnmorph
                 return;
             }
 
-            Add(def.CreateInstance());
+            Add(def.CreateInstance(), startStage);
         }
 
         public override void CompTick()
@@ -106,17 +116,7 @@ namespace Pawnmorph
             return _aspects.Any(a => a.def == aspect);
         }
 
-        /// <summary>
-        ///     get the first aspect with the given def
-        /// </summary>
-        /// <param name="def"></param>
-        /// <returns>the aspect with the given def, null if one isn't found </returns>
-        [CanBeNull]
-        public Aspect GetAffinityOfDef(AspectDef def)
-        {
-            return _aspects.FirstOrDefault(a => a.def == def);
-        }
-
+       
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -171,8 +171,8 @@ namespace Pawnmorph
             if (lastMorph != null)
             {
                 IEnumerable<Aspect> rmAffinities = lastMorph.addedAspects.Where(ShouldRemove)
-                                                              .Select(a => GetAffinityOfDef(a.def)); //select the instances from the _affinity list  
-                _rmCache.AddRange(rmAffinities);
+                                                              .Select(a => GetAspect(a.def)); //select the instances from the _affinity list  
+                _rmCache.AddRange(rmAffinities.Where(a => a != null)); 
             }
 
             if (curMorph != null)

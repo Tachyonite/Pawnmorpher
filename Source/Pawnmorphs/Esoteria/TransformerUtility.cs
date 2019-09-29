@@ -416,6 +416,14 @@ namespace Pawnmorph
         /// <returns></returns>
         public static EtherState GetEtherState([NotNull] this Pawn pawn)
         {
+            var etherAspect = pawn.GetAspectTracker()?.GetAspect(AspectDefOf.EtherState);
+
+            if (etherAspect != null)
+            {
+                return etherAspect.StageIndex == 0 ? EtherState.Broken : EtherState.Bond; 
+            }
+
+
             HediffSet hediffs = pawn.health.hediffSet;
             if (hediffs.HasHediff(HediffDef.Named(ETHER_BOND_DEF_NAME)))
             {

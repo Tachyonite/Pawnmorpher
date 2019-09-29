@@ -13,10 +13,15 @@
 				<li>
 					<compClass>Pawnmorph.GraphicSys.GraphicsUpdaterComp</compClass>
 				</li>
-				<li> 
-					<compClass>Pawnmorph.AspectTracker</compClass>
-				</li>
 			</comps>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>Pawnmorph.AspectTracker</compClass>
+			</li>
 		</value>
 	</Operation>
 </Patch>

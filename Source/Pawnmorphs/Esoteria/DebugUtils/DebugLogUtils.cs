@@ -102,6 +102,29 @@ namespace Pawnmorph.DebugUtils
                 Log.Message("no inconsistencies found");
         }
 
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        [ModeRestrictionPlay]
+        public static void ShowColonyAspectInfo()
+        {
+            IEnumerable<Pawn> allCPawns = PawnsFinder.AllMaps_FreeColonists;
+            var builder = new StringBuilder();
+            foreach (Pawn pawn in allCPawns)
+            {
+                AspectTracker aspectTracker = pawn.GetAspectTracker();
+                if (aspectTracker == null) continue;
+
+                builder.AppendLine(pawn.Name.ToStringFull);
+                foreach (Aspect aspect in aspectTracker.Aspects)
+                {
+                    builder.AppendLine($"\t{aspect.Label}: [{aspect.def.defName}:{aspect.StageIndex}]");
+                    if (!string.IsNullOrEmpty(aspect.Description)) builder.AppendLine($"\t{aspect.Description}");
+                }
+            }
+
+            Log.Message(builder.ToString());
+        }
+
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
