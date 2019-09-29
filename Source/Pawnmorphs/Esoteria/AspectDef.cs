@@ -14,7 +14,7 @@ namespace Pawnmorph
     /// </summary>
     public class AspectDef : Def
     {
-        public Type affinityType;
+        public Type aspectType;
         public List<AspectStage> stages = new List<AspectStage>();
 
         public Color labelColor = Color.white; 
@@ -22,10 +22,10 @@ namespace Pawnmorph
         public override void ResolveReferences()
         {
             base.ResolveReferences();
-            affinityType = affinityType ?? typeof(Aspect);
-            if (!typeof(Aspect).IsAssignableFrom(affinityType))
+            aspectType = aspectType ?? typeof(Aspect);
+            if (!typeof(Aspect).IsAssignableFrom(aspectType))
             {
-                Log.Error($"in {defName}: affinityType {affinityType.Name} can not be converted to type {nameof(Aspect)}");
+                Log.Error($"in {defName}: affinityType {aspectType.Name} can not be converted to type {nameof(Aspect)}");
             }
         }
 
@@ -41,7 +41,7 @@ namespace Pawnmorph
 
         public Aspect CreateInstance()
         {
-            var affinity = (Aspect) Activator.CreateInstance(affinityType);
+            var affinity = (Aspect) Activator.CreateInstance(aspectType);
             affinity.def = this;
             return affinity; 
         }
