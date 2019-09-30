@@ -16,8 +16,8 @@
 		<rulePack>
 			<rulesStrings>
 				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
-				<li>circumstance_phrase->as people look on in horror</li>
-				<li>circumstance_phrase->as people laugh nearby</li>
+				<li>circumstance_group->as people look on in horror</li>
+				<li>circumstance_group->as people laugh nearby</li>
 				<li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about it.</li>
 			</rulesStrings>
 		</rulePack>
@@ -31,7 +31,7 @@
 				<li>tale_noun->[PAWN_nameDef] face becoming a muzzle</li>
 				<li>image->[PAWN_nameFull] feeling [PAWN_possessive] face [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
-				<li>circumstance_phrase->as [PAWN_possessive] face pushes out into a muzzle</li>
+				<li>circumstance_group->as [PAWN_possessive] face pushes out into a muzzle</li>
 				<li>desc_sentence->[PAWN_pronoun] looks terrified at the change.</li>
 				<li>desc_sentence->[PAWN_pronoun] examines their new animal like face.</li>
 			</rulesStrings>
@@ -72,7 +72,7 @@
 				<li>tale_noun->[PAWN_nameDef]'s face becoming like that of a cat</li>
 				<li>image->[PAWN_nameFull] yells turn into yowls [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] nose begins turning pink [circumstance_group]</li>
-				<li>circumstance_phrase->while someone plays with [PAWN_pronoun] whiskers</li>
+				<li>circumstance_group->while someone plays with [PAWN_pronoun] whiskers</li>
 				<li>desc_sentence->[PAWN_pronoun] begins purring contently.</li>
 				<li>desc_sentence->[PAWN_pronoun] begins hissing angrily.</li>
 				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows.</li>
@@ -88,8 +88,8 @@
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef]'s ears changing</li>
 				<li>image->[PAWN_nameFull] examines [PAWN_possessive] ears [circumstance_group] </li>
-				<li>circumstance_phrase->as [PAWN_possessive] ears twitch</li>
-				<li>circumstance_phrase->while someone touches [PAWN_possessive] ears</li>
+				<li>circumstance_group->as [PAWN_possessive] ears twitch</li>
+				<li>circumstance_group->while someone touches [PAWN_possessive] ears</li>
 				<li>desc_sentence->[PAWN_pronoun] is playing with them.</li>
 				<li>desc_sentence->[PAWN_pronoun] new ears twitch.</li>
 			</rulesStrings>
@@ -111,8 +111,8 @@
 				<li>tale_noun->[PAWN_nameDef] growing dog ears</li>
 				<li>tale_noun->[PAWN_nameDef]'s ears changing to those of a canine</li>
 				<li>image->[PAWN_nameFull] looks distracted by the sounds coming [circumstance_group]</li>
-				<li>circumstance_phrase->[PAWN_possessive] canine ears lie flat in fear</li>
-				<li>circumstance_phrase->[PAWN_possessive] canine ears pricked up </li>
+				<li>circumstance_group->[PAWN_possessive] canine ears lie flat in fear</li>
+				<li>circumstance_group->[PAWN_possessive] canine ears pricked up </li>
 				<li>desc_sentence->[PAWN_pronoun] is distracted by their improved hearing.</li>
 			</rulesStrings>
 		</rulePack>
@@ -128,7 +128,7 @@
 				<li>tale_noun->[PAWN_nameDef] growing cat ears</li>
 				<li>image->[PAWN_nameFull] ears begin turning toward loud noises [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] seems distracted by the loud noises [circumstance_group]</li>
-				<li>circumstance_phrase->while someone tries to scratch [PAWN_possessive] ears</li>
+				<li>circumstance_group->while someone tries to scratch [PAWN_possessive] ears</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
@@ -159,8 +159,8 @@
 				<li>tale_noun->[PAWN_nameDef]'s thumbs shrinking and becoming dewclaws </li>
 				<li>tale_noun->[PAWN_nameDef]'s hands becoming paws</li>
 				<li>image->[PAWN_nameFull] tries to grasp something [circumstance_group]</li>
-				<li>circumstance_phrase->while someone pats [PAWN_possessive] paws</li>
-				<li>circumstance_phrase->while someone rubs [PAWN_possessive] paw pads</li>
+				<li>circumstance_group->while someone pats [PAWN_possessive] paws</li>
+				<li>circumstance_group->while someone rubs [PAWN_possessive] paw pads</li>
 				<li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] thumbs.</li>
 			</rulesStrings>
 		</rulePack>
@@ -187,8 +187,8 @@
 		<rulePack>
 			<rulesStrings>
 				<li>image->[PAWN_nameFull]'s feet begin to change [circumstance_group]</li>
-				<li>circumstance_phrase->as someone watches [PAWN_possessive] feet change</li>
-				<li>circumstance_phrase->while people stare at [PAWN_possessive] feet change</li>
+				<li>circumstance_group->as someone watches [PAWN_possessive] feet change</li>
+				<li>circumstance_group->while people stare at [PAWN_possessive] feet change</li>
 				<li>desc_sentence->[PAWN_pronoun] tests [PAWN_possessive] new feet.</li>
 			</rulesStrings>
 		</rulePack>
@@ -256,9 +256,9 @@
 				<li>image->[PAWN_nameFull] examining [PAWN_possessive] rear [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] looking behind [PAWN_possessive]self [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
-				<li>circumstance_phrase->as people look on in horror</li>
-				<li>circumstance_phrase->as people laugh nearby</li>
-				<li>circumstance_phrase->as people pull at [PAWN_possessive] new tail</li>
+				<li>circumstance_group->as people look on in horror</li>
+				<li>circumstance_group->as people laugh nearby</li>
+				<li>circumstance_group->as people pull at [PAWN_possessive] new tail</li>
 				<li>desc_sentence->[PAWN_pronoun] seems totally unaware of what is around [PAWN_objective].</li>
 				<li>desc_sentence->[PAWN_pronoun] looks terrified at the new addition.</li>
 				<li>desc_sentence->[PAWN_pronoun] is confused at what it's doing there.</li>
@@ -295,8 +295,8 @@
 				<li>tale_noun->[PAWN_nameDef]'s limb becoming furred</li>
 				<li>image->the hair on [PAWN_nameFull]'s body begins to thicken into fur [circumstance_group]</li>
 				<li>image->[PAWN_nameFull]'s hair thickens into animal fur [circumstance_group]</li>
-				<li>circumstance_phrase->while someone feels [PAWN_possessive] fur</li>
-				<li>circumstance_phrase->as someone nearby begins to brush [PAWN_possessive] fur</li>
+				<li>circumstance_group->while someone feels [PAWN_possessive] fur</li>
+				<li>circumstance_group->as someone nearby begins to brush [PAWN_possessive] fur</li>
 				<li>desc_sentence->[PAWN_pronoun] seems uncomfortable in [PAWN_possessive] new fur coat.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] new fur coat.</li>
 			</rulesStrings>
@@ -312,7 +312,7 @@
 				<li>tale_noun->[PAWN_nameDef] growing thick hide</li>
 				<li>image->[PAWN_nameFull]'s skin begins to thicken [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] begins to scratch [PAWN_possessive] skin as it thickens into had [circumstance_group]</li>
-				<li>circumstance_phrase->while someone touches [PAWN_pronoun] hide</li>
+				<li>circumstance_group->while someone touches [PAWN_pronoun] hide</li>
 				<li>desc_sentence->[PAWN_pronoun] seems displeased with [PAWN_pronoun] new hide.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems to like [PAWN_pronoun] thick hide.</li>
 			</rulesStrings>

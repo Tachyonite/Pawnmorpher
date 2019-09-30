@@ -17,12 +17,12 @@
 			<li>image->[PAWN_nameFull] crouching next to a fire [circumstance_group]</li>
 			<li>image->[PAWN_nameFull] trying to light a fire [circumstance_group]</li>
 			<li>image->[PAWN_nameFull] mindlessly removing [PAWN_possessive] clothes [circumstance_group]</li>
-			<li>circumstance_phrase->and sweating uncontrollably as fur seems to spread</li>
-			<li>circumstance_phrase->and shivering uncontrollably while feathers grow in</li>
-			<li>circumstance_phrase->while both sweating and shivering, seeing their body reshape</li>
-			<li>circumstance_phrase->with a face pressing out</li>
-			<li>circumstance_phrase->while vomiting</li>
-			<li>circumstance_phrase->with a visible tail</li>
+			<li>circumstance_group->and sweating uncontrollably as fur seems to spread</li>
+			<li>circumstance_group->and shivering uncontrollably while feathers grow in</li>
+			<li>circumstance_group->while both sweating and shivering, seeing their body reshape</li>
+			<li>circumstance_group->with a face pressing out</li>
+			<li>circumstance_group->while vomiting</li>
+			<li>circumstance_group->with a visible tail</li>
 			<li>desc_sentence->A [Animal] looks very interested.</li>
 			<li>desc_sentence->[PAWN_nameDef]'s clothes are strewn around [PAWN_pronoun].</li>
 			<li>desc_sentence->The sky is a murky [Color].</li>
