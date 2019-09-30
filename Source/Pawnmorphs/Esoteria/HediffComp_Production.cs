@@ -15,8 +15,6 @@ namespace Pawnmorph
         public int HatchingTicker = 0;
         private float brokenChance = 0f;
         private float bondChance = 0f;
-        
-
 
         public HediffCompProperties_Production Props => (HediffCompProperties_Production) props;
 

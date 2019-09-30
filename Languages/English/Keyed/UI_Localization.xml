@@ -3,4 +3,6 @@
 	<MorphsITabHeader>Morphs</MorphsITabHeader>
 	<TraitsITabHeader>Traits</TraitsITabHeader>
 	<ProductionITabHeader>Production</ProductionITabHeader>
+	<MutationLogButtonText>Log</MutationLogButtonText>
+	<MutationLogHeader>Mutation Log</MutationLogHeader>
 </LanguageData>
