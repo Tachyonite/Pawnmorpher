@@ -102,14 +102,31 @@ namespace Pawnmorph
             // Draw the first column.
             DrawMorphInfluenceList(ref col1, viewRect.width / 3);
 
-            // Test code to test scrolling. Outputs numbers 1-20 to the second column.
-            for (int i = 0; i < 20; i++)
+
+
+            var aspectTracker = PawnToShowMutationsFor.GetAspectTracker();
+
+            if (aspectTracker != null)
             {
-                string text = (i + 1).ToString();
-                float rectHeight = Text.CalcHeight(text, viewRect.width / 3);
-                Widgets.Label(new Rect(col2.x, col2.y, viewRect.width / 3, rectHeight), text);
-                col2.y += rectHeight;
+                foreach (Aspect aspect in aspectTracker.Aspects)
+                {
+                    var label = aspect.Label;
+                    float rectHeight = Text.CalcHeight(label, viewRect.width / 3);
+                    
+                    Widgets.Label(new Rect(col2.x, col2.y, viewRect.width / 3, rectHeight),label ); //TODO set color 
+                    col2.y += rectHeight; 
+                }
             }
+
+
+            //// Test code to test scrolling. Outputs numbers 1-20 to the second column.
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    string text = (i + 1).ToString();
+            //    float rectHeight = Text.CalcHeight(text, viewRect.width / 3);
+            //    Widgets.Label(new Rect(col2.x, col2.y, viewRect.width / 3, rectHeight), text);
+            //    col2.y += rectHeight;
+            //}
 
             // Draw the third column.
             DrawMorphProductionList(ref col3, viewRect.width / 3);

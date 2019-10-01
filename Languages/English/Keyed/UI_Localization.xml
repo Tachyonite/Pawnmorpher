@@ -1,7 +1,7 @@
 <LanguageData>
 	<TabMutations>Mutations</TabMutations>
 	<MorphsITabHeader>Morphs</MorphsITabHeader>
-	<TraitsITabHeader>Traits</TraitsITabHeader>
+	<TraitsITabHeader>Aspects</TraitsITabHeader>
 	<ProductionITabHeader>Production</ProductionITabHeader>
 	<MutationLogButtonText>Log</MutationLogButtonText>
 	<MutationLogHeader>Mutation Log</MutationLogHeader>
