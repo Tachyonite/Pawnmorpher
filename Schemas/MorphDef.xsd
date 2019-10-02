@@ -5,16 +5,16 @@
 	<xs:element name="Defs">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="Pawnmorph.MorphDef">
+				<xs:element name="Pawnmorph.MorphDef" minOccurs="1" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="defName" type="xs:string" />
-							<xs:element name="label" type="xs:string" />
+							<xs:element name="defName" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+							<xs:element name="label" type="xs:string"  minOccurs="0" maxOccurs="1"/>
 							<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
-							<xs:element name="race" type="xs:string" />
+							<xs:element name="race" type="xs:string" minOccurs="0" maxOccurs="1"/>
 							<xs:element name="explicitHybridRace" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="group" type="MorphGroups" minOccurs="0" maxOccurs="1" />
-							<xs:element name="categories">
+							<xs:element name="categories" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element maxOccurs="unbounded" name="li" type="MorphCategory" />
@@ -26,7 +26,7 @@
 									<xs:sequence>
 										<xs:element name="statModifiers" type="StatModifiersList" minOccurs="0" maxOccurs="1" />
 										<xs:element name="thoughtSettings" type="HybridThoughtSettings" maxOccurs="1" minOccurs="0" />
-										<xs:element name="graphicsSettings">
+										<xs:element name="graphicsSettings" minOccurs="0" maxOccurs="1">
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element name="skinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
@@ -43,7 +43,7 @@
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="transformSettings" type="TransformationSettings" minOccurs="0" maxOccurs="1" />
-							<xs:element name="addedAffinities" minOccurs="0" maxOccurs="1">
+							<xs:element name="addedAspects" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="li" type="AddedAspect" minOccurs="1" maxOccurs="unbounded" />
@@ -51,7 +51,9 @@
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
-						<xs:attribute name="ParentName" type="xs:string" use="required" />
+						<xs:attribute name="ParentName" type="xs:string" use="optional" />
+						<xs:attribute name="Name" type="xs:string" use="optional"/>
+						<xs:attribute name="Abstract" type="xs:boolean" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
@@ -136,10 +138,10 @@
 	</xs:complexType>
 	<xs:complexType name="AteThought">
 		<xs:sequence>
-			<xs:element name="thought" type="xs:string" />
-			<xs:element name="thoughtCannibal" type="xs:string" />
-			<xs:element name="ingredientThought" type="xs:string" />
-			<xs:element name="ingredientThoughtCannibal" type="xs:string" />
+			<xs:element name="thought" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="thoughtCannibal" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="ingredientThought" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="ingredientThoughtCannibal" type="xs:string" minOccurs="0" maxOccurs="1" />
 			<xs:element name="raceList" minOccurs="0" maxOccurs="1">
 				<xs:complexType>
 					<xs:sequence>
