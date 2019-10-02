@@ -16,7 +16,6 @@ namespace Pawnmorph
     {
         public Type aspectType;
         public List<AspectStage> stages = new List<AspectStage>();
-
         public Color labelColor = Color.white; 
 
         public override void ResolveReferences()
@@ -39,7 +38,6 @@ namespace Pawnmorph
             if (stages == null) yield return "no stages"; 
         }
 
-
         /// <summary>
         /// get the affinity def with the given defName
         /// </summary>
@@ -56,6 +54,5 @@ namespace Pawnmorph
             affinity.def = this;
             return affinity; 
         }
-        
     }
 }

@@ -12,9 +12,6 @@ namespace Pawnmorph
     [DefOf]
     public static class AspectDefOf
     {
-
-
-
         [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static AspectDef EtherState;
 
@@ -22,6 +19,5 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(AspectDef));
         }
-
     }
 }

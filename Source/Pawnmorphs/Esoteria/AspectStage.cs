@@ -24,8 +24,8 @@ namespace Pawnmorph
         [CanBeNull] public List<PawnCapacityModifier> capMods;
         [CanBeNull] public List<SkillMod> skillMods;
         [CanBeNull] public List<StatModifier> statOffsets;
-        [CanBeNull] public List<MentalStateGiver> mentalStateGivers; 
-
+        [CanBeNull] public List<StatModifier> statFactors;
+        [CanBeNull] public List<MentalStateGiver> mentalStateGivers;
     }
 
     public class AspectCapacityImpactor : PawnCapacityUtility.CapacityImpactor

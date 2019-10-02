@@ -2,6 +2,7 @@
 // last updated 09/23/2019  12:39 PM
 
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Utilities;
@@ -42,7 +43,6 @@ namespace Pawnmorph
             ExposeData();
         }
 
-
         public IEnumerable<PawnCapacityModifier> CapMods => CurrentStage.capMods ?? Enumerable.Empty<PawnCapacityModifier>();
 
         public bool HasCapMods => CurrentStage.capMods != null && CurrentStage.capMods.Count != 0;
@@ -69,7 +69,6 @@ namespace Pawnmorph
         ///     the current stage
         /// </summary>
         public AspectStage CurrentStage => Stages[StageIndex];
-
 
         public string Label
         {
@@ -104,7 +103,6 @@ namespace Pawnmorph
 
         protected List<AspectStage> Stages => def.stages;
 
-
         /// <summary>
         ///     called after this affinity is added to the pawn
         /// </summary>
@@ -123,7 +121,6 @@ namespace Pawnmorph
             StageIndex = startStage;
         }
 
-
         /// <summary>
         ///     called during startup to initialize all affinities
         /// </summary>
@@ -136,7 +133,6 @@ namespace Pawnmorph
                 Start();
             }
         }
-
 
         /// <summary>
         ///     called after the pawn is despawned
@@ -176,7 +172,6 @@ namespace Pawnmorph
         {
             if(CurrentStage.mentalStateGivers != null && Pawn.IsHashIntervalTick(60) && !Pawn.InMentalState)
                 DoMentalStateChecks();
-
         }
 
         private const string MENTAL_BREAK_TRANSLATION_LABEL = "MentalStateReason_Aspect";
@@ -246,13 +241,12 @@ namespace Pawnmorph
         
         public IEnumerable<StatModifier> StatOffsets => CurrentStage?.statOffsets ?? Enumerable.Empty<StatModifier>();
 
-
-
         /// <summary>
         ///     called once during the startup of this instance, either after initialization or after being added to the pawn
         /// </summary>
         protected virtual void Start()
         {
+
         }
 
         protected virtual void UndoEffectsOfStage(AspectStage lastStage)
@@ -290,7 +284,6 @@ namespace Pawnmorph
             //TODO
         }
 
-
         private void UndoSkillChanges()
         {
             IEnumerable<KeyValuePair<SkillDef, float>> addedSkills =
@@ -314,6 +307,109 @@ namespace Pawnmorph
                 SkillRecord skR = skills.GetSkill(sk);
                 skR.Learn(-v, true);
             }
+        }
+
+        public string TipString(Pawn pawn)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            AspectStage currentStage = CurrentStage;
+            stringBuilder.Append(def.description.Formatted(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN"));
+            int count = CurrentStage.skillMods.Count;
+            if (count > 0)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine();
+            }
+            int num = 0;
+            foreach (SkillMod skillMod in CurrentStage.skillMods)
+            {
+                if (skillMod.addedXp != 0)
+                {
+                    string value = "    " + skillMod.skillDef.skillLabel.CapitalizeFirst() + ": " + skillMod.addedXp.ToString("+##;-##") + " XP";
+                    if (num < count - 1)
+                    {
+                        stringBuilder.AppendLine(value);
+                    }
+                    else
+                    {
+                        stringBuilder.Append(value);
+                    }
+                    num++;
+                }
+            }
+            if (GetPermaThoughts().Any<ThoughtDef>())
+            {
+                stringBuilder.AppendLine();
+                foreach (ThoughtDef thoughtDef in GetPermaThoughts())
+                {
+                    stringBuilder.AppendLine();
+                    stringBuilder.Append("    " + "PermanentMoodEffect".Translate() + " " + thoughtDef.stages[0].baseMoodEffect.ToStringByStyle(ToStringStyle.Integer, ToStringNumberSense.Offset));
+                }
+            }
+            if (currentStage.statOffsets != null)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine();
+                for (int i = 0; i < currentStage.statOffsets.Count; i++)
+                {
+                    StatModifier statModifier = currentStage.statOffsets[i];
+                    string valueToStringAsOffset = statModifier.ValueToStringAsOffset;
+                    string value2 = "    " + statModifier.stat.LabelCap + " " + valueToStringAsOffset;
+                    if (i < currentStage.statOffsets.Count - 1)
+                    {
+                        stringBuilder.AppendLine(value2);
+                    }
+                    else
+                    {
+                        stringBuilder.Append(value2);
+                    }
+                }
+            }
+            if (currentStage.statFactors != null)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine();
+                for (int j = 0; j < currentStage.statFactors.Count; j++)
+                {
+                    StatModifier statModifier2 = currentStage.statFactors[j];
+                    string toStringAsFactor = statModifier2.ToStringAsFactor;
+                    string value3 = "    " + statModifier2.stat.LabelCap + " " + toStringAsFactor;
+                    if (j < currentStage.statFactors.Count - 1)
+                    {
+                        stringBuilder.AppendLine(value3);
+                    }
+                    else
+                    {
+                        stringBuilder.Append(value3);
+                    }
+                }
+            }
+            return stringBuilder.ToString();
+        }
+
+        private IEnumerable<ThoughtDef> GetPermaThoughts()
+        {
+            AspectStage degree = CurrentStage;
+            List<ThoughtDef> allThoughts = DefDatabase<ThoughtDef>.AllDefsListForReading;
+            for (int i = 0; i < allThoughts.Count; i++)
+            {
+                // To-Do
+
+                //if (allThoughts[i].IsSituational)
+                //{
+                //    if (allThoughts[i].Worker is ThoughtWorker_AlwaysActive)
+                //    {
+                //        if (allThoughts[i].requiredTraits != null && allThoughts[i].requiredTraits.Contains(def))
+                //        {
+                //            if (!allThoughts[i].RequiresSpecificTraitsDegree || allThoughts[i].requiredTraitsDegree == degree.degree)
+                //            {
+                //                yield return allThoughts[i];
+                //            }
+                //        }
+                //    }
+                //}
+            }
+            yield break;
         }
     }
 }

@@ -215,10 +215,20 @@ namespace Pawnmorph
                 foreach (Aspect aspect in aspectTracker.Aspects)
                 {
                     var label = aspect.Label.CapitalizeFirst();
-                    float rectHeight = Text.CalcHeight(label, width);
+                    Rect rect = new Rect(curPos.x, curPos.y, width, Text.CalcHeight(label, width));
 
-                    Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), label); //TODO set color 
-                    curPos.y += rectHeight;
+                    if (Mouse.IsOver(rect))
+                    {
+                        Widgets.DrawHighlight(rect);
+                    }
+
+                    GUI.color = aspect.def.labelColor;
+                    Widgets.Label(rect, label);
+                    curPos.y += rect.height;
+                    GUI.color = Color.white;
+
+                    TipSignal tip = new TipSignal(() => aspect.TipString(PawnToShowMutationsFor), (int)curPos.y * 37);
+                    TooltipHandler.TipRegion(rect, tip);
                 }
             }
         }
