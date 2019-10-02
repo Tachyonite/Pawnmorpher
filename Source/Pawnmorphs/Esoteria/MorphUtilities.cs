@@ -46,23 +46,28 @@ namespace Pawnmorph
         /// <returns></returns>
         public static IEnumerable<HediffGiver_Mutation> GetMutationGivers(BodyPartDef partDef)
         {
-            if (_giversPerPartCache.TryGetValue(partDef, out var mutations)) return mutations;
+            if (_giversPerPartCache.TryGetValue(partDef, out List<HediffGiver_Mutation> mutations)) return mutations;
 
-            mutations = DefDatabase<HediffDef>.AllDefs.Where(h => typeof(Hediff_Morph).IsAssignableFrom(h.hediffClass)) //grab only morph hediffs 
-                                              .SelectMany(h => h.GetAllHediffGivers()
-                                                                .OfType<HediffGiver_Mutation>() //grab only mutation givers 
-                                                                .Where(g => g.partsToAffect?.Contains(partDef) ?? //select the givers that can affecet the given part 
-                                                                            false)
-                                                                .GroupBy(g => g.hediff) //grab only 1 giver per hediff 
-                                                                .First())
-                                              .ToList(); //convert to list to save for later 
+            IEnumerable<HediffGiver_Mutation> SelectGivers(HediffDef def)
+            {
+                IGrouping<HediffDef, HediffGiver_Mutation> givers = def.GetAllHediffGivers()
+                                                                       .OfType<HediffGiver_Mutation>()
+                                                                       .Where(g => g.partsToAffect?.Contains(partDef)
+                                                                                ?? //select the givers that can affecet the given part 
+                                                                                   false)
+                                                                       .GroupBy(g => g.hediff) //grab only 1 giver per hediff 
+                                                                       .FirstOrDefault();
+                return givers ?? Enumerable.Empty<HediffGiver_Mutation>();
+            }
+
+            mutations = DefDatabase<HediffDef>
+                       .AllDefs.Where(h => typeof(Hediff_Morph).IsAssignableFrom(h.hediffClass)) //grab only morph hediffs 
+                       .SelectMany(SelectGivers)
+                       .ToList(); //convert to list to save for later 
             _giversPerPartCache[partDef] = mutations; //save the result so we only have to look this info up once 
-            return mutations; 
+            return mutations;
         }
-
-
-
-
+        
         static MorphUtilities() //this is really hacky 
         {
             IEnumerable<HediffDef> defs = MorphTransformationDefOf.AllMorphs; 

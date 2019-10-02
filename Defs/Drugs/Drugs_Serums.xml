@@ -166,4 +166,35 @@
 			</li>
 		</comps>
 	</ThingDef>
+
+	<ThingDef ParentName="MechSerumBase">
+		<defName>MechSerumMutagenicHealer</defName>
+		<label>mutagenic healer mech serum</label>
+		<description>A one-use super-dose of mechanites tuned to heal health conditions. The mechanites will target and heal the single worst health condition affecting someone at any given time. Works even on health conditions that would otherwise be incurable. The mechanites can even transmute themselves into organic matter, forming new limbs or organs as needed.</description>
+		<graphicData>
+		  <texPath>Things/Item/Special/MechSerumHealer</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stackLimit>10</stackLimit>
+		<statBases>
+		  <MarketValue>1300</MarketValue>
+		</statBases>
+		<tradeability>Sellable</tradeability>
+		<comps>
+		  <li Class="CompProperties_Usable">
+			<useJob>UseItem</useJob>
+			<useLabel>Use healer mech serum</useLabel>
+			<useDuration>600</useDuration>
+		  </li>
+		  <li Class="CompProperties_UseEffect">
+			<compClass>Pawnmorph.Comp_MutagenicFixWorstCondition</compClass>
+		  </li>
+		  <li Class="CompProperties_UseEffect">
+			<compClass>CompUseEffect_DestroySelf</compClass>
+		  </li>
+		</comps>
+		<thingSetMakerTags>
+		  <li>RewardSpecial</li>
+		</thingSetMakerTags>
+	  </ThingDef>
 </Defs>

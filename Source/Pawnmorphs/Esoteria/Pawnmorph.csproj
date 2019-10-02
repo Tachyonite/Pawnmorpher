@@ -73,6 +73,7 @@
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompProperties_EtherExplosive.cs" />
+    <Compile Include="Comp_MutagenicFixWorstCondition.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
