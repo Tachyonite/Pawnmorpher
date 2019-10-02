@@ -90,45 +90,18 @@ namespace Pawnmorph
             Rect viewRect = new Rect(col1.x, col1.y, mainView.width - 16f, mainScrollViewHeight - col1.y);
             Widgets.BeginScrollView(outRect, ref mainScrollPosition, viewRect, true);
 
-            // Set up referance variables for the other two columns current y position.
+            // Set up referance variables for the other two column's current xy position.
             Vector2 col2 = new Vector2(viewRect.width / 3, col1.y);
             Vector2 col3 = new Vector2(viewRect.width / 3 * 2, col2.y);
 
-            // Draw the headers for all three colums (labels are provided by the xml).
+            // Draw the headers for all three columns (labels are provided by the xml).
             DrawColumnHeader(ref col1, viewRect.width / 3, "MorphsITabHeader".Translate());
             DrawColumnHeader(ref col2, viewRect.width / 3, "TraitsITabHeader".Translate());
             DrawColumnHeader(ref col3, viewRect.width / 3, "ProductionITabHeader".Translate());
 
-            // Draw the first column.
+            // Draw the content of the columns.
             DrawMorphInfluenceList(ref col1, viewRect.width / 3);
-
-
-
-            var aspectTracker = PawnToShowMutationsFor.GetAspectTracker();
-
-            if (aspectTracker != null)
-            {
-                foreach (Aspect aspect in aspectTracker.Aspects)
-                {
-                    var label = aspect.Label;
-                    float rectHeight = Text.CalcHeight(label, viewRect.width / 3);
-                    
-                    Widgets.Label(new Rect(col2.x, col2.y, viewRect.width / 3, rectHeight),label ); //TODO set color 
-                    col2.y += rectHeight; 
-                }
-            }
-
-
-            //// Test code to test scrolling. Outputs numbers 1-20 to the second column.
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    string text = (i + 1).ToString();
-            //    float rectHeight = Text.CalcHeight(text, viewRect.width / 3);
-            //    Widgets.Label(new Rect(col2.x, col2.y, viewRect.width / 3, rectHeight), text);
-            //    col2.y += rectHeight;
-            //}
-
-            // Draw the third column.
+            DrawMorphTraitsList(ref col2, viewRect.width / 3);
             DrawMorphProductionList(ref col3, viewRect.width / 3);
 
             // Set the scroll view height
@@ -230,6 +203,23 @@ namespace Pawnmorph
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
                 curPos.y += rectHeight;
                 GUI.color = Color.white;
+            }
+        }
+
+        private void DrawMorphTraitsList(ref Vector2 curPos, float width)
+        {
+            var aspectTracker = PawnToShowMutationsFor.GetAspectTracker();
+
+            if (aspectTracker != null)
+            {
+                foreach (Aspect aspect in aspectTracker.Aspects)
+                {
+                    var label = aspect.Label.CapitalizeFirst();
+                    float rectHeight = Text.CalcHeight(label, width);
+
+                    Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), label); //TODO set color 
+                    curPos.y += rectHeight;
+                }
             }
         }
 

@@ -9,7 +9,6 @@ namespace Pawnmorph
 {
     public static class AspectUtils
     {
-        
         [CanBeNull]
         public static AspectTracker GetAspectTracker([NotNull] this Pawn pawn)
         {
