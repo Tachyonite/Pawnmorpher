@@ -326,6 +326,10 @@ namespace Pawnmorph
                 if (skillMod.addedXp != 0)
                 {
                     string value = "    " + skillMod.skillDef.skillLabel.CapitalizeFirst() + ": " + skillMod.addedXp.ToString("+##;-##") + " XP";
+                    if (skillMod.passionOffset != 0)
+                    {
+                        value += ", " + skillMod.passionOffset.ToString("+##;-##") + " " + "Passion".Translate();
+                    }
                     if (num < count - 1)
                     {
                         stringBuilder.AppendLine(value);
