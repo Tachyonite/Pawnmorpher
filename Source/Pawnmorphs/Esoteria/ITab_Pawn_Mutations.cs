@@ -93,16 +93,17 @@ namespace Pawnmorph
             // Set up referance variables for the other two column's current xy position.
             Vector2 col2 = new Vector2(viewRect.width / 3, col1.y);
             Vector2 col3 = new Vector2(viewRect.width / 3 * 2, col2.y);
+            float colWidth = viewRect.width / 3 - 10f;
 
             // Draw the headers for all three columns (labels are provided by the xml).
-            DrawColumnHeader(ref col1, viewRect.width / 3, "MorphsITabHeader".Translate());
-            DrawColumnHeader(ref col2, viewRect.width / 3, "TraitsITabHeader".Translate());
-            DrawColumnHeader(ref col3, viewRect.width / 3, "ProductionITabHeader".Translate());
+            DrawColumnHeader(ref col1, colWidth, "MorphsITabHeader".Translate());
+            DrawColumnHeader(ref col2, colWidth, "TraitsITabHeader".Translate());
+            DrawColumnHeader(ref col3, colWidth, "ProductionITabHeader".Translate());
 
             // Draw the content of the columns.
-            DrawMorphInfluenceList(ref col1, viewRect.width / 3);
-            DrawMorphTraitsList(ref col2, viewRect.width / 3);
-            DrawMorphProductionList(ref col3, viewRect.width / 3);
+            DrawMorphInfluenceList(ref col1, colWidth);
+            DrawMorphTraitsList(ref col2, colWidth);
+            DrawMorphProductionList(ref col3, colWidth);
 
             // Set the scroll view height
             if (Event.current.type == EventType.Layout)
