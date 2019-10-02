@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -34,6 +35,33 @@ namespace Pawnmorph
         public static IEnumerable<HediffDef> AllMutations => DefDatabase<HediffDef>.AllDefs
                                                                                    .Where(d => typeof(Hediff_AddedMutation)
                                                                                              .IsAssignableFrom(d.hediffClass));
+
+        private static Dictionary<BodyPartDef, List<HediffGiver_Mutation>> _giversPerPartCache =
+            new Dictionary<BodyPartDef, List<HediffGiver_Mutation>>(); 
+        
+        /// <summary>
+        /// get an enumerable collection of mutation givers that can affect the given part 
+        /// </summary>
+        /// <param name="partDef"></param>
+        /// <returns></returns>
+        public static IEnumerable<HediffGiver_Mutation> GetMutationGivers(BodyPartDef partDef)
+        {
+            if (_giversPerPartCache.TryGetValue(partDef, out var mutations)) return mutations;
+
+            mutations = DefDatabase<HediffDef>.AllDefs.Where(h => typeof(Hediff_Morph).IsAssignableFrom(h.hediffClass)) //grab only morph hediffs 
+                                              .SelectMany(h => h.GetAllHediffGivers()
+                                                                .OfType<HediffGiver_Mutation>() //grab only mutation givers 
+                                                                .Where(g => g.partsToAffect?.Contains(partDef) ?? //select the givers that can affecet the given part 
+                                                                            false)
+                                                                .GroupBy(g => g.hediff) //grab only 1 giver per hediff 
+                                                                .First())
+                                              .ToList(); //convert to list to save for later 
+            _giversPerPartCache[partDef] = mutations; //save the result so we only have to look this info up once 
+            return mutations; 
+        }
+
+
+
 
         static MorphUtilities() //this is really hacky 
         {
