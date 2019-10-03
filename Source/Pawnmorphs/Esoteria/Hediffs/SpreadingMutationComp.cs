@@ -16,11 +16,18 @@ namespace Pawnmorph.Hediffs
     {
         private bool _finishedSearching;
 
+        private const int RECHECK_PART_PERIOD = 1000;
+        private int _doneTick = 0; 
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
 
-            if (_finishedSearching) return;
+            if (_finishedSearching)
+            {
+                if (Find.TickManager.TicksGame - _doneTick > RECHECK_PART_PERIOD)
+                    _finishedSearching = false; 
+                return;
+            }
 
             if (!Rand.MTBEventOccurs(Props.mtb, 60000f, 30f)) return;
 
@@ -29,7 +36,7 @@ namespace Pawnmorph.Hediffs
             if (TryInfectPart(parent.Part)) return; //try infecting upward
 
             _finishedSearching = true; //searched all available parts, don't bother looking anymore 
-
+            _doneTick = Find.TickManager.TicksGame;
         }
 
 
@@ -67,6 +74,7 @@ namespace Pawnmorph.Hediffs
         /// <returns>true if a part could be successfully infected </returns>
         bool TryInfectPart(BodyPartRecord record, bool upward = true, int depth = 0)
         {
+            if (!CanTraverse(record)) return false; //make sure not to traverse over missing body parts 
             if (CanInfect(record))
             {
                 var hediff = HediffMaker.MakeHediff(Def, Pawn, record);
@@ -105,6 +113,11 @@ namespace Pawnmorph.Hediffs
         }
 
 
+        bool CanTraverse(BodyPartRecord record)
+        {
+            return !Pawn.health.hediffSet.PartIsMissing(record);
+        }
+
         bool IsSkinPart(BodyPartRecord record)
         {
             return record?.def?.IsSkinCovered(record, Pawn.health.hediffSet) ?? false;
@@ -114,15 +127,13 @@ namespace Pawnmorph.Hediffs
 
         bool CanInfect(BodyPartRecord record)
         {
+            if (Pawn.health.hediffSet.PartIsMissing(record)) return false; //don't infect missing parts 
             if (!IsSkinPart(record)) return false; 
 
             if (!MorphUtilities.AllMutableRecords.Contains(record))
             {
-
                 return false;
             }
-
-
             return !Pawn.health.hediffSet.hediffs.Any(h => h.Part == record && IsBlocker(h)); //only true if the part does not already have a part on it 
         }
 
@@ -131,6 +142,7 @@ namespace Pawnmorph.Hediffs
         {
             base.CompExposeData();
             Scribe_Values.Look(ref _finishedSearching, nameof(_finishedSearching)); 
+            Scribe_Values.Look(ref _doneTick, nameof(_doneTick));
         }
     }
 
