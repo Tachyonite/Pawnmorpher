@@ -286,10 +286,19 @@ namespace Pawnmorph
             Widgets.BeginScrollView(outRect, ref logScrollPosition, viewRect, true);
 
             // A bit of test code to show something long enough to scroll in the log.
-            DrawMutLogEntry(ref curPos, viewRect.width, "A really long line so that yap can see if the code can handle multiple lines.");
-            for (int i = 0; i < 20; i++)
+            //DrawMutLogEntry(ref curPos, viewRect.width, "A really long line so that yap can see if the code can handle multiple lines.");
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    DrawMutLogEntry(ref curPos, viewRect.width, (i + 1).ToString());
+            //}
+
+            // Test code to figure out how the logging utility works.
+            List<ITab_Pawn_Log_Utility.LogLineDisplayable> cachedLogDisplay = ITab_Pawn_Log_Utility.GenerateLogLinesFor(PawnToShowMutationsFor, true, false, true).ToList<ITab_Pawn_Log_Utility.LogLineDisplayable>();
+            foreach (ITab_Pawn_Log_Utility.LogLineDisplayable line in cachedLogDisplay)
             {
-                DrawMutLogEntry(ref curPos, viewRect.width, (i + 1).ToString());
+                StringBuilder stringBuilder = new StringBuilder();
+                line.AppendTo(stringBuilder);
+                DrawMutLogEntry(ref curPos, viewRect.width, stringBuilder.ToString());
             }
 
             // Set the scroll view height
