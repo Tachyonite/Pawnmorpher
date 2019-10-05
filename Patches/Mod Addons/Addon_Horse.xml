@@ -69,7 +69,7 @@
 						<!--Full Morph-->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTF</defName>
-							<label>horseMorph</label>
+							<label>horsemorph</label>
 							<stages>
 								<li>
 									<label>reeling</label>
@@ -198,7 +198,7 @@
 						<!--Partial Morph-->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTFPartial</defName>
-							<label>horseMorph partial</label>
+							<label>horsemorph partial</label>
 							<stages>
 								<li>
 									<painOffset>0.1</painOffset>
