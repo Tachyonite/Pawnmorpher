@@ -13,17 +13,9 @@
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_BoostSeverity">
-					<hediffFilter>
-						<filterList>
-							<li>EtherChemfuelUdder</li>
-							<li>EtherEggLayer</li>
-							<li>EtherUdder</li>
-							<li>EtherWooly</li>
-							<li>EtherMegawoolly</li>
-						</filterList>
-					</hediffFilter>
-					<severityToAdd>0.33</severityToAdd>
+				<li Class="Pawnmorph.IngestionOutcomeDooer_AddAspect">
+					<aspectDef>Productive</aspectDef>
+					<increaseStage>true</increaseStage>
 				</li>
 			</outcomeDoers>
 		</ingestible>

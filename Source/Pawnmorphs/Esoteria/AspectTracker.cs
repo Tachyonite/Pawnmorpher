@@ -2,6 +2,7 @@
 // last updated 09/22/2019  11:25 AM
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -14,7 +15,7 @@ namespace Pawnmorph
     /// <summary>
     ///     thing comp for tracking 'mutation aspects'
     /// </summary>
-    public class AspectTracker : ThingComp, IMutationEventReceiver, IRaceChangeEventReceiver
+    public class AspectTracker : ThingComp, IMutationEventReceiver, IRaceChangeEventReceiver, IEnumerable<Aspect>
     {
         private readonly List<Aspect> _rmCache = new List<Aspect>();
         private List<Aspect> _aspects = new List<Aspect>();
@@ -191,6 +192,20 @@ namespace Pawnmorph
         public Aspect GetAspect(AspectDef aspectDef)
         {
             return _aspects.FirstOrDefault(d => d.def == aspectDef); 
+        }
+
+        /// <summary>Returns an enumerator that iterates through the collection.</summary>
+        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
+        public IEnumerator<Aspect> GetEnumerator()
+        {
+            return _aspects.GetEnumerator();
+        }
+
+        /// <summary>Returns an enumerator that iterates through a collection.</summary>
+        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable) _aspects).GetEnumerator();
         }
     }
 }

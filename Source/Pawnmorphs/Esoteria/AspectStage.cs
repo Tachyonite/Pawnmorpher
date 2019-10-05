@@ -26,7 +26,22 @@ namespace Pawnmorph
         [CanBeNull] public List<StatModifier> statOffsets;
         [CanBeNull] public List<StatModifier> statFactors;
         [CanBeNull] public List<MentalStateGiver> mentalStateGivers;
+        [CanBeNull] public List<ProductionBoost> productionBoosts;
+
+        
     }
+
+    public class ProductionBoost
+    {
+        public Filter<HediffDef> hediffFilter = new Filter<HediffDef>();
+        public float productionBoost; //is a increase/decrease in production Hediff's severity
+
+        public float GetBoost(HediffDef hediff)
+        {
+            return hediffFilter.PassesFilter(hediff) ? productionBoost : 0; 
+        }
+    }
+
 
     public class AspectCapacityImpactor : PawnCapacityUtility.CapacityImpactor
     {

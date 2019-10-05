@@ -4,11 +4,42 @@
     </Pawnmorph.AspectDef>
 
     <Pawnmorph.AspectDef ParentName="ProductionAspect">
-        <defName>ProductiveBliss</defName>
-        <label>Productive Bliss</label>
+        <defName>Productive</defName>
+        <label>productive</label>
         <stages>
-            <li></li>
+            <li>
+                <productionBoosts>
+                    <li>
+                        <productionBoost>0.25</productionBoost>
+                        <hediffFilter>
+                            <isBlackList>true</isBlackList>
+                        </hediffFilter>
+                    </li>
+                </productionBoosts>
+            </li>
+            <li>
+                <productionBoosts>
+                    <li>
+                        <productionBoost>0.5</productionBoost>
+                        <hediffFilter>
+                            <isBlackList>true</isBlackList>
+                        </hediffFilter>
+                    </li>
+                </productionBoosts>
+            </li>
+            <li>
+                <label>productive bliss</label>
+                <productionBoosts>
+                    <li>
+                        <productionBoost>1.1</productionBoost>
+                        <hediffFilter>
+                            <isBlackList>true</isBlackList>
+                        </hediffFilter>
+                    </li>
+                </productionBoosts>
+            </li>
         </stages>
     </Pawnmorph.AspectDef>
+
 
 </Defs>

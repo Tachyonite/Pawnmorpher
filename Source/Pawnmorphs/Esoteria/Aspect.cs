@@ -110,6 +110,35 @@ namespace Pawnmorph
 
         protected List<AspectStage> Stages => def.stages;
 
+        public float GetBoostOffset(Hediff hediff)
+        {
+            return GetBoostOffset(hediff.def);
+        }
+
+        /// <summary>
+        /// the production boosts of the current stage 
+        /// </summary>
+        public IEnumerable<ProductionBoost> ProductionBoosts =>
+            CurrentStage.productionBoosts ?? Enumerable.Empty<ProductionBoost>();
+
+        
+        /// <summary>
+        /// get the production boost for the given mutation hediff 
+        /// </summary>
+        /// <param name="hediff"></param>
+        /// <returns></returns>
+        public float GetBoostOffset(HediffDef hediff)
+        {
+            float accum = 0;
+            foreach (ProductionBoost productionBoost in ProductionBoosts)
+            {
+                accum += productionBoost.GetBoost(hediff); 
+            }
+
+            return accum; 
+
+        }
+
         /// <summary>
         ///     called after this affinity is added to the pawn
         /// </summary>

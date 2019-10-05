@@ -1,5 +1,5 @@
-<Defs>
-	<ThoughtDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef >
 		<defName>ProductiveBliss</defName>
 		<durationDays>0.2</durationDays>
 		<stages>
@@ -10,7 +10,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<!--Egglayer-->
 	<ThoughtDef>
 		<defName>LaidEgg</defName>
@@ -59,7 +59,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<!--Udder-->
 	<ThoughtDef>
 		<defName>MilkedMyself</defName>
@@ -83,7 +83,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<ThoughtDef>
 		<defName>MilkedMyselfBond</defName>
 		<durationDays>0.2</durationDays>
@@ -107,7 +107,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<!--Chemical Udder-->
 	<ThoughtDef>
 		<defName>ChemMilkedMyself</defName>
@@ -120,7 +120,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<ThoughtDef>
 		<defName>ChemMilkedMyselfBond</defName>
 		<durationDays>0.2</durationDays>
@@ -144,7 +144,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<!--Wooly-->
 	<ThoughtDef>
 		<defName>ShavedMyself</defName>
@@ -157,7 +157,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<ThoughtDef>
 		<defName>ShavedMyselfBond</defName>
 		<durationDays>1</durationDays>
@@ -169,7 +169,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<ThoughtDef>
 		<defName>ShavedMyselfBroken</defName>
 		<durationDays>1</durationDays>
@@ -181,7 +181,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<!--Pig/Boar Snout-->
 	<ThoughtDef>
 		<defName>FoundTruffles</defName>

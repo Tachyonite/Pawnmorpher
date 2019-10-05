@@ -5,6 +5,7 @@ using Multiplayer.API;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -12,10 +13,10 @@ namespace Pawnmorph
 {
     public class HediffComp_Production : HediffComp
     {
-        public int HatchingTicker = 0;
+        public float HatchingTicker = 0;
         private float brokenChance = 0f;
         private float bondChance = 0f;
-
+        
         public HediffCompProperties_Production Props => (HediffCompProperties_Production) props;
 
         public override void CompPostTick(ref float severityAdjustment)
@@ -41,13 +42,30 @@ namespace Pawnmorph
             Scribe_Values.Look(ref bondChance, "bondChance");
             base.CompExposeData();
         }
-        
+
+
+        private const float SEVERITY_LERP = 0.1f;
+
+        private float _severityTarget; 
+
+        private const int PRODUCTION_MULT_UPDATE_PERIOD = 60; 
         void TryProduce(float daysToProduce, int amount, float chance, ThingDef resource, ThingDef rareResource,
                             ThoughtDef stageThought = null)
         {
 
             if (HatchingTicker < daysToProduce * 60000)
-                HatchingTicker++;
+            {
+                HatchingTicker ++;
+
+                if (parent.pawn.IsHashIntervalTick(PRODUCTION_MULT_UPDATE_PERIOD))
+                {
+                   _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); //update the production multiplier only occasionally for performance reasons 
+                   var severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); //have the severity increase gradually 
+                   parent.Severity = severity;
+
+                }
+
+            }
             else if (Pawn.Map != null)
             {
                 if (Props.JobGiver != null && !Pawn.Downed) 

@@ -65,6 +65,13 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="productionBoosts" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="ProductionBoost" minOccurs="1" maxOccurs="1" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
@@ -91,6 +98,26 @@
         <xs:sequence>
             <xs:element name="mentalState" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="mtbDays" type="xs:float" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ProductionBoost">
+        <xs:sequence>
+            <xs:element name="productionBoost" type="xs:float" minOccurs="1" maxOccurs="1" />
+            <xs:element name="hediffFilter" type="HediffFilter" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="HediffFilter">
+        <xs:sequence>
+            <xs:element name="isBlackList" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="filterList" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
