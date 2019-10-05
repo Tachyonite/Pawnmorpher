@@ -134,7 +134,8 @@ namespace Pawnmorph
         void ValidateTransformedPawns()
         {
 
-            StringBuilder builder = new StringBuilder(); 
+            StringBuilder builder = new StringBuilder();
+            bool hasDroppedPawns = false; 
             for (int i = TransformedPawnsLst.Count - 1; i >= 0; i--)
             {
                 var inst = TransformedPawnsLst[i];
@@ -147,11 +148,14 @@ namespace Pawnmorph
                             pawn.Destroy();
                     }
 
+                    if (inst.TransformedPawns.Any(t => t.DestroyedOrNull()))
+                        hasDroppedPawns = true; 
+
                     TransformedPawnsLst.RemoveAt(i);
                 }
             }
 
-            if (builder.Length > 0)
+            if (builder.Length > 0 && hasDroppedPawns)
             {
                 Log.Error($"encountered invalid transformed pawns instances:\n{builder}");
             }
