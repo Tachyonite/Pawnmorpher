@@ -148,7 +148,7 @@ namespace Pawnmorph
                             pawn.Destroy();
                     }
 
-                    if (inst.TransformedPawns.Any(t => t.DestroyedOrNull()))
+                    if (inst.TransformedPawns.Any(t => !t.DestroyedOrNull()))
                         hasDroppedPawns = true; 
 
                     TransformedPawnsLst.RemoveAt(i);
