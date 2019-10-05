@@ -10,13 +10,13 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary>
-    /// def for 'morph groups' i
-    /// ie packs,herds, ect  
+    /// Def for morph groups. <br/>
+    /// i.e. Packs, Herds, ect. 
     /// </summary>
     public class MorphGroupDef : Def
     {
-        [Unsaved]
-        private List<MorphDef> _associatedMorphs;
+        /// <summary> A list of all morph types that are of this group.</summary>
+        [Unsaved] private List<MorphDef> _associatedMorphs;
 
         [CanBeNull]
         [Obsolete("use the new aspects")]
@@ -25,11 +25,7 @@ namespace Pawnmorph
         public AspectDef aspectDef; 
 
 
-        /// <summary>
-        /// an enumerable collection of all morphs in this group 
-        /// </summary>
-        public IEnumerable<MorphDef> MorphsInGroup =>
-            _associatedMorphs
-            ?? (_associatedMorphs = DefDatabase<MorphDef>.AllDefs.Where(def => def.@group == this).ToList());
+        /// <summary> An enumerable collection of all morphs in this group.</summary>
+        public IEnumerable<MorphDef> MorphsInGroup => _associatedMorphs ?? (_associatedMorphs = DefDatabase<MorphDef>.AllDefs.Where(def => def.@group == this).ToList());
     }
 }

@@ -5,4 +5,7 @@
     <StartProgram>D:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64.exe</StartProgram>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
+  <PropertyGroup>
+    <ProjectView>ShowAllFiles</ProjectView>
+  </PropertyGroup>
 </Project>
