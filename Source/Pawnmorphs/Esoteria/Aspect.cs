@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -89,7 +90,9 @@ namespace Pawnmorph
         ///     the description of the aspect, taking into account it's current stage
         /// </summary>
         public string Description =>
-            string.IsNullOrEmpty(CurrentStage.description) ? def.description : CurrentStage.description;
+            string.IsNullOrEmpty(CurrentStage.description)
+                ? string.IsNullOrEmpty(def.description) ? "NO DESCRIPTION " : def.description
+                : CurrentStage.description;
 
         /// <summary>
         ///     the pawn this is attached to
@@ -313,37 +316,36 @@ namespace Pawnmorph
             }
         }
 
+        public IEnumerable<SkillMod> SkillMods => CurrentStage?.skillMods ?? Enumerable.Empty<SkillMod>();
+
         public string TipString(Pawn pawn)
         {
             StringBuilder stringBuilder = new StringBuilder();
             AspectStage currentStage = CurrentStage;
-            stringBuilder.Append(def.description.Formatted(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN"));
-            int count = CurrentStage.skillMods.Count;
+           
+            stringBuilder.Append(Description.Formatted(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN"));
+            int count = CurrentStage.skillMods?.Count ?? 0;
             if (count > 0)
             {
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine();
             }
             int num = 0;
-            foreach (SkillMod skillMod in CurrentStage.skillMods)
+            foreach (SkillMod skillMod in SkillMods)
             {
-                if (skillMod.addedXp != 0)
-                {
-                    string value = "    " + skillMod.skillDef.skillLabel.CapitalizeFirst() + ": " + skillMod.addedXp.ToString("+##;-##") + " XP";
-                    if (skillMod.passionOffset != 0)
-                    {
-                        value += ", " + skillMod.passionOffset.ToString("+##;-##") + " " + "Passion".Translate();
-                    }
-                    if (num < count - 1)
-                    {
-                        stringBuilder.AppendLine(value);
-                    }
-                    else
-                    {
-                        stringBuilder.Append(value);
-                    }
-                    num++;
-                }
+                string value = "    " //skill mods might still do something if they don't add xp 
+                             + skillMod.skillDef.skillLabel.CapitalizeFirst()
+                             + ": "
+                             + skillMod.addedXp.ToString("+##;-##")
+                             + " XP";
+                if (skillMod.passionOffset != 0)
+                    value += ", " + skillMod.passionOffset.ToString("+##;-##") + " " + "Passion".Translate();
+                if (num < count - 1)
+                    stringBuilder.AppendLine(value);
+                else
+                    stringBuilder.Append(value);
+                num++;
+               
             }
             if (GetPermaThoughts().Any<ThoughtDef>())
             {
