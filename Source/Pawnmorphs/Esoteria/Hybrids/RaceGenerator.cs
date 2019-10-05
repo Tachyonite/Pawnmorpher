@@ -13,19 +13,17 @@ using Verse;
 
 namespace Pawnmorph.Hybrids
 {
-    /// <summary>
-    ///     static class responsible for generating the implicit races
-    /// </summary>
+    /// <summary> Static class responsible for generating the implicit races.</summary>
     public static class RaceGenerator
     {
-        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces => _lst ?? (_lst = GenerateAllImpliedRaces().ToList());
+        private const float HEALTH_SCALE_LERP_VALUE = 0.4f;
+        private const float HUNGER_LERP_VALUE = 0.3f;
         private static List<ThingDef_AlienRace> _lst;
-
         private static Dictionary<ThingDef, MorphDef> _raceLookupTable = new Dictionary<ThingDef, MorphDef>();
 
-        /// <summary>
-        /// try to find the morph def associated with the given race 
-        /// </summary>
+        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces => _lst ?? (_lst = GenerateAllImpliedRaces().ToList());
+
+        /// <summary> Try to find the morph def associated with the given race.</summary>
         /// <param name="race"></param>
         /// <param name="result"></param>
         /// <returns></returns>
@@ -34,9 +32,7 @@ namespace Pawnmorph.Hybrids
             return _raceLookupTable.TryGetValue(race, out result);
         }
 
-        /// <summary>
-        /// get the morph Def associated with this race, if any 
-        /// </summary>
+        /// <summary> Gets the morph Def associated with this race, if any.</summary>
         /// <param name="race"></param>
         /// <returns></returns>
         [CanBeNull]
@@ -45,8 +41,6 @@ namespace Pawnmorph.Hybrids
             return _raceLookupTable.TryGetValue(race);
         }
 
-        private const float HEALTH_SCALE_LERP_VALUE = 0.4f;
-        private const float HUNGER_LERP_VALUE = 0.3f;
         private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
         {
             return new RaceProperties
@@ -80,7 +74,7 @@ namespace Pawnmorph.Hybrids
                 meatDef = animal.meatDef,
                 meatLabel = animal.meatLabel,
                 useMeatFrom = animal.useMeatFrom,
-                deathActionWorkerClass = animal.deathActionWorkerClass, //boomratmorphs should explode
+                deathActionWorkerClass = animal.deathActionWorkerClass, // Boommorphs should explode.
                 corpseDef = human.corpseDef,
                 packAnimal = animal.packAnimal
             };
@@ -97,7 +91,6 @@ namespace Pawnmorph.Hybrids
             var f = Mathf.Lerp(human.baseHungerRate, animal.baseHungerRate, 0.5f);
             return f;
         }
-
 
         private static IEnumerable<ThingDef_AlienRace> GenerateAllImpliedRaces()
         {
@@ -123,9 +116,7 @@ namespace Pawnmorph.Hybrids
             Log.Message(builder.ToString());
         }
 
-        /// <summary>
-        ///     generate general settings for the hybrid race given the human settings and morph def
-        /// </summary>
+        /// <summary> Generate general settings for the hybrid race given the human settings and morph def.</summary>
         /// <param name="human"></param>
         /// <param name="morph"></param>
         /// <returns></returns>
@@ -143,25 +134,21 @@ namespace Pawnmorph.Hybrids
 
         private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph)
         {
-            var gen = new AlienPartGenerator
+            AlienPartGenerator gen = new AlienPartGenerator
             {
-                alienbodytypes = human.alienbodytypes, //this is where we'd force skin colors and stuff 
+                alienbodytypes = human.alienbodytypes,
                 aliencrowntypes = human.aliencrowntypes,
                 bodyAddons = human.bodyAddons
             };
 
-            var graphicsSettings = morph.raceSettings?.graphicsSettings;
-            var customDrawSize = graphicsSettings?.customDrawSize;
-            var headSize = graphicsSettings?.customHeadDrawSize;
-            gen.customDrawSize = customDrawSize ?? gen.customDrawSize;
-            gen.customHeadDrawSize = headSize ?? gen.customHeadDrawSize; //make sure to apply custom sizes only if they are defined, otherwise use the defaults 
+            // Make sure to apply custom sizes only if they are defined, otherwise use the defaults.
+            gen.customDrawSize = morph.raceSettings?.graphicsSettings?.customDrawSize ?? gen.customDrawSize;
+            gen.customHeadDrawSize = morph.raceSettings?.graphicsSettings?.customHeadDrawSize ?? gen.customHeadDrawSize;
 
             return gen;
         }
 
-        /// <summary>
-        ///     generate the alien race restriction setting from the human default and the given morph
-        /// </summary>
+        /// <summary> Generate the alien race restriction setting from the human default and the given morph.</summary>
         /// <param name="human"></param>
         /// <param name="morph"></param>
         /// <returns></returns>
@@ -194,9 +181,7 @@ namespace Pawnmorph.Hybrids
                 valDict[humanModifier.stat] = humanModifier.value;
             }
 
-
-            //just average them for now 
-
+            //just average them for now
             foreach (StatModifier animalModifier in animalModifiers)
             {
                 float val;
@@ -216,9 +201,6 @@ namespace Pawnmorph.Hybrids
                     float v = valDict.TryGetValue(statModifier.stat) + statModifier.value;
                     valDict[statModifier.stat] = v;
                 }
-
-
-
 
             List<StatModifier> outMods = new List<StatModifier>();
             foreach (KeyValuePair<StatDef, float> keyValuePair in valDict)

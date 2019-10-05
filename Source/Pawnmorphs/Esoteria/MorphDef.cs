@@ -148,7 +148,7 @@ namespace Pawnmorph
 
         private List<HediffGiver_Mutation> GetMutations()
         {
-            IEnumerable<HediffGiver_Mutation> linq = 
+            IEnumerable<HediffGiver_Mutation> linq =
                 DefDatabase<HediffDef>.AllDefs
                 .Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)) // Get all morph hediff defs.
                 .SelectMany(def => def.stages ?? Enumerable.Empty<HediffStage>()) // Get all stages.
