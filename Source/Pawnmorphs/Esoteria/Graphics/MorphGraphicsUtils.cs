@@ -15,7 +15,6 @@ namespace Pawnmorph.GraphicSys
     /// </summary>
     public static class MorphGraphicsUtils
     {
-
         /// <summary>
         /// refresh the graphics associated with this pawn, including the portraits if it's a colonist 
         /// </summary>
@@ -26,7 +25,6 @@ namespace Pawnmorph.GraphicSys
             if (pawn.IsColonist)
             {
                 PortraitsCache.SetDirty(pawn);
-
             }
         }
 
@@ -42,9 +40,6 @@ namespace Pawnmorph.GraphicSys
                 var hRace = def.explicitHybridRace as ThingDef_AlienRace;
                 return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskincolorgen?.NewRandomizedColor();
             }
-
-
-            
         }
 
         public static Color? GetHairColorOverride([NotNull] this MorphDef def)
@@ -75,7 +70,5 @@ namespace Pawnmorph.GraphicSys
             var hRace = def.explicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskinsecondcolorgen?.NewRandomizedColor(); 
         }
-
-
     }
 }
