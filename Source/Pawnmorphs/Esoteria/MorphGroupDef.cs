@@ -9,25 +9,18 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary>
-    /// def for 'morph groups' i
-    /// ie packs,herds, ect  
+    /// Def for morph groups. <br/>
+    /// i.e. Packs, Herds, ect. 
     /// </summary>
     public class MorphGroupDef : Def
     {
-        [Unsaved]
-        private List<MorphDef> _associatedMorphs;
+        /// <summary> A list of all morph types that are of this group.</summary>
+        [Unsaved] private List<MorphDef> _associatedMorphs;
 
-        [CanBeNull]
-        public HediffDef hediff; //hediff to give to morphs in this group, 
+        /// <summary> Hediff to give to morphs in this group.</summary>
+        [CanBeNull] public HediffDef hediff;
 
- 
-
-
-        /// <summary>
-        /// an enumerable collection of all morphs in this group 
-        /// </summary>
-        public IEnumerable<MorphDef> MorphsInGroup =>
-            _associatedMorphs
-            ?? (_associatedMorphs = DefDatabase<MorphDef>.AllDefs.Where(def => def.@group == this).ToList());
+        /// <summary> An enumerable collection of all morphs in this group.</summary>
+        public IEnumerable<MorphDef> MorphsInGroup => _associatedMorphs ?? (_associatedMorphs = DefDatabase<MorphDef>.AllDefs.Where(def => def.@group == this).ToList());
     }
 }

@@ -12,9 +12,8 @@
 		<hediff>HerdMind</hediff>
 	</Pawnmorph.MorphGroupDef>
 
-  <!-- special group that should not be assigned to any morphs, but is used to get the number of humans on the map if needed -->
-  <Pawnmorph.MorphGroupDef>
-    <defName>Humans</defName>
-  </Pawnmorph.MorphGroupDef>
-
+	<!-- special group that should not be assigned to any morphs, but is used to get the number of humans on the map if needed -->
+	<Pawnmorph.MorphGroupDef>
+		<defName>Humans</defName>
+	</Pawnmorph.MorphGroupDef>
 </Defs>

@@ -13,22 +13,28 @@ namespace Pawnmorph.Hybrids
 {
     public class HybridRaceSettings
     {
+        [Obsolete("Doesn't do anything'")]
+        public FoodSettings foodSettings = new FoodSettings();
+
+        public List<StatModifier> statModifiers;
+        public HybridThoughtSettings thoughtSettings;
+        public RaceRestrictionSettings restrictionSettings;
+        public GraphicsSettings graphicsSettings;
+        public TraitSettings traitSettings;
+
         /// <summary>
         /// settings for the hybrid race's thoughts 
         /// </summary>
         public class HybridThoughtSettings
         {
-
-
             public List<ThoughtReplacer> replacerList;
             public AteThought ateAnimalThought;
-            public ButcherThought butcheredAnimalThought; 
+            public ButcherThought butcheredAnimalThought;
             public bool suppressHumanlikeCannibalThoughts; //if true this morph will not get the cannibal thoughts 
             public bool canEatRaw; //if true then the AteRawFood thought will be suppressed 
             public List<string> thoughtsBlackList;
             public List<AteThought> ateThoughtsSpecifics = new List<AteThought>();
-            public List<ButcherThought> butcherThoughtsSpecifics= new List<ButcherThought>();
-
+            public List<ButcherThought> butcherThoughtsSpecifics = new List<ButcherThought>();
         }
 
         public class GraphicsSettings
@@ -36,37 +42,23 @@ namespace Pawnmorph.Hybrids
             public Color? skinColorOverride;
             public Color? skinColorOverrideSecond;
             public Color? hairColorOverride;
-            public Color? hairColorOverrideSecond; 
+            public Color? hairColorOverrideSecond;
             public Vector2? customDrawSize;
-            public Vector2? customHeadDrawSize; 
+            public Vector2? customHeadDrawSize;
         }
-
 
         [Obsolete]
         public class FoodCategoryOverride
         {
-
             public FoodTypeFlags foodFlags;
-            public FoodPreferability preferability; 
-
+            public FoodPreferability preferability;
         }
 
         [Obsolete]
         public class FoodSettings
         {
-            public List<FoodCategoryOverride> foodOverrides = new List<FoodCategoryOverride>(); 
-
+            public List<FoodCategoryOverride> foodOverrides = new List<FoodCategoryOverride>();
         }
-
-        [Obsolete("Doesn't do anything'")]
-        public FoodSettings foodSettings = new FoodSettings();
-
-        public List<StatModifier> statModifiers; 
-        public HybridThoughtSettings thoughtSettings;
-        public RaceRestrictionSettings restrictionSettings;
-        public GraphicsSettings graphicsSettings; 
-
-        public TraitSettings traitSettings;
 
         //should this be deprecated? 
         public class TraitSettings
@@ -98,8 +90,8 @@ namespace Pawnmorph.Hybrids
                 {
                     thought = thoughtSettings.ateAnimalThought.thought,
                     ingredientThought = thoughtSettings.ateAnimalThought.ingredientThought,
-                    raceList = new List<string> {animalRace.defName}
-                }); 
+                    raceList = new List<string> { animalRace.defName }
+                });
 
             }
 
@@ -109,24 +101,23 @@ namespace Pawnmorph.Hybrids
                 {
                     thought = thoughtSettings.butcheredAnimalThought.thought,
                     knowThought = thoughtSettings.butcheredAnimalThought.knowThought,
-                    raceList =  new List<string> {  animalRace.defName}
+                    raceList = new List<string> { animalRace.defName }
                 });
             }
 
-           
             List<string> blackList;
             if (thoughtSettings.thoughtsBlackList != null)
             {
-                blackList = new List<string>(thoughtSettings.thoughtsBlackList); 
+                blackList = new List<string>(thoughtSettings.thoughtsBlackList);
             }
             else
             {
-                blackList = null; 
+                blackList = null;
             }
 
             if (thoughtSettings.suppressHumanlikeCannibalThoughts) //add in the default cannibal thoughts to the black list 
             {
-                blackList = blackList ?? new List<string>(); 
+                blackList = blackList ?? new List<string>();
 
                 blackList.Add("AteHumanlikeMeatDirect");
                 blackList.Add("AteHumanlikeMeatAsIngredient");
@@ -136,10 +127,9 @@ namespace Pawnmorph.Hybrids
 
             if (thoughtSettings.canEatRaw)
             {
-                blackList = blackList ?? new List<string>(); 
+                blackList = blackList ?? new List<string>();
                 blackList.Add("AteRawFood");
             }
-
 
             return new ThoughtSettings
             {
@@ -148,13 +138,6 @@ namespace Pawnmorph.Hybrids
                 ateThoughtSpecific = spc,
                 cannotReceiveThoughts = blackList
             };
-
-
-
-
-
         }
-
-
     }
 }
