@@ -32,11 +32,11 @@
     </stages>
   </HediffDef>
 
-  <ThoughtDef Abstract="true" Name="GroupThoughtBase">
+  <ThoughtDef Abstract="true" Name="GroupThoughtHBase">
 	  <workerClass>ThoughtWorker_Hediff</workerClass>
   </ThoughtDef>
 
-  <ThoughtDef ParentName="GroupThoughtBase">
+  <ThoughtDef ParentName="GroupThoughtHBase">
     <defName>PackMinded</defName>
     <hediff>CanidMind</hediff>
 	  <stages> <!-- should have the same number of stages as the hediff -->
@@ -91,7 +91,7 @@
     </stages>
   </HediffDef>
   
-  <ThoughtDef ParentName="GroupThoughtBase">
+  <ThoughtDef ParentName="GroupThoughtHBase">
     <defName>HerdMinded</defName>
     <hediff>HerdMind</hediff>
 	  <stages> <!-- should have the same number of stages as the hediff -->

@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -18,6 +19,9 @@ namespace Pawnmorph
     /// affinities are things that are more global than hediffs but more temporary than traits
     public class Aspect : IExposable
     {
+
+        
+
         public AspectDef def;
 
         private int _stage = -1;

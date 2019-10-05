@@ -62,7 +62,6 @@
     <Compile Include="AspectDef.cs" />
     <Compile Include="AspectDefOf.cs" />
     <Compile Include="AspectStage.cs" />
-    <Compile Include="Aspects\MorphGroupAspect.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
     <Compile Include="BuildingDefOf.cs" />
@@ -237,7 +236,9 @@
     <Compile Include="Utilities\VTuple.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Aspects\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

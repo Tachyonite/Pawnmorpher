@@ -54,16 +54,16 @@ namespace Pawnmorph.Hybrids
         public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            var oldMorph = pawn.def.GetMorphOfRace();
-            var oldRace = pawn.def; 
-            HediffDef oldGroupHediff = oldMorph?.group?.hediff;
-            if (oldGroupHediff != null)
+            MorphDef oldMorph = pawn.def.GetMorphOfRace();
+            ThingDef oldRace = pawn.def;
+
+            AspectTracker aTracker = pawn.GetAspectTracker();
+
+            AspectDef oldMorphAspectDef = oldMorph?.group?.aspectDef;
+            if (oldMorphAspectDef != null && aTracker != null)
             {
-                var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(oldGroupHediff);
-                if (hediff != null)
-                {
-                    pawn.health.RemoveHediff(hediff); 
-                }
+                Aspect aspect = aTracker.GetAspect(oldMorphAspectDef);
+                if (aspect != null) aTracker.Remove(aspect);
             }
 
             //var pos = pawn.Position;
@@ -92,11 +92,8 @@ namespace Pawnmorph.Hybrids
             map?.mapPawns.UpdateRegistryForPawn(pawn);
 
             //add the group hediff if applicable 
-            var hediffDef = race.GetMorphOfRace()?.@group?.hediff;
-            if (hediffDef != null)
-            {
-                pawn.health.AddHediff(hediffDef);
-            }
+            AspectDef aspectDef = race.GetMorphOfRace()?.group?.aspectDef;
+            if (aspectDef != null) aTracker?.Add(aspectDef);
 
             if (map != null)
             {

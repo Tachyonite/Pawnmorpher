@@ -1,6 +1,7 @@
 ﻿// MorphGroupDef.cs created by Nick M(Iron Wolf) for Blue Moon (Pawnmorph) on 09/09/2019 9:07 AM
 // last updated 09/09/2019  9:07 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -18,9 +19,10 @@ namespace Pawnmorph
         private List<MorphDef> _associatedMorphs;
 
         [CanBeNull]
+        [Obsolete("use the new aspects")]
         public HediffDef hediff; //hediff to give to morphs in this group, 
 
- 
+        public AspectDef aspectDef; 
 
 
         /// <summary>

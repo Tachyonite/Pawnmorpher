@@ -23,22 +23,37 @@ namespace Pawnmorph
             if (comp == null)
             {
                 MorphGroupDef group = parent.def.GetMorphOfRace()?.@group;
-                HediffDef hediffDef = group?.hediff;
-                if (hediffDef == null) return;
-                var pawn = (Pawn)parent;
-                Hediff firstHediffOfDef = pawn?.health?.hediffSet?.GetFirstHediffOfDef(hediffDef);
-                if (firstHediffOfDef == null)
+                var aTracker = Pawn.GetAspectTracker();
+                if (aTracker == null) return; 
+                var aspectDef = group?.aspectDef;
+                if (aspectDef == null) return;
+
+                var aspect = aTracker.GetAspect(aspectDef); 
+                if (aspect == null)
                 {
-                    Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
-
-                    hediff.Severity = 1;
+                    aspect = aspectDef.CreateInstance(); 
+                    
                     //add an small offset so minSeverity in hediffStages works as expected 
-                    pawn?.health?.AddHediff(hediff);
+                    aTracker.Add(aspect); 
                 }
+                 
             }
+             
+            
 
-           
         }
+
+#pragma warning disable 0618
+        private void RemoveObsoleteHediffs()
+        {
+            var group = parent.def.GetMorphOfRace()?.group;
+            var hDef = group?.hediff;
+            if (hDef == null) return; 
+            var h = Pawn.health.hediffSet.GetFirstHediffOfDef(hDef);
+            if (h != null)
+                Pawn.health.RemoveHediff(h); 
+        }
+#pragma warning restore 0618
 
         public override void Initialize(CompProperties props)
         {
@@ -69,58 +84,56 @@ namespace Pawnmorph
                 comp.MorphCountChanged += MorphCountChanged;
                 RecalculateMorphCount(comp);
             }
+            
+            if(respawningAfterLoad) 
+                RemoveObsoleteHediffs();
         }
 
-        private const float EPSILON = 0.001f;
 
-        private Pawn Pawn => (Pawn) parent; 
+        private Pawn Pawn => (Pawn) parent;
 
-        void RecalculateMorphCount(MorphTracker tracker)
+        private void RecalculateMorphCount(MorphTracker tracker)
         {
-            var myMorph = parent.def.GetMorphOfRace();
-            var group = myMorph?.@group;
-            var groupHediff = @group?.hediff;
-            if (groupHediff == null) return;
+            MorphDef myMorph = parent.def.GetMorphOfRace();
+            AspectTracker aspectTracker = Pawn.GetAspectTracker();
+            if (aspectTracker == null) return;
+            MorphGroupDef group = myMorph?.group;
+            AspectDef aspectDef = group?.aspectDef;
+            if (aspectDef == null) return;
 
-            Hediff hediff = Pawn.health.hediffSet.GetFirstHediffOfDef(groupHediff);
-            if (hediff == null) //if the hediff is missing for some reason add it again 
+            Aspect aspect = aspectTracker.GetAspect(aspectDef);
+            if (aspect == null) //if the hediff is missing for some reason add it again 
             {
-                hediff = HediffMaker.MakeHediff(groupHediff, Pawn);
-                Pawn.health.AddHediff(hediff);
+                aspect = aspectDef.CreateInstance();
+                aspectTracker.Add(aspect);
             }
 
-           
-            hediff.Severity = tracker.GetGroupCount(group) + EPSILON; //add a small offset so minSeverity acts as expected 
-
-
-
-
+            aspect.StageIndex = tracker.GetGroupCount(group) - 1;
         }
 
         private void MorphCountChanged(MorphTracker sender, MorphDef morph)
         {
-           
-
             MorphDef myMorph = parent.def.GetMorphOfRace();
-            if (myMorph?.@group == null) return; 
-            if (myMorph.@group != morph?.@group) return;
+            if (myMorph?.group == null) return;
+            if (myMorph.group != morph?.group) return;
 
             var pawn = (Pawn) parent;
+            AspectTracker aspectTracker = pawn.GetAspectTracker();
+            if (aspectTracker == null) return;
+            AspectDef aspectDef = morph?.group?.aspectDef;
 
-            HediffDef groupHediff = morph?.group?.hediff;
-            if (groupHediff == null) return;
+            if (aspectDef == null) return;
 
-            Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(groupHediff);
-            if (hediff == null) //if the hediff is missing for some reason add it again 
+            Aspect aspect = aspectTracker.GetAspect(aspectDef);
+            if (aspect == null) //if the aspect is missing for some reason add it again 
             {
-                hediff = HediffMaker.MakeHediff(groupHediff, pawn);
-                pawn.health.AddHediff(hediff);
+                aspect = aspectDef.CreateInstance();
+                aspectTracker.Add(aspect);
             }
 
             var comp = pawn.Map?.GetComponent<MorphTracker>();
-            hediff.Severity =
-                (comp?.GetGroupCount(morph.group) ?? 0) + EPSILON; //add a small offset so minSeverity acts as expected 
-            //severity should always be equal to the number of morphs in the group active in the same map 
+            aspect.StageIndex = (comp?.GetGroupCount(morph.group) ?? 0) - 1;
+            //stage should always be equal to the number of morphs in the group active in the same map 
         }
 
         /// <summary>
