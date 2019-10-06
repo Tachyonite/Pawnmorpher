@@ -24,7 +24,7 @@ namespace Pawnmorph.HPatches
             {
                 var pawn = diffSet.pawn;
                 var aspectTracker = pawn.GetAspectTracker();
-                if (aspectTracker != null)
+                if (aspectTracker != null && __result > 0)
                 {
                     float offset = 0;
                     float postFix = 1;
@@ -50,12 +50,14 @@ namespace Pawnmorph.HPatches
                     }
 
 
-                    offset += __result;
+                    
+
+                    offset += GetTotalCapacityOffset(diffSet, capacity); //need to start with the uncapped offset value 
                     offset = Mathf.Min(offset * postFix, setMax); 
                     
 
-                    GenMath.RoundedHundredth(Mathf.Max(offset, capacity.minValue)); 
-                    __result = offset;
+                    GenMath.RoundedHundredth(Mathf.Max(offset, capacity.minValue));
+                    __result = Mathf.Min(__result, offset); //take the min of the aspect modified value and the capped value from Rimworld's calculation 
 
                 }
 
@@ -64,5 +66,40 @@ namespace Pawnmorph.HPatches
 
             }
         }
+
+
+        /// <summary>
+        /// find the original offset without setMax 
+        /// </summary>
+        /// <param name="hSet"></param>
+        /// <param name="capacity"></param>
+        /// <returns></returns>
+        static float GetTotalCapacityOffset(HediffSet hSet, PawnCapacityDef capacity)
+        {
+            float num = capacity.Worker.CalculateCapacityLevel(hSet);  
+            float num3 = 1f;
+            for (int i = 0; i < hSet.hediffs.Count; i++)
+            {
+                Hediff hediff = hSet.hediffs[i];
+                List<PawnCapacityModifier> capMods = hediff.CapMods;
+                if (capMods != null)
+                {
+                    for (int j = 0; j < capMods.Count; j++)
+                    {
+                        PawnCapacityModifier pawnCapacityModifier = capMods[j];
+                        if (pawnCapacityModifier.capacity == capacity)
+                        {
+                            num += pawnCapacityModifier.offset;
+                            num3 *= pawnCapacityModifier.postFactor;
+                          
+                            
+                        }
+                    }
+                }
+            }
+            num *= num3;
+            return num; 
+        }
+
     }
 }
