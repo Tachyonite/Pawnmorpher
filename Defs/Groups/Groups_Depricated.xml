@@ -1,0 +1,51 @@
+<Defs>
+	<HediffDef Abstract="true" Name="MorphGroupHediffBase">
+		<hediffClass>HediffWithComps</hediffClass>
+			<defaultLabelColor>(171, 106, 217)</defaultLabelColor>
+		<isBad>false</isBad>
+	</HediffDef>
+
+	<HediffDef ParentName="MorphGroupHediffBase">
+		<defName>CanidMind</defName>
+		<label>pack minded</label>
+		<stages>
+			<li>
+				<label>alone</label>
+			</li>
+			<li>
+				<minSeverity>2</minSeverity>
+				<label>lonely</label>
+			</li>
+			<li>
+				<minSeverity>3</minSeverity>
+				<label>comfortable</label>
+			</li>
+			<li>
+				<minSeverity>5</minSeverity>
+				<label>happy</label>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="MorphGroupHediffBase">
+		<defName>HerdMind</defName>
+		<label>herd mentality</label>
+		<stages>
+			<li>
+				<label>alone</label>
+			</li>
+			<li>
+				<minSeverity>2</minSeverity>
+				<label>lonely</label>
+			</li>
+			<li>
+				<minSeverity>3</minSeverity>
+				<label>comfortable</label>
+			</li>
+			<li>
+				<minSeverity>5</minSeverity>
+				<label>happy</label>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

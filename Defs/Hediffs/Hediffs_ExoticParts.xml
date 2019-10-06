@@ -68,6 +68,7 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherIntoxica</defName>
 		<description>[PAWN_nameDef] functions as a natural distillery, producing beer by some obscure fermentation process.</description>
@@ -136,6 +137,7 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherIchoric</defName>
 		<description>[PAWN_nameDef] produces ambrosia, the food of the gods -- though this is very taxing on their own body.</description>
@@ -204,6 +206,7 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherGellic</defName>
 		<description>[PAWN_nameDef] produces insect jelly, via a coagulation process not fully understood.</description>
@@ -272,6 +275,7 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherPrototoxica</defName>
 		<description>[PAWN_nameDef]'s stomach is lined with a fungus that helps ferment hops, but not to the complete state of beer.</description>

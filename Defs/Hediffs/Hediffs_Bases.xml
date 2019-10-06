@@ -13,9 +13,9 @@
 			</li>
 			<li Class="HediffCompProperties_Immunizable">
 			</li>
-      <li Class="Pawnmorph.Hediffs.CompProperties_CheckRace">
+			<li Class="Pawnmorph.Hediffs.CompProperties_CheckRace">
 				<triggerStage>1</triggerStage> <!-- this is the index of the stage that will trigger the check when the hediff enters it -->
-      </li>
+			</li>
 		</comps>
 	</HediffDef>
 
@@ -35,23 +35,22 @@
 		</addedPartProps>
 		<isBad>false</isBad>
 		<maxSeverity>1</maxSeverity>
-
 	</HediffDef>
 
 	<HediffDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
 		<comps>
-				<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-						<layers>Skin</layers>
-						<hediffTypeFilter>
-							<filterList>
-								<li>Pawnmorph.Hediff_AddedMutation</li>
-							</filterList>
-						</hediffTypeFilter>
-				</li>
-				<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
-					<mtb>60</mtb>
-					<maxTreeSearchDepth>1</maxTreeSearchDepth>
-				</li>
+			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
+				<layers>Skin</layers>
+				<hediffTypeFilter>
+					<filterList>
+						<li>Pawnmorph.Hediff_AddedMutation</li>
+					</filterList>
+				</hediffTypeFilter>
+			</li>
+			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
+				<mtb>60</mtb>
+				<maxTreeSearchDepth>1</maxTreeSearchDepth>
+			</li>
 		</comps>
 	</HediffDef>
 

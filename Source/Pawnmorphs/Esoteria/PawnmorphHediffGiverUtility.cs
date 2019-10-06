@@ -20,10 +20,8 @@ namespace Pawnmorph
                     bool result = false;
                     for (int i = 0; i < countToAffect; i++)
                     {
+                        IEnumerable<BodyPartRecord> source = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null, null);
 
-                        IEnumerable<BodyPartRecord> source =
-                            pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined, null,
-                                                                     null);
                         if (partsToAffect != null)
                         {
                             source = from p in source
