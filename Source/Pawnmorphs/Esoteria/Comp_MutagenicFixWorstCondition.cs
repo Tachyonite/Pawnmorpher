@@ -157,8 +157,8 @@ namespace Pawnmorph
                 HediffGiver_Mutation giver;
                 if (morph != null)
                 {
-                    giver = allGivers.Where(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == morph)
-                                     .RandomElementWithFallback();
+                    giver = allGivers.Where(g => morph.AllAssociatedAndAdjacentMutations.Contains(g)) //this will get all hediff givers that are on the same morph tf 
+                                     .RandomElementWithFallback();//ex: wolf/husky/warg morphs can get paw hands 
                     giver = giver ?? allGivers.RandElement();
                 }
                 else
