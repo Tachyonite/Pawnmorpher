@@ -68,8 +68,19 @@ namespace Pawnmorph
             }
 
             _aspects.Add(aspect);
-            aspect.Added(Pawn, startStage); 
+            aspect.Added(Pawn, startStage);
+            if (aspect.HasCapMods)
+            {
+                Pawn.health.capacities.Notify_CapacityLevelsDirty();
+            }
         }
+
+        public void Notify_AspectChanged(Aspect aspect)
+        {
+            Pawn.health.capacities.Notify_CapacityLevelsDirty();
+             
+        }
+
 
         /// <summary>
         /// add the given aspect to this pawn at the specified stage index 

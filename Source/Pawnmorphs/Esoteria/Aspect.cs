@@ -302,10 +302,14 @@ namespace Pawnmorph
             }
         }
 
+        private AspectTracker _tracker;
+
+        public AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
+
         private void StageChanged(int lastStage)
         {
+            Tracker.Notify_AspectChanged(this); 
             PostStageChanged(lastStage);
-            //TODO
         }
 
         private void UndoSkillChanges()
