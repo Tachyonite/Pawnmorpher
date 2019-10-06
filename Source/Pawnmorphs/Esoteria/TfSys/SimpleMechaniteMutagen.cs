@@ -73,6 +73,8 @@ namespace Pawnmorph.TfSys
 
             AddReversionThought(spawned, formerHuman.CurStageIndex);
 
+
+
             transformedPawn.Destroy();
             return true;
         }
@@ -163,8 +165,13 @@ namespace Pawnmorph.TfSys
                 TaleRecorder.RecordTale(request.tale, original, animalToSpawn);
 
             bool wasPrisoner = original.IsPrisonerOfColony;
+            var oFaction = original.Faction;
+            var oMap = original.Map; 
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
+
+            //notify the faction that their member has been transformed 
+            oFaction.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap); 
 
             Find.LetterStack
                 .ReceiveLetter("LetterHediffFromTransformationLabel".Translate(original.LabelShort, request.outputDef.LabelCap).CapitalizeFirst(),
@@ -213,6 +220,7 @@ namespace Pawnmorph.TfSys
 
             AddReversionThought(spawned, tfHumanHediff.CurStageIndex);
 
+            spawned.Faction.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
 
             ReactionsHelper.OnPawnReverted(spawned, animal);
 

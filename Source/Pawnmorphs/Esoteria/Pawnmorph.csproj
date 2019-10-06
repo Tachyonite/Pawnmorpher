@@ -81,6 +81,7 @@
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
     <Compile Include="EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
+    <Compile Include="FactionUtilities.cs" />
     <Compile Include="FloatMenuMakerMapPatches.cs" />
     <Compile Include="GameCondition_MutagenicFallout.cs" />
     <Compile Include="Graphics\GraphicsUpdaterComp.cs" />

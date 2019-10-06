@@ -89,7 +89,7 @@ namespace Pawnmorph.TfSys
             }
 
             meld.SetFaction(Faction.OfPlayer);
-
+            //TODO handle faction reactions 
             HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF);
 
             Hediff hediff = HediffMaker.MakeHediff(hediffToAdd, meld);
