@@ -1,22 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
   <!-- weird attributes are for telling VS,VSCode,N++ where the schema is -->
-  <ThoughtDef ParentName="MorphReactionThoughtBaseNone">
-    <defName>EtherReactionWolfTF</defName>
-    <hediff>PawnmorphWolfTF</hediff>
-    <stages>
-      <li>
-        <label>changed</label>
-        <description>Grrrf? I feel...wolfish.</description>
-        <baseMoodEffect>-3</baseMoodEffect>
-      </li>
-      <li>
-        <label>feeling odd</label>
-        <description>I have a sudden urge to hunt sheep...</description>
-        <baseMoodEffect>-5</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
-
+  
 
   <ThoughtDef ParentName="PMMorphMemoryNone">
     <!-- this will be the default memory given when a pawn changes to a hybrid race -->
