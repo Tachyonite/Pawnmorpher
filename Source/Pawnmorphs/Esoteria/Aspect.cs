@@ -20,41 +20,22 @@ namespace Pawnmorph
     /// affinities are things that are more global than hediffs but more temporary than traits
     public class Aspect : IExposable
     {
-
-        
-
         public AspectDef def;
 
         private int _stage = -1;
-
         private Pawn _pawn;
-
         private bool _shouldRemove;
         private bool _wasStarted;
-
-        public Color LabelColor => CurrentStage.labelColor ?? def.labelColor; 
-
         private Dictionary<SkillDef, float> _addedSkillsActualAmount;
         private Dictionary<SkillDef, Passion> _originalPassions;
 
-        void IExposable.ExposeData()
-        {
-            Scribe_References.Look(ref _pawn, nameof(Pawn));
-            Scribe_Values.Look(ref _shouldRemove, nameof(ShouldRemove));
-            Scribe_Defs.Look(ref def, nameof(def));
-            Scribe_Values.Look(ref _stage, nameof(StageIndex));
-            Scribe_Collections.Look(ref _addedSkillsActualAmount, nameof(_addedSkillsActualAmount), LookMode.Def, LookMode.Value);
-            Scribe_Collections.Look(ref _originalPassions, nameof(_originalPassions), LookMode.Def, LookMode.Value);
-            ExposeData();
-        }
+        public Color LabelColor => CurrentStage.labelColor ?? def.labelColor;
 
         public IEnumerable<PawnCapacityModifier> CapMods => CurrentStage.capMods ?? Enumerable.Empty<PawnCapacityModifier>();
 
         public bool HasCapMods => CurrentStage.capMods != null && CurrentStage.capMods.Count != 0;
 
-        /// <summary>
-        ///     the current stage index
-        /// </summary>
+        /// <summary> The current stage index. </summary>
         public int StageIndex
         {
             get => _stage;
@@ -70,10 +51,19 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>
-        ///     the current stage
-        /// </summary>
+        /// <summary> The current stage. </summary>
         public AspectStage CurrentStage => Stages[StageIndex];
+
+        void IExposable.ExposeData()
+        {
+            Scribe_References.Look(ref _pawn, nameof(Pawn));
+            Scribe_Values.Look(ref _shouldRemove, nameof(ShouldRemove));
+            Scribe_Defs.Look(ref def, nameof(def));
+            Scribe_Values.Look(ref _stage, nameof(StageIndex));
+            Scribe_Collections.Look(ref _addedSkillsActualAmount, nameof(_addedSkillsActualAmount), LookMode.Def, LookMode.Value);
+            Scribe_Collections.Look(ref _originalPassions, nameof(_originalPassions), LookMode.Def, LookMode.Value);
+            ExposeData();
+        }
 
         public string Label
         {
@@ -86,9 +76,7 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>
-        ///     the description of the aspect, taking into account it's current stage
-        /// </summary>
+        /// <summary> The description of the aspect, taking into account it's current stage </summary>
         public string Description =>
             string.IsNullOrEmpty(CurrentStage.description)
                 ? string.IsNullOrEmpty(def.description) ? "NO DESCRIPTION " : def.description
@@ -420,6 +408,24 @@ namespace Pawnmorph
                     else
                     {
                         stringBuilder.Append(value3);
+                    }
+                }
+            }
+            if (currentStage.capMods != null)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine();
+                for (int i = 0; i < currentStage.capMods.Count; i++)
+                {
+                    PawnCapacityModifier capMods = currentStage.capMods[i];
+                    string capacityString = "    " + capMods.capacity.ToString() + ": " + capMods.offset.ToStringPercent("+##;-##");
+                    if (i < currentStage.capMods.Count - 1)
+                    {
+                        stringBuilder.AppendLine(capacityString);
+                    }
+                    else
+                    {
+                        stringBuilder.Append(capacityString);
                     }
                 }
             }

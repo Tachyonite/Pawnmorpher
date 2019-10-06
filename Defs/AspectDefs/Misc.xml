@@ -5,6 +5,7 @@
         <stages>
             <li>
                 <label>Etherbroken</label>
+				<description>Constant production has caused {PAWN_nameDef} to become numb and submit to their fate.</description>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
@@ -14,6 +15,7 @@
             </li>
             <li>
                 <label>Etherbonded</label>
+				<description>Constant production has caused {PAWN_nameDef} to accept change, and for some reason will now enjoy producing.</description>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
