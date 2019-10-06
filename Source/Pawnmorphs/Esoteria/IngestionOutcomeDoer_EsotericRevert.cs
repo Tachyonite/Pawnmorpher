@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
-using Pawnmorph.Thoughts;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
@@ -18,7 +18,7 @@ namespace Pawnmorph
         public List<HediffDef> defsToRevert;
         public List<HediffDef> revertThoughts;
         public List<HediffDef> mergeRevertThoughts;
-        public List<MutagenDef> blackList = new List<MutagenDef>(); 
+        public List<MutagenDef> blackList = new List<MutagenDef>();
         public string transformedHuman = "TransformedHuman";
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
@@ -41,19 +41,17 @@ namespace Pawnmorph
             }
 
             TransformerUtility.RemoveAllMutations(pawn);
+            MorphGraphicsUtils.RefreshGraphics(pawn);
             var aT = pawn.GetAspectTracker();
-            if(aT != null)
-                RemoveAspects(aT);
+            if (aT != null) RemoveAspects(aT);
         }
 
         private void RemoveAspects(AspectTracker tracker)
         {
             foreach (Aspect aspect in tracker)
             {
-                if (aspect.def.removedByReverter)
-                    tracker.Remove(aspect); //it's ok to remove them in a foreach loop 
+                if (aspect.def.removedByReverter) tracker.Remove(aspect); //it's ok to remove them in a foreach loop 
             }
-
         }
     }
 }
