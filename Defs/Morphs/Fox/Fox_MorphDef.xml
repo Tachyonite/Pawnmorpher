@@ -1,4 +1,4 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef>
 		<defName>FoxMorph</defName>
 		<label>foxmorph</label>
@@ -16,17 +16,12 @@
 					<ingredientThought>MorphAteAnimalMeatAsIngredient</ingredientThought>
 				</ateAnimalThought>
 			</thoughtSettings>
-			<traitSettings>
-				<forcedTraits>
-					<li>
-						<defName>NaturalHunter</defName>
-						<chance>100</chance>
-					</li>
-				</forcedTraits>
-			</traitSettings>
 			<graphicsSettings>
 				<skinColorOverride>(174,128,94)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<revertedMemory>FoxMorphTfReaction</revertedMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

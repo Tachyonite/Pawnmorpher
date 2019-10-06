@@ -1,4 +1,4 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="CanineMorph">
 		<defName>WargMorph</defName>
 		<label>wargmorph</label>
@@ -16,20 +16,15 @@
 						<replacer>WargMorphAteCorpse</replacer>
 					</li>
 				</replacerList>
-				<canEatRaw>true</canEatRaw>
 				<suppressHumanlikeCannibalThoughts>true</suppressHumanlikeCannibalThoughts>
+				<canEatRaw>true</canEatRaw>
 			</thoughtSettings>
-			<traitSettings>
-				<forcedTraits>
-					<li>
-						<defName>NaturalHunter</defName>
-						<chance>100</chance>
-					</li>
-				</forcedTraits>
-			</traitSettings>
 			<graphicsSettings>
 				<skinColorOverride>(158,124,96)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>WargMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

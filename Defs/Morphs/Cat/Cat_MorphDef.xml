@@ -1,4 +1,4 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>CatMorph</defName>
 		<label>catmorph</label>
@@ -14,5 +14,8 @@
 				<customHeadDrawSize>(1.35, 1.35)</customHeadDrawSize>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>CatMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

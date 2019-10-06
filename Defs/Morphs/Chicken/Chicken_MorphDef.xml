@@ -1,4 +1,4 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>ChookMorph</defName>
 		<label>chookmorph</label>
@@ -14,5 +14,8 @@
 				<skinColorOverride>(202,202,202)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>ChookMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

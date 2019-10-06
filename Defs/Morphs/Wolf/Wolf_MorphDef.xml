@@ -1,31 +1,26 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="CanineMorph">
 		<defName>WolfMorph</defName>
 		<label>wolfmorph</label>
-		<race>Wolf_Timber</race>
 		<description>Wolfmorphs usually stand on their paws and possess keen nose seeking prey, with grey or brown fur covering them. They make excellent fighters.</description>
+		<race>Wolf_Timber</race>
 		<categories>
 			<li>Canid</li>
-      <li>Combat</li>
+			<li>Combat</li>
 		</categories>
 		<raceSettings>
-      <thoughtSettings>
-        <ateAnimalThought>
-          <thought>MorphAteAnimalMeatDirect</thought>
-          <ingredientThought>MorphAteAnimalMeatAsIngredient</ingredientThought>
-        </ateAnimalThought>
-      </thoughtSettings>
-			<traitSettings>
-				<forcedTraits>
-					<li>
-						<defName>NaturalHunter</defName>
-						<chance>100</chance>
-					</li>
-				</forcedTraits>
-			</traitSettings>
-		<graphicsSettings>
+			<thoughtSettings>
+				<ateAnimalThought>
+					<thought>MorphAteAnimalMeatDirect</thought>
+					<ingredientThought>MorphAteAnimalMeatAsIngredient</ingredientThought>
+				</ateAnimalThought>
+			</thoughtSettings>
+			<graphicsSettings>
 				<skinColorOverride>(208,208,208)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>WolfMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

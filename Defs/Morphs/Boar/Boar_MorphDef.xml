@@ -1,17 +1,19 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef>
 		<defName>BoarMorph</defName>
 		<label>boarmorph</label>
-    <description>a humanoid with many boar like characteristics resulting when a human is exposed to boar specific mutagens. Usually found with thick hide and large tusks making them dangerous combatants</description>
+		<description>a humanoid with many boar like characteristics resulting when a human is exposed to boar specific mutagens. Usually found with thick hide and large tusks making them dangerous combatants</description>
 		<race>WildBoar</race>
 		<categories>
 			<li>Combat</li>
 		</categories>
 		<raceSettings>
-
 			<graphicsSettings>
 				<skinColorOverride>(155,116,89)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>BoarMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

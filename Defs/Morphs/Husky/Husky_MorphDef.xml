@@ -1,4 +1,4 @@
-﻿<Defs>
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="CanineMorph">
 		<defName>HuskyMorph</defName>
 		<label>huskymorph</label>
@@ -21,5 +21,8 @@
 				</forcedTraits>
 			</traitSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>HuskyMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

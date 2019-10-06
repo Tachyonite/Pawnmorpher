@@ -1,4 +1,4 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
 	<ThoughtDef ParentName="MorphReactionThoughtBaseFurry">
 		<defName>EtherReactionThrumboTF</defName>
 		<hediff>PawnmorphThrumboTF</hediff>
@@ -15,4 +15,5 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	<!-- TODO neutral/negative thought for  thrumbo morph -->
 </Defs>
