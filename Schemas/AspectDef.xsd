@@ -17,6 +17,7 @@
             <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
             <xs:element name="aspectType" type="xs:string" minOccurs="0" maxOccurs="1" />
             <xs:element name="labelColor" type="Color" minOccurs="0" maxOccurs="1" />
+            <xs:element name="removedByReverter" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
             <xs:element name="stages" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>

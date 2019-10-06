@@ -16,8 +16,8 @@ namespace Pawnmorph
     {
         public Type aspectType;
         public List<AspectStage> stages = new List<AspectStage>();
-        public Color labelColor = Color.white; 
-
+        public Color labelColor = Color.white;
+        public bool removedByReverter = true; 
         public override void ResolveReferences()
         {
             base.ResolveReferences();

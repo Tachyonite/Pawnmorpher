@@ -40,9 +40,20 @@ namespace Pawnmorph
                 }
             }
 
-            TransformerUtility.RemoveAllMutations(pawn); 
+            TransformerUtility.RemoveAllMutations(pawn);
+            var aT = pawn.GetAspectTracker();
+            if(aT != null)
+                RemoveAspects(aT);
+        }
+
+        private void RemoveAspects(AspectTracker tracker)
+        {
+            foreach (Aspect aspect in tracker)
+            {
+                if (aspect.def.removedByReverter)
+                    tracker.Remove(aspect); //it's ok to remove them in a foreach loop 
+            }
 
         }
-        
     }
 }
