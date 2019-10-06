@@ -9,9 +9,8 @@
             <li>MutationAffinity</li>
             <li>BodyPurist</li>
         </nullifyingTraits>
-
-
     </ThoughtDef>
+	
     <ThoughtDef Abstract="true" Name="PMMorphMemoryFurry" ParentName="PMMorphMemoryBase">
         <requiredTraits>
             <!--this one is for furries -->
@@ -25,5 +24,4 @@
             <li>BodyPurist</li>
         </requiredTraits>
     </ThoughtDef>
-
 </Defs>

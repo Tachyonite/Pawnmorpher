@@ -113,14 +113,12 @@ namespace Pawnmorph
                 var labelB = base.LabelBase;
                 if (SingleComp != null)
                 {
-                    return $"{labelB}x{SingleComp.stacks}";
+                    return $"{labelB} x{SingleComp.stacks}";
                 }
 
                 return labelB; 
             }
         }
-
-      
 
         [Unsaved]
         private int _lastStage = -1; //ToDO can we save this?
@@ -137,11 +135,8 @@ namespace Pawnmorph
           
         }
 
-      
         protected virtual void EnterNextStage()
         {
-
-
             if (_lastStage == TransformationWarningStage && (pawn.IsColonist || pawn.IsPrisonerOfColony))
             {
                 SendLetter();
@@ -152,9 +147,6 @@ namespace Pawnmorph
 
         protected virtual void TryGiveTransformations()
         {
-
-
-
             if (CurStage.hediffGivers == null) return;
 
             if (MP.IsInMultiplayer)
@@ -228,7 +220,6 @@ namespace Pawnmorph
             {
                 postTfHediffComp.FinishedTransformation(pawn, this); 
             }
-
         }
 
         public override void ExposeData()
@@ -242,12 +233,10 @@ namespace Pawnmorph
         {
             base.PostRemoved();
 
-
             if (Severity <= 0.01f) //don't compare to zero but close to it, sometime hediff is removed naturally before then? 
             {
                 OnFinishedTransformation();
             }
-
         }
     }
 }
