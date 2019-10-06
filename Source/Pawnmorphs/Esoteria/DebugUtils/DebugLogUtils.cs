@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
@@ -13,7 +14,9 @@ using Pawnmorph.Hediffs;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
+using Debug = System.Diagnostics.Debug;
 
 namespace Pawnmorph.DebugUtils
 {
@@ -215,6 +218,70 @@ namespace Pawnmorph.DebugUtils
 
 
         }
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        public static void GetSpreadingMutationStats()
+        {
+            var isSkinCoveredF =
+                typeof(BodyPartDef).GetField("skinCovered", //have to get isSkinCovered field by reflection because it's not public 
+                                             BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+            var spreadableParts = MorphUtilities.AllMutableRecords.Where(r => (bool) isSkinCoveredF.GetValue(r.def)).ToList();
+
+            var spreadablePartsCount = spreadableParts.Count;
+
+
+            var allSpreadableMutations = MutationUtilities.AllMutations.Select(mut => new
+                                                           {
+                                                               mut = mut, //make an anonymous object to keep track of both the mutation and comp
+                                                               comp = mut.CompProps<Hediffs.SpreadingMutationCompProperties>()
+                                                           })
+                                                          .Where(o => o.comp != null) //keep only those with a spreading property 
+                                                          .ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine($"{spreadablePartsCount} parts that spreadable parts can spread onto");
+            foreach (var sMutation in allSpreadableMutations)
+            {
+                if(sMutation.mut.stages == null) continue;
+
+                builder.AppendLine($"----{sMutation.mut.defName}-----");
+
+                //print some stuff about the comp 
+                builder.AppendLine($"mtb:{sMutation.comp.mtb}");
+                builder.AppendLine($"searchDepth:{sMutation.comp.maxTreeSearchDepth}"); 
+
+
+                for (int i = 0; i < sMutation.mut.stages.Count; i++)
+                {
+                    var stage = sMutation.mut.stages[i];
+                    builder.AppendLine($"\tstage:{stage.label},{i}");
+
+
+                    foreach (PawnCapacityModifier capMod in stage.capMods ?? Enumerable.Empty<PawnCapacityModifier>())
+                    {
+                        var postFactor = Mathf.Pow(capMod.postFactor, spreadablePartsCount); //use pow because the post factors are multiplied together, not added 
+                        builder.AppendLine($"\t\t{capMod.capacity.defName}:[offset={capMod.offset * spreadablePartsCount}, postFactor={capMod.postFactor = postFactor}]");
+                    }
+
+                    foreach (StatModifier statOffset in stage.statOffsets ?? Enumerable.Empty<StatModifier>())
+                    {
+                        builder.AppendLine($"\t\t{statOffset.stat.defName}:{statOffset.value * spreadablePartsCount}");
+                    }
+
+                }
+
+                builder.AppendLine("");//make an empty line between mutations 
+
+
+            }
+
+
+            Log.Message(builder.ToString()); 
+        }
+
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
