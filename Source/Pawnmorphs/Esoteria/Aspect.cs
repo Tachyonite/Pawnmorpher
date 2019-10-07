@@ -46,7 +46,7 @@ namespace Pawnmorph
                 {
                     int last = _stage;
                     _stage = st;
-                    if(Scribe.mode != LoadSaveMode.Inactive) //make sure not to call this if we're loading from a save 
+                    if(Scribe.mode == LoadSaveMode.Inactive) //make sure not to call this if we're loading from a save 
                         StageChanged(last);
                 }
             }
