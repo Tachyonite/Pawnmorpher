@@ -298,6 +298,7 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Normal animal tails -->
 										<path>Parts/None/None</path>
 										<bodyPart>Tail</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -344,6 +345,7 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- New-style tails (snake and iguana) -->
 										<path>Parts/None/None</path>
 										<bodyPart>Tail</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -366,11 +368,11 @@
 											</north>
 											<east>
 												<bodyTypes>
-													<Male>(-0.21875,-0.0390625)</Male>
-													<Female>(-0.109375,-0.0625)</Female>
-													<Thin>(-0.203125,-0.0390625)</Thin>
-													<Hulk>(-0.015625,-0.234375)</Hulk>
-													<Fat>(0.0390625,0)</Fat>
+													<Male>(-0.1953125,-0.024)</Male>
+													<Female>(-0.24218755,-0.0859375)</Female>
+													<Thin>(-0.25,-0.024)</Thin>
+													<Hulk>(-0.0625,-0.234375)</Hulk>
+													<Fat>(0.0234375,-0.046875)</Fat>
 												</bodyTypes>
 											</east>
 										</offsets>
