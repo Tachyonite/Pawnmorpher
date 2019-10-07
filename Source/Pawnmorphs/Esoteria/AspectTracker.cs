@@ -71,13 +71,13 @@ namespace Pawnmorph
             aspect.Added(Pawn, startStage);
             if (aspect.HasCapMods)
             {
-                Pawn.health.capacities.Notify_CapacityLevelsDirty();
+                Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
             }
         }
 
         public void Notify_AspectChanged(Aspect aspect)
         {
-            Pawn.health.capacities.Notify_CapacityLevelsDirty();
+            Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
              
         }
 
