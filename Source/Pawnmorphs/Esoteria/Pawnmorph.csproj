@@ -147,7 +147,6 @@
     <Compile Include="MutationOutlook.cs" />
     <Compile Include="MutationTracker.cs" />
     <Compile Include="MutationUtilities.cs" />
-    <Compile Include="Patch_HealthCardUtility_GetPawnCapacityTip.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
     <Compile Include="PMJobDefOf.cs" />

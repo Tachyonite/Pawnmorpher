@@ -34,7 +34,12 @@ namespace Pawnmorph.HPatches
                             __result += statOffset.value; 
                         }
                     }
+
+
+
                 }
+
+
             }
         }
     }

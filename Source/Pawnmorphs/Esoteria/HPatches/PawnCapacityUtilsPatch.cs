@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 namespace Pawnmorph.HPatches
 {
+    
     public static class PawnCapacityUtilsPatch
     {
         [HarmonyPatch(typeof(PawnCapacityUtility))]
@@ -43,15 +44,26 @@ namespace Pawnmorph.HPatches
                             }
                         }
 
+
                         impactors?.Add(new AspectCapacityImpactor(aspect));
+
                     }
+
+
+                    
 
                     offset += GetTotalCapacityOffset(diffSet, capacity); //need to start with the uncapped offset value 
                     offset = Mathf.Min(offset * postFix, setMax); 
                     
+
                     GenMath.RoundedHundredth(Mathf.Max(offset, capacity.minValue));
-                    __result = Mathf.Min(__result, offset); //take the min of the aspect modified value and the capped value from Rimworld's calculation
+                    __result = Mathf.Min(__result, offset); //take the min of the aspect modified value and the capped value from Rimworld's calculation 
+
                 }
+
+
+
+
             }
         }
 
