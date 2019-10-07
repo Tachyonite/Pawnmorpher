@@ -16,11 +16,11 @@
     <GoodwillChangedReason_PawnTransformed>{memberLabel} turned into a {species}</GoodwillChangedReason_PawnTransformed>
 
     <!--factionName,species,leaderTitle -->
-    <FactionLeaderTransformedLabel>TODO</FactionLeaderTransformedLabel>
+    <FactionLeaderTransformedLabel>the {leaderTitle} of {factionName} turned into a {species}</FactionLeaderTransformedLabel>
 
     <!--memberName(the name of the oldLeader),species,factionName,leaderTitle,oldLeader,animal,newLeader -->
     <FactionLeaderTransformedContent>TODO</FactionLeaderTransformedContent>
 
     <!--memberLabel,species-->
-    <GoodwillChangedReason_PawnReverted>TODO</GoodwillChangedReason_PawnReverted>
+    <GoodwillChangedReason_PawnReverted>{memberLabel} is no longer a {species}</GoodwillChangedReason_PawnReverted>
 </LanguageData>
