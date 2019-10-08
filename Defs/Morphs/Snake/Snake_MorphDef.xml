@@ -9,13 +9,12 @@
 		</categories>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(146,117,108)</skinColorOverride>
-				<hairColorOverride>(0, 0, 0, 0)</hairColorOverride>
+				<skinColorOverride>(99,85,74)</skinColorOverride>
+				<hairColorOverride>(0,0,0,0)</hairColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
 			<transformationMemory>SnakeMorphTfReaction</transformationMemory>
 		</transformSettings>
 	</Pawnmorph.MorphDef>
-
 </Defs>
