@@ -523,12 +523,13 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Snake Hood FG Male -->
 										<path>Parts/None/None</path>
 										<bodyPart>Head</bodyPart>
-										<inFrontOfBody>false</inFrontOfBody>
+										<inFrontOfBody>true</inFrontOfBody>
 										<drawForFemale>false</drawForFemale>
 										<hediffGraphics>
-											<EtherSnakeHood>Parts/snakeface/snakehood</EtherSnakeHood>
+											<EtherSnakeHood>Parts/snakeface/snakehoodfg</EtherSnakeHood>
 										</hediffGraphics>
 										<layerOffset>1.0</layerOffset>
 										<offsets>
@@ -583,13 +584,134 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Snake Hood FG Female -->
+										<path>Parts/None/None</path>
+										<bodyPart>Head</bodyPart>
+										<inFrontOfBody>true</inFrontOfBody>
+										<drawForMale>false</drawForMale>
+										<hediffGraphics>
+											<EtherSnakeHood>Parts/snakeface/snakehoodfg</EtherSnakeHood>
+										</hediffGraphics>
+										<layerOffset>1.0</layerOffset>
+										<offsets>
+											<south>
+												<bodyTypes>
+													<Male>(-0.421875,0.5625)</Male>
+													<Female>(-0.421875,0.5625)</Female>
+													<Thin>(-0.421875,0.5625)</Thin>
+													<Hulk>(-0.421875,0.5625)</Hulk>
+													<Fat>(-0.421875,0.5625)</Fat>
+												</bodyTypes>
+												<crownTypes>
+													<Average_Pointy>(-0.0078125,0)</Average_Pointy>
+													<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
+													<Narrow_Wide>(-0.015625,-0.015625)</Narrow_Wide>
+													<Narrow_Pointy>(0,-0.046875)</Narrow_Pointy>
+												</crownTypes>
+											</south>
+											<north>
+												<bodyTypes>
+													<Male>(0,0.9375)</Male>
+													<Female>(0,0.9375)</Female>
+													<Thin>(0,0.9375)</Thin>
+													<Hulk>(0,0.9375)</Hulk>
+													<Fat>(0,0.9375)</Fat>
+												</bodyTypes>
+												<crownTypes>
+													<Average_Pointy>(-0.0078125,0)</Average_Pointy>
+													<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
+													<Narrow_Wide>(0,-0.015625)</Narrow_Wide>
+													<Narrow_Pointy>(0,-0.015625)</Narrow_Pointy>
+												</crownTypes>
+											</north>
+											<east>
+												<bodyTypes>
+													<Male>(-0.453125,0.5703125)</Male>
+													<Female>(-0.515625,0.5703125)</Female>
+													<Thin>(-0.5078125,0.5703125)</Thin>
+													<Hulk>(-0.515625,0.5703125)</Hulk>
+													<Fat>(-0.5078125,0.5703125)</Fat>
+												</bodyTypes>
+												<crownTypes>
+													<Average_Normal>(0.03125,0.0078125)</Average_Normal>
+													<Average_Wide>(0.03125,0.0078125)</Average_Wide>
+													<Average_Pointy>(0.03515625,0.0078125)</Average_Pointy>
+													<Narrow_Normal>(0.03125,-0.0078125)</Narrow_Normal>
+													<Narrow_Wide>(0.03125,-0.0078125)</Narrow_Wide>
+													<Narrow_Pointy>(0.03125,-0.03125)</Narrow_Pointy>
+												</crownTypes>
+											</east>
+										</offsets>
+									</li>
+									<li>
+										<!-- Snake Hood BG Male -->
+										<path>Parts/None/None</path>
+										<bodyPart>Head</bodyPart>
+										<inFrontOfBody>false</inFrontOfBody>
+										<drawForFemale>false</drawForFemale>
+										<hediffGraphics>
+											<EtherSnakeHood>Parts/snakeface/snakehoodbg</EtherSnakeHood>
+										</hediffGraphics>
+										<layerOffset>1.0</layerOffset>
+										<offsets>
+											<south>
+												<bodyTypes>
+													<Male>(-0.421875,0.5625)</Male>
+													<Female>(-0.421875,0.5625)</Female>
+													<Thin>(-0.421875,0.5625)</Thin>
+													<Hulk>(-0.421875,0.5625)</Hulk>
+													<Fat>(-0.421875,0.5625)</Fat>
+												</bodyTypes>
+												<crownTypes>
+													<Average_Wide>(-0.015625,0.00390625)</Average_Wide>
+													<Average_Pointy>(0,0.00390625)</Average_Pointy>
+													<Narrow_Normal>(0,-0.0078125)</Narrow_Normal>
+													<Narrow_Wide>(0,-0.0078125)</Narrow_Wide>
+													<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
+												</crownTypes>
+											</south>
+											<north>
+												<bodyTypes>
+													<Male>(0,0.9375)</Male>
+													<Female>(0,0.9375)</Female>
+													<Thin>(0,0.9375)</Thin>
+													<Hulk>(0,0.9375)</Hulk>
+													<Fat>(0,0.9375)</Fat>
+												</bodyTypes>
+												<crownTypes>
+													<Average_Wide>(-0.015625,0.00390625)</Average_Wide>
+													<Average_Pointy>(0,0.00390625)</Average_Pointy>
+													<Narrow_Normal>(0,-0.0078125)</Narrow_Normal>
+													<Narrow_Wide>(0,-0.0078125)</Narrow_Wide>
+													<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
+												</crownTypes>
+											</north>
+											<east>
+												<bodyTypes>
+													<Male>(-0.453125,0.5703125)</Male>
+													<Female>(-0.515625,0.5703125)</Female>
+													<Thin>(-0.5078125,0.5703125)</Thin>
+													<Hulk>(-0.515625,0.5703125)</Hulk>
+													<Fat>(-0.5078125,0.5703125)</Fat>
+												</bodyTypes>
+												<crownTypes>
+													<Average_Wide>(-0.0078125,0)</Average_Wide>
+													<Average_Pointy>(0.0078125,0)</Average_Pointy>
+													<Narrow_Normal>(0.0078125,-0.015625)</Narrow_Normal>
+													<Narrow_Wide>(0.0078125,-0.015625)</Narrow_Wide>
+													<Narrow_Pointy>(0.0078125,-0.0234375)</Narrow_Pointy>
+												</crownTypes>
+											</east>
+										</offsets>
+									</li>
+									<li>
+										<!-- Snake Hood BG Female -->
 										<path>Parts/None/None</path>
 										<bodyPart>Head</bodyPart>
 										<inFrontOfBody>false</inFrontOfBody>
 										<drawForMale>false</drawForMale>
 										<hediffGraphics>
-											<EtherSnakeHood>Parts/snakeface/snakehood</EtherSnakeHood>
-											<EtherIguanaHorns>Parts/iguanaface/iguanahorn</EtherIguanaHorns>
+											<EtherSnakeHood>Parts/snakeface/snakehoodbg</EtherSnakeHood>
 										</hediffGraphics>
 										<layerOffset>1.0</layerOffset>
 										<offsets>
