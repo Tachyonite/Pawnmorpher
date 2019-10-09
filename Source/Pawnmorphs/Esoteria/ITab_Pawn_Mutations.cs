@@ -285,17 +285,10 @@ namespace Pawnmorph
             Rect viewRect = new Rect(curPos.x, curPos.y, rect.width - 16f, logScrollViewHeight - curPos.y);
             Widgets.BeginScrollView(outRect, ref logScrollPosition, viewRect, true);
 
-            // A bit of test code to show something long enough to scroll in the log.
-            //DrawMutLogEntry(ref curPos, viewRect.width, "A really long line so that yap can see if the code can handle multiple lines.");
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    DrawMutLogEntry(ref curPos, viewRect.width, (i + 1).ToString());
-            //}
-
-            // Test code to figure out how the logging utility works.
-            List<ITab_Pawn_Log_Utility.LogLineDisplayable> cachedLogDisplay = ITab_Pawn_Log_Utility.GenerateLogLinesFor(PawnToShowMutationsFor, true, false, true).ToList<ITab_Pawn_Log_Utility.LogLineDisplayable>();
+            var cachedLogDisplay = GetMutationLogs(PawnToShowMutationsFor); 
             foreach (ITab_Pawn_Log_Utility.LogLineDisplayable line in cachedLogDisplay)
             {
+                
                 StringBuilder stringBuilder = new StringBuilder();
                 line.AppendTo(stringBuilder);
                 DrawMutLogEntry(ref curPos, viewRect.width, stringBuilder.ToString());
@@ -308,6 +301,15 @@ namespace Pawnmorph
             }
             Widgets.EndScrollView();
         }
+
+        IEnumerable<ITab_Pawn_Log_Utility.LogLineDisplayable> GetMutationLogs(Pawn pawn)
+        {
+            foreach (MutationLogEntry mutationLogEntry in Find.PlayLog.AllEntries.Where(e => e.Concerns(pawn)).OfType<MutationLogEntry>())
+            {
+                yield return new ITab_Pawn_Log_Utility.LogLineDisplayableLog(mutationLogEntry, pawn); 
+            }
+        }
+
 
         private void DrawMutLogHeader(ref Vector2 curPos, float width)
         {
