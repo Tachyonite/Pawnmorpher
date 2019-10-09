@@ -26,6 +26,7 @@
 								</aliencrowntypes>
 								<bodyAddons>
 									<li>
+										<!-- Male Muzzles -->
 										<path>Parts/None/None</path>
 										<bodyPart>Jaw</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -51,7 +52,6 @@
 											<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
 											<EtherWolfMuzzle>Parts/wolfface/wolfface</EtherWolfMuzzle>
 										</hediffGraphics>
-										<layerOffset>-0.271</layerOffset>
 										<hiddenUnderApparelFor>
 											<li>FullHead</li>
 										</hiddenUnderApparelFor>
@@ -89,6 +89,7 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Female Muzzles -->
 										<path>Parts/None/None</path>
 										<bodyPart>Jaw</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -114,6 +115,9 @@
 											<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
 											<EtherWolfMuzzle>Parts/wolfface/wolfface</EtherWolfMuzzle>
 										</hediffGraphics>
+										<hiddenUnderApparelFor>
+											<li>FullHead</li>
+										</hiddenUnderApparelFor>
 										<offsets>
 											<south>
 												<bodyTypes>
@@ -151,6 +155,7 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Male Ears -->
 										<path>Parts/None/None</path>
 										<bodyPart>Ear</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -225,6 +230,7 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Female Ears -->
 										<path>Parts/None/None</path>
 										<bodyPart>Ear</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -298,10 +304,11 @@
 										</offsets>
 									</li>
 									<li>
-										<!-- Normal animal tails -->
+										<!-- Old-Style Tails -->
 										<path>Parts/None/None</path>
 										<bodyPart>Tail</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
+										<layerInvert>false</layerInvert>
 										<drawnInBed>false</drawnInBed>
 										<hediffGraphics>
 											<EtherAlpacaTail>Parts/alpacaface/alpacatail</EtherAlpacaTail>
@@ -321,7 +328,6 @@
 											<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 											<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 										</hediffGraphics>
-										<layerOffset>-3</layerOffset>
 										<offsets>
 											<south />
 											<north>
@@ -345,7 +351,7 @@
 										</offsets>
 									</li>
 									<li>
-										<!-- New-style tails (snake and iguana) -->
+										<!-- New-Style Tails -->
 										<path>Parts/None/None</path>
 										<bodyPart>Tail</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -355,7 +361,7 @@
 											<EtherSnakeTail>Parts/snakeface/snaketail</EtherSnakeTail>
 											<EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
 										</hediffGraphics>
-										<layerOffset>0</layerOffset>
+										<layerOffset>-0.29</layerOffset>
 										<offsets>
 											<south />
 											<north>
@@ -401,6 +407,7 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Male Horns -->
 										<path>Parts/None/None</path>
 										<bodyPart>Skull</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -463,6 +470,7 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Female Horns -->
 										<path>Parts/None/None</path>
 										<bodyPart>Skull</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -524,7 +532,7 @@
 										</offsets>
 									</li>
 									<li>
-										<!-- Snake Hood FG Male -->
+										<!-- Male Snake Hood FG -->
 										<path>Parts/None/None</path>
 										<bodyPart>Head</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -532,7 +540,10 @@
 										<hediffGraphics>
 											<EtherSnakeHood>Parts/snakeface/snakehoodfg</EtherSnakeHood>
 										</hediffGraphics>
-										<layerOffset>1.0</layerOffset>
+										<hiddenUnderApparelFor>
+											<li>UpperHead</li>
+											<li>FullHead</li>
+										</hiddenUnderApparelFor>
 										<offsets>
 											<south>
 												<bodyTypes>
@@ -585,7 +596,7 @@
 										</offsets>
 									</li>
 									<li>
-										<!-- Snake Hood FG Female -->
+										<!-- Female Snake Hood FG -->
 										<path>Parts/None/None</path>
 										<bodyPart>Head</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -593,7 +604,10 @@
 										<hediffGraphics>
 											<EtherSnakeHood>Parts/snakeface/snakehoodfg</EtherSnakeHood>
 										</hediffGraphics>
-										<layerOffset>1.0</layerOffset>
+										<hiddenUnderApparelFor>
+											<li>UpperHead</li>
+											<li>FullHead</li>
+										</hiddenUnderApparelFor>
 										<offsets>
 											<south>
 												<bodyTypes>
@@ -645,7 +659,7 @@
 										</offsets>
 									</li>
 									<li>
-										<!-- Snake Hood BG Male -->
+										<!-- Male Snake Hood BG -->
 										<path>Parts/None/None</path>
 										<bodyPart>Head</bodyPart>
 										<inFrontOfBody>false</inFrontOfBody>
@@ -653,7 +667,10 @@
 										<hediffGraphics>
 											<EtherSnakeHood>Parts/snakeface/snakehoodbg</EtherSnakeHood>
 										</hediffGraphics>
-										<layerOffset>1.0</layerOffset>
+										<hiddenUnderApparelFor>
+											<li>UpperHead</li>
+											<li>FullHead</li>
+										</hiddenUnderApparelFor>
 										<offsets>
 											<south>
 												<bodyTypes>
@@ -706,7 +723,7 @@
 										</offsets>
 									</li>
 									<li>
-										<!-- Snake Hood BG Female -->
+										<!-- Female Snake Hood BG -->
 										<path>Parts/None/None</path>
 										<bodyPart>Head</bodyPart>
 										<inFrontOfBody>false</inFrontOfBody>
@@ -714,7 +731,10 @@
 										<hediffGraphics>
 											<EtherSnakeHood>Parts/snakeface/snakehoodbg</EtherSnakeHood>
 										</hediffGraphics>
-										<layerOffset>1.0</layerOffset>
+										<hiddenUnderApparelFor>
+											<li>UpperHead</li>
+											<li>FullHead</li>
+										</hiddenUnderApparelFor>
 										<offsets>
 											<south>
 												<bodyTypes>
@@ -766,6 +786,7 @@
 										</offsets>
 									</li>
 									<li>
+										<!-- Udders -->
 										<path>Parts/None/None</path>
 										<bodyPart>Waist</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
@@ -807,9 +828,7 @@
 										<hediffGraphics>
 											<EtherSnakeEye>Parts/snakeface/snakeeyesmale</EtherSnakeEye>
 										</hediffGraphics>
-										<hiddenUnderApparelFor>
-											<li>FullHead</li>
-										</hiddenUnderApparelFor>
+										<layerOffset>-0.29</layerOffset>
 										<offsets>
 											<south>
 												<bodyTypes>
@@ -853,6 +872,7 @@
 										<hediffGraphics>
 											<EtherSnakeEye>Parts/snakeface/snakeeyesfemale</EtherSnakeEye>
 										</hediffGraphics>
+										<layerOffset>-0.29</layerOffset>
 										<offsets>
 											<south>
 												<bodyTypes>
