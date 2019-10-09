@@ -52,7 +52,6 @@
 											<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
 											<EtherWolfMuzzle>Parts/wolfface/wolfface</EtherWolfMuzzle>
 										</hediffGraphics>
-										<layerOffset>-0.271</layerOffset>
 										<hiddenUnderApparelFor>
 											<li>FullHead</li>
 										</hiddenUnderApparelFor>
@@ -309,6 +308,7 @@
 										<path>Parts/None/None</path>
 										<bodyPart>Tail</bodyPart>
 										<inFrontOfBody>true</inFrontOfBody>
+										<layerInvert>false</layerInvert>
 										<drawnInBed>false</drawnInBed>
 										<hediffGraphics>
 											<EtherAlpacaTail>Parts/alpacaface/alpacatail</EtherAlpacaTail>
@@ -328,7 +328,6 @@
 											<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 											<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 										</hediffGraphics>
-										<layerOffset>-3</layerOffset>
 										<offsets>
 											<south />
 											<north>
@@ -362,10 +361,7 @@
 											<EtherSnakeTail>Parts/snakeface/snaketail</EtherSnakeTail>
 											<EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
 										</hediffGraphics>
-										<hiddenUnderApparelFor>
-											<li>Torso</li>
-										</hiddenUnderApparelFor>
-										<layerOffset>0</layerOffset>
+										<layerOffset>-0.29</layerOffset>
 										<offsets>
 											<south />
 											<north>
@@ -832,9 +828,7 @@
 										<hediffGraphics>
 											<EtherSnakeEye>Parts/snakeface/snakeeyesmale</EtherSnakeEye>
 										</hediffGraphics>
-										<hiddenUnderApparelFor>
-											<li>Eyes</li>
-										</hiddenUnderApparelFor>
+										<layerOffset>-0.29</layerOffset>
 										<offsets>
 											<south>
 												<bodyTypes>
@@ -878,9 +872,7 @@
 										<hediffGraphics>
 											<EtherSnakeEye>Parts/snakeface/snakeeyesfemale</EtherSnakeEye>
 										</hediffGraphics>
-										<hiddenUnderApparelFor>
-											<li>Eyes</li>
-										</hiddenUnderApparelFor>
+										<layerOffset>-0.29</layerOffset>
 										<offsets>
 											<south>
 												<bodyTypes>
