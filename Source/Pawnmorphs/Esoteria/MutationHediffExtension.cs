@@ -2,8 +2,10 @@
 // last updated 09/15/2019  8:44 PM
 
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using RimWorld;
 using Verse;
+using Verse.Grammar;
 
 namespace Pawnmorph
 {
@@ -15,6 +17,7 @@ namespace Pawnmorph
     public class MutationHediffExtension : DefModExtension
     {
         public List<BodyPartDef> parts = new List<BodyPartDef>();
-        public List<MutationCategoryDef> categories = new List<MutationCategoryDef>(); 
+        public List<MutationCategoryDef> categories = new List<MutationCategoryDef>();
+        [CanBeNull] public RulePackDef mutationRulePack; 
     }
 }

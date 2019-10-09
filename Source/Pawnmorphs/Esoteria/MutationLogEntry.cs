@@ -72,6 +72,7 @@ namespace Pawnmorph
                 $"{_pawn.Name}: {string.Join(",", _mutatedRecords.Select(r => r.LabelCap).ToArray())} -> {_mutationDef.LabelCap}";
         }
 
+        private const string PART_LABEL = "PART"; 
         protected override string ToGameStringFromPOV_Worker(Thing pov, bool forceLog)
         {
             Assert(pov == _pawn, "pov == _pawn");
@@ -80,16 +81,22 @@ namespace Pawnmorph
             try
             {
                 GrammarRequest grammarRequest = GenerateGrammarRequest();
-                grammarRequest.Includes.Add(PMRulePackDefOf.DefaultMutationRulePack);
+
+                var rulePack = _mutationDef.GetModExtension<MutationHediffExtension>()?.mutationRulePack
+                            ?? PMRulePackDefOf.DefaultMutationRulePack; 
+
+                grammarRequest.Includes.Add(rulePack);
                 IEnumerable<Rule> pawnR = GrammarUtility.RulesForPawn(PAWN_IDENTIFIER, _pawn, grammarRequest.Constants);
 
                 BodyPartRecord partR = BodyDefOf.Human.AllParts.Where(r => _mutatedRecords.Contains(r.def)).RandomElement();
+                var partRules = GrammarUtility.RulesForBodyPartRecord(PART_LABEL, partR); 
                 IEnumerable<Rule> mutR = GrammarUtility.RulesForHediffDef(MUTATION_IDENTIFIER, _mutationDef, partR);
 
 
                 //add the rules 
                 grammarRequest.Rules.AddRange(pawnR);
                 grammarRequest.Rules.AddRange(mutR);
+                grammarRequest.Rules.AddRange(partRules); 
                 return GrammarResolver.Resolve(RP_ROOT_RULE, grammarRequest, "mutation log", forceLog);
             }
             catch (Exception exception)
