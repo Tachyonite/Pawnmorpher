@@ -1,0 +1,11 @@
+<Defs> 
+    <RulePackDef> 
+        <defName>DefaultMutationRulePack</defName>
+        <rulePack>
+            <rulesStrings>
+                <!-- TODO  --> 
+                <li>mutation_log->[PAWN] [MUTATION]</li> <!-- test entry, should be removed-->
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    </Defs>
