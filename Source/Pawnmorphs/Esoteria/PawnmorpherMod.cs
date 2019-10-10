@@ -29,11 +29,11 @@ namespace Pawnmorph
             listingStandard.CheckboxLabeled("enableMutagenMeteorCheckboxLabel".Translate(), ref settings.enableMutagenMeteor, "enableMutagenMeteorCheckboxTooltip".Translate());
             listingStandard.CheckboxLabeled("enableWildFormersCheckboxLabel".Translate(), ref settings.enableWildFormers, "enableWildFormersCheckboxTooltip".Translate());
             listingStandard.GapLine();
-            listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}");
+            listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
             settings.transformChance = listingStandard.Slider(settings.transformChance, 0f, 100f);
-            listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}");
+            listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToString("F1")}%");
             settings.formerChance = listingStandard.Slider(settings.formerChance, 0f, 100f);
-            listingStandard.Label($"{"partialChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}");
+            listingStandard.Label($"{"partialChanceSliderLabel".Translate()}: {settings.partialChance.ToString("F1")}%");
             settings.partialChance = listingStandard.Slider(settings.partialChance, 0f, 100f);
             listingStandard.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
             settings.maxMutationThoughts = (int)listingStandard.Slider(settings.maxMutationThoughts, 1, 10);
