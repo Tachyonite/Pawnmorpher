@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -16,20 +15,18 @@ namespace Pawnmorph
 
         [Unsaved] private List<HediffDef> _mutations;
 
-        /// <summary>
-        /// an enumerable collection of all mutations within this category 
-        /// </summary>
+        /// <summary> An enumerable collection of all mutations within this category. </summary>
         public IEnumerable<HediffDef> AllMutationsInCategory
         {
             get
             {
                 if (_mutations == null)
                 {
-                    _mutations = DefDatabase<HediffDef>.AllDefs
-                                                       .Where(d => d.GetModExtension<MutationHediffExtension>()
-                                                                   ?.categories.Contains(this)
-                                                                ?? false)
-                                                       .ToList();
+                    _mutations = 
+                        DefDatabase<HediffDef>.AllDefs
+                        .Where(d => d.GetModExtension<MutationHediffExtension>()
+                        ?.categories.Contains(this) ?? false)
+                        .ToList();
                 }
 
                 return _mutations; 

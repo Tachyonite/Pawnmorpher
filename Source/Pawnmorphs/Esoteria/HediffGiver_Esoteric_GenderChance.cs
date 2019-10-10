@@ -1,7 +1,6 @@
 ﻿using System;
 using Verse;
 
-//Depricated, use HedifGiver_Mutaions instead.
 namespace Pawnmorph
 {
     [Obsolete("use HediffGiver_Mutation")]

@@ -2,8 +2,6 @@
 // last updated 08/13/2019  4:11 PM
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Verse;
@@ -17,20 +15,12 @@ namespace Pawnmorph
     public static class MutagenUtilities
     {
 
-        
-        /// <summary>
-        /// Determines whether this instance can infect the specified pawn.
-        /// </summary>
-        /// <param name="morphTf">The morph tf hediff.</param>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///   <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        /// morphTf
-        /// or
-        /// pawn
-        /// </exception>
+
+        /// <summary> Determines whether this instance can infect the specified pawn. </summary>
+        /// <param name="morphTf"> The morph tf hediff. </param>
+        /// <param name="pawn"> The pawn. </param>
+        /// <returns> <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>. </returns>
+        /// <exception cref="ArgumentNullException"> morphTf or pawn is null. </exception>
         public static bool CanInfect([NotNull] this Hediff_Morph morphTf, [NotNull] Pawn pawn)
         {
             if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
@@ -38,22 +28,14 @@ namespace Pawnmorph
 
             var mutDef = morphTf.def as Def_MorphTf;
             var mutagen = mutDef?.mutagenSource ?? MutagenDefOf.defaultMutagen;
-            return mutagen.CanInfect(pawn); 
+            return mutagen.CanInfect(pawn);
         }
 
-        /// <summary>
-        /// Determines whether this instance can infect the specified pawn.
-        /// </summary>
-        /// <param name="mutationDef">The mutation definition.</param>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///   <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="System.ArgumentNullException">
-        /// mutationDef
-        /// or
-        /// pawn
-        /// </exception>
+        /// <summary> Determines whether this instance can infect the specified pawn. </summary>
+        /// <param name="mutationDef"> The mutation definition. </param>
+        /// <param name="pawn"> The pawn. </param>
+        /// <returns> <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>. </returns>
+        /// <exception cref="System.ArgumentNullException"> mutationDef or pawn is null. </exception>
         public static bool CanInfect([NotNull] this HediffDef mutationDef, [NotNull] Pawn pawn)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
@@ -61,26 +43,22 @@ namespace Pawnmorph
 
             if (mutationDef is Def_MorphTf morphTf)
             {
-                return morphTf.mutagenSource.CanInfect(pawn); 
+                return morphTf.mutagenSource.CanInfect(pawn);
             }
 
-            return MutagenDefOf.defaultMutagen.CanInfect(pawn); 
-
+            return MutagenDefOf.defaultMutagen.CanInfect(pawn);
         }
 
-        /// <summary>
-        /// Gets the mutagen associated with this tf hediff 
-        /// </summary>
-        /// <param name="morphTf">The morph tf.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">morphTf</exception>
+        /// <summary> Gets the mutagen associated with this tf hediff. </summary>
+        /// <param name="morphTf"> The morph tf. </param>
+        /// <exception cref="ArgumentNullException"> morphTf is null. </exception>
         [NotNull]
         public static MutagenDef GetMutagenDef([NotNull] this Hediff_Morph morphTf)
         {
             if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
 
             var def = morphTf.def as Hediffs.Def_MorphTf;
-            return def?.mutagenSource ?? MutagenDefOf.defaultMutagen; 
+            return def?.mutagenSource ?? MutagenDefOf.defaultMutagen;
         }
     }
 }

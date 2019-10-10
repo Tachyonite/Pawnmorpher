@@ -4,38 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
-using Multiplayer.API;
 using Pawnmorph.Utilities;
 
 namespace Pawnmorph
 {
     public class StockGenerator_Morphs : StockGenerator
     {
-        [NoTranslate]
-        private List<string> tradeTagsSell = new List<string>();
-
+        [NoTranslate] private List<string> tradeTagsSell = new List<string>();
         private IntRange kindCountRange = new IntRange(1, 1);
-
         private float minWildness = 0f;
-
         private float maxWildness = 1f;
-
         private bool checkTemperature = true;
 
         private static readonly SimpleCurve SelectionChanceFromWildnessCurve = new SimpleCurve
-    {
-        new CurvePoint(0f, 100f),
-        new CurvePoint(0.25f, 60f),
-        new CurvePoint(0.5f, 30f),
-        new CurvePoint(0.75f, 12f),
-        new CurvePoint(1f, 2f)
-    };
+        {
+            new CurvePoint(0f, 100f),
+            new CurvePoint(0.25f, 60f),
+            new CurvePoint(0.5f, 30f),
+            new CurvePoint(0.75f, 12f),
+            new CurvePoint(1f, 2f)
+        };
 
-        /// <summary>
-        /// Generates the things for the given forTile 
-        /// </summary>
-        /// <param name="forTile">For tile.</param>
-        /// <returns></returns>
+        /// <summary> Generates the things for the given forTile. </summary>
+        /// <param name="forTile"> For tile. </param>
         IEnumerable<Thing> GenerateThingEnumer(int forTile)
         {
             int numKinds = kindCountRange.RandomInRange;
@@ -65,9 +56,6 @@ namespace Pawnmorph
                 PawnGenerationRequest request = new PawnGenerationRequest(kind2, null, PawnGenerationContext.NonPlayer, tile);
                 Pawn pawn = PawnGenerator.GeneratePawn(request); //Generate the animal!
 
-
-
-
                 Hediff h = HediffMaker.MakeHediff(HediffDef.Named("TransformedHuman"), pawn);
                 h.Severity = Rand.Range(0.02f, 0.9f);
                 pawn.health.AddHediff(h);
@@ -89,7 +77,6 @@ namespace Pawnmorph
                             default:
                                 break;
                         }
-
                     }
 
                     float animalAge = pawn.ageTracker.AgeBiologicalYearsFloat;
@@ -125,7 +112,6 @@ namespace Pawnmorph
             }
         }
 
-
         public override IEnumerable<Thing> GenerateThings(int forTile)
         {
             RandUtilities.PushState();
@@ -134,7 +120,7 @@ namespace Pawnmorph
 
             RandUtilities.PopState();
 
-            return enumer; 
+            return enumer;
 
         }
 

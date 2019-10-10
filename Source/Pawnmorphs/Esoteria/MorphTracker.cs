@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
-using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
 
@@ -18,23 +17,16 @@ namespace Pawnmorph
     {
         public delegate void MorphCountChangedHandle(MorphTracker sender, MorphDef morph);
 
-        /// <summary>
-        /// event that is raised every time the morph count on the attached map changes
-        /// </summary>
+        /// <summary> Event that is raised every time the morph count on the attached map changes. </summary>
         public event MorphCountChangedHandle MorphCountChanged;
 
         private Dictionary<MorphDef, int> _counterDict = new Dictionary<MorphDef, int>(); 
         
-
-
         public MorphTracker(Map map) : base(map)
         {
         }
 
-        /// <summary>
-        ///     notify this tracker that the pawn has spawned
-        /// </summary>
-        /// <param name="pawn"></param>
+        /// <summary> Notify this tracker that the pawn has spawned. </summary>
         public void NotifySpawned(Pawn pawn)
         {
             var morph = pawn.def.GetMorphOfRace();
@@ -45,16 +37,9 @@ namespace Pawnmorph
                 _counterDict[morph] = i; 
                 MorphCountChanged?.Invoke(this, morph); 
             }
-
-
         }
 
-
-        /// <summary>
-        /// get the number of morphs belonging to the given group active in the map
-        /// </summary>
-        /// <param name="group"></param>
-        /// <returns></returns>
+        /// <summary> Get the number of morphs belonging to the given group active in the map. </summary>
         public int GetGroupCount([NotNull] MorphGroupDef group)
         {
             if (group == null) throw new ArgumentNullException(nameof(group));
@@ -64,25 +49,16 @@ namespace Pawnmorph
                 counter += this[morphDef];
             }
 
-            return counter; 
-
+            return counter;
         }
         
-
-        /// <summary>
-        /// get the number of morphs active on this map 
-        /// </summary>
-        /// <param name="morph"></param>
-        /// <returns></returns>
+        /// <summary> Get the number of morphs active on this map. </summary>
         public int this[MorphDef morph]
         {
             get { return _counterDict.TryGetValue(morph);  }
         }
 
-        /// <summary>
-        /// notify the map that the pawn has despawned from the map 
-        /// </summary>
-        /// <param name="pawn"></param>
+        /// <summary> Notify the map that the pawn has despawned from the map. </summary>
         public void NotifyDespawned(Pawn pawn)
         {
             var morph = pawn.def.GetMorphOfRace();
@@ -95,10 +71,7 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>
-        /// notify this tracker that the pawn race has changed 
-        /// </summary>
-        /// <param name="pawn"></param>
+        /// <summary> Notify this tracker that the pawn race has changed. </summary>
         public void NotifyPawnRaceChanged(Pawn pawn, [CanBeNull] MorphDef oldMorph)
         {
             if (oldMorph != null)
@@ -118,16 +91,5 @@ namespace Pawnmorph
                 MorphCountChanged?.Invoke(this, morph); 
             }
         }
-
     }
-
-
-    public class MorphTrackingCompProperties : CompProperties
-    {
-        public MorphTrackingCompProperties()
-        {
-            compClass = typeof(MorphTrackingComp);
-        }
-    } 
-
 }

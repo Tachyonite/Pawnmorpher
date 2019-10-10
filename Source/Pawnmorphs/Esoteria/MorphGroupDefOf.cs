@@ -14,6 +14,5 @@ namespace Pawnmorph
         }
 
         public static MorphGroupDef Humans;
-
     }
 }

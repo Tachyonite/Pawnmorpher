@@ -3,9 +3,7 @@
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// enum for the 3 possible states a pawn can be in (in relation to 'ether' hediffs)  
-    /// </summary>
+    /// <summary> Enum for the 3 possible states a pawn can be in (in relation to 'ether' hediffs). </summary>
     public enum EtherState 
     {
         None=0, //has neither EtherBroken or EtherBonded

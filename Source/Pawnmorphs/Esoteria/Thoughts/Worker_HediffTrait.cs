@@ -7,11 +7,8 @@ using Verse;
 
 namespace Pawnmorph.Thoughts
 {
-    /// <summary>
-    /// thought worker that works like ThoughtWorker_Hediff except is also respects traits
-    /// </summary>
-    public class Worker_HediffTrait: ThoughtWorker 
-
+    /// <summary> Thought worker that works like ThoughtWorker_Hediff except is also respects traits. </summary>
+    public class Worker_HediffTrait: ThoughtWorker
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
@@ -23,18 +20,13 @@ namespace Pawnmorph.Thoughts
             var hStageIndex = firstHediff.CurStageIndex;
             var index = Mathf.Min(def.stages.Count - 1, hStageIndex);
 
-            return ThoughtState.ActiveAtStage(index); 
-
+            return ThoughtState.ActiveAtStage(index);
         }
 
-        /// <summary>
-        /// check to make sure that the pawn's traits allow for the thought to be active 
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <returns>if traits allow the thought can be active </returns>
+        /// <summary> Check to make sure that the pawn's traits allow for the thought to be active. </summary>
+        /// <returns> If traits allow the thought can be active. </returns>
         private bool CheckTraits(Pawn pawn)
         {
-
             var storyTraits = pawn.story?.traits;
             if (def.nullifyingTraits != null)
             {

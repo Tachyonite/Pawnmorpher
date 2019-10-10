@@ -5,9 +5,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// interface for things that receive race change event
-    /// </summary>
+    /// <summary> Interface for things that receive race change event. </summary>
     public interface IRaceChangeEventReceiver
     {
         void OnRaceChange(ThingDef oldRace); 

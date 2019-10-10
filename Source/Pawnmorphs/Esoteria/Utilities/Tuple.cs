@@ -13,7 +13,5 @@ namespace Pawnmorph.Utilities
             First = first;
             Second = second; 
         }
-
-        
     }
 }

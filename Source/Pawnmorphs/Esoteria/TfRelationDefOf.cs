@@ -5,9 +5,7 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static class containing transformation related pawn relation defs
-    /// </summary>
+    /// <summary> Static class containing transformation related pawn relation defs. </summary>
     [DefOf]
     public static class TfRelationDefOf
     {

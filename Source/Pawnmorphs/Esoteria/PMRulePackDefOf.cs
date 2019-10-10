@@ -13,11 +13,8 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(RulePackDef));
         }
-        /// <summary>
-        /// default rule pack used for generating mutation log entries 
-        /// </summary>
+
+        /// <summary> Default rule pack used for generating mutation log entries. </summary>
         public static RulePackDef DefaultMutationRulePack;
-
-
     }
 }

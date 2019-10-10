@@ -5,10 +5,7 @@ using System.Collections.Generic;
 
 namespace Pawnmorph.Utilities
 {
-    /// <summary>
-    /// generic class for a filter 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <summary> Generic class for a filter. </summary>
     public class Filter<T>
     {
         public List<T> filterList;
@@ -20,6 +17,5 @@ namespace Pawnmorph.Utilities
             if (isBlackList) return !contains;
             return contains; 
         }
-
     }
 }

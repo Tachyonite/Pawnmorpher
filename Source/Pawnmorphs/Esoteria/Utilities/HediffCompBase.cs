@@ -5,19 +5,13 @@ using Verse;
 
 namespace Pawnmorph.Utilities
 {
-    /// <summary>
-    /// convenient base class for hediff comps that know their properties type  
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <summary> convenient base class for hediff comps that know their properties type. </summary>
     public class HediffCompBase<T> : HediffComp where T : HediffCompProperties
     {
         public T Props => (T) props; 
     }
 
-    /// <summary>
-    /// convenient base class for comp properties that know their comp type  
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <summary> Convenient base class for comp properties that know their comp type. </summary>
     public class HediffCompPropertiesBase<T> : HediffCompProperties where T: HediffComp
     {
         public HediffCompPropertiesBase()

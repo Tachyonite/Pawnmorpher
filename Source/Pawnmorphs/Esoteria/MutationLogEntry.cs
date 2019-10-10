@@ -12,9 +12,7 @@ using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    ///     log entry for when a pawn mutates
-    /// </summary>
+    /// <summary> Log entry for when a pawn mutates. </summary>
     public class MutationLogEntry : LogEntry
     {
         // Rule pack constants.

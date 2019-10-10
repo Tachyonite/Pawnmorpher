@@ -288,7 +288,6 @@ namespace Pawnmorph
             var cachedLogDisplay = GetMutationLogs(PawnToShowMutationsFor); 
             foreach (ITab_Pawn_Log_Utility.LogLineDisplayable line in cachedLogDisplay)
             {
-                
                 StringBuilder stringBuilder = new StringBuilder();
                 line.AppendTo(stringBuilder);
                 DrawMutLogEntry(ref curPos, viewRect.width, stringBuilder.ToString());

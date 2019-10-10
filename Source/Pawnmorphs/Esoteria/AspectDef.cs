@@ -7,17 +7,15 @@ using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
-{    
-
-    /// <summary>
-    /// def for all affinities 
-    /// </summary>
+{
+    /// <summary> Def for all affinities. </summary>
     public class AspectDef : Def
     {
         public Type aspectType;
         public List<AspectStage> stages = new List<AspectStage>();
         public Color labelColor = Color.white;
-        public bool removedByReverter = true; 
+        public bool removedByReverter = true;
+
         public override void ResolveReferences()
         {
             base.ResolveReferences();
@@ -35,24 +33,20 @@ namespace Pawnmorph
                 yield return configError;
             }
 
-            if (stages == null) yield return "no stages"; 
+            if (stages == null) yield return "no stages";
         }
 
-        /// <summary>
-        /// get the affinity def with the given defName
-        /// </summary>
-        /// <param name="defName"></param>
-        /// <returns></returns>
+        /// <summary> Get the affinity def with the given defName. </summary>
         public static AspectDef Named(string defName)
         {
-            return DefDatabase<AspectDef>.GetNamed(defName); 
+            return DefDatabase<AspectDef>.GetNamed(defName);
         }
 
         public Aspect CreateInstance()
         {
-            var affinity = (Aspect) Activator.CreateInstance(aspectType);
+            var affinity = (Aspect)Activator.CreateInstance(aspectType);
             affinity.def = this;
-            return affinity; 
+            return affinity;
         }
     }
 }

@@ -18,12 +18,7 @@ namespace Pawnmorph
             return pawn.GetComp<AspectTracker>(); 
         }
 
-        /// <summary>
-        /// get the total production multiplier for the given mutation 
-        /// </summary>
-        /// <param name="aspects"></param>
-        /// <param name="mutation"></param>
-        /// <returns></returns>
+        /// <summary> Get the total production multiplier for the given mutation. </summary>
         public static float GetProductionBoost([NotNull] this IEnumerable<Aspect> aspects, HediffDef mutation)
         {
             float accum = 0;

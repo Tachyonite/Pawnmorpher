@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -24,28 +21,14 @@ namespace Pawnmorph
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-            bool pushed=false;
-            if (pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Any(y => y == x.def)))
-            {
+            if (pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Any(y => y == x.def))) return;
 
-                return;
-
-            }
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed);
-                pushed = true;
-            }
+            RandUtilities.PushState();
 
             if (Rand.RangeInclusive(0, 100) <= completeChance)
-            {
                 hediffDef = hediffDefsComplete.RandomElement();
-            }
             else
-            {
                 hediffDef = hediffDefs.RandomElement();
-            }
 
             newHediffDef = hediffDef;
             foreach (var hdg in newHediffDef.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
@@ -56,38 +39,20 @@ namespace Pawnmorph
             Hediff hediff = HediffMaker.MakeHediff(newHediffDef, pawn, null);
 
             float num;
-            if (this.severity > 0f)
-            {
-                num = this.severity;
-            }
+            if (severity > 0f)
+                num = severity;
             else
-            {
                 num = hediffDef.initialSeverity;
-            }
 
-            if (this.divideByBodySize)
-            {
+            if (divideByBodySize)
                 num /= pawn.BodySize;
-            }
 
             AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, this.toleranceChemical, ref num);
             hediff.Severity = num;
             pawn.health.AddHediff(hediff, null, null, null);
             pawn.health.RemoveHediff(cause);
-            try
-            {
-                
-            }
-            catch
-            {
-            }
-            finally
-            {
-                if (pushed)
-                {
-                    Rand.PopState();
-                }
-            }
+
+            RandUtilities.PopState();
         }
     }
 }

@@ -6,9 +6,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static container for commonly referenced job defs 
-    /// </summary>
+    /// <summary> Static container for commonly referenced job defs. </summary>
     [DefOf]
     public static class PMJobDefOf
     {

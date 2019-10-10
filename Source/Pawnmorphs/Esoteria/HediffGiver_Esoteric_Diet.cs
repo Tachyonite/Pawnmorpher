@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Verse;
+﻿using Verse;
 using RimWorld;
 
 namespace Pawnmorph
@@ -11,16 +7,16 @@ namespace Pawnmorph
     {
         public float mtbDays;
         public PawnKindDef pawnTFKind;
-        public String newFood;
+        public string newFood;
         private bool triggered = false;
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-            if (Rand.MTBEventOccurs(this.mtbDays, 60000f, 60f) && !triggered)
+            if (Rand.MTBEventOccurs(mtbDays, 60000f, 60f) && !triggered)
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
 
-                Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, null, null, null, null, null));
+                Pawn pawnTF = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnTFKind, Faction.OfPlayer));
                 pawnTF.needs = pawn.needs;
                 pawnTF.jobs = pawn.jobs;
                 pawnTF.health = pawn.health;

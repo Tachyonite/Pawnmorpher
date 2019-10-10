@@ -1,12 +1,9 @@
 ﻿// Aspect.cs created by Iron Wolf for Pawnmorph on 09/23/2019 8:07 AM
 // last updated 09/23/2019  12:39 PM
 
-using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -14,12 +11,14 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    ///     base class for all "mutation affinities"
+    /// <summary> 
+    /// Base class for all "mutation affinities". <br />
+    /// Affinities are things that are more global than hediffs but more temporary than traits.
     /// </summary>
-    /// affinities are things that are more global than hediffs but more temporary than traits
     public class Aspect : IExposable
     {
+        private const string MENTAL_BREAK_TRANSLATION_LABEL = "MentalStateReason_Aspect";
+
         public AspectDef def;
 
         private int _stage = -1;
@@ -28,6 +27,7 @@ namespace Pawnmorph
         private bool _wasStarted;
         private Dictionary<SkillDef, float> _addedSkillsActualAmount;
         private Dictionary<SkillDef, Passion> _originalPassions;
+        private AspectTracker _tracker;
 
         public Color LabelColor => CurrentStage.labelColor ?? def.labelColor;
 
@@ -54,6 +54,9 @@ namespace Pawnmorph
 
         /// <summary> The current stage. </summary>
         public AspectStage CurrentStage => Stages[StageIndex];
+
+        public AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
+
 
         void IExposable.ExposeData()
         {
@@ -83,14 +86,10 @@ namespace Pawnmorph
                 ? string.IsNullOrEmpty(def.description) ? "NO DESCRIPTION " : def.description
                 : CurrentStage.description;
 
-        /// <summary>
-        ///     the pawn this is attached to
-        /// </summary>
+        /// <summary> The pawn this is attached to. </summary>
         public Pawn Pawn => _pawn;
 
-        /// <summary>
-        ///     if this affinity should be removed or not
-        /// </summary>
+        /// <summary> If this affinity should be removed or not. </summary>
         public bool ShouldRemove
         {
             get => _shouldRemove;
@@ -99,23 +98,19 @@ namespace Pawnmorph
 
         protected List<AspectStage> Stages => def.stages;
 
+        public IEnumerable<SkillMod> SkillMods => CurrentStage?.skillMods ?? Enumerable.Empty<SkillMod>();
+
         public float GetBoostOffset(Hediff hediff)
         {
             return GetBoostOffset(hediff.def);
         }
 
-        /// <summary>
-        /// the production boosts of the current stage 
-        /// </summary>
+        /// <summary> The production boosts of the current stage. </summary>
         public IEnumerable<ProductionBoost> ProductionBoosts =>
             CurrentStage.productionBoosts ?? Enumerable.Empty<ProductionBoost>();
 
         
-        /// <summary>
-        /// get the production boost for the given mutation hediff 
-        /// </summary>
-        /// <param name="hediff"></param>
-        /// <returns></returns>
+        /// <summary> Get the production boost for the given mutation hediff. </summary>
         public float GetBoostOffset(HediffDef hediff)
         {
             float accum = 0;
@@ -128,11 +123,7 @@ namespace Pawnmorph
 
         }
 
-        /// <summary>
-        ///     called after this affinity is added to the pawn
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <param name="startStage"></param>
+        /// <summary> Called after this affinity is added to the pawn. </summary>
         public void Added(Pawn pawn, int startStage = 0)
         {
             _pawn = pawn;
@@ -146,9 +137,7 @@ namespace Pawnmorph
             StageIndex = startStage;
         }
 
-        /// <summary>
-        ///     called during startup to initialize all affinities
-        /// </summary>
+        /// <summary> Called during startup to initialize all affinities. </summary>
         public void Initialize()
         {
             PostInit();
@@ -159,47 +148,33 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>
-        ///     called after the pawn is despawned
-        /// </summary>
+        /// <summary> Called after the pawn is despawned. </summary>
         public virtual void PostDeSpawn()
         {
         }
 
-        /// <summary>
-        ///     called when the pawn's race changes
-        /// </summary>
-        /// <param name="oldRace"></param>
+        /// <summary> Called when the pawn's race changes. </summary>
         public virtual void PostRaceChange(ThingDef oldRace)
         {
         }
 
-        /// <summary>
-        ///     called after this affinity is removed from the pawn
-        /// </summary>
+        /// <summary> Called after this affinity is removed from the pawn. </summary>
         public virtual void PostRemove()
         {
             if (CurrentStage != null) UndoEffectsOfStage(CurrentStage);
         }
 
-        /// <summary>
-        ///     called after the pawn is spawned
-        /// </summary>
-        /// <param name="respawningAfterLoad"></param>
+        /// <summary> Called after the pawn is spawned. </summary>
         public virtual void PostSpawnSetup(bool respawningAfterLoad)
         {
         }
 
-        /// <summary>
-        ///     called every tick
-        /// </summary>
+        /// <summary> Called every tick. </summary>
         public virtual void PostTick()
         {
             if(CurrentStage.mentalStateGivers != null && Pawn.IsHashIntervalTick(60) && !Pawn.InMentalState)
                 DoMentalStateChecks();
         }
-
-        private const string MENTAL_BREAK_TRANSLATION_LABEL = "MentalStateReason_Aspect";
 
         private void DoMentalStateChecks()
         {
@@ -224,33 +199,25 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>
-        ///     call to set ShouldRemove to true
-        /// </summary>
+        /// <summary> Call to set ShouldRemove to true. </summary>
         public void StageToRemove()
         {
             ShouldRemove = true;
         }
 
-        /// <summary>
-        ///     called During IExposable's ExposeData to serialize data
-        /// </summary>
-        protected virtual void ExposeData() //want this hidden from the public interface of the class 
+        /// <summary> Called furing IExposable's ExposeData to serialize data. </summary>
+        protected virtual void ExposeData() // Want this hidden from the public interface of the class 
         {
         }
 
 
-        /// <summary>
-        ///     called after this instance is added to the pawn
-        /// </summary>
+        /// <summary> Called after this instance is added to the pawn. </summary>
         protected virtual void PostAdd()
         {
         }
 
 
-        /// <summary>
-        ///     called after the base instance is initialize
-        /// </summary>
+        /// <summary> Called after the base instance is initialize. </summary>
         protected virtual void PostInit()
         {
         }
@@ -263,12 +230,9 @@ namespace Pawnmorph
             CalculateSkillChanges();
         }
 
-        
         public IEnumerable<StatModifier> StatOffsets => CurrentStage?.statOffsets ?? Enumerable.Empty<StatModifier>();
 
-        /// <summary>
-        ///     called once during the startup of this instance, either after initialization or after being added to the pawn
-        /// </summary>
+        /// <summary> Called once during the startup of this instance, either after initialization or after being added to the pawn. </summary>
         protected virtual void Start()
         {
 
@@ -303,10 +267,6 @@ namespace Pawnmorph
             }
         }
 
-        private AspectTracker _tracker;
-
-        public AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
-
         private void StageChanged(int lastStage)
         {
             Tracker.Notify_AspectChanged(this); 
@@ -328,7 +288,6 @@ namespace Pawnmorph
                 skR.passion = skillPassion.Value;
             }
 
-
             foreach (KeyValuePair<SkillDef, float> keyValuePair in addedSkills) //now undo the added exp 
             {
                 SkillDef sk = keyValuePair.Key;
@@ -337,8 +296,6 @@ namespace Pawnmorph
                 skR.Learn(-v, true);
             }
         }
-
-        public IEnumerable<SkillMod> SkillMods => CurrentStage?.skillMods ?? Enumerable.Empty<SkillMod>();
 
         public string TipString(Pawn pawn)
         {
@@ -352,6 +309,7 @@ namespace Pawnmorph
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine();
             }
+
             int num = 0;
             foreach (SkillMod skillMod in SkillMods)
             {
@@ -367,8 +325,8 @@ namespace Pawnmorph
                 else
                     stringBuilder.Append(value);
                 num++;
-               
             }
+
             if (GetPermaThoughts().Any<ThoughtDef>())
             {
                 stringBuilder.AppendLine();
@@ -378,6 +336,7 @@ namespace Pawnmorph
                     stringBuilder.Append("    " + "PermanentMoodEffect".Translate() + " " + thoughtDef.stages[0].baseMoodEffect.ToStringByStyle(ToStringStyle.Integer, ToStringNumberSense.Offset));
                 }
             }
+
             if (currentStage.statOffsets != null)
             {
                 stringBuilder.AppendLine();
@@ -397,6 +356,7 @@ namespace Pawnmorph
                     }
                 }
             }
+
             if (currentStage.statFactors != null)
             {
                 stringBuilder.AppendLine();
@@ -416,6 +376,7 @@ namespace Pawnmorph
                     }
                 }
             }
+
             if (currentStage.capMods != null)
             {
                 stringBuilder.AppendLine();

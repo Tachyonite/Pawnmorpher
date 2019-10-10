@@ -6,9 +6,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// collection of misc tf related hediffDefs 
-    /// </summary>
+    /// <summary> Collection of misc tf related HediffDefs. </summary>
     [DefOf]
     public static class TfHediffDefOf
     {

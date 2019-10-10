@@ -21,9 +21,9 @@ namespace Pawnmorph
         private SkyColorSet MutagenicFalloutColors = new SkyColorSet(new ColorInt(216, 255, 0).ToColor, new ColorInt(234, 200, 255).ToColor, new Color(0.5f, 0.8f, 0.4f), 0.85f);
 
         private List<SkyOverlay> overlays = new List<SkyOverlay>
-    {
-        new WeatherOverlay_Mutagen()
-    };
+        {
+            new WeatherOverlay_Mutagen()
+        };
 
         private const int CheckInterval = 3451;
 
@@ -51,11 +51,10 @@ namespace Pawnmorph
         private void DoPawnsMutagenicDamage(Map map)
         {
             List<Pawn> allPawnsSpawned = map.mapPawns.AllPawnsSpawned;
-            var mutagen = MutagenDefOf.defaultMutagen; 
+            var mutagen = MutagenDefOf.defaultMutagen;
             for (int i = 0; i < allPawnsSpawned.Count; i++)
             {
                 Pawn pawn = allPawnsSpawned[i];
-                
 
                 if (!pawn.Position.Roofed(map) && mutagen.CanInfect(pawn))
                 {
@@ -93,7 +92,7 @@ namespace Pawnmorph
 
         public bool IsMutagenicPlant(Plant plant)
         {
-            return plant.def.In(PMThingDefOf.Plant_ChaoBulb, PMThingDefOf.Plant_GnarledTree); 
+            return plant.def.In(PMThingDefOf.Plant_ChaoBulb, PMThingDefOf.Plant_GnarledTree);
         }
 
         public override void DoCellSteadyEffects(IntVec3 c, Map map)
@@ -104,9 +103,9 @@ namespace Pawnmorph
 
             var thingList = c.GetThingList(map);
 
-            RandUtilities.PushState(); //mp compatibility check for rand usage 
+            RandUtilities.PushState(); // MP compatibility check for rand usage.
 
-            for (var index = thingList.Count-1; index > 0; index--)
+            for (var index = thingList.Count - 1; index > 0; index--)
             {
                 Thing thing = thingList[index];
                 if (!(thing is Plant plant)) continue;
@@ -125,39 +124,32 @@ namespace Pawnmorph
         private void SubstitutePlant(Plant plant)
         {
             var plantType = plant.def.plant.purpose;
-            var plantProps = plant.def.plant; 
+            var plantProps = plant.def.plant;
             ThingDef plantDef;
 
             if (plantProps.IsTree)
             {
-                plantDef = PMThingDefOf.Plant_GnarledTree; 
+                plantDef = PMThingDefOf.Plant_GnarledTree;
             }
-            else if(plantProps.harvestedThingDef != null)
+            else if (plantProps.harvestedThingDef != null)
             {
                 plantDef = PMThingDefOf.Plant_ChaoBulb;
             }
             else
             {
-                plantDef = null; 
+                plantDef = null;
             }
-
 
             var pos = plant.Position;
             var map = plant.Map;
 
             if (plantDef != null) //spawn a new plant 
             {
-                var newPlant = (Plant) GenSpawn.Spawn(plantDef, pos, map);
-                newPlant.Growth = plant.Growth * 1.3f; //make the new plant a little more mature then the one that was substituted 
-                
+                var newPlant = (Plant)GenSpawn.Spawn(plantDef, pos, map);
+                newPlant.Growth = plant.Growth * 1.3f; // Make the new plant a little more mature then the one that was substituted.
             }
 
-            plant.Kill(); 
-
-            
-
-
-
+            plant.Kill();
         }
 
         public override float AnimalDensityFactor(Map map)

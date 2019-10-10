@@ -6,9 +6,7 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// DefOf class for commonly referenced ThoughtDefs 
-    /// </summary>
+    /// <summary> DefOf class for commonly referenced ThoughtDefs. </summary>
     [DefOf]
     public static class PMThoughtDefOf
     {
@@ -17,12 +15,9 @@ namespace Pawnmorph
             DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDef)); 
         }
 
-
-        /// <summary>
-        /// get the correct default memory for a pawn that was a morph that returns to being human 
-        /// </summary>
+        /// <summary> Get the correct default memory for a pawn that was a morph that returns to being human. </summary>
         /// <param name="mutationOutlook">the mutation outlook of the pawn</param>
-        /// <returns></returns>
+        /// <returns> The ThoughtDef of the thought to use based on their traits. </returns>
         public static ThoughtDef GetDefaultMorphRevertThought(MutationOutlook mutationOutlook)
         {
 
@@ -37,24 +32,17 @@ namespace Pawnmorph
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mutationOutlook), mutationOutlook, null);
             }
-
         }
 
         public static ThoughtDef DefaultMorphTfMemory;
 
-        /// <summary>
-        /// default thought for pawns that were a morph that reverts back to a human 
-        /// </summary>
+        /// <summary> Default thought for pawns that were a morph that reverts back to a human. </summary>
         public static ThoughtDef DefaultMorphRevertsToHuman;
 
-        /// <summary>
-        /// default thought for pawns that have the MutationAffinity Trait and were a morph that reverts back to human 
-        /// </summary>
+        /// <summary> Default thought for pawns that have the MutationAffinity Trait and were a morph that reverts back to human. </summary>
         public static ThoughtDef DefaultMorphRevertsToHumanFurry;
 
-        /// <summary>
-        /// default thought for pawns that have the MutationAffinity Trait and were a morph that reverts back to human 
-        /// </summary>
+        /// <summary> Default thought for pawns that have the BodyPurist Trait and were a morph that reverts back to human. </summary>
         public static ThoughtDef DefaultMorphRevertsToHumanBP;
     }
 }

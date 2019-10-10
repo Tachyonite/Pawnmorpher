@@ -5,20 +5,15 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static container containing misc tales 
-    /// </summary>
+    /// <summary> Static container containing misc tales. </summary>
     [DefOf]
     public static class TaleDefOf
     {
-        //misc transformation tale 
+        // Misc transformation tale.
         public static TaleDef TransformationMisc; 
         
-        //misc part tales 
-
+        // Misc part tales.
         public static TaleDef GrewMuzzleMisc;
-        public static TaleDef EarsChangedMisc; 
-
-
+        public static TaleDef EarsChangedMisc;
     }
 }

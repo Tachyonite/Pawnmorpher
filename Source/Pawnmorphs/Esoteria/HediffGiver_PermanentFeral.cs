@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Pawnmorph.Thoughts;
 using Verse;
 using RimWorld;
@@ -14,18 +11,10 @@ namespace Pawnmorph
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-            if (base.TryApply(pawn, null))
+            if (TryApply(pawn, null))
             {
                 var loader = Find.World.GetComponent<PawnmorphGameComp>();
                 var inst = loader.GetTransformedPawnContaining(pawn)?.First;
-                //var original = pm?.origin;
-
-
-
-                //if (original != null)
-                //{
-                //    ReactionsHelper.OnPawnPermFeral(original, pawn);
-                //}
 
                 foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
                 {

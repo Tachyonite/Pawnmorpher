@@ -1,20 +1,18 @@
 ﻿// MorphTrackingComp.cs modified by Iron Wolf for Pawnmorph on //2019 
 // last updated 09/09/2019  7:38 PM
 
-using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
 using Verse;
-using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    ///     component for tracking the morph related updates of a single pawn
-    /// </summary>
+    /// <summary> Component for tracking the morph related updates of a single pawn. </summary>
     public class MorphTrackingComp : ThingComp
     {
-        private bool _isAwake; 
+        private bool _isAwake;
+
+        private Pawn Pawn => (Pawn)parent;
 
         void Awake()
         {
@@ -24,23 +22,19 @@ namespace Pawnmorph
             {
                 MorphGroupDef group = parent.def.GetMorphOfRace()?.@group;
                 var aTracker = Pawn.GetAspectTracker();
-                if (aTracker == null) return; 
+                if (aTracker == null) return;
                 var aspectDef = group?.aspectDef;
                 if (aspectDef == null) return;
 
-                var aspect = aTracker.GetAspect(aspectDef); 
+                var aspect = aTracker.GetAspect(aspectDef);
                 if (aspect == null)
                 {
-                    aspect = aspectDef.CreateInstance(); 
-                    
-                    //add an small offset so minSeverity in hediffStages works as expected 
-                    aTracker.Add(aspect); 
-                }
-                 
-            }
-             
-            
+                    aspect = aspectDef.CreateInstance();
 
+                    //add an small offset so minSeverity in hediffStages works as expected 
+                    aTracker.Add(aspect);
+                }
+            }
         }
 
 #pragma warning disable 0618
@@ -48,10 +42,10 @@ namespace Pawnmorph
         {
             var group = parent.def.GetMorphOfRace()?.group;
             var hDef = group?.hediff;
-            if (hDef == null) return; 
+            if (hDef == null) return;
             var h = Pawn.health.hediffSet.GetFirstHediffOfDef(hDef);
             if (h != null)
-                Pawn.health.RemoveHediff(h); 
+                Pawn.health.RemoveHediff(h);
         }
 #pragma warning restore 0618
 
@@ -60,7 +54,7 @@ namespace Pawnmorph
             base.Initialize(props);
             if (!_isAwake)
             {
-                _isAwake = true; 
+                _isAwake = true;
                 Awake();
             }
         }
@@ -71,7 +65,7 @@ namespace Pawnmorph
 
             if (!_isAwake)
             {
-                _isAwake = true; 
+                _isAwake = true;
                 Awake();
             }
 
@@ -84,13 +78,10 @@ namespace Pawnmorph
                 comp.MorphCountChanged += MorphCountChanged;
                 RecalculateMorphCount(comp);
             }
-            
-            if(respawningAfterLoad) 
+
+            if (respawningAfterLoad)
                 RemoveObsoleteHediffs();
         }
-
-
-        private Pawn Pawn => (Pawn) parent;
 
         private void RecalculateMorphCount(MorphTracker tracker)
         {
@@ -117,7 +108,7 @@ namespace Pawnmorph
             if (myMorph?.group == null) return;
             if (myMorph.group != morph?.group) return;
 
-            var pawn = (Pawn) parent;
+            var pawn = (Pawn)parent;
             AspectTracker aspectTracker = pawn.GetAspectTracker();
             if (aspectTracker == null) return;
             AspectDef aspectDef = morph?.group?.aspectDef;
@@ -136,22 +127,19 @@ namespace Pawnmorph
             //stage should always be equal to the number of morphs in the group active in the same map 
         }
 
-        /// <summary>
-        /// notify that the parent has changed races 
-        /// </summary>
-        /// <param name="oldMorph">the morph the parent used to be </param>
+        /// <summary> Notify that the parent has changed races. </summary>
+        /// <param name="oldMorph"> The morph the parent used to be. </param>
         public void NotifyRaceChanged([CanBeNull] MorphDef oldMorph)
         {
-            parent.Map?.GetComponent<MorphTracker>().NotifyPawnRaceChanged((Pawn) parent, oldMorph);
+            parent.Map?.GetComponent<MorphTracker>().NotifyPawnRaceChanged((Pawn)parent, oldMorph);
         }
-
 
         public override void PostDeSpawn(Map map)
         {
             base.PostDeSpawn(map);
 
             var comp = map.GetComponent<MorphTracker>();
-            comp.NotifyDespawned((Pawn) parent);
+            comp.NotifyDespawned((Pawn)parent);
             comp.MorphCountChanged -= MorphCountChanged;
         }
     }

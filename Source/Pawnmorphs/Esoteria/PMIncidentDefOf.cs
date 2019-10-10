@@ -5,9 +5,7 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static container for incident defs
-    /// </summary>
+    /// <summary> Static container for incident defs. </summary>
     [DefOf]
     public static class PMIncidentDefOf
     {
@@ -20,6 +18,6 @@ namespace Pawnmorph
         public static IncidentDef Disease_Cowflu;
         public static IncidentDef Disease_Foxflu;
         public static IncidentDef Disease_Chookflu;
-        public static IncidentDef MutagenicFallout; 
+        public static IncidentDef MutagenicFallout;
     }
 }

@@ -7,9 +7,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// def for representing the 'category' a morph can be in 
-    /// </summary>
+    /// <summary> Def for representing the 'category' a morph can be in. </summary>
     public class MorphCategoryDef : Def
     {
         [Unsaved] private List<MorphDef> _allMorphs;

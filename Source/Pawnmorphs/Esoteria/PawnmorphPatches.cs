@@ -9,7 +9,6 @@ using AlienRace;
 using Harmony;
 using Pawnmorph.Hybrids;
 using RimWorld;
-using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -22,22 +21,19 @@ namespace Pawnmorph
 
         static PawnmorphPatches()
         {
-            HarmonyInstance
-                harmonyInstance = HarmonyInstance.Create("com.BioReactor.rimworld.mod"); //shouldn't this be different? 
+            HarmonyInstance harmonyInstance = HarmonyInstance.Create("com.BioReactor.rimworld.mod"); //shouldn't this be different? 
             harmonyInstance.Patch(
                 original: AccessTools.Method(type: typeof(FoodUtility),
-                    name: nameof(FoodUtility.ThoughtsFromIngesting)),
+                name: nameof(FoodUtility.ThoughtsFromIngesting)),
                 prefix: null,
-                postfix: new HarmonyMethod(type: patchType, name: nameof(ThoughtsFromIngestingPostfix)));
+                postfix: new HarmonyMethod(type: patchType, name: nameof(ThoughtsFromIngestingPostfix))
+                );
 
-
-
-
-            //job patches 
+            // Job patches.
             harmonyInstance.Patch(AccessTools.Method(typeof(JobDriver_Ingest),
                 "PrepareToIngestToils"),
-                new HarmonyMethod(patchType, nameof(PrepareToIngestToilsPrefix)));
-
+                new HarmonyMethod(patchType, nameof(PrepareToIngestToilsPrefix))
+                );
 
             harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
         }
@@ -60,19 +56,15 @@ namespace Pawnmorph
 
                     return false;
                 }
-
             }
 
-            return true; 
-
+            return true;
         }
 
         static Toil ReserveFoodIfWillIngestWholeStack(JobDriver driver)
         {
-
             return new Toil()
             {
-
                 initAction = delegate
                 {
                     if (driver.pawn.Faction == null)
@@ -102,10 +94,7 @@ namespace Pawnmorph
                 defaultCompleteMode = ToilCompleteMode.Instant,
                 atomicWithPrevious = true
             };
-
-
         }
-
 
         public static void ThoughtsFromIngestingPostfix(Pawn ingester, Thing foodSource, ref List<ThoughtDef> __result)
         {
@@ -114,8 +103,6 @@ namespace Pawnmorph
                 AteThought cannibalThought = morphDef.raceSettings?.thoughtSettings?.ateAnimalThought;  
                 if (cannibalThought == null) return;
                 bool cannibal = ingester.story.traits.HasTrait(TraitDefOf.Cannibal);
-
-                
                 
                 if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
                 {
@@ -129,22 +116,7 @@ namespace Pawnmorph
                 {
                     __result.Add(ThoughtDef.Named(cannibalThought.ingredientThought)); 
                 }
-
-
-
             }
-
-
-
         }
-
-   
-
-
-   
-
-
-
-
     }
 }

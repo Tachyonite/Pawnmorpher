@@ -20,11 +20,10 @@ namespace Pawnmorph
         public string resource;
         public string rareResource;
         public List<HediffComp_Staged> stages = null;
-
         public Type jobGiver;
 
-
         [Unsaved] private ThinkNode_JobGiver _jobGiverCached;
+
         [CanBeNull]
         public ThinkNode_JobGiver JobGiver
         {
@@ -38,11 +37,7 @@ namespace Pawnmorph
                         Log.Error($"at comp production: unable to cast {jobGiver.Name} to {nameof(ThinkNode_JobGiver)}!");
                         return null;
                     }
-
-
-
                 }
-
                 return _jobGiverCached;
             }
         }
@@ -77,8 +72,6 @@ namespace Pawnmorph
                 return ThingDef.Named(rareResource); 
             }
         }
-
-
 
         public HediffCompProperties_Production()
         {
