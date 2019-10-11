@@ -170,7 +170,7 @@
 	<ThingDef ParentName="MechSerumBase">
 		<defName>MechSerumMutagenicHealer</defName>
 		<label>mutagenic healer mech serum</label>
-		<description>A lesser version of the healer mech serum made from reprogrammed mutagenic mechanites. The mechanites will target and heal the single worst health condition affecting someone at any given time. Works even on health conditions that would otherwise be incurable, including reconstructing lost tissue and limbs. Because some of the mechanites have leftover mutagenic programing, there is a high risk that the restored body part will end up mutated, regardless of any anti-mutagenic agent in the user's body.</description>
+		<description>A lesser version of the healer mech serum made from reprogrammed mutagenic mechanites. The mechanites will target and heal the single worst health condition affecting someone at any given time. Works even on health conditions that would otherwise be incurable, including reconstructing lost tissue and limbs. Because some of the mechanites have leftover mutagenic programming, there is a high risk that the restored body part will end up mutated, regardless of any anti-mutagenic agent in the user's body.</description>
 		<graphicData>
 			<texPath>Things/Item/Special/MechSerumHealer</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

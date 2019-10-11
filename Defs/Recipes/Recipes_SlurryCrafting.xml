@@ -107,7 +107,7 @@
 	<RecipeDef>
 		<defName>Make_HealerFromMutonite</defName>
 		<label>fabricate mutagenic healer mech serum</label>
-		<description>Reprogram a large quatity of mutagenic mechanites with healer protocols. Due to the shear number of mechanites being reprogrammed, a few mechanites will fail to be updated and there is a high probability that the restored areas will be mutated as a result.</description>
+		<description>Reprogram a large quantity of mutagenic mechanites with healer protocols. Due to the sheer number of mechanites being reprogrammed, a few mechanites will fail to be neutralised and there is a high probability that the restored areas will be mutated as a result.</description>
 		<jobString>Refining slurry from mutonite.</jobString>
 		<effectWorking>Cremate</effectWorking>
 		<soundWorking>Recipe_Cremate</soundWorking>
