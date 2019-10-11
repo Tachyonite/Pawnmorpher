@@ -9,12 +9,17 @@ namespace Pawnmorph
     [DefOf]
     public static class PMRulePackDefOf
     {
+        /// <summary> Default rule pack used for generating mutation log entries. </summary>
+        public static RulePackDef DefaultMutationRulePack;
+
+        /// <summary>
+        ///     Rule pack used when there is no mutation tale
+        /// </summary>
+        public static RulePackDef MutationRulePackTaleless;
+
         static PMRulePackDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(RulePackDef));
         }
-
-        /// <summary> Default rule pack used for generating mutation log entries. </summary>
-        public static RulePackDef DefaultMutationRulePack;
     }
 }

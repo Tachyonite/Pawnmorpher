@@ -4,7 +4,16 @@
         <rulePack>
             <rulesStrings>
                 <!-- TODO  --> 
-                <li>mutation_log->[PAWN_nameDef] [MUTATION_label]</li> <!-- test entry, should be removed-->
+                <li>mutation_log->[images] [circumstance_group]</li> <!-- test entry, should be removed-->
+                <li>images->[image]</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    <RulePackDef>
+        <defName>MutationRulePackTaleless</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>mutation_log->[PAWN_nameDef] [MUTATION_label]</li><!-- test entry, should be removed-->
             </rulesStrings>
         </rulePack>
     </RulePackDef>
