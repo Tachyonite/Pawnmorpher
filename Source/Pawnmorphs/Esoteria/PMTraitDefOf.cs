@@ -13,6 +13,7 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(TraitDefOf));
         }
+
         public static TraitDef MutationAffinity;
     }
 }
