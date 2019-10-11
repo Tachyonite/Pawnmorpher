@@ -1,6 +1,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
     <Pawnmorph.AspectDef>
         <defName>EtherState</defName>
+        <priority>0</priority>
         <labelColor>(121,55,145)</labelColor>
         <stages>
             <li>

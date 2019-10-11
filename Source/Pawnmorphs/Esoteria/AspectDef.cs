@@ -15,7 +15,7 @@ namespace Pawnmorph
         public List<AspectStage> stages = new List<AspectStage>();
         public Color labelColor = Color.white;
         public bool removedByReverter = true;
-        public int priority; //lower priorities come first 
+        public int priority = 1; //lower priorities come first 
         public override void ResolveReferences()
         {
             base.ResolveReferences();

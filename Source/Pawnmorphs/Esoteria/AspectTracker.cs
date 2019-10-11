@@ -63,7 +63,7 @@ namespace Pawnmorph
             for (var index = 0; index < _aspects.Count; index++)
             {
                 Aspect aspect1 = _aspects[index];
-                if (aspect1.Priority > aspect.Priority)
+                if (Comparer.Compare(aspect, aspect1) <= 0)
                 {
                     addIndex = index; 
                 }
@@ -163,7 +163,8 @@ namespace Pawnmorph
                 if (ReferenceEquals(x, y)) return 0;
                 if (x == null) return -1;
                 if (y == null) return 1;
-                return x.Priority.CompareTo(y.Priority); 
+                var c =  x.Priority.CompareTo(y.Priority);
+                return c == 0 ? String.Compare(x.Label, y.Label, StringComparison.CurrentCultureIgnoreCase) : c;
             }
         }
 
