@@ -13,6 +13,7 @@
     <xs:complexType name="AspectDef">
         <xs:sequence>
             <xs:element name="defName" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="priority" type="xs:int" minOccurs="0" maxOccurs="1" />
             <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
             <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
             <xs:element name="aspectType" type="xs:string" minOccurs="0" maxOccurs="1" />

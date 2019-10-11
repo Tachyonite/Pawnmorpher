@@ -28,7 +28,7 @@ namespace Pawnmorph
         private bool _wasStarted;
         private Dictionary<SkillDef, float> _addedSkillsActualAmount;
         private Dictionary<SkillDef, Passion> _originalPassions;
-
+        public int Priority => def.priority;  
         public Color LabelColor => CurrentStage.labelColor ?? def.labelColor;
 
         public IEnumerable<PawnCapacityModifier> CapMods => CurrentStage.capMods ?? Enumerable.Empty<PawnCapacityModifier>();

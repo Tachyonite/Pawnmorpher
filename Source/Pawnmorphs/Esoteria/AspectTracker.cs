@@ -67,7 +67,20 @@ namespace Pawnmorph
                 return;
             }
 
-            _aspects.Add(aspect);
+            int? addIndex = null;
+            for (var index = 0; index < _aspects.Count; index++)
+            {
+                Aspect aspect1 = _aspects[index];
+                if (aspect1.Priority > aspect.Priority)
+                {
+                    addIndex = index; 
+                }
+            }
+
+            if (addIndex != null)
+                _aspects.Insert(addIndex.Value, aspect);
+            else
+                _aspects.Add(aspect); 
             aspect.Added(Pawn, startStage);
             if (aspect.HasCapMods)
             {
@@ -142,10 +155,29 @@ namespace Pawnmorph
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (_aspects == null) _aspects = new List<Aspect>(); 
+                if (_aspects == null) _aspects = new List<Aspect>();
+                _aspects.Sort(Comparer); 
+                
                 foreach (Aspect affinity in _aspects)
                     affinity.Initialize();
+                
+            }
+        }
 
+        private static IComparer<Aspect> Comparer { get; } = new AspectComparer();
+
+        class AspectComparer : IComparer<Aspect>
+        {
+            /// <summary>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.</summary>
+            /// <returns>Value Condition Less than zero<paramref name="x" /> is less than <paramref name="y" />.Zero<paramref name="x" /> equals <paramref name="y" />.Greater than zero<paramref name="x" /> is greater than <paramref name="y" />.</returns>
+            /// <param name="x">The first object to compare.</param>
+            /// <param name="y">The second object to compare.</param>
+            public int Compare(Aspect x, Aspect y)
+            {
+                if (ReferenceEquals(x, y)) return 0;
+                if (x == null) return -1;
+                if (y == null) return 1;
+                return x.Priority.CompareTo(y.Priority); 
             }
         }
 
