@@ -12,13 +12,15 @@ using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    ///     thing comp for tracking 'mutation aspects'
-    /// </summary>
+    /// <summary> Thing comp for tracking 'mutation aspects'. </summary>
     public class AspectTracker : ThingComp, IMutationEventReceiver, IRaceChangeEventReceiver, IEnumerable<Aspect>
     {
         private readonly List<Aspect> _rmCache = new List<Aspect>();
         private List<Aspect> _aspects = new List<Aspect>();
+
+        public IEnumerable<Aspect> Aspects => _aspects;
+
+        private Pawn Pawn => (Pawn)parent;
 
         void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
@@ -38,21 +40,11 @@ namespace Pawnmorph
             var curMorph = parent.def.GetMorphOfRace();
             HandleMorphChangeAffinities(oldMorph, curMorph); 
 
-
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in _aspects.OfType<IRaceChangeEventReceiver>())
                 raceChangeEventReceiver.OnRaceChange(oldRace);
         }
 
-
-        public IEnumerable<Aspect> Aspects => _aspects;
-
-        private Pawn Pawn => (Pawn) parent;
-
-        /// <summary>
-        /// add the aspect to this pawn  at the given stage 
-        /// </summary>
-        /// <param name="aspect"></param>
-        /// <param name="startStage"></param>
+        /// <summary> Add the aspect to this pawn at the given stage. </summary>
         public void Add([NotNull] Aspect aspect, int startStage=0)
         {
             if (_aspects.Contains(aspect))
@@ -91,15 +83,10 @@ namespace Pawnmorph
         public void Notify_AspectChanged(Aspect aspect)
         {
             Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
-             
         }
 
 
-        /// <summary>
-        /// add the given aspect to this pawn at the specified stage index 
-        /// </summary>
-        /// <param name="def"></param>
-        /// <param name="startStage"></param>
+        /// <summary> Add the given aspect to this pawn at the specified stage index. </summary>
         public void Add([NotNull] AspectDef def, int startStage=0)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
@@ -141,7 +128,6 @@ namespace Pawnmorph
             return _aspects.Any(a => a.def == aspect);
         }
 
-       
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -183,24 +169,17 @@ namespace Pawnmorph
 
         public void Remove(Aspect aspect)
         {
-            _rmCache.Add(aspect); //don't remove them quite yet '
+            _rmCache.Add(aspect); // Don't remove them quite yet.
         }
 
-        /// <summary>
-        ///     removes the aspect with the given def from the pawn
-        /// </summary>
-        /// <param name="def"></param>
+        /// <summary> Removes the aspect with the given def from the pawn. </summary>
         public void Remove(AspectDef def)
         {
             Aspect af = _aspects.FirstOrDefault(a => a.def == def);
             if (af != null) _rmCache.Add(af);
         }
 
-        /// <summary>
-        /// handle affinities that need to be removed or added after a pawn changes race 
-        /// </summary>
-        /// <param name="lastMorph"></param>
-        /// <param name="curMorph"></param>
+        /// <summary> Handle affinities that need to be removed or added after a pawn changes race. </summary>
         private void HandleMorphChangeAffinities([CanBeNull] MorphDef lastMorph, [CanBeNull] MorphDef curMorph)
         {
             bool ShouldRemove(MorphDef.AddedAspect a)
@@ -226,26 +205,22 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>
-        /// get the aspect in this tracker of the given def, if one exists 
-        /// </summary>
-        /// <param name="aspectDef"></param>
-        /// <returns></returns>
+        /// <summary> Get the aspect in this tracker of the given def, if one exists. </summary>
         [CanBeNull]
         public Aspect GetAspect(AspectDef aspectDef)
         {
             return _aspects.FirstOrDefault(d => d.def == aspectDef); 
         }
 
-        /// <summary>Returns an enumerator that iterates through the collection.</summary>
-        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
+        /// <summary> Returns an enumerator that iterates through the collection. </summary>
+        /// <returns> A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection. </returns>
         public IEnumerator<Aspect> GetEnumerator()
         {
             return _aspects.GetEnumerator();
         }
 
-        /// <summary>Returns an enumerator that iterates through a collection.</summary>
-        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+        /// <summary> Returns an enumerator that iterates through a collection. </summary>
+        /// <returns> An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection. </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable) _aspects).GetEnumerator();

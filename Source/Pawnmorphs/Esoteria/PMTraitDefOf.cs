@@ -5,9 +5,7 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static class containing references to commonly used Traits 
-    /// </summary>
+    /// <summary> Static class containing references to commonly used Traits. </summary>
     [DefOf]
     public static class PMTraitDefOf
     {
@@ -15,6 +13,7 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(TraitDefOf));
         }
+
         public static TraitDef MutationAffinity;
     }
 }

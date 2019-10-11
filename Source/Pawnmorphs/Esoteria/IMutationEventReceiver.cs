@@ -3,15 +3,11 @@
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// interface for thing comps that want to receive events when the pawn gains or loses mutation 
-    /// </summary>
+    /// <summary> Interface for thing comps that want to receive events when the pawn gains or loses mutation. </summary>
     public interface IMutationEventReceiver
     {
         void MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker);
 
-        void MutationRemoved(Hediff_AddedMutation mutation, MutationTracker tracker); 
-
+        void MutationRemoved(Hediff_AddedMutation mutation, MutationTracker tracker);
     }
-
 }

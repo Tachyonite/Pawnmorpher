@@ -6,9 +6,7 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// DefOf class for commonly referenced Aspects 
-    /// </summary>
+    /// <summary> DefOf class for commonly referenced Aspects. </summary>
     [DefOf]
     public static class AspectDefOf
     {

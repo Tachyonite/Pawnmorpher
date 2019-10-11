@@ -6,12 +6,10 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// extension used to blacklist a race from one or more mutagen strains 
-    /// </summary>
+    /// <summary> Extension used to blacklist a race from one or more mutagen strains. </summary>
     public class RaceMutagenExtension : DefModExtension
     {
         public bool immuneToAll;
-        public List<MutagenDef> blackList = new List<MutagenDef>(); 
+        public List<MutagenDef> blackList = new List<MutagenDef>();
     }
 }

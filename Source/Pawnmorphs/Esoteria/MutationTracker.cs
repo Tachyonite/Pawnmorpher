@@ -13,27 +13,16 @@ using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils; 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// tracker comp for tracking the current influence a pawn has of a given morph 
-    /// </summary>
+    /// <summary> Tracker comp for tracking the current influence a pawn has of a given morph. </summary>
     public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<MorphDef, float>>
     {
-
-
-
         private Dictionary<MorphDef, float> _influenceLookup = new Dictionary<MorphDef, float>();
-
         private List<VTuple<MorphDef, float>> _normalizedInfluencesCache = new List<VTuple<MorphDef, float>>();
         private bool _reCalcInfluences = true;
-        private  float _totalNormalizedInfluence;
+        private float _totalNormalizedInfluence;
 
-        /// <summary>
-        /// get the current influence associated with the given key 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <summary> Get the current influence associated with the given key. </summary>
         public float this[MorphDef key] => _influenceLookup.TryGetValue(key);
-
 
         public float TotalNormalizedInfluence //cache this to help with performance 
         {
@@ -48,10 +37,7 @@ namespace Pawnmorph
             }
         }
 
-
-        /// <summary>
-        /// an enumerable collection of influences normalized against each other and the remaining human influence 
-        /// </summary>
+        /// <summary> An enumerable collection of influences normalized against each other and the remaining human influence. </summary>
         public IEnumerable<VTuple<MorphDef, float>> NormalizedInfluences //cache this to help with performance 
         {
             get
@@ -68,9 +54,7 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>
-        /// the morph with the most influence on this pawn, not necessarily the morph the pawn currently is 
-        /// </summary>
+        /// <summary> The morph with the most influence on this pawn, not necessarily the morph the pawn currently is. </summary>
         [CanBeNull] public MorphDef HighestInfluence { get; private set; }
 
         private IEnumerable<VTuple<MorphDef, float>> CalculateNormalizedInfluences()
@@ -98,9 +82,7 @@ namespace Pawnmorph
         }
 
 
-        /// <summary>
-        /// all mutations the pawn has 
-        /// </summary>
+        /// <summary> All mutations the pawn has. </summary>
         public IEnumerable<Hediff_AddedMutation> AllMutations =>
             Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>();  
 
@@ -118,10 +100,7 @@ namespace Pawnmorph
 
         public Pawn Pawn => (Pawn) parent;
 
-        /// <summary>
-        /// called to notify this tracker that a mutation has been added 
-        /// </summary>
-            /// <param name="mutation"></param>
+        /// <summary> Called to notify this tracker that a mutation has been added. </summary>
         public void NotifyMutationAdded([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
@@ -141,14 +120,12 @@ namespace Pawnmorph
 
         void NotifyCompsAdded(Hediff_AddedMutation mutation)
         {
-
             foreach (ThingComp parentAllComp in parent.AllComps)
             {
                 if(parentAllComp == this) continue;
                 if(!(parentAllComp is IMutationEventReceiver receiver)) continue;
                 receiver.MutationAdded(mutation, this); 
             }
-
         }
 
         void NotifyCompsRemoved(Hediff_AddedMutation mutation)
@@ -162,10 +139,7 @@ namespace Pawnmorph
         }
 
 
-        /// <summary>
-        /// called to notify this tracker that a mutation has been removed 
-        /// </summary>
-        /// <param name="mutation"></param>
+        /// <summary> Called to notify this tracker that a mutation has been removed. </summary>
         public void NotifyMutationRemoved([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
@@ -183,7 +157,6 @@ namespace Pawnmorph
                 {
                     _influenceLookup[comp.Morph] = val; 
                 }
-
             }
 
             HighestInfluence = GetHighestInfluence();
@@ -195,29 +168,21 @@ namespace Pawnmorph
         {
             base.PostExposeData();
 
-
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                //generate lookup dict manually during load for backwards compatibility
-
+                // Generate lookup dict manually during load for backwards compatibility.
                 foreach (var comp in AllMutations.Select(mut => mut.TryGetComp<Comp_MorphInfluence>()))
                 {
                   if(comp == null) continue;
 
                   var morph = comp.Morph;
-                  _influenceLookup[morph] = _influenceLookup.TryGetValue(morph) + comp.Influence; 
-
+                  _influenceLookup[morph] = _influenceLookup.TryGetValue(morph) + comp.Influence;
                 }
 
-                //now find the highest influence 
-
-
+                // Now find the highest influence.
                 MorphDef hMorph = GetHighestInfluence();
-
-                HighestInfluence = hMorph; 
-
-
-                _reCalcInfluences = true; 
+                HighestInfluence = hMorph;
+                _reCalcInfluences = true;
             }
         }
 

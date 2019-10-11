@@ -13,7 +13,7 @@
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDooer_AddAspect">
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddAspect">
 					<aspectDef>Productive</aspectDef>
 					<increaseStage>true</increaseStage>
 				</li>

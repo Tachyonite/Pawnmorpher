@@ -12,30 +12,31 @@ using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    ///     log entry for when a pawn mutates
-    /// </summary>
+    /// <summary> Log entry for when a pawn mutates. </summary>
     public class MutationLogEntry : LogEntry
     {
-        //rule pack constants 
+        // Rule pack constants.
         private const string PAWN_IDENTIFIER = "PAWN";
         private const string MUTATION_IDENTIFIER = "MUTATION";
         private const string RP_ROOT_RULE = "mutation_log";
+        private const string PART_LABEL = "PART";
 
         private HediffDef _mutationDef;
         [CanBeNull] private TaleDef _mutationTale;
         private List<BodyPartDef> _mutatedRecords;
         private Pawn _pawn;
 
-        public MutationLogEntry(Pawn pawn, [CanBeNull] TaleDef taleDef, HediffDef mutationDef,
-                                IEnumerable<BodyPartDef> mutatedParts)
+        public MutationLogEntry() : base(null)
+        {
+        }
+
+        public MutationLogEntry(Pawn pawn, [CanBeNull] TaleDef taleDef, HediffDef mutationDef, IEnumerable<BodyPartDef> mutatedParts)
         {
             _mutatedRecords = mutatedParts.ToList();
             _pawn = pawn;
             _mutationTale = taleDef;
             _mutationDef = mutationDef;
         }
-
 
         public override bool Concerns(Thing t)
         {
@@ -64,32 +65,36 @@ namespace Pawnmorph
             return $"{_mutationDef.LabelCap}";
         }
 
-        /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>A string that represents the current object.</returns>
+        /// <summary> Returns a string that represents the current object. </summary>
+        /// <returns> A string that represents the current object. </returns>
         public override string ToString()
         {
-            return
-                $"{_pawn.Name}: {string.Join(",", _mutatedRecords.Select(r => r.LabelCap).ToArray())} -> {_mutationDef.LabelCap}";
+            return $"{_pawn.Name}: {string.Join(",", _mutatedRecords.Select(r => r.LabelCap).ToArray())} -> {_mutationDef.LabelCap}";
         }
 
         protected override string ToGameStringFromPOV_Worker(Thing pov, bool forceLog)
         {
             Assert(pov == _pawn, "pov == _pawn");
 
-            Rand.PushState(logID); //does not need MP Safe Seed 
+            Rand.PushState(logID); // Does not need a MP-safe seed.
             try
             {
                 GrammarRequest grammarRequest = GenerateGrammarRequest();
-                grammarRequest.Includes.Add(PMRulePackDefOf.DefaultMutationRulePack);
+
+                var rulePack = _mutationDef.GetModExtension<MutationHediffExtension>()?.mutationRulePack ?? PMRulePackDefOf.DefaultMutationRulePack;
+
+                grammarRequest.Includes.Add(rulePack);
                 IEnumerable<Rule> pawnR = GrammarUtility.RulesForPawn(PAWN_IDENTIFIER, _pawn, grammarRequest.Constants);
 
                 BodyPartRecord partR = BodyDefOf.Human.AllParts.Where(r => _mutatedRecords.Contains(r.def)).RandomElement();
+                var partRules = GrammarUtility.RulesForBodyPartRecord(PART_LABEL, partR);
                 IEnumerable<Rule> mutR = GrammarUtility.RulesForHediffDef(MUTATION_IDENTIFIER, _mutationDef, partR);
 
 
-                //add the rules 
+                // Add the rules.
                 grammarRequest.Rules.AddRange(pawnR);
                 grammarRequest.Rules.AddRange(mutR);
+                grammarRequest.Rules.AddRange(partRules);
                 return GrammarResolver.Resolve(RP_ROOT_RULE, grammarRequest, "mutation log", forceLog);
             }
             catch (Exception exception)
@@ -98,9 +103,8 @@ namespace Pawnmorph
             }
             finally
             {
-                Rand.PopState(); //make sure to always pop rand 
+                Rand.PopState(); // Make sure to always pop rand.
             }
-
 
             return _mutationDef.LabelCap; //TODO generate string 
         }

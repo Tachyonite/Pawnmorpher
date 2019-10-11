@@ -39,8 +39,6 @@ namespace Pawnmorph
 
         }
 
-        
-
         /// <summary>
         /// returns an enumerable collection of all hediffGiver_Mutations active
         /// note, this does <i>not</i> check for givers that give the same hediff 

@@ -6,9 +6,7 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static class containing commonly referenced MorphCategoryDefs 
-    /// </summary>
+    /// <summary> Static class containing commonly referenced MorphCategoryDefs. </summary>
     [DefOf]
     public static class MorphCategoryDefOf
     {

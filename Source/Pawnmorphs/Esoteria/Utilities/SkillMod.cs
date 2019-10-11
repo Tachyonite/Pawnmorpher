@@ -12,11 +12,8 @@ namespace Pawnmorph.Utilities
         public float addedXp;
         public int passionOffset;
         public Passion? forcedPassion;
-        /// <summary>
-        /// the new passion of the skill with this mod 
-        /// </summary>
-        /// <param name="oldPassion"></param>
-        /// <returns></returns>
+
+        /// <summary> The new passion of the skill with this mod. </summary>
         public Passion GetNewPassion(Passion oldPassion)
         {
             if (forcedPassion != null) return forcedPassion.Value;
@@ -24,8 +21,6 @@ namespace Pawnmorph.Utilities
             int nP = (int) oldPassion + passionOffset;
             nP = Mathf.Clamp(nP, 0, 2);
             return (Passion) nP; 
-
         }
     }
-
 }

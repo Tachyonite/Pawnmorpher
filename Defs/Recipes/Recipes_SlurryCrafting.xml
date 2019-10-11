@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
   <RecipeDef>
 		<defName>Make_SlurryFromMutonite</defName>
 		<label>make slurry from mutonite</label>
-		<description>Melt down a hunk of mutonite into a vial of slurry.</description>
+		<description>Break down a hunk of mutonite into a vial of slurry.</description>
 		<jobString>Refining slurry from mutonite.</jobString>
 		<effectWorking>Cremate</effectWorking>
 		<soundWorking>Recipe_Cremate</soundWorking>
@@ -29,9 +27,10 @@
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</products>
 	</RecipeDef>
-  <RecipeDef>
+	
+	<RecipeDef>
 		<defName>Make_ComponentsFromSlurry</defName>
-		<label>make components from slurry (1:2)</label>
+		<label>fabricate components</label>
 		<description>Process mechanites into components.</description>
 		<jobString>Processing components from slurry.</jobString>
 		<effectWorking>Cremate</effectWorking>
@@ -57,15 +56,15 @@
 			<ComponentIndustrial>2</ComponentIndustrial>
 		</products>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
-    <skillRequirements>
-      <Crafting>8</Crafting>
-    </skillRequirements>
-    <workSkill>Crafting</workSkill>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workSkill>Crafting</workSkill>
 	</RecipeDef>
 	
-  <RecipeDef>
+	<RecipeDef>
 		<defName>Make_ResurrectorFromMutonite</defName>
-		<label>make resurrector from slurry (20:1)</label>
+		<label>fabricate resurrector mech serum</label>
 		<description>Reshape mechanites into resurrector serum from slurry. This does require quite a lot, and neutralises the mutagenic effect they have.</description>
 		<jobString>Refining slurry from mutonite.</jobString>
 		<effectWorking>Cremate</effectWorking>
@@ -81,7 +80,6 @@
 				</filter>
 				<count>20</count>
 			</li>
-			
 			<li>
 				<filter>
 					<thingDefs>
@@ -100,16 +98,16 @@
 			<MechSerumResurrector>1</MechSerumResurrector>
 		</products>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
-    <skillRequirements>
-      <Crafting>16</Crafting>
-    </skillRequirements>
-    <workSkill>Crafting</workSkill>
+		<skillRequirements>
+			<Crafting>16</Crafting>
+		</skillRequirements>
+		<workSkill>Crafting</workSkill>
 	</RecipeDef>
 	
-  <RecipeDef>
+	<RecipeDef>
 		<defName>Make_HealerFromMutonite</defName>
-		<label>make healer from slurry (10:1)</label>
-		<description>Reshape mechanites into healer serum from slurry. This does require quite a lot, and neutralises the mutagenic effect they have.</description>
+		<label>fabricate mutagenic healer mech serum</label>
+		<description>Reprogram a large quantity of mutagenic mechanites with healer protocols. Due to the sheer number of mechanites being reprogrammed, a few mechanites will fail to be neutralised and there is a high probability that the restored areas will be mutated as a result.</description>
 		<jobString>Refining slurry from mutonite.</jobString>
 		<effectWorking>Cremate</effectWorking>
 		<soundWorking>Recipe_Cremate</soundWorking>
@@ -142,14 +140,15 @@
 			<MechSerumMutagenicHealer>1</MechSerumMutagenicHealer>
 		</products>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
-    <skillRequirements>
-      <Crafting>13</Crafting>
-    </skillRequirements>
-    <workSkill>Crafting</workSkill>
+		<skillRequirements>
+			<Crafting>13</Crafting>
+		</skillRequirements>
+		<workSkill>Crafting</workSkill>
 	</RecipeDef>
-  <RecipeDef>
+	
+	<RecipeDef>
 		<defName>Make_GlitterMedsFromMutonite</defName>
-		<label>make glitterworld medicine from slurry (5:1)</label>
+		<label>fabricate glitterworld medicine</label>
 		<description>Reshape mechanites into glitterworld medicine from slurry. This does require quite a lot, and neutralises the mutagenic effect they have.</description>
 		<jobString>Refining slurry into glitterworld medicine</jobString>
 		<effectWorking>Cremate</effectWorking>
@@ -184,40 +183,9 @@
 			<MedicineUltratech>1</MedicineUltratech>
 		</products>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
-    <skillRequirements>
-      <Crafting>8</Crafting>
-    </skillRequirements>
-    <workSkill>Crafting</workSkill>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workSkill>Crafting</workSkill>
 	</RecipeDef>
-
-	<RecipeDef>
-		<defName>AdministerMutagenicMechSerumHealer</defName>
-		<label>administer healer mech serum</label>
-		<description>Administer a healer mech serum.</description>
-		<workerClass>Recipe_AdministerUsableItem</workerClass>
-		<jobString>Administering healer mech serum.</jobString>
-		<targetsBodyPart>false</targetsBodyPart>
-		<anesthetize>false</anesthetize>
-		<workAmount>600</workAmount>
-		<dontShowIfAnyIngredientMissing>true</dontShowIfAnyIngredientMissing>
-		<surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
-		<ingredients>
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>MechSerumMutagenicHealer</li>
-			  </thingDefs>
-			</filter>
-			<count>1</count>
-		  </li>
-		</ingredients>
-		<fixedIngredientFilter>
-		  <thingDefs>
-			<li>MechSerumMutagenicHealer</li>
-		  </thingDefs>
-		</fixedIngredientFilter>
-		<recipeUsers>
-			<li>Human</li>
-		</recipeUsers>
-	  </RecipeDef>
 </Defs>

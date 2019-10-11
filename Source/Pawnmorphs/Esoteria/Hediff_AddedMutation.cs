@@ -12,13 +12,9 @@ namespace Pawnmorph
     {
         public string mutationDescription;
 
-
-        /// <summary>
-        /// the influence this mutation exerts on a pawn  
-        /// </summary>
+        /// <summary> The influence this mutation exerts on a pawn. </summary>
         [CanBeNull]
         public Comp_MorphInfluence Influence => (comps?.OfType<Comp_MorphInfluence>().FirstOrDefault());
-
 
         public override bool ShouldRemove
         {
@@ -42,6 +38,17 @@ namespace Pawnmorph
             }
         }
 
+        public override string TipStringExtra
+        {
+            get
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(base.TipStringExtra);
+                stringBuilder.AppendLine("Efficiency".Translate() + ": " + def.addedPartProps.partEfficiency.ToStringPercent());
+                return stringBuilder.ToString();
+            }
+        }
+
         public virtual void CreateDescription(StringBuilder builder)
         {
             if (def.description == null)
@@ -53,17 +60,6 @@ namespace Pawnmorph
 
             string res = def.description.AdjustedFor(pawn);
             builder.AppendLine(res);
-        }
-
-        public override string TipStringExtra
-        {
-            get
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append(base.TipStringExtra);
-                stringBuilder.AppendLine("Efficiency".Translate() + ": " + def.addedPartProps.partEfficiency.ToStringPercent());
-                return stringBuilder.ToString();
-            }
         }
 
         public override void PostAdd(DamageInfo? dinfo)
@@ -78,17 +74,13 @@ namespace Pawnmorph
                 PortraitsCache.SetDirty(pawn);
             }
 
-
             pawn.GetMutationTracker()?.NotifyMutationAdded(this); 
-
         }
 
         public override void PostRemoved()
         {
             base.PostRemoved();
-            //Debug.Log($"$$$$$$$$$ Removing {def.defName} from {pawn.Name}");
-            pawn.GetMutationTracker()?.NotifyMutationRemoved(this); 
-
+            pawn.GetMutationTracker()?.NotifyMutationRemoved(this);
         }
 
         public override void ExposeData()

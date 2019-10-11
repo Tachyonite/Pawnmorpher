@@ -13,9 +13,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// Def class for a morph. Used to generate the morph's implicit race.
-    /// </summary>
+    /// <summary> Def class for a morph. Used to generate the morph's implicit race. </summary>
     public class MorphDef : Def
     {
         /// <summary>

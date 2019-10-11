@@ -22,7 +22,6 @@ namespace Pawnmorph
         public HashSet<PawnMorphInstanceMerged>
             mergedpawnmorphs = new HashSet<PawnMorphInstanceMerged>(); //why are we using hashsets? 
 
-        
         public HashSet<PawnKindDef> taggedAnimals = new HashSet<PawnKindDef>();
 
         private List<TransformedPawn> _transformedPawns = new List<TransformedPawn>();
@@ -43,9 +42,9 @@ namespace Pawnmorph
 
         [Obsolete]
         public IEnumerable<PawnMorphInstance> MorphInstances => pawnmorphs;
+
         [Obsolete]
         public IEnumerable<PawnMorphInstanceMerged> MergeInstances => mergedpawnmorphs;
-
 
         public IEnumerable<TransformedPawn> TransformedPawns => TransformedPawnsLst;
 
@@ -76,9 +75,6 @@ namespace Pawnmorph
 
         public override void ExposeData()
         {
-           
-
-
             Scribe_Collections.Look(ref pawnmorphs, "pawnmorphs", LookMode.Deep);
             Scribe_Collections.Look(ref mergedpawnmorphs, "pawnmorphs", LookMode.Deep);
             Scribe_Collections.Look(ref taggedAnimals, "taggedAnimals");
@@ -86,10 +82,6 @@ namespace Pawnmorph
             taggedAnimals = taggedAnimals ?? new HashSet<PawnKindDef>();
             mergedpawnmorphs = mergedpawnmorphs ?? new HashSet<PawnMorphInstanceMerged>();
             pawnmorphs = pawnmorphs ?? new HashSet<PawnMorphInstance>();
-           
-
-
-           
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -100,11 +92,7 @@ namespace Pawnmorph
                     _transformedPawns = new List<TransformedPawn>(); 
                 }
 
-               
-
-
-
-                //transfer the old ones to the new system 
+                // Transfer the old ones to the new system.
                 foreach (var pawnMorphInstance in pawnmorphs)
                 {
                     _transformedPawns.Add(TfSys.TransformedPawn.Create(pawnMorphInstance));
@@ -115,22 +103,18 @@ namespace Pawnmorph
                     _transformedPawns.Add(TfSys.TransformedPawn.Create(pawnMorphInstanceMerged));
                 }
 
-                //now clear 
-
-
+                // Now clear.
                 pawnmorphs.Clear();
                 mergedpawnmorphs.Clear();
 
-                //make sure they're all valid 
+                // Make sure they're all valid.
                 ValidateTransformedPawns();
             }
 
         }
 #pragma warning restore 612
 
-        /// <summary>
-        /// Validates the transformed pawns.
-        /// </summary>
+        /// <summary> Validates the transformed pawns. </summary>
         void ValidateTransformedPawns()
         {
 
@@ -159,10 +143,6 @@ namespace Pawnmorph
             {
                 Log.Error($"encountered invalid transformed pawns instances:\n{builder}");
             }
-
-            
-
-
         }
 
         [Obsolete("use " + nameof(GetTransformedPawnContaining) + " instead")]
@@ -179,11 +159,9 @@ namespace Pawnmorph
             return mergedpawnmorphs.FirstOrDefault(i => i.origin == original || i.origin2 == original);
         }
 
-        /// <summary>
-        ///     Gets the pawn transformation status.
-        /// </summary>
-        /// <param name="p">The pawn.</param>
-        /// <returns></returns>
+        /// <summary> Gets the pawn transformation status. </summary>
+        /// <param name="p"> The pawn. </param>
+        /// <returns> The pawn's current status or null. </returns>
         public TransformedStatus? GetPawnStatus(Pawn p)
         {
             foreach (var transformedPawn in TransformedPawnsLst)
@@ -195,11 +173,9 @@ namespace Pawnmorph
             return null;
         }
 
-        /// <summary>
-        ///     Gets the transformed pawn containing the given pawn
-        /// </summary>
-        /// <param name="pawn">The pawn</param>
-        /// <returns>the transformedPawn instance as well as the pawn's status to that instance</returns>
+        /// <summary> Gets the transformed pawn containing the given pawn. </summary>
+        /// <param name="pawn"> The pawn. </param>
+        /// <returns> The TransformedPawn instance as well as the pawn's status to that instance. </returns>
         [CanBeNull]
         public Tuple<TransformedPawn, TransformedStatus> GetTransformedPawnContaining(Pawn pawn)
         {
@@ -212,10 +188,8 @@ namespace Pawnmorph
             return null;
         }
 
-        /// <summary>
-        ///     Removes the transformed instance from the list.
-        /// </summary>
-        /// <param name="tfPawn">The tf pawn.</param>
+        /// <summary> Removes the transformed instance from the list. </summary>
+        /// <param name="tfPawn"> The tf pawn. </param>
         public void RemoveInstance(TransformedPawn tfPawn)
         {
             TransformedPawnsLst.Remove(tfPawn);

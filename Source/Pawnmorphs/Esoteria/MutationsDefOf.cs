@@ -6,9 +6,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static container for commonly referenced mutations 
-    /// </summary>
+    /// <summary> Static container for commonly referenced mutations. </summary>
     [DefOf]
     public static class MutationsDefOf
     {

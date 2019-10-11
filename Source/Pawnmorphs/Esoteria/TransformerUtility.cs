@@ -12,13 +12,16 @@ using RimWorld;
 using RimWorld.Planet;
 using Verse;
 using Verse.AI.Group;
-using Verse.Profile;
 
 namespace Pawnmorph
 {
-    public static class TransformerUtility
     // A class full of useful methods.
+    public static class TransformerUtility
     {
+        private const string ETHER_BOND_DEF_NAME = "EtherBond";
+        private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
+        private static readonly PawnKindDef[] PossiblePawnKinds;
+
         static TransformerUtility()
         {
             PossiblePawnKinds = new[]
@@ -30,13 +33,9 @@ namespace Pawnmorph
                 PawnKindDefOf.Drifter,
                 PawnKindDefOf.AncientSoldier
             };
-
-
-
         }
-        /// <summary>
-        /// Removes all mutations from a pawn (used post reversion) 
-        /// </summary>
+
+        /// <summary> Removes all mutations from a pawn (used post reversion). </summary>
         /// <param name="pawn">The pawn.</param>
         public static void RemoveAllMutations(Pawn pawn)
         {
@@ -60,7 +59,6 @@ namespace Pawnmorph
                 RaceShiftUtilities.RevertPawnToHuman(pawn); 
             }
         }
-       
 
         public static bool TryGivePostTransformationBondRelations(ref Pawn thrumbo, Pawn pawn, out Pawn otherPawn)
         {
@@ -121,11 +119,7 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>
-        /// returns true if this pawn is currently an animal or merged morph 
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <returns></returns>
+        /// <summary> Returns true if this pawn is currently an animal or merged morph. </summary>
         public static bool IsAnimalOrMerged([NotNull] this Pawn pawn)
         {
             var comp = Find.World.GetComponent<PawnmorphGameComp>();
@@ -134,12 +128,9 @@ namespace Pawnmorph
         }
 
 
-        /// <summary>
-        /// Converts the age of the given pawn into an equivalent age of the given race 
-        /// </summary>
-        /// <param name="originalPawn">The original pawn.</param>
-        /// <param name="race">The end race.</param>
-        /// <returns></returns>
+        /// <summary> Converts the age of the given pawn into an equivalent age of the given race. </summary>
+        /// <param name="originalPawn"> The original pawn. </param>
+        /// <param name="race"> The end race. </param>
         public static float ConvertAge([NotNull] Pawn originalPawn, [NotNull] RaceProperties race)
         {
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
@@ -149,22 +140,10 @@ namespace Pawnmorph
             return age * race.lifeExpectancy / originalRaceExpectancy; 
         }
 
-        private static List<Pawn> _pawnScratchPawns = new List<Pawn>(); 
-
-      
-
-
-        private static readonly PawnKindDef[] PossiblePawnKinds;
-
-
-        /// <summary>
-        /// Generates the random human pawn from a given animal pawn.
-        /// </summary>
-        /// <param name="animal">The animal.</param>
-        /// <returns></returns>
+        /// <summary> Generates the random human pawn from a given animal pawn. </summary>
+        /// <param name="animal"> The animal. </param>
         public static PawnGenerationRequest GenerateRandomPawnFromAnimal(Pawn animal)
         {
-            
             var convertedAge = ConvertAge(animal, ThingDefOf.Human.race);
             var gender = animal.gender;
             if (Rand.RangeInclusive(0, 100) <= 50)
@@ -190,8 +169,6 @@ namespace Pawnmorph
                                              fixedBiologicalAge: convertedAge,
                                              fixedChronologicalAge: Rand.Range(convertedAge, convertedAge + 200),
                                              fixedGender: gender, fixedMelanin: null);
-
-
         }
 
         [Obsolete("Use Mutagen system")]
@@ -219,11 +196,11 @@ namespace Pawnmorph
                     faction = transformedPawn.Faction;
                 }
 
+                // Creates a new animal of pawnkind type, with some of its stats set as those calculated above.
                 Pawn animalToSpawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(
                     pawnkind, faction, PawnGenerationContext.NonPlayer, -1, false, false,
                     false, false, true, false, 1f, false, true, true, false, false, false,
                     false, null, null, null, animalAge, transformedPawn.ageTracker.AgeChronologicalYearsFloat, animalGender));
-                // Creates a new animal of pawnkind type, with some of its stats set as those calculated above.
 
                 animalToSpawn.needs.food.CurLevel = transformedPawn.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
                 animalToSpawn.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
@@ -240,12 +217,10 @@ namespace Pawnmorph
                 hediff.Severity = Rand.Range(0.00f, 1.00f); // ...give it a random severity...
                 spawnedAnimal.health.AddHediff(hediff); // ...and apply it to the new animal.
 
-
                 PawnMorphInstance pm = new PawnMorphInstance(transformedPawn, spawnedAnimal); // Put the original pawn somewhere safe and tie it to the animal.
                 var tfPair = TfSys.TransformedPawn.Create(transformedPawn, spawnedAnimal); 
                 //Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm); // ...and put this data somewhere safe.
-                Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(tfPair); //doesn't do much right now 
-            
+                Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(tfPair); // ...and put this data somewhere safe (doesn't do much right now).
 
                 for (int i = 0; i < 10; i++) // Create a cloud of magic.
                 {
@@ -273,15 +248,15 @@ namespace Pawnmorph
                 transformedPawn.DeSpawn(); // Remove the original pawn from the current map.
                 
                 ReactionsHelper.OnPawnTransforms(transformedPawn, animalToSpawn, wasPrisoner);
-
             }
         }
 
         public static Gender GetTransformedGender(Pawn original, TFGender forceGender, float forceGenderChance)
         {
             Gender animalGender = original.gender;
+
+            // If forceGender was provided, give it a chance to be applied.
             if (forceGender != TFGender.Original && Rand.RangeInclusive(0, 100) <= forceGenderChance)
-                // If forceGender was provided, give it a chance to be applied.
             {
                 if (forceGender == TFGender.Male)
                 {
@@ -308,12 +283,9 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// just cleans up all references to the original human pawn after creating the animal pawn
-        ///  This does not call pawn.DeSpawn 
+        /// Cleans up all references to the original human pawn after creating the animal pawn. <br />
+        /// This does not call Pawn.DeSpawn.
         /// </summary>
-        ///     
-        /// <param name="originalPawn"></param>
-        /// <param name="cause"></param>
         public static void CleanUpHumanPawnPostTf(Pawn originalPawn,[CanBeNull] Hediff cause)
         {
             HandleApparelAndEquipment(originalPawn);
@@ -336,19 +308,14 @@ namespace Pawnmorph
             if (originalPawn.IsPrisoner)
                 HandlePrisoner(originalPawn); 
 
-
-
-            //TODO notify faction that their pawn became an animal somehow (this should damage relations maybe?) 
-
+            // TODO notify faction that their pawn became an animal somehow (this should damage relations maybe?).
 
             Caravan caravan = originalPawn.GetCaravan();
             caravan?.RemovePawn(originalPawn);
             caravan?.Notify_PawnRemoved(originalPawn);
 
-            originalPawn.GetLord()
-                       ?.Notify_PawnLost(originalPawn,
-                                         PawnLostCondition
-                                            .IncappedOrKilled); //make sure any current lords know they can't use this pawn anymore 
+            // Make sure any current lords know they can't use this pawn anymore.
+            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
 
             if (originalPawn.Faction != Faction.OfPlayer) return; //past here is only relevant for colonists 
 
@@ -368,7 +335,6 @@ namespace Pawnmorph
             pawn.guest.Released = true;
             pawn.guest.SetGuestStatus(null);
             DebugLogUtils.Assert(!pawn.guest.IsPrisoner, $"{pawn.Name} is being cleaned up but is still a prisoner");
-            
         }
 
         private static void HandleApparelAndEquipment(Pawn originalPawn)
@@ -398,22 +364,10 @@ namespace Pawnmorph
                     equipmentTracker.Remove(equipment);
                     caravan.AddPawnOrItem(equipment, false); 
                 }
-                
-
-                //equipmentTracker.AllEquipmentListForReading.Clear();
-
             }
-            
         }
 
-        private const string ETHER_BOND_DEF_NAME = "EtherBond";
-        private const string ETHER_BROKEN_DEF_NAME = "EtherBroken"; 
-
-        /// <summary>
-        /// get the "ether state" of the pawn (whether they have the ether broken or bonded hediff 
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <returns></returns>
+        /// <summary> Get the "ether state" of the pawn (whether they have the ether broken or bonded hediff. </summary>
         public static EtherState GetEtherState([NotNull] this Pawn pawn)
         {
             var etherAspect = pawn.GetAspectTracker()?.GetAspect(AspectDefOf.EtherState);
@@ -439,13 +393,9 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// try to give this pawn a new memory
-        /// (this is the same as pawn.needs.mood.thoughts.memories.TryGainMemory just more convenient)
+        /// Try to give this pawn a new memory. <br />
+        /// If pawn does not have needs/mood/thoughts ect this call does nothing.
         /// </summary>
-        /// if pawn does not have needs/mood/thoughts ect this call does nothing
-        /// <param name="pawn"></param>
-        /// <param name="thought"></param>
-        /// <param name="otherPawn"></param>
         /// <param name="respectTraits">if ThoughtUtility.CanGetThought should be checked before giving the thought</param>
         public static void TryGainMemory([NotNull] this Pawn pawn, Thought_Memory thought, Pawn otherPawn=null, bool respectTraits=true) //move extension methods elsewhere? 
         {
@@ -458,21 +408,14 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// try to give this pawn a new memory
-        /// (this is the same as pawn.needs.mood.thoughts.memories.TryGainMemory just more convenient)
+        /// Try to give this pawn a new memory. <br />
+        /// If pawn does not have needs/mood/thoughts ect this call does nothing.
         /// </summary>
-        /// if pawn does not have needs/mood/thoughts ect this call does nothing 
-        /// <param name="pawn"></param>
-        /// <param name="thoughtDef"></param>
-        /// <param name="otherPawn"></param>
         public static void TryGainMemory([NotNull] this Pawn pawn, ThoughtDef thoughtDef, Pawn otherPawn = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
             pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thoughtDef, otherPawn); 
         }
-
-       
-        
     }
 }

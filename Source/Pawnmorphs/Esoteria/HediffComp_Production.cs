@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Linq;
-using JetBrains.Annotations;
-using Multiplayer.API;
-using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -13,11 +10,16 @@ namespace Pawnmorph
 {
     public class HediffComp_Production : HediffComp
     {
+        private const float SEVERITY_LERP = 0.1f;
+        private const int PRODUCTION_MULT_UPDATE_PERIOD = 60;
+
         public float HatchingTicker = 0;
+
         private float brokenChance = 0f;
         private float bondChance = 0f;
-        
-        public HediffCompProperties_Production Props => (HediffCompProperties_Production) props;
+        private float _severityTarget;
+
+        public HediffCompProperties_Production Props => (HediffCompProperties_Production)props;
 
         public override void CompPostTick(ref float severityAdjustment)
         {
@@ -25,7 +27,7 @@ namespace Pawnmorph
             if (Props.stages != null)
             {
                 HediffComp_Staged stage = Props.stages.ElementAt(parent.CurStageIndex);
-               
+
                 TryProduce(stage.daysToProduce, stage.amount, stage.chance, ThingDef.Named(stage.resource), stage.RareResource,
                         stage.thought);
             }
@@ -43,32 +45,25 @@ namespace Pawnmorph
             base.CompExposeData();
         }
 
-
-        private const float SEVERITY_LERP = 0.1f;
-
-        private float _severityTarget; 
-
-        private const int PRODUCTION_MULT_UPDATE_PERIOD = 60; 
         void TryProduce(float daysToProduce, int amount, float chance, ThingDef resource, ThingDef rareResource,
                             ThoughtDef stageThought = null)
         {
 
             if (HatchingTicker < daysToProduce * 60000)
             {
-                HatchingTicker ++;
+                HatchingTicker++;
 
                 if (parent.pawn.IsHashIntervalTick(PRODUCTION_MULT_UPDATE_PERIOD))
                 {
-                   _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); //update the production multiplier only occasionally for performance reasons 
-                   var severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); //have the severity increase gradually 
-                   parent.Severity = severity;
+                    _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); //update the production multiplier only occasionally for performance reasons 
+                    var severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); //have the severity increase gradually 
+                    parent.Severity = severity;
 
                 }
-
             }
             else if (Pawn.Map != null)
             {
-                if (Props.JobGiver != null && !Pawn.Downed) 
+                if (Props.JobGiver != null && !Pawn.Downed)
                 {
                     GiveJob();
 
@@ -76,13 +71,8 @@ namespace Pawnmorph
                 else
                 {
                     Produce(amount, chance, resource, rareResource, stageThought);
-
                 }
-
-
             }
-
-            
         }
 
         private void GiveJob()
@@ -92,18 +82,15 @@ namespace Pawnmorph
 
             if (jobPkg.Job == null)
             {
-                Produce(); 
+                Produce();
             }
             else
             {
-                Pawn.jobs.StartJob(jobPkg.Job, JobCondition.InterruptForced, resumeCurJobAfterwards: true); 
+                Pawn.jobs.StartJob(jobPkg.Job, JobCondition.InterruptForced, resumeCurJobAfterwards: true);
             }
-
         }
 
-        /// <summary>
-        /// spawns in the products at the parent's current location 
-        /// </summary>
+        /// <summary> Spawns in the products at the parent's current location. </summary>
         public void Produce()
         {
             var curStage = Props.stages?.ElementAt(parent.CurStageIndex);
@@ -114,7 +101,6 @@ namespace Pawnmorph
             ThoughtDef thought = curStage?.thought;
             Produce(amount, chance, resource, rareResource, thought);
         }
-
 
         private void Produce(int amount, float chance, ThingDef resource, ThingDef rareResource, ThoughtDef stageThought)
         {
@@ -205,31 +191,29 @@ namespace Pawnmorph
                 switch (state)
                 {
                     case EtherState.Broken:
-                        stageNum = 0; 
+                        stageNum = 0;
                         break;
                     case EtherState.Bond:
-                        stageNum = 1; 
+                        stageNum = 1;
                         break;
                     case EtherState.None:
                     default:
                         throw new ArgumentOutOfRangeException(nameof(state), state, null);
                 }
 
-                aspectTracker.Add(AspectDefOf.EtherState, stageNum); 
-
-
+                aspectTracker.Add(AspectDefOf.EtherState, stageNum);
             }
             else
             {
                 Log.Warning($"{Pawn.Name} does not have an aspect tracker! adding the deprecated hediff instead");
-                HediffDef hDef; 
+                HediffDef hDef;
                 switch (state)
                 {
                     case EtherState.Broken:
                         hDef = TfHediffDefOf.EtherBroken;
                         break;
                     case EtherState.Bond:
-                        hDef = TfHediffDefOf.EtherBond; 
+                        hDef = TfHediffDefOf.EtherBond;
                         break;
                     case EtherState.None:
                     default:
@@ -237,11 +221,7 @@ namespace Pawnmorph
                 }
 
                 Pawn.health.AddHediff(hDef);
-
             }
-
-
-           
         }
     }
 }

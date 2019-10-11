@@ -1,16 +1,13 @@
-﻿using Multiplayer.API;
-using Pawnmorph.Utilities;
+﻿using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
 {
     public class CompFormerHumanChance : ThingComp
-    // A ThingComp that gives a Thing a chance to have the TransformedHuman hediff.
     {
         private bool triggered = false;
 
         public CompProperties_FormerHumanChance Props
-        // Sets this ThingComp's Props to be that of CompProperties_FormerHumanChance's
         {
             get
             {
@@ -19,31 +16,20 @@ namespace Pawnmorph
         }
 
         public override void CompTick()
-        // Every tick, check if the Thing needs to have the TransformHuman hediff set (There is probably a better method to put this in).
         {
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
+            RandUtilities.PushState();
 
             if (!triggered)
-            // If we haven't checked already if the pawn is a former human...
             {
-                triggered = true; // Set the flag so that we don't endlessly check.
+                triggered = true;
                 if (LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers && Rand.RangeInclusive(0, 100) <= Props.Chance && parent.Faction == null)
-                // Give the pawn a chance to be a former human if the setting is enabled and it doesn't already belong to a faction (i.e. a wild animal).
                 {
-                    TransformerUtility.AddHediffIfNotPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman")); // Add the TransformedHuman hediff if the pawn is not permanently feral.
+                    TransformerUtility.AddHediffIfNotPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman"));
                 }
             }
-            TransformerUtility.RemoveHediffIfPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman")); // Remove the TransformedHuman hediff if the pawn becomes permanently feral.
+            TransformerUtility.RemoveHediffIfPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman"));
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
-
+            RandUtilities.PopState();
         }
 
         public override void PostExposeData()

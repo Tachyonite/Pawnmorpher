@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -30,7 +29,6 @@ namespace Pawnmorph
             }
         }
 
-        // Property HandCoverageAbsWithChildren with token 1700069D
         private float HandCoverageAbsWithChildren =>
             ThingDefOf.Human.race.body.GetPartsWithDef(BodyPartDefOf.Hand).First().coverageAbsWithChildren;
 
@@ -141,13 +139,7 @@ namespace Pawnmorph
             if (hediff_Injury5 != null) Cure(hediff_Injury5);
         }
 
-        /// <summary>
-        ///     add mutations to the given part
-        /// </summary>
-        /// <param name="record"></param>
-        /// <param name="pawn"></param>
-        /// <param name="morph"></param>
-        /// <param name="recursive"></param>
+        /// <summary> Add mutations to the given part. </summary>
         private void AddMutationToPart(BodyPartRecord record, Pawn pawn, MorphDef morph = null, bool recursive = false)
         {
             List<HediffGiver_Mutation> allGivers = MorphUtilities.GetMutationGivers(record.def).ToList();
@@ -157,8 +149,8 @@ namespace Pawnmorph
                 HediffGiver_Mutation giver;
                 if (morph != null)
                 {
-                    giver = allGivers.Where(g => morph.AllAssociatedAndAdjacentMutations.Contains(g)) //this will get all hediff givers that are on the same morph tf 
-                                     .RandomElementWithFallback();//ex: wolf/husky/warg morphs can get paw hands 
+                    giver = allGivers.Where(g => morph.AllAssociatedAndAdjacentMutations.Contains(g)) // This will get all hediff givers that are on the same morph tf.
+                                     .RandomElementWithFallback(); // i.e. wolf/husky/warg morphs can get paw hands.
                     giver = giver ?? allGivers.RandElement();
                 }
                 else
@@ -169,7 +161,7 @@ namespace Pawnmorph
                 giver.TryApply(pawn, MutagenDefOf.defaultMutagen);
             }
 
-            if (recursive) //recursively add mutations to child parts  
+            if (recursive) // Recursively add mutations to child parts.
                 foreach (BodyPartRecord cPart in record.GetDirectChildParts())
                     AddMutationToPart(cPart, pawn, morph, true);
         }
@@ -182,7 +174,6 @@ namespace Pawnmorph
                         return true;
             return hediff.def.lethalSeverity >= 0f;
         }
-
 
         private void Cure(Hediff hediff)
         {
@@ -204,9 +195,6 @@ namespace Pawnmorph
                 Block_3: ;
             }
 
-
-        
-
             Messages.Message("MessageHediffCuredByItem".Translate(hediff.LabelBase.CapitalizeFirst()), pawn,
                              MessageTypeDefOf.PositiveEvent);
         }
@@ -214,8 +202,7 @@ namespace Pawnmorph
         private void Cure(BodyPartRecord part, Pawn pawn)
         {
             pawn.health.RestorePart(part);
-            //add mutations 
-
+            // Add mutations.
 
             AddMutationToPart(part, pawn, pawn.GetMutationTracker()?.HighestInfluence, true);
 
@@ -366,15 +353,6 @@ namespace Pawnmorph
                             hediff_Injury = hediff_Injury2;
 
             return hediff_Injury;
-        }
-    }
-
-
-    public class CompProps_MutagenicFixWorstCondition : CompProperties
-    {
-        public CompProps_MutagenicFixWorstCondition()
-        {
-            compClass = typeof(Comp_MutagenicFixWorstCondition);
         }
     }
 }

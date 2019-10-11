@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
-using Multiplayer.API;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
@@ -20,16 +17,16 @@ namespace Pawnmorph
         private const string TRANSFORMATION_WARNING_LETTER_ID = "TransformationStageWarning";
 
         private HediffComp_Single _comp;
+        private MorphDef _morph;
+        private List<HediffGiver_Mutation> _allGivers;
+        private List<HediffGiver_Mutation> _givers;
+        [Unsaved] private int _lastStage = -1; // ToDo can we save this?
 
         [CanBeNull]
         public HediffComp_Single SingleComp
         {
             get { return _comp ?? (_comp = this.TryGetComp<HediffComp_Single>()); }
         }
-
-        private MorphDef _morph;
-
-        private List<HediffGiver_Mutation> _allGivers;
 
         List<HediffGiver_Mutation> AllGivers
         {
@@ -57,7 +54,36 @@ namespace Pawnmorph
             }
         }
 
-     
+        public override string LabelBase
+        {
+            get
+            {
+                var labelB = base.LabelBase;
+                if (SingleComp != null)
+                {
+                    return $"{labelB} x{SingleComp.stacks}";
+                }
+
+                return labelB;
+            }
+        }
+
+        public IEnumerable<HediffGiver_Mutation> MutationGivers
+        {
+            get
+            {
+                if (_givers == null)
+                {
+                    var givers = def.stages?.SelectMany(g => g.hediffGivers ?? Enumerable.Empty<HediffGiver>())
+                                    .OfType<HediffGiver_Mutation>()
+                              ?? Enumerable.Empty<HediffGiver_Mutation>();
+                    _givers = givers.ToList();
+                }
+
+                return _givers;
+            }
+        }
+
         private void UpdateGraphics()
         {
 
@@ -72,9 +98,7 @@ namespace Pawnmorph
 
             var startColor = GetStartSkinColor();
             var endColor = AssociatedMorph.raceSettings?.graphicsSettings?.skinColorOverride ??
-                           pawn.GetComp<GraphicSys.InitialGraphicsComp>().SkinColor; 
-
-            
+                           pawn.GetComp<GraphicSys.InitialGraphicsComp>().SkinColor;
 
             float counter = 0;
             foreach (var hediffGiverMutation in AllGivers) //count how many mutations the pawn has now 
@@ -106,22 +130,6 @@ namespace Pawnmorph
             return col.Value; 
         }
 
-        public override string LabelBase
-        {
-            get
-            {
-                var labelB = base.LabelBase;
-                if (SingleComp != null)
-                {
-                    return $"{labelB} x{SingleComp.stacks}";
-                }
-
-                return labelB; 
-            }
-        }
-
-        [Unsaved]
-        private int _lastStage = -1; //ToDO can we save this?
         public override void PostTick()
         {
             base.PostTick();
@@ -131,8 +139,6 @@ namespace Pawnmorph
                 _lastStage = CurStageIndex;
                 EnterNextStage();
             }
-
-          
         }
 
         protected virtual void EnterNextStage()
@@ -149,38 +155,14 @@ namespace Pawnmorph
         {
             if (CurStage.hediffGivers == null) return;
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed);
-            }
+            RandUtilities.PushState();
 
             foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
             {
                 if (tfGiver.TryTf(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
             }
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
-        }
-
-        private List<HediffGiver_Mutation> _givers;
-
-        public IEnumerable<HediffGiver_Mutation> MutationGivers
-        {
-            get
-            {
-                if (_givers == null)
-                {
-                    var givers = def.stages?.SelectMany(g => g.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                                    .OfType<HediffGiver_Mutation>()
-                              ?? Enumerable.Empty<HediffGiver_Mutation>();
-                    _givers = givers.ToList();
-                }
-
-                return _givers; 
-            }
+            RandUtilities.PopState();
         }
 
         public override bool TryMergeWith(Hediff other)
@@ -203,19 +185,15 @@ namespace Pawnmorph
 
             var letterLabel = (TRANSFORMATION_WARNING_LETTER_ID + "Label").Translate(pawn);
             var letterContent = (TRANSFORMATION_WARNING_LETTER_ID + "Content").Translate(pawn);
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent); 
-
-            //Messages.Message((TRANSFORMATION_WARNING_LETTER_ID).Translate(pawn),def:MessageTypeDefOf.NegativeHealthEvent);
-
+            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent);
         }
 
         /// <summary>
-        /// this is called when the transformation hediff is removed naturally (after reaching a severity of 0) 
+        /// This is called when the transformation hediff is removed naturally (after reaching a severity of 0). <br />
+        /// This is only called when the hediff is removed after reaching a severity of zero, not when the pawn it's self is removed.
         /// </summary>
-        /// this is only called when the hediff is removed after reaching a severity of zero, not when the pawn it's self is removed 
         protected virtual void OnFinishedTransformation()
         {
-            //Log.Message($"{pawn.Name.ToStringFull} has finished transforming!");
             foreach (IPostTfHediffComp postTfHediffComp in comps.OfType<IPostTfHediffComp>())
             {
                 postTfHediffComp.FinishedTransformation(pawn, this); 

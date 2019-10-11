@@ -8,9 +8,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static container for faction related utilities
-    /// </summary>
+    /// <summary> Static container for faction related utilities. </summary>
     public static class FactionUtilities
     {
         private const int TRANSFORMED_RELATIONSHIP_OFFSET = -10;//TODO put this in a def or something 
@@ -18,7 +16,6 @@ namespace Pawnmorph
         private const string LEADER_TRANSFORMED_LABEL = "FactionLeaderTransformedLabel";
         private const string LEADER_TRANSFORMED_CONTENT = "FactionLeaderTransformedContent";
         private const string MEMBER_REVERTED = "GoodwillChangedReason_PawnReverted"; 
-
 
         private const string MEMBER_NAME = "memberName"; //these constants are used to give the params in the translation xml consistent names for all faction related 
         private const string MEMBER_LABEL = "memberLabel"; //stuff 
@@ -30,14 +27,7 @@ namespace Pawnmorph
         private const string FACTION_NAME = "factionName"; 
 
 
-        /// <summary>
-        /// notify this faction that one of their pawns has been transformed 
-        /// </summary>
-        /// <param name="faction"></param>
-        /// <param name="member"></param>
-        /// <param name="animal"></param>
-        /// <param name="wasWorldPawn"></param>
-        /// <param name="map"></param>
+        /// <summary> Notify this faction that one of their pawns has been transformed. </summary>
         public static void Notify_MemberTransformed([NotNull] this Faction faction, [NotNull] Pawn member, [NotNull] Pawn animal, bool wasWorldPawn,  [CanBeNull] Map map)
         {
             if (faction == null) throw new ArgumentNullException(nameof(faction));
@@ -78,11 +68,7 @@ namespace Pawnmorph
         //TODO handle merged reactions (going to be harder because of the different possibilities)
 
 
-        /// <summary>
-        /// notify this faction that it's leader has been transformed 
-        /// </summary>
-        /// <param name="faction"></param>
-        /// <param name="animal"></param>
+        /// <summary> Notify this faction that it's leader has been transformed. </summary>
         public static void Notify_LeaderTransformed([NotNull] this Faction faction, Pawn animal)
         {
             var leader = faction.leader;
@@ -104,8 +90,5 @@ namespace Pawnmorph
             letterContent = letterContent.CapitalizeFirst();
             Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NegativeEvent, LookTargets.Invalid, faction);
         }
-
-
-
     }
 }
