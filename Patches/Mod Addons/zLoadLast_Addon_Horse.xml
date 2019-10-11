@@ -316,6 +316,7 @@
 						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseEar</defName>
 							<label>equine</label>
+							<description>Long, equine ears sit atop [PAWN_nameDef]'s head, like that of a horse.</description>
 							<stages>
 								<li>
 									<capMods>
