@@ -60,7 +60,7 @@
 						<li>PawnmorphDeerTF</li>
 						<li>PawnmorphFoxTF</li>
 						<li>PawnmorphHuskyTF</li>
-						<li>PawnmorphSnakeTF</li>
+						<!--li>PawnmorphSnakeTF</li-->
 						<li>PawnmorphWargTF</li>
 						<li>PawnmorphWolfTF</li>
 					</hediffDefs>
@@ -103,7 +103,7 @@
 						<li>PawnmorphBoomalopeTF</li>
 						<li>PawnmorphChickenTF</li>
 						<li>PawnmorphCowTF</li>
-						<li>PawnmorphIguanaTF</li>
+						<!--li>PawnmorphIguanaTF</li-->
 						<li>PawnmorphPigTF</li>
 						<li>PawnmorphRatTF</li>
 					</hediffDefs>
