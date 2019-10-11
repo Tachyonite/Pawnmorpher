@@ -21,6 +21,9 @@ namespace Pawnmorph
         private bool _reCalcInfluences = true;
         private float _totalNormalizedInfluence;
 
+
+
+        public int MutationsCount { get; private set; }
         /// <summary> Get the current influence associated with the given key. </summary>
         public float this[MorphDef key] => _influenceLookup.TryGetValue(key);
 
@@ -113,6 +116,8 @@ namespace Pawnmorph
 
             }
 
+            MutationsCount += 1; 
+
             HighestInfluence = GetHighestInfluence(); 
 
             NotifyCompsAdded(mutation);
@@ -144,6 +149,7 @@ namespace Pawnmorph
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             _reCalcInfluences = true; //we will need to recalculate the total if requested 
+            MutationsCount -= 1; 
             var comp = mutation.TryGetComp<Comp_MorphInfluence>();
             if (comp != null)
             {
@@ -183,6 +189,9 @@ namespace Pawnmorph
                 MorphDef hMorph = GetHighestInfluence();
                 HighestInfluence = hMorph;
                 _reCalcInfluences = true;
+
+
+                MutationsCount = Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Count(); 
             }
         }
 

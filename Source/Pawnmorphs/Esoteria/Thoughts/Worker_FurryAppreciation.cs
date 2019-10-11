@@ -2,6 +2,7 @@
 // last updated 09/18/2019  2:07 PM
 
 using System.Linq;
+using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -19,9 +20,14 @@ namespace Pawnmorph.Thoughts
             if (!otherPawn.RaceProps.Humanlike) return false; //make sure only humanlike pawns are affected by this 
             if (!p.story.traits.HasTrait(PMTraitDefOf.MutationAffinity)) return false;
             if (!RelationsUtility.PawnsKnowEachOther(p, otherPawn)) return false; //the pawns have to know each other 
-            var numMutation = otherPawn.health.hediffSet.hediffs.Count(h => h is Hediff_AddedMutation); //get the number of mutations on the other pawn 
-            if (numMutation == 0) return false;
-            return ThoughtState.ActiveAtStage(Mathf.Min(numMutation, def.stages.Count - 1));
+
+            var tracker = otherPawn.GetMutationTracker();
+            if (tracker == null) return false;
+            if (tracker.MutationsCount == 0) return false;
+            int n = Mathf.FloorToInt(tracker.TotalNormalizedInfluence * def.stages.Count);
+            n = Mathf.Clamp(n, 0, def.stages.Count - 1);
+
+            return ThoughtState.ActiveAtStage(n);
         }
     }
 }
