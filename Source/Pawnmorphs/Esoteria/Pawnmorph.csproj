@@ -83,6 +83,15 @@
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
+    <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />
+    <Compile Include="Jobs\Driver_ShaveSelf.cs" />
+    <Compile Include="Jobs\Giver_DrainChemcyst.cs" />
+    <Compile Include="Jobs\Driver_MilkSelf.cs" />
+    <Compile Include="Jobs\Driver_ProduceThing.cs" />
+    <Compile Include="Jobs\Giver_MegaShaveSelf.cs" />
+    <Compile Include="Jobs\Giver_MilkSelf.cs" />
+    <Compile Include="Jobs\Giver_ShaveSelf.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />

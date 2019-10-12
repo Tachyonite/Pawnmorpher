@@ -118,6 +118,7 @@
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>MilkedMyself</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_MilkSelf</jobGiver>
 				<genderAversion>Male</genderAversion>
 				<wrongGenderThought>MilkedMyselfMale</wrongGenderThought>
 				<etherBondThought>MilkedMyselfBond</etherBondThought>

@@ -16,5 +16,9 @@ namespace Pawnmorph
         }
 
         public static JobDef PMLayEgg;
+        public static JobDef PMMilkSelf;
+        public static JobDef PMDrainChemcyst;
+        public static JobDef PMShaveSelf;
+        public static JobDef PMMegaShaveSelf;
     }
 }

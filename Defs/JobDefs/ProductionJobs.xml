@@ -6,4 +6,28 @@
         <casualInterruptible>false</casualInterruptible>
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     </JobDef>
+	
+    <JobDef>
+        <defName>PMMilkSelf</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_MilkSelf</driverClass>
+        <reportString>milking myself.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	
+    <JobDef>
+        <defName>PMDrainChemcyst</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_LayEgg</driverClass>
+        <reportString>draining my chemcyst.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	
+    <JobDef>
+        <defName>PMShaveSelf</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_LayEgg</driverClass>
+        <reportString>shaving myself.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
 </Defs>

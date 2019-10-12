@@ -12,6 +12,7 @@ namespace Pawnmorph
     {
         private const float SEVERITY_LERP = 0.1f;
         private const int PRODUCTION_MULT_UPDATE_PERIOD = 60;
+        private const int TICKS_PER_DAY = 60000;
 
         public float HatchingTicker = 0;
 
@@ -23,18 +24,7 @@ namespace Pawnmorph
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-
-            if (Props.stages != null)
-            {
-                HediffComp_Staged stage = Props.stages.ElementAt(parent.CurStageIndex);
-
-                TryProduce(stage.daysToProduce, stage.amount, stage.chance, ThingDef.Named(stage.resource), stage.RareResource,
-                        stage.thought);
-            }
-            else
-            {
-                TryProduce(Props.daysToProduce, Props.amount, Props.chance, ThingDef.Named(Props.resource), Props.RareResource);
-            }
+            TryProduce();
         }
 
         public override void CompExposeData()
@@ -45,20 +35,19 @@ namespace Pawnmorph
             base.CompExposeData();
         }
 
-        void TryProduce(float daysToProduce, int amount, float chance, ThingDef resource, ThingDef rareResource,
-                            ThoughtDef stageThought = null)
+        void TryProduce()
         {
-
-            if (HatchingTicker < daysToProduce * 60000)
+            var curStage = Props.stages?.ElementAt(parent.CurStageIndex);
+            float daysToProduce = curStage?.daysToProduce ?? Props.daysToProduce;
+            if (HatchingTicker < daysToProduce * TICKS_PER_DAY)
             {
                 HatchingTicker++;
 
                 if (parent.pawn.IsHashIntervalTick(PRODUCTION_MULT_UPDATE_PERIOD))
                 {
-                    _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); //update the production multiplier only occasionally for performance reasons 
-                    var severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); //have the severity increase gradually 
+                    _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); // Update the production multiplier only occasionally for performance reasons. 
+                    var severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); // Have the severity increase gradually.
                     parent.Severity = severity;
-
                 }
             }
             else if (Pawn.Map != null)
@@ -66,11 +55,10 @@ namespace Pawnmorph
                 if (Props.JobGiver != null && !Pawn.Downed)
                 {
                     GiveJob();
-
                 }
                 else
                 {
-                    Produce(amount, chance, resource, rareResource, stageThought);
+                    Produce();
                 }
             }
         }
@@ -78,7 +66,7 @@ namespace Pawnmorph
         private void GiveJob()
         {
             HatchingTicker = 0;
-            var jobPkg = Props.JobGiver.TryIssueJobPackage(Pawn, default); //caller already checked this 
+            var jobPkg = Props.JobGiver.TryIssueJobPackage(Pawn, default); // Caller already checked this.
 
             if (jobPkg.Job == null)
             {
