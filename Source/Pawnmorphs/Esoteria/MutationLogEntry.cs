@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.Grammar;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -93,6 +94,7 @@ namespace Pawnmorph
                 {
                     grammarRequest.Includes.Add(PMRulePackDefOf.DefaultMutationRulePack);
                     grammarRequest.IncludesBare.Add(_mutationTale.rulePack);
+                    grammarRequest.Rules.Add(new Rule_String("DATE", GenDate.DateFullStringAt(ticksAbs, Vector2.zero)));
                 }
                 else
                 {
@@ -100,7 +102,7 @@ namespace Pawnmorph
                 }
 
                 IEnumerable<Rule> pawnR = GrammarUtility.RulesForPawn(PAWN_IDENTIFIER, _pawn, grammarRequest.Constants);
-
+                
                 BodyPartRecord partR = BodyDefOf.Human.AllParts.Where(r => _mutatedRecords.Contains(r.def)).RandomElement();
                 IEnumerable<Rule> partRules = GrammarUtility.RulesForBodyPartRecord(PART_LABEL, partR);
                 IEnumerable<Rule> mutR = GrammarUtility.RulesForHediffDef(MUTATION_IDENTIFIER, _mutationDef, partR);

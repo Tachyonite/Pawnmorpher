@@ -39,6 +39,37 @@ namespace Pawnmorph.DebugUtils
             if (!condition) Log.Error($"assertion failed:{message}");
         }
 
+        [Category(MAIN_CATEGORY_NAME), DebugOutput, ModeRestrictionPlay]
+        public static void PrintMutationLogs()
+        {
+
+            var logEntries = Find.PlayLog.AllEntries.OfType<MutationLogEntry>().ToList(); //save the list for later 
+
+            StringBuilder builder = new StringBuilder();
+            const string joinStr = "\n___________________________________\n"; 
+            foreach (Pawn colonist in PawnsFinder.AllMaps_FreeColonists)
+            {
+                List<string> lst = new List<string>(); 
+
+                foreach (MutationLogEntry log in logEntries.Where(l => l.Concerns(colonist)))
+                {
+                    lst.Add(log.ToGameStringFromPOV(colonist)); 
+                    
+                }
+
+                if (lst.Count > 0)
+                {
+                    builder.AppendLine($"$$--------------{colonist.Name}-----------------$$");
+                    builder.AppendLine(string.Join(joinStr, lst.ToArray())); 
+                }
+            }
+
+            Log.Message(builder.ToString()); 
+
+
+        }
+
+
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]
         public static void CheckBodyHediffGraphics()

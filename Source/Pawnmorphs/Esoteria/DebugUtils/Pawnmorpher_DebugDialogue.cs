@@ -48,10 +48,13 @@ namespace Pawnmorph.DebugUtils
         void ListPlayOptions()
         {
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
-            DebugToolMapForPawns("give random mutations", GetRandomMutationsOptions);
+            DebugAction("give random mutations", GetRandomMutationsOptions);
             DebugToolMapForPawns("force full transformation", ForceTransformation);
             DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics); 
         }
+
+     
+
 
         void ForceTransformation(Pawn pawn)
         {
@@ -70,23 +73,27 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        void GivePawnRandomMutations(Pawn pawn, [CanBeNull] MorphDef morph)
+        void GivePawnRandomMutations([CanBeNull] MorphDef morph)
         {
+            var pawn = Find.CurrentMap.thingGrid
+                           .ThingsAt(UI.MouseCell())
+                           .OfType<Pawn>()
+                           .FirstOrDefault();
+            if (pawn == null) return; 
 
-            var mutations = morph?.AssociatedMutations;
+
+
+
+            IEnumerable<HediffGiver_Mutation> mutations = morph?.AllAssociatedAndAdjacentMutations;
             if (mutations == null)
-            {
                 mutations = DefDatabase<HediffDef>.AllDefs
                                                   .Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass))
                                                   .SelectMany(d => d.GetAllHediffGivers())
-                                                  .OfType<HediffGiver_Mutation>(); 
-
-
-            }
+                                                  .OfType<HediffGiver_Mutation>();
 
             bool CanReceiveGiver(HediffGiver_Mutation mutation)
             {
-                var hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation.hediff);
+                IEnumerable<Hediff> hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation.hediff);
 
                 return hediffs.Count() < mutation.countToAffect;
             }
@@ -107,22 +114,20 @@ namespace Pawnmorph.DebugUtils
 
                 i++;
             }
-
-
-
         }
+       
 
 
-        void GetRandomMutationsOptions(Pawn pawn)
+        void GetRandomMutationsOptions()
         {
             List<DebugMenuOption> options = new List<DebugMenuOption>()
-                {new DebugMenuOption("none", DebugMenuOptionMode.Tool, () => GivePawnRandomMutations(pawn, null))};
+                {new DebugMenuOption("none", DebugMenuOptionMode.Tool, () => GivePawnRandomMutations( null))};
 
 
             foreach (MorphDef morphDef in MorphDef.AllDefs)
             {
                 var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
-                                                 () => GivePawnRandomMutations(pawn, morphDef)); 
+                                                 () => GivePawnRandomMutations( morphDef)); 
                 options.Add(option);
 
 
