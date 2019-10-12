@@ -3,9 +3,10 @@
         <defName>DefaultMutationRulePack</defName>
         <rulePack>
             <rulesStrings>
-                <!-- TODO  --> 
-                <li>mutation_log->[images] [circumstance_group]</li> <!-- test entry, should be removed-->
+                <li>mutation_log->on [DATE] [images]. [sentence_group]</li> 
                 <li>images->[image]</li>
+                <li>sentence_group->[desc_sentence]</li>
+                <li>circumstance_group->[circumstance_phrase]</li>
             </rulesStrings>
         </rulePack>
     </RulePackDef>

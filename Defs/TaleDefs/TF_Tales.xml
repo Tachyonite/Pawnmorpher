@@ -20,18 +20,18 @@
 				<li>image->[PAWN_nameFull] falling to all fours [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] looking over their body [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] on [PAWN_possessive] knees, shouting in pain [circumstance_group]</li>
-				<li>circumstance_group->as [PAWN_possessive]'s hunched form coats with fur</li>
-				<li>circumstance_group->with great shame</li>
-				<li>circumstance_group->trying to cover [PAWN_pronoun]self with hands that shift into paws</li>
-				<li>circumstance_group->as the mechanites in [PAWN_possessive] body work their magic</li>
-				<li>circumstance_group->as others look on</li>
-				<li>circumstance_group->as others look on in terror</li>
-				<li>circumstance_group->as someone looks on, grinning</li>
-				<li>circumstance_group->on canine paws</li>
-				<li>circumstance_group->with [PAWN_possessive] tail between [PAWN_possessive] legs</li>
-				<li>circumstance_group->while their legs reshape</li>
-				<li>circumstance_group->with [PAWN_possessive] feral eyes wide open</li>
-				<li>circumstance_group->with [PAWN_possessive] eyes glued shut</li>
+				<li>circumstance_phrase->as [PAWN_possessive]'s hunched form coats with fur</li>
+				<li>circumstance_phrase->with great shame</li>
+				<li>circumstance_phrase->trying to cover [PAWN_pronoun]self with hands that shift into paws</li>
+				<li>circumstance_phrase->as the mechanites in [PAWN_possessive] body work their magic</li>
+				<li>circumstance_phrase->as others look on</li>
+				<li>circumstance_phrase->as others look on in terror</li>
+				<li>circumstance_phrase->as someone looks on, grinning</li>
+				<li>circumstance_phrase->on canine paws</li>
+				<li>circumstance_phrase->with [PAWN_possessive] tail between [PAWN_possessive] legs</li>
+				<li>circumstance_phrase->while their legs reshape</li>
+				<li>circumstance_phrase->with [PAWN_possessive] feral eyes wide open</li>
+				<li>circumstance_phrase->with [PAWN_possessive] eyes glued shut</li>
 				<li>desc_sentence->[PAWN_pronoun] seems totally unaware of what is around [PAWN_objective].</li>
 				<li>desc_sentence->[PAWN_possessive] face itself seems to be shifting to fit a more animal shape.</li>
 				<li>desc_sentence->[PAWN_pronoun] is nearly unconscious, [PAWN_possessive] tongue lolling out, drool dripping.</li>
@@ -70,18 +70,18 @@
 				<li>image->[PAWN_nameFull] falling to all fours [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] looking over their body [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] on [PAWN_possessive] knees, mooing loudly [circumstance_group]</li>
-				<li>circumstance_group->as [PAWN_possessive]'s hunched form thickens to hide</li>
-				<li>circumstance_group->with great shame</li>
-				<li>circumstance_group->trying to cover [PAWN_pronoun]self with hands that shift into hooves</li>
-				<li>circumstance_group->as the mechanites in [PAWN_possessive] body work their magic</li>
-				<li>circumstance_group->as others look on</li>
-				<li>circumstance_group->as others look on in terror</li>
-				<li>circumstance_group->as someone looks on, grinning</li>
-				<li>circumstance_group->on heavy hooves</li>
-				<li>circumstance_group->with [PAWN_possessive] tail between [PAWN_possessive] legs</li>
-				<li>circumstance_group->while their legs reshape</li>
-				<li>circumstance_group->with [PAWN_possessive] feral eyes wide open</li>
-				<li>circumstance_group->with [PAWN_possessive] eyes glued shut</li>
+				<li>circumstance_phrase->as [PAWN_possessive]'s hunched form thickens to hide</li>
+				<li>circumstance_phrase->with great shame</li>
+				<li>circumstance_phrase->trying to cover [PAWN_pronoun]self with hands that shift into hooves</li>
+				<li>circumstance_phrase->as the mechanites in [PAWN_possessive] body work their magic</li>
+				<li>circumstance_phrase->as others look on</li>
+				<li>circumstance_phrase->as others look on in terror</li>
+				<li>circumstance_phrase->as someone looks on, grinning</li>
+				<li>circumstance_phrase->on heavy hooves</li>
+				<li>circumstance_phrase->with [PAWN_possessive] tail between [PAWN_possessive] legs</li>
+				<li>circumstance_phrase->while their legs reshape</li>
+				<li>circumstance_phrase->with [PAWN_possessive] feral eyes wide open</li>
+				<li>circumstance_phrase->with [PAWN_possessive] eyes glued shut</li>
 				<li>desc_sentence->[PAWN_pronoun] seems totally unaware of what is around [PAWN_objective].</li>
 				<li>desc_sentence->[PAWN_possessive] face itself seems to be shifting to fit a more animal shape.</li>
 				<li>desc_sentence->[PAWN_pronoun] is nearly unconscious, [PAWN_possessive] tongue lolling out, drool dripping.</li>
@@ -119,17 +119,17 @@
 				<li>image->[PAWN_nameFull] doubled over in pain [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] looking over their body [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] on [PAWN_possessive] knees, squacking loudly [circumstance_group]</li>
-				<li>circumstance_group->as [PAWN_possessive]'s bulging form  plumes with feathers</li>
-				<li>circumstance_group->with great shame</li>
-				<li>circumstance_group->trying to cover [PAWN_pronoun]self with hands that shift into wings</li>
-				<li>circumstance_group->as the mechanites in [PAWN_possessive] body work their magic</li>
-				<li>circumstance_group->as others look on</li>
-				<li>circumstance_group->as others look on in terror</li>
-				<li>circumstance_group->as someone looks on, grinning</li>
-				<li>circumstance_group->on flexing chicken-feet</li>
-				<li>circumstance_group->while their feet scratch at the dirt</li>
-				<li>circumstance_group->with [PAWN_possessive] feral eyes wide open</li>
-				<li>circumstance_group->with [PAWN_possessive] eyes glued shut</li>
+				<li>circumstance_phrase->as [PAWN_possessive]'s bulging form  plumes with feathers</li>
+				<li>circumstance_phrase->with great shame</li>
+				<li>circumstance_phrase->trying to cover [PAWN_pronoun]self with hands that shift into wings</li>
+				<li>circumstance_phrase->as the mechanites in [PAWN_possessive] body work their magic</li>
+				<li>circumstance_phrase->as others look on</li>
+				<li>circumstance_phrase->as others look on in terror</li>
+				<li>circumstance_phrase->as someone looks on, grinning</li>
+				<li>circumstance_phrase->on flexing chicken-feet</li>
+				<li>circumstance_phrase->while their feet scratch at the dirt</li>
+				<li>circumstance_phrase->with [PAWN_possessive] feral eyes wide open</li>
+				<li>circumstance_phrase->with [PAWN_possessive] eyes glued shut</li>
 				<li>desc_sentence->[PAWN_pronoun] seems totally unaware of what is around [PAWN_objective].</li>
 				<li>desc_sentence->[PAWN_possessive] face itself seems to be shifting to fit a more animal shape.</li>
 				<li>desc_sentence->[PAWN_pronoun] is nearly unconscious, [PAWN_possessive] beak pressing out, aghast.</li>
@@ -167,15 +167,15 @@
 				<li>image->[PAWN_nameFull] doubled over in pain [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] falling to all fours [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] looking over their body [circumstance_group]</li>
-				<li>circumstance_group->with great shame</li>
-				<li>circumstance_group->trying to cover [PAWN_pronoun]self with hands that shift into wings</li>
-				<li>circumstance_group->as the mechanites in [PAWN_possessive] body work their magic</li>
-				<li>circumstance_group->as others look on</li>
-				<li>circumstance_group->as others look on in terror</li>
-				<li>circumstance_group->as someone looks on, grinning</li>
-				<li>circumstance_group->while their feet scratch at the dirt</li>
-				<li>circumstance_group->with [PAWN_possessive] feral eyes wide open</li>
-				<li>circumstance_group->with [PAWN_possessive] eyes glued shut</li>
+				<li>circumstance_phrase->with great shame</li>
+				<li>circumstance_phrase->trying to cover [PAWN_pronoun]self with hands that shift into wings</li>
+				<li>circumstance_phrase->as the mechanites in [PAWN_possessive] body work their magic</li>
+				<li>circumstance_phrase->as others look on</li>
+				<li>circumstance_phrase->as others look on in terror</li>
+				<li>circumstance_phrase->as someone looks on, grinning</li>
+				<li>circumstance_phrase->while their feet scratch at the dirt</li>
+				<li>circumstance_phrase->with [PAWN_possessive] feral eyes wide open</li>
+				<li>circumstance_phrase->with [PAWN_possessive] eyes glued shut</li>
 				<li>desc_sentence->[PAWN_pronoun] seems totally unaware of what is around [PAWN_objective].</li>
 				<li>desc_sentence->[PAWN_possessive] face itself seems to be shifting to fit a more animal shape.</li>
 				<li>desc_sentence->[PAWN_pronoun] is convulsing violently as [PAWN_objective] body shifts to completion.</li>
@@ -203,16 +203,16 @@
 				<li>image->[PAWN_nameFull] examining [PAWN_possessive] rear [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] looking behind [PAWN_possessive]self [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
-				<li>circumstance_group->as [PAWN_possessive] tail flicks, obviously</li>
-				<li>circumstance_group->as [PAWN_possessive] tail wags, unwillingly</li>
-				<li>circumstance_group->as [PAWN_possessive] tail wags, excited</li>
-				<li>circumstance_group->as [PAWN_possessive] tail hangs between [PAWN_possessive] legs, scared</li>
-				<li>circumstance_group->as [PAWN_possessive] tail hangs between [PAWN_possessive] legs, embarrased</li>
-				<li>circumstance_group->as people look on in horror</li>
-				<li>circumstance_group->as people laugh nearby</li>
-				<li>circumstance_group->as people pat the fur on [PAWN_nameDef]'s new tail</li>
-				<li>circumstance_group->as people pull at [PAWN_possessive] new tail</li>
-				<li>circumstance_group->while someone pats [PAWN_possessive] new tail</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail flicks, obviously</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail wags, unwillingly</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail wags, excited</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail hangs between [PAWN_possessive] legs, scared</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail hangs between [PAWN_possessive] legs, embarrased</li>
+				<li>circumstance_phrase->as people look on in horror</li>
+				<li>circumstance_phrase->as people laugh nearby</li>
+				<li>circumstance_phrase->as people pat the fur on [PAWN_nameDef]'s new tail</li>
+				<li>circumstance_phrase->as people pull at [PAWN_possessive] new tail</li>
+				<li>circumstance_phrase->while someone pats [PAWN_possessive] new tail</li>
 				<li>desc_sentence->[PAWN_pronoun] seems totally unaware of what is around [PAWN_objective].</li>
 				<li>desc_sentence->[PAWN_pronoun] looks terrified at the new addition.</li>
 				<li>desc_sentence->[PAWN_pronoun] is confused at what it's doing there.</li>

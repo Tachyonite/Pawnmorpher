@@ -24,8 +24,8 @@
       <rulesStrings>
         <li>tale_noun->feathers growing from [PAWN_nameDef]'s arms</li>
         <li>tale_noun->feathers covering [PAWN_nameDef]'s arms</li>
-        <li>image->[PAWN_nameFull] arms begins to change [circumstance_phrase]</li>
-        <li>image->[PAWN_nameFull] arms change into wings [circumstance_phrase]</li>
+        <li>image->[PAWN_nameFull] arms begins to change [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] arms change into wings [circumstance_group]</li>
         <li>desc_sentence->[PAWN_pronoun] rubs [PAWN_possessive] new wings.</li>
         <li>desc_sentence->[PAWN_pronoun] flaps [PAWN_possessive] new wings.</li>
       </rulesStrings>
@@ -39,8 +39,8 @@
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef]'s body being covered in feathers</li>
 				<li>tale_noun->[PAWN_nameDef] growing feathers all over [PAWN_possessive] body</li>
-				<li>image->[PAWN_nameFull] begins to itch themselves as feathers start growing [circumstance_phrase]</li>
-				<li>image->feathers begin to grow from [PAWN_nameFull]'s body [circumstance_phrase] </li>
+				<li>image->[PAWN_nameFull] begins to itch themselves as feathers start growing [circumstance_group]</li>
+				<li>image->feathers begin to grow from [PAWN_nameFull]'s body [circumstance_group] </li>
 				<li>desc_sentence->[PAWN_pronoun] seems upset over [PAWN_possessive] new feathers.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] new feathers.</li>
 			</rulesStrings>

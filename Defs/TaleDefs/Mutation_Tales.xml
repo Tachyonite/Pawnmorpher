@@ -16,8 +16,8 @@
 		<rulePack>
 			<rulesStrings>
 				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
-				<li>circumstance_group->as people look on in horror</li>
-				<li>circumstance_group->as people laugh nearby</li>
+				<li>circumstance_phrase->as people look on in horror</li> <!--these are supposed to be labled as 'circumstance_phrase' not 'circumstance_group' -->
+				<li>circumstance_phrase->as people laugh nearby</li>
 				<li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about it.</li>
 			</rulesStrings>
 		</rulePack>
@@ -31,7 +31,7 @@
 				<li>tale_noun->[PAWN_nameDef] face becoming a muzzle</li>
 				<li>image->[PAWN_nameFull] feeling [PAWN_possessive] face [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
-				<li>circumstance_group->as [PAWN_possessive] face pushes out into a muzzle</li>
+				<li>circumstance_phrase->as [PAWN_possessive] face pushes out into a muzzle</li>
 				<li>desc_sentence->[PAWN_pronoun] looks terrified at the change.</li>
 				<li>desc_sentence->[PAWN_pronoun] examines their new animal like face.</li>
 			</rulesStrings>
@@ -72,7 +72,7 @@
 				<li>tale_noun->[PAWN_nameDef]'s face becoming like that of a cat</li>
 				<li>image->[PAWN_nameFull] yells turn into yowls [circumstance_group]</li>
 				<li>image->[PAWN_nameFull] nose begins turning pink [circumstance_group]</li>
-				<li>circumstance_group->while someone plays with [PAWN_pronoun] whiskers</li>
+				<li>circumstance_phrase->while someone plays with [PAWN_pronoun] whiskers</li>
 				<li>desc_sentence->[PAWN_pronoun] begins purring contently.</li>
 				<li>desc_sentence->[PAWN_pronoun] begins hissing angrily.</li>
 				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows.</li>
