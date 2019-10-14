@@ -21,7 +21,7 @@ namespace Pawnmorph
 
         public AspectDef def;
 
-        private int _stage = -1;
+        private int _stage = 0;
         private Pawn _pawn;
         private bool _shouldRemove;
         private bool _wasStarted;
@@ -39,7 +39,7 @@ namespace Pawnmorph
         /// <summary> The current stage index. </summary>
         public int StageIndex
         {
-            get => _stage;
+            get => _stage == -1 ? 0 : _stage; //-1 can happen if the aspect has not been added yet 
             set
             {
                 int st = Mathf.Clamp(value, 0, Stages.Count - 1);

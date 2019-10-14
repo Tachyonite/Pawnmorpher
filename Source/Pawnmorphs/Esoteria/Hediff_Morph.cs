@@ -185,7 +185,7 @@ namespace Pawnmorph
 
             var letterLabel = (TRANSFORMATION_WARNING_LETTER_ID + "Label").Translate(pawn);
             var letterContent = (TRANSFORMATION_WARNING_LETTER_ID + "Content").Translate(pawn);
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent);
+            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, new LookTargets(pawn));
         }
 
         /// <summary>

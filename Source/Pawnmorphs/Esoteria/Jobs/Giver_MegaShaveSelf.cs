@@ -14,7 +14,7 @@ namespace Pawnmorph.Jobs
                 == null) return null;
 
             var pos = RCellFinder.RandomWanderDestFor(pawn, pawn.Position, 2.5f, null, Danger.Some);
-            var job = new Job(PMJobDefOf.PMMegaShaveSelf, pos);
+            var job = new Job(PMJobDefOf.PMShaveSelf, pos);
             return job;
         }
     }
