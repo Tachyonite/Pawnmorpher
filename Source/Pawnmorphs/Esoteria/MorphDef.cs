@@ -139,7 +139,11 @@ namespace Pawnmorph
 
         public override void ResolveReferences()
         {
-            if (explicitHybridRace != null) hybridRaceDef = explicitHybridRace;
+            if (explicitHybridRace != null)
+            {
+                hybridRaceDef = explicitHybridRace;
+                Log.Warning($"MorphDef {defName} is using an explicit hybrid {explicitHybridRace.defName} for {race.defName}. This has not been tested yet");
+            }
 
             //TODO patch explicit race based on hybrid race settings? 
         }
