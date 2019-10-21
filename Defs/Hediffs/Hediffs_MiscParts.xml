@@ -48,8 +48,13 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<mutationRulePack>FurGrowthLogPack</mutationRulePack>
+			</li>
+		</modExtensions>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherThickFurLimb</defName>
 		<label>fur</label>
@@ -97,8 +102,13 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<mutationRulePack>FurGrowthLogPack</mutationRulePack>
+			</li>
+		</modExtensions>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherScaledLimb</defName>
 		<label>scales</label>
@@ -150,8 +160,13 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<mutationRulePack>ScaleGrowthLogPack</mutationRulePack>
+			</li>
+		</modExtensions>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherHideLimb</defName>
 		<label>hide</label>
@@ -202,8 +217,13 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<mutationRulePack>HideGrowthLogPack</mutationRulePack>
+			</li>
+		</modExtensions>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherPawHand</defName>
 		<label>paw</label>
@@ -230,7 +250,7 @@
 			</li>
 		</comps>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherHoofHand</defName>
 		<label>hoof</label>
@@ -284,7 +304,7 @@
 			</li>
 		</comps>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherPawFoot</defName>
 		<label>paw</label>
@@ -319,7 +339,7 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherUnclovenHoofFoot</defName>
 		<description>[PAWN_nameDef]'s feet have shifted into a single-toed hoof, like a horse's.</description>
@@ -351,7 +371,7 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<hediffClass>HediffWithComps</hediffClass>
 		<defName>EtherColdBlooded</defName>

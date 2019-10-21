@@ -89,6 +89,7 @@ namespace Pawnmorph
                 if (mutationRulePack != null)
                 {
                     grammarRequest.Includes.Add(mutationRulePack);
+                    AddCustomRules(grammarRequest.Rules); 
                 }
                 else if (_mutationTale != null)
                 {
@@ -123,6 +124,20 @@ namespace Pawnmorph
             }
 
             return _mutationDef.LabelCap; //TODO generate string 
+        }
+
+        private const string MODIFIER_RULE_KEYWORD = "modifer"; 
+
+        private void AddCustomRules(List<Rule> grammarRequestRules)
+        {
+            if (!grammarRequestRules.Any(r => r.keyword == MODIFIER_RULE_KEYWORD))
+            {
+                var rule = new Rule_String(MODIFIER_RULE_KEYWORD, ""); //TODO check for modifier using morphDef (grab morphDef from when mutation was added) 
+                grammarRequestRules.Add(rule); //add a blank modifier if none is set 
+            }
+
+
+
         }
     }
 }

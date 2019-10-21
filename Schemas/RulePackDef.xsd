@@ -20,7 +20,7 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="ParentName" type="xs:string" use="optional"/>
+                        <xs:attribute name="ParentName" type="AbstractRulePacks" use="optional"/>
                         <xs:attribute name="Abstract" type="xs:boolean" use="optional"/>
                         <xs:attribute name="Name" type="xs:string" use="optional"/>
                     </xs:complexType>
@@ -28,4 +28,12 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:simpleType name="AbstractRulePacks">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CustomMutationRulePackBase"/>
+            <xs:enumeration value="SimpleMutationRulePackBase"/>
+            <xs:enumeration value="CoveringMutationLogPackBase"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
