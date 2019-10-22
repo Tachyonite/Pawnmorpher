@@ -17,25 +17,25 @@ namespace Pawnmorph.Hediffs
     public class Comp_CheckRace : HediffCompBase<CompProperties_CheckRace>
     {
         private bool _checked; 
-        private readonly List<MorphUtilities.Tuple> _scratchList = new List<MorphUtilities.Tuple>();
+        private readonly List<VTuple<MorphDef, float>> _scratchList = new List<VTuple<MorphDef, float>>();
         public void CheckRace(Pawn pawn)
         {
             _checked = true; 
             if (pawn.ShouldBeConsideredHuman()) return;
 
             _scratchList.Clear();
-            IEnumerable<MorphUtilities.Tuple> linq = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().GetInfluences();
+            var linq = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().GetInfluences();
             _scratchList.AddRange(linq);
 
             if (_scratchList.Count == 0) return;
 
             MorphDef morph = null;
             float max = float.NegativeInfinity;
-            foreach (MorphUtilities.Tuple tuple in _scratchList)
-                if (max < tuple.influence)
+            foreach (var tuple in _scratchList)
+                if (max < tuple.second)
                 {
-                    morph = tuple.morph;
-                    max = tuple.influence;
+                    morph = tuple.first;
+                    max = tuple.second;
                 }
 
             if (morph == null)

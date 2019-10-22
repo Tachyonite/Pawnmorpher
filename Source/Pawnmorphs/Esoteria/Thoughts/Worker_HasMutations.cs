@@ -9,6 +9,9 @@ using Verse;
 
 namespace Pawnmorph.Thoughts
 {
+    /// <summary>
+    /// thought worker who's state depends on how many mutations a pawn has 
+    /// </summary>
     public class Worker_HasMutations : ThoughtWorker
     {
 
@@ -16,7 +19,11 @@ namespace Pawnmorph.Thoughts
 
 
 
-
+        /// <summary>
+        /// return the thought state for the given pawn 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var mutTracker = p.GetMutationTracker();

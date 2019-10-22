@@ -3,13 +3,19 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// obsolete and should not be used 
+    /// </summary>
     [Obsolete("use HediffGiver_Mutation")]
     public class HediffGiver_Esoteric_GenderChance : HediffGiver
     {
+#pragma warning disable 1591
         public float mtbDays;
         public Gender gender;
         public int chance;
         private bool triggered = false;
+
+
 
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
@@ -34,5 +40,6 @@ namespace Pawnmorph
             {
             }
         }
+#pragma warning restore
     }
 }

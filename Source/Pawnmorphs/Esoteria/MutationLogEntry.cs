@@ -82,7 +82,7 @@ namespace Pawnmorph
             {
                 GrammarRequest grammarRequest = GenerateGrammarRequest();
 
-                RulePackDef mutationRulePack = _mutationDef.GetModExtension<MutationHediffExtension>()?.mutationRulePack;
+                RulePackDef mutationRulePack = _mutationDef.GetModExtension<MutationHediffExtension>()?.mutationLogRulePack;
 
                 if (mutationRulePack != null)
                 {

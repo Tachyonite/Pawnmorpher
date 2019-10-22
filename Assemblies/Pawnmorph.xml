@@ -1,0 +1,1636 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pawnmorph</name>
+    </assembly>
+    <members>
+        <member name="T:Pawnmorph.Aspect">
+            <summary> 
+            Base class for all "mutation affinities". <br />
+            Affinities are things that are more global than hediffs but more temporary than traits.
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.Aspect.StageIndex">
+            <summary> The current stage index. </summary>
+        </member>
+        <member name="P:Pawnmorph.Aspect.CurrentStage">
+            <summary> The current stage. </summary>
+        </member>
+        <member name="P:Pawnmorph.Aspect.Description">
+            <summary> The description of the aspect, taking into account it's current stage </summary>
+        </member>
+        <member name="P:Pawnmorph.Aspect.Pawn">
+            <summary> The pawn this is attached to. </summary>
+        </member>
+        <member name="P:Pawnmorph.Aspect.ShouldRemove">
+            <summary> If this affinity should be removed or not. </summary>
+        </member>
+        <member name="P:Pawnmorph.Aspect.ProductionBoosts">
+            <summary> The production boosts of the current stage. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.GetBoostOffset(Verse.HediffDef)">
+            <summary> Get the production boost for the given mutation hediff. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.Added(Verse.Pawn,System.Int32)">
+            <summary> Called after this affinity is added to the pawn. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.Initialize">
+            <summary> Called during startup to initialize all affinities. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.PostDeSpawn">
+            <summary> Called after the pawn is despawned. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.PostRaceChange(Verse.ThingDef)">
+            <summary> Called when the pawn's race changes. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.PostRemove">
+            <summary> Called after this affinity is removed from the pawn. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.PostSpawnSetup(System.Boolean)">
+            <summary> Called after the pawn is spawned. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.PostTick">
+            <summary> Called every tick. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.StageToRemove">
+            <summary> Call to set ShouldRemove to true. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.ExposeData">
+            <summary> Called furing IExposable's ExposeData to serialize data. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.PostAdd">
+            <summary> Called after this instance is added to the pawn. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.PostInit">
+            <summary> Called after the base instance is initialize. </summary>
+        </member>
+        <member name="M:Pawnmorph.Aspect.Start">
+            <summary> Called once during the startup of this instance, either after initialization or after being added to the pawn. </summary>
+        </member>
+        <member name="T:Pawnmorph.AspectDef">
+            <summary> Def for all affinities. </summary>
+        </member>
+        <member name="M:Pawnmorph.AspectDef.Named(System.String)">
+            <summary> Get the affinity def with the given defName. </summary>
+        </member>
+        <member name="T:Pawnmorph.AspectDefOf">
+            <summary> DefOf class for commonly referenced Aspects. </summary>
+        </member>
+        <member name="T:Pawnmorph.AspectStage">
+            <summary> Class representing a single stage of a mutation 'aspect'. </summary>
+        </member>
+        <member name="T:Pawnmorph.AspectTracker">
+            <summary> Thing comp for tracking 'mutation aspects'. </summary>
+        </member>
+        <member name="M:Pawnmorph.AspectTracker.Add(Pawnmorph.Aspect,System.Int32)">
+            <summary> Add the aspect to this pawn at the given stage. </summary>
+        </member>
+        <member name="M:Pawnmorph.AspectTracker.Add(Pawnmorph.AspectDef,System.Int32)">
+            <summary> Add the given aspect to this pawn at the specified stage index. </summary>
+        </member>
+        <member name="M:Pawnmorph.AspectTracker.AspectComparer.Compare(Pawnmorph.Aspect,Pawnmorph.Aspect)">
+            <summary>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.</summary>
+            <returns>Value Condition Less than zero<paramref name="x" /> is less than <paramref name="y" />.Zero<paramref name="x" /> equals <paramref name="y" />.Greater than zero<paramref name="x" /> is greater than <paramref name="y" />.</returns>
+            <param name="x">The first object to compare.</param>
+            <param name="y">The second object to compare.</param>
+        </member>
+        <member name="M:Pawnmorph.AspectTracker.Remove(Pawnmorph.AspectDef)">
+            <summary> Removes the aspect with the given def from the pawn. </summary>
+        </member>
+        <member name="M:Pawnmorph.AspectTracker.HandleMorphChangeAffinities(Pawnmorph.MorphDef,Pawnmorph.MorphDef)">
+            <summary> Handle affinities that need to be removed or added after a pawn changes race. </summary>
+        </member>
+        <member name="M:Pawnmorph.AspectTracker.GetAspect(Pawnmorph.AspectDef)">
+            <summary> Get the aspect in this tracker of the given def, if one exists. </summary>
+        </member>
+        <member name="M:Pawnmorph.AspectTracker.GetEnumerator">
+            <summary> Returns an enumerator that iterates through the collection. </summary>
+            <returns> A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection. </returns>
+        </member>
+        <member name="M:Pawnmorph.AspectTracker.System#Collections#IEnumerable#GetEnumerator">
+            <summary> Returns an enumerator that iterates through a collection. </summary>
+            <returns> An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection. </returns>
+        </member>
+        <member name="M:Pawnmorph.AspectUtils.GetProductionBoost(System.Collections.Generic.IEnumerable{Pawnmorph.Aspect},Verse.HediffDef)">
+            <summary> Get the total production multiplier for the given mutation. </summary>
+        </member>
+        <member name="T:Pawnmorph.BuildingDefOf">
+            <summary>
+            def of for frequently accessed building thingDefs 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Chambers.ChamberJobDefOf">
+            <summary>
+            def of for jobs related to mutagenic chambers 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Chambers.ChamberState">
+            <summary>
+            enum for the different states a mutagenic chamber can be in  
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Chambers.DatabaseUtilities">
+            <summary>
+            static class for various chamber database utility functions 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Chambers.DatabaseUtilities.IsValidAnimal(Verse.ThingDef)">
+            <summary>
+            Determines whether this instance is the def of an animal that can be added to the chamber database
+            </summary>
+            <param name="inst">The inst.</param>
+            <returns>
+              <c>true</c> if this instance can be added to the chamber database ; otherwise, <c>false</c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">inst</exception>
+        </member>
+        <member name="T:Pawnmorph.Chambers.ThingCompProperties_ModulatorOptions">
+            <summary>
+            property for the mutagen chamber to get it's default set animal options 
+            </summary>
+            <seealso cref="T:Verse.CompProperties" />
+        </member>
+        <member name="M:Pawnmorph.Comp_MutagenicFixWorstCondition.AddMutationToPart(Verse.BodyPartRecord,Verse.Pawn,Pawnmorph.MorphDef,System.Boolean)">
+            <summary> Add mutations to the given part. </summary>
+        </member>
+        <member name="M:Pawnmorph.DebugUtils.DebugLogUtils.Assert(System.Boolean,System.String)">
+            <summary>
+                Asserts the specified condition. if false an error message will be displayed
+            </summary>
+            <param name="condition">if false will display an error message</param>
+            <param name="message">The message.</param>
+            <returns>the condition</returns>
+        </member>
+        <member name="M:Pawnmorph.DebugUtils.DebugLogUtils.ListAllMorphTfHediffs">
+            <summary>
+                list all transformation hediffs defined (hediffs of class Hediff_Morph or a subtype there of
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.DebugUtils.DebugLogUtils.ListAllMutations">
+            <summary>
+                list all defined mutations (hediffs of the class Hediff_AddedMutation or a subtype there of)
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Jobs.Driver_MilkSelf">
+            <summary> Job driver to make humanoid pawns milk themselves using HediffComp_Production. </summary>
+        </member>
+        <member name="T:Pawnmorph.Jobs.Driver_ProduceThing">
+            <summary> Base class for productive mutation's job driver. </summary>
+        </member>
+        <member name="T:Pawnmorph.Jobs.Driver_LayEgg">
+            <summary> Job driver to make humanoid pawns lay eggs using HediffComp_Production. </summary>
+        </member>
+        <member name="T:Pawnmorph.Jobs.Giver_LayEgg">
+            <summary> Job giver for making a human pawn lay eggs. </summary>
+        </member>
+        <member name="T:Pawnmorph.EtherState">
+            <summary> Enum for the 3 possible states a pawn can be in (in relation to 'ether' hediffs). </summary>
+        </member>
+        <member name="T:Pawnmorph.FactionUtilities">
+            <summary> Static container for faction related utilities. </summary>
+        </member>
+        <member name="M:Pawnmorph.FactionUtilities.Notify_MemberTransformed(RimWorld.Faction,Verse.Pawn,Verse.Pawn,System.Boolean,Verse.Map)">
+            <summary> Notify this faction that one of their pawns has been transformed. </summary>
+        </member>
+        <member name="M:Pawnmorph.FactionUtilities.Notify_LeaderTransformed(RimWorld.Faction,Verse.Pawn)">
+            <summary> Notify this faction that it's leader has been transformed. </summary>
+        </member>
+        <member name="T:Pawnmorph.GraphicSys.GraphicsUpdaterComp">
+            <summary>
+            Thing comp to update the graphics of a pawn as they gain/lose mutations. <br/>
+            Requires that the pawn have a MutationTracker comp too.
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.GraphicSys.InitialGraphicsComp.RestoreGraphics">
+            <summary>
+                Restores the alien Comp attached to the parent from the ones stored earlier
+                this does not resolve the graphics, that is the job of the caller
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.GraphicSys.MorphGraphicsUtils">
+            <summary>
+            collection of useful graphics related utility functions on morphs 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.GraphicSys.MorphGraphicsUtils.RefreshGraphics(Verse.Pawn)">
+            <summary>
+            refresh the graphics associated with this pawn, including the portraits if it's a colonist 
+            </summary>
+            <param name="pawn"></param>
+        </member>
+        <member name="F:Pawnmorph.HediffGiver_Mutation.mtbDays">
+            <summary> The mean time between when the parent Hedif is applied and this HediffGiver performs its opperations. </summary>
+        </member>
+        <member name="F:Pawnmorph.HediffGiver_Mutation.gender">
+            <summary> The gender to always apply this hediff to, regardless of chance. </summary>
+        </member>
+        <member name="F:Pawnmorph.HediffGiver_Mutation.chance">
+            <summary> The chance (out of 100) that the hediff will be applied. </summary>
+        </member>
+        <member name="F:Pawnmorph.HediffGiver_Mutation.tale">
+            <summary> The tale to add to the art pool. </summary>
+        </member>
+        <member name="F:Pawnmorph.HediffGiver_Mutation.memory">
+            <summary> The thought to add to the pawn if they acquire the hediff. </summary>
+        </member>
+        <member name="F:Pawnmorph.HediffGiver_Mutation.ignoreThoughtLimit">
+            <summary> Whether or not the thought should be added despite what the mod's settings dictate. </summary>
+        </member>
+        <member name="F:Pawnmorph.HediffGiver_Mutation._triggered">
+            <summary>
+            Whether or not the curent HediffGiver has tried to add this hediff.<br />
+            Used to prevent the chance from activating if spammed repeatedly.
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.HediffGiver_Mutation.ClearHediff(Verse.Hediff)">
+            <summary> Clears the triggeredHediff from this giver so it can trigger again on the same hediff. </summary>
+            <param name="triggeredHediff">The triggered hediff.</param>
+        </member>
+        <member name="M:Pawnmorph.HediffGiver_Mutation.OnIntervalPassed(Verse.Pawn,Verse.Hediff)">
+            <summary> The function that does the heavy lifting for a HediffGiver. </summary>
+            <param name="pawn"> The pawn the parent hediff is applied to. </param>
+            <param name="cause"> The parent hediff where this HediffGiver is located in. </param>
+        </member>
+        <member name="M:Pawnmorph.HediffGiver_Mutation.TryApply(Verse.Pawn,Pawnmorph.MutagenDef,System.Collections.Generic.List{Verse.Hediff},Verse.Hediff)">
+            <summary> Tries the apply the mutation to the given pawn </summary>
+            <param name="pawn">The pawn.</param>
+            <param name="mutagenDef">The mutagen definition. used to determine if it's a valid target or not</param>
+            <param name="outAddedHediffs">The out added hediffs.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.CompProperties_RemoveType">
+            <summary>
+            hediff comp_properties for a comp that removes all hediffs of a certain type 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.Comp_RemoveType">
+            <summary>
+            hediff comp that removes all hediffs of a given type 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.Comp_CheckRace">
+            <summary>
+            hediff component that checks the race of a pawn at the end of a Hediff_Morph 
+            </summary>
+            this is a component because it's set to go off just when a hediff_Morph ends naturally (after reeling) 
+        </member>
+        <member name="T:Pawnmorph.Hediffs.Comp_TerrainProduction">
+            <summary>
+                hediff component that produces resources when over a certain area
+            </summary>
+            <seealso cref="!:Pawnmorph.Utilities.HediffCompBase&lt;Pawnmorph.Hediffs.CompProperties_TerrainProduction&gt;" />
+        </member>
+        <member name="T:Pawnmorph.Hediffs.CompProperties_TerrainProduction">
+            <summary>
+                CompProperties for a component that produces resources based on the terrain over a certain area
+            </summary>
+            <seealso cref="!:Pawnmorph.Utilities.HediffCompPropertiesBase&lt;Pawnmorph.Hediffs.Comp_TerrainProduction&gt;" />
+        </member>
+        <member name="T:Pawnmorph.Hediffs.Def_ImmuneToType">
+            <summary>
+            def for the stabilizer to generate the correct immune to message 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.Giver_MutationChaotic">
+            <summary>
+            hediff giver based off of HediffGiver_Mutation, but instead of one mutation it gives one of many 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.Comp_MutationDependency">
+            <summary>
+            component representing a mutation dependency, some mutation that will be added to the pawn if not already there 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.CompProperties_MutationDependency">
+            <summary>
+            a hediff component property for a mutation dependency, ie some hediff giver that fires when the mutation is added 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.MorphTransformationDefOf">
+            <summary>
+                static def of class containing morph transformation defs
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.Hediffs.MorphTransformationDefOf.AllMorphs">
+            <summary>
+                warning, this is slow and recalculates each call!
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.Hediffs.MorphTransformationDefOf.AllMorphsCached">
+            <summary>
+                all morphs loaded at the start of the game
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Hediffs.MorphTransformationDefOf.GetRandomTransformation">
+            <summary>
+            Gets a random transformation hediff def.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Pawnmorph.Hediffs.MorphTransformationDefOf.AllMorphsCachedCount">
+            <summary>
+                the number of morphs loaded at the start of the game
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.MutationLayers">
+            <summary>
+            flags representing the 'layer' a mutation resides on 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.SpreadingMutationComp">
+            <summary>
+            hediff comp for making a mutation spread over a body 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Hediffs.SpreadingMutationComp.TryInfectPart(Verse.BodyPartRecord,System.Boolean,System.Int32)">
+            <summary>
+            try to infect a single part 
+            </summary>
+            <param name="record"></param>
+            <param name="upward"></param>
+            <param name="depth"></param>
+            <returns>true if a part could be successfully infected </returns>
+        </member>
+        <member name="T:Pawnmorph.Hediffs.IPostTfHediffComp">
+            <summary>
+            interface for any hediff component that has a special behavior when the transformation hediff ends naturally 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Hediffs.IPostTfHediffComp.FinishedTransformation(Verse.Pawn,Pawnmorph.Hediff_Morph)">
+            <summary>
+            called when the morph hediff ends naturally (after reaching 0 or below severity) 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Hediff_Morph.OnFinishedTransformation">
+            <summary>
+            This is called when the transformation hediff is removed naturally (after reaching a severity of 0). <br />
+            This is only called when the hediff is removed after reaching a severity of zero, not when the pawn it's self is removed.
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.HPatches.PawnCapacityUtilsPatch.GetTotalCapacityOffset(Verse.HediffSet,Verse.PawnCapacityDef)">
+            <summary>
+            find the original offset without setMax 
+            </summary>
+            <param name="hSet"></param>
+            <param name="capacity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pawnmorph.Hybrids.HThoughtDefOf">
+            <summary>
+            static container for hybrid related thought defs
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hybrids.HTraitDefOf">
+            <summary>
+            static container for various hybrid race related traits 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Hybrids.HybridRaceSettings.HybridThoughtSettings">
+            <summary>
+            settings for the hybrid race's thoughts 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.HybridRaceSettings.GenerateThoughtSettings(AlienRace.ThoughtSettings,Pawnmorph.MorphDef)">
+            <summary>
+            generate AlienRace thought settings with the given morph def 
+            </summary>
+            <param name="humanDefault"></param>
+            <param name="morphDef"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pawnmorph.Hybrids.RaceGenerator">
+            <summary> Static class responsible for generating the implicit races.</summary>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceGenerator.TryGetMorphOfRace(Verse.ThingDef,Pawnmorph.MorphDef@)">
+            <summary> Try to find the morph def associated with the given race.</summary>
+            <param name="race"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceGenerator.GetMorphOfRace(Verse.ThingDef)">
+            <summary> Gets the morph Def associated with this race, if any.</summary>
+            <param name="race"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceGenerator.GenerateHybridGeneralSettings(AlienRace.GeneralSettings,Pawnmorph.MorphDef)">
+            <summary> Generate general settings for the hybrid race given the human settings and morph def.</summary>
+            <param name="human"></param>
+            <param name="morph"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceGenerator.GenerateHybridRestrictionSettings(AlienRace.RaceRestrictionSettings,Pawnmorph.MorphDef)">
+            <summary> Generate the alien race restriction setting from the human default and the given morph.</summary>
+            <param name="human"></param>
+            <param name="morph"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceGenerator.IsMorphRace(Verse.ThingDef)">
+            <summary>
+            Determines whether this race is a morph hybrid race
+            </summary>
+            <param name="raceDef">The race definition.</param>
+            <returns>
+              <c>true</c> if the race is a morph hybrid race; otherwise, <c>false</c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">raceDef</exception>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceShiftUtilities.IsMorphHybrid(Verse.Pawn)">
+            <summary>
+            Determines whether this pawn is a morph hybrid 
+            </summary>
+            <param name="pawn">The pawn.</param>
+            <returns>
+              <c>true</c> if the specified pawn is a morph hybrid; otherwise, <c>false</c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">pawn</exception>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceShiftUtilities.ChangePawnRace(Verse.Pawn,Verse.ThingDef,System.Boolean)">
+            <summary>
+            safely change the pawns race 
+            </summary>
+            <param name="pawn"></param>
+            <param name="race"></param>
+            <param name="reRollTraits">if race related traits should be reRolled</param>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceShiftUtilities.TryTriggerMutations(Verse.Pawn,Pawnmorph.MorphDef)">
+            <summary>
+            got through the mutations the pawn has and try to trigger any
+            that change if the pawn's race changes 
+            </summary>
+            <param name="pawn"></param>
+            <param name="def"></param>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceShiftUtilities.ChangePawnToMorph(Verse.Pawn,Pawnmorph.MorphDef)">
+            <summary>
+            change the given pawn to the hybrid race of the desired morph 
+            </summary>
+            <param name="pawn"></param>
+            <param name="morph">the morph to change the pawn to</param>
+        </member>
+        <member name="M:Pawnmorph.Hybrids.RaceShiftUtilities.RevertPawnToHuman(Verse.Pawn)">
+            <summary>
+            change the race of the pawn back to human 
+            </summary>
+            <param name="pawn"></param>
+        </member>
+        <member name="T:Pawnmorph.IMutationEventReceiver">
+            <summary> Interface for thing comps that want to receive events when the pawn gains or loses mutation. </summary>
+        </member>
+        <member name="T:Pawnmorph.IngestionOutcomeDoer_MultipleTfBase">
+            <summary> Base class for all ingestion outcome doers that pick from more then one tf hediff to add. </summary>
+            <seealso cref="T:RimWorld.IngestionOutcomeDoer" />
+        </member>
+        <member name="P:Pawnmorph.IngestionOutcomeDoer_MultipleTfBase.AllCompleteDefs">
+            <summary> Gets all complete defs. </summary>
+            <value> All complete defs. </value>
+        </member>
+        <member name="P:Pawnmorph.IngestionOutcomeDoer_MultipleTfBase.AllPartialDefs">
+            <summary> Gets all partial defs. </summary>
+            <value> All partial defs. </value>
+        </member>
+        <member name="T:Pawnmorph.IngestionOutcomeDoer_BoostSeverity">
+            <summary>
+            ingestion outcome doer for adding severity to specific hediffs 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.IRaceChangeEventReceiver">
+            <summary> Interface for things that receive race change event. </summary>
+        </member>
+        <member name="T:Pawnmorph.MorphCategoryDef">
+            <summary> Def for representing the 'category' a morph can be in. </summary>
+        </member>
+        <member name="T:Pawnmorph.MorphCategoryDefOf">
+            <summary> Static class containing commonly referenced MorphCategoryDefs. </summary>
+        </member>
+        <member name="T:Pawnmorph.MorphDef">
+            <summary> Def class for a morph. Used to generate the morph's implicit race. </summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.categories">
+            <summary>
+            The categories that the morph belongs to. <br/>
+            For example, a Pigmorph belongs to the Farm and Production morph groups.
+            </summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.race">
+            <summary>
+            The creature this race is a morph of.<br/>
+            For example, a Wargmorph's race should be Warg.
+            </summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.explicitHybridRace">
+            <summary> If specified, the race to use in place of the implicit one.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.group">
+            <summary>
+            The group the morph belongs to. <br/>
+            For example, a Huskymorph belongs to the pack, while a Cowmorph is a member of the herd.
+            </summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.raceSettings">
+            <summary> Various settings for the morph's implied race.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.transformSettings">
+            <summary> Various settings determining what happens when a pawn is transformed or reverted.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.addedAspects">
+            <summary> Aspects that a morph of this race get.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.hybridRaceDef">
+            <summary> The morph's implicit race.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef._totalInfluence">
+            <summary> The percent influence this morph has upon the pawn.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef._associatedMutations">
+            <summary> Any mutations directly associated with this morph (the hediff specifies this MorphDef).</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef._adjacentMutations">
+            <summary> Any mutations indirectly associated with this morph (they share a TF hediff with an associated mutation).</summary>
+        </member>
+        <member name="P:Pawnmorph.MorphDef.AllDefs">
+            <summary> Gets an enumerable collection of all the morph type's defs.</summary>
+        </member>
+        <member name="P:Pawnmorph.MorphDef.AssociatedMutations">
+            <summary> Gets the mutations associated with this morph. </summary>
+        </member>
+        <member name="P:Pawnmorph.MorphDef.TotalInfluence">
+            <summary> Gets the current percent influence this morph has upon the pawn.</summary>
+        </member>
+        <member name="P:Pawnmorph.MorphDef.AllAssociatedAndAdjacentMutations">
+            <summary>
+            Gets an enumerable collection of HediffGiver_Mutations that are either associated with or 'adjacent' to this morph. <br/>
+            An adjacent HediffGiver is one that is found in the same HediffDef as another HediffGiver that gives a part associated with this morph.
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphDef.ConfigErrors">
+            <summary>
+            get all configuration errors with this instance 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.MorphDef.GetOverride(Verse.ThingDef)">
+            <summary>
+            obsolete, does nothing 
+            </summary>
+            <param name="food"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.MorphDef.ResolveReferences">
+            <summary>
+            resolves all references after DefOfs are loaded 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.MorphDef.TransformSettings">
+            <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.TransformSettings.transformTale">
+            <summary> The TaleDef that should be used in art that occurs whenever a pawn shifts to this morph.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.TransformSettings.transformationMessageID">
+            <summary> The ID of the message that should be spawned when a pawn shifts to this morph.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.TransformSettings.messageDef">
+            <summary> The message type that should be used when a pawn shifts to this morph.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.TransformSettings.transformationMemory">
+            <summary> Memory added when a pawn shifts to this morph.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.TransformSettings.revertedMemoryFurry">
+            <summary> Memory added when the pawn reverts from this morph back to human if they have the furry trait.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.TransformSettings.revertedMemoryBP">
+            <summary> Memory added when the pawn reverts from this morph back to human if they have the body purist trait.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.TransformSettings.revertedMemory">
+            <summary> Memory added when the pawn reverts from this morph back to human if they have neither the body purist or furry traits.</summary>
+        </member>
+        <member name="M:Pawnmorph.MorphDef.TransformSettings.GetReversionMemory(Pawnmorph.MutationOutlook)">
+            <summary> Gets the memory for when a pawn is reverted based on their outlook.</summary>
+            <param name="outlook"> The mutation outlook of the pawn (i.e. Whether they are a body purist, a furry, or nothing).</param>
+            <returns> The ThoughtDef of the memory associated with their outlook.</returns>
+        </member>
+        <member name="T:Pawnmorph.MorphDef.AddedAspect">
+            <summary> Aspects to add when a pawn changes race to this morph type and settings asociated with them.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.AddedAspect.def">
+            <summary> The Def of the aspect to add.</summary>
+        </member>
+        <member name="F:Pawnmorph.MorphDef.AddedAspect.keepOnReversion">
+            <summary> Whether or not the aspect should be kept even if the pawn switches race.</summary>
+        </member>
+        <member name="T:Pawnmorph.MorphGroupDef">
+            <summary>
+            Def for morph groups. <br/>
+            i.e. Packs, Herds, ect.
+            </summary>
+        </member>
+        <member name="F:Pawnmorph.MorphGroupDef._associatedMorphs">
+            <summary> A list of all morph types that are of this group. </summary>
+        </member>
+        <member name="P:Pawnmorph.MorphGroupDef.MorphsInGroup">
+            <summary> An enumerable collection of all morphs in this group.</summary>
+        </member>
+        <member name="T:Pawnmorph.MorphPawnKindExtension">
+            <summary> Mod extension for applying morphs to various PawnKinds. </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Pawnmorph.MorphTracker" -->
+        <member name="E:Pawnmorph.MorphTracker.MorphCountChanged">
+            <summary> Event that is raised every time the morph count on the attached map changes. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphTracker.NotifySpawned(Verse.Pawn)">
+            <summary> Notify this tracker that the pawn has spawned. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphTracker.GetGroupCount(Pawnmorph.MorphGroupDef)">
+            <summary> Get the number of morphs belonging to the given group active in the map. </summary>
+        </member>
+        <member name="P:Pawnmorph.MorphTracker.Item(Pawnmorph.MorphDef)">
+            <summary> Get the number of morphs active on this map. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphTracker.NotifyDespawned(Verse.Pawn)">
+            <summary> Notify the map that the pawn has despawned from the map. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphTracker.NotifyPawnRaceChanged(Verse.Pawn,Pawnmorph.MorphDef)">
+            <summary> Notify this tracker that the pawn race has changed. </summary>
+        </member>
+        <member name="T:Pawnmorph.MorphTrackingComp">
+            <summary> Component for tracking the morph related updates of a single pawn. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphTrackingComp.NotifyRaceChanged(Pawnmorph.MorphDef)">
+            <summary> Notify that the parent has changed races. </summary>
+            <param name="oldMorph"> The morph the parent used to be. </param>
+        </member>
+        <member name="T:Pawnmorph.MorphTransformationTypes">
+            <summary>
+            enum for telling the different kinds of morph transformation hediffs 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.MorphUtilities">
+            <summary>
+            Static collection of useful morph related functions. <br/>
+            TransformerUtilities was getting a bit crowded.
+            </summary>
+        </member>
+        <member name="F:Pawnmorph.MorphUtilities.HUMAN_CHANGE_FACTOR">
+            <summary>
+            scalar used to make it easier for pawns to become hybrids
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.MorphUtilities.PartsWithPossibleMutations">
+            <summary>
+            an enumerable collection of all body part defs that can have mutations 
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.MorphUtilities.NumPartsWithPossibleMutations">
+            <summary>
+            the total number of body part defs that can have mutations 
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.MorphUtilities.AllMutations">
+            <summary> Enumerable collection of all mutation hediffs. </summary>
+        </member>
+        <member name="P:Pawnmorph.MorphUtilities.MaxHumanInfluence">
+            <summary> The maximum possible human influence. </summary>
+        </member>
+        <member name="P:Pawnmorph.MorphUtilities.AllMutableRecords">
+            <summary> An enumerable collection of all body part records in humans that can be affected by a mutation. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetMutationGivers(Verse.BodyPartDef)">
+            <summary> Get an enumerable collection of mutation givers that can affect the given part. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetAssociatedMorphInternal(Verse.HediffDef)">
+            <summary> Get all morphs defs associated with this transformation hediff def. </summary>
+            <param name="transformationDef"> The transformation definition. </param>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetTrackerComp(Verse.Pawn)">
+            <summary> Get the morph tracking component on this pawn. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetAssociatedMorph(Verse.HediffDef)">
+            <summary> Gets all morphDefs associated with the given transformation. </summary>
+            <param name="transformationDef"> The transformation definition. </param>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetMorphsInMap(Verse.Map,Pawnmorph.MorphDef)">
+            <summary> Gets the morphs in map. </summary>
+            <param name="map"> The map. </param>
+            <param name="morph"> The morph. </param>
+            <exception cref="T:System.ArgumentNullException"> map or morph is null. </exception>
+        </member>
+        <member name="T:Pawnmorph.MorphUtilities.Tuple">
+            <summary>
+            simple value tuple struct 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.Tuple.#ctor(Pawnmorph.MorphDef,System.Single)">
+            <summary>
+            
+            </summary>
+            <param name="morph"></param>
+            <param name="influence"></param>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetInfluences(System.Collections.Generic.IEnumerable{Pawnmorph.Hediff_AddedMutation})">
+            <summary> Group the morph influences on this collection of hediff_added mutations. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetMorphInfluences(System.Collections.Generic.IEnumerable{Verse.HediffDef})">
+            <summary> Group the morph influences on this collection of hediffDefs. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetTransformationType(Verse.HediffDef)">
+            <summary> Gets the type of the transformation. </summary>
+            <param name="inst"> The instance. </param>
+            <returns> The type of the transformation. </returns>
+            <exception cref="T:System.ArgumentNullException"> inst is null </exception>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetMorphInfluences(Verse.Pawn,System.Collections.Generic.Dictionary{Pawnmorph.MorphDef,System.Single},System.Boolean)">
+            <summary>
+            Calculate all morph influences on a pawn. <br />
+            Use this if there are many calculations, it's more efficient and easier on memory.
+            </summary>
+            <param name="fillDict"> The dictionary to fill. </param>
+            <param name="normalize"> Whether or not to normalize the influences. </param>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetMorphCategoriesInfluences(Verse.Pawn,System.Collections.Generic.Dictionary{Pawnmorph.MorphCategoryDef,System.Single},System.Boolean)">
+            <summary>
+            Calculate all the influences on this pawn by morph category. <br />
+            Use this if there are many calculations, it's more efficient and easier on memory.
+            </summary>
+            <param name="normalize"> Whether or not the resulting dict should be normalized. </param>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetMorphCategoriesInfluences(Verse.Pawn,System.Boolean)">
+            <summary> Calculate all the influences on this pawn by morph category. </summary>
+            <param name="normalize"> Whether or not the resulting dict should be normalized. </param>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetMorphInfluences(Verse.Pawn,System.Boolean)">
+            <summary> Calculate all morph influences on a pawn. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.ShouldBeConsideredHuman(Verse.Pawn)">
+            <summary> Get whether or not the given pawn should still be considered 'human'. </summary>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.GetHumanInfluence(Verse.Pawn,System.Boolean)">
+            <summary> Gets the amount of influence a pawn has that's still human. </summary>
+            <param name="normalize"> Whether or not the resulting influence should be normalized between [0,1] </param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.MorphUtilities.IsHybridRace(Verse.Pawn)">
+            <summary> Check if this pawn is one of the hybrid races. </summary>
+        </member>
+        <member name="T:Pawnmorph.MutagenDef">
+            <summary> Def for a mutagen strain. <br />
+            A mutagen is a collection of transformation related hediff's ingestionOutcomeDoers that all share a common IFF system.
+            </summary>
+            <seealso cref="T:Verse.Def" />
+        </member>
+        <member name="M:Pawnmorph.MutagenDef.CanTransform(Verse.Pawn)">
+            <summary> Determines whether this instance can transform the specified pawn. </summary>
+            <param name="pawn"> The pawn. </param>
+            <returns> <c>true</c> if this instance can transform the specified pawn; otherwise, <c>false</c>. </returns>
+        </member>
+        <member name="T:Pawnmorph.MutagenUtilities">
+            <summary>
+            collection of mutagen related utility functions 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.MutagenUtilities.CanInfect(Pawnmorph.Hediff_Morph,Verse.Pawn)">
+            <summary> Determines whether this instance can infect the specified pawn. </summary>
+            <param name="morphTf"> The morph tf hediff. </param>
+            <param name="pawn"> The pawn. </param>
+            <returns> <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>. </returns>
+            <exception cref="T:System.ArgumentNullException"> morphTf or pawn is null. </exception>
+        </member>
+        <member name="M:Pawnmorph.MutagenUtilities.CanInfect(Verse.HediffDef,Verse.Pawn)">
+            <summary> Determines whether this instance can infect the specified pawn. </summary>
+            <param name="mutationDef"> The mutation definition. </param>
+            <param name="pawn"> The pawn. </param>
+            <returns> <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>. </returns>
+            <exception cref="T:System.ArgumentNullException"> mutationDef or pawn is null. </exception>
+        </member>
+        <member name="M:Pawnmorph.MutagenUtilities.GetMutagenDef(Pawnmorph.Hediff_Morph)">
+            <summary> Gets the mutagen associated with this tf hediff. </summary>
+            <param name="morphTf"> The morph tf. </param>
+            <exception cref="T:System.ArgumentNullException"> morphTf is null. </exception>
+        </member>
+        <member name="T:Pawnmorph.MutationCategoryDef">
+            <summary>
+            def representing a 'category' of mutations 
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.MutationCategoryDef.AllMutationsInCategory">
+            <summary> An enumerable collection of all mutations within this category. </summary>
+        </member>
+        <member name="T:Pawnmorph.MutationLogEntry">
+            <summary> Log entry for when a pawn mutates. </summary>
+        </member>
+        <member name="M:Pawnmorph.MutationLogEntry.ToString">
+            <summary> Returns a string that represents the current object. </summary>
+            <returns> A string that represents the current object. </returns>
+        </member>
+        <member name="M:Pawnmorph.MutationLogEntry.GetAAn(System.String)">
+            <summary>
+            if a word starts with a vowel, return 'an' else return 'a'
+            </summary>
+            <param name="word"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pawnmorph.MutationsDefOf">
+            <summary> Static container for commonly referenced mutations. </summary>
+        </member>
+        <member name="T:Pawnmorph.MutationHediffExtension">
+            <summary>
+                Mod def extension for applying to hediffs to manually assign them a part without using a hediff giver. <br />
+                Note, the results will be additive, so if a mutation has this extension and is in one or more hediff givers,
+                the total set of parts it can be applied to is the union of this extension and the givers
+            </summary>
+        </member>
+        <member name="F:Pawnmorph.MutationHediffExtension.parts">
+            <summary>
+                list of body parts this mutation can be added to
+            </summary>
+            note: this does not affect HediffGiver_AddedMutation, this is for adding mutations without a hediff giver
+        </member>
+        <member name="F:Pawnmorph.MutationHediffExtension.categories">
+            <summary>
+                the various mutation categories this mutation belongs to
+            </summary>
+        </member>
+        <member name="F:Pawnmorph.MutationHediffExtension.mutationLogRulePack">
+            <summary>
+                the rule pack to use when generating mutation logs for this mutation
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.MutationTracker">
+            <summary> Tracker comp for tracking the current influence a pawn has of a given morph. </summary>
+        </member>
+        <member name="P:Pawnmorph.MutationTracker.Item(Pawnmorph.MorphDef)">
+            <summary> Get the current influence associated with the given key. </summary>
+        </member>
+        <member name="P:Pawnmorph.MutationTracker.NormalizedInfluences">
+            <summary> An enumerable collection of influences normalized against each other and the remaining human influence. </summary>
+        </member>
+        <member name="P:Pawnmorph.MutationTracker.HighestInfluence">
+            <summary> The morph with the most influence on this pawn, not necessarily the morph the pawn currently is. </summary>
+        </member>
+        <member name="P:Pawnmorph.MutationTracker.AllMutations">
+            <summary> All mutations the pawn has. </summary>
+        </member>
+        <member name="M:Pawnmorph.MutationTracker.NotifyMutationAdded(Pawnmorph.Hediff_AddedMutation)">
+            <summary> Called to notify this tracker that a mutation has been added. </summary>
+        </member>
+        <member name="M:Pawnmorph.MutationTracker.NotifyMutationRemoved(Pawnmorph.Hediff_AddedMutation)">
+            <summary> Called to notify this tracker that a mutation has been removed. </summary>
+        </member>
+        <member name="M:Pawnmorph.MutationTracker.GetEnumerator">
+            <summary>Returns an enumerator that iterates through the collection.</summary>
+            <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Pawnmorph.MutationTracker.System#Collections#IEnumerable#GetEnumerator">
+            <summary>Returns an enumerator that iterates through a collection.</summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="T:Pawnmorph.MutationUtilities">
+            <summary>
+            static class containing mutation related utility functions 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.MutationUtilities.GetOutlook(Verse.Pawn)">
+            <summary>
+            get the pawn's outlook toward being mutated 
+            </summary>
+            <param name="pawn"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Pawnmorph.MutationUtilities.AllGivers">
+            <summary>
+            returns an enumerable collection of all hediffGiver_Mutations active
+            note, this does <i>not</i> check for givers that give the same hediff 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.MutationUtilities.GetPossibleParts(Verse.HediffDef)">
+            <summary>
+                get the body parts this hediff can be assigned to
+            </summary>
+            <param name="def"></param>
+            <returns>
+                an enumerable collection of all parts this hediff can be assigned to, Note the elements can contain duplicates
+                and null
+            </returns>
+        </member>
+        <member name="P:Pawnmorph.MutationUtilities.AllMutations">
+            <summary>
+            an enumerable collection of all mutations 
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.MutationUtilities.AllMorphHediffs">
+            <summary>
+            an enumerable collection of all morph hediffs 
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.MutationUtilities.AllMutationMemories">
+            <summary>
+            an enumerable collection of all mutation related thoughts 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.MutationUtilities.GetMutationTracker(Verse.Pawn)">
+            <summary>
+            try to get the mutation tracker on this pawn, null if the pawn does not have a tracker 
+            </summary>
+            <param name="pawn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.MutationUtilities.GetHighestInfluence(Verse.Pawn)">
+            <summary>
+            get the largest influence on this pawn
+            </summary>
+            <param name="pawn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.MutationUtilities.GetProductionMutations(Verse.Pawn)">
+            <summary>
+            get the production hediffs of the pawn
+            </summary>
+            <param name="pawn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.MutationUtilities.GetNormalizedInfluences(Verse.Pawn)">
+            <summary>
+            get the normalized influences on the pawn
+                the values are normalized to the total influences of the morph
+            </summary>
+            <param name="pawn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.PawnmorpherMod.DoSettingsWindowContents(UnityEngine.Rect)">
+            <param name="inRect"> A Unity Rect with the size of the settings window. </param>
+        </member>
+        <member name="M:Pawnmorph.PawnmorpherMod.SettingsCategory">
+            <summary>
+            Override SettingsCategory to show up in the list of settings. <br />
+            Using .Translate() is optional, but does allow for localisation.
+            </summary>
+            <returns> The (translated) mod name. </returns>
+        </member>
+        <member name="T:Pawnmorph.PMIncidentDefOf">
+            <summary> Static container for incident defs. </summary>
+        </member>
+        <member name="T:Pawnmorph.PMJobDefOf">
+            <summary> Static container for commonly referenced job defs. </summary>
+        </member>
+        <member name="F:Pawnmorph.PMRulePackDefOf.MutationTaleRulePack">
+            <summary> Default rule pack used for generating mutation log entries. </summary>
+        </member>
+        <member name="F:Pawnmorph.PMRulePackDefOf.MutationRulePackTaleless">
+            <summary>
+                Rule pack used when there is no mutation tale
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.PMThingDefOf">
+            <summary> Static container for commonly referenced thing defs. </summary>
+        </member>
+        <member name="T:Pawnmorph.PMThoughtDefOf">
+            <summary> DefOf class for commonly referenced ThoughtDefs. </summary>
+        </member>
+        <member name="M:Pawnmorph.PMThoughtDefOf.GetDefaultMorphRevertThought(Pawnmorph.MutationOutlook)">
+            <summary> Get the correct default memory for a pawn that was a morph that returns to being human. </summary>
+            <param name="mutationOutlook">the mutation outlook of the pawn</param>
+            <returns> The ThoughtDef of the thought to use based on their traits. </returns>
+        </member>
+        <member name="F:Pawnmorph.PMThoughtDefOf.DefaultMorphRevertsToHuman">
+            <summary> Default thought for pawns that were a morph that reverts back to a human. </summary>
+        </member>
+        <member name="F:Pawnmorph.PMThoughtDefOf.DefaultMorphRevertsToHumanFurry">
+            <summary> Default thought for pawns that have the MutationAffinity Trait and were a morph that reverts back to human. </summary>
+        </member>
+        <member name="F:Pawnmorph.PMThoughtDefOf.DefaultMorphRevertsToHumanBP">
+            <summary> Default thought for pawns that have the BodyPurist Trait and were a morph that reverts back to human. </summary>
+        </member>
+        <member name="T:Pawnmorph.PMTraitDefOf">
+            <summary> Static class containing references to commonly used Traits. </summary>
+        </member>
+        <member name="T:Pawnmorph.RaceMutagenExtension">
+            <summary> Extension used to blacklist a race from one or more mutagen strains. </summary>
+        </member>
+        <member name="T:Pawnmorph.Social.InteractionWorker_Chitchat">
+            <summary>
+            interaction worker that functions like chitchat worker 
+            </summary>
+            <seealso cref="T:Pawnmorph.Social.PMInteractionWorkerBase" />
+        </member>
+        <member name="T:Pawnmorph.Social.InteractionWorker_KindWords">
+            <summary>
+            interaction worker that functions like InteractionWorker_KindWords
+            </summary>
+            <seealso cref="T:Pawnmorph.Social.PMInteractionWorkerBase" />
+        </member>
+        <member name="T:Pawnmorph.Social.InteractionWorker_Slight">
+            <summary>
+            interaction worker that functions like InteractionWorker_Slight 
+            </summary>
+            <seealso cref="T:Pawnmorph.Social.PMInteractionWorkerBase" />
+        </member>
+        <member name="T:Pawnmorph.Social.InteractionWorker_Insult">
+            <summary>
+            interaction worker that works like base InteractionWorker_Insult
+            </summary>
+            <seealso cref="T:Pawnmorph.Social.PMInteractionWorkerBase" />
+        </member>
+        <member name="T:Pawnmorph.Social.PMInteractionWorkerBase">
+            <summary>
+            base class for all Pawnmorph interaction workers
+            </summary>
+            <seealso cref="T:RimWorld.InteractionWorker" />
+        </member>
+        <member name="M:Pawnmorph.Social.PMInteractionWorkerBase.GetBaseWeight(Verse.Pawn,Verse.Pawn)">
+            <summary>
+            Gets the base weight for the given initiator and recipient pawns 
+            </summary>
+            <param name="initiator">The initiator.</param>
+            <param name="recipient">The recipient.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Pawnmorph.Social.PMInteractionDef">
+            <summary>
+            def for pawnmorph specific interactions 
+            </summary>
+            <seealso cref="T:RimWorld.InteractionDef" />
+        </member>
+        <member name="T:Pawnmorph.TaleDefOf">
+            <summary> Static container containing misc tales. </summary>
+        </member>
+        <member name="T:Pawnmorph.HediffGiver_Esoteric_GenderChance">
+            <summary>
+            obsolete and should not be used 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.HediffComp_Production.Produce">
+            <summary> Spawns in the products at the parent's current location. </summary>
+        </member>
+        <member name="M:Pawnmorph.Building_MutagenChamber.NotifyMerging(System.Boolean)">
+            <summary>
+            Notifies this instance that it is merging 
+            </summary>
+            <param name="isMasterChamber">if set to <c>true</c> this instance is the master chamber.</param>
+        </member>
+        <member name="P:Pawnmorph.Building_MutagenModulator.Chambers">
+            <summary>
+            Gets the chambers.
+            </summary>
+            This property makes a new list every time it's called! be careful calling it 
+            <value>
+            The chambers.
+            </value>
+        </member>
+        <member name="M:Pawnmorph.Building_MutagenModulator.GetLinkedChamber(System.Int32)">
+            <summary>
+                Gets the nth linked chamber.
+            </summary>
+            <param name="index">The index of the chamber to get</param>
+            <returns>the nth linked chamber, if one exists. Null otherwise </returns>
+        </member>
+        <member name="M:Pawnmorph.Building_MutagenModulator.GetLastChamber">
+            <summary>
+            Gets the last chamber if any are linked 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Pawnmorph.Hediff_AddedMutation.Influence">
+            <summary> The influence this mutation exerts on a pawn. </summary>
+        </member>
+        <member name="M:Pawnmorph.PawnmorpherSettings.ExposeData">
+            <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
+        </member>
+        <member name="M:Pawnmorph.StockGenerator_Morphs.GenerateThingEnumer(System.Int32)">
+            <summary> Generates the things for the given forTile. </summary>
+            <param name="forTile"> For tile. </param>
+        </member>
+        <member name="T:Pawnmorph.PatchHealthCardUtilityDrawHediffRow">
+            <summary> Draw an info icon for mutations with their descriptions in tooltip. </summary>
+        </member>
+        <member name="M:Pawnmorph.PawnmorphGameComp.ValidateTransformedPawns">
+            <summary> Validates the transformed pawns. </summary>
+        </member>
+        <member name="M:Pawnmorph.PawnmorphGameComp.GetPawnStatus(Verse.Pawn)">
+            <summary> Gets the pawn transformation status. </summary>
+            <param name="p"> The pawn. </param>
+            <returns> The pawn's current status or null. </returns>
+        </member>
+        <member name="M:Pawnmorph.PawnmorphGameComp.GetTransformedPawnContaining(Verse.Pawn)">
+            <summary> Gets the transformed pawn containing the given pawn. </summary>
+            <param name="pawn"> The pawn. </param>
+            <returns> The TransformedPawn instance as well as the pawn's status to that instance. </returns>
+        </member>
+        <member name="M:Pawnmorph.PawnmorphGameComp.RemoveInstance(Pawnmorph.TfSys.TransformedPawn)">
+            <summary> Removes the transformed instance from the list. </summary>
+            <param name="tfPawn"> The tf pawn. </param>
+        </member>
+        <member name="T:Pawnmorph.TfHediffDefOf">
+            <summary> Collection of misc tf related HediffDefs. </summary>
+        </member>
+        <member name="T:Pawnmorph.TfRelationDefOf">
+            <summary> Static class containing transformation related pawn relation defs. </summary>
+        </member>
+        <member name="T:Pawnmorph.TfSys.MergeMutagen">
+            <summary>
+                implementation of mutagen that merges 2 or more pawns into a single meld
+            </summary>
+            <seealso cref="!:Pawnmorph.TfSys.Mutagen&lt;Pawnmorph.TfSys.MergedPawns&gt;" />
+        </member>
+        <member name="M:Pawnmorph.TfSys.MergeMutagen.CanRevertPawnImp(Pawnmorph.TfSys.MergedPawns)">
+            <summary>
+                Determines whether this instance can revert pawn the specified transformed pawn.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns>
+                <c>true</c> if this instance can revert pawn  the specified transformed pawn; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.MergeMutagen.TransformImpl(Pawnmorph.TfSys.TransformationRequest)">
+            <summary>
+            preform the requested transform 
+            </summary>
+            <param name="request">The request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.MergeMutagen.TryRevertImpl(Pawnmorph.TfSys.MergedPawns)">
+            <summary>
+                Tries to revert the transformed pawn instance, implementation.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.MergeMutagen.TryRevert(Verse.Pawn)">
+            <summary>
+                Tries to revert the given pawn.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Pawnmorph.TfSys.Mutagen">
+            <summary>
+            base class for all mutagen types 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen.Transform(Pawnmorph.TfSys.TransformationRequest)">
+            <summary>
+            Transforms the specified request.
+            </summary>
+            <param name="request">The request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen.CanInfect(Verse.Pawn)">
+            <summary>
+            Determines whether this instance can infect the specified pawn.
+            </summary>
+            <param name="pawn">The pawn.</param>
+            <returns>
+              <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen.CanTransform(System.Collections.Generic.IEnumerable{Verse.Pawn})">
+            <summary>
+            Determines whether this instance can transform the specified pawns.
+            </summary>
+            <param name="pawns">The pawns.</param>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen.TryRevert(Pawnmorph.TfSys.TransformedPawn)">
+            <summary>
+            Try to revert the given instance of the transformed.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen.TryRevert(Verse.Pawn)">
+            <summary>
+            Tries to revert the given pawn.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen.CanRevert(Pawnmorph.TfSys.TransformedPawn)">
+            <summary>
+            Determines whether this instance can revert the specified transformed pawn.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns>
+              <c>true</c> if this instance can revert the specified transformed pawn; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen`1.CanRevertPawnImp(`0)">
+            <summary>
+            Determines whether this instance can revert pawn the specified transformed pawn.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns>
+              <c>true</c> if this instance can revert pawn  the specified transformed pawn; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen`1.TransformImpl(Pawnmorph.TfSys.TransformationRequest)">
+            <summary>
+            preform the requested transform 
+            </summary>
+            <param name="request">The request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen`1.Transform(Pawnmorph.TfSys.TransformationRequest)">
+            <summary>
+            Transforms the specified request.
+            </summary>
+            <param name="request">The request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen`1.TryRevert(Pawnmorph.TfSys.TransformedPawn)">
+            <summary>
+            Try to revert the given instance of the transformed.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.Mutagen`1.TryRevertImpl(`0)">
+            <summary>
+            Tries to revert the transformed pawn instance, implementation.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.InvalidTransformedPawnInstance.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:System.Exception" /> class.</summary>
+        </member>
+        <member name="M:Pawnmorph.TfSys.InvalidTransformedPawnInstance.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:System.Exception" /> class with a specified error message.</summary>
+            <param name="message">The message that describes the error. </param>
+        </member>
+        <member name="M:Pawnmorph.TfSys.InvalidTransformedPawnInstance.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:System.Exception" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+            <param name="message">The error message that explains the reason for the exception. </param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified. </param>
+        </member>
+        <member name="M:Pawnmorph.TfSys.InvalidTransformedPawnInstance.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:System.Exception" /> class with serialized data.</summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown. </param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination. </param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="T:Pawnmorph.TfSys.SimpleMechaniteMutagen">
+            <summary>
+                simple implementation of Mutagen that just transforms a single pawn into a single animal
+            </summary>
+            <seealso cref="T:Pawnmorph.TfSys.TransformedPawnSingle" />
+        </member>
+        <member name="M:Pawnmorph.TfSys.SimpleMechaniteMutagen.CanTransform(Verse.Pawn)">
+            <summary>
+                Determines whether this instance can transform the specified pawn.
+            </summary>
+            <param name="pawn">The pawns.</param>
+        </member>
+        <member name="M:Pawnmorph.TfSys.SimpleMechaniteMutagen.TryRevert(Verse.Pawn)">
+            <summary>
+                Tries to revert the given pawn.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.SimpleMechaniteMutagen.CanRevertPawnImp(Pawnmorph.TfSys.TransformedPawnSingle)">
+            <summary>
+                Determines whether this instance can revert pawn the specified transformed pawn.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns>
+                <c>true</c> if this instance can revert pawn  the specified transformed pawn; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.SimpleMechaniteMutagen.TransformImpl(Pawnmorph.TfSys.TransformationRequest)">
+            <summary>
+                preform the requested transform
+            </summary>
+            <param name="request">The request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.SimpleMechaniteMutagen.TryRevertImpl(Pawnmorph.TfSys.TransformedPawnSingle)">
+            <summary>
+                Tries to revert the transformed pawn instance, implementation.
+            </summary>
+            <param name="transformedPawn">The transformed pawn.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.SimpleMechaniteMutagen.AddReversionThought(Verse.Pawn,System.Int32)">
+            <summary>
+                add the correct reversion thought at the correct stage
+            </summary>
+            <param name="spawned"></param>
+            <param name="curStageIndex"></param>
+        </member>
+        <member name="P:Pawnmorph.TfSys.TransformationRequest.IsValid">
+            <summary>
+            Returns true if this instance is valid.
+            </summary>
+            <value>
+              <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Pawnmorph.TfSys.TransformedPawn">
+            <summary>
+                base class for storing a "transformed pawn" in such a way that the original can be retried
+            </summary>
+        </member>
+        <member name="P:Pawnmorph.TfSys.TransformedPawn.OriginalPawns">
+            <summary>
+                Gets the original pawns.
+            </summary>
+            <value>
+                The original pawns.
+            </value>
+        </member>
+        <member name="P:Pawnmorph.TfSys.TransformedPawn.TransformedPawns">
+            <summary>
+                Gets the transformed pawns.
+            </summary>
+            <value>
+                The transformed pawns.
+            </value>
+        </member>
+        <member name="P:Pawnmorph.TfSys.TransformedPawn.IsValid">
+            <summary>
+                Returns true if this instance is valid.
+            </summary>
+            <value>
+                <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Pawnmorph.TfSys.TransformedPawn.CanRevert">
+            <summary>
+                Gets a value indicating whether this instance can be reverted.
+            </summary>
+            <value>
+                <c>true</c> if this instance can be reverted; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Pawnmorph.TfSys.TransformedPawn.ToString">
+            <summary>Returns a string that represents the current object.</summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Pawnmorph.TfSys.TransformedPawn.GetStatus(Verse.Pawn)">
+            <summary>
+                Gets the status of the given pawn with regards to this instance
+            </summary>
+            <param name="pawn">The pawn.</param>
+            <returns>if the pawn is the original pawn, transformed pawn, or null if neither</returns>
+        </member>
+        <member name="T:Pawnmorph.TfSys.TransformedPawnSingle">
+            <summary>
+                transformed pawn instance for a single original-animal pair
+            </summary>
+            <seealso cref="T:Pawnmorph.TfSys.TransformedPawn" />
+        </member>
+        <member name="M:Pawnmorph.TfSys.TransformedPawnSingle.GetStatus(Verse.Pawn)">
+            <summary>
+                Gets the status of the given pawn with regards to this instance
+            </summary>
+            <param name="pawn">The pawn.</param>
+            <returns>if the pawn is the original pawn, transformed pawn, or null if neither</returns>
+        </member>
+        <member name="P:Pawnmorph.TfSys.MergedPawns.CanRevert">
+            <summary>
+                Gets a value indicating whether this instance can be reverted.
+            </summary>
+            <value>
+                <c>true</c> if this instance can be reverted; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Pawnmorph.TfSys.MergedPawns.GetStatus(Verse.Pawn)">
+            <summary>
+                Gets the status of the given pawn with regards to this instance
+            </summary>
+            <param name="pawn">The pawn.</param>
+            <returns>if the pawn is the original pawn, transformed pawn, or null if neither</returns>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.Def_AspectThought">
+            <summary>
+            thought def that has an aspect attached 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.Def_MorphThought">
+            <summary>
+            def for a thought that has a morph dependency 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.MutationMemory">
+            <summary>
+            memory who's stage depends on the pawn's current mutation outlook 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.ReactionsHelper">
+            <summary>
+                static class containing a bunch of helper functions related to pawn thought reactions to stuff
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Thoughts.ReactionsHelper.GetOpinionThought(Verse.Pawn,Verse.Pawn,Pawnmorph.Thoughts.ReactionsHelper.EventType)">
+            <summary>
+                get a thought related the reactor pawn's opinion of the original pawn
+            </summary>
+            <param name="originalPawn"></param>
+            <param name="reactorPawn"></param>
+            <param name="type"></param>
+            <returns>
+                the thought def, null if there is no specific thoughtDef or the reactor has no special opinion of the original
+                pawn
+            </returns>
+        </member>
+        <member name="M:Pawnmorph.Thoughts.ReactionsHelper.OnPawnTransforms(Verse.Pawn,Verse.Pawn,System.Boolean)">
+            <summary>
+                call when the original pawn transforms into the transformedPawn
+            </summary>
+            <param name="original"></param>
+            <param name="transformedPawn"></param>
+            <param name="wasPrisoner">where they a prisoner of the colony?</param>
+        </member>
+        <member name="M:Pawnmorph.Thoughts.ReactionsHelper.OnPawnReverted(Verse.Pawn,Verse.Pawn)">
+            <summary>
+                call when a pawn is reverted from an animal to handle giving the correct thoughts to colonists
+            </summary>
+            <param name="originalPawn"></param>
+            <param name="animalPawn"></param>
+        </member>
+        <member name="M:Pawnmorph.Thoughts.ReactionsHelper.OnPawnPermFeral(Verse.Pawn,Verse.Pawn)">
+            <summary>
+                call when an animal goes permanently feral to handle giving the correct thoughts to colonists
+            </summary>
+            <param name="originalPawn"></param>
+            <param name="animalPawn"></param>
+        </member>
+        <member name="M:Pawnmorph.Thoughts.ReactionsHelper.OnPawnsMerged(Verse.Pawn,System.Boolean,Verse.Pawn,System.Boolean,Verse.Pawn)">
+            <summary>
+                call when 2 pawns are merged into one meld/merge to handle giving the correct thoughts to colonists
+            </summary>
+            <param name="merge0">the first pawn of the merge</param>
+            <param name="wasPrisoner0">if the first pawn was a prisoner</param>
+            <param name="merge1">the second pawn of the merge</param>
+            <param name="wasPrisoner1">if the second pawn was a prisoner</param>
+            <param name="animalPawn">the resulting animal pawn</param>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.RelationshipDefExtension">
+            <summary>
+            extension info to add onto Relationships 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.ThoughtDefOfs">
+            <summary>
+            static class containing default/frequently used thoughtDefs 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.ThoughtWorker_EtherHediff">
+            <summary>
+            thought worker for a thought that is active when a certain hediff is present, and who's stage depends on the ether state of the pawn 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.Thought_EtherMemory">
+            <summary>
+            a memory thought that depends in some way on the etherstate of it's associated pawn 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.Worker_BodyPuristDisgust">
+            <summary>
+            thought worker for pawns that have the body purist to add opinions about other pawns with mutations 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.Worker_FurryAppreciation">
+            <summary>
+            thought worker for the furry mutation appreciation thought
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.Worker_HasAspect">
+            <summary>
+            aspect worker for a thought that appears when the pawn has a certain aspect 
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.Worker_HasMutations">
+            <summary>
+            thought worker who's state depends on how many mutations a pawn has 
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Thoughts.Worker_HasMutations.CurrentStateInternal(Verse.Pawn)">
+            <summary>
+            return the thought state for the given pawn 
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Pawnmorph.Thoughts.Worker_HediffTrait">
+            <summary> Thought worker that works like ThoughtWorker_Hediff except is also respects traits. </summary>
+        </member>
+        <member name="M:Pawnmorph.Thoughts.Worker_HediffTrait.CheckTraits(Verse.Pawn)">
+            <summary> Check to make sure that the pawn's traits allow for the thought to be active. </summary>
+            <returns> If traits allow the thought can be active. </returns>
+        </member>
+        <member name="M:Pawnmorph.TransformerUtility.RemoveAllMutations(Verse.Pawn)">
+            <summary> Removes all mutations from a pawn (used post reversion). </summary>
+            <param name="pawn">The pawn.</param>
+        </member>
+        <member name="M:Pawnmorph.TransformerUtility.IsAnimalOrMerged(Verse.Pawn)">
+            <summary> Returns true if this pawn is currently an animal or merged morph. </summary>
+        </member>
+        <member name="M:Pawnmorph.TransformerUtility.ConvertAge(Verse.Pawn,Verse.RaceProperties)">
+            <summary> Converts the age of the given pawn into an equivalent age of the given race. </summary>
+            <param name="originalPawn"> The original pawn. </param>
+            <param name="race"> The end race. </param>
+        </member>
+        <member name="M:Pawnmorph.TransformerUtility.GenerateRandomPawnFromAnimal(Verse.Pawn)">
+            <summary> Generates the random human pawn from a given animal pawn. </summary>
+            <param name="animal"> The animal. </param>
+        </member>
+        <member name="M:Pawnmorph.TransformerUtility.CleanUpHumanPawnPostTf(Verse.Pawn,Verse.Hediff)">
+            <summary>
+            Cleans up all references to the original human pawn after creating the animal pawn. <br />
+            This does not call Pawn.DeSpawn.
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.TransformerUtility.GetEtherState(Verse.Pawn)">
+            <summary> Get the "ether state" of the pawn (whether they have the ether broken or bonded hediff. </summary>
+        </member>
+        <member name="M:Pawnmorph.TransformerUtility.TryGainMemory(Verse.Pawn,RimWorld.Thought_Memory,Verse.Pawn,System.Boolean)">
+            <summary>
+            Try to give this pawn a new memory. <br />
+            If pawn does not have needs/mood/thoughts ect this call does nothing.
+            </summary>
+            <param name="respectTraits">if ThoughtUtility.CanGetThought should be checked before giving the thought</param>
+        </member>
+        <member name="M:Pawnmorph.TransformerUtility.TryGainMemory(Verse.Pawn,RimWorld.ThoughtDef,Verse.Pawn)">
+            <summary>
+            Try to give this pawn a new memory. <br />
+            If pawn does not have needs/mood/thoughts ect this call does nothing.
+            </summary>
+        </member>
+        <member name="T:Pawnmorph.Utilities.Filter`1">
+            <summary> Generic class for a filter. </summary>
+        </member>
+        <member name="T:Pawnmorph.Utilities.HediffCompBase`1">
+            <summary> convenient base class for hediff comps that know their properties type. </summary>
+        </member>
+        <member name="T:Pawnmorph.Utilities.HediffCompPropertiesBase`1">
+            <summary> Convenient base class for comp properties that know their comp type. </summary>
+        </member>
+        <member name="T:Pawnmorph.Utilities.HediffDefUtilities">
+            <summary> Collection of hediff def related utility functions. </summary>
+        </member>
+        <member name="M:Pawnmorph.Utilities.HediffDefUtilities.GetAllHediffGivers(Verse.HediffDef)">
+            <summary> Get all hediff givers attached to this HediffDef. </summary>
+            <exception cref="T:System.ArgumentNullException">hediffDef is null</exception>
+        </member>
+        <member name="M:Pawnmorph.Utilities.LinqUtils.In``1(``0,``0)">
+            <summary> Check if this instance is in the given collection. </summary>
+            <param name="thing"> The thing. </param>
+            <param name="other"> The other. </param>
+            
+        </member>
+        <member name="M:Pawnmorph.Utilities.LinqUtils.In``1(``0,``0,``0)">
+            <summary> Check if this instance is in the given collection. </summary>
+            <param name="thing"> The thing. </param>
+            <param name="other1"> The other1. </param>
+            <param name="other2"> The other2. </param>
+        </member>
+        <member name="M:Pawnmorph.Utilities.LinqUtils.In``1(``0,``0,``0,``0)">
+            <summary> Check if this instance is in the given collection. </summary>
+            <param name="thing"> The thing. </param>
+            <param name="other1"> The other1. </param>
+            <param name="other2"> The other2. </param>
+            <param name="other3"> The other3. </param>
+        </member>
+        <member name="M:Pawnmorph.Utilities.LinqUtils.In``1(``0,``0[])">
+            <summary> Check if this instance is in the given collection. </summary>
+            <param name="thing"> The thing. </param>
+            <param name="others"> The others. </param>
+        </member>
+        <member name="M:Pawnmorph.Utilities.RandUtilities.PushState">
+            <summary>
+            If the game is in multiplayer pushes a deterministic seed to Rand. <br />
+            If not in multiplayer this call does nothing .
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Utilities.RandUtilities.PopState">
+            <summary>
+            Pops the Rand state if the game is in multiplayer. <br />
+            This does nothing if the game is not in multiplayer.
+            </summary>
+        </member>
+        <member name="M:Pawnmorph.Utilities.RandUtilities.MPSafeMTBEventOccurs(System.Single,System.Single,System.Single)">
+            <summary> Multiplayer save version of Rand.MTBEventOccurs  </summary>
+            <param name="mtb"> The MTB. </param>
+            <param name="mtbUnit"> The MTB unit. </param>
+            <param name="checkDuration"> Duration of the check. </param>
+        </member>
+        <member name="M:Pawnmorph.Utilities.RandUtilities.ZorShift(System.Int32)">
+            <summary> Preform a zorShift on the given int value. </summary>
+            <param name="val"> The value. </param>
+        </member>
+        <member name="M:Pawnmorph.Utilities.SkillMod.GetNewPassion(RimWorld.Passion)">
+            <summary> The new passion of the skill with this mod. </summary>
+        </member>
+        <member name="F:EtherGun.CompProperties_EtherExplosive.raceBlackList">
+            <summary> List of pawnDefs to not allow the hediff to be given to. </summary>
+        </member>
+        <member name="M:EtherGun.CompProperties_EtherExplosive.CanAddHediffToPawn(Verse.Pawn)">
+            <summary> Check if the given pawn is a valid target to add the hediff to. </summary>
+        </member>
+        <member name="F:EtherGun.ThingDef_EtherBullet.raceBlackList">
+            <summary> List of pawnDefs to not allow the hediff to be given to. </summary>
+        </member>
+        <member name="M:EtherGun.ThingDef_EtherBullet.CanAddHediffToPawn(Verse.Pawn)">
+            <summary> Check if the given pawn is a valid target to add the hediff to.</summary>
+        </member>
+    </members>
+</doc>

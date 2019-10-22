@@ -1,6 +1,7 @@
 ﻿// GraphicsUpdaterComp.cs created by Iron Wolf for Pawnmorph on 09/13/2019 8:14 AM
 // last updated 09/13/2019  8:14 AM
 
+#pragma warning disable 1591
 using System;
 using System.Diagnostics;
 using AlienRace;
@@ -28,7 +29,6 @@ namespace Pawnmorph.GraphicSys
         private AlienPartGenerator.AlienComp GComp => Pawn.GetComp<AlienPartGenerator.AlienComp>();
 
         private InitialGraphicsComp InitialGraphics => Pawn.GetComp<InitialGraphicsComp>();
-
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);

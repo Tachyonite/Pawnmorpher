@@ -19,6 +19,9 @@ namespace Pawnmorph
     /// </summary>
     public static class MorphUtilities
     {
+        /// <summary>
+        /// scalar used to make it easier for pawns to become hybrids
+        /// </summary>
         public const float HUMAN_CHANGE_FACTOR = 0.65f;
 
         private static List<BodyPartRecord> _possibleRecordsList;
@@ -44,8 +47,14 @@ namespace Pawnmorph
 
         private static List<BodyPartDef> PossiblePartsLst { get; }
 
+        /// <summary>
+        /// an enumerable collection of all body part defs that can have mutations 
+        /// </summary>
         public static IEnumerable<BodyPartDef> PartsWithPossibleMutations => PossiblePartsLst;
 
+        /// <summary>
+        /// the total number of body part defs that can have mutations 
+        /// </summary>
         public static int NumPartsWithPossibleMutations => PossiblePartsLst.Count;
 
         /// <summary> Enumerable collection of all mutation hediffs. </summary>
@@ -182,25 +191,35 @@ namespace Pawnmorph
             return map.listerThings.ThingsOfDef(morph.hybridRaceDef).OfType<Pawn>();
         }
 
-        public struct Tuple
+        /// <summary>
+        /// simple value tuple struct 
+        /// </summary>
+        public struct Tuple //TODO move to outer scope and make this generic 
         {
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="morph"></param>
+            /// <param name="influence"></param>
             public Tuple(MorphDef morph, float influence)
             {
                 this.morph = morph;
                 this.influence = influence;
             }
-
+#pragma warning disable 1591
             public MorphDef morph;
             public float influence;
+#pragma warning restore 
         }
 
         /// <summary> Group the morph influences on this collection of hediff_added mutations. </summary>
-        public static IEnumerable<Tuple> GetInfluences([NotNull] this IEnumerable<Hediff_AddedMutation> mutations)
+        public static IEnumerable<VTuple<MorphDef, float>> GetInfluences(
+            [NotNull] this IEnumerable<Hediff_AddedMutation> mutations)
         {
             if (mutations == null) throw new ArgumentNullException(nameof(mutations));
             IEnumerable<IGrouping<MorphDef, float>> linq = mutations.Where(m => m?.Influence?.Props?.morph != null)
                                                                     .GroupBy(m => m.Influence.Props.morph,
-                                                                             m => m.Influence.Props.influence);
+                                                                             m => m.Influence?.Props.influence ?? 0);
 
 
             foreach (IGrouping<MorphDef, float> grouping in linq)
@@ -209,12 +228,12 @@ namespace Pawnmorph
                 float accum = 0;
                 foreach (float f in grouping) accum += f;
 
-                yield return new Tuple {influence = accum, morph = key};
+                yield return new VTuple<MorphDef,float>(key, accum); 
             }
         }
 
         /// <summary> Group the morph influences on this collection of hediffDefs. </summary>
-        public static IEnumerable<Tuple> GetMorphInfluences([NotNull] this IEnumerable<HediffDef> mutationDefs)
+        public static IEnumerable<VTuple<MorphDef, float>> GetMorphInfluences([NotNull] this IEnumerable<HediffDef> mutationDefs)
         {
             if (mutationDefs == null) throw new ArgumentNullException(nameof(mutationDefs));
 
@@ -235,7 +254,7 @@ namespace Pawnmorph
 
                 foreach (float f in grouping) accum += f;
 
-                yield return new Tuple(morph, accum);
+                yield return new VTuple<MorphDef,float>(morph, accum);
             }
         }
 
@@ -334,7 +353,7 @@ namespace Pawnmorph
             if (p.health?.hediffSet?.hediffs == null) return new Dictionary<MorphDef, float>();
             Dictionary<MorphDef, float> dict = p.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>()
                                                 .GetInfluences()
-                                                .ToDictionary(tp => tp.morph, tp => tp.influence);
+                                                .ToDictionary(tp => tp.first, tp => tp.second);
 
             if (normalize && dict.Count > 0)
             {
