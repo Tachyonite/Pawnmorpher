@@ -24,7 +24,6 @@ namespace Pawnmorph
         private const string PART_LABEL = "PART";
 
         private HediffDef _mutationDef;
-        [CanBeNull] private TaleDef _mutationTale;
         private List<BodyPartDef> _mutatedRecords;
         private Pawn _pawn;
 
@@ -32,12 +31,11 @@ namespace Pawnmorph
         {
         }
 
-        public MutationLogEntry(Pawn pawn, [CanBeNull] TaleDef taleDef, HediffDef mutationDef,
+        public MutationLogEntry(Pawn pawn, HediffDef mutationDef,
                                 IEnumerable<BodyPartDef> mutatedParts)
         {
             _mutatedRecords = mutatedParts.ToList();
             _pawn = pawn;
-            _mutationTale = taleDef;
             _mutationDef = mutationDef;
         }
 
@@ -50,7 +48,6 @@ namespace Pawnmorph
         {
             base.ExposeData();
 
-            Scribe_Defs.Look(ref _mutationTale, nameof(_mutationTale));
             Scribe_Defs.Look(ref _mutationDef, nameof(_mutationDef));
             Scribe_Collections.Look(ref _mutatedRecords, nameof(_mutatedRecords), LookMode.Def);
             Scribe_References.Look(ref _pawn, nameof(_pawn));
@@ -90,22 +87,15 @@ namespace Pawnmorph
                 if (mutationRulePack != null)
                 {
                     grammarRequest.Includes.Add(mutationRulePack);
-                    AddCustomRules(grammarRequest.Rules); 
                 }
-                else if (_mutationTale != null)
+                else 
                 {
                     grammarRequest.Includes.Add(PMRulePackDefOf.GetDefaultPackForMutation(_mutationDef));
-                    //grammarRequest.IncludesBare.Add(_mutationTale.rulePack);
-                    AddCustomRules(grammarRequest.Rules); 
                     grammarRequest.Rules.Add(new Rule_String("DATE", GenDate.DateFullStringAt(ticksAbs, Vector2.zero)));
                 }
-                else
-                {
-                    grammarRequest.Includes.Add(PMRulePackDefOf.MutationRulePackTaleless);
-                }
+                AddCustomRules(grammarRequest.Rules);
 
                 IEnumerable<Rule> pawnR = GrammarUtility.RulesForPawn(PAWN_IDENTIFIER, _pawn, grammarRequest.Constants);
-                
                 BodyPartRecord partR = BodyDefOf.Human.AllParts.Where(r => _mutatedRecords.Contains(r.def)).RandomElement();
                 IEnumerable<Rule> partRules = GrammarUtility.RulesForBodyPartRecord(PART_LABEL, partR);
                 IEnumerable<Rule> mutR = GrammarUtility.RulesForHediffDef(MUTATION_IDENTIFIER, _mutationDef, partR);

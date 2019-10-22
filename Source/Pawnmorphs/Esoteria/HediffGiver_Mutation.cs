@@ -103,7 +103,7 @@ namespace Pawnmorph
             bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
             if (added)
             {
-                var log = new MutationLogEntry(pawn, tale, hediff, partsToAffect);
+                var log = new MutationLogEntry(pawn, hediff, partsToAffect);
                 Find.PlayLog.Add(log); 
             }
             return added;
