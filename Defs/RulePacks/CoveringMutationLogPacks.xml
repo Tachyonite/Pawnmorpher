@@ -7,6 +7,7 @@
                 <li>action->was covered in </li>
                 <li>initial->[PART_label]</li>
                 <li>bulk_label_group->[bulk_label]</li>
+                <li>pname->[PAWN_nameDef]</li>
             </rulesStrings>
         </rulePack>
     </RulePackDef>
