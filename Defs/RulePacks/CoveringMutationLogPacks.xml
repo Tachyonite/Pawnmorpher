@@ -3,10 +3,9 @@
     <RulePackDef Name="CoveringMutationLogPackBase" ParentName="CustomMutationRulePackBase" Abstract="true">
         <rulePack>
             <rulesStrings>
-                <li>action->grew a [bulk_label_group] of [label_group]</li>
-                <li>action->was covered in [label]</li>
+                <li>action->grew a [bulk_label_group] of </li>
+                <li>action->was covered in </li>
                 <li>initial->[PART_label]</li>
-                <li>label_group->[label]</li>
                 <li>bulk_label_group->[bulk_label]</li>
             </rulesStrings>
         </rulePack>

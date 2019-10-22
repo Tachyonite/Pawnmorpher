@@ -34,6 +34,7 @@
             <xs:enumeration value="CustomMutationRulePackBase"/>
             <xs:enumeration value="SimpleMutationRulePackBase"/>
             <xs:enumeration value="CoveringMutationLogPackBase"/>
+            <xs:enumeration value="AddedPartLogBase" />
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Grammar;
+using Verse.Noise;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
@@ -93,8 +94,9 @@ namespace Pawnmorph
                 }
                 else if (_mutationTale != null)
                 {
-                    grammarRequest.Includes.Add(PMRulePackDefOf.DefaultMutationRulePack);
-                    grammarRequest.IncludesBare.Add(_mutationTale.rulePack);
+                    grammarRequest.Includes.Add(PMRulePackDefOf.GetDefaultPackForMutation(_mutationDef));
+                    //grammarRequest.IncludesBare.Add(_mutationTale.rulePack);
+                    AddCustomRules(grammarRequest.Rules); 
                     grammarRequest.Rules.Add(new Rule_String("DATE", GenDate.DateFullStringAt(ticksAbs, Vector2.zero)));
                 }
                 else
@@ -126,7 +128,20 @@ namespace Pawnmorph
             return _mutationDef.LabelCap; //TODO generate string 
         }
 
-        private const string MODIFIER_RULE_KEYWORD = "modifer"; 
+        private const string MODIFIER_RULE_KEYWORD = "modifier";
+        private const string VOWEL_CHECK = "aeiouAEIOU";
+
+
+        /// <summary>
+        /// if a word starts with a vowel, return 'an' else return 'a'
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        string GetAAn(string word)
+        {
+            return VOWEL_CHECK.IndexOf(word[0]) > 0 ? "an" : "a";
+
+        }
 
         private void AddCustomRules(List<Rule> grammarRequestRules)
         {
@@ -136,6 +151,22 @@ namespace Pawnmorph
                 grammarRequestRules.Add(rule); //add a blank modifier if none is set 
             }
 
+
+            if (!grammarRequestRules.Any(r => r.keyword == "a_an"))
+            {
+                var split = _mutationDef.label.Split(' ');
+                if (split.Length > 1) //label is two words, like 'wolf tail' or 'fox muzzle'
+                {
+                    grammarRequestRules.Add(new Rule_String("a_an", GetAAn(split[0])));
+                }
+                else //if the label is one word it's probably a modifier like 'wolfish'
+                {
+                    grammarRequestRules.Add(new Rule_String("a_an", ""));
+                }
+
+
+
+            }
 
 
         }
