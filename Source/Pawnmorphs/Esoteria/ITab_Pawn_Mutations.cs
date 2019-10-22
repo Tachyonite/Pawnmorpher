@@ -290,6 +290,7 @@ namespace Pawnmorph
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 line.AppendTo(stringBuilder);
+                stringBuilder.Length--;
                 DrawMutLogEntry(ref curPos, viewRect.width, stringBuilder.ToString());
             }
 
