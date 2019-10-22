@@ -3,7 +3,8 @@
 
 #the build assembly 
 Pawnmorph.dll
-
+#documentation file 
+Assemblies/Pawnmorph.xml 
 
 # User-specific files
 *.suo

@@ -18,6 +18,9 @@ namespace Pawnmorph
         private readonly List<Aspect> _rmCache = new List<Aspect>();
         private List<Aspect> _aspects = new List<Aspect>();
 
+        /// <summary>
+        /// an enumerable collection of all aspects in this instance 
+        /// </summary>
         public IEnumerable<Aspect> Aspects => _aspects;
 
         private Pawn Pawn => (Pawn)parent;
@@ -80,6 +83,10 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// notify this tracker that the given aspect has changed in some way 
+        /// </summary>
+        /// <param name="aspect"></param>
         public void Notify_AspectChanged(Aspect aspect)
         {
             Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
@@ -100,6 +107,9 @@ namespace Pawnmorph
             Add(def.CreateInstance(), startStage);
         }
 
+        /// <summary>
+        /// called every tick after it's parent is updated 
+        /// </summary>
         public override void CompTick()
         {
             base.CompTick();
@@ -118,26 +128,48 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// if this tracker contains the given aspect 
+        /// </summary>
+        /// <param name="aspect"></param>
+        /// <returns></returns>
         public bool Contains(Aspect aspect)
         {
             return _aspects.Contains(aspect);
         }
 
+        /// <summary>
+        /// if this tracker contains an aspect with the given def 
+        /// </summary>
+        /// <param name="aspect"></param>
+        /// <returns></returns>
         public bool Contains(AspectDef aspect)
         {
             return _aspects.Any(a => a.def == aspect);
         }
 
+        /// <summary>
+        /// initializes this instance (Note: other comps may or may not be initialized themselves) 
+        /// </summary>
+        /// <param name="props"></param>
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             Assert(parent is Pawn, "parent is Pawn");
         }
 
+        /// <summary>
+        /// save or load 
+        /// </summary>
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Collections.Look(ref _aspects, "affinities", LookMode.Deep);
+
+
+            Scribe_Collections.Look(ref _aspects, "aspects", LookMode.Deep); 
+
+            if(Scribe.mode == LoadSaveMode.LoadingVars && _aspects == null)
+                Scribe_Collections.Look(ref _aspects, "affinities", LookMode.Deep); //aspects were called affinities previously 
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -168,6 +200,10 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// queue the given aspect to be removed from this tracker 
+        /// </summary>
+        /// <param name="aspect"></param>
         public void Remove(Aspect aspect)
         {
             _rmCache.Add(aspect); // Don't remove them quite yet.

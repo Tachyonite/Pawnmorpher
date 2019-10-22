@@ -18,7 +18,12 @@ namespace Pawnmorph.Hediffs
     {
         private bool _checked; 
         private readonly List<VTuple<MorphDef, float>> _scratchList = new List<VTuple<MorphDef, float>>();
-        public void CheckRace(Pawn pawn)
+
+        /// <summary>
+        /// checks if the pawn's race should be changed 
+        /// </summary>
+        /// <param name="pawn"></param>
+        void CheckRace(Pawn pawn)
         {
             _checked = true; 
             if (pawn.ShouldBeConsideredHuman()) return;
@@ -48,6 +53,9 @@ namespace Pawnmorph.Hediffs
                 RaceShiftUtilities.ChangePawnToMorph(pawn, morph); 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void CompPostPostRemoved()
         {
             base.CompPostPostRemoved();
@@ -59,7 +67,12 @@ namespace Pawnmorph.Hediffs
 
         }
 
-        private int _lastStage = -1; 
+        private int _lastStage = -1;
+        
+        /// <summary>
+        /// called every tick after the thing updates 
+        /// </summary>
+        /// <param name="severityAdjustment"></param>
         public override void CompPostTick(ref float severityAdjustment)
         {
             
@@ -74,6 +87,9 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        /// <summary>
+        /// save or load data 
+        /// </summary>
         public override void CompExposeData()
         {
             base.CompExposeData();
@@ -82,9 +98,19 @@ namespace Pawnmorph.Hediffs
         }
     }
 
+    /// <summary>
+    /// hediff comp that checks if the pawn should be turned into a hybrid at a certain stage 
+    /// </summary>
     public class CompProperties_CheckRace : HediffCompProperties
     {
+        /// <summary>
+        /// the stage to check the pawns race at 
+        /// </summary>
         public int triggerStage; 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public CompProperties_CheckRace()
         {
             compClass = typeof(Comp_CheckRace); 

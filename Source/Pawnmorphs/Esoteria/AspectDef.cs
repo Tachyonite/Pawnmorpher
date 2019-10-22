@@ -11,11 +11,31 @@ namespace Pawnmorph
     /// <summary> Def for all affinities. </summary>
     public class AspectDef : Def
     {
+        /// <summary>
+        /// the Type of the aspect 
+        /// </summary>
         public Type aspectType;
+        /// <summary>
+        /// the aspect stages, must be at least one 
+        /// </summary>
         public List<AspectStage> stages = new List<AspectStage>();
+        /// <summary>
+        /// the color of the aspect's label 
+        /// </summary>
         public Color labelColor = Color.white;
+        /// <summary>
+        /// if this aspect should be removed by a reverter or not 
+        /// </summary>
         public bool removedByReverter = true;
-        public int priority = 1; //lower priorities come first 
+        /// <summary>
+        /// the priority of this aspect
+        /// lower priorities come first 
+        /// </summary>
+        public int priority = 1; 
+        
+        /// <summary>
+        /// resolve all def references in this def, called after DefOfs are loaded 
+        /// </summary>
         public override void ResolveReferences()
         {
             base.ResolveReferences();
@@ -26,6 +46,10 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// get all configuration errors with this def 
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors())
@@ -33,7 +57,7 @@ namespace Pawnmorph
                 yield return configError;
             }
 
-            if (stages == null) yield return "no stages";
+            if ((stages?.Count ?? 0) == 0) yield return "no stages";
         }
 
         /// <summary> Get the affinity def with the given defName. </summary>
@@ -41,7 +65,10 @@ namespace Pawnmorph
         {
             return DefDatabase<AspectDef>.GetNamed(defName);
         }
-
+        /// <summary>
+        /// create a new aspect instance 
+        /// </summary>
+        /// <returns></returns>
         public Aspect CreateInstance()
         {
             var affinity = (Aspect)Activator.CreateInstance(aspectType);
