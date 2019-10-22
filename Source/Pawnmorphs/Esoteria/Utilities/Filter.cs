@@ -8,9 +8,20 @@ namespace Pawnmorph.Utilities
     /// <summary> Generic class for a filter. </summary>
     public class Filter<T>
     {
+        /// <summary>
+        /// the list of entries in the filter 
+        /// </summary>
         public List<T> filterList;
+        /// <summary>
+        /// if this filter is a black list 
+        /// </summary>
         public bool isBlackList;
 
+        /// <summary>
+        /// returns true if the given element passes through the filter 
+        /// </summary>
+        /// <param name="elem"></param>
+        /// <returns></returns>
         public bool PassesFilter(T elem)
         {
             var contains = filterList?.Contains(elem) ?? false;
