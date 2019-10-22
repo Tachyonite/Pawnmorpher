@@ -2,11 +2,15 @@
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// comp for ensuring the parent always spawns with the former human hediff 
+    /// </summary>
     public class CompAlwaysFormerHuman : ThingComp
     {
         private bool triggered = false;
 
-        public CompProperties_AlwaysFormerHuman Props
+
+        CompProperties_AlwaysFormerHuman Props
         {
             get
             {
@@ -14,6 +18,9 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// called every tick after it's parent updates 
+        /// </summary>
         public override void CompTick()
         {
             if (!triggered)
