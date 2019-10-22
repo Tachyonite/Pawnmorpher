@@ -10,8 +10,19 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// comp that heals the worst condition, and adds a random mutation if the condition healed is either a missing body part or permanent injury 
+    /// </summary>
+    /// <seealso cref="RimWorld.CompUseEffect" />
     public class Comp_MutagenicFixWorstCondition : CompUseEffect
     {
+        /// <summary>
+        /// Gets the props.
+        /// </summary>
+        /// <value>
+        /// The props.
+        /// </value>
+        /// <exception cref="InvalidCastException">unable to convert compProps {props.GetType().Name} to {nameof(CompProps_MutagenicFixWorstCondition)}</exception>
         public CompProps_MutagenicFixWorstCondition Props
         {
             get
@@ -32,6 +43,10 @@ namespace Pawnmorph
         private float HandCoverageAbsWithChildren =>
             ThingDefOf.Human.race.body.GetPartsWithDef(BodyPartDefOf.Hand).First().coverageAbsWithChildren;
 
+        /// <summary>
+        /// Does the effect.
+        /// </summary>
+        /// <param name="usedBy">the pawn that used this instance</param>
         public override void DoEffect(Pawn usedBy)
         {
             base.DoEffect(usedBy);

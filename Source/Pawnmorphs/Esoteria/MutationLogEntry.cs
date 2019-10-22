@@ -26,11 +26,19 @@ namespace Pawnmorph
         private HediffDef _mutationDef;
         private List<BodyPartDef> _mutatedRecords;
         private Pawn _pawn;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
+        /// </summary>
         public MutationLogEntry()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="mutatedParts">The mutated parts.</param>
         public MutationLogEntry(Pawn pawn, HediffDef mutationDef,
                                 IEnumerable<BodyPartDef> mutatedParts)
         {
@@ -38,12 +46,19 @@ namespace Pawnmorph
             _pawn = pawn;
             _mutationDef = mutationDef;
         }
-
+        /// <summary>
+        /// true if this log is about the given thing.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns></returns>
         public override bool Concerns(Thing t)
         {
             return t == _pawn;
         }
 
+        /// <summary>
+        /// Exposes the data.
+        /// </summary>
         public override void ExposeData()
         {
             base.ExposeData();
@@ -55,11 +70,19 @@ namespace Pawnmorph
             if (Scribe.mode == LoadSaveMode.PostLoadInit) _mutatedRecords = _mutatedRecords ?? new List<BodyPartDef>();
         }
 
+        /// <summary>
+        /// Gets everything this log is about.
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<Thing> GetConcerns()
         {
             yield return _pawn;
         }
 
+        /// <summary>
+        /// Gets the tip string.
+        /// </summary>
+        /// <returns></returns>
         public override string GetTipString()
         {
             return $"{_mutationDef.LabelCap}";
@@ -73,6 +96,12 @@ namespace Pawnmorph
                 $"{_pawn.Name}: {string.Join(",", _mutatedRecords.Select(r => r.LabelCap).ToArray())} -> {_mutationDef.LabelCap}";
         }
 
+        /// <summary>
+        /// create the main log text 
+        /// </summary>
+        /// <param name="pov">The pov.</param>
+        /// <param name="forceLog">if set to <c>true</c> [force log].</param>
+        /// <returns></returns>
         protected override string ToGameStringFromPOV_Worker(Thing pov, bool forceLog)
         {
             Assert(pov == _pawn, "pov == _pawn");
@@ -141,7 +170,6 @@ namespace Pawnmorph
                 grammarRequestRules.Add(rule); //add a blank modifier if none is set 
             }
 
-
             if (!grammarRequestRules.Any(r => r.keyword == "a_an"))
             {
                 var split = _mutationDef.label.Split(' ');
@@ -153,12 +181,7 @@ namespace Pawnmorph
                 {
                     grammarRequestRules.Add(new Rule_String("a_an", ""));
                 }
-
-
-
             }
-
-
         }
     }
 }

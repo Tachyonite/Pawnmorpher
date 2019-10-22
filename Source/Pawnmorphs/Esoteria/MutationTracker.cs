@@ -21,12 +21,22 @@ namespace Pawnmorph
         private bool _reCalcInfluences = true;
         private float _totalNormalizedInfluence;
 
-
-
+        /// <summary>
+        /// Gets the total number of mutations on the pawn being tracked.
+        /// </summary>
+        /// <value>
+        /// The mutations count.
+        /// </value>
         public int MutationsCount { get; private set; }
         /// <summary> Get the current influence associated with the given key. </summary>
         public float this[MorphDef key] => _influenceLookup.TryGetValue(key);
 
+        /// <summary>
+        /// Gets the total normalized influence of all morphs on the tracked pawn 
+        /// </summary>
+        /// <value>
+        /// The total normalized influence.
+        /// </value>
         public float TotalNormalizedInfluence //cache this to help with performance 
         {
             get
@@ -87,20 +97,36 @@ namespace Pawnmorph
 
         /// <summary> All mutations the pawn has. </summary>
         public IEnumerable<Hediff_AddedMutation> AllMutations =>
-            Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>();  
+            Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>();
 
+        /// <summary>
+        /// Initializes this instance with given props.
+        /// </summary>
+        /// this is call just after it is added to the parent, so other comps may or may not be added yet 
+        /// <param name="props">The props.</param>
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             Assert(parent is Pawn, "parent is Pawn"); 
         }
 
+        /// <summary>
+        /// Gets the normalized influence of the given morph 
+        /// </summary>
+        /// <param name="morph">The morph.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">morph</exception>
         public float GetNormalizedInfluence([NotNull] MorphDef morph)
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
             return this[morph] / Mathf.Max(0.001f, morph.TotalInfluence); //prevent division by zero 
         }
-
+        /// <summary>
+        /// Gets the pawn this is tracking mutations for.
+        /// </summary>
+        /// <value>
+        /// The pawn.
+        /// </value>
         public Pawn Pawn => (Pawn) parent;
 
         /// <summary> Called to notify this tracker that a mutation has been added. </summary>
@@ -111,9 +137,7 @@ namespace Pawnmorph
             var comp = mutation.TryGetComp<Comp_MorphInfluence>();
             if (comp != null)
             {
-                _influenceLookup[comp.Morph] = _influenceLookup.TryGetValue(comp.Morph) + comp.Influence; 
-
-
+                _influenceLookup[comp.Morph] = _influenceLookup.TryGetValue(comp.Morph) + comp.Influence;
             }
 
             MutationsCount += 1; 
@@ -170,6 +194,9 @@ namespace Pawnmorph
             NotifyCompsRemoved(mutation); 
         }
 
+        /// <summary>
+        /// exposes this instances data after the parent.
+        /// </summary>
         public override void PostExposeData()
         {
             base.PostExposeData();

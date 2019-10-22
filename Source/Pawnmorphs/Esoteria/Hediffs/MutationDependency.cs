@@ -29,8 +29,16 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     public class CompProperties_MutationDependency : HediffCompPropertiesBase<Comp_MutationDependency>
     {
+        /// <summary>
+        /// The mutation dependency
+        /// </summary>
         public HediffGiver_Mutation mutationDependency;
 
+        /// <summary>
+        /// Get all Configuration Errors with this instance
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
         {
             foreach (string configError in base.ConfigErrors(parentDef))

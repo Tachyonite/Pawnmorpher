@@ -6,12 +6,32 @@ using Verse;
 
 namespace EtherGun
 {
+    /// <summary>
+    /// death worker that causes a mutagenic explosion upon death 
+    /// </summary>
+    /// <seealso cref="Verse.DeathActionWorker" />
     public class DeathActionWorker_MutagenicExplosion : DeathActionWorker
     {
+        /// <summary>
+        /// Gets the death rules.
+        /// </summary>
+        /// <value>
+        /// The death rules.
+        /// </value>
         public override RulePackDef DeathRules => RulePackDefOf.Transition_DiedExplosive;
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is dangerous in melee.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is dangerous in melee; otherwise, <c>false</c>.
+        /// </value>
         public override bool DangerousInMelee => true;
 
+        /// <summary>
+        /// called when the attached pawn dies.
+        /// </summary>
+        /// <param name="corpse">The corpse.</param>
         public override void PawnDied(Corpse corpse)
         {
             GenExplosion.DoExplosion(radius: (corpse.InnerPawn.ageTracker.CurLifeStageIndex == 0) ? 2.9f : ((corpse.InnerPawn.ageTracker.CurLifeStageIndex != 1) ? 5.9f : 3.9f), center: corpse.Position, map: corpse.Map, damType: DamageDefOf.Flame, instigator: corpse.InnerPawn);
