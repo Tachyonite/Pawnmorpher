@@ -3,7 +3,7 @@
 
 using System;
 using RimWorld;
-
+#pragma warning disable 01591
 namespace Pawnmorph
 {
     /// <summary> DefOf class for commonly referenced ThoughtDefs. </summary>

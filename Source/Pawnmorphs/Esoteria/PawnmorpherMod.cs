@@ -3,15 +3,23 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// the mod class
+    /// </summary>
+    /// <seealso cref="Verse.Mod" />
     public class PawnmorpherMod : Mod
     {
         PawnmorpherSettings settings;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PawnmorpherMod"/> class.
+        /// </summary>
+        /// <param name="content">The content.</param>
         public PawnmorpherMod(ModContentPack content) : base(content)
         {
             settings = GetSettings<PawnmorpherSettings>();
         }
 
+        /// <summary>Writes the settings.</summary>
         public override void WriteSettings()
         {
             base.WriteSettings();

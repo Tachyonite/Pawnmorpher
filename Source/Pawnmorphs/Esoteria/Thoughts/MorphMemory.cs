@@ -6,8 +6,14 @@ using UnityEngine;
 
 namespace Pawnmorph.Thoughts
 {
+    /// <summary>
+    /// a memory who's stage is dependent on if the pawn is a given morph
+    /// </summary>
+    /// <seealso cref="RimWorld.Thought_Memory" />
     public class MorphMemory : Thought_Memory
     {
+        /// <summary>Gets the index of the current stage.</summary>
+        /// <value>The index of the current stage.</value>
         public override int CurStageIndex
         {
             get
@@ -21,18 +27,6 @@ namespace Pawnmorph.Thoughts
                 return n; 
 
             }
-        }
-
-        
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-        }
-
-        public override void ThoughtInterval()
-        {
-            base.ThoughtInterval();
         }
     }
 }

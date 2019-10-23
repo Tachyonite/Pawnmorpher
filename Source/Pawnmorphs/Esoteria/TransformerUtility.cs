@@ -335,7 +335,11 @@ namespace Pawnmorph
         /// Try to give this pawn a new memory. <br />
         /// If pawn does not have needs/mood/thoughts ect this call does nothing.
         /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="thought">The thought.</param>
+        /// <param name="otherPawn">The other pawn.</param>
         /// <param name="respectTraits">if ThoughtUtility.CanGetThought should be checked before giving the thought</param>
+        /// <exception cref="ArgumentNullException">pawn</exception>
         public static void TryGainMemory([NotNull] this Pawn pawn, Thought_Memory thought, Pawn otherPawn=null, bool respectTraits=true) //move extension methods elsewhere? 
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));

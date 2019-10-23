@@ -1,7 +1,9 @@
-﻿using Verse;
-
+﻿using System;
+using Verse;
+#pragma warning disable 01591
 namespace Pawnmorph
 {
+    [Obsolete("Use " + nameof(HediffGiver_Mutation) + " instead")]
     public class HediffGiver_EsotericInstant : HediffGiver
     {
         public float mtbDays;

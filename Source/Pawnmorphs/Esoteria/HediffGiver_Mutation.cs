@@ -10,6 +10,10 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// hediff giver for giving a mutation 
+    /// </summary>
+    /// <seealso cref="Verse.HediffGiver" />
     public class HediffGiver_Mutation : HediffGiver
     {
         /// <summary> The mean time between when the parent Hedif is applied and this HediffGiver performs its opperations. </summary>
@@ -91,11 +95,12 @@ namespace Pawnmorph
         }
 
 
-        /// <summary> Tries the apply the mutation to the given pawn </summary>
+        /// <summary>Tries the apply the mutation to the given pawn</summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutagenDef">The mutagen definition. used to determine if it's a valid target or not</param>
         /// <param name="outAddedHediffs">The out added hediffs.</param>
-        /// <returns></returns>
+        /// <param name="cause">The cause.</param>
+        /// <returns>if the mutation was added or not</returns>
         public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null)
         {
             if (!mutagenDef.CanInfect(pawn)) return false;

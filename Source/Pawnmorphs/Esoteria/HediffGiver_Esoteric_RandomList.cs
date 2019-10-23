@@ -2,6 +2,7 @@
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+#pragma warning disable 01591
 
 namespace Pawnmorph
 {

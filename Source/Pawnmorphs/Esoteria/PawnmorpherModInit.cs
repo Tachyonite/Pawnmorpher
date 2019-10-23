@@ -7,6 +7,9 @@ using Pawnmorph.Hybrids;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// static class for initializing the mod 
+    /// </summary>
     [StaticConstructorOnStartup]
     public static class PawnmorpherModInit
     {
@@ -56,6 +59,7 @@ namespace Pawnmorph
             takenHashes.Add(num);
         }
 
+        /// <summary>called when the settings are changed</summary>
         public static void NotifySettingsChanged()
         {
             PawnmorpherSettings settings = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();

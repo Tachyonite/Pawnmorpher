@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+#pragma warning disable 01591
 
 namespace Pawnmorph
 {
+    [Obsolete]
     public class HediffGiver_AcceleratedOverrideList : HediffGiver
     {
         public List<HediffDef> hediffDefs;

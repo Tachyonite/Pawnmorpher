@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Verse;
-
+#pragma warning disable 01591
 namespace Pawnmorph
 {
     [Obsolete("Use HediffGiver_Mutation instead")]

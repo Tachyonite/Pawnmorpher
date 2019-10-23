@@ -8,14 +8,25 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// hediff representing a mutation 
+    /// </summary>
+    /// <seealso cref="Verse.HediffWithComps" />
     public class Hediff_AddedMutation : HediffWithComps
     {
+        /// <summary>
+        /// The mutation description
+        /// </summary>
         public string mutationDescription;
 
         /// <summary> The influence this mutation exerts on a pawn. </summary>
         [CanBeNull]
         public Comp_MorphInfluence Influence => (comps?.OfType<Comp_MorphInfluence>().FirstOrDefault());
 
+        /// <summary>
+        /// Gets a value indicating whether should be removed.
+        /// </summary>
+        /// <value><c>true</c> if should be removed; otherwise, <c>false</c>.</value>
         public override bool ShouldRemove
         {
             get
@@ -23,7 +34,8 @@ namespace Pawnmorph
                 return false;
             }
         }
-
+        /// <summary>Gets the mutation description.</summary>
+        /// <value>The mutation description.</value>
         public string MutationDescription
         {
             get
@@ -38,6 +50,8 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>Gets the extra tip string .</summary>
+        /// <value>The extra tip string .</value>
         public override string TipStringExtra
         {
             get
@@ -49,6 +63,8 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>Creates the description.</summary>
+        /// <param name="builder">The builder.</param>
         public virtual void CreateDescription(StringBuilder builder)
         {
             if (def.description == null)
@@ -62,6 +78,8 @@ namespace Pawnmorph
             builder.AppendLine(res);
         }
 
+        /// <summary>called after this instance is added to the pawn.</summary>
+        /// <param name="dinfo">The dinfo.</param>
         public override void PostAdd(DamageInfo? dinfo)
         // After the hediff has been applied.
         {
@@ -76,13 +94,14 @@ namespace Pawnmorph
 
             pawn.GetMutationTracker()?.NotifyMutationAdded(this); 
         }
-
+        /// <summary>called after this instance is removed from the pawn</summary>
         public override void PostRemoved()
         {
             base.PostRemoved();
             pawn.GetMutationTracker()?.NotifyMutationRemoved(this);
         }
 
+        /// <summary>Exposes the data.</summary>
         public override void ExposeData()
         {
             base.ExposeData();

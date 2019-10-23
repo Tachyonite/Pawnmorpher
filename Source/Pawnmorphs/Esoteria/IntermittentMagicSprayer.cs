@@ -5,6 +5,9 @@ using RimWorld;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// class for making magic sprays 
+    /// </summary>
     public class IntermittentMagicSprayer
     {
         private const int MinTicksBetweenSprays = 2;
@@ -15,12 +18,20 @@ namespace Pawnmorph
 
         int ticksUntilSpray = MinTicksBetweenSprays;
         int sprayTicksLeft = 0;
+        /// <summary>
+        /// The start spray callback
+        /// </summary>
         public Action startSprayCallback = null;
+        /// <summary>The end spray callback</summary>
         public Action endSprayCallback = null;
         private Thing parent;
-
+        /// <summary>The magic puff mote</summary>
         public static ThingDef Mote_MagicPuff = ThingDef.Named("Mote_MagicPuff");
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntermittentMagicSprayer"/> class.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
         public IntermittentMagicSprayer(Thing parent)
         {
             this.parent = parent;
@@ -33,7 +44,9 @@ namespace Pawnmorph
             moteThrown.rotationRate = (float)Rand.RangeInclusive(-240, 240);
             return moteThrown;
         }
-
+        /// <summary>Throws the magic puff up.</summary>
+        /// <param name="loc">The loc.</param>
+        /// <param name="map">The map.</param>
         public static void ThrowMagicPuffUp(Vector3 loc, Map map)
         {
             if (map == null) return;
@@ -48,6 +61,9 @@ namespace Pawnmorph
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
 
+        /// <summary>Throws the magic puff down.</summary>
+        /// <param name="loc">The loc.</param>
+        /// <param name="map">The map.</param>
         public static void ThrowMagicPuffDown(Vector3 loc, Map map)
         {
             if (map == null) return; //make sure we don't try an put smoke down if there's no map 
@@ -60,7 +76,7 @@ namespace Pawnmorph
             moteThrown.SetVelocity((float)Rand.Range(0, 359), Rand.Range(0.2f, 0.5f));
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
-
+        /// <summary>called every tick </summary>
         public void SteamSprayerTick()
         {
             if (sprayTicksLeft > 0)

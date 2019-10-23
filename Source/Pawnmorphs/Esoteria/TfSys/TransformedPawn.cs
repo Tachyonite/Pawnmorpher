@@ -1,6 +1,7 @@
 ﻿// TransformedPawn.cs created by Nick M(Iron Wolf) for Blue Moon (Pawnmorph) on 08/13/2019 7:26 PM
 // last updated 08/13/2019  8:16 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -138,6 +139,7 @@ namespace Pawnmorph.TfSys
         /// for backwards compatibility with old saves, should not be used with new code
         /// <param name="inst">The inst.</param>
         /// <returns></returns>
+        [Obsolete]
         public static TransformedPawn Create(PawnMorphInstance inst)
         {
             return new TransformedPawnSingle()
@@ -151,6 +153,7 @@ namespace Pawnmorph.TfSys
         /// for backwards compatibility with old saves, should not be used with new code
         /// <param name="inst">The inst.</param>
         /// <returns></returns>
+        [Obsolete]
         public static TransformedPawn Create(PawnMorphInstanceMerged inst)
         {
             return Create(inst.origin, inst.origin2, inst.replacement); 

@@ -1,9 +1,9 @@
 ﻿using Verse;
 using RimWorld;
-
+#pragma warning disable 01591
 namespace Pawnmorph
 {
-    public class HediffGiver_Esoteric_Diet : HediffGiver
+    public class HediffGiver_Esoteric_Diet : HediffGiver //pretty sure this is unused 
     {
         public float mtbDays;
         public PawnKindDef pawnTFKind;

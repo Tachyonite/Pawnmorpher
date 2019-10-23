@@ -17,7 +17,9 @@ namespace Pawnmorph.Hediffs
         private bool _finishedSearching;
 
         private const int RECHECK_PART_PERIOD = 1000;
-        private int _doneTick = 0; 
+        private int _doneTick = 0;
+        /// <summary>called after its parent has been updated.</summary>
+        /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);

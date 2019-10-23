@@ -12,6 +12,10 @@ namespace Pawnmorph.Social
     /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
     public class InteractionWorker_Chitchat : PMInteractionWorkerBase
     {
+        /// <summary>gets the random selection weight.</summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <returns></returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             return  GetBaseWeight(initiator, recipient); 
@@ -25,6 +29,10 @@ namespace Pawnmorph.Social
     /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
     public class InteractionWorker_KindWords : PMInteractionWorkerBase
     {
+        /// <summary>gets the selection weight.</summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <returns></returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             float weight ;
@@ -41,6 +49,10 @@ namespace Pawnmorph.Social
     /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
     public class InteractionWorker_Slight : PMInteractionWorkerBase
     {
+        /// <summary>gets the selection weight.</summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <returns></returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             return 0.02f
@@ -55,6 +67,10 @@ namespace Pawnmorph.Social
     /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
     public class InteractionWorker_Insult : PMInteractionWorkerBase
     {
+        /// <summary>gets the selection weight.</summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <returns></returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             return 0.007f * NegativeInteractionUtility.NegativeInteractionChanceFactor(initiator, recipient) * GetBaseWeight(initiator, recipient) ;

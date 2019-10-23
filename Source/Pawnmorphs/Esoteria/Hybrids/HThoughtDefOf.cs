@@ -2,7 +2,7 @@
 // last updated 08/03/2019  3:09 PM
 
 using RimWorld;
-
+#pragma warning disable 01591
 namespace Pawnmorph.Hybrids
 {
     /// <summary>

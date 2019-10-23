@@ -1,7 +1,10 @@
-﻿using Verse;
+﻿using System;
+using Verse;
+#pragma warning disable 01591
 
 namespace Pawnmorph
 {
+    [Obsolete("use new mutagen system")]
     public class PawnMorphInstanceMerged : IExposable
     {
         public Pawn origin;

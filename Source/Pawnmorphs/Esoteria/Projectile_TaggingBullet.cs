@@ -32,7 +32,7 @@ namespace EtherGun
                         return;
                     }
 
-                    pgc.tagPawn(hitPawn.kindDef);
+                    pgc.TagPawn(hitPawn.kindDef);
                     Messages.Message("{0} added to database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.TaskCompletion);
                 }
                 else if (DatabaseUtilities.IsChao(hitPawn.def))

@@ -1,21 +1,24 @@
 ﻿using System.Collections.Generic;
-using Pawnmorph.TfSys;
 using Pawnmorph.GraphicSys;
+using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    ///     ingestion outcome dooer for the reverter serum. reverts transformed pawns to their original state 
+    /// </summary>
+    /// <seealso cref="RimWorld.IngestionOutcomeDoer" />
     public class IngestionOutcomeDoer_EsotericRevert : IngestionOutcomeDoer
     {
-        public float mtbDays;
-        public List<HediffDef> defsToRevert;
-        public List<HediffDef> revertThoughts;
-        public List<HediffDef> mergeRevertThoughts;
+        /// <summary>The black list of mutagens this instance cannot revert</summary>
         public List<MutagenDef> blackList = new List<MutagenDef>();
-        public string transformedHuman = "TransformedHuman";
 
+        /// <summary>Does the ingestion outcome special.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
             var comp = Find.World.GetComponent<PawnmorphGameComp>();
@@ -36,17 +39,16 @@ namespace Pawnmorph
             }
 
             TransformerUtility.RemoveAllMutations(pawn);
-            MorphGraphicsUtils.RefreshGraphics(pawn);
-            var aT = pawn.GetAspectTracker();
+            pawn.RefreshGraphics();
+            AspectTracker aT = pawn.GetAspectTracker();
             if (aT != null) RemoveAspects(aT);
         }
 
         private void RemoveAspects(AspectTracker tracker)
         {
             foreach (Aspect aspect in tracker)
-            {
-                if (aspect.def.removedByReverter) tracker.Remove(aspect); // It's ok to remove them in a foreach loop.
-            }
+                if (aspect.def.removedByReverter)
+                    tracker.Remove(aspect); // It's ok to remove them in a foreach loop.
         }
     }
 }

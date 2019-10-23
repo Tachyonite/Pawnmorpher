@@ -14,7 +14,7 @@ namespace Pawnmorph.TfSys
     /// <summary>
     ///     implementation of mutagen that merges 2 or more pawns into a single meld
     /// </summary>
-    /// <seealso cref="Pawnmorph.TfSys.Mutagen{Pawnmorph.TfSys.MergedPawns}" />
+    /// <seealso cref="Pawnmorph.TfSys.Mutagen{T}" />
     public class MergeMutagen : Mutagen<MergedPawns>
     {
         private const string FORMER_HUMAN_HEDIFF = "2xMergedHuman"; //can't put this in a hediffDefOf because of the name 
@@ -38,12 +38,22 @@ namespace Pawnmorph.TfSys
 
             return transformedPawn.meld.health.hediffSet.HasHediff(def);
         }
-
+        /// <summary>Returns true if the given request is valid.</summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// <c>true</c> if the specified request is valid; otherwise, <c>false</c>.
+        /// </returns>
         protected override bool IsValid(TransformationRequest request)
         {
             return base.IsValid(request) && request.originals.Length == 2;
         }
-
+        /// <summary>
+        /// Determines whether this instance can transform the specified pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can transform the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
         public override bool CanTransform(Pawn pawn)
         {
             return base.CanInfect(pawn);

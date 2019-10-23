@@ -11,17 +11,25 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary>
-    /// map component for tracking morphs by type & group on a map 
+    /// map component for tracking morphs by type and group on a map 
     /// </summary>
     public class MorphTracker : MapComponent
     {
+        /// <summary>
+        /// delegate for notifying when the morph count changed 
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="morph">The morph.</param>
         public delegate void MorphCountChangedHandle(MorphTracker sender, MorphDef morph);
 
         /// <summary> Event that is raised every time the morph count on the attached map changes. </summary>
         public event MorphCountChangedHandle MorphCountChanged;
 
-        private Dictionary<MorphDef, int> _counterDict = new Dictionary<MorphDef, int>(); 
-        
+        private Dictionary<MorphDef, int> _counterDict = new Dictionary<MorphDef, int>();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MorphTracker"/> class.
+        /// </summary>
+        /// <param name="map">The map.</param>
         public MorphTracker(Map map) : base(map)
         {
         }

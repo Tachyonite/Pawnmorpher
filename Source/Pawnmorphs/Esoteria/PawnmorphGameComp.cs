@@ -13,19 +13,28 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// the world comp for this mod 
+    /// </summary>
+    /// <seealso cref="RimWorld.Planet.WorldComponent" />
     public class PawnmorphGameComp : WorldComponent
     {
         [Obsolete]
-        public HashSet<PawnMorphInstance> pawnmorphs = new HashSet<PawnMorphInstance>();
+        internal HashSet<PawnMorphInstance> pawnmorphs = new HashSet<PawnMorphInstance>();
 
         [Obsolete]
-        public HashSet<PawnMorphInstanceMerged>
+        internal HashSet<PawnMorphInstanceMerged>
             mergedpawnmorphs = new HashSet<PawnMorphInstanceMerged>(); //why are we using hashsets? 
 
+        /// <summary>all tagged animals</summary>
         public HashSet<PawnKindDef> taggedAnimals = new HashSet<PawnKindDef>();
 
         private List<TransformedPawn> _transformedPawns = new List<TransformedPawn>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PawnmorphGameComp"/> class.
+        /// </summary>
+        /// <param name="world">The world.</param>
         public PawnmorphGameComp(World world) : base(world)
         {
         }
@@ -40,26 +49,13 @@ namespace Pawnmorph
             }
         }
 
-        [Obsolete]
-        public IEnumerable<PawnMorphInstance> MorphInstances => pawnmorphs;
 
-        [Obsolete]
-        public IEnumerable<PawnMorphInstanceMerged> MergeInstances => mergedpawnmorphs;
-
+        /// <summary>Gets all transformed pawns.</summary>
+        /// <value>The transformed pawns.</value>
         public IEnumerable<TransformedPawn> TransformedPawns => TransformedPawnsLst;
-
-        [Obsolete("use AddTransformedPawn instead")]
-        public void addPawn(PawnMorphInstance pm)
-        {
-            pawnmorphs.Add(pm);
-        }
-
-        [Obsolete("use AddTransformedPawn instead")]
-        public void addPawnMerged(PawnMorphInstanceMerged pmm)
-        {
-            mergedpawnmorphs.Add(pmm);
-        }
-
+        /// <summary>Adds the transformed pawn.</summary>
+        /// <param name="tfPair">The tf pair.</param>
+        /// <exception cref="ArgumentNullException">tfPair</exception>
         public void AddTransformedPawn([NotNull] TransformedPawn tfPair)
         {
             if (tfPair == null) throw new ArgumentNullException(nameof(tfPair));
@@ -72,11 +68,12 @@ namespace Pawnmorph
             _transformedPawns.Add(tfPair);
         }
 #pragma warning disable 612
-
+#pragma warning disable 0618
+        /// <summary>Exposes the data.</summary>
         public override void ExposeData()
         {
             Scribe_Collections.Look(ref pawnmorphs, "pawnmorphs", LookMode.Deep);
-            Scribe_Collections.Look(ref mergedpawnmorphs, "pawnmorphs", LookMode.Deep);
+            Scribe_Collections.Look(ref mergedpawnmorphs, "pawnmorphs", LookMode.Deep); //these are needed for backwards compatibility with old saves 
             Scribe_Collections.Look(ref taggedAnimals, "taggedAnimals");
             Scribe_Collections.Look(ref _transformedPawns, "transformedPawns", LookMode.Deep);
             taggedAnimals = taggedAnimals ?? new HashSet<PawnKindDef>();
@@ -113,7 +110,7 @@ namespace Pawnmorph
 
         }
 #pragma warning restore 612
-
+#pragma warning restore 0618
         /// <summary> Validates the transformed pawns. </summary>
         void ValidateTransformedPawns()
         {
@@ -145,19 +142,6 @@ namespace Pawnmorph
             }
         }
 
-        [Obsolete("use " + nameof(GetTransformedPawnContaining) + " instead")]
-        [CanBeNull]
-        public PawnMorphInstance GetInstanceWithOriginal(Pawn original)
-        {
-            return pawnmorphs.FirstOrDefault(i => i.origin == original);
-        }
-
-        [Obsolete("use " + nameof(GetTransformedPawnContaining) + " instead")]
-        [CanBeNull]
-        public PawnMorphInstanceMerged GetMergeInstanceWithOriginal(Pawn original)
-        {
-            return mergedpawnmorphs.FirstOrDefault(i => i.origin == original || i.origin2 == original);
-        }
 
         /// <summary> Gets the pawn transformation status. </summary>
         /// <param name="p"> The pawn. </param>
@@ -195,33 +179,9 @@ namespace Pawnmorph
             TransformedPawnsLst.Remove(tfPawn);
         }
 
-        [Obsolete("use " + nameof(RemoveInstance) + " instead")]
-        public void removePawn(PawnMorphInstance pm)
-        {
-            pawnmorphs.Remove(pm);
-        }
-
-        [Obsolete("use " + nameof(RemoveInstance) + " instead")]
-        public void removePawnMerged(PawnMorphInstanceMerged pmm)
-        {
-            mergedpawnmorphs.Remove(pmm);
-        }
-
-        [Obsolete("use " + nameof(GetTransformedPawnContaining) + " instead")]
-        public PawnMorphInstance retrieve(Pawn animal)
-        {
-            var pm = pawnmorphs.FirstOrDefault(instance => instance.replacement == animal);
-            return pm;
-        }
-
-        [Obsolete("use " + nameof(GetTransformedPawnContaining) + " instead")]
-        public PawnMorphInstanceMerged retrieveMerged(Pawn animal)
-        {
-            var pm = mergedpawnmorphs.FirstOrDefault(instance => instance.replacement == animal);
-            return pm;
-        }
-
-        public void tagPawn(PawnKindDef pawnkind)
+        /// <summary>add the given pawnkind to the mutagen chamber database</summary>
+        /// <param name="pawnkind">The pawnkind.</param>
+        public void TagPawn(PawnKindDef pawnkind)
         {
             if (!taggedAnimals.Contains(pawnkind)) taggedAnimals.Add(pawnkind);
         }

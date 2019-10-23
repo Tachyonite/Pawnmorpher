@@ -49,6 +49,8 @@ namespace Pawnmorph
         }
 #pragma warning restore 0618
 
+        /// <summary>Initializes this instance with the specified properties.</summary>
+        /// <param name="props">The properties.</param>
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -59,6 +61,8 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>called during post spawn setup</summary>
+        /// <param name="respawningAfterLoad">if set to <c>true</c> [respawning after load].</param>
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
@@ -134,6 +138,8 @@ namespace Pawnmorph
             parent.Map?.GetComponent<MorphTracker>().NotifyPawnRaceChanged((Pawn)parent, oldMorph);
         }
 
+        /// <summary>called when the pawn is de-spawned from the given map</summary>
+        /// <param name="map">The map.</param>
         public override void PostDeSpawn(Map map)
         {
             base.PostDeSpawn(map);

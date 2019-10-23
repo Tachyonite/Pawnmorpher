@@ -7,7 +7,7 @@ using System.Text;
 using Pawnmorph.Social;
 using RimWorld;
 using Verse;
-
+#pragma warning disable 01591
 namespace Pawnmorph.DebugUtils
 {
     public class Pawnmorpher_InteractionWeightLogDialogue : Dialog_DebugOptionLister
