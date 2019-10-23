@@ -9,11 +9,17 @@ namespace Pawnmorph
     /// <summary> Mod extension for applying morphs to various PawnKinds. </summary>
     public class MorphPawnKindExtension : DefModExtension
     {
+        /// <summary>The maximum hediffs to add </summary>
         public int maxHediffs = 5;
-        public int maxInfluences = 1; //TODO also, I'm calling our custom 'traits' 'Influences' to avoid confusion with RM's traits until I can think of a better name 
-        public float morphChange = 0.6f; //percentage, [0,1]
+        /// <summary>The maximum aspects to add</summary>
+        public int maxAspects = 1;
+        /// <summary>The morph change</summary>
+        /// percentage, [0,1]
+        public float morphChange = 0.6f;
 
+        /// <summary>The morph categories that can be chosen from</summary>
         public List<MorphCategoryDef> morphCategories = new List<MorphCategoryDef>();
+        /// <summary>The mutation categories that can be chosen from</summary>
         public List<MutationCategoryDef> mutationCategories = new List<MutationCategoryDef>(); 
     }
 }

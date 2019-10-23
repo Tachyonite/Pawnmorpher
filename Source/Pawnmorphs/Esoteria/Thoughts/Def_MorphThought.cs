@@ -11,7 +11,10 @@ namespace Pawnmorph.Thoughts
     /// </summary>
     public class Def_MorphThought : ThoughtDef
     {
+        /// <summary>The morph that triggers this thought</summary>
         public MorphDef morph;
+        /// <summary>Get all Configuration Errors with this instance</summary>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors())

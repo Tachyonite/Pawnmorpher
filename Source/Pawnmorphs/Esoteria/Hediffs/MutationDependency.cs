@@ -13,8 +13,11 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     public class Comp_MutationDependency : HediffCompBase<CompProperties_MutationDependency>
     {
-        
 
+        /// <summary>
+        /// called just after this instance's parent is added to a pawn 
+        /// </summary>
+        /// <param name="dinfo">The damage info.</param>
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);

@@ -11,9 +11,15 @@ namespace Pawnmorph.Thoughts
     /// </summary>
     public class Def_AspectThought : ThoughtDef
     {
+        /// <summary>
+        /// The aspect to check for 
+        /// </summary>
         public AspectDef aspect;
 
-
+        /// <summary>
+        /// Get all Configuration Errors with this instance
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors())

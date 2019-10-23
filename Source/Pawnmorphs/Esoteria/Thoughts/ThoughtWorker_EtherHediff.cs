@@ -12,6 +12,9 @@ namespace Pawnmorph.Thoughts
     /// </summary>
     public class ThoughtWorker_EtherHediff : ThoughtWorker
     {
+        /// <summary>Gets the current thought state of the given pawn.</summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var hediff = p.health.hediffSet.GetFirstHediffOfDef(def.hediff);

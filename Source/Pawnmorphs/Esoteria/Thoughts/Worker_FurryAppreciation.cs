@@ -14,6 +14,10 @@ namespace Pawnmorph.Thoughts
     /// </summary>
     public class Worker_FurryAppreciation : ThoughtWorker 
     {
+        /// <summary>gets the current thought state for the given pawns</summary>
+        /// <param name="p">The pawn that is having the thought</param>
+        /// <param name="otherPawn">The pawn the thought is about</param>
+        /// <returns></returns>
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn otherPawn)
         {
             if (!p.RaceProps.Humanlike) return false;

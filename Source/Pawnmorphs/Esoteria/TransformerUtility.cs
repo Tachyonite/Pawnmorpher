@@ -15,7 +15,7 @@ using Verse.AI.Group;
 
 namespace Pawnmorph
 {
-    // A class full of useful methods.
+    /// A class full of useful methods.
     public static class TransformerUtility
     {
         private const string ETHER_BOND_DEF_NAME = "EtherBond";
@@ -60,29 +60,37 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>Tries the give post transformation bond relations.</summary> ???
+        /// <param name="thrumbo">The thrumbo.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="otherPawn">The other pawn.</param>
+        /// <returns></returns>
         public static bool TryGivePostTransformationBondRelations(ref Pawn thrumbo, Pawn pawn, out Pawn otherPawn)
         {
             otherPawn = null;
-            int minimumOpinion = 20;
-            Func<Pawn, bool> predicate = (Pawn oP) => pawn.relations.OpinionOf(oP) >= minimumOpinion && oP.relations.OpinionOf(pawn) >= minimumOpinion;
+            var minimumOpinion = 20;
+            Func<Pawn, bool> predicate = oP =>
+                pawn.relations.OpinionOf(oP) >= minimumOpinion && oP.relations.OpinionOf(pawn) >= minimumOpinion;
             List<Pawn> list = pawn.Map.mapPawns.FreeColonists.Where(predicate).ToList();
-            if (!GenList.NullOrEmpty<Pawn>((IList<Pawn>)list))
+            if (!list.NullOrEmpty())
             {
                 Dictionary<int, Pawn> dictionary = CandidateScorePairs(pawn, list);
                 otherPawn = dictionary[dictionary.Keys.ToList().Max()];
                 thrumbo.relations.AddDirectRelation(PawnRelationDefOf.Bond, otherPawn);
-                for (int i = 0; i < otherPawn.relations.DirectRelations.Count; i++)
+                for (var i = 0; i < otherPawn.relations.DirectRelations.Count; i++)
                 {
                     DirectPawnRelation val = otherPawn.relations.DirectRelations[i];
-                    if (val.otherPawn == pawn)
-                    {
-                        otherPawn.relations.RemoveDirectRelation(val);
-                    }
+                    if (val.otherPawn == pawn) otherPawn.relations.RemoveDirectRelation(val);
                 }
             }
+
             return otherPawn != null;
         }
 
+        /// <summary>Candidates the score pairs.</summary> ???
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="candidateList">The candidate list.</param>
+        /// <returns></returns>
         public static Dictionary<int, Pawn> CandidateScorePairs(Pawn pawn, List<Pawn> candidateList)
         {
             Dictionary<int, Pawn> dictionary = new Dictionary<int, Pawn>();
@@ -98,6 +106,9 @@ namespace Pawnmorph
             return dictionary;
         }
 
+        /// <summary>Adds the hediff if not permanently feral.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="hediff">The hediff.</param>
         public static void AddHediffIfNotPermanentlyFeral(Pawn pawn, HediffDef hediff)
         {
             if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && !pawn.health.hediffSet.HasHediff(hediff))
@@ -109,6 +120,9 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>Removes the hediff if permanently feral.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="hediff">The hediff.</param>
         public static void RemoveHediffIfPermanentlyFeral(Pawn pawn, HediffDef hediff)
         {
             if (pawn.health.hediffSet.HasHediff(HediffDef.Named("PermanentlyFeral")) && pawn.health.hediffSet.HasHediff(hediff))
@@ -170,87 +184,12 @@ namespace Pawnmorph
                                              fixedChronologicalAge: Rand.Range(convertedAge, convertedAge + 200),
                                              fixedGender: gender, fixedMelanin: null);
         }
-
-        [Obsolete("Use Mutagen system")]
-        public static void Transform(Pawn transformedPawn, Hediff cause, HediffDef hediffForAnimal, List<PawnKindDef> pawnkinds,
-                                     TaleDef tale, TFGender forceGender = TFGender.Original, float forceGenderChance = 50f
-                                     ) //might want to move the bulk of this somewhere else, in-case we want different tf behaviors? 
-        {
-            if (transformedPawn.RaceProps.intelligence == Intelligence.Humanlike)
-            // If we haven't already checked for the pawn to be tf'd and it possesses humanlike intellegence, give it a chance to transform.
-            {
-                if (transformedPawn.Map == null) // If the pawn is not currently in the world (i.e. is on caravan)...
-                {
-                    transformedPawn.health.RemoveHediff(cause); // ...remove the hediff that would otherwise cause a transformation...
-                    return; // ...and stop the transformation. (We do it this way because it's a little hard to check for and this keeps the hediff from erroring out.)
-                }
-
-                PawnKindDef pawnkind = pawnkinds.RandomElement();
-                float animalAge = pawnkind.race.race.lifeExpectancy * transformedPawn.ageTracker.AgeBiologicalYears / transformedPawn.def.race.lifeExpectancy; // The animal is the same percent of the way through it's life as the source pawn is.
-
-                var animalGender = GetTransformedGender(transformedPawn, forceGender, forceGenderChance);
-
-                Faction faction = null;
-                if (transformedPawn.IsColonist)
-                {
-                    faction = transformedPawn.Faction;
-                }
-
-                // Creates a new animal of pawnkind type, with some of its stats set as those calculated above.
-                Pawn animalToSpawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(
-                    pawnkind, faction, PawnGenerationContext.NonPlayer, -1, false, false,
-                    false, false, true, false, 1f, false, true, true, false, false, false,
-                    false, null, null, null, animalAge, transformedPawn.ageTracker.AgeChronologicalYearsFloat, animalGender));
-
-                animalToSpawn.needs.food.CurLevel = transformedPawn.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
-                animalToSpawn.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
-                animalToSpawn.Name = transformedPawn.Name; // Copies the original pawn's name to the animal's.
-
-                if (animalToSpawn.Faction != null)
-                {
-                    animalToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience, true); // Sets obediance training to on for the animal.
-                    animalToSpawn.training.Train(TrainableDefOf.Obedience, null, true); // Sets the animal's obedience to be fully trained.
-                }
-
-                Pawn spawnedAnimal = (Pawn)GenSpawn.Spawn(animalToSpawn, transformedPawn.PositionHeld, transformedPawn.MapHeld, 0); // Spawns the animal into the map.
-                Hediff hediff = HediffMaker.MakeHediff(hediffForAnimal, spawnedAnimal, null); // Create a hediff from the one provided (i.e. TransformedHuman)...
-                hediff.Severity = Rand.Range(0.00f, 1.00f); // ...give it a random severity...
-                spawnedAnimal.health.AddHediff(hediff); // ...and apply it to the new animal.
-
-                PawnMorphInstance pm = new PawnMorphInstance(transformedPawn, spawnedAnimal); // Put the original pawn somewhere safe and tie it to the animal.
-                var tfPair = TfSys.TransformedPawn.Create(transformedPawn, spawnedAnimal); 
-                //Find.World.GetComponent<PawnmorphGameComp>().addPawn(pm); // ...and put this data somewhere safe.
-                Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(tfPair); // ...and put this data somewhere safe (doesn't do much right now).
-
-                for (int i = 0; i < 10; i++) // Create a cloud of magic.
-                {
-                    IntermittentMagicSprayer.ThrowMagicPuffDown(spawnedAnimal.Position.ToVector3(), spawnedAnimal.MapHeld);
-                    IntermittentMagicSprayer.ThrowMagicPuffUp(spawnedAnimal.Position.ToVector3(), spawnedAnimal.MapHeld);
-                }
-
-                if (tale != null) // If a tale was provided, push it to the tale recorder.
-                {
-                    TaleRecorder.RecordTale(tale, new object[]
-                    {
-                            transformedPawn,
-                            animalToSpawn
-                    });
-                }
-                
-                bool wasPrisoner = transformedPawn.IsPrisonerOfColony; 
-                CleanUpHumanPawnPostTf(transformedPawn, cause);  //now clean up the original pawn (remove apparel, drop'em, ect) 
-
-                Find.LetterStack.ReceiveLetter("LetterHediffFromTransformationLabel".Translate(transformedPawn.LabelShort, pawnkind.LabelCap).CapitalizeFirst(),
-                    "LetterHediffFromTransformation".Translate(transformedPawn.LabelShort, pawnkind.LabelCap).CapitalizeFirst(),
-                    LetterDefOf.NeutralEvent, spawnedAnimal, null, null); // Creates a letter saying "Oh no! Pawn X has transformed into a Y!"
-                Find.TickManager.slower.SignalForceNormalSpeedShort(); // Slow down the speed of the game.
-
-                transformedPawn.DeSpawn(); // Remove the original pawn from the current map.
-                
-                ReactionsHelper.OnPawnTransforms(transformedPawn, animalToSpawn, wasPrisoner);
-            }
-        }
-
+        
+        /// <summary>Gets the transformed gender.</summary>
+        /// <param name="original">The original.</param>
+        /// <param name="forceGender">The force gender.</param>
+        /// <param name="forceGenderChance">The force gender chance.</param>
+        /// <returns></returns>
         public static Gender GetTransformedGender(Pawn original, TFGender forceGender, float forceGenderChance)
         {
             Gender animalGender = original.gender;
@@ -283,14 +222,15 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Cleans up all references to the original human pawn after creating the animal pawn. <br />
-        /// This does not call Pawn.DeSpawn.
+        ///     Cleans up all references to the original human pawn after creating the animal pawn. <br />
+        ///     This does not call Pawn.DeSpawn.
         /// </summary>
-        public static void CleanUpHumanPawnPostTf(Pawn originalPawn,[CanBeNull] Hediff cause)
+        public static void CleanUpHumanPawnPostTf(Pawn originalPawn, [CanBeNull] Hediff cause)
         {
             HandleApparelAndEquipment(originalPawn);
             if (cause != null)
-                originalPawn.health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
+                originalPawn
+                   .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
 
             originalPawn.health.surgeryBills?.Clear(); //if this pawn has any additional surgery bills, get rid of them 
 
@@ -306,9 +246,8 @@ namespace Pawnmorph
             }
 
             if (originalPawn.IsPrisoner)
-                HandlePrisoner(originalPawn); 
+                HandlePrisoner(originalPawn);
 
-            // TODO notify faction that their pawn became an animal somehow (this should damage relations maybe?).
 
             Caravan caravan = originalPawn.GetCaravan();
             caravan?.RemovePawn(originalPawn);

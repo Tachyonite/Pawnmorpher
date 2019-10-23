@@ -13,9 +13,18 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     public class Def_ImmuneToType : HediffDef
     {
+        /// <summary>
+        /// The hediff type to make the pawn immune to 
+        /// </summary>
         public Type immuneToType;
+        /// <summary>
+        /// list of hediffDefs to ignore
+        /// </summary>
         public List<HediffDef> blackList = new List<HediffDef>();
-
+        /// <summary>
+        /// Get all Configuration Errors with this instance
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors())
@@ -27,7 +36,9 @@ namespace Pawnmorph.Hediffs
             if (stages.Count == 0) yield return "there are no stages set"; 
 
         }
-
+        /// <summary>
+        /// Resolves all references. Called after DefOfs are loaded 
+        /// </summary>
         public override void ResolveReferences()
         {
             base.ResolveReferences();
