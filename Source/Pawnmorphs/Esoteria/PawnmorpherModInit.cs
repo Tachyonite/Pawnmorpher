@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AlienRace;
 using Verse;
 using RimWorld;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 
 namespace Pawnmorph
 {
@@ -17,6 +20,31 @@ namespace Pawnmorph
         {
             NotifySettingsChanged();
             GenerateImplicitRaces();
+            CheckForObsoletedComponents();
+        }
+
+        static void CheckForObsoletedComponents()
+        {
+            var obsoleteHediffTypes = DefDatabase<HediffDef>
+                                     .AllDefs.Where(h => h.hediffClass.HasAttribute<ObsoleteAttribute>());
+            //get all obsoleted hediffs in use 
+
+            foreach (HediffDef obsoleteDef in obsoleteHediffTypes)
+                Log.Warning($"obsolete hediff {obsoleteDef.hediffClass.Name} in {obsoleteDef.defName}");
+
+            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
+            {
+                IEnumerable<HediffGiver> obsoleteGivers =
+                    hediffDef.GetAllHediffGivers().Where(g => g.GetType().HasAttribute<ObsoleteAttribute>());
+                var builder = new StringBuilder();
+
+                builder.AppendLine($"in {hediffDef.defName}");
+                foreach (HediffGiver obsoleteGiver in obsoleteGivers)
+                    builder.AppendLine($"obsolete hediff giver: {obsoleteGiver.GetType().Name}".Indented());
+
+                Log.Warning(builder.ToString());
+            }
+            
         }
 
         private static void GenerateImplicitRaces()
