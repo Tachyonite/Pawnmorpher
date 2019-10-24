@@ -41,6 +41,14 @@ namespace Pawnmorph
                 builder.AppendLine($"in {hediffDef.defName}");
                 foreach (HediffGiver obsoleteGiver in obsoleteGivers)
                     builder.AppendLine($"obsolete hediff giver: {obsoleteGiver.GetType().Name}".Indented());
+                var giversGivingBadHediffs = hediffDef.GetAllHediffGivers()//find hediff giver that are giving obsolete hediffs 
+                                                      .Where(g => g.hediff?.GetType().HasAttribute<ObsoleteAttribute>() ?? false);
+
+                foreach (HediffGiver giversGivingBadHediff in giversGivingBadHediffs)
+                {
+                    builder.AppendLine($"giver {giversGivingBadHediff.GetType().Name} is giving obsolete hediff {giversGivingBadHediff.hediff.defName}");
+                }
+
 
                 Log.Warning(builder.ToString());
             }
