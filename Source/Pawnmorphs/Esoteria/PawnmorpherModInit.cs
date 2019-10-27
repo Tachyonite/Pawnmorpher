@@ -23,15 +23,15 @@ namespace Pawnmorph
             CheckForObsoletedComponents();
         }
 
-        static void CheckForObsoletedComponents()
+        private static void CheckForObsoletedComponents()
         {
-            var obsoleteHediffTypes = DefDatabase<HediffDef>
-                                     .AllDefs.Where(h => h.hediffClass.HasAttribute<ObsoleteAttribute>());
+            IEnumerable<HediffDef> obsoleteHediffTypes = DefDatabase<HediffDef>
+                                                        .AllDefs.Where(h => h.hediffClass.HasAttribute<ObsoleteAttribute>());
             //get all obsoleted hediffs in use 
 
             foreach (HediffDef obsoleteDef in obsoleteHediffTypes)
                 Log.Warning($"obsolete hediff {obsoleteDef.hediffClass.Name} in {obsoleteDef.defName}");
-
+            var tmp = new List<string>();
             foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
             {
                 IEnumerable<HediffGiver> obsoleteGivers =
@@ -41,18 +41,22 @@ namespace Pawnmorph
                 builder.AppendLine($"in {hediffDef.defName}");
                 foreach (HediffGiver obsoleteGiver in obsoleteGivers)
                     builder.AppendLine($"obsolete hediff giver: {obsoleteGiver.GetType().Name}".Indented());
-                var giversGivingBadHediffs = hediffDef.GetAllHediffGivers()//find hediff giver that are giving obsolete hediffs 
-                                                      .Where(g => g.hediff?.GetType().HasAttribute<ObsoleteAttribute>() ?? false);
+                IEnumerable<HediffGiver> giversGivingBadHediffs = hediffDef
+                                                                 .GetAllHediffGivers() //find hediff giver that are giving obsolete hediffs 
+                                                                 .Where(g => g.hediff?.GetType().HasAttribute<ObsoleteAttribute>()
+                                                                          ?? false);
 
                 foreach (HediffGiver giversGivingBadHediff in giversGivingBadHediffs)
+                    tmp.Add($"giver {giversGivingBadHediff.GetType().Name} is giving obsolete hediff {giversGivingBadHediff.hediff.defName}");
+
+
+                if (tmp.Count > 0)
                 {
-                    builder.AppendLine($"giver {giversGivingBadHediff.GetType().Name} is giving obsolete hediff {giversGivingBadHediff.hediff.defName}");
+                    builder.Append(string.Join("\n", tmp.ToArray()).Indented());
+                    tmp.Clear();
+                    Log.Warning(builder.ToString());
                 }
-
-
-                Log.Warning(builder.ToString());
             }
-            
         }
 
         private static void GenerateImplicitRaces()
