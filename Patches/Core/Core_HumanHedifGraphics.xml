@@ -22,6 +22,7 @@
 					<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
+					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
 					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
@@ -85,6 +86,7 @@
 					<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
+					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
 					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
@@ -148,6 +150,7 @@
 					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
 					<EtherFoxEar>Parts/foxface/foxears</EtherFoxEar>
 					<EtherHuskyEar>Parts/huskyface/huskyears</EtherHuskyEar>
+					<EtherMonkeyEar>Parts/monkeyface/monkeyear</EtherMonkeyEar>
 					<EtherPigEar>Parts/pigface/pigears</EtherPigEar>
 					<EtherRatEar>Parts/ratface/ratears</EtherRatEar>
 					<EtherThrumboEar>Parts/thrumboface/thrumboears</EtherThrumboEar>
@@ -223,6 +226,7 @@
 					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
 					<EtherFoxEar>Parts/foxface/foxears</EtherFoxEar>
 					<EtherHuskyEar>Parts/huskyface/huskyears</EtherHuskyEar>
+					<EtherMonkeyEar>Parts/monkeyface/monkeyear</EtherMonkeyEar>
 					<EtherPigEar>Parts/pigface/pigears</EtherPigEar>
 					<EtherRatEar>Parts/ratface/ratears</EtherRatEar>
 					<EtherThrumboEar>Parts/thrumboface/thrumboears</EtherThrumboEar>
@@ -299,6 +303,7 @@
 					<EtherFluffyTail>Parts/foxface/foxtail</EtherFluffyTail>
 					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
+					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
