@@ -22,7 +22,6 @@ namespace Pawnmorph
         public HashSet<PawnMorphInstanceMerged>
             mergedpawnmorphs = new HashSet<PawnMorphInstanceMerged>(); //why are we using hashsets? 
 
-        
         public HashSet<PawnKindDef> taggedAnimals = new HashSet<PawnKindDef>();
 
         private List<TransformedPawn> _transformedPawns = new List<TransformedPawn>();
@@ -43,9 +42,9 @@ namespace Pawnmorph
 
         [Obsolete]
         public IEnumerable<PawnMorphInstance> MorphInstances => pawnmorphs;
+
         [Obsolete]
         public IEnumerable<PawnMorphInstanceMerged> MergeInstances => mergedpawnmorphs;
-
 
         public IEnumerable<TransformedPawn> TransformedPawns => TransformedPawnsLst;
 
@@ -76,9 +75,6 @@ namespace Pawnmorph
 
         public override void ExposeData()
         {
-           
-
-
             Scribe_Collections.Look(ref pawnmorphs, "pawnmorphs", LookMode.Deep);
             Scribe_Collections.Look(ref mergedpawnmorphs, "pawnmorphs", LookMode.Deep);
             Scribe_Collections.Look(ref taggedAnimals, "taggedAnimals");
@@ -86,19 +82,17 @@ namespace Pawnmorph
             taggedAnimals = taggedAnimals ?? new HashSet<PawnKindDef>();
             mergedpawnmorphs = mergedpawnmorphs ?? new HashSet<PawnMorphInstanceMerged>();
             pawnmorphs = pawnmorphs ?? new HashSet<PawnMorphInstance>();
-            _transformedPawns =
-                _transformedPawns ??
-                new List<TransformedPawn>(); //Scribe can set the references to null if it's an old save 
-
-
-          
-
-
-           
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                //transfer the old ones to the new system 
+
+                if (_transformedPawns == null)
+                {
+                    Log.Warning($"_transformedPawns is null in PawnmorphGameComp, this should not happen unless this is an old save or Pawnmorph was just added");
+                    _transformedPawns = new List<TransformedPawn>(); 
+                }
+
+                // Transfer the old ones to the new system.
                 foreach (var pawnMorphInstance in pawnmorphs)
                 {
                     _transformedPawns.Add(TfSys.TransformedPawn.Create(pawnMorphInstance));
@@ -109,26 +103,23 @@ namespace Pawnmorph
                     _transformedPawns.Add(TfSys.TransformedPawn.Create(pawnMorphInstanceMerged));
                 }
 
-                //now clear 
-
-
+                // Now clear.
                 pawnmorphs.Clear();
                 mergedpawnmorphs.Clear();
 
-                //make sure they're all valid 
+                // Make sure they're all valid.
                 ValidateTransformedPawns();
             }
 
         }
 #pragma warning restore 612
 
-        /// <summary>
-        /// Validates the transformed pawns.
-        /// </summary>
+        /// <summary> Validates the transformed pawns. </summary>
         void ValidateTransformedPawns()
         {
 
-            StringBuilder builder = new StringBuilder(); 
+            StringBuilder builder = new StringBuilder();
+            bool hasDroppedPawns = false; 
             for (int i = TransformedPawnsLst.Count - 1; i >= 0; i--)
             {
                 var inst = TransformedPawnsLst[i];
@@ -141,18 +132,17 @@ namespace Pawnmorph
                             pawn.Destroy();
                     }
 
+                    if (inst.TransformedPawns.Any(t => !t.DestroyedOrNull()))
+                        hasDroppedPawns = true; 
+
                     TransformedPawnsLst.RemoveAt(i);
                 }
             }
 
-            if (builder.Length > 0)
+            if (builder.Length > 0 && hasDroppedPawns)
             {
-                Log.Warning($"encountered invalid transformed pawn instances:\n{builder}");
+                Log.Error($"encountered invalid transformed pawns instances:\n{builder}");
             }
-
-            
-
-
         }
 
         [Obsolete("use " + nameof(GetTransformedPawnContaining) + " instead")]
@@ -169,11 +159,9 @@ namespace Pawnmorph
             return mergedpawnmorphs.FirstOrDefault(i => i.origin == original || i.origin2 == original);
         }
 
-        /// <summary>
-        ///     Gets the pawn transformation status.
-        /// </summary>
-        /// <param name="p">The pawn.</param>
-        /// <returns></returns>
+        /// <summary> Gets the pawn transformation status. </summary>
+        /// <param name="p"> The pawn. </param>
+        /// <returns> The pawn's current status or null. </returns>
         public TransformedStatus? GetPawnStatus(Pawn p)
         {
             foreach (var transformedPawn in TransformedPawnsLst)
@@ -185,11 +173,9 @@ namespace Pawnmorph
             return null;
         }
 
-        /// <summary>
-        ///     Gets the transformed pawn containing the given pawn
-        /// </summary>
-        /// <param name="pawn">The pawn</param>
-        /// <returns>the transformedPawn instance as well as the pawn's status to that instance</returns>
+        /// <summary> Gets the transformed pawn containing the given pawn. </summary>
+        /// <param name="pawn"> The pawn. </param>
+        /// <returns> The TransformedPawn instance as well as the pawn's status to that instance. </returns>
         [CanBeNull]
         public Tuple<TransformedPawn, TransformedStatus> GetTransformedPawnContaining(Pawn pawn)
         {
@@ -202,10 +188,8 @@ namespace Pawnmorph
             return null;
         }
 
-        /// <summary>
-        ///     Removes the transformed instance from the list.
-        /// </summary>
-        /// <param name="tfPawn">The tf pawn.</param>
+        /// <summary> Removes the transformed instance from the list. </summary>
+        /// <param name="tfPawn"> The tf pawn. </param>
         public void RemoveInstance(TransformedPawn tfPawn)
         {
             TransformedPawnsLst.Remove(tfPawn);

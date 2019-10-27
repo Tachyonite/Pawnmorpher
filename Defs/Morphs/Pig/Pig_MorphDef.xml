@@ -1,8 +1,8 @@
-﻿<Defs>
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef>
 		<defName>PigMorph</defName>
 		<label>pigmorph</label>
-		<description>A humanoid race resulting from a human being exposed to pig specific mutagens. They are often fond of looking through dirt and grass to find edible mushrooms</description>
+		<description>A humanoid race resulting from a human being exposed to pig specific mutagens. They are often fond of looking through dirt and grass to find edible mushrooms.</description>
 		<race>Pig</race>
 		<categories>
 			<li>Farm</li>
@@ -13,5 +13,8 @@
 				<skinColorOverride>(198,160,160)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>PigMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

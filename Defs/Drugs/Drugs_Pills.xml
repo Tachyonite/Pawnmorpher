@@ -13,15 +13,9 @@
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffAll">
-					<hediffDefs>
-						<li>ProductionPillChemfuelUdderEffect</li>
-						<li>ProductionPillEggEffect</li>
-						<li>ProductionPillUdderEffect</li>
-						<li>ProductionPillWoolEffect</li>
-						<li>ProductionPillMegawoolEffect</li>
-					</hediffDefs>
-					<severity>1.00</severity>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddAspect">
+					<aspectDef>Productive</aspectDef>
+					<increaseStage>true</increaseStage>
 				</li>
 			</outcomeDoers>
 		</ingestible>
@@ -44,126 +38,6 @@
 			</li>
 		</comps>
 	</ThingDef>
-
-	<HediffDef>
-		<defName>ProductionPillUdderEffect</defName>
-		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>production increasing</label>
-		<comps>
-			<li Class="HediffCompProperties_Disappears">
-				<disappearsAfterTicks>
-					<min>6000</min>
-					<max>6000</max>
-				</disappearsAfterTicks>
-			</li>
-			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
-				<hediff>EtherUdder</hediff>
-				<severity>0.3</severity>
-				<mtbDays>0.2</mtbDays>
-			</li>
-		</comps>
-		<stages>
-			<li>
-			</li>
-		</stages>
-	</HediffDef>	
-
-	<HediffDef>
-		<defName>ProductionPillChemfuelUdderEffect</defName>
-		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>production increasing</label>
-		<comps>
-			<li Class="HediffCompProperties_Disappears">
-				<disappearsAfterTicks>
-					<min>6000</min>
-					<max>6000</max>
-				</disappearsAfterTicks>
-			</li>
-			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
-				<hediff>EtherChemfuelUdder</hediff>
-				<severity>0.3</severity>
-				<mtbDays>0.2</mtbDays>
-			</li>
-		</comps>
-		<stages>
-			<li>
-			</li>
-		</stages>
-	</HediffDef>	
-
-	<HediffDef>
-		<defName>ProductionPillEggEffect</defName>
-		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>production increasing</label>
-		<comps>
-			<li Class="HediffCompProperties_Disappears">
-				<disappearsAfterTicks>
-					<min>6000</min>
-					<max>6000</max>
-				</disappearsAfterTicks>
-			</li>
-			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
-				<hediff>EtherEggLayer</hediff>
-				<severity>0.3</severity>
-				<mtbDays>0.2</mtbDays>
-			</li>
-		</comps>
-		<stages>
-			<li>
-			</li>
-		</stages>
-	</HediffDef>
-	
-	<HediffDef>
-		<defName>ProductionPillWoolEffect</defName>
-		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>production increasing</label>
-		<comps>
-			<li Class="HediffCompProperties_Disappears">
-				<disappearsAfterTicks>
-					<min>6000</min>
-					<max>6000</max>
-				</disappearsAfterTicks>
-			</li>
-			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
-				<hediff>EtherWooly</hediff>
-				<severity>0.3</severity>
-				<mtbDays>0.2</mtbDays>
-			</li>
-		</comps>
-		<stages>
-			<li>
-			</li>
-		</stages>
-	</HediffDef>
-	
-	<HediffDef>
-		<defName>ProductionPillMegawoolEffect</defName>
-		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>production increasing</label>
-		<comps>
-			<li Class="HediffCompProperties_Disappears">
-				<disappearsAfterTicks>
-					<min>6000</min>
-					<max>6000</max>
-				</disappearsAfterTicks>
-			</li>
-			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
-				<hediff>EtherMegawoolly</hediff>
-				<severity>0.3</severity>
-				<mtbDays>0.2</mtbDays>
-			</li>
-		</comps>
-		<stages>
-			<li>
-			</li>
-		</stages>
-	</HediffDef>
 	
 	<!--Feral Pills-->
 	<ThingDef ParentName="PM_PillBase">
@@ -248,7 +122,7 @@
 			</li>
 		</comps>
 	</ThingDef>
-  
+
 	<HediffDef Class="Pawnmorph.Hediffs.Def_ImmuneToType">
 		<defName>StabiliserHigh</defName>
 		<immuneToType>Pawnmorph.Hediff_Morph</immuneToType>
@@ -267,9 +141,7 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-				
-			</li>
+			<li></li>
 		</stages>
 	</HediffDef>
 </Defs>

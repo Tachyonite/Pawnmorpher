@@ -23,6 +23,23 @@ namespace Pawnmorph
         private static List<HediffGiver_Mutation> _allGivers;
 
         /// <summary>
+        /// get the pawn's outlook toward being mutated 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static MutationOutlook GetOutlook([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            var traits = pawn.story?.traits;
+            if (traits == null) return MutationOutlook.Neutral;
+            if (traits.HasTrait(PMTraitDefOf.MutationAffinity)) return MutationOutlook.Furry;
+            if (traits.HasTrait(TraitDefOf.BodyPurist)) return MutationOutlook.BodyPurist;
+            return MutationOutlook.Neutral;
+
+        }
+
+        /// <summary>
         /// returns an enumerable collection of all hediffGiver_Mutations active
         /// note, this does <i>not</i> check for givers that give the same hediff 
         /// </summary>
@@ -96,12 +113,12 @@ namespace Pawnmorph
         /// an enumerable collection of all morph hediffs 
         /// </summary>
         public static IEnumerable<HediffDef> AllMorphHediffs =>
-            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass)); 
+            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass));
 
         /// <summary>
         /// an enumerable collection of all mutation related thoughts 
         /// </summary>
-        public static IEnumerable<ThoughtDef> AllMutationThoughts
+        public static IEnumerable<ThoughtDef> AllMutationMemories
         {
             get
             {
@@ -149,7 +166,9 @@ namespace Pawnmorph
         [CanBeNull]
         public static MutationTracker GetMutationTracker([NotNull]this Pawn pawn)
         {
-            return pawn.GetComp<MutationTracker>(); 
+            var comp = pawn.GetComp<MutationTracker>();
+            if(comp == null) Log.Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
+            return comp; 
         }
 
         /// <summary>
@@ -176,6 +195,29 @@ namespace Pawnmorph
             }
 
             return highest; 
+        }
+
+        /// <summary>
+        /// get the production hediffs of the pawn
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static IEnumerable<Hediff> GetProductionMutations([NotNull] this Pawn pawn)
+        {
+
+            var comp = pawn.GetMutationTracker();
+            if (comp == null){ yield break;}
+            foreach (var mutation in comp.AllMutations)
+            {
+
+                if (mutation.TryGetComp<HediffComp_Production>() != null)
+                {
+                    yield return mutation;
+                }
+           
+
+            }
+
         }
 
         /// <summary>

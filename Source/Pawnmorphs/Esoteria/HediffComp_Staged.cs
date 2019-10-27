@@ -2,7 +2,6 @@
 using RimWorld;
 using Verse;
 
-
 namespace Pawnmorph
 {
     public class HediffComp_Staged
@@ -13,7 +12,6 @@ namespace Pawnmorph
         public float chance = 50;
         public string rareResource;
         public ThoughtDef thought = null;
-
 
         public ThingDef Resource
         {
@@ -29,7 +27,5 @@ namespace Pawnmorph
                 return ThingDef.Named(rareResource); 
             }
         }
-
-
     }
 }

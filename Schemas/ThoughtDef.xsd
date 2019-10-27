@@ -1,0 +1,84 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Defs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ThoughtDef" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="defName" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<xs:element name="thoughtClass" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<xs:element name="workerClass" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<xs:element name="durationDays" type="xs:float" minOccurs="0" maxOccurs="1" />
+							<xs:element name="morph" type="xs:string" maxOccurs="1" minOccurs="0" /> 
+							<xs:element name="aspect" type="xs:string" maxOccurs="1" minOccurs="0" />
+							<xs:element name="hediff" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<xs:element name="requiredTraits" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="li" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="nullifyingTraits" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="li" minOccurs="1" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="stages" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="li" type="ThoughtStage" minOccurs="1" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ParentName" type="AbstractThoughts" use="optional" />
+						<xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+						<xs:attribute name="Name" type="xs:string" use="optional" />
+						<xs:attribute name="Class" type="ThoughtDefClasses" use="optional" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:simpleType name="ThoughtDefClasses">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Pawnmorph.Thoughts.Def_MorphThought" />
+			<xs:enumeration value="Pawnmorph.Thoughts.Def_AspectThought"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="AbstractThoughts">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MorphReactionThoughtBase" />
+			<xs:enumeration value="MorphReactionThoughtBaseNone" />
+			<xs:enumeration value="MorphReactionThoughtBaseFurry" />
+			<xs:enumeration value="MorphReactionThoughtBaseBodyPurist" />
+			<xs:enumeration value="RevertedThoughtBase" />
+			<xs:enumeration value="PMMorphMemoryBase" />
+			<xs:enumeration value="PMMorphMemoryNone" />
+			<xs:enumeration value="PMMorphMemoryFurry" />
+			<xs:enumeration value="PMMorphMemoryBP" />
+			<xs:enumeration value="MorphRevertsToHumanBase"/>
+			<xs:enumeration value="MorphRevertsToHumanBaseNone"/>
+			<xs:enumeration value="MorphRevertsToHumanBaseFurry"/>
+			<xs:enumeration value="MorphRevertsToHumanBaseBP" />
+			<xs:enumeration value="GroupThoughtBase"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ThoughtStage">
+		<xs:sequence>
+			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="labelSocial" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="visible" type="xs:boolean" default="true" minOccurs="0" maxOccurs="1" />
+			<xs:element name="baseMoodEffect" type="xs:float" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

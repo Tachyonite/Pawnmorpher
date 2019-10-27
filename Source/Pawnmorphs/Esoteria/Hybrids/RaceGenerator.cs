@@ -13,53 +13,34 @@ using Verse;
 
 namespace Pawnmorph.Hybrids
 {
-    /// <summary>
-    ///     static class responsible for generating the implicit races
-    /// </summary>
+    /// <summary> Static class responsible for generating the implicit races.</summary>
     public static class RaceGenerator
     {
-        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces
-        {
-            get
-            {
-                if (_lst == null)
-                {
-                    _lst = GenerateAllImpliedRaces().ToList(); 
-
-                }
-
-                return _lst; 
-            }
-        }
+        private const float HEALTH_SCALE_LERP_VALUE = 0.4f;
+        private const float HUNGER_LERP_VALUE = 0.3f;
         private static List<ThingDef_AlienRace> _lst;
-
         private static Dictionary<ThingDef, MorphDef> _raceLookupTable = new Dictionary<ThingDef, MorphDef>();
 
-        /// <summary>
-        /// try to find the morph def associated with the given race 
-        /// </summary>
+        public static IEnumerable<ThingDef_AlienRace> ImplicitRaces => _lst ?? (_lst = GenerateAllImpliedRaces().ToList());
+
+        /// <summary> Try to find the morph def associated with the given race.</summary>
         /// <param name="race"></param>
         /// <param name="result"></param>
         /// <returns></returns>
         public static bool TryGetMorphOfRace(ThingDef race, out MorphDef result)
         {
-            return _raceLookupTable.TryGetValue(race, out result); 
+            return _raceLookupTable.TryGetValue(race, out result);
         }
 
-        /// <summary>
-        /// get the morph Def associated with this race, if any 
-        /// </summary>
+        /// <summary> Gets the morph Def associated with this race, if any.</summary>
         /// <param name="race"></param>
         /// <returns></returns>
         [CanBeNull]
         public static MorphDef GetMorphOfRace(this ThingDef race)
         {
-            return _raceLookupTable.TryGetValue(race); 
+            return _raceLookupTable.TryGetValue(race);
         }
 
-
-        private const float HEALTH_SCALE_LERP_VALUE = 0.4f;
-        private const float HUNGER_LERP_VALUE = 0.3f; 
         private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
         {
             return new RaceProperties
@@ -74,7 +55,7 @@ namespace Pawnmorph.Hybrids
                 body = human.body,
                 baseBodySize = GetBodySize(animal, human),
                 baseHealthScale = Mathf.Lerp(human.baseHealthScale, animal.baseHealthScale, HEALTH_SCALE_LERP_VALUE),
-                baseHungerRate = GetHungerRate(animal, human), 
+                baseHungerRate = GetHungerRate(animal, human),
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 meatColor = animal.meatColor,
@@ -93,7 +74,7 @@ namespace Pawnmorph.Hybrids
                 meatDef = animal.meatDef,
                 meatLabel = animal.meatLabel,
                 useMeatFrom = animal.useMeatFrom,
-                deathActionWorkerClass = animal.deathActionWorkerClass, //boomratmorphs should explode
+                deathActionWorkerClass = animal.deathActionWorkerClass, // Boommorphs should explode.
                 corpseDef = human.corpseDef,
                 packAnimal = animal.packAnimal
             };
@@ -102,44 +83,40 @@ namespace Pawnmorph.Hybrids
         private static float GetBodySize(RaceProperties animal, RaceProperties human)
         {
             var f = Mathf.Lerp(human.baseBodySize, animal.baseBodySize, 0.5f);
-            return Mathf.Max(f, human.baseBodySize / 0.7f); 
+            return Mathf.Max(f, human.baseBodySize / 0.7f);
         }
 
         private static float GetHungerRate(RaceProperties animal, RaceProperties human)
         {
             var f = Mathf.Lerp(human.baseHungerRate, animal.baseHungerRate, 0.5f);
-            return f; 
+            return f;
         }
-
 
         private static IEnumerable<ThingDef_AlienRace> GenerateAllImpliedRaces()
         {
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
-            var human = (ThingDef_AlienRace) ThingDef.Named("Human");
-            StringBuilder builder = new StringBuilder(); 
+            var human = (ThingDef_AlienRace)ThingDef.Named("Human");
+            StringBuilder builder = new StringBuilder();
             foreach (MorphDef morphDef in morphs)
             {
-                if (morphDef.hybridRaceDef != null)
-                {
-                    Log.Warning($"trying to generate race for {morphDef.defName} but it's hybrid race def is already set?");
-                    continue;
-                }
-
-
                 builder.AppendLine($"generating implied race for {morphDef.defName}");
-                var race =  GenerateImplicitRace(human, morphDef);
-                morphDef.hybridRaceDef = race;
-                _raceLookupTable[race] = morphDef; 
-                yield return race; 
+                var race = GenerateImplicitRace(human, morphDef);
+                if (morphDef.explicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
+                {
+                    morphDef.hybridRaceDef = race;
+                    _raceLookupTable[race] = morphDef;
+                }
+                else
+                {
+                    builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.explicitHybridRace.defName}, {race.defName} will not be used but still generated");
+                }
+                yield return race;
             }
 
-            Log.Message(builder.ToString()); 
+            Log.Message(builder.ToString());
         }
 
-
-        /// <summary>
-        ///     generate general settings for the hybrid race given the human settings and morph def
-        /// </summary>
+        /// <summary> Generate general settings for the hybrid race given the human settings and morph def.</summary>
         /// <param name="human"></param>
         /// <param name="morph"></param>
         /// <returns></returns>
@@ -149,34 +126,29 @@ namespace Pawnmorph.Hybrids
             return new GeneralSettings
             {
                 alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph),
-                humanRecipeImport = true ,
+                humanRecipeImport = true,
                 forcedRaceTraitEntries = traitSettings?.forcedTraits
-                //black list is not currently supported, Rimworld doesn't like it when you remove traits 
-               
+                // Black list is not currently supported, Rimworld doesn't like it when you remove traits.
             };
         }
 
         private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph)
         {
-            var gen = new AlienPartGenerator
+            AlienPartGenerator gen = new AlienPartGenerator
             {
-                alienbodytypes = human.alienbodytypes, //this is where we'd force skin colors and stuff 
+                alienbodytypes = human.alienbodytypes,
                 aliencrowntypes = human.aliencrowntypes,
                 bodyAddons = human.bodyAddons
             };
 
-            var graphicsSettings = morph.raceSettings?.graphicsSettings;
-            var customDrawSize = graphicsSettings?.customDrawSize;
-            var headSize = graphicsSettings?.customHeadDrawSize; 
-            gen.customDrawSize = customDrawSize ?? gen.customDrawSize;
-            gen.customHeadDrawSize = headSize ?? gen.customHeadDrawSize; //make sure to apply custom sizes only if they are defined, otherwise use the defaults 
+            // Make sure to apply custom sizes only if they are defined, otherwise use the defaults.
+            gen.customDrawSize = morph.raceSettings?.graphicsSettings?.customDrawSize ?? gen.customDrawSize;
+            gen.customHeadDrawSize = morph.raceSettings?.graphicsSettings?.customHeadDrawSize ?? gen.customHeadDrawSize;
 
-            return gen; 
+            return gen;
         }
 
-        /// <summary>
-        ///     generate the alien race restriction setting from the human default and the given morph
-        /// </summary>
+        /// <summary> Generate the alien race restriction setting from the human default and the given morph.</summary>
         /// <param name="human"></param>
         /// <param name="morph"></param>
         /// <returns></returns>
@@ -185,15 +157,14 @@ namespace Pawnmorph.Hybrids
             return new RaceRestrictionSettings(); //TODO restriction settings like apparel and stuff  
         }
 
-        private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human,
-                                                                                    MorphDef morph)
+        private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph)
         {
             return new ThingDef_AlienRace.AlienSettings
             {
                 generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph),
                 graphicPaths = human.graphicPaths, //TODO put some of these in morph def or generate from the animal 
                 hairSettings = human.hairSettings,
-                raceRestriction =GenerateHybridRestrictionSettings(human.raceRestriction, morph),
+                raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
                 relationSettings = human.relationSettings,
                 thoughtSettings = morph.raceSettings.GenerateThoughtSettings(human.thoughtSettings, morph)
             };
@@ -207,12 +178,10 @@ namespace Pawnmorph.Hybrids
             Dictionary<StatDef, float> valDict = new Dictionary<StatDef, float>();
             foreach (StatModifier humanModifier in humanModifiers)
             {
-                valDict[humanModifier.stat] = humanModifier.value; 
+                valDict[humanModifier.stat] = humanModifier.value;
             }
 
-
-            //just average them for now 
-
+            //just average them for now
             foreach (StatModifier animalModifier in animalModifiers)
             {
                 float val;
@@ -222,19 +191,16 @@ namespace Pawnmorph.Hybrids
                 }
                 else val = animalModifier.value;
 
-                valDict[animalModifier.stat] = val; 
+                valDict[animalModifier.stat] = val;
             }
 
             //now handle any statMods if they exist 
             if (statMods != null)
                 foreach (StatModifier statModifier in statMods)
                 {
-                    float v = valDict.TryGetValue(statModifier.stat) + statModifier.value; 
-                    valDict[statModifier.stat] = v; 
+                    float v = valDict.TryGetValue(statModifier.stat) + statModifier.value;
+                    valDict[statModifier.stat] = v;
                 }
-
-
-
 
             List<StatModifier> outMods = new List<StatModifier>();
             foreach (KeyValuePair<StatDef, float> keyValuePair in valDict)
@@ -246,21 +212,16 @@ namespace Pawnmorph.Hybrids
                 });
             }
 
-            
-
-
-            return outMods; 
-
-
+            return outMods;
         }
 
         static FoodTypeFlags GenerateFoodFlags(FoodTypeFlags animalFlags)
         {
             animalFlags |= FoodTypeFlags.Meal; //make sure all hybrids can eat meals 
-            //var platFlags = FoodTypeFlags.Plant | FoodTypeFlags.Tree; //make sure hybrids can't eat plants or trees, at least for now 
-                        //need to figure out a way to let them graze but not pick up plants 
-            //animalFlags =  animalFlags & ~platFlags;
-            return animalFlags; 
+                                               //var platFlags = FoodTypeFlags.Plant | FoodTypeFlags.Tree; //make sure hybrids can't eat plants or trees, at least for now 
+                                               //need to figure out a way to let them graze but not pick up plants 
+                                               //animalFlags =  animalFlags & ~platFlags;
+            return animalFlags;
         }
 
         private static ThingDef_AlienRace GenerateImplicitRace(ThingDef_AlienRace humanDef, MorphDef morph)
@@ -311,7 +272,7 @@ namespace Pawnmorph.Hybrids
         public static bool IsMorphRace([NotNull]ThingDef raceDef)
         {
             if (raceDef == null) throw new ArgumentNullException(nameof(raceDef));
-            return _raceLookupTable.ContainsKey(raceDef); 
+            return _raceLookupTable.ContainsKey(raceDef);
         }
     }
 }

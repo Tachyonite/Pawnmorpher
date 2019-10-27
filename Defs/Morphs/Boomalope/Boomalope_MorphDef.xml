@@ -1,8 +1,8 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>BoomalopeMorph</defName>
-		<label>boomalopemorph</label>
-    <description>a humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel</description>
+		<label>boomamorph</label>
+		<description>a humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel</description>
 		<race>Boomalope</race>
 		<categories>
 			<li>Production</li>
@@ -12,5 +12,8 @@
 				<skinColorOverride>(207,207,207)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>BoomMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

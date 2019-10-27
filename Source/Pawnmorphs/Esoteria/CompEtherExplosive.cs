@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
 
@@ -22,11 +20,11 @@ namespace EtherGun
             base.CompTick();
             if (wickStarted && wickTicksLeft <= 1)
             {
-                transformArea();
+                TransformArea();
             }
         }
 
-        public void transformArea()
+        public void TransformArea()
         {
             List<Thing> thingList = GenRadial.RadialDistinctThingsAround(parent.PositionHeld, parent.Map, Props.explosiveRadius, true).ToList();
             List<Pawn> pawnsAffected = new List<Pawn>();
@@ -42,7 +40,7 @@ namespace EtherGun
                 }
             }
 
-            TransformPawn.ApplyHediff(pawnsAffected, parent.Map, hediff, chance); //does the list need clearing? 
+            TransformPawn.ApplyHediff(pawnsAffected, parent.Map, hediff, chance); // Does the list need clearing?
         }
     }
 }

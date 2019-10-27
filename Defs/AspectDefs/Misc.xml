@@ -1,0 +1,29 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
+    <Pawnmorph.AspectDef>
+        <defName>EtherState</defName>
+        <priority>0</priority>
+        <labelColor>(121,55,145)</labelColor>
+        <stages>
+            <li>
+                <label>Etherbroken</label>
+				<description>Constant production has caused {PAWN_nameDef} to become numb and submit to their fate.</description>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.30</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <label>Etherbonded</label>
+				<description>Constant production has caused {PAWN_nameDef} to accept change, and for some reason will now enjoy producing.</description>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+</Defs>

@@ -89,7 +89,7 @@ namespace Pawnmorph.TfSys
             }
 
             meld.SetFaction(Faction.OfPlayer);
-
+            //TODO handle faction reactions 
             HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF);
 
             Hediff hediff = HediffMaker.MakeHediff(hediffToAdd, meld);
@@ -159,8 +159,9 @@ namespace Pawnmorph.TfSys
             var firstO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[0], meld.PositionHeld, meld.MapHeld);
             var secondO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[1], meld.PositionHeld, meld.MapHeld);
 
-            Hediff firstThought = AddRandomThought(firstO, formerHumanHediff.Severity);
-            AddRandomThought(secondO, formerHumanHediff.Severity);
+            var thoughtDef = AddRandomThought(firstO, formerHumanHediff.CurStageIndex);
+
+            AddRandomThought(secondO, formerHumanHediff.CurStageIndex); 
 
             for (var i = 0; i < 10; i++)
             {
@@ -171,7 +172,7 @@ namespace Pawnmorph.TfSys
 
             PawnRelationDef addDef;
 
-            bool relationIsMergeMate = firstThought.def == def.reversionThoughts[0];
+            bool relationIsMergeMate = thoughtDef == def.revertedThoughtGood;
             addDef = relationIsMergeMate ? mergMateDef : mergeMateEx; //first element is "WasMerged"
 
             firstO.relations.AddDirectRelation(addDef, secondO);
@@ -189,15 +190,23 @@ namespace Pawnmorph.TfSys
             return true;
         }
 
-        private Hediff AddRandomThought(Pawn p, float formerHumanSeverity)
+        private ThoughtDef AddRandomThought(Pawn p, int stageNum)
         {
-            HediffDef thougth = def.reversionThoughts.RandElement();
-            Hediff hediff = HediffMaker.MakeHediff(thougth, p);
+            var traits = p.story.traits;
+            ThoughtDef thoughtDef; 
+            if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
+            {
+                thoughtDef= def.revertedThoughtGood;
+            }else if (traits.HasTrait(TraitDefOf.BodyPurist))
+            {
+                thoughtDef= def.revertedThoughtBad; 
+            }else
+                thoughtDef = Rand.Value < 0.5 ? def.revertedThoughtGood : def.revertedThoughtBad;
 
-            hediff.Severity = formerHumanSeverity;
-            p.health.AddHediff(hediff);
-
-            return hediff;
+            var memories = p.needs.mood.thoughts.memories;
+            var thought = ThoughtMaker.MakeThought(thoughtDef, stageNum);
+            memories.TryGainMemory(thought);
+            return thoughtDef; 
         }
 
         /// <summary>
@@ -236,7 +245,7 @@ namespace Pawnmorph.TfSys
             if (transformedPawn.health.hediffSet.HasHediff(formerDef))
             {
                 Hediff formerHediff = transformedPawn.health.hediffSet.hediffs.First(h => h.def == formerDef);
-                HediffDef rThought = def.reversionThoughts.RandElement();
+                ThoughtDef thoughtDef = null; 
 
                 for (var i = 0; i < 2; i++)
                 {
@@ -254,13 +263,11 @@ namespace Pawnmorph.TfSys
                         IntermittentMagicSprayer.ThrowMagicPuffUp(spawnedPawn.Position.ToVector3(), spawnedPawn.MapHeld);
                     }
 
-                    Hediff h = HediffMaker.MakeHediff(rThought, spawnedPawn);
-                    h.Severity = formerHediff.Severity;
-                    spawnedPawn.health.AddHediff(h);
+                    thoughtDef = AddRandomThought(spawnedPawn, formerHediff.CurStageIndex); 
                     _scratchArray[i] = spawnedPawn;
                 }
                 PawnRelationDef relationDef;
-                bool relationIsMergeMate = rThought == def.reversionThoughts[0];
+                bool relationIsMergeMate = thoughtDef == def.revertedThoughtGood;
                 relationDef = relationIsMergeMate ? TfRelationDefOf.MergeMate : TfRelationDefOf.ExMerged;
                 _scratchArray[0].relations.AddDirectRelation(relationDef, _scratchArray[1]);
 

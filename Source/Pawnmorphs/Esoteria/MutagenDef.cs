@@ -9,24 +9,21 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// def for a mutagen strain
+    /// <summary> Def for a mutagen strain. <br />
+    /// A mutagen is a collection of transformation related hediff's ingestionOutcomeDoers that all share a common IFF system.
     /// </summary>
-    /// A mutagen is a collection of transformation related hediff's ingestionOutcomeDoers, ect. that all share
-    /// a common IFF system 
     /// <seealso cref="Verse.Def" />
     public class MutagenDef : Def
     {
         public bool canInfectAnimals;
         public bool canInfectMechanoids;
         public Type mutagenType;
-
-        public List<HediffDef> reversionThoughts = new List<HediffDef>();  
+        public ThoughtDef revertedThoughtGood;
+        public ThoughtDef revertedThoughtBad;
+        [Unsaved] private Mutagen _mutagenCached;
 
         public override IEnumerable<string> ConfigErrors()
         {
-
-
             foreach (var configError in base.ConfigErrors())
             {
                 yield return configError; 
@@ -38,21 +35,14 @@ namespace Pawnmorph
                 yield return $"type {mutagenType.Name} is not a subtype of Mutagen"; 
         }
 
-        [Unsaved] private Mutagen _mutagenCached;
-
-        /// <summary>
-        /// Determines whether this instance can transform the specified pawn.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///   <c>true</c> if this instance can transform the specified pawn; otherwise, <c>false</c>.
-        /// </returns>
+        /// <summary> Determines whether this instance can transform the specified pawn. </summary>
+        /// <param name="pawn"> The pawn. </param>
+        /// <returns> <c>true</c> if this instance can transform the specified pawn; otherwise, <c>false</c>. </returns>
         public bool CanTransform(Pawn pawn)
         {
             return MutagenCached.CanTransform(pawn); 
         }
 
-        
         public Mutagen MutagenCached
         {
             get
@@ -65,11 +55,9 @@ namespace Pawnmorph
 
                 _mutagenCached = (Mutagen) Activator.CreateInstance(mutagenType);
                 _mutagenCached.def = this;
-                return _mutagenCached; 
-
+                return _mutagenCached;
             }
         }
-
 
         public bool CanInfect(Pawn pawn)
         {

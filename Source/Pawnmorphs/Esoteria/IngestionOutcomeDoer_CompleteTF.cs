@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Multiplayer.API;
+﻿using Multiplayer.API;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
-using UnityEngine;
 using RimWorld;
 using Verse;
 
@@ -34,14 +29,12 @@ namespace Pawnmorph
 
                                 pawn.health.RemoveHediff(morph);
 
-
                                 var request = new TransformationRequest(giverTF.pawnkinds.RandElement(), pawn)
                                 {
                                     tale = giverTF.tale
                                 };
 
                                 var inst = mutagen.MutagenCached.Transform(request);
-
                                 if (inst != null)
                                 {
                                     var comp = Find.World.GetComponent<PawnmorphGameComp>();
@@ -53,7 +46,6 @@ namespace Pawnmorph
                                     Rand.PopState();
                                 }
 
-                                //TransformerUtility.Transform(pawn, morph, giverTF.hediff, giverTF.pawnkinds, giverTF.tale); // When you do, use it's infor to transform the pawn.
                                 return;
                             }
                         }
@@ -65,7 +57,6 @@ namespace Pawnmorph
             {
                 Rand.PopState();
             }
-
         }
     }
 }

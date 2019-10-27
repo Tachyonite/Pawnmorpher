@@ -5,7 +5,7 @@
 		<label>eyes become feline</label>
 		<rulePack>
 			<rulesStrings>
-				<li>tale_noun->[PAWN_nameDef]'s eyes become vulpine</li>
+				<li>tale_noun->[PAWN_nameDef]'s eyes become feline</li>
 				<li>image->[PAWN_nameFull] pupils shift to feline slits [circumstance_group]</li>
 				<li>image->[PAWN_nameFull]'s eyes begin to change into ones that look like they belong on a cat [circumstance_group]</li>
 			</rulesStrings>

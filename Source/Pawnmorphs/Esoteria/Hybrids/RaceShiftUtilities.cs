@@ -20,10 +20,10 @@ namespace Pawnmorph.Hybrids
         //public const string RACE_CHANGE_LETTER_LABEL = "LetterRaceChangeToMorphLabel";
         //public const string RACE_CHANGE_LETTER_CONTENT = "LetterRaceChangeToMorphContent";
 
-        public const string RACE_CHANGE_MESSAGE_ID = "RaceChangeMessage"; 
+        public const string RACE_CHANGE_MESSAGE_ID = "RaceChangeMessage";
 
         private const string RACE_REVERT_MESSAGE_ID = "HumanAgainMessage";
-       // private static string RaceRevertLetterLabel => RACE_REVERT_LETTER + "Label";
+        // private static string RaceRevertLetterLabel => RACE_REVERT_LETTER + "Label";
         //private static string RaceRevertLetterContent => RACE_REVERT_LETTER + "Content";
 
         private static LetterDef RevertToHumanLetterDef => LetterDefOf.PositiveEvent;
@@ -40,7 +40,7 @@ namespace Pawnmorph.Hybrids
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
-            return RaceGenerator.IsMorphRace(pawn.def); 
+            return RaceGenerator.IsMorphRace(pawn.def);
 
         }
 
@@ -51,19 +51,19 @@ namespace Pawnmorph.Hybrids
         /// <param name="pawn"></param>
         /// <param name="race"></param>
         /// <param name="reRollTraits">if race related traits should be reRolled</param>
-        public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits=false)
+        public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits = false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            var oldMorph = pawn.def.GetMorphOfRace();
+            MorphDef oldMorph = pawn.def.GetMorphOfRace();
+            ThingDef oldRace = pawn.def;
 
-            HediffDef oldGroupHediff = oldMorph?.group?.hediff;
-            if (oldGroupHediff != null)
+            AspectTracker aTracker = pawn.GetAspectTracker();
+
+            AspectDef oldMorphAspectDef = oldMorph?.group?.aspectDef;
+            if (oldMorphAspectDef != null && aTracker != null)
             {
-                var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(oldGroupHediff);
-                if (hediff != null)
-                {
-                    pawn.health.RemoveHediff(hediff); 
-                }
+                Aspect aspect = aTracker.GetAspect(oldMorphAspectDef);
+                if (aspect != null) aTracker.Remove(aspect);
             }
 
             //var pos = pawn.Position;
@@ -86,37 +86,33 @@ namespace Pawnmorph.Hybrids
             if (removed && !map.listerThings.Contains(pawn))
                 map.listerThings.Add(pawn);
 
-
             if (map != null)
                 RegionListersUpdater.RegisterInRegions(pawn, map);
 
             map?.mapPawns.UpdateRegistryForPawn(pawn);
 
             //add the group hediff if applicable 
-            var hediffDef = race.GetMorphOfRace()?.@group?.hediff;
-            if (hediffDef != null)
-            {
-                pawn.health.AddHediff(hediffDef);
-            }
+            AspectDef aspectDef = race.GetMorphOfRace()?.group?.aspectDef;
+            if (aspectDef != null) aTracker?.Add(aspectDef);
 
             if (map != null)
             {
                 var comp = map.GetComponent<MorphTracker>();
-                comp.NotifyPawnRaceChanged(pawn, oldMorph); 
+                comp.NotifyPawnRaceChanged(pawn, oldMorph);
             }
 
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
-
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
-
-
-
 
             //save location 
             pawn.ExposeData();
             if (pawn.Faction != faction) pawn.SetFaction(faction);
+            foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
+            {
+                raceChangeEventReceiver.OnRaceChange(oldRace);
+            }
         }
 
         /// <summary>
@@ -132,7 +128,7 @@ namespace Pawnmorph.Hybrids
                             .Where(c => c != null);
             foreach (Comp_MorphTrigger trigger in comps)
             {
-                trigger.TryTrigger(def); 
+                trigger.TryTrigger(def);
             }
         }
 
@@ -141,58 +137,49 @@ namespace Pawnmorph.Hybrids
             var traitSet = pawn.story?.traits;
             if (traitSet == null) return;
             var allAlienTraits = newRace.alienRace.generalSettings?.forcedRaceTraitEntries;
-            if (allAlienTraits == null || allAlienTraits.Count == 0) return; 
-           //removing traits not supported right now, Rimworld doesn't like it when you remove traits 
+            if (allAlienTraits == null || allAlienTraits.Count == 0) return;
+            //removing traits not supported right now, Rimworld doesn't like it when you remove traits 
 
 
-           var traitsToAdd = allAlienTraits;
-           foreach (AlienTraitEntry alienTraitEntry in traitsToAdd)
-           {
-               var def = TraitDef.Named(alienTraitEntry.defName);
+            var traitsToAdd = allAlienTraits;
+            foreach (AlienTraitEntry alienTraitEntry in traitsToAdd)
+            {
+                var def = TraitDef.Named(alienTraitEntry.defName);
                 if (traitSet.HasTrait(def)) continue; //don't add traits that are already added 
 
-               var add = (Rand.RangeInclusive(0, 100) <= alienTraitEntry.chance);
+                var add = (Rand.RangeInclusive(0, 100) <= alienTraitEntry.chance);
 
-               if (add && pawn.gender == Gender.Male && alienTraitEntry.commonalityMale > 0)
-               {
-                   add = Rand.RangeInclusive(0, 100) <= alienTraitEntry.commonalityMale; 
-               }else if ( add && pawn.gender == Gender.Female && alienTraitEntry.commonalityFemale > 0) //only check gender chance if the add roll has passed 
-               {                                                                                        //this is consistent with how the alien race framework handles it  
-                   add =  Rand.RangeInclusive(0, 100) <= alienTraitEntry.commonalityMale; 
-               }
-
-
-               if (add)
-               {
-                   var degree = def.degreeDatas[alienTraitEntry.degree]; 
-                   
-                   traitSet.GainTrait(new Trait(def, alienTraitEntry.degree, true));
-                   if(degree.skillGains != null)
-                       UpdateSkillsPostAdd(pawn, degree.skillGains); //need to update the skills manually 
+                if (add && pawn.gender == Gender.Male && alienTraitEntry.commonalityMale > 0)
+                {
+                    add = Rand.RangeInclusive(0, 100) <= alienTraitEntry.commonalityMale;
+                }
+                else if (add && pawn.gender == Gender.Female && alienTraitEntry.commonalityFemale > 0) //only check gender chance if the add roll has passed 
+                {                                                                                        //this is consistent with how the alien race framework handles it  
+                    add = Rand.RangeInclusive(0, 100) <= alienTraitEntry.commonalityMale;
+                }
 
 
-               }
-               
+                if (add)
+                {
+                    var degree = def.degreeDatas[alienTraitEntry.degree];
 
-           }
-
-          
-
-
+                    traitSet.GainTrait(new Trait(def, alienTraitEntry.degree, true));
+                    if (degree.skillGains != null)
+                        UpdateSkillsPostAdd(pawn, degree.skillGains); //need to update the skills manually
+                }
+            }
         }
 
         static void UpdateSkillsPostAdd(Pawn pawn, Dictionary<SkillDef, int> skillDict)
         {
-
             var skills = pawn.skills;
             if (skills == null) return;
 
             foreach (KeyValuePair<SkillDef, int> keyValuePair in skillDict)
             {
-                var skRecord= skills.GetSkill(keyValuePair.Key);
-                skRecord.Level += keyValuePair.Value; 
+                var skRecord = skills.GetSkill(keyValuePair.Key);
+                skRecord.Level += keyValuePair.Value;
             }
-
         }
 
         /// <summary>
@@ -212,16 +199,13 @@ namespace Pawnmorph.Hybrids
                 return;
             }
 
-            
-
             //apply mutations 
             foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AssociatedMutations)
             {
                 morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen);
             }
 
-
-            ThingDef_AlienRace hRace = morph.hybridRaceDef;
+            var hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
             HandleGraphicsChanges(pawn, morph);
             ChangePawnRace(pawn, hRace, true);
@@ -229,10 +213,9 @@ namespace Pawnmorph.Hybrids
             if (pawn.IsColonist)
             {
                 PortraitsCache.SetDirty(pawn);
-
             }
 
-            if(pawn.IsColonist || pawn.IsPrisonerOfColony)
+            if (pawn.IsColonist || pawn.IsPrisonerOfColony)
                 SendHybridTfMessage(pawn, tfSettings);
 
             //now try to trigger any mutations
@@ -240,6 +223,7 @@ namespace Pawnmorph.Hybrids
                 TryTriggerMutations(pawn, morph);
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
+            pawn.TryGainMemory(tfSettings.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
         }
 
         private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)
@@ -260,13 +244,13 @@ namespace Pawnmorph.Hybrids
             Messages.Message(label, pawn, messageDef);
         }
 
-        private static void HandleGraphicsChanges(Pawn pawn,MorphDef morph)
+        private static void HandleGraphicsChanges(Pawn pawn, MorphDef morph)
         {
             var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
             comp.skinColor = morph.GetSkinColorOverride() ?? comp.skinColor;
             comp.skinColorSecond = morph.GetSkinColorSecondOverride() ?? comp.skinColorSecond;
             comp.hairColorSecond = morph.GetHairColorOverrideSecond() ?? comp.hairColorSecond;
-            pawn.story.hairColor = morph.GetHairColorOverride() ?? pawn.story.hairColor; 
+            pawn.story.hairColor = morph.GetHairColorOverride() ?? pawn.story.hairColor;
         }
 
         /// <summary>
@@ -280,14 +264,18 @@ namespace Pawnmorph.Hybrids
             var human = ThingDefOf.Human;
             if (race == human) return; //do nothing 
 
-            var isHybrid = pawn.IsHybridRace();
+
+            var oldMorph = pawn.def.GetMorphOfRace();
+            bool isHybrid = oldMorph != null;
+
+
             DebugLogUtils.Assert(isHybrid, "pawn.IsHybridRace()");
             if (!isHybrid) return;
 
-            var storedGraphics = pawn.GetComp<GraphicSys.InitialGraphicsComp>(); 
+            var storedGraphics = pawn.GetComp<GraphicSys.InitialGraphicsComp>();
             storedGraphics.RestoreGraphics();
 
-            ChangePawnRace(pawn, human); 
+            ChangePawnRace(pawn, human);
 
             //TODO traits or something? 
 
@@ -300,11 +288,13 @@ namespace Pawnmorph.Hybrids
 
             //Find.LetterStack.ReceiveLetter(letterLabel, letterContent, RevertToHumanLetterDef, pawn); 
 
+            MutationOutlook mutationOutlook = pawn.GetOutlook();
+            var defaultReversionThought = PMThoughtDefOf.GetDefaultMorphRevertThought(mutationOutlook); //get the correct memory to add to the pawn 
+            var morphRThought = oldMorph.transformSettings?.GetReversionMemory(mutationOutlook);
+
+            pawn.TryGainMemory(morphRThought ?? defaultReversionThought);
             var messageStr = RACE_REVERT_MESSAGE_ID.Translate(pawn.LabelShort).CapitalizeFirst();
-            Messages.Message(messageStr, pawn, MessageTypeDefOf.NeutralEvent); 
-
-
+            Messages.Message(messageStr, pawn, MessageTypeDefOf.NeutralEvent);
         }
-
     }
 }

@@ -1,5 +1,5 @@
-﻿<Defs>
-	<Pawnmorph.MorphDef Abstract="True" Name="SensitiveFoodMorph"> <!-- abstract def for all morphs that have bad thoughts when they eat meat of the same animal -->
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" Name="SensitiveFoodMorph"> <!-- abstract def for all morphs that have bad thoughts when they eat meat of the same animal -->
 		<raceSettings>
 			<thoughtSettings>
 				<ateAnimalThought>
@@ -10,11 +10,17 @@
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 
-  <Pawnmorph.MorphDef Abstract="True" Name="CanineMorph" ParentName="SensitiveFoodMorph">
-    <group>Canines</group>
+  <Pawnmorph.MorphDef Abstract="true" Name="CanineMorph" ParentName="SensitiveFoodMorph">
+	<group>Canines</group>
+	<addedAspects>
+		<li>
+			<def>NaturalHunter</def>
+			<keepOnReversion>false</keepOnReversion> <!-- if true the pawn will keep the affinity even if they stop being this morph -->
+		</li>
+	</addedAspects>
   </Pawnmorph.MorphDef>
 
-  <Pawnmorph.MorphDef Abstract="True" Name="HerdMorph" ParentName="SensitiveFoodMorph">
+  <Pawnmorph.MorphDef Abstract="true" Name="HerdMorph" ParentName="SensitiveFoodMorph">
     <group>HerbivoreHerding</group>
   </Pawnmorph.MorphDef>
 </Defs>

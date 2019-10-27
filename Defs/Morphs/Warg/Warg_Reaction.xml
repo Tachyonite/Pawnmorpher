@@ -1,8 +1,7 @@
-<Defs>
-	<ThoughtDef>
-		<defName>EtherReactionWargTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphWargTF</hediff>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+	
+	<ThoughtDef ParentName="PMMorphMemoryNone">
+		<defName>WargMorphTfReaction</defName>
 		<stages>
 			<li>
 				<label>changed</label>

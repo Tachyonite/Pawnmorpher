@@ -3,6 +3,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -11,13 +12,9 @@ namespace Pawnmorph
     {
         public string mutationDescription;
 
-
-        /// <summary>
-        /// the influence this mutation exerts on a pawn  
-        /// </summary>
+        /// <summary> The influence this mutation exerts on a pawn. </summary>
         [CanBeNull]
         public Comp_MorphInfluence Influence => (comps?.OfType<Comp_MorphInfluence>().FirstOrDefault());
-
 
         public override bool ShouldRemove
         {
@@ -41,6 +38,17 @@ namespace Pawnmorph
             }
         }
 
+        public override string TipStringExtra
+        {
+            get
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(base.TipStringExtra);
+                stringBuilder.AppendLine("Efficiency".Translate() + ": " + def.addedPartProps.partEfficiency.ToStringPercent());
+                return stringBuilder.ToString();
+            }
+        }
+
         public virtual void CreateDescription(StringBuilder builder)
         {
             if (def.description == null)
@@ -52,17 +60,6 @@ namespace Pawnmorph
 
             string res = def.description.AdjustedFor(pawn);
             builder.AppendLine(res);
-        }
-
-        public override string TipStringExtra
-        {
-            get
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append(base.TipStringExtra);
-                stringBuilder.AppendLine("Efficiency".Translate() + ": " + def.addedPartProps.partEfficiency.ToStringPercent());
-                return stringBuilder.ToString();
-            }
         }
 
         public override void PostAdd(DamageInfo? dinfo)
@@ -77,27 +74,13 @@ namespace Pawnmorph
                 PortraitsCache.SetDirty(pawn);
             }
 
-
-            for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++) // Loop through the hediffs on the pawn.
-            {
-                Hediff_AddedMutation hediff = pawn.health.hediffSet.hediffs[i] as Hediff_AddedMutation;
-                if (hediff != null && hediff != this && hediff.Part == Part)
-                // If one of the hediffs shares a part with this hediff and is a Hediff_AddedMutation...
-                {
-                    pawn.health.hediffSet.hediffs.Remove(pawn.health.hediffSet.hediffs[i]); // ...remove it.
-                }
-            }
-
             pawn.GetMutationTracker()?.NotifyMutationAdded(this); 
-
         }
 
         public override void PostRemoved()
         {
             base.PostRemoved();
-
-            pawn.GetMutationTracker()?.NotifyMutationRemoved(this); 
-
+            pawn.GetMutationTracker()?.NotifyMutationRemoved(this);
         }
 
         public override void ExposeData()
@@ -105,7 +88,7 @@ namespace Pawnmorph
             base.ExposeData();
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
-                Log.Error("Hediff_AddedPart has null part after loading.", false);
+                Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.", false);
                 pawn.health.hediffSet.hediffs.Remove(this);
                 return;
             }

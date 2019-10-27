@@ -1,8 +1,8 @@
-﻿<Defs>
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="CanineMorph">
 		<defName>HuskyMorph</defName>
 		<label>huskymorph</label>
-		<description>a large humanoid canine resembling a husky. These former humans now share many mental traits with their animal counterparts like pack-mindedness and keen hunting instincts</description>
+		<description>a large humanoid canine resembling a husky. These former humans now share many mental traits with their animal counterparts, such as pack-mindedness and keen hunting instincts.</description>
 		<race>Husky</race>
 		<categories>
 			<li>Canid</li>
@@ -21,5 +21,8 @@
 				</forcedTraits>
 			</traitSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>HuskyMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

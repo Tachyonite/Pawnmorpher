@@ -1,8 +1,10 @@
-<Defs>
-	<ThoughtDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef Abstract="true"  Name="RevertedThoughtBase">
+		<durationDays>4</durationDays> 
+	</ThoughtDef>	
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
 		<defName>WasAnimal</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>WasAnimal</hediff>
 		<stages>
 			<li>
 				<label>permanently feral</label>
@@ -27,10 +29,8 @@
 		</stages>
 	</ThoughtDef>
 	
-	<ThoughtDef>
+	<ThoughtDef ParentName="RevertedThoughtBase">
 		<defName>WasAnimalRelieved</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>WasAnimalRelieved</hediff>
 		<stages>
 			<li>
 				<label>permanently feral</label>

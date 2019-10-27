@@ -1,8 +1,7 @@
-<Defs>
-	<ThoughtDef>
-		<defName>EtherReactionFoxTF</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphFoxTF</hediff>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="PMMorphMemoryNone">
+		<defName>FoxMorphTfReaction</defName>
 		<stages>
 			<li>
 				<label>changed</label>
@@ -17,22 +16,21 @@
 		</stages>
 	</ThoughtDef>
 
-  <ThoughtDef>
-    <defName>FoxMuzzleReaction</defName>
-    <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>EtherFoxMuzzle</hediff>
-    <stages>
-      <li>
-        <label>fox muzzle (new)</label>
-        <description>Yap?! yap yap!</description>
-        <baseMoodEffect>-1</baseMoodEffect>
-      </li>
-      <li>
-        <label>fox muzzle (adapted)</label>
-        <description>i can talk again</description> <!-- needs better description -->
-        <baseMoodEffect>0</baseMoodEffect>
-        <visible>true</visible>
-      </li>
-    </stages>
-  </ThoughtDef>
+	<ThoughtDef ParentName="MorphReactionThoughtBaseNone">
+		<defName>FoxMuzzleReaction</defName>
+		<hediff>EtherFoxMuzzle</hediff>
+		<stages>
+			<li>
+				<label>unfamiliar mouth</label>
+				<description>Yap?! yap yap! (What?! How am I supposed to talk with a mouth like this!)</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>familiar muzzle</label>
+				<description>My new muzzle is suprisingly adaptable.</description> <!-- needs better description -->
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 </Defs>

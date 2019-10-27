@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Pawnmorph.Hybrids;
+﻿using System.Collections.Generic;
 using Pawnmorph.TfSys;
-using Pawnmorph.Thoughts;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Utilities;
-using UnityEngine;
 using RimWorld;
 using Verse;
 
@@ -18,7 +13,7 @@ namespace Pawnmorph
         public List<HediffDef> defsToRevert;
         public List<HediffDef> revertThoughts;
         public List<HediffDef> mergeRevertThoughts;
-        public List<MutagenDef> blackList = new List<MutagenDef>(); 
+        public List<MutagenDef> blackList = new List<MutagenDef>();
         public string transformedHuman = "TransformedHuman";
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
@@ -29,7 +24,7 @@ namespace Pawnmorph
             foreach (MutagenDef mutagenDef in DefDatabase<MutagenDef>.AllDefs)
             {
                 if (blackList.Contains(mutagenDef))
-                    return; //make it so this reverted can not revert certain kinds of transformations 
+                    return; // Make it so this reverted can not revert certain kinds of transformations.
 
                 if (mutagenDef.MutagenCached.TryRevert(pawn))
                 {
@@ -40,9 +35,18 @@ namespace Pawnmorph
                 }
             }
 
-            TransformerUtility.RemoveAllMutations(pawn); 
-
+            TransformerUtility.RemoveAllMutations(pawn);
+            MorphGraphicsUtils.RefreshGraphics(pawn);
+            var aT = pawn.GetAspectTracker();
+            if (aT != null) RemoveAspects(aT);
         }
-        
+
+        private void RemoveAspects(AspectTracker tracker)
+        {
+            foreach (Aspect aspect in tracker)
+            {
+                if (aspect.def.removedByReverter) tracker.Remove(aspect); // It's ok to remove them in a foreach loop.
+            }
+        }
     }
 }

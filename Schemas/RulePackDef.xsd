@@ -1,0 +1,40 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RulePackDef" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="defName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="rulePack" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="rulesStrings" minOccurs="1" maxOccurs="1">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="li" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="ParentName" type="AbstractRulePacks" use="optional"/>
+                        <xs:attribute name="Abstract" type="xs:boolean" use="optional"/>
+                        <xs:attribute name="Name" type="xs:string" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="AbstractRulePacks">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CustomMutationRulePackBase"/>
+            <xs:enumeration value="SimpleMutationRulePackBase"/>
+            <xs:enumeration value="CoveringMutationLogPackBase"/>
+            <xs:enumeration value="AddedPartLogBase" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

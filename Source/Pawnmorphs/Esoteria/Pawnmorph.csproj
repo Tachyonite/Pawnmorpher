@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,6 +60,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddMorphsToPawn.cs" />
+    <Compile Include="Aspect.cs" />
+    <Compile Include="AspectCapacityImpactor.cs" />
+    <Compile Include="AspectDef.cs" />
+    <Compile Include="AspectDefOf.cs" />
+    <Compile Include="AspectStage.cs" />
+    <Compile Include="AspectTracker.cs" />
+    <Compile Include="AspectUtils.cs" />
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
@@ -65,18 +75,33 @@
     <Compile Include="Chambers\DatabaseUtilities.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="CompEtherExplosive.cs" />
+    <Compile Include="CompMutagenicRadius.cs" />
     <Compile Include="CompProperties_EtherExplosive.cs" />
+    <Compile Include="CompProps_MutagenicFixWorstCondition.cs" />
+    <Compile Include="Comp_MutagenicFixWorstCondition.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
-    <Compile Include="EtherBullet.cs" />
+    <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
+    <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />
+    <Compile Include="Jobs\Driver_ShaveSelf.cs" />
+    <Compile Include="Jobs\Giver_DrainChemcyst.cs" />
+    <Compile Include="Jobs\Driver_MilkSelf.cs" />
+    <Compile Include="Jobs\Driver_ProduceThing.cs" />
+    <Compile Include="Jobs\Giver_MegaShaveSelf.cs" />
+    <Compile Include="Jobs\Giver_MilkSelf.cs" />
+    <Compile Include="Jobs\Giver_ShaveSelf.cs" />
+    <Compile Include="ProductionBoost.cs" />
+    <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
-    <Compile Include="FloatMenuMakerMapPatches.cs" />
+    <Compile Include="FactionUtilities.cs" />
+    <Compile Include="HPatches\FloatMenuMakerMapPatches.cs" />
     <Compile Include="GameCondition_MutagenicFallout.cs" />
     <Compile Include="Graphics\GraphicsUpdaterComp.cs" />
     <Compile Include="Graphics\InitialGraphics.cs" />
     <Compile Include="Graphics\MorphGraphicsUtils.cs" />
+    <Compile Include="HediffGiver_Esoteric_AccelleratedOverrideList.cs" />
     <Compile Include="HediffGiver_Mutation.cs" />
     <Compile Include="Hediffs\CompProperties_DependentPart.cs" />
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
@@ -91,8 +116,12 @@
     <Compile Include="Hediffs\MutagenicBuildup.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
     <Compile Include="Hediffs\MorphTransformationDefOf.cs" />
+    <Compile Include="Hediffs\RemoveFromPartComp.cs" />
+    <Compile Include="Hediffs\SpreadingMutationComp.cs" />
     <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
+    <Compile Include="HPatches\PawnCapacityUtilsPatch.cs" />
+    <Compile Include="HPatches\StatWorkerPatches.cs" />
     <Compile Include="Hybrids\HThoughtDefOf.cs" />
     <Compile Include="Hybrids\HTraitDefOf.cs" />
     <Compile Include="Hybrids\HybridRaceSettings.cs" />
@@ -100,10 +129,21 @@
     <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
     <Compile Include="Hediffs\IPostTfHediffComp.cs" />
+    <Compile Include="IngestionOutcomeDoer_GiveHediffAll.cs" />
+    <Compile Include="IngestionOutcomeDoer_GiveHediffIfNonePresent.cs" />
     <Compile Include="IngestionOutcomeDoer_MultipleTfBase.cs" />
     <Compile Include="Chambers\JobDriver_CarryToMutagenChamber.cs" />
     <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="IngestionOutcomeDoer_BoostSeverity.cs" />
+    <Compile Include="IngestionOutcomeDoer_AddAspect.cs" />
+    <Compile Include="InteractionWorker_Bark.cs" />
+    <Compile Include="InteractionWorker_Bok.cs" />
+    <Compile Include="InteractionWorker_Meow.cs" />
+    <Compile Include="InteractionWorker_Yip.cs" />
+    <Compile Include="IRaceChangeEventReceiver.cs" />
+    <Compile Include="ITab_Pawn_Mutations.cs" />
+    <Compile Include="Jobs\Driver_LayEgg.cs" />
+    <Compile Include="Jobs\Giver_LayEgg.cs" />
     <Compile Include="MorphCategoryDef.cs" />
     <Compile Include="MorphCategoryDefOf.cs" />
     <Compile Include="MorphDef.cs" />
@@ -113,6 +153,7 @@
     <Compile Include="MorphPawnKindExtension.cs" />
     <Compile Include="MorphTracker.cs" />
     <Compile Include="MorphTrackingComp.cs" />
+    <Compile Include="MorphTrackingCompProperties.cs" />
     <Compile Include="MorphTransformationTypes.cs" />
     <Compile Include="MorphUtilities.cs" />
     <Compile Include="Hybrids\RaceGenerator.cs" />
@@ -122,15 +163,29 @@
     <Compile Include="MutagenUtilities.cs" />
     <Compile Include="Mutagen_JobDefOf.cs" />
     <Compile Include="MutationCategoryDef.cs" />
+    <Compile Include="MutationLogEntry.cs" />
+    <Compile Include="MutationsDefOf.cs" />
     <Compile Include="MutationHediffExtension.cs" />
+    <Compile Include="MutationOutlook.cs" />
     <Compile Include="MutationTracker.cs" />
     <Compile Include="MutationUtilities.cs" />
+    <Compile Include="PawnmorpherMod.cs" />
+    <Compile Include="PawnmorpherModInit.cs" />
+    <Compile Include="PawnMorphInstanceMerged.cs" />
+    <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="PawnmorphPatches.cs" />
+    <Compile Include="PawnRelationWorker_ExMerged.cs" />
+    <Compile Include="PawnRelationWorker_MergeMate.cs" />
     <Compile Include="PMIncidentDefOf.cs" />
+    <Compile Include="PMJobDefOf.cs" />
+    <Compile Include="PMRulePackDefOf.cs" />
     <Compile Include="PMThingDefOf.cs" />
+    <Compile Include="PMThoughtDefOf.cs" />
+    <Compile Include="PMTraitDefOf.cs" />
     <Compile Include="PMUtilities.cs" />
     <Compile Include="Projectile_EtherBullet.cs" />
     <Compile Include="Projectile_EtherExplosive.cs" />
+    <Compile Include="Projectile_TaggingBullet.cs" />
     <Compile Include="RaceMutagenExtension.cs" />
     <Compile Include="Social\InteractionWorkers.cs" />
     <Compile Include="Social\PMInteractionWorkerBase.cs" />
@@ -162,24 +217,22 @@
     <Compile Include="HediffComp_Remove.cs" />
     <Compile Include="HediffComp_Single.cs" />
     <Compile Include="HediffComp_TerrainBasedMorph.cs" />
-    <Compile Include="InteractionWorkers.cs" />
+    <Compile Include="InteractionWorker_Moo.cs" />
     <Compile Include="Chambers\MutagenChamber.cs" />
     <Compile Include="Chambers\MutagenModulator.cs" />
-    <Compile Include="ProductionComps.cs" />
-    <Compile Include="IncidentWorker_MutationShipPartCrash.cs" />
+    <Compile Include="CompProperties_MutagenicRadius.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />
     <Compile Include="PawnmorphHediffGiverUtility.cs" />
     <Compile Include="Hediff_AddedMutation.cs" />
     <Compile Include="IntermittentMagicSprayer.cs" />
-    <Compile Include="ModSettings.cs" />
+    <Compile Include="PawnmorpherSettings.cs" />
     <Compile Include="MorphTrader.cs" />
     <Compile Include="MutagenicStone.cs" />
-    <Compile Include="PatchHealthCardWarps.cs" />
-    <Compile Include="PawnMorph.cs" />
+    <Compile Include="HPatches\PatchHealthCardWarps.cs" />
+    <Compile Include="PawnMorphInstance.cs" />
     <Compile Include="PawnmorphGameComp.cs" />
     <Compile Include="HediffComp_Staged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Relationships.cs" />
     <Compile Include="TfHediffDefOf.cs" />
     <Compile Include="TfRelationDefOf.cs" />
     <Compile Include="TfSys\MergeMutagen.cs" />
@@ -188,12 +241,22 @@
     <Compile Include="TfSys\TransformationRequest.cs" />
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
+    <Compile Include="ThingDef_TaggingBullet.cs" />
+    <Compile Include="Thoughts\Def_AspectThought.cs" />
+    <Compile Include="Thoughts\Def_MorphThought.cs" />
+    <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
     <Compile Include="Thoughts\ThoughtDefOfs.cs" />
     <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
-    <Compile Include="ThoughtWorker_AddedEsoteric.cs" />
+    <Compile Include="Thoughts\Worker_BodyPuristDisgust.cs" />
+    <Compile Include="Thoughts\Worker_FurryAppreciation.cs" />
+    <Compile Include="Thoughts\Worker_HasAspect.cs" />
+    <Compile Include="Thoughts\Worker_HasMutations.cs" />
+    <Compile Include="Thoughts\MorphMemory.cs" />
+    <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
     <Compile Include="Utilities\Filter.cs" />
@@ -201,11 +264,14 @@
     <Compile Include="Utilities\HediffDefUtilities.cs" />
     <Compile Include="Utilities\LinqUtils.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
+    <Compile Include="Utilities\SkillMod.cs" />
     <Compile Include="Utilities\Tuple.cs" />
     <Compile Include="Utilities\VTuple.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Aspects\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

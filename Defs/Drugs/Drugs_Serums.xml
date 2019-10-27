@@ -60,6 +60,7 @@
 						<li>PawnmorphDeerTF</li>
 						<li>PawnmorphFoxTF</li>
 						<li>PawnmorphHuskyTF</li>
+						<!--li>PawnmorphSnakeTF</li-->
 						<li>PawnmorphWargTF</li>
 						<li>PawnmorphWolfTF</li>
 					</hediffDefs>
@@ -102,6 +103,7 @@
 						<li>PawnmorphBoomalopeTF</li>
 						<li>PawnmorphChickenTF</li>
 						<li>PawnmorphCowTF</li>
+						<!--li>PawnmorphIguanaTF</li-->
 						<li>PawnmorphPigTF</li>
 						<li>PawnmorphRatTF</li>
 					</hediffDefs>
@@ -163,5 +165,36 @@
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="MechSerumBase">
+		<defName>MechSerumMutagenicHealer</defName>
+		<label>mutagenic healer mech serum</label>
+		<description>A lesser version of the healer mech serum made from reprogrammed mutagenic mechanites. The mechanites will target and heal the single worst health condition affecting someone at any given time. Works even on health conditions that would otherwise be incurable, including reconstructing lost tissue and limbs. Because some of the mechanites have leftover mutagenic programming, there is a high risk that the restored body part will end up mutated, regardless of any anti-mutagenic agent in the user's body.</description>
+		<graphicData>
+			<texPath>Things/Item/Special/MechSerumHealer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<MarketValue>1300</MarketValue>
+		</statBases>
+		<tradeability>Sellable</tradeability>
+		<comps>
+			<li Class="CompProperties_Usable">
+				<useJob>UseItem</useJob>
+				<useLabel>Use mutagenic healer mech serum</useLabel>
+				<useDuration>600</useDuration>
+			</li>
+			<li Class="CompProperties_UseEffect">
+				<compClass>Pawnmorph.Comp_MutagenicFixWorstCondition</compClass>
+			</li>
+			<li Class="CompProperties_UseEffect">
+				<compClass>CompUseEffect_DestroySelf</compClass>
+			</li>
+		</comps>
+		<thingSetMakerTags>
+			<li>RewardSpecial</li>
+		</thingSetMakerTags>
 	</ThingDef>
 </Defs>

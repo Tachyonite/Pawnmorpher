@@ -1,8 +1,8 @@
-﻿<Defs>
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>ElephantMorph</defName>
 		<label>elephantmorph</label>
-    <description>A large human that has been exposed to large amounts of elephant specific mutagens. They usually have much in common with their feral counterparts like thick hide and large tusks, making them very dangerous in combat</description>
+		<description>A large human that has been exposed to large amounts of elephant specific mutagens. They usually have much in common with their feral counterparts like thick hide and large tusks, making them very dangerous in combat.</description>
 		<race>Elephant</race>
 		<categories>
 			<li>Powerful</li>
@@ -12,5 +12,8 @@
 				<skinColorOverride>(208,208,208)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>ElephantMorphTfReaction</transformationMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

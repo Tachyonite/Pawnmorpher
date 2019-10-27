@@ -3,6 +3,7 @@
 
 using System.Text;
 using AlienRace;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -133,6 +134,15 @@ namespace Pawnmorph.GraphicSys
             Scribe_Values.Look(ref _crownType, "crownType");
             Scribe_Values.Look(ref _hairColor, nameof(HairColor));
             Scribe_Values.Look(ref _scanned, nameof(_scanned));
+
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (_skinColor == Color.clear)
+                {
+                    _skinColor = PawnSkinColors.GetSkinColor(Pawn.story.melanin); 
+                }
+            }
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)

@@ -1,5 +1,4 @@
-﻿using Multiplayer.API;
-using Pawnmorph.Utilities;
+﻿using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
@@ -10,7 +9,7 @@ namespace Pawnmorph
         {
             get
             {
-                return (HediffCompProperties_AddSeverity)this.props;
+                return (HediffCompProperties_AddSeverity)props;
             }
         }
 
@@ -21,11 +20,7 @@ namespace Pawnmorph
 
         public void AddSeverity()
         {
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
+            RandUtilities.PushState();
 
             if (Rand.MTBEventOccurs(Props.mtbDays, 60000f, 60f) && !triggered && Pawn.health.hediffSet.HasHediff(Props.hediff))
             {
@@ -33,10 +28,7 @@ namespace Pawnmorph
                 triggered = true;
             }
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
+            RandUtilities.PopState();
         }
 
         private bool triggered = false;

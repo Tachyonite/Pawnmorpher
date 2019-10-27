@@ -69,14 +69,49 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef ParentName="ChookPart">
+	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFeatheredLimb</defName>
-		<label>feathered</label>
-		<description>Rows of feathers have sprouted over [PAWN_nameDef]'s arm, keeping in some warmth...and no, it doesn't let them fly.</description>
+		<label>feathers</label>
+		<description>Rows of feathers have sprouted over [PAWN_nameDef]'s arm, keeping in some warmth...but no, it doesn't let them fly.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 		<stages>
 			<li>
+				<label>isolated</label>
+				<minSeverity>0</minSeverity>
 				<statOffsets>
-					<ComfyTemperatureMin>-3</ComfyTemperatureMin>
+					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>bristles</label>
+				<minSeverity>0.2</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>patches</label>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>swathes</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li>
+				<label>covered</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 		</stages>
@@ -155,7 +190,7 @@
 				</tools>
 			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.25</severityPerDay>
+				<severityPerDay>0.20</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>
@@ -167,6 +202,7 @@
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>LaidEgg</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_LayEgg</jobGiver>
 				<genderAversion>Male</genderAversion>
 				<wrongGenderThought>LaidEggMale</wrongGenderThought>
 				<etherBondThought>LaidEggBond</etherBondThought>

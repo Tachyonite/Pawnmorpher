@@ -1,33 +1,30 @@
-﻿using System.Linq;
-using Multiplayer.API;
+﻿using System;
+using System.Linq;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace Pawnmorph
 {
     public class HediffComp_Production : HediffComp
     {
-        private int HatchingTicker = 0;
+        private const float SEVERITY_LERP = 0.1f;
+        private const int PRODUCTION_MULT_UPDATE_PERIOD = 60;
+        private const int TICKS_PER_DAY = 60000;
+
+        public float HatchingTicker = 0;
+
         private float brokenChance = 0f;
         private float bondChance = 0f;
+        private float _severityTarget;
 
-        public HediffCompProperties_Production Props => (HediffCompProperties_Production) props;
+        public HediffCompProperties_Production Props => (HediffCompProperties_Production)props;
 
         public override void CompPostTick(ref float severityAdjustment)
         {
-
-            if (Props.stages != null)
-            {
-                HediffComp_Staged stage = Props.stages.ElementAt(parent.CurStageIndex);
-               
-                TryProduce(stage.daysToProduce, stage.amount, stage.chance, ThingDef.Named(stage.resource), stage.RareResource,
-                        stage.thought);
-            }
-            else
-            {
-                TryProduce(Props.daysToProduce, Props.amount, Props.chance, ThingDef.Named(Props.resource), Props.RareResource);
-            }
+            TryProduce();
         }
 
         public override void CompExposeData()
@@ -37,47 +34,71 @@ namespace Pawnmorph
             Scribe_Values.Look(ref bondChance, "bondChance");
             base.CompExposeData();
         }
-        
-        void TryProduce(float daysToProduce, int amount, float chance, ThingDef resource, ThingDef rareResource,
-                            ThoughtDef stageThought = null)
+
+        void TryProduce()
         {
-
-            if (HatchingTicker < daysToProduce * 60000)
+            var curStage = Props.stages?.ElementAt(parent.CurStageIndex);
+            float daysToProduce = curStage?.daysToProduce ?? Props.daysToProduce;
+            if (HatchingTicker < daysToProduce * TICKS_PER_DAY)
+            {
                 HatchingTicker++;
-            else if (Pawn.Map != null) Produce(amount, chance, resource, rareResource, stageThought);
 
-            
+                if (parent.pawn.IsHashIntervalTick(PRODUCTION_MULT_UPDATE_PERIOD))
+                {
+                    _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); // Update the production multiplier only occasionally for performance reasons. 
+                    var severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); // Have the severity increase gradually.
+                    parent.Severity = severity;
+                }
+            }
+            else if (Pawn.Map != null)
+            {
+                if (Props.JobGiver != null && !Pawn.Downed)
+                {
+                    GiveJob();
+                }
+                else
+                {
+                    Produce();
+                }
+            }
         }
 
-        /// <summary>
-        /// spawns in the products at the parent's current location 
-        /// </summary>
+        private void GiveJob()
+        {
+            HatchingTicker = 0;
+            var jobPkg = Props.JobGiver.TryIssueJobPackage(Pawn, default); // Caller already checked this.
+
+            if (jobPkg.Job == null)
+            {
+                Produce();
+            }
+            else
+            {
+                Pawn.jobs.StartJob(jobPkg.Job, JobCondition.InterruptForced, resumeCurJobAfterwards: true);
+            }
+        }
+
+        /// <summary> Spawns in the products at the parent's current location. </summary>
         public void Produce()
         {
             var curStage = Props.stages?.ElementAt(parent.CurStageIndex);
-
             int amount = curStage?.amount ?? Props.amount;
             float chance = curStage?.chance ?? Props.chance;
             ThingDef resource = curStage?.Resource ?? Props.Resource;
             ThingDef rareResource = curStage?.RareResource ?? Props.RareResource;
             ThoughtDef thought = curStage?.thought;
-            Produce(amount, chance, resource, rareResource, thought); 
-
+            Produce(amount, chance, resource, rareResource, thought);
         }
-
 
         private void Produce(int amount, float chance, ThingDef resource, ThingDef rareResource, ThoughtDef stageThought)
         {
             RandUtilities.PushState();
 
             MemoryThoughtHandler thoughts = Pawn.needs.mood.thoughts.memories;
-            bool hasEtherBond = Pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBond"));
-            bool hasEtherBroken = Pawn.health.hediffSet.HasHediff(HediffDef.Named("EtherBroken"));
-
+            EtherState etherState = Pawn.GetEtherState();
             HatchingTicker = 0;
-
-            int thingCount = 0;
-            int rareThingCount = 0;
+            var thingCount = 0;
+            var rareThingCount = 0;
 
             for (var i = 0; i < amount; i++)
                 if (Rand.RangeInclusive(0, 100) <= chance && rareResource != null)
@@ -98,13 +119,12 @@ namespace Pawnmorph
                     GenPlace.TryPlaceThing(rareThing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
             }
 
-
-            if (!hasEtherBond && !hasEtherBroken)
+            if (etherState == EtherState.None)
             {
                 if (Rand.RangeInclusive(0, 100) <= bondChance)
                 {
-                    Pawn.health.AddHediff(HediffDef.Named("EtherBond"));
-                    hasEtherBond = true;
+                    GiveEtherState(EtherState.Bond);
+                    etherState = EtherState.Bond;
                     Find.LetterStack.ReceiveLetter(
                                                    "LetterHediffFromEtherBondLabel".Translate(Pawn).CapitalizeFirst(),
                                                    "LetterHediffFromEtherBond".Translate(Pawn).CapitalizeFirst(),
@@ -112,8 +132,8 @@ namespace Pawnmorph
                 }
                 else if (Rand.RangeInclusive(0, 100) <= brokenChance)
                 {
-                    Pawn.health.AddHediff(HediffDef.Named("EtherBroken"));
-                    hasEtherBroken = true;
+                    GiveEtherState(EtherState.Broken);
+                    etherState = EtherState.Broken;
                     Find.LetterStack.ReceiveLetter(
                                                    "LetterHediffFromEtherBrokenLabel".Translate(Pawn).CapitalizeFirst(),
                                                    "LetterHediffFromEtherBroken".Translate(Pawn).CapitalizeFirst(),
@@ -123,25 +143,73 @@ namespace Pawnmorph
 
             if (stageThought != null) thoughts.TryGainMemory(stageThought);
 
-            if (hasEtherBond && Props.etherBondThought != null)
+            ThoughtDef addThought;
+            switch (etherState)
             {
-                thoughts.TryGainMemory(Props.etherBondThought);
+                case EtherState.None:
+                    addThought = Props.genderAversion == Pawn.gender ? Props.wrongGenderThought ?? Props.thought : Props.thought;
+                    break;
+                case EtherState.Broken:
+                    addThought = Props.etherBrokenThought;
+                    break;
+                case EtherState.Bond:
+                    addThought = Props.etherBondThought;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-            else if (hasEtherBroken && Props.etherBrokenThought != null)
+            if (addThought != null) thoughts.TryGainMemory(addThought);
+
+            if (etherState == EtherState.None)
             {
-                thoughts.TryGainMemory(Props.etherBrokenThought);
-            }
-            else
-            {
-                if (Props.genderAversion == Pawn.gender && Props.wrongGenderThought != null)
-                    thoughts.TryGainMemory(Props.wrongGenderThought);
-                else if (Props.thought != null) thoughts.TryGainMemory(Props.thought);
                 brokenChance += 0.5f;
                 bondChance += 0.2f;
             }
 
             RandUtilities.PopState();
+        }
 
+        private void GiveEtherState(EtherState state)
+        {
+            var aspectTracker = Pawn.GetAspectTracker();
+            if (aspectTracker != null)
+            {
+                int stageNum;
+
+                switch (state)
+                {
+                    case EtherState.Broken:
+                        stageNum = 0;
+                        break;
+                    case EtherState.Bond:
+                        stageNum = 1;
+                        break;
+                    case EtherState.None:
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(state), state, null);
+                }
+
+                aspectTracker.Add(AspectDefOf.EtherState, stageNum);
+            }
+            else
+            {
+                Log.Warning($"{Pawn.Name} does not have an aspect tracker! adding the deprecated hediff instead");
+                HediffDef hDef;
+                switch (state)
+                {
+                    case EtherState.Broken:
+                        hDef = TfHediffDefOf.EtherBroken;
+                        break;
+                    case EtherState.Bond:
+                        hDef = TfHediffDefOf.EtherBond;
+                        break;
+                    case EtherState.None:
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(state), state, null);
+                }
+
+                Pawn.health.AddHediff(hDef);
+            }
         }
     }
 }

@@ -15,27 +15,25 @@ using Debug = System.Diagnostics.Debug;
 namespace Pawnmorph.GraphicSys
 {
     /// <summary>
-    /// Thing comp to update the graphics of a pawn as they gain/lose mutations
-    /// requires that the pawn have a MutationTracker comp to 
+    /// Thing comp to update the graphics of a pawn as they gain/lose mutations. <br/>
+    /// Requires that the pawn have a MutationTracker comp too.
     /// </summary>
     [UsedImplicitly]
-    public class GraphicsUpdaterComp : ThingComp , IMutationEventReceiver
+    public class GraphicsUpdaterComp : ThingComp, IMutationEventReceiver
     {
+        private bool _subOnce;
+
+        private Pawn Pawn => (Pawn)parent;
+
+        private AlienPartGenerator.AlienComp GComp => Pawn.GetComp<AlienPartGenerator.AlienComp>();
+
+        private InitialGraphicsComp InitialGraphics => Pawn.GetComp<InitialGraphicsComp>();
+
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             Assert(parent is Pawn, "parent is Pawn");
-            
-               
-
-
         }
-
-        private bool _subOnce; 
-      
-
-        private Pawn Pawn => (Pawn) parent;
-
 
         public override void PostExposeData()
         {
@@ -50,41 +48,31 @@ namespace Pawnmorph.GraphicSys
                 Assert(tracker != null, "tracker != null");
                 Assert(Pawn.GetComp<AlienPartGenerator.AlienComp>() != null, "Pawn.GetComp<AlienPartGenerator.AlienComp>() != null");
                 Assert(InitialGraphics != null, "InitialGraphics != null");
-                
-                
-              
             }
         }
-
-
-        private AlienPartGenerator.AlienComp GComp => Pawn.GetComp<AlienPartGenerator.AlienComp>();
-
-        private InitialGraphicsComp InitialGraphics => Pawn.GetComp<InitialGraphicsComp>();
-
 
         bool UpdateSkinColor(MutationTracker tracker)
         {
             var highestInfluence = Pawn.GetHighestInfluence();
             var curMorph = Pawn.def.GetMorphOfRace();
-            if (highestInfluence == null || highestInfluence == curMorph) return false; //if there is not influence or if the highest influence is 
-                                                                        //that of their current race do nothing 
+            if (highestInfluence == null || highestInfluence == curMorph) return false; // If there is not influence or if the highest influence is that of their current race do nothing.
 
             float lerpVal = tracker.GetNormalizedInfluence(highestInfluence);
             var baseColor = curMorph?.GetSkinColorOverride() ?? InitialGraphics.SkinColor;
             var morphColor = highestInfluence.GetSkinColorOverride() ?? InitialGraphics.SkinColor;
 
-            if (baseColor == morphColor) {
+            if (baseColor == morphColor)
+            {
                 Log.Warning($"morphColor and baseColor are the same for morph {highestInfluence.defName} and {curMorph}");
 
-                return false; //if they're the same color don't  do anything 
-}
+                return false; // If they're the same color don't  do anything.
+            }
 
-
-            var col = Color.Lerp(baseColor, morphColor, lerpVal); //blend the 2 by the normalized colors 
+            var col = Color.Lerp(baseColor, morphColor, lerpVal); // Blend the 2 by the normalized colors.
 
             GComp.skinColor = col;
 
-            return true; 
+            return true;
         }
 
         bool UpdateHairColor(MutationTracker tracker)
@@ -103,21 +91,20 @@ namespace Pawnmorph.GraphicSys
 
             var col = Color.Lerp(baseColor, morphColor, lerpVal); //blend the 2 by the normalized colors 
 
-            Pawn.story.hairColor = col; 
+            Pawn.story.hairColor = col;
 
-
-            return true; 
+            return true;
         }
 
-         void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)
+        void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
-            RefreshGraphics(tracker,Pawn);
+            RefreshGraphics(tracker, Pawn);
         }
 
         private void RefreshGraphics(MutationTracker sender, Pawn pawn)
         {
             bool needsUpdate = UpdateSkinColor(sender);
-            needsUpdate |= UpdateHairColor(sender); 
+            needsUpdate |= UpdateHairColor(sender);
 
             if (needsUpdate) //make sure to only refresh the graphics if they've been modified 
             {
@@ -125,9 +112,9 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
-         void IMutationEventReceiver.MutationRemoved(Hediff_AddedMutation mutation, MutationTracker tracker)
+        void IMutationEventReceiver.MutationRemoved(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
-            RefreshGraphics(tracker, Pawn); 
+            RefreshGraphics(tracker, Pawn);
         }
     }
 }

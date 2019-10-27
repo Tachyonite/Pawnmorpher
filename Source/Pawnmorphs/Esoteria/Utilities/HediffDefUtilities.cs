@@ -9,17 +9,12 @@ using Verse;
 
 namespace Pawnmorph.Utilities
 {
-    /// <summary>
-    /// collection of hediff def related utility functions 
-    /// </summary>
+    /// <summary> Collection of hediff def related utility functions. </summary>
     public static class HediffDefUtilities
     {
-        /// <summary>
-        /// get all hediff givers attached to this HediffDef 
-        /// </summary>
-        /// <param name="hediffDef"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">hediffDef</exception>
+        /// <summary> Get all hediff givers attached to this HediffDef. </summary>
+        /// <exception cref="ArgumentNullException">hediffDef is null</exception>
+        [NotNull]
         public static IEnumerable<HediffGiver> GetAllHediffGivers([NotNull] this HediffDef hediffDef)
         {
             if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
@@ -27,7 +22,6 @@ namespace Pawnmorph.Utilities
             {
                 yield return giver; 
             }
-
 
             foreach (var stage in hediffDef.stages ?? Enumerable.Empty<HediffStage>())
             {
