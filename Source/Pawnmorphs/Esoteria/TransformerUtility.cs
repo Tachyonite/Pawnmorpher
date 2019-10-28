@@ -43,7 +43,7 @@ namespace Pawnmorph
             foreach (Hediff hediff in hS2)
             {
                 Type hediffClass = hediff.def.hediffClass;
-                if (hediffClass == typeof(Hediff_AddedMutation) || hediffClass == typeof(Hediff_ProductionThought) || hediffClass == typeof(HediffGiver_TF))
+                if (hediffClass == typeof(Hediff_AddedMutation) || hediffClass == typeof(HediffGiver_TF))
                 {
                     pawn.health.RemoveHediff(hediff);
                 }
