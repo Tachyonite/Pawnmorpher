@@ -270,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aspects\" />
+    <Folder Include="Factions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
