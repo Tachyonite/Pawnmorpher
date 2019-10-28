@@ -1,0 +1,34 @@
+<Defs>
+    <HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase">
+        <modNameReadable>Pawnmorpher</modNameReadable>
+        <modIdentifier>Pawnmorpher</modIdentifier>
+        <linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1786466855</linkUrl>
+    </HugsLib.UpdateFeatureDef>
+    <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+        <defName>Pawnmorpher_1_5_0</defName>
+        <assemblyVersion>1.5.0</assemblyVersion>
+        <content>
+            <![CDATA[
+            • Added iTab for mutations. This tracks the biggest morph influences upon a pawn, their aspects (more on this later) and a production progress indicator.
+            
+            • Added log entries for mutations, viewable from both generally from the log as well as from the button on the new mutations tab.
+            
+            • Added aspects system.  These are sort of a cross between a hediff and a trait, allowing us finer control over the pawn than we had previously and (using the new mutations tab) reduces clutter on the health tab. Currently we just have a few of the old full body hediffs moved into this system, such as etherbond/broken and herd/pack mind, but we have some serious plans for it in the future, so look forward to some unique morphs using this system as well as new abilities for current morphs.
+            
+            • Added a new trait called mutation aspect.  It's functionally similar to the transhumanist trait except a pawn with it would like to have mutations rather than bionics.  Similarly, body purists now dislike morphs and hate being mutated.  
+            
+            • Skin mutations, such as furred, feathered and hide, now spread to the whole body.  
+            
+            • Replaced mech healer serum crafted at the mutagenic lab with one that mutates the pawns it heals.  Apparently reprogramming mechanites to heal rather than mutate is harder than it seems.  
+            
+<b><size=20>Bug fixes:</size></b>
+            
+            • Fixed various offset issues.  Pawn's tails should no longer be hidden behind them from certain angles (huge shout out to Erdelf, author of HAF, for adding this functionality for us).
+            
+            • Fixed pawn's heads and bodies sometimes disappearing.  
+            
+            • Reduced the value of morph products by 50%.  Apparently milk infused with mutagenic mechanites isn't safe to drink, who knew?
+            ]]>
+        </content>
+    </HugsLib.UpdateFeatureDef>
+</Defs>
