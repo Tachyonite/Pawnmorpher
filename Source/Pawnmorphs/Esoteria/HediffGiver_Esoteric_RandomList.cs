@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -6,6 +7,7 @@ using Verse;
 
 namespace Pawnmorph
 {
+   
     public class HediffGiver_Esoteric_RandomList : HediffGiver
     {
         public List<HediffDef> hediffDefs;
