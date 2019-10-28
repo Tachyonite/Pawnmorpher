@@ -63,6 +63,11 @@
 		</race>
 	</ThingDef>
 
+	<ThingDef ParentName="AnimalThingBase" Name="ChaomorphBaseDerived" Abstract="true">
+		<race>
+			<useMeatFrom>Chaocow</useMeatFrom>
+		</race>
+	</ThingDef>
 	<ThingDef ParentName="ChaomorphBase">
 		<defName>Chaocow</defName>
 		<label>Chaocow</label>
@@ -299,7 +304,7 @@
 	</PawnKindDef>
 	
 
-	<ThingDef ParentName="ChaomorphBase">
+	<ThingDef ParentName="ChaomorphBaseDerived">
 		<defName>Chaoboom</defName>
 		<label>Chaoboom</label>
 		<description>A large, unpredictable beast only found through extreme mutagenic exposure upon a human. Chaobooms produce chemfuel</description>
@@ -528,7 +533,7 @@
 	</PawnKindDef>
 	
 	
-	<ThingDef ParentName="ChaomorphBase">
+	<ThingDef ParentName="ChaomorphBaseDerived">
 		<defName>Chaofox</defName>
 		<label>Chaofox</label>
 		<description>A large, graceful creature that most resembles a mix of fox and horse that can move quite swiftly. Like all chaomorphs, they are sterile. Also, the wings are non-functional because wing-powered flight as a concept does not exist on the rim -- I mean they're far too heavy.</description>
@@ -739,7 +744,7 @@
 	</PawnKindDef>
 	
 	
-	<ThingDef ParentName="ChaomorphBase">
+	<ThingDef ParentName="ChaomorphBaseDerived">
 		<defName>Chaodino</defName>
 		<label>Chaodino</label>
 		<description>A raptor-like, nimble and clawed carnivore terrifies the local populace. Outrunning most prey, the Chaodino is one of the fastest, and fluffiest killers on the rim. If you planned to revert it, you may have trouble -- they might eat you first. Like all chaomorphs, they are sterile. However, these chaodinos also produce many clutches of mutagen-infused eggs.</description>
@@ -959,7 +964,7 @@
 		</lifeStages>
 	</PawnKindDef>
 	
-	<ThingDef ParentName="ChaomorphBase">
+	<ThingDef ParentName="ChaomorphBaseDerived">
 		<defName>Chaomeld</defName>
 		<label>Chaomeld</label>
 		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arrangement. This type of chaomeld produces both eggs and milk, but at lower levels than a chaocow or chaodino.</description>
@@ -1078,7 +1083,7 @@
 	</ThingDef>
 
 
-  <ThingDef ParentName="ChaomorphBase"> <!-- ChaomeldDog was missing a thingDef, most values are taken from ChaomeldCow and will need tweaking -->
+  <ThingDef ParentName="ChaomorphBaseDerived"> <!-- ChaomeldDog was missing a thingDef, most values are taken from ChaomeldCow and will need tweaking -->
     <defName>ChaomeldDog</defName>
     <label>chaomeld</label>
     <description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement. Chaodogs produce mutagenic milk.</description>
@@ -1301,7 +1306,7 @@
 	  </ManeuverDef>
 	
 
-	<ThingDef ParentName="ChaomorphBase">
+	<ThingDef ParentName="ChaomorphBaseDerived">
 		<defName>ChaomeldDragon</defName>
 		<label>Chaomeld</label>
 		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement. Chaodragons produce mutagenic eggs very rapidly.</description>
@@ -1539,7 +1544,7 @@
 	</PawnKindDef>
 	
 	
-	<ThingDef ParentName="ChaomorphBase">
+	<ThingDef ParentName="ChaomorphBaseDerived">
 		<defName>ChaomeldCow</defName>
 		<label>Chaomeld</label>
 		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement.</description>
@@ -1750,7 +1755,7 @@
 		</lifeStages>
 	</PawnKindDef>
 	
-	<ThingDef ParentName="ChaomorphBase">
+	<ThingDef ParentName="ChaomorphBaseDerived">
 		<defName>ChaofusionRhino</defName>
 		<label>Chaofusion</label>
 		<description>A towering fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement. This meld is gigantic and terrifyingly efficient in combat.</description>
