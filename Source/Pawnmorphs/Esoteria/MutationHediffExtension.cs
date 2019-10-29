@@ -21,7 +21,10 @@ namespace Pawnmorph
         public List<BodyPartDef> parts = new List<BodyPartDef>();
 
         /// <summary>the number of parts to add this mutation to</summary>
-        public int countToAffect; 
+        public int countToAffect;
+
+        /// <summary>The generation cost of this mutation. the better the mutation the higher the cost should be</summary>
+        public int generationCost=1; //TODO make some sort of report or log thing to try and figure out the best costs for the mutations 
 
         /// <summary>
         ///     the various mutation categories this mutation belongs to
@@ -32,5 +35,15 @@ namespace Pawnmorph
         ///     the rule pack to use when generating mutation logs for this mutation
         /// </summary>
         [CanBeNull] public RulePackDef mutationLogRulePack;
+
+        /// <summary>Get all Configuration Errors with this instance</summary>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors()
+        {
+            if (generationCost <= 0)
+            {
+                yield return $"generationCost:{{{generationCost}}} must be greater then zero"; 
+            }
+        }
     }
 }
