@@ -51,7 +51,21 @@ namespace Pawnmorph
                 Notify_LeaderTransformed(faction, animal); 
             }
         }
-
+        /// <summary>
+        /// Notifies the this faction that their member was reverted by the player.
+        /// </summary>
+        /// <param name="faction">The faction.</param>
+        /// <param name="member">The member.</param>
+        /// <param name="animal">The animal.</param>
+        /// <param name="wasWorldPawn">if set to <c>true</c> [was world pawn].</param>
+        /// <param name="map">The map.</param>
+        /// <exception cref="ArgumentNullException">
+        /// faction
+        /// or
+        /// member
+        /// or
+        /// animal
+        /// </exception>
         public static void Notify_MemberReverted([NotNull] this Faction faction, [NotNull] Pawn member, [NotNull] Pawn animal,
                                                  bool wasWorldPawn, [CanBeNull] Map map)
         {

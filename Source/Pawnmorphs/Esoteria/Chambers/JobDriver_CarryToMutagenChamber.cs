@@ -7,12 +7,17 @@ using Verse.AI;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// job driver for carrying a pawn to a mutagenic chamber 
+    /// </summary>
+    /// <seealso cref="Verse.AI.JobDriver" />
     public class JobDriver_CarryToMutagenChamber : JobDriver
     {
         private const TargetIndex TakeeInd = TargetIndex.A;
 
         private const TargetIndex DropPodInd = TargetIndex.B;
-
+        /// <summary>Gets the pawn being taken</summary>
+        /// <value>The takee.</value>
         protected Pawn Takee
         {
             get
@@ -21,14 +26,18 @@ namespace Pawnmorph
             }
         }
 
-        protected Building_MutagenChamber DropPod
+        /// <summary>Gets the mutagenic chamber</summary>
+        /// <value>The drop pod.</value>
+        protected Building_MutagenChamber MutagenicChamber
         {
             get
             {
                 return (Building_MutagenChamber)this.job.GetTarget(TargetIndex.B).Thing;
             }
         }
-
+        /// <summary>Tries the make pre toil reservations.</summary>
+        /// <param name="errorOnFailed">if set to <c>true</c> [error on failed].</param>
+        /// <returns></returns>
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             Pawn pawn = this.pawn;
@@ -38,7 +47,7 @@ namespace Pawnmorph
             if (pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
             {
                 pawn = this.pawn;
-                target = this.DropPod;
+                target = this.MutagenicChamber;
                 job = this.job;
                 result = pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
             }
@@ -50,14 +59,15 @@ namespace Pawnmorph
         }
 
 
-
+        /// <summary>Makes the new toils.</summary>
+        /// <returns></returns>
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDestroyedOrNull(TargetIndex.A);
             this.FailOnDestroyedOrNull(TargetIndex.B);
             this.FailOnAggroMentalState(TargetIndex.A);
-            this.FailOn(() => !this.DropPod.Accepts(this.Takee));
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell).FailOnDestroyedNullOrForbidden(TargetIndex.A).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOn(() => this.DropPod.GetDirectlyHeldThings().Count > 0).FailOn(() => !this.Takee.Downed).FailOn(() => !this.pawn.CanReach(this.Takee, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.ByPawn)).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
+            this.FailOn(() => !this.MutagenicChamber.Accepts(this.Takee));
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell).FailOnDestroyedNullOrForbidden(TargetIndex.A).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOn(() => this.MutagenicChamber.GetDirectlyHeldThings().Count > 0).FailOn(() => !this.Takee.Downed).FailOn(() => !this.pawn.CanReach(this.Takee, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.ByPawn)).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
             yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, false, false);
             yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
             Toil prepare = Toils_General.Wait(500, TargetIndex.None);
@@ -68,13 +78,14 @@ namespace Pawnmorph
             {
                 initAction = delegate ()
                 {
-                    this.DropPod.TryAcceptThing(this.Takee, true);
+                    this.MutagenicChamber.TryAcceptThing(this.Takee, true);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
             yield break;
         }
-
+        /// <summary>gets the Tale parameters.</summary>
+        /// <returns></returns>
         public override object[] TaleParameters()
         {
             return new object[]

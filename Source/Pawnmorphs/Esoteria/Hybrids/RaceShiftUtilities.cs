@@ -15,11 +15,14 @@ using Verse;
 
 namespace Pawnmorph.Hybrids
 {
+    /// <summary>
+    /// a collection of utilities around changing a pawn's race 
+    /// </summary>
     public static class RaceShiftUtilities
     {
-        //public const string RACE_CHANGE_LETTER_LABEL = "LetterRaceChangeToMorphLabel";
-        //public const string RACE_CHANGE_LETTER_CONTENT = "LetterRaceChangeToMorphContent";
-
+        /// <summary>
+        /// The race change message identifier (used in the keyed translation file)
+        /// </summary>
         public const string RACE_CHANGE_MESSAGE_ID = "RaceChangeMessage";
 
         private const string RACE_REVERT_MESSAGE_ID = "HumanAgainMessage";

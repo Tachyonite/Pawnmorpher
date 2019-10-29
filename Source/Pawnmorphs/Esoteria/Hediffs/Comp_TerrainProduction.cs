@@ -13,9 +13,15 @@ namespace Pawnmorph.Hediffs
     /// <summary>
     ///     hediff component that produces resources when over a certain area
     /// </summary>
-    /// <seealso cref="Pawnmorph.Utilities.HediffCompBase{Pawnmorph.Hediffs.CompProperties_TerrainProduction}" />
+    /// <seealso>
+    ///     <cref>Pawnmorph.Utilities.HediffCompBase{Pawnmorph.Hediffs.CompProperties_TerrainProduction}</cref>
+    /// </seealso>
     public class Comp_TerrainProduction : HediffCompBase<CompProperties_TerrainProduction>
     {
+        /// <summary>
+        /// called every tick after it's parent is updated 
+        /// </summary>
+        /// <param name="severityAdjustment"></param>
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
@@ -42,16 +48,21 @@ namespace Pawnmorph.Hediffs
     /// <summary>
     ///     CompProperties for a component that produces resources based on the terrain over a certain area
     /// </summary>
-    /// <seealso cref="Pawnmorph.Utilities.HediffCompPropertiesBase{Pawnmorph.Hediffs.Comp_TerrainProduction}" />
+    /// <seealso>
+    ///     <cref>Pawnmorph.Utilities.HediffCompPropertiesBase{Pawnmorph.Hediffs.Comp_TerrainProduction}</cref>
+    /// </seealso>
     public class CompProperties_TerrainProduction : HediffCompPropertiesBase<Comp_TerrainProduction>
     {
+        /// <summary>
+        /// all entries that are used by the comp 
+        /// </summary>
         public List<Entry> entries = new List<Entry>();
 
         [Unsaved]
         private Dictionary<TerrainDef, List<DictEntry>>
             _dict; //using a list means more then one resource can spawn in a terrain type 
 
-        public Dictionary<TerrainDef, List<DictEntry>> Dict
+        internal Dictionary<TerrainDef, List<DictEntry>> Dict
         {
             get
             {
@@ -64,7 +75,11 @@ namespace Pawnmorph.Hediffs
                 return _dict;
             }
         }
-
+        /// <summary>
+        /// return all configuration errors with this instance 
+        /// </summary>
+        /// <param name="parentDef"></param>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
         {
             foreach (var configError in base.ConfigErrors(parentDef)) yield return configError;
@@ -100,18 +115,35 @@ namespace Pawnmorph.Hediffs
 
             Log.Message(builder.ToString()); 
         }
-
+        /// <summary>
+        /// a single production entry for
+        /// </summary>
         public class Entry
         {
+            /// <summary>
+            /// the amount to produce 
+            /// </summary>
             public int amount = 1;
+            /// <summary>
+            /// how often to produce this product 
+            /// </summary>
             public float mtb = 5; //still not sure how mtb works, seems like an ok default 
+            /// <summary>
+            /// the resource to produce 
+            /// </summary>
             public ThingDef resource;
+            /// <summary>
+            /// the terrain this is produced by 
+            /// </summary>
             public TerrainDef terrain;
+            /// <summary>
+            /// the thought to add when the resource is produced 
+            /// </summary>
             public ThoughtDef thought;
         }
 
 
-        public class DictEntry
+        internal class DictEntry
         {
             public DictEntry(ThingDef resource, float mtb, int amount, ThoughtDef thought)
             {

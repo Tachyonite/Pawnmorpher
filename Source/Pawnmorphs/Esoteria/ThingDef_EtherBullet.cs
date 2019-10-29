@@ -3,9 +3,15 @@ using Verse;
 
 namespace EtherGun
 {
+    /// <summary>
+    /// thing def for the ether bullet 
+    /// </summary>
+    /// <seealso cref="Verse.ThingDef" />
     public class ThingDef_EtherBullet : ThingDef
     {
+        /// <summary>chance to apply the hediff</summary>
         public float AddHediffChance = 0.99f;
+        /// <summary>The hediff to add</summary>
         public HediffDef HediffToAdd = null;
 
         /// <summary> List of pawnDefs to not allow the hediff to be given to. </summary>

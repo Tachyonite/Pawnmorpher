@@ -10,6 +10,7 @@ using Verse.Sound;
 using Multiplayer.API;
 using Pawnmorph.Chambers;
 using Pawnmorph.Utilities;
+#pragma warning disable 1591 //this is going to be re worked, disabling for now 
 
 
 namespace Pawnmorph

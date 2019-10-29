@@ -1,7 +1,9 @@
-﻿using Verse;
-
+﻿using System;
+using Verse;
+#pragma warning disable 01591
 namespace Pawnmorph
 {
+    [Obsolete]
     public class PawnMorphInstance : IExposable
     {
         public Pawn origin;
@@ -17,6 +19,7 @@ namespace Pawnmorph
             replacement = polymorph;
         }
 
+        
         public void ExposeData()
         {
             Scribe_Deep.Look(ref origin, true, "origin");

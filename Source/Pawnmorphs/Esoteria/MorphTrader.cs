@@ -8,6 +8,10 @@ using Pawnmorph.Utilities;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// stock generator mor morph traders 
+    /// </summary>
+    /// <seealso cref="RimWorld.StockGenerator" />
     public class StockGenerator_Morphs : StockGenerator
     {
         [NoTranslate] private List<string> tradeTagsSell = new List<string>();
@@ -111,7 +115,9 @@ namespace Pawnmorph
                 yield return pawn;
             }
         }
-
+        /// <summary>Generates the things that can be sold</summary>
+        /// <param name="forTile">For tile.</param>
+        /// <returns></returns>
         public override IEnumerable<Thing> GenerateThings(int forTile)
         {
             RandUtilities.PushState();
@@ -129,6 +135,9 @@ namespace Pawnmorph
             return SelectionChanceFromWildnessCurve.Evaluate(k.RaceProps.wildness);
         }
 
+        /// <summary>checks if this generator handles the given thingDef.</summary>
+        /// <param name="thingDef">The thing definition.</param>
+        /// <returns></returns>
         public override bool HandlesThingDef(ThingDef thingDef)
         {
             return thingDef.category == ThingCategory.Pawn && thingDef.race.Animal && thingDef.tradeability != 0 && (tradeTagsSell.Any((string tag) => thingDef.tradeTags != null && thingDef.tradeTags.Contains(tag)));
@@ -166,7 +175,7 @@ namespace Pawnmorph
             }
             return true;
         }
-
+        /// <summary>Logs the animal chances.</summary>
         public void LogAnimalChances()
         {
             StringBuilder stringBuilder = new StringBuilder();

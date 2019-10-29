@@ -7,6 +7,9 @@ using Verse;
 
 namespace Pawnmorph.TfSys
 {
+    /// <summary>
+    /// struct representing the request to transform pawns 
+    /// </summary>
     public struct TransformationRequest
     {
         /// <summary>
@@ -17,7 +20,11 @@ namespace Pawnmorph.TfSys
         /// </value>
         public bool IsValid => originals != null && originals.Length > 0 && outputDef != null;
 
-        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransformationRequest"/> struct.
+        /// </summary>
+        /// <param name="outputDef">The output definition.</param>
+        /// <param name="original">The original.</param>
         public TransformationRequest(PawnKindDef outputDef, Pawn original)
         {
             originals = new [] {original};
@@ -29,6 +36,11 @@ namespace Pawnmorph.TfSys
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransformationRequest"/> struct.
+        /// </summary>
+        /// <param name="outputDef">The output definition.</param>
+        /// <param name="originals">The originals.</param>
         public TransformationRequest(PawnKindDef outputDef, params Pawn[] originals)
         {
             this.originals = originals;
@@ -38,12 +50,19 @@ namespace Pawnmorph.TfSys
             cause = null;
             tale = null; 
         }
-        
+        /// <summary>The pawns to be transformed</summary>
         public Pawn[] originals;
+        /// <summary>The output pawn kind</summary>
         public PawnKindDef outputDef;
+        /// <summary>The forced gender option</summary>
         public TFGender forcedGender;
+        /// <summary>
+        /// if forcedGender is None, the chance to switch genders 
+        /// </summary>
         public float forcedGenderChance;
+        /// <summary>The cause of the transformation</summary>
         public Hediff cause;
+        /// <summary>The tale to record</summary>
         public TaleDef tale; 
 
 

@@ -5,10 +5,17 @@ using Verse;
 
 namespace EtherGun
 {
+    /// <summary>
+    /// bullet for the tagging rifle, adds creatures to the chamber database on hit 
+    /// </summary>
+    /// <seealso cref="RimWorld.Bullet" />
     public class Projectile_TaggingBullet : Bullet
     {
-        public ThingDef_TaggingBullet Def => def as ThingDef_TaggingBullet;
-
+        ThingDef_TaggingBullet Def => def as ThingDef_TaggingBullet;
+        /// <summary>
+        /// called when this instance impacts the given thing 
+        /// </summary>
+        /// <param name="hitThing">The hit thing.</param>
         protected override void Impact(Thing hitThing)
         {
             base.Impact(hitThing);
@@ -25,7 +32,7 @@ namespace EtherGun
                         return;
                     }
 
-                    pgc.tagPawn(hitPawn.kindDef);
+                    pgc.TagPawn(hitPawn.kindDef);
                     Messages.Message("{0} added to database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.TaskCompletion);
                 }
                 else if (DatabaseUtilities.IsChao(hitPawn.def))

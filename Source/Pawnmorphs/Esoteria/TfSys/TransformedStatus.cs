@@ -3,9 +3,14 @@
 
 namespace Pawnmorph.TfSys
 {
+    /// <summary>
+    /// the different transformation statuses a pawn can have 
+    /// </summary>
     public enum TransformedStatus
     {
-        Original, //the pawn is the original, untransformed pawn 
-        Transformed //the pawn is the result of a transformed pawn 
+        ///the pawn is the original, untransformed pawn 
+        Original,
+        ///the pawn is the result of a transformed pawn 
+        Transformed
     }
 }

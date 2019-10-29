@@ -2,7 +2,7 @@
 // last updated 08/17/2019  11:00 AM
 
 using RimWorld;
-
+#pragma warning disable 1591
 namespace Pawnmorph
 {
     /// <summary> Static class containing transformation related pawn relation defs. </summary>

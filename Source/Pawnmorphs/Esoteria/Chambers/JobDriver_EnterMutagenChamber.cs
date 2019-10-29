@@ -8,8 +8,15 @@ using Verse.AI;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// job driver for making a pawn enter a mutagenic chamber 
+    /// </summary>
+    /// <seealso cref="Verse.AI.JobDriver" />
     public class JobDriver_EnterMutagenChamber : JobDriver
     {
+        /// <summary>Tries the make pre toil reservations.</summary>
+        /// <param name="errorOnFailed">if set to <c>true</c> [error on failed].</param>
+        /// <returns></returns>
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             Pawn pawn = base.pawn;
@@ -19,6 +26,8 @@ namespace Pawnmorph
             return pawn.Reserve(targetA, job, 1, -1, null, errorOnFailed2);
         }
 
+        /// <summary>Makes the new toils.</summary>
+        /// <returns></returns>
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);

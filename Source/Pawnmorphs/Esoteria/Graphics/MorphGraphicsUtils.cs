@@ -27,7 +27,10 @@ namespace Pawnmorph.GraphicSys
                 PortraitsCache.SetDirty(pawn);
             }
         }
-
+        /// <summary>Gets the skin color override.</summary>
+        /// <param name="def">The definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">def</exception>
         public static Color? GetSkinColorOverride([NotNull] this MorphDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
@@ -41,7 +44,10 @@ namespace Pawnmorph.GraphicSys
                 return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskincolorgen?.NewRandomizedColor();
             }
         }
-
+        /// <summary>Gets the hair color override.</summary>
+        /// <param name="def">The definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">def</exception>
         public static Color? GetHairColorOverride([NotNull] this MorphDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
@@ -52,7 +58,10 @@ namespace Pawnmorph.GraphicSys
             var hRace = def.explicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhaircolorgen?.NewRandomizedColor() ?? GetSkinColorOverride(def); 
         }
-
+        /// <summary>Gets the hair color override second.</summary>
+        /// <param name="def">The definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">def</exception>
         public static Color? GetHairColorOverrideSecond([NotNull] this MorphDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
@@ -61,7 +70,10 @@ namespace Pawnmorph.GraphicSys
             var hRace = def.explicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhairsecondcolorgen?.NewRandomizedColor() ?? GetSkinColorSecondOverride(def); 
         }
-
+        /// <summary>Gets the skin color second override.</summary>
+        /// <param name="def">The definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">def</exception>
         public static Color? GetSkinColorSecondOverride([NotNull] this MorphDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));

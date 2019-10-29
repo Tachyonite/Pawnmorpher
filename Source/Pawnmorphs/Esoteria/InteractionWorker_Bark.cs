@@ -4,8 +4,16 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// interaction worker for the bark interaction
+    /// </summary>
+    /// <seealso cref="RimWorld.InteractionWorker" />
     public class InteractionWorker_Bark : InteractionWorker
     {
+        /// <summary>gets the random selection weight.</summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <returns></returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             float weight = 0f;

@@ -10,9 +10,10 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
-
+#pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
 {
+
     public class Pawnmorpher_DebugDialogue : Dialog_DebugOptionLister
     {
         protected override void DoListingItems()
@@ -39,7 +40,9 @@ namespace Pawnmorph.DebugUtils
 
             Log.Message(initialComp.GetDebugStr()); 
         }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Pawnmorpher_DebugDialogue"/> class.
+        /// </summary>
         public Pawnmorpher_DebugDialogue()
         {
             forcePause = true; 

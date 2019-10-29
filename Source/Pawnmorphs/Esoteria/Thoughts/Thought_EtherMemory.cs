@@ -14,6 +14,8 @@ namespace Pawnmorph.Thoughts
     [UsedImplicitly]
     public class Thought_EtherMemory : Thought_Memory
     {
+        /// <summary>Gets the index of the current stage.</summary>
+        /// <value>The index of the current stage.</value>
         public override int CurStageIndex => Mathf.Min(def.stages.Count - 1, (int) pawn.GetEtherState());
         
     }

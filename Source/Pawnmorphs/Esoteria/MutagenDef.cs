@@ -15,13 +15,26 @@ namespace Pawnmorph
     /// <seealso cref="Verse.Def" />
     public class MutagenDef : Def
     {
+        /// <summary>if this instance can infect animals</summary>
         public bool canInfectAnimals;
+        /// <summary>
+        /// if this instance can infect mechanoids
+        /// </summary>
         public bool canInfectMechanoids;
+        /// <summary>The mutagen type</summary>
         public Type mutagenType;
+        /// <summary>
+        /// the positive thought to add when a pawn is reverted
+        /// </summary>
         public ThoughtDef revertedThoughtGood;
+        /// <summary>
+        /// The negative thought to add when a pawn is reverted 
+        /// </summary>
         public ThoughtDef revertedThoughtBad;
         [Unsaved] private Mutagen _mutagenCached;
 
+        /// <summary>Get all Configuration Errors with this instance</summary>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var configError in base.ConfigErrors())
@@ -43,6 +56,8 @@ namespace Pawnmorph
             return MutagenCached.CanTransform(pawn); 
         }
 
+        /// <summary>Gets the cached mutagen </summary>
+        /// <value>The cached mutagen </value>
         public Mutagen MutagenCached
         {
             get
@@ -58,7 +73,13 @@ namespace Pawnmorph
                 return _mutagenCached;
             }
         }
-
+        /// <summary>
+        /// Determines whether this instance can infect the specified pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
         public bool CanInfect(Pawn pawn)
         {
             return MutagenCached.CanInfect(pawn); 

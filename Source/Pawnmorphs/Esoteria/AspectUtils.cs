@@ -8,8 +8,16 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// a collection of aspect related utilities 
+    /// </summary>
     public static class AspectUtils
     {
+        /// <summary>
+        /// get the aspect tracker from this pawn 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
         [CanBeNull]
         public static AspectTracker GetAspectTracker([NotNull] this Pawn pawn)
         {

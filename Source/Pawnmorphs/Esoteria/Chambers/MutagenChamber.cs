@@ -12,7 +12,7 @@ using Verse.AI;
 using Verse.Sound;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
-
+#pragma warning disable 1591 //this is going to be re worked, disabling for now 
 namespace Pawnmorph
 {
     public class Building_MutagenChamber : Building_Casket

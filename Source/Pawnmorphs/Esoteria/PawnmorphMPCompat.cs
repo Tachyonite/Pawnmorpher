@@ -3,6 +3,9 @@ using Multiplayer.API;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// static class for initializing the mp compatibility 
+    /// </summary>
     [StaticConstructorOnStartup]
     public static class PawnmorphMPCompat
     {

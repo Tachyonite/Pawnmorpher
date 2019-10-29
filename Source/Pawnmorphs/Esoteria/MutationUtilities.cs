@@ -239,7 +239,8 @@ namespace Pawnmorph
 
         }
 
-
+        /// <summary>Gets all mutations with graphics.</summary>
+        /// <value>All mutations with graphics.</value>
         public static IEnumerable<HediffDef> AllMutationsWithGraphics
         {
             get

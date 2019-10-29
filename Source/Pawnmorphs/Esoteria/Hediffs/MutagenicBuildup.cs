@@ -12,6 +12,11 @@ using Verse;
 
 namespace Pawnmorph.Hediffs
 {
+    /// <summary>
+    /// hediff type for mutagenic buildup 
+    /// </summary>
+    /// should add more and more mutations as severity increases, with a full tf at a severity of 1 
+    /// <seealso cref="Pawnmorph.Hediff_Morph" />
     public class MutagenicBuildup : Hediff_Morph
     {
         private HediffDef _chosenMorphTf;
@@ -70,7 +75,9 @@ namespace Pawnmorph.Hediffs
         }
 
 
-
+        /// <summary>
+        /// Ticks this instance.
+        /// </summary>
         public override void Tick()
         {
             base.Tick();
@@ -85,7 +92,9 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-
+        /// <summary>
+        /// called after all hediffs Tick() methods have been called 
+        /// </summary>
         public override void PostTick()
         {
             base.PostTick();
@@ -96,22 +105,22 @@ namespace Pawnmorph.Hediffs
             }
 
         }
-
+        /// <summary>
+        /// Gets the transformation warning stage.
+        /// </summary>
+        /// <value>
+        /// The transformation warning stage.
+        /// </value>
         protected override int TransformationWarningStage => 5;
 
+        /// <summary>
+        /// Enters the next stage.
+        /// </summary>
         protected override void EnterNextStage()
         {
             base.EnterNextStage();
 
-            
-
-
-            if (CurStageIndex >= 4 && _chosenMorphTf == null)
-            {
-                PickRandomMorphTf();
-            }
-
-
+            if (CurStageIndex >= 4 && _chosenMorphTf == null) PickRandomMorphTf();
         }
 
         [SyncMethod]
@@ -135,6 +144,12 @@ namespace Pawnmorph.Hediffs
         }
 
 
+        /// <summary>
+        /// Gets the label base.
+        /// </summary>
+        /// <value>
+        /// The label base.
+        /// </value>
         public override string LabelBase
         {
             get
@@ -144,7 +159,9 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-
+        /// <summary>
+        /// Exposes the data.
+        /// </summary>
         public override void ExposeData()
         {
             base.ExposeData();

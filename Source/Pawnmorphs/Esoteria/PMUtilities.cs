@@ -5,8 +5,14 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// a collection of general Pawnmorpher related utilities 
+    /// </summary>
     public static class PMUtilities
     {
+
+        /// <summary>Gets the mod settings.</summary>
+        /// <returns></returns>
         public static PawnmorpherSettings GetSettings()
         {
             return LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();

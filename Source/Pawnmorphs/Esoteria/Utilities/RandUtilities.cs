@@ -6,11 +6,16 @@ using Verse;
 
 namespace Pawnmorph.Utilities
 {
+    /// <summary>
+    /// a collection of utilities around random functions 
+    /// </summary>
     public static class RandUtilities
     {
         private static int _lastTick;
         private static int _lastSeed;
 
+        /// <summary>Gets the multiplayer safe seed.</summary>
+        /// <value>The mp safe seed.</value>
         public static int MPSafeSeed
         {
             get

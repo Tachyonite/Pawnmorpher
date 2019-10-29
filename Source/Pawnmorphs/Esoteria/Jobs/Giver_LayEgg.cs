@@ -11,6 +11,11 @@ namespace Pawnmorph.Jobs
     /// <summary> Job giver for making a human pawn lay eggs. </summary>
     public class Giver_LayEgg : ThinkNode_JobGiver
     {
+        /// <summary>
+        /// attempt to create a new job for the given pawn 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
         [CanBeNull]
         protected override Job TryGiveJob(Pawn pawn)
         {

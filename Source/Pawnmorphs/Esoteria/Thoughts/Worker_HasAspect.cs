@@ -13,6 +13,8 @@ namespace Pawnmorph.Thoughts
     /// </summary>
     public class Worker_HasAspect : ThoughtWorker
     {
+        /// <summary>Gets the definition.</summary>
+        /// <value>The definition.</value>
         public Def_AspectThought Def
         {
             get
@@ -29,6 +31,9 @@ namespace Pawnmorph.Thoughts
             }
         }
 
+        /// <summary>gets the current thought state of the given pawn</summary>
+        /// <param name="p">The pawn</param>
+        /// <returns></returns>
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var aspectTracker = p.GetAspectTracker();

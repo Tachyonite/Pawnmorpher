@@ -3,10 +3,22 @@
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// enum for how a pawn views mutations 
+    /// </summary>
     public enum MutationOutlook
     {
+        /// <summary>
+        /// neutral
+        /// </summary>
         Neutral = 0,
+        /// <summary>
+        /// they like the idea of having mutations 
+        /// </summary>
         Furry,
+        /// <summary>
+        /// they especially dislike the idea of having mutations 
+        /// </summary>
         BodyPurist
     }
 }

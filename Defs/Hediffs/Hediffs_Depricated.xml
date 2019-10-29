@@ -1,6 +1,11 @@
 <Defs>
+
+	<HediffDef Name="ObsoletePart" ParentName="PawnmorphPart" Abstract="true">
+		<hediffClass>Pawnmorph.Hediffs.ObsoletePart</hediffClass>
+	</HediffDef>
+
 <!--These hediffs are currently unused but had a purpose in pervious versions of the mod and old saves may still contain them-->
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherMuzzle</defName>
 		<label>muzzle (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
@@ -36,7 +41,7 @@
 		</comps>
 	</HediffDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherSnout</defName>
 		<label>snout (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
@@ -72,7 +77,7 @@
 		</comps>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherClaws</defName>
 		<label>clawed (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
@@ -104,7 +109,7 @@
 		</comps>
 	</HediffDef>
 	
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherTail</defName>
 		<label>tail (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
@@ -120,7 +125,7 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherFurryEar</defName>
 		<label>fuzzy (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
@@ -136,7 +141,7 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherPointedEar</defName>
 		<label>pointed (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
@@ -152,7 +157,7 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherDogEar</defName>
 		<label>floppy (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>

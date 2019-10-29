@@ -2,18 +2,39 @@
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// the mod settings 
+    /// </summary>
+    /// <seealso cref="Verse.ModSettings" />
     public class PawnmorpherSettings : ModSettings
     {
-        private const bool DEFAULT_FALLOUT_SETTING = false; 
+        private const bool DEFAULT_FALLOUT_SETTING = false;
 
+        /// <summary>
+        /// if the mutagen ship part should be enabled 
+        /// </summary>
         public bool enableMutagenShipPart = true;
+        /// <summary>
+        /// if mutagenic diseases are enabled 
+        /// </summary>
         public bool enableMutagenDiseases = true;
+        /// <summary>
+        /// if mutanite meteors are enabled 
+        /// </summary>
         public bool enableMutagenMeteor = true;
+        /// <summary>if wild former humans are enabled</summary>
         public bool enableWildFormers = true;
-        public bool enableFallout = DEFAULT_FALLOUT_SETTING; 
+        /// <summary>if mutagenic fallout is enabled</summary>
+        public bool enableFallout = DEFAULT_FALLOUT_SETTING;
+        /// <summary>the chance for a transforming pawn to turn into an animal</summary>
         public float transformChance = 50f;
+        /// <summary>the chance for new animals to be former humans</summary>
         public float formerChance = 2f;
+        /// <summary>The partial chance</summary>
         public float partialChance = 5f;
+        /// <summary>
+        /// The maximum mutation thoughts that can be active at once 
+        /// </summary>
         public int maxMutationThoughts=3; 
 
         /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>

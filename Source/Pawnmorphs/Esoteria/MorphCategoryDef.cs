@@ -12,6 +12,8 @@ namespace Pawnmorph
     {
         [Unsaved] private List<MorphDef> _allMorphs;
 
+        /// <summary>Gets all morphs in this category.</summary>
+        /// <value>All morphs in categories.</value>
         public IEnumerable<MorphDef> AllMorphsInCategories
         {
             get

@@ -10,6 +10,9 @@ namespace Pawnmorph.Thoughts
     /// <summary> Thought worker that works like ThoughtWorker_Hediff except is also respects traits. </summary>
     public class Worker_HediffTrait: ThoughtWorker
     {
+        /// <summary>Gets the current thought state of the given pawn</summary>
+        /// <param name="p">The pawn.</param>
+        /// <returns></returns>
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var firstHediff = p.health?.hediffSet?.GetFirstHediffOfDef(def.hediff); 

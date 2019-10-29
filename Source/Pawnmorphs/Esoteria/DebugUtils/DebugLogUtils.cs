@@ -17,7 +17,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Debug = System.Diagnostics.Debug;
-
+#pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
 {
     [HasDebugOutput]

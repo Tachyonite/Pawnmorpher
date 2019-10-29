@@ -7,7 +7,7 @@ using System.Linq;
 using Harmony;
 using RimWorld;
 using Verse;
-
+#pragma warning disable 1591
 namespace Pawnmorph.HPatches
 {
     public static class StatWorkerPatches

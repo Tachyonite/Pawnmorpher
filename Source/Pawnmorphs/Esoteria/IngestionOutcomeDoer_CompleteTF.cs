@@ -6,8 +6,15 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// ingestion outcome doer that forces a full transformation
+    /// </summary>
+    /// <seealso cref="RimWorld.IngestionOutcomeDoer" />
     public class IngestionOutcomeDoer_CompleteTF : IngestionOutcomeDoer
     {
+        /// <summary>Does the ingestion outcome special.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
             if (MP.IsInMultiplayer)

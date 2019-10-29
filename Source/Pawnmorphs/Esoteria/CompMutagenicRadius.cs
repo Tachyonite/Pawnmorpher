@@ -3,27 +3,36 @@ using RimWorld;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// comp for mutating things within a radius 
+    /// </summary>
     public class CompMutagenicRadius : ThingComp
     {
         private const float LEAFLESS_PLANT_KILL_CHANCE = 0.09f;
 
         private int plantHarmAge;
         private int ticksToPlantHarm;
-
-        protected CompProperties_MutagenicRadius PropsPlantHarmRadius
+        
+        CompProperties_MutagenicRadius PropsPlantHarmRadius
         {
             get
             {
                 return (CompProperties_MutagenicRadius)props;
             }
         }
-
+        /// <summary>
+        /// call to save/load data 
+        /// </summary>
         public override void PostExposeData()
         {
             Scribe_Values.Look(ref plantHarmAge, "plantHarmAge", 0, false);
             Scribe_Values.Look(ref ticksToPlantHarm, "ticksToPlantHarm", 0, false);
         }
 
+
+        /// <summary>
+        /// called every tick after it's parent updates 
+        /// </summary>
         public override void CompTick()
         {
             if (parent.IsHashIntervalTick(60))

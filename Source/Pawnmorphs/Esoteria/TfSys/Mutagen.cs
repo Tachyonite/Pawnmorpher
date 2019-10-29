@@ -22,11 +22,13 @@ namespace Pawnmorph.TfSys
 
         private static PawnmorphGameComp _comp;
 
-        //do this here so all the derived code doesn't have to 
+        //do this here so all the derived code doesn't have to         
+        /// <summary>Gets the game comp.</summary>
+        /// <value>The game comp.</value>
         protected static PawnmorphGameComp GameComp => _comp ?? (_comp = Find.World.GetComponent<PawnmorphGameComp>());
 
 
-
+        /// <summary>The definition</summary>
         public MutagenDef def;
 
         /// <summary>
@@ -72,7 +74,13 @@ namespace Pawnmorph.TfSys
 
             return i > 0; //just make sure there is actually a pawn to transform 
         }
-
+        /// <summary>
+        /// Determines whether this instance can transform the specified pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can transform the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
         public virtual bool CanTransform(Pawn pawn)
         {
             return CanInfect(pawn) && pawn.Map != null; 
@@ -104,6 +112,10 @@ namespace Pawnmorph.TfSys
 
     //generic base for convenience 
 
+    /// <summary>
+    /// generic base class for all mutagens for convenience 
+    /// </summary>
+    /// <typeparam name="T">the type of TransformedPawn this type consumes</typeparam>
     public abstract class Mutagen<T> : Mutagen where T: TransformedPawn
     {
         /// <summary>
@@ -120,8 +132,12 @@ namespace Pawnmorph.TfSys
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        protected abstract T TransformImpl(TransformationRequest request); 
-
+        protected abstract T TransformImpl(TransformationRequest request);
+        /// <summary>Returns true if the given request is valid.</summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified request is valid; otherwise, <c>false</c>.
+        /// </returns>
         protected virtual bool IsValid(TransformationRequest request)
         {
             return request.IsValid;
@@ -146,36 +162,36 @@ namespace Pawnmorph.TfSys
             return TransformImpl(request); 
         }
 
-
+        /// <summary>
+        /// Determines whether this instance can revert the specified pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can revert the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        /// <exception cref="InvalidTransformedPawnInstance">tfPawn instance of type {pawn.GetType().Name} can not be cast to {typeof(<typeparamref name="T"/>).Name}</exception>
         public sealed override bool CanRevert(TransformedPawn pawn)
         {
             if (pawn == null)
                 throw new ArgumentNullException(nameof(pawn));
             bool reverted;
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
+            if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
 
             try
             {
-                
-                reverted = CanRevertPawnImp((T) pawn); 
+                reverted = CanRevertPawnImp((T) pawn);
             }
             catch (InvalidCastException e)
             {
-                if (MP.IsInMultiplayer)
-                {
-                    Rand.PopState();
-                }
-                throw new InvalidTransformedPawnInstance($"tfPawn instance of type {pawn.GetType().Name} can not be cast to {typeof(T).Name}", e);
+                if (MP.IsInMultiplayer) Rand.PopState();
+                throw new
+                    InvalidTransformedPawnInstance($"tfPawn instance of type {pawn.GetType().Name} can not be cast to {typeof(T).Name}",
+                                                   e);
             }
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
+            if (MP.IsInMultiplayer) Rand.PopState();
 
             return reverted; 
         }
@@ -189,36 +205,24 @@ namespace Pawnmorph.TfSys
         public sealed override bool TryRevert(TransformedPawn transformedPawn)
         {
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
-            bool reverted; 
+            bool reverted;
             try
             {
+                if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
 
-                if (MP.IsInMultiplayer)
-                {
-                    Rand.PushState(RandUtilities.MPSafeSeed); 
-                }
-
-                reverted =  TryRevertImpl((T) transformedPawn); //this class will handle all casting for us, and error appropriately 
+                reverted =
+                    TryRevertImpl((T) transformedPawn); //this class will handle all casting for us, and error appropriately 
             }
             catch (InvalidCastException e)
             {
-                if (MP.IsInMultiplayer)
-                {
-                    Rand.PopState();
-                }
+                if (MP.IsInMultiplayer) Rand.PopState();
                 throw new InvalidTransformedPawnInstance(
-                    $"tfPawn instance of type {transformedPawn.GetType().Name} can not be cast to {typeof(T).Name}", e); 
+                                                         $"tfPawn instance of type {transformedPawn.GetType().Name} can not be cast to {typeof(T).Name}",
+                                                         e);
             }
-            
+            if (MP.IsInMultiplayer) Rand.PopState();
 
-
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
-
-            return reverted; 
-
+            return reverted;
         }
 
         /// <summary>
@@ -226,12 +230,14 @@ namespace Pawnmorph.TfSys
         /// </summary>
         /// <param name="transformedPawn">The transformed pawn.</param>
         /// <returns></returns>
-        protected abstract bool TryRevertImpl(T transformedPawn); 
-
-
+        protected abstract bool TryRevertImpl(T transformedPawn);
     }
 
 
+    /// <summary>
+    /// exception thrown when an invalid TransformedPawn instance is encountered 
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public class InvalidTransformedPawnInstance : System.Exception
     {
         /// <summary>Initializes a new instance of the <see cref="T:System.Exception" /> class.</summary>

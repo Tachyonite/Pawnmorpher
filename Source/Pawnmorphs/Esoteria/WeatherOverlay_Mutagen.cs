@@ -6,11 +6,17 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// class for the mutagenic weather overlay 
+    /// </summary>
+    /// <seealso cref="Verse.SkyOverlay" />
     [StaticConstructorOnStartup]
     public class WeatherOverlay_Mutagen : SkyOverlay
     {
         private static readonly Material FalloutOverlayWorld = MatLoader.LoadMat("Weather/SnowOverlayWorld");
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WeatherOverlay_Mutagen"/> class.
+        /// </summary>
         public WeatherOverlay_Mutagen()
         {
             worldOverlayMat = FalloutOverlayWorld;

@@ -8,18 +8,29 @@ using AlienRace;
 using RimWorld;
 using UnityEngine;
 using Verse;
-
+#pragma warning disable 0612
 namespace Pawnmorph.Hybrids
 {
+    /// <summary>
+    /// class representing the hybrid race settings 
+    /// </summary>
     public class HybridRaceSettings
     {
+        /// <summary>unused</summary>
         [Obsolete("Doesn't do anything'")]
         public FoodSettings foodSettings = new FoodSettings();
 
+        /// <summary>The stat modifiers</summary>
         public List<StatModifier> statModifiers;
+        /// <summary>The thought settings</summary>
         public HybridThoughtSettings thoughtSettings;
+        /// <summary>
+        /// the race restriction settings 
+        /// </summary>
         public RaceRestrictionSettings restrictionSettings;
+        /// <summary>The graphics settings</summary>
         public GraphicsSettings graphicsSettings;
+        /// <summary>The trait settings</summary>
         public TraitSettings traitSettings;
 
         /// <summary>
@@ -27,42 +38,87 @@ namespace Pawnmorph.Hybrids
         /// </summary>
         public class HybridThoughtSettings
         {
+            /// <summary>list of thoughts that will be replaced </summary>
             public List<ThoughtReplacer> replacerList;
+            /// <summary>thought given when a pawn of this hybrid race eats an animal listed in the morphDef</summary>
             public AteThought ateAnimalThought;
+            /// <summary>
+            /// thought given when a pawn of this hybrid race butchers an animal listed in the morph def 
+            /// </summary>
             public ButcherThought butcheredAnimalThought;
-            public bool suppressHumanlikeCannibalThoughts; //if true this morph will not get the cannibal thoughts 
-            public bool canEatRaw; //if true then the AteRawFood thought will be suppressed 
+            ///if true this morph will not get the cannibal thoughts 
+            public bool suppressHumanlikeCannibalThoughts;
+            ///if true then the AteRawFood thought will be suppressed 
+            public bool canEatRaw;
+            /// <summary>a list of thoughtDefs that this hybrid race cannot get </summary>
             public List<string> thoughtsBlackList;
+            /// <summary>
+            /// a list of thoughts when the pawn eats specific things 
+            /// </summary>
             public List<AteThought> ateThoughtsSpecifics = new List<AteThought>();
+            /// <summary>
+            /// list of thoughts when a pawn of this race butchers specific things 
+            /// </summary>
             public List<ButcherThought> butcherThoughtsSpecifics = new List<ButcherThought>();
         }
 
+        /// <summary>
+        /// class representing the graphic setting of a morph hybrid race
+        /// </summary>
         public class GraphicsSettings
         {
+            /// <summary>The skin color override</summary>
             public Color? skinColorOverride;
+            /// <summary>
+            /// The skin color override second
+            /// </summary>
             public Color? skinColorOverrideSecond;
+            /// <summary>The hair color override</summary>
             public Color? hairColorOverride;
+            /// <summary>
+            /// The hair color override second
+            /// </summary>
             public Color? hairColorOverrideSecond;
+            /// <summary>The custom draw size</summary>
             public Vector2? customDrawSize;
+            /// <summary>
+            /// The custom head draw size
+            /// </summary>
             public Vector2? customHeadDrawSize;
         }
 
+        /// <summary>
+        /// obsolete
+        /// </summary>
         [Obsolete]
         public class FoodCategoryOverride
         {
+            /// <summary>The food flags</summary>
             public FoodTypeFlags foodFlags;
+            /// <summary>The preferability</summary>
             public FoodPreferability preferability;
         }
 
+        /// <summary>
+        /// obsolete
+        /// </summary>
         [Obsolete]
         public class FoodSettings
         {
+            /// <summary>The food overrides</summary>
             public List<FoodCategoryOverride> foodOverrides = new List<FoodCategoryOverride>();
         }
 
-        //should this be deprecated? 
+        //should this be deprecated?        
+        /// <summary>
+        /// obsolete
+        /// </summary>
+        [Obsolete]
         public class TraitSettings
         {
+            /// <summary>
+            /// 
+            /// </summary>
             //should this be deprecated? 
             public List<AlienTraitEntry> forcedTraits;
             //public List<string> disallowedTraits; removing traits not supported right now, rimworld doesn't like it when you remove them  

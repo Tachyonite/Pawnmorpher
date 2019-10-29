@@ -17,7 +17,9 @@ namespace Pawnmorph.Hediffs
         private bool _finishedSearching;
 
         private const int RECHECK_PART_PERIOD = 1000;
-        private int _doneTick = 0; 
+        private int _doneTick = 0;
+        /// <summary>called after its parent has been updated.</summary>
+        /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
@@ -137,7 +139,7 @@ namespace Pawnmorph.Hediffs
             return !Pawn.health.hediffSet.hediffs.Any(h => h.Part == record && IsBlocker(h)); //only true if the part does not already have a part on it 
         }
 
-
+        /// <summary>expose all data. in this comp</summary>
         public override void CompExposeData()
         {
             base.CompExposeData();
@@ -146,9 +148,18 @@ namespace Pawnmorph.Hediffs
         }
     }
 
+    /// <summary>
+    /// properties for the HediffComp Spreading 
+    /// </summary>
+    /// <seealso cref="HediffCompPropertiesBase{T}" />
     public class SpreadingMutationCompProperties : HediffCompPropertiesBase<SpreadingMutationComp>
     {
-        public int maxTreeSearchDepth = 2; //how far from the parent's part will this comp search for a part to spread to
+        /// <summary>
+        /// how far from the parent's part will this comp search for a part to spread to
+        /// </summary>
+        /// setting this too high can cause lag 
+        public int maxTreeSearchDepth = 2;
+        /// <summary>The mean time between (units?) spread checks</summary>
         public float mtb = 160; 
     }
 }

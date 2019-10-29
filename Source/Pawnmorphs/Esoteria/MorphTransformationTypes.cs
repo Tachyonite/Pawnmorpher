@@ -11,7 +11,9 @@ namespace Pawnmorph
     [Flags]
     public enum MorphTransformationTypes
     {
+        /// <summary>a full transformation</summary>
         Full = 1 << 0,
+        /// <summary>a partial transformation</summary>
         Partial = 1 << 1
     }
 }

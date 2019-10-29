@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// game condition for mutagenic fallout 
+    /// </summary>
     public class GameCondition_MutagenicFallout : GameCondition
     {
         private const int LerpTicks = 5000;
@@ -29,6 +32,9 @@ namespace Pawnmorph
 
         private const float ToxicPerDay = 0.5f;
 
+        /// <summary>
+        /// update this game condition 
+        /// </summary>
         public override void GameConditionTick()
         {
             List<Map> affectedMaps = base.AffectedMaps;
@@ -69,7 +75,10 @@ namespace Pawnmorph
                 }
             }
         }
-
+        /// <summary>
+        /// draw the overlay to the map 
+        /// </summary>
+        /// <param name="map"></param>
         public override void GameConditionDraw(Map map)
         {
             for (int i = 0; i < overlays.Count; i++)
@@ -78,11 +87,21 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         public override float SkyTargetLerpFactor(Map map)
         {
             return GameConditionUtility.LerpInOutValue(this, 5000f, 0.5f);
         }
 
+        /// <summary>
+        /// get the sky target for this condition 
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         public override SkyTarget? SkyTarget(Map map)
         {
             return new SkyTarget(0.85f, MutagenicFalloutColors, 1f, 1f);
@@ -90,11 +109,16 @@ namespace Pawnmorph
 
         private const double PLANT_SUBSTITUTION_CHANCE = 0.0250000013411045;
 
-        public bool IsMutagenicPlant(Plant plant)
+        bool IsMutagenicPlant(Plant plant)
         {
             return plant.def.In(PMThingDefOf.Plant_ChaoBulb, PMThingDefOf.Plant_GnarledTree);
         }
 
+        /// <summary>
+        /// do a steady effect on the given cell 
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="map"></param>
         public override void DoCellSteadyEffects(IntVec3 c, Map map)
         {
             base.DoCellSteadyEffects(c, map);
@@ -152,21 +176,42 @@ namespace Pawnmorph
             plant.Kill();
         }
 
+        /// <summary>
+        /// return a modifier for the animal spawn rate 
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         public override float AnimalDensityFactor(Map map)
         {
             return 0.5f;
         }
 
+
+        /// <summary>
+        /// return a modifier for the plant spawn rate 
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         public override float PlantDensityFactor(Map map)
         {
             return 0.5f;
         }
 
+        /// <summary>
+        /// if pawns can still do recreation outside 
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         public override bool AllowEnjoyableOutsideNow(Map map)
         {
             return false;
         }
-
+        
+        /// <summary>
+        /// return all sky overlays used for this condition 
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         public override List<SkyOverlay> SkyOverlays(Map map)
         {
             return overlays;

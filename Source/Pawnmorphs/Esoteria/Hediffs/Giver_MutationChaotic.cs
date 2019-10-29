@@ -17,11 +17,21 @@ namespace Pawnmorph.Hediffs
     public class Giver_MutationChaotic : HediffGiver
     {
         private List<HediffGiver_Mutation> _possibleMutations;
-
+        /// <summary>
+        /// the morphType to get hediff givers from 
+        /// </summary>
         public System.Type morphType = typeof(Hediff_Morph); //the hediff type to get possible mutations from 
-
+        /// <summary>
+        /// list of morph categories to exclude 
+        /// </summary>
         public List<MorphCategoryDef> blackListCategories = new List<MorphCategoryDef>();
+        /// <summary>
+        /// list of hediff defs to ignore 
+        /// </summary>
         public List<HediffDef> blackListDefs = new List<HediffDef>();
+        /// <summary>
+        /// list of morphs to exclude 
+        /// </summary>
         public List<MorphDef> blackListMorphs = new List<MorphDef>();
 
         bool CheckHediff(HediffDef def)
@@ -48,7 +58,9 @@ namespace Pawnmorph.Hediffs
 
             return true; 
         }
-
+        /// <summary>
+        /// how often to give mutations 
+        /// </summary>
         public float mtbDays = 0.4f; 
 
         List<HediffGiver_Mutation> Mutations //hediff giver doesn't seem to have a on load or resolve references so I'm using lazy initialization
@@ -83,6 +95,11 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        /// <summary>
+        /// occurs every so often for all hediffs that have this giver 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <param name="cause"></param>
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
             if (Mutations.Count == 0) return;
