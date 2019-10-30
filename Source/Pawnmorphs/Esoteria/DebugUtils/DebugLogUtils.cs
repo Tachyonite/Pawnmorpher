@@ -83,6 +83,16 @@ namespace Pawnmorph.DebugUtils
 
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]
+        public static void ListPawnKindsMissingExtension()
+        {
+            var kinds = DefDatabase<PawnKindDef>.AllDefs.Where(k => !k.HasModExtension<MorphPawnKindExtension>())
+                                                .Select(k => k.defName);
+
+            Log.Message($"pawnkinds missing def extension:\n{string.Join("\n", kinds.ToArray())}");
+        }
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
         public static void CheckBodyHediffGraphics()
         {
             IEnumerable<HediffGiver_Mutation> GetMutationGivers(IEnumerable<HediffStage> stages)
