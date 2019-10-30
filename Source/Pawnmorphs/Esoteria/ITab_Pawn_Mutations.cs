@@ -62,7 +62,7 @@ namespace Pawnmorph
 
         protected bool ShouldShowTab(Pawn pawn)
         {
-            return (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker()?.AllMutations.Count() ?? 0) > 0);
+            return (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker(false)?.AllMutations.Count() ?? 0) > 0);
         }
 
 
