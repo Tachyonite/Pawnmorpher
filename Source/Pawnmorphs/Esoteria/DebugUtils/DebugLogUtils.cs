@@ -85,7 +85,7 @@ namespace Pawnmorph.DebugUtils
         [Category(MAIN_CATEGORY_NAME)]
         public static void ListPawnKindsMissingExtension()
         {
-            var kinds = DefDatabase<PawnKindDef>.AllDefs.Where(k => !k.HasModExtension<MorphPawnKindExtension>())
+            var kinds = DefDatabase<PawnKindDef>.AllDefs.Where(k => k.race == ThingDefOf.Human && !k.HasModExtension<MorphPawnKindExtension>())
                                                 .Select(k => k.defName);
 
             Log.Message($"pawnkinds missing def extension:\n{string.Join("\n", kinds.ToArray())}");
