@@ -3,7 +3,7 @@
 		<operations>
 			<li Class="PatchOperationTest">
 				<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li/def[text()="Tail"]</xpath>
-				<success>Invert</success>
+				<success>Always</success>
 			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/BodyDef[defName="Human"]/corePart/parts</xpath>
