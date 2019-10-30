@@ -45,5 +45,24 @@ namespace Pawnmorph
                 yield return $"generationCost:{{{generationCost}}} must be greater then zero"; 
             }
         }
+
+        [Unsaved] private bool? _isRestricted;
+
+        /// <summary>Gets a value indicating whether this instance is restricted to special PawnKindGroups</summary>
+        /// <value>
+        ///   <c>true</c> if this instance is restricted the mutation can only be given to special PawnKindGroups; otherwise it can show up in any group, <c>false</c>.
+        /// </value>
+        public bool IsRestricted
+        {
+            get
+            {
+                if (_isRestricted == null)
+                {
+                    _isRestricted = categories.Any(c => c.restricted); //if any of the categories are restricted the whole mutation is restricted 
+                }
+
+                return _isRestricted.Value; 
+            }
+        }
     }
 }

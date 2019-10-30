@@ -190,7 +190,8 @@ namespace Pawnmorph.Hybrids
         /// </summary>
         /// <param name="pawn"></param>
         /// <param name="morph">the morph to change the pawn to</param>
-        public static void ChangePawnToMorph([NotNull] Pawn pawn, [NotNull] MorphDef morph)
+        /// <param name="addMissingMutations">if true, any missing mutations will be applied to the pawn</param>
+        public static void ChangePawnToMorph([NotNull] Pawn pawn, [NotNull] MorphDef morph, bool addMissingMutations=true)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (morph == null) throw new ArgumentNullException(nameof(morph));
@@ -203,10 +204,9 @@ namespace Pawnmorph.Hybrids
             }
 
             //apply mutations 
-            foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AssociatedMutations)
-            {
-                morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen);
-            }
+            if (addMissingMutations)
+                foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AllAssociatedAndAdjacentMutations)
+                    morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen);
 
             var hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;

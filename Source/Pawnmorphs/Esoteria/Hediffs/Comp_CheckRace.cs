@@ -19,42 +19,10 @@ namespace Pawnmorph.Hediffs
         private bool _checked; 
         private readonly List<VTuple<MorphDef, float>> _scratchList = new List<VTuple<MorphDef, float>>();
 
-        /// <summary>
-        /// checks if the pawn's race should be changed 
-        /// </summary>
-        /// <param name="pawn"></param>
-        void CheckRace(Pawn pawn)
-        {
-            _checked = true; 
-            if (pawn.ShouldBeConsideredHuman()) return;
-
-            _scratchList.Clear();
-            var linq = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().GetInfluences();
-            _scratchList.AddRange(linq);
-
-            if (_scratchList.Count == 0) return;
-
-            MorphDef morph = null;
-            float max = float.NegativeInfinity;
-            foreach (var tuple in _scratchList)
-                if (max < tuple.second)
-                {
-                    morph = tuple.first;
-                    max = tuple.second;
-                }
-
-            if (morph == null)
-            { //null means there is no clear dominant morph even thought the pawn isn't "human" anymore
-                return; //TODO chimera race? 
-            }
-
-
-            if(morph.hybridRaceDef != pawn.def) //make sure the morph they're begin shifted to is different then they're current race 
-                RaceShiftUtilities.ChangePawnToMorph(pawn, morph); 
-        }
+        
 
         /// <summary>
-        /// 
+        /// called after the parent hediff is removed
         /// </summary>
         public override void CompPostPostRemoved()
         {
@@ -62,7 +30,7 @@ namespace Pawnmorph.Hediffs
 
             if (Pawn.Dead || _checked) return;
 
-            CheckRace(Pawn); 
+            Pawn.CheckRace();
 
 
         }
@@ -82,7 +50,7 @@ namespace Pawnmorph.Hediffs
                 _lastStage = parent.CurStageIndex;
                 if (_lastStage == Props.triggerStage)
                 {
-                    CheckRace(parent.pawn);
+                    parent.pawn.CheckRace();
                 }
             }
         }

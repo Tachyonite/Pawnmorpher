@@ -10,9 +10,7 @@ namespace Pawnmorph
     /// <summary> Mod extension for applying morphs to various PawnKinds. </summary>
     public class MorphPawnKindExtension : DefModExtension
     {
-        /// <summary>The maximum hediffs to add </summary>
-        public int maxHediffs = 5;
-
+        
         /// <summary>the min and max number of hediffs this kind can have</summary>
         public IntRange hediffRange;
 

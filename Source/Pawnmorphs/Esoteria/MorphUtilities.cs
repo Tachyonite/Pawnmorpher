@@ -61,6 +61,31 @@ namespace Pawnmorph
         public static IEnumerable<HediffDef> AllMutations
             => DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass));
 
+
+        /// <summary>
+        /// Checks the race of this pawn. If the pawn is mutated enough it's race is changed to one of the hybrids
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="addMissingMutations">if true, any missing mutations from the highest morph influence will be added</param>
+        /// <exception cref="System.ArgumentNullException">pawn</exception>
+        public static void CheckRace([NotNull] this Pawn pawn, bool addMissingMutations=true)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            if (!pawn.ShouldBeConsideredHuman()) return;
+
+            var mutTracker = pawn.GetMutationTracker();
+            if (mutTracker == null) return;
+
+            var hInfluence = mutTracker.HighestInfluence;
+
+
+            if (pawn.def.GetMorphOfRace() != hInfluence && hInfluence != null)
+            {
+                RaceShiftUtilities.ChangePawnToMorph(pawn, hInfluence, addMissingMutations);
+            }
+        }
+
         /// <summary> The maximum possible human influence. </summary>
         public static float MaxHumanInfluence
         {
