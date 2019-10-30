@@ -1,0 +1,19 @@
+<Defs>
+    <Pawnmorph.MutationCategoryDef> 
+        <defName>Combat</defName>
+    </Pawnmorph.MutationCategoryDef>
+    <Pawnmorph.MutationCategoryDef>
+        <defName>Productive</defName>
+    </Pawnmorph.MutationCategoryDef>
+
+        
+    <Pawnmorph.MutationCategoryDef>
+        <defName>Exotic</defName>
+        <restricted>true</restricted>
+    </Pawnmorph.MutationCategoryDef>
+    <Pawnmorph.MutationCategoryDef>
+        <defName>Powerfull</defName>
+        <restricted>true</restricted>
+    </Pawnmorph.MutationCategoryDef>
+
+</Defs> 

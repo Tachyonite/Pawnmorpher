@@ -69,6 +69,17 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        /// <summary>Prints all mutations that are missing extension.</summary>
+        [DebugOutput] 
+        [Category(MAIN_CATEGORY_NAME)]
+        public static void PrintAllMutationsMissingExtension()
+        {
+            var mutations = DefDatabase<HediffDef>
+                           .AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass) && !d.IsObsolete())
+                           .Where(d => !d.HasModExtension<MutationHediffExtension>())
+                           .Select(d => d.defName); 
+            Log.Message($"hediffs missing mutation extension:\n{string.Join("\n", mutations.ToArray())}");
+        }
 
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]

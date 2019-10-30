@@ -15,6 +15,9 @@ namespace Pawnmorph
 
         [Unsaved] private List<HediffDef> _mutations;
 
+        /// <summary>if mutations in this category should be restricted to special PawnGroupKinds</summary>
+        public bool restricted; 
+
         /// <summary> An enumerable collection of all mutations within this category. </summary>
         public IEnumerable<HediffDef> AllMutationsInCategory
         {
