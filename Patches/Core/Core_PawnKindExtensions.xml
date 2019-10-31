@@ -1,6 +1,7 @@
 <Patch>
-    <!-- 
-        uncomment to turn all tribals into dogs 
+    
+    <!-- uncomment to turn all tribals into dogs 
+    
     <Operation Class="PatchOperationAddModExtension">
         <xpath>/Defs/PawnKindDef[@Name="TribalBase"]</xpath>
         <value>
