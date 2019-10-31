@@ -31,24 +31,43 @@ namespace Pawnmorph
         /// </summary>
         public List<MutationCategoryDef> mutationCategories = new List<MutationCategoryDef>();
 
+        /// <summary>list of morphs to get mutations from</summary>
+        public List<MorphDef> morphs = new List<MorphDef>(); 
+
         [Unsaved] private List<HediffGiver_Mutation> _mutationGivers;
         /// <summary>Gets all mutation givers that pawns in this group can receive.</summary>
         /// <value>All mutation givers.</value>
+        /// this is created by combining the mutations from <seealso cref="morphCategories"/> <seealso cref="mutationCategories"/> and <seealso cref="morphs"/>
         public IEnumerable<HediffGiver_Mutation> AllMutationGivers
         {
             get
             {
+
                 if (_mutationGivers == null)
                 {
+                    HashSet<MorphDef> morphSet = new HashSet<MorphDef>(); 
                     var defSet = new HashSet<HediffDef>();
                     _mutationGivers = new List<HediffGiver_Mutation>();
                     foreach (MorphDef morphDef in morphCategories.SelectMany(c => c.AllMorphsInCategories)
                     ) //grab all mutation givers from the morphs 
-                    foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutations)
                     {
-                        if (defSet.Contains(mutationGiver.hediff)) continue; //don't include duplicates 
-                        _mutationGivers.Add(mutationGiver);
-                        defSet.Add(mutationGiver.hediff);
+                        morphSet.Add(morphDef);
+                        foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutations)
+                        {
+                            if (defSet.Contains(mutationGiver.hediff)) continue; //don't include duplicates 
+                            _mutationGivers.Add(mutationGiver);
+                            defSet.Add(mutationGiver.hediff);
+                        }
+                    }
+
+                    foreach (MorphDef morphDef in morphs.Where(m => !morphSet.Contains(m))) //only grab morphs not already included in the categories 
+                    {
+                        foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutations)
+                        {
+                            if (defSet.Contains(mutationGiver.hediff)) continue; //don't include duplicates 
+                            _mutationGivers.Add(mutationGiver);
+                            defSet.Add(mutationGiver.hediff);
+                        }
                     }
 
                     foreach (HediffDef hediffDef in mutationCategories.SelectMany(c => c.AllMutationsInCategory))
