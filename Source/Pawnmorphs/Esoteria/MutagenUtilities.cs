@@ -2,6 +2,8 @@
 // last updated 08/13/2019  4:11 PM
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Verse;
@@ -14,6 +16,39 @@ namespace Pawnmorph
     /// </summary>
     public static class MutagenUtilities
     {
+
+        /// <summary>
+        /// Clears the overlapping hediffs on the given pawn.
+        /// </summary>
+        /// <param name="mutationGiver">The mutation giver.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        /// mutationGiver
+        /// or
+        /// pawn
+        /// </exception>
+        public static void ClearOverlappingHediffs([NotNull] this HediffGiver_Mutation mutationGiver, [NotNull] Pawn pawn)
+        {
+            if (mutationGiver == null) throw new ArgumentNullException(nameof(mutationGiver));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var health = pawn.health;
+
+            List<Hediff_AddedMutation> hediffsToRemove = new List<Hediff_AddedMutation>(); //save the result, otherwise we'd invalidate the enumerator when we start removing them  
+            foreach (BodyPartDef bodyPartDef in mutationGiver.partsToAffect)
+            {
+                var hediffs = health.hediffSet.hediffs.Where(h => h.Part.def == bodyPartDef).OfType<Hediff_AddedMutation>();
+                hediffsToRemove.AddRange(hediffs); 
+
+            }
+
+            hediffsToRemove.RemoveDuplicates(); //don't want to remove a hediff more then once
+
+            foreach (Hediff_AddedMutation hediffAddedMutation in hediffsToRemove)
+            {
+                health.RemoveHediff(hediffAddedMutation); 
+            }
+
+        }
 
 
         /// <summary> Determines whether this instance can infect the specified pawn. </summary>
