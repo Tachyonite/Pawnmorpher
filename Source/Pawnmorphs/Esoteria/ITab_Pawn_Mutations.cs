@@ -101,7 +101,8 @@ namespace Pawnmorph
             DrawColumnHeader(ref col3, colWidth, "ProductionITabHeader".Translate());
 
             // Draw the content of the columns.
-            DrawMorphInfluenceList(ref col1, colWidth);
+            if(MorphUtilities.HybridsAreEnabledFor(PawnToShowMutationsFor.def))
+                DrawMorphInfluenceList(ref col1, colWidth);
             DrawMorphTraitsList(ref col2, colWidth);
             DrawMorphProductionList(ref col3, colWidth);
 

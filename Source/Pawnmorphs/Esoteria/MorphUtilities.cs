@@ -47,6 +47,16 @@ namespace Pawnmorph
 
         private static List<BodyPartDef> PossiblePartsLst { get; }
 
+
+        /// <summary>checks if the hybrid system is enabled for the given race def.</summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns></returns>
+        public static bool HybridsAreEnabledFor(ThingDef raceDef)
+        {
+            if (raceDef == ThingDefOf.Human) return true;
+            return raceDef.IsHybridRace();
+        }
+
         /// <summary>
         /// an enumerable collection of all body part defs that can have mutations 
         /// </summary>
@@ -444,6 +454,23 @@ namespace Pawnmorph
             }
 
             return false; 
+        }
+
+        /// <summary>
+        /// Determines whether this instance is hybrid race.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance is a hybrid race; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsHybridRace([NotNull] this ThingDef raceDef)
+        {
+            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefs)
+            {
+                if (raceDef == morphDef.hybridRaceDef) return true;
+            }
+
+            return false;
         }
     }
 }
