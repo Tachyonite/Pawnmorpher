@@ -30,7 +30,7 @@ namespace Pawnmorph.Hediffs
 
             if (Pawn.Dead || _checked) return;
 
-            Pawn.CheckRace();
+            Pawn.CheckRace(false);
 
 
         }
