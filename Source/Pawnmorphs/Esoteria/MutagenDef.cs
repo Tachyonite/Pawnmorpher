@@ -56,6 +56,18 @@ namespace Pawnmorph
             return MutagenCached.CanTransform(pawn); 
         }
 
+        /// <summary>
+        /// Determines whether this instance can transform the specified race definition.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can transform the specified race definition; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanTransform(ThingDef raceDef)
+        {
+            return MutagenCached.CanTransform(raceDef);
+        }
+
         /// <summary>Gets the cached mutagen </summary>
         /// <value>The cached mutagen </value>
         public Mutagen MutagenCached

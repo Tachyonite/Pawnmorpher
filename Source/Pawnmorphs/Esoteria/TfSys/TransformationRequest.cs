@@ -25,7 +25,8 @@ namespace Pawnmorph.TfSys
         /// </summary>
         /// <param name="outputDef">The output definition.</param>
         /// <param name="original">The original.</param>
-        public TransformationRequest(PawnKindDef outputDef, Pawn original)
+        /// <param name="maxSeverity">the maximum severity of the former human hediff</param>
+        public TransformationRequest(PawnKindDef outputDef, Pawn original, float maxSeverity=1)
         {
             originals = new [] {original};
             this.outputDef = outputDef;
@@ -33,7 +34,8 @@ namespace Pawnmorph.TfSys
             forcedGenderChance = 50; 
             cause = null;
             tale = null;
-
+            this.maxSeverity = maxSeverity;
+            minSeverity = 0; 
         }
 
         /// <summary>
@@ -48,7 +50,9 @@ namespace Pawnmorph.TfSys
             forcedGender = TFGender.Original;
             forcedGenderChance = 50;
             cause = null;
-            tale = null; 
+            tale = null;
+            this.maxSeverity = 1;
+            minSeverity = 0; 
         }
         /// <summary>The pawns to be transformed</summary>
         public Pawn[] originals;
@@ -63,8 +67,17 @@ namespace Pawnmorph.TfSys
         /// <summary>The cause of the transformation</summary>
         public Hediff cause;
         /// <summary>The tale to record</summary>
-        public TaleDef tale; 
+        public TaleDef tale;
 
+        /// <summary>
+        /// The minimum severity of the former human hediff
+        /// </summary>
+        public float minSeverity; 
+
+        /// <summary>
+        /// The minimum severity of the former human hediff
+        /// </summary>
+        public float maxSeverity; 
 
     }
 }

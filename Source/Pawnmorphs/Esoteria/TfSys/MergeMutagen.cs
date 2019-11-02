@@ -99,11 +99,11 @@ namespace Pawnmorph.TfSys
             }
 
             meld.SetFaction(Faction.OfPlayer);
-            //TODO handle faction reactions 
+            
             HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF);
 
             Hediff hediff = HediffMaker.MakeHediff(hediffToAdd, meld);
-            hediff.Severity = Rand.Range(0, 1f);
+            hediff.Severity = Rand.Range(request.minSeverity, request.maxSeverity);
             meld.health.AddHediff(hediff);
 
             ReactionsHelper.OnPawnsMerged(firstPawn, firstPawn.IsPrisoner, secondPawn, secondPawn.IsPrisoner, meld);

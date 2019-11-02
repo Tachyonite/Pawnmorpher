@@ -32,11 +32,12 @@ namespace Pawnmorph.TfSys
         public MutagenDef def;
 
         /// <summary>
-        /// Transforms the specified request.
+        /// Transforms the specified request and preforms all necessary cleanup after the transformation if successful 
         /// </summary>
+        /// implementers should make sure to preform all necessary cleanup of the pawn post transformation  
         /// <param name="request">The request.</param>
-        /// <returns></returns>
-        public abstract TransformedPawn Transform(TransformationRequest request); 
+        /// <returns>the transformed pawn instance to be added to the database, should return null if the request cannot be met</returns>
+        [CanBeNull] public abstract TransformedPawn Transform(TransformationRequest request); 
 
         /// <summary>
         /// Determines whether this instance can infect the specified pawn.
@@ -50,6 +51,28 @@ namespace Pawnmorph.TfSys
             if (!def.canInfectAnimals && pawn.RaceProps.Animal) return false;
             if (!def.canInfectMechanoids && pawn.RaceProps.IsMechanoid) return false;
             var ext = pawn.def.GetModExtension<RaceMutagenExtension>();
+            if (ext != null)
+            {
+                return !ext.immuneToAll && !ext.blackList.Contains(def);
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Determines whether this instance can infect the specified race definition.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can infect the specified race definition; otherwise, <c>false</c>.
+        /// </returns>
+        public virtual bool CanInfect(ThingDef raceDef)
+        {
+            if (raceDef.race == null) return false; 
+            if (!def.canInfectAnimals && raceDef.race.Animal) return false;
+            if (!def.canInfectMechanoids && raceDef.race.IsMechanoid) return false;
+            var ext = raceDef.GetModExtension<RaceMutagenExtension>();
             if (ext != null)
             {
                 return !ext.immuneToAll && !ext.blackList.Contains(def);
@@ -85,6 +108,19 @@ namespace Pawnmorph.TfSys
         {
             return CanInfect(pawn) && pawn.Map != null; 
         }
+        /// <summary>
+        /// Determines whether this instance can transform the specified race definition.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can transform the specified race definition; otherwise, <c>false</c>.
+        /// </returns>
+        public virtual bool CanTransform(ThingDef raceDef)
+        {
+            return CanInfect(raceDef); 
+        }
+
+        
 
         /// <summary>
         /// Try to revert the given instance of the transformed.
@@ -128,8 +164,9 @@ namespace Pawnmorph.TfSys
         protected abstract bool CanRevertPawnImp(T transformedPawn);
 
         /// <summary>
-        /// preform the requested transform 
+        /// preform the requested transform.
         /// </summary>
+        /// implementers should make sure to preform any cleanup/hiding of the original pawns 
         /// <param name="request">The request.</param>
         /// <returns></returns>
         protected abstract T TransformImpl(TransformationRequest request);
@@ -148,6 +185,7 @@ namespace Pawnmorph.TfSys
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
+        [CanBeNull]
         public sealed override TransformedPawn Transform(TransformationRequest request)
         {
             if (!IsValid(request))

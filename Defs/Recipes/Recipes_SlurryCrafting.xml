@@ -95,7 +95,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<MechSerumResurrector>1</MechSerumResurrector>
+			<MechSerumResurrectorTf>1</MechSerumResurrectorTf>
 		</products>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>

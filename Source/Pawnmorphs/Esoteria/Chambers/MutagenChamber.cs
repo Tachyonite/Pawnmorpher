@@ -371,7 +371,7 @@ namespace Pawnmorph
 
                     break;
                 case ChamberState.MergeInto:
-                    request = new TransformationRequest(pawnTFKind, pawn, (Pawn) linkTo.innerContainer[0])
+                    request = new TransformationRequest(pawnTFKind,   pawn, (Pawn) linkTo.innerContainer[0])
                     {
                         forcedGender = TFGender.Switch,
                         forcedGenderChance = 50
