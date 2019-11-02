@@ -3,7 +3,7 @@
     <xs:element name="Defs">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="AlienRace.BackstoryDef" minOccurs="1" maxOccurs="unbounded"></xs:element>
+                <xs:element name="AlienRace.BackstoryDef" type="BackstoryDef" minOccurs="1" maxOccurs="unbounded"></xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
