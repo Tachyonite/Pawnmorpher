@@ -381,7 +381,7 @@
 			<li>
 				<statOffsets>
 					<ComfyTemperatureMin>10</ComfyTemperatureMin>
-					<ComfyTemperatureMax>-10</ComfyTemperatureMax>
+					<ComfyTemperatureMax>10</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 		</stages>
