@@ -162,12 +162,13 @@ namespace Pawnmorph
         /// try to get the mutation tracker on this pawn, null if the pawn does not have a tracker 
         /// </summary>
         /// <param name="pawn"></param>
+        /// <param name="warnOnFail">if the pawn does not have a mutation tracker, display a warning message</param>
         /// <returns></returns>
         [CanBeNull]
-        public static MutationTracker GetMutationTracker([NotNull]this Pawn pawn)
+        public static MutationTracker GetMutationTracker([NotNull]this Pawn pawn, bool warnOnFail=true)
         {
             var comp = pawn.GetComp<MutationTracker>();
-            if(comp == null) Log.Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
+            if(comp == null && warnOnFail) Log.Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
             return comp; 
         }
 
