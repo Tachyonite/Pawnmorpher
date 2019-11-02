@@ -21,8 +21,18 @@ namespace Pawnmorph.Factions
         {
             var kindExtension = pawn.kindDef.GetModExtension<MorphPawnKindExtension>();
             if (kindExtension == null) return;
+            ApplyMutationExtensionToPawn(pawn, canApplyRestricted, setAtMaxStage, kindExtension);
+        }
 
-
+        /// <summary>
+        /// Applies the mutation extension to pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="canApplyRestricted">if set to <c>true</c> restricted mutations can be applied as well as regular ones.</param>
+        /// <param name="setAtMaxStage">if set to <c>true</c>all mutations will be set at the maximum stage.</param>
+        /// <param name="kindExtension">The kind extension.</param>
+        public static void ApplyMutationExtensionToPawn(Pawn pawn, bool canApplyRestricted, bool setAtMaxStage, MorphPawnKindExtension kindExtension)
+        {
             List<HediffGiver_Mutation> givers;
             var addedPartsSet = new HashSet<BodyPartDef>();
             if (canApplyRestricted)
