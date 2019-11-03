@@ -152,7 +152,7 @@ namespace Pawnmorph.Hediffs
 
         }
 
-        private const int INTERVALS_ON_MERGED = 4; 
+      
 
         /// <summary>Tries the merge with.</summary>
         /// <param name="other">The other.</param>
@@ -164,8 +164,7 @@ namespace Pawnmorph.Hediffs
             {
                 if (_chosenMorphTf == null)
                 {
-                    for (var i = 0; i < INTERVALS_ON_MERGED; i++)
-                        RunChaoticGivers();
+                    RunChaoticGivers();
                 }
                 else
                 {
@@ -179,11 +178,13 @@ namespace Pawnmorph.Hediffs
 
         private void RunChaoticGivers()
         {
-            
-            foreach (var giver in CurStage?.hediffGivers?.OfType<Giver_MutationChaotic>() ?? Enumerable.Empty<Giver_MutationChaotic>())
+            if (Rand.Range(0, 1f) < 0.5f)
             {
-                giver.OnIntervalPassed(pawn, this); 
+                var giver = (CurStage?.hediffGivers?.OfType<Giver_MutationChaotic>() ?? Enumerable.Empty<Giver_MutationChaotic>())
+                   .RandomElementWithFallback();
+                giver?.TryApply(pawn, this, MutagenDefOf.defaultMutagen); 
             }
+           
         }
 
 

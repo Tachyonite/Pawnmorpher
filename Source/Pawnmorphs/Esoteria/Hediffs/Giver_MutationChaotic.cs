@@ -115,21 +115,8 @@ namespace Pawnmorph.Hediffs
 
             if (Rand.MTBEventOccurs(mtbDays, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
-                var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
-                var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
-                if (mut.TryApply(pawn, mutagen, null, cause))
-                {
-                    IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
-                    if (cause.def.HasComp(typeof(HediffComp_Single)))
-                    {
-                        pawn.health.RemoveHediff(cause); 
-                    }
-
-                    if (mut.tale != null)
-                    {
-                        TaleRecorder.RecordTale(mut.tale, pawn); 
-                    }
-                }
+                var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+                TryApply(pawn, cause, mutagen);
             }
 
             if (MP.IsInMultiplayer)
@@ -137,6 +124,29 @@ namespace Pawnmorph.Hediffs
                 Rand.PopState();
             }
 
+        }
+        /// <summary>
+        /// Tries to apply this hediff giver 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="cause">The cause.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        public void TryApply(Pawn pawn, Hediff cause, MutagenDef mutagen)
+        {
+            var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
+            if (mut.TryApply(pawn, mutagen, null, cause))
+            {
+                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+                if (cause.def.HasComp(typeof(HediffComp_Single)))
+                {
+                    pawn.health.RemoveHediff(cause);
+                }
+
+                if (mut.tale != null)
+                {
+                    TaleRecorder.RecordTale(mut.tale, pawn);
+                }
+            }
         }
     }
 }
