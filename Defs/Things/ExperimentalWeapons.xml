@@ -1,0 +1,214 @@
+<Defs>
+    <ThingDef ParentName="BaseBullet">
+        <defName>XM_MutagenicBullet</defName>
+        <label>XM_MutagenicBullet</label>
+        <graphicData>
+            <texPath>Things/Projectiles/GelCapsule</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <flyOverhead>false</flyOverhead>
+            <damageDef>MutagenicBulletDamage</damageDef>
+            <damageAmountBase>1</damageAmountBase>
+            <stoppingPower>5</stoppingPower>
+            <speed>25</speed>
+        </projectile>
+    </ThingDef>
+
+
+    <HediffDef>
+        <defName>MutagenicBuildup_Weapon</defName>
+        <hediffClass>Pawnmorph.Hediffs.MutagenicBuildup</hediffClass>
+        <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
+        <label>mutagenic buildup</label>
+        <lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
+        <maxSeverity>1</maxSeverity>
+        <makesSickThought>true</makesSickThought>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <taleOnVisible>MutationToxicityRevealed</taleOnVisible>
+        <comps>
+            <li Class="HediffCompProperties_Immunizable">
+                <severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <label>initial</label>
+                <becomeVisible>false</becomeVisible>
+            </li>
+            <li>
+                <label>initial</label>
+                <minSeverity>0.04</minSeverity>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+                        <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+                        <blackListCategories>
+                            <li>Powerful</li>
+                        </blackListCategories>
+                        <mtbDays>0.3</mtbDays>
+                        <mtbUnits>20000</mtbUnits>
+                    </li>
+                </hediffGivers>
+            </li>
+            <li>
+                <label>minor</label>
+                <minSeverity>0.2</minSeverity>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+                        <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+                        <blackListCategories>
+                            <li>Powerful</li>
+                        </blackListCategories>
+                        <mtbDays>0.2</mtbDays>
+                        <mtbUnits>20000</mtbUnits>
+
+                    </li>
+                </hediffGivers>
+            </li>
+            <li>
+                <label>moderate</label>
+                <minSeverity>0.40</minSeverity>
+                <vomitMtbDays>5</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+                        <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+                        <blackListCategories>
+                            <li>Powerful</li>
+                        </blackListCategories>
+                        <mtbDays>0.1</mtbDays>
+                        <mtbUnits>20000</mtbUnits>
+
+                    </li>
+                </hediffGivers>
+            </li>
+            <li>
+                <label>serious</label>
+                <minSeverity>0.60</minSeverity>
+                <vomitMtbDays>1</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+                        <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+                        <blackListCategories>
+                            <li>Powerful</li>
+                        </blackListCategories>
+                        <mtbDays>0.1</mtbDays>
+                    </li>
+                </hediffGivers>
+            </li>
+            <li>
+                <label>extreme</label>
+                <minSeverity>0.80</minSeverity>
+                <vomitMtbDays>0.5</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.30</setMax>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <minSeverity>0.85</minSeverity>
+                <label>extreme</label>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <setMax>0.05</setMax>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <minSeverity>0.99</minSeverity>
+                <label>extreme</label>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <setMax>0.05</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>XM_MutagenicGun</defName>
+        <label>XM_MutagenicGun</label>
+        <description>EXPERIMENTAL</description>
+        <graphicData>
+            <texPath>Things/Item/TFGun</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_Revolver</soundInteract>
+        <statBases>
+            <WorkToMake>5000</WorkToMake>
+            <Mass>1.2</Mass>
+            <AccuracyTouch>0.90</AccuracyTouch>
+            <AccuracyShort>0.65</AccuracyShort>
+            <AccuracyMedium>0.35</AccuracyMedium>
+            <AccuracyLong>0.15</AccuracyLong>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Mutanite>5</Mutanite>
+            <Steel>50</Steel>
+            <ComponentIndustrial>3</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>XM_MutagenicBullet</defaultProjectile>
+                <warmupTime>0.3</warmupTime>
+                <range>25.9</range>
+                <soundCast>Shot_Autopistol</soundCast>
+                <burstShotCount>3</burstShotCount>
+                <soundCastTail>GunTail_Light</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <label>grip</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
+
+
+</Defs>

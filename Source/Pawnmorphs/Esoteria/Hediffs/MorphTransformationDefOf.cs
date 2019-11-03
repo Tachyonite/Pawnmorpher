@@ -36,8 +36,8 @@ namespace Pawnmorph.Hediffs
         public static HediffDef StabiliserHigh;  //should move this somewhere else 
 
         //special def 
-        public static HediffDef MutagenicBuildup; 
-
+        public static HediffDef MutagenicBuildup;
+        public static HediffDef MutagenicBuildup_Weapon; 
 
         /// <summary>
         ///     warning, this is slow and recalculates each call!

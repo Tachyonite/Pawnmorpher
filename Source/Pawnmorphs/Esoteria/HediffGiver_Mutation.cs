@@ -35,6 +35,11 @@ namespace Pawnmorph
         public bool ignoreThoughtLimit;
 
         /// <summary>
+        /// The MTB units
+        /// </summary>
+        public float mtbUnits = 60000f;
+
+        /// <summary>
         /// Whether or not the curent HediffGiver has tried to add this hediff.<br />
         /// Used to prevent the chance from activating if spammed repeatedly.
         /// </summary>
@@ -56,7 +61,7 @@ namespace Pawnmorph
             RandUtilities.PushState();
 
             // After roughly this duration, try to apply the hediff if the pawn is of human-like intelligence.
-            if (Rand.MTBEventOccurs(mtbDays, 60000f, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+            if (Rand.MTBEventOccurs(mtbDays, mtbUnits, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 MutagenDef mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 

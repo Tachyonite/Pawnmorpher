@@ -94,6 +94,10 @@ namespace Pawnmorph.Hediffs
                 return _possibleMutations; 
             }
         }
+        /// <summary>
+        /// The MTB unit
+        /// </summary>
+        public float mtbUnits = 6000; 
 
         /// <summary>
         /// occurs every so often for all hediffs that have this giver 
@@ -109,7 +113,7 @@ namespace Pawnmorph.Hediffs
                 Rand.PushState(RandUtilities.MPSafeSeed); 
             }
 
-            if (Rand.MTBEventOccurs(mtbDays, 6000, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+            if (Rand.MTBEventOccurs(mtbDays, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
                 var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 

@@ -37,7 +37,7 @@
 		<hediffClass>Pawnmorph.Hediffs.MutagenicBuildup</hediffClass>
 		<defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
 		<label>mutagenic buildup</label>
-		<lethalSeverity>2</lethalSeverity>
+		<lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
 		<maxSeverity>1</maxSeverity>
 		<makesSickThought>true</makesSickThought>
 		<scenarioCanAdd>true</scenarioCanAdd>

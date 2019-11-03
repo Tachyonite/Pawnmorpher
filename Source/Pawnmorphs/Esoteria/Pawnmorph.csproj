@@ -88,6 +88,7 @@
     <Compile Include="CompTargetEffect_TfResurrect.cs" />
     <Compile Include="Comp_MutagenicFixWorstCondition.cs" />
     <Compile Include="CustomBodyAddon.cs" />
+    <Compile Include="Damage\Worker_MutagenicInjury.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />

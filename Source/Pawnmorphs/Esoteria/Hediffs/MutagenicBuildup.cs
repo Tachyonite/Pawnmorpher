@@ -22,56 +22,40 @@ namespace Pawnmorph.Hediffs
         private HediffDef _chosenMorphTf;
         private List<HediffGiver_Mutation> _mutations = new List<HediffGiver_Mutation>();
         private HediffGiver_TF _transformation;
-
-        void PickRandomMorphTf()
+        private void PickRandomMorphTf()
         {
             bool SelectionFunc(HediffDef tfDef)
             {
                 if (tfDef == def) return false;
-                if (tfDef.GetTransformationType() == MorphTransformationTypes.Partial) return false; 
-                var morphs = MorphUtilities.GetAssociatedMorph(tfDef);
-                if (morphs.Any(m => m.categories.Contains(MorphCategoryDefOf.Powerful))) return false; //don't apply powerful morphs 
+                if (tfDef.GetTransformationType() == MorphTransformationTypes.Partial) return false;
+                IEnumerable<MorphDef> morphs = MorphUtilities.GetAssociatedMorph(tfDef);
+                if (morphs.Any(m => m.categories.Contains(MorphCategoryDefOf.Powerful)))
+                    return false; //don't apply powerful morphs 
 
 
-
-                var givers = tfDef.stages?.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_Mutation>()
-                                                        ?? Enumerable.Empty<HediffGiver_Mutation>());
-
-
-
+                IEnumerable<HediffGiver_Mutation> givers =
+                    tfDef.stages?.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_Mutation>()
+                                               ?? Enumerable.Empty<HediffGiver_Mutation>());
                 if (givers == null)
                 {
-                    Log.Message($"excluding {tfDef.defName} for null giver");
                     return false;
                 }
 
                 if (!givers.Any())
                 {
-                    Log.Message($"excluding {tfDef.defName} for no givers ");
                     return false;
                 }
 
-
-                var tfs = tfDef.stages.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_TF>()
-                                                    ?? Enumerable.Empty<HediffGiver_TF>());
+                IEnumerable<HediffGiver_TF> tfs = tfDef.stages.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_TF>()
+                                                                            ?? Enumerable.Empty<HediffGiver_TF>());
                 return tfs.Any();
-
-
-
             }
 
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
+            if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
 
             SetTransformationType(MorphTransformationDefOf.AllMorphsCached.Where(SelectionFunc).RandomElement());
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
-
+            if (MP.IsInMultiplayer) Rand.PopState();
         }
 
 
@@ -86,8 +70,18 @@ namespace Pawnmorph.Hediffs
             {
                 foreach (HediffGiver_Mutation hediffGiverMutation in _mutations)
                 {
-                    hediffGiverMutation.ClearHediff(this); //make sure all hediffs can be applied, like in chaotic giver 
-                    hediffGiverMutation.OnIntervalPassed(pawn, this); 
+                    float originalMtbUntis = hediffGiverMutation.mtbUnits;
+                    try
+                    {
+                        hediffGiverMutation.mtbUnits = AverageMTBUnits;
+                        hediffGiverMutation.ClearHediff(this); //make sure all hediffs can be applied, like in chaotic giver 
+                        hediffGiverMutation.OnIntervalPassed(pawn, this);
+                    }
+                    finally
+                    {
+                        hediffGiverMutation.mtbUnits = originalMtbUntis; 
+                    }
+                   
                 }
             }
         }
@@ -123,6 +117,21 @@ namespace Pawnmorph.Hediffs
             if (CurStageIndex >= 4 && _chosenMorphTf == null) PickRandomMorphTf();
         }
 
+        private float? _averageMTBUnits;
+
+        float AverageMTBUnits
+        {
+            get
+            {
+                if (_averageMTBUnits == null)
+                {
+                    _averageMTBUnits = def.GetAllHediffGivers().OfType<Giver_MutationChaotic>().Select(g => g.mtbUnits).Average(); 
+                }
+
+                return _averageMTBUnits.Value; 
+            }
+        }
+
         [SyncMethod]
         void SetTransformationType([NotNull] HediffDef tfDef)
         {
@@ -141,6 +150,40 @@ namespace Pawnmorph.Hediffs
 
 
 
+        }
+
+        private const int INTERVALS_ON_MERGED = 4; 
+
+        /// <summary>Tries the merge with.</summary>
+        /// <param name="other">The other.</param>
+        /// <returns></returns>
+        public override bool TryMergeWith(Hediff other)
+        {
+            var merged = base.TryMergeWith(other);
+            if (merged)
+            {
+                if (_chosenMorphTf == null)
+                {
+                    for (var i = 0; i < INTERVALS_ON_MERGED; i++)
+                        RunChaoticGivers();
+                }
+                else
+                {
+                    var giver = _chosenMorphTf.GetAllHediffGivers().OfType<HediffGiver_Mutation>().RandomElement();
+                    giver.TryApply(pawn, MutagenDefOf.defaultMutagen, cause: this); 
+                }
+            }
+
+            return merged; 
+        }
+
+        private void RunChaoticGivers()
+        {
+            
+            foreach (var giver in CurStage?.hediffGivers?.OfType<Giver_MutationChaotic>() ?? Enumerable.Empty<Giver_MutationChaotic>())
+            {
+                giver.OnIntervalPassed(pawn, this); 
+            }
         }
 
 
