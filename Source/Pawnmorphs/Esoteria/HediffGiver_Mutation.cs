@@ -106,7 +106,7 @@ namespace Pawnmorph
             if (!mutagenDef.CanInfect(pawn)) return false;
 
             bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
-            if (added)
+            if (added && partsToAffect != null)
             {
                 var log = new MutationLogEntry(pawn, hediff, partsToAffect);
                 Find.PlayLog.Add(log); 

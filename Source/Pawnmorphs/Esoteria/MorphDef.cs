@@ -65,6 +65,7 @@ namespace Pawnmorph
         public IEnumerable<HediffGiver_Mutation> AssociatedMutations => _associatedMutations ?? (_associatedMutations = GetMutations());
 
         /// <summary> Gets the current percent influence this morph has upon the pawn.</summary>
+        [Obsolete("Use " + nameof(GetMaximumInfluence) + " function instead")]
         public float TotalInfluence
         {
             get
@@ -74,17 +75,49 @@ namespace Pawnmorph
                     _totalInfluence = 0.0f;
                     IEnumerable<HediffGiver_Mutation> givers =
                         DefDatabase<HediffDef>.AllDefs.Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass))
-                        .SelectMany(def => def.GetAllHediffGivers().OfType<HediffGiver_Mutation>()) //select the givers not the hediffs directly to get where they're assigned to 
-                        .Where(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == this).GroupBy(g => g.hediff, g => g) //get only distinct values 
-                        .Select(g => g.First()); //not get one of each mutation
+                                              .SelectMany(def => def.GetAllHediffGivers()
+                                                                    .OfType<HediffGiver_Mutation
+                                                                     >()) //select the givers not the hediffs directly to get where they're assigned to 
+                                              .Where(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == this)
+                                              .GroupBy(g => g.hediff, g => g) //get only distinct values 
+                                              .Select(g => g.First()); //not get one of each mutation
                     foreach (HediffGiver_Mutation hediffGiverMutation in givers)
                     {
                         float inf = hediffGiverMutation.hediff.CompProps<CompProperties_MorphInfluence>().influence;
                         _totalInfluence += inf * hediffGiverMutation.countToAffect;
                     }
                 }
+
                 return _totalInfluence.Value;
             }
+        }
+
+        [Unsaved] private readonly Dictionary<BodyDef, float> _maxInfluenceCached = new Dictionary<BodyDef, float>();
+
+        /// <summary>
+        ///     Gets the maximum possible influence this morph has on a given body
+        /// </summary>
+        /// <param name="bodyDef">The body definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">bodyDef</exception>
+        public float GetMaximumInfluence([NotNull] BodyDef bodyDef)
+        {
+            if (bodyDef == null) throw new ArgumentNullException(nameof(bodyDef));
+
+            if (_maxInfluenceCached.TryGetValue(bodyDef, out float accum)) return accum; //see if we calculated this before 
+
+            foreach (HediffGiver_Mutation giver in AllAssociatedAndAdjacentMutations)
+            {
+                int mutationCount =
+                    bodyDef.GetAllMutableParts()
+                           .Count(m => giver.partsToAffect?
+                                            .Contains(m.def) ?? false); //get the total number of unique mutations the body can have at once 
+                float influence = giver.hediff.GetInfluenceOf(this); //get the influence this mutation gives 
+                accum += influence * mutationCount;
+            }
+
+            _maxInfluenceCached[bodyDef] = accum; //cache the result so we only have to do this once per body def
+            return accum;
         }
 
         /// <summary>

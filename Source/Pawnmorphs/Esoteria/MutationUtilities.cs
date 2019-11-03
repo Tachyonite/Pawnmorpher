@@ -22,6 +22,135 @@ namespace Pawnmorph
     {
         private static List<HediffGiver_Mutation> _allGivers;
 
+        private static List<BodyPartDef> _allMutablePartDefs;
+
+        
+
+        static List<BodyPartDef> AllMutablePartDefs //use lazy initialization 
+        {
+            get
+            {
+                if (_allMutablePartDefs == null)
+                {
+                    HashSet<BodyPartDef> tmpSet = new HashSet<BodyPartDef>(); //use a hash set so we don't have to worry about duplicates
+                    var allPartsInGivers = AllGivers.SelectMany(g => g.partsToAffect ?? Enumerable.Empty<BodyPartDef>());
+                    var allPartsInMutationExtensions = AllMutations.Select(d => d.GetModExtension<MutationHediffExtension>())//grab all the mod extensions off the mutations 
+                                                                   .Where(e => e != null) //keep only non nulls 
+                                                                   .SelectMany(e => e.parts ?? Enumerable.Empty<BodyPartDef>());//get all the body parts 
+                    foreach (BodyPartDef partDef in allPartsInGivers)
+                    {
+                        tmpSet.Add(partDef); 
+                    }
+
+                    foreach (BodyPartDef partDef in allPartsInMutationExtensions)
+                    {
+                        tmpSet.Add(partDef); 
+                    }
+
+                    _allMutablePartDefs = tmpSet.ToList(); //convert to a list, lists are easier to enumerate over 
+                }
+
+                return _allMutablePartDefs; 
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the influence of the given morph this mutationDef provides.
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="morph">The morph.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// mutationDef
+        /// or
+        /// morph
+        /// </exception>
+        public static float GetInfluenceOf([NotNull] this HediffDef mutationDef,[NotNull] MorphDef morph)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (morph == null) throw new ArgumentNullException(nameof(morph));
+
+            if (!typeof(Hediff_AddedMutation).IsAssignableFrom(mutationDef.hediffClass)) return 0; //if not a mutation just return 0 
+
+            if (mutationDef.HasComp(typeof(SpreadingMutationComp))) return 0; //spreading mutations shouldn't give influence, too messy to deal with 
+
+            var comp = mutationDef.CompProps<CompProperties_MorphInfluence>();
+            if (comp != null && comp.morph == morph)
+            {
+                return comp.influence; //if it has a morph influence comp return the influence value
+            }
+
+            if (morph.AllAssociatedAndAdjacentMutations.Select(g => g.hediff).Contains(mutationDef))
+                return 0.0f; //might want to let these guys give influence 
+            return 0; 
+
+        }
+
+        /// <summary>
+        /// Gets all mutable parts on this body def 
+        /// </summary>
+        /// <param name="bodyDef">The body definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">bodyDef</exception>
+        public static IEnumerable<BodyPartRecord> GetAllMutableParts([NotNull] this BodyDef bodyDef)
+        {
+            if (bodyDef == null) throw new ArgumentNullException(nameof(bodyDef));
+
+            if (_allMutablePartsLookup.TryGetValue(bodyDef, out List<BodyPartRecord> recordList)) //see if we already calculated the list previously 
+                return recordList;
+            recordList = new List<BodyPartRecord>();
+
+            foreach (BodyPartRecord bodyPartRecord in bodyDef.AllParts)
+            {
+                if (AllMutablePartDefs.Contains(bodyPartRecord.def))
+                    recordList.Add(bodyPartRecord); 
+            }
+
+            _allMutablePartsLookup[bodyDef] = recordList; //cache the result so we only have to do this once 
+            return recordList; 
+        }
+
+        private const float EPSILON = 0.01f;
+
+        /// <summary>
+        /// Gets all non zero morph influences the given hediff def gives to a pawn 
+        /// </summary>
+        /// <param name="def">The definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">def</exception>
+        public static IEnumerable<VTuple<MorphDef, float>> GetAllNonZeroInfluences([NotNull] HediffDef def)
+        {
+            if (def == null) throw new ArgumentNullException(nameof(def));
+            if (_influenceLookupTable.TryGetValue(def, out var lst)) //check if we calculated the value already 
+            {
+                return lst; 
+            }
+            else
+            {
+                lst = new List<VTuple<MorphDef, float>>(); 
+                _influenceLookupTable[def] = lst; //make sure the list is saved so we don't have to calculate this more then once 
+            }
+
+            foreach (var morphDef in DefDatabase<MorphDef>.AllDefs)
+            {
+                float influence = GetInfluenceOf(def, morphDef);
+                if (influence > EPSILON)
+                    lst.Add(new VTuple<MorphDef, float>(morphDef, influence)); 
+            }
+
+            return lst; 
+        }
+
+        private static Dictionary<HediffDef, List<VTuple<MorphDef, float>>> _influenceLookupTable =
+            new Dictionary<HediffDef, List<VTuple<MorphDef, float>>>(); 
+
+
+        private static Dictionary<BodyDef, List<BodyPartRecord>>
+            _allMutablePartsLookup = new Dictionary<BodyDef, List<BodyPartRecord>>();  
+
+
+
         /// <summary>
         /// get the pawn's outlook toward being mutated 
         /// </summary>
@@ -234,25 +363,7 @@ namespace Pawnmorph
 
         }
 
-        /// <summary>
-        /// get the normalized influences on the pawn
-        ///     the values are normalized to the total influences of the morph
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <returns></returns>
-        public static IEnumerable<VTuple<MorphDef, float>> GetNormalizedInfluences([NotNull] this Pawn pawn)
-        {
-            var comp = pawn.GetMutationTracker();
-            if(comp == null) yield break;
-            foreach (var kvp in comp)
-            {
-                var total = kvp.Value / kvp.Key.TotalInfluence;
-                yield return new VTuple<MorphDef, float>(kvp.Key, total); 
-
-            }
-
-        }
-
+        
         /// <summary>Gets all mutations with graphics.</summary>
         /// <value>All mutations with graphics.</value>
         public static IEnumerable<HediffDef> AllMutationsWithGraphics

@@ -279,7 +279,7 @@ namespace Pawnmorph.DebugUtils
                 typeof(BodyPartDef).GetField("skinCovered", //have to get isSkinCovered field by reflection because it's not public 
                                              BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
-            var spreadableParts = MorphUtilities.AllMutableRecords.Where(r => (bool) isSkinCoveredF.GetValue(r.def)).ToList();
+            var spreadableParts =BodyDefOf.Human.GetAllMutableParts().Where(r => (bool) (isSkinCoveredF?.GetValue(r.def) ?? false)).ToList();
 
             var spreadablePartsCount = spreadableParts.Count;
 

@@ -22,7 +22,13 @@ namespace Pawnmorph
         /// <summary>
         /// scalar used to make it easier for pawns to become hybrids
         /// </summary>
+        [Obsolete]
         public const float HUMAN_CHANGE_FACTOR = 0.65f;
+
+        /// <summary>
+        /// the percent human influence below which a pawn is 'no longer considered human'
+        /// </summary>
+        public const float MORPH_TF_THRESHOLD = 2f/3f; 
 
         private static List<BodyPartRecord> _possibleRecordsList;
         private static Dictionary<BodyPartDef, List<HediffGiver_Mutation>> _giversPerPartCache =
@@ -31,21 +37,8 @@ namespace Pawnmorph
             new Dictionary<HediffDef, List<MorphDef>>(); // So we don't calculate the associations more then we have to.
         private static float? _maxHumanInfluence;
 
-        static MorphUtilities() //this is really hacky 
-        {
-            IEnumerable<HediffDef> defs = MorphTransformationDefOf.AllMorphs;
-
-            PossiblePartsLst = defs.SelectMany(def => def.stages ?? Enumerable.Empty<HediffStage>())
-                                .SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                                .Where(giver => typeof(Hediff_AddedMutation).IsAssignableFrom(giver.hediff.hediffClass)) //get all hediff givers giving out mutations  
-                                .SelectMany(g => g.partsToAffect ?? Enumerable.Empty<BodyPartDef>())
-                                .Distinct() //get rid of duplicates 
-                                .ToList(); //make a list to save the result 
-            // Doing this to get the number of body parts that can have mutations so we can calculate how "human" a pawn is 
-            // This feels wrong, but I can't think of a better way to calculate the "human-ness" of a pawn  - Iron 
-        }
-
-        private static List<BodyPartDef> PossiblePartsLst { get; }
+        
+       
 
 
         /// <summary>checks if the hybrid system is enabled for the given race def.</summary>
@@ -57,15 +50,8 @@ namespace Pawnmorph
             return raceDef.IsHybridRace();
         }
 
-        /// <summary>
-        /// an enumerable collection of all body part defs that can have mutations 
-        /// </summary>
-        public static IEnumerable<BodyPartDef> PartsWithPossibleMutations => PossiblePartsLst;
-
-        /// <summary>
-        /// the total number of body part defs that can have mutations 
-        /// </summary>
-        public static int NumPartsWithPossibleMutations => PossiblePartsLst.Count;
+        
+  
 
         /// <summary> Enumerable collection of all mutation hediffs. </summary>
         public static IEnumerable<HediffDef> AllMutations
@@ -82,7 +68,7 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
-            if (!pawn.ShouldBeConsideredHuman()) return;
+            if (pawn.ShouldBeConsideredHuman()) return;
 
             var mutTracker = pawn.GetMutationTracker();
             if (mutTracker == null) return;
@@ -103,15 +89,16 @@ namespace Pawnmorph
             {
                 if (_maxHumanInfluence == null)
                 {
-                    var body = BodyDefOf.Human;
-                    _maxHumanInfluence = body.AllParts.Count(p => PossiblePartsLst.Contains(p.def));
+                    _maxHumanInfluence = BodyDefOf.Human.GetAllMutableParts().Count(); 
                 }
 
                 return _maxHumanInfluence.Value;
             }
         }
 
+        
         /// <summary> An enumerable collection of all body part records in humans that can be affected by a mutation. </summary>
+        [Obsolete("use " + nameof(MutationUtilities.GetAllMutableParts) + " function instead")]
         public static IEnumerable<BodyPartRecord> AllMutableRecords
         {
             get
@@ -119,7 +106,7 @@ namespace Pawnmorph
                 if (_possibleRecordsList == null)
                 {
                     var body = BodyDefOf.Human;
-                    _possibleRecordsList = body.AllParts.Where(p => PossiblePartsLst.Contains(p.def)).ToList();
+                    _possibleRecordsList = body.GetAllMutableParts().ToList(); 
 
                 }
 
@@ -403,19 +390,15 @@ namespace Pawnmorph
 
             var tracker = pawn.GetMutationTracker();
             if (tracker == null) return true;
-            float totalInfluence = 0;
 
-            foreach (Hediff_AddedMutation hediffAddedMutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
-            {
-                totalInfluence += hediffAddedMutation.Influence?.Props?.influence ?? 1;
-            }
+            
 
-            var humanInfluence = GetHumanInfluence(pawn);
+            var humanInfluence = GetHumanInfluence(pawn, true);
 
-            return humanInfluence * HUMAN_CHANGE_FACTOR > totalInfluence;
+            return humanInfluence > MORPH_TF_THRESHOLD;
         }
 
-        /// <summary> Gets the amount of influence a pawn has that's still human. </summary>
+        /// <summary> Gets the amount of influence a pawn has that's still human.</summary>
         /// <param name="pawn">the pawn</param>
         /// <param name="normalize"> Whether or not the resulting influence should be normalized between [0,1] </param>
         /// <returns></returns>
@@ -428,7 +411,7 @@ namespace Pawnmorph
                 mutatedRecords.Add(hediffAddedMutation.Part);
             }
 
-            var humanInfluence = (float) pawn.health.hediffSet.GetNotMissingParts().Count(p => PossiblePartsLst.Contains(p.def) && !mutatedRecords.Contains(p));
+            var humanInfluence = (float) pawn.health.hediffSet.GetNotMissingParts().Count(p => BodyDefOf.Human.GetAllMutableParts().Contains(p) && !mutatedRecords.Contains(p));
 
             if (normalize)
                 humanInfluence /= MaxHumanInfluence;

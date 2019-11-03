@@ -76,21 +76,22 @@ namespace Pawnmorph
             foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
             {
                 accum += keyValuePair.Value
-                       / keyValuePair.Key.TotalInfluence; //use the normalized value so we're comparing apples to apples 
+                       / keyValuePair.Key.GetMaximumInfluence(Pawn.def.race.body); //use the normalized value so we're comparing apples to apples 
                 //some morphs have more unique parts then others after all 
             }
 
-            accum += Pawn.GetHumanInfluence(true) * MorphUtilities.HUMAN_CHANGE_FACTOR; //add in the remaining human influence, if any
-
+            //accum += Pawn.GetHumanInfluence(true) * MorphUtilities.HUMAN_CHANGE_FACTOR; //add in the remaining human influence, if any
+            float nonHumanInfluence =  1 - Pawn.GetHumanInfluence(true);
 
             foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
             {
                 float nVal;
                 if (accum < 0.0001f) nVal = 0; //prevent division by zero 
                 else
-                    nVal = keyValuePair.Value
-                         / (accum * keyValuePair.Key.TotalInfluence); //now normalize the morph influences against the total 
-                yield return new VTuple<MorphDef, float>(keyValuePair.Key, nVal);
+                    nVal = nonHumanInfluence * keyValuePair.Value //make sure we are keeping the influence values in fractions of the remaining human influence 
+                         / (accum * keyValuePair.Key.GetMaximumInfluence(Pawn.RaceProps.body)); //now normalize the morph influences against the total 
+                var tup = new VTuple<MorphDef, float>(keyValuePair.Key, nVal);
+                yield return tup; 
             }
         }
 
@@ -119,7 +120,7 @@ namespace Pawnmorph
         public float GetNormalizedInfluence([NotNull] MorphDef morph)
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
-            return this[morph] / Mathf.Max(0.001f, morph.TotalInfluence); //prevent division by zero 
+            return this[morph] / Mathf.Max(0.001f, morph.GetMaximumInfluence(Pawn.RaceProps.body)); //prevent division by zero 
         }
         /// <summary>
         /// Gets the pawn this is tracking mutations for.
@@ -134,12 +135,12 @@ namespace Pawnmorph
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             _reCalcInfluences = true;  //we will need to recalculate the total if requested 
-            var comp = mutation.TryGetComp<Comp_MorphInfluence>();
-            if (comp != null)
-            {
-                _influenceLookup[comp.Morph] = _influenceLookup.TryGetValue(comp.Morph) + comp.Influence;
-            }
 
+            foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
+            {
+                _influenceLookup[tuple.first] = _influenceLookup.TryGetValue(tuple.first) + tuple.second; 
+            }
+            
             MutationsCount += 1; 
 
             HighestInfluence = GetHighestInfluence(); 
@@ -166,29 +167,28 @@ namespace Pawnmorph
                 receiver.MutationRemoved(mutation, this); 
             }
         }
-
+        const float EPSILON = 0.01f;
 
         /// <summary> Called to notify this tracker that a mutation has been removed. </summary>
         public void NotifyMutationRemoved([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             _reCalcInfluences = true; //we will need to recalculate the total if requested 
-            MutationsCount -= 1; 
-            var comp = mutation.TryGetComp<Comp_MorphInfluence>();
-            if (comp != null)
+            MutationsCount -= 1;
+
+
+            foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
             {
-                if (!_influenceLookup.ContainsKey(comp.Morph)) return;  
-                var val = _influenceLookup[comp.Morph] - comp.Influence;
-                if (Mathf.Abs(val) < 0.1f)
-                {
-                    _influenceLookup.Remove(comp.Morph); 
-                }
+                float val = _influenceLookup.TryGetValue(tuple.first) - tuple.second;
+                if (val < EPSILON)
+                    _influenceLookup.Remove(tuple.first);
                 else
-                {
-                    _influenceLookup[comp.Morph] = val; 
-                }
+                    _influenceLookup[tuple.first] = val; 
+
+
             }
 
+        
             HighestInfluence = GetHighestInfluence();
 
             NotifyCompsRemoved(mutation); 
@@ -204,12 +204,13 @@ namespace Pawnmorph
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 // Generate lookup dict manually during load for backwards compatibility.
-                foreach (var comp in AllMutations.Select(mut => mut.TryGetComp<Comp_MorphInfluence>()))
-                {
-                  if(comp == null) continue;
 
-                  var morph = comp.Morph;
-                  _influenceLookup[morph] = _influenceLookup.TryGetValue(morph) + comp.Influence;
+                foreach (Hediff_AddedMutation mutation in AllMutations)
+                {
+                    foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
+                    {
+                        _influenceLookup[tuple.first] = _influenceLookup.TryGetValue(tuple.first) + tuple.second; 
+                    }
                 }
 
                 // Now find the highest influence.
