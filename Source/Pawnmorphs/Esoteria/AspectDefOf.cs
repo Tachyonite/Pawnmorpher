@@ -3,7 +3,7 @@
 
 using JetBrains.Annotations;
 using RimWorld;
-
+#pragma warning disable 1591
 namespace Pawnmorph
 {
     /// <summary> DefOf class for commonly referenced Aspects. </summary>
@@ -15,6 +15,9 @@ namespace Pawnmorph
         /// </summary>
         [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static AspectDef EtherState;
+
+        public static AspectDef MutagenInfused; 
+
 
         static AspectDefOf()
         {

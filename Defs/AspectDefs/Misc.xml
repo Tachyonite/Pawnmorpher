@@ -26,4 +26,13 @@
             </li>
         </stages>
     </Pawnmorph.AspectDef>
+
+    <Pawnmorph.AspectDef>
+        <defName>MutagenInfused</defName>
+        <label>mutagen infused</label>
+        <description>only produces rare products</description>
+        <stages>
+            <li></li>
+        </stages>
+    </Pawnmorph.AspectDef>
 </Defs>

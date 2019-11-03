@@ -107,9 +107,9 @@ namespace Pawnmorph
             HatchingTicker = 0;
             var thingCount = 0;
             var rareThingCount = 0;
-
+            var isInfused = Pawn.GetAspectTracker()?.Contains(AspectDefOf.MutagenInfused) ?? false; 
             for (var i = 0; i < amount; i++)
-                if (Rand.RangeInclusive(0, 100) <= chance && rareResource != null)
+                if ((isInfused || Rand.RangeInclusive(0, 100) <= chance) && rareResource != null)
                     rareThingCount++;
                 else
                     thingCount++;
