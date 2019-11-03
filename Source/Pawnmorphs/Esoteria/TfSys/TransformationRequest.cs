@@ -35,7 +35,8 @@ namespace Pawnmorph.TfSys
             cause = null;
             tale = null;
             this.maxSeverity = maxSeverity;
-            minSeverity = 0; 
+            minSeverity = 0;
+            forcedFaction = default;
         }
 
         /// <summary>
@@ -52,7 +53,8 @@ namespace Pawnmorph.TfSys
             cause = null;
             tale = null;
             this.maxSeverity = 1;
-            minSeverity = 0; 
+            minSeverity = 0;
+            forcedFaction = default; 
         }
         /// <summary>The pawns to be transformed</summary>
         public Pawn[] originals;
@@ -68,6 +70,11 @@ namespace Pawnmorph.TfSys
         public Hediff cause;
         /// <summary>The tale to record</summary>
         public TaleDef tale;
+
+        /// <summary>
+        /// the faction to put the resultant pawn into 
+        /// </summary>
+        public Faction forcedFaction; 
 
         /// <summary>
         /// The minimum severity of the former human hediff

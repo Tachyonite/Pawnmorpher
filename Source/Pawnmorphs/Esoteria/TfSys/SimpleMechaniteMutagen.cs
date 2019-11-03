@@ -113,7 +113,13 @@ namespace Pawnmorph.TfSys
 
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
 
-            Faction faction = original.IsColonist ? original.Faction : null;
+            Faction faction;
+            if (request.forcedFaction != null) //forced faction should be the highest priority if set 
+                faction = request.forcedFaction; 
+            else if (original.IsColonist)
+                faction = original.Faction;
+            else
+                faction = null;
 
             Gender newGender =
                 TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
