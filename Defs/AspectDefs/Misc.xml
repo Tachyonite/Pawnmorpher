@@ -29,10 +29,15 @@
 
     <Pawnmorph.AspectDef>
         <defName>MutagenInfused</defName>
-        <label>mutagen infused</label>
-        <description>only produces rare products</description>
         <stages>
-            <li></li>
+            <li>
+                <label>mutagen infused</label>
+                <description>will only produce rare resources</description>
+            </li>
+            <li>
+                <label>mutagen neutralized</label>
+                <description>will never produce rare resources</description>
+            </li>
         </stages>
     </Pawnmorph.AspectDef>
 </Defs>

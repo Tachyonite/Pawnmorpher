@@ -98,6 +98,7 @@ namespace Pawnmorph
             Produce(amount, chance, resource, rareResource, thought);
         }
 
+
         private void Produce(int amount, float chance, ThingDef resource, ThingDef rareResource, ThoughtDef stageThought)
         {
             RandUtilities.PushState();
@@ -107,12 +108,34 @@ namespace Pawnmorph
             HatchingTicker = 0;
             var thingCount = 0;
             var rareThingCount = 0;
-            var isInfused = Pawn.GetAspectTracker()?.Contains(AspectDefOf.MutagenInfused) ?? false; 
+            Aspect infusedAspect = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
+
+            int? sIndex = infusedAspect?.StageIndex;
+
+
             for (var i = 0; i < amount; i++)
-                if ((isInfused || Rand.RangeInclusive(0, 100) <= chance) && rareResource != null)
+            {
+                bool shouldProduceRare;
+                switch (sIndex)
+                {
+                    case null:
+                        shouldProduceRare = Rand.RangeInclusive(0, 100) <= chance;
+                        break;
+                    case 0:
+                        shouldProduceRare = true;
+                        break;
+                    case 1:
+                        shouldProduceRare = false;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(sIndex.Value.ToString());
+                }
+
+                if (shouldProduceRare && rareResource != null)
                     rareThingCount++;
                 else
                     thingCount++;
+            }
 
             Thing thing = ThingMaker.MakeThing(resource);
             thing.stackCount = thingCount;
