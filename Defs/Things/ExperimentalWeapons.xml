@@ -163,7 +163,8 @@
         </graphicData>
         <soundInteract>Interact_Revolver</soundInteract>
         <statBases>
-            <WorkToMake>5000</WorkToMake>
+            <MarketValue>650</MarketValue>
+            <WorkToMake>8000</WorkToMake>
             <Mass>1.2</Mass>
             <AccuracyTouch>0.90</AccuracyTouch>
             <AccuracyShort>0.65</AccuracyShort>
@@ -171,6 +172,12 @@
             <AccuracyLong>0.15</AccuracyLong>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
         </statBases>
+        <recipeMaker>
+            <researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>8</Crafting>
+            </skillRequirements>
+        </recipeMaker>
         <costList>
             <Mutanite>5</Mutanite>
             <Steel>50</Steel>
