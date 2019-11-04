@@ -27,8 +27,9 @@
         <scenarioCanAdd>true</scenarioCanAdd>
         <taleOnVisible>MutationToxicityRevealed</taleOnVisible>
         <comps>
-            <li Class="HediffCompProperties_Immunizable">
-                <severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
+            <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
+               <recoveryTime>5.5</recoveryTime>
+               <peakSeverity>0.05</peakSeverity>
             </li>
         </comps>
         <stages>
