@@ -169,8 +169,8 @@
             <Mass>1.2</Mass>
             <AccuracyTouch>0.90</AccuracyTouch>
             <AccuracyShort>0.65</AccuracyShort>
-            <AccuracyMedium>0.35</AccuracyMedium>
-            <AccuracyLong>0.15</AccuracyLong>
+            <AccuracyMedium>0.45</AccuracyMedium>
+            <AccuracyLong>0.35</AccuracyLong>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
         </statBases>
         <recipeMaker>

@@ -24,6 +24,31 @@ namespace Pawnmorph
 
         private static List<BodyPartDef> _allMutablePartDefs;
 
+        /// <summary>
+        /// Determines whether this instance can apply mutations to the specified pawn.
+        /// </summary>
+        /// <param name="mutationGiver">The mutation giver.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can apply mutations to the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool CanApplyMutations([NotNull] this HediffGiver_Mutation mutationGiver, [NotNull] Pawn pawn)
+        {
+            if (mutationGiver.partsToAffect == null) return false;
+
+            var allRecordsToCheck = pawn.health.hediffSet.GetNotMissingParts()
+                                        .Where(p => mutationGiver.partsToAffect.Contains(p.def));
+
+
+            var mutatedParts = pawn.health.hediffSet.hediffs.Where(h => h.def == mutationGiver.hediff)
+                                   .Select(h => h.Part)
+                                   .Distinct()
+                                   .ToList();
+
+            return allRecordsToCheck.Any(p => !mutatedParts.Contains(p)); //if there are any non missing parts missing mutations then the hediff_giver can be applied 
+
+
+        }
         
 
         static List<BodyPartDef> AllMutablePartDefs //use lazy initialization 

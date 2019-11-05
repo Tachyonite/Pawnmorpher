@@ -147,6 +147,14 @@ namespace Pawnmorph
 
             NotifyCompsAdded(mutation);
         }
+        /// <summary>
+        /// called every tick 
+        /// </summary>
+        public override void CompTick()
+        {
+            if (Pawn.IsHashIntervalTick(1400))
+                Pawn.CheckRace(false); //check the race every so often, but not too often 
+        }
 
         void NotifyCompsAdded(Hediff_AddedMutation mutation)
         {
