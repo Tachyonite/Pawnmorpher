@@ -159,21 +159,22 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public override bool TryMergeWith(Hediff other)
         {
-            var merged = base.TryMergeWith(other);
-            if (merged)
+            if (other is MutagenicBuildup) //make sure all mutagenic buildups can merge with each other 
             {
-                if (_chosenMorphTf == null)
+               
+                Severity += other.Severity;
+                ageTicks = 0;
+                foreach (HediffComp hediffComp in comps)
                 {
-                    RunChaoticGivers();
+                    hediffComp.CompPostMerged(other); 
                 }
-                else
-                {
-                    var giver = _chosenMorphTf.GetAllHediffGivers().OfType<HediffGiver_Mutation>().RandomElement();
-                    giver.TryApply(pawn, MutagenDefOf.defaultMutagen, cause: this); 
-                }
+
+                ResetGivers();
+                return true; 
             }
 
-            return merged; 
+            return false; 
+
         }
 
         private void RunChaoticGivers()
