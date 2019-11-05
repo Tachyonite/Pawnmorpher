@@ -39,12 +39,20 @@ namespace Pawnmorph.Damage
         private DamageResult ApplyToPawn(DamageInfo dinfo, Pawn pawn)
         {
             //reduce the amount to make it less likely to kill the pawn 
-            float originalDamage = dinfo.Amount; 
-            dinfo = new DamageInfo(dinfo.Def,  dinfo.Amount * REDUCE_VALUE , dinfo.ArmorPenetrationInt, dinfo.Angle, dinfo.Instigator,
+            float originalDamage = dinfo.Amount;
+
+
+            var r = MutagenDefOf.defaultMutagen.CanInfect(pawn) ? REDUCE_VALUE : 1; 
+            float reducedDamage = dinfo.Amount * r;
+
+            dinfo = new DamageInfo(dinfo.Def,  reducedDamage , dinfo.ArmorPenetrationInt, dinfo.Angle, dinfo.Instigator,
                                    dinfo.HitPart, dinfo.Weapon, dinfo.Category, dinfo.intendedTargetInt);
 
             var res = base.Apply(dinfo, pawn);
 
+
+            if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return res;
+            //only apply build up if the pawn can be infected 
             if (res.deflected && !res.deflectedByMetalArmor)
             {
                 //even if no damage is done still apply some buildup if the armor isn't metal 
