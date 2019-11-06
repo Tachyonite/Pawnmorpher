@@ -1,6 +1,7 @@
 ﻿// MorphGroupMakerUtilities.cs created by Iron Wolf for Pawnmorph on 10/30/2019 11:18 AM
 // last updated 10/30/2019  11:18 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -25,13 +26,47 @@ namespace Pawnmorph.Factions
         }
 
         /// <summary>
-        /// Applies the mutation extension to pawn.
+        ///     Applies the mutation extension to pawn.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="canApplyRestricted">if set to <c>true</c> restricted mutations can be applied as well as regular ones.</param>
         /// <param name="setAtMaxStage">if set to <c>true</c>all mutations will be set at the maximum stage.</param>
         /// <param name="kindExtension">The kind extension.</param>
-        public static void ApplyMutationExtensionToPawn(Pawn pawn, bool canApplyRestricted, bool setAtMaxStage, MorphPawnKindExtension kindExtension)
+        public static void ApplyMutationExtensionToPawn(Pawn pawn, bool canApplyRestricted, bool setAtMaxStage,
+                                                        MorphPawnKindExtension kindExtension)
+        {
+            ApplyMutations(pawn, canApplyRestricted, setAtMaxStage, kindExtension);
+            ApplyAspects(pawn, kindExtension);
+        }
+
+        private static void ApplyAspects(Pawn pawn, MorphPawnKindExtension extension)
+        {
+            if (pawn.GetAspectTracker() == null) return;
+            if (extension.aspects.Count == 0) return;
+            int addAspect = Mathf.Min(extension.aspects.Count - 1, extension.aspectRange.RandomInRange);
+
+            if (addAspect == extension.aspects.Count - 1)
+                foreach (MorphPawnKindExtension.AspectEntry aspectEntry in extension.aspects)
+                    AddAspectToPawn(pawn, aspectEntry);
+
+
+            List<MorphPawnKindExtension.AspectEntry> tmpList = extension.aspects.ToList(); //make a copy  
+            for (var i = 0; i < addAspect; i++)
+            {
+                int r = Rand.Range(0, tmpList.Count); //pick a random entry 
+                MorphPawnKindExtension.AspectEntry ae = tmpList[r];
+                AddAspectToPawn(pawn, ae);
+                tmpList.RemoveAt(r); //remove it so we don't pick it twice
+            }
+        }
+
+        private static void AddAspectToPawn(Pawn pawn, MorphPawnKindExtension.AspectEntry aspectEntry)
+        {
+            var tracker = pawn.GetAspectTracker();
+            tracker?.Add(aspectEntry.aspect, aspectEntry.stage); 
+        }
+
+        private static void ApplyMutations(Pawn pawn, bool canApplyRestricted, bool setAtMaxStage, MorphPawnKindExtension kindExtension)
         {
             List<HediffGiver_Mutation> givers;
             var addedPartsSet = new HashSet<BodyPartDef>();

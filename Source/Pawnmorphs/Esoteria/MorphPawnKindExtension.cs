@@ -14,12 +14,28 @@ namespace Pawnmorph
         /// <summary>the min and max number of hediffs this kind can have</summary>
         public IntRange hediffRange;
 
-        /// <summary>The maximum aspects to add</summary>
-        public int maxAspects = 1;
+        /// <summary>The range for the number of aspects that can be added</summary>
+        public IntRange aspectRange; 
 
         /// <summary>the chance that a given pawn will be a hybrid race</summary>
         /// percentage, [0,1]
         public float morphChance = 0.6f;
+
+
+        /// <summary>The aspects that can be added by this extension </summary>
+        public List<AspectEntry> aspects = new List<AspectEntry>(); 
+
+        /// <summary>
+        /// class for a single aspect entry in the <see cref="MorphPawnKindExtension"/>
+        /// </summary>
+        public class AspectEntry
+        {
+            /// <summary>The aspect to add</summary>
+            public AspectDef aspect;
+            /// <summary>The stage to add the aspect at</summary>
+            public int stage = 0; 
+        }
+
 
 
         /// <summary>The morph categories that can be chosen from</summary>

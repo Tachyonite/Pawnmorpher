@@ -2,7 +2,7 @@
     <xs:element name="Pawnmorph.MorphPawnKindExtension" type="MorphPawnKindExtension"/>
 
     <xs:complexType name="MorphPawnKindExtension">
-        <xs:sequence>
+        <xs:all>
             <xs:element name="hediffRange" type="IntRange" />
             <xs:element name="morphCategories" minOccurs="0" >
                 <xs:complexType>
@@ -13,7 +13,14 @@
             </xs:element>
             <xs:element name="mutationCategories" minOccurs="0" type="ListOfStrings"/>
             <xs:element name="morphs" minOccurs="0" type="ListOfStrings"/>
-        </xs:sequence>
+            <xs:element name="aspects" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="AspectEntry" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
         <xs:attribute name="Class" use="required">
         <xs:simpleType>
             <xs:restriction base="xs:string">
@@ -21,6 +28,13 @@
             </xs:restriction>
         </xs:simpleType>    
     </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="AspectEntry">
+        <xs:all>
+            <xs:element name="aspect" type="xs:string"/>
+            <xs:element name="stage" type="xs:int" default="0" minOccurs="0"/>
+        </xs:all>
     </xs:complexType>
 
     <xs:simpleType name="MorphCategories">
