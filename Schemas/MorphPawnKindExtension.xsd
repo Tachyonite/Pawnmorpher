@@ -13,6 +13,7 @@
             </xs:element>
             <xs:element name="mutationCategories" minOccurs="0" type="ListOfStrings"/>
             <xs:element name="morphs" minOccurs="0" type="ListOfStrings"/>
+            <xs:element name="aspectRange" minOccurs="0" type="IntRange" />
             <xs:element name="aspects" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
