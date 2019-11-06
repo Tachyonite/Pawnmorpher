@@ -42,30 +42,14 @@ namespace Pawnmorph.Damage
             float originalDamage = dinfo.Amount;
 
 
-            var r = MutagenDefOf.defaultMutagen.CanInfect(pawn) ? REDUCE_VALUE : 1; 
-            float reducedDamage = dinfo.Amount * r;
+            var r = MutagenDefOf.defaultMutagen.CanInfect(pawn) ? REDUCE_VALUE : 1;
 
-            dinfo = new DamageInfo(dinfo.Def,  reducedDamage , dinfo.ArmorPenetrationInt, dinfo.Angle, dinfo.Instigator,
-                                   dinfo.HitPart, dinfo.Weapon, dinfo.Category, dinfo.intendedTargetInt);
+            dinfo = MutagenicDamageUtilities.ReduceDamage(dinfo, r); 
 
             var res = base.Apply(dinfo, pawn);
 
-
             if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return res;
-            //only apply build up if the pawn can be infected 
-            if (res.deflected && !res.deflectedByMetalArmor)
-            {
-                //even if no damage is done still apply some buildup if the armor isn't metal 
-                float oDamage = originalDamage * REDUCE_VALUE ;
-                Log.Message($"Applying {oDamage * SEVERITY_PER_DAMAGE} worth of mutagenic buildup");
-                ApplyMutagenicBuildup(dinfo, pawn, res, oDamage); 
-            }else if (!res.deflected)
-            {
-                //make metal armor better at preventing mutagenic buildup 
-                var oDamage = res.diminishedByMetalArmor ? res.totalDamageDealt : originalDamage;
-                ApplyMutagenicBuildup(dinfo, pawn, res, oDamage);
-
-            }
+            MutagenicDamageUtilities.ApplyMutagenicDamage(originalDamage, dinfo, pawn, res);
 
             return res; 
         }
