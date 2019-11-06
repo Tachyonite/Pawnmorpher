@@ -52,7 +52,7 @@ namespace Pawnmorph.Damage
         /// <param name="dInfo">The d information.</param>
         /// <param name="reduceAmount">The reduce amount.</param>
         /// <returns>a new damage info struct with the modified damage</returns>
-        public static DamageInfo ReduceDamage(DamageInfo dInfo, float reduceAmount = REDUCE_VALUE)
+        public static DamageInfo ReduceDamage(DamageInfo dInfo, float reduceAmount = REDUCE_VALUE) //we want to reduce the damage so weapons look more damage then they actually are 
         {
             float reducedDamage = dInfo.Amount * reduceAmount;
 

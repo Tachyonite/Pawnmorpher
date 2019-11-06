@@ -89,6 +89,7 @@
     <Compile Include="Comp_MutagenicFixWorstCondition.cs" />
     <Compile Include="CustomBodyAddon.cs" />
     <Compile Include="Damage\MutagenicDamageUtilities.cs" />
+    <Compile Include="Damage\Worker_MutagenicBlunt.cs" />
     <Compile Include="Damage\Worker_MutagenicInjury.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
