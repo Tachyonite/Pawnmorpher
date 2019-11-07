@@ -63,8 +63,6 @@ namespace Pawnmorph.GraphicSys
 
             if (baseColor == morphColor)
             {
-                Log.Warning($"morphColor and baseColor are the same for morph {highestInfluence.defName} and {curMorph}");
-
                 return false; // If they're the same color don't  do anything.
             }
 
