@@ -1,17 +1,19 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="Windows-1252" ?>
 
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="include/Enums.xsd" />
+
 	<xs:element name="Defs">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="Pawnmorph.MorphDef" minOccurs="1" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="defName" type="xs:string"  minOccurs="0" maxOccurs="1"/>
-							<xs:element name="label" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+							<xs:element name="defName" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
-							<xs:element name="race" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="race" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="explicitHybridRace" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="group" type="MorphGroups" minOccurs="0" maxOccurs="1" />
 							<xs:element name="categories" minOccurs="0" maxOccurs="1">
@@ -52,35 +54,14 @@
 							</xs:element>
 						</xs:sequence>
 						<xs:attribute name="ParentName" type="xs:string" use="optional" />
-						<xs:attribute name="Name" type="xs:string" use="optional"/>
+						<xs:attribute name="Name" type="xs:string" use="optional" />
 						<xs:attribute name="Abstract" type="xs:boolean" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:simpleType name="MorphGroups">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Canines" />
-			<xs:enumeration value="HerbivoreHerding" />
-		</xs:restriction>
 
-	</xs:simpleType>
-	<xs:simpleType name="MorphCategory">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Powerful" />
-			<xs:enumeration value="Farm" />
-			<xs:enumeration value="Combat" />
-			<xs:enumeration value="Production" />
-			<xs:enumeration value="Social" />
-			<xs:enumeration value="Crafter" />
-			<xs:enumeration value="Ursine" />
-			<xs:enumeration value="Feline" />
-			<xs:enumeration value="Avian" />
-			<xs:enumeration value="Canid" />
-
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:complexType name="StatModifiersList">
 		<xs:sequence>
 			<xs:element name="li" type="StatModifier" />
@@ -108,8 +89,7 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="ateAnimalThought" minOccurs="0" maxOccurs="1" type="AteThought">
-			</xs:element>
+			<xs:element name="ateAnimalThought" minOccurs="0" maxOccurs="1" type="AteThought"></xs:element>
 			<xs:element name="butcheredAnimalThought" type="ButcherThought" minOccurs="0" maxOccurs="1" />
 			<xs:element name="suppressHumanlikeCannibalThoughts" type="xs:boolean" minOccurs="0" maxOccurs="1" />
 			<xs:element name="canEatRaw" type="xs:boolean" minOccurs="0" maxOccurs="1" />
@@ -172,7 +152,7 @@
 			<xs:element name="transformationMemory" type="xs:string" minOccurs="0" maxOccurs="1" />
 			<xs:element name="revertedMemory" type="xs:string" minOccurs="0" maxOccurs="1" />
 			<xs:element name="revertedMemoryFurry" type="xs:string" minOccurs="0" maxOccurs="1" />
-			<xs:element name="revertedMemoryBP" type="xs:string" minOccurs="0" maxOccurs="1"/> 
+			<xs:element name="revertedMemoryBP" type="xs:string" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TraitSettings">

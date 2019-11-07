@@ -37,6 +37,8 @@
             <xs:enumeration value="Feline" />
             <xs:enumeration value="Avian" />
             <xs:enumeration value="Canid" />
+            <xs:enumeration value="Chimera"/>
+            <xs:enumeration value="Reptile"/>
         </xs:restriction>
     </xs:simpleType>
 

@@ -25,6 +25,9 @@ namespace Pawnmorph
         [Obsolete]
         public const float HUMAN_CHANGE_FACTOR = 0.65f;
 
+        /// <summary>the percent influence needed for a single morph to be selected to turn the pawn into, rather then a chimera</summary>
+        public const float CHIMERA_THRESHOLD = 0.5f; 
+
         /// <summary>
         /// the percent human influence below which a pawn is 'no longer considered human'
         /// </summary>
@@ -71,15 +74,35 @@ namespace Pawnmorph
             if (pawn.ShouldBeConsideredHuman()) return;
 
             var mutTracker = pawn.GetMutationTracker();
-            if (mutTracker == null) return;
 
-            var hInfluence = mutTracker.HighestInfluence;
+            var hInfluence = mutTracker?.HighestInfluence;
+
+            if (hInfluence == null) return; 
+
+            var morphInfluence = mutTracker.GetNormalizedInfluence(hInfluence);
+
+            if (morphInfluence < CHIMERA_THRESHOLD)
+            {
+                hInfluence = GetChimeraRace(hInfluence);
+            }
 
 
-            if (pawn.def.GetMorphOfRace() != hInfluence && hInfluence != null)
+
+            if (pawn.def.GetMorphOfRace() != hInfluence)
             {
                 RaceShiftUtilities.ChangePawnToMorph(pawn, hInfluence, addMissingMutations);
             }
+        }
+
+        private static MorphDef GetChimeraRace(MorphDef hInfluence)
+        {
+            if (hInfluence.categories.Contains(MorphCategoryDefOf.Canid))
+                return MorphDefOfs.ChaofoxMorph;
+            if (hInfluence.categories.Contains(MorphCategoryDefOf.Reptile))
+                return MorphDefOfs.ChaodinoMorph;
+            if (hInfluence == MorphDefOfs.BoomalopeMorph) return MorphDefOfs.ChaoboomMorph;
+            if (hInfluence == MorphDefOfs.CowMorph) return MorphDefOfs.ChaocowMorph;
+            return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
         }
 
         /// <summary> The maximum possible human influence. </summary>

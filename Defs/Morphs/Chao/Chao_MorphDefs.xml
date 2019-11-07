@@ -1,0 +1,29 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+    <Pawnmorph.MorphDef ParentName="ChimeraMorph">
+        <defName>ChaocowMorph</defName>
+        <label>chaocow morph</label>
+        <race>Chaocow</race>
+        <group>HerbivoreHerding</group>
+    </Pawnmorph.MorphDef>
+
+    <Pawnmorph.MorphDef ParentName="ChimeraMorph">
+        <defName>ChaoboomMorph</defName>
+        <label>ChaoboomMorph</label>
+        <race>Chaoboom</race>
+        <group>HerbivoreHerding</group>
+        
+    </Pawnmorph.MorphDef>
+
+    <Pawnmorph.MorphDef ParentName="ChimeraMorph">
+        <defName>ChaofoxMorph</defName>
+        <label>choafox morph</label>
+        <race>Chaofox</race>
+        <group>Canines</group>
+
+    </Pawnmorph.MorphDef>
+    <Pawnmorph.MorphDef ParentName="ChimeraMorph">
+        <defName>ChaodinoMorph</defName>
+        <label>chaodino morph</label>
+        <race>Chaodino</race>
+    </Pawnmorph.MorphDef>
+</Defs>
