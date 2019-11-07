@@ -87,11 +87,23 @@ namespace Pawnmorph
             }
 
 
-
-            if (pawn.def.GetMorphOfRace() != hInfluence)
+            MorphDef curMorph = pawn.def.GetMorphOfRace();
+            if (curMorph != hInfluence && !(curMorph?.IsChimeraMorph() ?? false))
             {
                 RaceShiftUtilities.ChangePawnToMorph(pawn, hInfluence, addMissingMutations);
             }
+        }
+
+        /// <summary>
+        /// Determines whether this instance is a chimera morph.
+        /// </summary>
+        /// <param name="morphDef">The morph definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance is a chimera morph; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsChimeraMorph([NotNull] this MorphDef morphDef)
+        {
+            return MorphCategoryDefOf.Chimera.AllMorphsInCategories.Contains(morphDef); 
         }
 
         private static MorphDef GetChimeraRace(MorphDef hInfluence)
