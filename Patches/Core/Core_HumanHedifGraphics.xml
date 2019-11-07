@@ -891,6 +891,66 @@
 					</east>
 				</offsets>
 			</li>
+			<!--li>
+				<path>Alignment/testhead</path>
+				<bodyPart>Head</bodyPart>
+				<useSkinColor>true</useSkinColor>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.425, 0.560)</Male>
+							<Female>(-0.425, 0.560)</Female>
+							<Thin>(-0.425, 0.560)</Thin>
+							<Hulk>(-0.425, 0.560)</Hulk>
+							<Fat>(-0.425, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.010, 0.000)</Average_Wide>
+							<Average_Pointy>(0.000, 0.000)</Average_Pointy>
+							<Narrow_Normal>(0.000, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(0.000, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(0.000, 0.000)</Narrow_Pointy>
+						</crownTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0.000, 0.890)</Male>
+							<Female>(0.000, 0.890)</Female>
+							<Thin>(0.000, 0.890)</Thin>
+							<Hulk>(0.000, 0.890)</Hulk>
+							<Fat>(0.000, 0.890)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(0.000, 0.000)</Average_Wide>
+							<Average_Pointy>(0.000, 0.000)</Average_Pointy>
+							<Narrow_Normal>(0.000, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(0.000, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(0.000, 0.000)</Narrow_Pointy>
+						</crownTypes>
+					</north>
+					<east>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.005, 0.000)</Average_Wide>
+							<Average_Pointy>(0.010, 0.000)</Average_Pointy>
+							<Narrow_Normal>(0.060, -0.015)</Narrow_Normal>
+							<Narrow_Wide>(0.060, -0.015)</Narrow_Wide>
+							<Narrow_Pointy>(0.060, -0.020)</Narrow_Pointy>
+						</crownTypes>
+					</east>
+				</offsets>
+				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.27</layerOffset>
+				<layerInvert>false</layerInvert>
+				<drawForMale>true</drawForMale>
+				<drawForFemale>false</drawForFemale>
+			</li-->
 		</value>
 	</Operation>
 </Patch>
