@@ -21,6 +21,8 @@ namespace Pawnmorph
         private bool _reCalcInfluences = true;
         private float _totalNormalizedInfluence;
 
+        private Dictionary<MorphDef, float> _normalizedInfluenceLookup = new Dictionary<MorphDef, float>(); 
+
         /// <summary>
         /// Gets the total number of mutations on the pawn being tracked.
         /// </summary>
@@ -57,14 +59,26 @@ namespace Pawnmorph
             {
                 if (_reCalcInfluences)
                 {
-                    _normalizedInfluencesCache.Clear();
-                    _normalizedInfluencesCache.AddRange(CalculateNormalizedInfluences());
-
-                    _totalNormalizedInfluence = _normalizedInfluencesCache.Sum(f => f.second); 
+                    RecalcNormalizedInfluences();
                 }
 
                 return _normalizedInfluencesCache; 
             }
+        }
+
+        private void RecalcNormalizedInfluences()
+        {
+            _normalizedInfluencesCache.Clear();
+
+            foreach (VTuple<MorphDef, float> tuple in CalculateNormalizedInfluences())
+            {
+                _normalizedInfluencesCache.Add(tuple);
+                _normalizedInfluenceLookup[tuple.first] = tuple.second;
+            }
+
+
+
+            _totalNormalizedInfluence = _normalizedInfluencesCache.Sum(f => f.second);
         }
 
         /// <summary> The morph with the most influence on this pawn, not necessarily the morph the pawn currently is. </summary>
@@ -120,7 +134,10 @@ namespace Pawnmorph
         public float GetNormalizedInfluence([NotNull] MorphDef morph)
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
-            return this[morph] / Mathf.Max(0.001f, morph.GetMaximumInfluence(Pawn.RaceProps.body)); //prevent division by zero 
+            if(_reCalcInfluences) RecalcNormalizedInfluences();
+            return _normalizedInfluenceLookup.TryGetValue(morph); 
+
+
         }
         /// <summary>
         /// Gets the pawn this is tracking mutations for.
