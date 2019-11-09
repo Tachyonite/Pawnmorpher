@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
+using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
@@ -17,6 +18,14 @@ namespace Pawnmorph
     {
         private readonly List<Aspect> _rmCache = new List<Aspect>();
         private List<Aspect> _aspects = new List<Aspect>();
+
+        /// <summary>
+        /// gets the total number of aspects this pawn has.
+        /// </summary>
+        /// <value>
+        /// The aspect count.
+        /// </value>
+        public int AspectCount => Mathf.Max(_aspects.Count - _rmCache.Count, 0);  //take into account the remove cache in the off chance this gets checked between calls to Remove and the aspects actually get removed
 
         /// <summary>
         /// an enumerable collection of all aspects in this instance 

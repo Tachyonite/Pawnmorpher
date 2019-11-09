@@ -39,35 +39,6 @@ namespace Pawnmorph.DebugUtils
             if (!condition) Log.Error($"assertion failed:{message}");
         }
 
-        [Category(MAIN_CATEGORY_NAME), DebugOutput, ModeRestrictionPlay]
-        public static void PrintMutationLogs()
-        {
-
-            var logEntries = Find.PlayLog.AllEntries.OfType<MutationLogEntry>().ToList(); //save the list for later 
-
-            StringBuilder builder = new StringBuilder();
-            const string joinStr = "\n___________________________________\n"; 
-            foreach (Pawn colonist in PawnsFinder.AllMaps_FreeColonists)
-            {
-                List<string> lst = new List<string>(); 
-
-                foreach (MutationLogEntry log in logEntries.Where(l => l.Concerns(colonist)))
-                {
-                    lst.Add(log.ToGameStringFromPOV(colonist)); 
-                    
-                }
-
-                if (lst.Count > 0)
-                {
-                    builder.AppendLine($"$$--------------{colonist.Name}-----------------$$");
-                    builder.AppendLine(string.Join(joinStr, lst.ToArray())); 
-                }
-            }
-
-            Log.Message(builder.ToString()); 
-
-
-        }
 
         /// <summary>Prints all mutations that are missing extension.</summary>
         [DebugOutput] 
@@ -157,29 +128,7 @@ namespace Pawnmorph.DebugUtils
                 Log.Message("no inconsistencies found");
         }
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        [ModeRestrictionPlay]
-        public static void ShowColonyAspectInfo()
-        {
-            IEnumerable<Pawn> allCPawns = PawnsFinder.AllMaps_FreeColonists;
-            var builder = new StringBuilder();
-            foreach (Pawn pawn in allCPawns)
-            {
-                AspectTracker aspectTracker = pawn.GetAspectTracker();
-                if (aspectTracker == null) continue;
-
-                builder.AppendLine(pawn.Name.ToStringFull);
-                foreach (Aspect aspect in aspectTracker.Aspects)
-                {
-                    builder.AppendLine($"\t{aspect.Label}: [{aspect.def.defName}:{aspect.StageIndex}]");
-                    if (!string.IsNullOrEmpty(aspect.Description)) builder.AppendLine($"\t{aspect.Description}");
-                }
-            }
-
-            Log.Message(builder.ToString());
-        }
-
+       
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
@@ -620,61 +569,8 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString());
         }
 
-        /// <summary>
-        ///     list all transformation hediffs defined (hediffs of class Hediff_Morph or a subtype there of
-        /// </summary>
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        public static void ListAllMorphTfHediffs()
-        {
-            var builder = new StringBuilder();
-            var morphs = MorphTransformationDefOf.AllMorphs;
-            foreach (var morph in morphs)
-                builder.AppendLine($"defName:{morph.defName} label:{morph.label} class:{morph.hediffClass.Name}");
-
-            if (builder.Length == 0)
-                Log.Warning("no morph tf loaded!");
-            else
-                Log.Message(builder.ToString());
-        }
-
-        /// <summary>
-        ///     list all defined mutations (hediffs of the class Hediff_AddedMutation or a subtype there of)
-        /// </summary>
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        public static void ListAllMutations()
-        {
-            var builder = new StringBuilder();
-
-            var mutations =
-                DefDatabase<HediffDef>.AllDefs.Where(def =>
-                                                         typeof(Hediff_AddedMutation)
-                                                             .IsAssignableFrom(def.hediffClass));
-            var counter = 0;
-            foreach (var hediffDef in mutations)
-            {
-                counter++;
-                builder.AppendLine($"{hediffDef.defName}: ");
-                builder.AppendLine($"\t\tlabel:{hediffDef.label}");
-                builder.AppendLine($"\t\tdescription:{hediffDef.description}");
-
-                var comp = hediffDef.comps?.OfType<CompProperties_MorphInfluence>().FirstOrDefault();
-                if (comp != null)
-                    builder.AppendLine($"\t\tmorph:{comp.morph.defName}\n\t\tinfluence:{comp.influence}");
-                else
-                    builder.AppendLine("\t\tno morph influence component");
-
-                //builder.AppendLine($"\t\tcategory: {MorphUtils.GetMorphType(hediffDef)?.ToString() ?? "No category"}");
-                builder.AppendLine("");
-            }
-
-            if (counter == 0)
-                Log.Warning("there are no mutations loaded!");
-            else
-                Log.Message($"{counter} mutations loaded\n{builder}");
-        }
-
+        
+       
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
         public static void ListHybridStateOffset()
@@ -727,39 +623,6 @@ namespace Pawnmorph.DebugUtils
                 Log.Message("no transformed pawns");
         }
 
-
-        [Category(MAIN_CATEGORY_NAME)]
-        [ModeRestrictionPlay]
-        [DebugOutput]
-        public static void LogColonyPawnStatuses()
-        {
-            var builder = new StringBuilder();
-            foreach (var colonyPawn in PawnsFinder
-                .AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
-            {
-                builder.AppendLine(colonyPawn.Name.ToStringFull + ":");
-
-                var comp = colonyPawn.GetMutationTracker();
-                if (comp != null)
-                {
-                    foreach (var kvp in comp)
-                        builder.AppendLine($"\t\t{kvp.Key.defName}:{kvp.Value} normalized:{comp.GetNormalizedInfluence(kvp.Key)}");
-                }
-                else
-                {
-                    var enumer =
-                        colonyPawn.GetMutationTracker() ?? Enumerable.Empty<KeyValuePair<MorphDef, float>>();
-
-
-                    foreach (var keyValuePair in enumer)
-                        builder.AppendLine($"\t\t{keyValuePair.Key.defName}:{keyValuePair.Value}");
-                }
-
-                builder.AppendLine($"is human:{colonyPawn.ShouldBeConsideredHuman()}\n");
-            }
-
-            Log.Message(builder.ToString());
-        }
 
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]

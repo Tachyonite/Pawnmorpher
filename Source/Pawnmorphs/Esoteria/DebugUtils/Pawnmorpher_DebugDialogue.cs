@@ -3,88 +3,156 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+
 #pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
 {
-
     public class Pawnmorpher_DebugDialogue : Dialog_DebugOptionLister
     {
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Pawnmorpher_DebugDialogue" /> class.
+        /// </summary>
+        public Pawnmorpher_DebugDialogue()
+        {
+            forcePause = true;
+        }
+
         protected override void DoListingItems()
         {
             if (KeyBindingDefOf.Dev_ToggleDebugActionsMenu.KeyDownEvent)
             {
                 Event.current.Use();
-                Close(true); 
+                Close();
             }
 
             if (Current.ProgramState == ProgramState.Playing)
-            {
                 if (Find.CurrentMap != null)
-                {
                     ListPlayOptions();
-                }
-            }
         }
 
-        void ListPawnInitialGraphics(Pawn pawn)
+        private void AddAspectAtStage(AspectDef def, Pawn p, int i)
         {
-            var initialComp = pawn.GetComp<GraphicSys.InitialGraphicsComp>();
-            if (initialComp == null) return ;
-
-            Log.Message(initialComp.GetDebugStr()); 
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Pawnmorpher_DebugDialogue"/> class.
-        /// </summary>
-        public Pawnmorpher_DebugDialogue()
-        {
-            forcePause = true; 
+            p.GetAspectTracker()?.Add(def, i);
         }
 
-        void ListPlayOptions()
+
+        private void ForceTransformation(Pawn pawn)
         {
-            DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
-            DebugAction("give random mutations", GetRandomMutationsOptions);
-            DebugToolMapForPawns("force full transformation", ForceTransformation);
-            DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics); 
-        }
-
-     
-
-
-        void ForceTransformation(Pawn pawn)
-        {
-            var morphHediff = pawn?.health.hediffSet.hediffs.FirstOrDefault(h => h is Hediff_Morph);
+            Hediff morphHediff = pawn?.health.hediffSet.hediffs.FirstOrDefault(h => h is Hediff_Morph);
             if (morphHediff != null)
             {
-                var giverTf = morphHediff.def.stages?.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                                         .OfType<HediffGiver_TF>()
-                                         .FirstOrDefault();
+                HediffGiver_TF giverTf = morphHediff
+                                        .def.stages?.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
+                                        .OfType<HediffGiver_TF>()
+                                        .FirstOrDefault();
 
                 giverTf?.TryTf(pawn, morphHediff);
+            }
+        }
 
+        private List<DebugMenuOption> GetAddAspectOptions(AspectDef def, Pawn p)
+        {
+            var outLst = new List<DebugMenuOption>();
+            for (var i = 0; i < def.stages.Count; i++)
+            {
+                AspectStage stage = def.stages[i];
+                int i1 = i; //need to make a copy 
+                var label = string.IsNullOrEmpty(stage.label) ? def.label : stage.label; 
+                outLst.Add(new DebugMenuOption($"{i}) {label}", DebugMenuOptionMode.Action,
+                                               () => AddAspectAtStage(def, p, i1)));
             }
 
+            return outLst;
+        }
 
+        private List<DebugMenuOption> GetAddAspectOptions(Pawn pawn)
+        {
+            AspectTracker tracker = pawn.GetAspectTracker();
+            var outLst = new List<DebugMenuOption>();
+            foreach (AspectDef aspectDef in DefDatabase<AspectDef>.AllDefs.Where(d => !tracker.Contains(d))
+            ) //don't allow aspects to be added more then once 
+            {
+                AspectDef tmpDef = aspectDef;
+
+                outLst.Add(new DebugMenuOption($"{aspectDef.defName}", DebugMenuOptionMode.Action,
+                                               () =>
+                                                   Find.WindowStack
+                                                       .Add(new Dialog_DebugOptionListLister(GetAddAspectOptions(tmpDef,
+                                                                                                                 pawn)))));
+            }
+
+            return outLst;
         }
 
 
-        void GivePawnRandomMutations([CanBeNull] MorphDef morph)
+        private List<DebugMenuOption> GetRaceChangeOptions()
         {
-            var pawn = Find.CurrentMap.thingGrid
-                           .ThingsAt(UI.MouseCell())
-                           .OfType<Pawn>()
-                           .FirstOrDefault();
-            if (pawn == null) return; 
+            //var races = RaceGenerator.ImplicitRaces;
+            var lst = new List<DebugMenuOption>();
+            foreach (MorphDef morph in DefDatabase<MorphDef>.AllDefs)
+            {
+                MorphDef local = morph;
+
+                lst.Add(new DebugMenuOption(local.label, DebugMenuOptionMode.Tool, () =>
+                {
+                    Pawn pawn = Find.CurrentMap.thingGrid.ThingsAt(UI.MouseCell()).OfType<Pawn>().FirstOrDefault();
+                    if (pawn != null && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+                        RaceShiftUtilities.ChangePawnToMorph(pawn, local);
+                }));
+            }
+
+            return lst;
+        }
 
 
+        private void GetRandomMutationsOptions()
+        {
+            var options = new List<DebugMenuOption>
+                {new DebugMenuOption("none", DebugMenuOptionMode.Tool, () => GivePawnRandomMutations(null))};
+
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
+                                                 () => GivePawnRandomMutations(morphDef));
+                options.Add(option);
+            }
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+        }
+
+        private List<DebugMenuOption> GetRemoveAspectOptions(Pawn p)
+        {
+            var outLst = new List<DebugMenuOption>();
+
+
+            AspectTracker aspectTracker = p.GetAspectTracker();
+            if (aspectTracker == null) return outLst;
+            foreach (Aspect aspect in aspectTracker.Aspects.ToList())
+            {
+                Aspect tmpAspect = aspect;
+                outLst.Add(new DebugMenuOption($"{aspect.Label}", DebugMenuOptionMode.Action,
+                                               () => aspectTracker.Remove(tmpAspect)));
+            }
+
+            return outLst;
+        }
+
+
+        private void GivePawnRandomMutations([CanBeNull] MorphDef morph)
+        {
+            Pawn pawn = Find.CurrentMap.thingGrid
+                            .ThingsAt(UI.MouseCell())
+                            .OfType<Pawn>()
+                            .FirstOrDefault();
+            if (pawn == null) return;
 
 
             IEnumerable<HediffGiver_Mutation> mutations = morph?.AllAssociatedAndAdjacentMutations;
@@ -118,55 +186,37 @@ namespace Pawnmorph.DebugUtils
                 i++;
             }
         }
-       
 
-
-        void GetRandomMutationsOptions()
+        private void ListPawnInitialGraphics(Pawn pawn)
         {
-            List<DebugMenuOption> options = new List<DebugMenuOption>()
-                {new DebugMenuOption("none", DebugMenuOptionMode.Tool, () => GivePawnRandomMutations( null))};
+            var initialComp = pawn.GetComp<InitialGraphicsComp>();
+            if (initialComp == null) return;
 
-
-            foreach (MorphDef morphDef in MorphDef.AllDefs)
-            {
-                var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
-                                                 () => GivePawnRandomMutations( morphDef)); 
-                options.Add(option);
-
-
-
-            }
-
-            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
-
-
+            Log.Message(initialComp.GetDebugStr());
         }
 
-
-        List<DebugMenuOption> GetRaceChangeOptions()
+        void DoRemoveAspectsOption(Pawn p)
         {
-            //var races = RaceGenerator.ImplicitRaces;
-            List<DebugMenuOption> lst = new List<DebugMenuOption>(); 
-            foreach (var morph in DefDatabase<MorphDef>.AllDefs)
-            {
-                var local = morph; 
-
-                lst.Add(new DebugMenuOption(local.label, DebugMenuOptionMode.Tool, () =>
-                {
-                    var pawn = Find.CurrentMap.thingGrid.ThingsAt(UI.MouseCell()).OfType<Pawn>().FirstOrDefault();
-                    if (pawn != null && pawn.RaceProps.intelligence == Intelligence.Humanlike)
-                    {
-                        RaceShiftUtilities.ChangePawnToMorph(pawn, local); 
-                    }
-                    
-                }));
-
-            }
-
-            return lst; 
-
+            var options = GetRemoveAspectOptions(p);
+            if (options.Count == 0) return;
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options)); 
         }
 
+        void DoAddAspectToPawn(Pawn p)
+        {
+            var options = GetAddAspectOptions(p);
+            if (options.Count == 0) return;
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options)); 
+        }
 
+        private void ListPlayOptions()
+        {
+            DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
+            DebugAction("give random mutations", GetRandomMutationsOptions);
+            DebugToolMapForPawns("force full transformation", ForceTransformation);
+            DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics);
+            DebugToolMapForPawns("Remove Aspect", DoRemoveAspectsOption);
+            DebugToolMapForPawns("Add Aspect", DoAddAspectToPawn); 
+        }
     }
 }
