@@ -1,0 +1,45 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="JobDef" type="JobDef" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="JobDef">
+        <xs:all>
+            <xs:element name="driverClass" type="xs:string" minOccurs="0"/>
+            <xs:element name="reportString" type="xs:string" minOccurs="0"/>
+            <xs:element name="playerInterruptible" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="checkOverrideOnDamage" type="CheckJobOverrideOnDamageMode" minOccurs="0"/>
+            <xs:element name="alwaysShowWeapon" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="suspendable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="casualInterruptible" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="allowOpportunisticPrefix" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="collidedWithPawns" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="isIdle" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="TaleOnColpletion" type="xs:string" minOccurs="0"/>
+            <xs:element name="neverFleeFromEnemies" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="makeTargetPrisoner" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="joyDuration" type="xs:int" minOccurs="0"/>
+            <xs:element name="joyMaxParticipants" type='xs:int' minOccurs="0"/>
+            <xs:element name="joyGainRate" type="xs:float" minOccurs="0"/>
+            <xs:element name="joySkill" type="xs:string" minOccurs="0"/>
+            <xs:element name="joyXpPerTick" type="xs:float" minOccurs="0"/>
+            <xs:element name="joyKind" minOccurs="0" type="xs:float" />
+            
+        </xs:all>
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+    <xs:simpleType name="CheckJobOverrideOnDamageMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Never"/>
+            <xs:enumeration value="OnlyIfInstigatorNotJobTarget"/>
+            <xs:enumeration value="Always"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
