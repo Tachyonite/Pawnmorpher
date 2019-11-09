@@ -40,6 +40,38 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        public static void FindAllTODOThoughts()
+        {
+
+            StringBuilder builder = new StringBuilder();
+            
+            foreach (var thoughtDef in DefDatabase<ThoughtDef>.AllDefs)
+            {
+                bool addedHeader = false;
+                for (var index = 0; index < (thoughtDef?.stages?.Count ?? 0); index++)
+                {
+                    ThoughtStage stage = thoughtDef?.stages?[index];
+                    if(stage == null) continue;
+                    if (stage.label == "TODO" || stage.description == "TODO")
+                    {
+                        if (!addedHeader)
+                        {
+                            builder.AppendLine($"In {thoughtDef.defName}:");
+                            addedHeader = true; 
+                        }
+
+                        builder.AppendLine($"{index}) label:{stage.label} description:\"{stage.description}\"".Indented()); 
+                    }
+                }
+            }
+
+            Log.Message(builder.ToString()); 
+
+
+        }
+
         /// <summary>Prints all mutations that are missing extension.</summary>
         [DebugOutput] 
         [Category(MAIN_CATEGORY_NAME)]

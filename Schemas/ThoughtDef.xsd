@@ -3,7 +3,7 @@
 	<xs:element name="Defs">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="ThoughtDef" minOccurs="1" maxOccurs="unbounded">
+				<xs:element name="ThoughtDef" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="defName" type="xs:string" minOccurs="0" maxOccurs="1" />
