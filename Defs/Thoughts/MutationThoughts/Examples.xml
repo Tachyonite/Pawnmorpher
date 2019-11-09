@@ -1,15 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
     <!-- these are example or incomplete thought defs thought should be added or removed before pushing to the public -->
 
-    <ThoughtDef ParentName="PMMorphMemoryNone">
-        <defName>DefaultMorphTfMemory</defName>
-        <stages>
-            <li>
-                <label>TODO</label>
-                <description>TODO</description>
-            </li>
-        </stages>
-    </ThoughtDef>
 
 
     <ThoughtDef ParentName="MorphReactionThoughtBaseFurry" Class="Pawnmorph.Thoughts.Def_MorphThought">
