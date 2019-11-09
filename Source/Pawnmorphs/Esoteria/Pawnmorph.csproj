@@ -95,6 +95,10 @@
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
+    <Compile Include="DefExtensions\MorphRestriction.cs" />
+    <Compile Include="DefExtensions\MutationRestriction.cs" />
+    <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
+    <Compile Include="Jobs\Driver_TerrainProduction.cs" />
     <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />
     <Compile Include="Jobs\Driver_ResurrectTf.cs" />
     <Compile Include="Jobs\Driver_ShaveSelf.cs" />
@@ -111,6 +116,7 @@
     <Compile Include="Jobs\Giver_MegaShaveSelf.cs" />
     <Compile Include="Jobs\Giver_MilkSelf.cs" />
     <Compile Include="Jobs\Giver_ShaveSelf.cs" />
+    <Compile Include="Joy\Giver_TerrainProduction.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />

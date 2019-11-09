@@ -18,14 +18,27 @@ namespace Pawnmorph.Hediffs
     /// </seealso>
     public class Comp_TerrainProduction : HediffCompBase<CompProperties_TerrainProduction>
     {
+        
         /// <summary>
-        /// called every tick after it's parent is updated 
+        /// produces the corrected produced based on the current position of the pawn
         /// </summary>
-        /// <param name="severityAdjustment"></param>
-        public override void CompPostTick(ref float severityAdjustment)
+        public void ProduceNow()
         {
-            base.CompPostTick(ref severityAdjustment);
-            if (Find.CurrentMap == null || Pawn.Map != Find.CurrentMap) return; //prevent ticking on caravan trips 
+            var pos = Pawn.PositionHeld;
+
+            var terrain = Find.CurrentMap.terrainGrid.TerrainAt(pos);
+
+            var lst = Props.Dict.TryGetValue(terrain);
+            if (lst == null) return;
+
+            var elem = lst.RandElement();
+
+            Produce(pos, elem); 
+
+        }
+
+        private void TryProduce()
+        {
             var pos = Pawn.PositionHeld;
 
             var terrain = Find.CurrentMap.terrainGrid.TerrainAt(pos);
@@ -37,11 +50,16 @@ namespace Pawnmorph.Hediffs
 
             if (Rand.MTBEventOccurs(elem.Mtb, 6E+4f, 60)) //can't check mtb more then once per tick 
             {
-                Thing thing = ThingMaker.MakeThing(elem.Resource);
-                thing.stackCount = (int)elem.Mtb;
-                if (thing.stackCount > 0)
-                    GenPlace.TryPlaceThing(thing, pos, Pawn.Map, ThingPlaceMode.Near);
+                Produce(pos, elem);
             }
+        }
+
+        private void Produce(IntVec3 pos, CompProperties_TerrainProduction.DictEntry productionElement)
+        {
+            Thing thing = ThingMaker.MakeThing(productionElement.Resource);
+            thing.stackCount = (int)productionElement.Mtb;
+            if (thing.stackCount > 0)
+                GenPlace.TryPlaceThing(thing, pos, Pawn.Map, ThingPlaceMode.Near);
         }
     }
 
@@ -61,6 +79,16 @@ namespace Pawnmorph.Hediffs
         [Unsaved]
         private Dictionary<TerrainDef, List<DictEntry>>
             _dict; //using a list means more then one resource can spawn in a terrain type 
+
+        /// <summary>
+        /// returns true if this comp can produce something on the given terrain 
+        /// </summary>
+        /// <param name="terrain"></param>
+        /// <returns></returns>
+        public bool CanProduceOn([NotNull] TerrainDef terrain)
+        {
+            return Dict.ContainsKey(terrain); 
+        }
 
         internal Dictionary<TerrainDef, List<DictEntry>> Dict
         {

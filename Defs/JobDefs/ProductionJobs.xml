@@ -38,4 +38,13 @@
         <casualInterruptible>false</casualInterruptible>
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     </JobDef>
+
+    
+  <JobDef>
+    <defName>PMHuntingForMushrooms</defName>
+    <driverClass>Pawnmorph.Jobs.Driver_TerrainProduction</driverClass>
+    <reportString>foraging for mushrooms.</reportString>
+    <joyDuration>8000</joyDuration>
+    <joyKind>Meditative</joyKind>
+  </JobDef>
 </Defs>
