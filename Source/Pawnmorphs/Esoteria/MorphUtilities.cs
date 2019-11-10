@@ -83,12 +83,13 @@ namespace Pawnmorph
 
             if (morphInfluence < CHIMERA_THRESHOLD)
             {
-                hInfluence = GetChimeraRace(hInfluence);
+                hInfluence = GetChimeraRace(hInfluence, pawn);
             }
 
+            
 
             MorphDef curMorph = pawn.def.GetMorphOfRace();
-            if (curMorph != hInfluence && !(curMorph?.IsChimeraMorph() ?? false))
+            if (curMorph != hInfluence)
             {
                 RaceShiftUtilities.ChangePawnToMorph(pawn, hInfluence, addMissingMutations);
             }
@@ -106,7 +107,7 @@ namespace Pawnmorph
             return MorphCategoryDefOf.Chimera.AllMorphsInCategories.Contains(morphDef); 
         }
 
-        private static MorphDef GetChimeraRace(MorphDef hInfluence)
+        private static MorphDef GetChimeraRace(MorphDef hInfluence, Pawn pawn)
         {
             if (hInfluence.categories.Contains(MorphCategoryDefOf.Canid))
                 return MorphDefOfs.ChaofoxMorph;
@@ -114,7 +115,17 @@ namespace Pawnmorph
                 return MorphDefOfs.ChaodinoMorph;
             if (hInfluence == MorphDefOfs.BoomalopeMorph) return MorphDefOfs.ChaoboomMorph;
             if (hInfluence == MorphDefOfs.CowMorph) return MorphDefOfs.ChaocowMorph;
-            return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
+            try
+            {
+                Rand.PushState(pawn.thingIDNumber); // make sure this is deterministic for each pawn 
+                return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
+            }
+            finally
+            {
+                Rand.PopState();
+            }
+
+            
         }
 
         /// <summary> The maximum possible human influence. </summary>
