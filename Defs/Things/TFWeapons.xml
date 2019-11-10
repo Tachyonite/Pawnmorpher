@@ -1,19 +1,5 @@
 <Defs>
-	<DamageDef>
-		<defName>MutagenCloud</defName>
-		<label>mutagen cloud</label>
-		<canInterruptJobs>false</canInterruptJobs>
-		<makesBlood>false</makesBlood>
-		<hediff>PawnmorphGunshotTF</hediff>
-		<hediffSolid>PawnmorphGunshotTF</hediffSolid>
-		<externalViolence>true</externalViolence>
-		<defaultDamage>1</defaultDamage>
-		<explosionCellMote>Mote_BlastExtinguisher</explosionCellMote>
-		<explosionColorEdge>(0, 1, 0, 0.05)</explosionColorEdge>
-		<harmsHealth>false</harmsHealth>
-		<soundExplosion>Explosion_Smoke</soundExplosion>
-		<combatLogRules>Damage_Smoke</combatLogRules>
-	</DamageDef>
+	
 	
 	<ThingDef ParentName="BaseGas">
 		<defName>Gas_Mutagen</defName>
@@ -272,19 +258,17 @@
 
 	<ThingDef Class="EtherGun.ThingDef_EtherBullet" ParentName="BaseGrenadeProjectile">
 		<defName>Proj_GrenadeTF</defName>
-		<thingClass>EtherGun.Projectile_EtherExplosive</thingClass>
 		<label>mutagenic grenade</label>
 		<graphicData>
 			<texPath>Things/Projectiles/MutagenGrenade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
-			<explosionRadius >1.9</explosionRadius >
+			<explosionRadius >2.5</explosionRadius >
 			<damageDef>MutagenCloud</damageDef>
 			<explosionDelay>100</explosionDelay>
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
-		<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
 		<raceBlackList>
 				<li>Mech_Centipede</li>
 				<li>Mech_Lancer</li>
@@ -301,17 +285,15 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<comps>
-			<li Class="EtherGun.CompProperties_EtherExplosive">
+			<li Class="CompProperties_Explosive">
 				<explosiveRadius>2.9</explosiveRadius>
-				<explosiveDamageType>MutagenCloud</explosiveDamageType>
+				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
 				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
 				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
 				<wickTicks>
 					<min>30</min>
 					<max>60</max>
 				</wickTicks>
-				<AddHediffChance>0.7</AddHediffChance>
-				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
 			</li>
 		</comps>
 		<weaponTags>
@@ -335,16 +317,17 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
-		<thingClass>EtherGun.Projectile_EtherExplosive</thingClass>
+		<thingClass>Projectile_Explosive</thingClass>
 		<projectile>
-			<damageDef>MutagenCloud</damageDef>
+			<damageDef>MutagenCloud_Large</damageDef>
 			<speed>41</speed>
-			<explosionRadius>3.5</explosionRadius>
+			<explosionRadius>5.5</explosionRadius>
 			<flyOverhead>true</flyOverhead>
 			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 			<soundExplode>Explosion_EMP</soundExplode>
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<explosionDamageFalloff>true</explosionDamageFalloff>
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
 		<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>

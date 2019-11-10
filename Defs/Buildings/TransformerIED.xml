@@ -12,21 +12,15 @@
 		</costList>
 		<designationHotKey>Misc12</designationHotKey>
 		<comps>
-			<li Class="EtherGun.CompProperties_EtherExplosive">
+			<li Class="CompProperties_Explosive">
 				<explosiveRadius>5.9</explosiveRadius>
-				<explosiveDamageType>MutagenCloud</explosiveDamageType>
-				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>	
+				<damageFalloff>true</damageFalloff>			
 				<wickTicks>
 					<min>15</min>
 					<max>15</max>
 				</wickTicks>
-				<AddHediffChance>0.7</AddHediffChance>
-				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
-				<raceBlackList>
-				<li>Mech_Centipede</li>
-				<li>Mech_Lancer</li>
-				<li>Mech_Scyther</li>
-				</raceBlackList>
 			</li>
 		</comps>
 		<specialDisplayRadius>5.9</specialDisplayRadius>

@@ -5,6 +5,7 @@ using System;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Damage
@@ -20,6 +21,7 @@ namespace Pawnmorph.Damage
         /// <summary>the fraction by which the dInfo damage will be reduced by</summary>
         public const float REDUCE_VALUE = 1 / 3f;
 
+    
         /// <summary>Applies the mutagenic damage.</summary>
         /// <param name="originalDamage">The original damage.</param>
         /// <param name="damageInfo">The damage information.</param>
@@ -41,11 +43,46 @@ namespace Pawnmorph.Damage
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (result == null) throw new ArgumentNullException(nameof(result));
             mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
-            mutagenicDef = mutagenicDef ?? MorphTransformationDefOf.MutagenicBuildup_Weapon;
+            mutagenicDef = mutagenicDef
+                        ?? damageInfo.Def.GetModExtension<MutagenicDamageExtension>()?.mutagenicBuildup
+                        ?? MorphTransformationDefOf.MutagenicBuildup_Weapon;
+            //first check if we're given a specific hediff to use
+            //then use what's ever attached to the damage def
+            //then use the default 
 
             if (!mutagen.CanInfect(pawn)) return;
 
             ApplyMutagen(originalDamage, damageInfo, pawn, mutagenicDef, severityPerDamage, result);
+        }
+
+        /// <summary>
+        /// Applies the pure mutagenic damage.
+        /// </summary>
+        /// this does not actually damage the pawn 
+        /// <param name="dInfo">The damage info.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutationHediffDef">The mutation hediff definition.</param>
+        /// <param name="severityPerDamage">The severity per damage.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        public static void ApplyPureMutagenicDamage(DamageInfo dInfo, [NotNull] Pawn pawn,
+                                                    HediffDef mutationHediffDef = null,
+                                                    float severityPerDamage = SEVERITY_PER_DAMAGE, MutagenDef mutagen = null)
+        {
+            mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
+            mutationHediffDef = mutationHediffDef
+                             ?? dInfo.Def.GetModExtension<MutagenicDamageExtension>()?.mutagenicBuildup
+                             ?? MorphTransformationDefOf.MutagenicBuildup_Weapon;
+            //first check if we're given a specific hediff to use
+            //then use what's ever attached to the damage def
+            //then use the default 
+
+            var severityToAdd = Mathf.Clamp(dInfo.Amount * severityPerDamage, 0, mutationHediffDef.maxSeverity);
+
+            Hediff hediff = HediffMaker.MakeHediff(mutationHediffDef, pawn);
+            hediff.Severity = severityToAdd;
+            pawn.health.AddHediff(hediff); 
+
+
         }
 
         /// <summary>Reduces the damage by some amount.</summary>

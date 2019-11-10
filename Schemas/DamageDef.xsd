@@ -1,7 +1,7 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:include schemaLocation="include/SimpleTypes.xsd"/>
     <xs:include schemaLocation="include/SimpleCurve.xsd"/>
-
+    <xs:include schemaLocation="DefExtensions/MutagenicDamageExtension.xsd"/>
     <xs:element name="Defs">
         <xs:complexType>
             <xs:sequence>
@@ -54,7 +54,7 @@
             <xs:element name="explosionAffectOutsidePartsOnly" type="xs:boolean" minOccurs="0"/>
             <xs:element name="explosionCellMote" type="xs:string" minOccurs="0"/>
             <xs:element name="explosionColorCenter" type="Color" minOccurs="0"/>
-            <xs:element name="explosionColorEdge" type="Color" minOccurs="0"/>
+            <xs:element name="explosionColorEdge" type="xs:string" minOccurs="0"/>
             <xs:element name="explosionInteriorMote" type="xs:string" minOccurs="0"/>
             <xs:element name="explosionHeatEnergyPerCell" type="xs:float" minOccurs="0"/>
             <xs:element name="soundExplosion" type="xs:string" minOccurs="0"/>
@@ -70,7 +70,13 @@
             <xs:element name="bluntStunChancePerDamagePctOfCorePartToBodyCurve" type="SimpleCurve" minOccurs="0"/>
             <xs:element name="scratchSplitPercentage" type="xs:float" minOccurs="0"/>
             <xs:element name="biteDamageMultiplier" type="xs:float" minOccurs="0"/>
-
+            <xs:element name="modExtensions" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="MutagenicDamageExtension" minOccurs="1" maxOccurs="1" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             
         </xs:all>
         <xs:attribute name="ParentName" type="xs:string" use="optional" />
