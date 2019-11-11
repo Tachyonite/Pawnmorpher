@@ -39,7 +39,33 @@ namespace Pawnmorph.Damage
                                          : totalDamage;
                 DamageInfo dinfo1 = dInfo;
                 dinfo1.SetHitPart(forceHitPart);
+
+                if (Rand.Range(0, 1f) < 0.3f)
+                    AddMutationOn(forceHitPart, pawn); 
+
+
                 float num = FinalizeAndAddInjury(pawn, totalDamage1, dinfo1, result);
+            }
+        }
+
+        private void AddMutationOn(BodyPartRecord forceHitPart, Pawn pawn)
+        {
+            while (forceHitPart != null)
+            {
+                var giver = MutationUtilities.GetMutationsFor(forceHitPart.def).RandomElementWithFallback();
+                if (giver == null)
+                {
+                    forceHitPart = forceHitPart.parent;//go upward until we hit a mutable part 
+                    continue; 
+                }
+
+                if (!giver.TryApply(pawn, forceHitPart))
+                {
+                    forceHitPart = forceHitPart.parent;//go upward until we hit a mutable part  
+                    continue;
+                }
+                break; //if we apply a mutation break the loop 
+
             }
         }
 

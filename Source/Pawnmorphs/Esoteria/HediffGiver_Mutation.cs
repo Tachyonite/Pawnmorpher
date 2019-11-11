@@ -72,10 +72,7 @@ namespace Pawnmorph
                 if (!_triggered.TryGetValue(cause) && (gender == pawn.gender || Rand.RangeInclusive(0, 100) <= chance) && TryApply(pawn, mutagen, null, cause))
                 {
                     _triggered[cause] = true;
-                    IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
-
-                    if (tale != null) TaleRecorder.RecordTale(tale, pawn);
-                    if (memory != null) TryAddMemory(pawn);
+                    DoMutationAddedEffects(pawn);
 
                     // If the parent has the single comp, decrement it's current count and remove it if it's out of charges.
                     if (comp != null)
@@ -99,6 +96,14 @@ namespace Pawnmorph
             RandUtilities.PopState();
         }
 
+        private void DoMutationAddedEffects(Pawn pawn)
+        {
+            IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+
+            if (tale != null) TaleRecorder.RecordTale(tale, pawn);
+            if (memory != null) TryAddMemory(pawn);
+        }
+
 
         /// <summary>Tries the apply the mutation to the given pawn</summary>
         /// <param name="pawn">The pawn.</param>
@@ -113,10 +118,62 @@ namespace Pawnmorph
             bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
             if (added && partsToAffect != null)
             {
-                var log = new MutationLogEntry(pawn, hediff, partsToAffect);
-                Find.PlayLog.Add(log); 
+                AddMutationLogFor(pawn);
             }
             return added;
+        }
+
+        private void AddMutationLogFor(Pawn pawn)
+        {
+            var log = new MutationLogEntry(pawn, hediff, partsToAffect);
+            Find.PlayLog.Add(log);
+        }
+
+        /// <summary>tries to apply the mutations to the given body part records</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="recordsToAdd">The records to add.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <returns></returns>
+        public bool TryApply(Pawn pawn, List<BodyPartRecord> recordsToAdd, MutagenDef mutagen = null)
+        {
+            mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
+            if (!mutagen.CanInfect(pawn)) return false;
+            bool anyAdded = false; 
+            HashSet<BodyPartRecord> nonMissingRecords = new HashSet<BodyPartRecord>(pawn.health.hediffSet.GetNotMissingParts());
+            
+            foreach (BodyPartRecord bodyPartRecord in recordsToAdd)
+            {
+                if(!nonMissingRecords.Contains(bodyPartRecord)) continue;
+                anyAdded |= TryApply(pawn, bodyPartRecord, mutagen, nonMissingRecords); 
+            }
+
+            return anyAdded; 
+        }
+
+        bool TryApply(Pawn pawn, BodyPartRecord recordToAdd, [NotNull] MutagenDef mutagen, HashSet<BodyPartRecord> nonMissingRecords)
+        {
+            if (!mutagen.CanInfect(pawn)) return false;
+            if (!nonMissingRecords.Contains(recordToAdd)) return false;
+
+            var hediffInst = HediffMaker.MakeHediff(hediff, pawn, recordToAdd);
+            pawn.health.AddHediff(hediffInst, recordToAdd);
+            DoMutationAddedEffects(pawn);
+            AddMutationLogFor(pawn);
+
+            return true; 
+        }
+
+        /// <summary>Tries to apply the mutation to the given body part record</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="recordToAdd">The record to add.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <returns></returns>
+        public bool TryApply(Pawn pawn, BodyPartRecord recordToAdd, MutagenDef mutagen = null)
+        {
+            mutagen = mutagen ?? MutagenDefOf.defaultMutagen; 
+            if (!mutagen.CanInfect(pawn)) return false;
+            HashSet<BodyPartRecord> nonMissingRecords = new HashSet<BodyPartRecord>(pawn.health.hediffSet.GetNotMissingParts());
+            return TryApply(pawn, recordToAdd, mutagen, nonMissingRecords);
         }
 
         private void TryAddMemory(Pawn pawn)

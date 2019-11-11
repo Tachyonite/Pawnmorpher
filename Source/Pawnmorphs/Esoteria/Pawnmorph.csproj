@@ -90,6 +90,7 @@
     <Compile Include="CustomBodyAddon.cs" />
     <Compile Include="Damage\MutagenicDamageExtension.cs" />
     <Compile Include="Damage\MutagenicDamageUtilities.cs" />
+    <Compile Include="Damage\Worker_MutagenicCut.cs" />
     <Compile Include="Damage\Worker_MutagenicBlunt.cs" />
     <Compile Include="Damage\Worker_MutagenicInjury.cs" />
     <Compile Include="Damage\Worker_MutagenicStab.cs" />

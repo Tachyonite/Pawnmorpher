@@ -24,6 +24,43 @@ namespace Pawnmorph
 
         private static List<BodyPartDef> _allMutablePartDefs;
 
+        private static
+            Dictionary<BodyPartDef, List<HediffGiver_Mutation>> _giversPerPartLookupDict;
+
+
+        /// <summary>Get all mutation givers that affect the given body part</summary>
+        /// <param name="bodyPartDef">The body part definition.</param>
+        /// <returns></returns>
+        public static IEnumerable<HediffGiver_Mutation> GetMutationsFor(BodyPartDef bodyPartDef)
+        {
+            if (_giversPerPartLookupDict == null)
+            {
+
+                IEnumerable<VTuple<BodyPartDef,HediffGiver_Mutation>> SelectGivers(HediffDef def)
+                {
+                    var givers = def.GetAllHediffGivers().OfType<HediffGiver_Mutation>();
+                    foreach (HediffGiver_Mutation giver in givers)
+                    {
+                        foreach (BodyPartDef partDef in giver.partsToAffect)
+                        {
+                            yield return new VTuple<BodyPartDef, HediffGiver_Mutation>(partDef, giver); 
+                        }
+                    }
+                }
+
+                _giversPerPartLookupDict=
+                    DefDatabase<HediffDef>.AllDefs.Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass))
+                                          .SelectMany(SelectGivers) //get all hediff givers 
+                                          .GroupBy(b => b.first, b => b.second) //group by the body parts, effectively a Tuple<BodyPart, IEnumerable<HediffGiver>> now
+                                          .ToDictionary(g => g.Key, g => g.Distinct().ToList()); //turn it into a dictionary 
+
+
+            }
+
+            return _giversPerPartLookupDict.TryGetValue(bodyPartDef) ?? Enumerable.Empty<HediffGiver_Mutation>();
+        }
+
+
         /// <summary>
         /// Determines whether this instance can apply mutations to the specified pawn.
         /// </summary>
@@ -290,24 +327,16 @@ namespace Pawnmorph
             }
         }
 
-        static IEnumerable<HediffDef> GetAllMutationsWithGraphics()
+        private static IEnumerable<HediffDef> GetAllMutationsWithGraphics()
         {
-            
-            List<AlienPartGenerator.BodyAddon> bodyAddons = ((ThingDef_AlienRace) ThingDefOf.Human).alienRace.generalSettings.alienPartGenerator.bodyAddons;
-            var hediffDefNames =
+            List<AlienPartGenerator.BodyAddon> bodyAddons =
+                ((ThingDef_AlienRace) ThingDefOf.Human).alienRace.generalSettings.alienPartGenerator.bodyAddons;
+            IEnumerable<string> hediffDefNames =
                 bodyAddons.SelectMany(add => add.hediffGraphics ?? Enumerable.Empty<AlienPartGenerator.BodyAddonHediffGraphic>())
                           .Select(h => h.hediff);
 
 
-
-
-            foreach (string hediffDef in hediffDefNames)
-            {
-                yield return HediffDef.Named(hediffDef); 
-            }
-
-
-
+            foreach (string hediffDef in hediffDefNames) yield return HediffDef.Named(hediffDef);
         }
 
         /// <summary>Determines whether this instance is obsolete.</summary>

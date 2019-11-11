@@ -38,6 +38,7 @@
       </li>
     </modExtensions>
   </DamageDef>
+
   <DamageDef>
     <defName>MutagenCloud_Large</defName>
     <label>mutagen cloud</label>
@@ -60,4 +61,22 @@
       </li>
     </modExtensions>
   </DamageDef>
+
+  <DamageDef ParentName="CutBase">
+    <defName>MutagenicCut</defName>
+    <label>mutagenic cut</label>
+    <workerClass>Pawnmorph.Damage.Worker_MutagenicCut</workerClass>
+    <modExtensions>
+      <li Class="Pawnmorph.Damage.MutagenicDamageExtension">
+        <mutagenicBuildup>MutagenicBuildup_Weapon</mutagenicBuildup>
+      </li>
+    </modExtensions>
+  </DamageDef>
+
+  <DamageDef ParentName="BluntBase">
+      <defName>MutagenicStab</defName>
+      <label>mutagenic stab</label>
+      <workerClass>Pawnmorph.Damage.Worker_MutagenicStab</workerClass>
+      <stabChanceOfForcedInternal>0.4</stabChanceOfForcedInternal>
+    </DamageDef>
 </Defs>
