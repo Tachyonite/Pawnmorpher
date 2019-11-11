@@ -19,7 +19,7 @@ namespace Pawnmorph
         /// <summary> The mean time between when the parent Hedif is applied and this HediffGiver performs its opperations. </summary>
         public float mtbDays;
 
-        /// <summary> The gender to always apply this hediff to, regardless of chance. </summary>
+        /// <summary> The gender to preferentially apply this hediff to.</summary>
         public Gender gender;
 
         /// <summary> The chance (out of 100) that the hediff will be applied. </summary>
