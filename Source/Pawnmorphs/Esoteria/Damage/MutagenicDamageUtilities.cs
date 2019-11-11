@@ -13,7 +13,7 @@ namespace Pawnmorph.Damage
     /// <summary>
     ///     static class containing utilities related to mutagenic damage
     /// </summary>
-    public class MutagenicDamageUtilities
+    public static class MutagenicDamageUtilities
     {
         /// <summary>the amount of hediff severity to add per point of damage </summary>
         public const float SEVERITY_PER_DAMAGE = 0.04f;
@@ -21,7 +21,19 @@ namespace Pawnmorph.Damage
         /// <summary>the fraction by which the dInfo damage will be reduced by</summary>
         public const float REDUCE_VALUE = 1 / 3f;
 
-    
+
+        /// <summary>Gets the severity per damage.</summary>
+        /// <param name="dInfo">The damage information.</param>
+        /// <returns></returns>
+        public static float GetSeverityPerDamage(this DamageInfo dInfo)
+        {
+            var severityPerDamage = dInfo.Def.GetModExtension<MutagenicDamageExtension>()?.severityPerDamage
+                                 ?? MutagenicDamageUtilities.SEVERITY_PER_DAMAGE;
+
+            return severityPerDamage;
+
+        }
+
         /// <summary>Applies the mutagenic damage.</summary>
         /// <param name="originalDamage">The original damage.</param>
         /// <param name="damageInfo">The damage information.</param>

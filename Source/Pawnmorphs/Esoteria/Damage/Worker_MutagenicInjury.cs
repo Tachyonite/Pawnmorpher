@@ -16,7 +16,7 @@ namespace Pawnmorph.Damage
     /// <seealso cref="Verse.DamageWorker_AddInjury" />
     public class Worker_MutagenicInjury : DamageWorker_AddInjury
     {
-
+        
        
         private const float REDUCE_VALUE = 1 / 3f;
         
@@ -43,10 +43,7 @@ namespace Pawnmorph.Damage
             //reduce the amount to make it less likely to kill the pawn 
             float originalDamage = dinfo.Amount;
 
-
-            var r = MutagenDefOf.defaultMutagen.CanInfect(pawn) ? REDUCE_VALUE : 1;
-
-            dinfo = MutagenicDamageUtilities.ReduceDamage(dinfo, r); 
+            dinfo = ReduceDamage(dinfo, pawn);  
 
             var res = base.Apply(dinfo, pawn);
 
@@ -56,7 +53,25 @@ namespace Pawnmorph.Damage
             return res; 
         }
 
+        /// <summary>Reduces the damage.</summary>
+        /// <param name="dInfo">The d information.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        protected DamageInfo ReduceDamage(DamageInfo dInfo, Pawn pawn)
+        {
+            float r;
+            if (MutagenDefOf.defaultMutagen.CanInfect(pawn))
+                r = dInfo.Def.GetModExtension<MutagenicDamageExtension>()?.reduceValue ?? REDUCE_VALUE;
+            else
+                r = 1; 
+            return MutagenicDamageUtilities.ReduceDamage(dInfo, r);
+        }
+
+
         
+
+
+
         /// <summary>
         /// called when an explosion damages the given thing 
         /// </summary>
@@ -105,8 +120,7 @@ namespace Pawnmorph.Damage
             Thing instigator = explosion.instigator;
             ThingDef weapon = explosion.weapon;
             DamageInfo dinfo = new DamageInfo(damageDef, amount, armorPenetrationAt, angle, instigator, null, weapon, DamageInfo.SourceCategory.ThingOrUnknown, explosion.intendedTarget);
-            var severityPerDamage = dinfo.Def.GetModExtension<MutagenicDamageExtension>()?.severityPerDamage
-                                 ?? MutagenicDamageUtilities.SEVERITY_PER_DAMAGE; 
+            var severityPerDamage = dinfo.GetSeverityPerDamage();
             MutagenicDamageUtilities.ApplyPureMutagenicDamage(dinfo, pawn,
                                                               severityPerDamage: severityPerDamage); 
 

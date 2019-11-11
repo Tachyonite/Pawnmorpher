@@ -20,7 +20,10 @@ namespace Pawnmorph.Damage
         /// <summary>
         /// The hediff severity per damage point
         /// </summary>
-        public float severityPerDamage = 0.04f; 
+        public float severityPerDamage = 0.04f;
+
+        /// <summary>the amount by which to reduce the raw damage to the pawn, mutagenic</summary>
+        public float reduceValue = 1 / 3f; 
 
         /// <summary>
         /// gets all Configuration errors with this instance.

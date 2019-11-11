@@ -4,6 +4,7 @@
         <xs:all>
             <xs:element name="mutagenicBuildup" type="xs:string" />
             <xs:element name="severityPerDamage" type="xs:float" minOccurs="0" default="0.04" />
+            <xs:element name="reduceValue" type="xs:float" default="0.33" minOccurs="0"/>
         </xs:all>
         <xs:attribute name="Class"> 
             <xs:simpleType>
