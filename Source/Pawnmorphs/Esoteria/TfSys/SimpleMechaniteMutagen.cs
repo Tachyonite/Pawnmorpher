@@ -115,7 +115,7 @@ namespace Pawnmorph.TfSys
 
             Faction faction;
             if (request.forcedFaction != null) //forced faction should be the highest priority if set 
-                faction = request.forcedFaction; 
+                faction = request.forcedFaction;
             else if (original.IsColonist)
                 faction = original.Faction;
             else
@@ -177,21 +177,15 @@ namespace Pawnmorph.TfSys
 
             bool wasPrisoner = original.IsPrisonerOfColony;
             var oFaction = original.Faction;
-            var oMap = original.Map; 
+            var oMap = original.Map;
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 
             //notify the faction that their member has been transformed 
-            oFaction.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap); 
+            oFaction.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
-            Find.LetterStack
-                .ReceiveLetter("LetterHediffFromTransformationLabel".Translate(original.LabelShort, request.outputDef.LabelCap).CapitalizeFirst(),
-                               "LetterHediffFromTransformation"
-                                  .Translate(original.LabelShort, request.outputDef.LabelCap)
-                                  .CapitalizeFirst(),
-                               LetterDefOf.NeutralEvent,
-                               spawnedAnimal); // Creates a letter saying "Oh no! Pawn X has transformed into a Y!"
-            Find.TickManager.slower.SignalForceNormalSpeedShort(); // Slow down the speed of the game.
+            if(original.Faction.IsPlayer || wasPrisoner) //only send the letter for colonists and prisoners 
+                SendLetter(request, original, spawnedAnimal);
 
             if (original.Spawned)
                 original.DeSpawn(); // Remove the original pawn from the current map.
@@ -202,6 +196,18 @@ namespace Pawnmorph.TfSys
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner);
 
             return inst;
+        }
+
+        private static void SendLetter(TransformationRequest request, Pawn original, Pawn spawnedAnimal)
+        {
+            Find.LetterStack
+                .ReceiveLetter("LetterHediffFromTransformationLabel".Translate(original.LabelShort, request.outputDef.LabelCap).CapitalizeFirst(),
+                               "LetterHediffFromTransformation"
+                                  .Translate(original.LabelShort, request.outputDef.LabelCap)
+                                  .CapitalizeFirst(),
+                               LetterDefOf.NeutralEvent,
+                               spawnedAnimal); // Creates a letter saying "Oh no! Pawn X has transformed into a Y!"
+            Find.TickManager.slower.SignalForceNormalSpeedShort(); // Slow down the speed of the game.
         }
 
 
