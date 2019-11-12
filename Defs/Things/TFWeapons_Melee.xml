@@ -14,7 +14,7 @@
         </weaponTags>
         <costStuffCount>30</costStuffCount>
         <costList>
-            <Mutanite>1</Mutanite>
+            <Mutanite>2</Mutanite>
         </costList>
         <statBases>
             <WorkToMake>1800</WorkToMake>
@@ -71,7 +71,7 @@
         </weaponTags>
         <costStuffCount>75</costStuffCount>
         <costList>
-            <Mutanite>3</Mutanite>
+            <Mutanite>4</Mutanite>
         </costList>
         <statBases>
           <WorkToMake>12000</WorkToMake>
