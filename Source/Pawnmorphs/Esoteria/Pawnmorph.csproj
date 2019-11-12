@@ -120,6 +120,7 @@
     <Compile Include="Jobs\Giver_MilkSelf.cs" />
     <Compile Include="Jobs\Giver_ShaveSelf.cs" />
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
+    <Compile Include="Mutanite_Bed.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
