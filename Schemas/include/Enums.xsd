@@ -69,4 +69,15 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="QualityCategory">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Awful"/>
+            <xs:enumeration value="Poor" />
+            <xs:enumeration value="Normal"/>
+            <xs:enumeration value="Good"/>
+            <xs:enumeration value="Excelllent"/>
+            <xs:enumeration value="Masterwork"/>
+            <xs:enumeration value="Legendary"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
