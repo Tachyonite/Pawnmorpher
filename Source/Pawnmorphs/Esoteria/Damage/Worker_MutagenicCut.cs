@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Pawnmorph.Hediffs;
 using Verse;
 
 namespace Pawnmorph.Damage
@@ -21,28 +22,6 @@ namespace Pawnmorph.Damage
             return pawn.health.hediffSet.GetRandomNotMissingPart(dinfo.Def, dinfo.Height, BodyPartDepth.Outside, null);
         }
 
-
-        private void AddMutationOn(BodyPartRecord forceHitPart, Pawn pawn)
-        {
-            while (forceHitPart != null)
-            {
-                HediffGiver_Mutation giver = MutationUtilities.GetMutationsFor(forceHitPart.def).RandomElementWithFallback();
-                if (giver == null)
-                {
-                    forceHitPart = forceHitPart.parent; //go upward until we hit a mutable part 
-                    continue;
-                }
-
-                if (!giver.TryApply(pawn, forceHitPart))
-                {
-                    forceHitPart = forceHitPart.parent; //go upward until we hit a mutable part  
-                    continue;
-                }
-
-                break; //if we apply a mutation break the loop 
-            }
-        }
-
         /// <summary>Applies the special effects to part.</summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="totalDamage">The total damage.</param>
@@ -50,10 +29,11 @@ namespace Pawnmorph.Damage
         /// <param name="result">The result.</param>
         protected override void ApplySpecialEffectsToPart(Pawn pawn, float totalDamage, DamageInfo dinfo, DamageWorker.DamageResult result)
         {
-            if (dinfo.HitPart.depth == BodyPartDepth.Inside)
+            BodyPartRecord hitPart = dinfo.HitPart;
+            if (hitPart.depth == BodyPartDepth.Inside)
             {
                 List<BodyPartRecord> list = new List<BodyPartRecord>();
-                for (BodyPartRecord bodyPartRecord = dinfo.HitPart; bodyPartRecord != null; bodyPartRecord = bodyPartRecord.parent)
+                for (BodyPartRecord bodyPartRecord = hitPart; bodyPartRecord != null; bodyPartRecord = bodyPartRecord.parent)
                 {
                     list.Add(bodyPartRecord);
                     if (bodyPartRecord.depth == BodyPartDepth.Outside)
@@ -69,26 +49,33 @@ namespace Pawnmorph.Damage
                     base.FinalizeAndAddInjury(pawn, totalDamage / num * ((i != 0) ? 1f : 0.5f), dinfo2, result);
                 }
 
-                if (Rand.Range(0, 1f) < 0.3f)
-                    AddMutationOn(dinfo.HitPart, pawn); 
-
+                if (Rand.Range(0, 1f) < 0.5f)
+                    AddMutationOn(hitPart, pawn);
+                //add extra mutagenic buildup severity 
+                AddExtraBuildup(pawn, dinfo); 
             }
             else
             {
+
+                float l = hitPart.def.IsSolid(hitPart, pawn.health.hediffSet.hediffs) ? 0.5f : 0.3f;
+
+                if (Rand.Range(0, 1f) < l)
+                    AddMutationOn(hitPart, pawn); 
+
                 int num2 = (this.def.cutExtraTargetsCurve == null) ? 0 : GenMath.RoundRandom(this.def.cutExtraTargetsCurve.Evaluate(Rand.Value));
                 List<BodyPartRecord> list2;
                 if (num2 != 0)
                 {
-                    IEnumerable<BodyPartRecord> enumerable = dinfo.HitPart.GetDirectChildParts();
-                    if (dinfo.HitPart.parent != null)
+                    IEnumerable<BodyPartRecord> enumerable = hitPart.GetDirectChildParts();
+                    if (hitPart.parent != null)
                     {
-                        enumerable = enumerable.Concat(dinfo.HitPart.parent);
-                        if (dinfo.HitPart.parent.parent != null)
+                        enumerable = enumerable.Concat(hitPart.parent);
+                        if (hitPart.parent.parent != null)
                         {
-                            enumerable = enumerable.Concat(dinfo.HitPart.parent.GetDirectChildParts());
+                            enumerable = enumerable.Concat(hitPart.parent.GetDirectChildParts());
                         }
                     }
-                    list2 = (from x in enumerable.Except(dinfo.HitPart).InRandomOrder(null).Take(num2)
+                    list2 = (from x in enumerable.Except(hitPart).InRandomOrder(null).Take(num2)
                              where !x.def.conceptual
                              select x).ToList<BodyPartRecord>();
                 }
@@ -96,7 +83,7 @@ namespace Pawnmorph.Damage
                 {
                     list2 = new List<BodyPartRecord>();
                 }
-                list2.Add(dinfo.HitPart);
+                list2.Add(hitPart);
                 float num3 = totalDamage * (1f + this.def.cutCleaveBonus) / ((float)list2.Count + this.def.cutCleaveBonus);
                 if (num2 == 0)
                 {

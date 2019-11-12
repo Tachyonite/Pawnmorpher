@@ -167,7 +167,7 @@
         <defName>MutagenicBuildup_Weapon</defName>
         <comps>
             <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
-                <recoveryTime>23.25</recoveryTime>
+                <recoveryTime>43.25</recoveryTime>
                 <peakSeverity>0.05</peakSeverity>
             </li>
         </comps>
@@ -177,7 +177,7 @@
         <defName>MutagenicBuildup_SmallExplosion</defName>
         <comps>
             <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
-                <recoveryTime>60.75</recoveryTime>
+                <recoveryTime>70.75</recoveryTime>
                 <peakSeverity>0.12</peakSeverity>
             </li>
         </comps>

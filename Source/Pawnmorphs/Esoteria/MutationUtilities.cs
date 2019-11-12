@@ -41,7 +41,7 @@ namespace Pawnmorph
                     var givers = def.GetAllHediffGivers().OfType<HediffGiver_Mutation>();
                     foreach (HediffGiver_Mutation giver in givers)
                     {
-                        foreach (BodyPartDef partDef in giver.partsToAffect)
+                        foreach (BodyPartDef partDef in giver.partsToAffect ?? Enumerable.Empty<BodyPartDef>())
                         {
                             yield return new VTuple<BodyPartDef, HediffGiver_Mutation>(partDef, giver); 
                         }

@@ -1,0 +1,12 @@
+<Defs>
+    <ToolCapacityDef>
+        <defName>MutagenicCut</defName>
+    </ToolCapacityDef>
+    <ToolCapacityDef>
+        <defName>MutagenicStab</defName>
+    </ToolCapacityDef>
+
+    <ToolCapacityDef>
+        <defName>MutagenicPoke</defName>
+    </ToolCapacityDef>
+</Defs>

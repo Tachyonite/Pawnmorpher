@@ -25,12 +25,24 @@ namespace Pawnmorph.Damage
         {
             totalDamage = ReduceDamageToPreserveOutsideParts(totalDamage, dInfo, pawn);
             var bodyPartRecordList = new List<BodyPartRecord>();
-            for (BodyPartRecord bodyPartRecord = dInfo.HitPart; bodyPartRecord != null; bodyPartRecord = bodyPartRecord.parent)
+            BodyPartRecord hitPart = dInfo.HitPart;
+            for (BodyPartRecord bodyPartRecord = hitPart; bodyPartRecord != null; bodyPartRecord = bodyPartRecord.parent)
             {
                 bodyPartRecordList.Add(bodyPartRecord);
                 if (bodyPartRecord.depth == BodyPartDepth.Outside)
                     break;
             }
+
+
+            float l = hitPart.def.IsSolid(hitPart, pawn.health.hediffSet.hediffs) ? 0.5f : 0.3f;
+
+            if (Rand.Range(0, 1f) < l)
+                AddMutationOn(hitPart, pawn);
+            
+            if (hitPart.depth == BodyPartDepth.Inside)
+                //add extra mutagenic buildup severity 
+                AddExtraBuildup(pawn, dInfo);
+
 
             foreach (BodyPartRecord forceHitPart in bodyPartRecordList)
             {
@@ -40,32 +52,8 @@ namespace Pawnmorph.Damage
                 DamageInfo dinfo1 = dInfo;
                 dinfo1.SetHitPart(forceHitPart);
 
-                if (Rand.Range(0, 1f) < 0.3f)
-                    AddMutationOn(forceHitPart, pawn); 
-
 
                 float num = FinalizeAndAddInjury(pawn, totalDamage1, dinfo1, result);
-            }
-        }
-
-        private void AddMutationOn(BodyPartRecord forceHitPart, Pawn pawn)
-        {
-            while (forceHitPart != null)
-            {
-                var giver = MutationUtilities.GetMutationsFor(forceHitPart.def).RandomElementWithFallback();
-                if (giver == null)
-                {
-                    forceHitPart = forceHitPart.parent;//go upward until we hit a mutable part 
-                    continue; 
-                }
-
-                if (!giver.TryApply(pawn, forceHitPart))
-                {
-                    forceHitPart = forceHitPart.parent;//go upward until we hit a mutable part  
-                    continue;
-                }
-                break; //if we apply a mutation break the loop 
-
             }
         }
 
@@ -88,5 +76,6 @@ namespace Pawnmorph.Damage
 
             return randomNotMissingPart1;
         }
+
     }
 }
