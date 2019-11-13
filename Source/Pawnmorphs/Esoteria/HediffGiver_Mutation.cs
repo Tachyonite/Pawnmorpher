@@ -110,13 +110,14 @@ namespace Pawnmorph
         /// <param name="mutagenDef">The mutagen definition. used to determine if it's a valid target or not</param>
         /// <param name="outAddedHediffs">The out added hediffs.</param>
         /// <param name="cause">The cause.</param>
+        /// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
         /// <returns>if the mutation was added or not</returns>
-        public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null)
+        public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null, bool addLogEntry=true)
         {
             if (!mutagenDef.CanInfect(pawn)) return false;
 
             bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
-            if (added && partsToAffect != null)
+            if (addLogEntry && added && partsToAffect != null)
             {
                 AddMutationLogFor(pawn);
             }

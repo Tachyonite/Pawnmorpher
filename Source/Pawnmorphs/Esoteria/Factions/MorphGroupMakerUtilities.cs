@@ -112,7 +112,7 @@ namespace Pawnmorph.Factions
             {
                 giver.ClearOverlappingHediffs(pawn); // make sure to remove any overlapping hediffs added during a different stage 
 
-                giver.TryApply(pawn, MutagenDefOf.defaultMutagen, allAdded);
+                giver.TryApply(pawn, MutagenDefOf.defaultMutagen, allAdded, addLogEntry:false);
             }
 
             if (setAtMaxStage)
