@@ -52,7 +52,8 @@ namespace Pawnmorph.Hediffs
         public override void CompPostMake()
         {
             base.CompPostMake();
-            _addedTick = Current.ProgramState == ProgramState.MapInitializing ? 0 : Find.TickManager.TicksAbs;
+
+            _addedTick = Current.ProgramState != ProgramState.Playing ? 0 : Find.TickManager.TicksAbs;
         }
 
         private List<Hediff> _rmCache;
