@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -43,20 +44,36 @@ namespace Pawnmorph.Factions
         {
             if (pawn.GetAspectTracker() == null) return;
             if (extension.aspects.Count == 0) return;
-            int addAspect = Mathf.Min(extension.aspects.Count - 1, extension.aspectRange.RandomInRange);
 
-            if (addAspect == extension.aspects.Count - 1)
-                foreach (MorphPawnKindExtension.AspectEntry aspectEntry in extension.aspects)
-                    AddAspectToPawn(pawn, aspectEntry);
+            int addAspect = extension.aspectRange.RandomInRange;
+            if (addAspect == 0) return;
+
+            var aspectTracker = pawn.GetAspectTracker();
+            if (aspectTracker == null) return; 
+
+            var availableAspects = extension.GetAllAspectDefs().ToList();
+
+            addAspect = Mathf.Min(availableAspects.Count - 1, addAspect);
+
+            if (addAspect == availableAspects.Count - 1)
+            {
+                foreach (AspectDef aspectDef in availableAspects)
+                {
+                    var stage = extension.GetAvailableStagesFor(aspectDef).RandomElementWithFallback();
+                    aspectTracker.Add(aspectDef, stage); 
+                }
+
+                return;
+            }
 
 
-            List<MorphPawnKindExtension.AspectEntry> tmpList = extension.aspects.ToList(); //make a copy  
             for (var i = 0; i < addAspect; i++)
             {
-                int r = Rand.Range(0, tmpList.Count); //pick a random entry 
-                MorphPawnKindExtension.AspectEntry ae = tmpList[r];
-                AddAspectToPawn(pawn, ae);
-                tmpList.RemoveAt(r); //remove it so we don't pick it twice
+                int r = Rand.Range(0, availableAspects.Count); //pick a random entry 
+                var def = availableAspects[r];
+                var stage = extension.GetAvailableStagesFor(def).RandomElementWithFallback();
+                aspectTracker.Add(def, stage); 
+                availableAspects.RemoveAt(r); //remove it so we don't pick it twice
             }
         }
 

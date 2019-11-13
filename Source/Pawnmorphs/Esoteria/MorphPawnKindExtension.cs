@@ -37,6 +37,40 @@ namespace Pawnmorph
         }
 
 
+        [Unsaved] private Dictionary<AspectDef, List<int>> _addDict;
+        [Unsaved] private List<AspectDef> _allAspectDefs;
+
+        /// <summary>Gets the available stages that can be added by the given aspect.</summary>
+        /// <param name="def">The definition.</param>
+        /// <returns></returns>
+        public IEnumerable<int> GetAvailableStagesFor(AspectDef def)
+        {
+            if (_addDict == null)
+            {
+                _addDict = new Dictionary<AspectDef, List<int>>(); 
+                var grouping = aspects.GroupBy(a => a.aspect, a => a.stage);
+                foreach (IGrouping<AspectDef, int> group in grouping)
+                {
+                    _addDict[group.Key] = group.Distinct().ToList();
+                }
+            }
+
+            return _addDict.TryGetValue(def) ?? Enumerable.Empty<int>();
+        }
+
+
+        /// <summary>Gets all aspect defs that can be added by this instance.</summary>
+        /// <returns></returns>
+        public IEnumerable<AspectDef> GetAllAspectDefs()
+        {
+            if (_allAspectDefs == null)
+            {
+                _allAspectDefs = aspects.Select(a => a.aspect).Distinct().ToList(); 
+            }
+
+            return _allAspectDefs; 
+        }
+
 
         /// <summary>The morph categories that can be chosen from</summary>
         public List<MorphCategoryDef> morphCategories = new List<MorphCategoryDef>();
