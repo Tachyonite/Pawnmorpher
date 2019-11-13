@@ -97,7 +97,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The MTB unit
         /// </summary>
-        public float mtbUnits = 6000; 
+        public float mtbUnits = 60000f; 
 
         /// <summary>
         /// occurs every so often for all hediffs that have this giver 
