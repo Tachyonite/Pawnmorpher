@@ -21,6 +21,7 @@ namespace Pawnmorph.GraphicSys
         /// <param name="pawn"></param>
         public static void RefreshGraphics([NotNull] this Pawn pawn)
         {
+            if (Current.ProgramState != ProgramState.Playing) return; //make sure we don't refresh the graphics while the game is loading
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
             if (pawn.IsColonist)
             {

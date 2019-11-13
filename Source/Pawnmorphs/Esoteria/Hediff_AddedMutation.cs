@@ -84,10 +84,11 @@ namespace Pawnmorph
         // After the hediff has been applied.
         {
             base.PostAdd(dinfo); // Do the inherited method.
-            IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
+            if(Current.ProgramState == ProgramState.Playing)
+                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
 
-            if (MutationUtilities.AllMutationsWithGraphics.Contains(def) && pawn.IsColonist)
-            {
+            if (Current.ProgramState == ProgramState.Playing && MutationUtilities.AllMutationsWithGraphics.Contains(def) && pawn.IsColonist)
+            { 
                 pawn.Drawer.renderer.graphics.ResolveAllGraphics();
                 PortraitsCache.SetDirty(pawn);
             }

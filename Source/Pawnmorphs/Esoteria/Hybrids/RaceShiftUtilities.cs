@@ -105,12 +105,13 @@ namespace Pawnmorph.Hybrids
             }
 
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
-            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            pawn.RefreshGraphics();
 
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
 
             //save location 
-            pawn.ExposeData();
+            if(Current.ProgramState == ProgramState.Playing)
+                pawn.ExposeData();
             if (pawn.Faction != faction) pawn.SetFaction(faction);
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
