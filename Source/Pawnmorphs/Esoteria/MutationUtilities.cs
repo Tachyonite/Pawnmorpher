@@ -20,6 +20,14 @@ namespace Pawnmorph
     /// </summary>
     public static class MutationUtilities
     {
+        /// <summary>Gets the parts to add hediffs to.</summary>
+        /// <param name="giver">The giver.</param>
+        /// <returns></returns>
+        public static IEnumerable<BodyPartDef> GetPartsToAddTo([NotNull] this HediffGiver giver)
+        {
+            return giver.partsToAffect ?? Enumerable.Empty<BodyPartDef>();
+        }
+
         private static List<HediffGiver_Mutation> _allGivers;
 
         private static List<BodyPartDef> _allMutablePartDefs;

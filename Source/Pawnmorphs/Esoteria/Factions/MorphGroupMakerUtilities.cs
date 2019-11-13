@@ -98,11 +98,11 @@ namespace Pawnmorph.Factions
                     HediffGiver_Mutation mGiver = givers[rI];
 
                     givers.RemoveAt(rI); //remove the entry so we don't pull duplicates 
-                    if (mGiver.partsToAffect.Any(p => addedPartsSet.Contains(p))
+                    if (mGiver.GetPartsToAddTo().Any(p => p != null && addedPartsSet.Contains(p))
                     ) //make sure its for a part we haven't encountered yet
                         continue;
 
-                    foreach (BodyPartDef part in mGiver.partsToAffect) addedPartsSet.Add(part);
+                    foreach (BodyPartDef part in mGiver.GetPartsToAddTo()) addedPartsSet.Add(part);
                     toGive.Add(mGiver);
                     break;
                 }
@@ -119,7 +119,7 @@ namespace Pawnmorph.Factions
                 foreach (Hediff hediff in allAdded)
                 {
                     if (hediff.pawn == null) continue; //sometimes the hediffs are removed by other mutations 
-                    HediffStage lastStage = hediff.def.stages?.Last();
+                    HediffStage lastStage = hediff.def.stages?.LastOrDefault();
                     if (lastStage == null) continue;
                     float severity = lastStage.minSeverity + 0.01f;
                     hediff.Severity = severity;
