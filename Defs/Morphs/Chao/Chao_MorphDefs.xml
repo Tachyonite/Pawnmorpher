@@ -16,7 +16,7 @@
 
     <Pawnmorph.MorphDef ParentName="ChimeraMorph">
         <defName>ChaofoxMorph</defName>
-        <label>choafox morph</label>
+        <label>chaofox morph</label>
         <race>Chaofox</race>
         <group>Canines</group>
 
