@@ -36,7 +36,7 @@ namespace Pawnmorph
             List<Hediff_AddedMutation> hediffsToRemove = new List<Hediff_AddedMutation>(); //save the result, otherwise we'd invalidate the enumerator when we start removing them  
             foreach (BodyPartDef bodyPartDef in mutationGiver.GetPartsToAddTo())
             {
-                var hediffs = health.hediffSet.hediffs.Where(h => h.Part.def == bodyPartDef).OfType<Hediff_AddedMutation>();
+                var hediffs = health.hediffSet.hediffs.Where(h => h.Part?.def == bodyPartDef).OfType<Hediff_AddedMutation>();
                 hediffsToRemove.AddRange(hediffs); //don't start removing them until we have all mutation we need to remove
             }
 
