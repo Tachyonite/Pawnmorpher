@@ -71,6 +71,7 @@ namespace Pawnmorph
                 var race = (ThingDef)thingDefAlienRace;
                 genRaces.Add(race);
                 DefGenerator.AddImpliedDef(race);
+                DefGenerator.AddImpliedDef(thingDefAlienRace); 
             }
 
             foreach (ThingDef thingDef in genRaces)
