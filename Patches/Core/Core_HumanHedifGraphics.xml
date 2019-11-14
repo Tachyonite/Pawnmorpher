@@ -18,7 +18,7 @@
 					<EtherCowSnout>Parts/cowface/cowface</EtherCowSnout>
 					<EtherDeerSnout>Parts/deerface/deerface</EtherDeerSnout>
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
-					<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
+					<EtherFoxMuzzle>Parts/Fox/Fox_Jaw</EtherFoxMuzzle>
 					<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
@@ -82,7 +82,7 @@
 					<EtherCowSnout>Parts/cowface/cowface</EtherCowSnout>
 					<EtherDeerSnout>Parts/deerface/deerface</EtherDeerSnout>
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
-					<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
+					<EtherFoxMuzzle>Parts/Fox/Fox_Jaw</EtherFoxMuzzle>
 					<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
@@ -148,7 +148,6 @@
 					<EtherCowEar>Parts/cowface/cowears</EtherCowEar>
 					<EtherDeerEar>Parts/deerface/deerears</EtherDeerEar>
 					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
-					<EtherFoxEar>Parts/foxface/foxears</EtherFoxEar>
 					<EtherHuskyEar>Parts/huskyface/huskyears</EtherHuskyEar>
 					<EtherMonkeyEar>Parts/monkeyface/monkeyear</EtherMonkeyEar>
 					<EtherPigEar>Parts/pigface/pigears</EtherPigEar>
@@ -157,7 +156,6 @@
 					<EtherWargEar>Parts/wargface/wargears</EtherWargEar>
 					<EtherWolfEar>Parts/wolfface/wolfear</EtherWolfEar>
 				</hediffGraphics>
-				<layerOffset>0.1</layerOffset>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -224,7 +222,6 @@
 					<EtherCowEar>Parts/cowface/cowears</EtherCowEar>
 					<EtherDeerEar>Parts/deerface/deerears</EtherDeerEar>
 					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
-					<EtherFoxEar>Parts/foxface/foxears</EtherFoxEar>
 					<EtherHuskyEar>Parts/huskyface/huskyears</EtherHuskyEar>
 					<EtherMonkeyEar>Parts/monkeyface/monkeyear</EtherMonkeyEar>
 					<EtherPigEar>Parts/pigface/pigears</EtherPigEar>
@@ -285,6 +282,318 @@
 				</offsets>
 			</li>
 			<li>
+				<!-- Male Left Ear -->
+				<path>Parts/None/None</path>
+				<bodyPart>left ear</bodyPart>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.425, 0.560)</Male>
+							<Female>(-0.425, 0.560)</Female>
+							<Thin>(-0.425, 0.560)</Thin>
+							<Hulk>(-0.425, 0.560)</Hulk>
+							<Fat>(-0.425, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.010, 0.000)</Average_Wide>
+							<Narrow_Normal>(-0.020, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(-0.020, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(-0.020, 0.000)</Narrow_Pointy>
+						</crownTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0.000, 0.890)</Male>
+							<Female>(0.000, 0.890)</Female>
+							<Thin>(0.000, 0.890)</Thin>
+							<Hulk>(0.000, 0.890)</Hulk>
+							<Fat>(0.000, 0.890)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.010, 0.000)</Average_Wide>
+							<Narrow_Normal>(0.020, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(0.020, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(0.020, 0.000)</Narrow_Pointy>
+						</crownTypes>
+					</north>
+					<east/>
+					<west>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+					</west> 
+				</offsets>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawForFemale>false</drawForFemale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
+				</hediffGraphics>
+			</li>
+			<li>
+				<!-- Male Left Ear (Behind Head) -->
+				<path>Parts/None/None</path>
+				<bodyPart>left ear</bodyPart>
+				<offsets>
+					<south/>
+					<north/>
+					<east>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+					</east>
+					<west/>
+				</offsets>
+				<drawForFemale>false</drawForFemale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
+				</hediffGraphics>
+			</li>
+			<li>
+				<!-- Male Right Ear -->
+				<path>Parts/None/None</path>
+				<bodyPart>right ear</bodyPart>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.425, 0.560)</Male>
+							<Female>(-0.425, 0.560)</Female>
+							<Thin>(-0.425, 0.560)</Thin>
+							<Hulk>(-0.425, 0.560)</Hulk>
+							<Fat>(-0.425, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.010, 0.000)</Average_Wide>
+							<Narrow_Normal>(0.020, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(0.020, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(0.020, 0.000)</Narrow_Pointy>
+						</crownTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0.000, 0.890)</Male>
+							<Female>(0.000, 0.890)</Female>
+							<Thin>(0.000, 0.890)</Thin>
+							<Hulk>(0.000, 0.890)</Hulk>
+							<Fat>(0.000, 0.890)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.010, 0.000)</Average_Wide>
+							<Narrow_Normal>(-0.020, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(-0.020, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(-0.020, 0.000)</Narrow_Pointy>
+						</crownTypes>
+					</north>
+					<east>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+					</east>
+					<west/>
+				</offsets>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawForFemale>false</drawForFemale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
+				</hediffGraphics>
+			</li>
+			<li>
+				<!-- Male Right Ear (Behind Head) -->
+				<path>Parts/None/None</path>
+				<bodyPart>right ear</bodyPart>
+				<offsets>
+					<south/>
+					<north/>
+					<east/>
+					<west>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+					</west>
+				</offsets>
+				<drawForFemale>false</drawForFemale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
+				</hediffGraphics>
+			</li>
+			<li>
+				<!-- Female Left Ear -->
+				<path>Parts/None/None</path>
+				<bodyPart>left ear</bodyPart>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.425, 0.560)</Male>
+							<Female>(-0.425, 0.560)</Female>
+							<Thin>(-0.425, 0.560)</Thin>
+							<Hulk>(-0.425, 0.560)</Hulk>
+							<Fat>(-0.425, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.010, 0.000)</Average_Pointy>
+							<Narrow_Normal>(-0.030, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(-0.040, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(-0.030, -0.045)</Narrow_Pointy>
+						</crownTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0.000, 0.890)</Male>
+							<Female>(0.000, 0.890)</Female>
+							<Thin>(0.000, 0.890)</Thin>
+							<Hulk>(0.000, 0.890)</Hulk>
+							<Fat>(0.000, 0.890)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.010, 0.000)</Average_Pointy>
+							<Narrow_Normal>(0.030, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(0.030, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(0.030, 0.000)</Narrow_Pointy>
+						</crownTypes>
+					</north>
+					<east/>
+					<west>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Narrow_Pointy>(0.000, -0.030)</Narrow_Pointy>
+						</crownTypes>
+					</west>
+				</offsets>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawForMale>false</drawForMale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
+				</hediffGraphics>
+			</li>
+			<li>
+				<!-- Female Left Ear (Behind Head) -->
+				<path>Parts/None/None</path>
+				<bodyPart>left ear</bodyPart>
+				<offsets>
+					<south/>
+					<north/>
+					<east>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Narrow_Pointy>(0.000, -0.030)</Narrow_Pointy>
+						</crownTypes>
+					</east>
+					<west/>
+				</offsets>
+				<drawForMale>false</drawForMale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
+				</hediffGraphics>
+			</li>
+			<li>
+				<!-- Female Right Ear -->
+				<path>Parts/None/None</path>
+				<bodyPart>right ear</bodyPart>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.425, 0.560)</Male>
+							<Female>(-0.425, 0.560)</Female>
+							<Thin>(-0.425, 0.560)</Thin>
+							<Hulk>(-0.425, 0.560)</Hulk>
+							<Fat>(-0.425, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.010, 0.000)</Average_Pointy>
+							<Narrow_Normal>(0.030, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(0.020, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(0.030, -0.045)</Narrow_Pointy>
+						</crownTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0.000, 0.890)</Male>
+							<Female>(0.000, 0.890)</Female>
+							<Thin>(0.000, 0.890)</Thin>
+							<Hulk>(0.000, 0.890)</Hulk>
+							<Fat>(0.000, 0.890)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Pointy>(-0.010, 0.000)</Average_Pointy>
+							<Narrow_Normal>(-0.030, 0.000)</Narrow_Normal>
+							<Narrow_Wide>(-0.030, 0.000)</Narrow_Wide>
+							<Narrow_Pointy>(-0.030, 0.000)</Narrow_Pointy>
+						</crownTypes>
+					</north>
+					<east>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Narrow_Pointy>(0.000, -0.030)</Narrow_Pointy>
+						</crownTypes>
+					</east>
+					<west/>
+				</offsets>
+				<inFrontOfBody>true</inFrontOfBody>
+				<drawForMale>false</drawForMale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
+				</hediffGraphics>
+			</li>
+			<li>
+				<!-- Female Right Ear (Behind Head) -->
+				<path>Parts/None/None</path>
+				<bodyPart>right ear</bodyPart>
+				<offsets>
+					<south/>
+					<north/>
+					<east/>
+					<west>
+						<bodyTypes>
+							<Male>(-0.460, 0.560)</Male>
+							<Female>(-0.520, 0.560)</Female>
+							<Thin>(-0.510, 0.560)</Thin>
+							<Hulk>(-0.520, 0.560)</Hulk>
+							<Fat>(-0.510, 0.560)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Narrow_Pointy>(0.000, -0.030)</Narrow_Pointy>
+						</crownTypes>
+					</west>
+				</offsets>
+				<drawForMale>false</drawForMale>
+				<hediffGraphics>
+					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
+				</hediffGraphics>
+			</li>
+			<li>
 				<!-- Old-Style Tails -->
 				<path>Parts/None/None</path>
 				<bodyPart>Tail</bodyPart>
@@ -300,7 +609,7 @@
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
 					<EtherShortTail>Parts/deerface/deertail</EtherShortTail>
 					<EtherElephantTail>Parts/elephantface/elephanttail</EtherElephantTail>
-					<EtherFluffyTail>Parts/foxface/foxtail</EtherFluffyTail>
+					<EtherFluffyTail>Parts/Fox/Fox_Tail</EtherFluffyTail>
 					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
 					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
