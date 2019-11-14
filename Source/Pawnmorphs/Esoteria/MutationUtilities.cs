@@ -23,6 +23,7 @@ namespace Pawnmorph
         /// <summary>Gets the parts to add hediffs to.</summary>
         /// <param name="giver">The giver.</param>
         /// <returns></returns>
+        [NotNull]
         public static IEnumerable<BodyPartDef> GetPartsToAddTo([NotNull] this HediffGiver giver)
         {
             return giver.partsToAffect ?? Enumerable.Empty<BodyPartDef>();

@@ -32,11 +32,11 @@ namespace Pawnmorph
             if (mutationGiver == null) throw new ArgumentNullException(nameof(mutationGiver));
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             var health = pawn.health;
-
+            if (health?.hediffSet?.hediffs == null) return; 
             List<Hediff_AddedMutation> hediffsToRemove = new List<Hediff_AddedMutation>(); //save the result, otherwise we'd invalidate the enumerator when we start removing them  
             foreach (BodyPartDef bodyPartDef in mutationGiver.GetPartsToAddTo())
             {
-                var hediffs = health.hediffSet.hediffs.Where(h => h.Part?.def == bodyPartDef).OfType<Hediff_AddedMutation>();
+                var hediffs = health.hediffSet.hediffs.Where(h => h?.Part?.def == bodyPartDef).OfType<Hediff_AddedMutation>();
                 hediffsToRemove.AddRange(hediffs); //don't start removing them until we have all mutation we need to remove
             }
 
@@ -74,12 +74,15 @@ namespace Pawnmorph
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
+            MutagenDef mutagenSource;
+
             if (mutationDef is Def_MorphTf morphTf)
             {
-                return morphTf.mutagenSource.CanInfect(pawn);
+                mutagenSource = morphTf.mutagenSource ?? MutagenDefOf.defaultMutagen;
             }
+            else mutagenSource = MutagenDefOf.defaultMutagen; 
 
-            return MutagenDefOf.defaultMutagen.CanInfect(pawn);
+            return mutagenSource.CanInfect(pawn);
         }
 
         /// <summary> Gets the mutagen associated with this tf hediff. </summary>
