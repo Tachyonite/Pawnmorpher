@@ -13,7 +13,8 @@ namespace Pawnmorph.Social
     /// <seealso cref="RimWorld.InteractionWorker" />
     public abstract class PMInteractionWorkerBase : InteractionWorker
     {
-
+        /// <summary>Gets the interaction definition.</summary>
+        /// <value>The definition.</value>
         public PMInteractionDef Def
         {
             get

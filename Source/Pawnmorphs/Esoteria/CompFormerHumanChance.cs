@@ -3,10 +3,16 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// comp for adding the former human hediff with a percent chance when this thing spawns 
+    /// </summary>
     public class CompFormerHumanChance : ThingComp
     {
         private bool triggered = false;
 
+        /// <summary>
+        /// the properties for this comp 
+        /// </summary>
         public CompProperties_FormerHumanChance Props
         {
             get
@@ -15,6 +21,9 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// called every tick after it's parent updates 
+        /// </summary>
         public override void CompTick()
         {
             RandUtilities.PushState();
@@ -32,6 +41,9 @@ namespace Pawnmorph
             RandUtilities.PopState();
         }
 
+        /// <summary>
+        /// called to save/load data 
+        /// </summary>
         public override void PostExposeData()
         {
             base.PostExposeData();

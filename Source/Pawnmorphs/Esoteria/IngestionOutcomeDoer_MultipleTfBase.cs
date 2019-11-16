@@ -13,8 +13,13 @@ namespace Pawnmorph
     /// <seealso cref="RimWorld.IngestionOutcomeDoer" />
     public abstract class IngestionOutcomeDoer_MultipleTfBase : IngestionOutcomeDoer
     {
+        /// <summary>the partial hediffs to add</summary>
         public List<HediffDef> hediffDefs = new List<HediffDef>();
+        /// <summary>
+        /// the complete hediffs to add
+        /// </summary>
         public List<HediffDef> hediffDefsComplete = new List<HediffDef>();
+        /// <summary>setting for getting hediffDefs at runtime </summary>
         public RuntimeGetSettings runtime;
         [Unsaved] private List<HediffDef> _allCompleteDefs;
         [Unsaved] private List<HediffDef> _allPartialDefs;
@@ -90,10 +95,16 @@ namespace Pawnmorph
             _allPartialDefs = completeSet.ToList();
         }
 
+        /// <summary>
+        /// class representing the settings for getting hediff defs at runtime 
+        /// </summary>
         public class RuntimeGetSettings
         {
+            /// <summary>The types to get</summary>
             public MorphTransformationTypes types;
-            public bool isBlackList = true; // If the category list is a black list.
+            /// <summary>if true, the categories will exclude, not include things</summary>
+            public bool isBlackList = true; // If the category list is a black list            
+            /// <summary>The categories to get hediffDefs from </summary>
             public List<MorphCategoryDef> categories = new List<MorphCategoryDef>();
         }
     }

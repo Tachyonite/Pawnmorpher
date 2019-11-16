@@ -28,7 +28,13 @@ namespace Pawnmorph.Chambers
             if (inst.race?.Animal != true) return false; //use != because inst.race?.Animal can be true,false or null
             return !IsChao(inst); 
         }
-
+        /// <summary>
+        /// Determines whether the specified definition for a chaomorph.
+        /// </summary>
+        /// <param name="def">The definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified definition is a chaomorph; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsChao(ThingDef def)
         {
             return def.race.FleshType == DefDatabase<FleshTypeDef>.GetNamed("Chaomorph"); //all chaomorphs have the same flesh type of Chaomorph 

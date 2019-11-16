@@ -3,7 +3,7 @@
 
 using RimWorld;
 using Verse;
-
+#pragma warning disable 1591
 namespace Pawnmorph
 {
     /// <summary> Static container for commonly referenced job defs. </summary>

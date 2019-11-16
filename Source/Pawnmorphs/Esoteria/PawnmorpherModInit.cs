@@ -1,12 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AlienRace;
 using Verse;
 using RimWorld;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// static class for initializing the mod 
+    /// </summary>
     [StaticConstructorOnStartup]
     public static class PawnmorpherModInit
     {
@@ -14,6 +20,43 @@ namespace Pawnmorph
         {
             NotifySettingsChanged();
             GenerateImplicitRaces();
+            CheckForObsoletedComponents();
+        }
+
+        private static void CheckForObsoletedComponents()
+        {
+            IEnumerable<HediffDef> obsoleteHediffTypes = DefDatabase<HediffDef>
+                                                        .AllDefs.Where(h => h.hediffClass.HasAttribute<ObsoleteAttribute>());
+            //get all obsoleted hediffs in use 
+
+            foreach (HediffDef obsoleteDef in obsoleteHediffTypes)
+                Log.Warning($"obsolete hediff {obsoleteDef.hediffClass.Name} in {obsoleteDef.defName}");
+            var tmp = new List<string>();
+            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
+            {
+                IEnumerable<HediffGiver> obsoleteGivers =
+                    hediffDef.GetAllHediffGivers().Where(g => g.GetType().HasAttribute<ObsoleteAttribute>());
+                var builder = new StringBuilder();
+
+                builder.AppendLine($"in {hediffDef.defName}");
+                foreach (HediffGiver obsoleteGiver in obsoleteGivers)
+                    builder.AppendLine($"obsolete hediff giver: {obsoleteGiver.GetType().Name}".Indented());
+                IEnumerable<HediffGiver> giversGivingBadHediffs = hediffDef
+                                                                 .GetAllHediffGivers() //find hediff giver that are giving obsolete hediffs 
+                                                                 .Where(g => g.hediff?.GetType().HasAttribute<ObsoleteAttribute>()
+                                                                          ?? false);
+
+                foreach (HediffGiver giversGivingBadHediff in giversGivingBadHediffs)
+                    tmp.Add($"giver {giversGivingBadHediff.GetType().Name} is giving obsolete hediff {giversGivingBadHediff.hediff.defName}");
+
+
+                if (tmp.Count > 0)
+                {
+                    builder.Append(string.Join("\n", tmp.ToArray()).Indented());
+                    tmp.Clear();
+                    Log.Warning(builder.ToString());
+                }
+            }
         }
 
         private static void GenerateImplicitRaces()
@@ -56,6 +99,7 @@ namespace Pawnmorph
             takenHashes.Add(num);
         }
 
+        /// <summary>called when the settings are changed</summary>
         public static void NotifySettingsChanged()
         {
             PawnmorpherSettings settings = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();

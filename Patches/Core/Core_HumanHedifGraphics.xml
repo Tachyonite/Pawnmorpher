@@ -20,11 +20,12 @@
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
 					<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
 					<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
-					<!--EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout-->
+					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
+					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
-					<!--EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw-->
+					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
 					<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
 					<EtherWolfMuzzle>Parts/wolfface/wolfface</EtherWolfMuzzle>
@@ -83,11 +84,12 @@
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
 					<EtherFoxMuzzle>Parts/foxface/foxface</EtherFoxMuzzle>
 					<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
-					<!--EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout-->
+					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
+					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
-					<!--EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw-->
+					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
 					<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
 					<EtherWolfMuzzle>Parts/wolfface/wolfface</EtherWolfMuzzle>
@@ -148,6 +150,7 @@
 					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
 					<EtherFoxEar>Parts/foxface/foxears</EtherFoxEar>
 					<EtherHuskyEar>Parts/huskyface/huskyears</EtherHuskyEar>
+					<EtherMonkeyEar>Parts/monkeyface/monkeyear</EtherMonkeyEar>
 					<EtherPigEar>Parts/pigface/pigears</EtherPigEar>
 					<EtherRatEar>Parts/ratface/ratears</EtherRatEar>
 					<EtherThrumboEar>Parts/thrumboface/thrumboears</EtherThrumboEar>
@@ -223,6 +226,7 @@
 					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
 					<EtherFoxEar>Parts/foxface/foxears</EtherFoxEar>
 					<EtherHuskyEar>Parts/huskyface/huskyears</EtherHuskyEar>
+					<EtherMonkeyEar>Parts/monkeyface/monkeyear</EtherMonkeyEar>
 					<EtherPigEar>Parts/pigface/pigears</EtherPigEar>
 					<EtherRatEar>Parts/ratface/ratears</EtherRatEar>
 					<EtherThrumboEar>Parts/thrumboface/thrumboears</EtherThrumboEar>
@@ -299,6 +303,7 @@
 					<EtherFluffyTail>Parts/foxface/foxtail</EtherFluffyTail>
 					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
+					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
@@ -327,8 +332,8 @@
 					</east>
 				</offsets>
 			</li>
-			<!--li>
-				<- New-Style Tails ->
+			<li>
+				<!-- New-Style Tails -->
 				<path>Parts/None/None</path>
 				<bodyPart>Tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -360,7 +365,7 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-			</li -->
+			</li>
 			<li>
 				<path>Parts/None/None</path>
 				<bodyPart>Arm</bodyPart>
@@ -392,7 +397,7 @@
 				<hediffGraphics>
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
-					<!--EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns-->
+					<EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns>
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 				</hediffGraphics>
 				<offsets>
@@ -455,7 +460,7 @@
 				<hediffGraphics>
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
-					<!--EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns-->
+					<EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns>
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 				</hediffGraphics>
 				<offsets>
@@ -508,8 +513,8 @@
 					</east>
 				</offsets>
 			</li>
-			<!--li>
-				<- Male Snake Hood FG ->
+			<li>
+				<!-- Male Snake Hood FG -->
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -573,7 +578,7 @@
 				</offsets>
 			</li>
 			<li>
-				<- Female Snake Hood FG ->
+				<!-- Female Snake Hood FG -->
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -636,7 +641,7 @@
 				</offsets>
 			</li>
 			<li>
-				<- Male Snake Hood BG ->
+				<!-- Male Snake Hood BG -->
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -700,7 +705,7 @@
 				</offsets>
 			</li>
 			<li>
-				<- Female Snake Hood BG ->
+				<!-- Female Snake Hood BG -->
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -761,7 +766,7 @@
 						</crownTypes>
 					</east>
 				</offsets>
-			</li-->
+			</li>
 			<li>
 				<!-- Udders -->
 				<path>Parts/None/None</path>
@@ -795,8 +800,8 @@
 					</east>
 				</offsets>
 			</li>
-			<!--li>
-				<- Male Eye Overlays ->
+			<li>
+				<!-- Male Eye Overlays -->
 				<path>Parts/None/None</path>
 				<bodyPart>Eye</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -840,7 +845,7 @@
 				</offsets>
 			</li>
 			<li>
-				<- Female Eye Overlays ->
+				<!-- Female Eye Overlays -->
 				<path>Parts/None/None</path>
 				<bodyPart>Eye</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -885,7 +890,7 @@
 						</crownTypes>
 					</east>
 				</offsets>
-			</li-->
+			</li>
 		</value>
 	</Operation>
 </Patch>

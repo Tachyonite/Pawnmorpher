@@ -11,6 +11,8 @@ namespace Pawnmorph.Thoughts
     /// </summary>
     public class MutationMemory : Thought_Memory
     {
+        /// <summary>Gets the index of the current stage.</summary>
+        /// <value>The index of the current stage.</value>
         public override int CurStageIndex => Mathf.Min(def.stages.Count, (int) pawn.GetOutlook());
     }
 }

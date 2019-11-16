@@ -17,49 +17,30 @@ namespace Pawnmorph.Hediffs
     public class Comp_CheckRace : HediffCompBase<CompProperties_CheckRace>
     {
         private bool _checked; 
-        private readonly List<MorphUtilities.Tuple> _scratchList = new List<MorphUtilities.Tuple>();
-        public void CheckRace(Pawn pawn)
-        {
-            _checked = true; 
-            if (pawn.ShouldBeConsideredHuman()) return;
+        private readonly List<VTuple<MorphDef, float>> _scratchList = new List<VTuple<MorphDef, float>>();
 
-            _scratchList.Clear();
-            IEnumerable<MorphUtilities.Tuple> linq = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().GetInfluences();
-            _scratchList.AddRange(linq);
+        
 
-            if (_scratchList.Count == 0) return;
-
-            MorphDef morph = null;
-            float max = float.NegativeInfinity;
-            foreach (MorphUtilities.Tuple tuple in _scratchList)
-                if (max < tuple.influence)
-                {
-                    morph = tuple.morph;
-                    max = tuple.influence;
-                }
-
-            if (morph == null)
-            { //null means there is no clear dominant morph even thought the pawn isn't "human" anymore
-                return; //TODO chimera race? 
-            }
-
-
-            if(morph.hybridRaceDef != pawn.def) //make sure the morph they're begin shifted to is different then they're current race 
-                RaceShiftUtilities.ChangePawnToMorph(pawn, morph); 
-        }
-
+        /// <summary>
+        /// called after the parent hediff is removed
+        /// </summary>
         public override void CompPostPostRemoved()
         {
             base.CompPostPostRemoved();
 
             if (Pawn.Dead || _checked) return;
 
-            CheckRace(Pawn); 
+            Pawn.CheckRace(false);
 
 
         }
 
-        private int _lastStage = -1; 
+        private int _lastStage = -1;
+        
+        /// <summary>
+        /// called every tick after the thing updates 
+        /// </summary>
+        /// <param name="severityAdjustment"></param>
         public override void CompPostTick(ref float severityAdjustment)
         {
             
@@ -69,11 +50,14 @@ namespace Pawnmorph.Hediffs
                 _lastStage = parent.CurStageIndex;
                 if (_lastStage == Props.triggerStage)
                 {
-                    CheckRace(parent.pawn);
+                    parent.pawn.CheckRace();
                 }
             }
         }
 
+        /// <summary>
+        /// save or load data 
+        /// </summary>
         public override void CompExposeData()
         {
             base.CompExposeData();
@@ -82,9 +66,19 @@ namespace Pawnmorph.Hediffs
         }
     }
 
+    /// <summary>
+    /// hediff comp that checks if the pawn should be turned into a hybrid at a certain stage 
+    /// </summary>
     public class CompProperties_CheckRace : HediffCompProperties
     {
+        /// <summary>
+        /// the stage to check the pawns race at 
+        /// </summary>
         public int triggerStage; 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public CompProperties_CheckRace()
         {
             compClass = typeof(Comp_CheckRace); 

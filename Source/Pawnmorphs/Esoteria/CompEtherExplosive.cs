@@ -5,8 +5,14 @@ using Verse;
 
 namespace EtherGun
 {
+    /// <summary>
+    /// comp for creating a mutagenic explosion 
+    /// </summary>
     public class CompEtherExplosive : CompExplosive
     {
+        /// <summary>
+        /// the comp properties 
+        /// </summary>
         public new CompProperties_EtherExplosive Props
         {
             get
@@ -15,6 +21,9 @@ namespace EtherGun
             }
         }
 
+        /// <summary>
+        /// called every tick after it's parent updates 
+        /// </summary>
         public override void CompTick()
         {
             base.CompTick();
@@ -24,7 +33,8 @@ namespace EtherGun
             }
         }
 
-        public void TransformArea()
+        
+        void TransformArea()
         {
             List<Thing> thingList = GenRadial.RadialDistinctThingsAround(parent.PositionHeld, parent.Map, Props.explosiveRadius, true).ToList();
             List<Pawn> pawnsAffected = new List<Pawn>();

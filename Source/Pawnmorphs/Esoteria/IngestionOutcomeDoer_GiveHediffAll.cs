@@ -5,13 +5,23 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// ingestion outcome doer that gives all hediffs 
+    /// </summary>
+    /// <seealso cref="Pawnmorph.IngestionOutcomeDoer_MultipleTfBase" />
     public class IngestionOutcomeDoer_GiveHediffAll : IngestionOutcomeDoer_MultipleTfBase
     {
+        /// <summary>the chance to give the complete tf instead of the partial</summary>
         public float completeChance;
+        /// <summary>The severity to set the hediff at</summary>
         public float severity = -1f;
+        /// <summary>The tolerance chemical</summary>
         public ChemicalDef toleranceChemical;
+        /// <summary>if true, the severity to set by is divided by the pawns body size</summary>
         public bool divideByBodySize = false;
-
+        /// <summary>Does the ingestion outcome special.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
             StringBuilder builder = new StringBuilder();

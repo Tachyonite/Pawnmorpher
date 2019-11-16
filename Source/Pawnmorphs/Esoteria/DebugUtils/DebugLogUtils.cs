@@ -17,7 +17,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Debug = System.Diagnostics.Debug;
-
+#pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
 {
     [HasDebugOutput]
@@ -69,6 +69,27 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        /// <summary>Prints all mutations that are missing extension.</summary>
+        [DebugOutput] 
+        [Category(MAIN_CATEGORY_NAME)]
+        public static void PrintAllMutationsMissingExtension()
+        {
+            var mutations = DefDatabase<HediffDef>
+                           .AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass) && !d.IsObsolete())
+                           .Where(d => !d.HasModExtension<MutationHediffExtension>())
+                           .Select(d => d.defName); 
+            Log.Message($"hediffs missing mutation extension:\n{string.Join("\n", mutations.ToArray())}");
+        }
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        public static void ListPawnKindsMissingExtension()
+        {
+            var kinds = DefDatabase<PawnKindDef>.AllDefs.Where(k => k.race == ThingDefOf.Human && !k.HasModExtension<MorphPawnKindExtension>())
+                                                .Select(k => k.defName);
+
+            Log.Message($"pawnkinds missing def extension:\n{string.Join("\n", kinds.ToArray())}");
+        }
 
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]

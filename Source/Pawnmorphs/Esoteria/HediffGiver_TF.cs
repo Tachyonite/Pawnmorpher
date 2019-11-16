@@ -6,14 +6,27 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// hediff giver that tries to transform a pawn
+    /// </summary>
+    /// <seealso cref="Verse.HediffGiver" />
     public class HediffGiver_TF : HediffGiver
     {
-        public List<PawnKindDef> pawnkinds; // The pawnKind of the animal to be transformed into.
-        public TaleDef tale; // Tale to add to the tales.
-        public TFGender forceGender = TFGender.Original; // The gender that will be forced (i.e. a ChookMorph will be forced female).
-        public float forceGenderChance = 50f; // If forceGender is provided, this is the chance the gender will be forced.
+        /// The pawnKind of the animal to be transformed into.
+        public List<PawnKindDef> pawnkinds;
+        /// Tale to add to the tales.
+        public TaleDef tale;
+        /// The gender that will be forced (i.e. a ChookMorph will be forced female).
+        public TFGender forceGender = TFGender.Original;
+        /// If forceGender is provided, this is the chance the gender will be forced.
+        public float forceGenderChance = 50f; 
+        
         private float changeChance = -1;
 
+        /// <summary>Tries to transform the pawn</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="cause">The cause.</param>
+        /// <returns></returns>
         public bool TryTf(Pawn pawn, Hediff cause)
         {
             RandUtilities.PushState();
@@ -33,7 +46,10 @@ namespace Pawnmorph
 
             return changed;
         }
-
+        /// <summary>Transforms the pawn.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="cause">The cause.</param>
+        /// <returns></returns>
         public bool TransformPawn(Pawn pawn, Hediff cause)
         {
             var hediffMorph = (cause as Hediff_Morph);

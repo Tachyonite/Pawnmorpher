@@ -6,10 +6,14 @@ using Pawnmorph.Hediffs;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// class for mutanite 
+    /// </summary>
+    /// <seealso cref="RimWorld.Mineable" />
     public class MutagenicStone : Mineable
     {
-        public static HediffDef hediff = MorphTransformationDefOf.FullRandomTF; // Def of classes are better, pushes errors to load time not play time.
-
+        
+        /// <summary>called every once and a while</summary>
         public override void TickRare()
         {
             if (!Spawned || !LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableMutagenMeteor) return;

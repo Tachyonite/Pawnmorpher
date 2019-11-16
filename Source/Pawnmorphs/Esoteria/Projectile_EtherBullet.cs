@@ -4,10 +4,19 @@ using Verse;
 
 namespace EtherGun
 {
+    /// <summary>
+    /// bullet that are mutagenic in nature 
+    /// </summary>
+    /// <seealso cref="RimWorld.Bullet" />
     public class Projectile_EtherBullet : Bullet
     {
-        public ThingDef_EtherBullet Def => def as ThingDef_EtherBullet;
 
+        ThingDef_EtherBullet Def => def as ThingDef_EtherBullet;
+
+        /// <summary>
+        /// called when this instance impacts the specified thing.
+        /// </summary>
+        /// <param name="hitThing">The hit thing.</param>
         protected override void Impact(Thing hitThing)
         {
             base.Impact(hitThing);
@@ -30,7 +39,7 @@ namespace EtherGun
                         //put them on the character, and increase its severity by a random amount.
                         Hediff hediff = HediffMaker.MakeHediff(Def.HediffToAdd, hitPawn);
                         hediff.Severity = randomSeverity;
-                        hitPawn.health.AddHediff(hediff);
+                        hitPawn.health?.AddHediff(hediff);
                         IntermittentMagicSprayer.ThrowMagicPuffDown(hitPawn.Position.ToVector3(), Map);
                     }
                 }

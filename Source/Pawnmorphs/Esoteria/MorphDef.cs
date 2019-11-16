@@ -116,6 +116,10 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// get all configuration errors with this instance 
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors()) yield return configError;
@@ -126,6 +130,11 @@ namespace Pawnmorph
         }
 
 
+        /// <summary>
+        /// obsolete, does nothing 
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
         [Obsolete("This is no longer used")]
         public FoodPreferability? GetOverride(ThingDef food) //note, RawTasty is 5, RawBad is 4 
         {
@@ -136,7 +145,9 @@ namespace Pawnmorph
 
             return null;
         }
-
+        /// <summary>
+        /// resolves all references after DefOfs are loaded 
+        /// </summary>
         public override void ResolveReferences()
         {
             if (explicitHybridRace != null)

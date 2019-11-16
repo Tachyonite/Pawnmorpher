@@ -2,7 +2,7 @@
 // last updated 09/16/2019  12:48 PM
 
 using RimWorld;
-
+#pragma warning disable 1591
 namespace Pawnmorph
 {
     /// <summary> Static class containing references to commonly used Traits. </summary>

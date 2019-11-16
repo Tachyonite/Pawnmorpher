@@ -10,6 +10,10 @@ using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph.GraphicSys
 {
+    /// <summary>
+    /// comp for storing the initial graphics settings of a pawn for use latter
+    /// </summary>
+    /// <seealso cref="Verse.ThingComp" />
     public class InitialGraphicsComp : ThingComp
     {
         private bool _scanned;
@@ -23,6 +27,8 @@ namespace Pawnmorph.GraphicSys
         private Color _hairColor;
         private string _crownType;
 
+        /// <summary>Gets the draw size.</summary>
+        /// <value>The size of the custom draw.</value>
         public Vector2 CustomDrawSize
         {
             get
@@ -33,6 +39,8 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>Gets the draw size of the custom portrait </summary>
+        /// <value>The size of the custom portrait draw.</value>
         public Vector2 CustomPortraitDrawSize
         {
             get
@@ -43,6 +51,10 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether [fix gender post spawn].
+        /// </summary>
+        /// <value><c>true</c> if [fix gender post spawn]; otherwise, <c>false</c>.</value>
         public bool FixGenderPostSpawn
         {
             get
@@ -53,6 +65,8 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>Gets the color of the skin.</summary>
+        /// <value>The color of the skin.</value>
         public Color SkinColor
         {
             get
@@ -62,6 +76,8 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>Gets the color of the hair.</summary>
+        /// <value>The color of the hair.</value>
         public Color HairColor
         {
             get
@@ -73,7 +89,8 @@ namespace Pawnmorph.GraphicSys
                 return _hairColor;
             }
         }
-
+        /// <summary>Gets the skin color second.</summary>
+        /// <value>The skin color second.</value>
         public Color SkinColorSecond
         {
             get
@@ -84,6 +101,8 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>Gets the hair color second.</summary>
+        /// <value>The hair color second.</value>
         public Color HairColorSecond
         {
             get
@@ -93,6 +112,8 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>Gets the type of the crown.</summary>
+        /// <value>The type of the crown.</value>
         public string CrownType
         {
             get
@@ -105,6 +126,8 @@ namespace Pawnmorph.GraphicSys
 
         private Pawn Pawn => (Pawn) parent;
 
+        /// <summary>Gets the debug string.</summary>
+        /// <returns></returns>
         public string GetDebugStr()
         {
             var builder = new StringBuilder();
@@ -115,6 +138,8 @@ namespace Pawnmorph.GraphicSys
             return builder.ToString();
         }
 
+        /// <summary>Initializes this instance with the specified properties.</summary>
+        /// <param name="props">The properties.</param>
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -122,6 +147,7 @@ namespace Pawnmorph.GraphicSys
         }
 
 
+        /// <summary>expose data.</summary>
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -145,6 +171,8 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>called after the pawn is spawned</summary>
+        /// <param name="respawningAfterLoad">if set to <c>true</c> [respawning after load].</param>
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);

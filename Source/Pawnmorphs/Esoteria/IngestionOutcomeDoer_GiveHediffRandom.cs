@@ -6,14 +6,24 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// ingestion outcome doer that adds a random hediff 
+    /// </summary>
+    /// <seealso cref="Pawnmorph.IngestionOutcomeDoer_MultipleTfBase" />
     public class IngestionOutcomeDoer_GiveHediffRandom : IngestionOutcomeDoer_MultipleTfBase
     {
+        /// <summary>The severity</summary>
         public float severity = -1f;
+        /// <summary>The tolerance chemical</summary>
         public ChemicalDef toleranceChemical;
+        /// <summary>The divide by body size</summary>
         public bool divideByBodySize = false;
+        
         private HediffDef hediffDef;
-        private static List<HediffDef> _scratchList = new List<HediffDef>(); 
-
+        private static List<HediffDef> _scratchList = new List<HediffDef>();
+        /// <summary>Does the ingestion outcome special.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
             float completeChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().partialChance;

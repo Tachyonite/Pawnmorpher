@@ -19,6 +19,9 @@ namespace Pawnmorph
     {
         private const string MENTAL_BREAK_TRANSLATION_LABEL = "MentalStateReason_Aspect";
 
+        /// <summary>
+        /// the def of this aspect 
+        /// </summary>
         public AspectDef def;
 
         private int _stage = 0;
@@ -27,13 +30,25 @@ namespace Pawnmorph
         private bool _wasStarted;
         private Dictionary<SkillDef, float> _addedSkillsActualAmount;
         private Dictionary<SkillDef, Passion> _originalPassions;
+        /// <summary>
+        /// priority of this aspect, lower priorities should show up first in the Mutation ITab
+        /// </summary>
         public int Priority => def.priority;  
         private AspectTracker _tracker;
 
+        /// <summary>
+        /// the color of the label in the mutation ITab 
+        /// </summary>
         public Color LabelColor => CurrentStage.labelColor ?? def.labelColor;
 
+        /// <summary>
+        /// all cap mods that are active on this aspect (changes when the aspect's stage changes) 
+        /// </summary>
         public IEnumerable<PawnCapacityModifier> CapMods => CurrentStage.capMods ?? Enumerable.Empty<PawnCapacityModifier>();
 
+        /// <summary>
+        /// if this aspect has any CapMods (may change when the aspects stage changes) 
+        /// </summary>
         public bool HasCapMods => CurrentStage.capMods != null && CurrentStage.capMods.Count != 0;
 
         /// <summary> The current stage index. </summary>
@@ -56,7 +71,7 @@ namespace Pawnmorph
         /// <summary> The current stage. </summary>
         public AspectStage CurrentStage => Stages[StageIndex];
 
-        public AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
+        AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
 
 
         void IExposable.ExposeData()
@@ -70,6 +85,9 @@ namespace Pawnmorph
             ExposeData();
         }
 
+        /// <summary>
+        /// the label of this aspect 
+        /// </summary>
         public string Label
         {
             get
@@ -97,10 +115,21 @@ namespace Pawnmorph
             protected set => _shouldRemove = value;
         }
 
+        /// <summary>
+        /// list of all stages in this Aspect 
+        /// </summary>
         protected List<AspectStage> Stages => def.stages;
 
+        /// <summary>
+        /// all skillMods that are active for this aspect 
+        /// </summary>
         public IEnumerable<SkillMod> SkillMods => CurrentStage?.skillMods ?? Enumerable.Empty<SkillMod>();
 
+        /// <summary>
+        /// get the offset to the hediff's severity 
+        /// </summary>
+        /// <param name="hediff"></param>
+        /// <returns></returns>
         public float GetBoostOffset(Hediff hediff)
         {
             return GetBoostOffset(hediff.def);
@@ -206,7 +235,7 @@ namespace Pawnmorph
             ShouldRemove = true;
         }
 
-        /// <summary> Called furing IExposable's ExposeData to serialize data. </summary>
+        /// <summary> Called during IExposable's ExposeData to serialize data. </summary>
         protected virtual void ExposeData() // Want this hidden from the public interface of the class 
         {
         }
@@ -223,6 +252,10 @@ namespace Pawnmorph
         {
         }
 
+        /// <summary>
+        /// called after this aspect stage changes 
+        /// </summary>
+        /// <param name="lastStage"></param>
         protected virtual void PostStageChanged(int lastStage)
         {
             if (lastStage >= 0)
@@ -231,6 +264,9 @@ namespace Pawnmorph
             CalculateSkillChanges();
         }
 
+        /// <summary>
+        /// an enumerable collection of all stat modifiers currently active for this stage 
+        /// </summary>
         public IEnumerable<StatModifier> StatOffsets => CurrentStage?.statOffsets ?? Enumerable.Empty<StatModifier>();
 
         /// <summary> Called once during the startup of this instance, either after initialization or after being added to the pawn. </summary>
@@ -239,6 +275,10 @@ namespace Pawnmorph
 
         }
 
+        /// <summary>
+        /// called when the effects of the given stage must be undone 
+        /// </summary>
+        /// <param name="lastStage"></param>
         protected virtual void UndoEffectsOfStage(AspectStage lastStage)
         {
             UndoSkillChanges();
@@ -297,8 +337,12 @@ namespace Pawnmorph
                 skR.Learn(-v, true);
             }
         }
-
-        public string TipString(Pawn pawn)
+        /// <summary>
+        /// generate a tip string for this aspect to be displayed in the mutation ITab 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public virtual string TipString(Pawn pawn)
         {
             StringBuilder stringBuilder = new StringBuilder();
             AspectStage currentStage = CurrentStage;

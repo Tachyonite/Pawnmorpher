@@ -2,7 +2,7 @@
 // last updated 08/29/2019  3:34 PM
 
 using RimWorld;
-
+#pragma warning disable 1591
 namespace Pawnmorph
 {
     /// <summary> Static container for incident defs. </summary>

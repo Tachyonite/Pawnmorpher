@@ -11,8 +11,14 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// hediff representing 'morph transformations'
+    /// </summary>
+    /// <seealso cref="Verse.HediffWithComps" />
     public class Hediff_Morph : HediffWithComps
     {
+        /// <summary>the stage to display a warning message about the pawn fully transforming.</summary>
+        /// <value>The transformation warning stage.</value>
         protected virtual int TransformationWarningStage => 1;
         private const string TRANSFORMATION_WARNING_LETTER_ID = "TransformationStageWarning";
 
@@ -22,38 +28,26 @@ namespace Pawnmorph
         private List<HediffGiver_Mutation> _givers;
         [Unsaved] private int _lastStage = -1; // ToDo can we save this?
 
+        /// <summary>Gets the single comp.</summary>
+        /// <value>The single comp.</value>
         [CanBeNull]
         public HediffComp_Single SingleComp
         {
             get { return _comp ?? (_comp = this.TryGetComp<HediffComp_Single>()); }
         }
 
-        List<HediffGiver_Mutation> AllGivers
+        private List<HediffGiver_Mutation> AllGivers
         {
-            get
-            {
-                if (_allGivers == null)
-                {
-                    _allGivers = def.GetAllHediffGivers().OfType<HediffGiver_Mutation>().ToList();
-                }
-
-                return _allGivers;
-            }
+            get { return _allGivers ?? (_allGivers = def.GetAllHediffGivers().OfType<HediffGiver_Mutation>().ToList()); }
         }
 
-        MorphDef AssociatedMorph
+        private MorphDef AssociatedMorph
         {
-            get
-            {
-                if (_morph == null)
-                {
-                    _morph = MorphUtilities.GetAssociatedMorph(def).FirstOrDefault();
-                }
-
-                return _morph; 
-            }
+            get { return _morph ?? (_morph = MorphUtilities.GetAssociatedMorph(def).FirstOrDefault()); }
         }
 
+        /// <summary>Gets the label base.</summary>
+        /// <value>The label base.</value>
         public override string LabelBase
         {
             get
@@ -68,6 +62,8 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>Gets the mutation givers.</summary>
+        /// <value>The mutation givers.</value>
         public IEnumerable<HediffGiver_Mutation> MutationGivers
         {
             get
@@ -130,6 +126,7 @@ namespace Pawnmorph
             return col.Value; 
         }
 
+        /// <summary>called after Tick is called on everything</summary>
         public override void PostTick()
         {
             base.PostTick();
@@ -141,6 +138,7 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>Enters the next stage.</summary>
         protected virtual void EnterNextStage()
         {
             if (_lastStage == TransformationWarningStage && (pawn.IsColonist || pawn.IsPrisonerOfColony))
@@ -151,6 +149,7 @@ namespace Pawnmorph
             TryGiveTransformations();
         }
 
+        /// <summary>Tries to give transformations</summary>
         protected virtual void TryGiveTransformations()
         {
             if (CurStage.hediffGivers == null) return;
@@ -165,6 +164,9 @@ namespace Pawnmorph
             RandUtilities.PopState();
         }
 
+        /// <summary>Tries the merge with.</summary>
+        /// <param name="other">The other.</param>
+        /// <returns></returns>
         public override bool TryMergeWith(Hediff other)
         {
             if (!base.TryMergeWith(other)) return false;
@@ -200,13 +202,14 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>Exposes the data.</summary>
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look(ref _lastStage, "lastStage", -1); 
         }
 
-
+        /// <summary>called after this instance is removed</summary>
         public override void PostRemoved()
         {
             base.PostRemoved();

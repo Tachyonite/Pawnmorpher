@@ -5,10 +5,21 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// collection of utilities around hediff givers
+    /// </summary>
     public static class PawnmorphHediffGiverUtility
     {
-        private static List<BodyPartRecord> _scratchList = new List<BodyPartRecord>(); 
+        private static List<BodyPartRecord> _scratchList = new List<BodyPartRecord>();
 
+        /// <summary>Tries to apply the given hediff to the given pawn</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="hediff">The hediff.</param>
+        /// <param name="partsToAffect">The parts to affect.</param>
+        /// <param name="canAffectAnyLivePart">if set to <c>true</c> [can affect any live part].</param>
+        /// <param name="countToAffect">The count to affect.</param>
+        /// <param name="outAddedHediffs">The out added hediffs.</param>
+        /// <returns></returns>
         public static bool TryApply(Pawn pawn, HediffDef hediff, List<BodyPartDef> partsToAffect = null, bool canAffectAnyLivePart = false, int countToAffect = 1, List<Hediff> outAddedHediffs = null)
         {
             try

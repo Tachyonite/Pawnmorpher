@@ -156,6 +156,19 @@ namespace Pawnmorph
 
         }
 
+        /// <summary>Determines whether this instance is obsolete.</summary>
+        /// <param name="def">The definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified definition is obsolete; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">def</exception>
+        public static bool IsObsolete([NotNull] this HediffDef def)
+        {
+            if (def == null) throw new ArgumentNullException(nameof(def));
+            return def.GetType().HasAttribute<ObsoleteAttribute>() || def.hediffClass.HasAttribute<ObsoleteAttribute>();
+        }
+
+
         private static List<HediffDef> _allMutationsWithGraphics;
 
         /// <summary>
@@ -240,7 +253,8 @@ namespace Pawnmorph
 
         }
 
-
+        /// <summary>Gets all mutations with graphics.</summary>
+        /// <value>All mutations with graphics.</value>
         public static IEnumerable<HediffDef> AllMutationsWithGraphics
         {
             get

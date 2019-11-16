@@ -10,6 +10,9 @@ namespace Pawnmorph
     [DefOf]
     public static class AspectDefOf
     {
+        /// <summary>
+        /// aspect that represents the pawns 'EtherState'
+        /// </summary>
         [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static AspectDef EtherState;
 

@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+#pragma warning disable 01591
 
 namespace Pawnmorph
 {
+   
     public class HediffGiver_Esoteric_RandomList : HediffGiver
     {
         public List<HediffDef> hediffDefs;

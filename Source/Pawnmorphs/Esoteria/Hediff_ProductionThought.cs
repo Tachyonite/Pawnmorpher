@@ -1,8 +1,10 @@
-﻿using Verse;
+﻿using System;
+using Verse;
 
 namespace Pawnmorph
 {
-    class Hediff_ProductionThought : HediffWithComps
+    [Obsolete]
+    internal class Hediff_ProductionThought : HediffWithComps
     {
     }
 }

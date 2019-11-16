@@ -8,25 +8,33 @@ using Verse.AI;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// hediff comp for producing resources over time 
+    /// </summary>
+    /// <seealso cref="Verse.HediffComp" />
     public class HediffComp_Production : HediffComp
     {
         private const float SEVERITY_LERP = 0.1f;
         private const int PRODUCTION_MULT_UPDATE_PERIOD = 60;
         private const int TICKS_PER_DAY = 60000;
-
+        /// <summary>The hatching ticker</summary>
         public float HatchingTicker = 0;
 
         private float brokenChance = 0f;
         private float bondChance = 0f;
         private float _severityTarget;
 
+        /// <summary>Gets the properties of this comp</summary>
+        /// <value>The props.</value>
         public HediffCompProperties_Production Props => (HediffCompProperties_Production)props;
 
+        /// <summary>called every tick after it's parent is updated</summary>
+        /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
         {
             TryProduce();
         }
-
+        /// <summary>exposes the data of this comp. Called after it's parent ExposeData is called</summary>
         public override void CompExposeData()
         {
             Scribe_Values.Look(ref HatchingTicker, "hatchingTicker");

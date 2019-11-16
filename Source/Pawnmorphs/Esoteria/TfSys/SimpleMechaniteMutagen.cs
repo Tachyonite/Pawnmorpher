@@ -92,6 +92,11 @@ namespace Pawnmorph.TfSys
             return transformedPawn.animal.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman);
         }
 
+        /// <summary>Returns true if the specified request is valid.</summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// <c>true</c> if the specified request is valid; otherwise, <c>false</c>.
+        /// </returns>
         protected override bool IsValid(TransformationRequest request)
         {
             return base.IsValid(request) && request.originals.Length == 1;

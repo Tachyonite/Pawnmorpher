@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Harmony;
 using UnityEngine;
 using Verse;
+#pragma warning disable 1591
 namespace Pawnmorph.HPatches
 {
     

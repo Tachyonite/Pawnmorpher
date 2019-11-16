@@ -4,11 +4,23 @@ using Verse;
 
 namespace EtherGun
 {
+    /// <summary>
+    /// properties for the ether explosive comp 
+    /// </summary>
     public class CompProperties_EtherExplosive : CompProperties_Explosive
     {
+        /// <summary>
+        /// the chance to add the tf hediff 
+        /// </summary>
         public float AddHediffChance = 0.7f;
+       /// <summary>
+       /// the hediff to add 
+       /// </summary>
         public HediffDef HediffToAdd;
 
+       /// <summary>
+       /// create a new instance of this class 
+       /// </summary>
         public CompProperties_EtherExplosive()
         {
             compClass = typeof(CompEtherExplosive);

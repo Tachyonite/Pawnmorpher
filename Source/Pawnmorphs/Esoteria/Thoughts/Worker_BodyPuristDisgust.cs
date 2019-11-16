@@ -13,6 +13,10 @@ namespace Pawnmorph.Thoughts
     /// </summary>
     public class Worker_BodyPuristDisgust : ThoughtWorker
     {
+        /// <summary>gets the current state of the thought with regards to the given pawns</summary>
+        /// <param name="p">The pawn that has the thought</param>
+        /// <param name="otherPawn">The pawn the thought is about</param>
+        /// <returns></returns>
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn otherPawn)
         {
             if (!p.RaceProps.Humanlike) return false;

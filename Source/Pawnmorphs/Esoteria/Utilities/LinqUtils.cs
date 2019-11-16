@@ -9,8 +9,17 @@ using Verse;
 
 namespace Pawnmorph.Utilities
 {
+    /// <summary>
+    /// utilities around IEnumerable interface 
+    /// </summary>
     public static class LinqUtils
     {
+        /// <summary>gets a random element from the list</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="lst">The LST.</param>
+        /// <param name="defaultVal">The default value.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">lst</exception>
         public static T RandElement<T>([NotNull] this IList<T> lst, T defaultVal = default(T))
         {
             if (lst == null) throw new ArgumentNullException(nameof(lst));

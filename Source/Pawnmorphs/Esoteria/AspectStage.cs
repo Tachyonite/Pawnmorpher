@@ -13,17 +13,55 @@ namespace Pawnmorph
     /// <summary> Class representing a single stage of a mutation 'aspect'. </summary>
     public class AspectStage
     {
+        /// <summary>
+        /// the label of the stage 
+        /// </summary>
         public string label;
-        public string modifier; //will be added to the label in parentheses
-        public string description; //if null or empty the aspect will use the def's description 
+        /// <summary>
+        /// prefix to add to the aspects label 
+        /// </summary>
+        public string modifier = ""; 
+        /// <summary>
+        /// the description of the aspect at this stage 
+        /// </summary>
+        public string description;
+        /// <summary>
+        /// how often the mental state givers give breaks 
+        /// </summary>
         public float mentalBreakMtbDays;
-        public Color? labelColor; //override for the label color 
+        /// <summary>
+        /// optional override to the aspects label color 
+        /// </summary>
+        public Color? labelColor; 
 
+        /// <summary>
+        /// all capacity modifiers that will be active during this stage 
+        /// </summary>
         [CanBeNull] public List<PawnCapacityModifier> capMods;
+        
+        /// <summary>
+        /// all skill modifiers that will be active during this stage 
+        /// </summary>
         [CanBeNull] public List<SkillMod> skillMods;
+        
+        /// <summary>
+        /// all stat offsets that will be active during this stage 
+        /// </summary>
         [CanBeNull] public List<StatModifier> statOffsets;
+
+        /// <summary>
+        /// all stat modifiers that will be active during this stage 
+        /// </summary>
         [CanBeNull] public List<StatModifier> statFactors;
+        
+        /// <summary>
+        /// all mental states that can be given by the aspect in this stage 
+        /// </summary>
         [CanBeNull] public List<MentalStateGiver> mentalStateGivers;
+
+        /// <summary>
+        /// all production boosts an aspect gives in this stage 
+        /// </summary>
         [CanBeNull] public List<ProductionBoost> productionBoosts;
     }
 }
