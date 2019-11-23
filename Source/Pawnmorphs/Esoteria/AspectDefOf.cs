@@ -20,7 +20,10 @@ namespace Pawnmorph
         public static AspectDef MutagenInfused;
 
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
-        public static AspectDef PlantAffinity; 
+        public static AspectDef PlantAffinity;
+
+        [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
+        public static AspectDef RareMutant; 
 
         // ReSharper disable once NotNullMemberIsNotInitialized
         static AspectDefOf()

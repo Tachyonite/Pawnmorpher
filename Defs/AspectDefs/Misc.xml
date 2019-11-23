@@ -72,4 +72,12 @@
             </li>
         </stages>
     </Pawnmorph.AspectDef>
+    
+    <Pawnmorph.AspectDef>
+        <defName>RareMutant</defName>
+        <label>RareMutant</label>
+        <stages>
+            <li></li>
+        </stages>
+    </Pawnmorph.AspectDef>
 </Defs>

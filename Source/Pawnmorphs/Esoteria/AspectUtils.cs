@@ -39,6 +39,20 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Determines whether this instance can receive rare mutations 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can receive rare mutations  otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">pawn</exception>
+        public static bool CanReceiveRareMutations([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            return pawn.GetAspectTracker()?.GetAspect(AspectDefOf.RareMutant) != null; 
+        }
+
+        /// <summary>
         /// Determines whether this instance can grow mutagenic plants.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
