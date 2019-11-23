@@ -37,5 +37,19 @@ namespace Pawnmorph
 
             return accum; 
         }
+
+        /// <summary>
+        /// Determines whether this instance can grow mutagenic plants.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can grow mutagenic plants; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">pawn</exception>
+        public static bool CanGrowMutagenicPlants([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            return pawn.GetAspectTracker()?.GetAspect(AspectDefOf.PlantAffinity) != null;
+        }
     }
 }

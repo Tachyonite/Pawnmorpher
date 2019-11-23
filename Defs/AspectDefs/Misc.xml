@@ -56,4 +56,20 @@
             </li>
         </stages>
     </Pawnmorph.AspectDef>
+
+    <Pawnmorph.AspectDef>
+        <defName>PlantAffinity</defName>
+        <label>plant affinity</label>
+        <stages>
+            <li>
+                <skillMods>
+                    <li>
+                        <skillDef>Plants</skillDef>
+                        <addedXp>1500</addedXp>
+                        <passionOffset>2</passionOffset>
+                    </li>
+                </skillMods>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
 </Defs>

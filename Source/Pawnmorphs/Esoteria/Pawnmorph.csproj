@@ -108,6 +108,7 @@
     <Compile Include="Hediffs\ObsoletePart.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
+    <Compile Include="HPatches\PlantGrowingPatches.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_TerrainProduction.cs" />
     <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />
