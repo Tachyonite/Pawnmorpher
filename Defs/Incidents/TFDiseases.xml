@@ -34,7 +34,7 @@
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Chookflu</defName>
 		<label>chookflu</label>
-		<diseaseIncident>PawnmorphChickenTF</diseaseIncident>
+		<diseaseIncident>Chookflu</diseaseIncident>
 		<letterLabel>Mutagion (chookflu)</letterLabel>
 	</IncidentDef>
 

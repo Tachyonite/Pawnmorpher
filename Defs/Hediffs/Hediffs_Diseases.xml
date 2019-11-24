@@ -3,11 +3,6 @@
         <hediffClass>Pawnmorph.Hediffs.MorphDisease</hediffClass>
         <makesAlert>true</makesAlert>
         <scenarioCanAdd>true</scenarioCanAdd>
-    </HediffDef>
-
-    <HediffDef ParentName="MorphDiseasBase">
-        <defName>FoxFlu</defName>
-        <label>fox flu</label>
         <makesSickThought>true</makesSickThought>
         <tendable>true</tendable>
         <comps>
@@ -22,6 +17,11 @@
                 <immunityPerDayNotSick>-0.06</immunityPerDayNotSick>
             </li>
         </comps>
+    </HediffDef>
+
+    <HediffDef ParentName="MorphDiseasBase">
+        <defName>FoxFlu</defName>
+        <label>fox flu</label>
         <stages>
             <li>
                 <label>minor</label>
@@ -50,18 +50,18 @@
                         <tale>LimbGrowsFur</tale>
                     </li>
                     <li Class="Pawnmorph.HediffGiver_Mutation">
-                            <hediff>EtherFoxEye</hediff>
-                            <mtbDays>1.5</mtbDays>
-                            <partsToAffect>
-                                <li>Eye</li>
-                            </partsToAffect>
-                            <countToAffect>2</countToAffect>
-                            <tale>EyesBecomeVulpine</tale>
-                        </li>
+                        <hediff>EtherFoxEye</hediff>
+                        <mtbDays>1.5</mtbDays>
+                        <partsToAffect>
+                            <li>Eye</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>EyesBecomeVulpine</tale>
+                    </li>
                 </hediffGivers>
             </li>
             <li>
-                <minSeverity>0.666</minSeverity>
+                <minSeverity>0.566</minSeverity>
                 <label>major</label>
                 <vomitMtbDays>1.5</vomitMtbDays>
                 <capMods>
@@ -106,36 +106,36 @@
                         <tale>GrewTail</tale>
                     </li>
                     <li Class="Pawnmorph.HediffGiver_Mutation">
-                            <hediff>EtherDigitigradeLeg</hediff>
-                            <mtbDays>1</mtbDays>
-                            <partsToAffect>
-                                <li>Leg</li>
-                            </partsToAffect>
-                            <countToAffect>2</countToAffect>
-                            <tale>LegBecameDigitgrade</tale>
-                        </li>
-                        <li Class="Pawnmorph.HediffGiver_Mutation">
-                            <hediff>EtherPawFoot</hediff>
-                            <mtbDays>1</mtbDays>
-                            <partsToAffect>
-                                <li>Foot</li>
-                            </partsToAffect>
-                            <countToAffect>2</countToAffect>
-                            <tale>FootBecomesCanidPaw</tale>
-                        </li>
-                        <li Class="Pawnmorph.HediffGiver_Mutation">
-                            <hediff>EtherFoxEye</hediff>
-                            <mtbDays>0.5</mtbDays>
-                            <partsToAffect>
-                                <li>Eye</li>
-                            </partsToAffect>
-                            <countToAffect>2</countToAffect>
-                            <tale>EyesBecomeVulpine</tale>
-                        </li>
+                        <hediff>EtherDigitigradeLeg</hediff>
+                        <mtbDays>1</mtbDays>
+                        <partsToAffect>
+                            <li>Leg</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>LegBecameDigitgrade</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherPawFoot</hediff>
+                        <mtbDays>1</mtbDays>
+                        <partsToAffect>
+                            <li>Foot</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>FootBecomesCanidPaw</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherFoxEye</hediff>
+                        <mtbDays>0.5</mtbDays>
+                        <partsToAffect>
+                            <li>Eye</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>EyesBecomeVulpine</tale>
+                    </li>
                 </hediffGivers>
             </li>
             <li>
-                <minSeverity>0.873</minSeverity>
+                <minSeverity>0.843</minSeverity>
                 <label>extreme</label>
                 <lifeThreatening>true</lifeThreatening>
                 <vomitMtbDays>0.75</vomitMtbDays>
@@ -193,7 +193,6 @@
                     <li Class="Pawnmorph.HediffGiver_Mutation">
                         <hediff>EtherPawHand</hediff>
                         <mtbDays>0.4</mtbDays>
-                        <chance>5</chance>
                         <partsToAffect>
                             <li>Hand</li>
                         </partsToAffect>
@@ -243,6 +242,202 @@
                             <li>Fox_Fennec</li>
                         </pawnkinds>
                         <tale>TransformationCanid</tale>
+                        <changeChance>100</changeChance>
+                    </li>
+                </hediffGivers>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <HediffDef ParentName="MorphDiseasBase">
+        <defName>Chookflu</defName>
+        <label>chook flu</label>
+        <stages>
+            <li>
+                <label>minor</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherFeatheredLimb</hediff>
+                        <mtbDays>1.0</mtbDays>
+                        <partsToAffect>
+                            <li>Arm</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>LimbGrowsFeathers</tale>
+                    </li>
+                </hediffGivers>
+            </li>
+            <li>
+                <minSeverity>0.566</minSeverity>
+                <label>major</label>
+                <vomitMtbDays>1.5</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherTailfeathers</hediff>
+                        <mtbDays>2</mtbDays>
+                        <partsToAffect>
+                            <li>Tail</li>
+                        </partsToAffect>
+                        <tale>GrewTail</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherFeatheredLimb</hediff>
+                        <mtbDays>1.0</mtbDays>
+                        <partsToAffect>
+                            <li>Arm</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>LimbGrowsFeathers</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherAvianFoot</hediff>
+                        <mtbDays>1</mtbDays>
+                        <partsToAffect>
+                            <li>Foot</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>FeetBecomeTalons</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherEggLayer</hediff>
+                        <mtbDays>1</mtbDays>
+                        <gender>Female</gender>
+                        <chance>50</chance>
+                        <partsToAffect>
+                            <li>Pelvis</li>
+                        </partsToAffect>
+                        <tale>GrewEgglayer</tale>
+                    </li>
+                </hediffGivers>
+            </li>
+            <li>
+                <minSeverity>0.843</minSeverity>
+                <label>extreme</label>
+                <lifeThreatening>true</lifeThreatening>
+                <vomitMtbDays>0.75</vomitMtbDays>
+                <painOffset>0.05</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.2</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.2</offset>
+                    </li>
+
+                </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherBeak</hediff>
+                        <mtbDays>0.5</mtbDays>
+                        <partsToAffect>
+                            <li>Jaw</li>
+                        </partsToAffect>
+                        <tale>GrewBeak</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherTailfeathers</hediff>
+                        <mtbDays>1</mtbDays>
+                        <partsToAffect>
+                            <li>Tail</li>
+                        </partsToAffect>
+                        <tale>GrewTail</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherFeatheredLimb</hediff>
+                        <mtbDays>0.5</mtbDays>
+                        <partsToAffect>
+                            <li>Arm</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>LimbGrowsFeathers</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherWing</hediff>
+                        <mtbDays>0.5</mtbDays>
+                        <partsToAffect>
+                            <li>Arm</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>ArmsBecomeWings</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherWingTip</hediff>
+                        <mtbDays>0.5</mtbDays>
+                        <partsToAffect>
+                            <li>Hand</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>HandsBecomeWingTips</tale>
+                        <memory>WingTipMemory</memory>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherAvianFoot</hediff>
+                        <mtbDays>0.5</mtbDays>
+                        <partsToAffect>
+                            <li>Foot</li>
+                        </partsToAffect>
+                        <countToAffect>2</countToAffect>
+                        <tale>FeetBecomeTalons</tale>
+                    </li>
+                    <li Class="Pawnmorph.HediffGiver_Mutation">
+                        <hediff>EtherEggLayer</hediff>
+                        <mtbDays>0.5</mtbDays>
+                        <gender>Female</gender>
+                        <chance>50</chance>
+                        <partsToAffect>
+                            <li>Pelvis</li>
+                        </partsToAffect>
+                        <tale>GrewEgglayer</tale>
+                    </li>
+                </hediffGivers>
+
+            </li>
+            <li>
+                <minSeverity>0.999</minSeverity>
+                <label>full</label>
+                <hediffGivers>
+                    <li Class="Pawnmorph.HediffGiver_TF">
+                        <hediff>TransformedHuman</hediff>
+                        <pawnkinds>
+                            <li>Chicken</li>
+                        </pawnkinds>
+                        <tale>TransformationChicken</tale>
+                        <forceGender>Female</forceGender>
+                        <forceGenderChance>70</forceGenderChance>
                         <changeChance>100</changeChance>
                     </li>
                 </hediffGivers>
