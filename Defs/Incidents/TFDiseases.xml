@@ -20,7 +20,7 @@
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Cowflu</defName>
 		<label>cowflu</label>
-		<diseaseIncident>PawnmorphCowTF</diseaseIncident>
+		<diseaseIncident>Cowflu</diseaseIncident>
 		<letterLabel>Mutagion (cowflu)</letterLabel>
 	</IncidentDef>
 	
@@ -41,14 +41,14 @@
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Swineflu</defName>
 		<label>swineflu</label>
-		<diseaseIncident>PawnmorphPigTF</diseaseIncident>
+		<diseaseIncident>Swineflu</diseaseIncident>
 		<letterLabel>Mutagion (swineflu)</letterLabel>
 	</IncidentDef>
 
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Chaoflu</defName>
 		<label>chaoflu</label>
-		<diseaseIncident>FullRandomTFAnyOutcome</diseaseIncident>
+		<diseaseIncident>Chaoflu</diseaseIncident>
 		<letterLabel>Mutagion (chaoflu)</letterLabel>
 	</IncidentDef>
 	

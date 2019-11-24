@@ -6,7 +6,7 @@
 			</li>
 		</comps>
 	</HediffDef>
-  
+
 	<HediffDef ParentName="WolfPart">
 		<defName>EtherWolfMuzzle</defName>
 		<label>wolf muzzle</label>
@@ -58,6 +58,17 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
+		<modExtensions>
+				<li Class="Pawnmorph.MutationHediffExtension">
+					<parts>
+						<li>Jaw</li>
+					</parts>
+					<countToAffect>1</countToAffect>
+					<categories>
+						<li>Major</li>
+					</categories>
+				</li>
+			</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="WolfPart">
@@ -69,6 +80,17 @@
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Ear</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="WolfPart">
@@ -85,5 +107,16 @@
 				</capMods>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Tail</li>
+				</parts>
+				<countToAffect>1</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 </Defs>

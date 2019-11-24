@@ -34,9 +34,12 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public List<MorphDef> blackListMorphs = new List<MorphDef>();
 
+        
+
         bool CheckHediff(HediffDef def)
         {
             if (!morphType.IsAssignableFrom(def.hediffClass)) return false;
+            if (typeof(MorphDisease).IsAssignableFrom(def.hediffClass)) return false; 
             if (blackListDefs.Contains(def)) return false;
             
             return true; 
