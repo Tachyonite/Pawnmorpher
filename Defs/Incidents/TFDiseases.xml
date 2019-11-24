@@ -27,7 +27,7 @@
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Foxflu</defName>
 		<label>foxflu</label>
-		<diseaseIncident>PawnmorphFoxTF</diseaseIncident>
+		<diseaseIncident>FoxFlu</diseaseIncident>
 		<letterLabel>Mutagion (foxflu)</letterLabel>
 	</IncidentDef>
 
