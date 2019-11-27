@@ -16,7 +16,8 @@ namespace Pawnmorph.HPatches
         {
             internal static void Postfix(Pawn pawn)
             {
-                if (pawn.RaceProps.Animal)
+
+                if (pawn.RaceProps.Animal && pawn.Faction?.IsPlayer == true)
                 {
                     var formerHumanHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
                     if (formerHumanHediff?.CurStageIndex == 2 && pawn.drafter == null)
