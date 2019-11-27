@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef>
 		<defName>TransformedHuman</defName>
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
 		<description>[PAWN_defName] used to be a human, but by whatever means has now been transformed into this current form. In this state, [PAWN_pronoun] can be reverted.</description>
 		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
 		<label>former human</label>
