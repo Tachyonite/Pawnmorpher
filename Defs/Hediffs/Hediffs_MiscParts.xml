@@ -51,6 +51,13 @@
 		<modExtensions>
 			<li Class="Pawnmorph.MutationHediffExtension">
 				<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
+				<parts>
+					<li>Leg</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Minor</li>
+				</categories>
 			</li>
 		</modExtensions>
 	</HediffDef>
@@ -105,6 +112,13 @@
 		<modExtensions>
 			<li Class="Pawnmorph.MutationHediffExtension">
 				<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
+				<parts>
+					<li>Leg</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Minor</li>
+				</categories>
 			</li>
 		</modExtensions>
 	</HediffDef>
@@ -163,6 +177,13 @@
 		<modExtensions>
 			<li Class="Pawnmorph.MutationHediffExtension">
 				<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
+				<parts>
+					<li>Leg</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Minor</li>
+				</categories>
 			</li>
 		</modExtensions>
 	</HediffDef>
@@ -220,6 +241,13 @@
 		<modExtensions>
 			<li Class="Pawnmorph.MutationHediffExtension">
 				<mutationLogRulePack>HideGrowthLogPack</mutationLogRulePack>
+				<parts>
+					<li>Leg</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Minor</li>
+				</categories>
 			</li>
 		</modExtensions>
 	</HediffDef>
@@ -249,6 +277,17 @@
 				</tools>
 			</li>
 		</comps>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Hand</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Extreme</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -260,6 +299,17 @@
 				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Hand</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Extreme</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -271,6 +321,17 @@
 				<partEfficiencyOffset>-0.6</partEfficiencyOffset>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Hand</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Extreme</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -303,6 +364,17 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Leg</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -319,6 +391,17 @@
 				</capMods>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Foot</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -338,6 +421,17 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Foot</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -354,6 +448,17 @@
 				</capMods>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Foot</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -370,6 +475,17 @@
 				</capMods>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Foot</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef ParentName="PawnmorphPart">
@@ -381,7 +497,7 @@
 			<li>
 				<statOffsets>
 					<ComfyTemperatureMin>10</ComfyTemperatureMin>
-					<ComfyTemperatureMax>-10</ComfyTemperatureMax>
+					<ComfyTemperatureMax>10</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 		</stages>

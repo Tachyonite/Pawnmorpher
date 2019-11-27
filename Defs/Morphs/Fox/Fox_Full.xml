@@ -22,6 +22,7 @@
 							<li>Fox_Fennec</li>
 						</pawnkinds>
 						<tale>TransformationCanid</tale>
+						<changeChance>100</changeChance>
 					</li>
 				</hediffGivers>
 			</li>

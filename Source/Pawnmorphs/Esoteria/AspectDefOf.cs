@@ -13,12 +13,19 @@ namespace Pawnmorph
         /// <summary>
         /// aspect that represents the pawns 'EtherState'
         /// </summary>
-        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
         public static AspectDef EtherState;
 
-        public static AspectDef MutagenInfused; 
+        [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
+        public static AspectDef MutagenInfused;
 
+        [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
+        public static AspectDef PlantAffinity;
 
+        [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
+        public static AspectDef RareMutant; 
+
+        // ReSharper disable once NotNullMemberIsNotInitialized
         static AspectDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(AspectDef));

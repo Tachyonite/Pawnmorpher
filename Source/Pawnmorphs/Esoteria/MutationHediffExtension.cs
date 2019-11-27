@@ -2,6 +2,7 @@
 // last updated 09/15/2019  8:44 PM
 
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Verse;
 
@@ -18,13 +19,16 @@ namespace Pawnmorph
         ///     list of body parts this mutation can be added to
         /// </summary>
         /// note: this does not affect HediffGiver_AddedMutation, this is for adding mutations without a hediff giver
+        [NotNull]
         public List<BodyPartDef> parts = new List<BodyPartDef>();
 
         /// <summary>the number of parts to add this mutation to</summary>
         public int countToAffect;
 
         /// <summary>The generation cost of this mutation. the better the mutation the higher the cost should be</summary>
-        public int generationCost=1; //TODO make some sort of report or log thing to try and figure out the best costs for the mutations 
+        public int
+            generationCost =
+                1; //TODO make some sort of report or log thing to try and figure out the best costs for the mutations 
 
         /// <summary>
         ///     the various mutation categories this mutation belongs to
@@ -36,33 +40,48 @@ namespace Pawnmorph
         /// </summary>
         [CanBeNull] public RulePackDef mutationLogRulePack;
 
-        /// <summary>Get all Configuration Errors with this instance</summary>
-        /// <returns></returns>
-        public override IEnumerable<string> ConfigErrors()
-        {
-            if (generationCost <= 0)
-            {
-                yield return $"generationCost:{{{generationCost}}} must be greater then zero"; 
-            }
-        }
-
         [Unsaved] private bool? _isRestricted;
 
         /// <summary>Gets a value indicating whether this instance is restricted to special PawnKindGroups</summary>
         /// <value>
-        ///   <c>true</c> if this instance is restricted the mutation can only be given to special PawnKindGroups; otherwise it can show up in any group, <c>false</c>.
+        ///     <c>true</c> if this instance is restricted the mutation can only be given to special PawnKindGroups; otherwise it
+        ///     can show up in any group, <c>false</c>.
         /// </value>
         public bool IsRestricted
         {
             get
             {
                 if (_isRestricted == null)
-                {
-                    _isRestricted = categories.Any(c => c.restricted); //if any of the categories are restricted the whole mutation is restricted 
-                }
+                    _isRestricted =
+                        categories.Any(c => c.restricted); //if any of the categories are restricted the whole mutation is restricted 
 
-                return _isRestricted.Value; 
+                return _isRestricted.Value;
             }
+        }
+
+        /// <summary>Get all Configuration Errors with this instance</summary>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors()
+        {
+            if (generationCost <= 0) yield return $"generationCost:{{{generationCost}}} must be greater then zero";
+        }
+
+
+        /// <summary>
+        /// Creates the mutation giver for the parent hediff.
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        [NotNull]
+        public HediffGiver_Mutation CreateMutationGiver([NotNull] HediffDef parentDef)
+        {
+            var mutationGiver = new HediffGiver_Mutation
+            {
+                hediff = parentDef,
+                partsToAffect = parts.ToList(),
+                countToAffect = countToAffect
+            };
+            return mutationGiver;
         }
     }
 }

@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph
@@ -19,6 +20,7 @@ namespace Pawnmorph
         public bool restricted; 
 
         /// <summary> An enumerable collection of all mutations within this category. </summary>
+        [NotNull]
         public IEnumerable<HediffDef> AllMutationsInCategory
         {
             get

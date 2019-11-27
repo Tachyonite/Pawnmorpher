@@ -124,6 +124,7 @@ namespace Pawnmorph
         /// Gets an enumerable collection of HediffGiver_Mutations that are either associated with or 'adjacent' to this morph. <br/>
         /// An adjacent HediffGiver is one that is found in the same HediffDef as another HediffGiver that gives a part associated with this morph.
         /// </summary>
+        [NotNull]
         public IEnumerable<HediffGiver_Mutation> AllAssociatedAndAdjacentMutations
         {
             get
@@ -148,6 +149,105 @@ namespace Pawnmorph
                 return _adjacentMutations;
             }
         }
+        [CanBeNull,Unsaved]
+        private Dictionary<BodyPartDef, List<HediffGiver_Mutation>> _allMutationsByPart; 
+
+        [NotNull]
+        Dictionary<BodyPartDef, List<HediffGiver_Mutation>> AllMutationsByPart
+        {
+            get
+            {
+                if (_allMutationsByPart == null)
+                {
+                    _allMutationsByPart = new Dictionary<BodyPartDef, List<HediffGiver_Mutation>>();
+
+                    foreach (HediffGiver_Mutation mutationGiver in AllAssociatedAndAdjacentMutations) 
+                    {
+                        foreach (BodyPartDef bodyPartDef in mutationGiver.GetPartsToAddTo())
+                        {
+                            List<HediffGiver_Mutation> givers;
+                            if (!_allMutationsByPart.TryGetValue(bodyPartDef, out givers))
+                            {
+                                givers = new List<HediffGiver_Mutation>();
+                                _allMutationsByPart[bodyPartDef] = givers; 
+                            }
+
+                            givers.Add(mutationGiver); 
+                        }
+                    }
+
+                    
+                }
+
+                return _allMutationsByPart; 
+            }
+        }//need to use lazy initialization 
+
+        [CanBeNull,Unsaved]
+        private HashSet<HediffDef> _associatedMutationsLookup;
+
+        //simply a cached hash Set of all hediffs added by the HediffGivers in AllAssociatedAndAdjacentMutations 
+        [NotNull]
+        HashSet<HediffDef> AssociatedMutationsLookup
+        {
+            get
+            {
+                if (_associatedMutationsLookup == null)
+                {
+                    _associatedMutationsLookup =
+                        new HashSet<HediffDef>(AllAssociatedAndAdjacentMutations.Select(g => g.hediff).Where(h => h != null)); 
+                }
+
+                return _associatedMutationsLookup; 
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the specified hediff definition is an associated mutation .
+        /// </summary>
+        /// <param name="hediffDef">The hediff definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified hediff definition is an associated mutation; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">hediffDef</exception>
+        public bool IsAnAssociatedMutation([NotNull] HediffDef hediffDef)
+        {
+            if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
+
+            return AssociatedMutationsLookup.Contains(hediffDef); 
+
+        }
+
+        /// <summary>
+        /// Determines whether the given hediff is an associated mutation.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified hediff is an associated mutation ; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">hediff</exception>
+        public bool IsAnAssociatedMutation([NotNull] Hediff hediff)
+        {
+            if (hediff?.def == null) throw new ArgumentNullException(nameof(hediff));
+            return IsAnAssociatedMutation(hediff.def); 
+        }
+
+
+        /// <summary>
+        /// Gets the associated mutation givers associated with this morph for the given partDef.
+        /// </summary>
+        /// <param name="partDef">The part definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">partDef</exception>
+        [NotNull]
+        public IEnumerable<HediffGiver_Mutation> GetAssociatedMutationsFor([NotNull] BodyPartDef partDef)
+        {
+            if (partDef == null) throw new ArgumentNullException(nameof(partDef));
+            if (!AllMutationsByPart.TryGetValue(partDef, out var givers))
+                return Enumerable.Empty<HediffGiver_Mutation>();
+            return givers; 
+        }
+
 
         /// <summary>
         /// get all configuration errors with this instance 

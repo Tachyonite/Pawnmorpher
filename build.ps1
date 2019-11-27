@@ -26,6 +26,24 @@ If(Test-Path "$buildDir/$buildName$OutVersion.zip")
     Remove-Item -Path "$buildDir/$buildName$OutVersion.zip" -Force
 }
 
+dotnet restore "Source/Pawnmorphs/Pawnmorph.sln"
+
+if(!$?)
+{
+    Write-Error "could not restore project"
+    exit 1 
+}
+
+."C:\Program Files (x86)\Microsoft Visual Studio\$VSVersion\Community\MSBuild\Current\Bin\MSBuild.exe"  "Source/Pawnmorphs/Pawnmorph.sln" /t:restore
+
+
+if(!$?)
+{
+    Write-Error "could not restore project"
+    exit 1 
+}
+
+
 ."C:\Program Files (x86)\Microsoft Visual Studio\$VSVersion\Community\MSBuild\Current\Bin\MSBuild.exe"  "Source/Pawnmorphs/Pawnmorph.sln" /t:Rebuild /p:Configuration=Debug /p:Platform="any cpu"
 
 if(!$?)
