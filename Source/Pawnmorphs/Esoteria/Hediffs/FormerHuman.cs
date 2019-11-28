@@ -21,6 +21,18 @@ namespace Pawnmorph.Hediffs
 
             Scribe_Values.Look(ref _lastStage, nameof(_lastStage));
         }
+        /// <summary>
+        /// called after the hediff is added 
+        /// </summary>
+        /// <param name="dinfo">The dinfo.</param>
+        public override void PostAdd(DamageInfo? dinfo)
+        {
+            base.PostAdd(dinfo);
+            if (pawn.Name == null)
+            {
+                pawn.Name = new NameSingle(pawn.Label); //make sure they always have a name, is needed for sapients 
+            }
+        }
 
         /// <summary>called after the pawn's tick method.</summary>
         public override void PostTick()

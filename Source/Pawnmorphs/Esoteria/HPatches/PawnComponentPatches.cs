@@ -87,6 +87,7 @@ namespace Pawnmorph.HPatches
                 pawn.story = pawn.story ?? new Pawn_StoryTracker(pawn); //need to add story component to not break hospitality 
                 pawn.apparel = pawn.apparel ?? new  Pawn_ApparelTracker(pawn); //need this to not break thoughts and stuff 
                 pawn.skills = pawn.skills ?? new Pawn_SkillTracker(pawn); //need this for thoughts 
+                
             }
         }
     }
