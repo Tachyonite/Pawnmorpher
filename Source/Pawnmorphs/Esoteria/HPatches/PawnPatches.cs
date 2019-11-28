@@ -3,10 +3,13 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Harmony;
+using RimWorld;
 using Verse;
 
 #pragma warning disable 01591
+#if false
 namespace Pawnmorph.HPatches
 {
     public static class PawnPatches
@@ -16,28 +19,35 @@ namespace Pawnmorph.HPatches
         public static class GetGizmoPatches
         {
             private const string DRAFT_ANIMAL_LABEL = "DraftSapientAnimalLabel";
-            private const string DRAFT_ANIMAL_DESCRIPTION = "DraftSapientAnimalDescription"; 
-            internal static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
+            private const string DRAFT_ANIMAL_DESCRIPTION = "DraftSapientAnimalDescription";
+
+            private static readonly MethodInfo _getGizmoMethod;
+
+            static GetGizmoPatches()
             {
+                _getGizmoMethod = typeof(Pawn_DraftController).GetMethod("DrawGizmos"); 
+            }
+
+            [HarmonyPostfix]
+            internal static void AddDraftingGizmo(Pawn __instance, ref IEnumerable<Gizmo> __result)
+            {
+                var  pawn= __instance;
 
                 
-                if (__instance.RaceProps.Animal)
+                if (pawn.RaceProps.Animal && pawn.Faction?.IsPlayer == true)
                 {
-                    if(__instance.drafter != null && 
-                       __instance.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman)?.CurStageIndex == 2) //sapient is the 3'rd stage 
+                    var lst = __result.ToList();
+                    if (pawn.drafter != null && 
+                       pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman)?.CurStageIndex == 2) //sapient is the 3'rd stage 
                     {
-                        var draftGizmo = new Command_Action
-                        {
-                            action = () => __instance.drafter.Drafted = !__instance.drafter.Drafted,
-                            defaultLabel = DRAFT_ANIMAL_LABEL.Translate(),
-                            defaultDesc = DRAFT_ANIMAL_DESCRIPTION.Translate()
-                        };
-                        var lst = __result.ToList();
-                        lst.Insert(0, draftGizmo);
-                        __result = lst; 
+                        
+                        lst.AddRange( (IEnumerable<Gizmo>)_getGizmoMethod.Invoke(pawn.drafter, new object[]{}));
+                         
                     }
+                    __result = lst;
                 }
             }
         }
     }
 }
+#endif 

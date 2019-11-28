@@ -6,6 +6,8 @@ using RimWorld;
 using Verse;
 
 #pragma warning disable 01591
+
+#if false
 namespace Pawnmorph.HPatches
 {
     public static class PawnComponentPatches
@@ -16,29 +18,31 @@ namespace Pawnmorph.HPatches
         {
             internal static void Postfix(Pawn pawn)
             {
-
                 if (pawn.RaceProps.Animal && pawn.Faction?.IsPlayer == true)
                 {
-                    var formerHumanHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+                    Hediff formerHumanHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
                     if (formerHumanHediff?.CurStageIndex == 2 && pawn.drafter == null)
                     {
                         //add the drafter and equipment components 
                         //if 
                         pawn.drafter = new Pawn_DraftController(pawn);
-                        pawn.equipment = new Pawn_EquipmentTracker(pawn); 
-                    }else if (formerHumanHediff?.CurStageIndex < 2 && pawn.drafter != null)
-                    {
-                        //remove the drafter component if the animal is now feral 
-                        pawn.drafter.Drafted = false;
-                        pawn.drafter = null;
-                        if(pawn.MapHeld != null)
-                            pawn.equipment?.DropAllEquipment(pawn.PositionHeld, pawn.Faction?.IsPlayer != true);
-                        else 
-                            pawn.equipment?.DestroyAllEquipment();
-                        pawn.equipment = null; 
+                        pawn.equipment = new Pawn_EquipmentTracker(pawn);
                     }
+
+                    //else if (formerHumanHediff?.CurStageIndex < 2 && pawn.drafter != null)
+                    //{
+                    //    //remove the drafter component if the animal is now feral 
+                    //    pawn.drafter.Drafted = false;
+                    //    pawn.drafter = null;
+                    //    if(pawn.MapHeld != null)
+                    //        pawn.equipment?.DropAllEquipment(pawn.PositionHeld, pawn.Faction?.IsPlayer != true);
+                    //    else 
+                    //        pawn.equipment?.DestroyAllEquipment();
+                    //    pawn.equipment = null; 
+                    //}
                 }
             }
         }
     }
 }
+#endif

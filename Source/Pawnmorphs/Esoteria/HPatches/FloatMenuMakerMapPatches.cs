@@ -11,47 +11,75 @@ using Verse.AI;
 
 namespace Pawnmorph
 {
-    [HarmonyPatch(typeof(FloatMenuMakerMap)), HarmonyPatch("AddHumanlikeOrders")]
-    internal class FloatMenuMakerMapPatches
+    internal static class FloatMenuMakerMapPatches
     {
-        [HarmonyPrefix]
-        static bool Prefix_AddHumanlikeOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
+        [HarmonyPatch(typeof(FloatMenuMakerMap))]
+        [HarmonyPatch("AddHumanlikeOrders")]
+        internal static class AddHumanlikeOrdersPatch
         {
-            if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+            [HarmonyPrefix]
+            private static bool Prefix_AddHumanlikeOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
             {
-                foreach (LocalTargetInfo localTargetInfo3 in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true))
-                {
-                    LocalTargetInfo localTargetInfo4 = localTargetInfo3;
-                    Pawn victim = (Pawn)localTargetInfo4.Thing;
-                    var mutagen = MutagenDefOf.MergeMutagen; 
-                    if (mutagen.CanTransform(victim) && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true) && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
+                if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+                    foreach (LocalTargetInfo localTargetInfo3 in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn),
+                                                                                 true))
                     {
-                        string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
-                        JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
-                        Action action3 = delegate ()
+                        LocalTargetInfo localTargetInfo4 = localTargetInfo3;
+                        var victim = (Pawn) localTargetInfo4.Thing;
+                        MutagenDef mutagen = MutagenDefOf.MergeMutagen;
+                        if (mutagen.CanTransform(victim)
+                         && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true)
+                         && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
                         {
-                            Building_MutagenChamber building_chamber = Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, false);
-                            if (building_chamber == null)
+                            string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
+                            JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
+                            Action action3 = delegate
                             {
-                                building_chamber = Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true);
-                            }
-                            if (building_chamber == null)
-                            {
-                                Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim, MessageTypeDefOf.RejectInput, false);
-                                return;
-                            }
-                            Job job = new Job(jDef, victim, building_chamber);
-                            job.count = 1;
-                            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                        };
-                        string label = text4;
-                        Action action2 = action3;
-                        Pawn revalidateClickTarget = victim;
-                        opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget, 0f, null, null), pawn, victim, "ReservedBy"));
+                                Building_MutagenChamber building_chamber =
+                                    Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn);
+                                if (building_chamber == null)
+                                    building_chamber = Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true);
+                                if (building_chamber == null)
+                                {
+                                    Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim,
+                                                     MessageTypeDefOf.RejectInput, false);
+                                    return;
+                                }
+
+                                var job = new Job(jDef, victim, building_chamber);
+                                job.count = 1;
+                                pawn.jobs.TryTakeOrderedJob(job);
+                            };
+                            string label = text4;
+                            Action action2 = action3;
+                            Pawn revalidateClickTarget = victim;
+                            opts.Add(FloatMenuUtility
+                                        .DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget),
+                                                                 pawn, victim));
+                        }
                     }
-                }
+
+                return true;
             }
-            return true;
         }
+#if false
+        [HarmonyPatch(typeof(FloatMenuMakerMap))]
+        [HarmonyPatch("CanTakeOrder")]
+        internal static class CanTakeOrderPatch
+        {
+            [HarmonyPostfix]
+            private static void MakePawnControllable(Pawn pawn, ref bool __result)
+            {
+                if (pawn?.Faction?.IsPlayer != true) return;
+
+                if (!pawn.RaceProps.Animal) return;
+                Hediff formerHuman = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+                if (formerHuman?.CurStageIndex != 2 || pawn.drafter == null) return;
+
+                __result = true;
+            }
+        }
+   
+#endif
     }
 }
