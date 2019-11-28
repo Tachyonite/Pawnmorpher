@@ -4,6 +4,7 @@
 using Harmony;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 #pragma warning disable 1591
 
@@ -29,24 +30,8 @@ namespace Pawnmorph.HPatches
                     {
                         Log.Message($"removing drafter from {pawn.Name}");
                         //remove the drafter component if the animal is now feral 
-                        pawn.drafter.Drafted = false;
-                        pawn.drafter = null;
-                        if (pawn.MapHeld != null)
-                        {
-                            pawn.equipment?.DropAllEquipment(pawn.PositionHeld, pawn.Faction?.IsPlayer != true);
-                            pawn.apparel?.DropAll(pawn.PositionHeld, pawn.Faction?.IsPlayer != true); 
-                        }
-                        else
-                        {
-                            pawn.equipment?.DestroyAllEquipment();
-                            pawn.apparel?.DestroyAll();
-                        }
+                        RemoveHumanComponents(pawn); 
 
-                        pawn.apparel = null; 
-                        pawn.equipment = null;
-                        pawn.story = null;
-                        pawn.skills = null; 
-                        
                     }
                 }
             }
@@ -72,17 +57,31 @@ namespace Pawnmorph.HPatches
                 pawn.equipment = null;
                 pawn.story = null;
                 pawn.skills = null;
+                pawn.jobs = null; 
+                
             }
 
             private static void AddHumanComponents(Pawn pawn)
             {
                 //add the drafter and equipment components 
                 //if 
-                if (pawn.Faction?.IsPlayer == true && pawn.drafter == null)
+                if (pawn.Faction?.IsPlayer == true)
                 {
-                    pawn.drafter = new Pawn_DraftController(pawn);
+                    if (pawn.drafter == null)
+                    {
+                        pawn.drafter = new Pawn_DraftController(pawn);
+                        pawn.jobs = pawn.jobs ?? new Pawn_JobTracker(pawn);
+                    }
+
+                    if (pawn.workSettings == null)
+                    {
+                        pawn.workSettings = new Pawn_WorkSettings(pawn);
+                        pawn.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
+                        pawn.workSettings.DisableAll();
+                         
+                    }
                 }
-                
+
                 pawn.equipment = pawn.equipment ?? new Pawn_EquipmentTracker(pawn);
                 pawn.story = pawn.story ?? new Pawn_StoryTracker(pawn); //need to add story component to not break hospitality 
                 pawn.apparel = pawn.apparel ?? new  Pawn_ApparelTracker(pawn); //need this to not break thoughts and stuff 
