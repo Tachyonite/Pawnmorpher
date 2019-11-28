@@ -21,6 +21,22 @@ namespace Pawnmorph
         private const string ETHER_BOND_DEF_NAME = "EtherBond";
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
         private static readonly PawnKindDef[] PossiblePawnKinds;
+        /// <summary>
+        /// Determines whether this pawn is a sapient animal.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is a sapient animal; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsSapientAnimal([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            var formerHuman = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            return formerHuman?.CurStageIndex == 2; 
+
+        }
 
         static TransformerUtility()
         {

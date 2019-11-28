@@ -1,5 +1,6 @@
 <Patch>
-	<Operation Class="PatchOperationSequence"> <!--add comps node only if another mod doesn't add it first  -->
+	<Operation Class="PatchOperationSequence">
+		<!--add comps node only if another mod doesn't add it first  -->
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
@@ -40,4 +41,27 @@
 			</li>
 		</value>
 	</Operation>
+	<!--
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]</xpath>
+			<value>
+				<comps>
+					<li>
+						<compClass>Pawnmorph.AnimalDrafterComp</compClass>
+					</li>
+				</comps>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>Pawnmorph.AnimalDrafterComp</compClass>
+				</li>
+			</value>
+		</match>
+	</Operation>
+	-->
 </Patch>

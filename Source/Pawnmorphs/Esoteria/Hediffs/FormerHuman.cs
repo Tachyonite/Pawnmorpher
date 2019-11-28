@@ -32,7 +32,11 @@ namespace Pawnmorph.Hediffs
                 _lastStage = CurStageIndex;
                 if (pawn != null)
                     //if the stage changed make sure we check dynamic components 
+                {
                     PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
+                    //check needs to 
+                    pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+                }
             }
         }
     }

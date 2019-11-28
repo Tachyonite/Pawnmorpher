@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddMorphsToPawn.cs" />
+    <Compile Include="AnimalDrafterComp.cs" />
     <Compile Include="Aspect.cs" />
     <Compile Include="AspectCapacityImpactor.cs" />
     <Compile Include="AspectDef.cs" />
