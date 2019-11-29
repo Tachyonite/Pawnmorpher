@@ -1,0 +1,24 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/BackstoryDef.xsd">
+    <AlienRace.BackstoryDef Name="FormerHumanBase" Abstract="true" >
+        <slot>Adulthood</slot>
+        <spawnCategories>
+            <li>FormerHumans</li>
+        </spawnCategories>
+        <bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+    </AlienRace.BackstoryDef>
+
+    <AlienRace.BackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanNormal</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDescription>as a result of exposur to uncontrolled mutagenic mechanits, {PAWN_nameDef} was turned into an animal</baseDescription>
+    </AlienRace.BackstoryDef>
+
+    <AlienRace.BackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanChaomorph</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDescription>as a result of exposur to uncontrolled mutagenic mechanits, {PAWN_nameDef} has become dangerous chimera</baseDescription>
+    </AlienRace.BackstoryDef>
+</Defs>

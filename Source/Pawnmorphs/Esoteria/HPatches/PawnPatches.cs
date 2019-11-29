@@ -38,7 +38,7 @@ namespace Pawnmorph.HPatches
             static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
             {
                 if (__result) return;
-                if (!___pawn.IsSapientAnimal()) return; 
+                if (___pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return; 
                 //var isColonist = ___pawn.Faction?.IsPlayer == true;
                 if (nd.defName == "Mood")
                 {

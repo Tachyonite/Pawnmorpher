@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
-using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
@@ -21,21 +21,66 @@ namespace Pawnmorph
         private const string ETHER_BOND_DEF_NAME = "EtherBond";
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
         private static readonly PawnKindDef[] PossiblePawnKinds;
+
         /// <summary>
-        /// Determines whether this pawn is a sapient animal.
+        /// Tries the assign the correct backstory to transformed pawn.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified pawn is a sapient animal; otherwise, <c>false</c>.
-        /// </returns>
+        /// <param name="originalPawn">The original pawn.</param>
         /// <exception cref="ArgumentNullException">pawn</exception>
-        public static bool IsSapientAnimal([NotNull] this Pawn pawn)
+        public static void TryAssignBackstoryToTransformedPawn([NotNull] Pawn pawn, [CanBeNull] Pawn originalPawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return;
+            if (pawn.story == null) return;
+
+            if (originalPawn != null)
+            {
+                pawn.Name = originalPawn.Name; 
+            }else if (pawn.Name == null)
+            {
+                pawn.Name = new NameSingle(pawn.LabelShort);
+            }
+
+
+            BackstoryDef backstoryDef;
+            if (pawn.def.defName.ToLower().StartsWith("chao")) //TODO mod extension or something to add specific backgrounds for different animals 
+            {
+                backstoryDef = BackstoryDefOf.FormerHumanChaomorph;
+            }
+            else
+            {
+                backstoryDef = BackstoryDefOf.FormerHumanNormal; 
+            }
+
+            Log.Message($"adding {backstoryDef.defName} to {pawn.Name}");
+
+            pawn.story.adulthood = backstoryDef.backstory; 
+
+        }
+
+
+        /// <summary>
+        /// get the former human status of the given pawn 
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns>the former human status, null if the given pawn is not a former human </returns>
+        public static FormerHumanStatus? GetFormerHumanStatus([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
-            var formerHuman = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            return formerHuman?.CurStageIndex == 2; 
+            var formerHumanHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            if (formerHumanHediff == null)
+            {
+                var hasPFeralHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.PermanentlyFeral) != null;
 
+                if (hasPFeralHediff) return FormerHumanStatus.PermanentlyFeral;
+                else return null; 
+            }
+
+            if (formerHumanHediff.CurStageIndex >= 2) return FormerHumanStatus.Sapient;
+            return FormerHumanStatus.Feral; 
+            
         }
 
         static TransformerUtility()
@@ -132,7 +177,17 @@ namespace Pawnmorph
             {
                 Hediff xhediff = HediffMaker.MakeHediff(hediff, pawn); // ...create an initialized version of the provided hediff...
                 xhediff.Severity = Rand.Range(0.00f, 1.00f); // ...set it to a random severity...
-                pawn.health.AddHediff(xhediff); // ...then apply it...
+                pawn.health.AddHediff(xhediff); // ...then apply it..
+                PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn); //make sure they have all the dynamic comps they need 
+                
+                //make sure it has a name 
+                if(pawn.Name == null)
+                {
+                    pawn.Name = new NameSingle(pawn.LabelShort); 
+                }
+
+                TryAssignBackstoryToTransformedPawn(pawn, null); //try to assign them a background if they're sapient 
+
             }
         }
 

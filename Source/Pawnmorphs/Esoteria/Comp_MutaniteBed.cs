@@ -64,7 +64,6 @@ namespace Pawnmorph
         /// <summary>called every 2000 ticks</summary>
         void TickLong()
         {
-            Log.Message($"$$$${_parent.Label} ticked");
             foreach (Pawn curOccupant in _parent.CurOccupants)
             {
                 if (curOccupant == null) continue;
