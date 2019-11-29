@@ -59,6 +59,31 @@ namespace Pawnmorph
 
         }
 
+        /// <summary>
+        /// move all mutation related traits from the original pawn to the transformed pawn if they are sapient 
+        /// </summary>
+        /// <param name="transformedPawn"></param>
+        /// <param name="originalPawn"></param>
+        public static void MoveMutationTraitsToTransformedPawn([NotNull] Pawn transformedPawn, [NotNull] Pawn originalPawn)
+        {
+            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
+
+            if (transformedPawn.story?.traits == null) return;
+
+            foreach (TraitDef mutationTrait in MutationTraits)
+            {
+                var trait = originalPawn.story?.traits?.GetTrait(mutationTrait);
+                if (trait == null) continue;
+                var newTrait = new Trait(mutationTrait, trait.Degree, true);
+                transformedPawn.story.traits.GainTrait(newTrait); 
+            }
+
+
+        }
+        [NotNull]
+        private static IEnumerable<TraitDef> MutationTraits { get; }
+
 
         /// <summary>
         /// get the former human status of the given pawn 
@@ -93,6 +118,12 @@ namespace Pawnmorph
                 PawnKindDefOf.Villager, 
                 PawnKindDefOf.Drifter,
                 PawnKindDefOf.AncientSoldier
+            };
+
+            MutationTraits = new[] //TODO mod extension on traits to specify which ones can carry over? 
+            {
+                TraitDefOf.BodyPurist,
+                PMTraitDefOf.MutationAffinity
             };
         }
 
