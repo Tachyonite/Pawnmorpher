@@ -14,6 +14,19 @@ namespace Pawnmorph.Utilities
     /// </summary>
     public static class LinqUtils
     {
+
+        /// <summary>
+        /// if the given enumerable is null returns an empty enumerable, otherwise does nothing to the given enumerable 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns></returns>
+        [NotNull]
+        public static IEnumerable<T> MakeSafe<T>([CanBeNull, NoEnumeration] this IEnumerable<T> enumerable)
+        {
+            return enumerable ?? Enumerable.Empty<T>();
+        }
+
         /// <summary>gets a random element from the list</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="lst">The LST.</param>

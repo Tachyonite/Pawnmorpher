@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hybrids;
@@ -55,6 +56,23 @@ namespace Pawnmorph.DebugUtils
 
                 giverTf?.TryTf(pawn, morphHediff);
             }
+        }
+
+        List<DebugMenuOption> GetGiveBackstoriesOptions(Pawn pawn)
+        {
+            List<DebugMenuOption> options = new List<DebugMenuOption>(); 
+            foreach (BackstoryDef backstoryDef in DefDatabase<BackstoryDef>.AllDefs)
+            {
+                var def = backstoryDef; 
+                options.Add(new DebugMenuOption(def.defName, DebugMenuOptionMode.Action, () => AddBackstoryToPawn(pawn, def)));
+            }
+
+            return options; 
+        }
+
+        void AddBackstoryToPawn(Pawn pawn, BackstoryDef def)
+        {
+            pawn.story.adulthood = def.backstory; 
         }
 
         private List<DebugMenuOption> GetAddAspectOptions(AspectDef def, Pawn p)
@@ -209,6 +227,14 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(options)); 
         }
 
+        void DoAddBackstoryToPawn(Pawn pawn)
+        {
+            if (!pawn.IsSapientAnimal()) return;
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetGiveBackstoriesOptions(pawn))); 
+
+        }
+
         private void ListPlayOptions()
         {
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
@@ -217,6 +243,7 @@ namespace Pawnmorph.DebugUtils
             DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics);
             DebugToolMapForPawns("Remove Aspect", DoRemoveAspectsOption);
             DebugToolMapForPawns("Add Aspect", DoAddAspectToPawn); 
+            DebugToolMapForPawns("Add Backstory to Sapient Animal", DoAddBackstoryToPawn);
         }
     }
 }
