@@ -178,6 +178,10 @@ namespace Pawnmorph.TfSys
             bool wasPrisoner = original.IsPrisonerOfColony;
             var oFaction = original.Faction;
             var oMap = original.Map;
+
+            //apply apparel damage 
+            ApplyApparelDamage(original, spawnedAnimal.def); 
+
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 

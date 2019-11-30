@@ -6,6 +6,10 @@
 		<mutagenType>Pawnmorph.TfSys.SimpleMechaniteMutagen</mutagenType>
 		<revertedThoughtGood>WasAnimalRelieved</revertedThoughtGood>
 		<revertedThoughtBad>WasAnimal</revertedThoughtBad>
+		<damageProperties>
+			<apparelDamageOffset>10</apparelDamageOffset>
+			<spawnedBiproductMult>0.1</spawnedBiproductMult>
+		</damageProperties>
 	</Pawnmorph.MutagenDef>
 	
 	<Pawnmorph.MutagenDef>
@@ -14,5 +18,10 @@
 		<mutagenType>Pawnmorph.TfSys.MergeMutagen</mutagenType>
 		<revertedThoughtGood>WasMergedRelieved</revertedThoughtGood>
 		<revertedThoughtBad>WasMerged</revertedThoughtBad>
+		<damageProperties>
+			<apparelDamageOffset>100</apparelDamageOffset>
+			<spawnedBiproductMult>0.5</spawnedBiproductMult>
+			<apparelDamageMultiplier>1.5</apparelDamageMultiplier>
+		</damageProperties>
 	</Pawnmorph.MutagenDef>
 </Defs>
