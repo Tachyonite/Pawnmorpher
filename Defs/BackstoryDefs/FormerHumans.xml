@@ -19,6 +19,6 @@
         <defName>FormerHumanChaomorph</defName>
         <title>former human</title>
         <titleShort>former human</titleShort>
-        <baseDescription>as a result of exposur to uncontrolled mutagenic mechanits, {PAWN_nameDef} has become dangerous chimera</baseDescription>
+        <baseDescription>as a result of exposur to uncontrolled mutagenic mechanits, {PAWN_nameDef} was turned into a dangerous chimera</baseDescription>
     </AlienRace.BackstoryDef>
 </Defs>
