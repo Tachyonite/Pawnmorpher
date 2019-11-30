@@ -32,6 +32,23 @@ namespace Pawnmorph.TfSys
         public MutagenDef def;
 
         /// <summary>
+        /// Applies the apparel damage to the given pawn
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="newRace">The new race.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// pawn
+        /// or
+        /// newRace
+        /// </exception>
+        protected void ApplyApparelDamage([NotNull] Pawn pawn, [NotNull] ThingDef newRace)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (newRace == null) throw new ArgumentNullException(nameof(newRace));
+            TransformerUtility.ApplyTfDamageToApparel(pawn, newRace, def);
+        }
+
+        /// <summary>
         /// Transforms the specified request and preforms all necessary cleanup after the transformation if successful 
         /// </summary>
         /// implementers should make sure to preform all necessary cleanup of the pawn post transformation  

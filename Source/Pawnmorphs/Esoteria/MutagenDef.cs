@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Pawnmorph.TfSys;
 using RimWorld;
 using Verse;
@@ -32,6 +33,11 @@ namespace Pawnmorph
         /// </summary>
         public ThoughtDef revertedThoughtBad;
         [Unsaved] private Mutagen _mutagenCached;
+        /// <summary>
+        /// The damage properties
+        /// </summary>
+        [NotNull]
+        public MutagenDamageProperties damageProperties = new MutagenDamageProperties();
 
         /// <summary>Get all Configuration Errors with this instance</summary>
         /// <returns></returns>
@@ -97,4 +103,29 @@ namespace Pawnmorph
             return MutagenCached.CanInfect(pawn); 
         }
     }
+
+    /// <summary>
+    /// class that stores information about mutagenic damage 
+    /// </summary>
+    public class MutagenDamageProperties
+    {
+        /// <summary>
+        /// the minimum amount of damage to do to apparel 
+        /// </summary>
+        public int apparelDamageOffset;
+        /// <summary>
+        /// The apparel damage multiplier
+        /// </summary>
+        public float apparelDamageMultiplier = 1;
+        /// <summary>
+        /// how much biproduct to spawn per point of damage 
+        /// </summary>
+        public float spawnedBiproductMult;
+
+        /// <summary>
+        /// The biproduct to spawn when apparel takes damage 
+        /// </summary>
+        [CanBeNull] public ThingDef biproduct; 
+    }
+
 }
