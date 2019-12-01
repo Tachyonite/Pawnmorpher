@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -66,6 +67,7 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public float mtbDays = 0.4f; 
 
+        [NotNull]
         List<HediffGiver_Mutation> Mutations //hediff giver doesn't seem to have a on load or resolve references so I'm using lazy initialization
         {
             get
@@ -136,18 +138,18 @@ namespace Pawnmorph.Hediffs
         /// <param name="mutagen">The mutagen.</param>
         public void TryApply(Pawn pawn, Hediff cause, MutagenDef mutagen)
         {
-            var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
+            HediffGiver_Mutation mut = GetRandomMutation(pawn); //grab a random mutation 
             if (mut.TryApply(pawn, mutagen, null, cause))
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
 
-                var comp = cause.TryGetComp<HediffComp_Single>(); 
+                var comp = cause.TryGetComp<HediffComp_Single>();
                 if (comp != null)
                 {
                     comp.stacks--;
                     if (comp.stacks <= 0)
                     {
-                        pawn.health.RemoveHediff(cause); 
+                        pawn.health.RemoveHediff(cause);
                     }
                 }
 
@@ -156,6 +158,22 @@ namespace Pawnmorph.Hediffs
                     TaleRecorder.RecordTale(mut.tale, pawn);
                 }
             }
+        }
+
+        private const int MAX_TRIES = 10; 
+
+        private HediffGiver_Mutation GetRandomMutation([NotNull] Pawn pawn)
+        {
+            HediffGiver_Mutation mutationGiver = Mutations[Rand.Range(0, Mutations.Count)];
+            int i = 0;
+            while (i < MAX_TRIES && !mutationGiver.CanApplyMutations(pawn)) //doing don't waist too much memory building temporary lists with LINQ 
+                                                                            //also means we won't return null if no mutation can be given 
+            {
+                i++; //make sure we terminate eventually 
+                mutationGiver = Mutations[Rand.Range(0, Mutations.Count)];
+            }
+
+            return mutationGiver; 
         }
     }
 }
