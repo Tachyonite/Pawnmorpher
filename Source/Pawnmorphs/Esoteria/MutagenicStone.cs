@@ -26,7 +26,7 @@ namespace Pawnmorph
             {
                 HediffSet hediffSet = pawn.health.hediffSet;
 
-                if (hediffSet.HasHediff(MorphTransformationDefOf.FullRandomTF) || hediffSet.HasHediff(MorphTransformationDefOf.StabiliserHigh)) continue;
+                if (hediffSet.HasHediff(MorphTransformationDefOf.StabiliserHigh)) continue;
                 if (!pawn.Spawned) continue;
                 if (!mutagen.CanInfect(pawn)) continue;
 
