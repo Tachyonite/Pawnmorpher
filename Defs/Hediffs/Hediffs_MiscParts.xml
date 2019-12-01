@@ -7,7 +7,7 @@
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0</initialSeverity>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
 			</li>
 		</comps>
@@ -67,7 +67,7 @@
 		<label>fur</label>
 		<description>A heavy coat of fur drapes across this limb, insulating a lot of heat.</description>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
 			</li>
 		</comps>
@@ -128,7 +128,7 @@
 		<label>scales</label>
 		<description>Smooth, glossy scales now cover this limb, adding some natural defense and dissipating heat.</description>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
 			</li>
 		</comps>
@@ -193,7 +193,7 @@
 		<label>hide</label>
 		<description>A thick leathery hide has formed over this limb, adding some natural defense.</description>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
 			</li>
 		</comps>
@@ -360,7 +360,7 @@
 			</li>
 		</stages>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>

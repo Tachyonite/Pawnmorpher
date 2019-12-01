@@ -50,11 +50,6 @@ namespace Pawnmorph
         [CanBeNull] public List<StatModifier> statOffsets;
 
         /// <summary>
-        /// all stat modifiers that will be active during this stage 
-        /// </summary>
-        [CanBeNull] public List<StatModifier> statFactors;
-        
-        /// <summary>
         /// all mental states that can be given by the aspect in this stage 
         /// </summary>
         [CanBeNull] public List<MentalStateGiver> mentalStateGivers;

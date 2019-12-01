@@ -50,7 +50,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
@@ -74,7 +74,7 @@
 		<label>feathers</label>
 		<description>Rows of feathers have sprouted over [PAWN_nameDef]'s arm, keeping in some warmth...but no, it doesn't let them fly.</description>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
 			</li>
 		</comps>
@@ -189,7 +189,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.20</severityPerDay>
 			</li>
 		</comps>

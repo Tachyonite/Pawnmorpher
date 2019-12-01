@@ -1,0 +1,14 @@
+<Defs>
+    <StatDef>
+        <defName>MutationAdaptability</defName>
+        <label>mutation adaptability</label>
+        <description>Multiplier on how fast a pawn adapts to mutations.</description>
+        <category>BasicsPawn</category>
+        <defaultBaseValue>1.0</defaultBaseValue>
+        <hideAtValue>1.0</hideAtValue>
+        <minValue>-1</minValue> <!-- allow negative values for pawns that get worse with mutation over time (hidden stages with severity less then 0?) -->
+        <maxValue>2</maxValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+    </StatDef>
+</Defs>
