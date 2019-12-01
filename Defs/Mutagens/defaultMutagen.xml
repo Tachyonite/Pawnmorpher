@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<Pawnmorph.MutagenDef>
 		<defName>defaultMutagen</defName>
@@ -10,8 +10,11 @@
 			<apparelDamageOffset>10</apparelDamageOffset>
 			<spawnedBiproductMult>0.1</spawnedBiproductMult>
 		</damageProperties>
+		<immunizingHediffs>
+			<li>StabiliserHigh</li>
+		</immunizingHediffs>
 	</Pawnmorph.MutagenDef>
-	
+
 	<Pawnmorph.MutagenDef>
 		<defName>MergeMutagen</defName>
 		<label>merge mutagen</label>

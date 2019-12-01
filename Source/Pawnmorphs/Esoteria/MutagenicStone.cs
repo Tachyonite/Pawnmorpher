@@ -19,22 +19,19 @@ namespace Pawnmorph
             if (!Spawned || !LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableMutagenMeteor) return;
 
             IEnumerable<Thing> enumerable = GenRadial.RadialDistinctThingsAround(Position, Map, 2.0f, true);
-            var pawnList = enumerable.OfType<Pawn>(); // Don't need to keep the non-pawns.
 
             var mutagen = MutagenDefOf.defaultMutagen;
+            var pawnList = enumerable.OfType<Pawn>(); // Don't need to keep the non-pawns.
+
             foreach (Pawn pawn in pawnList)
             {
                 HediffSet hediffSet = pawn.health.hediffSet;
 
-                if (hediffSet.HasHediff(MorphTransformationDefOf.StabiliserHigh)) continue;
-                if (!pawn.Spawned) continue;
-                if (!mutagen.CanInfect(pawn)) continue;
+                if (!pawn.Spawned || !mutagen.CanInfect(pawn)) continue; //mutagen CanInfect handles checking for Stabalizer high, race, etc. now 
 
-                if (pawn.health.immunity?.GetImmunity(MorphTransformationDefOf.FullRandomTF) < 1f)
-                {
-                    pawn.health.AddHediff(MorphTransformationDefOf.FullRandomTF);
-                    IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
-                }
+                pawn.health.AddHediff(MorphTransformationDefOf.FullRandomTF);
+                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
+                
             }
         }
     }

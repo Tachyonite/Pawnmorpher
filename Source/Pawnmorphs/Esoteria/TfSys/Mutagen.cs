@@ -29,6 +29,7 @@ namespace Pawnmorph.TfSys
 
 
         /// <summary>The definition</summary>
+        [NotNull]
         public MutagenDef def;
 
         /// <summary>
@@ -73,7 +74,24 @@ namespace Pawnmorph.TfSys
                 return !ext.immuneToAll && !ext.blackList.Contains(def);
             }
 
-            return true;
+            return !HasAnyImmunizingHediffs(pawn); 
+        }
+
+        /// <summary>
+        /// Determines whether the given pawn has any immunizing hediffs 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the given pawn has any immunizing hediffs; otherwise, <c>false</c>.
+        /// </returns>
+        protected bool HasAnyImmunizingHediffs([NotNull] Pawn pawn)
+        {
+            foreach (HediffDef immunizingDef in def.immunizingHediffs)
+            {
+                if (pawn.health.hediffSet.GetFirstHediffOfDef(immunizingDef) != null) return true; 
+            }
+
+            return false; 
         }
 
 

@@ -39,6 +39,13 @@ namespace Pawnmorph
         [NotNull]
         public MutagenDamageProperties damageProperties = new MutagenDamageProperties();
 
+
+        /// <summary>
+        /// a list of hediffs that make a pawn immune to the effects of this mutagen source 
+        /// </summary>
+        [NotNull]
+        public List<HediffDef> immunizingHediffs = new List<HediffDef>(); 
+
         /// <summary>Get all Configuration Errors with this instance</summary>
         /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
