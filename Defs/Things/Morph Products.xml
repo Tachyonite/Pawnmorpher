@@ -9,6 +9,7 @@
 		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
 		<thingCategories>
 			<li>AnimalProductRaw</li>
+			<li>Drugs</li>
 		</thingCategories>
 		<socialPropernessMatters>false</socialPropernessMatters>
 		<ingestible>
