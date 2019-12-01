@@ -1,6 +1,7 @@
 ﻿// Giver_MutationChaotic.cs modified by Iron Wolf for Pawnmorph on 08/08/2019 5:36 PM
 // last updated 08/08/2019  5:36 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -118,7 +119,8 @@ namespace Pawnmorph.Hediffs
                 Rand.PushState(RandUtilities.MPSafeSeed); 
             }
 
-            if (Rand.MTBEventOccurs(mtbDays, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+            var mult = cause.TryGetComp<HediffComp_Single>()?.stacks ?? 1; //the more stacks there are the faster the mutation rate 
+            if (Rand.MTBEventOccurs(mtbDays / mult, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
                 TryApply(pawn, cause, mutagen);
@@ -139,6 +141,8 @@ namespace Pawnmorph.Hediffs
         public void TryApply(Pawn pawn, Hediff cause, MutagenDef mutagen)
         {
             HediffGiver_Mutation mut = GetRandomMutation(pawn); //grab a random mutation 
+            
+
             if (mut.TryApply(pawn, mutagen, null, cause))
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);

@@ -59,9 +59,9 @@ namespace Pawnmorph
         {
             // Push a multiplay-safe randomization seed.
             RandUtilities.PushState();
-
+            int mult = cause.TryGetComp<HediffComp_Single>()?.stacks ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
             // After roughly this duration, try to apply the hediff if the pawn is of human-like intelligence.
-            if (Rand.MTBEventOccurs(mtbDays, mtbUnits, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+            if (Rand.MTBEventOccurs(mtbDays/mult, mtbUnits, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 MutagenDef mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
