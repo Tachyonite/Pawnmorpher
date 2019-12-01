@@ -140,11 +140,7 @@ namespace Pawnmorph.Hediffs
             if (mut.TryApply(pawn, mutagen, null, cause))
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
-                if (cause.def.HasComp(typeof(HediffComp_Single)))
-                {
-                    pawn.health.RemoveHediff(cause);
-                }
-
+            
                 if (mut.tale != null)
                 {
                     TaleRecorder.RecordTale(mut.tale, pawn);
