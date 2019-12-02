@@ -1,0 +1,12 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThoughtDef[defName="AteKibble"]</xpath>
+        <value> <!-- this mod extension if for substituting a thought for another thought -->
+            <li Class="Pawnmorph.ThoughtGroupDefExtension"> <!-- the first thought that can be assigned to the pawn will be picked -->
+                <thoughts>
+                    <li>SapientAnimalAteKibble</li>
+                </thoughts>
+            </li>
+        </value>
+    </Operation>
+</Patch>

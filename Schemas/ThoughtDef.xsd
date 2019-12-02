@@ -1,18 +1,20 @@
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="DefExtensions/FilterExtensions.xsd" />
 	<xs:element name="Defs">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="ThoughtDef" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
-						<xs:sequence>
+						<xs:all>
 							<xs:element name="defName" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="thoughtClass" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="workerClass" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="durationDays" type="xs:float" minOccurs="0" maxOccurs="1" />
-							<xs:element name="morph" type="xs:string" maxOccurs="1" minOccurs="0" /> 
+							<xs:element name="morph" type="xs:string" maxOccurs="1" minOccurs="0" />
 							<xs:element name="aspect" type="xs:string" maxOccurs="1" minOccurs="0" />
 							<xs:element name="hediff" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<xs:element name="showBubble" type="xs:boolean" minOccurs="0"/>
+							<xs:element name="icon" type="xs:string" minOccurs="0"/>
 							<xs:element name="requiredTraits" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
@@ -34,7 +36,14 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-						</xs:sequence>
+							<xs:element name="modExtensions" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="li" type="xs:anyType" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
 						<xs:attribute name="ParentName" type="AbstractThoughts" use="optional" />
 						<xs:attribute name="Abstract" type="xs:boolean" use="optional" />
 						<xs:attribute name="Name" type="xs:string" use="optional" />
@@ -49,10 +58,10 @@
 	<xs:simpleType name="ThoughtDefClasses">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="Pawnmorph.Thoughts.Def_MorphThought" />
-			<xs:enumeration value="Pawnmorph.Thoughts.Def_AspectThought"/>
+			<xs:enumeration value="Pawnmorph.Thoughts.Def_AspectThought" />
 		</xs:restriction>
 	</xs:simpleType>
-	
+
 	<xs:simpleType name="AbstractThoughts">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="MorphReactionThoughtBase" />
@@ -64,11 +73,11 @@
 			<xs:enumeration value="PMMorphMemoryNone" />
 			<xs:enumeration value="PMMorphMemoryFurry" />
 			<xs:enumeration value="PMMorphMemoryBP" />
-			<xs:enumeration value="MorphRevertsToHumanBase"/>
-			<xs:enumeration value="MorphRevertsToHumanBaseNone"/>
-			<xs:enumeration value="MorphRevertsToHumanBaseFurry"/>
+			<xs:enumeration value="MorphRevertsToHumanBase" />
+			<xs:enumeration value="MorphRevertsToHumanBaseNone" />
+			<xs:enumeration value="MorphRevertsToHumanBaseFurry" />
 			<xs:enumeration value="MorphRevertsToHumanBaseBP" />
-			<xs:enumeration value="GroupThoughtBase"/>
+			<xs:enumeration value="GroupThoughtBase" />
 		</xs:restriction>
 	</xs:simpleType>
 

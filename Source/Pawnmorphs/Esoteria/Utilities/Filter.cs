@@ -15,7 +15,7 @@ namespace Pawnmorph.Utilities
         /// <summary>
         /// if this filter is a black list 
         /// </summary>
-        public bool isBlackList;
+        public bool isBlackList = true;
 
         /// <summary>
         /// returns true if the given element passes through the filter 

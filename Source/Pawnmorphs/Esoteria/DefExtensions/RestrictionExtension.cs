@@ -1,6 +1,8 @@
 ﻿// RestrictionExtension.cs modified by Iron Wolf for Pawnmorph on 11/09/2019 8:58 AM
 // last updated 11/09/2019  8:58 AM
 
+using System;
+using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph.DefExtensions
@@ -15,7 +17,10 @@ namespace Pawnmorph.DefExtensions
         /// checks if the given pawn passes the restriction.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
-        /// <returns>if the def can be used with the given pawn</returns>
-        public abstract bool PassesRestriction(Pawn pawn); 
+        /// <returns>
+        /// if the def can be used with the given pawn
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public abstract bool PassesRestriction([NotNull] Pawn pawn); 
     }
 }

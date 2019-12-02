@@ -1,0 +1,21 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef>
+        <defName>SapientAnimalAteKibble</defName>
+        <showBubble>true</showBubble>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>ate kibble</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sampient animals -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+
+
+</Defs>

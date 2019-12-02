@@ -104,6 +104,7 @@
     <Compile Include="DefExtensions\MorphRestriction.cs" />
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\SapientAnimalRestriction.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="FormerHumanStatus.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
@@ -118,6 +119,8 @@
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
     <Compile Include="HPatches\PawnPatches.cs" />
     <Compile Include="HPatches\PlantGrowingPatches.cs" />
+    <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
+    <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_TerrainProduction.cs" />
     <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />
@@ -132,6 +135,7 @@
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PMStatDefOf.cs" />
+    <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
@@ -273,6 +277,7 @@
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
+    <Compile Include="ThoughtGroupDefExtension.cs" />
     <Compile Include="Thoughts\Def_AspectThought.cs" />
     <Compile Include="Thoughts\Def_MorphThought.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />

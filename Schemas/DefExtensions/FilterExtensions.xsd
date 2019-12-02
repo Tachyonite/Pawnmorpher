@@ -27,4 +27,19 @@
         </xs:sequence>
         <xs:attribute name="Class" type="xs:string" use="required"/>
     </xs:complexType>
+
+    <xs:complexType name="ThoughtGroupDefExtension">
+        <xs:sequence>
+            <xs:element name="thoughts" type="ListOfStrings" />
+        </xs:sequence>
+        <xs:attribute name="Class" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="SapientAnimalRestriction">
+        <xs:all>
+            <xs:element name="isForbidden" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="raceFilter" type="ListOfStrings" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="Class" type="xs:string" use="required"/>
+    </xs:complexType>
 </xs:schema>
