@@ -5,6 +5,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Thought_Memory = RimWorld.Thought_Memory;
 
@@ -54,7 +55,14 @@ namespace Pawnmorph
             {
                 if (ThoughtUtility.CanGetThought(pawn, thoughtDef))
                 {
-                    var newMemory = ThoughtMaker.MakeThought(thoughtDef) as Thought_Memory;
+                    var forcedStage = Mathf.Min(memory.CurStageIndex, thoughtDef.stages.Count - 1);
+
+                    if (forcedStage != memory.CurStageIndex)
+                    {
+                        Log.Warning($"in memory {memory.def.defName}, substituted thought {thoughtDef.defName} does not the same number of stages\noriginal:{memory.def.stages.Count} sub:{thoughtDef.stages.Count}");
+                    }
+
+                    var newMemory = ThoughtMaker.MakeThought(thoughtDef, forcedStage);
                     if (newMemory == null)
                     {
                         Log.Error($"in thought {memory.def.defName} group, thought {thoughtDef.defName} is not a memory");
