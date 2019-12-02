@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddMorphsToPawn.cs" />
+    <Compile Include="AnimalDrafterComp.cs" />
     <Compile Include="Aspect.cs" />
     <Compile Include="AspectCapacityImpactor.cs" />
     <Compile Include="AspectDef.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="AspectStage.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
+    <Compile Include="BackstoryDefOf.cs" />
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
+    <Compile Include="FormerHumanStatus.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />

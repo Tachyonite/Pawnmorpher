@@ -182,6 +182,7 @@ namespace Pawnmorph.TfSys
             //apply apparel damage 
             ApplyApparelDamage(original, spawnedAnimal.def); 
 
+            TransformerUtility.TryAssignBackstoryToTransformedPawn(spawnedAnimal, original); 
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 

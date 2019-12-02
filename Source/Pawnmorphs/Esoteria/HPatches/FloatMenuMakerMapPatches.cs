@@ -62,7 +62,7 @@ namespace Pawnmorph
                 return true;
             }
         }
-#if false
+#if true
         [HarmonyPatch(typeof(FloatMenuMakerMap))]
         [HarmonyPatch("CanTakeOrder")]
         internal static class CanTakeOrderPatch
@@ -81,5 +81,7 @@ namespace Pawnmorph
         }
    
 #endif
+
+
     }
 }

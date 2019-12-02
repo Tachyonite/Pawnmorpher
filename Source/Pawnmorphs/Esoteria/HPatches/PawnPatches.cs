@@ -5,47 +5,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Harmony;
+using JetBrains.Annotations;
 using RimWorld;
 using Verse;
 
 #pragma warning disable 01591
-#if false
+#if true
 namespace Pawnmorph.HPatches
 {
     public static class PawnPatches
     {
-        [HarmonyPatch(typeof(Pawn))]
-        [HarmonyPatch(nameof(Pawn.GetGizmos))]
-        public static class GetGizmoPatches
+        [HarmonyPatch(typeof(Pawn)),HarmonyPatch(nameof(Pawn.IsColonistPlayerControlled), MethodType.Getter)]
+        internal static class IsColonistPlayerControlledPatch
         {
-            private const string DRAFT_ANIMAL_LABEL = "DraftSapientAnimalLabel";
-            private const string DRAFT_ANIMAL_DESCRIPTION = "DraftSapientAnimalDescription";
-
-            private static readonly MethodInfo _getGizmoMethod;
-
-            static GetGizmoPatches()
-            {
-                _getGizmoMethod = typeof(Pawn_DraftController).GetMethod("DrawGizmos"); 
-            }
-
             [HarmonyPostfix]
-            internal static void AddDraftingGizmo(Pawn __instance, ref IEnumerable<Gizmo> __result)
+            static void MakeSapientAnimalsColonists(Pawn __instance, ref bool __result)
             {
-                var  pawn= __instance;
+                if (__instance.Faction?.IsPlayer != true) return;
+                if (!__instance.RaceProps.Animal) return;
+                if (__instance.MentalStateDef != null) return;
+                if (!__instance.Spawned) return;
+                if (__instance.HostFaction != null) return; 
+                var formerHumanHediff = __instance.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+                __result = formerHumanHediff?.CurStageIndex == 2; 
+            }
+        }
 
-                
-                if (pawn.RaceProps.Animal && pawn.Faction?.IsPlayer == true)
+        [HarmonyPatch(typeof(Pawn_NeedsTracker)), HarmonyPatch("ShouldHaveNeed")]
+        internal static class NeedsTracker_ShouldHaveNeedPatch
+        {
+            [HarmonyPostfix]
+            static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
+            {
+                if (__result) return;
+                if (___pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return; 
+                //var isColonist = ___pawn.Faction?.IsPlayer == true;
+                if (nd.defName == "Mood")
                 {
-                    var lst = __result.ToList();
-                    if (pawn.drafter != null && 
-                       pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman)?.CurStageIndex == 2) //sapient is the 3'rd stage 
-                    {
-                        
-                        lst.AddRange( (IEnumerable<Gizmo>)_getGizmoMethod.Invoke(pawn.drafter, new object[]{}));
-                         
-                    }
-                    __result = lst;
+                    __result = true; 
                 }
+
             }
         }
     }
