@@ -7,15 +7,59 @@
         <stages>
             <li>
                 <label>ate kibble</label>
-                <description>TODO</description>
+                <description>I had to eat animal feed, now that I'm like this. I still want proper meals!</description>
             </li>
         </stages>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sampient animals -->
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
             </li>
         </modExtensions>
     </ThoughtDef>
-
-
+	
+    <ThoughtDef>
+        <defName>SapientAnimalAteRawFood</defName>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+	        <label>ate raw food</label>	
+                <description>At least cook my meals, I'm not an anima-- well...not in my head at least.</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+	
+    <ThoughtDef>
+        <defName>SapientAnimalSleptOnGround</defName>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>slept on ground</label>
+                <description>I don't even have a pillow anymore, I just have to sleep on the ground!</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+	
+    <ThoughtDef>
+        <defName>SapientAnimalMilked</defName>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+	        <label>milked</label>	
+                <description>Get your hands off me you damn dirty ape!</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+	
 
 </Defs>
