@@ -78,28 +78,53 @@ namespace Pawnmorph
             builder.AppendLine(res);
         }
 
+        private bool _waitingForUpdate; 
+
         /// <summary>called after this instance is added to the pawn.</summary>
         /// <param name="dinfo">The dinfo.</param>
         public override void PostAdd(DamageInfo? dinfo)
         // After the hediff has been applied.
         {
             base.PostAdd(dinfo); // Do the inherited method.
-            if(Current.ProgramState == ProgramState.Playing)
+            if (PawnGenerator.IsBeingGenerated(pawn) || !pawn.Spawned) //if the pawn is still being generated do not update graphics until it's done 
+            {
+                _waitingForUpdate = true;
+                return; 
+            }
+            UpdatePawnInfo();
+        }
+        /// <summary>
+        /// Posts the tick.
+        /// </summary>
+        public override void PostTick()
+        {
+            if (_waitingForUpdate)
+            {
+                UpdatePawnInfo();
+                _waitingForUpdate = false; 
+            }
+        }
+
+        private void UpdatePawnInfo()
+        {
+            if (Current.ProgramState == ProgramState.Playing)
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
 
             if (Current.ProgramState == ProgramState.Playing && MutationUtilities.AllMutationsWithGraphics.Contains(def) && pawn.IsColonist)
-            { 
+            {
                 pawn.Drawer.renderer.graphics.ResolveAllGraphics();
                 PortraitsCache.SetDirty(pawn);
             }
 
-            pawn.GetMutationTracker()?.NotifyMutationAdded(this); 
+            pawn.GetMutationTracker()?.NotifyMutationAdded(this);
         }
+
         /// <summary>called after this instance is removed from the pawn</summary>
         public override void PostRemoved()
         {
             base.PostRemoved();
-            pawn.GetMutationTracker()?.NotifyMutationRemoved(this);
+            if(!PawnGenerator.IsBeingGenerated(pawn))
+                pawn.GetMutationTracker()?.NotifyMutationRemoved(this);
         }
 
         /// <summary>Exposes the data.</summary>

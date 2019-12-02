@@ -230,22 +230,29 @@ namespace Pawnmorph
             {
                 // Generate lookup dict manually during load for backwards compatibility.
 
-                foreach (Hediff_AddedMutation mutation in AllMutations)
-                {
-                    foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
-                    {
-                        _influenceLookup[tuple.first] = _influenceLookup.TryGetValue(tuple.first) + tuple.second; 
-                    }
-                }
-
-                // Now find the highest influence.
-                MorphDef hMorph = GetHighestInfluence();
-                HighestInfluence = hMorph;
-                _reCalcInfluences = true;
-
-
-                MutationsCount = Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Count(); 
+                RecalculateCaches();
             }
+        }
+
+        private void RecalculateCaches()
+        {
+            _influenceLookup.Clear();
+            
+            foreach (Hediff_AddedMutation mutation in AllMutations)
+            {
+                foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
+                {
+                    _influenceLookup[tuple.first] = _influenceLookup.TryGetValue(tuple.first) + tuple.second;
+                }
+            }
+
+            // Now find the highest influence.
+            MorphDef hMorph = GetHighestInfluence();
+            HighestInfluence = hMorph;
+            _reCalcInfluences = true;
+
+
+            MutationsCount = Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Count();
         }
 
         private MorphDef GetHighestInfluence()
