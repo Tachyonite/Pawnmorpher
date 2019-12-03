@@ -12,7 +12,7 @@ namespace Pawnmorph.HPatches
     internal static class ThoughtHandlerPatches
     {
         [HarmonyPatch(typeof(MemoryThoughtHandler))]
-        [HarmonyPatch(nameof(MemoryThoughtHandler.TryGainMemory), new []{typeof(Thought_Memory), typeof(Pawn)})]
+        [HarmonyPatch(nameof(MemoryThoughtHandler.TryGainMemory), typeof(Thought_Memory), typeof(Pawn))]
         [UsedImplicitly]
         private static class TryAddMemoryPatch
         {
@@ -22,6 +22,7 @@ namespace Pawnmorph.HPatches
                                                     [NotNull] MemoryThoughtHandler __instance)
             {
                 newThought = newThought.GetSubstitute(__instance.pawn);
+
                 return true;
             }
         }

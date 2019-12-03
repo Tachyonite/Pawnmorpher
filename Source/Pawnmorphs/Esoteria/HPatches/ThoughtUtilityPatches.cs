@@ -9,19 +9,19 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    static class ThoughtUtilityPatches
+    internal static class ThoughtUtilityPatches
     {
         [HarmonyPatch(typeof(ThoughtUtility))]
         [HarmonyPatch(nameof(ThoughtUtility.CanGetThought))]
-        static class CanGetThoughtPatch
+        private static class CanGetThoughtPatch
         {
-            [HarmonyPostfix, UsedImplicitly]
-            static void CanGetThoughtPostfix([NotNull] Pawn pawn, [NotNull] ThoughtDef def, ref bool __result)
+            [HarmonyPostfix]
+            [UsedImplicitly]
+            private static void CanGetThoughtPostfix([NotNull] Pawn pawn, [NotNull] ThoughtDef def, ref bool __result)
             {
                 var tGroup = def.GetModExtension<ThoughtGroupDefExtension>();
 
                 if (tGroup != null && !__result)
-                {
                     //if the default thought is invalid and it has a thought group extension check if any of the specific thoughts are valid 
                     foreach (ThoughtDef tGroupThought in tGroup.thoughts)
                     {
@@ -30,22 +30,16 @@ namespace Pawnmorph.HPatches
                             Log.Warning($"thought in {def.defName} has thought {tGroupThought.defName} with thought group extension! this is not currently supported as it may cause infinite recursion");
                             continue;
                         }
+
                         if (ThoughtUtility.CanGetThought(pawn, tGroupThought))
                         {
                             __result = true;
-                            return; 
+                            return;
                         }
                     }
 
-                }
-
-                if (__result)
-                {
-                    __result = def.IsValidFor(pawn); 
-                }
+                if (__result) __result = def.IsValidFor(pawn);
             }
         }
-
-
     }
 }
