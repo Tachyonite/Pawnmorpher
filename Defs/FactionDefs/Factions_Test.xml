@@ -17,7 +17,6 @@
 		<backstoryCategories>
 			<li>MutantWanderer</li>
 			<li>FreeMutant</li>
-			<li>UpliftedAnimal</li>
 		</backstoryCategories>
 		<geneticVariance>0.8</geneticVariance>
 		<hairTags>
@@ -138,6 +137,7 @@
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
+	<!--
 	<modExtensions>
 		<li Class="Pawnmorph.MorphPawnKindExtension">
 			<morphs>
@@ -148,6 +148,8 @@
 				<li>HuskyMorph</li>
 				<li>ChookMorph</li>
 				<li>RatMorph</li>
+				<li>MonkeyMorph</li>
+				<li>WolfMorph</li>
 				<li>ChaocowMorph</li>
 				<li>ChaoboomMorph</li>
 				<li>ChaofoxMorph</li>
@@ -156,6 +158,7 @@
 			<hediffRange>0~5</hediffRange> 
 		</li>
 	</modExtensions>
+	-->
   </PawnKindDef>
 
   <PawnKindDef ParentName="PawnmorphEnclaveBase">
