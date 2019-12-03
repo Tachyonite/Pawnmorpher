@@ -17,6 +17,23 @@
     </ThoughtDef>
 	
     <ThoughtDef>
+        <defName>SapientAnimalNaked</defName>
+        <showBubble>true</showBubble>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>naked</label>
+                <description>I know I'm covered in fur but...c'mon!</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+	
+    <ThoughtDef>
         <defName>SapientAnimalAteRawFood</defName>
         <durationDays>1</durationDays>
         <stages>
@@ -37,7 +54,7 @@
         <stages>
             <li>
                 <label>slept on ground</label>
-                <description>I don't even have a pillow anymore, I just have to sleep on the ground!</description>
+                <description>I don't even have a pillow anymore, I have to sleep on the ground!</description>
             </li>
         </stages>
         <modExtensions>

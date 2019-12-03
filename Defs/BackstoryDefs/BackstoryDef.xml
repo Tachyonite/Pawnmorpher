@@ -2,7 +2,7 @@
 <Defs>
 
 	<!-- Childhood pawn backstories -->
-
+	<!--
 	<AlienRace.BackstoryDef>
 		<defName>WildAnimal</defName>
 		<title>Wild animal</title>
@@ -15,7 +15,7 @@
 			<li>UpliftedAnimal</li>
 		</spawnCategories>
 	</AlienRace.BackstoryDef>
-
+	-->
 
 	<!-- Adulthood pawn backstories -->
 
@@ -304,7 +304,7 @@
             </li>
         </modExtensions>
 	</AlienRace.BackstoryDef>
-	
+	<!--
 	<AlienRace.BackstoryDef>
 		<defName>UpliftedAnimal</defName>
 		<title>Uplifted animal</title>
@@ -352,5 +352,6 @@
             </li>
         </modExtensions>
 	</AlienRace.BackstoryDef>
+	-->
 
 </Defs>
