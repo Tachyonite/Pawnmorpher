@@ -3,6 +3,7 @@
         <defName>EtherState</defName>
         <priority>0</priority>
         <labelColor>(121,55,145)</labelColor>
+        <transferToAnimal>true</transferToAnimal>
         <stages>
             <li>
                 <label>Etherbroken</label>
@@ -29,6 +30,7 @@
 
     <Pawnmorph.AspectDef>
         <defName>MutagenInfused</defName>
+        <transferToAnimal>true</transferToAnimal>
         <stages>
             <li>
                 <label>mutagen infused</label>
@@ -102,6 +104,18 @@
                 <statOffsets>
                     <MutationAdaptability>-2</MutationAdaptability>
                 </statOffsets>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+
+    <Pawnmorph.AspectDef>
+        <defName>PrimalWish</defName>
+        <label>primal wish</label>
+        <description>{PAWN_nameDef} is envious of the simple, carefree life that animals have</description>
+        <transferToAnimal>true</transferToAnimal>
+        <stages>
+            <li>
+                <!-- any boosts for this? -->
             </li>
         </stages>
     </Pawnmorph.AspectDef>

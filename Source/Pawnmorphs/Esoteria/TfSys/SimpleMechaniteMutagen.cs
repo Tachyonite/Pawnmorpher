@@ -176,13 +176,16 @@ namespace Pawnmorph.TfSys
                 TaleRecorder.RecordTale(request.tale, original, animalToSpawn);
 
             bool wasPrisoner = original.IsPrisonerOfColony;
-            var oFaction = original.Faction;
-            var oMap = original.Map;
+            Faction oFaction = original.Faction;
+            Map oMap = original.Map;
+
+            //transfer any aspects they have 
+            TransformerUtility.TransferAspectsToAnimal(original, spawnedAnimal);
 
             //apply apparel damage 
-            ApplyApparelDamage(original, spawnedAnimal.def); 
+            ApplyApparelDamage(original, spawnedAnimal.def);
 
-            TransformerUtility.TryAssignBackstoryToTransformedPawn(spawnedAnimal, original); 
+            TransformerUtility.TryAssignBackstoryToTransformedPawn(spawnedAnimal, original);
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 

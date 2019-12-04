@@ -64,7 +64,13 @@ namespace Pawnmorph
         {
             var shouldShow = (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker(false)?.AllMutations.Count() ?? 0) > 0);
             shouldShow |= (pawn.GetAspectTracker()?.AspectCount ?? 0) > 0;
-            return shouldShow; 
+            if (shouldShow) return true;
+
+            var fHumanStatus = pawn.GetFormerHumanStatus();
+            if (fHumanStatus == null) return false;
+            return true; //just always showing for former humans for now 
+
+
         }
 
 
@@ -85,7 +91,9 @@ namespace Pawnmorph
 
             // Draw the header.
             Vector2 col1 = new Vector2(0f, 0f);
-            DrawMutTabHeader(ref col1, mainView.width);
+            if (SelPawn.GetMutationTracker(false) != null) 
+                DrawMutTabHeader(ref col1, mainView.width);
+            
 
             // Set up scrolling area.
             Rect outRect = new Rect(col1.x, col1.y, mainView.width, mainView.height - col1.y - 10f);
@@ -173,7 +181,7 @@ namespace Pawnmorph
         {
             // Set up the mutation tracker.
             MutationTracker mutationTracker = PawnToShowMutationsFor.GetMutationTracker();
-            Assert(mutationTracker != null, "mutationTracker != null"); //mutationTracker should never be null
+            if (mutationTracker == null) return; 
 
             // Create a list of the current morph influences upon the pawn.
             IEnumerable<VTuple<MorphDef, float>> influences = mutationTracker.NormalizedInfluences.ToList();

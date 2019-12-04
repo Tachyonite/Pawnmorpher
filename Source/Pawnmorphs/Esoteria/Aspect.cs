@@ -4,6 +4,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace Pawnmorph
         /// <summary>
         /// the def of this aspect 
         /// </summary>
+        [NotNull]
         public AspectDef def;
 
         private int _stage = 0;
@@ -69,6 +71,7 @@ namespace Pawnmorph
         }
 
         /// <summary> The current stage. </summary>
+        [NotNull]
         public AspectStage CurrentStage => Stages[StageIndex];
 
         AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
@@ -118,6 +121,7 @@ namespace Pawnmorph
         /// <summary>
         /// list of all stages in this Aspect 
         /// </summary>
+        [NotNull]
         protected List<AspectStage> Stages => def.stages;
 
         /// <summary>

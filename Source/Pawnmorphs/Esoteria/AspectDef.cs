@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using Verse;
 
@@ -18,6 +19,7 @@ namespace Pawnmorph
         /// <summary>
         /// the aspect stages, must be at least one 
         /// </summary>
+        [NotNull]
         public List<AspectStage> stages = new List<AspectStage>();
         /// <summary>
         /// the color of the aspect's label 
@@ -31,8 +33,13 @@ namespace Pawnmorph
         /// the priority of this aspect
         /// lower priorities come first 
         /// </summary>
-        public int priority = 1; 
-        
+        public int priority = 1;
+
+        /// <summary>
+        /// if true, this aspect should be transferred to the new animal pawn if the original pawn has this aspect  
+        /// </summary>
+        public bool transferToAnimal; 
+
         /// <summary>
         /// resolve all def references in this def, called after DefOfs are loaded 
         /// </summary>

@@ -31,7 +31,35 @@ namespace Pawnmorph
         /// </summary>
         private const float MAX_APPAREL_PDIFF = 0.35f;
 
-        private const float APPAREL_PDIFF_OFFSET = 0.15f; 
+        private const float APPAREL_PDIFF_OFFSET = 0.15f;
+
+        /// <summary>
+        /// Transfers all transferable aspects from the original pawn to animal they turned into.
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="animal">The animal.</param>
+        public static void TransferAspectsToAnimal([NotNull] Pawn original, [NotNull] Pawn animal)
+        {
+            var oTracker = original.GetAspectTracker();
+            var animalTracker = animal.GetAspectTracker();
+            if (oTracker == null) return;
+            if (animalTracker == null)
+            {
+                Log.Warning($"animal {animal.Name},{animal.def.defName} does not have an aspect tracker");
+                return; 
+            }
+
+
+            foreach (Aspect aspect in oTracker)
+            {
+                if (aspect.def.transferToAnimal)
+                {
+                    var stageIndex = aspect.StageIndex;
+                    animalTracker.Add(aspect.def, stageIndex); 
+                }
+            }
+        }
+        
         /// <summary>
         /// applies damage to all apparel the pawn is wearing based on
         /// </summary>
