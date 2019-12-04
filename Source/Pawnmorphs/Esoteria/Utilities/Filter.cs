@@ -2,6 +2,7 @@
 // last updated 09/11/2019  2:56 PM
 
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace Pawnmorph.Utilities
 {
@@ -11,7 +12,8 @@ namespace Pawnmorph.Utilities
         /// <summary>
         /// the list of entries in the filter 
         /// </summary>
-        public List<T> filterList;
+        [NotNull]
+        public List<T> filterList = new List<T>();
         /// <summary>
         /// if this filter is a black list 
         /// </summary>
@@ -24,7 +26,7 @@ namespace Pawnmorph.Utilities
         /// <returns></returns>
         public bool PassesFilter(T elem)
         {
-            var contains = filterList?.Contains(elem) ?? false;
+            var contains = filterList.Contains(elem);
             if (isBlackList) return !contains;
             return contains; 
         }

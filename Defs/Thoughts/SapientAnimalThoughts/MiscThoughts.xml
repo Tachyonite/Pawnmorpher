@@ -8,6 +8,7 @@
             <li>
                 <label>ate kibble</label>
                 <description>I had to eat animal feed, now that I'm like this. I still want proper meals!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
         <modExtensions>
@@ -40,6 +41,7 @@
             <li>
 	        <label>ate raw food</label>	
                 <description>At least cook my meals, I'm not an anima-- well...not in my head at least.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
             </li>
         </stages>
         <modExtensions>
@@ -54,7 +56,8 @@
         <stages>
             <li>
                 <label>slept on ground</label>
-                <description>I don't even have a pillow anymore, I have to sleep on the ground!</description>
+                <description>I don't even have a pillow anymore, I just have to sleep on the ground!</description>
+                <baseMoodEffect>-4</baseMoodEffect> <!-- need to remember to set these >.> -->
             </li>
         </stages>
         <modExtensions>
@@ -70,6 +73,7 @@
             <li>
 	        <label>milked</label>	
                 <description>Get your hands off me you damn dirty ape!</description>
+                <baseMoodEffect>-10</baseMoodEffect>
             </li>
         </stages>
         <modExtensions>
