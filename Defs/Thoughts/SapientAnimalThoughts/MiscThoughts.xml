@@ -26,6 +26,7 @@
             <li>
                 <label>naked</label>
                 <description>I know I'm covered in fur but...c'mon!</description>
+				<baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
         <modExtensions>
@@ -40,7 +41,7 @@
         <stages>
             <li>
 	        <label>ate raw food</label>	
-                <description>At least cook my meals, I'm not an anima-- well...not in my head at least.</description>
+                <description>Being an animal doesn't make this taste any more appealing...ech!</description>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
         </stages>

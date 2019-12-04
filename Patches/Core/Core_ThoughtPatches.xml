@@ -9,4 +9,24 @@
             </li>
         </value>
     </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThoughtDef[defName="Naked"]</xpath>
+        <value> <!-- this mod extension if for substituting a thought for another thought -->
+            <li Class="Pawnmorph.ThoughtGroupDefExtension"> <!-- the first thought that can be assigned to the pawn will be picked -->
+                <thoughts>
+                    <li>SapientAnimalNaked</li>
+                </thoughts>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThoughtDef[defName="AteRawFood"]</xpath>
+        <value> <!-- this mod extension if for substituting a thought for another thought -->
+            <li Class="Pawnmorph.ThoughtGroupDefExtension"> <!-- the first thought that can be assigned to the pawn will be picked -->
+                <thoughts>
+                    <li>SapientAnimalAteRawFood</li>
+                </thoughts>
+            </li>
+        </value>
+    </Operation>
 </Patch>
