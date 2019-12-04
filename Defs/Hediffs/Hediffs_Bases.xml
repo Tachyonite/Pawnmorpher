@@ -41,11 +41,6 @@
 		<comps>
 			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
 				<layers>Skin</layers>
-				<hediffTypeFilter>
-					<filterList>
-						<li>Pawnmorph.Hediff_AddedMutation</li>
-					</filterList>
-				</hediffTypeFilter>
 			</li>
 			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
 				<mtb>60</mtb>
@@ -58,11 +53,6 @@
 		<comps>
 			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
 				<layers>Core</layers>
-				<hediffTypeFilter>
-					<filterList>
-						<li>Pawnmorph.Hediff_AddedMutation</li>
-					</filterList>
-				</hediffTypeFilter>
 			</li>
 		</comps>
 	</HediffDef>

@@ -98,6 +98,7 @@ namespace Pawnmorph
         /// </summary>
         public override void PostTick()
         {
+            base.PostTick();
             if (_waitingForUpdate)
             {
                 UpdatePawnInfo();
