@@ -31,10 +31,67 @@
         </stages>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+                <raceFilter>
+                    <isBlackList>true</isBlackList>
+                    <filterList>
+                        <li>Chicken</li>
+                        <li>Iguana</li>
+                        <li>Cobra</li>
+                    </filterList>
+                </raceFilter>
             </li>
         </modExtensions>
     </ThoughtDef>
-	
+    
+    <ThoughtDef>
+        <defName>SapientChickenNaked</defName>
+        <showBubble>true</showBubble>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>naked</label>
+                <description>I know I'm covered in feathers but...c'mon!</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+                <raceFilter>
+                    <isBlackList>false</isBlackList>
+                    <filterList>
+                        <li>Chicken</li>
+                    </filterList>
+                </raceFilter>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>SapientReptileNaked</defName>
+        <showBubble>true</showBubble>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>naked</label>
+                <description>I know I'm covered in scales but...c'mon!</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+                <raceFilter>
+                    <isBlackList>false</isBlackList>
+                    <filterList>
+                        <li>Iguana</li>
+                        <li>Cobra</li>
+                    </filterList>
+                </raceFilter>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
     <ThoughtDef>
         <defName>SapientAnimalAteRawFood</defName>
         <durationDays>1</durationDays>
