@@ -100,6 +100,7 @@
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="DefExtensions\AspectRestriction.cs" />
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\MorphRestriction.cs" />
     <Compile Include="DefExtensions\MutationRestriction.cs" />
