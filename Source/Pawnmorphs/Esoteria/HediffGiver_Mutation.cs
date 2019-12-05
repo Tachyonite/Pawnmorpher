@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -115,7 +116,7 @@ namespace Pawnmorph
         public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null, bool addLogEntry=true)
         {
             if (!mutagenDef.CanInfect(pawn)) return false;
-
+            if (!hediff.IsValidFor(pawn)) return false; 
             bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
             if (addLogEntry && added && partsToAffect != null)
             {
@@ -139,6 +140,7 @@ namespace Pawnmorph
         {
             mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
             if (!mutagen.CanInfect(pawn)) return false;
+            if (!hediff.IsValidFor(pawn)) return false; 
             bool anyAdded = false; 
             HashSet<BodyPartRecord> nonMissingRecords = new HashSet<BodyPartRecord>(pawn.health.hediffSet.GetNotMissingParts());
             
@@ -155,7 +157,7 @@ namespace Pawnmorph
         {
             if (!mutagen.CanInfect(pawn)) return false;
             if (!nonMissingRecords.Contains(recordToAdd)) return false;
-
+            if (!hediff.IsValidFor(pawn)) return false; 
             var hediffInst = HediffMaker.MakeHediff(hediff, pawn, recordToAdd);
             pawn.health.AddHediff(hediffInst, recordToAdd);
             DoMutationAddedEffects(pawn);
