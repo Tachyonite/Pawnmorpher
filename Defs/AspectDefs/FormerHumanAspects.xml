@@ -2,7 +2,7 @@
     <Pawnmorph.AspectDef>
         <defName>PrimalWish</defName>
         <label>primal wish</label>
-        <description>{PAWN_nameDef} is envious of the simple, carefree life that animals have</description>
+        <description>[PAWN_nameDef] desires a simple life. So simple, some might comment, that it is suited more for an animal than a human. Indeed, [PAWN_nameDef] does envy animals, and would rather be one than human.</description>
         <transferToAnimal>true</transferToAnimal>
         <stages>
             <li>
@@ -14,7 +14,7 @@
     <Pawnmorph.AspectDef>
         <defName>Beastmaster</defName>
         <label>beastmaster</label>
-        <description>{PAWN_nameDef} enjoys begin around former humans</description> <!--temp description, need to redo this -->
+        <description>[PAWN_nameDef] likes the company of animals who were once people, and feels more at ease being around them.</description> <!--temp description, need to redo this -->
         <stages>
             <li></li>
         </stages>
