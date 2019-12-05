@@ -344,4 +344,22 @@
 			</li>
 		</stages>
 	</HediffDef>
+	<!--
+	<HediffDef ParentName="PawnmorphPartCombo">
+		<defName>PawnmorphTerrorspines</defName>
+		<description>[PAWN_nameDef]'s head is covered in jagged, serrated tusks, teeth and thorns that make headbutts from them very, very risky.</description>
+		<label>prototoxica</label>
+		<maxSeverity>1</maxSeverity>
+		<initialSeverity>0.01</initialSeverity>		
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Combination">
+				<amountRequired>2</amountRequired>
+				<requiredHediffs>
+					<li>EtherHorns</li>
+					<li>EtherTusks</li>
+				</requiredHediffs>
+			</li>
+		</comps>
+	</HediffDef>
+	-->
 </Defs>

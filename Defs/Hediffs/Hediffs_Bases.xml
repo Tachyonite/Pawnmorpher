@@ -56,4 +56,13 @@
 			</li>
 		</comps>
 	</HediffDef>
+
+	<HediffDef Name="PawnmorphPartCombo" Abstract="True" ParentName="PawnmorphPartNoRmComp">
+		<defaultLabelColor>(160, 55, 186)</defaultLabelColor>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
+				<layers>Core</layers>
+			</li>
+		</comps>
+	</HediffDef>
 </Defs>
