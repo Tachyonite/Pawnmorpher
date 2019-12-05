@@ -15,6 +15,7 @@
 							<xs:element name="hediff" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="showBubble" type="xs:boolean" minOccurs="0"/>
 							<xs:element name="icon" type="xs:string" minOccurs="0"/>
+							<xs:element name="validWhileDespawned" type="xs:boolean" minOccurs="0"/>
 							<xs:element name="requiredTraits" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>

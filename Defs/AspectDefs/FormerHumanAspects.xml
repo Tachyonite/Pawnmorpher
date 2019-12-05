@@ -10,4 +10,13 @@
             </li>
         </stages>
     </Pawnmorph.AspectDef>
+
+    <Pawnmorph.AspectDef>
+        <defName>Beastmaster</defName>
+        <label>beastmaster</label>
+        <description>{PAWN_nameDef} enjoys begin around former humans</description> <!--temp description, need to redo this -->
+        <stages>
+            <li></li>
+        </stages>
+    </Pawnmorph.AspectDef>
 </Defs>
