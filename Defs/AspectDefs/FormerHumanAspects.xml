@@ -1,0 +1,13 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
+    <Pawnmorph.AspectDef>
+        <defName>PrimalWish</defName>
+        <label>primal wish</label>
+        <description>{PAWN_nameDef} is envious of the simple, carefree life that animals have</description>
+        <transferToAnimal>true</transferToAnimal>
+        <stages>
+            <li>
+                <!-- any boosts for this? -->
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+</Defs>

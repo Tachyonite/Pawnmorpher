@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -38,7 +39,14 @@ namespace Pawnmorph
         /// <summary>
         /// if true, this aspect should be transferred to the new animal pawn if the original pawn has this aspect  
         /// </summary>
-        public bool transferToAnimal; 
+        public bool transferToAnimal;
+
+        /// <summary>
+        /// list of thoughts this aspect nullifies 
+        /// </summary>
+        [NotNull]
+        public List<ThoughtDef> nullifiedThoughts = new List<ThoughtDef>();  
+
 
         /// <summary>
         /// resolve all def references in this def, called after DefOfs are loaded 

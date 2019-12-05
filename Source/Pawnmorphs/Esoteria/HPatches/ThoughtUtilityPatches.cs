@@ -1,6 +1,7 @@
 ﻿// ThoughtUtilityPatches.cs modified by Iron Wolf for Pawnmorph on 12/02/2019 7:45 AM
 // last updated 12/02/2019  7:45 AM
 
+using System.Linq;
 using Harmony;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
@@ -19,6 +20,19 @@ namespace Pawnmorph.HPatches
             [UsedImplicitly]
             private static void CanGetThoughtPostfix([NotNull] Pawn pawn, [NotNull] ThoughtDef def, ref bool __result)
             {
+                var tracker = pawn.GetAspectTracker();
+                if (tracker != null)
+                {
+                    foreach (Aspect aspect in tracker)
+                    {
+                        if (aspect.NullifiedThoughts.Contains(def))
+                        {
+                            __result = false;
+                            break;
+                        } 
+                    }
+                }
+
                 var tGroup = def.GetModExtension<ThoughtGroupDefExtension>();
 
                 if (tGroup != null && !__result)

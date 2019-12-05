@@ -32,7 +32,12 @@ namespace Pawnmorph
         /// <summary>
         /// optional override to the aspects label color 
         /// </summary>
-        public Color? labelColor; 
+        public Color? labelColor;
+
+        /// <summary>
+        /// list of thoughts this aspect stage nullifies 
+        /// </summary>
+        [NotNull] public List<ThoughtDef> nullifiedThoughts = new List<ThoughtDef>(); 
 
         /// <summary>
         /// all capacity modifiers that will be active during this stage 

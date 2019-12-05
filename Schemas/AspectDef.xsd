@@ -2,6 +2,7 @@
 
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
     <xs:element name="Defs">
         <xs:complexType>
             <xs:sequence>
@@ -18,8 +19,8 @@
             <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
             <xs:element name="aspectType" type="xs:string" minOccurs="0" maxOccurs="1" />
             <xs:element name="labelColor" type="Color" minOccurs="0" maxOccurs="1" />
-            <xs:element name="removedByReverter" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="transferToAnimal" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="removedByReverter" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+            <xs:element name="transferToAnimal" type="xs:boolean" minOccurs="0" />
             <xs:element name="stages" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
@@ -27,18 +28,20 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="nullifiedThoughts" type="ListOfStrings" minOccurs="0" />
         </xs:all>
         <xs:attribute name="ParentName" type="xs:string" use="optional" />
         <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
         <xs:attribute name="Name" type="xs:string" use="optional" />
+
     </xs:complexType>
 
     <xs:complexType name="AspectStage">
-        <xs:sequence>
+        <xs:all>
             <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
             <xs:element name="modifier" type="xs:string" minOccurs="0" maxOccurs="1" />
             <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="labelColor" type="Color" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="labelColor" type="Color" minOccurs="0" maxOccurs="1" />
             <xs:element name="mentalBreakMtbDays" minOccurs="0" maxOccurs="1" />
             <xs:element name="capMods" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
@@ -57,14 +60,14 @@
             <xs:element name="statOffsets" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:any minOccurs="1" maxOccurs="unbounded" processContents="lax"/>
+                        <xs:any minOccurs="1" maxOccurs="unbounded" processContents="lax" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
             <xs:element name="mentalStateGivers" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="li" type="MentalStateGiver" minOccurs="1" maxOccurs="unbounded"/>
+                        <xs:element name="li" type="MentalStateGiver" minOccurs="1" maxOccurs="unbounded" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -75,7 +78,8 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-        </xs:sequence>
+            <xs:element name="nullifiedThoughts" type="ListOfStrings" minOccurs="0"/>
+        </xs:all>
     </xs:complexType>
 
     <xs:complexType name="PawnCapacityModifier">
@@ -99,7 +103,7 @@
 
     <xs:complexType name="MentalStateGiver">
         <xs:sequence>
-            <xs:element name="mentalState" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="mentalState" type="xs:string" minOccurs="1" maxOccurs="1" />
             <xs:element name="mtbDays" type="xs:float" minOccurs="1" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
@@ -107,17 +111,17 @@
     <xs:complexType name="ProductionBoost">
         <xs:sequence>
             <xs:element name="productionBoost" type="xs:float" minOccurs="1" maxOccurs="1" />
-            <xs:element name="hediffFilter" type="HediffFilter" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="hediffFilter" type="HediffFilter" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="HediffFilter">
         <xs:sequence>
-            <xs:element name="isBlackList" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="isBlackList" type="xs:boolean" minOccurs="0" maxOccurs="1" />
             <xs:element name="filterList" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="li" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        <xs:element name="li" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

@@ -118,6 +118,30 @@ namespace Pawnmorph
             protected set => _shouldRemove = value;
         }
 
+
+        /// <summary>
+        /// Gets all thoughts nullified by this aspect.
+        /// </summary>
+        /// <value>
+        /// The nullified thoughts.
+        /// </value>
+        [NotNull]
+        public IEnumerable<ThoughtDef> NullifiedThoughts
+        {
+            get
+            {
+                foreach (ThoughtDef defNullifiedThought in def.nullifiedThoughts)
+                {
+                    yield return defNullifiedThought; 
+                }
+
+                foreach (ThoughtDef currentStageNullifiedThought in CurrentStage.nullifiedThoughts)
+                {
+                    yield return currentStageNullifiedThought; 
+                }
+            }
+        }
+
         /// <summary>
         /// list of all stages in this Aspect 
         /// </summary>
