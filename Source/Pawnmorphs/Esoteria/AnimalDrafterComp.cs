@@ -51,10 +51,14 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// called to initialize this comp
+        /// </summary>
+        /// <param name="props">The props.</param>
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            Log.Message($"{nameof(AnimalDrafterComp)} added!");
+            
         }
 
         /// <summary>

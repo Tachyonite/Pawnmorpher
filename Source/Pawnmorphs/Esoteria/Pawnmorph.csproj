@@ -89,6 +89,7 @@
     <Compile Include="CompTargetEffect_TfResurrect.cs" />
     <Compile Include="Comp_MutagenicFixWorstCondition.cs" />
     <Compile Include="Comp_MutaniteBed.cs" />
+    <Compile Include="Comp_SapientAnimal.cs" />
     <Compile Include="CustomBodyAddon.cs" />
     <Compile Include="Damage\MutagenicDamageExtension.cs" />
     <Compile Include="Damage\MutagenicDamageUtilities.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
+    <Compile Include="SapientAnimalMentalBreaker.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="FactionUtilities.cs" />

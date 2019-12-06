@@ -22,6 +22,17 @@ namespace Pawnmorph
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
         private static readonly PawnKindDef[] PossiblePawnKinds;
 
+        /// <summary>
+        /// Gets the sapient animal comp.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static Comp_SapientAnimal GetSapientAnimalComp([NotNull] this Pawn pawn)
+        {
+            return pawn.TryGetComp<Comp_SapientAnimal>();
+        }
+
         [NotNull]
         private static MutagenDamageProperties DefaultDamageValues { get; }
 
