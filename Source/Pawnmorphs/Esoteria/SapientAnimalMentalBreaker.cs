@@ -45,7 +45,7 @@ namespace Pawnmorph
         {
             AllSapientAnimalMentalBreaks = DefDatabase<MentalBreakDef>
                                           .AllDefsListForReading
-                                          .Where(d => d.GetModExtension<SapientAnimalRestriction>()?.isForbidden == false)
+                                          .Where(d => d.GetModExtension<FormerHumanRestriction>()?.mustBeFormerHuman== true)
                                           .ToList(); //grab all mental breaks marked for sapient animals and store them for later 
         }
 

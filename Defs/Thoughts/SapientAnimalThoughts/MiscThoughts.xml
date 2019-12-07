@@ -12,7 +12,7 @@
             </li>
         </stages>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for former humans -->
             </li>
         </modExtensions>
     </ThoughtDef>
@@ -30,7 +30,7 @@
             </li>
         </stages>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for sapient animals -->
                 <raceFilter>
                     <isBlackList>true</isBlackList>
                     <filterList>
@@ -56,7 +56,7 @@
             </li>
         </stages>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for sapient animals -->
                 <raceFilter>
                     <isBlackList>false</isBlackList>
                     <filterList>
@@ -80,7 +80,7 @@
             </li>
         </stages>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for sapient animals -->
                 <raceFilter>
                     <isBlackList>false</isBlackList>
                     <filterList>
@@ -103,7 +103,7 @@
             </li>
         </stages>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for sapient animals -->
             </li>
         </modExtensions>
     </ThoughtDef>
@@ -119,7 +119,7 @@
             </li>
         </stages>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for sapient animals -->
             </li>
         </modExtensions>
     </ThoughtDef>
@@ -135,7 +135,7 @@
             </li>
         </stages>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"> <!-- this thought is now only valid for sapient animals -->
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for sapient animals -->
             </li>
         </modExtensions>
     </ThoughtDef>

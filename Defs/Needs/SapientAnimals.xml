@@ -14,7 +14,8 @@
         <freezeWhileSleeping>true</freezeWhileSleeping>
         <showForCaravanMembers>true</showForCaravanMembers>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction"></li>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+            </li>
         </modExtensions>
     </NeedDef>
 </Defs>
