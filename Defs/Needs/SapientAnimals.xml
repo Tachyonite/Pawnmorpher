@@ -1,4 +1,5 @@
 <Defs>
+    <!--
     <NeedDef>
         <defName>SapientAnimalControl</defName>
         <needClass>Pawnmorph.Need_Control</needClass>
@@ -18,4 +19,5 @@
             </li>
         </modExtensions>
     </NeedDef>
+    -->
 </Defs>

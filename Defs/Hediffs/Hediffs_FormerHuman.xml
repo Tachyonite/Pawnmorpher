@@ -5,11 +5,6 @@
 		<description>[PAWN_defName] used to be a human, but by whatever means has now been transformed into this current form. In this state, [PAWN_pronoun] can be reverted.</description>
 		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
 		<label>former human</label>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.002</severityPerDay>  <!-- UH OH, AFTER A LONG ENOUGH TIME THEY CAN LOSE THE ABILITY TO TURN BACK!! -->
-			</li>
-		</comps>
 		<stages>
 			<li>
 				<minSeverity>0</minSeverity>
@@ -31,7 +26,7 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.80</minSeverity>
+				<minSeverity>0.64</minSeverity>
 				<label>sapient</label>
 				<capMods>
 					<li>
@@ -39,36 +34,6 @@
 						<offset>-0.1</offset>
 					</li>
 				</capMods>
-				<mentalStateGivers>
-					<li>
-						<mentalState>WanderConfused</mentalState>
-						<mtbDays>5</mtbDays>
-					</li>
-					<li>
-						<mentalState>Wander_Psychotic</mentalState>
-						<mtbDays>3</mtbDays>
-					</li>
-					<li>
-						<mentalState>Wander_Sad</mentalState>
-						<mtbDays>15</mtbDays>
-					</li>
-				</mentalStateGivers>
-			</li>
-			<li>
-				<minSeverity>0.99</minSeverity>
-				<label>driven mad</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.3</offset>
-					</li>
-				</capMods>
-				<mentalStateGivers>
-					<li>
-						<mentalState>ManhunterPermanent</mentalState>
-						<mtbDays>0.01</mtbDays>
-					</li>
-				</mentalStateGivers>
 			</li>
 		</stages>		
 	</HediffDef>

@@ -11,7 +11,7 @@ namespace Pawnmorph
     /// <summary>
     ///     need that represents a sapient animal's control or humanity left
     /// </summary>
-    public class Need_Control : Need
+    public class Need_Control : Need //TODO make this instinct based not control based 
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Need_Control"/> class.
