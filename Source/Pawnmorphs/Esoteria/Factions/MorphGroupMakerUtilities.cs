@@ -135,9 +135,12 @@ namespace Pawnmorph.Factions
             }
 
             if (setAtMaxStage)
-                foreach (Hediff hediff in allAdded)
+                foreach (var hediff in allAdded.OfType<Hediff_AddedMutation>())
                 {
                     if (hediff.pawn == null) continue; //sometimes the hediffs are removed by other mutations 
+
+                    if(hediff.TryGetComp<HediffComp_Production>()!=null) continue; //do not increase production hediffs 
+
                     HediffStage lastStage = hediff.def.stages?.LastOrDefault();
                     if (lastStage == null) continue;
                     float severity = lastStage.minSeverity + 0.01f;
