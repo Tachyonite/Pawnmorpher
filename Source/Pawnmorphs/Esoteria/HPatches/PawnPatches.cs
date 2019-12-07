@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Harmony;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using RimWorld;
 using Verse;
 
@@ -37,7 +38,11 @@ namespace Pawnmorph.HPatches
             [HarmonyPostfix]
             static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
             {
-                if (__result) return;
+                if (__result)
+                {
+                    __result = nd.IsValidFor(___pawn);
+                    return;
+                }
                 if (___pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return; 
                 //var isColonist = ___pawn.Faction?.IsPlayer == true;
                 if (nd.defName == "Mood")

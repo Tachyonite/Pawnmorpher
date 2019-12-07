@@ -1,6 +1,7 @@
 ﻿// PMStatDefOf.cs modified by Iron Wolf for Pawnmorph on 12/01/2019 9:01 AM
 // last updated 12/01/2019  9:01 AM
 
+using System.Security.Policy;
 using JetBrains.Annotations;
 using RimWorld;
 
@@ -21,6 +22,21 @@ namespace Pawnmorph
         /// default value is 1 
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
         public static StatDef MutationAdaptability;
+
+        /// <summary>
+        /// stat that controls how large a change in control is caused by a change in instinct  
+        /// </summary>
+        /// use the inverse of this value to get the multiplier 
+        [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
+        public static StatDef SapientAnimalA;
+
+        /// <summary>
+        /// stat that influences the amount of control a sapient animal has before going feral  
+        /// </summary>
+        [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
+        public static StatDef SapientAnimalResistance;
+
+
 
         static PMStatDefOf()
         {

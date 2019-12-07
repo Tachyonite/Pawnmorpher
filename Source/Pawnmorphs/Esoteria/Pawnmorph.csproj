@@ -117,6 +117,7 @@
     <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
+    <Compile Include="HPatches\MentalBreakPatches.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="HPatches\PlantGrowingPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="InstinctUtilities.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_TerrainProduction.cs" />
     <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Jobs\Giver_MilkSelf.cs" />
     <Compile Include="Jobs\Giver_ShaveSelf.cs" />
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
+    <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
