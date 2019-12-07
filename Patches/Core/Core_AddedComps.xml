@@ -41,27 +41,5 @@
 			</li>
 		</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]</xpath>
-			<value>
-				<comps>
-					<li>
-						<compClass>Pawnmorph.Comp_SapientAnimal</compClass>
-					</li>
-				</comps>
-			</value>
-		</nomatch>
-		<match Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
-			<value>
-				<li>
-					<compClass>Pawnmorph.Comp_SapientAnimal</compClass>
-				</li>
-			</value>
-		</match>
-	</Operation>
-	
+		
 </Patch>

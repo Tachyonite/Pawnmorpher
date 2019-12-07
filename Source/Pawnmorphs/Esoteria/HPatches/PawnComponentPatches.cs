@@ -24,19 +24,18 @@ namespace Pawnmorph.HPatches
                     Hediff formerHumanHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
                     if (formerHumanHediff?.CurStageIndex == 2)
                     {
-                        AddHumanComponents(pawn);
+                        AddSapientAnimalComponents(pawn);
                     }
                     else if (formerHumanHediff?.CurStageIndex < 2 && pawn.drafter != null)
                     {
-                        Log.Message($"removing drafter from {pawn.Name}");
-                        //remove the drafter component if the animal is now feral 
-                        RemoveHumanComponents(pawn); 
+                        //remove sapient animal comps if the animal is now feral 
+                        RemoveSapientAnimalComponents(pawn); 
 
                     }
                 }
             }
 
-            private static void RemoveHumanComponents(Pawn pawn)
+            private static void RemoveSapientAnimalComponents(Pawn pawn)
             {
                 Log.Message($"removing drafter from {pawn.Name}");
                 //remove the drafter component if the animal is now feral 
@@ -57,11 +56,15 @@ namespace Pawnmorph.HPatches
                 pawn.equipment = null;
                 pawn.story = null;
                 pawn.skills = null;
-                pawn.jobs = null; 
-                
+                pawn.jobs = null;
+                var saComp = pawn.GetComp<Comp_SapientAnimal>();
+                if (saComp != null)
+                {
+                    pawn.AllComps.Remove(saComp); 
+                }
             }
 
-            private static void AddHumanComponents(Pawn pawn)
+            private static void AddSapientAnimalComponents(Pawn pawn)
             {
                 //add the drafter and equipment components 
                 //if 
@@ -76,8 +79,6 @@ namespace Pawnmorph.HPatches
                     if (pawn.workSettings == null)
                     {
                         pawn.workSettings = new Pawn_WorkSettings(pawn);
-                       
-                         
                     }
                 }
 
@@ -85,11 +86,29 @@ namespace Pawnmorph.HPatches
                 pawn.story = pawn.story ?? new Pawn_StoryTracker(pawn); //need to add story component to not break hospitality 
                 pawn.apparel = pawn.apparel ?? new  Pawn_ApparelTracker(pawn); //need this to not break thoughts and stuff 
                 pawn.skills = pawn.skills ?? new Pawn_SkillTracker(pawn); //need this for thoughts 
+                Comp_SapientAnimal nComp = pawn.GetComp<Comp_SapientAnimal>();
+                bool addedComp = false;
+                
+                if (nComp == null)
+                {
+                    addedComp = true; 
+                    nComp = new Comp_SapientAnimal {parent = pawn};
+                    pawn.AllComps.Add(nComp); 
+
+                }
+
+
 
                 if (pawn.Faction?.IsPlayer == true && pawn.workSettings != null) //make sure to initialize only after adding all the comps 
                 {
                     pawn.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
                     pawn.workSettings.DisableAll();
+                }
+
+                //now initialize the comp 
+                if (addedComp)
+                {
+                    nComp.Initialize(new CompProperties());//just pass in empty props 
                 }
                 
             }

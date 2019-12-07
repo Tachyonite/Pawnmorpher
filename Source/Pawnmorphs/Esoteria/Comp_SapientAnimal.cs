@@ -36,6 +36,17 @@ namespace Pawnmorph
 
         private int _instinctLevelRaw;
 
+       
+
+        /// <summary>
+        /// called every tick 
+        /// </summary>
+        public override void CompTick()
+        {
+            base.CompTick();
+            _mentalBreaker?.Tick();
+        }
+
         /// <summary>
         /// Initializes this comp
         /// </summary>

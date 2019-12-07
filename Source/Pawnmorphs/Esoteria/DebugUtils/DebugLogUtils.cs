@@ -41,6 +41,27 @@ namespace Pawnmorph.DebugUtils
 
 
         [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
+        internal static void GetAllPawnsOnMapWithSAComp()
+        {
+            var cMap = Find.AnyPlayerHomeMap;
+            if (cMap == null) return;
+            StringBuilder builder = new StringBuilder(); 
+            foreach (Pawn allMapPawns in cMap.mapPawns.AllPawns)
+            {
+                var saComp = allMapPawns.GetComp<Comp_SapientAnimal>();
+                if(saComp == null)
+                {
+                    continue;
+                }
+
+                builder.AppendLine($"{allMapPawns.Name?.ToStringFull ?? allMapPawns.LabelShort} has a {nameof(Comp_SapientAnimal)} attached");
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
+        [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]
         public static void FindAllTODOThoughts()
         {
