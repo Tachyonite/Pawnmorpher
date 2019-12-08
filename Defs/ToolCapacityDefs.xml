@@ -9,4 +9,8 @@
     <ToolCapacityDef>
         <defName>MutagenicPoke</defName>
     </ToolCapacityDef>
+
+    <ToolCapacityDef>
+        <defName>MutagenicStun</defName>
+    </ToolCapacityDef>
 </Defs>

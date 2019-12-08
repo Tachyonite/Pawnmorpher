@@ -20,6 +20,70 @@
 		</gas>
 	</ThingDef>
 
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>Mutarifle</defName>
+        <label>mutarifle</label>
+        <description>TODO</description>
+        <graphicData>
+            <texPath>Things/Item/mutarifle_1</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_Revolver</soundInteract>
+        <statBases>
+            <MarketValue>650</MarketValue>
+            <WorkToMake>8000</WorkToMake>
+            <Mass>1.2</Mass>
+            <AccuracyTouch>0.90</AccuracyTouch>
+            <AccuracyShort>0.65</AccuracyShort>
+            <AccuracyMedium>0.45</AccuracyMedium>
+            <AccuracyLong>0.35</AccuracyLong>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+        </statBases>
+        <recipeMaker>
+            <researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>8</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <costList>
+            <Mutanite>5</Mutanite>
+            <Steel>50</Steel>
+            <ComponentIndustrial>3</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>XM_MutagenicBullet</defaultProjectile>
+                <warmupTime>0.3</warmupTime>
+                <range>25.9</range>
+                <soundCast>Shot_Autopistol</soundCast>
+                <burstShotCount>3</burstShotCount>
+                <soundCastTail>GunTail_Light</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <label>grip</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+	</ThingDef>
+
 	<ThingDef Class="EtherGun.ThingDef_EtherBullet" ParentName="BaseBullet">
 		<defName>Bullet_EtherGun</defName>
 		<thingClass>EtherGun.Projectile_EtherBullet</thingClass>

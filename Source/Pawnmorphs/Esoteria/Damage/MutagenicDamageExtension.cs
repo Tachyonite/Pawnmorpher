@@ -36,7 +36,7 @@ namespace Pawnmorph.Damage
                 yield return configError; 
             }
 
-            if (mutagenicBuildup == null) yield return "no hediff set"; 
+            if (mutagenicBuildup == null) yield return "no mutagenic buildup hediff set"; 
         }
     }
 }
