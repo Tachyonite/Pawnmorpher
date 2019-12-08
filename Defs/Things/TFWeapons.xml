@@ -23,7 +23,7 @@
 	<ThingDef ParentName="BaseHumanMakeableGun">
 		<defName>Mutarifle</defName>
         <label>mutarifle</label>
-        <description>TODO</description>
+        <description>A rifle that fires balls of jellied mutanite, which mutate on contact.</description>
         <graphicData>
             <texPath>Things/Item/mutarifle_1</texPath>
             <graphicClass>Graphic_Single</graphicClass>
