@@ -1,0 +1,20 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalBreakDef[defName="Tantrum"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"></li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalBreakDef[defName="TargetedTantrum"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"></li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalBreakDef[defName="Wander_Sad"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"></li>
+        </value>
+    </Operation>
+</Patch>

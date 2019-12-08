@@ -14,7 +14,15 @@ namespace Pawnmorph
     /// <seealso cref="Verse.ThingComp" />
     public class Comp_SapientAnimal : ThingComp
     {
-        private SapientAnimalMentalBreaker _mentalBreaker; 
+        private SapientAnimalMentalBreaker _mentalBreaker;
+
+        /// <summary>
+        /// Gets the mental breaker.
+        /// </summary>
+        /// <value>
+        /// The mental breaker.
+        /// </value>
+        public SapientAnimalMentalBreaker MentalBreaker => _mentalBreaker; 
 
         [NotNull]
         Pawn Pawn

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
+using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;
@@ -41,12 +43,17 @@ namespace Pawnmorph
 
         private int _ticksUntilCanDoMentalBreak;
 
+        [NotNull] private static readonly List<MentalBreakDef> _allSapientAnimalBreaks; 
+
         static SapientAnimalMentalBreaker()
         {
-            AllSapientAnimalMentalBreaks = DefDatabase<MentalBreakDef>
+            _allSapientAnimalBreaks = DefDatabase<MentalBreakDef>
                                           .AllDefsListForReading
                                           .Where(d => d.GetModExtension<FormerHumanRestriction>()?.mustBeFormerHuman== true)
                                           .ToList(); //grab all mental breaks marked for sapient animals and store them for later 
+
+        
+
         }
 
         /// <summary>
@@ -160,7 +167,7 @@ namespace Pawnmorph
         ///     All sapient animal mental breaks.
         /// </value>
         [NotNull]
-        public static IEnumerable<MentalBreakDef> AllSapientAnimalMentalBreaks { get; }
+        public static IEnumerable<MentalBreakDef> AllSapientAnimalMentalBreaks => _allSapientAnimalBreaks;
 
         /// <summary>
         ///     Gets the pawn this thing is attached to.
@@ -177,7 +184,7 @@ namespace Pawnmorph
         /// <value>
         ///     <c>true</c> if this instance can do random mental breaks; otherwise, <c>false</c>.
         /// </value>
-        private bool CanDoRandomMentalBreaks => Pawn.RaceProps.Humanlike && (Pawn.Spawned || Pawn.IsCaravanMember());
+        private bool CanDoRandomMentalBreaks => (Pawn.Spawned || Pawn.IsCaravanMember());
 
         private MentalBreakIntensity CurrentDesiredMoodBreakIntensity
         {
@@ -190,8 +197,14 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// Gets the current possible mood breaks.
+        /// </summary>
+        /// <value>
+        /// The current possible mood breaks.
+        /// </value>
         [NotNull]
-        private IEnumerable<MentalBreakDef> CurrentPossibleMoodBreaks
+        public IEnumerable<MentalBreakDef> CurrentPossibleMoodBreaks
         {
             get
             {
@@ -251,6 +264,7 @@ namespace Pawnmorph
 
             if (CanDoRandomMentalBreaks && Pawn.MentalStateDef == null && Pawn.IsHashIntervalTick(MENTAL_BREAK_HASH_INTERVAL))
             {
+
                 if (!DebugSettings.enableRandomMentalStates) return; 
 
                 if (CurMood < BreakThresholdExtreme)
@@ -284,6 +298,7 @@ namespace Pawnmorph
         /// <exception cref="NotImplementedException"></exception>
         public bool TryDoRandomMoodCausedMentalBreak()
         {
+
             if (!CanDoRandomMentalBreaks || Pawn.Downed || !Pawn.Awake() || Pawn.InMentalState) return false;
             if (Pawn.Faction != Faction.OfPlayer && CurrentDesiredMoodBreakIntensity != MentalBreakIntensity.Extreme)
                 return false;
