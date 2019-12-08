@@ -128,7 +128,7 @@
 	<ThingDef ParentName="BaseHumanMakeableGun">
 		<defName>TST_Gun_EtherGun</defName>
 		<label>Mutagun</label>
-		<description>Forged from mutanite and charged with mutagenic syringes, the Ether Lance can force a person hit by it to begin to mutate.</description>
+		<description>Forged from mutanite and charged with mutagenic syringes, the Mutagun can force a person hit by it to begin to mutate.</description>
 		<graphicData>
 			<texPath>Things/Item/TFGun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
