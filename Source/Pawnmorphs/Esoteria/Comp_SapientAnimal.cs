@@ -5,6 +5,7 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace Pawnmorph
 {
@@ -14,6 +15,7 @@ namespace Pawnmorph
     /// <seealso cref="Verse.ThingComp" />
     public class Comp_SapientAnimal : ThingComp
     {
+     
         private SapientAnimalMentalBreaker _mentalBreaker;
 
         /// <summary>
@@ -22,6 +24,7 @@ namespace Pawnmorph
         /// <value>
         /// The mental breaker.
         /// </value>
+        [NotNull]
         public SapientAnimalMentalBreaker MentalBreaker => _mentalBreaker; 
 
         [NotNull]
@@ -44,7 +47,16 @@ namespace Pawnmorph
 
         private int _instinctLevelRaw;
 
-       
+
+        /// <summary>
+        /// call this to notify the comp that the attached pawn has recovered from the given mental state 
+        /// </summary>
+        /// <param name="state">The state.</param>
+        public void Notify_RecoveredFromState([NotNull] MentalState state)
+        {
+            _mentalBreaker?.NotifyRecoveredFromMentalBreak();
+        }
+
 
         /// <summary>
         /// called every tick 

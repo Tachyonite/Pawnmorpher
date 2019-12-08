@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
+using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Thoughts;
@@ -38,6 +39,35 @@ namespace Pawnmorph.DebugUtils
         {
             if (!condition) Log.Error($"assertion failed:{message}");
         }
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
+        static void GetAllBreakingPawns()
+        {
+            Log.Message($"checked pawns: {FormerHumanUtilities.AllPlayerFormerHumans.Select(p => p.Name?.ToStringFull ?? p.LabelShort).Join(",")}");
+
+            StringBuilder builder = new StringBuilder();
+            foreach (Pawn pawn in FormerHumanUtilities.AllSapientAnimalsMinorBreakRisk)
+            {
+                if(pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) continue;
+                builder.AppendLine($"{pawn.Name}: minor break risk");
+            }
+
+            foreach (Pawn pawn in FormerHumanUtilities.AllSapientAnimalsMajorBreakRisk)
+            {
+                if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) continue;
+                builder.AppendLine($"{pawn.Name}: major break risk");
+            }
+
+            foreach (Pawn pawn in FormerHumanUtilities.AllSapientAnimalsExtremeBreakRisk)
+            {
+                if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) continue;
+                builder.AppendLine($"{pawn.Name}: major break risk");
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
 
 
         [DebugOutput]
