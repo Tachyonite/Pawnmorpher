@@ -12,7 +12,7 @@
             <damageDef>MutagenCloud_Large</damageDef>
             <explosionRadius>8.5</explosionRadius>
             <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-            <damageAmountBase>10</damageAmountBase>
+            <damageAmountBase>12</damageAmountBase>
             <speed>55</speed>
             <explosionDamageFalloff>true</explosionDamageFalloff>
         </projectile>
