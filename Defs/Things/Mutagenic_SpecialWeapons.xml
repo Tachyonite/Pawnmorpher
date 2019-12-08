@@ -2,7 +2,7 @@
     <ThingDef ParentName="BaseGun">
         <defName>Gun_MutagenicRocketLauncher</defName>
         <label>mutagenic rocket launcher</label>
-        <description>A single-use rocket launcher that fires a massive mutagenci explosive projectile. Good against large groups of soft targets. \n\nBecause of its unwieldiness, single-use limitation, and the massive destruction it causes, it's said that one must be slightly crazy to use this weapon.</description>
+        <description>A single-use rocket launcher that fires a massive mutagenic explosive projectile. Good against large groups targets.\n\nVery rapidly mutates anyone caught in the blast radius which is a very painful situation to be in.</description>
         <tickerType>Normal</tickerType>
         <techLevel>Spacer</techLevel>
         <graphicData>
@@ -65,7 +65,7 @@
     <ThingDef ParentName="BaseMeleeWeapon_Blunt_Quality">
         <defName>MeleeWeapon_MutagenicStunStick</defName>
         <label>mutagenic stun stick</label>
-        <description>TODO</description>
+        <description>Electricity hums through a machined crystalline form of mutanite, causing mutations in anyone struck by it as well as stunning them with a shock.</description>
         <graphicData>
             <texPath>Things/Item/mutaprod</texPath>
             <graphicClass>Graphic_Single</graphicClass>
