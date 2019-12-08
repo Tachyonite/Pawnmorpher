@@ -3,7 +3,7 @@
         <defName>XM_MutagenicBullet</defName>
         <label>XM_MutagenicBullet</label>
         <graphicData>
-            <texPath>Things/Projectiles/GelCapsule</texPath>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <projectile>
