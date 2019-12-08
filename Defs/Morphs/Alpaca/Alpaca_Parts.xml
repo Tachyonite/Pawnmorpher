@@ -9,8 +9,8 @@
 
 	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaSnout</defName>
-		<label>woolly snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting.</description>
+		<label>wooly snout</label>
+		<description>A snout graces [PAWN_nameDef]'s face, wooly and with lips perfect for spitting.</description>
 		<stages>
 			<li>
 				<capMods>
@@ -82,7 +82,7 @@
 	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaEar</defName>
 		<label>woolen</label>
-		<description>Woolly ears twitch at the wind, idly.</description>
+		<description>Wooly ears twitch at the wind, idly.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
@@ -92,13 +92,13 @@
 
 	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaTail</defName>
-		<label>woolly tail</label>
-		<description>A woolly tail, it feels like a cloud.</description>
+		<label>wooly tail</label>
+		<description>A wooly tail, it feels like a cloud.</description>
 	</HediffDef>
 
 	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherWooly</defName>
-		<label>woolly</label>
+		<label>wooly</label>
 		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent alpacamorph that don't need no man.</description>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>		

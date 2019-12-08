@@ -6,7 +6,7 @@
     <Pawnmorph.AspectDef ParentName="CanidAspect">
         <defName>NaturalHunter</defName>
         <label>natural hunter</label>
-        <description>{PAWN_nameDef} is now a natural hunter</description>
+        <description>{PAWN_nameDef}'s mind is now instinctively attuned to the methods of hunting.</description>
         <stages>
             <li>
                 <skillMods>
