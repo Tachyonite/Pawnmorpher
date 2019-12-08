@@ -11,7 +11,7 @@
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
-                        <offset>-0.30</offset>
+                        <offset>-0.20</offset>
                     </li>
                 </capMods>
             </li>
@@ -99,7 +99,7 @@
     <Pawnmorph.AspectDef>
         <defName>Afflicted</defName>
         <label>afflicted</label>
-        <description>{PAWN_nameDef} not only never adapts to new mutations, there mutations sometimes degrade into worse versions</description>
+        <description>{PAWN_nameDef} not only never adapts to new mutations, their mutations sometimes degrade into worse versions</description>
         <stages>
             <li>
                 <statOffsets>

@@ -1,38 +1,38 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Horses (1.0)</li>
+			<li>Vanilla Animals Expanded — Livestock</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[1]/hediffGraphics</xpath>
 					<value>
-						<EtherHorseSnout>Parts/horseface/horseface</EtherHorseSnout>
+						<EtherSheepSnout>Parts/sheepface/sheepface2</EtherSheepSnout>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[2]/hediffGraphics</xpath>
 					<value>
-						<EtherHorseSnout>Parts/horseface/horseface</EtherHorseSnout>
+						<EtherSheepSnout>Parts/sheepface/sheepface2</EtherSheepSnout>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[3]/hediffGraphics</xpath>
 					<value>
-						<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
+						<EtherSheepEar>Parts/sheepface/sheepears</EtherSheepEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[4]/hediffGraphics</xpath>
 					<value>
-						<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
+						<EtherSheepEar>Parts/sheepface/sheepears</EtherSheepEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[5]/hediffGraphics</xpath>
 					<value>
-						<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
+						<EtherSheepTail>Parts/sheepface/sheeptail</EtherSheepTail>
 					</value>
 				</li>
 				<!--Hediffs-->
@@ -41,35 +41,35 @@
 					<value>
 						<!--Morph Def-->
 						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
-							<defName>HorseMorph</defName>
-							<label>horsemorph</label>
-							<race>QuarterHorse</race>
+							<defName>SheepMorph</defName>
+							<label>sheepmorph</label>
+							<race>AEXP_Sheep</race>
 							<categories>
 								<li>Farm</li>
 							</categories>
 						</Pawnmorph.MorphDef>
 						<!--Morph Reaction-->
 						<ThoughtDef>
-							<defName>EtherReactionHorseTF</defName>
+							<defName>EtherReactionSheepTF</defName>
 							<workerClass>ThoughtWorker_Hediff</workerClass>
-							<hediff>PawnmorphHorseTF</hediff>
+							<hediff>PawnmorphSheepTF</hediff>
 							<stages>
 								<li>
 									<label>changed</label>
-									<description>N...neigh!?</description>
+									<description>B...baa-aaaaa?</description>
 									<baseMoodEffect>-3</baseMoodEffect>
 								</li>
 								<li>
 									<label>feeling odd</label>
-									<description>I feel like I should be pulling a plough...or galloping across a steppe.</description>
+									<description>I feel like I should be grazing a field...or sticking to a herd.</description>
 									<baseMoodEffect>-5</baseMoodEffect>
 								</li>
 							</stages>
 						</ThoughtDef>
 						<!--Full Morph-->
 						<HediffDef ParentName="MorphParent">
-							<defName>PawnmorphHorseTF</defName>
-							<label>horsemorph</label>
+							<defName>PawnmorphSheepTF</defName>
+							<label>sheepmorph</label>
 							<stages>
 								<li>
 									<label>reeling</label>
@@ -85,10 +85,7 @@
 										<li Class="Pawnmorph.HediffGiver_TF">
 											<hediff>TransformedHuman</hediff>
 											<pawnkinds>
-												<li>QuarterHorse</li>
-												<li>BlackHorse</li>
-												<li>WhiteHorse</li>
-												<li>Palomino</li>
+												<li>AEXP_Sheep</li>
 											</pawnkinds>
 											<tale>TransformationMisc</tale>
 										</li>
@@ -135,14 +132,14 @@
 									</capMods>
 									<hediffGivers>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHorseSnout</hediff>
+											<hediff>EtherSheepSnout</hediff>
 											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHorseEar</hediff>
+											<hediff>EtherSheepEar</hediff>
 											<mtbDays>1</mtbDays>
 											<partsToAffect>
 												<li>Ear</li>
@@ -150,7 +147,7 @@
 											<countToAffect>2</countToAffect>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHorseTail</hediff>
+											<hediff>EtherSheepTail</hediff>
 											<mtbDays>1</mtbDays>
 											<partsToAffect>
 												<li>Tail</li>
@@ -158,7 +155,7 @@
 											<tale>GrewTail</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHideLimb</hediff>
+											<hediff>EtherFurredLimb</hediff>
 											<mtbDays>2</mtbDays>
 											<partsToAffect>
 												<li>Arm</li>
@@ -184,7 +181,7 @@
 											<tale>LegBecameDigitgrade</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherUnclovenHoofFoot</hediff>
+											<hediff>EtherClovenHoofFoot</hediff>
 											<mtbDays>3</mtbDays>
 											<partsToAffect>
 												<li>Foot</li>
@@ -197,8 +194,8 @@
 						</HediffDef>
 						<!--Partial Morph-->
 						<HediffDef ParentName="MorphParent">
-							<defName>PawnmorphHorseTFPartial</defName>
-							<label>horsemorph partial</label>
+							<defName>PawnmorphSheepTFPartial</defName>
+							<label>sheepmorph partial</label>
 							<stages>
 								<li>
 									<painOffset>0.1</painOffset>
@@ -219,14 +216,14 @@
 									</capMods>
 									<hediffGivers>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHorseSnout</hediff>
+											<hediff>EtherSheepSnout</hediff>
 											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHorseEar</hediff>
+											<hediff>EtherSheepEar</hediff>
 											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Ear</li>
@@ -234,7 +231,7 @@
 											<countToAffect>2</countToAffect>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHorseTail</hediff>
+											<hediff>EtherSheepTail</hediff>
 											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Tail</li>
@@ -259,7 +256,7 @@
 											<tale>LegBecameDigitgrade</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherUnclovenHoofFoot</hediff>
+											<hediff>EtherClovenHoofFoot</hediff>
 											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Foot</li>
@@ -271,17 +268,85 @@
 							</stages>
 						</HediffDef>
 						<!--Morph Parts-->
-						<HediffDef Name="HorsePart" ParentName="PawnmorphPart" Abstract="True">
+						<HediffDef Name="SheepPart" ParentName="PawnmorphPart" Abstract="True">
 							<comps>
 								<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-									<morph>HorseMorph</morph>
+									<morph>SheepMorph</morph>
 								</li>
 							</comps>
 						</HediffDef>
-						<HediffDef ParentName="HorsePart">
-							<defName>EtherHorseSnout</defName>
-							<label>equine snout</label>
-							<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_pronoun] teeth are squared off, and this makes speaking more difficult, yet eating is easier.</description>
+						<HediffDef ParentName="AlpacaPart">
+							<defName>EtherWoolySheep</defName>
+							<label>wooly</label>
+							<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent sheepmorph that don't need no man.</description>
+							<maxSeverity>1</maxSeverity>
+							<initialSeverity>0.01</initialSeverity>		
+							<comps>
+								<li Class="Pawnmorph.HediffCompProperties_Production">
+									<thought>ShavedMyself</thought>
+									<etherBondThought>ShavedMyselfBond</etherBondThought>
+									<etherBrokenThought>ShavedMyselfBroken</etherBrokenThought>
+									<stages>
+										<li>
+											<daysToProduce>1</daysToProduce>
+											<amount>5</amount>
+											<resource>AEXP_WoolSheep</resource>
+										</li>
+										<li>
+											<daysToProduce>0.5</daysToProduce>
+											<amount>4</amount>
+											<resource>AEXP_WoolSheep</resource>
+										</li>
+										<li>
+											<daysToProduce>0.25</daysToProduce>
+											<amount>3</amount>
+											<resource>AEXP_WoolSheep</resource>
+										</li>
+										<li>
+											<daysToProduce>0.1</daysToProduce>
+											<amount>2</amount>
+											<resource>AEXP_WoolSheep</resource>
+											<thought>ProductiveBliss</thought>
+										</li>
+									</stages>
+								</li>
+							</comps>
+							<stages>
+								<li>
+									<minSeverity>0</minSeverity>
+									<hungerRateFactor>1.0</hungerRateFactor>
+								</li>
+								<li>
+									<minSeverity>0.3</minSeverity>
+									<hungerRateFactor>1.3</hungerRateFactor>
+									<label>productive</label>
+								</li>
+								<li>
+									<minSeverity>0.6</minSeverity>
+									<hungerRateFactor>1.6</hungerRateFactor>
+									<label>very productive</label>
+								</li>
+								<li>
+									<minSeverity>0.9</minSeverity>
+									<hungerRateFactor>2.0</hungerRateFactor>
+									<label>productive bliss</label>
+									<hediffGivers>
+										<li Class="HediffGiver_RandomDrugEffect">
+											<hediff>CatatonicBreakdown</hediff>
+											<minSeverity>0.50</minSeverity>
+											<baseMtbDays>2</baseMtbDays>
+											<partsToAffect>
+												<li>Brain</li>
+											</partsToAffect>
+										</li>
+									</hediffGivers>
+								</li>
+							</stages>
+						</HediffDef>
+						<HediffDef ParentName="SheepPart">
+							<defName>EtherSheepSnout</defName>
+							<label>ovine snout</label>
+							<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_pronoun] teeth are squared off, and this makes speaking more difficult, yet eating is easier.</description>
 							<stages>
 								<li>
 									<capMods>
@@ -313,10 +378,10 @@
 								</li>
 							</comps>
 						</HediffDef>
-						<HediffDef ParentName="HorsePart">
-							<defName>EtherHorseEar</defName>
-							<label>equine</label>
-							<description>Long, equine ears sit atop [PAWN_nameDef]'s head, like that of a horse.</description>
+						<HediffDef ParentName="SheepPart">
+							<defName>EtherSheepEar</defName>
+							<label>ovine</label>
+							<description>Fluffy, ovine ears sit at the side of [PAWN_nameDef]'s head, like a sheep.</description>
 							<stages>
 								<li>
 									<capMods>
@@ -328,26 +393,16 @@
 								</li>
 							</stages>
 						</HediffDef>
-						<HediffDef ParentName="HorsePart">
-							<defName>EtherHorseTail</defName>
-							<label>horse tail</label>
-							<description>A horselike tail. It swats at flies occasionally.</description>
-							<stages>
-								<li>
-									<capMods>
-										<li>
-											<capacity>Moving</capacity>
-											<offset>0.01</offset>
-										</li>
-									</capMods>
-								</li>
-							</stages>
+						<HediffDef ParentName="SheepPart">
+							<defName>EtherSheepTail</defName>
+							<label>sheep tail</label>
+							<description>A sheeplike tail. It's very wooly but short and not incredibly useful.</description>
 						</HediffDef>
 						<!--Morph Injector-->
 						<ThingDef ParentName="InjectorBase">
-							<defName>HorseTransformer</defName>
-							<label>mutasyringe, horse</label>
-							<description>A mutagenic injector filled with mechanites and horse DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+							<defName>SheepTransformer</defName>
+							<label>mutasyringe, sheep</label>
+							<description>A mutagenic injector filled with mechanites and sheep DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 							<graphicData>
 								<texPath>Things/Item/Drug/Specific</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
@@ -357,7 +412,7 @@
 								<outcomeDoers>
 									<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 										<hediffDefs>
-											<li>PawnmorphHorseTF</li>
+											<li>PawnmorphSheepTF</li>
 										</hediffDefs>
 										<severity>1.00</severity>
 									</li>
@@ -370,17 +425,14 @@
 					<success>Always</success>
 					<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
 					<value>
-						<li>PawnmorphHorseTF</li>
+						<li>PawnmorphSheepTF</li>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<success>Always</success>
 					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[1]/hediffGivers/li/pawnkinds</xpath>
 					<value>
-						<li>QuarterHorse</li>
-						<li>BlackHorse</li>
-						<li>WhiteHorse</li>
-						<li>Palomino</li>
+						<li>AEXP_Sheep</li>
 					</value>
 				</li>
 			</operations>
