@@ -3,7 +3,7 @@
         <defName>MeleeWeapon_MutaniteKnife</defName>
         <label>mutanite knife</label>
         <techLevel>Neolithic</techLevel>
-        <description>TODO</description>
+        <description>A shaped piece of mutanite with a handle for safe operation. Tends to mutate anyone who's on the receiving end of the blade.</description>
         <graphicData>
             <texPath>Things/Item/Equipment/WeaponMelee/Knife</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -59,8 +59,8 @@
 
     <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
         <defName>MeleeWeapon_MutaniteSpear</defName>
-        <label>spear</label>
-        <description>TODO</description>
+        <label>mutanite spear</label>
+        <description>A long rod is tipped with a pointed piece of mutanite, which tends to mutate anyone who gets stabbed by it.</description>
         <graphicData>
           <texPath>Things/Item/Equipment/WeaponMelee/Spear</texPath>
           <graphicClass>Graphic_Single</graphicClass>
