@@ -123,7 +123,7 @@ namespace Pawnmorph.Damage
             float severityToAdd = damage * severityPerDamage;
 
             //apply  toxin resistance 
-            severityToAdd *= pawn.GetStatValue(StatDefOf.ToxicSensitivity); //[0, 1?] 
+            severityToAdd *= pawn.GetMutagenicBuildupMultiplier(); //[0, 1?] 
             //0 is immune 
             //Add our own mutagenic sensitivity stat to? 
             hediff.Severity = severityToAdd;

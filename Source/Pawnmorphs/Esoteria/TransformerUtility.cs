@@ -22,6 +22,17 @@ namespace Pawnmorph
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
         private static readonly PawnKindDef[] PossiblePawnKinds;
 
+
+        /// <summary>
+        /// Gets the net mutagenic buildup multiplier for this pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public static float GetMutagenicBuildupMultiplier([NotNull] this Pawn pawn)
+        {
+            return (pawn.GetStatValue(StatDefOf.ToxicSensitivity) + pawn.GetStatValue(PMStatDefOf.MutagenSensitivity))/2; 
+        }
+
         /// <summary>
         /// Gets the sapient animal comp.
         /// </summary>

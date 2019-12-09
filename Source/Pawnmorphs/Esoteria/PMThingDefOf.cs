@@ -16,6 +16,7 @@ namespace Pawnmorph
         }
 
         public static ThingDef Plant_ChaoBulb;
-        public static ThingDef Plant_GnarledTree; 
+        public static ThingDef Plant_GnarledTree;
+        public static ThingDef Morphsilk;
     }
 }

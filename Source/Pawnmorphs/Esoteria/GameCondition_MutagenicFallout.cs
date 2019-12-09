@@ -65,7 +65,7 @@ namespace Pawnmorph
                 if (!pawn.Position.Roofed(map) && mutagen.CanInfect(pawn))
                 {
                     float num = 0.028758334f;
-                    num *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
+                    num *= pawn.GetMutagenicBuildupMultiplier();
                     if (num != 0f)
                     {
                         float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D)); //should be ok

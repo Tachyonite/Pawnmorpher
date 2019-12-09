@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -60,9 +61,17 @@ namespace Pawnmorph
         {
             // Push a multiplay-safe randomization seed.
             RandUtilities.PushState();
-            int mult = cause.TryGetComp<HediffComp_Single>()?.stacks ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
+
+
+            float mult = cause.TryGetComp<HediffComp_Single>()?.stacks
+                      ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
+            mult *= pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
+
+            mult = Mathf.Max(0.001f, mult); //prevent division by zero 
+            
+
             // After roughly this duration, try to apply the hediff if the pawn is of human-like intelligence.
-            if (Rand.MTBEventOccurs(mtbDays/mult, mtbUnits, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+            if (Rand.MTBEventOccurs( mtbDays/mult, mtbUnits, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 MutagenDef mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
