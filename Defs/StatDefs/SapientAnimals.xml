@@ -6,11 +6,11 @@
         <!-- higher values mean the pawn is less affected by a raise in instincts  -->
         <category>BasicsPawn</category>
         <defaultBaseValue>1.0</defaultBaseValue>
-        <hideAtValue>1.0</hideAtValue>
         <minValue>0.05</minValue>
         <maxValue>3</maxValue>
         <toStringStyle>PercentZero</toStringStyle>
         <displayPriorityInCategory>75</displayPriorityInCategory>
+        <alwaysHide>true</alwaysHide>
     </StatDef>
 
     <StatDef>
