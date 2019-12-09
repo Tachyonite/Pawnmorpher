@@ -36,6 +36,7 @@
         <maxValue>1</maxValue>
         <toStringStyle>FloatOne</toStringStyle>
         <displayPriorityInCategory>75</displayPriorityInCategory>
+        <alwaysHide>true</alwaysHide>
     </StatDef>
 
 </Defs>
