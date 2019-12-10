@@ -17,4 +17,28 @@
             <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"></li>
         </value>
     </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalStateDef[defName="Tantrum"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <baseInstinctOffset>10</baseInstinctOffset>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalStateDef[defName="TargetedTantrum"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <baseInstinctOffset>10</baseInstinctOffset>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalStateDef[defName="Wander_Sad"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <baseInstinctOffset>10</baseInstinctOffset>
+            </li>
+        </value>
+    </Operation>
 </Patch>
