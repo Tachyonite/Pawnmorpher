@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 
 namespace Pawnmorph
@@ -30,6 +31,22 @@ namespace Pawnmorph
                     if (allMap.GetFormerHumanStatus() != null)
                         yield return allMap;
             }
+        }
+
+        /// <summary>
+        /// Gets the original pawn of the given former human.
+        /// </summary>
+        /// <param name="formerHuman">The former human.</param>
+        /// <returns>the original pawn if it exists, otherwise null</returns>
+        [CanBeNull]
+        public static Pawn GetOriginalPawnOfFormerHuman([NotNull] Pawn formerHuman)
+        {
+            foreach (var tfPawn in Find.World.GetComponent<PawnmorphGameComp>().TransformedPawns)
+            {
+                if (tfPawn.TransformedPawns.Contains(formerHuman)) return tfPawn.OriginalPawns.FirstOrDefault();
+            }
+
+            return null; 
         }
 
         /// <summary>

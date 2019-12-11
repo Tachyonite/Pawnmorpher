@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
+using Harmony;
 using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
@@ -38,6 +39,16 @@ namespace Pawnmorph.DebugUtils
         public static void Assert(bool condition, string message)
         {
             if (!condition) Log.Error($"assertion failed:{message}");
+        }
+
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
+        static void CheckFormerHumansInPCOnMap()
+        {
+            if (Find.CurrentMap == null) return;
+
+            Log.Message($"{Find.CurrentMap.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer).Where(InteractionUtility.CanReceiveRandomInteraction).Select(p => p.Name?.ToStringFull ?? p.LabelShort).Join(",")}");
         }
 
         [DebugOutput]

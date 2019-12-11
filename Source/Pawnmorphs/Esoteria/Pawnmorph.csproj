@@ -107,8 +107,10 @@
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
     <Compile Include="DefExtensions\InstinctEffector.cs" />
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
+    <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
     <Compile Include="DefExtensions\MorphRestriction.cs" />
     <Compile Include="DefExtensions\MutationRestriction.cs" />
+    <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="FormerHumanStatus.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
+    <Compile Include="HPatches\InteractionPatches.cs" />
     <Compile Include="HPatches\MentalBreakPatches.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
@@ -148,6 +151,7 @@
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
+    <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="FactionUtilities.cs" />
@@ -317,6 +321,7 @@
     <Compile Include="Utilities\Tuple.cs" />
     <Compile Include="Utilities\VTuple.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
+    <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aspects\" />

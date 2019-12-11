@@ -1,0 +1,12 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/InteractionDef[defName="AnimalChat"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InteractionGroupExtension">
+                <interactions>
+                    <li>SapientAnimalChat</li>
+                </interactions>
+            </li>
+        </value>
+    </Operation>
+</Patch>
