@@ -141,23 +141,12 @@ namespace Pawnmorph.TfSys
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
 
-            if (animalToSpawn.Faction != null)
-            {
-                animalToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience,
-                                                          true); // Sets obediance training to on for the animal.
-                animalToSpawn.training.Train(TrainableDefOf.Obedience, null,
-                                             true); // Sets the animal's obedience to be fully trained.
-            }
+            
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
 
-
-            Hediff hediff =
-                HediffMaker.MakeHediff(TfHediffDefOf.TransformedHuman,
-                                       spawnedAnimal); // Create a hediff from the one provided (i.e. TransformedHuman)...
-            hediff.Severity = Rand.Range(request.minSeverity, request.maxSeverity); // ...give it a random severity...
-            spawnedAnimal.health.AddHediff(hediff); // ...and apply it to the new animal.
-
+            TransformerUtility.MakeAnimalSapient(original, spawnedAnimal, Rand.Range(0.4f, 1)); //use a normal distribution? 
+            
             var inst = new TransformedPawnSingle
             {
                 original = original,
@@ -179,9 +168,7 @@ namespace Pawnmorph.TfSys
             Faction oFaction = original.Faction;
             Map oMap = original.Map;
 
-            //transfer any aspects they have 
-            TransformerUtility.TransferAspectsToAnimal(original, spawnedAnimal);
-
+            
             //apply apparel damage 
             ApplyApparelDamage(original, spawnedAnimal.def);
 
