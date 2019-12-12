@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Schemas/ThoughtDef.xsd"> 
+    <ThoughtDef>
+        <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+        <stages>
+            <li>
+                <label>The first stage is for fully sapient animals</label>
+                <description></description>
+            </li>
+            <li>
+                <label>mostly sapient</label>
+                <description></description>
+            </li>
+            <li>
+                <label>Conflicted</label>
+                <description></description>
+            </li>
+            <li>
+                <label>MostlyFeral</label>
+                <description></description>
+            </li>
+            <li> <!-- stages can be ommited -->
+                <label>Feral</label>
+                <description></description>
+            </li>
+            <li>
+                <label>PermanentlyFeral</label>
+                <description></description>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>
