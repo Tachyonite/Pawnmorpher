@@ -3,28 +3,28 @@
         <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
         <stages>
             <li>
-                <label>The first stage is for fully sapient animals</label>
-                <description></description>
+                <label>changed</label>
+                <description>I can hardly believe my eyes...I'm a goddamn animal!</description>
             </li>
             <li>
                 <label>mostly sapient</label>
-                <description></description>
+                <description>Something's tugging at my mind...it's the animal.</description>
             </li>
             <li>
-                <label>Conflicted</label>
-                <description></description>
+                <label>conflicted mind</label>
+                <description>I shouldn't give in but it's...getting cloudy in here.</description>
             </li>
             <li>
-                <label>MostlyFeral</label>
-                <description></description>
+                <label>hard to think...</label>
+                <description>Gotta...stay...focused but all I want to do is eat and sleep!</description>
             </li>
             <li> <!-- stages can be ommited -->
-                <label>Feral</label>
-                <description></description>
+                <label>feral animal</label>
+                <description>...food?</description>
             </li>
             <li>
-                <label>PermanentlyFeral</label>
-                <description></description>
+                <label>...</label>
+                <description>food?</description>
             </li>
         </stages>
     </ThoughtDef>
