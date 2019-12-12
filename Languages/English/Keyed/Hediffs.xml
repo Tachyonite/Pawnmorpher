@@ -35,6 +35,6 @@
 		animal - the animal pawn the original was turned into
 		animalKind - the kind of animal they were turned into 
 	 -->
-	<MessagePawnResurrectedTransformed>TODO</MessagePawnResurrectedTransformed>
+	<MessagePawnResurrectedTransformed>{0} was resurrected, but the mechanite infusion in the serum brought them back as a {2}!</MessagePawnResurrectedTransformed>
 
 </LanguageData>
