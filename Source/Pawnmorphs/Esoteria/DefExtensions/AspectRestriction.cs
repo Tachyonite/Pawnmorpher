@@ -17,7 +17,7 @@ namespace Pawnmorph.DefExtensions
         /// <summary>
         ///     if true, inverts this restrictions normal behavior
         /// </summary>
-        public bool invert = true;
+        public bool invert;
 
         /// <summary>
         ///     The aspect entries

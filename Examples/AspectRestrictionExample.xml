@@ -1,0 +1,27 @@
+<Defs>
+    <Def>
+        <!-- normal def stuff goes here --> 
+        <modExtension>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <aspectEntries> <!-- to pass the restriction at least one entry below must match an aspect the pawn has -->
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef> <!-- this is required -->
+                        <stageIndex>0</stageIndex> 
+                        <!-- 
+                            stageIndex is optional
+                            if set then the apsect the pawn has must be at the same stage as the one set here in the xml. 
+                            if not set then the aspect the pawn has can be any stage  
+                        -->
+                    </li>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                        <stageIndex>1</stageIndex>
+                        <!-- 
+                            you can supple multiple possible stages if you want
+                        -->
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtension>
+    </Def>
+</Defs>

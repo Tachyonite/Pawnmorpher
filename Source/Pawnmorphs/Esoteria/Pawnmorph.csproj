@@ -113,6 +113,7 @@
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="DefExtensions\SapientAnimalRestriction.cs" />
+    <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="FormerHumanStatus.cs" />
     <Compile Include="FormerHumanUtilities.cs" />
