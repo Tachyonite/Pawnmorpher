@@ -1,6 +1,7 @@
 ﻿// FormerHumanUtilities.cs modified by Iron Wolf for Pawnmorph on 12/08/2019 7:56 AM
 // last updated 12/08/2019  7:56 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,71 @@ namespace Pawnmorph
                     if (allMap.GetFormerHumanStatus() != null)
                         yield return allMap;
             }
+        }
+
+        /// <summary>Gets the sapience level of this pawn</summary>
+        /// <param name="formerHuman">The former human.</param>
+        /// <returns>the sapience level. If feral this is 0, if the given pawn is not a former human returns null</returns>
+        public static float? GetSapienceLevel([NotNull] this Pawn formerHuman)
+        {
+            var fHumanStatus = formerHuman.GetFormerHumanStatus();
+            switch (fHumanStatus)
+            {
+                case FormerHumanStatus.Sapient:
+                    return formerHuman.needs.TryGetNeed<Need_Control>()?.CurLevel;
+                case FormerHumanStatus.Feral:
+                    return 0;
+                case FormerHumanStatus.PermanentlyFeral:
+                    return 0;
+                case null:
+                    return null; 
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        [NotNull]
+        private static readonly float[] _sapienceThresholds; //these are the minimum sapience levels needed to fall withing a given enum level 
+
+        static FormerHumanUtilities()
+        {
+            var values = new SapienceLevel[]
+            {
+                SapienceLevel.Sapient,
+                SapienceLevel.MostlySapient,
+                SapienceLevel.Conflicted,
+                SapienceLevel.MostlyFeral,
+                SapienceLevel.Feral
+            };
+
+            float delta = 1f/values.Length;
+            float counter = 1;
+            _sapienceThresholds = new float[values.Length];
+            foreach (SapienceLevel sapienceLevel in values) //split up the level thresholds evenly between 1,0 starting at sapient 
+            {
+                counter -= delta;
+                _sapienceThresholds[(int) sapienceLevel] = counter; 
+            }
+
+
+        }
+
+
+        /// <summary>Gets the quantized sapience level.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>returns null if the pawn isn't a former human</returns>
+        public static SapienceLevel? GetQuantizedSapienceLevel([NotNull] this Pawn pawn)
+        {
+            var sLevel = GetSapienceLevel(pawn);
+            if (sLevel == null) return null;
+            if (pawn.GetFormerHumanStatus() == FormerHumanStatus.PermanentlyFeral) return SapienceLevel.PermanentlyFeral;
+            for (var index = 0; index < _sapienceThresholds.Length; index++)
+            {
+                float sapienceThreshold = _sapienceThresholds[index];
+                if (sLevel > sapienceThreshold) return (SapienceLevel) index; 
+            }
+
+            return SapienceLevel.Feral;
         }
 
         /// <summary>
