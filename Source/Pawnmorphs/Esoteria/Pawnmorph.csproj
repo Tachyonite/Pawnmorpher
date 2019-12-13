@@ -306,6 +306,7 @@
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
     <Compile Include="Thoughts\Worker_BeastMaster.cs" />
     <Compile Include="Thoughts\Worker_BodyPuristDisgust.cs" />
+    <Compile Include="Thoughts\Worker_FHNaked.cs" />
     <Compile Include="Thoughts\Worker_FurryAppreciation.cs" />
     <Compile Include="Thoughts\Worker_HasAspect.cs" />
     <Compile Include="Thoughts\Worker_HasMutations.cs" />

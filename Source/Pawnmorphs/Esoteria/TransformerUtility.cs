@@ -64,6 +64,11 @@ namespace Pawnmorph
         {
             animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
             var fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            if (fHumanHediff == null)
+            {
+                Log.Error(nameof(fHumanHediff));
+                return; 
+            }
             fHumanHediff.Severity = 1;
 
             if (original.Faction == Faction.OfPlayer)
@@ -72,11 +77,26 @@ namespace Pawnmorph
             }
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
+            if (animal.needs == null)
+            {
+                Log.Error(nameof(animal.needs));
+                return;
+            }
             animal.needs.AddOrRemoveNeedsAsAppropriate();
             TransferAspectsToAnimal(original, animal);
             TransferSkillsToAnimal(original, animal);
             var nC = animal.needs.TryGetNeed<Need_Control>();
-            nC.CurLevel = sapienceLevel; 
+
+            if (nC == null)
+            {
+                Log.Error(nameof(nC));
+                return;
+            }
+
+            nC.CurLevel = sapienceLevel;
+
+            if (animal.training == null) return; 
+
             foreach (var training in DefDatabase<TrainableDef>.AllDefs)
             {
                 if (!animal.training.CanBeTrained(training)) continue;

@@ -79,6 +79,7 @@
 			<xs:enumeration value="MorphRevertsToHumanBaseFurry" />
 			<xs:enumeration value="MorphRevertsToHumanBaseBP" />
 			<xs:enumeration value="GroupThoughtBase" />
+			<xs:enumeration value="FH_NakedThought"/>
 		</xs:restriction>
 	</xs:simpleType>
 
