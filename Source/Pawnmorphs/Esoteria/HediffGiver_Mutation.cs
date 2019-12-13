@@ -63,10 +63,11 @@ namespace Pawnmorph
             RandUtilities.PushState();
 
 
-            float mult = cause.TryGetComp<HediffComp_Single>()?.stacks
+            var singleComp = cause.TryGetComp<HediffComp_Single>();
+            float mult = singleComp?.stacks
                       ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
             mult *= pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
-
+            mult *= singleComp?.Props?.mutationRateMultiplier ?? 1; 
             mult = Mathf.Max(0.001f, mult); //prevent division by zero 
             
 
@@ -76,7 +77,7 @@ namespace Pawnmorph
                 MutagenDef mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
                 // Check if this HediffGiver has the HediffComp_Single property (basically a dummy property that only comes into play in this function).
-                var comp = cause.TryGetComp<HediffComp_Single>();
+                var comp = singleComp;
 
                 // If we haven't already tried to apply this giver's hediff and the pawn either passes a percentile roll or are of the right gender, try and apply the hediff.
                 if (!_triggered.TryGetValue(cause) && (gender == pawn.gender || Rand.RangeInclusive(0, 100) <= chance) && TryApply(pawn, mutagen, null, cause))

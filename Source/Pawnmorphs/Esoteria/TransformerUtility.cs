@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
@@ -54,6 +55,71 @@ namespace Pawnmorph
         private const float MAX_APPAREL_PDIFF = 0.35f;
 
         private const float APPAREL_PDIFF_OFFSET = 0.15f;
+
+        /// <summary>Makes the animal sapient. including adding necessary comps, need, training, etc  </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="animal">The animal.</param>
+        /// <param name="sapienceLevel">The sapience level.</param>
+        public static void MakeAnimalSapient([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel=1)
+        {
+            animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
+            var fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            if (fHumanHediff == null)
+            {
+                Log.Error(nameof(fHumanHediff));
+                return; 
+            }
+            fHumanHediff.Severity = 1;
+
+            if (original.Faction == Faction.OfPlayer)
+            {
+                animal.SetFaction(original.Faction); 
+            }
+
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
+            if (animal.needs == null)
+            {
+                Log.Error(nameof(animal.needs));
+                return;
+            }
+            animal.needs.AddOrRemoveNeedsAsAppropriate();
+            TransferAspectsToAnimal(original, animal);
+            TransferSkillsToAnimal(original, animal);
+            var nC = animal.needs.TryGetNeed<Need_Control>();
+
+            if (nC == null)
+            {
+                Log.Error(nameof(nC));
+                return;
+            }
+
+            nC.CurLevel = sapienceLevel;
+
+            if (animal.training == null) return; 
+
+            foreach (var training in DefDatabase<TrainableDef>.AllDefs)
+            {
+                if (!animal.training.CanBeTrained(training)) continue;
+
+                animal.training.Train(training, null, true); 
+            }
+
+        }
+
+        static void TransferSkillsToAnimal([NotNull] Pawn original, [NotNull] Pawn animal)
+        {
+            if (animal.skills == null)
+            {
+                Log.Warning($"sapient animal {animal.Name} does not have a skill tracker");
+                return;
+            }
+
+            foreach (SkillRecord skillsSkill in original.skills.skills)
+            {
+                animal.skills.Learn(skillsSkill.def, skillsSkill.XpTotalEarned, true); 
+            }
+
+        }
 
         /// <summary>
         /// Transfers all transferable aspects from the original pawn to animal they turned into.

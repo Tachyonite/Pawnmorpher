@@ -14,6 +14,11 @@ namespace Pawnmorph
         public int maxStacks = 10;
 
         /// <summary>
+        /// The mutation rate multiplier
+        /// </summary>
+        public float mutationRateMultiplier = 1.5f; 
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="HediffCompProperties_Single"/> class.
         /// </summary>
         public HediffCompProperties_Single()

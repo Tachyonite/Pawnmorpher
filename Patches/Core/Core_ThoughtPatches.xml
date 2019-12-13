@@ -11,13 +11,12 @@
     </Operation>
     <Operation Class="PatchOperationAddModExtension">
         <xpath>Defs/ThoughtDef[defName="Naked"]</xpath>
-        <value> <!-- this mod extension if for substituting a thought for another thought -->
-            <li Class="Pawnmorph.ThoughtGroupDefExtension"> <!-- the first thought that can be assigned to the pawn will be picked -->
-                <thoughts>
-                    <li>SapientAnimalNaked</li>
-                    <li>SapientChickenNaked</li>
-                    <li>SapientReptileNaked</li>
-                </thoughts>
+        <value> 
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <filter>
+                    <isBlackList>false</isBlackList> <!-- an empty white list won't let anything pass -->
+                </filter>
+                <mustBeFormerHuman>false</mustBeFormerHuman> <!-- the naked thought should now only show up for regular pawns   -->
             </li>
         </value>
     </Operation>

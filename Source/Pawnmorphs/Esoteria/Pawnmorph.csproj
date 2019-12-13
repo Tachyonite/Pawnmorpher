@@ -297,6 +297,7 @@
     <Compile Include="ThoughtGroupDefExtension.cs" />
     <Compile Include="Thoughts\Def_AspectThought.cs" />
     <Compile Include="Thoughts\Def_MorphThought.cs" />
+    <Compile Include="Thoughts\FormerHumanMemory.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
@@ -305,6 +306,7 @@
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
     <Compile Include="Thoughts\Worker_BeastMaster.cs" />
     <Compile Include="Thoughts\Worker_BodyPuristDisgust.cs" />
+    <Compile Include="Thoughts\Worker_FHNaked.cs" />
     <Compile Include="Thoughts\Worker_FurryAppreciation.cs" />
     <Compile Include="Thoughts\Worker_HasAspect.cs" />
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
