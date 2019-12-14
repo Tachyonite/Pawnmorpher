@@ -141,11 +141,13 @@ namespace Pawnmorph.TfSys
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
 
-            
+
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
+            bool wasPrisoner = original.IsPrisonerOfColony;
+            ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner); //this needs to happen before MakeSapientAnimal because that removes relations 
 
-            TransformerUtility.MakeAnimalSapient(original, spawnedAnimal, Rand.Range(0.4f, 1)); //use a normal distribution? 
+            FormerHumanUtilities.MakeAnimalSapient(original, spawnedAnimal, Rand.Range(0.4f, 1)); //use a normal distribution? 
             
             var inst = new TransformedPawnSingle
             {
@@ -164,7 +166,6 @@ namespace Pawnmorph.TfSys
             if (request.tale != null) // If a tale was provided, push it to the tale recorder.
                 TaleRecorder.RecordTale(request.tale, original, animalToSpawn);
 
-            bool wasPrisoner = original.IsPrisonerOfColony;
             Faction oFaction = original.Faction;
             Map oMap = original.Map;
 
@@ -172,7 +173,7 @@ namespace Pawnmorph.TfSys
             //apply apparel damage 
             ApplyApparelDamage(original, spawnedAnimal.def);
 
-            TransformerUtility.TryAssignBackstoryToTransformedPawn(spawnedAnimal, original);
+            FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(spawnedAnimal, original);
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 
@@ -188,7 +189,6 @@ namespace Pawnmorph.TfSys
             DebugLogUtils.Assert(!PrisonBreakUtility.CanParticipateInPrisonBreak(original),
                                  $"{original.Name} has been cleaned up and de-spawned but can still participate in prison breaks");
 
-            ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner);
 
             return inst;
         }

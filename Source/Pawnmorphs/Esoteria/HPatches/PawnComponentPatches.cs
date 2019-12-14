@@ -52,6 +52,10 @@ namespace Pawnmorph.HPatches
                     pawn.apparel?.DestroyAll();
                 }
 
+                pawn.ownership?.UnclaimAll();
+
+                pawn.ownership = null; 
+
                 pawn.apparel = null;
                 pawn.equipment = null;
                 pawn.story = null;
@@ -82,6 +86,7 @@ namespace Pawnmorph.HPatches
                     }
                 }
 
+                pawn.ownership = pawn.ownership ?? new Pawn_Ownership(pawn); 
                 pawn.equipment = pawn.equipment ?? new Pawn_EquipmentTracker(pawn);
                 pawn.story = pawn.story ?? new Pawn_StoryTracker(pawn); //need to add story component to not break hospitality 
                 pawn.apparel = pawn.apparel ?? new  Pawn_ApparelTracker(pawn); //need this to not break thoughts and stuff 

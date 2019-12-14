@@ -34,17 +34,6 @@ namespace Pawnmorph
             return (pawn.GetStatValue(StatDefOf.ToxicSensitivity) + pawn.GetStatValue(PMStatDefOf.MutagenSensitivity))/2; 
         }
 
-        /// <summary>
-        /// Gets the sapient animal comp.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns></returns>
-        [CanBeNull]
-        public static Comp_SapientAnimal GetSapientAnimalComp([NotNull] this Pawn pawn)
-        {
-            return pawn.TryGetComp<Comp_SapientAnimal>();
-        }
-
         [NotNull]
         private static MutagenDamageProperties DefaultDamageValues { get; }
 
@@ -56,98 +45,6 @@ namespace Pawnmorph
 
         private const float APPAREL_PDIFF_OFFSET = 0.15f;
 
-        /// <summary>Makes the animal sapient. including adding necessary comps, need, training, etc  </summary>
-        /// <param name="original">The original.</param>
-        /// <param name="animal">The animal.</param>
-        /// <param name="sapienceLevel">The sapience level.</param>
-        public static void MakeAnimalSapient([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel=1)
-        {
-            animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
-            var fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            if (fHumanHediff == null)
-            {
-                Log.Error(nameof(fHumanHediff));
-                return; 
-            }
-            fHumanHediff.Severity = 1;
-
-            if (original.Faction == Faction.OfPlayer)
-            {
-                animal.SetFaction(original.Faction); 
-            }
-
-            PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
-            if (animal.needs == null)
-            {
-                Log.Error(nameof(animal.needs));
-                return;
-            }
-            animal.needs.AddOrRemoveNeedsAsAppropriate();
-            TransferAspectsToAnimal(original, animal);
-            TransferSkillsToAnimal(original, animal);
-            var nC = animal.needs.TryGetNeed<Need_Control>();
-
-            if (nC == null)
-            {
-                Log.Error(nameof(nC));
-                return;
-            }
-
-            nC.CurLevel = sapienceLevel;
-
-            if (animal.training == null) return; 
-
-            foreach (var training in DefDatabase<TrainableDef>.AllDefs)
-            {
-                if (!animal.training.CanBeTrained(training)) continue;
-
-                animal.training.Train(training, null, true); 
-            }
-
-        }
-
-        static void TransferSkillsToAnimal([NotNull] Pawn original, [NotNull] Pawn animal)
-        {
-            if (animal.skills == null)
-            {
-                Log.Warning($"sapient animal {animal.Name} does not have a skill tracker");
-                return;
-            }
-
-            foreach (SkillRecord skillsSkill in original.skills.skills)
-            {
-                animal.skills.Learn(skillsSkill.def, skillsSkill.XpTotalEarned, true); 
-            }
-
-        }
-
-        /// <summary>
-        /// Transfers all transferable aspects from the original pawn to animal they turned into.
-        /// </summary>
-        /// <param name="original">The original.</param>
-        /// <param name="animal">The animal.</param>
-        public static void TransferAspectsToAnimal([NotNull] Pawn original, [NotNull] Pawn animal)
-        {
-            var oTracker = original.GetAspectTracker();
-            var animalTracker = animal.GetAspectTracker();
-            if (oTracker == null) return;
-            if (animalTracker == null)
-            {
-                Log.Warning($"animal {animal.Name},{animal.def.defName} does not have an aspect tracker");
-                return; 
-            }
-
-
-            foreach (Aspect aspect in oTracker)
-            {
-                if (aspect.def.transferToAnimal)
-                {
-                    var stageIndex = aspect.StageIndex;
-                    animalTracker.Add(aspect.def, stageIndex); 
-                }
-            }
-        }
-        
         /// <summary>
         /// applies damage to all apparel the pawn is wearing based on
         /// </summary>
@@ -224,92 +121,6 @@ namespace Pawnmorph
         }
 
 
-        /// <summary>
-        /// Tries the assign the correct backstory to transformed pawn.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="originalPawn">The original pawn.</param>
-        /// <exception cref="ArgumentNullException">pawn</exception>
-        public static void TryAssignBackstoryToTransformedPawn([NotNull] Pawn pawn, [CanBeNull] Pawn originalPawn)
-        {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return;
-            if (pawn.story == null) return;
-
-            if (originalPawn != null)
-            {
-                pawn.Name = originalPawn.Name; 
-            }else if (pawn.Name == null)
-            {
-                pawn.Name = new NameSingle(pawn.LabelShort);
-            }
-
-
-            BackstoryDef backstoryDef;
-            if (pawn.def.defName.ToLower().StartsWith("chao")) //TODO mod extension or something to add specific backgrounds for different animals 
-            {
-                backstoryDef = BackstoryDefOf.FormerHumanChaomorph;
-            }
-            else
-            {
-                backstoryDef = BackstoryDefOf.FormerHumanNormal; 
-            }
-
-            Log.Message($"adding {backstoryDef.defName} to {pawn.Name}");
-
-            pawn.story.adulthood = backstoryDef.backstory; 
-
-        }
-
-        /// <summary>
-        /// move all mutation related traits from the original pawn to the transformed pawn if they are sapient 
-        /// </summary>
-        /// <param name="transformedPawn"></param>
-        /// <param name="originalPawn"></param>
-        public static void MoveMutationTraitsToTransformedPawn([NotNull] Pawn transformedPawn, [NotNull] Pawn originalPawn)
-        {
-            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
-            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
-
-            if (transformedPawn.story?.traits == null) return;
-
-            foreach (TraitDef mutationTrait in MutationTraits)
-            {
-                var trait = originalPawn.story?.traits?.GetTrait(mutationTrait);
-                if (trait == null) continue;
-                var newTrait = new Trait(mutationTrait, trait.Degree, true);
-                transformedPawn.story.traits.GainTrait(newTrait); 
-            }
-
-
-        }
-        [NotNull]
-        private static IEnumerable<TraitDef> MutationTraits { get; }
-
-
-        /// <summary>
-        /// get the former human status of the given pawn 
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <returns>the former human status, null if the given pawn is not a former human </returns>
-        public static FormerHumanStatus? GetFormerHumanStatus([NotNull] this Pawn pawn)
-        {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-
-            var formerHumanHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            if (formerHumanHediff == null)
-            {
-                var hasPFeralHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.PermanentlyFeral) != null;
-
-                if (hasPFeralHediff) return FormerHumanStatus.PermanentlyFeral;
-                else return null; 
-            }
-
-            if (formerHumanHediff.CurStageIndex >= 2) return FormerHumanStatus.Sapient;
-            return FormerHumanStatus.Feral; 
-            
-        }
-
         static TransformerUtility()
         {
             PossiblePawnKinds = new[]
@@ -322,11 +133,7 @@ namespace Pawnmorph
                 PawnKindDefOf.AncientSoldier
             };
 
-            MutationTraits = new[] //TODO mod extension on traits to specify which ones can carry over? 
-            {
-                TraitDefOf.BodyPurist,
-                PMTraitDefOf.MutationAffinity
-            };
+           
             DefaultDamageValues= new MutagenDamageProperties();
             
         }
@@ -421,7 +228,7 @@ namespace Pawnmorph
                     pawn.Name = new NameSingle(pawn.LabelShort); 
                 }
 
-                TryAssignBackstoryToTransformedPawn(pawn, null); //try to assign them a background if they're sapient 
+                FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(pawn, null); //try to assign them a background if they're sapient 
 
             }
         }
