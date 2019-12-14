@@ -1,0 +1,114 @@
+<Defs>
+    <HediffDef ParentName="PawnmorphPart">
+        <defName>EtherPawHand</defName>
+        <label>paw</label>
+        <description>Cute but inflexible paws have replaced [PAWN_nameDef]'s hands. They lack a thumb, which has receded into a useless dewclaw.</description>
+        <stages>
+            <li>
+                <partEfficiencyOffset>-0.5</partEfficiencyOffset>
+                <label>new</label>
+            </li>
+            <li>
+                <minSeverity>1</minSeverity>
+                <partEfficiencyOffset>-0.25</partEfficiencyOffset>
+                <label>adapted</label>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_VerbGiver">
+                <tools>
+                    <li>
+                        <label>claws</label>
+                        <labelUsedInLogging>False</labelUsedInLogging>
+                        <capacities>
+                            <li>Scratch</li>
+                        </capacities>
+                        <power>5.0</power>
+                        <cooldownTime>1.5</cooldownTime>
+                        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                    </li>
+                </tools>
+            </li>
+            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+                <severityPerDay>0.25</severityPerDay>
+            </li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                <countToAffect>2</countToAffect>
+                <categories>
+                    <li>Extreme</li>
+                </categories>
+            </li>
+        </modExtensions>
+    </HediffDef>
+
+    <HediffDef ParentName="PawnmorphPart">
+        <defName>EtherHoofHand</defName>
+        <label>hoof</label>
+        <description>It's terrifying, but [PAWN_nameDef]'s hands are nothing more than hooves now. Holding things, grabbing things and doing anything requiring thumbs is going to be a lot more difficult.</description>
+        <stages>
+            <li>
+                <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+                <label>new</label>
+            </li>
+            <li>
+                <minSeverity>1</minSeverity>
+                <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+                <label>adapted</label>
+            </li>
+        </stages>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+                <severityPerDay>0.25</severityPerDay>
+            </li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                <countToAffect>2</countToAffect>
+                <categories>
+                    <li>Extreme</li>
+                </categories>
+            </li>
+        </modExtensions>
+    </HediffDef>
+
+    <HediffDef ParentName="PawnmorphPart">
+        <defName>EtherTrotterHand</defName>
+        <label>trotter</label>
+        <description>[PAWN_nameDef]'s hands resemble trotters more than anything else, leaving them with little in the way of grasping ability.</description>
+        <stages>
+            <li>
+                <label>new</label>
+                <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+            </li>
+            <li>
+                <minSeverity>1</minSeverity>
+                <partEfficiencyOffset>-0.3</partEfficiencyOffset>
+                <label>adapted</label>
+            </li>
+        </stages>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+                <severityPerDay>0.25</severityPerDay>
+            </li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                <countToAffect>2</countToAffect>
+                <categories>
+                    <li>Extreme</li>
+                </categories>
+            </li>
+        </modExtensions>
+    </HediffDef>
+</Defs>
