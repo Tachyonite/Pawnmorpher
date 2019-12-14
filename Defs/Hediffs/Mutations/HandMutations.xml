@@ -5,6 +5,12 @@
         <description>Cute but inflexible paws have replaced [PAWN_nameDef]'s hands. They lack a thumb, which has receded into a useless dewclaw.</description>
         <stages>
             <li>
+                <minSeverity>-1</minSeverity>
+                <partEfficiencyOffset>-0.9</partEfficiencyOffset>
+                <label>TODO</label>  <!-- only pawns with Afflicted Morph aspect can get this stage-->
+            </li>
+            <li>
+                <minSeverity>0</minSeverity>
                 <partEfficiencyOffset>-0.5</partEfficiencyOffset>
                 <label>new</label>
             </li>
@@ -12,6 +18,11 @@
                 <minSeverity>1</minSeverity>
                 <partEfficiencyOffset>-0.25</partEfficiencyOffset>
                 <label>adapted</label>
+            </li>
+            <li>
+                <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
+                <label>TODO</label>
+                <partEfficiencyOffset>-0.05</partEfficiencyOffset>
             </li>
         </stages>
         <comps>
