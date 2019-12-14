@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HugsLib.Utils;
 using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
@@ -108,8 +109,8 @@ namespace Pawnmorph.Factions
 
 
             int max = Mathf.Min(givers.Count, toGiveCount);
-
-            for (var i = 0; i < max; i++)
+            int i = 0;
+            while (i < max)
             {
                 if (givers.Count == 0) break;
                 while (true)
@@ -125,9 +126,12 @@ namespace Pawnmorph.Factions
 
                     foreach (BodyPartDef part in mGiver.GetPartsToAddTo()) addedPartsSet.Add(part);
                     toGive.Add(mGiver);
+                    i += Mathf.Min(1, mGiver.countToAffect); //make sure we count the number of mutations given correctly 
                     break;
                 }
             }
+
+         
 
             foreach (HediffGiver_Mutation giver in toGive)
             {

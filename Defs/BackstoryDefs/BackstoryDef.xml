@@ -49,10 +49,6 @@
                     <li>WargMorph</li>
                     <li>AlpacaMorph</li>
                     <li>WolfMorph</li>
-                    <li>ChaofoxMorph</li>
-                    <li>ChaocowMorph</li>
-                    <li>ChaodinoMorph</li>
-                    <li>ChaoboomMorph</li>
                 </morphs>
             </li>
         </modExtensions>
@@ -91,10 +87,6 @@
                     <li>WargMorph</li>
                     <li>AlpacaMorph</li>
                     <li>WolfMorph</li>
-                    <li>ChaofoxMorph</li>
-                    <li>ChaocowMorph</li>
-                    <li>ChaodinoMorph</li>
-                    <li>ChaoboomMorph</li>
                 </morphs>
             </li>
         </modExtensions>
@@ -130,10 +122,6 @@
                     <li>WargMorph</li>
                     <li>AlpacaMorph</li>
                     <li>WolfMorph</li>
-                    <li>ChaofoxMorph</li>
-                    <li>ChaocowMorph</li>
-                    <li>ChaodinoMorph</li>
-                    <li>ChaoboomMorph</li>
                 </morphs>
             </li>
         </modExtensions>
@@ -383,14 +371,12 @@
             <li Class="Pawnmorph.MorphPawnKindExtension">
                 <hediffRange>2~8</hediffRange>
                 <morphCategories>
-                    <li>Chimera</li>
-                </morphCategories>
-				<morphs>
-                    <li>ChaofoxMorph</li>
-                    <li>ChaocowMorph</li>
-                    <li>ChaodinoMorph</li>
-                    <li>ChaoboomMorph</li>
-                </morphs>
+					<li>Combat</li>
+					<li>Farm</li>
+					<li>Social</li>
+					<li>Crafter</li>
+				</morphCategories>
+				<pickAnyMutation>true</pickAnyMutation>
             </li>
         </modExtensions>
 	</AlienRace.BackstoryDef>
