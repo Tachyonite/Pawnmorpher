@@ -303,7 +303,7 @@
             <li Class="Pawnmorph.MorphPawnKindExtension">
                 <hediffRange>8~8</hediffRange>
                 <morphs>
-                    <li>Wolfmorph</li>
+                    <li>WolfMorph</li>
                 </morphs>
             </li>
         </modExtensions>
@@ -339,7 +339,7 @@
             <li Class="Pawnmorph.MorphPawnKindExtension">
                 <hediffRange>2~6</hediffRange>
                 <morphs>
-                    <li>Wolfmorph</li>
+                    <li>WolfMorph</li>
                 </morphs>
             </li>
         </modExtensions>
