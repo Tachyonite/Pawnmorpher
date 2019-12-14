@@ -205,7 +205,6 @@
 		<defName>EtherMegawoolly</defName>
 		<label>fuzzy</label>
 		<description>Long, fuzzy hair coats the whole of [PAWN_nameDef]'s body, keeping them warm and comfortable.</description>
-		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">

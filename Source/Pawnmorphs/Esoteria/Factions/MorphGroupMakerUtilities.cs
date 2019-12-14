@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HugsLib.Utils;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -147,8 +148,16 @@ namespace Pawnmorph.Factions
 
                     if(hediff.TryGetComp<HediffComp_Production>()!=null) continue; //do not increase production hediffs 
 
+                    var comp = hediff.TryGetComp<Comp_MutationSeverityAdjust>();
+                    if (comp != null)
+                    {
+                        hediff.Severity = comp.NaturalSeverityLimit;
+                        continue;
+                    }
+
                     HediffStage lastStage = hediff.def.stages?.LastOrDefault();
                     if (lastStage == null) continue;
+                    
                     float severity = lastStage.minSeverity + 0.01f;
                     hediff.Severity = severity;
                 }

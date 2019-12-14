@@ -34,14 +34,37 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+
+
+        /// <summary>
+        /// Gets the natural severity limit.
+        /// </summary>
+        /// this value is the value the attached hediff should reach if the pawn has had the mutation for an 'infinite' amount of time 
+        /// <value>
+        /// The natural severity limit.
+        /// </value>
+        public float NaturalSeverityLimit
+        {
+            get { return Props.GetNaturalSeverityLimitFor(Pawn); }
+        }
+
+
         /// <summary>
         /// get the change in severity per day 
         /// </summary>
         /// <returns></returns>
         protected override float SeverityChangePerDay()
         {
-            var statValue = Props.statEffectMult * Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
-            return base.SeverityChangePerDay() * statValue; 
+            float statValue = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
+            float maxSeverity = statValue;
+            float minSeverity = statValue - 1; //have the stat influence how high or low the severity can be 
+            var sMult = Props.statEffectMult * statValue;
+
+            if (parent.Severity > maxSeverity) return 0;
+            if (parent.Severity < minSeverity) return 0; 
+
+
+            return base.SeverityChangePerDay() * sMult; 
         }
     }
 
@@ -52,12 +75,34 @@ namespace Pawnmorph.Hediffs
     public class CompProperties_MutationSeverityAdjust : HediffCompProperties_SeverityPerDay
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="CompProperties_MutationSeverityAdjust"/> class.
+        /// </summary>
+        public CompProperties_MutationSeverityAdjust()
+        {
+            compClass = typeof(Comp_MutationSeverityAdjust); 
+        }
+
+        /// <summary>
         /// The stat effect multiplier
         /// </summary>
         /// values less then 1 will make the mutation adaptability stat have less of an effect
         /// values greater then 1 will increase it's effect
         public float statEffectMult = 1;
 
-        
+        private const float EPSILON = 0.01f;
+        /// <summary>
+        /// Gets the natural severity limit for the given pawn
+        /// </summary>
+        /// this value is the value the attached hediff should reach if the pawn has had the mutation for an 'infinite' amount of time 
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public float GetNaturalSeverityLimitFor([NotNull] Pawn pawn)
+        {
+            var sVal = pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
+            var sMul = sVal * statEffectMult * severityPerDay;
+            if (sMul < -EPSILON) return sVal - 1;
+            if (sMul > EPSILON) return sVal;
+            return 0; 
+        }
     }
 }

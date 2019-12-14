@@ -109,7 +109,6 @@
 				<severityPerDay>0.05</severityPerDay>
 			</li>
 		</comps>
-		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.1</initialSeverity>
 		<stages>
 			<li>

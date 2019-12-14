@@ -240,7 +240,6 @@
 				</stages>
 			</li>
 		</comps>
-		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>
 		<stages>
 			<li>
