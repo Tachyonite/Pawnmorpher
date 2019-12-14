@@ -126,6 +126,24 @@
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				10 is low priority so this plant will only be chosen if a more specific plant is not chosen first 
+				-->
+				<priority>10</priority>
+				<!-- if true the source plant must be something that can be havested -->
+				<mustBeHarvestable>true</mustBeHarvestable>
+
+				<!-- 
+					other fields not used here 
+					mustBeTree - source plant must be a tree 
+					sourcePlantFilter - used to exclude or specificy specific plant defs 
+				-->
+			</li>
+		</modExtensions>
 	</ThingDef>
 	
 	<ThingDef ParentName="TFItemBase">
@@ -196,6 +214,31 @@
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				1 is a high priority so this plant take precidence over Chaobulb 
+				-->
+				<priority>1</priority>
+				<!-- if true the source plant must be something that can be havested -->
+				<mustBeHarvestable>true</mustBeHarvestable>
+
+				<sourcePlantFilter>
+					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
+					<filterList> <!-- glowvine will only come from healroot  -->
+						<li>Plant_Healroot</li>
+						<li>Plant_HealrootWild</li>
+					</filterList>
+				</sourcePlantFilter>
+
+				<!-- 
+					other fields not used here 
+					mustBeTree - source plant must be a tree 
+				-->
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="PlantBase">
@@ -233,5 +276,18 @@
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				10 is low priority so this plant will only be chosen if a more specific plant is not chosen first 
+				-->
+				<priority>10</priority>
+				<!-- the source plant must be a tree -->
+				<mustBeTree>true</mustBeTree>
+				
+			</li>
+		</modExtensions>
 	</ThingDef>
 </Defs>

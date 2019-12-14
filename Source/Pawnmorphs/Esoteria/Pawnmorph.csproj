@@ -109,6 +109,7 @@
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
     <Compile Include="DefExtensions\MorphRestriction.cs" />
+    <Compile Include="DefExtensions\MutantPlantExtension.cs" />
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
+    <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -109,10 +110,6 @@ namespace Pawnmorph
 
         private const double PLANT_SUBSTITUTION_CHANCE = 0.0250000013411045;
 
-        bool IsMutagenicPlant(Plant plant)
-        {
-            return plant.def.In(PMThingDefOf.Plant_ChaoBulb, PMThingDefOf.Plant_GnarledTree);
-        }
 
         /// <summary>
         /// do a steady effect on the given cell 
@@ -133,7 +130,7 @@ namespace Pawnmorph
             {
                 Thing thing = thingList[index];
                 if (!(thing is Plant plant)) continue;
-                if (IsMutagenicPlant(plant)) continue;
+                if (plant.def.IsMutantPlant()) continue;
 
                 if (Rand.Value < PLANT_SUBSTITUTION_CHANCE)
                 {
@@ -145,24 +142,10 @@ namespace Pawnmorph
         }
 
         [SyncMethod]
-        private void SubstitutePlant(Plant plant)
+        private void SubstitutePlant([NotNull] Plant plant)
         {
-            var plantType = plant.def.plant.purpose;
-            var plantProps = plant.def.plant;
-            ThingDef plantDef;
 
-            if (plantProps.IsTree)
-            {
-                plantDef = PMThingDefOf.Plant_GnarledTree;
-            }
-            else if (plantProps.harvestedThingDef != null)
-            {
-                plantDef = PMThingDefOf.Plant_ChaoBulb;
-            }
-            else
-            {
-                plantDef = null;
-            }
+            var plantDef = PMPlantUtilities.GetMutantVersionOf(plant); 
 
             var pos = plant.Position;
             var map = plant.Map;
