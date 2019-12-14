@@ -2,7 +2,7 @@
   <InteractionDef>
     <defName>FormerHumanAnimalChat</defName>
     <label>animal talk</label>
-    <symbol>Things/Mote/SpeechSymbols/AnimalChat</symbol>
+    <symbol>Things/Mote/SpeechSymbols/SapientSpeech</symbol>
     <workerClass>Pawnmorph.Social.Worker_FormerHuman</workerClass>
     <initiatorXpGainSkill>Animals</initiatorXpGainSkill>
     <initiatorXpGainAmount>70</initiatorXpGainAmount>
