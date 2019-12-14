@@ -281,9 +281,9 @@
 				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
 				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
 				with the same priority value are picked randomly 
-				10 is low priority so this plant will only be chosen if a more specific plant is not chosen first 
+				5 is low priority so this plant will only be chosen if a more specific plant is not chosen first 
 				-->
-				<priority>10</priority>
+				<priority>5</priority>
 				<!-- the source plant must be a tree -->
 				<mustBeTree>true</mustBeTree>
 				

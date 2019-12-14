@@ -94,15 +94,20 @@ namespace Pawnmorph
             }
 
             Plant plant = c.GetPlant(parent.Map);
-            if (plant != null)
+
+            if (plant != null && !plant.def.IsMutantPlant()) //don't harm mutant plants 
             {
                 if (!plant.LeaflessNow)
                 {
                     plant.MakeLeafless(Plant.LeaflessCause.Poison);
                 }
+                else if(Rand.Value < 0.3f) //30% chance
+                {
+                    PMPlantUtilities.TryMutatePlant(plant); 
+                }
             }
 
-            SnowUtility.AddSnowRadial(parent.Position, parent.Map, radius, 0.01f);
+            
         }
     }
 }

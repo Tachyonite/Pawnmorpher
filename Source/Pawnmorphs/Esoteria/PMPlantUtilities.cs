@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
@@ -13,41 +12,73 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary>
-    /// static class containing various plant related utility functions 
+    ///     static class containing various plant related utility functions
     /// </summary>
     public static class PMPlantUtilities
     {
         [NotNull] private static readonly LinkedList<MPlantEntry> _plantEntries;
 
-        [NotNull]
-        private static readonly List<ThingDef> _mutantPlants;
+        [NotNull] private static readonly List<ThingDef> _mutantPlants;
 
-        /// <summary>
-        /// Gets all mutant plants.
-        /// </summary>
-        /// <value>
-        /// The mutant plants.
-        /// </value>
-        [NotNull] public static IEnumerable<ThingDef> MutantPlants => _mutantPlants;
+        [NotNull] private static readonly List<ThingDef> _scratchList = new List<ThingDef>();
 
 
-        /// <summary>
-        /// Determines whether this is a mutant plant .
-        /// </summary>
-        /// <param name="def">The definition.</param>
-        /// <returns>
-        ///   <c>true</c> if this is a mutant plant; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool IsMutantPlant([NotNull] this ThingDef def)
+        static PMPlantUtilities()
         {
-            return _mutantPlants.Contains(def); 
+            _plantEntries = new LinkedList<MPlantEntry>();
+            _mutantPlants = new List<ThingDef>();
+            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefsListForReading)
+            {
+                var mPlantProps = thingDef.GetModExtension<MutantPlantExtension>();
+
+                if (mPlantProps == null) continue;
+                if (thingDef.plant == null) continue;
+
+                LinkedListNode<MPlantEntry> node = _plantEntries.First;
+                while (node != null && node.Value.priority < mPlantProps.priority)
+                    node = node.Next; //get the correct place to insert 
+
+                MPlantEntry entry;
+
+                if (node == null) //insert at end 
+                {
+                    entry = new MPlantEntry
+                    {
+                        priority = mPlantProps.priority,
+                        plants = new List<ThingDef>()
+                    };
+                    _plantEntries.AddLast(entry);
+                }
+                else if (node.Value.priority == mPlantProps.priority)
+                {
+                    entry = node.Value; //don't insert at all
+                }
+                else //insert before 
+                {
+                    entry = new MPlantEntry
+                    {
+                        priority = mPlantProps.priority,
+                        plants = new List<ThingDef>()
+                    };
+                    _plantEntries.AddBefore(node, entry);
+                }
+
+                entry.plants.Add(thingDef);
+                _mutantPlants.Add(thingDef);
+            }
         }
 
+        /// <summary>
+        ///     Gets all mutant plants.
+        /// </summary>
+        /// <value>
+        ///     The mutant plants.
+        /// </value>
         [NotNull]
-        private static readonly List<ThingDef> _scratchList = new List<ThingDef>();
+        public static IEnumerable<ThingDef> MutantPlants => _mutantPlants;
 
         /// <summary>
-        /// Gets the mutant version of the given plant
+        ///     Gets the mutant version of the given plant
         /// </summary>
         /// <param name="plant">The plant.</param>
         /// <returns></returns>
@@ -59,7 +90,6 @@ namespace Pawnmorph
 
             foreach (MPlantEntry mPlantEntry in _plantEntries) //go in order of the priorities 
             {
-
                 _scratchList.Clear();
                 foreach (ThingDef thingDef in mPlantEntry.plants) //grab each entry that can result from plant mutating 
                 {
@@ -70,13 +100,10 @@ namespace Pawnmorph
                         continue;
                     }
 
-                    if (mProps.CanMutateFrom(plant))
-                    {
-                        _scratchList.Add(thingDef); 
-                    }
+                    if (mProps.CanMutateFrom(plant)) _scratchList.Add(thingDef);
                 }
 
-                if(_scratchList.Count == 0) continue;
+                if (_scratchList.Count == 0) continue;
 
                 return _scratchList.RandElement();
             }
@@ -85,58 +112,48 @@ namespace Pawnmorph
         }
 
 
-        class MPlantEntry
+        /// <summary>
+        ///     Determines whether this is a mutant plant .
+        /// </summary>
+        /// <param name="def">The definition.</param>
+        /// <returns>
+        ///     <c>true</c> if this is a mutant plant; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsMutantPlant([NotNull] this ThingDef def)
+        {
+            return _mutantPlants.Contains(def);
+        }
+
+        /// <summary>
+        ///     Tries to substitute the plant for its mutant variant.
+        /// </summary>
+        /// <param name="originalPlant">The original plant.</param>
+        /// <param name="alwaysKillOriginal">if set to <c>true</c> always kill original even is there is no mutant plant variant.</param>
+        public static void TryMutatePlant([NotNull] Plant originalPlant, bool alwaysKillOriginal = true)
+        {
+            ThingDef plantDef = GetMutantVersionOf(originalPlant);
+
+            IntVec3 pos = originalPlant.Position;
+            Map map = originalPlant.Map;
+
+            if (plantDef != null) //spawn a new plant 
+            {
+                var newPlant = (Plant) GenSpawn.Spawn(plantDef, pos, map);
+                newPlant.Growth =
+                    originalPlant.Growth * 1.3f; // Make the new plant a little more mature then the one that was substituted.
+                originalPlant.Kill();
+            }
+            else if (alwaysKillOriginal)
+            {
+                originalPlant.Kill();
+            }
+        }
+
+
+        private class MPlantEntry
         {
             public int priority;
-            public List<ThingDef> plants; 
+            public List<ThingDef> plants;
         }
-
-
-        static PMPlantUtilities()
-        {
-            _plantEntries = new LinkedList<MPlantEntry>();
-            _mutantPlants = new List<ThingDef>(); 
-            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefsListForReading)
-            {
-                var mPlantProps = thingDef.GetModExtension<MutantPlantExtension>(); 
-
-                if(mPlantProps == null) continue;
-                if(thingDef.plant == null) continue;
-
-                var node = _plantEntries.First;
-                while (node != null && node.Value.priority < mPlantProps.priority)
-                    node = node.Next; //get the correct place to insert 
-
-                MPlantEntry entry; 
-                
-                if (node == null) //insert at end 
-                {
-                    entry = new MPlantEntry()
-                    {
-                        priority = mPlantProps.priority,
-                        plants = new List<ThingDef>()
-                    };
-                    _plantEntries.AddLast(entry); 
-                }else if (node.Value.priority == mPlantProps.priority)
-                {
-                    entry = node.Value; //don't insert at all
-                }
-                else //insert before 
-                {
-                    entry = new MPlantEntry()
-                    {
-                        priority = mPlantProps.priority,
-                        plants = new List<ThingDef>()
-                    };
-                    _plantEntries.AddBefore(node, entry); 
-                }
-
-                entry.plants.Add(thingDef);
-                _mutantPlants.Add(thingDef); 
-
-            }
-
-        }
-
     }
 }
