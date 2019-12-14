@@ -5,6 +5,7 @@ using System;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -56,8 +57,8 @@ namespace Pawnmorph.Hediffs
         protected override float SeverityChangePerDay()
         {
             float statValue = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
-            float maxSeverity = statValue;
-            float minSeverity = statValue - 1; //have the stat influence how high or low the severity can be 
+            float maxSeverity = Mathf.Max(statValue, 1);
+            float minSeverity = Mathf.Min(statValue - 1,0); //have the stat influence how high or low the severity can be 
             var sMult = Props.statEffectMult * statValue;
 
             if (parent.Severity > maxSeverity) return 0;
