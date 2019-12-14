@@ -27,6 +27,29 @@ namespace Pawnmorph.Utilities
             return enumerable ?? Enumerable.Empty<T>();
         }
 
+        /// <summary>
+        /// Adds the range to this hashset 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="set">The set.</param>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <exception cref="ArgumentNullException">
+        /// set
+        /// or
+        /// enumerable
+        /// </exception>
+        public static void AddRange<T>([NotNull] this HashSet<T> set, [NotNull] IEnumerable<T> enumerable)
+        {
+            if (set == null) throw new ArgumentNullException(nameof(set));
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+
+            foreach (T val in enumerable)
+            {
+                set.Add(val); 
+            }
+        }
+
+
         /// <summary>gets a random element from the list</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="lst">The LST.</param>
