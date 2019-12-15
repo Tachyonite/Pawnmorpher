@@ -17,8 +17,8 @@ namespace Pawnmorph
     /// </summary>
     public static class InstinctUtilities
     {
-        private const float BETA = 50f / 3f; //converts 'resistance stat' to sapience
-        private const float ALPHA = 50f / 20f; //converts intelligence to sapience
+        private const float BETA = 50f / 1.0f; //converts 'resistance stat' to sapience
+        private const float ALPHA = 50f / 10f; //converts intelligence to sapience
 
         private const int AVERAGE_INT = 3;
         private const float AVERAGE_RESISTANCE_STAT = 0.6f;
