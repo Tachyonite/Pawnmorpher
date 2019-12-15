@@ -67,7 +67,7 @@ namespace Pawnmorph.TfSys
         public virtual bool CanInfect(Pawn pawn)
         {
             if (!def.canInfectAnimals && pawn.RaceProps.Animal) return false;
-            if (!def.canInfectMechanoids && pawn.RaceProps.IsMechanoid) return false;
+            if (!def.canInfectMechanoids && pawn.RaceProps.FleshType != FleshTypeDefOf.Normal) return false;
             var ext = pawn.def.GetModExtension<RaceMutagenExtension>();
             if (ext != null)
             {
