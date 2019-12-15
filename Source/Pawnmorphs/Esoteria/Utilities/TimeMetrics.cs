@@ -21,7 +21,12 @@ namespace Pawnmorph.Utilities
         /// <summary>
         /// The ticks per real second
         /// </summary>
-        public const float TICKS_PER_REAL_SECOND = 60; 
+        /// also the tick frequency in hertz 
+        public const int TICKS_PER_REAL_SECOND = 60;
 
+        /// <summary>
+        /// The tick period in (real) seconds 
+        /// </summary>
+        public const float TICK_PERIOD = 1f / TICKS_PER_REAL_SECOND;
     }
 }

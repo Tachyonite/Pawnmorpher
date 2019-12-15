@@ -32,11 +32,11 @@
         <description>controls how much sapience a pawn recovers over time</description>
         <category>BasicsPawn</category>
         <defaultBaseValue>0.0</defaultBaseValue>
-        <minValue>-1</minValue>
-        <maxValue>1</maxValue>
+        <hideAtValue>0</hideAtValue>
+        <minValue>-10</minValue>
+        <maxValue>10</maxValue>
         <toStringStyle>FloatOne</toStringStyle>
         <displayPriorityInCategory>75</displayPriorityInCategory>
-        <alwaysHide>true</alwaysHide>
     </StatDef>
 
 </Defs>

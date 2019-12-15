@@ -58,7 +58,14 @@ namespace Pawnmorph
         /// <exception cref="System.NotImplementedException"></exception>
         public override void NeedInterval()
         {
-            //empty 
+            if (pawn.IsHashIntervalTick(TimeMetrics.TICKS_PER_REAL_SECOND)) //just every second or so 
+            {
+                var instinctChange = GetInstinctChangePerTick(pawn) * TimeMetrics.TICKS_PER_REAL_SECOND;
+                if (Mathf.Abs(instinctChange) > EPSILON)
+                {
+                    AddInstinctChange(Mathf.CeilToInt(instinctChange)); 
+                }
+            }
         }
 
         /// <summary>

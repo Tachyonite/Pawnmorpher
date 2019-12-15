@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -27,9 +28,26 @@ namespace Pawnmorph
         /// use this value to scale control values to a better range
         public const float AVERAGE_MAX_SAPIENCE = AVERAGE_INT * ALPHA + AVERAGE_RESISTANCE_STAT * BETA;
 
+        /// <summary>
+        /// a very small value 
+        /// </summary>
+        public const float EPSILON = 0.001f; 
+
         [NotNull]
         private static readonly Dictionary<SapienceLevel, string> _labelDict;
 
+        /// <summary>
+        /// Gets the instinct change per tick.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public static float GetInstinctChangePerTick([NotNull] Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var sRFactor = pawn.GetStatValue(PMStatDefOf.SapienceRecoverFactor);
+            var netFactor =  sRFactor;
+            return netFactor * TimeMetrics.TICK_PERIOD; //TODO what else should influence recover rate? 
+        }
 
         static InstinctUtilities()
         {

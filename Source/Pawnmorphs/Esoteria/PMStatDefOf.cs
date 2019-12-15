@@ -41,6 +41,13 @@ namespace Pawnmorph
         /// </summary>
         public static StatDef MutagenSensitivity;
 
+
+        /// <summary>
+        /// stat that determines how much 'sapience' a pawn recovers over time 
+        /// </summary>
+        [NotNull]
+        public static StatDef SapienceRecoverFactor;
+        // ReSharper disable once NotNullMemberIsNotInitialized
         static PMStatDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(StatDef));
