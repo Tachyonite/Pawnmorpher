@@ -16,7 +16,8 @@
 		<techLevel>Industrial</techLevel>
 		<backstoryCategories>
 			<li>MutantWanderer</li>
-			<li>FreeMutant</li>
+      <li>FreeMutant</li>
+      <li>Civil</li> <!-- just to get rid of missing child backstory errors -->
 		</backstoryCategories>
 		<geneticVariance>0.8</geneticVariance>
 		<hairTags>
@@ -118,6 +119,7 @@
     <backstoryCategories>
       <li>MutantWanderer</li>
       <li>FreeMutant</li>
+      <li>Civil</li> <!-- just to assing child backstories to get rid of errors, get rid of this before release -->
     </backstoryCategories>
     <invNutrition>2.55</invNutrition>
     <apparelTags>

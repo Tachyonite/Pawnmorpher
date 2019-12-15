@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
@@ -12,8 +13,49 @@ namespace Pawnmorph
     /// hediff representing a mutation 
     /// </summary>
     /// <seealso cref="Verse.HediffWithComps" />
-    public class Hediff_AddedMutation : HediffWithComps
+    public class Hediff_AddedMutation : HediffWithComps, IDescriptiveHediff
     {
+        [NotNull]
+        private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
+
+        /// <summary>
+        /// Gets the base label .
+        /// </summary>
+        /// <value>
+        /// The base label .
+        /// </value>
+        public override string LabelBase
+        {
+            get
+            {
+                var lOverride = (CurStage as DescriptiveStage)?.labelOverride;
+                return string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride; 
+            }
+        }
+
+        /// <summary>
+        /// Gets the description.
+        /// </summary>
+        /// <value>
+        /// The description.
+        /// </value>
+        public virtual string Description
+        {
+            get
+            {
+                string desc; 
+                if (!_descCache.TryGetValue(CurStageIndex, out desc))
+                {
+                    StringBuilder builder = new StringBuilder();
+                    CreateDescription(builder);
+                    desc = builder.ToString();
+                    _descCache[CurStageIndex] = desc;
+
+                }
+                return desc;
+            }
+        }
+
         /// <summary>
         /// The mutation description
         /// </summary>
@@ -34,22 +76,7 @@ namespace Pawnmorph
                 return false;
             }
         }
-        /// <summary>Gets the mutation description.</summary>
-        /// <value>The mutation description.</value>
-        public string MutationDescription
-        {
-            get
-            {
-                if (mutationDescription == null)
-                {
-                    StringBuilder builder = new StringBuilder();
-                    CreateDescription(builder);
-                    mutationDescription = builder.ToString();
-                }
-                return mutationDescription;
-            }
-        }
-
+     
         /// <summary>Gets the extra tip string .</summary>
         /// <value>The extra tip string .</value>
         public override string TipStringExtra
@@ -67,15 +94,22 @@ namespace Pawnmorph
         /// <param name="builder">The builder.</param>
         public virtual void CreateDescription(StringBuilder builder)
         {
-            if (def.description == null)
+            var rawDescription = GetRawDescription(); 
+            if (rawDescription == null)
             {
                 
                 builder.AppendLine("PawnmorphTooltipNoDescription".Translate());
                 return;
             }
-
-            string res = def.description.AdjustedFor(pawn);
+            
+            string res = rawDescription.AdjustedFor(pawn);
             builder.AppendLine(res);
+        }
+
+        private string GetRawDescription()
+        {
+            var descOverride = (CurStage as DescriptiveStage)?.description;
+            return string.IsNullOrEmpty(descOverride) ? def.description : descOverride; 
         }
 
         private bool _waitingForUpdate; 
@@ -105,6 +139,10 @@ namespace Pawnmorph
                 _waitingForUpdate = false; 
             }
         }
+
+        private int _curStage; 
+
+
 
         private void UpdatePawnInfo()
         {

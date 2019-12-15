@@ -16,7 +16,7 @@ namespace Pawnmorph
         private static readonly Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/Info", true);
         static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
         {
-            if (diffs.OfType<Hediff_AddedMutation>().Where(x => x.def.description != null).FirstOrDefault() == null) return;
+            if (diffs.OfType<IDescriptiveHediff>().FirstOrDefault(x => x.Description != null) == null) return;
 
             float firstRowWidth = rect.width * 0.375f;
             Rect rectIcon = new Rect(firstRowWidth - icon.width - 4, curY + 1, icon.width, icon.height);
@@ -27,11 +27,12 @@ namespace Pawnmorph
         static string Tooltip(IEnumerable<Hediff> diffs)
         {
             StringBuilder tooltip = new StringBuilder();
-            foreach (Hediff_AddedMutation mutation in diffs.OfType<Hediff_AddedMutation>())
+            foreach (var mutation in diffs.OfType<IDescriptiveHediff>())
             {
-                if (mutation.def.description == null) continue;
+                var desc = mutation.Description;
+                if (desc == null) continue;
 
-                tooltip.AppendLine(mutation.MutationDescription);
+                tooltip.AppendLine(desc);
             }
 
             return tooltip.ToString();
