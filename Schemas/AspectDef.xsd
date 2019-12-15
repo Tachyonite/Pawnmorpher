@@ -29,6 +29,7 @@
                 </xs:complexType>
             </xs:element>
             <xs:element name="nullifiedThoughts" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="conflictingAspects" type="ListOfStrings" minOccurs="0"/>
         </xs:all>
         <xs:attribute name="ParentName" type="xs:string" use="optional" />
         <xs:attribute name="Abstract" type="xs:boolean" use="optional" />

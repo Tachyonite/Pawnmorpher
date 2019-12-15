@@ -45,8 +45,13 @@ namespace Pawnmorph
         /// list of thoughts this aspect nullifies 
         /// </summary>
         [NotNull]
-        public List<ThoughtDef> nullifiedThoughts = new List<ThoughtDef>();  
+        public List<ThoughtDef> nullifiedThoughts = new List<ThoughtDef>();
 
+
+        /// <summary>
+        /// The conflicting aspects
+        /// </summary>
+        [NotNull] public List<AspectDef> conflictingAspects = new List<AspectDef>(); 
 
         /// <summary>
         /// resolve all def references in this def, called after DefOfs are loaded 
