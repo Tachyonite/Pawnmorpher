@@ -52,6 +52,24 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Gets the sapience level thresholds.
+        /// </summary>
+        /// <value>
+        /// The sapience level thresholds.
+        /// </value>
+        [NotNull]
+        public static IEnumerable<VTuple<SapienceLevel, float>> SapienceLevelThresholds
+        {
+            get
+            {
+                for (int i = 0; i < _sapienceThresholds.Length; i++)
+                {
+                    yield return new VTuple<SapienceLevel, float>((SapienceLevel) i, _sapienceThresholds[i]); 
+                }
+            }
+        }
+
+        /// <summary>
         ///     Gets all former humans on all maps
         /// </summary>
         /// <value>
@@ -367,7 +385,7 @@ namespace Pawnmorph
                 return;
             }
 
-            nC.CurLevel = sapienceLevel;
+            nC.CurLevelPercentage = sapienceLevel;
 
             if (animal.training == null) return;
 

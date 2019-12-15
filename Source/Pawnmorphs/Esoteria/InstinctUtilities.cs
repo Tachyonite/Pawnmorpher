@@ -13,14 +13,16 @@ namespace Pawnmorph
     /// </summary>
     public static class InstinctUtilities
     {
-        private const float BETA = 50f / 3f;
-        private const float ALPHA = 50f / 20f;
+        private const float BETA = 50f / 3f; //converts 'resistance stat' to sapience
+        private const float ALPHA = 50f / 20f; //converts intelligence to sapience
 
+        private const int AVERAGE_INT = 3;
+        private const float AVERAGE_RESISTANCE_STAT = 0.6f;
         /// <summary>
         ///     The average resistance of pawns
         /// </summary>
         /// use this value to scale control values to a better range
-        public const float AVERAGE_RESISTANCE = 50;
+        public const float AVERAGE_MAX_SAPIENCE = AVERAGE_INT * ALPHA + AVERAGE_RESISTANCE_STAT * BETA;
 
         /// <summary>
         ///     Calculates the total control has left
