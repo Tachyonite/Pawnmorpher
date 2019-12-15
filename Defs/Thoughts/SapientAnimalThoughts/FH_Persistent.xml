@@ -1,0 +1,78 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Abstract="true" Name="FH_PersistentThought">
+        <workerClass>Pawnmorph.Thoughts.Worker_FormerHuman</workerClass>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_PersistentThought">
+        <defName>FH_PersistentThoughtDefault</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>I can hardly believe my eyes...I'm a goddamn animal!</description>
+            </li>
+            <li>
+                <label>mostly sapient</label>
+                <description>Something's tugging at my mind...it's the animal.</description>
+            </li>
+            <li>
+                <label>conflicted mind</label>
+                <description>I shouldn't give in but it's...getting cloudy in here.</description>
+            </li>
+            <li>
+                <label>hard to think...</label>
+                <description>Gotta...stay...focused but all I want to do is eat and sleep!</description>
+            </li>
+            <li>
+                <label>feral animal</label>
+                <description>...food?</description>
+            </li>
+            <li>
+                <label>...</label>
+                <description>food?</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_PersistentThought">
+        <defName>FH_PersistentThoughtMA</defName> <!-- mutation affinity -->
+        <requiredTraits>
+            <li>MutationAffinity</li>
+        </requiredTraits>
+        <stages>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="FH_PersistentThought">
+        <defName>FH_PersistentThoughtBP</defName> <!-- body purist-->
+        <requiredTraits>
+            <li>MutationAffinity</li>
+        </requiredTraits>
+        <stages>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="FH_PersistentThought">
+        <defName>FH_PersistentThoughtPW</defName> <!-- primal wish -->
+        <stages>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+</Defs>
