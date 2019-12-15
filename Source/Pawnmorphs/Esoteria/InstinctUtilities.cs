@@ -2,6 +2,9 @@
 // last updated 12/07/2019  1:35 PM
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -23,6 +26,32 @@ namespace Pawnmorph
         /// </summary>
         /// use this value to scale control values to a better range
         public const float AVERAGE_MAX_SAPIENCE = AVERAGE_INT * ALPHA + AVERAGE_RESISTANCE_STAT * BETA;
+
+        [NotNull]
+        private static readonly Dictionary<SapienceLevel, string> _labelDict;
+
+
+        static InstinctUtilities()
+        {
+            var eType = typeof(SapienceLevel);
+            var values = Enum.GetValues(eType).Cast<SapienceLevel>();
+            _labelDict = new Dictionary<SapienceLevel, string>(); 
+            foreach (SapienceLevel sapienceLevel in values)
+            {
+                _labelDict[sapienceLevel] = sapienceLevel.ToString().Translate(); 
+            }
+
+        }
+
+        /// <summary>
+        /// Gets the label.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <returns></returns>
+        public static string GetLabel(this SapienceLevel level)
+        {
+            return _labelDict[level]; 
+        }
 
         /// <summary>
         ///     Calculates the total control has left

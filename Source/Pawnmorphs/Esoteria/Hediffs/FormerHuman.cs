@@ -14,6 +14,25 @@ namespace Pawnmorph.Hediffs
     {
         private int? _lastStage;
 
+
+        /// <summary>
+        /// Gets the label in brackets.
+        /// </summary>
+        /// <value>
+        /// The label in brackets.
+        /// </value>
+        public override string LabelInBrackets
+        {
+            get
+            {
+
+                var saLabel = pawn.GetQuantizedSapienceLevel();
+                return saLabel?.GetLabel() ?? "unknown"; 
+
+            }
+        }
+
+
         /// <summary>Exposes the data.</summary>
         public override void ExposeData()
         {

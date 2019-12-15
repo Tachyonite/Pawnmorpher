@@ -31,18 +31,19 @@ namespace Pawnmorph
                 SapienceLevel.MostlySapient,
                 SapienceLevel.Conflicted,
                 SapienceLevel.MostlyFeral,
-                SapienceLevel.Feral
             };
 
-            float delta = 1f / values.Length;
+            float delta = 1f / (values.Length);
             float counter = 1;
-            _sapienceThresholds = new float[values.Length];
+            _sapienceThresholds = new float[values.Length + 1];
             foreach (SapienceLevel sapienceLevel in values
             ) //split up the level thresholds evenly between 1,0 starting at sapient 
             {
                 counter -= delta;
                 _sapienceThresholds[(int) sapienceLevel] = counter;
             }
+
+            _sapienceThresholds[values.Length] = 0; 
 
             MutationTraits = new[] //TODO mod extension on traits to specify which ones can carry over? 
             {
@@ -310,7 +311,7 @@ namespace Pawnmorph
             for (var index = 0; index < _sapienceThresholds.Length; index++)
             {
                 float sapienceThreshold = _sapienceThresholds[index];
-                if (sLevel > sapienceThreshold) return (SapienceLevel) index;
+                if (sLevel >= sapienceThreshold) return (SapienceLevel) index;
             }
 
             return SapienceLevel.Feral;
