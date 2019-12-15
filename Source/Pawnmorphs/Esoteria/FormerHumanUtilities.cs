@@ -489,5 +489,15 @@ namespace Pawnmorph
             foreach (SkillRecord skillsSkill in original.skills.skills)
                 animal.skills.Learn(skillsSkill.def, skillsSkill.XpTotalEarned, true);
         }
+
+        /// <summary>
+        /// Gives the sapient animal the hunting thought.
+        /// </summary>
+        /// <param name="sapientAnimal">The sapient animal.</param>
+        /// <param name="prey">The prey.</param>
+        public static void GiveSapientAnimalHuntingThought([NotNull] Pawn sapientAnimal, [NotNull] Pawn prey)
+        {
+            sapientAnimal.TryGainMemory(PMThoughtDefOf.SapientAnimalHuntingMemory); 
+        }
     }
 }

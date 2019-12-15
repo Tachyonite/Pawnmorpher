@@ -1,0 +1,15 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef>
+        <defName>SapientAnimalHuntingMemory</defName> <!-- this is for hunting out of necessity (like starving) not for the hunging mental break-->
+        <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>hunted</label>
+                <description>TODO</description>
+                <visible>true</visible>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

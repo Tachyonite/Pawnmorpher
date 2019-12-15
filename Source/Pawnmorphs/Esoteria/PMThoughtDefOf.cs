@@ -53,5 +53,12 @@ namespace Pawnmorph
         /// default thought for when a sapient animal is milked 
         /// </summary>
         public static ThoughtDef SapientAnimalMilked;
+
+        /// <summary>
+        /// The sapient animal hunting memory
+        /// </summary>
+        /// this is for hunting out of necessity not for the hunting mental break 
+        public static ThoughtDef SapientAnimalHuntingMemory; 
+
     }
 }
