@@ -82,6 +82,7 @@ namespace Pawnmorph
             if (pawn.IsHashIntervalTick(TimeMetrics.TICKS_PER_REAL_SECOND)) //just every second or so 
             {
                 var instinctChange = GetInstinctChangePerTick(pawn) * TimeMetrics.TICKS_PER_REAL_SECOND;
+                Log.Message($"{instinctChange} change to {pawn.Name}");
                 if (Mathf.Abs(instinctChange) > EPSILON)
                 {
                     AddInstinctChange(Mathf.CeilToInt(instinctChange)); 

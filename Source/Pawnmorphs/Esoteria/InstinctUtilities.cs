@@ -8,6 +8,7 @@ using System.Reflection;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -17,9 +18,9 @@ namespace Pawnmorph
     /// </summary>
     public static class InstinctUtilities
     {
-        private const float BETA = 50f / 1.0f; //converts 'resistance stat' to sapience
+        private const float BETA = 50f / 2.0f; //converts 'resistance stat' to sapience
         private const float ALPHA = 50f / 10f; //converts intelligence to sapience
-
+        private const float INSTINCT_MULTIPLIER = 1 / 15f; //scales change in instinct to change in sapience 
         private const int AVERAGE_INT = 3;
         private const float AVERAGE_RESISTANCE_STAT = 0.6f;
         /// <summary>
@@ -36,6 +37,7 @@ namespace Pawnmorph
         [NotNull]
         private static readonly Dictionary<SapienceLevel, string> _labelDict;
 
+        private const float INSTINCT_PER_TICK_SCALAR = 1;
         /// <summary>
         /// Gets the instinct change per tick.
         /// </summary>
@@ -44,9 +46,9 @@ namespace Pawnmorph
         public static float GetInstinctChangePerTick([NotNull] Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            var sRFactor = pawn.GetStatValue(PMStatDefOf.SapienceRecoverFactor);
+            var sRFactor = -pawn.GetStatValue(PMStatDefOf.SapienceRecoverFactor);
             var netFactor =  sRFactor;
-            return netFactor * TimeMetrics.TICK_PERIOD; //TODO what else should influence recover rate? 
+            return INSTINCT_PER_TICK_SCALAR *  netFactor * TimeMetrics.TICK_PERIOD; //TODO what else should influence recover rate? 
         }
 
         static InstinctUtilities()
@@ -95,7 +97,11 @@ namespace Pawnmorph
         /// <returns></returns>
         public static float CalculateControlChange([NotNull] Pawn pawn, float instinctChange)
         {
-            return -instinctChange / pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
+            var div =  pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
+            var sign = div < 0 ? -1 : 1;
+            div = Mathf.Max(Mathf.Abs(div), EPSILON) * sign; //prevent division by zero but preserve sign  
+
+            return -INSTINCT_MULTIPLIER * instinctChange / (div);
         }
 
         /// <summary>

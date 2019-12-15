@@ -22,6 +22,13 @@ namespace Pawnmorph
                 Rand.PushState(RandUtilities.MPSafeSeed); 
             }
 
+            if (pawn.GetFormerHumanStatus() == FormerHumanStatus.Sapient)
+            {
+                pawn.health.AddHediff(TfHediffDefOf.FeralPillSapienceDrop);
+                return; 
+            }
+
+
             foreach (Hediff hediff in pawn.health.hediffSet.hediffs) // Loop through all the hediffs on the pawn.
             {
                 if (hediff is Hediff_Morph morph && morph.CurStage == morph.def.stages[0]) // When you find one that is a pawnmorph in the final stage...
