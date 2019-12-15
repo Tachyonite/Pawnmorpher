@@ -304,6 +304,14 @@ namespace Pawnmorph.DebugUtils
             DebugToolMapForPawns("Add Aspect", DoAddAspectToPawn); 
             DebugToolMapForPawns("Add Backstory to Sapient Animal", DoAddBackstoryToPawn);
             DebugToolMapForPawns("Try Random Hunt", TryStartRandomHunt); 
+            DebugToolMapForPawns("Make pawn permanently feral", MakePawnPermanentlyFeral);
+        }
+
+        private void MakePawnPermanentlyFeral(Pawn obj)
+        {
+            if (obj?.GetFormerHumanStatus() == null) return;
+
+            FormerHumanUtilities.MakePermanentlyFeral(obj); 
         }
     }
 }

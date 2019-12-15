@@ -27,8 +27,8 @@ namespace Pawnmorph.HPatches
                 if (__instance.MentalStateDef != null) return;
                 if (!__instance.Spawned) return;
                 if (__instance.HostFaction != null) return; 
-                var formerHumanHediff = __instance.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-                __result = formerHumanHediff?.CurStageIndex == 2; 
+                
+                __result = __instance.GetFormerHumanStatus() == FormerHumanStatus.Sapient; 
             }
         }
 

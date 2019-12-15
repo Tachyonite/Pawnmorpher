@@ -16,6 +16,11 @@
         <showForCaravanMembers>true</showForCaravanMembers>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <filter>
+                    <filterList>
+                        <li>PermanentlyFeral</li>
+                    </filterList>
+                </filter>
             </li>
         </modExtensions>
     </NeedDef>

@@ -1,10 +1,12 @@
 ﻿// PawnComponentPatches.cs created by Iron Wolf for Pawnmorph on 11/27/2019 1:00 PM
 // last updated 11/27/2019  1:00 PM
 
+using System;
 using Harmony;
 using RimWorld;
 using Verse;
 using Verse.AI;
+using Verse.Noise;
 
 #pragma warning disable 1591
 
@@ -21,26 +23,35 @@ namespace Pawnmorph.HPatches
             {
                 if (pawn.RaceProps.Animal)
                 {
-                    Hediff formerHumanHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-                    if (formerHumanHediff?.CurStageIndex == 2)
-                    {
-                        AddSapientAnimalComponents(pawn);
-                    }
-                    else if (formerHumanHediff?.CurStageIndex < 2 && pawn.drafter != null)
-                    {
-                        //remove sapient animal comps if the animal is now feral 
-                        RemoveSapientAnimalComponents(pawn); 
+                    var formerHumanStats = pawn.GetFormerHumanStatus();
 
+                    switch (formerHumanStats)
+                    {
+                        case FormerHumanStatus.Sapient:
+                            AddSapientAnimalComponents(pawn);
+                            break;
+                        case FormerHumanStatus.Feral:
+                            AddSapientAnimalComponents(pawn); //they need to keep them so stuff doesn't break, like relationships 
+                            break;
+                        case FormerHumanStatus.PermanentlyFeral:
+                            RemoveSapientAnimalComponents(pawn); //actually removing the components seems to break stuff for some reason 
+                            break;
+                        case null:
+                            return;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
                 }
             }
 
+
             private static void RemoveSapientAnimalComponents(Pawn pawn)
             {
-                Log.Message($"removing drafter from {pawn.Name}");
+                if (pawn.drafter == null) return; 
+
                 //remove the drafter component if the animal is now feral 
                 pawn.drafter.Drafted = false;
-                pawn.drafter = null;
+                
                 if (pawn.MapHeld != null)
                 {
                     pawn.equipment?.DropAllEquipment(pawn.PositionHeld, pawn.Faction?.IsPlayer != true);
@@ -53,14 +64,16 @@ namespace Pawnmorph.HPatches
                 }
 
                 pawn.ownership?.UnclaimAll();
-
-                pawn.ownership = null; 
-
+                pawn.workSettings?.DisableAll();
+                pawn.ownership = null;
+                pawn.drafter = null;
                 pawn.apparel = null;
                 pawn.equipment = null;
+                
                 pawn.story = null;
                 pawn.skills = null;
-                pawn.jobs = null;
+                
+                pawn.workSettings = null; 
                 var saComp = pawn.GetComp<Comp_SapientAnimal>();
                 if (saComp != null)
                 {

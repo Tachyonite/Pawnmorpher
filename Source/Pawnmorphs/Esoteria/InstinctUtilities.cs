@@ -22,7 +22,7 @@ namespace Pawnmorph
         private const float ALPHA = 50f / 10f; //converts intelligence to sapience
         private const float INSTINCT_MULTIPLIER = 1 / 15f; //scales change in instinct to change in sapience 
         private const int AVERAGE_INT = 3;
-        private const float AVERAGE_RESISTANCE_STAT = 0.6f;
+        private const float AVERAGE_RESISTANCE_STAT = 0.5f;
         /// <summary>
         ///     The average resistance of pawns
         /// </summary>

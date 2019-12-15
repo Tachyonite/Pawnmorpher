@@ -9,11 +9,7 @@
 			<li>
 				<minSeverity>0</minSeverity>
 				<label>feral</label>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_PermanentFeral">
-						<hediff>PermanentlyFeral</hediff>
-					</li>
-				</hediffGivers>
+				
 			</li>
 			<li>
 				<minSeverity>0.01</minSeverity>

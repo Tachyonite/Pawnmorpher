@@ -8,6 +8,7 @@ using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.TfSys;
+using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -30,12 +31,13 @@ namespace Pawnmorph
                 SapienceLevel.Sapient,
                 SapienceLevel.MostlySapient,
                 SapienceLevel.Conflicted,
-                SapienceLevel.MostlyFeral,
+                
             };
 
-            float delta = 1f / (values.Length);
+            float delta = (1f) / (values.Length+1);
             float counter = 1;
-            _sapienceThresholds = new float[values.Length + 1];
+            _sapienceThresholds = new float[values.Length + 2];
+
             foreach (SapienceLevel sapienceLevel in values
             ) //split up the level thresholds evenly between 1,0 starting at sapient 
             {
@@ -43,7 +45,10 @@ namespace Pawnmorph
                 _sapienceThresholds[(int) sapienceLevel] = counter;
             }
 
-            _sapienceThresholds[values.Length] = 0; 
+            _sapienceThresholds[values.Length] = (_sapienceThresholds[values.Length - 1] + 0) / 12f; 
+
+            _sapienceThresholds[values.Length+1] = 0;
+
 
             MutationTraits = new[] //TODO mod extension on traits to specify which ones can carry over? 
             {
@@ -280,6 +285,8 @@ namespace Pawnmorph
                 return null;
             }
 
+
+
             if (formerHumanHediff.CurStageIndex >= 2) return FormerHumanStatus.Sapient;
             return FormerHumanStatus.Feral;
         }
@@ -308,10 +315,21 @@ namespace Pawnmorph
             float? sLevel = GetSapienceLevel(pawn);
             if (sLevel == null) return null;
             if (pawn.GetFormerHumanStatus() == FormerHumanStatus.PermanentlyFeral) return SapienceLevel.PermanentlyFeral;
+
+            return GetQuantizedSapienceLevel(sLevel.Value); 
+        }
+
+        /// <summary>
+        /// Gets the quantized sapience level.
+        /// </summary>
+        /// <param name="sapienceLevel">The raw sapience level.</param>
+        /// <returns></returns>
+        public static SapienceLevel GetQuantizedSapienceLevel(float sapienceLevel)
+        {
             for (var index = 0; index < _sapienceThresholds.Length; index++)
             {
                 float sapienceThreshold = _sapienceThresholds[index];
-                if (sLevel >= sapienceThreshold) return (SapienceLevel) index;
+                if (sapienceLevel > sapienceThreshold) return (SapienceLevel)index;
             }
 
             return SapienceLevel.Feral;
@@ -517,6 +535,99 @@ namespace Pawnmorph
         public static void GiveSapientAnimalHuntingThought([NotNull] Pawn sapientAnimal, [NotNull] Pawn prey)
         {
             sapientAnimal.TryGainMemory(PMThoughtDefOf.SapientAnimalHuntingMemory); 
+        }
+
+
+        /// <summary>
+        /// Makes the pawn permanently feral.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <exception cref="NotImplementedException"></exception>
+        public static void MakePermanentlyFeral(Pawn pawn)
+        {
+            Hediff fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            if (fHediff == null) return;
+           
+
+            //transfer relationships back if possible 
+            var gComp = Find.World.GetComponent<PawnmorphGameComp>();
+            var oPawn = gComp.GetTransformedPawnContaining(pawn)?.First?.OriginalPawns.FirstOrDefault();
+            if (oPawn == pawn)
+            {
+                oPawn = null; 
+            }
+
+            Pawn_RelationsTracker aRelations = pawn.relations;
+            if (aRelations != null)
+            {
+                TransferRelationsToOriginal(pawn, oPawn, aRelations);
+            }
+
+            pawn.health.AddHediff(TfHediffDefOf.PermanentlyFeral);
+            pawn.health.RemoveHediff(fHediff); 
+
+            var loader = Find.World.GetComponent<PawnmorphGameComp>();
+            var inst = loader.GetTransformedPawnContaining(pawn)?.First;
+
+            foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())//needed to handle merges correctly 
+            {
+                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn);
+            }
+
+            //remove the original and destroy the pawns 
+            foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
+            {
+                instOriginalPawn.Destroy();
+            }
+
+            if (inst != null)
+            {
+                loader.RemoveInstance(inst);
+            }
+
+            if (inst != null || pawn.Faction == Faction.OfPlayer)
+                Find.LetterStack.ReceiveLetter("LetterHediffFromPermanentTFLabel".Translate(pawn.LabelShort).CapitalizeFirst(), "LetterHediffFromPermanentTF".Translate(pawn.LabelShort).CapitalizeFirst(), LetterDefOf.NegativeEvent, pawn, null, null);
+
+            pawn.needs?.AddOrRemoveNeedsAsAppropriate(); //make sure any comps get added/removed as appropriate 
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn); 
+
+
+
+
+        }
+
+        private static void TransferRelationsToOriginal([NotNull] Pawn pawn,[CanBeNull]  Pawn oPawn, [NotNull]  Pawn_RelationsTracker aRelations)
+        {
+            var dRelations = aRelations.DirectRelations.MakeSafe().Where(r => !r.def.implied).ToList();
+
+            foreach (DirectPawnRelation directPawnRelation in dRelations)
+            {
+                aRelations.RemoveDirectRelation(directPawnRelation);
+                if (oPawn?.relations != null)
+                {
+                    oPawn.relations.AddDirectRelation(directPawnRelation.def, directPawnRelation.otherPawn);
+                }
+            }
+
+            var pRelated = aRelations.PotentiallyRelatedPawns.MakeSafe().ToList();
+
+            foreach (Pawn pawn1 in pRelated) //move relations from potentially related pawns 
+            {
+                if (pawn1.relations == null) continue;
+                var relations = pawn1.relations.DirectRelations.MakeSafe()
+                                     .Where(r => !r.def.implied && r.otherPawn == pawn)
+                                     .ToList(); //get all relations from potentially related pawns 
+
+                foreach (DirectPawnRelation directPawnRelation in relations)
+                {
+                    pawn1.relations.RemoveDirectRelation(directPawnRelation);
+                    if (oPawn?.relations != null)
+                    {
+                        pawn1.relations.AddDirectRelation(directPawnRelation.def, oPawn);
+                    }
+                }
+
+            }
         }
     }
 }

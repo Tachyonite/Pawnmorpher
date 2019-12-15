@@ -24,28 +24,33 @@ namespace Pawnmorph
         {
             if (TryApply(pawn, null))
             {
-                var loader = Find.World.GetComponent<PawnmorphGameComp>();
-                var inst = loader.GetTransformedPawnContaining(pawn)?.First;
-
-                foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
-                {
-                    ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn); 
-                }
-
-                //remove the original and destroy the pawns 
-                foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
-                {
-                    instOriginalPawn.Destroy();
-                }
-
-                if (inst != null)
-                {
-                    loader.RemoveInstance(inst); 
-                }
-
-                if(inst != null || pawn.Faction == Faction.OfPlayer)
-                    Find.LetterStack.ReceiveLetter("LetterHediffFromPermanentTFLabel".Translate(pawn.LabelShort).CapitalizeFirst(), "LetterHediffFromPermanentTF".Translate(pawn.LabelShort).CapitalizeFirst(), LetterDefOf.NegativeEvent, pawn, null, null);
+                MakeFeral(pawn);
             }
+        }
+
+        private static void MakeFeral(Pawn pawn)
+        {
+            var loader = Find.World.GetComponent<PawnmorphGameComp>();
+            var inst = loader.GetTransformedPawnContaining(pawn)?.First;
+
+            foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
+            {
+                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn);
+            }
+
+            //remove the original and destroy the pawns 
+            foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
+            {
+                instOriginalPawn.Destroy();
+            }
+
+            if (inst != null)
+            {
+                loader.RemoveInstance(inst);
+            }
+
+            if (inst != null || pawn.Faction == Faction.OfPlayer)
+                Find.LetterStack.ReceiveLetter("LetterHediffFromPermanentTFLabel".Translate(pawn.LabelShort).CapitalizeFirst(), "LetterHediffFromPermanentTF".Translate(pawn.LabelShort).CapitalizeFirst(), LetterDefOf.NegativeEvent, pawn, null, null);
         }
     }
 }
