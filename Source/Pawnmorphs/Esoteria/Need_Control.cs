@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -21,6 +20,8 @@ namespace Pawnmorph
 
         private SapienceLevel _currentLevel;
 
+        private float? _maxLevelCached = null;
+
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Need_Control" /> class.
@@ -29,7 +30,6 @@ namespace Pawnmorph
         public Need_Control(Pawn pawn) : base(pawn)
         {
         }
-
 
         /// <summary>
         ///     Gets the maximum level.
@@ -70,16 +70,19 @@ namespace Pawnmorph
                                        bool drawArrows = true,
                                        bool doTooltip = true)
         {
-            threshPercents = threshPercents ?? new List<float>();
-            float mLevel = MaxLevel;
-            foreach (VTuple<SapienceLevel, float> sapienceLevelThreshold in FormerHumanUtilities.SapienceLevelThresholds)
+            
+            if (threshPercents == null || _maxLevelCached == null)
             {
-                float thresh = sapienceLevelThreshold.second / mLevel;
-                if(thresh > 1) continue;
-                threshPercents.Add(thresh);
+                _maxLevelCached = _maxLevelCached ?? MaxLevel;
+                float mLevel = _maxLevelCached.Value;
+                threshPercents = threshPercents ?? new List<float>();
+                foreach (VTuple<SapienceLevel, float> sapienceLevelThreshold in FormerHumanUtilities.SapienceLevelThresholds)
+                {
+                    float thresh = sapienceLevelThreshold.second / mLevel;
+                    if (thresh > 1) continue;
+                    threshPercents.Add(thresh);
+                }
             }
-
-
             base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip);
         }
 
@@ -121,6 +124,14 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        ///     Notifies that the cached maximum level is dirty
+        /// </summary>
+        public void NotifyMaxLevelDirty()
+        {
+            _maxLevelCached = null;
+        }
+
 
         /// <summary>
         ///     Sets the initial level.
@@ -153,8 +164,9 @@ namespace Pawnmorph
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             pawn.needs?.AddOrRemoveNeedsAsAppropriate();
-            PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn); 
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
         }
 
         private void TriggerPermanentlyFeralChange()
