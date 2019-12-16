@@ -77,5 +77,11 @@
 				</hediffGivers>
 			</li>
 		</stages>
+		<!-- add the mutagen source to make this morph give aspects to  -->
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>ChaoticMutagen</mutagen>
+			</li>
+		</modExtensions>
 	</HediffDef>
 </Defs>

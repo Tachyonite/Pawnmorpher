@@ -17,11 +17,6 @@
 				<triggerStage>1</triggerStage> <!-- this is the index of the stage that will trigger the check when the hediff enters it -->
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
-				<mutagen>TestAspectedMutagen</mutagen>
-			</li>
-		</modExtensions>
 	</HediffDef>
 
 	<HediffDef Name="PartialMorphParent" ParentName="MorphParent" Abstract="True">
@@ -69,5 +64,30 @@
 				<layers>Core</layers>
 			</li>
 		</comps>
+	</HediffDef>
+
+	<!-- this is going to be used for the full morph hediffs given out by the injectors -->
+	<HediffDef ParentName="MorphParent" Name="AspectedMorphParent" Abstract="true">
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>AspectGivingMutagen</mutagen>
+			</li>
+		</modExtensions>
+	</HediffDef>
+
+	<!-- specifically for herbaviours  -->
+	<HediffDef ParentName="AspectedMorphParent" Name="HerbavourMorphTfBase" Abstract="true">
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.AspectGiverExtension">
+				<aspectGivers>
+					<li Class="Pawnmorph.Aspects.SkillBasedGiver">
+						<aspect>PlantAffinity</aspect>
+						<skillDef>Plants</skillDef>
+						<skillThreshold>5</skillThreshold> <!-- pawn must have the Plants skills above 5 to get this  -->
+						<chance>0.07</chance>
+					</li>
+				</aspectGivers>
+			</li>
+		</modExtensions>
 	</HediffDef>
 </Defs>
