@@ -17,6 +17,11 @@
 				<triggerStage>1</triggerStage> <!-- this is the index of the stage that will trigger the check when the hediff enters it -->
 			</li>
 		</comps>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>TestAspectedMutagen</mutagen>
+			</li>
+		</modExtensions>
 	</HediffDef>
 
 	<HediffDef Name="PartialMorphParent" ParentName="MorphParent" Abstract="True">

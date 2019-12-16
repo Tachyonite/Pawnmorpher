@@ -1,19 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<Pawnmorph.MutagenDef>
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
 		<defName>defaultMutagen</defName>
-		<label>mechanite mutagen</label>
-		<mutagenType>Pawnmorph.TfSys.SimpleMechaniteMutagen</mutagenType>
-		<revertedThoughtGood>WasAnimalRelieved</revertedThoughtGood>
-		<revertedThoughtBad>WasAnimal</revertedThoughtBad>
-		<damageProperties>
-			<apparelDamageOffset>20</apparelDamageOffset>
-			<spawnedBiproductMult>0.07</spawnedBiproductMult>
-			<biproduct>Morphsilk</biproduct>
-		</damageProperties>
-		<immunizingHediffs>
-			<li>StabiliserHigh</li>
-		</immunizingHediffs>
 	</Pawnmorph.MutagenDef>
 
 	<Pawnmorph.MutagenDef>
@@ -28,4 +16,26 @@
 			<apparelDamageMultiplier>1.5</apparelDamageMultiplier>
 		</damageProperties>
 	</Pawnmorph.MutagenDef>
+
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
+		<defName>TestAspectedMutagen</defName> 
+		<aspectGivers>
+			<li Class="Pawnmorph.Aspects.RandomGiver">
+				<entries>
+					<li> <!-- on average this would require 20 mutations to give  -->
+						<aspect>Paragon</aspect> 
+						<chance>0.05</chance>
+					</li>
+				</entries>
+			</li>
+			<li Class="Pawnmorph.Aspects.RandomGiver">
+				<entries>
+					<li> 
+						<aspect>Afflicted</aspect>
+						<chance>0.05</chance>
+					</li>
+				</entries>
+			</li>
+		</aspectGivers>
+		</Pawnmorph.MutagenDef>
 </Defs>

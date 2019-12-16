@@ -1,0 +1,16 @@
+<Defs>
+    <Pawnmorph.MutagenDef Abstract="true" Name="SimpleMutagenBase">
+        <label>mechanite mutagen</label>
+        <mutagenType>Pawnmorph.TfSys.SimpleMechaniteMutagen</mutagenType>
+        <revertedThoughtGood>WasAnimalRelieved</revertedThoughtGood>
+        <revertedThoughtBad>WasAnimal</revertedThoughtBad>
+        <damageProperties>
+            <apparelDamageOffset>20</apparelDamageOffset>
+            <spawnedBiproductMult>0.07</spawnedBiproductMult>
+            <biproduct>Morphsilk</biproduct>
+        </damageProperties>
+        <immunizingHediffs>
+            <li>StabiliserHigh</li>
+        </immunizingHediffs>
+    </Pawnmorph.MutagenDef>
+</Defs>

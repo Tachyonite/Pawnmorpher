@@ -45,6 +45,7 @@ namespace Pawnmorph
         /// Whether or not the curent HediffGiver has tried to add this hediff.<br />
         /// Used to prevent the chance from activating if spammed repeatedly.
         /// </summary>
+        [NotNull]
         private readonly Dictionary<Hediff, bool> _triggered = new Dictionary<Hediff, bool>();
 
         /// <summary> Clears the triggeredHediff from this giver so it can trigger again on the same hediff. </summary>
@@ -67,13 +68,14 @@ namespace Pawnmorph
             float mult = singleComp?.stacks
                       ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
             mult *= pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
-            mult *= singleComp?.Props?.mutationRateMultiplier ?? 1; 
+            mult *= singleComp?.Props?.mutationRateMultiplier ?? 1;
             mult = Mathf.Max(0.001f, mult); //prevent division by zero 
             
 
             // After roughly this duration, try to apply the hediff if the pawn is of human-like intelligence.
             if (Rand.MTBEventOccurs( mtbDays/mult, mtbUnits, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
+                //mutagen is what contains information like infect-ability of a pawn and post mutation effects
                 MutagenDef mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
                 // Check if this HediffGiver has the HediffComp_Single property (basically a dummy property that only comes into play in this function).
@@ -91,6 +93,8 @@ namespace Pawnmorph
                         comp.stacks--;
                         if (comp.stacks <= 0) pawn.health.RemoveHediff(cause);
                     }
+
+                 
                 }
                 else
                 {
@@ -131,6 +135,15 @@ namespace Pawnmorph
             if (addLogEntry && added && partsToAffect != null)
             {
                 AddMutationLogFor(pawn);
+            }
+
+            if (added)
+            {
+                var cDef = cause?.def;
+                if (cDef != null)
+                {
+                    AspectUtils.TryApplyAspectsFrom(cDef, pawn); 
+                }
             }
             return added;
         }

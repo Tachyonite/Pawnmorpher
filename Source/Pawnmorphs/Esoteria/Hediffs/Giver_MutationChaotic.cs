@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -113,16 +114,24 @@ namespace Pawnmorph.Hediffs
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
             if (Mutations.Count == 0) return;
-
+            
             if (MP.IsInMultiplayer)
             {
                 Rand.PushState(RandUtilities.MPSafeSeed); 
             }
 
-            var mult = cause.TryGetComp<HediffComp_Single>()?.stacks ?? 1; //the more stacks there are the faster the mutation rate 
+            var singleComp = cause.TryGetComp<HediffComp_Single>();
+            float mult = singleComp?.stacks
+                      ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
+            mult *= pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
+            mult *= singleComp?.Props?.mutationRateMultiplier ?? 1;
+            
+            mult = Mathf.Max(0.001f, mult); //prevent division by zero 
             if (Rand.MTBEventOccurs(mtbDays / mult, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
+                //mutagen is what contains information like infect-ability of a pawn and post mutation effects 
                 var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+
                 TryApply(pawn, cause, mutagen);
             }
 
@@ -163,7 +172,7 @@ namespace Pawnmorph.Hediffs
                 }
             }
         }
-
+        
         private const int MAX_TRIES = 10; 
 
         private HediffGiver_Mutation GetRandomMutation([NotNull] Pawn pawn)

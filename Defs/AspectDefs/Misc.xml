@@ -98,6 +98,9 @@
         <conflictingAspects>
             <li>Afflicted</li>
         </conflictingAspects>
+        <conflictingTraits>
+            <li>BodyPurist</li>
+        </conflictingTraits>
     </Pawnmorph.AspectDef>
 
     <Pawnmorph.AspectDef>
@@ -115,5 +118,8 @@
         <conflictingAspects>
             <li>Paragon</li>
         </conflictingAspects>
+        <conflictingTraits>
+            <li>MutationAffinity</li>
+        </conflictingTraits>
     </Pawnmorph.AspectDef>
 </Defs>

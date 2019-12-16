@@ -71,7 +71,9 @@
     <Compile Include="AspectCapacityImpactor.cs" />
     <Compile Include="AspectDef.cs" />
     <Compile Include="AspectDefOf.cs" />
+    <Compile Include="AspectGiver.cs" />
     <Compile Include="AspectStage.cs" />
+    <Compile Include="Aspects\RandomGiver.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
     <Compile Include="BackstoryDefOf.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="DefExtensions\AspectGiverExtension.cs" />
     <Compile Include="DefExtensions\AspectRestriction.cs" />
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
     <Compile Include="DefExtensions\MorphRestriction.cs" />
+    <Compile Include="DefExtensions\MutagenExtension.cs" />
     <Compile Include="DefExtensions\MutantPlantExtension.cs" />
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
@@ -336,9 +340,7 @@
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Aspects\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLibChecker">
       <Version>5.0.0</Version>

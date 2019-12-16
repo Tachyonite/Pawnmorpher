@@ -56,6 +56,13 @@ namespace Pawnmorph
                 TraitDefOf.BodyPurist,
                 PMTraitDefOf.MutationAffinity
             };
+
+            _cachedThresholds = new List<VTuple<SapienceLevel, float>>();
+            for (var index = 0; index < _sapienceThresholds.Length; index++)
+            {
+                float sapienceThreshold = _sapienceThresholds[index];
+                _cachedThresholds.Add(new VTuple<SapienceLevel, float>((SapienceLevel) index, sapienceThreshold));
+            }
         }
 
         /// <summary>
@@ -65,16 +72,10 @@ namespace Pawnmorph
         /// The sapience level thresholds.
         /// </value>
         [NotNull]
-        public static IEnumerable<VTuple<SapienceLevel, float>> SapienceLevelThresholds
-        {
-            get
-            {
-                for (int i = 0; i < _sapienceThresholds.Length; i++)
-                {
-                    yield return new VTuple<SapienceLevel, float>((SapienceLevel) i, _sapienceThresholds[i]); 
-                }
-            }
-        }
+        public static IEnumerable<VTuple<SapienceLevel, float>> SapienceLevelThresholds => _cachedThresholds; 
+       
+        [NotNull]
+        private static readonly List<VTuple<SapienceLevel, float>> _cachedThresholds; 
 
         /// <summary>
         ///     Gets all former humans on all maps

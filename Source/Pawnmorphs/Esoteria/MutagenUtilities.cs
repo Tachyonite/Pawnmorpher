@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
@@ -46,6 +48,28 @@ namespace Pawnmorph
             {
                 health.RemoveHediff(hediffAddedMutation); 
             }
+        }
+
+        /// <summary>
+        /// Tries the apply aspects that might be given from this mutagen
+        /// </summary>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        /// mutagen
+        /// or
+        /// pawn
+        /// </exception>
+        public static void TryApplyAspects([NotNull] this MutagenDef mutagen, [NotNull] Pawn pawn )
+        {
+            if (mutagen == null) throw new ArgumentNullException(nameof(mutagen));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            foreach (AspectGiver aspectGiver in mutagen.aspectGivers.MakeSafe())
+            {
+                aspectGiver.TryGiveAspects(pawn); 
+            }
+
         }
 
 
@@ -94,7 +118,9 @@ namespace Pawnmorph
             if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
 
             var def = morphTf.def as Hediffs.Def_MorphTf;
-            return def?.mutagenSource ?? MutagenDefOf.defaultMutagen;
+            var defExt = morphTf.def.GetModExtension<MutagenExtension>();
+            return def?.mutagenSource ??  defExt?.mutagen ??  MutagenDefOf.defaultMutagen;
+            // check for a custom def, then for the extension, then return the default 
         }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.TfSys;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -44,7 +45,13 @@ namespace Pawnmorph
         /// a list of hediffs that make a pawn immune to the effects of this mutagen source 
         /// </summary>
         [NotNull]
-        public List<HediffDef> immunizingHediffs = new List<HediffDef>(); 
+        public List<HediffDef> immunizingHediffs = new List<HediffDef>();
+
+        /// <summary>
+        /// The aspect givers
+        /// </summary>
+        [NotNull]
+        public List<AspectGiver> aspectGivers = new List<AspectGiver>(); 
 
         /// <summary>Get all Configuration Errors with this instance</summary>
         /// <returns></returns>
@@ -53,6 +60,18 @@ namespace Pawnmorph
             foreach (var configError in base.ConfigErrors())
             {
                 yield return configError; 
+            }
+
+            foreach (AspectGiver aspectGiver in aspectGivers.MakeSafe()) //check the aspect givers for errors 
+            {
+                if (aspectGiver == null) yield return "null aspect giver";
+                else
+                {
+                    foreach (string configError in aspectGiver.ConfigErrors())
+                    {
+                        yield return configError; 
+                    }
+                }
             }
 
             if (mutagenType == null)

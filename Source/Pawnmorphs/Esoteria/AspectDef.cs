@@ -51,7 +51,16 @@ namespace Pawnmorph
         /// <summary>
         /// The conflicting aspects
         /// </summary>
-        [NotNull] public List<AspectDef> conflictingAspects = new List<AspectDef>(); 
+        [NotNull] public List<AspectDef> conflictingAspects = new List<AspectDef>();
+
+        /// <summary>
+        /// The required traits
+        /// </summary>
+        public List<TraitDef> requiredTraits = new List<TraitDef>();
+        /// <summary>
+        /// The conflicting traits
+        /// </summary>
+        public List<TraitDef> conflictingTraits = new List<TraitDef>(); 
 
         /// <summary>
         /// resolve all def references in this def, called after DefOfs are loaded 
@@ -89,6 +98,7 @@ namespace Pawnmorph
         /// create a new aspect instance 
         /// </summary>
         /// <returns></returns>
+        [NotNull]
         public Aspect CreateInstance()
         {
             var affinity = (Aspect)Activator.CreateInstance(aspectType);
