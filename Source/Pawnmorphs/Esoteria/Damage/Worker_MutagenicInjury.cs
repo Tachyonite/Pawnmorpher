@@ -71,9 +71,11 @@ namespace Pawnmorph.Damage
             dinfo = ReduceDamage(dinfo, pawn);  
 
             var res = base.Apply(dinfo, pawn);
-            var severityPerDamage = dinfo.GetSeverityPerDamage(); 
-            if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return res;
-            MutagenicDamageUtilities.ApplyMutagenicDamage(originalDamage, dinfo, pawn, res, severityPerDamage:severityPerDamage);
+            var severityPerDamage = dinfo.GetSeverityPerDamage();
+            var mutagen = dinfo.Def.GetModExtension<MutagenicDamageExtension>()?.mutagen ?? MutagenDefOf.defaultMutagen;  
+
+            if (!mutagen.CanInfect(pawn)) return res;
+            MutagenicDamageUtilities.ApplyMutagenicDamage(originalDamage, dinfo, pawn, res, severityPerDamage:severityPerDamage, mutagen:mutagen);
 
             return res; 
         }

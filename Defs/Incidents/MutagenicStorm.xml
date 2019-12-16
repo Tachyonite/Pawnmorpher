@@ -162,5 +162,10 @@
 				</capMods>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+                <mutagen>ChaoticMutagen</mutagen>
+            </li>
+		</modExtensions>
 	</HediffDef>
 </Defs>

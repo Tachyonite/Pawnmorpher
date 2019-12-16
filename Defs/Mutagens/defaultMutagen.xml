@@ -23,7 +23,7 @@
 	</Pawnmorph.MutagenDef>
 
 	<!-- 
-		this mutagen is going to be used for the chaomorphs 
+		this mutagen is going to be used for the chaomorph mutation and mutagenic buildup from the fallout event 
 	-->
 	<Pawnmorph.MutagenDef ParentName="AspectGivingMutagenBase">
 		<defName>ChaoticMutagen</defName>

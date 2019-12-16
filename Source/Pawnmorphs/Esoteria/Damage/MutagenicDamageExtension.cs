@@ -2,6 +2,7 @@
 // last updated 11/10/2019  1:56 PM
 
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph.Damage
@@ -23,7 +24,14 @@ namespace Pawnmorph.Damage
         public float severityPerDamage = 0.04f;
 
         /// <summary>the amount by which to reduce the raw damage to the pawn, mutagenic</summary>
-        public float reduceValue = 1 / 3f; 
+        public float reduceValue = 1 / 3f;
+
+        /// <summary>
+        /// The mutagen to use for the mutagenic damage
+        /// if null the default is used 
+        /// </summary>
+        [CanBeNull]
+        public MutagenDef mutagen; 
 
         /// <summary>
         /// gets all Configuration errors with this instance.
