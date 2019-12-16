@@ -35,6 +35,18 @@ namespace Pawnmorph
         public Color? labelColor;
 
         /// <summary>
+        /// text displayed in a message when a pawn is given this aspect 
+        /// </summary>
+        public string messageText;
+
+        /// <summary>
+        /// The message definition, if null NeutralEvent is used 
+        /// </summary>
+        [CanBeNull]
+        public MessageTypeDef messageDef; 
+
+
+        /// <summary>
         /// list of thoughts this aspect stage nullifies 
         /// </summary>
         [NotNull] public List<ThoughtDef> nullifiedThoughts = new List<ThoughtDef>(); 

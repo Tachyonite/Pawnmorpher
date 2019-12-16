@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -89,6 +90,13 @@ namespace Pawnmorph
             if (aspect.HasCapMods)
             {
                 Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
+            }
+
+            var cStage = aspect.CurrentStage; 
+            if (PawnUtility.ShouldSendNotificationAbout(Pawn) && !string.IsNullOrEmpty(cStage.messageText))
+            {
+                var mDef = cStage.messageDef ?? MessageTypeDefOf.NeutralEvent;
+                Messages.Message(cStage.messageText.AdjustedFor(Pawn), mDef); 
             }
         }
 

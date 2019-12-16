@@ -82,6 +82,8 @@
                 </xs:complexType>
             </xs:element>
             <xs:element name="nullifiedThoughts" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="messageText" type="xs:string" minOccurs="0"/>
+            <xs:element name="messageDef" type="xs:string" minOccurs="0"/>
         </xs:all>
     </xs:complexType>
 
