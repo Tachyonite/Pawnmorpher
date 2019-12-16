@@ -1,0 +1,66 @@
+<Defs>
+    <Pawnmorph.MutagenDef>
+        <defName>Example</defName>
+        mutagen defs store information about what can and cannot recieve mutations
+    as well as information about what kind of effects recieving mutations from this source 
+    gives 
+
+        MutagenDef contains the below field for setting what kinds of aspects it gives and how it gives them
+        <aspectGivers>
+            <li Class="Pawnmorph.Aspects.RandomGiver">
+                <entries>
+                    <li>
+                        <!-- on average this would require 20 mutations to give  -->
+                        <aspect>Paragon</aspect>
+                        <chance>0.05</chance>
+                    </li>
+                    <li>
+                        <aspect>Afflicted</aspect>
+                        <chance>0.05</chance>
+                    </li>
+                </entries>
+            </li>
+            <li Class="Pawnmorph.Aspects.SkillBasedGiver">
+                <aspect>AnimalAffinity</aspect>
+                <skillDef>Animals</skillDef>
+                <skillThreshold>3</skillThreshold> <!-- pawn must have the Animals skills above 3 to get this  -->
+                <chance>0.07</chance>
+            </li>
+        </aspectGivers>
+    </Pawnmorph.MutagenDef>
+    Mutagens can be attached to several things to alter how they give mutations, the 2 right now are HediffDefs and DamageDefs
+    <HediffDef>
+        <defName>SomeMorphHediffDef</defName>
+        normal hediff def stuff goes here
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutagenExtension">
+                <mutagen>Example</mutagen>
+            </li>
+            you can also add the following mod extension to add aditional aspect givers to the Morph transformation hediff
+            <li Class="Pawnmorph.DefExtensions.AspectGiverExtension">
+                <aspectGivers>
+                    <li Class="Pawnmorph.Aspects.SkillBasedGiver">
+                        <aspect>PlantAffinity</aspect>
+                        <skillDef>Plants</skillDef>
+                        <skillThreshold>5</skillThreshold> <!-- pawn must have the Plants skills above 5 to get this  -->
+                        <chance>0.07</chance>
+                    </li>
+                </aspectGivers>
+            </li>
+        </modExtensions>
+        now this example hediff can apply all aspects in the example mutagen as well as the additional ones provided by the AspectGiverExtension 
+        Something to keep in mind that a morph transformation hediff can have only one mutagen source, but as many AspectGiverExtensions as you want
+    </HediffDef>
+    DamageDefs that have the mutagenic injury damage worker or other special workers can also be given MutagenDefs so they can have a chance of apply aspects when 
+    they cause a pawn to mutate
+    <DamageDef ParentName="BluntBase">
+        ...
+        <modExtensions>
+            <li Class="Pawnmorph.Damage.MutagenicDamageExtension">
+                ...
+                <mutagen>Example</mutagen>
+            </li>
+        </modExtensions>
+    </DamageDef>
+
+</Defs>
