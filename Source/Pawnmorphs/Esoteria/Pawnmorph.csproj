@@ -150,7 +150,10 @@
     <Compile Include="Jobs\Giver_MegaShaveSelf.cs" />
     <Compile Include="Jobs\Giver_MilkSelf.cs" />
     <Compile Include="Jobs\Giver_ShaveSelf.cs" />
+    <Compile Include="Jobs\JobGiver_HuntingBreak.cs" />
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
+    <Compile Include="Mental\StateWorker_Hunt.cs" />
+    <Compile Include="Mental\State_Hunting.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PMPlantUtilities.cs" />
@@ -335,7 +338,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aspects\" />
-    <Folder Include="MentalBreaks\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLibChecker">

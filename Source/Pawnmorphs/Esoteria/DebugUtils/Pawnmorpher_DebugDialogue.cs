@@ -49,7 +49,7 @@ namespace Pawnmorph.DebugUtils
         void TryStartRandomHunt(Pawn pawn)
         {
             if (!pawn.RaceProps.predator) return;
-            var prey = FindRandomPreyFor(pawn);
+            var prey = FormerHumanUtilities.FindRandomPreyFor(pawn);
             if (prey == null) return;
             var job = new Job(JobDefOf.PredatorHunt, prey)
             {
@@ -59,49 +59,7 @@ namespace Pawnmorph.DebugUtils
             pawn.jobs?.StartJob(job, JobCondition.InterruptForced);
         }
 
-
-
-        Pawn FindRandomPreyFor(Pawn predator)
-        {
-            List<Pawn> resultsList = new List<Pawn>();
-            if (predator.meleeVerbs.TryGetMeleeVerb(null) == null)
-            {
-                return null;
-            }
-            bool flag = false;
-            float summaryHealthPercent = predator.health.summaryHealth.SummaryHealthPercent;
-            if (summaryHealthPercent < 0.25f)
-            {
-                flag = true;
-            }
-            resultsList.Clear();
-
-            resultsList.AddRange(predator.Map.mapPawns.AllPawnsSpawned);
-            
-            
-            Pawn pawn = null;
-            float num = 0f;
-            bool tutorialMode = TutorSystem.TutorialMode;
-            foreach (Pawn pawn2 in resultsList)
-            {
-                if (predator.GetRoom(RegionType.Set_Passable) != pawn2.GetRoom(RegionType.Set_Passable)) continue;
-                if (predator == pawn2) continue;
-                if (flag && !pawn2.Downed) continue;
-                if (!FoodUtility.IsAcceptablePreyFor(predator, pawn2)) continue;
-                if (!predator.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly, false,
-                                       TraverseMode.ByPawn)) continue;
-                if (pawn2.IsForbidden(predator)) continue;
-                if (tutorialMode && pawn2.Faction == Faction.OfPlayer) continue;
-                float preyScoreFor = FoodUtility.GetPreyScoreFor(predator, pawn2);
-                if (!(preyScoreFor > num) && pawn != null) continue;
-                num = preyScoreFor;
-                pawn = pawn2;
-            }
-            resultsList.Clear();
-            return pawn;
-        }
-
-
+        
 
         private void ForceTransformation(Pawn pawn)
         {

@@ -12,6 +12,7 @@ using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Pawnmorph
 {
@@ -333,6 +334,50 @@ namespace Pawnmorph
             }
 
             return SapienceLevel.Feral;
+        }
+        /// <summary>
+        /// Finds the random prey for the given predator 
+        /// </summary>
+        /// <param name="predator">The predator.</param>
+        /// <returns></returns>
+        public static Pawn FindRandomPreyFor(Pawn predator)
+        {
+            List<Pawn> resultsList = new List<Pawn>();
+            if (predator.meleeVerbs.TryGetMeleeVerb(null) == null)
+            {
+                return null;
+            }
+            bool flag = false;
+            float summaryHealthPercent = predator.health.summaryHealth.SummaryHealthPercent;
+            if (summaryHealthPercent < 0.25f)
+            {
+                flag = true;
+            }
+            resultsList.Clear();
+
+            resultsList.AddRange(predator.Map.mapPawns.AllPawnsSpawned);
+
+
+            Pawn pawn = null;
+            var num = 0f;
+            bool tutorialMode = TutorSystem.TutorialMode;
+            foreach (Pawn pawn2 in resultsList)
+            {
+                if (predator.GetRoom() != pawn2.GetRoom()) continue;
+                if (predator == pawn2) continue;
+                if (flag && !pawn2.Downed) continue;
+                if (!FoodUtility.IsAcceptablePreyFor(predator, pawn2)) continue;
+                if (!predator.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly)) continue;
+                if (pawn2.IsForbidden(predator)) continue;
+                if (tutorialMode && pawn2.Faction == Faction.OfPlayer) continue;
+                float preyScoreFor = FoodUtility.GetPreyScoreFor(predator, pawn2);
+                if (!(preyScoreFor > num) && pawn != null) continue;
+                num = preyScoreFor;
+                pawn = pawn2;
+            }
+
+            resultsList.Clear();
+            return pawn;
         }
 
         /// <summary>Gets the sapience level of this pawn</summary>

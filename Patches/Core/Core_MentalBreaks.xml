@@ -41,4 +41,18 @@
             </li>
         </value>
     </Operation>
+
+
+    <!-- adding in new ones --> 
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThinkTreeDef/thinkRoot/subNodes</xpath>
+        <value>
+            <li Class="ThinkNode_ConditionalMentalStateClass">
+                <stateClass>Pawnmorph.Mental.State_Hunting</stateClass>
+                <subNodes>
+                    <li Class="Pawnmorph.Jobs.Giver_HuntingBreak" />
+                </subNodes>
+            </li>
+        </value>
+    </Operation>
 </Patch>
