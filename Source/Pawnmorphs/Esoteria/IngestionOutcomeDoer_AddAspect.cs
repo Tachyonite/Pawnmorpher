@@ -17,6 +17,11 @@ namespace Pawnmorph
         /// If true will increase the stage of the aspect by 1 every time the thing is consumed.
         public bool increaseStage;
 
+        /// <summary>
+        /// The stage to set the aspect at 
+        /// </summary>
+        public int stage; 
+
         /// <summary>Does the ingestion outcome special.</summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="ingested">The ingested.</param>
@@ -28,7 +33,7 @@ namespace Pawnmorph
             var aspect = aspectT.GetAspect(aspectDef);
             if (aspect == null)
             {
-                aspectT.Add(aspectDef);
+                aspectT.Add(aspectDef, stage); 
             }
             else if (increaseStage)
             {
