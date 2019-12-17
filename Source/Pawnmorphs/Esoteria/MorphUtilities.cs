@@ -80,8 +80,8 @@ namespace Pawnmorph
             if (hInfluence == null) return; 
 
             var morphInfluence = mutTracker.GetNormalizedInfluence(hInfluence);
-
-            if (morphInfluence < CHIMERA_THRESHOLD)
+            var morphInfluenceCount = mutTracker.NormalizedInfluences.Count(); 
+            if (morphInfluence < CHIMERA_THRESHOLD && morphInfluenceCount > 1)
             {
                 hInfluence = GetChimeraRace(hInfluence, pawn);
             }
