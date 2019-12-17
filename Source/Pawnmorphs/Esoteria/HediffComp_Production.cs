@@ -60,6 +60,7 @@ namespace Pawnmorph
             }
             else if (Pawn.Map != null)
             {
+                if (!CanProduce) return;//it's here so we don't check for the aspect every tick 
                 if (Props.JobGiver != null && !Pawn.Downed)
                 {
                     GiveJob();
@@ -68,6 +69,16 @@ namespace Pawnmorph
                 {
                     Produce();
                 }
+            }
+        }
+
+        public bool CanProduce
+        {
+            get
+            {
+                var mInfused = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
+                return mInfused?.StageIndex != 2; //dry is the third stage 
+                                                //TODO make this a stat? 
             }
         }
 
@@ -127,6 +138,8 @@ namespace Pawnmorph
                     case 1:
                         shouldProduceRare = false;
                         break;
+                    case 2:
+                        return; //produce nothing 
                     default:
                         throw new ArgumentOutOfRangeException(sIndex.Value.ToString());
                 }

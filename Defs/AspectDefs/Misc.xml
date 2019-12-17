@@ -41,6 +41,10 @@
                 <description>will never produce rare resources</description>
                 <isBad>true</isBad>
             </li>
+            <li>
+                <label>dry</label>
+                <description>PAWN_nameDef will never produce resources</description>
+            </li>
         </stages>
     </Pawnmorph.AspectDef>
 
