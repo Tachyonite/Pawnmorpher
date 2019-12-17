@@ -3,7 +3,7 @@
 	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFurredLimb</defName>
 		<description>Fur has covered the entirety of [PAWN_nameDef]'s limb, giving it a soft fine coat that helps retain warmth.</description>
-		<label>fur</label>
+		<label>furred</label>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0</initialSeverity>
 		<comps>
@@ -12,36 +12,39 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-				<label>fine</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<labelOverride>light hair</labelOverride>
+				<description>[PAWN_nameDef]'s skin seems to be slightly hairier than it was before.</description>
 				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
-				<label>dusting</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>fur dusting</label>
+				<description>Very fine fur -- too dense to be hair -- is sprouting over [PAWN_nameDef]'s limb.</description>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.04</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
-				<label>thin</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>thin fur</label>
+				<description>The fur on the skin here is quickly thickening as it spreads over [PAWN_nameDef]'s limb.</description>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
-				<label>patches</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>fur patches</label>
+				<description>There is not much bare skin left on [PAWN_nameDef]'s limb, much of it has been covered by patches of fur.</description>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
-				<label>covered</label>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
@@ -72,36 +75,42 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-				<label>fine</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<labelOverride>light hair</labelOverride>
+				<description>[PAWN_nameDef]'s skin seems to be slightly hairier than it was before.</description>
 				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
-				<label>thin</label>
-				<minSeverity>0.2</minSeverity>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>thin fur</label>
+				<description>The fur on the skin here is quickly thickening as it spreads over [PAWN_nameDef]'s limb.</description>
+				<minSeverity>0.2/minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
-				<label>patches</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>fur patches</label>
+				<description>There is not much bare skin left on [PAWN_nameDef]'s limb, much of it has been covered by patches of fur.</description>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>dense fur</label>
+				<description>The fur has become denser on [PAWN_nameDef]'s limb, making the skin underneath hard to see.</description>
 				<label>dense</label>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
-				<label>thick</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>thickly furred</label>
+				<description>The fur drapes [PAWN_nameDef]'s limb entirely. It's quite heavy and rather warm.</description>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.3</ComfyTemperatureMin>
@@ -133,30 +142,37 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-				<label>isolated</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>tight skin</label>
+				<description>The skin on this limb is somewhat thicker and rather tight.</description>
+				
 				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.02</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
-			<li>
-				<label>scarce</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>scattered scales</label>
+				<description>The skin is peppered with small scales that overlap and interlock.</description>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.05</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
-			<li>
-				<label>patches</label>
+			
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>scaled patchess</label>
+				<description>Small portions of this limb are covered with a tight-knit pattern of scales.</description>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.08</ComfyTemperatureMax>
 					<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
-				<label>swathes</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>scale clusters</label>
+				<description>Large portions of this limb are covered with a tight-knit pattern of scales, almost entirely covering the skin.</description>
+				
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.1</ComfyTemperatureMax>
@@ -164,8 +180,8 @@
 					<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
-				<label>covered</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>scaled</label>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.2</ComfyTemperatureMax>
@@ -198,31 +214,35 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
-				<label>thin</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>thick skin</label>
+				<description>The skin on this limb seems to be slightly more tough than the average human.</description>
 				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
-				<label>patches</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>hard skin</label>
 				<minSeverity>0.2</minSeverity>
+				<description>The skin on this limb seems to be quite a bit tougher than the average human.</description>
 				<statOffsets>
 					<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
-				<label>bristles</label>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>bristly skin</label>
+				<description>Rough, thick bristles have srpouted from this limb as the skin grows thicker.</description>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
 					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
-				<label>leathery</label>
+			<<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>leathery skin</label>
+				<description>The skin on this limb is greatly thicker than an average human, and is covered in thick bristles.</description>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
@@ -230,7 +250,6 @@
 				</statOffsets>
 			</li>
 			<li>
-				<label>covered</label>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
@@ -415,9 +434,19 @@
 		<description>[PAWN_nameDef]'s body no longer naturally regulates its body temperature.</description>
 		<stages>
 			<li>
+				<minSeverity>1</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>10</ComfyTemperatureMin>
 					<ComfyTemperatureMax>10</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li class="Pawnmorphs.Hediffs.DescriptiveStage">
+				<label>mech-blooded</label>
+				<description>[PAWN_nameDef]'s bloodstream has infused with mechanites, which more efficiently regulate body temperature.</description>
+				<minSeverity>2</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-15</ComfyTemperatureMin>
+					<ComfyTemperatureMax>15</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 		</stages>
