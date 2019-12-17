@@ -35,6 +35,11 @@ namespace Pawnmorph
         public Color? labelColor;
 
         /// <summary>
+        /// if an aspect at this stage should be considered 'bad'
+        /// </summary>
+        public bool isBad; 
+
+        /// <summary>
         /// text displayed in a message when a pawn is given this aspect 
         /// </summary>
         public string messageText;

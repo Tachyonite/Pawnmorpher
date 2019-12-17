@@ -54,6 +54,9 @@ and removed
                 optional field that if set will override an aspects default label color 
                 <labelColor></labelColor>
 
+                if true, marks the aspect at this stage as a negitive aspect
+                <isBad></isBad>
+
                 optional field that if set will be displayed as a message when a pawn is given this aspect. the message will be adjusted for the pawn that is given 
             the aspect, so use PAWN_nameDef etc. in the text 
                 <messageText></messageText>

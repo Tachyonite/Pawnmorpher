@@ -38,6 +38,15 @@ namespace Pawnmorph
         public int Priority => def.priority;  
         private AspectTracker _tracker;
 
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is bad.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is bad; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsBad => CurrentStage.isBad; 
+
         /// <summary>
         /// the color of the label in the mutation ITab 
         /// </summary>
