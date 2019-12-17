@@ -74,6 +74,46 @@
 		</comps>
 	</ThingDef>
 
+	<!--Dry Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>DryPills</defName>
+		<label>mutapill, dry</label>
+		<description>A pill that stops pawns with mutations producing any resources</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Pillbox_1</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddAspect" >
+					<aspectDef>MutagenInfused</aspectDef>
+					<stage>2</stage> <!-- the dry aspect is the third stage -->
+					<force>true</force> <!-- this means if the pawn has either of the other 2 stages, force the aspect to the 'dry' stage-->
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+
 	<!--Stabilizer Pills-->
 	<ThingDef ParentName="PM_PillBase">
 		<defName>MutagenStabiliser</defName>

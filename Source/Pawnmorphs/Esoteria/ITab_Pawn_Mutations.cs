@@ -258,9 +258,18 @@ namespace Pawnmorph
                 HediffComp_Staged stage = prodcomp.Props.stages.ElementAt(prodMutation.CurStageIndex);
 
                 // Draw the main text (the mutation's label, current stage and a percentage to completion).
+
+                string text;
                 string mutLabel = prodMutation.def.LabelCap;
-                float curPercent = prodcomp.HatchingTicker / (stage.daysToProduce * 60000);
-                string text = $"{mutLabel}{stageString} ({curPercent.ToStringPercent()}) ";
+                if (prodcomp.CanProduce)
+                {
+                    float curPercent = prodcomp.HatchingTicker / (stage.daysToProduce * 60000);
+                    text = $"{mutLabel}{stageString} ({curPercent.ToStringPercent()}) ";
+                }
+                else //display something special if it's dry 
+                {
+                    text = $"{mutLabel} not productive"; 
+                }
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
                 curPos.y += rectHeight;

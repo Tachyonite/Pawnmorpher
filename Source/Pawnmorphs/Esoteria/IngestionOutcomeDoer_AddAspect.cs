@@ -20,7 +20,12 @@ namespace Pawnmorph
         /// <summary>
         /// The stage to set the aspect at 
         /// </summary>
-        public int stage; 
+        public int stage;
+
+        /// <summary>
+        /// if the pawn has the same aspect at a different stage, this will force it to the given stage
+        /// </summary>
+        public bool force; 
 
         /// <summary>Does the ingestion outcome special.</summary>
         /// <param name="pawn">The pawn.</param>
@@ -34,6 +39,9 @@ namespace Pawnmorph
             if (aspect == null)
             {
                 aspectT.Add(aspectDef, stage); 
+            }else if (force && aspect.StageIndex != stage)
+            {
+                aspect.StageIndex = stage; 
             }
             else if (increaseStage)
             {
