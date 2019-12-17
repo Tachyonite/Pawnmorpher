@@ -39,6 +39,7 @@
             <li>
                 <label>mutagen neutralized</label>
                 <description>will never produce rare resources</description>
+                <isBad>true</isBad>
             </li>
         </stages>
     </Pawnmorph.AspectDef>
@@ -113,6 +114,7 @@
                 <statOffsets>
                     <MutationAdaptability>-2</MutationAdaptability>
                 </statOffsets>
+                <isBad>true</isBad>
             </li>
         </stages>
         <conflictingAspects>

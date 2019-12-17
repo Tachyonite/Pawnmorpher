@@ -49,4 +49,9 @@
 			<apparelDamageOffset>100</apparelDamageOffset>
 		</damageProperties>
 	</Pawnmorph.MutagenDef>
+
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
+		<defName>HealerMutagen</defName>
+		<!-- TODO aspects that can be added by the healer mecha serum -->
+	</Pawnmorph.MutagenDef>
 </Defs>

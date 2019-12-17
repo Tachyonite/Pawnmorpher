@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -31,7 +32,8 @@ namespace Pawnmorph
         /// <summary>
         /// an enumerable collection of all aspects in this instance 
         /// </summary>
-        public IEnumerable<Aspect> Aspects => _aspects;
+        [NotNull]
+        public IEnumerable<Aspect> Aspects => _aspects.MakeSafe();
 
         private Pawn Pawn => (Pawn)parent;
 

@@ -196,6 +196,11 @@
 		<thingSetMakerTags>
 			<li>RewardSpecial</li>
 		</thingSetMakerTags>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>HealerMutagen</mutagen>
+			</li>
+		</modExtensions>
 	</ThingDef>
 	
 	<ThingDef ParentName="MechSerumBase">
