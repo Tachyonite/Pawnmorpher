@@ -33,6 +33,12 @@ namespace Pawnmorph
         /// The negative thought to add when a pawn is reverted 
         /// </summary>
         public ThoughtDef revertedThoughtBad;
+
+        /// <summary>
+        /// the reversion thought for pawns with primal wish 
+        /// </summary>
+        public ThoughtDef primalWishThought; 
+
         [Unsaved] private Mutagen _mutagenCached;
         /// <summary>
         /// The damage properties

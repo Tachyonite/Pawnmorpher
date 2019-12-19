@@ -8,6 +8,7 @@ using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.TfSys
@@ -252,16 +253,22 @@ namespace Pawnmorph.TfSys
         {
             TraitSet traits = spawned.story.traits;
             ThoughtDef thoughtDef;
-            if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
+            var hasPrimalWish = spawned.GetAspectTracker()?.Contains(AspectDefOf.PrimalWish) != null;
+            if (hasPrimalWish)
+                thoughtDef = def.primalWishThought ?? def.revertedThoughtBad; //substitute with the bad thought if null 
+            else if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
                 thoughtDef = def.revertedThoughtGood;
             else if (traits.HasTrait(TraitDefOf.BodyPurist))
                 thoughtDef = def.revertedThoughtBad;
             else
                 thoughtDef = Rand.Value > 0.5f ? def.revertedThoughtGood : def.revertedThoughtBad;
 
-            Thought_Memory mem = ThoughtMaker.MakeThought(thoughtDef, curStageIndex);
-
-            spawned.needs.mood.thoughts.memories.TryGainMemory(mem);
+            if (thoughtDef != null)
+            {
+                curStageIndex = Mathf.Min(curStageIndex, thoughtDef.stages.Count - 1); //avoid index out of bounds issues 
+                Thought_Memory mem = ThoughtMaker.MakeThought(thoughtDef, curStageIndex);
+                spawned.TryGainMemory(mem);
+            }
         }
 
         private static Pawn SpawnAnimal(Pawn original, Pawn animalToSpawn)
