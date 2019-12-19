@@ -463,11 +463,18 @@ namespace Pawnmorph
             }
         }
 
-        private static void TransferRelations([NotNull] Pawn original, [NotNull] Pawn animal)
+        /// <summary>
+        /// Transfers the relations from one pawn to another
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="animal">The animal.</param>
+        /// <param name="predicate">optional predicate to dictate which relations get transferred</param>
+        public static void TransferRelations([NotNull] Pawn original, [NotNull] Pawn animal, Predicate<PawnRelationDef> predicate=null)
         {
             if (original.relations == null) return; 
             var enumerator = original.relations.DirectRelations.ToList();
-            foreach (DirectPawnRelation directPawnRelation in enumerator)
+            predicate = predicate ?? (r => true); //if no filter is set, have it pass everything 
+            foreach (DirectPawnRelation directPawnRelation in enumerator.Where(d => predicate(d.def)))
             {
                 if(directPawnRelation.def.implied) continue;
                 original.relations?.RemoveDirectRelation(directPawnRelation); //make sure we remove the relations first 
@@ -476,7 +483,7 @@ namespace Pawnmorph
 
             foreach (Pawn pRelatedPawns in original.relations.PotentiallyRelatedPawns.ToList()) //make copies so we don't  invalidate the enumerator mid way through 
             {
-                foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(original).ToList())
+                foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(original).Where(d => predicate(d)).ToList())
                 {
                     if(pawnRelationDef.implied) continue;
                     pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, original);
