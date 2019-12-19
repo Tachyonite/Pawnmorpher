@@ -255,7 +255,7 @@ namespace Pawnmorph.TfSys
             ThoughtDef thoughtDef;
             var hasPrimalWish = spawned.GetAspectTracker()?.Contains(AspectDefOf.PrimalWish) != null;
             if (hasPrimalWish)
-                thoughtDef = def.primalWishThought ?? def.revertedThoughtBad; //substitute with the bad thought if null 
+                thoughtDef = def.revertedPrimalWish ?? def.revertedThoughtBad; //substitute with the bad thought if null 
             else if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
                 thoughtDef = def.revertedThoughtGood;
             else if (traits.HasTrait(TraitDefOf.BodyPurist))

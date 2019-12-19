@@ -34,7 +34,12 @@
 		<stages>
 			<li>
 				<label>TODO</label> <!-- reversion thought for pawns with the primal wish aspect -->
-				<description>TODO</description>
+				<description>TODO</description> 
+				<!--
+					uncomment when text is added 
+					<baseMoodEffect>-1</baseMoodEffect>
+				 -->
+				 
 			</li>
 		</stages>
 	</ThoughtDef>

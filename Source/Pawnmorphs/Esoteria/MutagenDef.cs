@@ -37,7 +37,7 @@ namespace Pawnmorph
         /// <summary>
         /// the reversion thought for pawns with primal wish 
         /// </summary>
-        public ThoughtDef primalWishThought; 
+        public ThoughtDef revertedPrimalWish; 
 
         [Unsaved] private Mutagen _mutagenCached;
         /// <summary>

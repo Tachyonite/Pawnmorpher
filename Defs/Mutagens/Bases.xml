@@ -4,6 +4,7 @@
         <mutagenType>Pawnmorph.TfSys.SimpleMechaniteMutagen</mutagenType>
         <revertedThoughtGood>WasAnimalRelieved</revertedThoughtGood>
         <revertedThoughtBad>WasAnimal</revertedThoughtBad>
+        <revertedPrimalWish>WasAnimalPrimalWish</revertedPrimalWish>
         <damageProperties>
             <apparelDamageOffset>20</apparelDamageOffset>
             <spawnedBiproductMult>0.07</spawnedBiproductMult>
