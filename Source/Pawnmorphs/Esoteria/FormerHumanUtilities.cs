@@ -439,7 +439,7 @@ namespace Pawnmorph
             }
 
             animal.needs.AddOrRemoveNeedsAsAppropriate();
-            TransferRelationsToAnimal(original, animal); 
+            TransferRelations(original, animal); 
             TransferAspectsToAnimal(original, animal);
             TransferSkillsToAnimal(original, animal);
             var nC = animal.needs.TryGetNeed<Need_Control>();
@@ -450,7 +450,8 @@ namespace Pawnmorph
                 return;
             }
 
-            nC.CurLevelPercentage = sapienceLevel;
+            nC.SetInitialLevel(sapienceLevel); 
+            //nC.CurLevelPercentage = sapienceLevel;
 
             if (animal.training == null) return;
 
@@ -462,7 +463,7 @@ namespace Pawnmorph
             }
         }
 
-        private static void TransferRelationsToAnimal([NotNull] Pawn original, [NotNull] Pawn animal)
+        private static void TransferRelations([NotNull] Pawn original, [NotNull] Pawn animal)
         {
             if (original.relations == null) return; 
             var enumerator = original.relations.DirectRelations.ToList();

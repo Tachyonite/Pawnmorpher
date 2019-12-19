@@ -173,5 +173,14 @@ namespace Pawnmorph
         {
             FormerHumanUtilities.MakePermanentlyFeral(pawn);
         }
+
+        /// <summary>
+        /// Sets the initial level.
+        /// </summary>
+        /// <param name="sapienceLevel">The sapience level.</param>
+        public void SetInitialLevel(float sapienceLevel)
+        {
+            _seekerLevel = sapienceLevel;
+        }
     }
 }
