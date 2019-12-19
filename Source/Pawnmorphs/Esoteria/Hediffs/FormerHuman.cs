@@ -26,7 +26,7 @@ namespace Pawnmorph.Hediffs
             get
             {
 
-                var saLabel = pawn.GetQuantizedSapienceLevel();
+                var saLabel = pawn?.GetQuantizedSapienceLevel();
                 return saLabel?.GetLabel() ?? "unknown"; 
 
             }
