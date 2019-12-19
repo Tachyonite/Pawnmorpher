@@ -33,12 +33,10 @@
 		<defName>WasAnimalPrimalWish</defName>
 		<stages>
 			<li>
-				<label>TODO</label> <!-- reversion thought for pawns with the primal wish aspect -->
-				<description>TODO</description> 
-				<!--
+				<label>no longer an animal</label> <!-- reversion thought for pawns with the primal wish aspect -->
+				<description>I'm...human again? But c'mon, that wa awesome! Put me back in, coach!</description> 
 					uncomment when text is added 
 					<baseMoodEffect>-1</baseMoodEffect>
-				 -->
 				 
 			</li>
 		</stages>
