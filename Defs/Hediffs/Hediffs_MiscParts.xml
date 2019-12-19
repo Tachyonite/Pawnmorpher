@@ -3,7 +3,7 @@
 	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFurredLimb</defName>
 		<description>Fur has covered the entirety of [PAWN_nameDef]'s limb, giving it a soft fine coat that helps retain warmth.</description>
-		<label>furred</label>
+		<label>fur</label>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0</initialSeverity>
 		<comps>
@@ -67,7 +67,7 @@
 
 	<HediffDef ParentName="PawnmorphSkinPart">
 		<defName>EtherThickFurLimb</defName>
-		<label>fur</label>
+		<label>thick fur</label>
 		<description>A heavy coat of fur drapes across this limb, insulating a lot of heat.</description>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
@@ -277,8 +277,21 @@
 		<label>digitigrade</label>
 		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>readjusting</labelOverride>
+				<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+				<minSeverity>0.1</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.3</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
 				<label>unfamiliar</label>
+				<minSeverity>0.3</minSeverity>
+				<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. They'll need some time to get used to the new shape.</description>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -320,11 +333,29 @@
 		<label>paw</label>
 		<description>[PAWN_nameDef]'s feet have stretched out, growing a coat of fur, the toes shortening to clawed digits.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>clawed</labelOverride>
+				<description>[PAWN_nameDef]'s nails have lengthened and turned darker, now blunt claws.</description>
+				<minSeverity>0.1</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>padded</labelOverride>
+				<description>Pads have begun to develop on the ball and toes of [PAWN_nameDef]'s foot, making it slightly easier to move over rough terrain.</description>
+				<minSeverity>0.5</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
-						<offset>0.1</offset>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>paw</labelOverride>
+				<minSeverity>0.8</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.05</offset>
 					</li>
 				</capMods>
 			</li>
@@ -403,8 +434,32 @@
 		<defName>EtherTrotterFoot</defName>
 		<label>trotter</label>
 		<description>Smaller hooves now sit where [PAWN_nameDef]'s feet once were. Pointed things, they are.</description>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>hard nails</labelOverride>
+				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
+				<minSeverity>0.1</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>hooflike</labelOverride>
+				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>trotter</labelOverride>
+				<description>[PAWN_nameDef]'s foot has lengthened and broadened into a full trotter, with the heel much longer than before.</description>
+				<minSeverity>0.8</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
