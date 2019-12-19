@@ -69,6 +69,7 @@ namespace Pawnmorph.HPatches
                 pawn.drafter = null;
                 pawn.apparel = null;
                 pawn.equipment = null;
+               
                 
                 pawn.story = null;
                 pawn.skills = null;

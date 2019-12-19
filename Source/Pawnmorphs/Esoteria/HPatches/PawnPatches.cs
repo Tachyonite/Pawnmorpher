@@ -44,11 +44,12 @@ namespace Pawnmorph.HPatches
                     return;
                 }
                 if (___pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return; 
-                //var isColonist = ___pawn.Faction?.IsPlayer == true;
+                var isColonist = ___pawn.Faction?.IsPlayer == true;
                 if (nd.defName == "Mood")
                 {
                     __result = true; 
-                }
+                }else if (nd.defName == "Joy" && isColonist)
+                    __result = true; 
 
             }
         }

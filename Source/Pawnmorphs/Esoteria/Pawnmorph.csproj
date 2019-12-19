@@ -308,6 +308,7 @@
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
+    <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
     <Compile Include="ThoughtGroupDefExtension.cs" />
     <Compile Include="Thoughts\Def_AspectThought.cs" />
     <Compile Include="Thoughts\Def_MorphThought.cs" />

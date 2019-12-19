@@ -27,5 +27,21 @@ namespace Pawnmorph.HPatches
                 return true; 
             }
         }
+
+        [HarmonyPatch(typeof(InteractionUtility)), HarmonyPatch(nameof(InteractionUtility.CanReceiveRandomInteraction))]
+        static class SapientAnimalsRandomInteractionPatch
+        {
+            [HarmonyPrefix]
+            static bool SapientAnimalPatch([NotNull] Pawn p, ref bool __result)
+            {
+                if (p.GetFormerHumanStatus() == FormerHumanStatus.Sapient)
+                {
+                    __result = InteractionUtility.CanReceiveInteraction(p) && (!p.Downed && !p.InAggroMentalState);
+                    return false; 
+                }
+
+                return true; 
+            }
+        }
     }
 }
