@@ -1,8 +1,8 @@
 ﻿// Worker_MutagenicInjury.cs modified by Iron Wolf for Pawnmorph on 11/03/2019 11:05 AM
 // last updated 11/03/2019  11:05 AM
 
-using System;
 using System.Collections.Generic;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -10,43 +10,22 @@ using Verse;
 
 namespace Pawnmorph.Damage
 {
-
     /// <summary>
-    /// damage worker that adds mutagenic buildup hediff in addition to regular injuries 
+    ///     damage worker that adds mutagenic buildup hediff in addition to regular injuries
     /// </summary>
     /// <seealso cref="Verse.DamageWorker_AddInjury" />
     public class Worker_MutagenicInjury : DamageWorker_AddInjury
     {
         /// <summary>
-        /// values below this should be considered 0
+        ///     values below this should be considered 0
         /// </summary>
-        protected const float EPSILON = 0.001f; 
-
-
-        /// <summary>
-        /// Adds some extra buildup. taking into account toxic resistance and immunities 
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="dInfo">The d information.</param>
-        protected void AddExtraBuildup(Pawn pawn, DamageInfo dInfo)
-        {
-            if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return; 
-            var extraSeverity = dInfo.Amount * 0.02f * dInfo.GetSeverityPerDamage();
-            extraSeverity *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
-
-            if (Mathf.Abs(extraSeverity) < EPSILON) return; 
-
-            var hDef = dInfo.Def.GetModExtension<MutagenicDamageExtension>()?.mutagenicBuildup
-                    ?? MorphTransformationDefOf.MutagenicBuildup_Weapon;
-            HealthUtility.AdjustSeverity(pawn, hDef, extraSeverity);
-            return;
-        }
+        protected const float EPSILON = 0.001f;
 
 
         private const float REDUCE_VALUE = 1 / 3f;
-        
+
         /// <summary>
-        /// Applies the specified dinfo.
+        ///     Applies the specified dinfo.
         /// </summary>
         /// <param name="dinfo">The dinfo.</param>
         /// <param name="thing">The thing.</param>
@@ -55,53 +34,44 @@ namespace Pawnmorph.Damage
         {
             if (thing is Pawn pawn)
             {
-                return ApplyToPawn(dinfo, pawn); 
+                MutagenDef mutagen = dinfo.Weapon.GetModExtension<MutagenExtension>()?.mutagen
+                                  ?? dinfo.Def.GetModExtension<MutagenicDamageExtension>()?.mutagen
+                                  ?? MutagenDefOf.defaultMutagen;
+
+                if (mutagen.CanInfect(pawn))
+                    return ApplyToPawn(dinfo, pawn, mutagen);
             }
-            else
-            {
-                return base.Apply(dinfo, thing); 
-            }
+
+            return base.Apply(dinfo, thing);
         }
 
-        private DamageResult ApplyToPawn(DamageInfo dinfo, Pawn pawn)
-        {
-            //reduce the amount to make it less likely to kill the pawn 
-            float originalDamage = dinfo.Amount;
 
-            dinfo = ReduceDamage(dinfo, pawn);  
-
-            var res = base.Apply(dinfo, pawn);
-            var severityPerDamage = dinfo.GetSeverityPerDamage();
-            var mutagen = dinfo.Def.GetModExtension<MutagenicDamageExtension>()?.mutagen ?? MutagenDefOf.defaultMutagen;  
-
-            if (!mutagen.CanInfect(pawn)) return res;
-            MutagenicDamageUtilities.ApplyMutagenicDamage(originalDamage, dinfo, pawn, res, severityPerDamage:severityPerDamage, mutagen:mutagen);
-
-            return res; 
-        }
-
-        /// <summary>Reduces the damage.</summary>
-        /// <param name="dInfo">The d information.</param>
+        /// <summary>
+        ///     Adds some extra buildup. taking into account toxic resistance and immunities
+        /// </summary>
         /// <param name="pawn">The pawn.</param>
-        /// <returns></returns>
-        protected DamageInfo ReduceDamage(DamageInfo dInfo, Pawn pawn)
+        /// <param name="dInfo">The d information.</param>
+        protected void AddExtraBuildup(Pawn pawn, DamageInfo dInfo)
         {
-            float r;
-            if (MutagenDefOf.defaultMutagen.CanInfect(pawn))
-                r = dInfo.Def.GetModExtension<MutagenicDamageExtension>()?.reduceValue ?? REDUCE_VALUE;
-            else
-                r = 1; 
-            return MutagenicDamageUtilities.ReduceDamage(dInfo, r);
+            if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return;
+            float extraSeverity = dInfo.Amount * 0.02f * dInfo.GetSeverityPerDamage();
+            extraSeverity *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
+
+            if (Mathf.Abs(extraSeverity) < EPSILON) return;
+
+            HediffDef hDef = dInfo.Def.GetModExtension<MutagenicDamageExtension>()?.mutagenicBuildup
+                          ?? MorphTransformationDefOf.MutagenicBuildup_Weapon;
+            HealthUtility.AdjustSeverity(pawn, hDef, extraSeverity);
         }
 
         /// <summary>
-        /// Adds the mutation on.
+        ///     Adds the mutation on.
         /// </summary>
         /// <param name="forceHitPart">The force hit part.</param>
         /// <param name="pawn">The pawn.</param>
         protected void AddMutationOn(BodyPartRecord forceHitPart, Pawn pawn)
         {
-            if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return;  
+            if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return;
             while (forceHitPart != null)
             {
                 HediffGiver_Mutation giver = MutationUtilities.GetMutationsFor(forceHitPart.def).RandomElementWithFallback();
@@ -122,10 +92,8 @@ namespace Pawnmorph.Damage
         }
 
 
-
-
         /// <summary>
-        /// called when an explosion damages the given thing 
+        ///     called when an explosion damages the given thing
         /// </summary>
         /// <param name="explosion">The explosion.</param>
         /// <param name="t">The t.</param>
@@ -133,20 +101,13 @@ namespace Pawnmorph.Damage
         /// <param name="cell">The cell.</param>
         protected override void ExplosionDamageThing(Explosion explosion, Thing t, List<Thing> damagedThings, IntVec3 cell)
         {
-
-            if (t.def.category == ThingCategory.Mote || t.def.category == ThingCategory.Ethereal)
-            {
-                return;
-            }
-            if (damagedThings.Contains(t))
-            {
-                return;
-            }
+            if (t.def.category == ThingCategory.Mote || t.def.category == ThingCategory.Ethereal) return;
+            if (damagedThings.Contains(t)) return;
             damagedThings.Add(t);
             //it puts out fires 
-            if (this.def == DamageDefOf.Bomb && t.def == ThingDefOf.Fire && !t.Destroyed)
+            if (def == DamageDefOf.Bomb && t.def == ThingDefOf.Fire && !t.Destroyed)
             {
-                t.Destroy(DestroyMode.Vanish);
+                t.Destroy();
                 return;
             }
             //only affects pawns 
@@ -158,31 +119,59 @@ namespace Pawnmorph.Damage
 
             float num;
             if (t.Position == explosion.Position)
-            {
-                num = (float)Rand.RangeInclusive(0, 359);
-            }
+                num = Rand.RangeInclusive(0, 359);
             else
-            {
                 num = (t.Position - explosion.Position).AngleFlat;
-            }
-            DamageDef damageDef = this.def;
-            float amount = (float)explosion.GetDamageAmountAt(cell);
+            DamageDef damageDef = def;
+            var amount = (float) explosion.GetDamageAmountAt(cell);
             float armorPenetrationAt = explosion.GetArmorPenetrationAt(cell);
             float angle = num;
             Thing instigator = explosion.instigator;
             ThingDef weapon = explosion.weapon;
-            DamageInfo dinfo = new DamageInfo(damageDef, amount, armorPenetrationAt, angle, instigator, null, weapon, DamageInfo.SourceCategory.ThingOrUnknown, explosion.intendedTarget);
-            var severityPerDamage = dinfo.GetSeverityPerDamage();
+            var dinfo = new DamageInfo(damageDef, amount, armorPenetrationAt, angle, instigator, null, weapon,
+                                       DamageInfo.SourceCategory.ThingOrUnknown, explosion.intendedTarget);
+            float severityPerDamage = dinfo.GetSeverityPerDamage();
             MutagenicDamageUtilities.ApplyPureMutagenicDamage(dinfo, pawn,
-                                                              severityPerDamage: severityPerDamage); 
+                                                              severityPerDamage: severityPerDamage);
 
 
             BattleLogEntry_ExplosionImpact battleLogEntry_ExplosionImpact = null;
-            battleLogEntry_ExplosionImpact = new BattleLogEntry_ExplosionImpact(explosion.instigator, t, explosion.weapon, explosion.projectile, this.def);
+            battleLogEntry_ExplosionImpact =
+                new BattleLogEntry_ExplosionImpact(explosion.instigator, t, explosion.weapon, explosion.projectile, def);
             Find.BattleLog.Add(battleLogEntry_ExplosionImpact);
 
             pawn.stances?.StaggerFor(95);
-            
+        }
+
+        /// <summary>Reduces the damage.</summary>
+        /// <param name="dInfo">The d information.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        protected DamageInfo ReduceDamage(DamageInfo dInfo, Pawn pawn)
+        {
+            float r;
+            if (MutagenDefOf.defaultMutagen.CanInfect(pawn))
+                r = dInfo.Def.GetModExtension<MutagenicDamageExtension>()?.reduceValue ?? REDUCE_VALUE;
+            else
+                r = 1;
+            return MutagenicDamageUtilities.ReduceDamage(dInfo, r);
+        }
+
+        private DamageResult ApplyToPawn(DamageInfo dinfo, Pawn pawn, MutagenDef mutagen)
+        {
+            //reduce the amount to make it less likely to kill the pawn 
+            float originalDamage = dinfo.Amount;
+
+            dinfo = ReduceDamage(dinfo, pawn);
+
+            DamageResult res = base.Apply(dinfo, pawn);
+            float severityPerDamage = dinfo.GetSeverityPerDamage();
+
+            if (!mutagen.CanInfect(pawn)) return res;
+            MutagenicDamageUtilities.ApplyMutagenicDamage(originalDamage, dinfo, pawn, res, severityPerDamage: severityPerDamage,
+                                                          mutagen: mutagen);
+
+            return res;
         }
     }
 }
