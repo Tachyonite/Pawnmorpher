@@ -253,7 +253,7 @@ namespace Pawnmorph.TfSys
         {
             TraitSet traits = spawned.story.traits;
             ThoughtDef thoughtDef;
-            var hasPrimalWish = spawned.GetAspectTracker()?.Contains(AspectDefOf.PrimalWish) != null;
+            var hasPrimalWish = spawned.GetAspectTracker()?.Contains(AspectDefOf.PrimalWish) == true;
             if (hasPrimalWish)
                 thoughtDef = def.revertedPrimalWish ?? def.revertedThoughtBad; //substitute with the bad thought if null 
             else if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
