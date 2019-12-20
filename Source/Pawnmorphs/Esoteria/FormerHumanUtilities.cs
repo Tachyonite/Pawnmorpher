@@ -463,6 +463,51 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>Makes the animal sapient.</summary>
+        /// <param name="animal">The animal.</param>
+        /// <param name="sapienceLevel">The sapience level.</param>
+        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1)
+        {
+            animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
+            Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            if (fHumanHediff == null)
+            {
+                Log.Error(nameof(fHumanHediff));
+                return;
+            }
+
+            fHumanHediff.Severity = 1;
+
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
+            if (animal.needs == null)
+            {
+                Log.Error(nameof(animal.needs));
+                return;
+            }
+
+            animal.needs.AddOrRemoveNeedsAsAppropriate();
+            var nC = animal.needs.TryGetNeed<Need_Control>();
+
+            if (nC == null)
+            {
+                Log.Error(nameof(nC));
+                return;
+            }
+
+            nC.SetInitialLevel(sapienceLevel);
+            //nC.CurLevelPercentage = sapienceLevel;
+
+            if (animal.training == null) return;
+
+            foreach (TrainableDef training in DefDatabase<TrainableDef>.AllDefs)
+            {
+                if (!animal.training.CanBeTrained(training)) continue;
+
+                animal.training.Train(training, null, true);
+            }
+        }
+
+
         /// <summary>
         /// Transfers the relations from one pawn to another
         /// </summary>

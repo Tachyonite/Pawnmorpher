@@ -33,7 +33,8 @@ namespace Pawnmorph
                 triggered = true;
                 if (LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers && Rand.RangeInclusive(0, 100) <= Props.Chance && parent.Faction == null)
                 {
-                    TransformerUtility.AddHediffIfNotPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman"));
+                    float sL = Rand.Value;
+                    FormerHumanUtilities.MakeAnimalSapient((Pawn) parent, sL); 
                 }
             }
             TransformerUtility.RemoveHediffIfPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman"));
