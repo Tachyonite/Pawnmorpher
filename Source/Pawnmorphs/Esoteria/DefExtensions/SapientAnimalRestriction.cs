@@ -25,7 +25,7 @@ namespace Pawnmorph.DefExtensions
         /// if the def can be used with the given pawn
         /// </returns>
         /// <exception cref="ArgumentNullException">pawn</exception>
-        public override bool PassesRestriction(Pawn pawn)
+        protected override bool PassesRestrictionImpl(Pawn pawn)
         {
             if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return false;
             var sNeed = pawn.needs?.TryGetNeed<Need_Control>(); 

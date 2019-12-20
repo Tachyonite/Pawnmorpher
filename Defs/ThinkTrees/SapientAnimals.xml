@@ -20,7 +20,7 @@
                                 <li Class="ThinkNode_Tagger">
                                     <tagToGive>SatisfyingNeeds</tagToGive>
                                     <subNodes>
-                                        <li Class="JobGiver_GetJoy" />
+                                        <li Class="Pawnmorph.Jobs.Giver_SapientAnimalJoy" />
                                     </subNodes>
                                 </li>
                             </subNodes>

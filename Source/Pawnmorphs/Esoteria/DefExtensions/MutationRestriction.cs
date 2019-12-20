@@ -24,7 +24,7 @@ namespace Pawnmorph.DefExtensions
         /// <returns>
         /// if the def can be used with the given pawn
         /// </returns>
-        public override bool PassesRestriction(Pawn pawn)
+        protected override bool PassesRestrictionImpl(Pawn pawn)
         {
             foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
             {

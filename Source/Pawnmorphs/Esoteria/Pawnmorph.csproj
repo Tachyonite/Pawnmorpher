@@ -155,6 +155,7 @@
     <Compile Include="Jobs\Driver_ProduceThing.cs" />
     <Compile Include="Jobs\Giver_MegaShaveSelf.cs" />
     <Compile Include="Jobs\Giver_MilkSelf.cs" />
+    <Compile Include="Jobs\Giver_SapientAnimalJoy.cs" />
     <Compile Include="Jobs\Giver_ShaveSelf.cs" />
     <Compile Include="Jobs\JobGiver_HuntingBreak.cs" />
     <Compile Include="Joy\Giver_TerrainProduction.cs" />

@@ -26,7 +26,7 @@ namespace Pawnmorph.DefExtensions
         /// <returns>
         /// if the def can be used with the given pawn
         /// </returns>
-        public override bool PassesRestriction(Pawn pawn)
+        protected override bool PassesRestrictionImpl(Pawn pawn)
         {
             var morph = pawn.def.GetMorphOfRace();
             bool isBlackList = morphFilter?.isBlackList ?? true;
