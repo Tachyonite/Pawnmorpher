@@ -55,6 +55,9 @@ namespace Pawnmorph.TfSys
             if (formerHuman == null) return false;
 
             PawnGenerationRequest request = TransformerUtility.GenerateRandomPawnFromAnimal(transformedPawn);
+            
+
+
             Pawn pawnTf = PawnGenerator.GeneratePawn(request);
 
             pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurLevel;
@@ -63,6 +66,11 @@ namespace Pawnmorph.TfSys
             var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.PositionHeld, transformedPawn.MapHeld);
             spawned.equipment.DestroyAllEquipment();
             spawned.apparel.DestroyAll();
+
+            if (transformedPawn.Name is NameTriple nT)
+            {
+                spawned.Name = nT; //give the new random pawn the same name as the former human 
+            }
 
 
             for (var i = 0; i < 10; i++)

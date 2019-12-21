@@ -4,8 +4,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using AlienRace;
+using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
@@ -19,6 +21,7 @@ namespace Pawnmorph
     /// <summary>
     ///     static class containing various former human utilities
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class FormerHumanUtilities
     {
         [NotNull]
@@ -64,6 +67,17 @@ namespace Pawnmorph
                 float sapienceThreshold = _sapienceThresholds[index];
                 _cachedThresholds.Add(new VTuple<SapienceLevel, float>((SapienceLevel) index, sapienceThreshold));
             }
+
+
+            //grab random names from factions 
+            _randomNameGenerators = new List<RulePackDef>(); 
+            foreach (FactionDef factionDef in DefDatabase<FactionDef>.AllDefs)
+            {
+                if(!factionDef.humanlikeFaction || factionDef.hidden || factionDef.pawnNameMaker == null) continue;
+                _randomNameGenerators.Add(factionDef.pawnNameMaker);
+            }
+
+            Log.Message($"$$$loaded {_randomNameGenerators.Select(r => r.defName).Join(",")} for random name generation");
         }
 
         /// <summary>
@@ -497,7 +511,17 @@ namespace Pawnmorph
             }
 
             nC.SetInitialLevel(sapienceLevel);
-            //nC.CurLevelPercentage = sapienceLevel;
+            sapienceLevel = nC.SeekerLevel;
+            //now give the animal a name 
+            var newName = CreateRandomNameFor(animal, sapienceLevel);
+            if (newName == null)
+            {
+                Log.Error($"new name is null somehow");
+            }
+            else
+            {
+                animal.Name = newName;
+            }
 
             if (animal.training == null) return;
 
@@ -507,6 +531,34 @@ namespace Pawnmorph
 
                 animal.training.Train(training, null, true);
             }
+
+           
+        }
+
+        [NotNull]
+        private static readonly List<RulePackDef> _randomNameGenerators;
+
+        private static Name CreateRandomNameFor([NotNull] Pawn formerHumanPawn, float sapienceLevel)
+        {
+            Log.Message($"$$$$giving name to pawn {formerHumanPawn?.LabelShort ?? "[NULL]"}"); 
+
+
+            SapienceLevel qSapience = GetQuantizedSapienceLevel(sapienceLevel);
+            switch (qSapience)
+            {
+                case SapienceLevel.Sapient:
+                case SapienceLevel.MostlySapient:
+                    break;
+                case SapienceLevel.Conflicted:
+                case SapienceLevel.MostlyFeral:
+                case SapienceLevel.Feral:
+                case SapienceLevel.PermanentlyFeral:
+                    return new NameSingle(formerHumanPawn.LabelShort);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return PawnBioAndNameGenerator.TryGetRandomUnusedSolidName(formerHumanPawn.gender);
         }
 
 

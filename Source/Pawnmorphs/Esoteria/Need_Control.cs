@@ -7,6 +7,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
 using static Pawnmorph.InstinctUtilities;
 
 namespace Pawnmorph
@@ -175,12 +176,21 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Gets the seeker level.
+        /// </summary>
+        /// <value>
+        /// The seeker level.
+        /// </value>
+        public float SeekerLevel => _seekerLevel; 
+
+        /// <summary>
         /// Sets the initial level.
         /// </summary>
-        /// <param name="sapienceLevel">The sapience level.</param>
-        public void SetInitialLevel(float sapienceLevel)
+        /// <param name="sapiencePercent">The sapience level.</param>
+        public void SetInitialLevel(float sapiencePercent)
         {
-            _seekerLevel = sapienceLevel;
+            _seekerLevel = Mathf.Clamp(sapiencePercent, 0, 1) * MaxLevel;
+            CurLevel = _seekerLevel; 
         }
     }
 }
