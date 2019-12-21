@@ -54,7 +54,8 @@ namespace Pawnmorph
             MutationTraits = new[] //TODO mod extension on traits to specify which ones can carry over? 
             {
                 TraitDefOf.BodyPurist,
-                PMTraitDefOf.MutationAffinity
+                PMTraitDefOf.MutationAffinity,
+                TraitDefOf.Nudist
             };
 
             _cachedThresholds = new List<VTuple<SapienceLevel, float>>();
@@ -442,6 +443,7 @@ namespace Pawnmorph
             TransferRelations(original, animal); 
             TransferAspectsToAnimal(original, animal);
             TransferSkillsToAnimal(original, animal);
+            TransferTraitsToAnimal(original, animal); 
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
             if (nC == null)
@@ -544,7 +546,7 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="transformedPawn"></param>
         /// <param name="originalPawn"></param>
-        public static void MoveMutationTraitsToTransformedPawn([NotNull] Pawn transformedPawn, [NotNull] Pawn originalPawn)
+        public static void TransferTraitsToAnimal([NotNull] Pawn originalPawn, [NotNull] Pawn transformedPawn)
         {
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));

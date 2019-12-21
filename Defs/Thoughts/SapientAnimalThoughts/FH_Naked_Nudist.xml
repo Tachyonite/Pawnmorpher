@@ -1,27 +1,12 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
-    <ThoughtDef Name="FH_NakedThought" Abstract="true">
-        <workerClass>Pawnmorph.Thoughts.Worker_FHNaked</workerClass>
-        <validWhileDespawned>true</validWhileDespawned>
-        <nullifyingTraits>
-            <li>Nudist</li>
-        </nullifyingTraits>
-    </ThoughtDef>
 
-    <ThoughtDef Name="FH_NakedThougthNudist" Abstract="true">
-        <workerClass>Pawnmorph.Thoughts.Worker_FHNaked</workerClass>
-        <validWhileDespawned>true</validWhileDespawned>
-        <requiredTraits>
-            <li>Nudist</li>
-        </requiredTraits>
-    </ThoughtDef>
-
-    <ThoughtDef ParentName="FH_NakedThought">
-        <defName>SapientAnimalNaked</defName>
+    <ThoughtDef ParentName="FH_NakedThougthNudist">
+        <defName>NudistSapientAnimalNaked</defName>
         <stages>
             <li>
-                <label>naked</label>
-                <description>I know I'm covered in fur but...c'mon!</description>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <label>happily nude</label>
+                <description>I'm nude and loving it! I feel so free and unconstrained and in touch with my surroundings!</description>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <!--  you can now add varients for different sapient levels like in the example 
             <li>
@@ -57,13 +42,13 @@
         </modExtensions>
     </ThoughtDef>
 
-    <ThoughtDef ParentName="FH_NakedThought">
-        <defName>SapientChickenNaked</defName>
+    <ThoughtDef ParentName="FH_NakedThougthNudist">
+        <defName>NudistSapientChickenNaked</defName>
         <stages>
             <li>
-                <label>naked</label>
-                <description>I know I'm covered in feathers but...c'mon!</description>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <label>happily nude</label>
+                <description>I'm nude and loving it! I feel so free and unconstrained and in touch with my surroundings!</description>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
         </stages>
         <modExtensions>
@@ -79,13 +64,13 @@
         </modExtensions>
     </ThoughtDef>
 
-    <ThoughtDef ParentName="FH_NakedThought">
-        <defName>SapientReptileNaked</defName>
+    <ThoughtDef ParentName="FH_NakedThougthNudist">
+        <defName>NudistSapientReptileNaked</defName>
         <stages>
             <li>
-                <label>naked</label>
-                <description>I know I'm covered in scales but...c'mon!</description>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <label>happily nude</label>
+                <description>I'm nude and loving it! I feel so free and unconstrained and in touch with my surroundings!</description>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
         </stages>
         <modExtensions>

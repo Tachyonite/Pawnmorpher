@@ -81,6 +81,7 @@
 			<xs:enumeration value="GroupThoughtBase" />
 			<xs:enumeration value="FH_NakedThought"/>
 			<xs:enumeration value="FH_PersistentThought" />
+			<xs:enumeration value="FH_NakedThougthNudist" />
 		</xs:restriction>
 	</xs:simpleType>
 
