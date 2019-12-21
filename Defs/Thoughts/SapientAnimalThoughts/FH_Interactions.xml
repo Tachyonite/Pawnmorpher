@@ -1,0 +1,110 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>FormerHumanInteractedThought</defName> <!-- this is for the normal 'animal chat' interaction  -->
+        <stages>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li> <!-- stages can be ommited -->
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>FormerHumanTrainThought</defName> <!-- for training -->
+        <stages>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li> <!-- stages can be ommited -->
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>FormerHumanTameThought</defName> <!-- for taming -->
+        <stages>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li> <!-- stages can be ommited -->
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>TODO</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

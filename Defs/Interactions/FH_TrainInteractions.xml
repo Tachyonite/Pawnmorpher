@@ -39,6 +39,11 @@
                 <!-- will show up for all former humans -->
 
             </li>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <!-- we can't use the thought fields in the interaction workers 
+              so I'm using this to add thoughts to the recipient  -->
+                <thought>FormerHumanTrainThought</thought>
+              </li>
         </modExtensions>
     </InteractionDef>
 </Defs>

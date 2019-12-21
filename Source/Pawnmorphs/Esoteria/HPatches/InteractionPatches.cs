@@ -43,5 +43,22 @@ namespace Pawnmorph.HPatches
                 return true; 
             }
         }
+
+        [HarmonyPatch(typeof(Pawn_InteractionsTracker)), HarmonyPatch(nameof(Pawn_InteractionsTracker.TryInteractWith))]
+        static class AddInteractionThoughtsToFormerHumans
+        {
+            static void AddInteractionThoughts([NotNull] Pawn recipient, [NotNull] InteractionDef intDef, bool __result)
+            {
+                if (!__result) return; 
+                var fhStatus = recipient.GetFormerHumanStatus();
+                if (fhStatus == FormerHumanStatus.Sapient)
+                {
+                    var memory = intDef.GetModExtension<InstinctEffector>()?.thought;  //hacky, should come up with a better solution eventually 
+                    if (memory == null) return; 
+                    //social thoughts to? 
+                    recipient.TryGainMemory(memory); 
+                }
+            }
+        }
     }
 }
