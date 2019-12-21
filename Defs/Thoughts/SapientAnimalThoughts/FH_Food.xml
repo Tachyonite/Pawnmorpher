@@ -1,0 +1,45 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>WargAteCorpse</defName>
+        <showBubble>true</showBubble>
+        <icon>Things/Mote/ThoughtSymbol/Food</icon>
+        <stages>
+            <li>
+                <label>Sapient</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>MostlySapient</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>Conflicted</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <label>MostlyFeral</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+            <li>
+                <!-- stages can be ommited -->
+                <label>Feral</label>
+                <description>TODO</description>
+                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <raceFilter>
+                    <isBlackList>false</isBlackList>
+                    <filterList>
+                        <li>Warg</li>
+                    </filterList>
+                </raceFilter>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+</Defs>
