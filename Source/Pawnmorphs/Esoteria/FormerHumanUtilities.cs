@@ -403,11 +403,12 @@ namespace Pawnmorph
         /// <returns>the sapience level. If feral this is 0, if the given pawn is not a former human returns null</returns>
         public static float? GetSapienceLevel([NotNull] this Pawn formerHuman)
         {
+            if (formerHuman == null) throw new ArgumentNullException(nameof(formerHuman));
             FormerHumanStatus? fHumanStatus = formerHuman.GetFormerHumanStatus();
             switch (fHumanStatus)
             {
                 case FormerHumanStatus.Sapient:
-                    return formerHuman.needs.TryGetNeed<Need_Control>()?.CurLevel;
+                    return formerHuman.needs?.TryGetNeed<Need_Control>()?.CurLevel;
                 case FormerHumanStatus.Feral:
                     return 0;
                 case FormerHumanStatus.PermanentlyFeral:

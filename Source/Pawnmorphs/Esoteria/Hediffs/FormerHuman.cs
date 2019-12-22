@@ -14,24 +14,28 @@ namespace Pawnmorph.Hediffs
     {
         private int? _lastStage;
 
-
         /// <summary>
-        /// Gets the label in brackets.
+        ///     Gets the label in brackets.
         /// </summary>
         /// <value>
-        /// The label in brackets.
+        ///     The label in brackets.
         /// </value>
         public override string LabelInBrackets
         {
             get
             {
+                if (string.IsNullOrEmpty(_labelCached))
+                {
+                    SapienceLevel? saLabel = pawn?.GetQuantizedSapienceLevel();
+                    _labelCached = saLabel?.GetLabel() ?? "unknown";
+                }
 
-                var saLabel = pawn?.GetQuantizedSapienceLevel();
-                return saLabel?.GetLabel() ?? "unknown"; 
-
+                return _labelCached; 
             }
         }
 
+
+        private string _labelCached;
 
         /// <summary>Exposes the data.</summary>
         public override void ExposeData()
@@ -39,18 +43,18 @@ namespace Pawnmorph.Hediffs
             base.ExposeData();
 
             Scribe_Values.Look(ref _lastStage, nameof(_lastStage));
+            Scribe_Values.Look(ref _labelCached, nameof(_labelCached));
         }
+
         /// <summary>
-        /// called after the hediff is added 
+        ///     called after the hediff is added
         /// </summary>
         /// <param name="dinfo">The dinfo.</param>
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
             if (pawn.Name == null)
-            {
                 pawn.Name = new NameSingle(pawn.Label); //make sure they always have a name, is needed for sapients 
-            }
         }
 
         /// <summary>called after the pawn's tick method.</summary>
@@ -60,14 +64,21 @@ namespace Pawnmorph.Hediffs
 
             if (_lastStage != CurStageIndex)
             {
-                _lastStage = CurStageIndex;
-                if (pawn != null)
-                    //if the stage changed make sure we check dynamic components 
-                {
-                    PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
-                    //check needs to 
-                    pawn.needs?.AddOrRemoveNeedsAsAppropriate();
-                }
+                OnSapienceLevelChanged();
+            }
+        }
+
+
+        private void OnSapienceLevelChanged()
+        {
+            _lastStage = CurStageIndex;
+            if (pawn != null)
+            //if the stage changed make sure we check dynamic components 
+            {
+                PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
+                //check needs to 
+                pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+                _labelCached = null; 
             }
         }
     }
