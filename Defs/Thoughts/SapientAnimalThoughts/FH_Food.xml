@@ -5,30 +5,30 @@
         <icon>Things/Mote/ThoughtSymbol/Food</icon>
         <stages>
             <li>
-                <label>Sapient</label>
-                <description>TODO</description>
-                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+                <label>Ate corpse</label>
+                <description>Ugh, this is disgusting. I don't want to do this...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
-                <label>MostlySapient</label>
-                <description>TODO</description>
-                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+                <label>Ate corpse</label>
+                <description>Ugh, this isn't the best meal ever...but it's tasty.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
             </li>
             <li>
-                <label>Conflicted</label>
-                <description>TODO</description>
-                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+                <label>Ate corpse</label>
+                <description>Something wants me to like the taste...and I think I do.</description>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
-                <label>MostlyFeral</label>
-                <description>TODO</description>
-                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+                <label>Ate corpse</label>
+                <description>Mmhh...it's so succulent and meaty...</description>
+                <baseMoodEffect>5</baseMoodEffect>
             </li>
             <li>
                 <!-- stages can be ommited -->
-                <label>Feral</label>
-                <description>TODO</description>
-                <!-- <baseMoodEffect>5</baseMoodEffect> -->
+                <label>Ate corpse</label>
+                <description>...food!</description>
+                <baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>
         <modExtensions>
