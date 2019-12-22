@@ -4,8 +4,6 @@
         <value>
             <li Class="Pawnmorph.DefExtensions.InteractionGroupExtension">
                 <interactions>
-                    <li>SapientAnimalChat</li>
-                    <li>SapientAnimalChat2</li> <!--ok to add all possible interactions here, the interaction defs restrictions are taken into account-->
                     <li>FormerHumanAnimalChat</li>
                 </interactions>
             </li>

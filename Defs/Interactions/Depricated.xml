@@ -1,0 +1,181 @@
+<Defs>
+    <!-- removing these causes errors -->
+    <InteractionDef>
+        <defName>SapientAnimalChat</defName>
+        <label>animal talk</label>
+        <symbol>Things/Mote/SpeechSymbols/AnimalChat</symbol>
+        <workerClass>Pawnmorph.Social.Worker_FormerHuman</workerClass>
+        <initiatorXpGainSkill>Animals</initiatorXpGainSkill>
+        <initiatorXpGainAmount>70</initiatorXpGainAmount>
+        <logRulesInitiator>
+          <rulesStrings>
+            <li>r_logentry(p=5)->[INITIATOR_nameDef] [comfort] [RECIPIENT_nameDef].</li>
+            <li>r_logentry(p=5)->[RECIPIENT_nameDef] [animalTalk] [INITIATOR_nameDef].</li>
+            <li>r_logentry->[INITIATOR_nameDef] sat near [RECIPIENT_nameDef] and talked to [RECIPIENT_objective] about [TalkTopicAny].</li>
+            <li>r_logentry->[RECIPIENT_nameDef] lay by [INITIATOR_nameDef] and talked to [INITIATOR_objective] about [TalkTopicAny].</li>
+            <li>r_logentry->[INITIATOR_nameDef] sat near [RECIPIENT_nameDef] and talked to [RECIPIENT_objective] about [animalLife].</li>
+            <li>r_logentry->[RECIPIENT_nameDef] lay by [INITIATOR_nameDef] and talked to [INITIATOR_objective] about [animalLife].</li>
+            <li>r_logentry->[RECIPIENT_nameDef] talked with [INITIATOR_nameDef] about [TalkTopicAny].</li>
+            <li>r_logentry->[RECIPIENT_nameDef] talked with [INITIATOR_nameDef] about [animalLife].</li>
+    
+            <li>comfort->tried to calm</li>
+            <li>comfort->offered an understanding look towards</li>
+            <li>comfort->gently hugged</li>
+            <li>comfort->made polite conversation with</li>
+            <li>comfort->tried to comfort</li>
+            <li>comfort->booped the snoot of </li>
+            <li>comfort->calmed and encouraged</li>
+            <li>comfort->sat down and patted</li>
+            <li>comfort->shared a thought about [TalkTopicAny] with</li>
+            <li>comfort->gave headpats to</li>
+            <li>comfort->calmingly patted</li>
+            <li>comfort->tried to cheer up</li>
+            <li>comfort->told a story about [TalkTopicAny] to</li>
+    
+            <li>animalTalk->gruffed a story about [TalkTopicAny] to</li>
+            <li>animalTalk->sighed softly at</li>
+            <li>animalTalk->whined for attention from</li>
+            <li>animalTalk->nuzzled</li>
+            <li>animalTalk->rubbed against</li>
+            <li>animalTalk->sat down next to</li>
+            <li>animalTalk->curled up for a moment next to</li>
+            <li>animalTalk->pawed at</li>
+            <li>animalTalk->spoke about [TalkTopicAny] with</li>
+            <li>animalTalk->moaned about [TalkTopicAny] with</li>
+            <li>animalTalk->lamented about life with</li>
+    
+            <li>animalLife->being an animal</li>
+            <li>animalLife->becoming an animal</li>
+            <li>animalLife->sleeping on the ground</li>
+            <li>animalLife->sleeping on the ground</li>
+            <li>animalLife->sleeping outside</li>
+            <li>animalLife->eating kibble</li>
+            <li>animalLife->eating raw food</li>
+            <li>animalLife->being trained</li>
+            <li>animalLife->what love means as an animal</li>
+            <li>animalLife->paw maintenence</li>
+            <li>animalLife->preening and brushing</li>
+            <li>animalLife->stronger senses</li>
+            <li>animalLife->interesting scents</li>
+            <li>animalLife->gross scents</li>
+            <li>animalLife->resisting change</li>
+            <li>animalLife->accepting change</li>
+            <li>animalLife->giving in to instinct</li>
+            <li>animalLife->resisting instinct</li>
+            <li>animalLife->mutations</li>
+            <li>animalLife->nakedness</li>
+            <li>animalLife->saddles</li>
+            <li>animalLife->broken claws</li>
+            <li>animalLife->third-party tooth-brushing</li>
+            <li>animalLife->what a tail feels like</li>
+            <li>animalLife->animal products</li>
+            <li>animalLife->farming</li>
+            <li>animalLife->mates</li>
+            <li>animalLife->the struggle against instinct</li>
+            <li>animalLife->pheremones</li>
+            <li>animalLife->animal politics</li>
+            <li>animalLife->the language animals speak when humans look away</li>
+            <li>animalLife->secret animal cults</li>
+            <li>animalLife->reversion serums</li>
+            <li>animalLife->joining a cult</li>
+            <li>animalLife->becoming a mount</li>
+    
+    
+          </rulesStrings>
+        </logRulesInitiator>
+        <modExtensions>
+          <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction">
+            <!-- will only show up for sapients -->
+            <!-- the sapient 'level' doesn't matter for this one-->
+          </li>
+        </modExtensions>
+      </InteractionDef>
+      <InteractionDef>
+        <defName>SapientAnimalChat2</defName>
+        <label>animal talk</label>
+        <symbol>Things/Mote/SpeechSymbols/AnimalChat</symbol>
+        <workerClass>Pawnmorph.Social.Worker_FormerHuman</workerClass>
+        <initiatorXpGainSkill>Animals</initiatorXpGainSkill>
+        <initiatorXpGainAmount>70</initiatorXpGainAmount>
+        <logRulesInitiator>
+          <rulesStrings>
+            <li>r_logentry(p=5)->[INITIATOR_nameDef] [comfort] [RECIPIENT_nameDef].</li>
+            <li>r_logentry(p=5)->[RECIPIENT_nameDef] [animalTalk] [INITIATOR_nameDef].</li>
+            <li>r_logentry->[INITIATOR_nameDef] sat near [RECIPIENT_nameDef] and talked to [RECIPIENT_objective] about [TalkTopicAny].</li>
+            <li>r_logentry->[RECIPIENT_nameDef] lay by [INITIATOR_nameDef] and talked to [INITIATOR_objective] about [TalkTopicAny].</li>
+            <li>r_logentry->[INITIATOR_nameDef] sat near [RECIPIENT_nameDef] and talked to [RECIPIENT_objective] about [animalLife].</li>
+            <li>r_logentry->[RECIPIENT_nameDef] lay by [INITIATOR_nameDef] and talked to [INITIATOR_objective] about [animalLife].</li>
+            <li>r_logentry->[RECIPIENT_nameDef] talked with [INITIATOR_nameDef] about [TalkTopicAny].</li>
+            <li>r_logentry->[RECIPIENT_nameDef] talked with [INITIATOR_nameDef] about [animalLife].</li>
+    
+            <li>comfort->tried to calm</li>
+            <li>comfort->offered an understanding look towards</li>
+            <li>comfort->gently hugged</li>
+            <li>comfort->made polite conversation with</li>
+            <li>comfort->tried to comfort</li>
+            <li>comfort->booped the snoot of </li>
+            <li>comfort->calmed and encouraged</li>
+            <li>comfort->sat down and patted</li>
+            <li>comfort->shared a thought about [TalkTopicAny] with</li>
+            <li>comfort->gave headpats to</li>
+            <li>comfort->calmingly patted</li>
+            <li>comfort->tried to cheer up</li>
+            <li>comfort->told a story about [TalkTopicAny] to</li>
+    
+            <li>animalTalk->gruffed a story about [TalkTopicAny] to</li>
+            <li>animalTalk->sighed softly at</li>
+            <li>animalTalk->whined for attention from</li>
+            <li>animalTalk->nuzzled</li>
+            <li>animalTalk->rubbed against</li>
+            <li>animalTalk->sat down next to</li>
+            <li>animalTalk->curled up for a moment next to</li>
+            <li>animalTalk->pawed at</li>
+            <li>animalTalk->spoke about [TalkTopicAny] with</li>
+            <li>animalTalk->moaned about [TalkTopicAny] with</li>
+            <li>animalTalk->lamented about life with</li>
+    
+            <li>animalLife->being an animal</li>
+            <li>animalLife->becoming an animal</li>
+            <li>animalLife->sleeping on the ground</li>
+            <li>animalLife->sleeping on the ground</li>
+            <li>animalLife->sleeping outside</li>
+            <li>animalLife->eating kibble</li>
+            <li>animalLife->eating raw food</li>
+            <li>animalLife->being trained</li>
+            <li>animalLife->what love means as an animal</li>
+            <li>animalLife->paw maintenence</li>
+            <li>animalLife->preening and brushing</li>
+            <li>animalLife->stronger senses</li>
+            <li>animalLife->interesting scents</li>
+            <li>animalLife->gross scents</li>
+            <li>animalLife->resisting change</li>
+            <li>animalLife->accepting change</li>
+            <li>animalLife->giving in to instinct</li>
+            <li>animalLife->resisting instinct</li>
+            <li>animalLife->mutations</li>
+            <li>animalLife->nakedness</li>
+            <li>animalLife->saddles</li>
+            <li>animalLife->broken claws</li>
+            <li>animalLife->third-party tooth-brushing</li>
+            <li>animalLife->what a tail feels like</li>
+            <li>animalLife->animal products</li>
+            <li>animalLife->farming</li>
+            <li>animalLife->mates</li>
+            <li>animalLife->the struggle against instinct</li>
+            <li>animalLife->pheremones</li>
+            <li>animalLife->animal politics</li>
+            <li>animalLife->the language animals speak when humans look away</li>
+            <li>animalLife->secret animal cults</li>
+            <li>animalLife->reversion serums</li>
+            <li>animalLife->joining a cult</li>
+            <li>animalLife->becoming a mount</li>
+          </rulesStrings>
+        </logRulesInitiator>
+        <modExtensions>
+          <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction">
+            <!-- will only show up for sapients -->
+            <sapienceRange>0.5~1</sapienceRange> <!-- sapience must be between 0.5 and 1 -->
+          </li>
+        </modExtensions>
+      </InteractionDef>
+</Defs>

@@ -1,6 +1,7 @@
 ﻿// Worker_FormerHuman.cs modified by Iron Wolf for Pawnmorph on 12/10/2019 6:08 PM
 // last updated 12/10/2019  6:09 PM
 
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
@@ -24,6 +25,32 @@ namespace Pawnmorph.Social
         ///     The base interaction chance.
         /// </value>
         protected virtual float BaseInteractionChance => BASE_INTERACTION_CHANCE;
+
+
+        /// <summary>
+        /// called when the initiator interacts with the specified recipient.
+        /// </summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <param name="extraSentencePacks">The extra sentence packs.</param>
+        /// <param name="letterText">The letter text.</param>
+        /// <param name="letterLabel">The letter label.</param>
+        /// <param name="letterDef">The letter definition.</param>
+        public override void Interacted(Pawn initiator,  Pawn recipient, [NotNull] List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel,
+                                        out LetterDef letterDef)
+        {
+            letterText = null;
+            letterLabel = null;
+            letterDef = null;
+            var saLevel = recipient?.GetQuantizedSapienceLevel();
+            if (saLevel == null) return;
+            var saVariants = interaction.GetModExtension<SapientRulePackVariant>();
+            var rulePackVariant = saVariants?.GetRulePackVariant(saLevel.Value);//check if any variants are attached, if so add them to extra rule packs 
+            if (rulePackVariant != null)
+            {
+                extraSentencePacks.Add(rulePackVariant);
+            }
+        }
 
         /// <summary>
         /// gets the random selection weight for the initiator and recipient interacting 
