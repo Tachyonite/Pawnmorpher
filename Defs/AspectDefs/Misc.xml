@@ -97,7 +97,7 @@
         <stages>
             <li>
                 <statOffsets>
-                    <MutationAdaptability>0.2</MutationAdaptability>
+                    <MutationAdaptability>1</MutationAdaptability>
                 </statOffsets>
             </li>
         </stages>
