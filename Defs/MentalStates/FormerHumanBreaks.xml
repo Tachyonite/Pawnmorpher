@@ -9,7 +9,7 @@
                 <sapienceRange>0~0.6</sapienceRange>
             </li>
             <li Class="Pawnmorph.DefExtensions.InstinctEffector">
-                <baseInstinctOffset>10</baseInstinctOffset>
+                <baseInstinctOffset>15</baseInstinctOffset>
             </li>
         </modExtensions>
       </MentalBreakDef>
