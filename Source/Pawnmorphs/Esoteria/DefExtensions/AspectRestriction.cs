@@ -14,10 +14,7 @@ namespace Pawnmorph.DefExtensions
     /// <seealso cref="Pawnmorph.DefExtensions.RestrictionExtension" />
     public class AspectRestriction : RestrictionExtension
     {
-        /// <summary>
-        ///     if true, inverts this restrictions normal behavior
-        /// </summary>
-        public bool invert;
+        
 
         /// <summary>
         ///     The aspect entries
@@ -102,8 +99,6 @@ namespace Pawnmorph.DefExtensions
                     }
                 }
             }
-
-            if (invert) return !hasAspect;
             return hasAspect;
         }
 

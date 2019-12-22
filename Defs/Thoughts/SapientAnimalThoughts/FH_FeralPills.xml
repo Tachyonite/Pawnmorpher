@@ -1,0 +1,108 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Name="FH_FeralPillBase" Abstract="true">
+        <hediff>FeralPillSapienceDrop</hediff>
+        <workerClass>Pawnmorph.Thoughts.Worker_FormerHumanHediff</workerClass>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"></li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_FeralPillBase">
+        <defName>FeralPillThought</defName>
+        <nullifyingTraits>
+            <li>MutationAffinity</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>Sapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>Mostly Sapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>Conflicted</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>MostlyFeral</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert> <!-- we don't want primal wish pawns getting this thought  -->
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+    <ThoughtDef ParentName="FH_FeralPillBase">
+        <defName>FeralPillThoughtMutationAffinity</defName>
+        <requiredTraits>
+            <li>MutationAffinity</li>
+        </requiredTraits>
+        <stages>
+            <li>
+                <label>Sapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>Mostly Sapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>Conflicted</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>MostlyFeral</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert> <!-- we don't want primal wish pawns getting this thought  -->
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+    <ThoughtDef ParentName="FH_FeralPillBase">
+        <defName>FeralPillThoughtPrimalWish</defName>
+        <stages>
+            <li>
+                <label>Sapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>Mostly Sapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>Conflicted</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>MostlyFeral</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+</Defs>

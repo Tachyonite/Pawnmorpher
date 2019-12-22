@@ -131,6 +131,7 @@
     <Compile Include="Hediffs\MorphDisease.cs" />
     <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
+    <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
     <Compile Include="HPatches\HuntingPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="Thoughts\Worker_BodyPuristDisgust.cs" />
     <Compile Include="Thoughts\Worker_FHNaked.cs" />
     <Compile Include="Thoughts\Worker_FormerHuman.cs" />
+    <Compile Include="Thoughts\Worker_FormerHumanHediff.cs" />
     <Compile Include="Thoughts\Worker_FurryAppreciation.cs" />
     <Compile Include="Thoughts\Worker_HasAspect.cs" />
     <Compile Include="Thoughts\Worker_HasMutations.cs" />

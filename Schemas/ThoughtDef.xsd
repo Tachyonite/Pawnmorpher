@@ -83,6 +83,7 @@
 			<xs:enumeration value="FH_PersistentThought" />
 			<xs:enumeration value="FH_NakedThougthNudist" />
 			<xs:enumeration value="FH_MemoryBase"/>
+			<xs:enumeration value="FH_FeralPillBase" />
 		</xs:restriction>
 	</xs:simpleType>
 

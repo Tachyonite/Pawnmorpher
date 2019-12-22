@@ -3,7 +3,7 @@
         <defName>FeralPillSapienceDrop</defName>
         <label>feralising</label>
         <description>[PAWN_nameDef]'s sapience is rapidly degrading to an animal level, thanks to the administration of feral pills.</description>
-        <hediffClass>HediffWithComps</hediffClass>
+        <hediffClass>Pawnmorph.Hediffs.SimpleDescriptiveHediff</hediffClass>
         <minSeverity>0</minSeverity>
         <initialSeverity>1</initialSeverity>
         <stages>
