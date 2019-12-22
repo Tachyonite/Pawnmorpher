@@ -46,6 +46,11 @@ namespace Pawnmorph
         public static ThoughtDef DefaultMorphRevertsToHumanBP;
 
         /// <summary>
+        /// The former human taming success thought
+        /// </summary>
+        public static ThoughtDef FormerHumanTameThought; 
+
+        /// <summary>
         /// default thought for when a sapient animal sleeps on the ground 
         /// </summary>
         public static ThoughtDef SapientAnimalSleptOnGround;

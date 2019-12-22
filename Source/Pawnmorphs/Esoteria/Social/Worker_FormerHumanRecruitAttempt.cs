@@ -64,6 +64,11 @@ namespace Pawnmorph.Social
                 extraSentencePacks.Add(variant); 
             }
 
+            if (recipient.Faction == Faction.OfPlayer)
+            {
+                recipient.TryGainMemory(PMThoughtDefOf.FormerHumanTameThought);
+            }
+
         }
 
 
