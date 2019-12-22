@@ -123,6 +123,7 @@
     <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="FormerHumanStatus.cs" />
+    <Compile Include="FormerHumans\ISapientVariantHolder.cs" />
     <Compile Include="FormerHumans\SapientVariants.cs" />
     <Compile Include="FormerHumanUtilities.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
+    <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="FactionUtilities.cs" />

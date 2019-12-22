@@ -2,7 +2,7 @@
 
     <InteractionDef Name="FH_TameAttemptBase" Abstract="true">
         <symbol>Things/Mote/SpeechSymbols/PrisonerRecruit</symbol>
-        <workerClass>InteractionWorker_RecruitAttempt</workerClass>
+        <workerClass>Pawnmorph.Social.Worker_FormerHumanRecruitAttempt</workerClass>
         <initiatorXpGainSkill>Animals</initiatorXpGainSkill>
         <initiatorXpGainAmount>90</initiatorXpGainAmount>
     </InteractionDef>

@@ -1,0 +1,39 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/RulePackDef.xsd">
+    <RulePackDef>
+        <defName>SapientAnimalRecruitSuccess</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>sent->[RECIPIENT_nameDef] has accepted and joined [INITIATOR_nameDef]'s community.</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>MostlySapientAnimalRecruitSuccess</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>sent->[RECIPIENT_nameDef] has accepted and joined [INITIATOR_nameDef]'s community.</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+
+    <!-- Failure -->
+
+    <RulePackDef>
+        <defName>SapientAnimalRecruitRejected</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>sent->[RECIPIENT_nameDef] refused.</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    <RulePackDef>
+        <defName>MostlySapientAnimalRecruitRejected</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>sent->[RECIPIENT_nameDef] refused.</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+</Defs>

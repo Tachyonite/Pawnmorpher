@@ -11,7 +11,7 @@ namespace Pawnmorph.DefExtensions
     /// def extension for attaching variants of rule packs based on the sapient level 
     /// </summary>
     /// <seealso cref="Verse.DefModExtension" />
-    public class SapientRulePackVariant : DefModExtension
+    public class SapientRulePackVariant : DefModExtension, ISapientVariantHolder<RulePackDef>
     {
         /// <summary>
         /// The variants
@@ -28,5 +28,16 @@ namespace Pawnmorph.DefExtensions
         {
             return variants?[level]; 
         }
+
+        /// <summary>
+        /// Gets the <see cref="T"/> with the specified key.
+        /// </summary>
+        /// <value>
+        /// The <see cref="T"/>.
+        /// </value>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
+        [CanBeNull]
+        public RulePackDef this[SapienceLevel key] => variants?[key];
     }
 }

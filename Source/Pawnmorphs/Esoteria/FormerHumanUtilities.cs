@@ -9,6 +9,8 @@ using System.Text;
 using AlienRace;
 using HugsLib.Utils;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
+using Pawnmorph.FormerHumans;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
@@ -533,6 +535,102 @@ namespace Pawnmorph
             }
 
            
+        }
+
+        /// <summary>
+        ///     Tries the get sapient variant of the specified type for the given level
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sourceDef">The source definition.</param>
+        /// <param name="level">The level.</param>
+        /// <param name="variant">The variant.</param>
+        /// <returns></returns>
+        public static bool TryGetSapientVariant<T>([NotNull] this Def sourceDef, SapienceLevel level, out T variant)
+        {
+            foreach (DefModExtension sourceDefModExtension in sourceDef.modExtensions.MakeSafe())
+                if (sourceDefModExtension is ISapientVariantHolder<T> variantHolder) //can't use GetModExtension for this 
+                {
+                    variant = variantHolder[level];
+                    return variant != null;
+                }
+
+            variant = default;
+            return false;
+        }
+
+        /// <summary>
+        ///     Tries the get definition variant for the given formerHuman.
+        /// </summary>
+        /// this also checks if the variant is valid for the formerHuman, and keeps looking until a valid variant is found or all variants are exhausted
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sourceDef">The source definition.</param>
+        /// <param name="formerHuman">The former human.</param>
+        /// <param name="variant">The variant.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        ///     sourceDef
+        ///     or
+        ///     formerHuman
+        /// </exception>
+        public static bool TryGetSapientDefVariant<T>([NotNull] this Def sourceDef, [NotNull] Pawn formerHuman, out T variant)
+            where T : Def
+        {
+            if (sourceDef == null) throw new ArgumentNullException(nameof(sourceDef));
+            if (formerHuman == null) throw new ArgumentNullException(nameof(formerHuman));
+            SapienceLevel? sapientLevel = formerHuman.GetQuantizedSapienceLevel();
+            if (sapientLevel == null)
+            {
+                variant = default;
+                return false;
+            }
+
+            foreach (DefModExtension sourceDefModExtension in sourceDef.modExtensions.MakeSafe())
+                if (sourceDefModExtension is ISapientVariantHolder<T> variantHolder) //can't use GetModExtension for this 
+                {
+                    T tmp = variantHolder[sapientLevel.Value];
+                    if (tmp == null || !tmp.IsValidFor(formerHuman)) continue; //keep looking if the variant is not valid 
+
+                    variant = tmp;
+                    return true;
+                }
+
+            variant = default;
+            return false;
+        }
+
+        /// <summary>
+        ///     Tries the get a variant for the given formerHuman.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sourceDef">The source definition.</param>
+        /// <param name="formerHuman">The former human.</param>
+        /// <param name="variant">The variant.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        ///     sourceDef
+        ///     or
+        ///     formerHuman
+        /// </exception>
+        public static bool TryGetSapientVariant<T>([NotNull] this Def sourceDef, [NotNull] Pawn formerHuman, out T variant)
+        {
+            if (sourceDef == null) throw new ArgumentNullException(nameof(sourceDef));
+            if (formerHuman == null) throw new ArgumentNullException(nameof(formerHuman));
+            SapienceLevel? sapientLevel = formerHuman.GetQuantizedSapienceLevel();
+            if (sapientLevel == null)
+            {
+                variant = default;
+                return false;
+            }
+
+            foreach (DefModExtension sourceDefModExtension in sourceDef.modExtensions.MakeSafe())
+                if (sourceDefModExtension is ISapientVariantHolder<T> variantHolder) //can't use GetModExtension for this 
+                {
+                    variant = variantHolder[sapientLevel.Value];
+                    return variant != null;
+                }
+
+            variant = default;
+            return false;
         }
 
         [NotNull]
