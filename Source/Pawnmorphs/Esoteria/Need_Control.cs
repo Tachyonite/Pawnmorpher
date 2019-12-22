@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -146,7 +147,7 @@ namespace Pawnmorph
 
         private void OnSapienceLevelChanges()
         {
-            Hediff fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman) as FormerHuman;
             if (fHediff == null) return;
 
             switch (_currentLevel)
@@ -168,6 +169,9 @@ namespace Pawnmorph
 
             pawn.needs?.AddOrRemoveNeedsAsAppropriate();
             PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
+            fHediff.NotifySapienceLevelChanges();
+            
+
         }
 
         private void TriggerPermanentlyFeralChange()

@@ -66,8 +66,20 @@ namespace Pawnmorph.Hediffs
             {
                 OnSapienceLevelChanged();
             }
+
+            if (pawn.needs == null) return;//dead pawns don't have needs for some reason 
+            
         }
 
+
+        /// <summary>
+        /// Notifies this instance that the sapience level changes.
+        /// </summary>
+        public void NotifySapienceLevelChanges()
+        {
+            SapienceLevel? saLabel = pawn?.GetQuantizedSapienceLevel();
+            _labelCached = saLabel?.GetLabel() ?? "unknown";
+        }
 
         private void OnSapienceLevelChanged()
         {
@@ -78,7 +90,6 @@ namespace Pawnmorph.Hediffs
                 PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
                 //check needs to 
                 pawn.needs?.AddOrRemoveNeedsAsAppropriate();
-                _labelCached = null; 
             }
         }
     }
