@@ -2,6 +2,7 @@
     <InteractionDef Name="FH_TrainAttemptBase" Abstract="true">
         <symbol>Things/Mote/SpeechSymbols/TrainAttempt</symbol>
         <initiatorXpGainSkill>Animals</initiatorXpGainSkill>
+        <workerClass>Pawnmorph.Social.Worker_FormerHuman</workerClass>
         <initiatorXpGainAmount>70</initiatorXpGainAmount>
     </InteractionDef>
 
@@ -43,7 +44,18 @@
                 <!-- we can't use the thought fields in the interaction workers 
               so I'm using this to add thoughts to the recipient  -->
                 <thought>FormerHumanTrainThought</thought>
-              </li>
+            </li>
+            <!-- un comment once rule packs in RulePacks/FormerHumans/FH_Training are filled out -->
+            <!--
+             <li Class="Pawnmorph.DefExtensions.SapientRulePackVariant">
+                <variants>
+                    <sapient>SapientAnimalTameAttempt</sapient>
+                    <mostlySapient>MostlySapientAnimalTameAttempt</mostlySapient>
+                    <conflicted>ConflictedAnimalTameAttempt</conflicted>
+                    <mostlyFeral>MostlyFeralAnimalTameAttempt</mostlyFeral>
+                </variants>
+            </li>
+            -->
         </modExtensions>
     </InteractionDef>
 </Defs>
