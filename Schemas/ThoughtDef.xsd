@@ -84,6 +84,8 @@
 			<xs:enumeration value="FH_NakedThougthNudist" />
 			<xs:enumeration value="FH_MemoryBase"/>
 			<xs:enumeration value="FH_FeralPillBase" />
+			<xs:enumeration value="SapientAnimalBondedMasterBase" />
+			<xs:enumeration value="SapientAnimalBondedNonMasterBase" />
 		</xs:restriction>
 	</xs:simpleType>
 
