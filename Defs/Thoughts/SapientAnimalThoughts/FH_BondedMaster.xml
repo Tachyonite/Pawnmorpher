@@ -7,24 +7,24 @@
         <defName>SapientAnimalBondedMaster</defName> <!-- thought for when a sapient animal is bonded to a pawn but that pawn is their master -->
         <stages>
             <li>
-                <label>Sapient</label>
-                <description>TODO</description>
-                <baseMoodEffect>1</baseMoodEffect>
+                <label>friend</label>
+                <description>My bonded friend is great, helping me to get used to life like this.</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label>MostlySapient</label>
-                <description>TODO</description>
-                <baseMoodEffect>1</baseMoodEffect>
+                <label>friend</label>
+                <description>My bonded friend is great, even though I can't express it with words.</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label>Conflicted</label>
-                <description>TODO</description>
-                <baseMoodEffect>1</baseMoodEffect>
+                <label>...master?</label>
+                <description>My bonded friend...or is it master? Great person...want to be close.</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label>MostlyFeral</label>
-                <description>TODO</description>
-                <baseMoodEffect>1</baseMoodEffect>
+                <label>master</label>
+                <description>Nice person...my master. Feeds me.</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

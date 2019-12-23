@@ -7,24 +7,24 @@
         <defName>SapientAnimalBondedNonMaster</defName> <!-- thought for when a sapient animal is bonded to a pawn but that pawn is not it's master -->
         <stages>
             <li>
-                <label>Sapient</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>friend isn't caretaker</label>
+                <description>I have a special bond with my friend, but they're not by my side.</description>
+                <baseMoodEffect>-12</baseMoodEffect>
             </li>
             <li>
-                <label>MostlySapient</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>friend isn't caretaker</label>
+                <description>I have a special bond with my friend, but they're not by my side.</description>
+                <baseMoodEffect>-12</baseMoodEffect>
             </li>
             <li>
-                <label>Conflicted</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>friend isn't master</label>
+                <description>I think...they're my master...but they're not here.</description>
+                <baseMoodEffect>-12</baseMoodEffect>
             </li>
             <li>
-                <label>MostlyFeral</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>bond is not master</label>
+                <description>Where's master? Want food...</description>
+                <baseMoodEffect>-12</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

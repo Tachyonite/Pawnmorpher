@@ -25,6 +25,11 @@
         <rulePack>
             <rulesStrings>
                 <li>sent->[RECIPIENT_nameDef] refused.</li>
+                <li>sent->[RECIPIENT_nameDef] told [INITIATOR_objective] to shove it.</li>
+                <li>sent->[RECIPIENT_nameDef] told [INITIATOR_objective] to get lost.</li>
+                <li>sent->[RECIPIENT_nameDef] yelled at [INITIATOR_objective].</li>
+                <li>sent->[RECIPIENT_nameDef] made a rude gesture at [INITIATOR_objective].</li>
+                <li>sent->[RECIPIENT_nameDef] rolled [RECIPIENT_possessive] eyes at [INITIATOR_objective].</li>
             </rulesStrings>
         </rulePack>
     </RulePackDef>
@@ -33,6 +38,8 @@
         <rulePack>
             <rulesStrings>
                 <li>sent->[RECIPIENT_nameDef] refused.</li>
+                <li>sent->[RECIPIENT_nameDef] made a rude gesture at [INITIATOR_objective].</li>
+                <li>sent->[RECIPIENT_nameDef] rolled [RECIPIENT_possessive] eyes at [INITIATOR_objective].</li>
             </rulesStrings>
         </rulePack>
     </RulePackDef>
