@@ -38,10 +38,9 @@ namespace Pawnmorph.FormerHumans
         public T permanentlyFeral;
 
         /// <summary>
-        /// Gets or sets the <see cref="T"/> with the specified key.
+        /// Gets or sets the <see ref="T"/> with the specified key.
         /// </summary>
         /// <value>
-        /// The <see cref="T"/>.
         /// </value>
         /// <param name="key">The key.</param>
         /// <returns></returns>

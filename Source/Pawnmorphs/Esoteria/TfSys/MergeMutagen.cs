@@ -118,7 +118,8 @@ namespace Pawnmorph.TfSys
             {
                 originals = request.originals.ToList(), //we want to make a copy here 
                 meld = meld,
-                mutagenDef = def
+                mutagenDef = def,
+                factionResponsible = Faction.OfPlayer
             };
             return inst;
 

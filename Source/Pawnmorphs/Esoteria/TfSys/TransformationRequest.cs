@@ -2,6 +2,7 @@
 // last updated 08/18/2019  8:55 AM
 
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using RimWorld;
 using Verse;
 
@@ -37,6 +38,7 @@ namespace Pawnmorph.TfSys
             this.maxSeverity = maxSeverity;
             minSeverity = 0;
             forcedFaction = default;
+            factionResponsible = null; 
         }
 
         /// <summary>
@@ -54,7 +56,8 @@ namespace Pawnmorph.TfSys
             tale = null;
             this.maxSeverity = 1;
             minSeverity = 0;
-            forcedFaction = default; 
+            forcedFaction = default;
+            factionResponsible = null; 
         }
         /// <summary>The pawns to be transformed</summary>
         public Pawn[] originals;
@@ -70,6 +73,12 @@ namespace Pawnmorph.TfSys
         public Hediff cause;
         /// <summary>The tale to record</summary>
         public TaleDef tale;
+
+        /// <summary>
+        /// The faction responsible for this transformation 
+        /// </summary>
+        [CanBeNull]
+        public Faction factionResponsible; 
 
         /// <summary>
         /// the faction to put the resultant pawn into 

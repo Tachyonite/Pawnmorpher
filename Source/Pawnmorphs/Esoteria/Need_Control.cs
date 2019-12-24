@@ -8,7 +8,6 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using Verse.Noise;
 using static Pawnmorph.InstinctUtilities;
 
 namespace Pawnmorph

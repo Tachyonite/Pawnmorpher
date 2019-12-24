@@ -925,11 +925,11 @@
 					</shadowData>
 				</femaleGraphicData>
 				<dessicatedBodyGraphicData>
-					<texPath>Things/Pawn/Animal/Boar/Dessicated_Boar</texPath>
+					<texPath>Things/Pawn/Animal/WildBoar/Dessicated_WildBoar</texPath>
 					<drawSize>2.15</drawSize>
 				</dessicatedBodyGraphicData>
 				<femaleDessicatedBodyGraphicData>
-					<texPath>Things/Pawn/Animal/Boar/Dessicated_Boar</texPath>
+					<texPath>Things/Pawn/Animal/WildBoar/Dessicated_WildBoar</texPath>
 					<drawSize>2.0</drawSize>
 				</femaleDessicatedBodyGraphicData>
 			</li>
@@ -952,11 +952,11 @@
 					</shadowData>
 				</femaleGraphicData>
 				<dessicatedBodyGraphicData>
-					<texPath>Things/Pawn/Animal/Boar/Dessicated_Boar</texPath>
+					<texPath>Things/Pawn/Animal/WildBoar/Dessicated_WildBoar</texPath>
 					<drawSize>2.7</drawSize>
 				</dessicatedBodyGraphicData>
 				<femaleDessicatedBodyGraphicData>
-					<texPath>Things/Pawn/Animal/Boar/Dessicated_Boar</texPath>
+					<texPath>Things/Pawn/Animal/WildBoar/Dessicated_WildBoar</texPath>
 					<drawSize>2.6</drawSize>
 				</femaleDessicatedBodyGraphicData>
 			</li>

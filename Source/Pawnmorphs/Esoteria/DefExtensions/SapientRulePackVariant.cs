@@ -30,10 +30,10 @@ namespace Pawnmorph.DefExtensions
         }
 
         /// <summary>
-        /// Gets the <see cref="T"/> with the specified key.
+        /// Gets the <see ref="T"/> with the specified key.
         /// </summary>
         /// <value>
-        /// The <see cref="T"/>.
+        /// The <see ref="T"/>.
         /// </value>
         /// <param name="key">The key.</param>
         /// <returns></returns>

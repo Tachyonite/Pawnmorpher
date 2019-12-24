@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.TfSys
@@ -15,8 +16,16 @@ namespace Pawnmorph.TfSys
     public abstract class TransformedPawn : IExposable
     {
         /// <summary>The mutagen definition</summary>
-        public MutagenDef mutagenDef; 
+        public MutagenDef mutagenDef;
 
+        /// <summary>
+        /// Gets the faction that turned this pawn into an animal.
+        /// </summary>
+        /// <value>
+        /// The faction responsible.
+        /// </value>
+        [CanBeNull]
+        public abstract Faction FactionResponsible { get; }
 
         /// <summary>
         ///     Gets the original pawns.
@@ -192,6 +201,18 @@ namespace Pawnmorph.TfSys
         /// <summary>The transformed pawn</summary>
         public Pawn animal;
 
+        /// <summary>
+        /// The faction responsible for turning this pawn into an animal 
+        /// </summary>
+        public Faction factionResponsible;
+
+        /// <summary>
+        /// Gets the faction that turned this pawn into an animal.
+        /// </summary>
+        /// <value>
+        /// The faction responsible.
+        /// </value>
+        public override Faction FactionResponsible => factionResponsible; 
 
         /// <summary>Gets the original pawns.</summary>
         /// <value>The original pawns.</value>
@@ -232,7 +253,8 @@ namespace Pawnmorph.TfSys
         {
             base.ExposeData();
             Scribe_Deep.Look(ref original, true, nameof(original));
-            Scribe_References.Look(ref animal, nameof(animal), true); 
+            Scribe_References.Look(ref animal, nameof(animal), true);
+            Scribe_References.Look(ref factionResponsible, nameof(factionResponsible)); 
 
         }
     }
@@ -244,6 +266,19 @@ namespace Pawnmorph.TfSys
     /// <seealso cref="Pawnmorph.TfSys.TransformedPawn" />
     public class MergedPawns : TransformedPawn
     {
+        /// <summary>
+        /// The faction responsible for turning this pawn into an animal 
+        /// </summary>
+        public Faction factionResponsible;
+
+        /// <summary>
+        /// Gets the faction that turned this pawn into an animal.
+        /// </summary>
+        /// <value>
+        /// The faction responsible.
+        /// </value>
+        public override Faction FactionResponsible => factionResponsible;
+
         /// <summary>The original pawns</summary>
         public List<Pawn> originals;
         /// <summary>The resultant meld</summary>
@@ -284,7 +319,8 @@ namespace Pawnmorph.TfSys
         {
             base.ExposeData();
            Scribe_Collections.Look(ref originals,  true, nameof(originals), LookMode.Deep);
-           Scribe_References.Look(ref meld, nameof(meld), true); 
+           Scribe_References.Look(ref meld, nameof(meld), true);
+           Scribe_References.Look(ref factionResponsible, nameof(factionResponsible)); 
         }
     }
 }

@@ -284,7 +284,15 @@ namespace Pawnmorph
             }
         }
 
-        [NotNull] private static IEnumerable<TraitDef> MutationTraits { get; }
+
+        /// <summary>
+        /// Gets the traits that transfer between original pawn and transformed pawn
+        /// </summary>
+        /// 
+        /// <value>
+        /// The mutation traits.
+        /// </value>
+        [NotNull] public static IEnumerable<TraitDef> MutationTraits { get; }
 
         /// <summary>
         ///     get the former human status of the given pawn
@@ -457,10 +465,10 @@ namespace Pawnmorph
             }
 
             animal.needs.AddOrRemoveNeedsAsAppropriate();
-            TransferRelations(original, animal); 
-            TransferAspectsToAnimal(original, animal);
-            TransferSkillsToAnimal(original, animal);
-            TransferTraitsToAnimal(original, animal); 
+            PawnTransferUtilities.TransferRelations(original, animal);
+            PawnTransferUtilities.TransferAspects(original, animal);
+            PawnTransferUtilities.TransferSkills(original, animal);
+            PawnTransferUtilities.TransferTraits(original, animal, t => MutationTraits.Contains(t)); 
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
             if (nC == null)
@@ -497,7 +505,37 @@ namespace Pawnmorph
 
             fHumanHediff.Severity = 1;
 
+            PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
+            Faction ofPlayer = Faction.OfPlayer;
+            
+            PawnKindDef kind = pawnKind;
+            Faction faction = ofPlayer;
+   
+            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true,
+                                              false, 20f, false, true, true, false, false, false, false,
+                                               null, (Predicate<Pawn>) null, null,
+                                              animal.ageTracker.AgeBiologicalYears, null, null, null,
+                                              (string) null);
+            var lPawn = PawnGenerator.GeneratePawn(local);
+
+
+
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
+
+            PawnTransferUtilities.TransferSkills(lPawn, animal);
+            PawnTransferUtilities.TransferRelations(lPawn, animal);
+            PawnTransferUtilities.TransferTraits(lPawn,animal, t => MutationTraits.Contains(t));
+            var inst = new TransformedPawnSingle()
+            {
+                original = lPawn,
+                animal = animal,
+                mutagenDef =  MutagenDefOf.defaultMutagen
+            };
+
+
+            var gameComp = Find.World.GetComponent<PawnmorphGameComp>();
+            gameComp.AddTransformedPawn(inst); 
+
             if (animal.needs == null)
             {
                 Log.Error(nameof(animal.needs));
@@ -515,15 +553,16 @@ namespace Pawnmorph
 
             nC.SetInitialLevel(sapienceLevel);
             sapienceLevel = nC.SeekerLevel;
+
             //now give the animal a name 
-            var newName = CreateRandomNameFor(animal, sapienceLevel);
-            if (newName == null)
+            var sapienceQLevel = GetQuantizedSapienceLevel(sapienceLevel);
+            if (sapienceQLevel == SapienceLevel.Sapient || sapienceQLevel == SapienceLevel.MostlySapient)
             {
-                Log.Error($"new name is null somehow");
+                animal.Name = lPawn.Name; 
             }
             else
             {
-                animal.Name = newName;
+                animal.Name = new NameSingle(animal.LabelShort);
             }
 
             if (animal.training == null) return;
@@ -662,83 +701,6 @@ namespace Pawnmorph
 
 
         /// <summary>
-        /// Transfers the relations from one pawn to another
-        /// </summary>
-        /// <param name="original">The original.</param>
-        /// <param name="animal">The animal.</param>
-        /// <param name="predicate">optional predicate to dictate which relations get transferred</param>
-        public static void TransferRelations([NotNull] Pawn original, [NotNull] Pawn animal, Predicate<PawnRelationDef> predicate=null)
-        {
-            if (original.relations == null) return; 
-            var enumerator = original.relations.DirectRelations.ToList();
-            predicate = predicate ?? (r => true); //if no filter is set, have it pass everything 
-            foreach (DirectPawnRelation directPawnRelation in enumerator.Where(d => predicate(d.def)))
-            {
-                if(directPawnRelation.def.implied) continue;
-                original.relations?.RemoveDirectRelation(directPawnRelation); //make sure we remove the relations first 
-                animal.relations?.AddDirectRelation(directPawnRelation.def, directPawnRelation.otherPawn);//TODO restrict these to special relationships? 
-            }
-
-            foreach (Pawn pRelatedPawns in original.relations.PotentiallyRelatedPawns.ToList()) //make copies so we don't  invalidate the enumerator mid way through 
-            {
-                foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(original).Where(d => predicate(d)).ToList())
-                {
-                    if(pawnRelationDef.implied) continue;
-                    pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, original);
-                    pRelatedPawns.relations.AddDirectRelation(pawnRelationDef, animal); 
-
-                }
-            }
-
-        }
-
-        /// <summary>
-        ///     move all mutation related traits from the original pawn to the transformed pawn if they are sapient
-        /// </summary>
-        /// <param name="transformedPawn"></param>
-        /// <param name="originalPawn"></param>
-        public static void TransferTraitsToAnimal([NotNull] Pawn originalPawn, [NotNull] Pawn transformedPawn)
-        {
-            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
-            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
-
-            if (transformedPawn.story?.traits == null) return;
-
-            foreach (TraitDef mutationTrait in MutationTraits)
-            {
-                Trait trait = originalPawn.story?.traits?.GetTrait(mutationTrait);
-                if (trait == null) continue;
-                var newTrait = new Trait(mutationTrait, trait.Degree, true);
-                transformedPawn.story.traits.GainTrait(newTrait);
-            }
-        }
-
-        /// <summary>
-        ///     Transfers all transferable aspects from the original pawn to animal they turned into.
-        /// </summary>
-        /// <param name="original">The original.</param>
-        /// <param name="animal">The animal.</param>
-        public static void TransferAspectsToAnimal([NotNull] Pawn original, [NotNull] Pawn animal)
-        {
-            AspectTracker oTracker = original.GetAspectTracker();
-            AspectTracker animalTracker = animal.GetAspectTracker();
-            if (oTracker == null) return;
-            if (animalTracker == null)
-            {
-                Log.Warning($"animal {animal.Name},{animal.def.defName} does not have an aspect tracker");
-                return;
-            }
-
-
-            foreach (Aspect aspect in oTracker)
-                if (aspect.def.transferToAnimal)
-                {
-                    int stageIndex = aspect.StageIndex;
-                    animalTracker.Add(aspect.def, stageIndex);
-                }
-        }
-
-        /// <summary>
         ///     Tries the assign the correct backstory to transformed pawn.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
@@ -767,18 +729,6 @@ namespace Pawnmorph
             pawn.story.adulthood = backstoryDef.backstory;
         }
 
-        private static void TransferSkillsToAnimal([NotNull] Pawn original, [NotNull] Pawn animal)
-        {
-            if (animal.skills == null)
-            {
-                Log.Warning($"sapient animal {animal.Name} does not have a skill tracker");
-                return;
-            }
-
-            foreach (SkillRecord skillsSkill in original.skills.skills)
-                animal.skills.Learn(skillsSkill.def, skillsSkill.XpTotalEarned, true);
-        }
-
         /// <summary>
         /// Gives the sapient animal the hunting thought.
         /// </summary>
@@ -789,6 +739,44 @@ namespace Pawnmorph
             sapientAnimal.TryGainMemory(PMThoughtDefOf.SapientAnimalHuntingMemory); 
         }
 
+
+        static void TransferRelationsToOriginal([NotNull] Pawn pawn,[CanBeNull]  Pawn oPawn, [NotNull]  Pawn_RelationsTracker aRelations)
+        {
+            var dRelations = aRelations.DirectRelations.MakeSafe().Where(r => !r.def.implied).ToList();
+
+            foreach (DirectPawnRelation directPawnRelation in dRelations)
+            {
+                aRelations.RemoveDirectRelation(directPawnRelation);
+                if (oPawn?.relations != null)
+                {
+                    if(directPawnRelation.def == PawnRelationDefOf.Bond ) continue;//don't transfer bond 
+                    oPawn.relations.AddDirectRelation(directPawnRelation.def, directPawnRelation.otherPawn);
+                }
+            }
+
+            var pRelated = aRelations.PotentiallyRelatedPawns.MakeSafe().ToList();
+
+            foreach (Pawn pawn1 in pRelated) //move relations from potentially related pawns 
+            {
+                if (pawn1.relations == null) continue;
+                var relations = pawn1.relations.DirectRelations.MakeSafe()
+                                     .Where(r => !r.def.implied && r.otherPawn == pawn)
+                                     .ToList(); //get all relations from potentially related pawns 
+
+
+
+                foreach (DirectPawnRelation directPawnRelation in relations)
+                {
+                    if(directPawnRelation.def == PawnRelationDefOf.Bond) continue; //don't transfer bond
+                    pawn1.relations.RemoveDirectRelation(directPawnRelation);
+                    if (oPawn?.relations != null)
+                    {
+                        pawn1.relations.AddDirectRelation(directPawnRelation.def, oPawn);
+                    }
+                }
+
+            }
+        }
 
         /// <summary>
         /// Makes the pawn permanently feral.
@@ -846,40 +834,6 @@ namespace Pawnmorph
 
 
 
-        }
-
-        private static void TransferRelationsToOriginal([NotNull] Pawn pawn,[CanBeNull]  Pawn oPawn, [NotNull]  Pawn_RelationsTracker aRelations)
-        {
-            var dRelations = aRelations.DirectRelations.MakeSafe().Where(r => !r.def.implied).ToList();
-
-            foreach (DirectPawnRelation directPawnRelation in dRelations)
-            {
-                aRelations.RemoveDirectRelation(directPawnRelation);
-                if (oPawn?.relations != null)
-                {
-                    oPawn.relations.AddDirectRelation(directPawnRelation.def, directPawnRelation.otherPawn);
-                }
-            }
-
-            var pRelated = aRelations.PotentiallyRelatedPawns.MakeSafe().ToList();
-
-            foreach (Pawn pawn1 in pRelated) //move relations from potentially related pawns 
-            {
-                if (pawn1.relations == null) continue;
-                var relations = pawn1.relations.DirectRelations.MakeSafe()
-                                     .Where(r => !r.def.implied && r.otherPawn == pawn)
-                                     .ToList(); //get all relations from potentially related pawns 
-
-                foreach (DirectPawnRelation directPawnRelation in relations)
-                {
-                    pawn1.relations.RemoveDirectRelation(directPawnRelation);
-                    if (oPawn?.relations != null)
-                    {
-                        pawn1.relations.AddDirectRelation(directPawnRelation.def, oPawn);
-                    }
-                }
-
-            }
         }
     }
 }

@@ -169,6 +169,7 @@
     <Compile Include="Mental\State_Hunting.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
+    <Compile Include="PawnTransferUtilities.cs" />
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThoughtUtilities.cs" />

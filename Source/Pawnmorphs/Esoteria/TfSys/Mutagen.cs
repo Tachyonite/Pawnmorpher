@@ -27,6 +27,27 @@ namespace Pawnmorph.TfSys
         /// <value>The game comp.</value>
         protected static PawnmorphGameComp GameComp => _comp ?? (_comp = Find.World.GetComponent<PawnmorphGameComp>());
 
+        /// <summary>
+        /// tries to infer the faction responsible for turning the original pawn into an animal 
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <returns></returns>
+        [CanBeNull]
+        protected Faction GetFactionResponsible([NotNull] Pawn originalPawn)
+        {
+            Faction responsibleFaction;
+            if (originalPawn.IsPrisonerOfColony)
+                responsibleFaction = Faction.OfPlayer;
+            else if (originalPawn.IsColonist && originalPawn.IsFreeColonist)
+                responsibleFaction = Faction.OfPlayer;
+            else if (originalPawn.guest != null)
+                responsibleFaction = originalPawn.guest.HostFaction;
+            else
+                responsibleFaction = null;
+
+            return responsibleFaction;
+        }
+
 
         /// <summary>The definition</summary>
         [NotNull]

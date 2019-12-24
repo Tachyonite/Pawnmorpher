@@ -157,11 +157,12 @@ namespace Pawnmorph.TfSys
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner); //this needs to happen before MakeSapientAnimal because that removes relations 
 
             FormerHumanUtilities.MakeAnimalSapient(original, spawnedAnimal, Rand.Range(0.4f, 1)); //use a normal distribution? 
-            
+            var rFaction = request.factionResponsible ?? GetFactionResponsible(original); 
             var inst = new TransformedPawnSingle
             {
                 original = original,
-                animal = spawnedAnimal
+                animal = spawnedAnimal,
+                factionResponsible = rFaction
             };
 
 
@@ -230,8 +231,14 @@ namespace Pawnmorph.TfSys
 
             Hediff tfHumanHediff = animal?.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             if (tfHumanHediff == null) return false;
-
+            var rFaction = transformedPawn.FactionResponsible; 
             var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
+
+            if (spawned.Faction != animal.Faction && rFaction == null) //if the responsible faction is null (no one knows who did it) have the reverted pawn join that faction   
+            {
+                spawned.SetFaction(animal.Faction); 
+            }
+
 
             for (var i = 0; i < 10; i++)
             {
@@ -239,8 +246,9 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
 
-            FormerHumanUtilities.TransferRelations(animal, spawned, r => r != PawnRelationDefOf.Bond); //transfer whatever relations from the animal to the human pawn 
-                                                                                            //do NOT transfer the bond relationship to humans, Rimworld doesn't like that 
+            PawnTransferUtilities.TransferRelations(animal, spawned, r => r != PawnRelationDefOf.Bond); //transfer whatever relations from the animal to the human pawn 
+            PawnTransferUtilities.TransferSkills(animal, spawned, PawnTransferUtilities.SkillTransferMode.Max); //keep any skills they learned as an animal 
+            //do NOT transfer the bond relationship to humans, Rimworld doesn't like that 
             AddReversionThought(spawned, tfHumanHediff.CurStageIndex);
 
             spawned.Faction.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
