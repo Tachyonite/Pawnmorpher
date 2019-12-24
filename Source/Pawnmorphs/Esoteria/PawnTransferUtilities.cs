@@ -140,6 +140,7 @@ namespace Pawnmorph
                 }
 
                 var p2Skill = pawn2.skills.GetSkill(skillsSkill.def);
+                if(p2Skill == null) continue;
                 p2Skill.Level = newLevel; 
 
             }
