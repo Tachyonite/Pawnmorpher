@@ -149,6 +149,7 @@
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
+    <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="InstinctUtilities.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_TerrainProduction.cs" />
