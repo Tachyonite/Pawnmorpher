@@ -5,7 +5,7 @@
   
 	<ChemicalDef>
 		<defName>TFPlantAddiction</defName>
-		<label>cowmorph milk</label>
+		<label>mutagenic plants</label>
 		<addictionHediff>TFPlantAddiction</addictionHediff>
 	</ChemicalDef>
 
@@ -13,7 +13,7 @@
 		<defName>Chemical_TFPlant</defName>
 		<needClass>Need_Chemical</needClass>
 		<label>mutaplant</label>
-		<description>This person is under the strange effects of cowmorph milk. They will require more (which will change them), but failure to keep them sated will push them over the edge.</description>
+		<description>This person is under the strange effects of mutagenic plants. They will require more (which will change them), but failure to keep them sated will push them over the edge.</description>
 		<listPriority>45</listPriority>
 		<fallPerDay>0.15</fallPerDay>
 	</NeedDef>
@@ -236,7 +236,6 @@
 					<filterList> <!-- glowvine will only come from healroot  -->
 						<li>Plant_Healroot</li>
 						<li>Plant_HealrootWild</li>
-						<li>Plant_Berry</li>
 					</filterList>
 				</sourcePlantFilter>
 
