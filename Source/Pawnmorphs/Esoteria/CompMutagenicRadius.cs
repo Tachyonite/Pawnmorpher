@@ -9,6 +9,7 @@ namespace Pawnmorph
     public class CompMutagenicRadius : ThingComp
     {
         private const float LEAFLESS_PLANT_KILL_CHANCE = 0.09f;
+        private const float MUTATE_IN_RADIUS_CHANCE = 0.50f;
 
         private int plantHarmAge;
         private int ticksToPlantHarm;
@@ -84,7 +85,7 @@ namespace Pawnmorph
             {
                 if (!pawn.health.hediffSet.HasHediff(hediff))
                 {
-                    if (Rand.Value < LEAFLESS_PLANT_KILL_CHANCE)
+                    if (Rand.Value < MUTATE_IN_RADIUS_CHANCE)
                     {
                         Hediff applyHediff = HediffMaker.MakeHediff(hediff, pawn, null);
                         applyHediff.Severity = 1f;
