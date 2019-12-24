@@ -116,14 +116,6 @@ namespace Pawnmorph.HPatches
 
                 }
 
-
-
-                if (pawn.Faction?.IsPlayer == true && pawn.workSettings != null) //make sure to initialize only after adding all the comps 
-                {
-                    pawn.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
-                    pawn.workSettings.DisableAll();
-                }
-
                 //now initialize the comp 
                 if (addedComp)
                 {

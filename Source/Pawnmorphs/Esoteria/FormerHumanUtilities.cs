@@ -835,5 +835,42 @@ namespace Pawnmorph
 
 
         }
+
+        /// <summary>
+        /// Initializes the work settings for the given sapient animal
+        /// </summary>
+        /// <param name="sapientAnimal">The sapient animal.</param>
+        /// <param name="workSettings">The pawn work settings.</param>
+        /// <exception cref="ArgumentNullException">
+        /// sapientAnimal
+        /// or
+        /// workSettings
+        /// </exception>
+        public static void InitializeWorkSettingsFor([NotNull] Pawn sapientAnimal, [NotNull] Pawn_WorkSettings workSettings)
+        {
+            if (sapientAnimal == null) throw new ArgumentNullException(nameof(sapientAnimal));
+            if (workSettings == null) throw new ArgumentNullException(nameof(workSettings));
+            var formerHumanExt = sapientAnimal.def.GetModExtension<FormerHumanSettings>();
+            var flags = WorkTags.ManualDumb | (formerHumanExt?.allowedWorkTags ?? 0);
+            var allowedWork = formerHumanExt?.allowedWorkTypes;
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"for {sapientAnimal.Name}");
+            foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefsListForReading)
+            {
+                if ((workTypeDef.workTags & flags) != 0)
+                {
+                    workSettings.SetPriority(workTypeDef, 3);
+                }else if (allowedWork != null && allowedWork.Contains(workTypeDef))
+                {
+                    workSettings.SetPriority(workTypeDef, 3);
+                }
+                else
+                {
+                    workSettings.SetPriority(workTypeDef, 0);
+                }
+            }
+
+            
+        }
     }
 }

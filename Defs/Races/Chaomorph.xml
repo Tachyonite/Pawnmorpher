@@ -861,6 +861,11 @@
 		<tradeTags>
 			<li>AnimalChaotic</li>
 		</tradeTags>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+				<allowedWorkTags>ManualSkilled,Crafting</allowedWorkTags>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 

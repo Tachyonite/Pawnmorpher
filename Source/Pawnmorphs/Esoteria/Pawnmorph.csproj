@@ -109,6 +109,7 @@
     <Compile Include="DefExtensions\AspectRestriction.cs" />
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
+    <Compile Include="DefExtensions\FormerHumanSettings.cs" />
     <Compile Include="DefExtensions\InstinctEffector.cs" />
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="InstinctUtilities.cs" />
