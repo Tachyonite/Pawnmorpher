@@ -1,116 +1,116 @@
 <Defs>
 
-	<FactionDef ParentName="HumanFactionBase" Name="PawnmorpherEnclaveBase" Abstract="True">
-		<pawnSingular>morph</pawnSingular>
-		<pawnsPlural>morphs</pawnsPlural>
-		<listOrderPriority>30</listOrderPriority>
-		<settlementGenerationWeight>0.2</settlementGenerationWeight>
-		<requiredCountAtGameStart>1</requiredCountAtGameStart>
-		<canMakeRandomly>true</canMakeRandomly>
-		<canSiege>true</canSiege>
-		<canStageAttacks>true</canStageAttacks>
-		<leaderTitle>magistrate</leaderTitle>
-		<expandingIconTexture>UI/Icons/FreeMorphs</expandingIconTexture>
-		<factionNameMaker>NamerFactionOutlander</factionNameMaker>
-		<settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
-		<techLevel>Industrial</techLevel>
-		<backstoryCategories>
-			<li>MutantWanderer</li>
+  <FactionDef ParentName="HumanFactionBase" Name="PawnmorpherEnclaveBase" Abstract="True">
+    <pawnSingular>morph</pawnSingular>
+    <pawnsPlural>morphs</pawnsPlural>
+    <listOrderPriority>30</listOrderPriority>
+    <settlementGenerationWeight>0.2</settlementGenerationWeight>
+    <requiredCountAtGameStart>1</requiredCountAtGameStart>
+    <canMakeRandomly>true</canMakeRandomly>
+    <canSiege>true</canSiege>
+    <canStageAttacks>true</canStageAttacks>
+    <leaderTitle>magistrate</leaderTitle>
+    <expandingIconTexture>UI/Icons/FreeMorphs</expandingIconTexture>
+    <factionNameMaker>NamerFactionOutlander</factionNameMaker>
+    <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
+    <techLevel>Industrial</techLevel>
+    <backstoryCategories>
+      <li>MutantWanderer</li>
       <li>FreeMutant</li>
       <li>Civil</li> <!-- just to get rid of missing child backstory errors -->
-		</backstoryCategories>
-		<geneticVariance>0.8</geneticVariance>
-		<hairTags>
-			<li>Rural</li>
-		</hairTags>
-		<caravanTraderKinds>
-			<li>Caravan_Outlander_BulkGoods</li>
-			<li>Caravan_Outlander_CombatSupplier</li>
-			<li>Caravan_Outlander_Exotic</li>
-		</caravanTraderKinds>
-		<visitorTraderKinds>
-			<li>Visitor_Outlander_Standard</li>
-		</visitorTraderKinds>
-		<baseTraderKinds>
-			<li>Base_Outlander_Standard</li>
-		</baseTraderKinds>
-		<allowedArrivalTemperatureRange>
-			<min>-40</min>
-			<max>45</max>
-		</allowedArrivalTemperatureRange>
-		<maxPawnCostPerTotalPointsCurve>
-			<points>
-				<li>(0,35)</li>
-				<li>(70, 50)</li>
-				<li>(700, 100)</li>
-				<li>(1300, 150)</li>
-				<li>(100000, 10000)</li>
-			</points>
-		</maxPawnCostPerTotalPointsCurve>
-		<pawnGroupMakers>
-			<li>
-				<kindDef>Combat</kindDef>
-				<options>
-					<PMEnclaveVillager>5</PMEnclaveVillager>
-					<PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
-					<PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
-				</options>
-			</li>
-			<li>
-				<kindDef>Peaceful</kindDef>
-				<options>
-					<PMEnclaveVillager>20</PMEnclaveVillager>
-					<PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
-					<PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
-				</options>
-			</li>
-			<li>
-				<kindDef>Trader</kindDef>
-				<traders>
-					<PMEnclaveTown_Trader>1</PMEnclaveTown_Trader>
-				</traders>
-				<carriers>
-					<Muffalo>6</Muffalo>
-					<Dromedary>5</Dromedary>
-					<Alpaca>2</Alpaca>
-					<Elephant>1</Elephant>
-				</carriers>
-				<guards>
-					<PMEnclaveVillager>3</PMEnclaveVillager>
-					<PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
-				</guards>
-			</li>
-			<li>
-				<kindDef>Settlement</kindDef>
-				<options>
-					<PMEnclaveVillager>10</PMEnclaveVillager>
-					<PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
-					<PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
-				</options>
-			</li>
-		</pawnGroupMakers>
-		<homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
-	</FactionDef>
+    </backstoryCategories>
+    <geneticVariance>0.8</geneticVariance>
+    <hairTags>
+      <li>Rural</li>
+    </hairTags>
+    <caravanTraderKinds>
+      <li>Caravan_Outlander_BulkGoods</li>
+      <li>Caravan_Outlander_CombatSupplier</li>
+      <li>Caravan_Outlander_Exotic</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds>
+      <li>Visitor_Outlander_Standard</li>
+    </visitorTraderKinds>
+    <baseTraderKinds>
+      <li>Base_Outlander_Standard</li>
+    </baseTraderKinds>
+    <allowedArrivalTemperatureRange>
+      <min>-40</min>
+      <max>45</max>
+    </allowedArrivalTemperatureRange>
+    <maxPawnCostPerTotalPointsCurve>
+      <points>
+        <li>(0,35)</li>
+        <li>(70, 50)</li>
+        <li>(700, 100)</li>
+        <li>(1300, 150)</li>
+        <li>(100000, 10000)</li>
+      </points>
+    </maxPawnCostPerTotalPointsCurve>
+    <pawnGroupMakers>
+      <li>
+        <kindDef>Combat</kindDef>
+        <options>
+          <PMEnclaveVillager>5</PMEnclaveVillager>
+          <PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
+          <PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <PMEnclaveVillager>20</PMEnclaveVillager>
+          <PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
+          <PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
+        </options>
+      </li>
+      <li>
+        <kindDef>Trader</kindDef>
+        <traders>
+          <PMEnclaveTown_Trader>1</PMEnclaveTown_Trader>
+        </traders>
+        <carriers>
+          <Muffalo>6</Muffalo>
+          <Dromedary>5</Dromedary>
+          <Alpaca>2</Alpaca>
+          <Elephant>1</Elephant>
+        </carriers>
+        <guards>
+          <PMEnclaveVillager>3</PMEnclaveVillager>
+          <PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <PMEnclaveVillager>10</PMEnclaveVillager>
+          <PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
+          <PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+  </FactionDef>
 
-	<FactionDef ParentName="PawnmorpherEnclaveBase">
-		<defName>PawnmorpherEnclave</defName>
-		<label>free morph enclave</label>
-		<description>These people are outcasts, mutation victims and cult escapees who have banded together to be a safe haven for morphs and mutants worldwide.</description>
-		<colorSpectrum>
-			<li>(0.35, 0.30, 0.60)</li>
-			<li>(0.45, 0.40, 0.90)</li>
-		</colorSpectrum>
-		<startingGoodwill>
-			<min>0</min>
-			<max>0</max>
-		</startingGoodwill>
-		<naturalColonyGoodwill>
-			<min>-50</min>
-			<max>50</max>
-		</naturalColonyGoodwill>
-	</FactionDef>
+  <FactionDef ParentName="PawnmorpherEnclaveBase">
+    <defName>PawnmorpherEnclave</defName>
+    <label>free morph enclave</label>
+    <description>These people are outcasts, mutation victims and cult escapees who have banded together to be a safe haven for morphs and mutants worldwide.</description>
+    <colorSpectrum>
+      <li>(0.35, 0.30, 0.60)</li>
+      <li>(0.45, 0.40, 0.90)</li>
+    </colorSpectrum>
+    <startingGoodwill>
+      <min>0</min>
+      <max>0</max>
+    </startingGoodwill>
+    <naturalColonyGoodwill>
+      <min>-50</min>
+      <max>50</max>
+    </naturalColonyGoodwill>
+  </FactionDef>
 
-	
+
   <PawnKindDef Name="PawnmorphEnclaveBase" Abstract="True">
     <race>Human</race>
     <defaultFactionType>PawnmorpherEnclave</defaultFactionType>
@@ -139,28 +139,24 @@
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
-	<!--
-	<modExtensions>
-		<li Class="Pawnmorph.MorphPawnKindExtension">
-			<morphs>
-				<li>BoarMorph</li>
-				<li>CatMorph</li>
-				<li>FoxMorph</li>
-				<li>CowMorph</li>
-				<li>HuskyMorph</li>
-				<li>ChookMorph</li>
-				<li>RatMorph</li>
-				<li>MonkeyMorph</li>
-				<li>WolfMorph</li>
-				<li>ChaocowMorph</li>
-				<li>ChaoboomMorph</li>
-				<li>ChaofoxMorph</li>
-				<li>ChaoboomMorph</li>
-            </morphs>
-			<hediffRange>0~5</hediffRange> 
-		</li>
-	</modExtensions>
-	-->
+
+    <modExtensions>
+      <li Class="Pawnmorph.MorphPawnKindExtension">
+        <morphs>
+          <li>BoarMorph</li>
+          <li>CatMorph</li>
+          <li>FoxMorph</li>
+          <li>CowMorph</li>
+          <li>HuskyMorph</li>
+          <li>ChookMorph</li>
+          <li>RatMorph</li>
+          <li>MonkeyMorph</li>
+          <li>WolfMorph</li>
+        </morphs>
+        <hediffRange>0~10</hediffRange>
+      </li>
+    </modExtensions>
+
   </PawnKindDef>
 
   <PawnKindDef ParentName="PawnmorphEnclaveBase">
@@ -195,7 +191,7 @@
       <li>Poor</li>
       <li>Simple</li>
     </techHediffsTags>
-	
+
   </PawnKindDef>
 
   <PawnKindDef ParentName="PawnmorphEnclaveBase">
@@ -317,6 +313,5 @@
       <li>Advanced</li>
     </techHediffsTags>
   </PawnKindDef>
-  
-</Defs>
 
+</Defs>

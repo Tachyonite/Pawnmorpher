@@ -26,6 +26,7 @@ namespace Pawnmorph.Factions
         {
             var kindExtension = pawn.kindDef.GetModExtension<MorphPawnKindExtension>();
             if (kindExtension == null) return;
+
             ApplyMutationExtensionToPawn(pawn, canApplyRestricted, setAtMaxStage, kindExtension);
         }
 

@@ -37,13 +37,21 @@ namespace Pawnmorph.HPatches
                                                .Select(bd => bd.GetModExtension<MorphPawnKindExtension>())
                                                .Where(ext => ext != null);
 
-
+                bool anyAdded = false; 
                 foreach (MorphPawnKindExtension extension in extensions)
                 {
+                    anyAdded = true; 
                     MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, true, true, extension); //now apply all mutations in order of child -> adult 
                 }
 
-
+                if (!anyAdded)
+                {
+                    var kindExtension = pawn.kindDef.GetModExtension<MorphPawnKindExtension>();
+                    if (kindExtension != null)
+                    {
+                        MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, false, false, kindExtension); 
+                    }
+                }
 
             }
         }
