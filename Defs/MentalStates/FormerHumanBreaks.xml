@@ -24,7 +24,7 @@
         <recoveryMtbDays>0.078</recoveryMtbDays>
         <maxTicksBeforeRecovery>9000</maxTicksBeforeRecovery>
         <recoverFromSleep>true</recoverFromSleep>
-        <moodRecoveryThought>Catharsis</moodRecoveryThought> <!-- custom recovery thought -->
+        <moodRecoveryThought>SapientAnimalHuntingBreakCatharsis</moodRecoveryThought>
         <blockNormalThoughts>true</blockNormalThoughts>
         <nameColor>(0.98,0.48,0.16)</nameColor>
         <recoveryMessage>{0} has finished hunting {prey}</recoveryMessage>
