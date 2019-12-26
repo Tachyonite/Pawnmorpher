@@ -39,7 +39,7 @@
 				<description>[PAWN_nameDef] has largely adapted to having paws, and is trying to recover flexibility in the digits.</description>
                 <label>adapted</label>
             </li>
-            <li class="Pawnmorph.Hediffs.DescriptiveStage">
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
                 <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
                 <labelOverride>dextrous handpaw</labelOverride>
                 <partEfficiencyOffset>0.1</partEfficiencyOffset>
@@ -112,7 +112,7 @@
 				<description></description>
                 <label>adapted</label>
             </li>
-            <li class="Pawnmorph.Hediffs.DescriptiveStage">
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
                 <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
                 <labelOverride>dextrous handhoof</labelOverride>
                 <partEfficiencyOffset>0</partEfficiencyOffset>
@@ -171,7 +171,7 @@
 				<description></description>
                 <label>adapted</label>
             </li>
-            <li class="Pawnmorph.Hediffs.DescriptiveStage">
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
                 <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
                 <labelOverride>dextrous handtrotter</labelOverride>
                 <partEfficiencyOffset>0</partEfficiencyOffset>
