@@ -17,6 +17,7 @@
             <li>
                 <label>initial</label>
                 <minSeverity>0.04</minSeverity>
+				<painOffset>0.1</painOffset>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
@@ -37,6 +38,7 @@
             <li>
                 <label>minor</label>
                 <minSeverity>0.2</minSeverity>
+				<painOffset>0.2</painOffset>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
@@ -59,6 +61,7 @@
                 <label>moderate</label>
                 <minSeverity>0.40</minSeverity>
                 <vomitMtbDays>5</vomitMtbDays>
+				<painOffset>0.3</painOffset>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
@@ -81,6 +84,7 @@
                 <label>serious</label>
                 <minSeverity>0.60</minSeverity>
                 <vomitMtbDays>1</vomitMtbDays>
+				<painOffset>0.4</painOffset>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
@@ -102,10 +106,11 @@
                 <label>extreme</label>
                 <minSeverity>0.80</minSeverity>
                 <vomitMtbDays>0.5</vomitMtbDays>
+				<painOffset>0.6</painOffset>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
-                        <setMax>0.30</setMax>
+                        <setMax>0.50</setMax>
                     </li>
                 </capMods>
                 <hediffGivers>
@@ -122,12 +127,7 @@
             <li>
                 <minSeverity>0.85</minSeverity>
                 <label>extreme</label>
-                <capMods>
-                    <li>
-                        <capacity>Moving</capacity>
-                        <setMax>0.05</setMax>
-                    </li>
-                </capMods>
+				<painOffset>0.8</painOffset>
                 <hediffGivers>
                     <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
                         <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
@@ -142,12 +142,7 @@
             <li>
                 <minSeverity>0.99</minSeverity>
                 <label>extreme</label>
-                <capMods>
-                    <li>
-                        <capacity>Moving</capacity>
-                        <setMax>0.05</setMax>
-                    </li>
-                </capMods>
+				<painOffset>0.9</painOffset>
                 <hediffGivers>
                     <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
                         <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->

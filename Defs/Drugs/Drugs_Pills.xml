@@ -78,9 +78,9 @@
 	<ThingDef ParentName="PM_PillBase">
 		<defName>DryPills</defName>
 		<label>mutapill, dry</label>
-		<description>A pill that stops pawns with mutations producing any resources</description>
+		<description>A pill that stops pawns with mutations producing any resources. A preventative measure for becoming etherbroken/bonded.</description>
 		<graphicData>
-			<texPath>Things/Item/Drug/Pillbox_1</texPath>
+			<texPath>Things/Item/Drug/pills-26</texPath>
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
@@ -92,6 +92,42 @@
 					<aspectDef>MutagenInfused</aspectDef>
 					<stage>2</stage> <!-- the dry aspect is the third stage -->
 					<force>true</force> <!-- this means if the pawn has either of the other 2 stages, force the aspect to the 'dry' stage-->
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--Dry Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>AspectReverterPills</defName>
+		<label>mutapill, X-aspect</label>
+		<description>A pill that removes all* aspects from a mutated pawn, but does not remove any mutations. A cure-all for your etherbroken/bonded pawns -- but does not prevent getting them again. It's a good idea to follow this up with a dry mutapill if you want to avoid getting etherbroken/bonded again.\n\n*Caution, does not remove productive aspects.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/pills-27</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_RemoveAspects" >
 				</li>
 			</outcomeDoers>
 		</ingestible>

@@ -19,6 +19,8 @@ namespace Pawnmorph
         private const int TICKS_PER_DAY = 60000;
         /// <summary>The hatching ticker</summary>
         public float HatchingTicker = 0;
+        /// <summary>The total amount produced by this pawn</summary>
+        public int totalProduced = 0;
 
         private float brokenChance = 0f;
         private float bondChance = 0f;
@@ -40,6 +42,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref HatchingTicker, "hatchingTicker");
             Scribe_Values.Look(ref brokenChance, "brokenChance");
             Scribe_Values.Look(ref bondChance, "bondChance");
+            Scribe_Values.Look(ref totalProduced, "totalProduced");
             base.CompExposeData();
         }
 
@@ -214,7 +217,7 @@ namespace Pawnmorph
                 brokenChance += 0.5f;
                 bondChance += 0.2f;
             }
-
+            totalProduced += rareThingCount + thingCount;
             RandUtilities.PopState();
         }
 

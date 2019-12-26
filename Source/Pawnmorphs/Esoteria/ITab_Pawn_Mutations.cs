@@ -254,7 +254,7 @@ namespace Pawnmorph
                 // Figure out what stage the hedif is in.
                 string stageString = "";
                 if (prodMutation.CurStageIndex > 0)
-                    stageString = " (" + new string('+', prodMutation.CurStageIndex) + ")";
+                    stageString = " " + new string('+', prodMutation.CurStageIndex) + "";
                 HediffComp_Staged stage = prodcomp.Props.stages.ElementAt(prodMutation.CurStageIndex);
 
                 // Draw the main text (the mutation's label, current stage and a percentage to completion).
@@ -268,7 +268,8 @@ namespace Pawnmorph
                 }
                 else //display something special if it's dry 
                 {
-                    text = $"{mutLabel} not productive"; 
+                    GUI.color = Color.red;
+                    text = $"{mutLabel} (dry)"; 
                 }
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
@@ -283,6 +284,10 @@ namespace Pawnmorph
                 float subRectHeight = Text.CalcHeight(subtext, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, subRectHeight), subtext);
                 curPos.y += subRectHeight;
+                string subtext2 = $"Total produced: {prodcomp.totalProduced}";
+                float subRectHeight2 = Text.CalcHeight(subtext, width);
+                Widgets.Label(new Rect(curPos.x, curPos.y, width, subRectHeight2), subtext2);
+                curPos.y += subRectHeight2;
 
                 GUI.color = Color.white;
                 Text.Font = GameFont.Small;

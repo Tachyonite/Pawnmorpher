@@ -4,25 +4,46 @@
         <label>paw</label>
         <description>Cute but inflexible paws have replaced [PAWN_nameDef]'s hands. They lack a thumb, which has receded into a useless dewclaw.</description>
         <stages>
-            <li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
                 <minSeverity>-1</minSeverity>
                 <partEfficiencyOffset>-0.9</partEfficiencyOffset>
-                <label>TODO</label>  <!-- only pawns with Afflicted Morph aspect can get this stage-->
+                <label>bestial</label>  <!-- only pawns with Afflicted Morph aspect can get this stage-->
+				<description>This paw has degraded into a more inflexible paw</description>
             </li>
-            <li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
                 <minSeverity>0</minSeverity>
-                <partEfficiencyOffset>-0.5</partEfficiencyOffset>
-                <label>new</label>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+                <labelOverride>clawed</labelOverride>
+				<description>Each finger on this hand is tipped with a sharp claw.</description>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.2</minSeverity>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+                <labelOverride>padded</labelOverride>
+				<description>In addition to claws, this hand is developing thick pads on the palm and each fingertip.</description>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.6</minSeverity>
+                <partEfficiencyOffset>-0.25</partEfficiencyOffset>
+				<description>This hand's fingers have started to shorten, and a short coat of fur has sprouted over it.</description>
+                <labelOverride>inflexible handpaw</labelOverride>
             </li>
             <li>
-                <minSeverity>1</minSeverity>
-                <partEfficiencyOffset>-0.25</partEfficiencyOffset>
+                <minSeverity>0.8</minSeverity>
+                <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+                <label>unfamiliar</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.99</minSeverity>
+                <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description>[PAWN_nameDef] has largely adapted to having paws, and is trying to recover flexibility in the digits.</description>
                 <label>adapted</label>
             </li>
-            <li>
+            <li class="Pawnmorph.Hediffs.DescriptiveStage">
                 <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
-                <label>TODO</label>
-                <partEfficiencyOffset>-0.05</partEfficiencyOffset>
+                <labelOverride>dextrous handpaw</labelOverride>
+                <partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<description>Further adaptation to this paw has allowed it to become dextrous again, and with even finer manipulation than a regular hand.</description>
             </li>
         </stages>
         <comps>
@@ -62,14 +83,40 @@
         <label>hoof</label>
         <description>It's terrifying, but [PAWN_nameDef]'s hands are nothing more than hooves now. Holding things, grabbing things and doing anything requiring thumbs is going to be a lot more difficult.</description>
         <stages>
-            <li>
-                <partEfficiencyOffset>-0.8</partEfficiencyOffset>
-                <label>new</label>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0</minSeverity>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+                <labelOverride>thick nails</labelOverride>
+				<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.2</minSeverity>
+                <partEfficiencyOffset>-.1</partEfficiencyOffset>
+                <labelOverride>hoof-fingers</labelOverride>
+				<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.6</minSeverity>
+                <partEfficiencyOffset>-0.40</partEfficiencyOffset>
+				<description></description>
+                <labelOverride>inflexible handhoof</labelOverride>
             </li>
             <li>
-                <minSeverity>1</minSeverity>
+                <minSeverity>0.8</minSeverity>
                 <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+                <label>unfamiliar</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.99</minSeverity>
+                <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description></description>
                 <label>adapted</label>
+            </li>
+            <li class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
+                <labelOverride>dextrous handhoof</labelOverride>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Further adaptation to this hoof has restored the fingers to a more anthropomorphic state, restoring dexterity.</description>
             </li>
         </stages>
         <comps>
@@ -95,14 +142,40 @@
         <label>trotter</label>
         <description>[PAWN_nameDef]'s hands resemble trotters more than anything else, leaving them with little in the way of grasping ability.</description>
         <stages>
-            <li>
-                <label>new</label>
-                <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0</minSeverity>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+                <labelOverride>thick nails</labelOverride>
+				<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.2</minSeverity>
+                <partEfficiencyOffset>-.1</partEfficiencyOffset>
+                <labelOverride>hoof-fingers</labelOverride>
+				<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.6</minSeverity>
+                <partEfficiencyOffset>-0.40</partEfficiencyOffset>
+				<description></description>
+                <labelOverride>inflexible handtrotter</labelOverride>
             </li>
             <li>
-                <minSeverity>1</minSeverity>
-                <partEfficiencyOffset>-0.3</partEfficiencyOffset>
+                <minSeverity>0.8</minSeverity>
+                <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+                <label>unfamiliar</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>0.99</minSeverity>
+                <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description></description>
                 <label>adapted</label>
+            </li>
+            <li class="Pawnmorph.Hediffs.DescriptiveStage">
+                <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
+                <labelOverride>dextrous handtrotter</labelOverride>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Further adaptation to this hoof has restored the fingers to a more anthropomorphic state, restoring dexterity.</description>
             </li>
         </stages>
         <comps>

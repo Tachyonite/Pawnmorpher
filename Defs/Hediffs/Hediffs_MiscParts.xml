@@ -21,7 +21,7 @@
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
-				<label>fur dusting</label>
+				<labelOverride>fur dusting</labelOverride>
 				<description>Very fine fur -- too dense to be hair -- is sprouting over [PAWN_nameDef]'s limb.</description>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
@@ -29,7 +29,7 @@
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
-				<label>thin fur</label>
+				<labelOverride>thin fur</labelOverride>
 				<description>The fur on the skin here is quickly thickening as it spreads over [PAWN_nameDef]'s limb.</description>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
@@ -37,7 +37,7 @@
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
-				<label>fur patches</label>
+				<labelOverride>fur patches</labelOverride>
 				<description>There is not much bare skin left on [PAWN_nameDef]'s limb, much of it has been covered by patches of fur.</description>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
@@ -278,6 +278,17 @@
 		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>crooked</labelOverride>
+				<description>[PAWN_nameDef]'s leg seems to have degraded into something that looks awfully uncomfortable to walk on.</description>
+				<minSeverity>-1</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.4</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
 				<labelOverride>readjusting</labelOverride>
 				<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
 				<minSeverity>0.1</minSeverity>
@@ -378,7 +389,25 @@
 		<description>[PAWN_nameDef]'s toenails have thickened and grown into a veritable hoof, with a split down the middle.</description>
 		<label>cloven hoof</label>
 		<stages>
+		
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>hard nails</labelOverride>
+				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
+				<minSeverity>0.1</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>hooflike</labelOverride>
+				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
+			</li>
 			<li>
+			<minSeverity>0.8</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -408,7 +437,25 @@
 		<description>[PAWN_nameDef]'s feet have shifted into a single-toed hoof, like a horse's.</description>
 		<label>hoof</label>
 		<stages>
+		
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>hard nails</labelOverride>
+				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
+				<minSeverity>0.1</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.DescriptiveStage">
+				<labelOverride>hooflike</labelOverride>
+				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
+			</li>
 			<li>
+			<minSeverity>0.8</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

@@ -152,6 +152,7 @@
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
+    <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="InstinctUtilities.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_TerrainProduction.cs" />

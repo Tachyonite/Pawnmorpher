@@ -275,8 +275,10 @@
                         <mtbDays>1.0</mtbDays>
                         <partsToAffect>
                             <li>Arm</li>
+                            <li>Torso</li>
+                            <li>Head</li>
                         </partsToAffect>
-                        <countToAffect>2</countToAffect>
+                        <countToAffect>1</countToAffect>
                         <tale>LimbGrowsFeathers</tale>
                     </li>
                 </hediffGivers>

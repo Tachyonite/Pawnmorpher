@@ -10,23 +10,8 @@ namespace Pawnmorph
     /// ingestion out come doer that adds an aspect to a pawn
     /// </summary>
     /// <seealso cref="RimWorld.IngestionOutcomeDoer" />
-    public class IngestionOutcomeDoer_AddAspect : IngestionOutcomeDoer
+    public class IngestionOutcomeDoer_RemoveAspects : IngestionOutcomeDoer
     {
-        /// <summary>The aspect to add</summary>
-        public AspectDef aspectDef;
-        /// If true will increase the stage of the aspect by 1 every time the thing is consumed.
-        public bool increaseStage;
-
-        /// <summary>
-        /// The stage to set the aspect at 
-        /// </summary>
-        public int stage;
-
-        /// <summary>
-        /// if the pawn has the same aspect at a different stage, this will force it to the given stage
-        /// </summary>
-        public bool force; 
-
         /// <summary>Does the ingestion outcome special.</summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="ingested">The ingested.</param>
@@ -35,18 +20,14 @@ namespace Pawnmorph
             var aspectT = pawn.GetAspectTracker();
             if (aspectT == null) return;
 
-            var aspect = aspectT.GetAspect(aspectDef);
-            if (aspect == null)
-            {
-                aspectT.Add(aspectDef, stage); 
-            }else if (force && aspect.StageIndex != stage)
-            {
-                aspect.StageIndex = stage; 
-            }
-            else if (increaseStage)
-            {
-                aspect.StageIndex += 1;
-            }
+            foreach (Aspect aspect in aspectT)
+                if (aspect.def.removedByReverter)
+                    if (aspect.def != AspectDef.Named("Productive"))
+                    {
+                        aspectT.Remove(aspect); // It's ok to remove them in a foreach loop.
+                    }
+                    
+
         }
     }
 }
