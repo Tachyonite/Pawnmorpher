@@ -81,6 +81,7 @@
 		<description>[PAWN_nameDef]'s fingers have elongated into scale-covered claws.</description>
 		<stages>
 			<li>
+				<label>unfamiliar</label>
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>

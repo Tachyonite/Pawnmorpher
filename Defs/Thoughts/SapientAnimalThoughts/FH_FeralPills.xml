@@ -16,12 +16,12 @@
             <li>
                 <label>sapping mind</label>
                 <description>What was that?! That call of instinct is so much stronger now...!</description>
-                <baseMoodEffect>-5</baseMoodEffect>
+                <baseMoodEffect>-10</baseMoodEffect>
             </li>
             <li>
                 <label>sapping mind</label>
                 <description>Oh no...it's too strong to ignore, they're taking my mind...!</description>
-                <baseMoodEffect>-10</baseMoodEffect>
+                <baseMoodEffect>-15</baseMoodEffect>
             </li>
             <li>
                 <label>sapping mind</label>
