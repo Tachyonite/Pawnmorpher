@@ -22,10 +22,7 @@ namespace Pawnmorph
 
             foreach (Aspect aspect in aspectT)
                 if (aspect.def.removedByReverter)
-                    if (aspect.def != AspectDef.Named("Productive"))
-                    {
-                        aspectT.Remove(aspect); // It's ok to remove them in a foreach loop.
-                    }
+                     aspectT.Remove(aspect); // It's ok to remove them in a foreach loop.
                     
 
         }
