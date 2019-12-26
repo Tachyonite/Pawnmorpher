@@ -166,6 +166,19 @@ namespace Pawnmorph
         {
             return _aspects.Any(a => a.def == aspect);
         }
+        /// <summary>
+        /// Determines whether this instance contains the given aspect at the given stage.
+        /// </summary>
+        /// <param name="aspectDef">The aspect definition.</param>
+        /// <param name="stage">The stage.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance contains the specified aspect at the given stage; otherwise, <c>false</c>.
+        /// </returns>
+        public bool Contains(AspectDef aspectDef, int stage)
+        {
+            var aspect = _aspects.FirstOrDefault(a => a.def == aspectDef);
+            return aspect?.StageIndex == stage; 
+        }
 
         /// <summary>
         /// initializes this instance (Note: other comps may or may not be initialized themselves) 

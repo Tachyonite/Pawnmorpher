@@ -18,6 +18,14 @@ namespace Pawnmorph
         public static ThingDef Plant_ChaoBulb;
         public static ThingDef Plant_GnarledTree;
         public static ThingDef Morphsilk;
-        public static ThingDef CrashedMutagenicShipPartIncoming; 
+        public static ThingDef CrashedMutagenicShipPartIncoming;
+
+        public static ThingDef EggChickenUnfertilized;
+        public static ThingDef Chicken;
+        public static ThingDef Cow;
+        public static ThingDef TFMilk;
+        public static ThingDef TFEgg;
+        
+
     }
 }
