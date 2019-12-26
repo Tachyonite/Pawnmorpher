@@ -20,9 +20,6 @@ namespace Pawnmorph
         /// <summary>The hatching ticker</summary>
         public float HatchingTicker = 0;
 
-        /// <summary>Tracks the total production of this part</summary>
-        public int totalProduction = 0;
-
         private float brokenChance = 0f;
         private float bondChance = 0f;
         private float _severityTarget;
@@ -43,7 +40,6 @@ namespace Pawnmorph
             Scribe_Values.Look(ref HatchingTicker, "hatchingTicker");
             Scribe_Values.Look(ref brokenChance, "brokenChance");
             Scribe_Values.Look(ref bondChance, "bondChance");
-            Scribe_Values.Look(ref totalProduction, "totalProduction");
             base.CompExposeData();
         }
 
@@ -152,7 +148,7 @@ namespace Pawnmorph
                                                    LetterDefOf.NeutralEvent, Pawn);
                 }
             }
-            totalProduction += thingCount + rareThingCount;
+
             if (stageThought != null) thoughts.TryGainMemory(stageThought);
 
             ThoughtDef addThought;

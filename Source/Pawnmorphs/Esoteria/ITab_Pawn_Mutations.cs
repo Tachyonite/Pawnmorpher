@@ -241,10 +241,10 @@ namespace Pawnmorph
             {
                 HediffComp_Production prodcomp = prodMutation.TryGetComp<HediffComp_Production>();
 
-                // Figure out what stage the hedif is in.   
+                // Figure out what stage the hedif is in.
                 string stageString = "";
                 if (prodMutation.CurStageIndex > 0)
-                    stageString = " " + new string('+', prodMutation.CurStageIndex);
+                    stageString = " (" + new string('+', prodMutation.CurStageIndex) + ")";
                 HediffComp_Staged stage = prodcomp.Props.stages.ElementAt(prodMutation.CurStageIndex);
 
                 // Draw the main text (the mutation's label, current stage and a percentage to completion).
@@ -261,13 +261,9 @@ namespace Pawnmorph
                 // Draw the subtext (# hours left).
                 float hoursLeft = stage.daysToProduce * 24 - prodcomp.HatchingTicker / 2500;
                 string subtext = $"{hoursLeft.ToStringDecimalIfSmall()} hours left";
-                string subbertext = $"Total production: {prodcomp.totalProduction}";
                 float subRectHeight = Text.CalcHeight(subtext, width);
-                float subRectHeight2 = Text.CalcHeight(subbertext, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, subRectHeight), subtext);
                 curPos.y += subRectHeight;
-                Widgets.Label(new Rect(curPos.x, curPos.y, width, subRectHeight2), subbertext);
-                curPos.y += subRectHeight2;
 
                 GUI.color = Color.white;
                 Text.Font = GameFont.Small;
