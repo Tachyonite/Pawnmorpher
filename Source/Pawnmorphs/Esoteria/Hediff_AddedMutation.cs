@@ -28,7 +28,7 @@ namespace Pawnmorph
         {
             get
             {
-                var lOverride = (CurStage as DescriptiveStage)?.labelOverride;
+                var lOverride = (CurStage as MutationStage)?.labelOverride;
                 return string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride; 
             }
         }
@@ -108,7 +108,7 @@ namespace Pawnmorph
 
         private string GetRawDescription()
         {
-            var descOverride = (CurStage as DescriptiveStage)?.description;
+            var descOverride = (CurStage as IDescriptiveStage)?.DescriptionOverride;
             return string.IsNullOrEmpty(descOverride) ? def.description : descOverride; 
         }
 

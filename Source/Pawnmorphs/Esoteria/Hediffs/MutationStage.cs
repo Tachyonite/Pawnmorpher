@@ -9,7 +9,7 @@ namespace Pawnmorph.Hediffs
     /// hediff stage with an extra description field  
     /// </summary>
     /// <seealso cref="Verse.HediffStage" />
-    public class DescriptiveStage : HediffStage
+    public class MutationStage : HediffStage, IDescriptiveStage
     {
         /// <summary>
         /// optional description override for a hediff in this stage 
@@ -22,8 +22,12 @@ namespace Pawnmorph.Hediffs
         public string labelOverride;
 
         /// <summary>
-        /// The chance upon getting to this stage that the changes will stop here and not progress further
+        /// the base chance that the mutation will stop progressing at this stage  
         /// </summary>
+        /// this should be in [0,1]
         public float stopChance;
+
+        string IDescriptiveStage.DescriptionOverride => description;
+        string IDescriptiveStage.LabelOverride => labelOverride;
     }
 }

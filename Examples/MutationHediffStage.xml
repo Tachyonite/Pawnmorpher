@@ -1,0 +1,21 @@
+<Defs>
+    <HediffDef>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                normal hediff stage stuff 
+
+                this is an optional field, if set in a supported hediff type it will override the 
+                description of the parent hediff  
+                <description>description</description>
+
+                this is an optional field that if set in a supported hediff type  will override the label in the
+                parent hediff 
+                <labelOverride>override</labelOverride>
+
+                the base chance that the mutation will stop progressing at this stage  
+                this should be in the range [0,1]
+                <stopChance>0.3</stopChance>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>

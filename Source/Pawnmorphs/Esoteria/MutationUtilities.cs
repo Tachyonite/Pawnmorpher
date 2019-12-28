@@ -18,8 +18,43 @@ namespace Pawnmorph
     /// <summary>
     /// static class containing mutation related utility functions 
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class MutationUtilities
     {
+
+
+        /// <summary>
+        /// Gets the minimum mutation adaptability stat value.
+        /// </summary>
+        /// <value>
+        /// The minimum mutation adjust value.
+        /// </value>
+        public static float MinMutationAdaptabilityValue { get; }
+        /// <summary>
+        /// Gets the maximum mutation adaptability value.
+        /// </summary>
+        /// <value>
+        /// The maximum mutation adaptability value.
+        /// </value>
+        public static float MaxMutationAdaptabilityValue { get; }
+
+        /// <summary>
+        /// Gets the average mutation adaptability value.
+        /// </summary>
+        /// <value>
+        /// The average mutation adaptability value.
+        /// </value>
+        public static float AverageMutationAdaptabilityValue { get; }
+
+        static MutationUtilities()
+        {
+            var stat = PMStatDefOf.MutationAdaptability;
+            MinMutationAdaptabilityValue = stat.minValue;
+            MaxMutationAdaptabilityValue = stat.maxValue;
+            AverageMutationAdaptabilityValue = stat.defaultBaseValue; 
+        }
+
+
         /// <summary>Gets the parts to add hediffs to.</summary>
         /// <param name="giver">The giver.</param>
         /// <returns></returns>

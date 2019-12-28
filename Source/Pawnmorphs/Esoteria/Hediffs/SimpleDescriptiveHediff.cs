@@ -22,12 +22,31 @@ namespace Pawnmorph.Hediffs
         {
             get
             {
-                if (CurStage is DescriptiveStage dStage)
+                if (CurStage is IDescriptiveStage dStage)
                 {
-                    return string.IsNullOrEmpty(dStage.description) ? def.description : dStage.description; 
+                    return string.IsNullOrEmpty(dStage.DescriptionOverride) ? def.description : dStage.DescriptionOverride; 
                 }
 
                 return def.description; 
+            }
+        }
+
+        /// <summary>
+        /// Gets the label base.
+        /// </summary>
+        /// <value>
+        /// The label base.
+        /// </value>
+        public override string LabelBase
+        {
+            get
+            {
+                if (CurStage is IDescriptiveStage ds)
+                {
+                    return string.IsNullOrEmpty(ds.LabelOverride) ? base.LabelBase : ds.LabelOverride; 
+                }
+
+                return base.LabelBase;
             }
         }
     }

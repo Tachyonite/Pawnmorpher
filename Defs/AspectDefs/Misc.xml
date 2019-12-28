@@ -117,7 +117,7 @@
         <stages>
             <li>
                 <statOffsets>
-                    <MutationAdaptability>-2</MutationAdaptability>
+                    <MutationAdaptability>-1.5</MutationAdaptability>
                 </statOffsets>
                 <isBad>true</isBad>
             </li>
