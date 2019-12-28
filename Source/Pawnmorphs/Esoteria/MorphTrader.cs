@@ -8,8 +8,44 @@ using Pawnmorph.Utilities;
 
 namespace Pawnmorph
 {
+
     /// <summary>
-    /// stock generator mor morph traders 
+    /// stock generator for morph traders 
+    /// </summary>
+    /// <seealso cref="RimWorld.StockGenerator" />
+    public class StockGenerator_MorphSlaves : StockGenerator
+    {
+        private bool respectPopulationIntent;
+
+        public override IEnumerable<Thing> GenerateThings(int forTile)
+        {
+            if (respectPopulationIntent && Rand.Value > StorytellerUtilityPopulation.PopulationIntent)
+            {
+                yield break;
+            }
+            int count = countRange.RandomInRange;
+            for (int i = 0; i < count; i++)
+            {
+                if (!(from fac in Find.FactionManager.AllFactionsVisible
+                      where fac != Faction.OfPlayer && fac.def.defName == "PawnmorpherEnclave"
+                      select fac).TryRandomElement(out Faction slaveFaction))
+                {
+                    break;
+                }
+                PawnKindDef slave = PawnKindDef.Named("PawnmorpherSlave");
+                PawnGenerationRequest request = new PawnGenerationRequest(slave, slaveFaction, PawnGenerationContext.NonPlayer, forTile, forceGenerateNewPawn: false, newborn: false, allowDead: false, allowDowned: false, canGeneratePawnRelations: true, mustBeCapableOfViolence: false, 1f, !trader.orbital);
+                yield return PawnGenerator.GeneratePawn(request);
+            }
+        }
+
+        public override bool HandlesThingDef(ThingDef thingDef)
+        {
+            return thingDef.category == ThingCategory.Pawn && thingDef.race.Humanlike && thingDef.tradeability != Tradeability.None;
+        }
+    }
+
+    /// <summary>
+    /// stock generator for morph traders 
     /// </summary>
     /// <seealso cref="RimWorld.StockGenerator" />
     public class StockGenerator_Morphs : StockGenerator

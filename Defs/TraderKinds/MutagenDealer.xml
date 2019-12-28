@@ -3,7 +3,7 @@
 		<defName>PawnmorpherTrader</defName>
 		<label>Morph trader</label>
 		<orbital>false</orbital>
-		<commonality>1</commonality>
+		<commonality>100</commonality>
 		<stockGenerators>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Silver</thingDef>
@@ -92,11 +92,11 @@
 					<max>-1</max>
 				</countRange>
 			</li>
-			<li Class="StockGenerator_Slaves">
-				<respectPopulationIntent>true</respectPopulationIntent>
+			<li Class="Pawnmorph.StockGenerator_MorphSlaves">
+				<respectPopulationIntent>false</respectPopulationIntent>
 				<countRange>
-					<min>-1</min>
-					<max>0</max>
+					<min>2</min>
+					<max>10</max>
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
