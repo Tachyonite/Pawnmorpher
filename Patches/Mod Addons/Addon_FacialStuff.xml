@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Facial Stuff 1.0</li>
+	</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>AlienFacesExpanded</li>
+			</mods>
+			<match Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "Human"]/comps</xpath>
+       <value>
+	   <comps>
+          <li Class = "FacialStuff.CompProperties_BodyAnimator">
+            <!--needed for everything with hands-->
+            <bipedWithHands>true</bipedWithHands>
+            <!--which hand texture?-->
+            <handType>Human</handType>
+            <!--custom drawers can be used here-->
+            <bodyDrawers>
+              <li Class ="AlienFaces.AlienBipedDrawer"/>
+            </bodyDrawers>
+          </li>
+          <li Class = "FacialStuff.CompProperties_Face">
+            <!--if false, vanilla heads are used, otherwise the FS blank texture is used-->
+            <needsBlankHumanHead>true</needsBlankHumanHead>
+            <!-- off = no mouth-->
+            <hasMouth>true</hasMouth>
+            <!--race can have beards?-->
+            <hasBeard>true</hasBeard>
+            <!--race can have wrinkles?-->
+            <hasWrinkles>true</hasWrinkles>
+            <!--eyes?-->
+            <hasEyes>true</hasEyes>
+            <!--head rotation / tracking-->
+            <canRotateHead>true</canRotateHead>
+            <!--the drawer for the head. more than one can be defined-->
+            <headDrawers>
+              <li Class ="AlienFaces.AlienHeadDrawer"/>
+              <!--  <li Class ="FacialStuff.SecondHeadDrawer"/>-->
+            </headDrawers>
+          </li>
+		  </comps>
+        </value>
+			</match>
+		</match>
+</Operation>
+</Patch>

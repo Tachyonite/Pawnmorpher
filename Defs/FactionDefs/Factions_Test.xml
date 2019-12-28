@@ -119,7 +119,7 @@
     <backstoryCategories>
       <li>MutantWanderer</li>
       <li>FreeMutant</li>
-      <li>Civil</li> <!-- just to assing child backstories to get rid of errors, get rid of this before release -->
+      <li>Civil</li>
     </backstoryCategories>
     <invNutrition>2.55</invNutrition>
     <apparelTags>

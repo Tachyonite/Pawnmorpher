@@ -531,32 +531,32 @@
 										<parts>
 											<li>
 												<def>Tusk</def>
-												<customLabel>left tusk</customLabel>
-												<coverage>0.4</coverage>
+												<customLabel>left lower tusk</customLabel>
+												<coverage>0.2</coverage>
 												<groups>
 													<li>TuskAttackTool</li>
 												</groups>
 											</li>
 											<li>
 												<def>Tusk</def>
-												<customLabel>right tusk</customLabel>
-												<coverage>0.4</coverage>
+												<customLabel>right lower tusk</customLabel>
+												<coverage>0.2</coverage>
 												<groups>
 													<li>TuskAttackTool</li>
 												</groups>
 											</li>
 											<li>
 												<def>Tusk</def>
-												<customLabel>left tusk</customLabel>
-												<coverage>0.4</coverage>
+												<customLabel>left upper tusk</customLabel>
+												<coverage>0.2</coverage>
 												<groups>
 													<li>TuskAttackTool</li>
 												</groups>
 											</li>
 											<li>
 												<def>Tusk</def>
-												<customLabel>right tusk</customLabel>
-												<coverage>0.4</coverage>
+												<customLabel>right upper tusk</customLabel>
+												<coverage>0.2</coverage>
 												<groups>
 													<li>TuskAttackTool</li>
 												</groups>

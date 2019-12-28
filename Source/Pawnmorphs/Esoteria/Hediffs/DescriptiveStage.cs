@@ -19,6 +19,11 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The label override
         /// </summary>
-        public string labelOverride; 
+        public string labelOverride;
+
+        /// <summary>
+        /// The chance upon getting to this stage that the changes will stop here and not progress further
+        /// </summary>
+        public float stopChance;
     }
 }
