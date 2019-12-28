@@ -3,6 +3,7 @@ using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using Verse;
 using Pawnmorph.Utilities;
 
@@ -15,8 +16,14 @@ namespace Pawnmorph
     /// <seealso cref="RimWorld.StockGenerator" />
     public class StockGenerator_MorphSlaves : StockGenerator
     {
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         private bool respectPopulationIntent;
 
+        /// <summary>
+        /// Generates the things.
+        /// </summary>
+        /// <param name="forTile">For tile.</param>
+        /// <returns></returns>
         public override IEnumerable<Thing> GenerateThings(int forTile)
         {
             if (respectPopulationIntent && Rand.Value > StorytellerUtilityPopulation.PopulationIntent)
@@ -38,6 +45,11 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// checks if this generator handles the given thingDef
+        /// </summary>
+        /// <param name="thingDef">The thing definition.</param>
+        /// <returns></returns>
         public override bool HandlesThingDef(ThingDef thingDef)
         {
             return thingDef.category == ThingCategory.Pawn && thingDef.race.Humanlike && thingDef.tradeability != Tradeability.None;

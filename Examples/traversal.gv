@@ -6,11 +6,17 @@ digraph traversalExample {
     E -> {K,L} ; 
     I -> {M,N}; 
     subgraph sg{ 
-        edge[color=green];
+        edge[color=green, constraint=false];
         K -> E [label="start"]; 
         E -> L; 
         L -> B; 
         B -> F; 
         F -> A; 
+        A -> C; 
+        C -> G; 
+        G -> D; 
+        D -> H; 
+        I -> M; 
+        N -> J; 
     }
 }
