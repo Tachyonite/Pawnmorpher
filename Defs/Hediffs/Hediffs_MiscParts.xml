@@ -348,6 +348,7 @@
 				<labelOverride>clawed</labelOverride>
 				<description>[PAWN_nameDef]'s nails have lengthened and turned darker, now blunt claws.</description>
 				<minSeverity>0.1</minSeverity>
+				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>padded</labelOverride>
@@ -359,6 +360,7 @@
 						<offset>0.02</offset>
 					</li>
 				</capMods>
+				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>paw</labelOverride>
@@ -394,11 +396,13 @@
 				<labelOverride>hard nails</labelOverride>
 				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
 				<minSeverity>0.1</minSeverity>
+				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>hooflike</labelOverride>
 				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
 				<minSeverity>0.5</minSeverity>
+				<stopChance>0.3</stopChance>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -442,11 +446,13 @@
 				<labelOverride>hard nails</labelOverride>
 				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
 				<minSeverity>0.1</minSeverity>
+				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>hooflike</labelOverride>
 				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
 				<minSeverity>0.5</minSeverity>
+				<stopChance>0.3</stopChance>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -491,11 +497,13 @@
 				<labelOverride>hard nails</labelOverride>
 				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
 				<minSeverity>0.1</minSeverity>
+				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>hooflike</labelOverride>
 				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
 				<minSeverity>0.5</minSeverity>
+				<stopChance>0.3</stopChance>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

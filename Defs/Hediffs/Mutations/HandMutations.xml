@@ -15,12 +15,14 @@
                 <partEfficiencyOffset>0</partEfficiencyOffset>
                 <labelOverride>clawed</labelOverride>
 				<description>Each finger on this hand is tipped with a sharp claw.</description>
+				<stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.2</minSeverity>
                 <partEfficiencyOffset>0</partEfficiencyOffset>
                 <labelOverride>padded</labelOverride>
 				<description>In addition to claws, this hand is developing thick pads on the palm and each fingertip.</description>
+				<stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.6</minSeverity>
@@ -88,12 +90,14 @@
                 <partEfficiencyOffset>0</partEfficiencyOffset>
                 <labelOverride>thick nails</labelOverride>
 				<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+				<stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.2</minSeverity>
                 <partEfficiencyOffset>-.1</partEfficiencyOffset>
                 <labelOverride>hoof-fingers</labelOverride>
 				<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+				<stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.6</minSeverity>
@@ -147,12 +151,14 @@
                 <partEfficiencyOffset>0</partEfficiencyOffset>
                 <labelOverride>thick nails</labelOverride>
 				<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+				<stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.2</minSeverity>
                 <partEfficiencyOffset>-.1</partEfficiencyOffset>
                 <labelOverride>hoof-fingers</labelOverride>
 				<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+				<stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.6</minSeverity>
