@@ -185,11 +185,11 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public float GetNaturalSeverityLimitFor([NotNull] Pawn pawn)
         {
-            var sVal = pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
-            var sMul = sVal * statEffectMult * severityPerDay;
-            if (sMul < -EPSILON) return sVal - 1;
-            if (sMul > EPSILON) return sVal;
-            return 0; 
+            float sVal = pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
+            float sMul = (sVal + 1) * statEffectMult;
+            if (sMul < -EPSILON) return sVal;
+            if (sMul > EPSILON) return sVal+1;
+            return 0;
         }
     }
 }
