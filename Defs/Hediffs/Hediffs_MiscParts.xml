@@ -291,7 +291,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>readjusting</labelOverride>
 				<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
-				<minSeverity>0.1</minSeverity>
+				<minSeverity>0</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

@@ -50,6 +50,7 @@
 	</HediffDef>
 
 	<HediffDef Name="PawnmorphPart" Abstract="True" ParentName="PawnmorphPartNoRmComp">
+		<initialSeverity>0.1</initialSeverity>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
 				<layers>Core</layers>
