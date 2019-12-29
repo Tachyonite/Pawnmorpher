@@ -42,7 +42,7 @@ namespace Pawnmorph
                 {
                     return;
                 }
-                plantHarmAge++;
+                plantHarmAge += 60;
                 ticksToPlantHarm--;
                 if (ticksToPlantHarm <= 0)
                 {
