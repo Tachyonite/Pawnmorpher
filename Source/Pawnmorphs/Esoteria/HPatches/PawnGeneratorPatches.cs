@@ -49,7 +49,7 @@ namespace Pawnmorph.HPatches
                     var kindExtension = pawn.kindDef.GetModExtension<MorphPawnKindExtension>();
                     if (kindExtension != null)
                     {
-                        MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, false, false, kindExtension); 
+                        MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, false, true, kindExtension); 
                     }
                 }
 
