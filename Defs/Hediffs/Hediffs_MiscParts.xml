@@ -363,6 +363,18 @@
 				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>footpaw</labelOverride>
+				<description>This foot more closely resembles a paw, but still retains some humanlike features to aid stability.</description>
+				<minSeverity>0.7</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.03</offset>
+					</li>
+				</capMods>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>paw</labelOverride>
 				<minSeverity>0.8</minSeverity>
 				<capMods>
@@ -373,6 +385,11 @@
 				</capMods>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.MutationHediffExtension">
 				<parts>
@@ -423,6 +440,11 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.MutationHediffExtension">
 				<parts>
@@ -470,6 +492,11 @@
 				</capMods>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.MutationHediffExtension">
 				<parts>
@@ -487,11 +514,6 @@
 		<defName>EtherTrotterFoot</defName>
 		<label>trotter</label>
 		<description>Smaller hooves now sit where [PAWN_nameDef]'s feet once were. Pointed things, they are.</description>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.33</severityPerDay>
-			</li>
-		</comps>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>hard nails</labelOverride>
@@ -523,6 +545,11 @@
 				</capMods>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.MutationHediffExtension">
 				<parts>

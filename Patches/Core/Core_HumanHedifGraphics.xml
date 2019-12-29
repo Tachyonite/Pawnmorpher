@@ -612,7 +612,6 @@
 					<EtherFluffyTail>Parts/Fox/Fox_Tail</EtherFluffyTail>
 					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
-					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
@@ -651,6 +650,7 @@
 				<hediffGraphics>
 					<EtherSnakeTail>Parts/snakeface/snaketail</EtherSnakeTail>
 					<EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
+					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
 				</hediffGraphics>
 				<layerOffset>-0.29</layerOffset>
 				<offsets>

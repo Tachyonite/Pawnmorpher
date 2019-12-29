@@ -69,9 +69,6 @@
 		<modExtensions>
             <li Class="Pawnmorph.MorphPawnKindExtension">
                 <hediffRange>4~8</hediffRange>
-                <morphCategories>
-                    <li>Chimera</li>
-                </morphCategories>
 				<morphs>
                     <li>BoarMorph</li>
                     <li>CatMorph</li>
@@ -214,7 +211,7 @@
 		<baseDescription>[PAWN_nameDef] ate some suspect mushrooms next to a chemical spill in the woods, and found [PAWN_objective]self to be quite a bit more porcine.</baseDescription>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
-		<bodyTypeMale>Fat</bodyTypeMale>
+		<bodyTypeMale>Male</bodyTypeMale>
 		<spawnCategories>
 			<li>MutantWanderer</li>
 			<li>FreeMutant</li>
@@ -235,8 +232,8 @@
 		<titleShort>foxmorph</titleShort>
 		<baseDescription>[PAWN_nameDef] was captured by a twisted hunting club that chased people down with dogs, and was looking for a new spin on it. Fortunately, [PAWN_nameDef] became cunning enough to escape again.</baseDescription>
 		<slot>Adulthood</slot>
-		<bodyTypeFemale>Female</bodyTypeFemale>
-		<bodyTypeMale>Fat</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+		<bodyTypeMale>Thin</bodyTypeMale>
 		<spawnCategories>
 			<li>MutantWanderer</li>
 			<li>FreeMutant</li>
@@ -267,8 +264,8 @@
 		<titleShort>alpha wolf</titleShort>
 		<baseDescription>[PAWN_nameDef] was part of a disproven study into the dominance heirarchy in wolf packs. When the study went underground, it took [PAWN_nameDef]'s humanity and made [PAWN_objective] an alpha.</baseDescription>
 		<slot>Adulthood</slot>
-		<bodyTypeFemale>Female</bodyTypeFemale>
-		<bodyTypeMale>Fat</bodyTypeMale>
+		<bodyTypeFemale>Hulk</bodyTypeFemale>
+		<bodyTypeMale>Hulk</bodyTypeMale>
 		<spawnCategories>
 			<li>MutantWanderer</li>
 			<li>FreeMutant</li>
@@ -303,8 +300,8 @@
 		<titleShort>beta wolf</titleShort>
 		<baseDescription>[PAWN_nameDef] was part of a disproven study into the dominance heirarchy in wolf packs. When the study went underground, it took [PAWN_nameDef]'s humanity and made [PAWN_objective] a lesser member, a beta.</baseDescription>
 		<slot>Adulthood</slot>
-		<bodyTypeFemale>Female</bodyTypeFemale>
-		<bodyTypeMale>Fat</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+		<bodyTypeMale>Thin</bodyTypeMale>
 		<spawnCategories>
 			<li>MutantWanderer</li>
 			<li>FreeMutant</li>
@@ -340,7 +337,7 @@
 		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the coop. [PAWN_pronoun] was allowed to leave once [PAWN_pronoun]'d "paid [PAWN_possessive] due."</baseDescription>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
-		<bodyTypeMale>Fat</bodyTypeMale>
+		<bodyTypeMale>Male</bodyTypeMale>
 		<spawnCategories>
 			<li>MutantWanderer</li>
 			<li>FreeMutant</li>

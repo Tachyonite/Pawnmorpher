@@ -8,7 +8,7 @@
                 <minSeverity>-1</minSeverity>
                 <partEfficiencyOffset>-0.9</partEfficiencyOffset>
                 <label>bestial</label>  <!-- only pawns with Afflicted Morph aspect can get this stage-->
-				<description>This paw has degraded into a more inflexible paw</description>
+				<description>This paw has degraded into a more inflexible paw than normal, and is not very useful.</description>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0</minSeverity>
@@ -23,6 +23,12 @@
                 <labelOverride>padded</labelOverride>
 				<description>In addition to claws, this hand is developing thick pads on the palm and each fingertip.</description>
 				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.4</minSeverity>
+                <partEfficiencyOffset>-0.15</partEfficiencyOffset>
+				<description>This hand looks more like a paw than a hand, but isn't completely useless.</description>
+                <labelOverride>handpaw</labelOverride>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.6</minSeverity>
@@ -64,7 +70,7 @@
                 </tools>
             </li>
             <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-                <severityPerDay>0.25</severityPerDay>
+                <severityPerDay>0.15</severityPerDay>
             </li>
         </comps>
         <modExtensions>
@@ -100,9 +106,16 @@
 				<stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.4</minSeverity>
+                <partEfficiencyOffset>-0.20</partEfficiencyOffset>
+				<description>Above a humanlike palm, two fingers have paired up and merged. This reduces manipulation, but not nearly as much as having a full hoof instead.</description>
+                <labelOverride>handhoof</labelOverride>
+				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.6</minSeverity>
                 <partEfficiencyOffset>-0.40</partEfficiencyOffset>
-				<description></description>
+				<description>This hand, or hoof, is quickly becoming less flexible and more like a regular hoof. Its usability may be hampered soon.</description>
                 <labelOverride>inflexible handhoof</labelOverride>
             </li>
             <li>
@@ -112,8 +125,8 @@
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.99</minSeverity>
-                <partEfficiencyOffset>-0.1</partEfficiencyOffset>
-				<description></description>
+                <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+				<description>[PAWN_nameDef] has adapted to using hooves, and will have slightly less trouble with working with them.</description>
                 <label>adapted</label>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
@@ -125,7 +138,7 @@
         </stages>
         <comps>
             <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-                <severityPerDay>0.25</severityPerDay>
+                <severityPerDay>0.15</severityPerDay>
             </li>
         </comps>
         <modExtensions>
@@ -163,7 +176,7 @@
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.6</minSeverity>
                 <partEfficiencyOffset>-0.40</partEfficiencyOffset>
-				<description></description>
+				<description>This hand, or trotter, is quickly becoming less flexible and more like a regular trotter. Its usability may be hampered soon.</description>
                 <labelOverride>inflexible handtrotter</labelOverride>
             </li>
             <li>
@@ -174,7 +187,7 @@
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.99</minSeverity>
                 <partEfficiencyOffset>-0.1</partEfficiencyOffset>
-				<description></description>
+				<description>[PAWN_nameDef] has adapted to using trotters, and will have slightly less trouble with working with them.</description>
                 <label>adapted</label>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
@@ -186,7 +199,7 @@
         </stages>
         <comps>
             <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-                <severityPerDay>0.25</severityPerDay>
+                <severityPerDay>0.15</severityPerDay>
             </li>
         </comps>
         <modExtensions>
