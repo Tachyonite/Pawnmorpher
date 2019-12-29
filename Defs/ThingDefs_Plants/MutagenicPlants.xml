@@ -143,11 +143,15 @@
 				<!-- if true the source plant must be something that can be havested -->
 				<mustBeHarvestable>true</mustBeHarvestable>
 
-				<!-- 
-					other fields not used here 
-					mustBeTree - source plant must be a tree 
-					sourcePlantFilter - used to exclude or specificy specific plant defs 
-				-->
+				<sourcePlantFilter>
+					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
+					<filterList> <!-- glowvine will only come from healroot  -->
+						<li>Plant_Strawberry</li>
+						<li>Plant_Corn</li>
+						<li>Plant_Rice</li>
+						<li>Plant_Berry</li>
+					</filterList>
+				</sourcePlantFilter>
 			</li>
 		</modExtensions>
 	</ThingDef>
