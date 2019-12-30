@@ -393,7 +393,7 @@
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_GnarledTree</defName>
 		<label>GnarledTree</label>
-		<description>TODO</description>
+		<description>A tree that's been twisted into an eerie shape by mutagens. Gnarled wood is useless, brittle and flaky, disintegrating when chopped.</description>
 		<statBases>
 			<MaxHitPoints>85</MaxHitPoints>
 			<Beauty>4</Beauty>
