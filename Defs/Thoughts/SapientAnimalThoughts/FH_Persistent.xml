@@ -5,6 +5,10 @@
 
     <ThoughtDef ParentName="FH_PersistentThought">
         <defName>FH_PersistentThoughtDefault</defName>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+            <li>MutationAffinity</li>
+        </nullifyingTraits>
         <stages>
             <li>
                 <label>changed</label>
@@ -31,6 +35,16 @@
                 <description>Food!</description>
             </li>
         </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert>
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
     </ThoughtDef>
 
     <ThoughtDef ParentName="FH_PersistentThought">
@@ -64,11 +78,22 @@
                 <description>Food!</description>
             </li>
         </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert>
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
     </ThoughtDef>
+
     <ThoughtDef ParentName="FH_PersistentThought">
         <defName>FH_PersistentThoughtBP</defName> <!-- body purist-->
         <requiredTraits>
-            <li>MutationAffinity</li>
+            <li>BodyPurist</li>
         </requiredTraits>
         <stages>
             <li>
@@ -97,6 +122,7 @@
             </li>
         </stages>
     </ThoughtDef>
+    
     <ThoughtDef ParentName="FH_PersistentThought">
         <defName>FH_PersistentThoughtPW</defName> <!-- primal wish -->
         <stages>
