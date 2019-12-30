@@ -190,7 +190,7 @@ namespace Pawnmorph.DebugUtils
             if (pawn == null) return;
 
 
-            IEnumerable<HediffGiver_Mutation> mutations = morph?.AllAssociatedAndAdjacentMutations;
+            IEnumerable<HediffGiver_Mutation> mutations = morph?.AllAssociatedAndAdjacentMutationGivers;
             if (mutations == null)
                 mutations = DefDatabase<HediffDef>.AllDefs
                                                   .Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass))

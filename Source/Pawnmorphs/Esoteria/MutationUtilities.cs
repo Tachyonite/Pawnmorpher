@@ -49,7 +49,7 @@ namespace Pawnmorph
             MaxMutationAdaptabilityValue = stat.maxValue;
             AverageMutationAdaptabilityValue = stat.defaultBaseValue;
 
-            //build the lookup table of parts sorted by the mutations that affect them 
+            //build the lookup table of part sorted by the mutations that affect them 
             _mutationsByParts = new Dictionary<BodyPartDef, List<HediffDef>>();
             _partLookupDict = new Dictionary<HediffDef, List<BodyPartDef>>();
             foreach (HediffDef mutation in AllMutations)
@@ -179,17 +179,18 @@ namespace Pawnmorph
         /// <summary>Adds the mutation to the pawn without a hediff giver.</summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
-        /// <param name="parts">The parts.</param>
+        /// <param name="parts">The part.</param>
+        /// <param name="addParts">if not null, this will be filled with all part that mutations were added to</param>
         /// <exception cref="ArgumentNullException">
         ///     pawn
         ///     or
         ///     mutation
         ///     or
-        ///     parts
+        ///     part
         /// </exception>
         /// <returns>if any mutations were added</returns>
         public static bool AddMutation([NotNull] Pawn pawn, [NotNull] HediffDef mutation,
-                                       [NotNull] IEnumerable<BodyPartRecord> parts)
+                                       [NotNull] IEnumerable<BodyPartRecord> parts, List<BodyPartRecord> addParts=null)
         {
             if (pawn?.health?.hediffSet == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
@@ -200,13 +201,13 @@ namespace Pawnmorph
             foreach (BodyPartRecord bodyPartRecord in parts)
             {
                 if (health.hediffSet.PartIsMissing(bodyPartRecord))
-                    //make sure none of the parts are missing 
+                    //make sure none of the part are missing 
                     continue;
 
                 Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, bodyPartRecord);
                 health.AddHediff(hediff, bodyPartRecord);
                 addedRecords.Add(bodyPartRecord);
-
+                addParts?.Add(bodyPartRecord); 
                 var ext = mutation.GetModExtension<MutationHediffExtension>();
                 if (ext == null)
                 {
@@ -233,13 +234,64 @@ namespace Pawnmorph
         /// <summary>Adds the mutation to the pawn without a hediff giver.</summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
-        /// <param name="parts">The parts.</param>
+        /// <param name="part">The part.</param>
+        /// <param name="addParts">if not null, this will be filled with all part that mutations were added to</param>
         /// <exception cref="ArgumentNullException">
         ///     pawn
         ///     or
         ///     mutation
         ///     or
-        ///     parts
+        ///     part
+        /// </exception>
+        /// <returns>if any mutations were added</returns>
+        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] HediffDef mutation,
+                                       [NotNull] BodyPartRecord part, List<BodyPartRecord> addParts = null)
+        {
+            if (pawn?.health?.hediffSet == null) throw new ArgumentNullException(nameof(pawn));
+            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+            if (part == null) throw new ArgumentNullException(nameof(part));
+
+            Pawn_HealthTracker health = pawn.health;
+            var addedRecords = new List<BodyPartRecord>();
+            if (health.hediffSet.PartIsMissing(part))
+                //make sure none of the part are missing 
+                return false;
+
+            Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, part);
+            health.AddHediff(hediff, part);
+            addedRecords.Add(part);
+            addParts?.Add(part);
+            var ext = mutation.GetModExtension<MutationHediffExtension>();
+            var logEntry = new MutationLogEntry(pawn, mutation, addedRecords.Select(p => p.def).Distinct());
+            Find.PlayLog?.Add(logEntry);
+            if (pawn.MapHeld != null) IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+
+
+            if (ext == null)
+            {
+                Log.Warning($"{mutation.defName} has no mutation def extension");
+                return true;
+            }
+
+            if (ext.mutationMemory != null) pawn.TryGainMemory(ext.mutationMemory);
+
+            if (PawnUtility.ShouldSendNotificationAbout(pawn) && ext.mutationTale != null)
+                TaleRecorder.RecordTale(ext.mutationTale, pawn);
+
+
+            return addedRecords.Count > 0;
+        }
+
+        /// <summary>Adds the mutation to the pawn without a hediff giver.</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutation">The mutation.</param>
+        /// <param name="parts">The part.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     pawn
+        ///     or
+        ///     mutation
+        ///     or
+        ///     part
         /// </exception>
         /// <returns>if any mutations were added</returns>
         public static bool AddMutation([NotNull] Pawn pawn, [NotNull] HediffDef mutation, [NotNull] params BodyPartRecord[] parts)
@@ -271,11 +323,11 @@ namespace Pawnmorph
 
             return
                 allRecordsToCheck.Any(p => !mutatedParts
-                                              .Contains(p)); //if there are any non missing parts missing mutations then the hediff_giver can be applied 
+                                              .Contains(p)); //if there are any non missing part missing mutations then the hediff_giver can be applied 
         }
 
         /// <summary>
-        ///     Gets all mutable parts on this body def
+        ///     Gets all mutable part on this body def
         /// </summary>
         /// <param name="bodyDef">The body definition.</param>
         /// <returns></returns>
@@ -374,7 +426,7 @@ namespace Pawnmorph
             if (comp != null && comp.morph == morph)
                 return comp.influence; //if it has a morph influence comp return the influence value
 
-            if (morph.AllAssociatedAndAdjacentMutations.Select(g => g.hediff).Contains(mutationDef))
+            if (morph.AllAssociatedAndAdjacentMutationGivers.Select(g => g.hediff).Contains(mutationDef))
                 return 0.0f; //might want to let these guys give influence 
             return 0;
         }
@@ -420,7 +472,7 @@ namespace Pawnmorph
         }
 
 
-        /// <summary>Gets the parts to add hediffs to.</summary>
+        /// <summary>Gets the part to add hediffs to.</summary>
         /// <param name="giver">The giver.</param>
         /// <returns></returns>
         [NotNull]
@@ -430,11 +482,11 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     get the body parts this hediff can be assigned to
+        ///     get the body part this hediff can be assigned to
         /// </summary>
         /// <param name="def"></param>
         /// <returns>
-        ///     an enumerable collection of all parts this hediff can be assigned to, Note the elements can contain duplicates
+        ///     an enumerable collection of all part this hediff can be assigned to, Note the elements can contain duplicates
         ///     and null
         /// </returns>
         [NotNull]
@@ -472,7 +524,7 @@ namespace Pawnmorph
             return def.GetType().HasAttribute<ObsoleteAttribute>() || def.hediffClass.HasAttribute<ObsoleteAttribute>();
         }
 
-        /// <summary>internal function for getting the parts a mutation affects </summary>
+        /// <summary>internal function for getting the part a mutation affects </summary>
         /// <param name="mutationDef">The mutation definition.</param>
         /// <returns></returns>
         [NotNull]

@@ -50,7 +50,7 @@ namespace Pawnmorph.Hediffs
                     _mutations = new List<HediffGiver_Mutation>();
                     foreach (MorphCategoryDef morphCategoryDef in morphCategories)
                     foreach (HediffGiver_Mutation hediffGiverMutation in
-                        morphCategoryDef.AllMorphsInCategories.SelectMany(m => m.AllAssociatedAndAdjacentMutations))
+                        morphCategoryDef.AllMorphsInCategories.SelectMany(m => m.AllAssociatedAndAdjacentMutationGivers))
                     {
                         if (hediffGiverMutation.hediff == null) continue;
                         if (foundMutations.Contains(hediffGiverMutation.hediff)) continue;
