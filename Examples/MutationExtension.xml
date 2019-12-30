@@ -1,0 +1,20 @@
+<Defs>
+    <HediffDef>
+        some mutation def 
+        <modExtension>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                this is a list of body part defs this mutation can affect 
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                this is a list of categories that this mutation belongs to 
+                <categories>
+                    <li>HandMutations</li>
+                </categories>
+
+                optional field that if set overrides the default mutation log rule pack 
+                <mutationLogRulePack>SomeRulePackDef</mutationLogRulePack>
+            </li>
+        </modExtension>
+    </HediffDef>
+</Defs>
