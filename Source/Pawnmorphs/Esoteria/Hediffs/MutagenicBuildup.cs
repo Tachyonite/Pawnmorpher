@@ -19,16 +19,19 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediff_Morph" />
     public class MutagenicBuildup : Hediff_Morph
     {
+        private MorphDef _chosenMorphDef; 
         private HediffDef _chosenMorphTf;
-        private List<HediffGiver_Mutation> _mutations = new List<HediffGiver_Mutation>();
         private HediffGiver_TF _transformation;
+
+
         private void PickRandomMorphTf()
         {
             bool SelectionFunc(HediffDef tfDef)
             {
                 if (tfDef == def) return false;
                 if (tfDef.GetTransformationType() == MorphTransformationTypes.Partial) return false;
-                IEnumerable<MorphDef> morphs = MorphUtilities.GetAssociatedMorph(tfDef);
+                var morphs = MorphUtilities.GetAssociatedMorph(tfDef).ToList();
+                if (morphs.Count == 0) return false; 
                 if (morphs.Any(m => m.categories.Contains(MorphCategoryDefOf.Powerful)))
                     return false; //don't apply powerful morphs 
 
@@ -58,6 +61,10 @@ namespace Pawnmorph.Hediffs
             if (MP.IsInMultiplayer) Rand.PopState();
         }
 
+        private List<BodyPartRecord> _recordList;
+        private int _curIndex;
+        private int _rOff; 
+
 
         /// <summary>
         /// Ticks this instance.
@@ -66,24 +73,33 @@ namespace Pawnmorph.Hediffs
         {
             base.Tick();
 
-            if (_chosenMorphTf != null && _mutations.Count > 0 && pawn.IsHashIntervalTick(60))
+            if (pawn.IsHashIntervalTick(60 + _rOff) && _chosenMorphDef != null)
             {
-                foreach (HediffGiver_Mutation hediffGiverMutation in _mutations)
+                _rOff = Rand.Range(0, 20); 
+                if (_recordList == null || _recordList.Count == 0)
                 {
-                    float originalMtbUntis = hediffGiverMutation.mtbUnits;
-                    try
+                    _recordList = new List<BodyPartRecord>();
+                    _curIndex = 0;
+                    pawn.RaceProps.body.RandomizedSpreadOrder(_recordList);
+                }
+
+                if (_curIndex >= _recordList.Count) return; 
+                var record = _recordList[_curIndex];
+                _curIndex++;
+                var mutation = MutationUtilities.GetMutationsByPart(record.def).RandomElementWithFallback();
+                if (mutation != null)
+                {
+                    if (MutationUtilities.AddMutation(pawn, mutation, record))
                     {
-                        hediffGiverMutation.mtbUnits = AverageMTBUnits;
-                        hediffGiverMutation.ClearHediff(this); //make sure all hediffs can be applied, like in chaotic giver 
-                        hediffGiverMutation.OnIntervalPassed(pawn, this);
-                    }
-                    finally
-                    {
-                        hediffGiverMutation.mtbUnits = originalMtbUntis; 
-                    }
-                   
+                        var mutagen = this.GetMutagenDef();
+                        mutagen.TryApplyAspects(pawn); 
+                    } 
                 }
             }
+
+            if(pawn.IsHashIntervalTick(200) && _curIndex >= _recordList?.Count)
+                _recordList.Clear();//restart every so often 
+
         }
 
         /// <summary>
@@ -115,6 +131,7 @@ namespace Pawnmorph.Hediffs
             base.EnterNextStage();
 
             if (CurStageIndex >= 4 && _chosenMorphTf == null) PickRandomMorphTf();
+
         }
 
         private float? _averageMTBUnits;
@@ -137,19 +154,17 @@ namespace Pawnmorph.Hediffs
         {
             
             _chosenMorphTf = tfDef ?? throw new ArgumentNullException(nameof(tfDef));
-            var givers = tfDef.stages.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_Mutation>()
-                                                   ?? Enumerable.Empty<HediffGiver_Mutation>());
-            var tf = tfDef.stages.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_TF>() ?? Enumerable.Empty<HediffGiver_TF>())
-                          .First();
-
-            _transformation = tf;
-            if (_mutations == null) _mutations = new List<HediffGiver_Mutation>();
-            else
-                _mutations.Clear();
-            _mutations.AddRange(givers); 
-
-
-
+            var tf = tfDef.stages?.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_TF>() ?? Enumerable.Empty<HediffGiver_TF>());
+            try
+            {
+                _transformation = tf.First();
+                _chosenMorphDef = MorphUtilities.GetAssociatedMorph(tfDef).First();
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new InvalidOperationException($"while trying to set transformation type of {def.defName} with tfDef {tfDef.defName}",e);
+            }
+            
         }
 
       
@@ -177,18 +192,6 @@ namespace Pawnmorph.Hediffs
 
         }
 
-        private void RunChaoticGivers()
-        {
-            if (Rand.Range(0, 1f) < 0.5f)
-            {
-                var giver = (CurStage?.hediffGivers?.OfType<Giver_MutationChaotic>() ?? Enumerable.Empty<Giver_MutationChaotic>())
-                   .RandomElementWithFallback();
-                giver?.TryApply(pawn, this, MutagenDefOf.defaultMutagen); 
-            }
-           
-        }
-
-
         /// <summary>
         /// Gets the label base.
         /// </summary>
@@ -199,8 +202,8 @@ namespace Pawnmorph.Hediffs
         {
             get
             {
-                if (_chosenMorphTf == null) return def.label;
-                return _chosenMorphTf.label; 
+                if (_chosenMorphDef == null) return def.label;
+                return _chosenMorphDef.label; 
             }
         }
 
@@ -212,6 +215,8 @@ namespace Pawnmorph.Hediffs
             base.ExposeData();
 
             Scribe_Defs.Look(ref _chosenMorphTf, nameof(_chosenMorphTf));
+            Scribe_Collections.Look(ref _recordList, nameof(_recordList), LookMode.BodyPart);
+            Scribe_Values.Look(ref _curIndex, nameof(_curIndex)); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && _chosenMorphTf != null)
             {
                 SetTransformationType(_chosenMorphTf); 

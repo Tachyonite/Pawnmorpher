@@ -111,15 +111,6 @@
 						<offset>-0.25</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
-						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
-						<blackListCategories>
-							<li>Powerful</li>
-						</blackListCategories>
-						<mtbUnits>15000</mtbUnits>
-					</li>
-				</hediffGivers>
 			</li>
 			<li>
 				<label>extreme</label>
@@ -131,15 +122,6 @@
 						<setMax>0.30</setMax>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
-						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
-						<blackListCategories>
-							<li>Powerful</li>
-						</blackListCategories>
-						<mtbUnits>7500</mtbUnits>
-					</li>
-				</hediffGivers>
 			</li>
 			<li>
 				<minSeverity>0.85</minSeverity>
