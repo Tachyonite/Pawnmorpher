@@ -112,7 +112,7 @@ namespace Pawnmorph
                     ) //grab all mutation givers from the morphs 
                     {
                         morphSet.Add(morphDef);
-                        foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutations)
+                        foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutationGivers)
                         {
                             if (defSet.Contains(mutationGiver.hediff)) continue; //don't include duplicates 
                             _mutationGivers.Add(mutationGiver);
@@ -122,7 +122,7 @@ namespace Pawnmorph
 
                     foreach (MorphDef morphDef in morphs.Where(m => !morphSet.Contains(m))) //only grab morphs not already included in the categories 
                     {
-                        foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutations)
+                        foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutationGivers)
                         {
                             if (defSet.Contains(mutationGiver.hediff)) continue; //don't include duplicates 
                             _mutationGivers.Add(mutationGiver);
@@ -231,7 +231,7 @@ namespace Pawnmorph
             if (AllMorphs.Count == 0) return; 
             
             var rMorph = AllMorphs.RandElement(); 
-            storage.AddRange(rMorph.AllAssociatedAndAdjacentMutations);
+            storage.AddRange(rMorph.AllAssociatedAndAdjacentMutationGivers);
 
         }
     }

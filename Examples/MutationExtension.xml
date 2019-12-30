@@ -1,0 +1,26 @@
+<Defs>
+    <HediffDef>
+        some mutation def 
+        <modExtension>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                this is a list of body part defs this mutation can affect 
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                this is a list of categories that this mutation belongs to 
+                <categories>
+                    <li>HandMutations</li>
+                </categories>
+
+                optional field that if set overrides the default mutation log rule pack 
+                <mutationLogRulePack>SomeRulePackDef</mutationLogRulePack>
+                
+                optional thought def that if set will be added to a pawn if they get the mutation 
+                <mutationMemory>MemoryDef</mutationMemory>
+
+                optional tale def that will be added to the tales if a pawn is given this mutation 
+                <mutationTale>TaleDef</mutationTale>
+            </li>
+        </modExtension>
+    </HediffDef>
+</Defs>

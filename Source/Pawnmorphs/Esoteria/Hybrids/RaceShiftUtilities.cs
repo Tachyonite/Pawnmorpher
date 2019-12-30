@@ -244,22 +244,16 @@ namespace Pawnmorph.Hybrids
                                       .Select(m => m.Part)
                                       .ToList(); //needs to be a list because we're about to modify hediffs 
 
-            HashSet<BodyPartRecord> addedRecords = new HashSet<BodyPartRecord>();
-            List<Hediff> tmpList = new List<Hediff>(); 
+            List<BodyPartRecord> addedRecords = new List<BodyPartRecord>();
+            
             foreach (BodyPartRecord bodyPartRecord in partDefsToAddTo)
             {
                 if(addedRecords.Contains(bodyPartRecord)) continue; //if a giver already added to the record don't add it twice 
                 
                 // ReSharper disable once AssignNullToNotNullAttribute
-                var giver = morph.GetAssociatedMutationsFor(bodyPartRecord.def).RandomElementWithFallback();
+                var mutation = morph.GetMutationForPart(bodyPartRecord.def).RandomElementWithFallback();
 
-                giver?.TryApply(pawn, MutagenDefOf.defaultMutagen, tmpList);
-                foreach (Hediff hediff in tmpList)
-                {
-                    if(hediff?.Part == null) continue;
-                    addedRecords.Add(hediff.Part); //make a note of all the records that the giver added to
-                }
-                tmpList.Clear();
+                MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord, addedRecords);
             }
         }
 

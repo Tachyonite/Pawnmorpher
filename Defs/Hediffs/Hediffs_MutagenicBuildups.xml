@@ -75,7 +75,7 @@
                             <li>Powerful</li>
                         </blackListCategories>
                         <mtbDays>0.1</mtbDays>
-                        <mtbUnits>10000</mtbUnits>
+                        <mtbUnits>20000</mtbUnits>
 
                     </li>
                 </hediffGivers>
@@ -97,8 +97,9 @@
                         <blackListCategories>
                             <li>Powerful</li>
                         </blackListCategories>
-                        <mtbDays>0.1</mtbDays>
-                        <mtbUnits>5000</mtbUnits>
+                        <mtbDays>0.05</mtbDays>
+                        <mtbUnits>20000</mtbUnits>
+
                     </li>
                 </hediffGivers>
             </li>
@@ -119,8 +120,9 @@
                         <blackListCategories>
                             <li>Powerful</li>
                         </blackListCategories>
-                        <mtbDays>0.1</mtbDays>
-                        <mtbUnits>2500</mtbUnits>
+                        <mtbDays>0.05</mtbDays>
+                        <mtbUnits>20000</mtbUnits>
+
                     </li>
                 </hediffGivers>
             </li>
@@ -128,31 +130,11 @@
                 <minSeverity>0.85</minSeverity>
                 <label>extreme</label>
 				<painOffset>0.8</painOffset>
-                <hediffGivers>
-                    <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
-                        <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
-                        <blackListCategories>
-                            <li>Powerful</li>
-                        </blackListCategories>
-                        <mtbDays>0.1</mtbDays>
-                        <mtbUnits>2500</mtbUnits>
-                    </li>
-                </hediffGivers>
             </li>
             <li>
                 <minSeverity>0.99</minSeverity>
                 <label>extreme</label>
 				<painOffset>0.9</painOffset>
-                <hediffGivers>
-                    <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
-                        <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
-                        <blackListCategories>
-                            <li>Powerful</li>
-                        </blackListCategories>
-                        <mtbDays>0.1</mtbDays>
-                        <mtbUnits>2500</mtbUnits>
-                    </li>
-                </hediffGivers>
             </li>
         </stages>
     </HediffDef>

@@ -1,0 +1,21 @@
+<Defs>
+    <HediffDef>
+        mutation def
+        <modExtension>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                mutations can be assigned to categories by adding categories to the mutation def extension
+                <categories>
+                    <li>HandMutations</li>
+                </categories>
+            </li>
+        </modExtension>
+    </HediffDef>
+
+    <Pawnmorph.MutationCategoryDef>
+        mutations can also be added to the categories themselves, this does the same thing as adding the category def to the mod extension 
+        both methods do the exact same thing
+        <mutations>
+            <li>SomeMutationHediffDef</li>
+        </mutations>
+    </Pawnmorph.MutationCategoryDef>
+</Defs>

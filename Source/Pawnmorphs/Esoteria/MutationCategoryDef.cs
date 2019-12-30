@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
@@ -14,7 +15,11 @@ namespace Pawnmorph
     public class MutationCategoryDef : Def
     {
 
-        [Unsaved] private List<HediffDef> _mutations;
+        [Unsaved] private List<HediffDef> _allMutations;
+
+        [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        private List<HediffDef> mutations = new List<HediffDef>(); 
+
 
         /// <summary>if mutations in this category should be restricted to special PawnGroupKinds</summary>
         public bool restricted; 
@@ -25,16 +30,24 @@ namespace Pawnmorph
         {
             get
             {
-                if (_mutations == null)
+                if (_allMutations == null)
                 {
-                    _mutations = 
-                        DefDatabase<HediffDef>.AllDefs
-                        .Where(d => d.GetModExtension<MutationHediffExtension>()
-                        ?.categories.Contains(this) ?? false)
-                        .ToList();
+                    _allMutations = new List<HediffDef>(mutations.MakeSafe());
+
+                    foreach (HediffDef mutationDef in DefDatabase<HediffDef>.AllDefs)
+                    {
+                        List<MutationCategoryDef> categories = mutationDef.GetModExtension<MutationHediffExtension>()?.categories;
+                        if (categories.MakeSafe().Contains(this))
+                        {
+                            if (_allMutations.Contains(mutationDef))
+                                Log.Warning($"hediff {mutationDef.defName} is added to {defName} in both {defName} and with the def extension, this is redundant");
+                            else
+                                _allMutations.Add(mutationDef);
+                        }
+                    }
                 }
 
-                return _mutations; 
+                return _allMutations; 
             }
         }
     }
