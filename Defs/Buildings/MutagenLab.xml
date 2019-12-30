@@ -51,6 +51,7 @@
       <li>Make_ResurrectorFromMutonite</li>
       <li>Make_HealerFromMutonite</li>
       <li>Make_GlitterMedsFromMutonite</li>
+      <li>Make_SlurryFromChaobulbs</li>
     </recipes>
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
