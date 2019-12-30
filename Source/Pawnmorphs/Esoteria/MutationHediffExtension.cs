@@ -64,6 +64,7 @@ namespace Pawnmorph
         public override IEnumerable<string> ConfigErrors()
         {
             if (generationCost <= 0) yield return $"generationCost:{{{generationCost}}} must be greater then zero";
+            if (parts.NullOrEmpty()) yield return "parts list is null or empty!";
         }
 
 
