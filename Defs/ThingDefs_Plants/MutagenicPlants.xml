@@ -142,52 +142,11 @@
 				<priority>10</priority>
 				<!-- if true the source plant must be something that can be havested -->
 				<mustBeHarvestable>true</mustBeHarvestable>
-
-				<sourcePlantFilter>
-					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
-					<filterList> <!-- glowvine will only come from healroot  -->
-						<li>Plant_Strawberry</li>
-						<li>Plant_Corn</li>
-						<li>Plant_Rice</li>
-						<li>Plant_Berry</li>
-					</filterList>
-				</sourcePlantFilter>
 			</li>
 		</modExtensions>
 	</ThingDef>
 	
-	<ThingDef ParentName="TFItemBase">
-        <defName>Chaobulb</defName>
-        <label>chaobulb seedpod</label>
-        <description>A bulbous, warty-looking seed pod from a chaovine. Orange in colour and pungent in smell, it is said to be uncomfortably delicious, and leaves a fuzzy aftertaste in the mouth. Said to have mutagenic properties, often used by tribes to connect with nature and bring out their inner warrior animal.</description>
-        <graphicData>
-            <texPath>Plants/Items/ChaobulbFruit</texPath>
-            <graphicClass>Graphic_StackCount</graphicClass>
-        </graphicData>
-		<comps>
-			<li Class="CompProperties_Drug">
-				<chemical>TFMilk</chemical>
-				<addictiveness>0.010</addictiveness>
-				<minToleranceToAddict>0.15</minToleranceToAddict>
-				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
-				<needLevelOffset>1</needLevelOffset>
-				<listOrder>1010</listOrder>
-			</li>
-		</comps>
-		<ingestible>
-			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>FullRandomTF</li>
-					</hediffDefs>
-					<hediffDefsComplete>
-						<li>FullRandomTFAnyOutcome</li>
-					</hediffDefsComplete>
-					<severity>1</severity>
-				</li>
-			</outcomeDoers>
-		</ingestible>
-	</ThingDef>
+	
 	
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_Glowvine</defName>
@@ -374,67 +333,6 @@
 		</modExtensions>
 		
 	</ThingDef>
-
-	
-	<ThingDef ParentName="PlantBase">
-		<defName>Plant_MutatedGrass</defName>
-		<label>mutagrass</label>
-		<description>Wild, somewhat mutated grass. A product of groundwater contamination.</description>
-		<statBases>
-			<MaxHitPoints>85</MaxHitPoints>
-			<Flammability>1.3</Flammability>
-			<Nutrition>0.15</Nutrition>
-    </statBases>
-		<graphicData>
-			<texPath>Plants/MutatedGrass</texPath>
-			<graphicClass>Graphic_Random</graphicClass>
-		</graphicData>
-		<hideAtSnowDepth>0.5</hideAtSnowDepth>
-		<ingestible />
-		<plant>
-			<fertilityMin>0.05</fertilityMin>
-			<fertilitySensitivity>0.3</fertilitySensitivity>
-			<growDays>2.5</growDays>
-			<harvestWork>40</harvestWork>
-			<maxMeshCount>9</maxMeshCount>
-			<visualSizeRange>
-				<min>0.4</min>
-				<max>0.6</max>
-			</visualSizeRange>
-			<topWindExposure>0.4</topWindExposure>
-			<wildOrder>1</wildOrder>
-		</plant>
-		<comps>
-		  <li Class="CompProperties_Glower">
-			<glowRadius>3</glowRadius>
-			<glowColor>(24,183,177,0)</glowColor>
-		  </li>
-		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
-				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
-				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
-				with the same priority value are picked randomly 
-				1 is a high priority so this plant take precidence over Chaobulb 
-				-->
-				<priority>1</priority>
-				<!-- if true the source plant must be something that can be havested -->
-				<mustBeHarvestable>false</mustBeHarvestable>
-
-				<sourcePlantFilter>
-					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
-					<filterList> <!-- glowvine will only come from healroot  -->
-						<li>Plant_Grass</li>
-					</filterList>
-				</sourcePlantFilter>
-
-				<!-- 
-					other fields not used here 
-					mustBeTree - source plant must be a tree 
-				-->
-			</li>
-		</modExtensions>
-	</ThingDef>
 	
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedBush</defName>
@@ -473,7 +371,7 @@
 				with the same priority value are picked randomly 
 				1 is a high priority so this plant take precidence over Chaobulb 
 				-->
-				<priority>1</priority>
+				<priority>5</priority>
 				<!-- if true the source plant must be something that can be havested -->
 				<mustBeHarvestable>false</mustBeHarvestable>
 

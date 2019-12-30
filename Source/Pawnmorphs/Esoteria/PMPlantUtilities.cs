@@ -111,6 +111,20 @@ namespace Pawnmorph
             return null; //no valid plants found 
         }
 
+        /// <summary>
+        /// Determines whether this instance is a mutant plant.
+        /// </summary>
+        /// <param name="plant">The plant.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance is a mutant plant ; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">plant</exception>
+        public static bool IsMutantPlant([NotNull] this Plant plant)
+        {
+            if (plant == null) throw new ArgumentNullException(nameof(plant));
+            return plant.def.IsMutantPlant(); 
+        }
+
 
         /// <summary>
         ///     Determines whether this is a mutant plant .
@@ -125,12 +139,17 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Tries to substitute the plant for its mutant variant.
+        /// Tries to substitute the plant for its mutant variant.
         /// </summary>
         /// <param name="originalPlant">The original plant.</param>
         /// <param name="alwaysKillOriginal">if set to <c>true</c> always kill original even is there is no mutant plant variant.</param>
-        public static void TryMutatePlant([NotNull] Plant originalPlant, bool alwaysKillOriginal = true)
+        /// <param name="canDoubleMutate">if set to <c>true</c> mutated plants can themselves mutate.</param>
+        public static void TryMutatePlant([NotNull] Plant originalPlant, bool alwaysKillOriginal = true, bool canDoubleMutate=false)
         {
+
+            if (originalPlant.IsMutantPlant() && !canDoubleMutate)
+                return; 
+
             ThingDef plantDef = GetMutantVersionOf(originalPlant);
 
             IntVec3 pos = originalPlant.Position;
