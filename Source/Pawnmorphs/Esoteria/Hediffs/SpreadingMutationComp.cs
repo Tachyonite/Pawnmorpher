@@ -93,7 +93,7 @@ namespace Pawnmorph.Hediffs
             if (upward)
             {
                 if (record.parent == null) return false; //no parent just return false 
-                int add = MorphUtilities.AllMutableRecords.Contains(record.parent) && IsSkinPart(record.parent) ? 1 : 0;
+                int add = Pawn.RaceProps.body.GetAllMutableParts().Contains(record.parent) && IsSkinPart(record.parent) ? 1 : 0;
 
                 return TryInfectPart(record.parent, true, depth + add); 
             }
@@ -101,7 +101,7 @@ namespace Pawnmorph.Hediffs
             {
                 foreach (BodyPartRecord bodyPartRecord in record.parts)
                 {
-                    int add = MorphUtilities.AllMutableRecords.Contains(bodyPartRecord) && IsSkinPart(bodyPartRecord) ? 1 : 0; 
+                    int add = Pawn.RaceProps.body.GetAllMutableParts().Contains(bodyPartRecord) && IsSkinPart(bodyPartRecord) ? 1 : 0; 
                     if (TryInfectPart(bodyPartRecord, false, depth + add))
                     {
                         return true; //abort on the first successful add 
@@ -132,7 +132,7 @@ namespace Pawnmorph.Hediffs
             if (Pawn.health.hediffSet.PartIsMissing(record)) return false; //don't infect missing parts 
             if (!IsSkinPart(record)) return false; 
 
-            if (!MorphUtilities.AllMutableRecords.Contains(record))
+            if (!Pawn.RaceProps.body.GetAllMutableParts().Contains(record))
             {
                 return false;
             }

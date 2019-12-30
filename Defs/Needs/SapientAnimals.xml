@@ -1,0 +1,28 @@
+<Defs>
+   
+    <NeedDef>
+        <defName>SapientAnimalControl</defName>
+        <needClass>Pawnmorph.Need_Control</needClass>
+        <label>sapience</label>
+        <description>Sapience represents how much humanity a former human has left, if it gets too low, they will become feral, potentially irreversibly</description>
+        <showOnNeedList>true</showOnNeedList>
+        <minIntelligence>Animal</minIntelligence>
+        <baseLevel>0.32</baseLevel>
+        <seekerRisePerHour>0.12</seekerRisePerHour>
+        <seekerFallPerHour>0.06</seekerFallPerHour>
+        <listPriority>1000</listPriority>
+        <major>true</major>
+        <freezeWhileSleeping>true</freezeWhileSleeping>
+        <showForCaravanMembers>true</showForCaravanMembers>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <filter>
+                    <filterList>
+                        <li>PermanentlyFeral</li>
+                    </filterList>
+                </filter>
+            </li>
+        </modExtensions>
+    </NeedDef>
+    
+</Defs>

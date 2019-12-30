@@ -1,5 +1,5 @@
 <Defs>
-	<HediffDef ParentName="MorphParent">
+	<HediffDef ParentName="AspectedMorphParent">
 		<defName>PawnmorphFoxTF</defName>
 		<label>foxmorph</label>
 		<stages>
@@ -22,6 +22,7 @@
 							<li>Fox_Fennec</li>
 						</pawnkinds>
 						<tale>TransformationCanid</tale>
+						<changeChance>100</changeChance>
 					</li>
 				</hediffGivers>
 			</li>

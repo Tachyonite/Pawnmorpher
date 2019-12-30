@@ -3,7 +3,7 @@
 
 using System;
 using RimWorld;
-#pragma warning disable 01591
+#pragma warning disable 1591
 namespace Pawnmorph
 {
     /// <summary> DefOf class for commonly referenced ThoughtDefs. </summary>
@@ -44,5 +44,26 @@ namespace Pawnmorph
 
         /// <summary> Default thought for pawns that have the BodyPurist Trait and were a morph that reverts back to human. </summary>
         public static ThoughtDef DefaultMorphRevertsToHumanBP;
+
+        /// <summary>
+        /// The former human taming success thought
+        /// </summary>
+        public static ThoughtDef FormerHumanTameThought; 
+
+        /// <summary>
+        /// default thought for when a sapient animal sleeps on the ground 
+        /// </summary>
+        public static ThoughtDef SapientAnimalSleptOnGround;
+        /// <summary>
+        /// default thought for when a sapient animal is milked 
+        /// </summary>
+        public static ThoughtDef SapientAnimalMilked;
+
+        /// <summary>
+        /// The sapient animal hunting memory
+        /// </summary>
+        /// this is for hunting out of necessity not for the hunting mental break 
+        public static ThoughtDef SapientAnimalHuntingMemory; 
+
     }
 }

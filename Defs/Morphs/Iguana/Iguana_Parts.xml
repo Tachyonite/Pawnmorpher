@@ -55,7 +55,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
@@ -81,6 +81,7 @@
 		<description>[PAWN_nameDef]'s fingers have elongated into scale-covered claws.</description>
 		<stages>
 			<li>
+				<label>unfamiliar</label>
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>
@@ -108,7 +109,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
@@ -132,7 +133,7 @@
 			</li>
 		</stages>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>

@@ -1,0 +1,19 @@
+<Defs>
+    <InteractionDef>
+        <!-- regular def stuff -->
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.TraitRestriction">
+                <entries> <!--to pass the restriction, the pawn must match at least one entry  -->
+                    <li>
+                        <trait>MutationAffinity</trait> <!-- this is required  -->
+                        <traitDegree>0</traitDegree>
+                         <!-- traitDegree is optional, if set the trait degree the pawn has 
+                            and the one in the xml must match. 
+                            If this is not present the trait degree is ignored 
+                        -->
+                    </li>
+                </entries>
+            </li>
+        </modExtensions>
+    </InteractionDef>
+</Defs>

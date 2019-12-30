@@ -24,6 +24,7 @@
 							<li>Chaodino</li>
 						</pawnkinds>
 						<tale>TransformationMisc</tale>
+						<changeChance>90</changeChance>
 					</li>
 				</hediffGivers>
 			</li>
@@ -67,14 +68,20 @@
 					</li>
 				</capMods>
 				<hediffGivers>
-          <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
-	          <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
-	          <blackListCategories>
-              <li>Powerful</li>
-            </blackListCategories>
-          </li>
+					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+						<blackListCategories>
+							<li>Powerful</li>
+						</blackListCategories>
+					</li>
 				</hediffGivers>
 			</li>
 		</stages>
+		<!-- add the mutagen source to make this morph give aspects to  -->
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>ChaoticMutagen</mutagen>
+			</li>
+		</modExtensions>
 	</HediffDef>
 </Defs>

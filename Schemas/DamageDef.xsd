@@ -1,0 +1,94 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleTypes.xsd"/>
+    <xs:include schemaLocation="include/SimpleCurve.xsd"/>
+    <xs:include schemaLocation="DefExtensions/MutagenicDamageExtension.xsd"/>
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DamageDef" type="DamageDef" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="DamageDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="workerClass" type="xs:string" minOccurs="0" />
+            <xs:element name="externalViolence" type="xs:boolean" minOccurs="0" />
+            <xs:element name="externalViolenceForMechanoids" type="xs:boolean" minOccurs="0" />
+            <xs:element name="hasForcefulImpact" type="xs:boolean" minOccurs="0" />
+            <xs:element name="harmsHealth" type="xs:boolean" minOccurs="0" />
+            <xs:element name="makesBlood" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="canInterruptJobs" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="isRanged" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="makesAnimalsFlee" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="execution" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="combatLogRules" type="xs:string" minOccurs="0"/>
+            <xs:element name="buildingDamageFactor" type="xs:float" minOccurs="0"/>
+            <xs:element name="plantDamageFactor" type="xs:float" minOccurs="0"/>
+            <xs:element name="canUseDeflectMetalEffect" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="impactSoundType" type="xs:string" minOccurs="0" />
+            <xs:element name="deathMessage" type="xs:string" minOccurs="0"/>
+            <xs:element name="defaultDamage" type="xs:int" minOccurs="0"/>
+            <xs:element name="defaultArmorPenetration" type="xs:float" minOccurs="0"/>
+            <xs:element name="defaultStoppingPower" type="xs:float" minOccurs="0"/>
+            <xs:element name="additionalHediffs" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="DamageDefAdditionalHediff" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>   
+            
+            <xs:element name="armorCategory" type="xs:string" minOccurs="0"/>
+            <xs:element name="minDamageToFragment" type="xs:int" minOccurs="0"/>
+            <xs:element name="overkillPctToDestroyPart" type="FloatRange" minOccurs="0"/>
+            <xs:element name="harmAllLayersUntilOutside" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="hediff" type="xs:string" minOccurs="0"/>
+            <xs:element name="hediffSkin" type="xs:string" minOccurs="0"/>
+            <xs:element name="hediffSolid" type="xs:string" minOccurs="0"/>
+            <xs:element name="isExplosive" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="explosionSnowMeltAmount" type="xs:float" minOccurs="0"/>
+            <xs:element name="explosionAffectOutsidePartsOnly" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="explosionCellMote" type="xs:string" minOccurs="0"/>
+            <xs:element name="explosionColorCenter" type="Color" minOccurs="0"/>
+            <xs:element name="explosionColorEdge" type="xs:string" minOccurs="0"/>
+            <xs:element name="explosionInteriorMote" type="xs:string" minOccurs="0"/>
+            <xs:element name="explosionHeatEnergyPerCell" type="xs:float" minOccurs="0"/>
+            <xs:element name="soundExplosion" type="xs:string" minOccurs="0"/>
+            <xs:element name="stabChanceOfForcedInternal" type="xs:string" minOccurs="0"/>
+            <xs:element name="stabPierceBonus" type="xs:float" minOccurs="0"/>
+            <xs:element name="cutExtraTargetsCurve" type="SimpleCurve" minOccurs="0"/>
+            <xs:element name="cutCleaveBonus" type="xs:float" minOccurs="0"/>
+            <xs:element name="bluntInnerHitChance" type="xs:float" minOccurs="0"/>
+            <xs:element name="bluntInnerHitDamageFractionToConvert" type="FloatRange" minOccurs="0"/>
+            <xs:element name="bluntInnerHitDamageFractionToAdd" type="FloatRange" minOccurs="0"/>
+            <xs:element name="bluntStunDuration" type="xs:float" minOccurs="0"/>
+            <xs:element name="bluntStunChancePerDamagePctOfCorePartToHeadCurve" type="SimpleCurve" minOccurs="0"/>
+            <xs:element name="bluntStunChancePerDamagePctOfCorePartToBodyCurve" type="SimpleCurve" minOccurs="0"/>
+            <xs:element name="scratchSplitPercentage" type="xs:float" minOccurs="0"/>
+            <xs:element name="biteDamageMultiplier" type="xs:float" minOccurs="0"/>
+            <xs:element name="modExtensions" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="MutagenicDamageExtension" minOccurs="1" maxOccurs="1" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+        </xs:all>
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="DamageDefAdditionalHediff">
+        <xs:all>
+            <xs:element name="hediff" type="xs:string"/>
+            <xs:element name="severityPerDamageDealt" type="xs:float" minOccurs="0"/>
+            <xs:element name="victimSeverityScaling" type="xs:string" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,83 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="TechLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Undefined" />
+            <xs:enumeration value="Animal" />
+            <xs:enumeration value="Neolithic" />
+            <xs:enumeration value="Medieval" />
+            <xs:enumeration value="Industrial" />
+            <xs:enumeration value="Space" />
+            <xs:enumeration value="Ultra" />
+            <xs:enumeration value="Archotech" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FoodPreferability">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Undefined" />
+            <xs:enumeration value="NeverForNutrition" />
+            <xs:enumeration value="DesperateOnly" />
+            <xs:enumeration value="DesperateOnlyForHumanlikes" />
+            <xs:enumeration value="RawBad" />
+            <xs:enumeration value="RawTasty" />
+            <xs:enumeration value="MealAwful" />
+            <xs:enumeration value="MealSimple" />
+            <xs:enumeration value="MealFine" />
+            <xs:enumeration value="MealLavish" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="MorphCategory">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Powerful" />
+            <xs:enumeration value="Farm" />
+            <xs:enumeration value="Combat" />
+            <xs:enumeration value="Production" />
+            <xs:enumeration value="Social" />
+            <xs:enumeration value="Crafter" />
+            <xs:enumeration value="Ursine" />
+            <xs:enumeration value="Feline" />
+            <xs:enumeration value="Avian" />
+            <xs:enumeration value="Canid" />
+            <xs:enumeration value="Chimera"/>
+            <xs:enumeration value="Reptile"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MorphGroups">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Canines" />
+            <xs:enumeration value="HerbivoreHerding" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="WorkTags">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None"/>
+            <xs:enumeration value="ManualDumb"/>
+            <xs:enumeration value="ManualSkilled"/>
+            <xs:enumeration value="Violent"/>
+            <xs:enumeration value="Caring"/>
+            <xs:enumeration value="Social"/>
+            <xs:enumeration value="Intellectual"/>
+            <xs:enumeration value="Animals"/>
+            <xs:enumeration value="Artistic"/>
+            <xs:enumeration value="Crafting"/>
+            <xs:enumeration value="Cooking"/>
+            <xs:enumeration value="Firefighting"/>
+            <xs:enumeration value="Cleaning"/>
+            <xs:enumeration value="Hauling"/>
+            <xs:enumeration value="PlantWork"/>
+            <xs:enumeration value="Mining"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="QualityCategory">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Awful"/>
+            <xs:enumeration value="Poor" />
+            <xs:enumeration value="Normal"/>
+            <xs:enumeration value="Good"/>
+            <xs:enumeration value="Excelllent"/>
+            <xs:enumeration value="Masterwork"/>
+            <xs:enumeration value="Legendary"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

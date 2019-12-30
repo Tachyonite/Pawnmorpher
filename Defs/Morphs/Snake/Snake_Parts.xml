@@ -9,12 +9,12 @@
 
 	<HediffDef ParentName="SnakePart">
 		<defName>EtherSnakeJaw</defName>
-		<label>venomous bite</label>
-		<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips.</description>
+		<label>fanged snout</label>
+		<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite.</description>
 		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li>
-				<label>new</label>
+				<label>unfamiliar</label>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -67,9 +67,26 @@
 							</extraMeleeDamages>
 						</surpriseAttack>
 					</li>
+					<li>
+						<label>muta-fangs</label>
+						<capacities>
+							<li>MutagenicStab</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>2</cooldownTime>
+						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
@@ -88,7 +105,9 @@
 		<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
 		<stages>
 			<li>
+			<label>unfamiliar</label>
 				<capMods>
+				
 					<li>
 						<capacity>Moving</capacity>
 						<offset>-0.1</offset>
@@ -115,7 +134,7 @@
 			</li>
 		</stages>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
@@ -123,14 +142,14 @@
 	
 	<HediffDef ParentName="SnakePart">
 		<defName>EtherSnakeHand</defName>
-		<label>snake head</label>
-		<description>The venomous head of a snake has replaced [PAWN_nameDef]'s hand.</description>
+		<label>naga claws</label>
+		<description>Paradoxically, [PAWN_nameDef]'s hands are covered in scales, clawed and very finely moveable for intricate manipulations.</description>
 		<stages>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>
-						<offset>-0.3</offset>
+						<offset>0.1</offset>
 					</li>
 				</capMods>
 			</li>
@@ -139,22 +158,14 @@
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
-						<label>snake hand</label>
+						<label>naga claws</label>
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
-							<li>ToxicBite</li>
+							<li>Scratch</li>
 						</capacities>
 						<power>8</power>
 						<cooldownTime>2</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-						<surpriseAttack>
-							<extraMeleeDamages>
-								<li>
-									<def>Stun</def>
-									<amount>14</amount>
-								</li>
-							</extraMeleeDamages>
-						</surpriseAttack>
 					</li>
 				</tools>
 			</li>
@@ -164,7 +175,7 @@
 	<HediffDef ParentName="SnakePart">
 		<defName>EtherSnakeEye</defName>
 		<label>elapine eye</label>
-		<description>[PAWN_nameDef]'s eyes have become luminescent, and their pupils have become small vertical slits.</description>
+		<description>[PAWN_nameDef]'s eyes have turned a glaring yellow, and their pupils have become small vertical slits.</description>
 		<stages>
 			<li>
 				<capMods>

@@ -32,7 +32,29 @@ namespace Pawnmorph
         /// <summary>
         /// optional override to the aspects label color 
         /// </summary>
-        public Color? labelColor; 
+        public Color? labelColor;
+
+        /// <summary>
+        /// if an aspect at this stage should be considered 'bad'
+        /// </summary>
+        public bool isBad; 
+
+        /// <summary>
+        /// text displayed in a message when a pawn is given this aspect 
+        /// </summary>
+        public string messageText;
+
+        /// <summary>
+        /// The message definition, if null NeutralEvent is used 
+        /// </summary>
+        [CanBeNull]
+        public MessageTypeDef messageDef; 
+
+
+        /// <summary>
+        /// list of thoughts this aspect stage nullifies 
+        /// </summary>
+        [NotNull] public List<ThoughtDef> nullifiedThoughts = new List<ThoughtDef>(); 
 
         /// <summary>
         /// all capacity modifiers that will be active during this stage 
@@ -49,11 +71,6 @@ namespace Pawnmorph
         /// </summary>
         [CanBeNull] public List<StatModifier> statOffsets;
 
-        /// <summary>
-        /// all stat modifiers that will be active during this stage 
-        /// </summary>
-        [CanBeNull] public List<StatModifier> statFactors;
-        
         /// <summary>
         /// all mental states that can be given by the aspect in this stage 
         /// </summary>

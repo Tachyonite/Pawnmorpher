@@ -4,6 +4,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
+using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -50,6 +53,8 @@ namespace Pawnmorph
         public override void DoEffect(Pawn usedBy)
         {
             base.DoEffect(usedBy);
+            var mutagen = parent.def.GetModExtension<MutagenExtension>()?.mutagen; 
+
             Hediff hediff = FindLifeThreateningHediff(usedBy);
             if (hediff != null)
             {
@@ -92,7 +97,7 @@ namespace Pawnmorph
                 Cure(hediff_Injury2);
 
                 if (hediff_Injury2.Part != null)
-                    AddMutationToPart(hediff_Injury2.Part, usedBy, usedBy.GetMutationTracker()?.HighestInfluence); 
+                    AddMutationToPart(hediff_Injury2.Part, usedBy, usedBy.GetMutationTracker()?.HighestInfluence, mutagen:mutagen); 
 
 
                 return;
@@ -152,10 +157,25 @@ namespace Pawnmorph
 
             Hediff_Injury hediff_Injury5 = FindInjury(usedBy);
             if (hediff_Injury5 != null) Cure(hediff_Injury5);
+
+            var tracker = usedBy.GetAspectTracker();
+            var bAspect = FindBadAspectToRemove(usedBy);
+            if (tracker != null && bAspect != null)
+            {
+                tracker.Remove(bAspect);
+                ApplyMutagen(usedBy); 
+            }
+        }
+
+        private void ApplyMutagen([NotNull] Pawn pawn)
+        {
+            var mutagen = parent.def.GetModExtension<MutagenExtension>()?.mutagen;
+            if (mutagen == null) return; //default mutagen has no aspects to add 
+            mutagen.TryApplyAspects(pawn); 
         }
 
         /// <summary> Add mutations to the given part. </summary>
-        private void AddMutationToPart(BodyPartRecord record, Pawn pawn, MorphDef morph = null, bool recursive = false)
+        private void AddMutationToPart(BodyPartRecord record, [NotNull] Pawn pawn, MorphDef morph = null, bool recursive = false, MutagenDef mutagen=null)
         {
             List<HediffGiver_Mutation> allGivers = MorphUtilities.GetMutationGivers(record.def).ToList();
 
@@ -176,9 +196,11 @@ namespace Pawnmorph
                 giver.TryApply(pawn, MutagenDefOf.defaultMutagen);
             }
 
+            mutagen?.TryApplyAspects(pawn); 
+
             if (recursive) // Recursively add mutations to child parts.
                 foreach (BodyPartRecord cPart in record.GetDirectChildParts())
-                    AddMutationToPart(cPart, pawn, morph, true);
+                    AddMutationToPart(cPart, pawn, morph, true, mutagen);
         }
 
         private bool CanEverKill(Hediff hediff)
@@ -219,7 +241,7 @@ namespace Pawnmorph
             pawn.health.RestorePart(part);
             // Add mutations.
 
-            AddMutationToPart(part, pawn, pawn.GetMutationTracker()?.HighestInfluence, true);
+            AddMutationToPart(part, pawn, pawn.GetMutationTracker()?.HighestInfluence, true, parent.def.GetModExtension<MutagenExtension>()?.mutagen);
 
             Messages.Message("MessageBodyPartCuredByItem".Translate(part.LabelCap), pawn, MessageTypeDefOf.PositiveEvent);
         }
@@ -235,6 +257,17 @@ namespace Pawnmorph
             return null;
         }
 
+
+        [CanBeNull]
+        Aspect FindBadAspectToRemove([NotNull] Pawn pawn)
+        {
+            var tracker = pawn.GetAspectTracker();
+            if (tracker == null) return null;
+            var bAspects = tracker.Aspects.Where(a => a.IsBad);
+            Aspect retVal;
+            if (!bAspects.TryRandomElement(out retVal)) return null; //just pick one randomly 
+            return retVal; 
+        }
 
         private BodyPartRecord FindBiggestMissingBodyPart(Pawn pawn, float minCoverage = 0f)
         {

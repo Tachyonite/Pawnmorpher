@@ -31,11 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="%24HugsLibChecker, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UnlimitedHugs.Rimworld.HugsLibChecker.5.0.0\lib\net35\$HugsLibChecker.dll</HintPath>
-    </Reference>
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UnlimitedHugs.Rimworld.HugsLib.6.1.1\lib\net35\0Harmony.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="0MultiplayerAPI, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -49,8 +48,8 @@
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HugsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UnlimitedHugs.Rimworld.HugsLib.6.1.1\lib\net35\HugsLib.dll</HintPath>
+    <Reference Include="HugsLib">
+      <HintPath>..\..\Dependencies\HugsLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -66,13 +65,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddMorphsToPawn.cs" />
+    <Compile Include="Alerts\SAMinorBreakRisk.cs" />
+    <Compile Include="AnimalDrafterComp.cs" />
     <Compile Include="Aspect.cs" />
     <Compile Include="AspectCapacityImpactor.cs" />
     <Compile Include="AspectDef.cs" />
     <Compile Include="AspectDefOf.cs" />
+    <Compile Include="AspectGiver.cs" />
     <Compile Include="AspectStage.cs" />
+    <Compile Include="Aspects\RandomGiver.cs" />
+    <Compile Include="Aspects\SkillBasedGiver.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
+    <Compile Include="BackstoryDefOf.cs" />
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
@@ -82,27 +87,102 @@
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompMutagenicRadius.cs" />
     <Compile Include="CompProperties_EtherExplosive.cs" />
+    <Compile Include="CompProperties_TfResurrect.cs" />
     <Compile Include="CompProps_MutagenicFixWorstCondition.cs" />
+    <Compile Include="CompTargetable_TransformableCorpse.cs" />
+    <Compile Include="CompTargetEffect_TfResurrect.cs" />
     <Compile Include="Comp_MutagenicFixWorstCondition.cs" />
+    <Compile Include="Comp_MutaniteBed.cs" />
+    <Compile Include="Comp_SapientAnimal.cs" />
+    <Compile Include="CustomBodyAddon.cs" />
+    <Compile Include="Damage\MutagenicDamageExtension.cs" />
+    <Compile Include="Damage\MutagenicDamageUtilities.cs" />
+    <Compile Include="Damage\Worker_MutagenicCut.cs" />
+    <Compile Include="Damage\Worker_MutagenicBlunt.cs" />
+    <Compile Include="Damage\Worker_MutagenicInjury.cs" />
+    <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="DefExtensions\AspectGiverExtension.cs" />
+    <Compile Include="DefExtensions\AspectRestriction.cs" />
+    <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
+    <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
+    <Compile Include="DefExtensions\FormerHumanSettings.cs" />
+    <Compile Include="DefExtensions\InstinctEffector.cs" />
+    <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
+    <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
+    <Compile Include="DefExtensions\MorphRestriction.cs" />
+    <Compile Include="DefExtensions\MutagenExtension.cs" />
+    <Compile Include="DefExtensions\MutantPlantExtension.cs" />
+    <Compile Include="DefExtensions\MutationRestriction.cs" />
+    <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
+    <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\SapientAnimalRestriction.cs" />
+    <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
+    <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
+    <Compile Include="FormerHumanStatus.cs" />
+    <Compile Include="FormerHumans\ISapientVariantHolder.cs" />
+    <Compile Include="FormerHumans\SapientVariants.cs" />
+    <Compile Include="FormerHumanUtilities.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
+    <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
+    <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
+    <Compile Include="Hediffs\MutationStage.cs" />
+    <Compile Include="Hediffs\Giver_MutationCategoryGiver.cs" />
+    <Compile Include="Hediffs\IDescriptiveStage.cs" />
+    <Compile Include="Hediffs\MorphDisease.cs" />
+    <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
+    <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
+    <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
+    <Compile Include="HPatches\HuntingPatches.cs" />
+    <Compile Include="HPatches\InteractionPatches.cs" />
+    <Compile Include="HPatches\MentalBreakPatches.cs" />
+    <Compile Include="HPatches\PawnComponentPatches.cs" />
+    <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
+    <Compile Include="HPatches\PawnPatches.cs" />
+    <Compile Include="HPatches\PlantGrowingPatches.cs" />
+    <Compile Include="HPatches\ProductionCompPatches.cs" />
+    <Compile Include="HPatches\RelationshipPatches.cs" />
+    <Compile Include="HPatches\SapientAnimalPatches.cs" />
+    <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
+    <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\WorkSettingsPatches.cs" />
+    <Compile Include="IDescriptiveHediff.cs" />
+    <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
+    <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
+    <Compile Include="InstinctUtilities.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
+    <Compile Include="Jobs\Driver_TerrainProduction.cs" />
     <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />
+    <Compile Include="Jobs\Driver_ResurrectTf.cs" />
     <Compile Include="Jobs\Driver_ShaveSelf.cs" />
     <Compile Include="Jobs\Giver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_MilkSelf.cs" />
     <Compile Include="Jobs\Driver_ProduceThing.cs" />
     <Compile Include="Jobs\Giver_MegaShaveSelf.cs" />
     <Compile Include="Jobs\Giver_MilkSelf.cs" />
+    <Compile Include="Jobs\Giver_SapientAnimalJoy.cs" />
     <Compile Include="Jobs\Giver_ShaveSelf.cs" />
+    <Compile Include="Jobs\JobGiver_HuntingBreak.cs" />
+    <Compile Include="Joy\Giver_TerrainProduction.cs" />
+    <Compile Include="Mental\StateWorker_Hunt.cs" />
+    <Compile Include="Mental\State_Hunting.cs" />
+    <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
+    <Compile Include="PawnTransferUtilities.cs" />
+    <Compile Include="PMPlantUtilities.cs" />
+    <Compile Include="PMStatDefOf.cs" />
+    <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
+    <Compile Include="SapientAnimalMentalBreaker.cs" />
+    <Compile Include="Social\Worker_FormerHuman.cs" />
+    <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
+    <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="FactionUtilities.cs" />
@@ -243,20 +323,28 @@
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
+    <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
+    <Compile Include="ThoughtGroupDefExtension.cs" />
     <Compile Include="Thoughts\Def_AspectThought.cs" />
     <Compile Include="Thoughts\Def_MorphThought.cs" />
+    <Compile Include="Thoughts\FormerHumanMemory.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
     <Compile Include="Thoughts\ThoughtDefOfs.cs" />
     <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
+    <Compile Include="Thoughts\Worker_BeastMaster.cs" />
     <Compile Include="Thoughts\Worker_BodyPuristDisgust.cs" />
+    <Compile Include="Thoughts\Worker_FHNaked.cs" />
+    <Compile Include="Thoughts\Worker_FormerHuman.cs" />
+    <Compile Include="Thoughts\Worker_FormerHumanHediff.cs" />
     <Compile Include="Thoughts\Worker_FurryAppreciation.cs" />
     <Compile Include="Thoughts\Worker_HasAspect.cs" />
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="Thoughts\Worker_SapientAnimalBondedMaster.cs" />
     <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
@@ -266,15 +354,17 @@
     <Compile Include="Utilities\LinqUtils.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\SkillMod.cs" />
+    <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\Tuple.cs" />
     <Compile Include="Utilities\VTuple.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
+    <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Aspects\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLibChecker">
+      <Version>5.0.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

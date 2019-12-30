@@ -26,6 +26,24 @@ If(Test-Path "$buildDir/$buildName$OutVersion.zip")
     Remove-Item -Path "$buildDir/$buildName$OutVersion.zip" -Force
 }
 
+dotnet restore "Source/Pawnmorphs/Pawnmorph.sln"
+
+if(!$?)
+{
+    Write-Error "could not restore project"
+    exit 1 
+}
+
+."C:\Program Files (x86)\Microsoft Visual Studio\$VSVersion\Community\MSBuild\Current\Bin\MSBuild.exe"  "Source/Pawnmorphs/Pawnmorph.sln" /t:restore
+
+
+if(!$?)
+{
+    Write-Error "could not restore project"
+    exit 1 
+}
+
+
 ."C:\Program Files (x86)\Microsoft Visual Studio\$VSVersion\Community\MSBuild\Current\Bin\MSBuild.exe"  "Source/Pawnmorphs/Pawnmorph.sln" /t:Rebuild /p:Configuration=Debug /p:Platform="any cpu"
 
 if(!$?)
@@ -54,7 +72,7 @@ if(Test-Path "$buildDir/Tmp/Source/Pawnmorphs/packages")
     Remove-Item "$buildDir/Tmp/Source/Pawnmorphs/packages" -Force -Recurse
 }
 
-Compress-Archive -Path "$buildDir/Tmp/*" -CompressionLevel Optimal -Force -DestinationPath "$buildDir/$buildName$OutVersion.zip"
+Compress-Archive -Path  "$buildDir/Tmp/*" -CompressionLevel Optimal -Force -DestinationPath "$buildDir/$buildName-$OutVersion $(get-date -f MM-dd).zip"
 
 if(!$?)
 {
@@ -63,4 +81,4 @@ if(!$?)
 }
 
 Remove-Item -Path "$buildDir/Tmp" -Recurse -Force 
-Write-Output "file $buildDir/$buildName created successfully" 
+Write-Output "file $buildDir/$buildName-$OutVersion $(get-date -f MM-dd).zip created successfully" 

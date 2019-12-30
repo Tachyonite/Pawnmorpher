@@ -4,8 +4,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -19,7 +21,7 @@ namespace Pawnmorph
         /// <summary> The mean time between when the parent Hedif is applied and this HediffGiver performs its opperations. </summary>
         public float mtbDays;
 
-        /// <summary> The gender to always apply this hediff to, regardless of chance. </summary>
+        /// <summary> The gender to preferentially apply this hediff to.</summary>
         public Gender gender;
 
         /// <summary> The chance (out of 100) that the hediff will be applied. </summary>
@@ -35,9 +37,15 @@ namespace Pawnmorph
         public bool ignoreThoughtLimit;
 
         /// <summary>
+        /// The MTB units
+        /// </summary>
+        public float mtbUnits = 60000f;
+
+        /// <summary>
         /// Whether or not the curent HediffGiver has tried to add this hediff.<br />
         /// Used to prevent the chance from activating if spammed repeatedly.
         /// </summary>
+        [NotNull]
         private readonly Dictionary<Hediff, bool> _triggered = new Dictionary<Hediff, bool>();
 
         /// <summary> Clears the triggeredHediff from this giver so it can trigger again on the same hediff. </summary>
@@ -55,22 +63,29 @@ namespace Pawnmorph
             // Push a multiplay-safe randomization seed.
             RandUtilities.PushState();
 
+
+            var singleComp = cause.TryGetComp<HediffComp_Single>();
+            float mult = singleComp?.stacks
+                      ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
+            mult *= pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
+            mult *= singleComp?.Props?.mutationRateMultiplier ?? 1;
+            mult = Mathf.Max(0.001f, mult); //prevent division by zero 
+            
+
             // After roughly this duration, try to apply the hediff if the pawn is of human-like intelligence.
-            if (Rand.MTBEventOccurs(mtbDays, 60000f, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
+            if (Rand.MTBEventOccurs( mtbDays/mult, mtbUnits, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
+                //mutagen is what contains information like infect-ability of a pawn and post mutation effects
                 MutagenDef mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
                 // Check if this HediffGiver has the HediffComp_Single property (basically a dummy property that only comes into play in this function).
-                var comp = cause.TryGetComp<HediffComp_Single>();
+                var comp = singleComp;
 
                 // If we haven't already tried to apply this giver's hediff and the pawn either passes a percentile roll or are of the right gender, try and apply the hediff.
                 if (!_triggered.TryGetValue(cause) && (gender == pawn.gender || Rand.RangeInclusive(0, 100) <= chance) && TryApply(pawn, mutagen, null, cause))
                 {
                     _triggered[cause] = true;
-                    IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
-
-                    if (tale != null) TaleRecorder.RecordTale(tale, pawn);
-                    if (memory != null) TryAddMemory(pawn);
+                    DoMutationAddedEffects(pawn);
 
                     // If the parent has the single comp, decrement it's current count and remove it if it's out of charges.
                     if (comp != null)
@@ -78,6 +93,8 @@ namespace Pawnmorph
                         comp.stacks--;
                         if (comp.stacks <= 0) pawn.health.RemoveHediff(cause);
                     }
+
+                 
                 }
                 else
                 {
@@ -94,24 +111,95 @@ namespace Pawnmorph
             RandUtilities.PopState();
         }
 
+        private void DoMutationAddedEffects(Pawn pawn)
+        {
+            IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+
+            if (tale != null) TaleRecorder.RecordTale(tale, pawn);
+            if (memory != null) TryAddMemory(pawn);
+        }
+
 
         /// <summary>Tries the apply the mutation to the given pawn</summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutagenDef">The mutagen definition. used to determine if it's a valid target or not</param>
         /// <param name="outAddedHediffs">The out added hediffs.</param>
         /// <param name="cause">The cause.</param>
+        /// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
         /// <returns>if the mutation was added or not</returns>
-        public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null)
+        public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null, bool addLogEntry=true)
         {
             if (!mutagenDef.CanInfect(pawn)) return false;
-
+            if (!hediff.IsValidFor(pawn)) return false; 
             bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
+            if (addLogEntry && added && partsToAffect != null)
+            {
+                AddMutationLogFor(pawn);
+            }
+
             if (added)
             {
-                var log = new MutationLogEntry(pawn, hediff, partsToAffect);
-                Find.PlayLog.Add(log); 
+                var cDef = cause?.def;
+                if (cDef != null)
+                {
+                    AspectUtils.TryApplyAspectsFrom(cDef, pawn); 
+                }
             }
             return added;
+        }
+
+        private void AddMutationLogFor(Pawn pawn)
+        {
+            var log = new MutationLogEntry(pawn, hediff, partsToAffect);
+            Find.PlayLog.Add(log);
+        }
+
+        /// <summary>tries to apply the mutations to the given body part records</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="recordsToAdd">The records to add.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <returns></returns>
+        public bool TryApply(Pawn pawn, List<BodyPartRecord> recordsToAdd, MutagenDef mutagen = null)
+        {
+            mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
+            if (!mutagen.CanInfect(pawn)) return false;
+            if (!hediff.IsValidFor(pawn)) return false; 
+            bool anyAdded = false; 
+            HashSet<BodyPartRecord> nonMissingRecords = new HashSet<BodyPartRecord>(pawn.health.hediffSet.GetNotMissingParts());
+            
+            foreach (BodyPartRecord bodyPartRecord in recordsToAdd)
+            {
+                if(!nonMissingRecords.Contains(bodyPartRecord)) continue;
+                anyAdded |= TryApply(pawn, bodyPartRecord, mutagen, nonMissingRecords); 
+            }
+
+            return anyAdded; 
+        }
+
+        bool TryApply(Pawn pawn, BodyPartRecord recordToAdd, [NotNull] MutagenDef mutagen, HashSet<BodyPartRecord> nonMissingRecords)
+        {
+            if (!mutagen.CanInfect(pawn)) return false;
+            if (!nonMissingRecords.Contains(recordToAdd)) return false;
+            if (!hediff.IsValidFor(pawn)) return false; 
+            var hediffInst = HediffMaker.MakeHediff(hediff, pawn, recordToAdd);
+            pawn.health.AddHediff(hediffInst, recordToAdd);
+            DoMutationAddedEffects(pawn);
+            AddMutationLogFor(pawn);
+
+            return true; 
+        }
+
+        /// <summary>Tries to apply the mutation to the given body part record</summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="recordToAdd">The record to add.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <returns></returns>
+        public bool TryApply(Pawn pawn, BodyPartRecord recordToAdd, MutagenDef mutagen = null)
+        {
+            mutagen = mutagen ?? MutagenDefOf.defaultMutagen; 
+            if (!mutagen.CanInfect(pawn)) return false;
+            HashSet<BodyPartRecord> nonMissingRecords = new HashSet<BodyPartRecord>(pawn.health.hediffSet.GetNotMissingParts());
+            return TryApply(pawn, recordToAdd, mutagen, nonMissingRecords);
         }
 
         private void TryAddMemory(Pawn pawn)

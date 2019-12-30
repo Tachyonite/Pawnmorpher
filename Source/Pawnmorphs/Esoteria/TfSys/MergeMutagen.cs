@@ -75,7 +75,9 @@ namespace Pawnmorph.TfSys
 
             float newAge = averageAge * request.outputDef.race.race.lifeExpectancy / firstPawn.RaceProps.lifeExpectancy;
 
-            var pRequest = new PawnGenerationRequest(request.outputDef, Faction.OfPlayer,
+            Faction faction = request.forcedFaction ?? Faction.OfPlayer;
+
+            var pRequest = new PawnGenerationRequest(request.outputDef,faction ,
                                                     PawnGenerationContext.NonPlayer, -1, false,
                                                     false, false, false, true, false, 1f,
                                                     false, true, true, false, false, false,
@@ -99,11 +101,11 @@ namespace Pawnmorph.TfSys
             }
 
             meld.SetFaction(Faction.OfPlayer);
-            //TODO handle faction reactions 
+            
             HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF);
 
             Hediff hediff = HediffMaker.MakeHediff(hediffToAdd, meld);
-            hediff.Severity = Rand.Range(0, 1f);
+            hediff.Severity = Rand.Range(request.minSeverity, request.maxSeverity);
             meld.health.AddHediff(hediff);
 
             ReactionsHelper.OnPawnsMerged(firstPawn, firstPawn.IsPrisoner, secondPawn, secondPawn.IsPrisoner, meld);
@@ -116,7 +118,8 @@ namespace Pawnmorph.TfSys
             {
                 originals = request.originals.ToList(), //we want to make a copy here 
                 meld = meld,
-                mutagenDef = def
+                mutagenDef = def,
+                factionResponsible = Faction.OfPlayer
             };
             return inst;
 

@@ -1,0 +1,26 @@
+<Patch>
+    <Operation Class="PatchOperationSequence">
+        <operations>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Rat"]</xpath>
+                <value>
+                    <modExtensions>
+						<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+							<allowedWorkTags>ManualSkilled,Crafting,Cooking</allowedWorkTags>
+						</li>
+					</modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Raccoon"]</xpath>
+                <value>
+                    <modExtensions>
+						<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+							<allowedWorkTags>ManualSkilled,Crafting,Cooking,Caring</allowedWorkTags>
+						</li>
+					</modExtensions>
+                </value>
+            </li>
+        </operations>
+    </Operation>
+</Patch>

@@ -54,7 +54,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
@@ -113,7 +113,6 @@
 		<defName>EtherUdder</defName>
 		<label>udder</label>
 		<description>This really needs no explanation. [PAWN_nameDef] now produces milk.</description>
-		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">

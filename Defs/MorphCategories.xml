@@ -32,10 +32,18 @@
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef>
+		<defName>Reptile</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
 		<defName>Avian</defName>
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef>
 		<defName>Canid</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Chimera</defName>
 	</Pawnmorph.MorphCategoryDef>
 </Defs>

@@ -1,0 +1,40 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+    <xs:include schemaLocation="DefExtensions/FilterExtensions.xsd"/>
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="JoyGiverDef" type="JoyGiverDef" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="JoyGiverDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="giverClass" type="xs:string" minOccurs="0" />
+            <xs:element name="baseChance" type="xs:float" minOccurs="0" />
+            <xs:element name="requireChair" type="xs:boolean" default="true" minOccurs="0" />
+            <xs:element name="thingDefs" type="ListOfStrings"  minOccurs="0" />
+            <xs:element name="jobDef" type="xs:string" minOccurs="0" />
+            <xs:element name="desierSit" type="xs:boolean" default="true" minOccurs="0" />
+            <xs:element name="pctPawnsEverDo" type="xs:float" minOccurs="0" />
+            <xs:element name="unroofedOnly" type="xs:boolean" minOccurs="0" />
+            <xs:element name="joyKind" type="xs:string" minOccurs="0" />
+            <xs:element name="requiredCapacities" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="canDoWhileInBed" type="xs:boolean" minOccurs="0" />
+            <xs:element name="modExtensions" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" maxOccurs="unbounded" type="xs:anyType" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+</xs:schema>

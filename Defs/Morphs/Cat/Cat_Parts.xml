@@ -11,7 +11,6 @@
 		<defName>EtherCatMuzzle</defName>
 		<label>feline muzzle</label>
 		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a feline. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
-		<maxSeverity>1</maxSeverity>
 		<stages>
 			<li>
 				<capMods>
@@ -55,7 +54,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>

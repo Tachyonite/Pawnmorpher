@@ -171,13 +171,20 @@ namespace Pawnmorph
         {
             if (!base.TryMergeWith(other)) return false;
 
+            ResetGivers();
 
+            return true;
+        }
+
+        /// <summary>
+        /// resets the hediff givers.
+        /// </summary>
+        protected void ResetGivers()
+        {
             foreach (HediffGiver_Mutation hediffGiverMutation in MutationGivers) //make sure mutations can be re rolled 
             {
-                hediffGiverMutation.ClearHediff(this); 
+                hediffGiverMutation.ClearHediff(this);
             }
-
-            return true; 
         }
 
         private void SendLetter()

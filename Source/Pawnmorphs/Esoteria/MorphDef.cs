@@ -65,6 +65,7 @@ namespace Pawnmorph
         public IEnumerable<HediffGiver_Mutation> AssociatedMutations => _associatedMutations ?? (_associatedMutations = GetMutations());
 
         /// <summary> Gets the current percent influence this morph has upon the pawn.</summary>
+        [Obsolete("Use " + nameof(GetMaximumInfluence) + " function instead")]
         public float TotalInfluence
         {
             get
@@ -74,23 +75,56 @@ namespace Pawnmorph
                     _totalInfluence = 0.0f;
                     IEnumerable<HediffGiver_Mutation> givers =
                         DefDatabase<HediffDef>.AllDefs.Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass))
-                        .SelectMany(def => def.GetAllHediffGivers().OfType<HediffGiver_Mutation>()) //select the givers not the hediffs directly to get where they're assigned to 
-                        .Where(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == this).GroupBy(g => g.hediff, g => g) //get only distinct values 
-                        .Select(g => g.First()); //not get one of each mutation
+                                              .SelectMany(def => def.GetAllHediffGivers()
+                                                                    .OfType<HediffGiver_Mutation
+                                                                     >()) //select the givers not the hediffs directly to get where they're assigned to 
+                                              .Where(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == this)
+                                              .GroupBy(g => g.hediff, g => g) //get only distinct values 
+                                              .Select(g => g.First()); //not get one of each mutation
                     foreach (HediffGiver_Mutation hediffGiverMutation in givers)
                     {
                         float inf = hediffGiverMutation.hediff.CompProps<CompProperties_MorphInfluence>().influence;
                         _totalInfluence += inf * hediffGiverMutation.countToAffect;
                     }
                 }
+
                 return _totalInfluence.Value;
             }
+        }
+
+        [Unsaved] private readonly Dictionary<BodyDef, float> _maxInfluenceCached = new Dictionary<BodyDef, float>();
+
+        /// <summary>
+        ///     Gets the maximum possible influence this morph has on a given body
+        /// </summary>
+        /// <param name="bodyDef">The body definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">bodyDef</exception>
+        public float GetMaximumInfluence([NotNull] BodyDef bodyDef)
+        {
+            if (bodyDef == null) throw new ArgumentNullException(nameof(bodyDef));
+
+            if (_maxInfluenceCached.TryGetValue(bodyDef, out float accum)) return accum; //see if we calculated this before 
+
+            foreach (HediffGiver_Mutation giver in AllAssociatedAndAdjacentMutations)
+            {
+                int mutationCount =
+                    bodyDef.GetAllMutableParts()
+                           .Count(m => giver.partsToAffect?
+                                            .Contains(m.def) ?? false); //get the total number of unique mutations the body can have at once 
+                float influence = giver.hediff.GetInfluenceOf(this); //get the influence this mutation gives 
+                accum += influence * mutationCount;
+            }
+
+            _maxInfluenceCached[bodyDef] = accum; //cache the result so we only have to do this once per body def
+            return accum;
         }
 
         /// <summary>
         /// Gets an enumerable collection of HediffGiver_Mutations that are either associated with or 'adjacent' to this morph. <br/>
         /// An adjacent HediffGiver is one that is found in the same HediffDef as another HediffGiver that gives a part associated with this morph.
         /// </summary>
+        [NotNull]
         public IEnumerable<HediffGiver_Mutation> AllAssociatedAndAdjacentMutations
         {
             get
@@ -115,6 +149,105 @@ namespace Pawnmorph
                 return _adjacentMutations;
             }
         }
+        [CanBeNull,Unsaved]
+        private Dictionary<BodyPartDef, List<HediffGiver_Mutation>> _allMutationsByPart; 
+
+        [NotNull]
+        Dictionary<BodyPartDef, List<HediffGiver_Mutation>> AllMutationsByPart
+        {
+            get
+            {
+                if (_allMutationsByPart == null)
+                {
+                    _allMutationsByPart = new Dictionary<BodyPartDef, List<HediffGiver_Mutation>>();
+
+                    foreach (HediffGiver_Mutation mutationGiver in AllAssociatedAndAdjacentMutations) 
+                    {
+                        foreach (BodyPartDef bodyPartDef in mutationGiver.GetPartsToAddTo())
+                        {
+                            List<HediffGiver_Mutation> givers;
+                            if (!_allMutationsByPart.TryGetValue(bodyPartDef, out givers))
+                            {
+                                givers = new List<HediffGiver_Mutation>();
+                                _allMutationsByPart[bodyPartDef] = givers; 
+                            }
+
+                            givers.Add(mutationGiver); 
+                        }
+                    }
+
+                    
+                }
+
+                return _allMutationsByPart; 
+            }
+        }//need to use lazy initialization 
+
+        [CanBeNull,Unsaved]
+        private HashSet<HediffDef> _associatedMutationsLookup;
+
+        //simply a cached hash Set of all hediffs added by the HediffGivers in AllAssociatedAndAdjacentMutations 
+        [NotNull]
+        HashSet<HediffDef> AssociatedMutationsLookup
+        {
+            get
+            {
+                if (_associatedMutationsLookup == null)
+                {
+                    _associatedMutationsLookup =
+                        new HashSet<HediffDef>(AllAssociatedAndAdjacentMutations.Select(g => g.hediff).Where(h => h != null)); 
+                }
+
+                return _associatedMutationsLookup; 
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the specified hediff definition is an associated mutation .
+        /// </summary>
+        /// <param name="hediffDef">The hediff definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified hediff definition is an associated mutation; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">hediffDef</exception>
+        public bool IsAnAssociatedMutation([NotNull] HediffDef hediffDef)
+        {
+            if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
+
+            return AssociatedMutationsLookup.Contains(hediffDef); 
+
+        }
+
+        /// <summary>
+        /// Determines whether the given hediff is an associated mutation.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified hediff is an associated mutation ; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">hediff</exception>
+        public bool IsAnAssociatedMutation([NotNull] Hediff hediff)
+        {
+            if (hediff?.def == null) throw new ArgumentNullException(nameof(hediff));
+            return IsAnAssociatedMutation(hediff.def); 
+        }
+
+
+        /// <summary>
+        /// Gets the associated mutation givers associated with this morph for the given partDef.
+        /// </summary>
+        /// <param name="partDef">The part definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">partDef</exception>
+        [NotNull]
+        public IEnumerable<HediffGiver_Mutation> GetAssociatedMutationsFor([NotNull] BodyPartDef partDef)
+        {
+            if (partDef == null) throw new ArgumentNullException(nameof(partDef));
+            if (!AllMutationsByPart.TryGetValue(partDef, out var givers))
+                return Enumerable.Empty<HediffGiver_Mutation>();
+            return givers; 
+        }
+
 
         /// <summary>
         /// get all configuration errors with this instance 

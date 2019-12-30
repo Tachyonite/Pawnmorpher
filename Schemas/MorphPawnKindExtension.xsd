@@ -1,0 +1,56 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+    <xs:complexType name="MorphPawnKindExtension">
+        <xs:all>
+            <xs:element name="hediffRange" type="IntRange" />
+            <xs:element name="morphCategories" minOccurs="0" >
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" maxOccurs="unbounded" type="MorphCategories"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="mutationCategories" minOccurs="0" type="ListOfStrings"/>
+            <xs:element name="morphs" minOccurs="0" type="ListOfStrings"/>
+            <xs:element name="aspectRange" minOccurs="0" type="IntRange" />
+            <xs:element name="aspects" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="AspectEntry" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="Class" use="required">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="Pawnmorph.MorphPawnKindExtension"/>
+            </xs:restriction>
+        </xs:simpleType>    
+    </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="AspectEntry">
+        <xs:all>
+            <xs:element name="aspect" type="xs:string"/>
+            <xs:element name="stage" type="xs:int" default="0" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="MorphCategories">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Powerful"/>
+            <xs:enumeration value="Farm"/>
+            <xs:enumeration value="Combat"/>
+            <xs:enumeration value="Production"/>
+            <xs:enumeration value="Social"/>
+            <xs:enumeration value="Crafter"/>
+            <xs:enumeration value="Ursine"/>
+            <xs:enumeration value="Feline"/>
+            <xs:enumeration value="Avian"/>
+            <xs:enumeration value="Canid"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

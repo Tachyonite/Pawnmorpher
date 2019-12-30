@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Schemas/ThoughtDef.xsd"> 
+    <ThoughtDef>
+        <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>I can hardly believe my eyes...I'm a goddamn animal!</description>
+            </li>
+            <li>
+                <label>mostly sapient</label>
+                <description>Something's tugging at my mind...it's the animal.</description>
+            </li>
+            <li>
+                <label>conflicted mind</label>
+                <description>I shouldn't give in but it's...getting cloudy in here.</description>
+            </li>
+            <li>
+                <label>hard to think...</label>
+                <description>Gotta...stay...focused but all I want to do is eat and sleep!</description>
+            </li>
+            <li> <!-- stages can be ommited -->
+                <label>feral animal</label>
+                <description>...food?</description>
+            </li>
+            <li>
+                <label>...</label>
+                <description>food?</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

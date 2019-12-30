@@ -11,7 +11,6 @@
 		<defName>EtherBoarSnout</defName>
 		<label>tusked snout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables.</description>
-		<maxSeverity>1</maxSeverity>
 		<stages>
 			<li>
 				<capMods>
@@ -90,7 +89,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>

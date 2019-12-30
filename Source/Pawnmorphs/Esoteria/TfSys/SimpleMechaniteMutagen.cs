@@ -8,6 +8,7 @@ using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.TfSys
@@ -54,6 +55,9 @@ namespace Pawnmorph.TfSys
             if (formerHuman == null) return false;
 
             PawnGenerationRequest request = TransformerUtility.GenerateRandomPawnFromAnimal(transformedPawn);
+            
+
+
             Pawn pawnTf = PawnGenerator.GeneratePawn(request);
 
             pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurLevel;
@@ -62,6 +66,11 @@ namespace Pawnmorph.TfSys
             var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.PositionHeld, transformedPawn.MapHeld);
             spawned.equipment.DestroyAllEquipment();
             spawned.apparel.DestroyAll();
+
+            if (transformedPawn.Name is NameTriple nT)
+            {
+                spawned.Name = nT; //give the new random pawn the same name as the former human 
+            }
 
 
             for (var i = 0; i < 10; i++)
@@ -113,7 +122,13 @@ namespace Pawnmorph.TfSys
 
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
 
-            Faction faction = original.IsColonist ? original.Faction : null;
+            Faction faction;
+            if (request.forcedFaction != null) //forced faction should be the highest priority if set 
+                faction = request.forcedFaction;
+            else if (original.IsColonist)
+                faction = original.Faction;
+            else
+                faction = null;
 
             Gender newGender =
                 TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
@@ -135,27 +150,19 @@ namespace Pawnmorph.TfSys
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
 
-            if (animalToSpawn.Faction != null)
-            {
-                animalToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience,
-                                                          true); // Sets obediance training to on for the animal.
-                animalToSpawn.training.Train(TrainableDefOf.Obedience, null,
-                                             true); // Sets the animal's obedience to be fully trained.
-            }
+
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
+            bool wasPrisoner = original.IsPrisonerOfColony;
+            ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner); //this needs to happen before MakeSapientAnimal because that removes relations 
 
-
-            Hediff hediff =
-                HediffMaker.MakeHediff(TfHediffDefOf.TransformedHuman,
-                                       spawnedAnimal); // Create a hediff from the one provided (i.e. TransformedHuman)...
-            hediff.Severity = Rand.Range(0.00f, 1.00f); // ...give it a random severity...
-            spawnedAnimal.health.AddHediff(hediff); // ...and apply it to the new animal.
-
+            FormerHumanUtilities.MakeAnimalSapient(original, spawnedAnimal, Rand.Range(0.4f, 1)); //use a normal distribution? 
+            var rFaction = request.factionResponsible ?? GetFactionResponsible(original); 
             var inst = new TransformedPawnSingle
             {
                 original = original,
-                animal = spawnedAnimal
+                animal = spawnedAnimal,
+                factionResponsible = rFaction
             };
 
 
@@ -169,15 +176,35 @@ namespace Pawnmorph.TfSys
             if (request.tale != null) // If a tale was provided, push it to the tale recorder.
                 TaleRecorder.RecordTale(request.tale, original, animalToSpawn);
 
-            bool wasPrisoner = original.IsPrisonerOfColony;
-            var oFaction = original.Faction;
-            var oMap = original.Map; 
+            Faction oFaction = original.Faction;
+            Map oMap = original.Map;
+
+            
+            //apply apparel damage 
+            ApplyApparelDamage(original, spawnedAnimal.def);
+
+            FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(spawnedAnimal, original);
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 
             //notify the faction that their member has been transformed 
-            oFaction.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap); 
+            oFaction.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
+            if(original.Faction.IsPlayer || wasPrisoner) //only send the letter for colonists and prisoners 
+                SendLetter(request, original, spawnedAnimal);
+
+            if (original.Spawned)
+                original.DeSpawn(); // Remove the original pawn from the current map.
+
+            DebugLogUtils.Assert(!PrisonBreakUtility.CanParticipateInPrisonBreak(original),
+                                 $"{original.Name} has been cleaned up and de-spawned but can still participate in prison breaks");
+
+
+            return inst;
+        }
+
+        private static void SendLetter(TransformationRequest request, Pawn original, Pawn spawnedAnimal)
+        {
             Find.LetterStack
                 .ReceiveLetter("LetterHediffFromTransformationLabel".Translate(original.LabelShort, request.outputDef.LabelCap).CapitalizeFirst(),
                                "LetterHediffFromTransformation"
@@ -186,16 +213,6 @@ namespace Pawnmorph.TfSys
                                LetterDefOf.NeutralEvent,
                                spawnedAnimal); // Creates a letter saying "Oh no! Pawn X has transformed into a Y!"
             Find.TickManager.slower.SignalForceNormalSpeedShort(); // Slow down the speed of the game.
-
-            if (original.Spawned)
-                original.DeSpawn(); // Remove the original pawn from the current map.
-
-            DebugLogUtils.Assert(!PrisonBreakUtility.CanParticipateInPrisonBreak(original),
-                                 $"{original.Name} has been cleaned up and de-spawned but can still participate in prison breaks");
-
-            ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner);
-
-            return inst;
         }
 
 
@@ -214,8 +231,14 @@ namespace Pawnmorph.TfSys
 
             Hediff tfHumanHediff = animal?.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             if (tfHumanHediff == null) return false;
-
+            var rFaction = transformedPawn.FactionResponsible; 
             var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
+
+            if (spawned.Faction != animal.Faction && rFaction == null) //if the responsible faction is null (no one knows who did it) have the reverted pawn join that faction   
+            {
+                spawned.SetFaction(animal.Faction); 
+            }
+
 
             for (var i = 0; i < 10; i++)
             {
@@ -223,6 +246,9 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
 
+            PawnTransferUtilities.TransferRelations(animal, spawned, r => r != PawnRelationDefOf.Bond); //transfer whatever relations from the animal to the human pawn 
+            PawnTransferUtilities.TransferSkills(animal, spawned, PawnTransferUtilities.SkillTransferMode.Max); //keep any skills they learned as an animal 
+            //do NOT transfer the bond relationship to humans, Rimworld doesn't like that 
             AddReversionThought(spawned, tfHumanHediff.CurStageIndex);
 
             spawned.Faction.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
@@ -243,16 +269,22 @@ namespace Pawnmorph.TfSys
         {
             TraitSet traits = spawned.story.traits;
             ThoughtDef thoughtDef;
-            if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
+            var hasPrimalWish = spawned.GetAspectTracker()?.Contains(AspectDefOf.PrimalWish) == true;
+            if (hasPrimalWish)
+                thoughtDef = def.revertedPrimalWish ?? def.revertedThoughtBad; //substitute with the bad thought if null 
+            else if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
                 thoughtDef = def.revertedThoughtGood;
             else if (traits.HasTrait(TraitDefOf.BodyPurist))
                 thoughtDef = def.revertedThoughtBad;
             else
                 thoughtDef = Rand.Value > 0.5f ? def.revertedThoughtGood : def.revertedThoughtBad;
 
-            Thought_Memory mem = ThoughtMaker.MakeThought(thoughtDef, curStageIndex);
-
-            spawned.needs.mood.thoughts.memories.TryGainMemory(mem);
+            if (thoughtDef != null)
+            {
+                curStageIndex = Mathf.Min(curStageIndex, thoughtDef.stages.Count - 1); //avoid index out of bounds issues 
+                Thought_Memory mem = ThoughtMaker.MakeThought(thoughtDef, curStageIndex);
+                spawned.TryGainMemory(mem);
+            }
         }
 
         private static Pawn SpawnAnimal(Pawn original, Pawn animalToSpawn)

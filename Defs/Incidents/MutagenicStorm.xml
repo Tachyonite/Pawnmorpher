@@ -37,7 +37,7 @@
 		<hediffClass>Pawnmorph.Hediffs.MutagenicBuildup</hediffClass>
 		<defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
 		<label>mutagenic buildup</label>
-		<lethalSeverity>2</lethalSeverity>
+		<lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
 		<maxSeverity>1</maxSeverity>
 		<makesSickThought>true</makesSickThought>
 		<scenarioCanAdd>true</scenarioCanAdd>
@@ -71,6 +71,15 @@
 						<offset>-0.10</offset>
 					</li>
 				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+						<blackListCategories>
+							<li>Powerful</li>
+						</blackListCategories>
+						<mtbUnits>80000</mtbUnits>
+					</li>
+				</hediffGivers>
 			</li>
 			<li>
 				<label>moderate</label>
@@ -88,6 +97,7 @@
 						<blackListCategories>
 							<li>Powerful</li>
 						</blackListCategories>
+						<mtbUnits>30000</mtbUnits>
 					</li>
 				</hediffGivers>
 			</li>
@@ -101,6 +111,15 @@
 						<offset>-0.25</offset>
 					</li>
 				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+						<blackListCategories>
+							<li>Powerful</li>
+						</blackListCategories>
+						<mtbUnits>15000</mtbUnits>
+					</li>
+				</hediffGivers>
 			</li>
 			<li>
 				<label>extreme</label>
@@ -112,6 +131,15 @@
 						<setMax>0.30</setMax>
 					</li>
 				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+						<blackListCategories>
+							<li>Powerful</li>
+						</blackListCategories>
+						<mtbUnits>7500</mtbUnits>
+					</li>
+				</hediffGivers>
 			</li>
 			<li>
 				<minSeverity>0.85</minSeverity>
@@ -134,5 +162,10 @@
 				</capMods>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+                <mutagen>ChaoticMutagen</mutagen>
+            </li>
+		</modExtensions>
 	</HediffDef>
 </Defs>

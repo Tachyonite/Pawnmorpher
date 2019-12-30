@@ -5,7 +5,7 @@
 		<description>[PAWN_nameDef] functions as a nutrient generator by some unknown process, and this is given back as nutrient paste.</description>
 		<label>gutswell</label>
 		<maxSeverity>1</maxSeverity>
-		<initialSeverity>0.01</initialSeverity>		
+		<initialSeverity>0.01</initialSeverity>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ExoticProduced</thought>
@@ -68,13 +68,13 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherIntoxica</defName>
 		<description>[PAWN_nameDef] functions as a natural distillery, producing beer by some obscure fermentation process.</description>
 		<label>intoxica</label>
 		<maxSeverity>1</maxSeverity>
-		<initialSeverity>0.01</initialSeverity>		
+		<initialSeverity>0.01</initialSeverity>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ExoticProduced</thought>
@@ -137,13 +137,13 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherIchoric</defName>
 		<description>[PAWN_nameDef] produces ambrosia, the food of the gods -- though this is very taxing on their own body.</description>
 		<label>ichoric</label>
 		<maxSeverity>1</maxSeverity>
-		<initialSeverity>0.01</initialSeverity>		
+		<initialSeverity>0.01</initialSeverity>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ExoticProduced</thought>
@@ -206,13 +206,13 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherGellic</defName>
 		<description>[PAWN_nameDef] produces insect jelly, via a coagulation process not fully understood.</description>
 		<label>gellic</label>
 		<maxSeverity>1</maxSeverity>
-		<initialSeverity>0.01</initialSeverity>		
+		<initialSeverity>0.01</initialSeverity>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ExoticProduced</thought>
@@ -275,13 +275,13 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef ParentName="PawnmorphPart">
 		<defName>EtherPrototoxica</defName>
 		<description>[PAWN_nameDef]'s stomach is lined with a fungus that helps ferment hops, but not to the complete state of beer.</description>
 		<label>prototoxica</label>
 		<maxSeverity>1</maxSeverity>
-		<initialSeverity>0.01</initialSeverity>		
+		<initialSeverity>0.01</initialSeverity>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ExoticProduced</thought>
@@ -344,4 +344,22 @@
 			</li>
 		</stages>
 	</HediffDef>
+	<!--
+	<HediffDef ParentName="PawnmorphPartCombo">
+		<defName>PawnmorphTerrorspines</defName>
+		<description>[PAWN_nameDef]'s head is covered in jagged, serrated tusks, teeth and thorns that make headbutts from them very, very risky.</description>
+		<label>prototoxica</label>
+		<maxSeverity>1</maxSeverity>
+		<initialSeverity>0.01</initialSeverity>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutationRestriction">
+				<mutationFilter>
+					<isBlackList>false</isBlackList>
+					<li>EtherTusks</li>
+					<li>EtherHorns</li>
+				</mutationFilter>
+			</li>
+		</modExtensions>
+	</HediffDef>
+	-->
 </Defs>

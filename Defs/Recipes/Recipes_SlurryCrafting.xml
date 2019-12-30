@@ -4,10 +4,10 @@
 		<label>make slurry from mutonite</label>
 		<description>Break down a hunk of mutonite into a vial of slurry.</description>
 		<jobString>Refining slurry from mutonite.</jobString>
-		<effectWorking>Cremate</effectWorking>
-		<soundWorking>Recipe_Cremate</soundWorking>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>2000</workAmount>
-		<workSpeedStat>UnskilledLaborSpeed</workSpeedStat>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
 				<filter>
@@ -29,14 +29,43 @@
 	</RecipeDef>
 	
 	<RecipeDef>
+		<defName>Make_SlurryFromChaobulbs</defName>
+		<label>make slurry from chaobulbs</label>
+		<description>Extract the active mechanites from chaobulb seedpods into slurry</description>
+		<jobString>Refining slurry from chaobulbs.</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
+		<workAmount>1000</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chaobulb</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Chaobulb</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</products>
+	</RecipeDef>
+	
+	<RecipeDef>
 		<defName>Make_ComponentsFromSlurry</defName>
 		<label>fabricate components</label>
 		<description>Process mechanites into components.</description>
 		<jobString>Processing components from slurry.</jobString>
-		<effectWorking>Cremate</effectWorking>
-		<soundWorking>Recipe_Cremate</soundWorking>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>1000</workAmount>
-		<workSpeedStat>UnskilledLaborSpeed</workSpeedStat>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
 				<filter>
@@ -64,13 +93,13 @@
 	
 	<RecipeDef>
 		<defName>Make_ResurrectorFromMutonite</defName>
-		<label>fabricate resurrector mech serum</label>
-		<description>Reshape mechanites into resurrector serum from slurry. This does require quite a lot, and neutralises the mutagenic effect they have.</description>
+		<label>fabricate reincarnator mech serum</label>
+		<description>Reshape mechanites into a reincarnator serum from slurry. Caution, this may have unintended side-effects being made from mutagenic mechanites.</description>
 		<jobString>Refining slurry from mutonite.</jobString>
-		<effectWorking>Cremate</effectWorking>
-		<soundWorking>Recipe_Cremate</soundWorking>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>2000</workAmount>
-		<workSpeedStat>UnskilledLaborSpeed</workSpeedStat>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
 				<filter>
@@ -95,7 +124,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<MechSerumResurrector>1</MechSerumResurrector>
+			<MechSerumResurrectorTf>1</MechSerumResurrectorTf>
 		</products>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
@@ -109,10 +138,10 @@
 		<label>fabricate mutagenic healer mech serum</label>
 		<description>Reprogram a large quantity of mutagenic mechanites with healer protocols. Due to the sheer number of mechanites being reprogrammed, a few mechanites will fail to be neutralised and there is a high probability that the restored areas will be mutated as a result.</description>
 		<jobString>Refining slurry from mutonite.</jobString>
-		<effectWorking>Cremate</effectWorking>
-		<soundWorking>Recipe_Cremate</soundWorking>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>2000</workAmount>
-		<workSpeedStat>UnskilledLaborSpeed</workSpeedStat>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
 				<filter>
@@ -151,10 +180,10 @@
 		<label>fabricate glitterworld medicine</label>
 		<description>Reshape mechanites into glitterworld medicine from slurry. This does require quite a lot, and neutralises the mutagenic effect they have.</description>
 		<jobString>Refining slurry into glitterworld medicine</jobString>
-		<effectWorking>Cremate</effectWorking>
-		<soundWorking>Recipe_Cremate</soundWorking>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>2000</workAmount>
-		<workSpeedStat>UnskilledLaborSpeed</workSpeedStat>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
 				<filter>

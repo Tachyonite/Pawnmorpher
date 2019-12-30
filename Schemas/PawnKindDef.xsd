@@ -1,0 +1,193 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/Enums.xsd" />
+    <xs:include schemaLocation="MorphPawnKindExtension.xsd" />
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PawnKindDef" type="PawnKindDef" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="PawnKindDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="race" type="xs:string" minOccurs="0" />
+            <xs:element name="defaultFactionType" type="xs:string" minOccurs="0" />
+            <xs:element name="backstoryCategories" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="labelPlural" type="xs:string" minOccurs="0" />
+            <xs:element name="lifeStages" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="PawnKindLifeStage" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="backstoryCryptosleepCommonality" type="xs:float" minOccurs="0" />
+            <xs:element name="minGenerationAge" type="xs:int" minOccurs="0" />
+            <xs:element name="maxGenerationAge" type="xs:int" minOccurs="0" />
+            <xs:element name="factionLeader" type="xs:boolean" minOccurs="0" />
+            <xs:element name="destroyGearOnDrop" type="xs:boolean" minOccurs="0" />
+            <xs:element name="isFighter" type="xs:boolean" minOccurs="0" />
+            <xs:element name="combatPower" type="xs:float" minOccurs="0" />
+            <xs:element name="canArriveManhunter" type="xs:boolean" minOccurs="0" />
+            <xs:element name="canBeSapper" minOccurs="0" type="xs:boolean" />
+            <xs:element name="baseRecruitDifficulty" type="xs:float" minOccurs="0" />
+            <xs:element name="aiAvoidCover" type="xs:boolean" minOccurs="0" />
+            <xs:element name="fellHeathThresholdRange" type="FloatRange" minOccurs="0" />
+            <xs:element name="itemQuality" type="QualityCategory" minOccurs="0" />
+            <xs:element name="forceNormalGearQuality" type="xs:boolean" minOccurs="0" />
+            <xs:element name="gearHealthRange" type="FloatRange" minOccurs="0" />
+            <xs:element name="weaponMoney" type="FloatRange" minOccurs="0" />
+            <xs:element name="weaponTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="appearlMoney" type="FloatRange" minOccurs="0" />
+            <xs:element name="appearlRequired" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="apparelTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="apparelAllowHeadgearChance" type="xs:float" minOccurs="0" />
+            <xs:element name="appearlIgnoreSeasons" minOccurs="0" type="xs:boolean" />
+            <xs:element name="apparelColor" type="Color" minOccurs="0" />
+            <xs:element name="techHediffsMoney" type="FloatRange" minOccurs="0" />
+            <xs:element name="techHediffsTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="techHediffsChance" type="xs:float" minOccurs="0" />
+            <xs:element name="fixedInventory" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="thingDef" type="xs:string" />
+                                    <xs:element name="count" type="xs:int" />
+                                </xs:all>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="inventoryOptions" type="PawnInventoryOption" minOccurs="0"/>
+            <xs:element name="invNutrition" type="xs:float" minOccurs="0"/>
+            <xs:element name="invFoodDef" type="xs:string" minOccurs="0"/>
+            <xs:element name="chemicalAddictionChance" type="xs:float" minOccurs="0"/>
+            <xs:element name="combatEnhancingDrugsChance" type="xs:float" minOccurs="0"/>
+            <xs:element name="combatEnhancingDrugsCount" type="IntRange" minOccurs="0"/>
+            <xs:element name="trader" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="labelMale" type="xs:string" minOccurs="0"/>
+            <xs:element name="labelMalePlural" minOccurs="0" type="xs:string" />
+            <xs:element name="labelFemale" type="xs:string" minOccurs="0"/>
+            <xs:element name="labelFemalePlural" type="xs:string" minOccurs="0"/>
+            <xs:element name="wildGroupSize" type="IntRange" minOccurs="0"/>
+            <xs:element name="ecoSystemWeight" type="xs:float" minOccurs="0"/>
+            <xs:element name="modExtensions" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="MorphPawnKindExtension" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="PawnInventoryOption">
+        <xs:all>
+            <xs:element name="thingDef" type="xs:string" />
+            <xs:element name="countRange" type="IntRange" />
+            <xs:element name="choiceChance" type="xs:float" minOccurs="0" />
+            <xs:element name="skipChance" type="xs:float" minOccurs="0" />
+            <xs:element name="subOptionsTakeAll" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="PawnInventoryOption" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="subOptionsChooseOne" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="PawnInventoryOption" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+
+    <xs:complexType name="PawnKindLifeStage">
+        <xs:all>
+            <xs:element name="label" type="xs:string" />
+            <xs:element name="labelPlural" type="xs:string" />
+            <xs:element name="labelMale" type="xs:string" minOccurs="0" />
+            <xs:element name="labelMalePlural" type="xs:string" minOccurs="0" />
+            <xs:element name="labelFemale" type="xs:string" minOccurs="0" />
+            <xs:element name="labelFemalePlural" type="xs:string" minOccurs="0" />
+            <xs:element name="bodyGraphicData" type="GraphicData" minOccurs="0" />
+            <xs:element name="femaleGraphicData" type="GraphicData" minOccurs="0" />
+            <xs:element name="dessicatedBodyGraphicData" type="GraphicData" minOccurs="0" />
+            <xs:element name="femaleDessicatedBodyGraphicData" type="GraphicData" minOccurs="0" />
+            <xs:element name="butcherBodyPart" minOccurs="0">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="bodyPartGroup" type="xs:string" />
+                        <xs:element name="thing" type="xs:string" />
+                        <xs:element name="allowMale" type="xs:boolean" minOccurs="0" />
+                        <xs:element name="allowFemale" type="xs:boolean" minOccurs="0" />
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+            <!-- TODO Finish this -->
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="GraphicData">
+        <xs:all>
+            <xs:element name="graphicClass" type="xs:string" />
+            <xs:element name="shaderType" type="xs:string" />
+            <xs:element name="shaderParameters" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="name" type="xs:string" />
+                                    <xs:element name="value" type="xs:string" />
+                                    <xs:element name="valueTex" type="xs:string" minOccurs="0" />
+                                    <xs:element name="type" type="xs:string" minOccurs="0" />
+                                </xs:all>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="color" type="Color" minOccurs="0" />
+            <xs:element name="colorTwo" type="Color" minOccurs="0" />
+            <xs:element name="drawSize" type="Vector2" minOccurs="0" />
+            <xs:element name="onGroundRandomRotateAngle" type="xs:float" minOccurs="0" />
+            <xs:element name="drawRotated" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowFlip" type="xs:boolean" minOccurs="0" />
+            <xs:element name="flipExtraRotation" type="xs:float" minOccurs="0" />
+            <xs:element name="damageData" type="DamageGraphicData" minOccurs="0" />
+            <!-- TODO finish this -->
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="ShadowData">
+        <xs:all>
+            <xs:element name="volume" type="Vector3" />
+            <xs:element name="offset" type="Vector3" />
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="DamageGraphicData">
+        <xs:all>
+            <xs:element name="enabled" type="xs:boolean" />
+            <xs:element name="rectN" type="Vector4" minOccurs="0" />
+            <xs:element name="rectE" type="Vector4" minOccurs="0" />
+            <xs:element name="rectS" type="Vector4" minOccurs="0" />
+            <xs:element name="rectW" type="Vector4" minOccurs="0" />
+            <xs:element name="scratches" type="ListOfStrings" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

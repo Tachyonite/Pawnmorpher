@@ -12,6 +12,7 @@ using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph.Hybrids
 {
@@ -105,12 +106,13 @@ namespace Pawnmorph.Hybrids
             }
 
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
-            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            pawn.RefreshGraphics();
 
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
 
             //save location 
-            pawn.ExposeData();
+            if(Current.ProgramState == ProgramState.Playing)
+                pawn.ExposeData();
             if (pawn.Faction != faction) pawn.SetFaction(faction);
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
@@ -205,8 +207,7 @@ namespace Pawnmorph.Hybrids
 
             //apply mutations 
             if (addMissingMutations)
-                foreach (HediffGiver_Mutation morphAssociatedMutation in morph.AllAssociatedAndAdjacentMutations)
-                    morphAssociatedMutation.TryApply(pawn, MutagenDefOf.defaultMutagen);
+                SwapMutations(pawn, morph);
 
             var hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
@@ -227,6 +228,39 @@ namespace Pawnmorph.Hybrids
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
             pawn.TryGainMemory(tfSettings.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
+        }
+
+        private static void SwapMutations([NotNull] Pawn pawn,[NotNull] MorphDef morph)
+        {
+            if (pawn.health?.hediffSet?.hediffs == null)
+            {
+                Log.Error($"pawn {pawn.Name} has null health or hediffs?");
+                return;
+            }
+
+            var partDefsToAddTo = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>() //only want to count mutations 
+                                      .Where(m => m.Part != null && !m.def.HasComp(typeof(SpreadingMutationComp)) && !morph.IsAnAssociatedMutation(m))
+                                      //don't want mutations without a part or mutations that spread past the part they were added to 
+                                      .Select(m => m.Part)
+                                      .ToList(); //needs to be a list because we're about to modify hediffs 
+
+            HashSet<BodyPartRecord> addedRecords = new HashSet<BodyPartRecord>();
+            List<Hediff> tmpList = new List<Hediff>(); 
+            foreach (BodyPartRecord bodyPartRecord in partDefsToAddTo)
+            {
+                if(addedRecords.Contains(bodyPartRecord)) continue; //if a giver already added to the record don't add it twice 
+                
+                // ReSharper disable once AssignNullToNotNullAttribute
+                var giver = morph.GetAssociatedMutationsFor(bodyPartRecord.def).RandomElementWithFallback();
+
+                giver?.TryApply(pawn, MutagenDefOf.defaultMutagen, tmpList);
+                foreach (Hediff hediff in tmpList)
+                {
+                    if(hediff?.Part == null) continue;
+                    addedRecords.Add(hediff.Part); //make a note of all the records that the giver added to
+                }
+                tmpList.Clear();
+            }
         }
 
         private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)

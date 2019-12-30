@@ -54,7 +54,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 				<!-- takes 4 days to progress -->
 			</li>
@@ -205,7 +205,6 @@
 		<defName>EtherMegawoolly</defName>
 		<label>fuzzy</label>
 		<description>Long, fuzzy hair coats the whole of [PAWN_nameDef]'s body, keeping them warm and comfortable.</description>
-		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">

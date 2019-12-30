@@ -25,7 +25,14 @@ namespace Pawnmorph.Utilities
         /// <summary>The first</summary>
         public TFirst first;
         /// <summary>The second</summary>
-        public TSecond second; 
+        public TSecond second;
+
+        /// <summary>Returns the fully qualified type name of this instance.</summary>
+        /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
+        public override string ToString()
+        {
+            return $"{first}:{second}";
+        }
     }
 
     /// <summary>

@@ -10,7 +10,6 @@
 	<HediffDef ParentName="BoomalopePart">
 		<defName>EtherBoomalopeSnout</defName>
 		<label>boomasnout</label>
-		<maxSeverity>1</maxSeverity>
 		<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel.</description>
 		<stages>
 			<li>
@@ -55,7 +54,7 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="HediffCompProperties_SeverityPerDay">
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
@@ -76,7 +75,6 @@
 		<defName>EtherChemfuelUdder</defName>
 		<label>chemical cyst</label>
 		<description>A large cyst filled with chemfuel now covers [PAWN_nameDef]'s waist. They can drain it to produce chemfuel.</description>
-		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">

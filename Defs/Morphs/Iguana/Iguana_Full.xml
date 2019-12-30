@@ -1,5 +1,5 @@
 <Defs>
-	<HediffDef ParentName="MorphParent">
+	<HediffDef ParentName="AspectedMorphParent">
 		<defName>PawnmorphIguanaTF</defName>
 		<label>iguanamorph</label>
 		<stages>

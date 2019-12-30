@@ -1,5 +1,6 @@
 ﻿using Verse;
 using RimWorld;
+using UnityEngine;
 
 namespace Pawnmorph
 {
@@ -9,6 +10,7 @@ namespace Pawnmorph
     public class CompMutagenicRadius : ThingComp
     {
         private const float LEAFLESS_PLANT_KILL_CHANCE = 0.09f;
+        private const float MUTATE_IN_RADIUS_CHANCE = 0.50f;
 
         private int plantHarmAge;
         private int ticksToPlantHarm;
@@ -41,13 +43,13 @@ namespace Pawnmorph
                 {
                     return;
                 }
-                plantHarmAge++;
+                plantHarmAge += 60;
                 ticksToPlantHarm--;
                 if (ticksToPlantHarm <= 0)
                 {
                     float x = plantHarmAge / 60000f;
                     float num = PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x);
-                    float num2 = 3.14159274f * num * num;
+                    float num2 = Mathf.PI * num * num;
                     float num3 = num2 * PropsPlantHarmRadius.harmFrequencyPerArea;
                     float num4 = 60f / num3;
                     int num5;
@@ -84,7 +86,7 @@ namespace Pawnmorph
             {
                 if (!pawn.health.hediffSet.HasHediff(hediff))
                 {
-                    if (Rand.Value < LEAFLESS_PLANT_KILL_CHANCE)
+                    if (Rand.Value < MUTATE_IN_RADIUS_CHANCE)
                     {
                         Hediff applyHediff = HediffMaker.MakeHediff(hediff, pawn, null);
                         applyHediff.Severity = 1f;
@@ -94,15 +96,20 @@ namespace Pawnmorph
             }
 
             Plant plant = c.GetPlant(parent.Map);
-            if (plant != null)
+
+            if (plant != null && !plant.def.IsMutantPlant()) //don't harm mutant plants 
             {
                 if (!plant.LeaflessNow)
                 {
                     plant.MakeLeafless(Plant.LeaflessCause.Poison);
                 }
+                else if(Rand.Value < 0.3f) //30% chance
+                {
+                    PMPlantUtilities.TryMutatePlant(plant); 
+                }
             }
 
-            SnowUtility.AddSnowRadial(parent.Position, parent.Map, radius, 0.01f);
+            
         }
     }
 }

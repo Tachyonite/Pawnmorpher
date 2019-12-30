@@ -2,6 +2,7 @@
 // last updated 08/27/2019  7:03 PM
 
 using Multiplayer.API;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Utilities
@@ -13,6 +14,22 @@ namespace Pawnmorph.Utilities
     {
         private static int _lastTick;
         private static int _lastSeed;
+
+        /// <summary>
+        /// Gets the uniform probability of some event checked every so often with a set mean time to happen 
+        /// </summary>
+        /// <param name="meanTimeToHappen">The mean time to happen.</param>
+        /// <param name="checkPeriod">how often the event is checked</param>
+        /// <returns></returns>
+        public static float GetUniformProbability(float meanTimeToHappen, float checkPeriod)
+        {
+            if (checkPeriod <= 0 || meanTimeToHappen <= 0) return 0; //don't divide by zero 
+
+            return Mathf.Min(checkPeriod / (meanTimeToHappen), 1); 
+
+        }
+
+
 
         /// <summary>Gets the multiplayer safe seed.</summary>
         /// <value>The mp safe seed.</value>

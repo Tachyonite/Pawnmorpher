@@ -12,7 +12,15 @@ namespace Pawnmorph
         public static MorphDef WargMorph;
         public static MorphDef FoxMorph;
         public static MorphDef HuskyMorph;
-        
+        public static MorphDef CowMorph;
+        public static MorphDef BoomalopeMorph; 
+
+        public static MorphDef ChaocowMorph;
+        public static MorphDef ChaoboomMorph;
+        public static MorphDef ChaofoxMorph;
+        public static MorphDef ChaodinoMorph; 
+
+
         static MorphDefOfs()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(MorphDef)); 

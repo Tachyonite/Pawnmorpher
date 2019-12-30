@@ -1,0 +1,14 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="SimpleTypes.xsd"/>
+    <xs:complexType name="SimpleCurve">
+        <xs:sequence>
+            <xs:element name="points">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="Vector2" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,51 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ScenarioDef" type="ScenarioDef" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="ScenarioDef">
+        <xs:all>
+            <xs:element name="defName" minOccurs="0" type="xs:string" />
+            <xs:element name="label" minOccurs="0" type="xs:string" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="scenario" type="Scenario" minOccurs="0" />
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="Scenario">
+        <xs:all>
+            <xs:element name="name" type="xs:string" minOccurs="0" />
+            <xs:element name="summary" type="xs:string" />
+            <xs:element name="description" minOccurs="0" type="xs:string" />
+            <xs:element name="playerFaction">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any maxOccurs="unbounded" processContents="lax" />
+                    </xs:sequence>
+                    <xs:attribute name="Class" type="xs:string" use="optional" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="parts">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:any maxOccurs="unbounded" processContents="lax" />
+                                </xs:sequence>
+                                <xs:attribute name="Class" type="xs:string" use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

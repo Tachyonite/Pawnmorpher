@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- Childhood pawn backstories -->
+	<!--
+	<AlienRace.BackstoryDef>
+		<defName>WildAnimal</defName>
+		<title>Wild animal</title>
+		<titleShort>animal</titleShort>
+		<baseDescription>[PAWN_nameDef] was born as a dumb animal and scavenged the ruins of an ancient structure for food and shelter.</baseDescription>
+		<slot>Childhood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>UpliftedAnimal</li>
+		</spawnCategories>
+	</AlienRace.BackstoryDef>
+	-->
+
+	<!-- Adulthood pawn backstories -->
+
+	<AlienRace.BackstoryDef>
+		<defName>ExposureVictim</defName>
+		<title>Exposure victim</title>
+		<titleShort>exposed</titleShort>
+		<baseDescription>[PAWN_nameDef] found [PAWN_objective]self too close to a mutanite meteorite and soon found [PAWN_possessive] life changed forever.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~8</hediffRange>
+                <morphs>
+                    <li>BoarMorph</li>
+                    <li>CatMorph</li>
+                    <li>FoxMorph</li>
+                    <li>CowMorph</li>
+                    <li>HuskyMorph</li>
+                    <li>ChookMorph</li>
+                    <li>RatMorph</li>
+                    <li>PigMorph</li>
+                    <li>DeerMorph</li>
+                    <li>BearMorph</li>
+                    <li>MonkeyMorph</li>
+                    <li>WargMorph</li>
+                    <li>AlpacaMorph</li>
+                    <li>WolfMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+
+	<AlienRace.BackstoryDef>
+		<defName>MutagenJunkie</defName>
+		<title>Mutagen junkie</title>
+		<titleShort>junkie</titleShort>
+		<baseDescription>[PAWN_nameDef] got addicted to the feeling of change and morphed [PAWN_objective]self repeatedly. [PAWN_pronoun] got clean, but the damage was permanent.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>4~8</hediffRange>
+				<morphs>
+                    <li>BoarMorph</li>
+                    <li>CatMorph</li>
+                    <li>FoxMorph</li>
+                    <li>CowMorph</li>
+                    <li>HuskyMorph</li>
+                    <li>ChookMorph</li>
+                    <li>RatMorph</li>
+                    <li>PigMorph</li>
+                    <li>DeerMorph</li>
+                    <li>BearMorph</li>
+                    <li>MonkeyMorph</li>
+                    <li>WargMorph</li>
+                    <li>AlpacaMorph</li>
+                    <li>WolfMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+
+	<AlienRace.BackstoryDef>
+		<defName>VolunteerMorph</defName>
+		<title>Volunteer morph</title>
+		<titleShort>volunteer</titleShort>
+		<baseDescription>[PAWN_nameDef] signed up for a gene therapy programme, specifically designed to mutate him. It ended up working, but the results were slightly different to what he first expected.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~8</hediffRange>
+                <morphs>
+                    <li>BoarMorph</li>
+                    <li>CatMorph</li>
+                    <li>FoxMorph</li>
+                    <li>CowMorph</li>
+                    <li>HuskyMorph</li>
+                    <li>ChookMorph</li>
+                    <li>RatMorph</li>
+                    <li>PigMorph</li>
+                    <li>DeerMorph</li>
+                    <li>BearMorph</li>
+                    <li>MonkeyMorph</li>
+                    <li>WargMorph</li>
+                    <li>AlpacaMorph</li>
+                    <li>WolfMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	
+	<AlienRace.BackstoryDef>
+		<defName>WishFulfilment</defName>
+		<title>Wishful morph</title>
+		<titleShort>volunteer</titleShort>
+		<baseDescription>[PAWN_nameDef] found a lab willing to give [PAWN_objective] mutations [PAWN_pronoun] wanted. Whether the ones [PAWN_pronoun] got were them is another story.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~8</hediffRange>
+                <morphs>
+                    <li>BoarMorph</li>
+                    <li>CatMorph</li>
+                    <li>FoxMorph</li>
+                    <li>CowMorph</li>
+                    <li>HuskyMorph</li>
+                    <li>ChookMorph</li>
+                    <li>RatMorph</li>
+                    <li>PigMorph</li>
+                    <li>DeerMorph</li>
+                    <li>BearMorph</li>
+                    <li>MonkeyMorph</li>
+                    <li>WargMorph</li>
+                    <li>AlpacaMorph</li>
+                    <li>WolfMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+
+	
+	<AlienRace.BackstoryDef>
+		<defName>CowmorphGeneral</defName>
+		<title>dairy cow</title>
+		<titleShort>cowmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the livestock. [PAWN_pronoun] was allowed to leave once [PAWN_pronoun]'d "paid [PAWN_possessive] due."</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Fat</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>6~8</hediffRange>
+                <morphs>
+                    <li>CowMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	
+	<AlienRace.BackstoryDef>
+		<defName>PigmorphGeneral</defName>
+		<title>farm pig</title>
+		<titleShort>pigmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the pig herd. [PAWN_pronoun] escaped during a prize show, just before [PAWN_pronoun] was awarded first place.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Fat</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>6~8</hediffRange>
+                <morphs>
+                    <li>PigMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	
+	<AlienRace.BackstoryDef>
+		<defName>BoarmorphGeneral</defName>
+		<title>forest boar</title>
+		<titleShort>boarmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] ate some suspect mushrooms next to a chemical spill in the woods, and found [PAWN_objective]self to be quite a bit more porcine.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>6~8</hediffRange>
+                <morphs>
+                    <li>BoarMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	
+	<AlienRace.BackstoryDef>
+		<defName>FoxmorphGeneral</defName>
+		<title>hunted fox</title>
+		<titleShort>foxmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was captured by a twisted hunting club that chased people down with dogs, and was looking for a new spin on it. Fortunately, [PAWN_nameDef] became cunning enough to escape again.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+		<bodyTypeMale>Thin</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>3</amount>
+			</li>
+			<li>
+				<defName>Social</defName>
+				<amount>2</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>6~8</hediffRange>
+                <morphs>
+                    <li>FoxMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	
+	<AlienRace.BackstoryDef>
+		<defName>WolfmorphAlphaGeneral</defName>
+		<title>pack alpha</title>
+		<titleShort>alpha wolf</titleShort>
+		<baseDescription>[PAWN_nameDef] was part of a disproven study into the dominance heirarchy in wolf packs. When the study went underground, it took [PAWN_nameDef]'s humanity and made [PAWN_objective] an alpha.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Hulk</bodyTypeFemale>
+		<bodyTypeMale>Hulk</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Melee</defName>
+				<amount>5</amount>
+			</li>
+			<li>
+				<defName>Social</defName>
+				<amount>3</amount>
+			</li>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>-2</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>8~8</hediffRange>
+                <morphs>
+                    <li>WolfMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	
+	<AlienRace.BackstoryDef>
+		<defName>WolfmorphBetaGeneral</defName>
+		<title>pack beta</title>
+		<titleShort>beta wolf</titleShort>
+		<baseDescription>[PAWN_nameDef] was part of a disproven study into the dominance heirarchy in wolf packs. When the study went underground, it took [PAWN_nameDef]'s humanity and made [PAWN_objective] a lesser member, a beta.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+		<bodyTypeMale>Thin</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Melee</defName>
+				<amount>2</amount>
+			</li>
+			<li>
+				<defName>Social</defName>
+				<amount>-2</amount>
+			</li>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>2</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~6</hediffRange>
+                <morphs>
+                    <li>WolfMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	
+	<AlienRace.BackstoryDef>
+		<defName>ChookmorphGeneral</defName>
+		<title>prize chicken</title>
+		<titleShort>chookmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the coop. [PAWN_pronoun] was allowed to leave once [PAWN_pronoun]'d "paid [PAWN_possessive] due."</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>6~8</hediffRange>
+                <morphs>
+                    <li>ChookMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+
+	<AlienRace.BackstoryDef>
+		<defName>TestSubject</defName>
+		<title>Test subject</title>
+		<titleShort>subject</titleShort>
+		<baseDescription>[PAWN_nameDef] was captured by a rogue research organisation and mutated against [PAWN_possessive] will, changed into monstrosities and reverted many times over. The fragments of change still remain.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~8</hediffRange>
+                <morphCategories>
+					<li>Combat</li>
+					<li>Farm</li>
+					<li>Social</li>
+					<li>Crafter</li>
+				</morphCategories>
+				<pickAnyMutation>true</pickAnyMutation>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+
+	<AlienRace.BackstoryDef>
+		<defName>CombatMorph</defName>
+		<title>Combat morph</title>
+		<titleShort>combatmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was mutated to fight on the front lines of a faction war. During a ceasefire, [PAWN_pronoun] deserted to start [PAWN_possessive] own life.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Shooting</defName>
+				<amount>3</amount>
+			</li>
+			<li>
+				<defName>Melee</defName>
+				<amount>3</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~8</hediffRange>
+                <morphCategories>
+                    <li>Combat</li>
+                </morphCategories>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+
+	<AlienRace.BackstoryDef>
+		<defName>ProductionMorph</defName>
+		<title>Production morph</title>
+		<titleShort>productionmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was kept in a barn, forced to produce all manner of foodstuffs before [PAWN_pronoun] escaped by feeding the guards [PAWN_possessive] own brand of mutagens. This isolation has stymied [PAWN_possessive] social development, but [PAWN_pronoun] was sometimes called in to help with other...inmates.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Social</defName>
+				<amount>-2</amount>
+			</li>
+			<li>
+				<defName>Animals</defName>
+				<amount>2</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~8</hediffRange>
+                <morphCategories>
+                    <li>Production</li>
+                </morphCategories>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+
+	<AlienRace.BackstoryDef>
+		<defName>CultEscapee</defName>
+		<title>Cult escapee</title>
+		<titleShort>escapee</titleShort>
+		<baseDescription>[PAWN_nameDef] managed to escape the grip of an oppressive mutation cult, and still has the scars to show for it.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>5~8</hediffRange>
+                <morphCategories>
+                    <li>Production</li>
+                    <li>Chimera</li>
+                    <li>Combat</li>
+                </morphCategories>
+                <mutationCategories>
+                    <li>Productive</li>
+                    <li>Exotic</li>
+                    <li>Combat</li>
+                </mutationCategories>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	<AlienRace.BackstoryDef>
+		<defName>CultEscapeeFarm</defName>
+		<title>Cult farm escapee</title>
+		<titleShort>escapee</titleShort>
+		<baseDescription>[PAWN_nameDef] managed to escape the grip of an oppressive mutation cult, and still has the scars to show for it.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>5~8</hediffRange>
+                <morphCategories>
+                    <li>Production</li>
+                    <li>Chimera</li>
+                </morphCategories>
+                <mutationCategories>
+                    <li>Productive</li>
+                    <li>Exotic</li>
+                </mutationCategories>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	<!--
+	<AlienRace.BackstoryDef>
+		<defName>Thrumboborn</defName>
+		<title>Thrumboborn</title>
+		<titleShort>thrumboborn</titleShort>
+		<baseDescription>Born a human, [PAWN_nameDef] has the blood of thrumbos and this has manifested in various mutations.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>3</amount>
+			</li>
+			<li>
+				<defName>Melee</defName>
+				<amount>3</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~8</hediffRange>
+                <morphs>
+                    <li>ThrumboMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	-->
+	<!--
+	<AlienRace.BackstoryDef>
+		<defName>UpliftedAnimal</defName>
+		<title>Uplifted animal</title>
+		<titleShort>uplifted</titleShort>
+		<baseDescription>Wandering into a strange temple, [PAWN_nameDef] was captured by an Archotech AI and given a new, sapient humanoid form. Even so, they still retain some artefacts of their time as an animal.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>UpliftedAnimal</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Animals</defName>
+				<amount>3</amount>
+			</li>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>-1</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>2~8</hediffRange>
+                <morphs>
+                    <li>BoarMorph</li>
+                    <li>CatMorph</li>
+                    <li>FoxMorph</li>
+                    <li>CowMorph</li>
+                    <li>HuskyMorph</li>
+                    <li>ChookMorph</li>
+                    <li>RatMorph</li>
+                    <li>PigMorph</li>
+                    <li>DeerMorph</li>
+                    <li>BearMorph</li>
+                    <li>MonkeyMorph</li>
+                    <li>WargMorph</li>
+                    <li>AlpacaMorph</li>
+                    <li>WolfMorph</li>
+                    <li>ChaofoxMorph</li>
+                    <li>ChaocowMorph</li>
+                    <li>ChaodinoMorph</li>
+                    <li>ChaoboomMorph</li>
+                </morphs>
+            </li>
+        </modExtensions>
+	</AlienRace.BackstoryDef>
+	-->
+
+</Defs>

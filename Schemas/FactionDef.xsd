@@ -1,0 +1,211 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="FactionDef" type="FactionDef" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="FactionDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="isPlayer" type="xs:boolean" minOccurs="0" />
+            <xs:element name="factionNameMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="playerInitialSettlementNameMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="fixedName" type="xs:string" minOccurs="0" />
+            <xs:element name="humanlikeFaction" type="xs:boolean" minOccurs="0" />
+            <xs:element name="hidden" type="xs:boolean" minOccurs="0" />
+            <xs:element name="pawnGroupMakers" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="PawnGroupMaker" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:element name="raidCommonalityFromPointsCurve" type="SimpleCurve" minOccurs="0"/>
+            <xs:element name="autoFlee" type="xs:boolean" minOccurs="0" />
+            <xs:element name="canSeige" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="canUseAvoidGrid" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="canStageAttacks" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="earliestRaidDays" type="xs:float" minOccurs="0" />
+            <xs:element name="allowedArrivalTemperatureRange" type="FloatRange" minOccurs="0"/>
+            <xs:element name="basicMemberKind" type="xs:string" minOccurs="0"/>
+            <xs:element name="startingResearchTags" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="recipePrerequisiteTags" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="rescueesCanJoin" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="pawnSingular" type="xs:string" minOccurs="0"/>
+            <xs:element name="pawnsPlural" type="xs:string" minOccurs="0" />
+            <xs:element name="leaderTitle" type="xs:string" minOccurs="0"/>
+            <xs:element name="forageabilityFactor" type="xs:float" minOccurs="0"/>
+            <xs:element name="maxPawnCostPerTotalPointsCurve" type="SimpleCurve" minOccurs="0"/>
+            <xs:element name="requiredCountAtGameStart" type="xs:int" minOccurs="0"/>
+            <xs:element name="maxCountAtGameStart" type="xs:int" minOccurs="0" />
+            <xs:element name="canMakeRandomly" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="settlementGenerationWeight" type="xs:float" minOccurs="0"/>
+            <xs:element name="pawnNameMaker" type="xs:string" minOccurs="0"/>
+            <xs:element name="techLevel" type="TechLevel" minOccurs="0"/>
+            <xs:element name="backstoryCategories" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="hairTags" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="apparelStuffFilter" type="ThingFilter" minOccurs="0"/>
+            <xs:element name="caravanTraderKinds" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="visitorTraderKinds" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="baseTraderKinds" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="geneticVariance" type="xs:float" minOccurs="0"/>
+            <xs:element name="startingGoodwill" type="IntRange" minOccurs="0"/>
+            <xs:element name="mustStartOneEnemy" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="naturalColonyGoodwill" type="IntRange" minOccurs="0"/>
+            <xs:element name="goodwillDailyGain" type="xs:float" minOccurs="0"/>
+            <xs:element name="goodwillDailyFall" type="xs:float" minOccurs="0"/>
+            <xs:element name="permanentEnemy" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="homeIconPath" type="xs:string" minOccurs="0"/>
+            <xs:element name="colorSpectrum" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="Color" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <!--TODO Finish this -->
+        </xs:all>
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="PawnGroupMaker">
+        <xs:all>
+            <xs:element name="kindDef" type="xs:string" />
+            <xs:element name="commonality" type="xs:float" />
+            <xs:element name="disallowedStrategies" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="maxTotalPoints" type="xs:float" />
+            <xs:element name="options" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="traders" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="carriers" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="guards" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="ThingFilter">
+        <xs:all>
+            <xs:element name="allowedHitPointsPercents" type="FloatRange" />
+            <xs:element name="allowedHitPointsConfigurable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="allowedQualities" type="QualityRange" minOccurs="0"/>
+            <xs:element name="allowedQualitiesConfigurable" type="xs:boolean" minOccurs="0" />
+            <xs:element name="customSummary" type="xs:string" minOccurs="0"/>
+            <xs:element name="thingDefs" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="categories" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="tradeTagsToAllow" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="tradeTagsToDisallow" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="thingSetMakerTagsToAllow" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="thingSetMakerTagsToDisallow" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="disallowedCategories" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="specialFiltersToDisallow" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="stuffCategoriesToAllow" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="allowAllWhoCanMake" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="disallowWorsePreferability" type="FoodPreferability" minOccurs="0"/>
+            <xs:element name="disallowInedibleByHuman" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="allowWithComp" type="xs:string" minOccurs="0"/>
+            <xs:element name="disallowWithComp" type="xs:string" minOccurs="0"/>
+            <xs:element name="disallowCheaperThan" type="xs:float" minOccurs="0"/>
+            <xs:element name="disallowedThingDefs" type="ListOfStrings" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="ListOfStrings">
+        <xs:sequence>
+            <xs:element name="li" type="xs:string" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SimpleCurve">
+        <xs:sequence>
+            <xs:element name="points">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="Vector2" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="QualityRange" > 
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(Awful|Poor|Normal|Good|Excellent|Masterwork|Legendary)~(Awful|Poor|Normal|Good|Excellent|Masterwork|Legendary)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Vector2">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FloatRange">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[+-]?([0-9]*[.])?[0-9]+~[+-]?([0-9]*[.])?[0-9]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TechLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Undefined"/>
+            <xs:enumeration value="Animal" />
+            <xs:enumeration value="Neolithic"/>
+            <xs:enumeration value="Medieval"/>
+            <xs:enumeration value="Industrial"/>
+            <xs:enumeration value="Space"/>
+            <xs:enumeration value="Ultra"/>
+            <xs:enumeration value="Archotech"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FoodPreferability">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Undefined"/>
+            <xs:enumeration value="NeverForNutrition"/>
+            <xs:enumeration value="DesperateOnly"/>
+            <xs:enumeration value="DesperateOnlyForHumanlikes"/>
+            <xs:enumeration value="RawBad"/>
+            <xs:enumeration value="RawTasty"/>
+            <xs:enumeration value="MealAwful"/>
+            <xs:enumeration value="MealSimple"/>
+            <xs:enumeration value="MealFine"/>
+            <xs:enumeration value="MealLavish"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="IntRange">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]+~[0-9]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Color">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}(,[0-9]{1,3})?\)"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

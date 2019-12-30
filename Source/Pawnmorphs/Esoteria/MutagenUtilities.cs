@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
@@ -32,13 +34,12 @@ namespace Pawnmorph
             if (mutationGiver == null) throw new ArgumentNullException(nameof(mutationGiver));
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             var health = pawn.health;
-
+            if (health?.hediffSet?.hediffs == null) return; 
             List<Hediff_AddedMutation> hediffsToRemove = new List<Hediff_AddedMutation>(); //save the result, otherwise we'd invalidate the enumerator when we start removing them  
-            foreach (BodyPartDef bodyPartDef in mutationGiver.partsToAffect)
+            foreach (BodyPartDef bodyPartDef in mutationGiver.GetPartsToAddTo())
             {
-                var hediffs = health.hediffSet.hediffs.Where(h => h.Part.def == bodyPartDef).OfType<Hediff_AddedMutation>();
-                hediffsToRemove.AddRange(hediffs); 
-
+                var hediffs = health.hediffSet.hediffs.Where(h => h?.Part?.def == bodyPartDef).OfType<Hediff_AddedMutation>();
+                hediffsToRemove.AddRange(hediffs); //don't start removing them until we have all mutation we need to remove
             }
 
             hediffsToRemove.RemoveDuplicates(); //don't want to remove a hediff more then once
@@ -46,6 +47,27 @@ namespace Pawnmorph
             foreach (Hediff_AddedMutation hediffAddedMutation in hediffsToRemove)
             {
                 health.RemoveHediff(hediffAddedMutation); 
+            }
+        }
+
+        /// <summary>
+        /// Tries the apply aspects that might be given from this mutagen
+        /// </summary>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        /// mutagen
+        /// or
+        /// pawn
+        /// </exception>
+        public static void TryApplyAspects([NotNull] this MutagenDef mutagen, [NotNull] Pawn pawn )
+        {
+            if (mutagen == null) throw new ArgumentNullException(nameof(mutagen));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            foreach (AspectGiver aspectGiver in mutagen.aspectGivers.MakeSafe())
+            {
+                aspectGiver.TryGiveAspects(pawn); 
             }
 
         }
@@ -76,12 +98,15 @@ namespace Pawnmorph
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
+            MutagenDef mutagenSource;
+
             if (mutationDef is Def_MorphTf morphTf)
             {
-                return morphTf.mutagenSource.CanInfect(pawn);
+                mutagenSource = morphTf.mutagenSource ?? MutagenDefOf.defaultMutagen;
             }
+            else mutagenSource = MutagenDefOf.defaultMutagen; 
 
-            return MutagenDefOf.defaultMutagen.CanInfect(pawn);
+            return mutagenSource.CanInfect(pawn);
         }
 
         /// <summary> Gets the mutagen associated with this tf hediff. </summary>
@@ -93,7 +118,9 @@ namespace Pawnmorph
             if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
 
             var def = morphTf.def as Hediffs.Def_MorphTf;
-            return def?.mutagenSource ?? MutagenDefOf.defaultMutagen;
+            var defExt = morphTf.def.GetModExtension<MutagenExtension>();
+            return def?.mutagenSource ??  defExt?.mutagen ??  MutagenDefOf.defaultMutagen;
+            // check for a custom def, then for the extension, then return the default 
         }
     }
 }

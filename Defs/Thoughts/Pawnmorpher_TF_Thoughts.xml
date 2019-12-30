@@ -18,7 +18,7 @@
 			<li>
 				<label>was a sapient animal</label>
 				<description>I was trapped in the body of a beast with another person right next to me! I knew what they were thinking and they knew everything about me...I'm almost traumatised!</description>
-				<baseMoodEffect>15</baseMoodEffect>
+				<baseMoodEffect>-15</baseMoodEffect>
 			</li>
 			<li>
 				<label>was a mad animal</label>

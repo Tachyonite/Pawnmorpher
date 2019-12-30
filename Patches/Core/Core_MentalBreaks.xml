@@ -1,0 +1,58 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalBreakDef[defName="Tantrum"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"></li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalBreakDef[defName="TargetedTantrum"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"></li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalBreakDef[defName="Wander_Sad"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"></li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalStateDef[defName="Tantrum"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <baseInstinctOffset>20</baseInstinctOffset>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalStateDef[defName="TargetedTantrum"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <baseInstinctOffset>20</baseInstinctOffset>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/MentalStateDef[defName="Wander_Sad"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <baseInstinctOffset>10</baseInstinctOffset>
+            </li>
+        </value>
+    </Operation>
+
+
+    <!-- adding in new ones --> 
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThinkTreeDef/thinkRoot/subNodes</xpath>
+        <value>
+            <li Class="ThinkNode_ConditionalMentalStateClass">
+                <stateClass>Pawnmorph.Mental.State_Hunting</stateClass>
+                <subNodes>
+                    <li Class="Pawnmorph.Jobs.Giver_HuntingBreak" />
+                </subNodes>
+            </li>
+        </value>
+    </Operation>
+</Patch>

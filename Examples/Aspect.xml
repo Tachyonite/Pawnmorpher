@@ -1,0 +1,113 @@
+<Defs>
+    Aspects are a hybrid of Hediffs and Traits. Like traits they affect the whole pawn, not a single body part, but like Hediffs they can be added 
+and removed 
+    <Pawnmorph.AspectDef>
+        the below field is used to set the aspect to a custom type, similar to hediffClass on HediffDefs , if ommitied the below is used 
+        <aspectType>Pawnmorph.Aspect</aspectType>
+        
+        this label is used to set the color of the aspects label when displayed in the mutation tab 
+        <labelColor>(1,1,1,1)</labelColor>
+        
+        this field is used to indicate whether this aspect should be removed by reverters or not, the default is true 
+        <removedByReverter>true</removedByReverter>
+        
+        this is used to controll the sorting of aspects in the mutation tab, lower priorities are listed first. If two aspects have the same 
+    priority then they are sorted alphabetically based on their label 
+        <priority>1</priority>
+
+        this field is used to indicate if this aspect should be transfered to the transformed pawn, if the pawn this aspect was first attached to transforms into an 
+    animal 
+        <transferToAnimal>false</transferToAnimal>
+
+        this field is a list of thoughts that are blocked by this aspect 
+        <nullifiedThoughts>
+            <li>ThoughtDef</li>
+        </nullifiedThoughts>
+
+        this is a list of aspects that conflict with this aspect. If the pawn has one of the aspects listed below this aspect cannot be given to that pawn 
+        <conflictingAspects>
+            <li>AspectDef</li>
+        </conflictingAspects>
+
+        this lists traits that the pawn must have to be given this aspect 
+        <requiredTraits>
+            <li>TraitDef</li>
+        </requiredTraits>
+
+        this lists traits the pawn must not have to be given this aspect 
+        <conflictingTraits>
+            <li>TraitDef</li>
+        </conflictingTraits>
+
+        this is the list of stages this aspect has, there always must be at least one stage in an aspect or an error will be thrown during startup 
+        <stages>
+            <li>
+                this is an optional field that if set will override the aspectDefs default label 
+                <label></label>
+
+                this is an optional field that if set will prefix the aspects label with whatevers set below in brackets  
+                <modifier></modifier>
+
+                optional field that if set will override an aspects default description 
+                <description></description>
+
+                optional field that if set will override an aspects default label color 
+                <labelColor></labelColor>
+
+                if true, marks the aspect at this stage as a negitive aspect
+                <isBad></isBad>
+
+                optional field that if set will be displayed as a message when a pawn is given this aspect. the message will be adjusted for the pawn that is given 
+            the aspect, so use PAWN_nameDef etc. in the text 
+                <messageText></messageText>
+
+                optional messageDef that will be used to controll the type of message displayed when a pawn is given this aspect. if not set NeurtralEvent will be used 
+                <messageDef></messageDef>
+
+                this field is a list of thoughts that are blocked by this aspect 
+                <nullifiedThoughts>
+                    <li>ThoughtDef</li>
+                </nullifiedThoughts>
+
+                this field is a list of PawnCapacityModifiers, just like you find in an  HediffStage 
+                <capMods></capMods>
+
+                this field is a list of SkillModifiers 
+                <skillMods>
+                    <li>
+                        the skillDef this modifier affects, this must be set 
+                        <skillDef>SkillDef</skillDef>
+                        
+                        the amount of xp added when the pawn gains this aspect 
+                        <addedXp></addedXp>
+
+                        an offset to the pawns passion applied when the pawn is given this aspect 
+                        <passionOffset>1</passionOffset>
+                    </li>
+                </skillMods>
+
+
+                list of stat offsets like you would find in a HediffStage 
+                <statOffsets></statOffsets>
+
+                a list of production boosts applied to the pawn 
+                <productionBoosts>
+                    <li>
+                        optional filter that restricts what kind of hediffs this production boost affects 
+                        <hediffFilter>
+                            if this filter uses a black list or white list. the default is a black list 
+                            <isBlackList>true</isBlackList>
+                            a list of hediffs that set what hediffs get filtered 
+                            <filterList>
+                              <li>HediffDef</li>  
+                            </filterList>
+                        </hediffFilter>
+
+                        the offset to the severity to all productive mutations that pass the filter  
+                        <productionBoost></productionBoost>
+                    </li>
+                </productionBoosts>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+</Defs>

@@ -3,7 +3,9 @@
 
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Pawnmorph.TfSys;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -31,7 +33,31 @@ namespace Pawnmorph
         /// The negative thought to add when a pawn is reverted 
         /// </summary>
         public ThoughtDef revertedThoughtBad;
+
+        /// <summary>
+        /// the reversion thought for pawns with primal wish 
+        /// </summary>
+        public ThoughtDef revertedPrimalWish; 
+
         [Unsaved] private Mutagen _mutagenCached;
+        /// <summary>
+        /// The damage properties
+        /// </summary>
+        [NotNull]
+        public MutagenDamageProperties damageProperties = new MutagenDamageProperties();
+
+
+        /// <summary>
+        /// a list of hediffs that make a pawn immune to the effects of this mutagen source 
+        /// </summary>
+        [NotNull]
+        public List<HediffDef> immunizingHediffs = new List<HediffDef>();
+
+        /// <summary>
+        /// The aspect givers
+        /// </summary>
+        [NotNull]
+        public List<AspectGiver> aspectGivers = new List<AspectGiver>(); 
 
         /// <summary>Get all Configuration Errors with this instance</summary>
         /// <returns></returns>
@@ -40,6 +66,18 @@ namespace Pawnmorph
             foreach (var configError in base.ConfigErrors())
             {
                 yield return configError; 
+            }
+
+            foreach (AspectGiver aspectGiver in aspectGivers.MakeSafe()) //check the aspect givers for errors 
+            {
+                if (aspectGiver == null) yield return "null aspect giver";
+                else
+                {
+                    foreach (string configError in aspectGiver.ConfigErrors())
+                    {
+                        yield return configError; 
+                    }
+                }
             }
 
             if (mutagenType == null)
@@ -54,6 +92,18 @@ namespace Pawnmorph
         public bool CanTransform(Pawn pawn)
         {
             return MutagenCached.CanTransform(pawn); 
+        }
+
+        /// <summary>
+        /// Determines whether this instance can transform the specified race definition.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can transform the specified race definition; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanTransform(ThingDef raceDef)
+        {
+            return MutagenCached.CanTransform(raceDef);
         }
 
         /// <summary>Gets the cached mutagen </summary>
@@ -85,4 +135,29 @@ namespace Pawnmorph
             return MutagenCached.CanInfect(pawn); 
         }
     }
+
+    /// <summary>
+    /// class that stores information about mutagenic damage 
+    /// </summary>
+    public class MutagenDamageProperties
+    {
+        /// <summary>
+        /// the minimum amount of damage to do to apparel 
+        /// </summary>
+        public int apparelDamageOffset;
+        /// <summary>
+        /// The apparel damage multiplier
+        /// </summary>
+        public float apparelDamageMultiplier = 1;
+        /// <summary>
+        /// how much biproduct to spawn per point of damage 
+        /// </summary>
+        public float spawnedBiproductMult;
+
+        /// <summary>
+        /// The biproduct to spawn when apparel takes damage 
+        /// </summary>
+        [CanBeNull] public ThingDef biproduct; 
+    }
+
 }

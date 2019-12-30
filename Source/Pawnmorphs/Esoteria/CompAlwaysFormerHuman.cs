@@ -26,9 +26,22 @@ namespace Pawnmorph
             if (!triggered)
             {
                 triggered = true;
-                TransformerUtility.AddHediffIfNotPermanentlyFeral(parent as Pawn, Props.hediff);
+
+                if (((Pawn) parent).health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman)) return; 
+
+                float sL = Rand.Value;
+                FormerHumanUtilities.MakeAnimalSapient((Pawn)parent, sL);
             }
             TransformerUtility.RemoveHediffIfPermanentlyFeral(parent as Pawn, Props.hediff);
+        }
+
+        /// <summary>
+        /// Posts the expose data.
+        /// </summary>
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref triggered, nameof(triggered)); 
         }
     }
 }

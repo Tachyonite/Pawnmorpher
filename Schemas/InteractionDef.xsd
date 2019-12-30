@@ -163,4 +163,22 @@
 			<xs:element name="baseOpinionOffset" type="xs:float" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
+
+	<xs:complexType name="SimpleCurve">
+		<xs:sequence>
+			<xs:element name="points">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" type="Vector2" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="Vector2">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)"/>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>

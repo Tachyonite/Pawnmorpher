@@ -1,0 +1,32 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/InteractionDef[defName="AnimalChat"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InteractionGroupExtension">
+                <interactions>
+                    <li>FormerHumanAnimalChat</li>
+                </interactions>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/InteractionDef[defName="TrainAttempt"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InteractionGroupExtension">
+                <interactions>
+                    <li>FormerHumanTrainAttempt</li>
+                </interactions>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/InteractionDef[defName="TameAttempt"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.InteractionGroupExtension">
+                <interactions>
+                    <li>FormerHumanTameAttempt</li>
+                </interactions>
+            </li>
+        </value>
+    </Operation>
+</Patch>

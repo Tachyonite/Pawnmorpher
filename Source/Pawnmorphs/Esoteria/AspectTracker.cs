@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
+using RimWorld;
+using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
@@ -19,9 +22,18 @@ namespace Pawnmorph
         private List<Aspect> _aspects = new List<Aspect>();
 
         /// <summary>
+        /// gets the total number of aspects this pawn has.
+        /// </summary>
+        /// <value>
+        /// The aspect count.
+        /// </value>
+        public int AspectCount => Mathf.Max(_aspects.Count - _rmCache.Count, 0);  //take into account the remove cache in the off chance this gets checked between calls to Remove and the aspects actually get removed
+
+        /// <summary>
         /// an enumerable collection of all aspects in this instance 
         /// </summary>
-        public IEnumerable<Aspect> Aspects => _aspects;
+        [NotNull]
+        public IEnumerable<Aspect> Aspects => _aspects.MakeSafe();
 
         private Pawn Pawn => (Pawn)parent;
 
@@ -80,6 +92,13 @@ namespace Pawnmorph
             if (aspect.HasCapMods)
             {
                 Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
+            }
+
+            var cStage = aspect.CurrentStage; 
+            if (PawnUtility.ShouldSendNotificationAbout(Pawn) && !string.IsNullOrEmpty(cStage.messageText))
+            {
+                var mDef = cStage.messageDef ?? MessageTypeDefOf.NeutralEvent;
+                Messages.Message(cStage.messageText.AdjustedFor(Pawn), mDef); 
             }
         }
 
@@ -146,6 +165,19 @@ namespace Pawnmorph
         public bool Contains(AspectDef aspect)
         {
             return _aspects.Any(a => a.def == aspect);
+        }
+        /// <summary>
+        /// Determines whether this instance contains the given aspect at the given stage.
+        /// </summary>
+        /// <param name="aspectDef">The aspect definition.</param>
+        /// <param name="stage">The stage.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance contains the specified aspect at the given stage; otherwise, <c>false</c>.
+        /// </returns>
+        public bool Contains(AspectDef aspectDef, int stage)
+        {
+            var aspect = _aspects.FirstOrDefault(a => a.def == aspectDef);
+            return aspect?.StageIndex == stage; 
         }
 
         /// <summary>

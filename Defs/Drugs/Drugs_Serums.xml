@@ -196,5 +196,42 @@
 		<thingSetMakerTags>
 			<li>RewardSpecial</li>
 		</thingSetMakerTags>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>HealerMutagen</mutagen>
+			</li>
+		</modExtensions>
 	</ThingDef>
+	
+	<ThingDef ParentName="MechSerumBase">
+			<defName>MechSerumResurrectorTf</defName>
+			<label>transformative resurrector mech serum</label>
+			<description>death is irrelevant</description>
+			<graphicData>
+			  <texPath>Things/Item/Special/MechSerumResurrector</texPath>
+			  <graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+			<stackLimit>10</stackLimit>
+			<statBases>
+			  <MarketValue>1700</MarketValue>
+			</statBases>
+			<tradeability>Sellable</tradeability>
+			<comps>
+			  <li Class="CompProperties_Usable">
+				<useJob>UseItem</useJob>
+				<useLabel>Use resurrector mech serum</useLabel>
+				<useDuration>0</useDuration>
+			  </li>
+			  <li Class="Pawnmorph.CompProperties_TransformableCorpse">
+				<fleshCorpsesOnly>true</fleshCorpsesOnly>
+				<nonDessicatedCorpsesOnly>true</nonDessicatedCorpsesOnly>
+			  </li>
+			  <li Class="Pawnmorph.CompProperties_TfResurrect">
+				
+			  </li>
+			</comps>
+			<thingSetMakerTags>
+			  <li>RewardSpecial</li>
+			</thingSetMakerTags>
+		  </ThingDef>
 </Defs>

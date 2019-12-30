@@ -1,5 +1,5 @@
 <Defs>
-	<HediffDef ParentName="MorphParent">
+	<HediffDef ParentName="AspectedMorphParent">
 		<defName>PawnmorphWolfTF</defName>
 		<label>wolfmorph</label>
 		<stages>
@@ -70,7 +70,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
-            <tale>GrewCanidMuzzle</tale>
+						<tale>GrewCanidMuzzle</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherWolfEar</hediff>
@@ -79,7 +79,7 @@
 							<li>Ear</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-            <tale>EarsChangedCanid</tale>
+						<tale>EarsChangedCanid</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherWolfTail</hediff>
@@ -106,7 +106,7 @@
 							<li>Hand</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-            <tale>HandsBecomePaws</tale>
+						<tale>HandsBecomePaws</tale>
 						<memory>CanidPawHandMemory</memory>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">

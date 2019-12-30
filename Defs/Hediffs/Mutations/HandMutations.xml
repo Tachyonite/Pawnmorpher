@@ -1,0 +1,217 @@
+<Defs>
+    <HediffDef ParentName="PawnmorphPart">
+        <defName>EtherPawHand</defName>
+        <label>paw</label>
+        <description>Cute but inflexible paws have replaced [PAWN_nameDef]'s hands. They lack a thumb, which has receded into a useless dewclaw.</description>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>-1</minSeverity>
+                <partEfficiencyOffset>-0.9</partEfficiencyOffset>
+                <label>bestial</label>  <!-- only pawns with Afflicted Morph aspect can get this stage-->
+				<description>This paw has degraded into a more inflexible paw than normal, and is not very useful.</description>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0</minSeverity>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+                <labelOverride>clawed</labelOverride>
+				<description>Each finger on this hand is tipped with a sharp claw.</description>
+				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.2</minSeverity>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+                <labelOverride>padded</labelOverride>
+				<description>In addition to claws, this hand is developing thick pads on the palm and each fingertip.</description>
+				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.4</minSeverity>
+                <partEfficiencyOffset>-0.15</partEfficiencyOffset>
+				<description>This hand looks more like a paw than a hand, but isn't completely useless.</description>
+                <labelOverride>handpaw</labelOverride>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.6</minSeverity>
+                <partEfficiencyOffset>-0.25</partEfficiencyOffset>
+				<description>This hand's fingers have started to shorten, and a short coat of fur has sprouted over it.</description>
+                <labelOverride>inflexible handpaw</labelOverride>
+            </li>
+            <li>
+                <minSeverity>0.8</minSeverity>
+                <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+                <label>unfamiliar</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.99</minSeverity>
+                <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description>[PAWN_nameDef] has largely adapted to having paws, and is trying to recover flexibility in the digits.</description>
+                <label>adapted</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
+                <labelOverride>dextrous handpaw</labelOverride>
+                <partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<description>Further adaptation to this paw has allowed it to become dextrous again, and with even finer manipulation than a regular hand.</description>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_VerbGiver">
+                <tools>
+                    <li>
+                        <label>claws</label>
+                        <labelUsedInLogging>False</labelUsedInLogging>
+                        <capacities>
+                            <li>Scratch</li>
+                        </capacities>
+                        <power>5.0</power>
+                        <cooldownTime>1.5</cooldownTime>
+                        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                    </li>
+                </tools>
+            </li>
+            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+                <severityPerDay>0.15</severityPerDay>
+            </li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                <countToAffect>2</countToAffect>
+                <categories>
+                    <li>Extreme</li>
+                </categories>
+            </li>
+        </modExtensions>
+    </HediffDef>
+
+    <HediffDef ParentName="PawnmorphPart">
+        <defName>EtherHoofHand</defName>
+        <label>hoof</label>
+        <description>It's terrifying, but [PAWN_nameDef]'s hands are nothing more than hooves now. Holding things, grabbing things and doing anything requiring thumbs is going to be a lot more difficult.</description>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0</minSeverity>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+                <labelOverride>thick nails</labelOverride>
+				<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.2</minSeverity>
+                <partEfficiencyOffset>-.1</partEfficiencyOffset>
+                <labelOverride>hoof-fingers</labelOverride>
+				<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.4</minSeverity>
+                <partEfficiencyOffset>-0.20</partEfficiencyOffset>
+				<description>Above a humanlike palm, two fingers have paired up and merged. This reduces manipulation, but not nearly as much as having a full hoof instead.</description>
+                <labelOverride>handhoof</labelOverride>
+				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.6</minSeverity>
+                <partEfficiencyOffset>-0.40</partEfficiencyOffset>
+				<description>This hand, or hoof, is quickly becoming less flexible and more like a regular hoof. Its usability may be hampered soon.</description>
+                <labelOverride>inflexible handhoof</labelOverride>
+            </li>
+            <li>
+                <minSeverity>0.8</minSeverity>
+                <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+                <label>unfamiliar</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.99</minSeverity>
+                <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+				<description>[PAWN_nameDef] has adapted to using hooves, and will have slightly less trouble with working with them.</description>
+                <label>adapted</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
+                <labelOverride>dextrous handhoof</labelOverride>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Further adaptation to this hoof has restored the fingers to a more anthropomorphic state, restoring dexterity.</description>
+            </li>
+        </stages>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+                <severityPerDay>0.15</severityPerDay>
+            </li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                <countToAffect>2</countToAffect>
+                <categories>
+                    <li>Extreme</li>
+                </categories>
+            </li>
+        </modExtensions>
+    </HediffDef>
+
+    <HediffDef ParentName="PawnmorphPart">
+        <defName>EtherTrotterHand</defName>
+        <label>trotter</label>
+        <description>[PAWN_nameDef]'s hands resemble trotters more than anything else, leaving them with little in the way of grasping ability.</description>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0</minSeverity>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+                <labelOverride>thick nails</labelOverride>
+				<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.2</minSeverity>
+                <partEfficiencyOffset>-.1</partEfficiencyOffset>
+                <labelOverride>hoof-fingers</labelOverride>
+				<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+				<stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.6</minSeverity>
+                <partEfficiencyOffset>-0.40</partEfficiencyOffset>
+				<description>This hand, or trotter, is quickly becoming less flexible and more like a regular trotter. Its usability may be hampered soon.</description>
+                <labelOverride>inflexible handtrotter</labelOverride>
+            </li>
+            <li>
+                <minSeverity>0.8</minSeverity>
+                <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+                <label>unfamiliar</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.99</minSeverity>
+                <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description>[PAWN_nameDef] has adapted to using trotters, and will have slightly less trouble with working with them.</description>
+                <label>adapted</label>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>1.5</minSeverity> <!-- only pawns with the Paragon aspect can get this stage -->
+                <labelOverride>dextrous handtrotter</labelOverride>
+                <partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Further adaptation to this hoof has restored the fingers to a more anthropomorphic state, restoring dexterity.</description>
+            </li>
+        </stages>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+                <severityPerDay>0.15</severityPerDay>
+            </li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                <countToAffect>2</countToAffect>
+                <categories>
+                    <li>Extreme</li>
+                </categories>
+            </li>
+        </modExtensions>
+    </HediffDef>
+</Defs>

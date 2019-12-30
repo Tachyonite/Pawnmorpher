@@ -28,6 +28,18 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
+		<defName>WasAnimalPrimalWish</defName>
+		<stages>
+			<li>
+				<label>no longer an animal</label> <!-- reversion thought for pawns with the primal wish aspect -->
+				<description>I'm...human again? But c'mon, that wa awesome! Put me back in, coach!</description> 
+				<baseMoodEffect>-1</baseMoodEffect>
+				 
+			</li>
+		</stages>
+	</ThoughtDef>
 	
 	<ThoughtDef ParentName="RevertedThoughtBase">
 		<defName>WasAnimalRelieved</defName>

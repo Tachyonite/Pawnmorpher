@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
+using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
-using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
@@ -22,6 +23,104 @@ namespace Pawnmorph
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
         private static readonly PawnKindDef[] PossiblePawnKinds;
 
+
+        /// <summary>
+        /// Gets the net mutagenic buildup multiplier for this pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public static float GetMutagenicBuildupMultiplier([NotNull] this Pawn pawn)
+        {
+            return (pawn.GetStatValue(StatDefOf.ToxicSensitivity) + pawn.GetStatValue(PMStatDefOf.MutagenSensitivity))/2; 
+        }
+
+        [NotNull]
+        private static MutagenDamageProperties DefaultDamageValues { get; }
+
+        private const float EPSILON = 0.001f;
+        /// <summary>
+        /// The maximum apparel percent difference. percent differences between old and new size will cause apparel to be completely destroyed 
+        /// </summary>
+        private const float MAX_APPAREL_PDIFF = 0.35f;
+
+        private const float APPAREL_PDIFF_OFFSET = 0.15f;
+
+        /// <summary>
+        /// applies damage to all apparel the pawn is wearing based on
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="newRace">The new race.</param>
+        /// <param name="mutagen">the mutagen that caused the transformation, if null uses default values for <see cref="MutagenDamageProperties"/></param>
+        /// <exception cref="System.ArgumentNullException">
+        /// pawn
+        /// or
+        /// newRace
+        /// </exception>
+        public static void ApplyTfDamageToApparel([NotNull] Pawn pawn, [NotNull] ThingDef newRace, [CanBeNull] MutagenDef mutagen)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (newRace == null) throw new ArgumentNullException(nameof(newRace));
+            Pawn_ApparelTracker apparelTracker = pawn.apparel;
+            List<Apparel> cachedApparel = apparelTracker?.WornApparel?.ToList(); //make a copy of all worn apparel
+            if (cachedApparel == null || cachedApparel.Count == 0) return;
+
+            MutagenDamageProperties damageProps = mutagen?.damageProperties ?? DefaultDamageValues;
+
+            float oldSize = pawn.RaceProps.baseBodySize;
+            float newSize = newRace.race.baseBodySize;
+            float percentDiff;
+            if (oldSize < EPSILON && newSize < EPSILON) //prevent division by zero 
+                percentDiff = 0; //if they're both really small say no change
+            else if (oldSize < EPSILON)
+                percentDiff = MAX_APPAREL_PDIFF; //if just old size is small then completely destroy the apparel 
+            else
+            {
+                percentDiff = (newSize - oldSize) / oldSize; //signed percent difference between 
+                percentDiff += APPAREL_PDIFF_OFFSET; //add a little offset so if the body size is the same or slightly smaller we still apply some damage 
+                                    //trying to account for differences in 'body shape' 
+            }
+
+
+            float percentDamage =
+                Mathf.Clamp(percentDiff, 0,
+                            MAX_APPAREL_PDIFF); //clamp pDiff between [0, Max], if they shrink don't damage apparel  
+            percentDamage /= MAX_APPAREL_PDIFF; //normalize the percentDifference to get a percentage to damage apparel by  
+            var totalDamage = 0;
+
+            foreach (Apparel apparel in cachedApparel)
+            {
+                int damage = Mathf.CeilToInt(apparel.MaxHitPoints * percentDamage * damageProps.apparelDamageMultiplier)
+                           + damageProps.apparelDamageOffset;
+                int newHitPoints = Mathf.Max(apparel.HitPoints - damage, 0);
+                totalDamage += apparel.HitPoints - newHitPoints; //save the actual damage done 
+                apparel.HitPoints = newHitPoints;
+                if (apparel.HitPoints == 0)
+                {
+                    apparelTracker.Remove(apparel);
+                    apparelTracker.Notify_ApparelRemoved(apparel); 
+                    apparel.Destroy();
+                }
+            }
+
+            if (damageProps.biproduct != null && damageProps.spawnedBiproductMult > EPSILON)
+            {
+                int amountToSpawn = Mathf.RoundToInt(totalDamage * damageProps.spawnedBiproductMult);
+                Thing thing = ThingMaker.MakeThing(damageProps.biproduct);
+                thing.stackCount = amountToSpawn;
+
+                if (pawn.Spawned)
+                {
+                    GenPlace.TryPlaceThing(thing, pawn.PositionHeld, pawn.MapHeld, ThingPlaceMode.Near);
+                }
+                else
+                {
+                    Caravan caravan = pawn.GetCaravan();
+                    caravan?.AddPawnOrItem(thing, false);
+                }
+            }
+        }
+
+
         static TransformerUtility()
         {
             PossiblePawnKinds = new[]
@@ -33,6 +132,10 @@ namespace Pawnmorph
                 PawnKindDefOf.Drifter,
                 PawnKindDefOf.AncientSoldier
             };
+
+           
+            DefaultDamageValues= new MutagenDamageProperties();
+            
         }
 
         /// <summary> Removes all mutations from a pawn (used post reversion). </summary>
@@ -116,7 +219,17 @@ namespace Pawnmorph
             {
                 Hediff xhediff = HediffMaker.MakeHediff(hediff, pawn); // ...create an initialized version of the provided hediff...
                 xhediff.Severity = Rand.Range(0.00f, 1.00f); // ...set it to a random severity...
-                pawn.health.AddHediff(xhediff); // ...then apply it...
+                pawn.health.AddHediff(xhediff); // ...then apply it..
+                PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn); //make sure they have all the dynamic comps they need 
+                
+                //make sure it has a name 
+                if(pawn.Name == null)
+                {
+                    pawn.Name = new NameSingle(pawn.LabelShort); 
+                }
+
+                FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(pawn, null); //try to assign them a background if they're sapient 
+
             }
         }
 
@@ -225,9 +338,10 @@ namespace Pawnmorph
         ///     Cleans up all references to the original human pawn after creating the animal pawn. <br />
         ///     This does not call Pawn.DeSpawn.
         /// </summary>
-        public static void CleanUpHumanPawnPostTf(Pawn originalPawn, [CanBeNull] Hediff cause)
+        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause)
         {
-            HandleApparelAndEquipment(originalPawn);
+            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
+            HandleApparelAndEquipment(originalPawn); 
             if (cause != null)
                 originalPawn
                    .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.

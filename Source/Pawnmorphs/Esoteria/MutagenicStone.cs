@@ -3,6 +3,7 @@ using System.Linq;
 using Verse;
 using RimWorld;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 
 namespace Pawnmorph
 {
@@ -12,30 +13,47 @@ namespace Pawnmorph
     /// <seealso cref="RimWorld.Mineable" />
     public class MutagenicStone : Mineable
     {
+        private static readonly float _p; //only need one of these 
+        private const float MTTH_PLANT_MUTATE = 25;
+
         
+        static MutagenicStone()
+        {
+            _p = RandUtilities.GetUniformProbability(MTTH_PLANT_MUTATE, 4.16f); //one long tick is ~4.16 seconds
+        }
+
         /// <summary>called every once and a while</summary>
         public override void TickRare()
         {
             if (!Spawned || !LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableMutagenMeteor) return;
 
-            IEnumerable<Thing> enumerable = GenRadial.RadialDistinctThingsAround(Position, Map, 2.0f, true);
-            var pawnList = enumerable.OfType<Pawn>(); // Don't need to keep the non-pawns.
+            IEnumerable<Thing> enumerable = GenRadial.RadialDistinctThingsAround(Position, Map, 2.5f, true);
 
             var mutagen = MutagenDefOf.defaultMutagen;
-            foreach (Pawn pawn in pawnList)
+            foreach (Thing thing in enumerable)
             {
-                HediffSet hediffSet = pawn.health.hediffSet;
-
-                if (hediffSet.HasHediff(MorphTransformationDefOf.FullRandomTF) || hediffSet.HasHediff(MorphTransformationDefOf.StabiliserHigh)) continue;
-                if (!pawn.Spawned) continue;
-                if (!mutagen.CanInfect(pawn)) continue;
-
-                if (pawn.health.immunity?.GetImmunity(MorphTransformationDefOf.FullRandomTF) < 1f)
+                if (thing is Pawn pawn)
                 {
-                    pawn.health.AddHediff(MorphTransformationDefOf.FullRandomTF);
-                    IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
+                    MutatePawn(pawn, mutagen); 
+                }else if (thing is Plant plant)
+                {
+                    if(Rand.Value >= _p) continue;  
+
+                    PMPlantUtilities.TryMutatePlant(plant); 
+
                 }
             }
+        }
+
+        private static void MutatePawn(Pawn pawn, MutagenDef mutagen)
+        {
+            HediffSet hediffSet = pawn.health.hediffSet;
+
+            if (!pawn.Spawned || !mutagen.CanInfect(pawn))
+                return;
+
+            pawn.health.AddHediff(MorphTransformationDefOf.FullRandomTF);
+            IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
         }
     }
 }

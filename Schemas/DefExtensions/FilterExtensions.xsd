@@ -1,0 +1,65 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="../include/CommonComplex.xsd" />
+    <xs:complexType name="MorphRestrictionExtension">
+        <xs:sequence>
+            <xs:element name="morphFilter">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="isBlackList" type="xs:boolean" minOccurs="0" />
+                        <xs:element name="filterList" type="ListOfStrings" minOccurs="0" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="MutationrestrictionExtension">
+        <xs:sequence>
+            <xs:element name="mutationFilter">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="isBlackList" type="xs:boolean" minOccurs="0" />
+                        <xs:element name="filterList" type="ListOfStrings" minOccurs="0" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="ThoughtGroupDefExtension">
+        <xs:sequence>
+            <xs:element name="thoughts" type="ListOfStrings" />
+        </xs:sequence>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="SapientAnimalRestriction">
+        <xs:all>
+            <xs:element name="isForbidden" type="xs:boolean" minOccurs="0" />
+            <xs:element name="raceFilter" type="ListOfStrings" minOccurs="0" />
+        </xs:all>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="AspectRestriction">
+        <xs:all>
+            <xs:element name="invert" type="xs:boolean" minOccurs="0" />
+            <xs:element name="aspectEntries" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="aspectDef" minOccurs="0" />
+                                    <xs:element name="stageIndex" minOccurs="0" />
+                                </xs:all>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

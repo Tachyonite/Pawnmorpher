@@ -27,16 +27,56 @@ namespace Pawnmorph.TfSys
         /// <value>The game comp.</value>
         protected static PawnmorphGameComp GameComp => _comp ?? (_comp = Find.World.GetComponent<PawnmorphGameComp>());
 
+        /// <summary>
+        /// tries to infer the faction responsible for turning the original pawn into an animal 
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <returns></returns>
+        [CanBeNull]
+        protected Faction GetFactionResponsible([NotNull] Pawn originalPawn)
+        {
+            Faction responsibleFaction;
+            if (originalPawn.IsPrisonerOfColony)
+                responsibleFaction = Faction.OfPlayer;
+            else if (originalPawn.IsColonist && originalPawn.IsFreeColonist)
+                responsibleFaction = Faction.OfPlayer;
+            else if (originalPawn.guest != null)
+                responsibleFaction = originalPawn.guest.HostFaction;
+            else
+                responsibleFaction = null;
+
+            return responsibleFaction;
+        }
+
 
         /// <summary>The definition</summary>
+        [NotNull]
         public MutagenDef def;
 
         /// <summary>
-        /// Transforms the specified request.
+        /// Applies the apparel damage to the given pawn
         /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="newRace">The new race.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// pawn
+        /// or
+        /// newRace
+        /// </exception>
+        protected void ApplyApparelDamage([NotNull] Pawn pawn, [NotNull] ThingDef newRace)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (newRace == null) throw new ArgumentNullException(nameof(newRace));
+            TransformerUtility.ApplyTfDamageToApparel(pawn, newRace, def);
+        }
+
+        /// <summary>
+        /// Transforms the specified request and preforms all necessary cleanup after the transformation if successful 
+        /// </summary>
+        /// implementers should make sure to preform all necessary cleanup of the pawn post transformation  
         /// <param name="request">The request.</param>
-        /// <returns></returns>
-        public abstract TransformedPawn Transform(TransformationRequest request); 
+        /// <returns>the transformed pawn instance to be added to the database, should return null if the request cannot be met</returns>
+        [CanBeNull] public abstract TransformedPawn Transform(TransformationRequest request); 
 
         /// <summary>
         /// Determines whether this instance can infect the specified pawn.
@@ -50,6 +90,45 @@ namespace Pawnmorph.TfSys
             if (!def.canInfectAnimals && pawn.RaceProps.Animal) return false;
             if (!def.canInfectMechanoids && pawn.RaceProps.FleshType != FleshTypeDefOf.Normal) return false;
             var ext = pawn.def.GetModExtension<RaceMutagenExtension>();
+            if (ext != null)
+            {
+                return !ext.immuneToAll && !ext.blackList.Contains(def);
+            }
+
+            return !HasAnyImmunizingHediffs(pawn); 
+        }
+
+        /// <summary>
+        /// Determines whether the given pawn has any immunizing hediffs 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the given pawn has any immunizing hediffs; otherwise, <c>false</c>.
+        /// </returns>
+        protected bool HasAnyImmunizingHediffs([NotNull] Pawn pawn)
+        {
+            foreach (HediffDef immunizingDef in def.immunizingHediffs)
+            {
+                if (pawn.health.hediffSet.GetFirstHediffOfDef(immunizingDef) != null) return true; 
+            }
+
+            return false; 
+        }
+
+
+        /// <summary>
+        /// Determines whether this instance can infect the specified race definition.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can infect the specified race definition; otherwise, <c>false</c>.
+        /// </returns>
+        public virtual bool CanInfect(ThingDef raceDef)
+        {
+            if (raceDef.race == null) return false; 
+            if (!def.canInfectAnimals && raceDef.race.Animal) return false;
+            if (!def.canInfectMechanoids && raceDef.race.IsMechanoid) return false;
+            var ext = raceDef.GetModExtension<RaceMutagenExtension>();
             if (ext != null)
             {
                 return !ext.immuneToAll && !ext.blackList.Contains(def);
@@ -85,6 +164,19 @@ namespace Pawnmorph.TfSys
         {
             return CanInfect(pawn) && pawn.Map != null; 
         }
+        /// <summary>
+        /// Determines whether this instance can transform the specified race definition.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can transform the specified race definition; otherwise, <c>false</c>.
+        /// </returns>
+        public virtual bool CanTransform(ThingDef raceDef)
+        {
+            return CanInfect(raceDef); 
+        }
+
+        
 
         /// <summary>
         /// Try to revert the given instance of the transformed.
@@ -128,8 +220,9 @@ namespace Pawnmorph.TfSys
         protected abstract bool CanRevertPawnImp(T transformedPawn);
 
         /// <summary>
-        /// preform the requested transform 
+        /// preform the requested transform.
         /// </summary>
+        /// implementers should make sure to preform any cleanup/hiding of the original pawns 
         /// <param name="request">The request.</param>
         /// <returns></returns>
         protected abstract T TransformImpl(TransformationRequest request);
@@ -148,6 +241,7 @@ namespace Pawnmorph.TfSys
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
+        [CanBeNull]
         public sealed override TransformedPawn Transform(TransformationRequest request)
         {
             if (!IsValid(request))

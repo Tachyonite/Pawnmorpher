@@ -19,6 +19,8 @@ namespace Pawnmorph
         private const int TICKS_PER_DAY = 60000;
         /// <summary>The hatching ticker</summary>
         public float HatchingTicker = 0;
+        /// <summary>The total amount produced by this pawn</summary>
+        public int totalProduced = 0;
 
         private float brokenChance = 0f;
         private float bondChance = 0f;
@@ -40,6 +42,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref HatchingTicker, "hatchingTicker");
             Scribe_Values.Look(ref brokenChance, "brokenChance");
             Scribe_Values.Look(ref bondChance, "bondChance");
+            Scribe_Values.Look(ref totalProduced, "totalProduced");
             base.CompExposeData();
         }
 
@@ -60,6 +63,7 @@ namespace Pawnmorph
             }
             else if (Pawn.Map != null)
             {
+                if (!CanProduce) return;//it's here so we don't check for the aspect every tick 
                 if (Props.JobGiver != null && !Pawn.Downed)
                 {
                     GiveJob();
@@ -68,6 +72,21 @@ namespace Pawnmorph
                 {
                     Produce();
                 }
+            }
+        }
+        /// <summary>
+        /// Gets a value indicating whether this instance can produce.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance can produce; otherwise, <c>false</c>.
+        /// </value>
+        public bool CanProduce
+        {
+            get
+            {
+                var mInfused = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
+                return mInfused?.StageIndex != 2; //dry is the third stage 
+                                                //TODO make this a stat? 
             }
         }
 
@@ -98,6 +117,7 @@ namespace Pawnmorph
             Produce(amount, chance, resource, rareResource, thought);
         }
 
+
         private void Produce(int amount, float chance, ThingDef resource, ThingDef rareResource, ThoughtDef stageThought)
         {
             RandUtilities.PushState();
@@ -107,12 +127,36 @@ namespace Pawnmorph
             HatchingTicker = 0;
             var thingCount = 0;
             var rareThingCount = 0;
+            Aspect infusedAspect = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
+
+            int? sIndex = infusedAspect?.StageIndex;
+
 
             for (var i = 0; i < amount; i++)
-                if (Rand.RangeInclusive(0, 100) <= chance && rareResource != null)
+            {
+                bool shouldProduceRare;
+                switch (sIndex)
+                {
+                    case null:
+                        shouldProduceRare = Rand.RangeInclusive(0, 100) <= chance;
+                        break;
+                    case 0:
+                        shouldProduceRare = true;
+                        break;
+                    case 1:
+                        shouldProduceRare = false;
+                        break;
+                    case 2:
+                        return; //produce nothing 
+                    default:
+                        throw new ArgumentOutOfRangeException(sIndex.Value.ToString());
+                }
+
+                if (shouldProduceRare && rareResource != null)
                     rareThingCount++;
                 else
                     thingCount++;
+            }
 
             Thing thing = ThingMaker.MakeThing(resource);
             thing.stackCount = thingCount;
@@ -173,7 +217,7 @@ namespace Pawnmorph
                 brokenChance += 0.5f;
                 bondChance += 0.2f;
             }
-
+            totalProduced += rareThingCount + thingCount;
             RandUtilities.PopState();
         }
 

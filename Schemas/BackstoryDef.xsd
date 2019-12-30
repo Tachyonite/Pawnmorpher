@@ -1,0 +1,165 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:include schemaLocation="MorphPawnKindExtension.xsd" />
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="AlienRace.BackstoryDef" type="BackstoryDef" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="BackstoryDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="title" type="xs:string" minOccurs="0" />
+            <xs:element name="titleShort" type="xs:string" minOccurs="0" />
+            <xs:element name="titleShortFemale" type="xs:string" minOccurs="0"/>
+            <xs:element name="baseDescription" type="xs:string" minOccurs="0" />
+            <xs:element name="bodyTypeGlobal" type="xs:string" minOccurs="0" />
+            <xs:element name="bodyTypeMale" type="xs:string" minOccurs="0" />
+            <xs:element name="bodyTypeFemale" type="xs:string" minOccurs="0" />
+            <xs:element name="slot" type="BackstorySlot" minOccurs="0" />
+            <xs:element name="shuffleable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="addToDatabase" type="xs:boolean" minOccurs="0" />
+            <xs:element name="workAllows" type="ListOfWorkTags" minOccurs="0" />
+            <xs:element name="workDisables" type="ListOfWorkTags" minOccurs="0"/>
+            <xs:element name="requiredWorkTags" type="ListOfWorkTags" minOccurs="0"/>
+
+            <xs:element name="skillGains" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="BackstoryDefSkillListItem" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="spawnCategories" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="forcedTraits" type="ListOfTraits" minOccurs="0"/>
+            <xs:element name="disallowedTraits" type="ListOfTraits" minOccurs="0"/>
+
+            <xs:element name="maleCommonality" type="xs:float" minOccurs="0"/>
+            <xs:element name="femaleCommonality" type="xs:float" minOccurs="0"/>
+            <xs:element name="linkedBackstory" type="xs:string" minOccurs="0"/>
+            <xs:element name="relationSettings" type="RelationSettings" minOccurs="0"/>
+            <xs:element name="forcedHediffs" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="bioAgeRange" type="IntRange" minOccurs="0" />
+            <xs:element name="chronoAgeRange" type="IntRange" minOccurs="0"/>
+            <xs:element name="forcedItems" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="ThingDefCountRangeClass" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="modExtensions" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="MorphPawnKindExtension">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+   
+    <xs:complexType name="BackstoryDefSkillListItem">
+        <xs:sequence>
+            <xs:element name="defName" type="xs:string"/>
+            <xs:element name="amount" type="xs:int" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AlienTraitEntry">
+        <xs:sequence>
+            <xs:element name="defName" type="xs:string"/>
+            <xs:element name="degree" type="xs:int" minOccurs="0"/>
+            <xs:element name="chance" type="xs:float" minOccurs="0"/>
+            <xs:element name="commonalityMale" type="xs:float" minOccurs="0"/>
+            <xs:element name="commonalityFemale" type="xs:float" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ThingDefCountRangeClass">
+        <xs:sequence>
+            <xs:element name="thingDef" type="xs:string"/>
+            <xs:element name="countRange" type="IntRange"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RelationSettings">
+        <xs:sequence>
+            <xs:element name="relationChanceModifierChild" type="xs:float" minOccurs="0"/>
+            <xs:element name="relationChanceModifierExLover" type="xs:float" minOccurs="0"/>
+            <xs:element name="relationChanceModifierExSpouse" type="xs:float" minOccurs="0"/>
+            <xs:element name="relationChanceModifierFiance" type="xs:float" minOccurs="0"/>
+            <xs:element name="relationChanceModifierLover" type="xs:float" minOccurs="0"/>
+            <xs:element name="relationChanceModifierParent" type="xs:float" minOccurs="0"/>
+            <xs:element name="relationChanceModifierSibling" type="xs:float" minOccurs="0"/>
+            <xs:element name="relationChanceModifierSpouse" type="xs:float" minOccurs="0"/>
+
+            <xs:element name="renamer" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="relation" type="xs:string" minOccurs="0"/>
+                                    <xs:element name="label" type="xs:string" minOccurs="0" />
+                                    <xs:element name="femaleLabel" type="xs:string" minOccurs="0" />
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ListOfTraits">
+        <xs:sequence>
+            <xs:element name="li" type="AlienTraitEntry" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ListOfWorkTags">
+        <xs:sequence>
+            <xs:element name="li" type="WorkTags" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Simple types like enums  -->
+    <xs:simpleType name="BackstorySlot">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Childhood" />
+            <xs:enumeration value="Adulthood" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="WorkTags">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None"/>
+            <xs:enumeration value="ManualDumb"/>
+            <xs:enumeration value="ManualSkilled"/>
+            <xs:enumeration value="Violent"/>
+            <xs:enumeration value="Caring"/>
+            <xs:enumeration value="Social"/>
+            <xs:enumeration value="Intellectual"/>
+            <xs:enumeration value="Animals"/>
+            <xs:enumeration value="Artistic"/>
+            <xs:enumeration value="Crafting"/>
+            <xs:enumeration value="Cooking"/>
+            <xs:enumeration value="Firefighting"/>
+            <xs:enumeration value="Cleaning"/>
+            <xs:enumeration value="Hauling"/>
+            <xs:enumeration value="PlantWork"/>
+            <xs:enumeration value="Mining"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

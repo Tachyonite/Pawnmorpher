@@ -4,6 +4,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace Pawnmorph
         /// <summary>
         /// the def of this aspect 
         /// </summary>
+        [NotNull]
         public AspectDef def;
 
         private int _stage = 0;
@@ -35,6 +37,15 @@ namespace Pawnmorph
         /// </summary>
         public int Priority => def.priority;  
         private AspectTracker _tracker;
+
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is bad.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is bad; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsBad => CurrentStage.isBad; 
 
         /// <summary>
         /// the color of the label in the mutation ITab 
@@ -69,6 +80,7 @@ namespace Pawnmorph
         }
 
         /// <summary> The current stage. </summary>
+        [NotNull]
         public AspectStage CurrentStage => Stages[StageIndex];
 
         AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
@@ -115,9 +127,34 @@ namespace Pawnmorph
             protected set => _shouldRemove = value;
         }
 
+
+        /// <summary>
+        /// Gets all thoughts nullified by this aspect.
+        /// </summary>
+        /// <value>
+        /// The nullified thoughts.
+        /// </value>
+        [NotNull]
+        public IEnumerable<ThoughtDef> NullifiedThoughts
+        {
+            get
+            {
+                foreach (ThoughtDef defNullifiedThought in def.nullifiedThoughts)
+                {
+                    yield return defNullifiedThought; 
+                }
+
+                foreach (ThoughtDef currentStageNullifiedThought in CurrentStage.nullifiedThoughts)
+                {
+                    yield return currentStageNullifiedThought; 
+                }
+            }
+        }
+
         /// <summary>
         /// list of all stages in this Aspect 
         /// </summary>
+        [NotNull]
         protected List<AspectStage> Stages => def.stages;
 
         /// <summary>
@@ -402,16 +439,16 @@ namespace Pawnmorph
                 }
             }
 
-            if (currentStage.statFactors != null)
+            if (currentStage.statOffsets != null)
             {
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine();
-                for (int j = 0; j < currentStage.statFactors.Count; j++)
+                for (int j = 0; j < currentStage.statOffsets.Count; j++)
                 {
-                    StatModifier statModifier2 = currentStage.statFactors[j];
-                    string toStringAsFactor = statModifier2.ToStringAsFactor;
+                    StatModifier statModifier2 = currentStage.statOffsets[j];
+                    string toStringAsFactor = statModifier2.ValueToStringAsOffset;
                     string value3 = "    " + statModifier2.stat.LabelCap + " " + toStringAsFactor;
-                    if (j < currentStage.statFactors.Count - 1)
+                    if (j < currentStage.statOffsets.Count - 1)
                     {
                         stringBuilder.AppendLine(value3);
                     }

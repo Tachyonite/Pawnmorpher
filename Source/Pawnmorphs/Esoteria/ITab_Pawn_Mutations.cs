@@ -62,7 +62,15 @@ namespace Pawnmorph
 
         protected bool ShouldShowTab(Pawn pawn)
         {
-            return (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker(false)?.AllMutations.Count() ?? 0) > 0);
+            var shouldShow = (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker(false)?.AllMutations.Count() ?? 0) > 0);
+            shouldShow |= (pawn.GetAspectTracker()?.AspectCount ?? 0) > 0;
+            if (shouldShow) return true;
+
+            var fHumanStatus = pawn.GetFormerHumanStatus();
+            if (fHumanStatus == null) return false;
+            return true; //just always showing for former humans for now 
+
+
         }
 
 
@@ -83,7 +91,9 @@ namespace Pawnmorph
 
             // Draw the header.
             Vector2 col1 = new Vector2(0f, 0f);
-            DrawMutTabHeader(ref col1, mainView.width);
+            if (SelPawn.GetMutationTracker(false) != null) 
+                DrawMutTabHeader(ref col1, mainView.width);
+            
 
             // Set up scrolling area.
             Rect outRect = new Rect(col1.x, col1.y, mainView.width, mainView.height - col1.y - 10f);
@@ -171,7 +181,7 @@ namespace Pawnmorph
         {
             // Set up the mutation tracker.
             MutationTracker mutationTracker = PawnToShowMutationsFor.GetMutationTracker();
-            Assert(mutationTracker != null, "mutationTracker != null"); //mutationTracker should never be null
+            if (mutationTracker == null) return; 
 
             // Create a list of the current morph influences upon the pawn.
             IEnumerable<VTuple<MorphDef, float>> influences = mutationTracker.NormalizedInfluences.ToList();
@@ -244,13 +254,23 @@ namespace Pawnmorph
                 // Figure out what stage the hedif is in.
                 string stageString = "";
                 if (prodMutation.CurStageIndex > 0)
-                    stageString = " (" + new string('+', prodMutation.CurStageIndex) + ")";
+                    stageString = " " + new string('+', prodMutation.CurStageIndex) + "";
                 HediffComp_Staged stage = prodcomp.Props.stages.ElementAt(prodMutation.CurStageIndex);
 
                 // Draw the main text (the mutation's label, current stage and a percentage to completion).
+
+                string text;
                 string mutLabel = prodMutation.def.LabelCap;
-                float curPercent = prodcomp.HatchingTicker / (stage.daysToProduce * 60000);
-                string text = $"{mutLabel}{stageString} ({curPercent.ToStringPercent()}) ";
+                if (prodcomp.CanProduce)
+                {
+                    float curPercent = prodcomp.HatchingTicker / (stage.daysToProduce * 60000);
+                    text = $"{mutLabel}{stageString} ({curPercent.ToStringPercent()}) ";
+                }
+                else //display something special if it's dry 
+                {
+                    GUI.color = Color.red;
+                    text = $"{mutLabel} (dry)"; 
+                }
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
                 curPos.y += rectHeight;
@@ -264,6 +284,10 @@ namespace Pawnmorph
                 float subRectHeight = Text.CalcHeight(subtext, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, subRectHeight), subtext);
                 curPos.y += subRectHeight;
+                string subtext2 = $"Total produced: {prodcomp.totalProduced}";
+                float subRectHeight2 = Text.CalcHeight(subtext, width);
+                Widgets.Label(new Rect(curPos.x, curPos.y, width, subRectHeight2), subtext2);
+                curPos.y += subRectHeight2;
 
                 GUI.color = Color.white;
                 Text.Font = GameFont.Small;
