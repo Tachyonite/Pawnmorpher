@@ -14,6 +14,12 @@
 
                 optional field that if set overrides the default mutation log rule pack 
                 <mutationLogRulePack>SomeRulePackDef</mutationLogRulePack>
+                
+                optional thought def that if set will be added to a pawn if they get the mutation 
+                <mutationMemory>MemoryDef</mutationMemory>
+
+                optional tale def that will be added to the tales if a pawn is given this mutation 
+                <mutationTale>TaleDef</mutationTale>
             </li>
         </modExtension>
     </HediffDef>

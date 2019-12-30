@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -41,6 +42,16 @@ namespace Pawnmorph
         [CanBeNull] public RulePackDef mutationLogRulePack;
 
         [Unsaved] private bool? _isRestricted;
+
+
+
+        /// <summary>The mutation tale</summary>
+        [CanBeNull]
+        public TaleDef mutationTale;
+
+        /// <summary>The mutation memory</summary>
+        [CanBeNull]
+        public ThoughtDef mutationMemory;
 
         /// <summary>Gets a value indicating whether this instance is restricted to special PawnKindGroups</summary>
         /// <value>
