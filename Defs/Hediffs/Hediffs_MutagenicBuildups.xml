@@ -75,7 +75,7 @@
                             <li>Powerful</li>
                         </blackListCategories>
                         <mtbDays>0.1</mtbDays>
-                        <mtbUnits>10000</mtbUnits>
+                        <mtbUnits>20000</mtbUnits>
 
                     </li>
                 </hediffGivers>
@@ -91,6 +91,17 @@
                         <offset>-0.25</offset>
                     </li>
                 </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+                        <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+                        <blackListCategories>
+                            <li>Powerful</li>
+                        </blackListCategories>
+                        <mtbDays>0.05</mtbDays>
+                        <mtbUnits>20000</mtbUnits>
+
+                    </li>
+                </hediffGivers>
             </li>
             <li>
                 <label>extreme</label>
@@ -103,6 +114,17 @@
                         <setMax>0.50</setMax>
                     </li>
                 </capMods>
+                <hediffGivers>
+                    <li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+                        <hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+                        <blackListCategories>
+                            <li>Powerful</li>
+                        </blackListCategories>
+                        <mtbDays>0.05</mtbDays>
+                        <mtbUnits>20000</mtbUnits>
+
+                    </li>
+                </hediffGivers>
             </li>
             <li>
                 <minSeverity>0.85</minSeverity>

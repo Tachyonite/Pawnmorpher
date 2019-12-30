@@ -203,6 +203,7 @@ namespace Pawnmorph
                 if (health.hediffSet.PartIsMissing(bodyPartRecord))
                     //make sure none of the part are missing 
                     continue;
+                if (health.hediffSet.HasHediff(mutation, bodyPartRecord)) continue;
 
                 Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, bodyPartRecord);
                 health.AddHediff(hediff, bodyPartRecord);
@@ -250,7 +251,7 @@ namespace Pawnmorph
             if (pawn?.health?.hediffSet == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (part == null) throw new ArgumentNullException(nameof(part));
-
+            if (pawn.health.hediffSet.HasHediff(mutation, part)) return false; 
             Pawn_HealthTracker health = pawn.health;
             var addedRecords = new List<BodyPartRecord>();
             if (health.hediffSet.PartIsMissing(part))

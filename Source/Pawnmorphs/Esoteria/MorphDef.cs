@@ -52,8 +52,7 @@ namespace Pawnmorph
 
         [Unsaved] private readonly Dictionary<BodyDef, float> _maxInfluenceCached = new Dictionary<BodyDef, float>();
 
-        /// <summary> The percent influence this morph has upon the pawn.</summary>
-        private float? _totalInfluence;
+       
 
         /// <summary> Any mutations directly associated with this morph (the hediff specifies this MorphDef).</summary>
         [Unsaved] private List<HediffGiver_Mutation> _associatedMutations;

@@ -19,9 +19,63 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediff_Morph" />
     public class MutagenicBuildup : Hediff_Morph
     {
-        private MorphDef _chosenMorphDef; 
+        private MorphDef _chosenMorphDef;
         private HediffDef _chosenMorphTf;
         private HediffGiver_TF _transformation;
+        private SimpleCurve _mtbVSeverityCurve;
+
+        
+
+        private SimpleCurve MtbVSeverityCurve
+        {
+            get
+            {
+                float min = float.PositiveInfinity;
+                if (_mtbVSeverityCurve == null)
+                {
+                    var points = new List<CurvePoint>();
+                    foreach (HediffStage hediffStage in def.stages)
+                    {
+                        List<float> mtbs = hediffStage.hediffGivers.MakeSafe()
+                                                      .OfType<Giver_MutationChaotic>()
+                                                      .Select(g => g.mtbDays)
+                                                      .ToList();
+                        if (mtbs.Count == 0)
+                        {
+                            continue;
+                        }
+
+                        float averageMtb = mtbs.Average();
+                        if (min > averageMtb) min = averageMtb; //get the min of all stages 
+                        points.Add(new CurvePoint(hediffStage.minSeverity, averageMtb));
+                    }
+
+                    
+                    _mtbVSeverityCurve = new SimpleCurve();
+                    _mtbVSeverityCurve.SetPoints(points);
+                }
+
+
+                return _mtbVSeverityCurve;
+            }
+        }
+
+        private float? _averageMtbUnits;
+
+
+        private float MTBUnits
+        {
+            get
+            {
+                if (_averageMtbUnits == null)
+                    _averageMtbUnits = def.GetAllHediffGivers()
+                                          .OfType<Giver_MutationChaotic>()
+                                          .Select(g => g.mtbUnits)
+                                          .Average();
+
+                return _averageMtbUnits.Value;
+            }
+        }
 
 
         private void PickRandomMorphTf()
@@ -63,7 +117,6 @@ namespace Pawnmorph.Hediffs
 
         private List<BodyPartRecord> _recordList;
         private int _curIndex;
-        private int _rOff; 
 
 
         /// <summary>
@@ -71,11 +124,10 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public override void Tick()
         {
-            base.Tick();
-
-            if (pawn.IsHashIntervalTick(60 + _rOff) && _chosenMorphDef != null)
+            if(_chosenMorphDef == null) base.Tick(); //don't use the regular hediff givers if the chosen morph is set 
+            else if (Rand.MTBEventOccurs(MtbVSeverityCurve.Evaluate(Severity), AverageMTBUnits, 60))
             {
-                _rOff = Rand.Range(0, 20); 
+                 
                 if (_recordList == null || _recordList.Count == 0)
                 {
                     _recordList = new List<BodyPartRecord>();
@@ -86,9 +138,10 @@ namespace Pawnmorph.Hediffs
                 if (_curIndex >= _recordList.Count) return; 
                 var record = _recordList[_curIndex];
                 _curIndex++;
-                var mutation = MutationUtilities.GetMutationsByPart(record.def).RandomElementWithFallback();
+                var mutation = _chosenMorphDef.GetMutationForPart(record.def).RandomElementWithFallback();
                 if (mutation != null)
                 {
+                    Log.Message($"Adding {mutation.defName} to {pawn.Name} with set morph of {_chosenMorphDef.defName}");
                     if (MutationUtilities.AddMutation(pawn, mutation, record))
                     {
                         var mutagen = this.GetMutagenDef();
