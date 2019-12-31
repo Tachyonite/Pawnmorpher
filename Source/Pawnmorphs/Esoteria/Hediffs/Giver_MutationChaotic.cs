@@ -19,6 +19,64 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     public class Giver_MutationChaotic : HediffGiver
     {
+        private SimpleCurve _mtbVSeverityCurve;
+
+        SimpleCurve MtbVSeverityCurve
+        {
+            get
+            {
+                float min = float.PositiveInfinity; 
+                if (_mtbVSeverityCurve == null)
+                {
+                    List<CurvePoint> points = new List<CurvePoint>(); 
+                    foreach (HediffStage hediffStage in hediff.stages)
+                    {
+                        var mtbs = hediffStage.hediffGivers.MakeSafe()
+                                                    .OfType<Giver_MutationChaotic>()
+                                                    .Select(g => g.mtbDays)
+                                                    .ToList();
+                        if (mtbs.Count == 0)
+                            continue;
+                        var averageMtb = mtbs.Average();
+                        if (min > averageMtb) min = averageMtb; //get the min of all stages 
+                        points.Add(new CurvePoint(hediffStage.minSeverity, averageMtb)); 
+
+                    }
+
+                    var lStage = hediff.stages.Last();
+                    var lSeverity = lStage.minSeverity;
+                    points.Add(new CurvePoint(lSeverity, min / 10));
+
+                    _mtbVSeverityCurve = new SimpleCurve();
+                    _mtbVSeverityCurve.SetPoints(points); 
+                   
+                }
+
+
+                return _mtbVSeverityCurve; 
+            }
+        }
+
+        private float? _averageMtbUnits;
+
+
+        float MTBUnits
+        {
+            get
+            {
+                if (_averageMtbUnits == null)
+                {
+                    _averageMtbUnits = hediff.GetAllHediffGivers()
+                                             .OfType<Giver_MutationChaotic>()
+                                             .Select(g => g.mtbUnits)
+                                             .Average(); 
+                }
+
+                return _averageMtbUnits.Value; 
+            }
+        }
+
+      
         private List<HediffGiver_Mutation> _possibleMutations;
         /// <summary>
         /// the morphType to get hediff givers from 

@@ -17,7 +17,7 @@ namespace Pawnmorph
     public class StockGenerator_MorphSlaves : StockGenerator
     {
         [UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        private bool respectPopulationIntent;
+        private bool respectPopulationIntent = default;
 
         /// <summary>
         /// Generates the things.

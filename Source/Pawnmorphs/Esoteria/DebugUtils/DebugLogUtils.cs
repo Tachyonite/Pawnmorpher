@@ -86,36 +86,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
-        static void GetAllBreakingPawns()
-        {
-            Log.Message($"checked pawns: {FormerHumanUtilities.AllPlayerFormerHumans.Select(p => p.Name?.ToStringFull ?? p.LabelShort).Join(",")}");
-
-            StringBuilder builder = new StringBuilder();
-            foreach (Pawn pawn in FormerHumanUtilities.AllSapientAnimalsMinorBreakRisk)
-            {
-                if(pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) continue;
-                builder.AppendLine($"{pawn.Name}: minor break risk");
-            }
-
-            foreach (Pawn pawn in FormerHumanUtilities.AllSapientAnimalsMajorBreakRisk)
-            {
-                if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) continue;
-                builder.AppendLine($"{pawn.Name}: major break risk");
-            }
-
-            foreach (Pawn pawn in FormerHumanUtilities.AllSapientAnimalsExtremeBreakRisk)
-            {
-                if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) continue;
-                builder.AppendLine($"{pawn.Name}: major break risk");
-            }
-
-            Log.Message(builder.ToString()); 
-        }
-
-
-
+        
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
         internal static void GetAllPawnsOnMapWithSAComp()
@@ -180,17 +151,7 @@ namespace Pawnmorph.DebugUtils
                            .Select(d => d.defName); 
             Log.Message($"hediffs missing mutation extension:\n{string.Join("\n", mutations.ToArray())}");
         }
-
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
-        public static void ListPawnKindsMissingExtension()
-        {
-            var kinds = DefDatabase<PawnKindDef>.AllDefs.Where(k => k.race == ThingDefOf.Human && !k.HasModExtension<MorphPawnKindExtension>())
-                                                .Select(k => k.defName);
-
-            Log.Message($"pawnkinds missing def extension:\n{string.Join("\n", kinds.ToArray())}");
-        }
-
+        
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]
         public static void CheckBodyHediffGraphics()
@@ -256,50 +217,6 @@ namespace Pawnmorph.DebugUtils
             else
                 Log.Message("no inconsistencies found");
         }
-
-       
-
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        [ModeRestrictionPlay]
-        public static void CheckMorphTracker()
-        {
-            var builder = new StringBuilder();
-            foreach (var allMapsFreeColonist in PawnsFinder.AllMaps_FreeColonists)
-                if (allMapsFreeColonist.GetComp<MorphTrackingComp>() == null)
-                    builder.AppendLine($"{allMapsFreeColonist.Name} does not have a morphTracker!");
-
-            if (builder.Length > 0)
-            {
-                Log.Warning(builder.ToString());
-                builder = new StringBuilder();
-            }
-
-            var map = Find.CurrentMap;
-            if (map == null) return;
-            var comp = map.GetComponent<MorphTracker>();
-
-            foreach (var morph in DefDatabase<MorphDef>.AllDefs)
-            {
-                var i = comp[morph];
-                builder.AppendLine($"{morph.defName}={i}");
-            }
-
-
-            builder.AppendLine("--------------Groups------------");
-
-            foreach (var morphGroupDef in DefDatabase<MorphGroupDef>.AllDefs)
-            {
-                var counter = 0;
-                foreach (var morphDef in morphGroupDef.MorphsInGroup) counter += comp[morphDef];
-
-                builder.AppendLine($"{morphGroupDef.defName}={counter}");
-            }
-
-
-            Log.Message(builder.ToString());
-        }
-
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
@@ -411,112 +328,6 @@ namespace Pawnmorph.DebugUtils
 
             Log.Message(builder.ToString()); 
         }
-
-
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        public static void GenerateWritingReport()
-        {
-            var builder = new StringBuilder();
-
-            IEnumerable<HediffDef> allMutations =
-                DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass));
-
-            List<HediffDef> allHediffsWithGivers =
-                DefDatabase<HediffDef>.AllDefs.Where(d => d.GetAllHediffGivers().Any(g => g is HediffGiver_Mutation)).ToList();
-
-            List<HediffGiver_Mutation> allGivers = allHediffsWithGivers
-                                                  .SelectMany(h => h.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
-                                                  .ToList();
-
-            IEnumerable<MorphDef> allMorphs = MorphDef.AllDefs;
-            List<Def_MorphThought> allBPReactions = DefDatabase<ThoughtDef>
-                                                   .AllDefs.OfType<Def_MorphThought>()
-                                                   .Where(d => d?.requiredTraits?.Contains(TraitDefOf.BodyPurist) ?? false)
-                                                   .ToList();
-            List<Def_MorphThought> allFurryReactions = DefDatabase<ThoughtDef>
-                                                      .AllDefs.OfType<Def_MorphThought>()
-                                                      .Where(d => d.requiredTraits?.Contains(PMTraitDefOf.MutationAffinity)
-                                                               ?? false)
-                                                      .ToList();
-
-            var mutationRows = new List<string[]>
-            {
-                new[] {"defName", "label", "description", "tale", "memory"}
-            };
-
-            var morphRRows = new List<string[]>
-            {
-                new[]
-                {
-                    "defName", "label", "description", "tfMemory", "tfTale", "furry tf reaction", " body purist tf reaction",
-                    "default reversion memory", "furry reversion memory", "bp reversion memory"
-                }
-            };
-
-            foreach (HediffDef mutation in allMutations)
-            {
-                string defName = mutation.defName;
-                string label = mutation.label;
-                string description = mutation.description;
-
-                HediffGiver_Mutation giver =
-                    allGivers.FirstOrDefault(g => g.hediff == mutation && (g.tale != null || g.memory != null));
-
-                TaleDef tale = giver?.tale;
-                ThoughtDef memory = giver?.memory;
-
-                string taleDefName = tale?.defName ?? "";
-                string memoryDefName = memory?.defName ?? "";
-                mutationRows.Add(new[]
-                {
-                    defName.CSVFormat(), label.CSVFormat(), description.CSVFormat(), taleDefName.CSVFormat(),
-                    memoryDefName.CSVFormat()
-                });
-            }
-
-
-            foreach (MorphDef morph in allMorphs)
-            {
-                string defName = morph.defName;
-                string label = morph.label;
-                string description = morph.description;
-                MorphDef.TransformSettings tfSettings = morph.transformSettings;
-                string tfMemory = tfSettings?.transformationMemory?.defName ?? "";
-                string tfTale = tfSettings?.transformTale?.defName ?? "";
-                string furryTfReaction = allFurryReactions.FirstOrDefault(d => d.morph == morph)?.defName ?? "";
-                string bpTfReaction = allBPReactions.FirstOrDefault(d => d.morph == morph)?.defName ?? "";
-                string defaultReversionMem = tfSettings?.revertedMemory?.defName ?? "";
-                string furryReversionMem = tfSettings?.revertedMemoryFurry?.defName ?? "";
-                string bpReversionMem = tfSettings?.revertedMemoryBP?.defName ?? "";
-                morphRRows.Add(new[]
-                {
-                    defName.CSVFormat(), label.CSVFormat(), description.CSVFormat(), tfMemory.CSVFormat(), tfTale.CSVFormat(),
-                    furryTfReaction.CSVFormat(), bpTfReaction.CSVFormat(),
-                    defaultReversionMem.CSVFormat(), furryReversionMem.CSVFormat(), bpReversionMem.CSVFormat()
-                });
-            }
-
-
-            foreach (string[] row in mutationRows) builder.AppendLine(string.Join(",", row));
-
-            string dPath = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents");
-            dPath = Path.Combine(dPath, "PawnmorpherReports");
-            Directory.CreateDirectory(dPath);
-
-            string mutationRPath = Path.Combine(dPath, "mutation_report.csv");
-
-            File.WriteAllText(mutationRPath, builder.ToString());
-            builder.Length = 0;
-
-            foreach (string[] row in morphRRows) builder.AppendLine(string.Join(",", row));
-
-            string morphRPath = Path.Combine(dPath, "morph_report.csv");
-            File.WriteAllText(morphRPath, builder.ToString());
-
-            Log.Message($"mutation reports written to {dPath}");
-        }
-
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]

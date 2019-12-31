@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -42,6 +43,16 @@ namespace Pawnmorph
 
         [Unsaved] private bool? _isRestricted;
 
+
+
+        /// <summary>The mutation tale</summary>
+        [CanBeNull]
+        public TaleDef mutationTale;
+
+        /// <summary>The mutation memory</summary>
+        [CanBeNull]
+        public ThoughtDef mutationMemory;
+
         /// <summary>Gets a value indicating whether this instance is restricted to special PawnKindGroups</summary>
         /// <value>
         ///     <c>true</c> if this instance is restricted the mutation can only be given to special PawnKindGroups; otherwise it
@@ -64,6 +75,7 @@ namespace Pawnmorph
         public override IEnumerable<string> ConfigErrors()
         {
             if (generationCost <= 0) yield return $"generationCost:{{{generationCost}}} must be greater then zero";
+            if (parts.NullOrEmpty()) yield return "parts list is null or empty!";
         }
 
 

@@ -2,6 +2,7 @@
 // last updated 11/03/2019  11:05 AM
 
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
 using RimWorld;
@@ -69,19 +70,19 @@ namespace Pawnmorph.Damage
         /// </summary>
         /// <param name="forceHitPart">The force hit part.</param>
         /// <param name="pawn">The pawn.</param>
-        protected void AddMutationOn(BodyPartRecord forceHitPart, Pawn pawn)
+        protected void AddMutationOn([NotNull] BodyPartRecord forceHitPart, [NotNull] Pawn pawn)
         {
             if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return;
             while (forceHitPart != null)
             {
-                HediffGiver_Mutation giver = MutationUtilities.GetMutationsFor(forceHitPart.def).RandomElementWithFallback();
-                if (giver == null)
+                var mutation = MutationUtilities.GetMutationsByPart(forceHitPart.def).RandomElementWithFallback();
+                if (mutation == null)
                 {
                     forceHitPart = forceHitPart.parent; //go upward until we hit a mutable part 
                     continue;
                 }
 
-                if (!giver.TryApply(pawn, forceHitPart))
+                if (!MutationUtilities.AddMutation(pawn, mutation, forceHitPart))
                 {
                     forceHitPart = forceHitPart.parent; //go upward until we hit a mutable part  
                     continue;
