@@ -1,4 +1,6 @@
-﻿using Pawnmorph.Utilities;
+﻿using Pawnmorph.FormerHumans;
+using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -21,6 +23,17 @@ namespace Pawnmorph
             }
         }
 
+
+        bool CanBeFormerHuman()
+        {
+            if (!LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers) return false; 
+            if (parent.Faction != null) return false; 
+            var pawn = (Pawn) parent;
+            if (pawn.relations == null) return true;
+            if (pawn.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Child)) return false;
+            return true; 
+        }
+
         /// <summary>
         /// called every tick after it's parent updates 
         /// </summary>
@@ -31,7 +44,7 @@ namespace Pawnmorph
             if (!triggered)
             {
                 triggered = true;
-                if (LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers && Rand.RangeInclusive(0, 100) <= Props.Chance && parent.Faction == null)
+                if (CanBeFormerHuman() && Rand.RangeInclusive(0, 100) <= Props.Chance)
                 {
                     float sL = Rand.Value;
                     FormerHumanUtilities.MakeAnimalSapient((Pawn) parent, sL); 
