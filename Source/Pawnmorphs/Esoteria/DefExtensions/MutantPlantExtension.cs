@@ -17,6 +17,11 @@ namespace Pawnmorph.DefExtensions
     public class MutantPlantExtension : DefModExtension
     {
         /// <summary>
+        /// if true, then the attached mutant plant will not be swapped for regular plants 
+        /// </summary>
+        public bool ignore;
+
+        /// <summary>
         /// The priority
         /// </summary>
         /// this is used to determine what order the plants are checked,

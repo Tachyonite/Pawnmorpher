@@ -146,6 +146,7 @@
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
     <Compile Include="HPatches\PawnPatches.cs" />
     <Compile Include="HPatches\PlantGrowingPatches.cs" />
+    <Compile Include="HPatches\PlantPatches.cs" />
     <Compile Include="HPatches\ProductionCompPatches.cs" />
     <Compile Include="HPatches\RelationshipPatches.cs" />
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
