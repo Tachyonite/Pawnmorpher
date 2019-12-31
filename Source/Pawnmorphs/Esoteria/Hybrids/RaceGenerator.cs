@@ -264,7 +264,8 @@ namespace Pawnmorph.Hybrids
                 socialPropernessMatters = humanDef.socialPropernessMatters,
                 stuffCategories = humanDef.stuffCategories?.ToList(),
                 designationCategory = humanDef.designationCategory,
-                tradeTags = humanDef.tradeTags?.ToList()
+                tradeTags = humanDef.tradeTags?.ToList(),
+                tradeability = humanDef.tradeability
             };
         }
 
