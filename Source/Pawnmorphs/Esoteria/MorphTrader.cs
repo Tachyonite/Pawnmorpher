@@ -108,9 +108,8 @@ namespace Pawnmorph
                 PawnGenerationRequest request = new PawnGenerationRequest(kind2, null, PawnGenerationContext.NonPlayer, tile);
                 Pawn pawn = PawnGenerator.GeneratePawn(request); //Generate the animal!
 
-                Hediff h = HediffMaker.MakeHediff(HediffDef.Named("TransformedHuman"), pawn);
-                h.Severity = Rand.Range(0.02f, 0.9f);
-                pawn.health.AddHediff(h);
+                
+               
 
                 if (pawnOriginal == null)
                 {
@@ -141,7 +140,6 @@ namespace Pawnmorph
 
                     List<PawnKindDef> pkds = new List<PawnKindDef>();
                     pkds.Add(PawnKindDefOf.Slave);
-                    pkds.Add(PawnKindDefOf.WildMan);
                     pkds.Add(PawnKindDefOf.Colonist);
                     pkds.Add(PawnKindDefOf.SpaceRefugee);
                     pkds.Add(PawnKindDefOf.Villager);
@@ -158,6 +156,7 @@ namespace Pawnmorph
                 }
 
                 var pm = TfSys.TransformedPawn.Create(pawnOriginal, pawn); //pawnOriginal is human, pawn is animal
+                FormerHumanUtilities.MakeAnimalSapient(pawnOriginal, pawn, Rand.Range(0.5f, 1f));
                 Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(pm);
 
                 yield return pawn;
