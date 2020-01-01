@@ -1,0 +1,20 @@
+<Defs>
+    <HediffDef>
+        stuff 
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MorphStage">
+                normal hediff stage stuff here like 
+                <painOffset>0.1</painOffset>
+                <hungerOffset>2</hungerOffset>
+
+                list out the mutations that can be given at this stage 
+                <mutations>
+                    <li>MutationDef</li>
+                    <li>MutationDef2</li>
+                </mutations>
+                mean time between adding mutations 
+                <mtb>10</mtb>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>
