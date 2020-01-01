@@ -172,6 +172,10 @@
 			<harvestYield>3</harvestYield>
 			<harvestWork>250</harvestWork>
 			<harvestTag>Standard</harvestTag>
+			<sowMinSkill>7</sowMinSkill>
+			<sowResearchPrerequisites>
+				<li>MutagenicPlantSowing</li>
+			</sowResearchPrerequisites>
 			<visualSizeRange>
 				<min>0.95</min>
 				<max>1.7</max>
@@ -192,13 +196,6 @@
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
 				<ignore>true</ignore> <!-- we don't want this to be swapped for normal plants  -->
-			</li>
-			<li Class="Pawnmorph.DefExtensions.AspectRestriction">
-				<aspectEntries>
-					<li>
-						<aspectDef>PlantAffinity</aspectDef>
-					</li>
-				</aspectEntries>
 			</li>
 		</modExtensions>
 	</ThingDef>
