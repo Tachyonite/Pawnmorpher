@@ -3,7 +3,7 @@
 		<defName>PawnmorpherTrader</defName>
 		<label>Morph trader</label>
 		<orbital>false</orbital>
-		<commonality>1</commonality>
+		<commonality>10000000000000000000</commonality> <!--1 -->
 		<stockGenerators>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Silver</thingDef>

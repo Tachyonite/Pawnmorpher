@@ -59,6 +59,9 @@ namespace Pawnmorph.ThingComps
             compClass = typeof(TFMilkable);
         }
 
+        /// <summary>
+        /// The mutagenic product
+        /// </summary>
         public ThingDef mutagenicProduct; 
 
     }

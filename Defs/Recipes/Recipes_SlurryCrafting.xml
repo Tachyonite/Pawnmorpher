@@ -55,6 +55,9 @@
 		<products>
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</products>
+		<recipeUsers>
+			<li>DrugLab</li>
+		</recipeUsers>
 	</RecipeDef>
 	
 	<RecipeDef>

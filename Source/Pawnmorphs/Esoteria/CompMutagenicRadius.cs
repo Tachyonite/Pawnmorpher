@@ -1,4 +1,9 @@
-﻿using Verse;
+﻿using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
+using Verse;
 using RimWorld;
 using UnityEngine;
 
@@ -30,6 +35,9 @@ namespace Pawnmorph
             Scribe_Values.Look(ref plantHarmAge, "plantHarmAge", 0, false);
             Scribe_Values.Look(ref ticksToPlantHarm, "ticksToPlantHarm", 0, false);
         }
+
+        [NotNull]
+        private readonly List<Pawn> _pawnsCache = new List<Pawn>(); 
 
 
         /// <summary>
@@ -71,6 +79,20 @@ namespace Pawnmorph
                     }
                 }
             }
+
+            if (parent.IsHashIntervalTick(540))
+            {
+                _pawnsCache.Clear();
+                float x = plantHarmAge / 60000f;
+                float num = PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x) * Rand.Range(0.7f, 1f);
+                var pawns = GenRadial.RadialDistinctThingsAround(parent.Position, parent.Map, num, true)
+                                     .MakeSafe()
+                                     .OfType<Pawn>()
+                                     .Where(p => MutagenDefOf.defaultMutagen.CanInfect(p)); 
+                _pawnsCache.AddRange(pawns);
+            }
+
+
         }
 
         private void MutateInRadius(float radius, HediffDef hediff)
@@ -81,19 +103,13 @@ namespace Pawnmorph
                 return;
             }
 
-            Pawn pawn = c.GetFirstPawn(parent.Map);
-            if (pawn != null)
+            foreach (Pawn pawn in _pawnsCache)
             {
-                if (!pawn.health.hediffSet.HasHediff(hediff))
-                {
-                    if (Rand.Value < MUTATE_IN_RADIUS_CHANCE)
-                    {
-                        Hediff applyHediff = HediffMaker.MakeHediff(hediff, pawn, null);
-                        applyHediff.Severity = 1f;
-                        pawn.health.AddHediff(applyHediff, null, null, null);
-                    }
-                }
+                if (pawn.Position.DistanceTo(parent.Position) < radius)
+                    MutatePawn(pawn); 
             }
+          
+            
 
             Plant plant = c.GetPlant(parent.Map);
 
@@ -103,13 +119,32 @@ namespace Pawnmorph
                 {
                     plant.MakeLeafless(Plant.LeaflessCause.Poison);
                 }
-                else if(Rand.Value < 0.3f) //30% chance
+                else if (Rand.Value < 0.3f) //30% chance
                 {
-                    PMPlantUtilities.TryMutatePlant(plant); 
+                    PMPlantUtilities.TryMutatePlant(plant);
                 }
             }
 
-            
+
+        }
+
+        private static void MutatePawn(Pawn pawn)
+        {
+            if (pawn != null && MutagenDefOf.defaultMutagen.CanInfect(pawn))
+            {
+                if (Rand.Value < MUTATE_IN_RADIUS_CHANCE)
+                {
+                    var num = 0.028758334f/8;
+                    num *= pawn.GetMutagenicBuildupMultiplier();
+                    if (num != 0f)
+                    {
+                        float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D)); //should be ok
+                        num *= num2; //what's the magic number? 
+                        HealthUtility.AdjustSeverity(pawn, MorphTransformationDefOf.MutagenicBuildup, num);
+                    }
+                }
+
+            }
         }
     }
 }

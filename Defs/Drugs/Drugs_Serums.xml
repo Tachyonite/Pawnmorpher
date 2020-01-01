@@ -13,12 +13,24 @@
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<runtime>
-						<types>Full</types>
-						<categories>
-							<li>Powerful</li>
-						</categories>
-					</runtime>
+					<hediffDefs>
+						<li>PawnmorphBearTF</li>
+						<li>PawnmorphBoarTF</li>
+						<li>PawnmorphCatTF</li>
+						<li>PawnmorphDeerTF</li>
+						<li>PawnmorphFoxTF</li>
+						<li>PawnmorphHuskyTF</li>
+						<li>PawnmorphSnakeTF</li>
+						<li>PawnmorphWargTF</li>
+						<li>PawnmorphWolfTF</li>
+						<li>PawnmorphAlpacaTF</li>
+						<li>PawnmorphBoomalopeTF</li>
+						<li>PawnmorphChickenTF</li>
+						<li>PawnmorphCowTF</li>
+						<li>PawnmorphIguanaTF</li>
+						<li>PawnmorphPigTF</li>
+						<li>PawnmorphRatTF</li>
+					</hediffDefs>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>

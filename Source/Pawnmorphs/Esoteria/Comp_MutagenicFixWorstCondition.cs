@@ -177,25 +177,21 @@ namespace Pawnmorph
         /// <summary> Add mutations to the given part. </summary>
         private void AddMutationToPart(BodyPartRecord record, [NotNull] Pawn pawn, MorphDef morph = null, bool recursive = false, MutagenDef mutagen=null)
         {
-            List<HediffGiver_Mutation> allGivers = MorphUtilities.GetMutationGivers(record.def).ToList();
-
-            if (allGivers.Count > 0)
+            HediffDef mutation; 
+            if (morph != null)
             {
-                HediffGiver_Mutation giver;
-                if (morph != null)
-                {
-                    giver = allGivers.Where(g => morph.AllAssociatedAndAdjacentMutations.Contains(g)) // This will get all hediff givers that are on the same morph tf.
-                                     .RandomElementWithFallback(); // i.e. wolf/husky/warg morphs can get paw hands.
-                    giver = giver ?? allGivers.RandElement();
-                }
-                else
-                {
-                    giver = allGivers.RandElement();
-                }
-
-                giver.TryApply(pawn, MutagenDefOf.defaultMutagen);
+                mutation = morph.GetMutationForPart(record.def).RandomElementWithFallback();
+            }
+            else
+            {
+                mutation = MutationUtilities.GetMutationsByPart(record.def).RandomElementWithFallback(); 
             }
 
+            if (mutation != null)
+            {
+                MutationUtilities.AddMutation(pawn, mutation, record); 
+            }
+            
             mutagen?.TryApplyAspects(pawn); 
 
             if (recursive) // Recursively add mutations to child parts.

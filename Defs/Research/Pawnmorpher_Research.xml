@@ -14,6 +14,19 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>
+		<defName>MutagenicPlantSowing</defName>
+		<label>Mutagenic Plants</label>
+		<description>By exposing plants to mutagenic mechanites it's possible to grow new and 'improved' variants of those plants</description>
+		<techLevel>Industrial</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>1</researchViewX>
+		<researchViewY>2.5</researchViewY>
+		<prerequisites>
+			<li>MutagenExtraction</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
 		<defName>SerumSynthesis</defName>
 		<label>Serum synthesis</label>
 		<description>By careful recalibration of mechanite components, we may be able to make our own mutagenic serums. This costs mechanite slurry to do, and unlocks creation of basic mechanite serums.</description>

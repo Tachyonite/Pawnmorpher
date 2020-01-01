@@ -139,11 +139,6 @@ namespace Pawnmorph
                 _waitingForUpdate = false; 
             }
         }
-
-        private int _curStage; 
-
-
-
         private void UpdatePawnInfo()
         {
             if (Current.ProgramState == ProgramState.Playing)
