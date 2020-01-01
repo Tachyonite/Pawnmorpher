@@ -3,6 +3,7 @@
         this def is for mass assigning mutations parts 
         
         this must be set
+        this is the body part def all the below mutations can affect 
         <part>PartDef</part>
         this is just a list of mutations that are assigned to this group
         <mutations>
@@ -15,7 +16,7 @@
         <modExtension>
             <li Class="Pawnmorph.MutationHediffExtension">
                 this is a list of body part defs this mutation can affect 
-                possible parts can be set either with the MutationPartGroupDef or with this list
+                affected parts can be set either with the MutationPartGroupDef or with this list
                 <parts>
                     <li>Hand</li>
                 </parts>
