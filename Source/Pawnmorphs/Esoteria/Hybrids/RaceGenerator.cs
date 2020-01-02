@@ -102,13 +102,25 @@ namespace Pawnmorph.Hybrids
         private static IEnumerable<ThingDef_AlienRace> GenerateAllImpliedRaces()
         {
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
-            var human = (ThingDef_AlienRace)ThingDef.Named("Human");
-            StringBuilder builder = new StringBuilder();
+            ThingDef_AlienRace human;
+
+            try
+            {
+                human = (ThingDef_AlienRace) ThingDef.Named("Human");
+            }
+            catch (InvalidCastException e)
+            {
+                throw new
+                    InvalidCastException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?",e);
+            }
+
+
+            var builder = new StringBuilder();
             // ReSharper disable once PossibleNullReferenceException
             foreach (MorphDef morphDef in morphs)
             {
                 builder.AppendLine($"generating implied race for {morphDef.defName}");
-                var race = GenerateImplicitRace(human, morphDef);
+                ThingDef_AlienRace race = GenerateImplicitRace(human, morphDef);
                 if (morphDef.explicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
                 {
                     morphDef.hybridRaceDef = race;
@@ -118,6 +130,7 @@ namespace Pawnmorph.Hybrids
                 {
                     builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.explicitHybridRace.defName}, {race.defName} will not be used but still generated");
                 }
+
                 yield return race;
             }
 
