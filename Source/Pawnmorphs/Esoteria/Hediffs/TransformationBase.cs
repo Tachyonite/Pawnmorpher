@@ -143,6 +143,10 @@ namespace Pawnmorph.Hediffs
         {
             ResetPossibleMutations();
             TryGiveTransformations();
+            if(CurStage is IExecutableStage execStage)
+            {
+                execStage.EnteredStage(this); 
+            }
         }
 
         /// <summary>Tries to give transformations</summary>
@@ -174,7 +178,10 @@ namespace Pawnmorph.Hediffs
                 if (mutationToAdd != null)
                 {
                     MutationUtilities.AddMutation(pawn, mutationToAdd, part);
+                    var mutagen = def.GetMutagenDef();
+                    mutagen.TryApplyAspects(pawn); 
                     mutationsAdded++;
+
                 }
 
                 //check if we have added enough mutations to end the loop early 
