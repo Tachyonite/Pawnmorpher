@@ -6,6 +6,7 @@ using System.Linq;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -16,15 +17,16 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.TransformationBase" />
     public class MorphTf : TransformationBase
     {
-        private const float BASE_MTB = 0.4f;
+        private const float BASE_MEAN = 4; 
+        private float _meanPerDay = BASE_MEAN;
 
-        private float _mbt = BASE_MTB;
 
-        private List<HediffDef> _allMutations;
+        /// <summary>
+        /// the expected number of mutations to happen in a single day 
+        /// </summary>
+        public override float MeanMutationsPerDay => _meanPerDay; 
 
-        /// <summary>Gets the mean time between mutations</summary>
-        /// <value>The mean time between mutation.</value>
-        public override float MTBMutations => _mbt;
+        private List<HediffDef> _allMutations; 
 
         /// <summary>Gets the available mutations.</summary>
         /// <value>The available mutations.</value>
@@ -46,7 +48,7 @@ namespace Pawnmorph.Hediffs
             if (pawn.IsHashIntervalTick(200))
             {
                 float statDef = pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
-                _mbt = BASE_MTB / Mathf.Max(0.01f, statDef);
+                _meanPerDay = BASE_MEAN * statDef; 
             }
         }
 
@@ -65,6 +67,21 @@ namespace Pawnmorph.Hediffs
         {
             if (currentStage is TransformationStage stage) return stage.mutations.MakeSafe();
             return Enumerable.Empty<HediffDef>();
+        }
+
+        /// <summary>
+        /// returns true if there are ny mutations in this stage 
+        /// </summary>
+        /// <param name="stage"></param>
+        /// <returns></returns>
+        protected override bool AnyMutationsInStage(HediffStage stage)
+        {
+            if (stage is TransformationStage tStage)
+            {
+                return tStage.mutations?.Count > 0; 
+            }
+
+            return false; 
         }
     }
 }

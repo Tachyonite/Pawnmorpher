@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -37,9 +38,10 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        /// <summary>Gets the mean time between mutations</summary>
-        /// <value>The mean time between mutation.</value>
-        public abstract float MTBMutations { get; }
+        /// <summary>
+        /// the expected number of mutations to happen in a single day 
+        /// </summary>
+        public abstract float MeanMutationsPerDay { get; }
 
         /// <summary>Gets the available mutations.</summary>
         /// <value>The available mutations.</value>
@@ -90,6 +92,12 @@ namespace Pawnmorph.Hediffs
             base.ExposeData();
             Scribe_Collections.Look(ref _checkList, nameof(_checkList), LookMode.BodyPart);
             Scribe_Values.Look(ref _curIndex, nameof(_curIndex));
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && _checkList == null)
+            {
+                ResetMutations();
+                ResetPossibleMutations();
+                
+            }
         }
 
 
@@ -100,6 +108,7 @@ namespace Pawnmorph.Hediffs
             base.PostAdd(dinfo);
             _checkList = new List<BodyPartRecord>();
             FillPartCheckList(_checkList);
+           
             _curIndex = 0;
         }
 
@@ -109,8 +118,8 @@ namespace Pawnmorph.Hediffs
             HediffStage cStage = CurStage;
             base.Tick();
             if (CurStage != cStage) OnStageChanged(cStage);
-
-            if (Rand.MTBEventOccurs(MTBMutations, 6000, 60)) AddMutations();
+            var mtb = 1 / Mathf.Max(0.0001f, MeanMutationsPerDay); 
+            if ( pawn.IsHashIntervalTick(60) && Rand.MTBEventOccurs(mtb, 60000, 60)) AddMutations();
 
             if (pawn.IsHashIntervalTick(10000) && CanReset) ResetMutations();
         }
@@ -163,11 +172,26 @@ namespace Pawnmorph.Hediffs
             RandUtilities.PopState();
         }
 
+        /// <summary>
+        /// returns true if there are ny mutations in this stage 
+        /// </summary>
+        /// <param name="stage"></param>
+        /// <returns></returns>
+        protected abstract bool AnyMutationsInStage(HediffStage stage); 
+
         private void AddMutations()
         {
+            Log.Message($"Adding Mutation on {pawn.Name}, is finished {FinishedAddingMutations}, is null {_checkList == null}");
+            
             if (FinishedAddingMutations) return;
-
+            if (!AnyMutationsInStage(CurStage)) return; 
             var mutationsAdded = 0;
+
+            if (_scratchDict.Count == 0)
+            {
+                ResetPossibleMutations();   
+            }
+
             while (_curIndex < _checkList.Count)
             {
                 BodyPartRecord part = _checkList[_curIndex];
@@ -195,6 +219,7 @@ namespace Pawnmorph.Hediffs
             _checkList = _checkList ?? new List<BodyPartRecord>();
             _checkList.Clear();
             _curIndex = 0;
+            FillPartCheckList(_checkList); 
         }
 
         private void ResetPossibleMutations()
