@@ -257,10 +257,11 @@ namespace Pawnmorph
         /// </summary>
         public const string RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL = "RelatedSoldFormerHumanLabel";
         /// <summary>
-        /// Notifies the related pawns that a related wild former human has spawned.
+        /// generates notification letters if the given former human is related to any colonists 
         /// </summary>
         /// <param name="formerHuman">The former human.</param>
-        /// <param name="wild">if set to <c>true</c> [wild].</param>
+        /// <param name="letterContentID">The letter content identifier.</param>
+        /// <param name="letterLabelID">The letter label identifier.</param>
         public static void NotifyRelatedPawnsFormerHuman([NotNull] Pawn formerHuman, string letterContentID, string letterLabelID)
         {
 
