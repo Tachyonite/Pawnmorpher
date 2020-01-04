@@ -241,6 +241,61 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// The related wild former human letter
+        /// </summary>
+        public const string RELATED_WILD_FORMER_HUMAN_LETTER = "RelatedWildFormerHumanContent";
+        /// <summary>
+        /// The related wild former human letter label
+        /// </summary>
+        public const string RELATED_WILD_FORMER_HUMAN_LETTER_LABEL = "RelatedWildFormerHumanLabel";
+        /// <summary>
+        /// The related sold former human letter
+        /// </summary>
+        public const string RELATED_SOLD_FORMER_HUMAN_LETTER = "RelatedSoldFormerHumanContent";
+        /// <summary>
+        /// The related sold former human letter label
+        /// </summary>
+        public const string RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL = "RelatedSoldFormerHumanLabel";
+        /// <summary>
+        /// Notifies the related pawns that a related wild former human has spawned.
+        /// </summary>
+        /// <param name="formerHuman">The former human.</param>
+        /// <param name="wild">if set to <c>true</c> [wild].</param>
+        public static void NotifyRelatedPawnsFormerHuman([NotNull] Pawn formerHuman, string letterContentID, string letterLabelID)
+        {
+
+            var fRelation = formerHuman.relations;
+            if (fRelation == null) return;
+            var allPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners.MakeSafe();
+
+            foreach (Pawn pawn in allPawns)
+            {
+                if (pawn == formerHuman) continue;
+                var relation = pawn.GetMostImportantRelation(formerHuman);
+                if (relation != null)
+                {
+                    SendRelationLetter(pawn, formerHuman, relation,letterContentID, letterLabelID); 
+                }
+            }
+        }
+
+        
+        
+
+        private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman, [NotNull] PawnRelationDef relation,string letterContentID, string letterLabelID)
+        {
+            var letterContent = letterContentID.Translate(formerHuman.Named("formerHuman"),
+                                                                           pawn.Named("relatedPawn"),
+                                                                           relation.label.Named("relationship"));
+            var letterLabel = letterLabelID.Translate(formerHuman.Named("formerHuman"),
+                                                                               pawn.Named("relatedPawn"),
+                                                                               relation.label.Named("relationship"));
+            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, formerHuman, formerHuman.HostFaction);
+
+        }
+
+
+        /// <summary>
         ///     Gets the break alert explanation for sapient animals .
         /// </summary>
         /// <value>

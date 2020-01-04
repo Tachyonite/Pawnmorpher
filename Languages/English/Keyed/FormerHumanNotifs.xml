@@ -1,0 +1,15 @@
+<LanguageData>
+    <!-- 
+        keys 
+        formerHuman - the former human 
+        relatedPawn - the related pawn 
+        relationship - the label of the relationship the former human has to the given pawn 
+    -->
+    <!--these are for when a wild former human with a relationship to some pawn showes up -->
+    <RelatedWildFormerHumanContent>TODO</RelatedWildFormerHumanContent>
+    <RelatedWildFormerHumanLabel>TODO</RelatedWildFormerHumanLabel>
+
+    <!-- these are for when a former human with a relationship to some pawn shows up as part of a morph trader -->
+    <RelatedSoldFormerHumanContent>TODO</RelatedSoldFormerHumanContent>
+    <RelatedSoldFormerHumanLabel>TODO</RelatedSoldFormerHumanLabel>
+</LanguageData>

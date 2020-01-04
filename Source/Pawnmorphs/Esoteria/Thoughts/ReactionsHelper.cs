@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -107,6 +108,8 @@ namespace Pawnmorph.Thoughts
 
             HandleRelatedPawnsReaction(original, transformedPawn, EventType.Transformation);
         }
+
+       
 
         /// <summary>
         ///     call when a pawn is reverted from an animal to handle giving the correct thoughts to colonists
