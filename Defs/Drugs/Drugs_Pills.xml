@@ -217,7 +217,11 @@
 			</li>
 		</comps>
 		<stages>
-			<li></li>
+			<li>
+				<statOffsets>
+                    <MutagenSensitivity>-1</MutagenSensitivity>
+                </statOffsets>
+			</li>
 		</stages>
 	</HediffDef>
 </Defs>
