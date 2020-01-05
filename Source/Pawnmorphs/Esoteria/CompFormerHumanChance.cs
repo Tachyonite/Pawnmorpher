@@ -58,7 +58,7 @@ namespace Pawnmorph
             if (parent.Faction != null) return false;
             var pawn = (Pawn) parent;
             if (pawn.relations == null) return true;
-            if (pawn.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Child)) return false;
+            if (pawn.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Child || r.def == PawnRelationDefOf.Parent)) return false;
             return true;
         }
     }
