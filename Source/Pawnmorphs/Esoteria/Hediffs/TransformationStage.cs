@@ -15,7 +15,7 @@ namespace Pawnmorph.Hediffs
     public class TransformationStage : HediffStage, IDescriptiveStage, IExecutableStage
     {
         /// <summary>The mutations that this stage can add</summary>
-        public List<HediffDef> mutations;
+        public List<MutationEntry> mutations;
 
         /// <summary>The description</summary>
         public string description;
@@ -28,8 +28,7 @@ namespace Pawnmorph.Hediffs
 
         /// <summary>The letter label</summary>
         public string letterLabel;
-
-
+        
         /// <summary>
         ///     Gets the description override.
         /// </summary>

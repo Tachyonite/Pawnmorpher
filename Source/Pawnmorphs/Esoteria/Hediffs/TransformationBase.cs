@@ -1,6 +1,7 @@
 ﻿// TransformationBase.cs created by Iron Wolf for Pawnmorph on 01/02/2020 12:54 PM
 // last updated 01/02/2020  12:54 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -15,8 +16,8 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.Hediff" />
     public abstract class TransformationBase : HediffWithComps, IDescriptiveHediff
     {
-        [NotNull] private readonly Dictionary<BodyPartDef, List<HediffDef>> _scratchDict =
-            new Dictionary<BodyPartDef, List<HediffDef>>();
+        [NotNull] private readonly Dictionary<BodyPartDef, List<MutationEntry>> _scratchDict =
+            new Dictionary<BodyPartDef, List<MutationEntry>>();
 
         private List<BodyPartRecord> _checkList;
         private int _curIndex;
@@ -46,7 +47,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>Gets the available mutations.</summary>
         /// <value>The available mutations.</value>
         [NotNull]
-        public abstract IEnumerable<HediffDef> AllAvailableMutations { get; }
+        public abstract IEnumerable<MutationEntry> AllAvailableMutations { get; }
 
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace Pawnmorph.Hediffs
         /// <param name="currentStage">The current stage.</param>
         /// <returns></returns>
         [NotNull]
-        protected virtual IEnumerable<HediffDef> GetAvailableMutations([NotNull] HediffStage currentStage)
+        protected virtual IEnumerable<MutationEntry> GetAvailableMutations([NotNull] HediffStage currentStage)
         {
             return AllAvailableMutations;
         }
@@ -195,18 +196,25 @@ namespace Pawnmorph.Hediffs
             while (_curIndex < _checkList.Count)
             {
                 BodyPartRecord part = _checkList[_curIndex];
-                _curIndex++;
-                List<HediffDef> lst = _scratchDict.TryGetValue(part.def);
-
-                HediffDef mutationToAdd = lst?.RandomElementWithFallback();
+               
+                var lst = _scratchDict.TryGetValue(part.def);
+                var mutationToAdd = lst?.RandomElementWithFallback();
                 if (mutationToAdd != null)
                 {
-                    MutationUtilities.AddMutation(pawn, mutationToAdd, part);
-                    var mutagen = def.GetMutagenDef();
-                    mutagen.TryApplyAspects(pawn); 
-                    mutationsAdded++;
-
+                    if (Rand.Value < mutationToAdd.addChance)
+                    {
+                        MutationUtilities.AddMutation(pawn, mutationToAdd.mutation, part);
+                        var mutagen = def.GetMutagenDef();
+                        mutagen.TryApplyAspects(pawn);
+                        mutationsAdded++;
+                    }
+                    else if(mutationToAdd.blocks)
+                    {
+                        return; //return without incrementing the index so it blocks 
+                    }
                 }
+
+                _curIndex++;//increment after so mutations can 'block'
 
                 //check if we have added enough mutations to end the loop early 
                 if (mutationsAdded >= MinMutationsPerCheck) break;
@@ -224,19 +232,26 @@ namespace Pawnmorph.Hediffs
 
         private void ResetPossibleMutations()
         {
-            IEnumerable<HediffDef> mutations = GetAvailableMutations(CurStage);
-            _scratchDict.Clear();
-            foreach (HediffDef hediffDef in mutations) //fill a lookup dict 
-            foreach (BodyPartDef possiblePart in hediffDef.GetPossibleParts())
-                if (_scratchDict.TryGetValue(possiblePart, out List<HediffDef> lst))
-                {
-                    lst.Add(hediffDef);
-                }
-                else
-                {
-                    lst = new List<HediffDef> {hediffDef};
-                    _scratchDict[possiblePart] = lst;
-                }
+            try
+            {
+                IEnumerable<MutationEntry> mutations = GetAvailableMutations(CurStage);
+                _scratchDict.Clear();
+                foreach (var entry in mutations) //fill a lookup dict 
+                foreach (BodyPartDef possiblePart in entry.mutation.GetPossibleParts())
+                    if (_scratchDict.TryGetValue(possiblePart, out var lst))
+                    {
+                        lst.Add(entry);
+                    }
+                    else
+                    {
+                        lst = new List<MutationEntry> {entry};
+                        _scratchDict[possiblePart] = lst;
+                    }
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException($"null reference exception while trying reset mutations! are all mutations set in {def.defName}?",e);
+            }
         }
     }
 }

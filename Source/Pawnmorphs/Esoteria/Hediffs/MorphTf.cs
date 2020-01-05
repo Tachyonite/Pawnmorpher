@@ -26,18 +26,18 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public override float MeanMutationsPerDay => _meanPerDay; 
 
-        private List<HediffDef> _allMutations; 
+        private List<MutationEntry> _allMutations; 
 
         /// <summary>Gets the available mutations.</summary>
         /// <value>The available mutations.</value>
-        public override IEnumerable<HediffDef> AllAvailableMutations => _allMutations.MakeSafe();
+        public override IEnumerable<MutationEntry> AllAvailableMutations => _allMutations.MakeSafe();
 
         /// <summary>called after this hediff is added to the pawn</summary>
         /// <param name="dinfo">The dinfo.</param>
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
-            _allMutations = def.stages.OfType<TransformationStage>().SelectMany(t => t.mutations.MakeSafe()).ToList();
+            _allMutations = def.stages.OfType<TransformationStage>().SelectMany(s => s.mutations.MakeSafe()).ToList();
         }
 
         /// <summary>Ticks this instance.</summary>
@@ -63,10 +63,10 @@ namespace Pawnmorph.Hediffs
         /// <summary>Gets the available the mutations from the given stage.</summary>
         /// <param name="currentStage">The current stage.</param>
         /// <returns></returns>
-        protected override IEnumerable<HediffDef> GetAvailableMutations(HediffStage currentStage)
+        protected override IEnumerable<MutationEntry> GetAvailableMutations(HediffStage currentStage)
         {
             if (currentStage is TransformationStage stage) return stage.mutations.MakeSafe();
-            return Enumerable.Empty<HediffDef>();
+            return Enumerable.Empty<MutationEntry>();
         }
 
         /// <summary>

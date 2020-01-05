@@ -132,6 +132,7 @@
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
+    <Compile Include="Hediffs\MutationEntry.cs" />
     <Compile Include="Hediffs\MutationStage.cs" />
     <Compile Include="Hediffs\Giver_MutationCategoryGiver.cs" />
     <Compile Include="Hediffs\IDescriptiveStage.cs" />
