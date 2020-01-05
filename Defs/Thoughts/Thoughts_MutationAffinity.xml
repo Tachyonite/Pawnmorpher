@@ -1,9 +1,8 @@
 <Defs>
 	<ThoughtDef>
 		<defName>FurryNoMutations</defName>
-		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
+		<workerClass>Pawnmorph.Thoughts.Worker_MorphFrustrated</workerClass>
 		<validWhileDespawned>true</validWhileDespawned>
-		<invert>true</invert>
 		<requiredTraits>
 			<li>MutationAffinity</li>
 		</requiredTraits>

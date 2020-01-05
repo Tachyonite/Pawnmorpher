@@ -350,6 +350,7 @@
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />
     <Compile Include="Thoughts\Worker_SapientAnimalBondedMaster.cs" />
     <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
     <Compile Include="TransformerUtility.cs" />
