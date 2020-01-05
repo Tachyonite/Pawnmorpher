@@ -285,12 +285,25 @@ namespace Pawnmorph
 
         private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman, [NotNull] PawnRelationDef relation,string letterContentID, string letterLabelID)
         {
+            string relationLabel;
+
+            if (formerHuman.gender == Gender.Female && !string.IsNullOrEmpty(relation.labelFemale))
+            {
+                relationLabel = relation.labelFemale; 
+            }
+            else
+            {
+                relationLabel = relation.label;
+            }
+
+
+
             var letterContent = letterContentID.Translate(formerHuman.Named("formerHuman"),
                                                                            pawn.Named("relatedPawn"),
-                                                                           relation.label.Named("relationship"));
+                                                                           relationLabel.Named("relationship"));
             var letterLabel = letterLabelID.Translate(formerHuman.Named("formerHuman"),
                                                                                pawn.Named("relatedPawn"),
-                                                                               relation.label.Named("relationship"));
+                                                                               relationLabel.Named("relationship"));
             Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, formerHuman, formerHuman.HostFaction);
 
         }
