@@ -537,7 +537,8 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferRelations(original, animal);
             PawnTransferUtilities.TransferAspects(original, animal);
             PawnTransferUtilities.TransferSkills(original, animal);
-            PawnTransferUtilities.TransferTraits(original, animal, t => MutationTraits.Contains(t)); 
+            PawnTransferUtilities.TransferTraits(original, animal, t => MutationTraits.Contains(t));
+            TryAssignBackstoryToTransformedPawn(animal, original); 
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
             if (nC == null)
@@ -591,6 +592,7 @@ namespace Pawnmorph
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
+            TryAssignBackstoryToTransformedPawn(animal, lPawn); 
             PawnTransferUtilities.TransferSkills(lPawn, animal);
             PawnTransferUtilities.TransferRelations(lPawn, animal);
             PawnTransferUtilities.TransferTraits(lPawn,animal, t => MutationTraits.Contains(t));
@@ -787,13 +789,10 @@ namespace Pawnmorph
 
 
             BackstoryDef backstoryDef;
-            if (pawn.def.defName.ToLower().StartsWith("chao")
-            ) //TODO mod extension or something to add specific backgrounds for different animals 
-                backstoryDef = BackstoryDefOf.FormerHumanChaomorph;
-            else
-                backstoryDef = BackstoryDefOf.FormerHumanNormal;
 
-            Log.Message($"adding {backstoryDef.defName} to {pawn.Name}");
+            var ext = pawn.def.GetModExtension<FormerHumanSettings>();
+
+            backstoryDef = ext?.backstory ?? BackstoryDefOf.FormerHumanNormal;
 
             pawn.story.adulthood = backstoryDef.backstory;
         }
@@ -920,22 +919,19 @@ namespace Pawnmorph
             if (sapientAnimal == null) throw new ArgumentNullException(nameof(sapientAnimal));
             if (workSettings == null) throw new ArgumentNullException(nameof(workSettings));
             var formerHumanExt = sapientAnimal.def.GetModExtension<FormerHumanSettings>();
-            var flags = WorkTags.ManualDumb | (formerHumanExt?.allowedWorkTags ?? 0);
-            var allowedWork = formerHumanExt?.allowedWorkTypes;
+            var backstoryDef = formerHumanExt?.backstory ?? BackstoryDefOf.FormerHumanNormal;
+            var bkStory = backstoryDef.backstory; 
             StringBuilder builder = new StringBuilder();
             builder.AppendLine($"for {sapientAnimal.Name}");
             foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefsListForReading)
             {
-                if ((workTypeDef.workTags & flags) != 0)
+                if (bkStory.DisabledWorkTypes.Contains(workTypeDef))
                 {
-                    workSettings.SetPriority(workTypeDef, 3);
-                }else if (allowedWork != null && allowedWork.Contains(workTypeDef))
-                {
-                    workSettings.SetPriority(workTypeDef, 3);
+                    workSettings.SetPriority(workTypeDef, 0); 
                 }
                 else
                 {
-                    workSettings.SetPriority(workTypeDef, 0);
+                    workSettings.SetPriority(workTypeDef, 3); 
                 }
             }
 

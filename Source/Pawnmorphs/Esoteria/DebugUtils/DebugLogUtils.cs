@@ -52,39 +52,7 @@ namespace Pawnmorph.DebugUtils
             Log.Message($"{Find.CurrentMap.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer).Where(InteractionUtility.CanReceiveRandomInteraction).Select(p => p.Name?.ToStringFull ?? p.LabelShort).Join(",")}");
         }
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
-        static void ListFormerHumanWorkPriorities()
-        {
-            StringBuilder builder = new StringBuilder();
-            foreach (Pawn formerHuman in FormerHumanUtilities.AllPlayerFormerHumans)
-            {
-                builder.AppendLine($"{formerHuman.Name}:");
-                if (formerHuman.workSettings == null)
-                {
-                    builder.AppendLine($"\tno work settings"); 
-                }
-                else
-                {
-                    var ext = formerHuman.def.GetModExtension<FormerHumanSettings>();
-                    var flags = ext?.allowedWorkTags ?? WorkTags.None;
-
-                    builder.AppendLine($"work tags:{flags}");
-
-                    foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefs)
-                    {
-                        var priority = formerHuman.workSettings.GetPriority(workTypeDef);
-                        bool isDisabled = formerHuman.story?.WorkTypeIsDisabled(workTypeDef) ?? false;
-                        builder.AppendLine($"\t\t{workTypeDef.defName}:{priority} is disabled:{isDisabled}");
-                    }
-                }
-
-
-            }
-
-            Log.Message(builder.ToString()); 
-        }
-
+       
 
         
         [DebugOutput]
