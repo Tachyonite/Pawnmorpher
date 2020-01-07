@@ -9,9 +9,9 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherAlpacaSnout>Parts/alpacaface/alpacaface</EtherAlpacaSnout>
+					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
 					<EtherBearMuzzle>Parts/bearface/bearface</EtherBearMuzzle>
-					<EtherBoarSnout>Parts/boarface/boarface</EtherBoarSnout>
+					<EtherBoarSnout>Parts/Boar/Boar_Jaw</EtherBoarSnout>
 					<EtherBoomalopeSnout>Parts/boomalopeface/boomalopeface</EtherBoomalopeSnout>
 					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
@@ -73,9 +73,9 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherAlpacaSnout>Parts/alpacaface/alpacaface</EtherAlpacaSnout>
+					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
 					<EtherBearMuzzle>Parts/bearface/bearface</EtherBearMuzzle>
-					<EtherBoarSnout>Parts/boarface/boarface</EtherBoarSnout>
+					<EtherBoarSnout>Parts/Boar/Boar_Jaw</EtherBoarSnout>
 					<EtherBoomalopeSnout>Parts/boomalopeface/boomalopeface</EtherBoomalopeSnout>
 					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
@@ -140,7 +140,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherAlpacaEar>Parts/alpacaface/alpacaears</EtherAlpacaEar>
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
@@ -214,7 +213,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherAlpacaEar>Parts/alpacaface/alpacaears</EtherAlpacaEar>
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
@@ -330,6 +328,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
 				</hediffGraphics>
 			</li>
@@ -353,6 +352,7 @@
 				</offsets>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
 				</hediffGraphics>
 			</li>
@@ -405,6 +405,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
 				</hediffGraphics>
 			</li>
@@ -428,6 +429,7 @@
 				</offsets>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
 				</hediffGraphics>
 			</li>
@@ -483,6 +485,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
 				</hediffGraphics>
 			</li>
@@ -509,6 +512,7 @@
 				</offsets>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
 				</hediffGraphics>
 			</li>
@@ -564,6 +568,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
 				</hediffGraphics>
 			</li>
@@ -590,6 +595,7 @@
 				</offsets>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
 				</hediffGraphics>
 			</li>
@@ -601,9 +607,9 @@
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<hediffGraphics>
-					<EtherAlpacaTail>Parts/alpacaface/alpacatail</EtherAlpacaTail>
+					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherBearTail>Parts/bearface/beartail</EtherBearTail>
-					<EtherRoughCurlyTail>Parts/boarface/boartail</EtherRoughCurlyTail>
+					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
 					<EtherCatTail>Parts/catface/cattail</EtherCatTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
