@@ -110,40 +110,39 @@
 				<label>spots</label>
 				<minSeverity>0</minSeverity>
 				<statOffsets>
-					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
 			<li>
 				<label>patches</label>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
-					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
 			<li>
 				<label>bristles</label>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
-					<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.04</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
 			<li>
 				<label>leathery</label>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
-					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
 			<li>
 				<label>covered</label>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
-					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
 		</stages>
