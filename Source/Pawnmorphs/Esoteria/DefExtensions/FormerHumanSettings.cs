@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.FormerHumans;
 using Verse;
 
 namespace Pawnmorph.DefExtensions
@@ -18,6 +19,12 @@ namespace Pawnmorph.DefExtensions
         /// <summary>
         /// The backstory, uses a default if not set 
         /// </summary>
-        public BackstoryDef backstory; 
+        public BackstoryDef backstory;
+
+        /// <summary>
+        /// The food thought settings
+        /// </summary>
+        public FoodThoughtSettings foodThoughtSettings; 
+
     }
 }

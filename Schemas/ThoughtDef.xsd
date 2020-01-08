@@ -86,16 +86,18 @@
 			<xs:enumeration value="FH_FeralPillBase" />
 			<xs:enumeration value="SapientAnimalBondedMasterBase" />
 			<xs:enumeration value="SapientAnimalBondedNonMasterBase" />
+			<xs:enumeration value="FormerHumanCannibalThoughtBase" />
+			<xs:enumeration value="FormerHumanCannibalThoughtGoodBase" />
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:complexType name="ThoughtStage">
-		<xs:sequence>
+		<xs:all>
 			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1" />
 			<xs:element name="labelSocial" type="xs:string" minOccurs="0" maxOccurs="1" />
 			<xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1" />
 			<xs:element name="visible" type="xs:boolean" default="true" minOccurs="0" maxOccurs="1" />
 			<xs:element name="baseMoodEffect" type="xs:float" minOccurs="0" maxOccurs="1" />
-		</xs:sequence>
+		</xs:all>
 	</xs:complexType>
 </xs:schema>
