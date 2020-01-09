@@ -8,6 +8,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
 using static Pawnmorph.InstinctUtilities;
 
 namespace Pawnmorph
@@ -99,6 +100,7 @@ namespace Pawnmorph
                 if (_seekerLevel < 0)
                     _seekerLevel = CurLevel;
                 _currentLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(_seekerLevel);
+                CurLevel = Mathf.Clamp(CurLevel, 0, MaxLevel);
             }
         }
 
