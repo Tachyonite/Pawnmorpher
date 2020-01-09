@@ -63,7 +63,21 @@ namespace Pawnmorph
         /// The sapient animal hunting memory
         /// </summary>
         /// this is for hunting out of necessity not for the hunting mental break 
-        public static ThoughtDef SapientAnimalHuntingMemory; 
+        public static ThoughtDef SapientAnimalHuntingMemory;
+
+
+        /// <summary>
+        /// The default thought for former humans that have bad thoughts for eating meat of the same species they are 
+        /// </summary>
+        public static ThoughtDef FHDefaultCannibalThought_Direct;
+
+        /// <summary>
+        /// The fh default cannibal thought ingredient
+        /// </summary>
+        public static ThoughtDef FHDefaultCannibalThought_Ingredient;
+
+        public static ThoughtDef FHDefaultCannibalGoodThought_Direct;
+        public static ThoughtDef FHDefaultCannibalGoodThought_Ingredient; 
 
     }
 }

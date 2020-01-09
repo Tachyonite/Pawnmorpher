@@ -106,6 +106,23 @@ namespace Pawnmorph
             builder.AppendLine(res);
         }
 
+        /// <summary>
+        /// Gets the severity adjust comp 
+        /// </summary>
+        /// <value>
+        /// The severity adjust comp
+        /// </value>
+        [CanBeNull] public Comp_MutationSeverityAdjust SeverityAdjust => this.TryGetComp<Comp_MutationSeverityAdjust>();
+
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether progression is halted or not.
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if progression halted; otherwise, <c>false</c>.
+        /// </value>
+        public bool ProgressionHalted => SeverityAdjust?.Halted == true;
+
         private string GetRawDescription()
         {
             var descOverride = (CurStage as IDescriptiveStage)?.DescriptionOverride;

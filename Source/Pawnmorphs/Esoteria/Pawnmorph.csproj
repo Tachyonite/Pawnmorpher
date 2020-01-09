@@ -124,6 +124,7 @@
     <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="FormerHumanStatus.cs" />
+    <Compile Include="FormerHumans\FoodThoughtSettings.cs" />
     <Compile Include="FormerHumans\ISapientVariantHolder.cs" />
     <Compile Include="FormerHumans\SapientVariants.cs" />
     <Compile Include="FormerHumanUtilities.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
+    <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
