@@ -6,49 +6,29 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[1]/hediffGraphics</xpath>
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
 						<EtherSheepSnout>Parts/sheepface/sheepface</EtherSheepSnout>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[2]/hediffGraphics</xpath>
-					<value>
-						<EtherSheepSnout>Parts/sheepface/sheepface</EtherSheepSnout>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[3]/hediffGraphics</xpath>
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Ear"]/hediffGraphics</xpath>
 					<value>
 						<EtherSheepEar>Parts/sheepface/sheepears</EtherSheepEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[4]/hediffGraphics</xpath>
-					<value>
-						<EtherSheepEar>Parts/sheepface/sheepears</EtherSheepEar>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[13]/hediffGraphics</xpath>
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Tail" and layerOffset=-0.29]/hediffGraphics</xpath>
 					<value>
 						<EtherSheepTail>Parts/sheepface/sheeptail</EtherSheepTail>
 					</value>
 				</li>
-				<!--Hediffs-->
+				
+				<!-- Defs -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-						<!--Morph Def-->
-						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
-							<defName>SheepMorph</defName>
-							<label>sheepmorph</label>
-							<race>AEXP_Sheep</race>
-							<categories>
-								<li>Farm</li>
-							</categories>
-						</Pawnmorph.MorphDef>
-						<!--Morph Reaction-->
+						<!-- Morph Reaction -->
 						<ThoughtDef>
 							<defName>EtherReactionSheepTF</defName>
 							<workerClass>ThoughtWorker_Hediff</workerClass>
@@ -66,7 +46,18 @@
 								</li>
 							</stages>
 						</ThoughtDef>
-						<!--Full Morph-->
+						
+						<!-- Morph Def -->
+						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+							<defName>SheepMorph</defName>
+							<label>sheepmorph</label>
+							<race>AEXP_Sheep</race>
+							<categories>
+								<li>Farm</li>
+							</categories>
+						</Pawnmorph.MorphDef>
+						
+						<!--Full TF-->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphSheepTF</defName>
 							<label>sheepmorph</label>
@@ -188,12 +179,21 @@
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
 										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherWoolySheep</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Torso</li>
+											</partsToAffect>
+											<tale>StartsGrowingWool</tale>
+										</li>
 									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
-						<!--Partial Morph-->
-						<HediffDef ParentName="MorphParent">
+						
+						<!--Partial TF-->
+						<HediffDef ParentName="PartialMorphParent">
 							<defName>PawnmorphSheepTFPartial</defName>
 							<label>sheepmorph partial</label>
 							<stages>
@@ -239,7 +239,7 @@
 											<tale>GrewTail</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherHideLimb</hediff>
+											<hediff>EtherFurredLimb</hediff>
 											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Arm</li>
@@ -263,11 +263,20 @@
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
 										</li>
+										<li Class="Pawnmorph.HediffGiver_Mutation">
+											<hediff>EtherWoolySheep</hediff>
+											<mtbDays>0.5</mtbDays>
+											<partsToAffect>
+												<li>Torso</li>
+											</partsToAffect>
+											<tale>StartsGrowingWool</tale>
+										</li>
 									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
-						<!--Morph Parts-->
+						
+						<!-- Morph Parts -->
 						<HediffDef Name="SheepPart" ParentName="PawnmorphPart" Abstract="True">
 							<comps>
 								<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
@@ -275,7 +284,7 @@
 								</li>
 							</comps>
 						</HediffDef>
-						<HediffDef ParentName="AlpacaPart">
+						<HediffDef ParentName="SheepPart">
 							<defName>EtherWoolySheep</defName>
 							<label>wooly</label>
 							<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent sheepmorph that don't need no man.</description>
@@ -360,6 +369,20 @@
 										</li>
 									</capMods>
 								</li>
+								<li>
+									<minSeverity>1</minSeverity>
+									<capMods>
+										<li>
+											<capacity>Talking</capacity>
+											<offset>-0.08</offset>
+										</li>
+										<li>
+											<capacity>Eating</capacity>
+											<offset>0.40</offset>
+										</li>
+									</capMods>
+									<label>adapted</label>
+								</li>
 							</stages>
 							<comps>
 								<li Class="HediffCompProperties_VerbGiver">
@@ -375,6 +398,9 @@
 											<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 										</li>
 									</tools>
+								</li>
+								<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+									<severityPerDay>0.25</severityPerDay>
 								</li>
 							</comps>
 						</HediffDef>
@@ -398,7 +424,8 @@
 							<label>sheep tail</label>
 							<description>A sheeplike tail. It's very wooly but short and not incredibly useful.</description>
 						</HediffDef>
-						<!--Morph Injector-->
+						
+						<!-- Injector -->
 						<ThingDef ParentName="InjectorBase">
 							<defName>SheepTransformer</defName>
 							<label>mutasyringe, sheep</label>
@@ -419,51 +446,53 @@
 								</outcomeDoers>
 							</ingestible>	
 						</ThingDef>
+						
+						<!-- Backgrounds -->
+						<AlienRace.BackstoryDef>
+							<defName>SheepmorphGeneral</defName>
+							<title>farm sheep</title>
+							<titleShort>sheepmorph</titleShort>
+							<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the sheep flock. [PAWN_pronoun] escaped before being shorn, and fled with [PAWN_possessive] fleece still on [PAWN_possessive] back.</baseDescription>
+							<slot>Adulthood</slot>
+							<bodyTypeFemale>Female</bodyTypeFemale>
+							<bodyTypeMale>Male</bodyTypeMale>
+							<spawnCategories>
+								<li>MutantWanderer</li>
+								<li>FreeMutant</li>
+							</spawnCategories>
+							<modExtensions>
+								<li Class="Pawnmorph.MorphPawnKindExtension">
+									<hediffRange>6~8</hediffRange>
+									<morphs>
+										<li>SheepMorph</li>
+									</morphs>
+								</li>
+							</modExtensions>
+						</AlienRace.BackstoryDef>
 					</value>				
 				</li>
+				
+				<!-- Add the morph to the serums -->
 				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<xpath>Defs/ThingDef[defName="RandomTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
 					<value>
 						<li>PawnmorphSheepTF</li>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<success>Always</success>
+					<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<value>
+						<li>PawnmorphSheepTF</li>
+					</value>
+				</li>
+				
+				<!-- Add the animal to the mutagun effect -->
+				<li Class="PatchOperationAdd">
 					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[1]/hediffGivers/li/pawnkinds</xpath>
 					<value>
 						<li>AEXP_Sheep</li>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs</xpath>
-					<value>
-						<AlienRace.BackstoryDef>
-						<defName>SheepmorphGeneral</defName>
-						<title>farm sheep</title>
-						<titleShort>sheepmorph</titleShort>
-						<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the sheep flock. [PAWN_pronoun] escaped before being shorn, and fled with [PAWN_possessive] fleece still on [PAWN_possessive] back.</baseDescription>
-						<slot>Adulthood</slot>
-						<bodyTypeFemale>Female</bodyTypeFemale>
-						<bodyTypeMale>Male</bodyTypeMale>
-						<spawnCategories>
-							<li>MutantWanderer</li>
-							<li>FreeMutant</li>
-						</spawnCategories>
-						<modExtensions>
-							<li Class="Pawnmorph.MorphPawnKindExtension">
-								<hediffRange>6~8</hediffRange>
-								<morphs>
-									<li>SheepMorph</li>
-								</morphs>
-							</li>
-						</modExtensions>
-					</AlienRace.BackstoryDef>
-					</value>
-				</li>
-					
-				
 			</operations>
 		</match>
 	</Operation>
