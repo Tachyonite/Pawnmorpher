@@ -350,6 +350,7 @@
 					</east>
 					<west/>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
@@ -427,6 +428,7 @@
 						</bodyTypes>
 					</west>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
@@ -510,6 +512,7 @@
 					</east>
 					<west/>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
@@ -593,6 +596,7 @@
 						</crownTypes>
 					</west>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
