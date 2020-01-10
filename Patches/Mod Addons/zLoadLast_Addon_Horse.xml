@@ -395,6 +395,20 @@
 						<li>PawnmorphHorseTF</li>
 					</value>
 				</li>
+				
+				<!-- Add the injector to the traders -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="PawnmorpherTrader"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>HorseTransformer</thingDef>
+							<countRange>
+								<min>-3</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</value>
+				</li>
 			</operations>
 		</match>
 	</Operation>

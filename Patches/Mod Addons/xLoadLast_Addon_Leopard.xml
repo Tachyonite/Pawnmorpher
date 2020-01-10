@@ -50,7 +50,7 @@
 					<value>
 						<!-- Morph Reaction -->
 						<ThoughtDef>
-							<defName>LeopardMorphTFReaction</defName>
+							<defName>EtherReactionLeopardTF</defName>
 							<workerClass>ThoughtWorker_Hediff</workerClass>
 							<hediff>PawnmorphLeopardTF</hediff>
 							<stages>
@@ -67,7 +67,7 @@
 							</stages>
 						</ThoughtDef>
 						<ThoughtDef>
-							<defName>SnepMorphTFReaction</defName>
+							<defName>EtherReactionSnepTF</defName>
 							<workerClass>ThoughtWorker_Hediff</workerClass>
 							<hediff>PawnmorphSnepTF</hediff>
 							<stages>
@@ -88,6 +88,7 @@
 						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 							<defName>LeopardMorph</defName>
 							<label>leopardmorph</label>
+							<description>A suprisingly docile morph, leopard morphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instinct is sharp and their claws are sharper.</description>
 							<race/>
 							<categories>
 								<li>Feline</li>
@@ -102,6 +103,7 @@
 						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 							<defName>SnepMorph</defName>
 							<label>snepmorph</label>
+							<description>A suprisingly docile morph, snow leopard morphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instinct is sharp and their claws are sharper.</description>
 							<race/>
 							<categories>
 								<li>Feline</li>
@@ -631,7 +633,7 @@
 						
 						<!-- Injector -->
 						<ThingDef ParentName="InjectorBase">
-							<defName>leopardTransformer</defName>
+							<defName>LeopardTransformer</defName>
 							<label>mutasyringe, leopard</label>
 							<description>A mutagenic injector filled with mechanites and leopard DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 							<graphicData>
@@ -651,7 +653,7 @@
 							</ingestible>	
 						</ThingDef>
 						<ThingDef ParentName="InjectorBase">
-							<defName>snepTransformer</defName>
+							<defName>SnepTransformer</defName>
 							<label>mutasyringe, snow leopard</label>
 							<description>A mutagenic injector filled with mechanites and snow leopard DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 							<graphicData>
@@ -686,6 +688,27 @@
 					<value>
 						<li>PawnmorphLeopardTF</li>
 						<li>PawnmorphSnepTF</li>
+					</value>
+				</li>
+				
+				<!-- Add the injector to the traders -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="PawnmorpherTrader"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>LeopardTransformer</thingDef>
+							<countRange>
+								<min>-3</min>
+								<max>1</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>SnepTransformer</thingDef>
+							<countRange>
+								<min>-3</min>
+								<max>1</max>
+							</countRange>
+						</li>
 					</value>
 				</li>
 			</operations>
