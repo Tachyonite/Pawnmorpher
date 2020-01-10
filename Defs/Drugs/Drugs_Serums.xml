@@ -14,22 +14,23 @@
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
+						<li>PawnmorphAlpacaTF</li>
 						<li>PawnmorphBearTF</li>
 						<li>PawnmorphBoarTF</li>
-						<li>PawnmorphCatTF</li>
-						<li>PawnmorphDeerTF</li>
-						<li>PawnmorphFoxTF</li>
-						<li>PawnmorphHuskyTF</li>
-						<li>PawnmorphSnakeTF</li>
-						<li>PawnmorphWargTF</li>
-						<li>PawnmorphWolfTF</li>
-						<li>PawnmorphAlpacaTF</li>
 						<li>PawnmorphBoomalopeTF</li>
+						<li>PawnmorphCatTF</li>
 						<li>PawnmorphChickenTF</li>
 						<li>PawnmorphCowTF</li>
+						<li>PawnmorphDeerTF</li>
+						<li>PawnmorphFoxTF</li>
+						<li>PawnmorphHareTF</li>
+						<li>PawnmorphHuskyTF</li>
 						<li>PawnmorphIguanaTF</li>
 						<li>PawnmorphPigTF</li>
 						<li>PawnmorphRatTF</li>
+						<li>PawnmorphSnakeTF</li>
+						<li>PawnmorphWargTF</li>
+						<li>PawnmorphWolfTF</li>
 					</hediffDefs>
 					<severity>1.00</severity>
 				</li>
@@ -115,6 +116,7 @@
 						<li>PawnmorphBoomalopeTF</li>
 						<li>PawnmorphChickenTF</li>
 						<li>PawnmorphCowTF</li>
+						<li>PawnmorphHareTF</li>
 						<li>PawnmorphIguanaTF</li>
 						<li>PawnmorphPigTF</li>
 						<li>PawnmorphRatTF</li>
