@@ -3,6 +3,7 @@
 		<defName>CatMorph</defName>
 		<label>catmorph</label>
 		<race>Cat</race>
+		<classification>Felidae</classification>
 		<categories>
 			<li>Feline</li>
 			<li>Combat</li>

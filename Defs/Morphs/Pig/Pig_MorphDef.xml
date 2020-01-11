@@ -8,6 +8,7 @@
 			<li>Farm</li>
 			<li>Production</li>
 		</categories>
+		<classification>Suidae</classification>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(198,160,160)</skinColorOverride>

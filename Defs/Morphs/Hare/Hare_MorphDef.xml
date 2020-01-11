@@ -4,9 +4,9 @@
 		<label>haremorph</label>
 		<description>The result of a mad scientist's attempt to take over the world, these docile creatures were designed to breed an army. Unfortunately for the morphs, they proved to timid to serve as proper militia and were abandoned soon after.</description>
 		<race>Hare</race>
+		<classification>Lagomorpha</classification>
 		<categories>
 			<li>Farm</li>
-			<li>Rodent</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>
