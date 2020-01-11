@@ -6,6 +6,7 @@
 		<race>Hare</race>
 		<categories>
 			<li>Farm</li>
+			<li>Rodent</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>
