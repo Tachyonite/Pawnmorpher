@@ -31,13 +31,14 @@
 				<label>adapted</label>
 				<capMods>
 					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
 						<capacity>Eating</capacity>
 						<offset>0.50</offset>
 					</li>
 				</capMods>
-				<statOffsets>
-					<SocialImpact>+0.10</SocialImpact>
-				</statOffsets>
 			</li>
 		</stages>
 		<comps>
@@ -96,7 +97,7 @@
 
 	<HediffDef ParentName="HarePart">
 		<defName>EtherHareTail</defName>
-		<label>cotton tail</label>
+		<label>leporine tail</label>
 		<description>A small puff of fluf peaks out just above [PAWN_nameDef]'s bum. It's rather cute, actually.</description>
 		<stages>
 			<li>
