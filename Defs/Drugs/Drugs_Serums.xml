@@ -26,6 +26,7 @@
 						<li>PawnmorphHareTF</li>
 						<li>PawnmorphHuskyTF</li>
 						<li>PawnmorphIguanaTF</li>
+						<li>PawnmorphPantherTF</li>
 						<li>PawnmorphPigTF</li>
 						<li>PawnmorphRatTF</li>
 						<li>PawnmorphSnakeTF</li>
@@ -74,6 +75,7 @@
 						<li>PawnmorphDeerTF</li>
 						<li>PawnmorphFoxTF</li>
 						<li>PawnmorphHuskyTF</li>
+						<li>PawnmorphPantherTF</li>
 						<li>PawnmorphSnakeTF</li>
 						<li>PawnmorphWargTF</li>
 						<li>PawnmorphWolfTF</li>
@@ -141,6 +143,7 @@
 	</ThingDef>
   
 	<ThingDef ParentName="SerumBase">
+						<li>PawnmorphPantherTF</li>
 		<defName>RandomReptileTransformer</defName>
 		<label>mutaserum, reptilian</label>
 		<description>A serum filled with mechanites and animal DNA that causes reptilian mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
