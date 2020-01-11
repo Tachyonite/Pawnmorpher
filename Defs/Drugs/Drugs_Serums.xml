@@ -1,51 +1,17 @@
 <Defs>
-	<ThingDef ParentName="SerumBase">
-		<defName>RandomTransformer</defName>
-		<label>mutaserum</label>
-		<description>A serum filled with mechanites and animal DNA that causes random mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
-		<graphicData>
-			<texPath>Things/Item/Drug/Serum</texPath>
-		</graphicData>
+	<ThingDef Abstract="true" ParentName="SerumBase" Name="TransformerBase">
 		<statBases>
-			<WorkToMake>300</WorkToMake>
+			<WorkToMake>400</WorkToMake>
 			<MarketValue>120</MarketValue>
 		</statBases>
-		<ingestible>
-			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>PawnmorphAlpacaTF</li>
-						<li>PawnmorphBearTF</li>
-						<li>PawnmorphBoarTF</li>
-						<li>PawnmorphBoomalopeTF</li>
-						<li>PawnmorphCatTF</li>
-						<li>PawnmorphChickenTF</li>
-						<li>PawnmorphCowTF</li>
-						<li>PawnmorphDeerTF</li>
-						<li>PawnmorphFoxTF</li>
-						<li>PawnmorphHareTF</li>
-						<li>PawnmorphHuskyTF</li>
-						<li>PawnmorphIguanaTF</li>
-						<li>PawnmorphPantherTF</li>
-						<li>PawnmorphPigTF</li>
-						<li>PawnmorphRatTF</li>
-						<li>PawnmorphSnakeTF</li>
-						<li>PawnmorphSquirrelTF</li>
-						<li>PawnmorphWargTF</li>
-						<li>PawnmorphWolfTF</li>
-					</hediffDefs>
-					<severity>1.00</severity>
-				</li>
-			</outcomeDoers>
-		</ingestible>
 		<recipeMaker>
-			<researchPrerequisite>SerumSynthesis</researchPrerequisite>
+			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
 			<recipeUsers>
 				<li>MutagenLab</li>
 			</recipeUsers>
 		</recipeMaker>
 		<costList>
-			<MechaniteSlurry>1</MechaniteSlurry>
+			<MechaniteSlurry>2</MechaniteSlurry>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -54,17 +20,50 @@
 		</comps>
 	</ThingDef>
 	
-	<ThingDef ParentName="SerumBase">
+	<ThingDef ParentName="TransformerBase">
+		<defName>RandomTransformer</defName>
+		<label>mutaserum</label>
+		<description>A serum filled with mechanites and animal DNA that causes random mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Serum</texPath>
+		</graphicData>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphAlpacaTF</li>
+						<li>PawnmorphBearTF</li>
+						<li>PawnmorphBoarTF</li>
+						<li>PawnmorphBoomalopeTF</li>
+						<li>PawnmorphCatTF</li>
+						<li>PawnmorphChickenTF</li>
+						<li>PawnmorphCowTF</li>
+						<li>PawnmorphDeerTF</li>
+						<li>PawnmorphFoxTF</li>
+						<li>PawnmorphHareTF</li>
+						<li>PawnmorphHuskyTF</li>
+						<li>PawnmorphIguanaTF</li>
+						<li>PawnmorphPantherTF</li>
+						<li>PawnmorphPigTF</li>
+						<li>PawnmorphRatTF</li>
+						<li>PawnmorphSnakeTF</li>
+						<li>PawnmorphSquirrelTF</li>
+						<li>PawnmorphWargTF</li>
+						<li>PawnmorphWolfTF</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+	
+	<ThingDef ParentName="TransformerBase">
 		<defName>RandomCombatTransformer</defName>
 		<label>mutaserum, combat</label>
 		<description>A serum filled with mechanites and animal DNA that causes combat-oriented mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/SerumRed</texPath>
 		</graphicData>
-		<statBases>
-			<WorkToMake>400</WorkToMake>
-			<MarketValue>120</MarketValue>
-		</statBases>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
@@ -84,33 +83,15 @@
 				</li>
 			</outcomeDoers>
 		</ingestible>
-		<recipeMaker>
-			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
-			<recipeUsers>
-				<li>MutagenLab</li>
-			</recipeUsers>
-		</recipeMaker>
-		<costList>
-			<MechaniteSlurry>2</MechaniteSlurry>
-		</costList>
-		<comps>
-			<li Class="CompProperties_Drug">
-				<listOrder>1010</listOrder>
-			</li>
-		</comps>
 	</ThingDef>
   
-	<ThingDef ParentName="SerumBase">
+	<ThingDef ParentName="TransformerBase">
 		<defName>RandomProductionTransformer</defName>
 		<label>mutaserum, production</label>
 		<description>A serum filled with mechanites and animal DNA that causes production-oriented mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/SerumBlue</texPath>
 		</graphicData>
-		<statBases>
-			<WorkToMake>400</WorkToMake>
-			<MarketValue>120</MarketValue>
-		</statBases>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
@@ -126,34 +107,57 @@
 				</li>
 			</outcomeDoers>
 		</ingestible>
-		<recipeMaker>
-			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
-			<recipeUsers>
-				<li>MutagenLab</li>
-			</recipeUsers>
-		</recipeMaker>
-		<costList>
-			<MechaniteSlurry>2</MechaniteSlurry>
-		</costList>
-		<comps>
-			<li Class="CompProperties_Drug">
-				<listOrder>1010</listOrder>
-			</li>
-		</comps>
 	</ThingDef>
   
-	<ThingDef ParentName="SerumBase">
+	<ThingDef ParentName="TransformerBase">
+		<defName>RandomCanineTransformer</defName>
+		<label>mutaserum, canid</label>
+		<description>A serum filled with mechanites and animal DNA that causes canid mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumCyan</texPath>
+		</graphicData>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphFoxTF</li>
+						<li>PawnmorphHuskyTF</li>
+						<li>PawnmorphWargTF</li>
+						<li>PawnmorphWolfTF</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+  
+	<ThingDef ParentName="TransformerBase">
+		<defName>RandomFelineTransformer</defName>
+		<label>mutaserum, feline</label>
+		<description>A serum filled with mechanites and animal DNA that causes feline mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumYellow</texPath>
+		</graphicData>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphCatTF</li>
 						<li>PawnmorphPantherTF</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+  
+	<ThingDef ParentName="TransformerBase">
 		<defName>RandomReptileTransformer</defName>
 		<label>mutaserum, reptilian</label>
 		<description>A serum filled with mechanites and animal DNA that causes reptilian mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/SerumPurple</texPath>
 		</graphicData>
-		<statBases>
-			<WorkToMake>400</WorkToMake>
-			<MarketValue>120</MarketValue>
-		</statBases>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
@@ -165,33 +169,15 @@
 				</li>
 			</outcomeDoers>
 		</ingestible>
-		<recipeMaker>
-			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
-			<recipeUsers>
-				<li>MutagenLab</li>
-			</recipeUsers>
-		</recipeMaker>
-		<costList>
-			<MechaniteSlurry>2</MechaniteSlurry>
-		</costList>
-		<comps>
-			<li Class="CompProperties_Drug">
-				<listOrder>1010</listOrder>
-			</li>
-		</comps>
 	</ThingDef>
   
-	<ThingDef ParentName="SerumBase">
+	<ThingDef ParentName="TransformerBase">
 		<defName>RandomRodentTransformer</defName>
 		<label>mutaserum, rodent</label>
 		<description>A serum filled with mechanites and animal DNA that causes rodent mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/SerumOrange</texPath>
 		</graphicData>
-		<statBases>
-			<WorkToMake>400</WorkToMake>
-			<MarketValue>120</MarketValue>
-		</statBases>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
@@ -204,23 +190,9 @@
 				</li>
 			</outcomeDoers>
 		</ingestible>
-		<recipeMaker>
-			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
-			<recipeUsers>
-				<li>MutagenLab</li>
-			</recipeUsers>
-		</recipeMaker>
-		<costList>
-			<MechaniteSlurry>2</MechaniteSlurry>
-		</costList>
-		<comps>
-			<li Class="CompProperties_Drug">
-				<listOrder>1010</listOrder>
-			</li>
-		</comps>
 	</ThingDef>
   
-	<ThingDef ParentName="SerumBase">
+	<ThingDef ParentName="TransformerBase">
 		<defName>RandomPowerfulTransformer</defName>
 		<label>mutaserum, powerful</label>
 		<description>An unidentified serum with powerful effects dissimilar to anything else. These ones take longer, and consume more hunger than other types of serums...but provide very powerful creatures.</description>
@@ -228,10 +200,6 @@
 			<texPath>Things/Item/Drug/SerumPowerful</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<statBases>
-			<WorkToMake>800</WorkToMake>
-			<MarketValue>500</MarketValue>
-		</statBases>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
@@ -244,20 +212,6 @@
 				</li>
 			</outcomeDoers>
 		</ingestible>
-		<recipeMaker>
-			<researchPrerequisite>PowerfulSerumSynthesis</researchPrerequisite>
-			<recipeUsers>
-				<li>MutagenLab</li>
-			</recipeUsers>
-		</recipeMaker>
-		<costList>
-			<MechaniteSlurry>5</MechaniteSlurry>
-		</costList>
-		<comps>
-			<li Class="CompProperties_Drug">
-				<listOrder>1010</listOrder>
-			</li>
-		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="MechSerumBase">
