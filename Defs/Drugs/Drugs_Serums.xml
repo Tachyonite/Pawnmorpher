@@ -29,6 +29,7 @@
 						<li>PawnmorphPigTF</li>
 						<li>PawnmorphRatTF</li>
 						<li>PawnmorphSnakeTF</li>
+						<li>PawnmorphSquirrelTF</li>
 						<li>PawnmorphWargTF</li>
 						<li>PawnmorphWolfTF</li>
 					</hediffDefs>
@@ -113,13 +114,88 @@
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
 						<li>PawnmorphAlpacaTF</li>
+						<li>PawnmorphBoarTF</li>
 						<li>PawnmorphBoomalopeTF</li>
 						<li>PawnmorphChickenTF</li>
 						<li>PawnmorphCowTF</li>
-						<li>PawnmorphHareTF</li>
-						<li>PawnmorphIguanaTF</li>
 						<li>PawnmorphPigTF</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>2</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+  
+	<ThingDef ParentName="SerumBase">
+		<defName>RandomReptileTransformer</defName>
+		<label>mutaserum, reptilian</label>
+		<description>A serum filled with mechanites and animal DNA that causes reptilian mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumPurple</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>120</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphIguanaTF</li>
+						<li>PawnmorphSnakeTF</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>2</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+  
+	<ThingDef ParentName="SerumBase">
+		<defName>RandomRodentTransformer</defName>
+		<label>mutaserum, rodent</label>
+		<description>A serum filled with mechanites and animal DNA that causes rodent mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumOrange</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>120</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphHareTF</li>
 						<li>PawnmorphRatTF</li>
+						<li>PawnmorphSquirrelTF</li>
 					</hediffDefs>
 					<severity>1.00</severity>
 				</li>
@@ -218,34 +294,32 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="MechSerumBase">
-			<defName>MechSerumResurrectorTf</defName>
-			<label>transformative resurrector mech serum</label>
-			<description>death is irrelevant</description>
-			<graphicData>
-			  <texPath>Things/Item/Special/MechSerumResurrector</texPath>
-			  <graphicClass>Graphic_Single</graphicClass>
-			</graphicData>
-			<stackLimit>10</stackLimit>
-			<statBases>
-			  <MarketValue>1700</MarketValue>
-			</statBases>
-			<tradeability>Sellable</tradeability>
-			<comps>
-			  <li Class="CompProperties_Usable">
+		<defName>MechSerumResurrectorTf</defName>
+		<label>transformative resurrector mech serum</label>
+		<description>death is irrelevant</description>
+		<graphicData>
+			<texPath>Things/Item/Special/MechSerumResurrector</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<MarketValue>1700</MarketValue>
+		</statBases>
+		<tradeability>Sellable</tradeability>
+		<comps>
+			<li Class="CompProperties_Usable">
 				<useJob>UseItem</useJob>
 				<useLabel>Use resurrector mech serum</useLabel>
 				<useDuration>0</useDuration>
-			  </li>
-			  <li Class="Pawnmorph.CompProperties_TransformableCorpse">
+			</li>
+			<li Class="Pawnmorph.CompProperties_TransformableCorpse">
 				<fleshCorpsesOnly>true</fleshCorpsesOnly>
 				<nonDessicatedCorpsesOnly>true</nonDessicatedCorpsesOnly>
-			  </li>
-			  <li Class="Pawnmorph.CompProperties_TfResurrect">
-				
-			  </li>
-			</comps>
-			<thingSetMakerTags>
-			  <li>RewardSpecial</li>
-			</thingSetMakerTags>
-		  </ThingDef>
+			</li>
+			<li Class="Pawnmorph.CompProperties_TfResurrect"/>
+		</comps>
+		<thingSetMakerTags>
+			<li>RewardSpecial</li>
+		</thingSetMakerTags>
+	</ThingDef>
 </Defs>

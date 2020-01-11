@@ -26,6 +26,7 @@
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherHareJaw>Parts/Hare/Hare_Jaw</EtherHareJaw>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
+					<EtherSquirrelJaw>Parts/Squirrel/Squirrel_Jaw</EtherSquirrelJaw>
 					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
 					<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
@@ -91,6 +92,7 @@
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherHareJaw>Parts/Hare/Hare_Jaw</EtherHareJaw>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
+					<EtherSquirrelJaw>Parts/Squirrel/Squirrel_Jaw</EtherSquirrelJaw>
 					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
 					<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
@@ -333,6 +335,7 @@
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -359,6 +362,7 @@
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -413,6 +417,7 @@
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -439,6 +444,7 @@
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -496,6 +502,7 @@
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -525,6 +532,7 @@
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -582,6 +590,7 @@
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -611,6 +620,7 @@
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -635,6 +645,7 @@
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>
 					<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
+					<EtherSquirrelTail>Parts/Squirrel/Squirrel_Tail</EtherSquirrelTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>

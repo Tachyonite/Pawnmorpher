@@ -1,16 +1,16 @@
 <Defs>
-	<HediffDef Name="HarePart" ParentName="PawnmorphPart" Abstract="True">
+	<HediffDef Name="SquirrelPart" ParentName="PawnmorphPart" Abstract="True">
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>HareMorph</morph>
+				<morph>SquirrelMorph</morph>
 			</li>
 		</comps>
 	</HediffDef>
 
-	<HediffDef ParentName="HarePart">
-		<defName>EtherHareJaw</defName>
-		<label>leporine muzzle</label>
-		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a hare's, complete with twitchy pink button nose.</description>
+	<HediffDef ParentName="SquirrelPart">
+		<defName>EtherSquirrelJaw</defName>
+		<label>sciurine muzzle</label>
+		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth.</description>
 		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li>
@@ -50,7 +50,7 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>3.4</power>
+						<power>5</power>
 						<cooldownTime>2</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -73,13 +73,13 @@
 		</modExtensions>
 	</HediffDef>
 
-	<HediffDef ParentName="HarePart">
-		<defName>EtherHareEar</defName>
-		<description>Long furry ears sit atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're suprisingly flexible.</description>
-		<label>leporine</label>
+	<HediffDef ParentName="SquirrelPart">
+		<defName>EtherSquirrelEar</defName>
+		<description>[PAWN_nameDef]'s ears have grown into small wedges, flicking about to listen for the beating of wings.</description>
+		<label>sciurine</label>
 		<stages>
 			<li>
-				<partEfficiencyOffset>0.5</partEfficiencyOffset>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
 		<modExtensions>
@@ -95,12 +95,18 @@
 		</modExtensions>
 	</HediffDef>
 
-	<HediffDef ParentName="HarePart">
-		<defName>EtherHareTail</defName>
-		<label>leporine tail</label>
-		<description>A small puff of fluf peaks out just above [PAWN_nameDef]'s bum. It's rather cute, actually.</description>
+	<HediffDef ParentName="SquirrelPart">
+		<defName>EtherSquirrelTail</defName>
+		<label>sciurine tail</label>
+		<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_possessive]self and use it as a pillow while sleeping.</description>
 		<stages>
 			<li>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
 				<statOffsets>
 					<SocialImpact>+0.10</SocialImpact>
 				</statOffsets>
@@ -114,33 +120,6 @@
 				<countToAffect>1</countToAffect>
 				<categories>
 					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
-
-	<HediffDef ParentName="HarePart">
-		<defName>EtherHareLeg</defName>
-		<label>spring-loaded leg</label>
-		<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit.</description>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.50</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Leg</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Minor</li>
 				</categories>
 			</li>
 		</modExtensions>

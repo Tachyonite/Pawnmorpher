@@ -14,7 +14,7 @@
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
-			<revertedMemory>HareMorphTFReaction</revertedMemory>
+			<transformationMemory>HareMorphTFReaction</transformationMemory>
 		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>
