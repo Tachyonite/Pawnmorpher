@@ -4,10 +4,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -18,6 +16,22 @@ namespace Pawnmorph.Factions
     /// </summary>
     public class MorphGroupMakerUtilities
     {
+        /// <summary>
+        ///     Applies the mutation extension to pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="canApplyRestricted">if set to <c>true</c> restricted mutations can be applied as well as regular ones.</param>
+        /// <param name="setAtMaxStage">if set to <c>true</c>all mutations will be set at the maximum stage.</param>
+        /// <param name="kindExtension">The kind extension.</param>
+        public static void ApplyMutationExtensionToPawn([NotNull] Pawn pawn, bool canApplyRestricted, bool setAtMaxStage,
+                                                        [NotNull] MorphPawnKindExtension kindExtension)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (kindExtension == null) throw new ArgumentNullException(nameof(kindExtension));
+            ApplyMutations(pawn, canApplyRestricted, setAtMaxStage, kindExtension);
+            ApplyAspects(pawn, kindExtension);
+        }
+
         /// <summary>Applies the mutations after the pawn has been loaded by the game.</summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="canApplyRestricted">if set to <c>true</c> allow restricted mutations to be applied.</param>
@@ -30,23 +44,7 @@ namespace Pawnmorph.Factions
             ApplyMutationExtensionToPawn(pawn, canApplyRestricted, setAtMaxStage, kindExtension);
         }
 
-        /// <summary>
-        ///     Applies the mutation extension to pawn.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="canApplyRestricted">if set to <c>true</c> restricted mutations can be applied as well as regular ones.</param>
-        /// <param name="setAtMaxStage">if set to <c>true</c>all mutations will be set at the maximum stage.</param>
-        /// <param name="kindExtension">The kind extension.</param>
-        public static void ApplyMutationExtensionToPawn([NotNull] Pawn pawn, bool canApplyRestricted, bool setAtMaxStage, [NotNull]
-                                                        MorphPawnKindExtension kindExtension)
-        {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (kindExtension == null) throw new ArgumentNullException(nameof(kindExtension));
-            ApplyMutations(pawn, canApplyRestricted, setAtMaxStage, kindExtension);
-            ApplyAspects(pawn, kindExtension);
-        }
-
-        private static void ApplyAspects( Pawn pawn, MorphPawnKindExtension extension)
+        private static void ApplyAspects(Pawn pawn, MorphPawnKindExtension extension)
         {
             if (pawn.GetAspectTracker() == null) return;
             if (extension.aspects.Count == 0) return;
@@ -54,10 +52,10 @@ namespace Pawnmorph.Factions
             int addAspect = extension.aspectRange.RandomInRange;
             if (addAspect == 0) return;
 
-            var aspectTracker = pawn.GetAspectTracker();
-            if (aspectTracker == null) return; 
+            AspectTracker aspectTracker = pawn.GetAspectTracker();
+            if (aspectTracker == null) return;
 
-            var availableAspects = extension.GetAllAspectDefs().ToList();
+            List<AspectDef> availableAspects = extension.GetAllAspectDefs().ToList();
 
             addAspect = Mathf.Min(availableAspects.Count - 1, addAspect);
 
@@ -65,8 +63,8 @@ namespace Pawnmorph.Factions
             {
                 foreach (AspectDef aspectDef in availableAspects)
                 {
-                    var stage = extension.GetAvailableStagesFor(aspectDef).RandomElementWithFallback();
-                    aspectTracker.Add(aspectDef, stage); 
+                    int stage = extension.GetAvailableStagesFor(aspectDef).RandomElementWithFallback();
+                    aspectTracker.Add(aspectDef, stage);
                 }
 
                 return;
@@ -76,40 +74,34 @@ namespace Pawnmorph.Factions
             for (var i = 0; i < addAspect; i++)
             {
                 int r = Rand.Range(0, availableAspects.Count); //pick a random entry 
-                var def = availableAspects[r];
-                var stage = extension.GetAvailableStagesFor(def).RandomElementWithFallback();
-                aspectTracker.Add(def, stage); 
+                AspectDef def = availableAspects[r];
+                int stage = extension.GetAvailableStagesFor(def).RandomElementWithFallback();
+                aspectTracker.Add(def, stage);
                 availableAspects.RemoveAt(r); //remove it so we don't pick it twice
             }
         }
 
-        private static void ApplyMutations([NotNull] Pawn pawn, bool canApplyRestricted, bool setAtMaxStage, [NotNull] MorphPawnKindExtension kindExtension)
+        private static void ApplyMutations([NotNull] Pawn pawn, bool canApplyRestricted, bool setAtMaxStage,
+                                           [NotNull] MorphPawnKindExtension kindExtension)
         {
             List<HediffGiver_Mutation> givers;
             var addedPartsSet = new HashSet<BodyPartDef>();
-            if (!canApplyRestricted)
-            {
-                canApplyRestricted = pawn.CanReceiveRareMutations(); 
-            }
+            if (!canApplyRestricted) canApplyRestricted = pawn.CanReceiveRareMutations();
 
-            
 
             if (canApplyRestricted)
                 givers = kindExtension.GetRandomMutationGivers(pawn.thingIDNumber).ToList();
             else
-                givers = kindExtension.GetRandomMutationGivers(pawn.thingIDNumber).Where(g => (g.hediff as MutationDef)?.IsRestricted ?? false) //only keep the unrestricted mutations 
+                givers = kindExtension.GetRandomMutationGivers(pawn.thingIDNumber)
+                                      .Where(g => (g.hediff as MutationDef)?.IsRestricted
+                                               ?? false) //only keep the unrestricted mutations 
                                       .ToList();
-
 
             var toGive = new List<HediffGiver_Mutation>();
             List<Hediff> allAdded = setAtMaxStage ? new List<Hediff>() : null;
-
-
             int toGiveCount = kindExtension.hediffRange.RandomInRange;
-
-
             int max = Mathf.Min(givers.Count, toGiveCount);
-            int i = 0;
+            var i = 0;
             while (i < max)
             {
                 if (givers.Count == 0) break;
@@ -131,21 +123,18 @@ namespace Pawnmorph.Factions
                 }
             }
 
-         
-
             foreach (HediffGiver_Mutation giver in toGive)
             {
                 giver.ClearOverlappingHediffs(pawn); // make sure to remove any overlapping hediffs added during a different stage 
-
-                giver.TryApply(pawn, MutagenDefOf.defaultMutagen, allAdded, addLogEntry:false);
+                giver.TryApply(pawn, MutagenDefOf.defaultMutagen, allAdded, addLogEntry: false);
             }
 
             if (setAtMaxStage)
-                foreach (var hediff in allAdded.OfType<Hediff_AddedMutation>())
+                foreach (Hediff_AddedMutation hediff in allAdded.OfType<Hediff_AddedMutation>())
                 {
                     if (hediff.pawn == null) continue; //sometimes the hediffs are removed by other mutations 
 
-                    if(hediff.TryGetComp<HediffComp_Production>()!=null) continue; //do not increase production hediffs 
+                    if (hediff.TryGetComp<HediffComp_Production>() != null) continue; //do not increase production hediffs 
 
                     var comp = hediff.TryGetComp<Comp_MutationSeverityAdjust>();
                     if (comp != null)
@@ -156,7 +145,7 @@ namespace Pawnmorph.Factions
 
                     HediffStage lastStage = hediff.def.stages?.LastOrDefault();
                     if (lastStage == null) continue;
-                    
+
                     float severity = lastStage.minSeverity + 0.01f;
                     hediff.Severity = severity;
                 }

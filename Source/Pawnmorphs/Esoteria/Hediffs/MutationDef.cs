@@ -17,6 +17,27 @@ namespace Pawnmorph.Hediffs
     public class MutationDef : HediffDef
     {
         /// <summary>
+        /// Gets all mutations.
+        /// </summary>
+        /// <value>
+        /// All mutations.
+        /// </value>
+        [NotNull] public static IEnumerable<MutationDef> AllMutations => DefDatabase<MutationDef>.AllDefs; 
+
+
+        [Unsaved] private RemoveFromPartCompProperties _rmComp;
+
+        /// <summary>
+        /// Gets the remover comp.
+        /// </summary>
+        /// this is the comp used to remove 'overlapping' mutations
+        /// <value>
+        /// The remove comp.
+        /// </value>
+        [NotNull]
+        public RemoveFromPartCompProperties RemoveComp => _rmComp; 
+
+        /// <summary>
         ///     list of body parts this mutation can be added to
         /// </summary>
         /// note: this does not affect HediffGiver_AddedMutation, this is for adding mutations without a hediff giver
@@ -127,6 +148,10 @@ namespace Pawnmorph.Hediffs
             {
                 yield return $"both {nameof(morphInfluence)} and {nameof(classInfluence)} are set!"; 
             }
+
+            _rmComp = CompProps<RemoveFromPartCompProperties>();
+            if (_rmComp == null)
+                yield return "mutation does not have a remover comp!";
         }
 
 

@@ -189,7 +189,7 @@ namespace Pawnmorph
             // Determine the remaining human influence.
             float humInf = 1f;
             foreach (VTuple<MorphDef, float> influence in influences)
-                humInf -= influence.second;
+                humInf -= influence.Second;
 
             // If the remaining human influence is greater than 0.0001, print its influence first.
             // (0.0001 is used to compensate for floating point number's occasional lack of precision.)
@@ -204,13 +204,13 @@ namespace Pawnmorph
             }
             
             // List the morph influences upon the pawn in descending order.
-            foreach (VTuple<MorphDef, float> influence in influences.OrderByDescending(x => x.second))
+            foreach (VTuple<MorphDef, float> influence in influences.OrderByDescending(x => x.Second))
             {
                 // Set the greatest influence's color to cyan
-                if (Math.Abs(influence.second - influences.MaxBy(x => x.second).second) < EPSILON)
+                if (Math.Abs(influence.Second - influences.MaxBy(x => x.Second).Second) < EPSILON)
                     GUI.color = Color.cyan;
 
-                string text = $"{influence.first.race.LabelCap} ({influence.second.ToStringPercent()})";
+                string text = $"{influence.First.race.LabelCap} ({influence.Second.ToStringPercent()})";
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
                 curPos.y += rectHeight;

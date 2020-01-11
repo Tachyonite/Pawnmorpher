@@ -45,20 +45,21 @@ namespace Pawnmorph
 
         static MutationUtilities()
         {
+           
             StatDef stat = PMStatDefOf.MutationAdaptability;
             MinMutationAdaptabilityValue = stat.minValue;
             MaxMutationAdaptabilityValue = stat.maxValue;
             AverageMutationAdaptabilityValue = stat.defaultBaseValue;
-
+            
             //generate some warning for missing mutation defs 
-            StringBuilder warningBuilder = new StringBuilder();
-            bool anyWarnings = false; 
+            var warningBuilder = new StringBuilder();
+            var anyWarnings = false;
             foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
             {
                 if (!typeof(Hediff_AddedMutation).IsAssignableFrom(hediffDef.hediffClass)) continue;
-                if(hediffDef is MutationDef) continue;
+                if (hediffDef is MutationDef) continue;
                 warningBuilder.AppendLine($"{hediffDef.defName} is a mutation but does not use {nameof(MutationDef)}!");
-                anyWarnings = true; 
+                anyWarnings = true;
             }
 
             //warnings for use of the old def extension 
@@ -69,55 +70,23 @@ namespace Pawnmorph
                 if (hediffDef.HasModExtension<MutationHediffExtension>())
                 {
                     warningBuilder.AppendLine($"{hediffDef.defName} is still using the old MutationHediffExtension!");
-                    anyWarnings = true; 
+                    anyWarnings = true;
                 }
 
                 if (hediffDef.HasComp(typeof(Comp_MorphInfluence)))
                 {
                     warningBuilder.AppendLine($"{hediffDef.defName} is still using the old {nameof(Comp_MorphInfluence)}!");
-                    anyWarnings = true; 
+                    anyWarnings = true;
                 }
 #pragma warning restore 618
             }
 
-            if (anyWarnings)
-            {
-                Log.Warning(warningBuilder.ToString());
-            }
+            if (anyWarnings) Log.Warning(warningBuilder.ToString());
             BuildLookupDicts();
-
         }
 
-        private static void BuildLookupDicts()
-        {
-            //build the lookup table of part sorted by the mutations that affect them 
-            _mutationsByParts = new Dictionary<BodyPartDef, List<HediffDef>>();
-            _partLookupDict = new Dictionary<HediffDef, List<BodyPartDef>>();
-            foreach (HediffDef mutation in AllMutations)
-            {
-                IEnumerable<BodyPartDef> allParts = GetAffectedParts(mutation).Distinct();
-                _partLookupDict[mutation] = allParts.ToList();
-            }
-            //now build the reverse lookup table 
 
-            foreach (KeyValuePair<HediffDef, List<BodyPartDef>> kvp in _partLookupDict)
-            foreach (BodyPartDef bodyPartDef in kvp.Value)
-            {
-                List<HediffDef> mutations;
-                if (!_mutationsByParts.TryGetValue(bodyPartDef, out mutations))
-                {
-                    mutations = new List<HediffDef>
-                    {
-                        kvp.Key
-                    };
-                    _mutationsByParts[bodyPartDef] = mutations;
-                }
-                else
-                {
-                    mutations.Add(kvp.Key);
-                }
-            }
-        }
+
 
 
         /// <summary>
@@ -371,6 +340,40 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// checks if this mutation overlaps with the given mutation 
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="otherMutation">The other mutation.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// mutationDef
+        /// or
+        /// otherMutation
+        /// </exception>
+        [Pure]
+        public static bool OverlapsWith([NotNull] this MutationDef mutationDef, [NotNull] MutationDef otherMutation)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (otherMutation == null) throw new ArgumentNullException(nameof(otherMutation));
+
+            //make sure this mutation def has all the same parts as other mutation 
+
+            foreach (BodyPartDef bodyPartDef in mutationDef.parts)
+            {
+                if (otherMutation.parts.Contains(bodyPartDef) == false) return false; //if mutation Def has any part that other mutation does not they do not overlap 
+            }
+
+            var thRmComp = mutationDef.RemoveComp;
+            var othRmComp = otherMutation.RemoveComp; 
+
+            //make sure the layers overlap 
+            return thRmComp.layer != othRmComp.layer; 
+
+
+        }
+
+
+        /// <summary>
         ///     Gets all mutable part on this body def
         /// </summary>
         /// <param name="bodyDef">The body definition.</param>
@@ -417,30 +420,6 @@ namespace Pawnmorph
             }
 
             return lst;
-        }
-
-        /// <summary>
-        ///     get the largest influence on this pawn
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <returns></returns>
-        [CanBeNull]
-        public static MorphDef GetHighestInfluence([NotNull] this Pawn pawn)
-        {
-            MutationTracker comp = pawn.GetMutationTracker();
-            if (comp == null) return null;
-
-
-            MorphDef highest = null;
-            float max = float.NegativeInfinity;
-            foreach (KeyValuePair<MorphDef, float> keyValuePair in comp)
-                if (max < keyValuePair.Value)
-                {
-                    max = keyValuePair.Value;
-                    highest = keyValuePair.Key;
-                }
-
-            return highest;
         }
 
 
@@ -567,6 +546,37 @@ namespace Pawnmorph
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
             return def.GetType().HasAttribute<ObsoleteAttribute>() || def.hediffClass.HasAttribute<ObsoleteAttribute>();
+        }
+
+        private static void BuildLookupDicts()
+        {
+            //build the lookup table of part sorted by the mutations that affect them 
+            _mutationsByParts = new Dictionary<BodyPartDef, List<HediffDef>>();
+            _partLookupDict = new Dictionary<HediffDef, List<BodyPartDef>>();
+            foreach (HediffDef mutation in AllMutations)
+            {
+                IEnumerable<BodyPartDef> allParts = GetAffectedParts(mutation).Distinct();
+                _partLookupDict[mutation] = allParts.ToList();
+            }
+            //now build the reverse lookup table 
+
+            foreach (KeyValuePair<HediffDef, List<BodyPartDef>> kvp in _partLookupDict)
+            foreach (BodyPartDef bodyPartDef in kvp.Value)
+            {
+                List<HediffDef> mutations;
+                if (!_mutationsByParts.TryGetValue(bodyPartDef, out mutations))
+                {
+                    mutations = new List<HediffDef>
+                    {
+                        kvp.Key
+                    };
+                    _mutationsByParts[bodyPartDef] = mutations;
+                }
+                else
+                {
+                    mutations.Add(kvp.Key);
+                }
+            }
         }
 
         /// <summary>internal function for getting the part a mutation affects </summary>

@@ -20,7 +20,7 @@
 	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
 		<comps>
 			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-				<layers>Skin</layers>
+				<layer>Skin</layer>
 			</li>
 			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
 				<mtb>60</mtb>
@@ -33,7 +33,7 @@
 		<initialSeverity>0.1</initialSeverity>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-				<layers>Core</layers>
+				<layer>Core</layer>
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -42,7 +42,7 @@
 		<defaultLabelColor>(160, 55, 186)</defaultLabelColor>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-				<layers>Core</layers>
+				<layer>Core</layer>
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>

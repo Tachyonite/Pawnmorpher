@@ -45,7 +45,7 @@ namespace Pawnmorph
             {
                 if (_reCalcInfluences)
                 {
-                    _totalNormalizedInfluence = NormalizedInfluences.Sum(f => f.second); 
+                    _totalNormalizedInfluence = NormalizedInfluences.Sum(f => f.Second); 
                 }
 
                 return _totalNormalizedInfluence;
@@ -73,12 +73,12 @@ namespace Pawnmorph
             foreach (VTuple<MorphDef, float> tuple in CalculateNormalizedInfluences())
             {
                 _normalizedInfluencesCache.Add(tuple);
-                _normalizedInfluenceLookup[tuple.first] = tuple.second;
+                _normalizedInfluenceLookup[tuple.First] = tuple.Second;
             }
 
 
 
-            _totalNormalizedInfluence = _normalizedInfluencesCache.Sum(f => f.second);
+            _totalNormalizedInfluence = _normalizedInfluencesCache.Sum(f => f.Second);
         }
 
         /// <summary> The morph with the most influence on this pawn, not necessarily the morph the pawn currently is. </summary>
@@ -155,7 +155,7 @@ namespace Pawnmorph
 
             foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
             {
-                _influenceLookup[tuple.first] = _influenceLookup.TryGetValue(tuple.first) + tuple.second; 
+                _influenceLookup[tuple.First] = _influenceLookup.TryGetValue(tuple.First) + tuple.Second; 
             }
             
             MutationsCount += 1; 
@@ -204,11 +204,11 @@ namespace Pawnmorph
 
             foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
             {
-                float val = _influenceLookup.TryGetValue(tuple.first) - tuple.second;
+                float val = _influenceLookup.TryGetValue(tuple.First) - tuple.Second;
                 if (val < EPSILON)
-                    _influenceLookup.Remove(tuple.first);
+                    _influenceLookup.Remove(tuple.First);
                 else
-                    _influenceLookup[tuple.first] = val; 
+                    _influenceLookup[tuple.First] = val; 
 
 
             }
@@ -242,7 +242,7 @@ namespace Pawnmorph
             {
                 foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
                 {
-                    _influenceLookup[tuple.first] = _influenceLookup.TryGetValue(tuple.first) + tuple.second;
+                    _influenceLookup[tuple.First] = _influenceLookup.TryGetValue(tuple.First) + tuple.Second;
                 }
             }
 

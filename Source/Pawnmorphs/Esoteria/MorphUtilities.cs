@@ -43,12 +43,29 @@ namespace Pawnmorph
         {
             get
             {
-                if (_maxHumanInfluence == null) _maxHumanInfluence = BodyDefOf.Human.GetAllMutableParts().Count();
+                if (_maxHumanInfluence == null)
+                {
+                    HashSet<VTuple<BodyPartRecord, MutationLayer>> set = new HashSet<VTuple<BodyPartRecord, MutationLayer>>();
+                    var enumerable = MutationDef.AllMutations.SelectMany(m => GetAllMutationSites(m, BodyDefOf.Human));
+                    set.AddRange(enumerable);
+                    _maxHumanInfluence = set.Count; 
+                }
 
                 return _maxHumanInfluence.Value;
             }
         }
 
+        private static IEnumerable<VTuple<BodyPartRecord, MutationLayer>> GetAllMutationSites(
+            [NotNull] MutationDef mutationDef, BodyDef bDef)
+        {
+            foreach (BodyPartRecord bodyPartRecord in bDef.AllParts)
+            {
+                if (mutationDef.parts.Contains(bodyPartRecord.def))
+                {
+                    yield return new VTuple<BodyPartRecord, MutationLayer>(bodyPartRecord, mutationDef.RemoveComp.layer);
+                }
+            }
+        }
 
         /// <summary>
         ///     Checks the race of this pawn. If the pawn is mutated enough it's race is changed to one of the hybrids
@@ -214,8 +231,7 @@ namespace Pawnmorph
         /// <summary> Get all morphs defs associated with this transformation hediff def. </summary>
         /// <param name="transformationDef"> The transformation definition. </param>
         [Obsolete]
-        private static IEnumerable<MorphDef>
-            GetAssociatedMorphInternal(
+        private static IEnumerable<MorphDef> GetAssociatedMorphInternal(
                 HediffDef transformationDef) //might want to add it the hediff defs themselves rather then check at runtime 
         {
             IEnumerable<HediffGiver_Mutation> mutationsGiven =
@@ -251,6 +267,30 @@ namespace Pawnmorph
             {
                 Rand.PopState();
             }
+        }
+
+        /// <summary>
+        ///     get the largest influence on this pawn
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static MorphDef GetHighestInfluence([NotNull] this Pawn pawn)
+        {
+            MutationTracker comp = pawn.GetMutationTracker();
+            if (comp == null) return null;
+
+
+            MorphDef highest = null;
+            float max = Single.NegativeInfinity;
+            foreach (KeyValuePair<MorphDef, float> keyValuePair in comp)
+                if (max < keyValuePair.Value)
+                {
+                    max = keyValuePair.Value;
+                    highest = keyValuePair.Key;
+                }
+
+            return highest;
         }
     }
 }
