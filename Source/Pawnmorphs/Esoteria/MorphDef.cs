@@ -64,9 +64,8 @@ namespace Pawnmorph
 
         [Unsaved] private Dictionary<BodyPartDef, List<HediffDef>> _mutationsByParts;
 
-        [Unsaved] private List<HediffDef> _allAssociatedMutations;
+        [Unsaved] private List<MutationDef> _allAssociatedMutations;
 
-        [CanBeNull] [Unsaved] private HashSet<HediffDef> _associatedMutationsLookup;
         IEnumerable<IAnimalClass> IAnimalClass.Children => Enumerable.Empty<IAnimalClass>(); //morphs can't have class children
 
         bool IAnimalClass.Contains(IAnimalClass other)
@@ -91,13 +90,13 @@ namespace Pawnmorph
         /// <summary>Gets the collection of all mutations associated with this morph def</summary>
         /// <value>All associated mutations.</value>
         [NotNull]
-        public IEnumerable<HediffDef> AllAssociatedMutations
+        public IEnumerable<MutationDef> AllAssociatedMutations
         {
             get
             {
                 if (_allAssociatedMutations == null)
                 {
-                    _allAssociatedMutations = new List<HediffDef>();
+                    _allAssociatedMutations = new List<MutationDef>();
                     //temp set for keeping track of all the 'slots' we have occupied so far
                     var set = new HashSet<VTuple<BodyPartDef, MutationLayer>>();
                     IAnimalClass aClass = this;
@@ -188,8 +187,8 @@ namespace Pawnmorph
             if (_mutationsByParts == null)
             {
                 _mutationsByParts = new Dictionary<BodyPartDef, List<HediffDef>>();
-                foreach (HediffDef mutation in AllAssociatedMutations) //build the lookup dict here 
-                foreach (BodyPartDef part in mutation.GetPossibleParts()) //gets a list of all parts this mutation affects 
+                foreach (var mutation in AllAssociatedMutations) //build the lookup dict here 
+                foreach (BodyPartDef part in mutation.parts) //gets a list of all parts this mutation affects 
                 {
                     List<HediffDef> lst;
                     if (_mutationsByParts.TryGetValue(part, out lst))
@@ -232,12 +231,34 @@ namespace Pawnmorph
         ///     <c>true</c> if the specified hediff definition is an associated mutation; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">hediffDef</exception>
+        [Obsolete]
         public bool IsAnAssociatedMutation([NotNull] HediffDef hediffDef)
         {
             if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
+            if (hediffDef is MutationDef mDef)
+            {
+                return AllAssociatedMutations.Contains(mDef);
+            }
 
-            return AllAssociatedMutations.Contains(hediffDef);
+            return false; 
         }
+        /// <summary>
+        ///     Determines whether the specified hediff definition is an associated mutation .
+        /// </summary>
+        /// <param name="mutationDef">The hediff definition.</param>
+        /// <returns>
+        ///     <c>true</c> if the specified hediff definition is an associated mutation; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">hediffDef</exception>
+        public bool IsAnAssociatedMutation([NotNull] MutationDef mutationDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+         
+                return AllAssociatedMutations.Contains(mutationDef);
+            
+
+        }
+
 
         /// <summary>
         ///     Determines whether the given hediff is an associated mutation.

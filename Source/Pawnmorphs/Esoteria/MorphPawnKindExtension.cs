@@ -98,7 +98,7 @@ namespace Pawnmorph
         /// <summary>Gets all mutation givers that pawns in this group can receive.</summary>
         /// <value>All mutation givers.</value>
         /// this is created by combining the mutations from <seealso cref="morphCategories"/> <seealso cref="mutationCategories"/> and <seealso cref="morphs"/>
-        [NotNull]
+        [NotNull, Obsolete("use " + nameof(MutationUtilities.AddMutation) + " instead")]
         public IEnumerable<HediffGiver_Mutation> AllMutationGivers
         {
             get
@@ -226,6 +226,7 @@ namespace Pawnmorph
             }
         }
 
+        [Obsolete]
         private void GetMorphGivers([NotNull] List<HediffGiver_Mutation> storage)
         {
 

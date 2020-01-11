@@ -1,6 +1,7 @@
 ﻿// Giver_MutationCategoryGiver.cs modified by Iron Wolf for Pawnmorph on 11/24/2019 5:09 PM
 // last updated 11/24/2019  5:09 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -39,7 +40,7 @@ namespace Pawnmorph.Hediffs
 
         private List<HediffGiver_Mutation> _mutations;
 
-        [NotNull]
+        [NotNull, Obsolete]
         private List<HediffGiver_Mutation> Mutations
         {
             get
