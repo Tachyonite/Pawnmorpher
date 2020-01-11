@@ -6,166 +6,84 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Hediffs;
-using Pawnmorph.Utilities;
-using UnityEngine;
 using Verse;
-using static Pawnmorph.DebugUtils.DebugLogUtils; 
+using static Pawnmorph.DebugUtils.DebugLogUtils;
+
 namespace Pawnmorph
 {
     /// <summary> Tracker comp for tracking the current influence a pawn has of a given morph. </summary>
-    public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<MorphDef, float>>
+    public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<IAnimalClass, float>>
     {
-        private Dictionary<MorphDef, float> _influenceLookup = new Dictionary<MorphDef, float>();
-        private List<VTuple<MorphDef, float>> _normalizedInfluencesCache = new List<VTuple<MorphDef, float>>();
-        private bool _reCalcInfluences = true;
-        private float _totalNormalizedInfluence;
 
-        private Dictionary<MorphDef, float> _normalizedInfluenceLookup = new Dictionary<MorphDef, float>(); 
+        [NotNull] private readonly List<Hediff_AddedMutation> _mutationList = new List<Hediff_AddedMutation>();
+
+        [NotNull] private readonly Dictionary<IAnimalClass, float> _influenceDict = new Dictionary<IAnimalClass, float>();
+
+        /// <summary>Returns an enumerator that iterates through a collection.</summary>
+        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+
+        /// <summary>Returns an enumerator that iterates through the collection.</summary>
+        /// <returns>
+        ///     A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the
+        ///     collection.
+        /// </returns>
+        public IEnumerator<KeyValuePair<IAnimalClass, float>> GetEnumerator()
+        {
+            return _influenceDict.GetEnumerator(); 
+        }
 
         /// <summary>
-        /// Gets the total number of mutations on the pawn being tracked.
-        /// </summary>
-        /// <value>
-        /// The mutations count.
-        /// </value>
-        public int MutationsCount { get; private set; }
-        /// <summary> Get the current influence associated with the given key. </summary>
-        public float this[MorphDef key] => _influenceLookup.TryGetValue(key);
-
-        /// <summary>
-        /// Gets the total normalized influence of all morphs on the tracked pawn 
+        /// Gets the total normalized non human influence 
         /// </summary>
         /// <value>
         /// The total normalized influence.
         /// </value>
-        public float TotalNormalizedInfluence //cache this to help with performance 
-        {
-            get
-            {
-                if (_reCalcInfluences)
-                {
-                    _totalNormalizedInfluence = NormalizedInfluences.Sum(f => f.Second); 
-                }
+        public float TotalNormalizedInfluence { get; private set; }
 
-                return _totalNormalizedInfluence;
-            }
-        }
+        /// <summary>
+        ///     Gets the total number of mutations on the pawn being tracked.
+        /// </summary>
+        /// <value>
+        ///     The mutations count.
+        /// </value>
+        public int MutationsCount { get; private set; }
 
-        /// <summary> An enumerable collection of influences normalized against each other and the remaining human influence. </summary>
-        public IEnumerable<VTuple<MorphDef, float>> NormalizedInfluences //cache this to help with performance 
-        {
-            get
-            {
-                if (_reCalcInfluences)
-                {
-                    RecalcNormalizedInfluences();
-                }
+        /// <summary> Get the current influence associated with the given key. </summary>
+        public float this[MorphDef key] => _influenceDict.TryGetValue(key);
 
-                return _normalizedInfluencesCache; 
-            }
-        }
-
-        private void RecalcNormalizedInfluences()
-        {
-            _normalizedInfluencesCache.Clear();
-
-            foreach (VTuple<MorphDef, float> tuple in CalculateNormalizedInfluences())
-            {
-                _normalizedInfluencesCache.Add(tuple);
-                _normalizedInfluenceLookup[tuple.First] = tuple.Second;
-            }
-
-
-
-            _totalNormalizedInfluence = _normalizedInfluencesCache.Sum(f => f.Second);
-        }
 
         /// <summary> The morph with the most influence on this pawn, not necessarily the morph the pawn currently is. </summary>
-        [CanBeNull] public MorphDef HighestInfluence { get; private set; }
+        [CanBeNull, Obsolete("use " + nameof(HighestInfluence) + " instead")]
+        public MorphDef HighestMorphInfluence { get; private set; }
 
-        private IEnumerable<VTuple<MorphDef, float>> CalculateNormalizedInfluences()
-        {
-            float accum = 0;
-            foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
-            {
-                accum += keyValuePair.Value
-                       / keyValuePair.Key.GetMaximumInfluence(Pawn.def.race.body); //use the normalized value so we're comparing apples to apples 
-                //some morphs have more unique parts then others after all 
-            }
 
-            //accum += Pawn.GetHumanInfluence(true) * MorphUtilities.HUMAN_CHANGE_FACTOR; //add in the remaining human influence, if any
-            float nonHumanInfluence =  1 - Pawn.GetHumanInfluence(true);
-
-            foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
-            {
-                float nVal;
-                if (accum < 0.0001f) nVal = 0; //prevent division by zero 
-                else
-                    nVal = nonHumanInfluence * keyValuePair.Value //make sure we are keeping the influence values in fractions of the remaining human influence 
-                         / (accum * keyValuePair.Key.GetMaximumInfluence(Pawn.RaceProps.body)); //now normalize the morph influences against the total 
-                var tup = new VTuple<MorphDef, float>(keyValuePair.Key, nVal);
-                yield return tup; 
-            }
-        }
-
+        /// <summary>
+        /// Gets the highest influence on this pawn 
+        /// </summary>
+        /// <value>
+        /// The highest influence.
+        /// </value>
+        public IAnimalClass HighestInfluence { get; private set; }
 
         /// <summary> All mutations the pawn has. </summary>
         public IEnumerable<Hediff_AddedMutation> AllMutations =>
-            Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>();
+            _mutationList;
 
         /// <summary>
-        /// Initializes this instance with given props.
-        /// </summary>
-        /// this is call just after it is added to the parent, so other comps may or may not be added yet 
-        /// <param name="props">The props.</param>
-        public override void Initialize(CompProperties props)
-        {
-            base.Initialize(props);
-            Assert(parent is Pawn, "parent is Pawn"); 
-        }
-
-        /// <summary>
-        /// Gets the normalized influence of the given morph 
-        /// </summary>
-        /// <param name="morph">The morph.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">morph</exception>
-        public float GetNormalizedInfluence([NotNull] MorphDef morph)
-        {
-            if (morph == null) throw new ArgumentNullException(nameof(morph));
-            if(_reCalcInfluences) RecalcNormalizedInfluences();
-            return _normalizedInfluenceLookup.TryGetValue(morph); 
-
-
-        }
-        /// <summary>
-        /// Gets the pawn this is tracking mutations for.
+        ///     Gets the pawn this is tracking mutations for.
         /// </summary>
         /// <value>
-        /// The pawn.
+        ///     The pawn.
         /// </value>
         public Pawn Pawn => (Pawn) parent;
 
-        /// <summary> Called to notify this tracker that a mutation has been added. </summary>
-        public void NotifyMutationAdded([NotNull] Hediff_AddedMutation mutation)
-        {
-            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-            _reCalcInfluences = true;  //we will need to recalculate the total if requested 
-
-            foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
-            {
-                _influenceLookup[tuple.First] = _influenceLookup.TryGetValue(tuple.First) + tuple.Second; 
-            }
-            
-            MutationsCount += 1; 
-
-            HighestInfluence = GetHighestInfluence(); 
-
-            NotifyCompsAdded(mutation);
-        }
         /// <summary>
-        /// called every tick 
+        ///     called every tick
         /// </summary>
         public override void CompTick()
         {
@@ -173,117 +91,136 @@ namespace Pawnmorph
                 Pawn.CheckRace(false); //check the race every so often, but not too often 
         }
 
-        void NotifyCompsAdded(Hediff_AddedMutation mutation)
+        /// <summary>
+        ///     Gets the normalized direct influence of the given morph
+        /// </summary>
+        /// this does not take into account influence the children of the given class might have on the pawn
+        /// <param name="class">The morph.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">morph</exception>
+        public float GetDirectNormalizedInfluence([NotNull] IAnimalClass @class)
         {
-            foreach (ThingComp parentAllComp in parent.AllComps)
-            {
-                if(parentAllComp == this) continue;
-                if(!(parentAllComp is IMutationEventReceiver receiver)) continue;
-                receiver.MutationAdded(mutation, this); 
-            }
+            if (@class == null) throw new ArgumentNullException(nameof(@class));
+            return _influenceDict.TryGetValue(@class) / MorphUtilities.MaxHumanInfluence;
         }
 
-        void NotifyCompsRemoved(Hediff_AddedMutation mutation)
+        /// <summary>
+        ///     Initializes this instance with given props.
+        /// </summary>
+        /// this is call just after it is added to the parent, so other comps may or may not be added yet
+        /// <param name="props">The props.</param>
+        public override void Initialize(CompProperties props)
         {
-            foreach (ThingComp parentAllComp in parent.AllComps)
-            {
-                if (parentAllComp == this) continue;
-                if (!(parentAllComp is IMutationEventReceiver receiver)) continue;
-                receiver.MutationRemoved(mutation, this); 
-            }
+            base.Initialize(props);
+            Assert(parent is Pawn, "parent is Pawn");
         }
-        const float EPSILON = 0.01f;
+
+        /// <summary> Called to notify this tracker that a mutation has been added. </summary>
+        public void NotifyMutationAdded([NotNull] Hediff_AddedMutation mutation)
+        {
+            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+            _mutationList.Add(mutation);
+
+            AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
+            TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
+            MutationsCount += 1;
+
+            HighestMorphInfluence = GetHighestMorphInfluence();
+
+            NotifyCompsAdded(mutation);
+        }
 
         /// <summary> Called to notify this tracker that a mutation has been removed. </summary>
         public void NotifyMutationRemoved([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-            _reCalcInfluences = true; //we will need to recalculate the total if requested 
+            _mutationList.Remove(mutation);
             MutationsCount -= 1;
 
+            AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
+            TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence; 
+            HighestMorphInfluence = GetHighestMorphInfluence();
+            HighestInfluence = GetHighestInfluence(); 
+            NotifyCompsRemoved(mutation);
+        }
 
-            foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
+        private IAnimalClass GetHighestInfluence()
+        {
+            float max = 0;
+            IAnimalClass influence = null; 
+            foreach (KeyValuePair<IAnimalClass, float> keyValuePair in _influenceDict)
             {
-                float val = _influenceLookup.TryGetValue(tuple.First) - tuple.Second;
-                if (val < EPSILON)
-                    _influenceLookup.Remove(tuple.First);
-                else
-                    _influenceLookup[tuple.First] = val; 
-
-
+                if (keyValuePair.Value > max)
+                {
+                    influence = keyValuePair.Key;
+                    max = keyValuePair.Value; 
+                }
             }
 
-        
-            HighestInfluence = GetHighestInfluence();
-
-            NotifyCompsRemoved(mutation); 
+            return influence; 
         }
 
         /// <summary>
-        /// exposes this instances data after the parent.
+        ///     exposes this instances data after the parent.
         /// </summary>
         public override void PostExposeData()
         {
             base.PostExposeData();
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            {
                 // Generate lookup dict manually during load for backwards compatibility.
 
                 RecalculateCaches();
+        }
+
+        [Obsolete]
+        private MorphDef GetHighestMorphInfluence()
+        {
+            MorphDef hMorph = null;
+            float max = float.NegativeInfinity;
+            foreach (KeyValuePair<IAnimalClass, float> keyValuePair in _influenceDict)
+                if (max < keyValuePair.Value)
+                {
+                    hMorph = keyValuePair.Key as MorphDef;
+                    max = keyValuePair.Value;
+                }
+
+            return hMorph;
+        }
+
+        private void NotifyCompsAdded(Hediff_AddedMutation mutation)
+        {
+            foreach (ThingComp parentAllComp in parent.AllComps)
+            {
+                if (parentAllComp == this) continue;
+                if (!(parentAllComp is IMutationEventReceiver receiver)) continue;
+                receiver.MutationAdded(mutation, this);
+            }
+        }
+
+        private void NotifyCompsRemoved(Hediff_AddedMutation mutation)
+        {
+            foreach (ThingComp parentAllComp in parent.AllComps)
+            {
+                if (parentAllComp == this) continue;
+                if (!(parentAllComp is IMutationEventReceiver receiver)) continue;
+                receiver.MutationRemoved(mutation, this);
             }
         }
 
         private void RecalculateCaches()
         {
-            _influenceLookup.Clear();
-            
-            foreach (Hediff_AddedMutation mutation in AllMutations)
-            {
-                foreach (VTuple<MorphDef, float> tuple in MutationUtilities.GetAllNonZeroInfluences(mutation.def))
-                {
-                    _influenceLookup[tuple.First] = _influenceLookup.TryGetValue(tuple.First) + tuple.Second;
-                }
-            }
+            foreach (Hediff_AddedMutation mutation in Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
+                _mutationList.Add(mutation);
 
+            AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
+            TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
             // Now find the highest influence.
-            MorphDef hMorph = GetHighestInfluence();
-            HighestInfluence = hMorph;
-            _reCalcInfluences = true;
+            MorphDef hMorph = GetHighestMorphInfluence();
+            HighestMorphInfluence = hMorph;
 
 
             MutationsCount = Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Count();
-        }
-
-        private MorphDef GetHighestInfluence()
-        {
-            MorphDef hMorph = null;
-            float max = float.NegativeInfinity;
-            foreach (KeyValuePair<MorphDef, float> keyValuePair in _influenceLookup)
-            {
-                if (max < keyValuePair.Value)
-                {
-                    hMorph = keyValuePair.Key;
-                    max = keyValuePair.Value;
-                }
-            }
-
-            return hMorph;
-        }
-
-
-        /// <summary>Returns an enumerator that iterates through the collection.</summary>
-        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
-        public IEnumerator<KeyValuePair<MorphDef, float>> GetEnumerator()
-        {
-            return _influenceLookup.GetEnumerator();
-        }
-
-        /// <summary>Returns an enumerator that iterates through a collection.</summary>
-        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable) _influenceLookup).GetEnumerator();
         }
     }
 }

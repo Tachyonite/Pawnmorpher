@@ -97,7 +97,7 @@ namespace Pawnmorph
                 Cure(hediff_Injury2);
 
                 if (hediff_Injury2.Part != null)
-                    AddMutationToPart(hediff_Injury2.Part, usedBy, usedBy.GetMutationTracker()?.HighestInfluence, mutagen:mutagen); 
+                    AddMutationToPart(hediff_Injury2.Part, usedBy, usedBy.GetMutationTracker()?.HighestMorphInfluence, mutagen:mutagen); 
 
 
                 return;
@@ -237,7 +237,7 @@ namespace Pawnmorph
             pawn.health.RestorePart(part);
             // Add mutations.
 
-            AddMutationToPart(part, pawn, pawn.GetMutationTracker()?.HighestInfluence, true, parent.def.GetModExtension<MutagenExtension>()?.mutagen);
+            AddMutationToPart(part, pawn, pawn.GetMutationTracker()?.HighestMorphInfluence, true, parent.def.GetModExtension<MutagenExtension>()?.mutagen);
 
             Messages.Message("MessageBodyPartCuredByItem".Translate(part.LabelCap), pawn, MessageTypeDefOf.PositiveEvent);
         }

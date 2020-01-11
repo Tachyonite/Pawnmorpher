@@ -41,7 +41,7 @@ namespace Pawnmorph.Thoughts
             if (!isDefault)
             {
                 isDefault = false; 
-                if (mutTracker.HighestInfluence != morphTDef.morph)
+                if (mutTracker.HighestMorphInfluence != morphTDef.morph)
                 {
                     return false; 
                 }

@@ -10,6 +10,7 @@ using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+using Verse.Noise;
 
 namespace Pawnmorph
 {
@@ -81,17 +82,43 @@ namespace Pawnmorph
 
             MutationTracker mutTracker = pawn.GetMutationTracker();
 
-            MorphDef hInfluence = mutTracker?.HighestInfluence;
+            var hInfluence = mutTracker.HighestInfluence;
 
             if (hInfluence == null) return;
+            float morphInfluence = mutTracker.GetDirectNormalizedInfluence(hInfluence);
+            int morphInfluenceCount = mutTracker.Count();
+            var isBelowChimeraThreshold = morphInfluence < CHIMERA_THRESHOLD && morphInfluenceCount > 1;
 
-            float morphInfluence = mutTracker.GetNormalizedInfluence(hInfluence);
-            int morphInfluenceCount = mutTracker.NormalizedInfluences.Count();
-            if (morphInfluence < CHIMERA_THRESHOLD && morphInfluenceCount > 1) hInfluence = GetChimeraRace(hInfluence, pawn);
+            MorphDef setMorph = GetMorphForPawn(pawn, isBelowChimeraThreshold, hInfluence, out MorphDef curMorph);
 
+            if (curMorph != setMorph) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations);
+        }
 
-            MorphDef curMorph = pawn.def.GetMorphOfRace();
-            if (curMorph != hInfluence) RaceShiftUtilities.ChangePawnToMorph(pawn, hInfluence, addMissingMutations);
+        private static MorphDef GetMorphForPawn(Pawn pawn, bool isBelowChimeraThreshold, IAnimalClass hInfluence, out MorphDef curMorph)
+        {
+            MorphDef setMorph;
+            curMorph = pawn.def.GetMorphOfRace();
+            try
+            {
+                Rand.PushState(pawn.thingIDNumber); // make sure this is deterministic for each pawn 
+
+                if (isBelowChimeraThreshold) //if they'er below turn them into a chimera 
+                {
+                    setMorph = GetChimeraRace(hInfluence);
+                }
+                else
+                {
+                    setMorph = hInfluence as MorphDef;
+                    //if the highest influence isn't a morph just set it to a random morph in that class
+                    setMorph = setMorph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
+                }
+            }
+            finally
+            {
+                Rand.PopState();
+            }
+
+            return setMorph;
         }
 
         /// <summary>Gets all morphs.</summary>
@@ -131,18 +158,12 @@ namespace Pawnmorph
 
             foreach (Hediff_AddedMutation hediffAddedMutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
                 mutatedRecords.Add(hediffAddedMutation.Part);
-
-            var humanInfluence = (float) pawn.health.hediffSet.GetNotMissingParts()
-                                             .Count(p => BodyDefOf.Human.GetAllMutableParts().Contains(p)
-                                                      && !mutatedRecords.Contains(p));
-
-            if (normalize)
-                humanInfluence /= MaxHumanInfluence;
-
-            return humanInfluence;
+            var hInfluence = MaxHumanInfluence - mutatedRecords.Count;
+            if (normalize) hInfluence /= MaxHumanInfluence;
+            return hInfluence; 
         }
 
-        
+
         /// <summary> Gets the type of the transformation. </summary>
         /// <param name="inst"> The instance. </param>
         /// <returns> The type of the transformation. </returns>
@@ -250,24 +271,21 @@ namespace Pawnmorph
             }
         }
 
-        private static MorphDef GetChimeraRace(MorphDef hInfluence, Pawn pawn)
+        private static MorphDef GetChimeraRace(IAnimalClass hInfluence)
         {
-            if (hInfluence.categories.Contains(MorphCategoryDefOf.Canid))
+            var morph = hInfluence as MorphDef;
+            //if the highest influence isn't a morph pick a random morph from the animal class
+            morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
+            if (morph.categories.Contains(MorphCategoryDefOf.Canid)) //TODO use the classes of these not the categories 
                 return MorphDefOfs.ChaofoxMorph;
-            if (hInfluence.categories.Contains(MorphCategoryDefOf.Reptile))
+            if (morph.categories.Contains(MorphCategoryDefOf.Reptile))
                 return MorphDefOfs.ChaodinoMorph;
-            if (hInfluence == MorphDefOfs.BoomalopeMorph) return MorphDefOfs.ChaoboomMorph;
-            if (hInfluence == MorphDefOfs.CowMorph) return MorphDefOfs.ChaocowMorph;
-            try
-            {
-                Rand.PushState(pawn.thingIDNumber); // make sure this is deterministic for each pawn 
-                return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
-            }
-            finally
-            {
-                Rand.PopState();
-            }
-        }
+            if (morph == MorphDefOfs.BoomalopeMorph) return MorphDefOfs.ChaoboomMorph;
+            if (morph == MorphDefOfs.CowMorph) return MorphDefOfs.ChaocowMorph;
+
+            return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
+            
+    }
 
         /// <summary>
         ///     get the largest influence on this pawn
@@ -280,15 +298,17 @@ namespace Pawnmorph
             MutationTracker comp = pawn.GetMutationTracker();
             if (comp == null) return null;
 
-
             MorphDef highest = null;
-            float max = Single.NegativeInfinity;
-            foreach (KeyValuePair<MorphDef, float> keyValuePair in comp)
+            float max = float.NegativeInfinity;
+            foreach (KeyValuePair<IAnimalClass, float> keyValuePair in comp)
+            {
+                if (!(keyValuePair.Key is MorphDef morph)) continue;
                 if (max < keyValuePair.Value)
                 {
                     max = keyValuePair.Value;
-                    highest = keyValuePair.Key;
+                    highest = morph;
                 }
+            }
 
             return highest;
         }

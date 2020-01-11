@@ -16,11 +16,6 @@ namespace Pawnmorph
     /// <summary> Def class for a morph. Used to generate the morph's implicit race. </summary>
     public class MorphDef : Def, IAnimalClass
     {
-
-        IEnumerable<IAnimalClass> IAnimalClass.Children => Enumerable.Empty<IAnimalClass>();//morphs can't have class children
-
-        bool IAnimalClass.Contains(IAnimalClass other) => other == this; 
-
         /// <summary>
         ///     The categories that the morph belongs to. <br />
         ///     For example, a Pigmorph belongs to the Farm and Production morph groups.
@@ -76,6 +71,19 @@ namespace Pawnmorph
         [Unsaved] private List<HediffDef> _allAssociatedMutations;
 
         [CanBeNull] [Unsaved] private HashSet<HediffDef> _associatedMutationsLookup;
+        IEnumerable<IAnimalClass> IAnimalClass.Children => Enumerable.Empty<IAnimalClass>(); //morphs can't have class children
+
+        bool IAnimalClass.Contains(IAnimalClass other)
+        {
+            return other == this;
+        }
+        /// <summary>
+        /// Gets the label.
+        /// </summary>
+        /// <value>
+        /// The label.
+        /// </value>
+        public string Label => label;
         AnimalClassDef IAnimalClass.ParentClass => classification;
 
         /// <summary> Gets an enumerable collection of all the morph type's defs.</summary>
@@ -102,7 +110,6 @@ namespace Pawnmorph
             }
         }
 
-     
 
         /// <summary>
         ///     Gets an enumerable collection of HediffGiver_Mutations that are either associated with or 'adjacent' to this morph.
@@ -143,7 +150,6 @@ namespace Pawnmorph
             }
         }
 
-        
 
         //simply a cached hash Set of all hediffs added by the HediffGivers in AllAssociatedAndAdjacentMutationGivers 
         [NotNull]
@@ -289,7 +295,7 @@ namespace Pawnmorph
                 Log.Warning($"MorphDef {defName} is using an explicit hybrid {explicitHybridRace.defName} for {race.defName}. This has not been tested yet");
             }
 
-            classification = classification ?? AnimalClassDefOf.Animal; 
+            classification = classification ?? AnimalClassDefOf.Animal;
 
             //TODO patch explicit race based on hybrid race settings? 
         }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
+using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Thoughts;
@@ -509,6 +510,36 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
         }
 
+        [DebugOutput, Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
+        static void GetPawnsNewInfluence()
+        {
+            Dictionary<IAnimalClass, float> wDict = new Dictionary<IAnimalClass, float>();
+            List<Hediff_AddedMutation> mutations = new List<Hediff_AddedMutation>();
+            List<string> strings = new List<string>();
+            float maxInf = MorphUtilities.MaxHumanInfluence; 
+            foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonists)
+            {
+                mutations.Clear();
+                mutations.AddRange(pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
+
+                AnimalClassUtilities.FillInfluenceDict(mutations, wDict);
+                if (wDict.Count == 0) continue;
+                //now build the log message entry 
+                StringBuilder builder = new StringBuilder();
+                builder.AppendLine($"{pawn.Name}:");
+                foreach (KeyValuePair<IAnimalClass, float> kvp in wDict)
+                {
+                    var def = (Def) kvp.Key;
+                    builder.AppendLine($"\t{def.label}:{(kvp.Value / maxInf).ToStringPercent()}");
+                }
+
+                strings.Add(builder.ToString()); 
+            }
+
+            var msg = strings.Join("\n----------------------------\n");
+            Log.Message(msg); 
+
+        }
 
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]

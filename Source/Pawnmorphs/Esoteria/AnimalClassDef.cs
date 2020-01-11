@@ -32,6 +32,14 @@ namespace Pawnmorph
         IEnumerable<IAnimalClass> IAnimalClass.Children => _subClasses.MakeSafe();
 
 
+        /// <summary>
+        /// Gets the label.
+        /// </summary>
+        /// <value>
+        /// The label.
+        /// </value>
+        public string Label => label; 
+
         bool IAnimalClass.Contains(IAnimalClass aClass)
         {
             if (aClass == this) return true;
@@ -136,13 +144,44 @@ namespace Pawnmorph
     }
 
 
-    internal interface
+    /// <summary>
+    /// interface for both MorphDefs and AnimalClassDef
+    /// </summary>
+    /// this should generally not be implemented outside of these 2 defs 
+    public interface
         IAnimalClass //implementation detail to make morphs a kind of animal class,  since species is a classification 
     {
+        /// <summary>
+        /// Gets the parent class.
+        /// </summary>
+        /// <value>
+        /// The parent class.
+        /// </value>
         AnimalClassDef ParentClass { get; }
 
+        /// <summary>
+        /// Gets the label.
+        /// </summary>
+        /// <value>
+        /// The label.
+        /// </value>
+        string Label { get; }
+
+        /// <summary>
+        /// Gets the children.
+        /// </summary>
+        /// <value>
+        /// The children.
+        /// </value>
         [NotNull] IEnumerable<IAnimalClass> Children { get; }
 
+        /// <summary>
+        /// Determines whether this instance contains the given class.
+        /// </summary>
+        /// <param name="aClass">a class.</param>
+        /// <returns>
+        ///   <c>true</c> if contains the specified a class; otherwise, <c>false</c>.
+        /// </returns>
         bool Contains([NotNull] IAnimalClass aClass);
     }
 }

@@ -19,6 +19,27 @@ namespace Pawnmorph
         private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
 
         /// <summary>
+        /// Gets the influence this mutation confers 
+        /// </summary>
+        /// <value>
+        /// The influence.
+        /// </value>
+        [NotNull]
+        public IAnimalClass Influence
+        {
+            get
+            {
+                if (def is MutationDef mDef)
+                {
+                    return mDef.InternalInfluence; 
+                }
+
+                return AnimalClassDefOf.Animal; 
+            }
+        }
+
+
+        /// <summary>
         /// Gets the base label .
         /// </summary>
         /// <value>

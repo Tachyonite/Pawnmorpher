@@ -94,11 +94,12 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        [NotNull]
         internal IAnimalClass InternalInfluence
         {
             get
             {
-                if (morphInfluence == null) return classInfluence;
+                if (morphInfluence == null) return classInfluence ?? AnimalClassDefOf.Animal;
 
                 return morphInfluence;
             }
