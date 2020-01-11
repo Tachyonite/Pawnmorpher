@@ -47,24 +47,12 @@ namespace Pawnmorph
                 if (_maxHumanInfluence == null)
                 {
                     HashSet<VTuple<BodyPartRecord, MutationLayer>> set = new HashSet<VTuple<BodyPartRecord, MutationLayer>>();
-                    var enumerable = MutationDef.AllMutations.SelectMany(m => GetAllMutationSites(m, BodyDefOf.Human));
+                    var enumerable = MutationDef.AllMutations.SelectMany(m => m.GetAllMutationSites(BodyDefOf.Human));
                     set.AddRange(enumerable);
                     _maxHumanInfluence = set.Count; 
                 }
 
                 return _maxHumanInfluence.Value;
-            }
-        }
-
-        private static IEnumerable<VTuple<BodyPartRecord, MutationLayer>> GetAllMutationSites(
-            [NotNull] MutationDef mutationDef, BodyDef bDef)
-        {
-            foreach (BodyPartRecord bodyPartRecord in bDef.AllParts)
-            {
-                if (mutationDef.parts.Contains(bodyPartRecord.def))
-                {
-                    yield return new VTuple<BodyPartRecord, MutationLayer>(bodyPartRecord, mutationDef.RemoveComp.layer);
-                }
             }
         }
 

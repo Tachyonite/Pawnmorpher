@@ -20,21 +20,13 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     public static class MutationUtilities
     {
-        private const float EPSILON = 0.01f;
-
         [NotNull] private static Dictionary<BodyPartDef, List<HediffDef>> _mutationsByParts;
 
         private static List<HediffGiver_Mutation> _allGivers;
 
         private static List<BodyPartDef> _allMutablePartDefs;
 
-
-        private static readonly Dictionary<HediffDef, List<VTuple<MorphDef, float>>> _influenceLookupTable =
-            new Dictionary<HediffDef, List<VTuple<MorphDef, float>>>();
-
-
-        private static readonly Dictionary<BodyDef, List<BodyPartRecord>>
-            _allMutablePartsLookup = new Dictionary<BodyDef, List<BodyPartRecord>>();
+        private static readonly Dictionary<BodyDef, List<BodyPartRecord>> _allMutablePartsLookup = new Dictionary<BodyDef, List<BodyPartRecord>>();
 
         [NotNull] private static Dictionary<HediffDef, List<BodyPartDef>> _partLookupDict;
 
@@ -395,66 +387,7 @@ namespace Pawnmorph
             _allMutablePartsLookup[bodyDef] = recordList; //cache the result so we only have to do this once 
             return recordList;
         }
-
-        /// <summary>
-        ///     Gets all non zero morph influences the given hediff def gives to a pawn
-        /// </summary>
-        /// <param name="def">The definition.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">def</exception>
-        public static IEnumerable<VTuple<MorphDef, float>> GetAllNonZeroInfluences([NotNull] HediffDef def)
-        {
-            if (def == null) throw new ArgumentNullException(nameof(def));
-            if (_influenceLookupTable.TryGetValue(def, out List<VTuple<MorphDef, float>> lst)
-            ) //check if we calculated the value already 
-                return lst;
-
-            lst = new List<VTuple<MorphDef, float>>();
-            _influenceLookupTable[def] = lst; //make sure the list is saved so we don't have to calculate this more then once 
-
-            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefs)
-            {
-                float influence = GetInfluenceOf(def, morphDef);
-                if (influence > EPSILON)
-                    lst.Add(new VTuple<MorphDef, float>(morphDef, influence));
-            }
-
-            return lst;
-        }
-
-
-        /// <summary>
-        ///     Gets the influence of the given morph this mutationDef provides.
-        /// </summary>
-        /// <param name="mutationDef">The mutation definition.</param>
-        /// <param name="morph">The morph.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        ///     mutationDef
-        ///     or
-        ///     morph
-        /// </exception>
-        [Obsolete]
-        public static float GetInfluenceOf([NotNull] this HediffDef mutationDef, [NotNull] MorphDef morph)
-        {
-            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (morph == null) throw new ArgumentNullException(nameof(morph));
-
-            if (!typeof(Hediff_AddedMutation).IsAssignableFrom(mutationDef.hediffClass))
-                return 0; //if not a mutation just return 0 
-
-            if (mutationDef.HasComp(typeof(SpreadingMutationComp)))
-                return 0; //spreading mutations shouldn't give influence, too messy to deal with 
-
-            var comp = mutationDef.CompProps<CompProperties_MorphInfluence>();
-            if (comp != null && comp.morph == morph)
-                return comp.influence; //if it has a morph influence comp return the influence value
-
-            if (morph.AllAssociatedAndAdjacentMutationGivers.Select(g => g.hediff).Contains(mutationDef))
-                return 0.0f; //might want to let these guys give influence 
-            return 0;
-        }
-
+        
 
         /// <summary>Gets the mutations by part def.</summary>
         /// <param name="bodyPartDef">The body part definition.</param>
@@ -514,6 +447,7 @@ namespace Pawnmorph
         ///     and null
         /// </returns>
         [NotNull]
+        [Obsolete("use " + nameof(MutationDef) + " for finding this out")]
         public static IEnumerable<BodyPartDef> GetPossibleParts([NotNull] this HediffDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
@@ -615,6 +549,40 @@ namespace Pawnmorph
 
 
             foreach (string hediffDef in hediffDefNames) yield return HediffDef.Named(hediffDef);
+        }
+
+        /// <summary>
+        /// Gets all mutation sites.
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="bDef">The b definition.</param>
+        /// <returns></returns>
+        public static IEnumerable<VTuple<BodyPartRecord, MutationLayer>> GetAllMutationSites(
+            [NotNull] this MutationDef mutationDef, BodyDef bDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            foreach (BodyPartRecord bodyPartRecord in bDef.AllParts)
+            {
+                if (mutationDef.parts.Contains(bodyPartRecord.def))
+                {
+                    yield return new VTuple<BodyPartRecord, MutationLayer>(bodyPartRecord, mutationDef.RemoveComp.layer);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all part def mutation sites.
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">mutationDef</exception>
+        public static IEnumerable<VTuple<BodyPartDef, MutationLayer>> GetAllDefMutationSites([NotNull] this MutationDef mutationDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            foreach (BodyPartDef mutationDefPart in mutationDef.parts)
+            {
+                yield return new VTuple<BodyPartDef, MutationLayer>(mutationDefPart, mutationDef.RemoveComp.layer); 
+            }
         }
     }
 }

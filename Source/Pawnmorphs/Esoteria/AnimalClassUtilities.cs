@@ -5,45 +5,74 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using JetBrains.Annotations;
-using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
 {
     /// <summary>
-    /// static container for various animal classification related utility functions 
+    ///     static container for various animal classification related utility functions
     /// </summary>
     [StaticConstructorOnStartup]
-    public  static class AnimalClassUtilities
+    public static class AnimalClassUtilities
     {
+        [NotNull] private static readonly
+            Dictionary<IAnimalClass, List<MorphDef>> _morphsUnderCache = new Dictionary<IAnimalClass, List<MorphDef>>();
 
-        static List<IAnimalClass> PreorderTreeInternal { get; }
+        [NotNull] private static readonly Dictionary<IAnimalClass, float> _accumInfluenceCache =
+            new Dictionary<IAnimalClass, float>();
 
-        static List<IAnimalClass> PostorderTreeInternal { get; }
-        [NotNull]
-        private static readonly
-            Dictionary<IAnimalClass, List<MorphDef>> _morphsUnderCache = new Dictionary<IAnimalClass, List<MorphDef>>(); 
-
-        [NotNull] private static readonly Dictionary<IAnimalClass, float> _accumInfluenceCache = new Dictionary<IAnimalClass, float>();
         [NotNull] private static readonly Dictionary<IAnimalClass, float> _trickleCache = new Dictionary<IAnimalClass, float>();
         [NotNull] private static readonly List<IAnimalClass> _pickedInfluencesCache = new List<IAnimalClass>();
-        [NotNull] private static readonly List<IAnimalClass> _removeList = new List<IAnimalClass>(); 
+        [NotNull] private static readonly List<IAnimalClass> _removeList = new List<IAnimalClass>();
+
+        static AnimalClassUtilities()
+        {
+            foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
+                animalClassDef.FindChildren(); //have to do this after all other def's 'ResolveReferences' have been called 
+
+            foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
+            {
+                if (animalClassDef.parent != null) continue;
+                if (animalClassDef != AnimalClassDefOf.Animal)
+                    Log.Warning($"{animalClassDef.defName} does not have a parent! only {nameof(AnimalClassDefOf.Animal)} should not have a parent!");
+            }
+
+
+            if (CheckForCycles()) //don't precede if there are any cycles in the tree 
+                throw
+                    new InvalidDataException("detected cycles in animal class tree!"); //not sure what we should throw here, but we can't continue with
+            //cycles in the class tree
+
+
+            //save the pre and post order traversal orders for performance reasons 
+            PostorderTreeInternal = TreeUtilities.Postorder<IAnimalClass>(AnimalClassDefOf.Animal, c => c.Children);
+            PreorderTreeInternal = TreeUtilities.Preorder<IAnimalClass>(AnimalClassDefOf.Animal, c => c.Children).ToList();
+
+
+            string treeStr =
+                TreeUtilities.PrettyPrintTree<IAnimalClass>(AnimalClassDefOf.Animal, a => a.Children, a => ((Def) a).defName);
+
+            Log.Message(treeStr); //print a pretty tree c: 
+        }
+
+        private static List<IAnimalClass> PreorderTreeInternal { get; }
+
+        private static List<IAnimalClass> PostorderTreeInternal { get; }
 
         /// <summary>
-        /// Fills the influence dictionary.
+        ///     Fills the influence dictionary.
         /// </summary>
         /// <param name="mutations">The mutations.</param>
         /// <param name="outDict">The out dictionary.</param>
         /// <exception cref="ArgumentNullException">
-        /// mutations
-        /// or
-        /// outDict
+        ///     mutations
+        ///     or
+        ///     outDict
         /// </exception>
         public static void FillInfluenceDict([NotNull] List<Hediff_AddedMutation> mutations,
-                                             [NotNull]Dictionary<IAnimalClass, float> outDict)
+                                             [NotNull] Dictionary<IAnimalClass, float> outDict)
         {
             if (mutations == null) throw new ArgumentNullException(nameof(mutations));
             if (outDict == null) throw new ArgumentNullException(nameof(outDict));
@@ -52,32 +81,26 @@ namespace Pawnmorph
             //initialize the returning dictionary with the direct influences 
             foreach (Hediff_AddedMutation mutation in mutations)
             {
-                var i = outDict.TryGetValue(mutation.Influence);
+                float i = outDict.TryGetValue(mutation.Influence);
                 i++;
-                outDict[mutation.Influence] = i; 
+                outDict[mutation.Influence] = i;
             }
 
             CalculateAccumulatedInfluence(outDict);
             CalculateTrickledInfluence(outDict); //now all caches are set 
 
 
-            
             foreach (IAnimalClass animalClass in _pickedInfluencesCache) //now calculate the final values 
-            {
-                outDict[animalClass] = _trickleCache.TryGetValue(animalClass) + outDict.TryGetValue(animalClass); 
-            }
+                outDict[animalClass] = _trickleCache.TryGetValue(animalClass) + outDict.TryGetValue(animalClass);
 
-            _removeList.Clear();//remove unneeded classes 
-            _removeList.AddRange(outDict.Keys.Where(k => !_pickedInfluencesCache.Contains(k))); //remove everything from the dict that was not picked 
-            foreach (IAnimalClass animalClass in _removeList)
-            {
-                outDict.Remove(animalClass); 
-            }
-
+            _removeList.Clear(); //remove unneeded classes 
+            _removeList.AddRange(outDict.Keys.Where(k => !_pickedInfluencesCache
+                                                            .Contains(k))); //remove everything from the dict that was not picked 
+            foreach (IAnimalClass animalClass in _removeList) outDict.Remove(animalClass);
         }
 
         /// <summary>
-        /// Gets all morphs in the given class.
+        ///     Gets all morphs in the given class.
         /// </summary>
         /// <param name="classDef">The class definition.</param>
         /// <returns></returns>
@@ -87,20 +110,18 @@ namespace Pawnmorph
                 return morphs;
             morphs = new List<MorphDef>();
             foreach (AnimalClassDef animalClassDef in TreeUtilities.Preorder(classDef, cl => cl.SubClasses))
-            {
                 morphs.AddRange(animalClassDef.Morphs);
-            }
 
             _morphsUnderCache[classDef] = morphs;
-            return morphs; 
+            return morphs;
         }
 
         /// <summary>
-        /// Calculates the accumulated influence.
+        ///     Calculates the accumulated influence.
         /// </summary>
-        /// here we iterate over the classification tree in postorder, accumulating the influence points upward 
+        /// here we iterate over the classification tree in postorder, accumulating the influence points upward
         /// <param name="initialDict">The initial dictionary.</param>
-        static void CalculateAccumulatedInfluence([NotNull] Dictionary<IAnimalClass, float> initialDict)
+        private static void CalculateAccumulatedInfluence([NotNull] Dictionary<IAnimalClass, float> initialDict)
         {
             _pickedInfluencesCache.Clear();
             _accumInfluenceCache.Clear();
@@ -108,22 +129,19 @@ namespace Pawnmorph
             {
                 float accum = initialDict.TryGetValue(animalClass);
                 foreach (IAnimalClass child in animalClass.Children)
-                {
                     accum += _accumInfluenceCache[child]; //add in the child's accumulated influence 
-                }
 
-                _accumInfluenceCache[animalClass] = accum; 
+                _accumInfluenceCache[animalClass] = accum;
             }
-
         }
 
         /// <summary>
-        /// Calculates the trickled influence.
+        ///     Calculates the trickled influence.
         /// </summary>
         /// now iterate over the classification tree in preorder, bringing down accumulated influence from parent to highest influence child 
-        /// also fill the _pickedInfluencesCache with nodes with non zero influence and no child nodes with non zero influence 
+        /// also fill the _pickedInfluencesCache with nodes with non zero influence and no child nodes with non zero influence
         /// <param name="initialDict">The initial dictionary.</param>
-        static void CalculateTrickledInfluence([NotNull] Dictionary<IAnimalClass, float> initialDict)
+        private static void CalculateTrickledInfluence([NotNull] Dictionary<IAnimalClass, float> initialDict)
         {
             _pickedInfluencesCache.Clear();
             _trickleCache.Clear();
@@ -133,62 +151,25 @@ namespace Pawnmorph
                 float maxInfluence = 0;
                 float trickleDownAmount = initialDict.TryGetValue(animalClass);
                 if (animalClass.ParentClass != null)
-                {
-                    trickleDownAmount += _trickleCache.TryGetValue(animalClass); //add in any amount the parent chose to give this node 
-                }
+                    trickleDownAmount +=
+                        _trickleCache.TryGetValue(animalClass); //add in any amount the parent chose to give this node 
 
                 foreach (IAnimalClass child in animalClass.Children)
                 {
-                    var cInf = initialDict.TryGetValue(child) + _accumInfluenceCache[child]; 
-                    if(cInf > maxInfluence)
+                    float cInf = initialDict.TryGetValue(child) + _accumInfluenceCache[child];
+                    if (cInf > maxInfluence)
                     {
                         hChild = child;
-                        maxInfluence = cInf; 
+                        maxInfluence = cInf;
                     }
                 }
 
                 if (hChild != null)
-                {
-                    _trickleCache[hChild] = trickleDownAmount; 
-                }
-                else if(trickleDownAmount > 0)
-                {
-                    _pickedInfluencesCache.Add(animalClass); //if there are no children or none have non zero influences pick this node 
-                }
+                    _trickleCache[hChild] = trickleDownAmount;
+                else if (trickleDownAmount > 0)
+                    _pickedInfluencesCache
+                       .Add(animalClass); //if there are no children or none have non zero influences pick this node 
             }
-        }
-
-        static AnimalClassUtilities()
-        {
-            foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
-                animalClassDef.FindChildren(); //have to do this after all other def's 'ResolveReferences' have been called 
-
-            foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
-            {
-                if(animalClassDef.parent != null) continue;
-                if(animalClassDef != AnimalClassDefOf.Animal)
-                    Log.Warning($"{animalClassDef.defName} does not have a parent! only {nameof(AnimalClassDefOf.Animal)} should not have a parent!");
-            }
-
-            
-            if (CheckForCycles()) {
-                 //don't precede if there are any cycles in the tree 
-                 throw new InvalidDataException($"detected cycles in animal class tree!"); //not sure what we should throw here, but we can't continue with
-                                                                                           //cycles in the class tree
-            }
-
-
-            //save the pre and post order traversal orders for performance reasons 
-            PostorderTreeInternal = TreeUtilities.Postorder<IAnimalClass>(AnimalClassDefOf.Animal, c => c.Children);
-            PreorderTreeInternal = TreeUtilities.Preorder<IAnimalClass>(AnimalClassDefOf.Animal, c => c.Children).ToList();
-
-
-
-            var treeStr =
-                TreeUtilities.PrettyPrintTree<IAnimalClass>(AnimalClassDefOf.Animal, a => a.Children, a => ((Def)a).defName);
-
-            Log.Message(treeStr); //print a pretty tree c: 
-
         }
 
         private static bool CheckForCycles()
