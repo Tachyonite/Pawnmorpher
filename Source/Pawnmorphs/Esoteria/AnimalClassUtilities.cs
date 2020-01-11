@@ -22,6 +22,15 @@ namespace Pawnmorph
         {
             foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
                 animalClassDef.FindChildren(); //have to do this after all other def's 'ResolveReferences' have been called 
+
+            foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
+            {
+                if(animalClassDef.parent != null) continue;
+                if(animalClassDef != AnimalClassDefOf.Animal)
+                    Log.Warning($"{animalClassDef.defName} does not have a parent! only {nameof(AnimalClassDefOf.Animal)} should not have a parent!");
+            }
+
+            
             if (CheckForCycles()) return; //don't precede if there are any cycles in the tree 
 
 
