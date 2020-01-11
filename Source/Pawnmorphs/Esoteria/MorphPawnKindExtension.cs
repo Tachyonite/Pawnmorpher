@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -133,10 +134,10 @@ namespace Pawnmorph
                     foreach (HediffDef hediffDef in mutationCategories.SelectMany(c => c.AllMutationsInCategory))
                     {
                         if (defSet.Contains(hediffDef)) continue;
-                        var defExtension = hediffDef.GetModExtension<MutationHediffExtension>();
-                        if (defExtension == null) //need a def extension to make a hediff giver for them 
+                        var defExtension = (hediffDef as MutationDef); 
+                        if (defExtension == null) //need to use the mutation def to make a hediff giver for them 
                         {
-                            Log.Error($"mutation {hediffDef.defName} does not have a mutation def extension!");
+                            Log.Error($"mutation {hediffDef.defName} does not use {nameof(MutationDef)}!");
                             continue;
                         }
 
@@ -178,8 +179,8 @@ namespace Pawnmorph
                 foreach (HediffDef hediffDef in mutationCategories.SelectMany(cat => cat.AllMutationsInCategory))
                 {
                     if (set.Contains(hediffDef)) continue;
-                    var defExtension = hediffDef.GetModExtension<MutationHediffExtension>();
-                    if (defExtension == null) //need a def extension to make a hediff giver for them 
+                    var mDef = hediffDef as MutationDef; 
+                    if (mDef == null) //need a def extension to make a hediff giver for them 
                     {
                         Log.Error($"mutation {hediffDef.defName} does not have a mutation def extension!");
                         continue;
@@ -188,8 +189,8 @@ namespace Pawnmorph
                     var giver = new HediffGiver_Mutation
                     {
                         hediff = hediffDef,
-                        partsToAffect = defExtension.parts.ToList(),
-                        countToAffect = defExtension.countToAffect
+                        partsToAffect = mDef.parts.ToList(),
+                        countToAffect = mDef.countToAffect
                     };
                     givers.Add(giver);
                     set.Add(hediffDef); 

@@ -28,6 +28,21 @@ namespace Pawnmorph.DebugUtils
     {
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
+
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        static void GetMutationsWithInfluence()
+        {
+            StringBuilder builder = new StringBuilder(); 
+            foreach (var mutation in DefDatabase<MutationDef>.AllDefs)
+            {
+                builder.AppendLine($"{mutation.defName}: {((Def) mutation.InternalInfluence)?.defName ?? "NULL"}");
+            }
+
+            Log.Message(builder.ToString());
+        }
+
         /// <summary>
         ///     Asserts the specified condition. if false an error message will be displayed
         /// </summary>
@@ -106,18 +121,6 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString()); 
 
 
-        }
-
-        /// <summary>Prints all mutations that are missing extension.</summary>
-        [DebugOutput] 
-        [Category(MAIN_CATEGORY_NAME)]
-        public static void PrintAllMutationsMissingExtension()
-        {
-            var mutations = DefDatabase<HediffDef>
-                           .AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass) && !d.IsObsolete())
-                           .Where(d => !d.HasModExtension<MutationHediffExtension>())
-                           .Select(d => d.defName); 
-            Log.Message($"hediffs missing mutation extension:\n{string.Join("\n", mutations.ToArray())}");
         }
         
         [DebugOutput]

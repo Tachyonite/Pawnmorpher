@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
@@ -21,21 +22,21 @@ namespace Pawnmorph
     {
         private const float EPSILON = 0.01f;
 
-        [NotNull] private static readonly Dictionary<BodyPartDef, List<HediffDef>> _mutationsByParts;
+        [NotNull] private static Dictionary<BodyPartDef, List<HediffDef>> _mutationsByParts;
 
         private static List<HediffGiver_Mutation> _allGivers;
 
         private static List<BodyPartDef> _allMutablePartDefs;
 
-        
-        private static Dictionary<HediffDef, List<VTuple<MorphDef, float>>> _influenceLookupTable =
+
+        private static readonly Dictionary<HediffDef, List<VTuple<MorphDef, float>>> _influenceLookupTable =
             new Dictionary<HediffDef, List<VTuple<MorphDef, float>>>();
 
 
-        private static Dictionary<BodyDef, List<BodyPartRecord>>
+        private static readonly Dictionary<BodyDef, List<BodyPartRecord>>
             _allMutablePartsLookup = new Dictionary<BodyDef, List<BodyPartRecord>>();
 
-        [NotNull] private static readonly Dictionary<HediffDef, List<BodyPartDef>> _partLookupDict;
+        [NotNull] private static Dictionary<HediffDef, List<BodyPartDef>> _partLookupDict;
 
         private static List<ThoughtDef> _allThoughts;
 
@@ -49,6 +50,46 @@ namespace Pawnmorph
             MaxMutationAdaptabilityValue = stat.maxValue;
             AverageMutationAdaptabilityValue = stat.defaultBaseValue;
 
+            //generate some warning for missing mutation defs 
+            StringBuilder warningBuilder = new StringBuilder();
+            bool anyWarnings = false; 
+            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
+            {
+                if (!typeof(Hediff_AddedMutation).IsAssignableFrom(hediffDef.hediffClass)) continue;
+                if(hediffDef is MutationDef) continue;
+                warningBuilder.AppendLine($"{hediffDef.defName} is a mutation but does not use {nameof(MutationDef)}!");
+                anyWarnings = true; 
+            }
+
+            //warnings for use of the old def extension 
+
+            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
+            {
+#pragma warning disable 618
+                if (hediffDef.HasModExtension<MutationHediffExtension>())
+                {
+                    warningBuilder.AppendLine($"{hediffDef.defName} is still using the old MutationHediffExtension!");
+                    anyWarnings = true; 
+                }
+
+                if (hediffDef.HasComp(typeof(Comp_MorphInfluence)))
+                {
+                    warningBuilder.AppendLine($"{hediffDef.defName} is still using the old {nameof(Comp_MorphInfluence)}!");
+                    anyWarnings = true; 
+                }
+#pragma warning restore 618
+            }
+
+            if (anyWarnings)
+            {
+                Log.Warning(warningBuilder.ToString());
+            }
+            BuildLookupDicts();
+
+        }
+
+        private static void BuildLookupDicts()
+        {
             //build the lookup table of part sorted by the mutations that affect them 
             _mutationsByParts = new Dictionary<BodyPartDef, List<HediffDef>>();
             _partLookupDict = new Dictionary<HediffDef, List<BodyPartDef>>();
@@ -190,7 +231,7 @@ namespace Pawnmorph
         /// </exception>
         /// <returns>if any mutations were added</returns>
         public static bool AddMutation([NotNull] Pawn pawn, [NotNull] HediffDef mutation,
-                                       [NotNull] IEnumerable<BodyPartRecord> parts, List<BodyPartRecord> addParts=null)
+                                       [NotNull] IEnumerable<BodyPartRecord> parts, List<BodyPartRecord> addParts = null)
         {
             if (pawn?.health?.hediffSet == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
@@ -208,18 +249,18 @@ namespace Pawnmorph
                 Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, bodyPartRecord);
                 health.AddHediff(hediff, bodyPartRecord);
                 addedRecords.Add(bodyPartRecord);
-                addParts?.Add(bodyPartRecord); 
-                var ext = mutation.GetModExtension<MutationHediffExtension>();
-                if (ext == null)
+                addParts?.Add(bodyPartRecord);
+                var mutationDef = mutation as MutationDef;
+                if (mutationDef == null)
                 {
-                    Log.Warning($"{mutation.defName} has no mutation def extension");
+                    Log.Warning($"{mutation.defName} does not use {nameof(MutationDef)}");
                     continue;
                 }
 
-                if (ext.mutationMemory != null) pawn.TryGainMemory(ext.mutationMemory);
+                if (mutationDef.mutationMemory != null) pawn.TryGainMemory(mutationDef.mutationMemory);
 
-                if (PawnUtility.ShouldSendNotificationAbout(pawn) && ext.mutationTale != null)
-                    TaleRecorder.RecordTale(ext.mutationTale, pawn);
+                if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutationDef.mutationTale != null)
+                    TaleRecorder.RecordTale(mutationDef.mutationTale, pawn);
             }
 
             if (addedRecords.Count > 0) //only do this if we actually added any mutations 
@@ -229,7 +270,7 @@ namespace Pawnmorph
                 if (pawn.MapHeld != null) IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
             }
 
-            return addedRecords.Count > 0; 
+            return addedRecords.Count > 0;
         }
 
         /// <summary>Adds the mutation to the pawn without a hediff giver.</summary>
@@ -251,7 +292,7 @@ namespace Pawnmorph
             if (pawn?.health?.hediffSet == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (part == null) throw new ArgumentNullException(nameof(part));
-            if (pawn.health.hediffSet.HasHediff(mutation, part)) return false; 
+            if (pawn.health.hediffSet.HasHediff(mutation, part)) return false;
             Pawn_HealthTracker health = pawn.health;
             var addedRecords = new List<BodyPartRecord>();
             if (health.hediffSet.PartIsMissing(part))
@@ -262,22 +303,24 @@ namespace Pawnmorph
             health.AddHediff(hediff, part);
             addedRecords.Add(part);
             addParts?.Add(part);
-            var ext = mutation.GetModExtension<MutationHediffExtension>();
+
+            var mDef = mutation as MutationDef;
+
             var logEntry = new MutationLogEntry(pawn, mutation, addedRecords.Select(p => p.def).Distinct());
             Find.PlayLog?.Add(logEntry);
             if (pawn.MapHeld != null) IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
 
 
-            if (ext == null)
+            if (mDef == null)
             {
-                Log.Warning($"{mutation.defName} has no mutation def extension");
+                Log.Warning($"{mutation.defName} is does not use {nameof(MutationDef)} as a def!");
                 return true;
             }
 
-            if (ext.mutationMemory != null) pawn.TryGainMemory(ext.mutationMemory);
+            if (mDef.mutationMemory != null) pawn.TryGainMemory(mDef.mutationMemory);
 
-            if (PawnUtility.ShouldSendNotificationAbout(pawn) && ext.mutationTale != null)
-                TaleRecorder.RecordTale(ext.mutationTale, pawn);
+            if (PawnUtility.ShouldSendNotificationAbout(pawn) && mDef.mutationTale != null)
+                TaleRecorder.RecordTale(mDef.mutationTale, pawn);
 
 
             return addedRecords.Count > 0;
@@ -412,6 +455,7 @@ namespace Pawnmorph
         ///     or
         ///     morph
         /// </exception>
+        [Obsolete]
         public static float GetInfluenceOf([NotNull] this HediffDef mutationDef, [NotNull] MorphDef morph)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
@@ -531,7 +575,13 @@ namespace Pawnmorph
         [NotNull]
         private static IEnumerable<BodyPartDef> GetAffectedParts([NotNull] HediffDef mutationDef)
         {
-            List<BodyPartDef> extParts = mutationDef.GetModExtension<MutationHediffExtension>()?.parts;
+            List<BodyPartDef> extParts;
+            if (mutationDef is MutationDef mDef)
+                extParts = mDef.parts;
+            else
+                extParts = null;
+
+
             foreach (BodyPartDef bodyPartDef in extParts.MakeSafe()) yield return bodyPartDef;
 
             //for backwards compatibility 

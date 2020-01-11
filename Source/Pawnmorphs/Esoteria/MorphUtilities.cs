@@ -89,7 +89,17 @@ namespace Pawnmorph
         {
             if (_morphAssociationCache.TryGetValue(transformationDef, out List<MorphDef> lst)) return lst;
 
-            lst = GetAssociatedMorphInternal(transformationDef).ToList();
+            lst = new List<MorphDef>();
+
+            var enumerable = transformationDef.GetAllHediffGivers().Select(g => g.hediff).OfType<MutationDef>();
+
+            foreach (MutationDef mutationDef in enumerable)
+            {
+                if (mutationDef.morphInfluence != null && !lst.Contains(mutationDef.morphInfluence))
+                {
+                    lst.Add(mutationDef.morphInfluence);
+                }
+            }
             _morphAssociationCache[transformationDef] = lst;
             return lst;
         }
@@ -203,6 +213,7 @@ namespace Pawnmorph
 
         /// <summary> Get all morphs defs associated with this transformation hediff def. </summary>
         /// <param name="transformationDef"> The transformation definition. </param>
+        [Obsolete]
         private static IEnumerable<MorphDef>
             GetAssociatedMorphInternal(
                 HediffDef transformationDef) //might want to add it the hediff defs themselves rather then check at runtime 

@@ -136,6 +136,7 @@
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
+    <Compile Include="Hediffs\MutationDef.cs" />
     <Compile Include="Hediffs\MutationEntry.cs" />
     <Compile Include="Hediffs\MutationStage.cs" />
     <Compile Include="Hediffs\Giver_MutationCategoryGiver.cs" />
@@ -207,7 +208,6 @@
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
     <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
-    <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
     <Compile Include="Hediffs\Comp_TerrainProduction.cs" />
     <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
     <Compile Include="Hediffs\Def_MorphTf.cs" />

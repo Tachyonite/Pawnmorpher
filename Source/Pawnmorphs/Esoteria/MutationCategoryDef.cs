@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -36,7 +37,7 @@ namespace Pawnmorph
 
                     foreach (HediffDef mutationDef in DefDatabase<HediffDef>.AllDefs)
                     {
-                        List<MutationCategoryDef> categories = mutationDef.GetModExtension<MutationHediffExtension>()?.categories;
+                        List<MutationCategoryDef> categories = (mutationDef as MutationDef)?.categories;
                         if (categories.MakeSafe().Contains(this))
                         {
                             if (_allMutations.Contains(mutationDef))

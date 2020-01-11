@@ -1,13 +1,9 @@
 <Defs>
-	<HediffDef Name="WolfPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>WolfMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+	<Pawnmorph.Hediffs.MutationDef Name="WolfPart" ParentName="PawnmorphPart" Abstract="True">
+		<morphInfluence>WolfMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="WolfPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfPart">
 		<defName>EtherWolfMuzzle</defName>
 		<label>wolf muzzle</label>
 		<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
@@ -58,20 +54,16 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-				<li Class="Pawnmorph.MutationHediffExtension">
-					<parts>
-						<li>Jaw</li>
-					</parts>
-					<countToAffect>1</countToAffect>
-					<categories>
-						<li>Major</li>
-					</categories>
-				</li>
-			</modExtensions>
-	</HediffDef>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<countToAffect>1</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="WolfPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfPart">
 		<defName>EtherWolfEar</defName>
 		<label>lupine</label>
 		<description>Two pointed and furred ears crown [PAWN_nameDef]'s head, as they flick left and right, listening for the sounds of prey.</description>
@@ -80,20 +72,16 @@
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Ear</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="WolfPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfPart">
 		<defName>EtherWolfTail</defName>
 		<label>wolfish tail</label>
 		<description>A grey wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
@@ -107,16 +95,12 @@
 				</capMods>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Tail</li>
-				</parts>
-				<countToAffect>1</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+		<parts>
+			<li>Tail</li>
+		</parts>
+		<countToAffect>1</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

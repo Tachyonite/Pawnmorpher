@@ -61,9 +61,6 @@ namespace Pawnmorph
         /// </summary>
         public string mutationDescription;
 
-        /// <summary> The influence this mutation exerts on a pawn. </summary>
-        [CanBeNull]
-        public Comp_MorphInfluence Influence => (comps?.OfType<Comp_MorphInfluence>().FirstOrDefault());
 
         /// <summary>
         /// Gets a value indicating whether should be removed.

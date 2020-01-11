@@ -8,6 +8,9 @@ using Verse;
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// static container for various animal classification related utility functions 
+    /// </summary>
     [StaticConstructorOnStartup]
     public class AnimalClassUtilities
     {

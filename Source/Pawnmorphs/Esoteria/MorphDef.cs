@@ -83,7 +83,7 @@ namespace Pawnmorph
 
         /// <summary> Gets the mutations associated with this morph. </summary>
         public IEnumerable<HediffGiver_Mutation> AssociatedMutations =>
-            _associatedMutations ?? (_associatedMutations = GetMutations());
+            _associatedMutations ?? (_associatedMutations = GetMutations().ToList());
 
         /// <summary>Gets the collection of all mutations associated with this morph def</summary>
         /// <value>All associated mutations.</value>
@@ -291,19 +291,17 @@ namespace Pawnmorph
             //TODO patch explicit race based on hybrid race settings? 
         }
 
-        private List<HediffGiver_Mutation> GetMutations()
+        [NotNull]
+        private IEnumerable<HediffGiver_Mutation> GetMutations()
         {
-            IEnumerable<HediffGiver_Mutation> linq =
-                DefDatabase<HediffDef>.AllDefs
-                                      .Where(def => typeof(Hediff_Morph)
-                                                .IsAssignableFrom(def.hediffClass)) // Get all morph hediff defs.
-                                      .SelectMany(def => def.stages ?? Enumerable.Empty<HediffStage>()) // Get all stages.
-                                      .SelectMany(s => s.hediffGivers
-                                                    ?? Enumerable.Empty<HediffGiver>()) // Get all hediff givers.
-                                      .OfType<HediffGiver_Mutation>() // Keep only the mutation givers.
-                                      .Where(mut => mut.hediff.CompProps<CompProperties_MorphInfluence>()?.morph
-                                                 == this); // Keep only those associated with this morph.
-            return linq.ToList();
+            foreach (HediffDef morphTfDef in
+                DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass)))
+            foreach (HediffGiver_Mutation giver in morphTfDef.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
+            {
+                if (!(giver.hediff is MutationDef mDef)) continue;
+                if (mDef.morphInfluence == this)
+                    yield return giver;
+            }
         }
 
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>

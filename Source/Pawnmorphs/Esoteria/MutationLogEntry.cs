@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -111,7 +112,7 @@ namespace Pawnmorph
             {
                 GrammarRequest grammarRequest = GenerateGrammarRequest();
 
-                RulePackDef mutationRulePack = _mutationDef.GetModExtension<MutationHediffExtension>()?.mutationLogRulePack;
+                RulePackDef mutationRulePack = (_mutationDef as MutationDef)?.mutationLogRulePack;
 
                 if (mutationRulePack != null)
                 {

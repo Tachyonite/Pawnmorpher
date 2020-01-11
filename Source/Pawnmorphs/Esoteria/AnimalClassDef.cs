@@ -3,8 +3,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -26,6 +26,8 @@ namespace Pawnmorph
         [Unsaved] private List<AnimalClassDef> _subDefs;
 
         [Unsaved] private List<MorphDef> _morphs;
+
+        [Unsaved] private List<MutationDef> _mutations;
 
         IEnumerable<IAnimalClass> IAnimalClass.Children => _subClasses.MakeSafe();
 
@@ -58,11 +60,20 @@ namespace Pawnmorph
         public IEnumerable<MorphDef> Morphs => _morphs.MakeSafe();
 
         /// <summary>
-        /// Determines whether this instance contains the morph.
+        /// all mutations that directly give influence for this class
+        /// </summary>
+        /// this does not include mutations that give influence for any of this class's children 
+        /// <value>
+        /// The direct mutations.
+        /// </value>
+        public IEnumerable<MutationDef> DirectMutations => _mutations.MakeSafe(); 
+
+        /// <summary>
+        ///     Determines whether this instance contains the morph.
         /// </summary>
         /// <param name="morph">The morph.</param>
         /// <returns>
-        ///   <c>true</c> if contains the specified morph; otherwise, <c>false</c>.
+        ///     <c>true</c> if contains the specified morph; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">morph</exception>
         public bool Contains([NotNull] MorphDef morph)
@@ -73,11 +84,11 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Determines whether this instance contains the object.
+        ///     Determines whether this instance contains the object.
         /// </summary>
         /// <param name="animalClass">The animal class.</param>
         /// <returns>
-        ///   <c>true</c> if contains the specified animal class; otherwise, <c>false</c>.
+        ///     <c>true</c> if contains the specified animal class; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">animalClass</exception>
         public bool Contains([NotNull] AnimalClassDef animalClass)
@@ -87,7 +98,6 @@ namespace Pawnmorph
             return c.Contains(animalClass);
         }
 
-        
 
         internal void FindChildren()
         {
@@ -112,18 +122,27 @@ namespace Pawnmorph
                     _subClasses.Add(morphDef);
                     _morphs.Add(morphDef);
                 }
+
+            _mutations = new List<MutationDef>(); 
+            //no get mutation that give this influence 
+            foreach (MutationDef mutationDef in DefDatabase<MutationDef>.AllDefsListForReading)
+            {
+                if (mutationDef.classInfluence == this)
+                {
+                    _mutations.Add(mutationDef); 
+                }
+            }
         }
     }
 
 
-    internal interface IAnimalClass //implementation detail to make morphs a kind of animal class,  since species is a classification 
+    internal interface
+        IAnimalClass //implementation detail to make morphs a kind of animal class,  since species is a classification 
     {
         AnimalClassDef ParentClass { get; }
 
+        [NotNull] IEnumerable<IAnimalClass> Children { get; }
+
         bool Contains([NotNull] IAnimalClass aClass);
-
-        [NotNull]
-        IEnumerable<IAnimalClass> Children { get; }
-
     }
 }

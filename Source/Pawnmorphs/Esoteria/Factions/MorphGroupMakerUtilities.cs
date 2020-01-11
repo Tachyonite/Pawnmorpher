@@ -97,9 +97,7 @@ namespace Pawnmorph.Factions
             if (canApplyRestricted)
                 givers = kindExtension.GetRandomMutationGivers(pawn.thingIDNumber).ToList();
             else
-                givers = kindExtension.GetRandomMutationGivers(pawn.thingIDNumber).Where(g => !(g.hediff.GetModExtension<MutationHediffExtension>()
-                                                                      ?.IsRestricted
-                                                                   ?? false)) //only keep the unrestricted mutations 
+                givers = kindExtension.GetRandomMutationGivers(pawn.thingIDNumber).Where(g => (g.hediff as MutationDef)?.IsRestricted ?? false) //only keep the unrestricted mutations 
                                       .ToList();
 
 

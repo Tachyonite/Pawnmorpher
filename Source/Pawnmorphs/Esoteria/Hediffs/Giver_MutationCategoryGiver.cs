@@ -62,14 +62,14 @@ namespace Pawnmorph.Hediffs
                     {
                         if (foundMutations.Contains(hediffDef)) continue;
 
-                        var extension = hediffDef.GetModExtension<MutationHediffExtension>();
-                        if (extension == null)
+                        var mDef = hediffDef as MutationDef; 
+                        if (mDef == null)
                         {
-                            Log.Error($"{hediffDef.defName} does not have a  MutationHediffExtension and is not attached to a hediff giver");
+                            Log.Error($"{hediffDef.defName} does not use {nameof(MutationDef)} and is not attached to a hediff giver");
                             continue;
                         }
 
-                        _mutations.Add(extension.CreateMutationGiver(hediffDef));
+                        _mutations.Add(mDef.CreateMutationGiver(hediffDef));
                         foundMutations.Add(hediffDef);
                     }
                 }
