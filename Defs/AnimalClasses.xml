@@ -1,0 +1,30 @@
+<Defs>
+    <Pawnmorph.AnimalClassDef>
+        <defName>Animal</defName>
+        <label>animal</label>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Carnivora</defName>
+        <label>carnivore</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Canidae</defName>
+        <label>canid</label>
+        <parent>Carnivora</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Canis</defName>
+        <label>canine</label>
+        <parent>Canidae</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Vulpini</defName>
+        <label>vulpine</label>
+        <parent>Canidae</parent>
+    </Pawnmorph.AnimalClassDef>
+</Defs>

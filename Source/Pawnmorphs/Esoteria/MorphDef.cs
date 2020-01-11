@@ -14,8 +14,13 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary> Def class for a morph. Used to generate the morph's implicit race. </summary>
-    public class MorphDef : Def
+    public class MorphDef : Def, IAnimalClass
     {
+
+        IEnumerable<IAnimalClass> IAnimalClass.Children => Enumerable.Empty<IAnimalClass>();//morphs can't have class children
+
+        bool IAnimalClass.Contains(IAnimalClass other) => other == this; 
+
         /// <summary>
         ///     The categories that the morph belongs to. <br />
         ///     For example, a Pigmorph belongs to the Farm and Production morph groups.
@@ -30,6 +35,13 @@ namespace Pawnmorph
 
         /// <summary> If specified, the race to use in place of the implicit one.</summary>
         public ThingDef explicitHybridRace;
+
+
+        /// <summary>
+        ///     The genus of this morph
+        ///     this should be a class like 'canis'
+        /// </summary>
+        public AnimalClassDef classification;
 
         /// <summary>
         ///     The group the morph belongs to. <br />
@@ -52,7 +64,6 @@ namespace Pawnmorph
 
         [Unsaved] private readonly Dictionary<BodyDef, float> _maxInfluenceCached = new Dictionary<BodyDef, float>();
 
-       
 
         /// <summary> Any mutations directly associated with this morph (the hediff specifies this MorphDef).</summary>
         [Unsaved] private List<HediffGiver_Mutation> _associatedMutations;
@@ -65,6 +76,7 @@ namespace Pawnmorph
         [Unsaved] private List<HediffDef> _allAssociatedMutations;
 
         [CanBeNull] [Unsaved] private HashSet<HediffDef> _associatedMutationsLookup;
+        AnimalClassDef IAnimalClass.ParentClass => classification;
 
         /// <summary> Gets an enumerable collection of all the morph type's defs.</summary>
         public static IEnumerable<MorphDef> AllDefs => DefDatabase<MorphDef>.AllDefs;
@@ -129,7 +141,7 @@ namespace Pawnmorph
             }
         }
 
- 
+
         //simply a cached hash Set of all hediffs added by the HediffGivers in AllAssociatedAndAdjacentMutationGivers 
         [NotNull]
         private HashSet<HediffDef> AssociatedMutationsLookup
@@ -273,6 +285,8 @@ namespace Pawnmorph
                 hybridRaceDef = explicitHybridRace;
                 Log.Warning($"MorphDef {defName} is using an explicit hybrid {explicitHybridRace.defName} for {race.defName}. This has not been tested yet");
             }
+
+            classification = classification ?? AnimalClassDefOf.Animal; 
 
             //TODO patch explicit race based on hybrid race settings? 
         }

@@ -66,6 +66,9 @@
   <ItemGroup>
     <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="Alerts\SAMinorBreakRisk.cs" />
+    <Compile Include="AnimalClassDef.cs" />
+    <Compile Include="AnimalClassDefOf.cs" />
+    <Compile Include="AnimalClassUtilities.cs" />
     <Compile Include="AnimalDrafterComp.cs" />
     <Compile Include="Aspect.cs" />
     <Compile Include="AspectCapacityImpactor.cs" />
