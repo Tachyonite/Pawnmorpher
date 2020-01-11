@@ -97,7 +97,7 @@
 	<HediffDef ParentName="HarePart">
 		<defName>EtherHareTail</defName>
 		<label>cotton tail</label>
-		<description>A small puff of fluf peaks out just above [PAWN_nameDef]'s bum. It's rather cute, actually.</description>
+		<description>A small puff of fluff peeks out just above [PAWN_nameDef]'s rear. It's rather cute, actually.</description>
 		<stages>
 			<li>
 				<statOffsets>
