@@ -1,17 +1,16 @@
-<Defs>
-	<HediffDef Name="SquirrelPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>SquirrelMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="SquirrelPart" ParentName="PawnmorphPart" Abstract="true">
+		<morphInfluence>SquirrelMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="SquirrelPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelJaw</defName>
 		<label>sciurine muzzle</label>
 		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth.</description>
 		<initialSeverity>0</initialSeverity>
+		<parts> 
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<label>new</label>
@@ -71,12 +70,15 @@
 				</categories>
 			</li>
 		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="SquirrelPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelEar</defName>
 		<description>[PAWN_nameDef]'s ears have grown into small wedges, flicking about to listen for the beating of wings.</description>
 		<label>sciurine</label>
+		<parts>
+			<li>Ear</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
@@ -93,12 +95,15 @@
 				</categories>
 			</li>
 		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="SquirrelPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelTail</defName>
 		<label>sciurine tail</label>
 		<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_possessive]self and use it as a pillow while sleeping.</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -123,5 +128,5 @@
 				</categories>
 			</li>
 		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -17,27 +17,6 @@ namespace Pawnmorph.Hediffs
     public class MutationDef : HediffDef
     {
         /// <summary>
-        /// Gets all mutations.
-        /// </summary>
-        /// <value>
-        /// All mutations.
-        /// </value>
-        [NotNull] public static IEnumerable<MutationDef> AllMutations => DefDatabase<MutationDef>.AllDefs; 
-
-
-        [Unsaved] private RemoveFromPartCompProperties _rmComp;
-
-        /// <summary>
-        /// Gets the remover comp.
-        /// </summary>
-        /// this is the comp used to remove 'overlapping' mutations
-        /// <value>
-        /// The remove comp.
-        /// </value>
-        [NotNull]
-        public RemoveFromPartCompProperties RemoveComp => _rmComp; 
-
-        /// <summary>
         ///     list of body parts this mutation can be added to
         /// </summary>
         /// note: this does not affect HediffGiver_AddedMutation, this is for adding mutations without a hediff giver
@@ -61,58 +40,42 @@ namespace Pawnmorph.Hediffs
         [CanBeNull] public TaleDef mutationTale;
 
         /// <summary>
-        /// The morph this part gives morph influence for 
+        ///     The morph this part gives morph influence for
         /// </summary>
         public MorphDef morphInfluence;
+
         /// <summary>
-        /// The class this part gives influence for 
+        ///     The class this part gives influence for
         /// </summary>
-        /// only should be set if morphInfluence is not set! 
+        /// only should be set if morphInfluence is not set!
         public AnimalClassDef classInfluence;
-
-        internal IAnimalClass InternalInfluence
-        {
-            get
-            {
-                if (morphInfluence == null)
-                {
-                    return classInfluence; 
-                }
-
-                return morphInfluence; 
-            }
-        }
-
-        /// <summary>
-        /// checks if this instance gives influence for the given animal class 
-        /// </summary>
-        /// <param name="classDef">The class definition.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">classDef</exception>
-        public bool GivesInfluence([NotNull] AnimalClassDef classDef)
-        {
-            if (classDef == null) throw new ArgumentNullException(nameof(classDef));
-            if (InternalInfluence == null) return false;
-            return ((IAnimalClass) classDef).Contains(InternalInfluence); 
-        }
-
-        /// <summary>
-        /// checks if this instance gives influence for the given morph 
-        /// </summary>
-        /// <param name="morph">The morph.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">morph</exception>
-        public bool GivesInfluence([NotNull] MorphDef morph)
-        {
-            if (morph == null) throw new ArgumentNullException(nameof(morph));
-            if (InternalInfluence == null) return false;
-            return ((IAnimalClass)morph).Contains(InternalInfluence);
-        }
 
         /// <summary>The mutation memory</summary>
         [CanBeNull] public ThoughtDef mutationMemory;
 
+
+        [Unsaved] private RemoveFromPartCompProperties _rmComp;
+
         [Unsaved] private bool? _isRestricted;
+
+        /// <summary>
+        ///     Gets all mutations.
+        /// </summary>
+        /// <value>
+        ///     All mutations.
+        /// </value>
+        [NotNull]
+        public static IEnumerable<MutationDef> AllMutations => DefDatabase<MutationDef>.AllDefs;
+
+        /// <summary>
+        ///     Gets the remover comp.
+        /// </summary>
+        /// this is the comp used to remove 'overlapping' mutations
+        /// <value>
+        ///     The remove comp.
+        /// </value>
+        [NotNull]
+        public RemoveFromPartCompProperties RemoveComp => _rmComp;
 
         /// <summary>Gets a value indicating whether this instance is restricted to special PawnKindGroups</summary>
         /// <value>
@@ -131,6 +94,16 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        internal IAnimalClass InternalInfluence
+        {
+            get
+            {
+                if (morphInfluence == null) return classInfluence;
+
+                return morphInfluence;
+            }
+        }
+
         /// <summary>
         ///     Gets all configuration errors
         /// </summary>
@@ -145,9 +118,7 @@ namespace Pawnmorph.Hediffs
             if (parts.NullOrEmpty()) yield return "parts list is null or empty!";
 
             if (morphInfluence != null && classInfluence != null)
-            {
-                yield return $"both {nameof(morphInfluence)} and {nameof(classInfluence)} are set!"; 
-            }
+                yield return $"both {nameof(morphInfluence)} and {nameof(classInfluence)} are set!";
 
             _rmComp = CompProps<RemoveFromPartCompProperties>();
             if (_rmComp == null)
@@ -170,6 +141,32 @@ namespace Pawnmorph.Hediffs
                 countToAffect = countToAffect
             };
             return mutationGiver;
+        }
+
+        /// <summary>
+        ///     checks if this instance gives influence for the given animal class
+        /// </summary>
+        /// <param name="classDef">The class definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">classDef</exception>
+        public bool GivesInfluence([NotNull] AnimalClassDef classDef)
+        {
+            if (classDef == null) throw new ArgumentNullException(nameof(classDef));
+            if (InternalInfluence == null) return false;
+            return ((IAnimalClass) classDef).Contains(InternalInfluence);
+        }
+
+        /// <summary>
+        ///     checks if this instance gives influence for the given morph
+        /// </summary>
+        /// <param name="morph">The morph.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">morph</exception>
+        public bool GivesInfluence([NotNull] MorphDef morph)
+        {
+            if (morph == null) throw new ArgumentNullException(nameof(morph));
+            if (InternalInfluence == null) return false;
+            return ((IAnimalClass) morph).Contains(InternalInfluence);
         }
     }
 }

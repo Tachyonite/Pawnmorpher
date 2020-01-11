@@ -531,5 +531,21 @@ namespace Pawnmorph.DebugUtils
         {
             Log.Message(MorphUtilities.MaxHumanInfluence.ToString());
         }
+
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        static void ListAllSpreadableParts()
+        {
+            var bDef = BodyDefOf.Human;
+            var sBuilder = new StringBuilder();
+
+            foreach (var allMutablePart in bDef.GetAllMutableParts().Select(b => b.def).Distinct())
+            {
+                if (allMutablePart.IsSkinCoveredInDefinition_Debug)
+                    sBuilder.AppendLine($"<li>{allMutablePart.defName}</li>");
+            }
+
+            Log.Message(sBuilder.ToString()); 
+
+        }
     }
 }

@@ -1,16 +1,15 @@
-<Defs>
-	<HediffDef Name="WargPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>WargMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd"> 
+	<Pawnmorph.Hediffs.MutationDef Name="WargPart" ParentName="PawnmorphPart" Abstract="true">
+		<morphInfluence>WargMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
   
-	<HediffDef ParentName="WargPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargMuzzle</defName>
 		<label>warg muzzle</label>
 		<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -58,23 +57,29 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="WargPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargEar</defName>
 		<label>warglike</label>
 		<description>Thick-skinned ears with a tuft at the end have grown from [PAWN_nameDef]'s head. They scan the horizon independently for prey.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.25</partEfficiencyOffset>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="WargPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargTail</defName>
 		<label>tufted tail</label>
 		<description>A thin tail with a tuft of fur at the end.</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li>
 				<statOffsets>
@@ -88,5 +93,5 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

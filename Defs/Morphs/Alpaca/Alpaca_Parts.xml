@@ -1,13 +1,9 @@
-<Defs>
-	<HediffDef Name="AlpacaPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>AlpacaMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="AlpacaPart" ParentName="PawnmorphPart" Abstract="true">
+		<morphInfluence>AlpacaMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="AlpacaPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaSnout</defName>
 		<label>wooly snout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, wooly and with lips perfect for spitting.</description>
@@ -77,9 +73,12 @@
 				<!-- takes 4 days to progress -->
 			</li>
 		</comps>
-	</HediffDef>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="AlpacaPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaEar</defName>
 		<label>woolen</label>
 		<description>Wooly ears twitch at the wind, idly.</description>
@@ -88,15 +87,21 @@
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
-	</HediffDef>
+		<parts>
+			<li>Ear</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="AlpacaPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaTail</defName>
 		<label>wooly tail</label>
 		<description>A wooly tail, it feels like a cloud.</description>
-	</HediffDef>
+		<parts>
+			<li>Tail</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="AlpacaPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherWooly</defName>
 		<label>wooly</label>
 		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent alpacamorph that don't need no man.</description>
@@ -162,5 +167,8 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</HediffDef>
+		<parts>
+			<li>Torso</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
