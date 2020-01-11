@@ -29,6 +29,7 @@
 						<li>PawnmorphPigTF</li>
 						<li>PawnmorphRatTF</li>
 						<li>PawnmorphSnakeTF</li>
+						<li>PawnmorphSquirrelTF</li>
 						<li>PawnmorphWargTF</li>
 						<li>PawnmorphWolfTF</li>
 					</hediffDefs>
@@ -194,6 +195,7 @@
 					<hediffDefs>
 						<li>PawnmorphHareTF</li>
 						<li>PawnmorphRatTF</li>
+						<li>PawnmorphSquirrelTF</li>
 					</hediffDefs>
 					<severity>1.00</severity>
 				</li>
