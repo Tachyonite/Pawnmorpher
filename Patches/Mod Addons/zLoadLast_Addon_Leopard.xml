@@ -185,6 +185,7 @@
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
+											<tale>GrewFelineMuzzle</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherLeopardEar</hediff>
@@ -193,6 +194,7 @@
 												<li>Ear</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>EarsChangedFeline</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherLeopardTail</hediff>
@@ -209,6 +211,7 @@
 												<li>Arm</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>LimbGrowsFur</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherCatClaws</hediff>
@@ -218,6 +221,7 @@
 												<li>Hand</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>HandsBecomeCatPaws</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherDigitigradeLeg</hediff>
@@ -235,6 +239,7 @@
 												<li>Foot</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>FootBecomesFelinePaw</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherCatEye</hediff>
@@ -317,6 +322,7 @@
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
+											<tale>GrewFelineMuzzle</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherLeopardEar</hediff>
@@ -325,6 +331,7 @@
 												<li>Ear</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>EarsChangedFeline</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherLeopardTail</hediff>
@@ -341,6 +348,7 @@
 												<li>Arm</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>LimbGrowsFur</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherCatClaws</hediff>
@@ -350,6 +358,7 @@
 												<li>Hand</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>HandsBecomeCatPaws</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherDigitigradeLeg</hediff>
@@ -367,6 +376,7 @@
 												<li>Foot</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>FootBecomesFelinePaw</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherCatEye</hediff>
@@ -411,6 +421,7 @@
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
+											<tale>GrewFelineMuzzle</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherLeopardEar</hediff>
@@ -419,6 +430,7 @@
 												<li>Ear</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>EarsChangedFeline</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherLeopardTail</hediff>
@@ -435,6 +447,7 @@
 												<li>Arm</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>LimbGrowsFur</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherDigitigradeLeg</hediff>
@@ -452,6 +465,7 @@
 												<li>Foot</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>FootBecomesFelinePaw</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherCatEye</hediff>
@@ -494,6 +508,7 @@
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
+											<tale>GrewFelineMuzzle</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherLeopardEar</hediff>
@@ -502,6 +517,7 @@
 												<li>Ear</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>EarsChangedFeline</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherLeopardTail</hediff>
@@ -518,6 +534,7 @@
 												<li>Arm</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>LimbGrowsFur</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherDigitigradeLeg</hediff>
@@ -535,6 +552,7 @@
 												<li>Foot</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>FootBecomesFelinePaw</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherCatEye</hediff>
