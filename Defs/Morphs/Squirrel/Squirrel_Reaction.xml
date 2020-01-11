@@ -2,7 +2,7 @@
 	<ThoughtDef>
 		<defName>SquirrelMorphTFReaction</defName>
 		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphHareTF</hediff>
+		<hediff>PawnmorphSquirrelTF</hediff>
 		<stages>
 			<li>
 				<label>changed</label>
