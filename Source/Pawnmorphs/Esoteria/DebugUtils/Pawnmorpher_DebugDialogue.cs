@@ -199,7 +199,7 @@ namespace Pawnmorph.DebugUtils
             {
                 IEnumerable<Hediff> hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation);
 
-                return hediffs.Count() < mutation.parts.Count;
+                return hediffs.Count() < mutation.parts?.Count;
             }
 
             var mutList = mutations.Where(CanReceiveGiver).ToList();

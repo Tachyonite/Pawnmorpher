@@ -192,29 +192,33 @@ namespace Pawnmorph
         ///     pawn
         ///     or
         ///     mutation
-        ///     or
-        ///     parts
         /// </exception>
-        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, [NotNull] List<BodyPartDef> parts,
+        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, [CanBeNull] List<BodyPartDef> parts,
                                        int countToAdd = int.MaxValue, List<BodyPartRecord> addedParts = null,
                                        AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-            if (parts == null) throw new ArgumentNullException(nameof(parts));
 
             var addLst = new List<BodyPartRecord>();
 
-            foreach (BodyPartRecord notMissingPart in pawn.health.hediffSet.GetNotMissingParts())
-                if (parts.Contains(notMissingPart.def))
-                {
-                    addLst.Add(notMissingPart);
-                    if (parts.Count >= countToAdd) break;
-                }
+            if (parts != null)
+            {
+                foreach (BodyPartRecord notMissingPart in pawn.health.hediffSet.GetNotMissingParts())
+                    if (parts.Contains(notMissingPart.def))
+                    {
+                        addLst.Add(notMissingPart);
+                        if (parts.Count >= countToAdd) break;
+                    }
 
-            if (addLst.Count == 0) return false;
-            AddMutation(pawn, mutation, addLst, addedParts, ancillaryEffects);
+                if (addLst.Count == 0) return false;
+                return AddMutation(pawn, mutation, addLst, addedParts, ancillaryEffects);
+            }
+
+            Hediff hDef = HediffMaker.MakeHediff(mutation, pawn);
+            pawn.health.AddHediff(hDef);
             return true;
+
         }
 
         /// <summary>
@@ -368,7 +372,7 @@ namespace Pawnmorph
             var rmLst = new List<Hediff_AddedMutation>();
             foreach (Hediff_AddedMutation mutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
                 //make a list of all the stuff to remove 
-                if (mutation.def != mutationDef && mutationDef.parts.Contains(mutation.Part?.def))
+                if (mutation.def != mutationDef && mutationDef.parts?.Contains(mutation.Part?.def)==true)
                     rmLst.Add(mutation);
 
             //no remove all the mutations 
@@ -424,7 +428,7 @@ namespace Pawnmorph
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
             foreach (BodyPartRecord bodyPartRecord in bDef.AllParts)
-                if (mutationDef.parts.Contains(bodyPartRecord.def))
+                if (mutationDef.parts.MakeSafe().Contains(bodyPartRecord.def))
                     yield return new VTuple<BodyPartRecord, MutationLayer>(bodyPartRecord, mutationDef.RemoveComp.layer);
         }
 
@@ -552,8 +556,8 @@ namespace Pawnmorph
 
             //make sure this mutation def has all the same parts as other mutation 
 
-            foreach (BodyPartDef bodyPartDef in mutationDef.parts)
-                if (otherMutation.parts.Contains(bodyPartDef) == false)
+            foreach (BodyPartDef bodyPartDef in mutationDef.parts.MakeSafe())
+                if (otherMutation.parts.MakeSafe().Contains(bodyPartDef) == false)
                     return false; //if mutation Def has any part that other mutation does not they do not overlap 
 
             RemoveFromPartCompProperties thRmComp = mutationDef.RemoveComp;
@@ -570,7 +574,7 @@ namespace Pawnmorph
             _partLookupDict = new Dictionary<MutationDef, List<BodyPartDef>>();
             foreach (MutationDef mutation in MutationDef.AllMutations)
             {
-                IEnumerable<BodyPartDef> allParts = mutation.parts;
+                IEnumerable<BodyPartDef> allParts = mutation.parts.MakeSafe();
                 _partLookupDict[mutation] = allParts.ToList();
             }
             //now build the reverse lookup table 

@@ -162,7 +162,7 @@ namespace Pawnmorph
             {
                 _mutationsByParts = new Dictionary<BodyPartDef, List<MutationDef>>();
                 foreach (var mutation in AllAssociatedMutations) //build the lookup dict here 
-                foreach (BodyPartDef part in mutation.parts) //gets a list of all parts this mutation affects 
+                foreach (BodyPartDef part in mutation.parts.MakeSafe()) //gets a list of all parts this mutation affects 
                 {
                     List<MutationDef> lst;
                     if (_mutationsByParts.TryGetValue(part, out lst))

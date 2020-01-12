@@ -182,21 +182,43 @@ namespace Pawnmorph.Hediffs
 
         private void AddMutations()
         {
-            Log.Message($"Adding Mutation on {pawn.Name}, is finished {FinishedAddingMutations}, is null {_checkList == null}");
             
             if (FinishedAddingMutations) return;
             if (!AnyMutationsInStage(CurStage)) return; 
-            var mutationsAdded = 0;
-
+            
             if (_scratchDict.Count == 0)
             {
                 ResetPossibleMutations();   
             }
+            
+            if(_curIndex < _checkList.Count)
+                AddPartMutations();
+            else
+            {
+                //add whole body mutations 
+                int mutationsAdded=0;
+                foreach (MutationEntry mutationEntry in _wholeBodyParts)
+                {
+                    if (Rand.Value < mutationEntry.addChance)
+                    {
+                        MutationUtilities.AddMutation(pawn, mutationEntry.mutation);
+                        var mutagen = def.GetMutagenDef();
+                        mutagen.TryApplyAspects(pawn); 
+                        mutationsAdded++; 
+                    }
+                    if(mutationsAdded >= MinMutationsPerCheck) break;
+                }
+            }
+            
+        }
 
+        private void AddPartMutations()
+        {
+            var mutationsAdded = 0;
             while (_curIndex < _checkList.Count)
             {
                 BodyPartRecord part = _checkList[_curIndex];
-               
+
                 var lst = _scratchDict.TryGetValue(part.def);
                 var mutationToAdd = lst?.RandomElementWithFallback();
                 if (mutationToAdd != null)
@@ -208,13 +230,13 @@ namespace Pawnmorph.Hediffs
                         mutagen.TryApplyAspects(pawn);
                         mutationsAdded++;
                     }
-                    else if(mutationToAdd.blocks)
+                    else if (mutationToAdd.blocks)
                     {
-                        return; //return without incrementing the index so it blocks 
+                        return;
                     }
                 }
 
-                _curIndex++;//increment after so mutations can 'block'
+                _curIndex++; //increment after so mutations can 'block'
 
                 //check if we have added enough mutations to end the loop early 
                 if (mutationsAdded >= MinMutationsPerCheck) break;
@@ -230,6 +252,9 @@ namespace Pawnmorph.Hediffs
             FillPartCheckList(_checkList); 
         }
 
+        [NotNull]
+        private readonly List<MutationEntry> _wholeBodyParts = new List<MutationEntry>(); 
+
         private void ResetPossibleMutations()
         {
             try
@@ -237,7 +262,7 @@ namespace Pawnmorph.Hediffs
                 IEnumerable<MutationEntry> mutations = GetAvailableMutations(CurStage);
                 _scratchDict.Clear();
                 foreach (var entry in mutations) //fill a lookup dict 
-                foreach (BodyPartDef possiblePart in entry.mutation.parts)
+                foreach (BodyPartDef possiblePart in entry.mutation.parts.MakeSafe())
                     if (_scratchDict.TryGetValue(possiblePart, out var lst))
                     {
                         lst.Add(entry);
@@ -247,6 +272,14 @@ namespace Pawnmorph.Hediffs
                         lst = new List<MutationEntry> {entry};
                         _scratchDict[possiblePart] = lst;
                     }
+                _wholeBodyParts.Clear();
+                foreach (MutationEntry availableMutation in GetAvailableMutations(CurStage))
+                {
+                    if (availableMutation.mutation.parts == null)
+                    {
+                        _wholeBodyParts.Add(availableMutation); 
+                    }
+                }
             }
             catch (NullReferenceException e)
             {

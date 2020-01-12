@@ -19,7 +19,7 @@ namespace Pawnmorph.Hediffs
         ///     list of body parts this mutation can be added to
         /// </summary>
         /// note: this does not affect HediffGiver_AddedMutation, this is for adding mutations without a hediff giver
-        [NotNull] public List<BodyPartDef> parts = new List<BodyPartDef>();
+        [CanBeNull] public List<BodyPartDef> parts = new List<BodyPartDef>();
 
         /// <summary>the number of parts to add this mutation to</summary>
         [Obsolete] public int countToAffect;
@@ -42,8 +42,8 @@ namespace Pawnmorph.Hediffs
         ///     The class this part gives influence for
         /// </summary>
         /// only should be set if morphInfluence is not set!
-        [NotNull]
-        public  AnimalClassBase classInfluence;
+        [NotNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        public AnimalClassBase classInfluence;
 
         /// <summary>The mutation memory</summary>
         [CanBeNull] public ThoughtDef mutationMemory;
@@ -101,9 +101,7 @@ namespace Pawnmorph.Hediffs
             if (!typeof(Hediff_AddedMutation).IsAssignableFrom(hediffClass))
                 yield return $"{hediffClass.Name} is not {nameof(Hediff_AddedMutation)} or a subtype of it";
 
-            if (parts.NullOrEmpty()) yield return "parts list is null or empty!";
-
-
+         
             _rmComp = CompProps<RemoveFromPartCompProperties>();
             if (_rmComp == null)
                 yield return "mutation does not have a remover comp!";
