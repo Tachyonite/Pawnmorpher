@@ -1,10 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="ThrumboPart" ParentName="PawnmorphPart" Abstract="true">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>ThrumboMorph</morph>
-			</li>
-		</comps>
+		<morphInfluence>ThrumboMorph</morphInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">

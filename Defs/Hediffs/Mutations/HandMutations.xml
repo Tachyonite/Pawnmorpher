@@ -142,7 +142,6 @@
                 <severityPerDay>0.15</severityPerDay>
             </li>
         </comps>
-        <countToAffect>2</countToAffect>
         <categories>
             <li>Extreme</li>
         </categories>
@@ -200,7 +199,6 @@
                 <severityPerDay>0.15</severityPerDay>
             </li>
         </comps>
-        <countToAffect>2</countToAffect>
         <categories>
             <li>Extreme</li>
         </categories>

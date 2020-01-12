@@ -1,16 +1,15 @@
-<Defs>
-	<HediffDef Name="MonkeyPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>MonkeyMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
-  
-	<HediffDef ParentName="MonkeyPart">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="MonkeyPart" ParentName="PawnmorphPart" Abstract="true">
+		<morphInfluence>MonkeyMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyJaw</defName>
 		<label>monkey snout</label>
 		<description>[PAWN_nameDef]'s face has elongated into a monkey-like visage, making them look less evolved.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -54,23 +53,29 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="MonkeyPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyEar</defName>
 		<label>simian</label>
 		<description>Though somewhat engorged, these ears look somewhat like [PAWN_nameDef]'s own ears.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="MonkeyPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyTail</defName>
 		<label>monkey tail</label>
 		<description>A long dextrous tail extends from the base of [PAWN_nameDef]'s spine. It would help with climbing abiltiy, but nobody knows how to on the rim.</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -81,12 +86,15 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="MonkeyPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyHand</defName>
 		<label>dextrous hand</label>
 		<description>[PAWN_nameDef]'s fingers have elongated into the semblence of a monkey's hand.</description>
+		<parts>
+			<li>Hand</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -97,12 +105,15 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="MonkeyPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyFoot</defName>
 		<label>dextrous toes</label>
 		<description>[PAWN_nameDef]'s feet have reshaped themselves into what look to be hands. This make finding shoes somewhat difficult.</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -117,5 +128,5 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

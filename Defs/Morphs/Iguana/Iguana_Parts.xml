@@ -1,17 +1,16 @@
-<Defs>
-	<HediffDef Name="IguanaPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>IguanaMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="IguanaPart" ParentName="PawnmorphPart" Abstract="true">
+		<morphInfluence>IguanaMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="IguanaPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaSnout</defName>
 		<label>iguana snout</label>
 		<description>The lower part of [PAWN_nameDef]'s face has reformed into a leathery beak.</description>
 		<initialSeverity>0</initialSeverity>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<label>new</label>
@@ -59,26 +58,35 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="IguanaPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaHorns</defName>
 		<description>A series of spines drapes down [PAWN_nameDef]'s back.</description>
 		<label>spines</label>
+		<parts>
+			<li>Skull</li>
+		</parts>
 		<!--Needs Stats-->
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="IguanaPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaTail</defName>
 		<label>iguana tail</label>
 		<description>A spiney green tail.</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<!--Needs stats-->
-	</HediffDef>
-	
-	<HediffDef ParentName="IguanaPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaHand</defName>
 		<label>dextrous claws</label>
 		<description>[PAWN_nameDef]'s fingers have elongated into scale-covered claws.</description>
+		<parts>
+			<li>Hand</li>
+		</parts>
 		<stages>
 			<li>
 				<label>unfamiliar</label>
@@ -113,12 +121,15 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
-	
-	<HediffDef ParentName="IguanaPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaFoot</defName>
 		<label>reptilian foot</label>
 		<description>The whole of [PAWN_nameDef]'s feet have become toes.</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
 		<stages>
 			<li />
 			<li>
@@ -137,5 +148,5 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

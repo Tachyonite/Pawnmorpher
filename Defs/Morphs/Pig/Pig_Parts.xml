@@ -1,16 +1,15 @@
-<Defs>
-	<HediffDef Name="PigPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>PigMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
-  
-	<HediffDef ParentName="PigPart">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="PigPart" ParentName="PawnmorphPart" Abstract="true">
+		<morphInfluence>PigMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PigPart">
 		<defName>EtherPigSnout</defName>
 		<label>porcine snout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, snorting and snuffling for roots and berries, oinking at things that [PAWN_pronoun] likes.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -83,22 +82,28 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PigPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PigPart">
 		<defName>EtherPigEar</defName>
 		<label>porcine</label>
 		<description>Large, pink piglike ears sit atop [PAWN_nameDef]'s head, covered in a fine hair.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PigPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PigPart">
 		<defName>EtherCurlyTail</defName>
 		<label>curly tail</label>
 		<description>A pig's curly tail, it twitches when food is near.</description>
-	</HediffDef>
+		<parts>
+			<li>Tail</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

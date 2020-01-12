@@ -1,16 +1,15 @@
-<Defs>
-	<HediffDef Name="CowPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps> 
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>CowMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
-    
-	<HediffDef ParentName="CowPart">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="CowPart" ParentName="PawnmorphPart" Abstract="true">
+		<morphInfluence>CowMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="CowPart">
 		<defName>EtherCowSnout</defName>
 		<label>bovine snout</label>
 		<description>A cowlike snout graces [PAWN_nameDef]'s face. They may moo and talk about bovine-related things every now and then.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -58,23 +57,29 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="CowPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CowPart">
 		<defName>EtherCowEar</defName>
 		<label>bovine</label>
 		<description>They flick idly, large tan ears that belong to a cow. Maybe you should tag them.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="CowPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CowPart">
 		<defName>EtherCowTail</defName>
 		<label>cow tail</label>
 		<description>A cowlike tail. It swats at flies and hangs low at their legs.</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -85,12 +90,15 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
-	
-	<HediffDef ParentName="CowPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="CowPart">
 		<defName>EtherHorns</defName>
 		<label>horns</label>
 		<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
+		<parts>
+			<li>Skull</li>
+		</parts>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -107,13 +115,16 @@
 				</tools>
 			</li>
 		</comps>
-	</HediffDef>
-	
-	<HediffDef ParentName="CowPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="CowPart">
 		<defName>EtherUdder</defName>
 		<label>udder</label>
 		<description>This really needs no explanation. [PAWN_nameDef] now produces milk.</description>
-		<initialSeverity>0.01</initialSeverity>		
+		<initialSeverity>0.01</initialSeverity>
+		<parts>
+			<li>Waist</li>
+		</parts>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>MilkedMyself</thought>
@@ -186,5 +197,5 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -1,16 +1,15 @@
-<Defs>
-	<HediffDef Name="DeerPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>DeerMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="DeerPart" ParentName="PawnmorphPart" Abstract="true">
+		<morphInfluence>DeerMorph</morphInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="DeerPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
 		<defName>EtherDeerSnout</defName>
 		<label>cervine snout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, deerlike with a wide nose, picking up scents of predators.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -23,7 +22,8 @@
 						<offset>0.40</offset>
 					</li>
 				</capMods>
-			</li><li>
+			</li>
+			<li>
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -57,23 +57,29 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="DeerPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
 		<defName>EtherDeerEar</defName>
 		<label>cervine</label>
 		<description>The smooth, long ears of a deer sit atop [PAWN_nameDef]'s head, keeping watch for predators.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="DeerPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
 		<defName>EtherShortTail</defName>
 		<label>short tail</label>
 		<description>A short tail juts out from [PAWN_nameDef]'s spine, flaring up whenever danger is sensed.</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -84,12 +90,15 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
-	
-	<HediffDef ParentName="DeerPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
 		<defName>EtherAntlers</defName>
 		<label>antlers</label>
 		<description>Burly antlers decorate [PAWN_nameDef]'s head.</description>
+		<parts>
+			<li>Skull</li>
+		</parts>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -132,5 +141,5 @@
 				</statOffsets>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
