@@ -71,10 +71,19 @@ namespace Pawnmorph.Hediffs
         {
             get
             {
+                string label; 
                 if (CurStage is IDescriptiveStage dStage)
-                    return string.IsNullOrEmpty(dStage.LabelOverride) ? base.LabelBase : dStage.LabelOverride;
+                    label = string.IsNullOrEmpty(dStage.LabelOverride) ? base.LabelBase : dStage.LabelOverride;
+                else
+                    label = base.LabelBase;
 
-                return base.LabelBase;
+                if(SingleComp != null)
+                {
+                    label = $"{label}x{SingleComp.stacks}";
+                }
+
+                return label; 
+
             }
         }
 
@@ -95,9 +104,8 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref _curIndex, nameof(_curIndex));
             if (Scribe.mode == LoadSaveMode.PostLoadInit && _checkList == null)
             {
-                ResetMutations();
+                ResetMutationOrder();
                 ResetPossibleMutations();
-                
             }
         }
 
@@ -122,7 +130,7 @@ namespace Pawnmorph.Hediffs
             var mtb = 1 / Mathf.Max(0.0001f, MeanMutationsPerDay); 
             if ( pawn.IsHashIntervalTick(60) && Rand.MTBEventOccurs(mtb, 60000, 60)) AddMutations();
 
-            if (pawn.IsHashIntervalTick(10000) && CanReset) ResetMutations();
+            if (pawn.IsHashIntervalTick(10000) && CanReset) ResetMutationOrder();
         }
 
         /// <summary>Fills the part check list.</summary>
@@ -208,8 +216,59 @@ namespace Pawnmorph.Hediffs
                     }
                     if(mutationsAdded >= MinMutationsPerCheck) break;
                 }
+
+                if (mutationsAdded > 0)
+                    OnMutationsAdded(mutationsAdded); 
             }
             
+        }
+
+        /// <summary>
+        /// Tries the merge with the other hediff
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns></returns>
+        public override bool TryMergeWith(Hediff other)
+        {
+            if (base.TryMergeWith(other))
+            {
+                var sCompOther = other.TryGetComp<HediffComp_Single>();
+                var sComp = SingleComp;
+                if (sComp != null && sCompOther != null)
+                {
+                    sComp.stacks = Mathf.Clamp(sComp.stacks + sCompOther.stacks, 0, sComp.Props.maxStacks); 
+                }
+                ResetMutationOrder();
+                return true; 
+            }
+
+            return false; 
+        }
+
+        /// <summary>
+        /// Gets the single comp for partial transformation hediffs 
+        /// </summary>
+        /// <value>
+        /// The single comp.
+        /// </value>
+        [CanBeNull]
+        protected HediffComp_Single SingleComp => this.TryGetComp<HediffComp_Single>(); 
+
+        /// <summary>
+        /// Called when mutations are added the pawn.
+        /// </summary>
+        /// <param name="mutationsAdded">The mutations added.</param>
+        protected virtual void OnMutationsAdded(int mutationsAdded)
+        {
+            var sComp = SingleComp;
+            if(sComp != null)
+            {
+                sComp.stacks = Mathf.Max(sComp.stacks - mutationsAdded, 0);
+                if (sComp.stacks == 0)
+                {
+                    pawn.health.RemoveHediff(this); 
+                }
+            }
         }
 
         private void AddPartMutations()
@@ -241,10 +300,15 @@ namespace Pawnmorph.Hediffs
                 //check if we have added enough mutations to end the loop early 
                 if (mutationsAdded >= MinMutationsPerCheck) break;
             }
+
+            if (mutationsAdded > 0)
+            {
+                OnMutationsAdded(mutationsAdded); 
+            }
         }
 
 
-        private void ResetMutations()
+        private void ResetMutationOrder()
         {
             _checkList = _checkList ?? new List<BodyPartRecord>();
             _checkList.Clear();
