@@ -1,16 +1,15 @@
-<Defs>
-	<HediffDef Name="CatPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>CatMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="CatPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>CatMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="CatPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CatPart">
 		<defName>EtherCatMuzzle</defName>
 		<label>feline muzzle</label>
 		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a feline. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -58,23 +57,29 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="CatPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CatPart">
 		<defName>EtherCatEar</defName>
 		<label>feline</label>
 		<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="CatPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CatPart">
 		<defName>EtherCatTail</defName>
 		<label>cat tail</label>
 		<description>A long, catlike tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -85,12 +90,15 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
-	
-	<HediffDef ParentName="CatPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="CatPart">
 		<defName>EtherCatClaws</defName>
 		<label>clawed</label>
 		<description>Sharp, catlike claws have replaced the shed nails of [PAWN_nameDef]. This gives [PAWN_objective] a combat advantage, and makes it harder to wipe [PAWN_possessive] ass.</description>
+		<parts>
+			<li>Hand</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -117,12 +125,16 @@
 				</tools>
 			</li>
 		</comps>
-	</HediffDef>
-	
-	<HediffDef ParentName="CatPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherCatEye</defName>
 		<label>feline eye</label>
 		<description>Slitted, yellow eyes are now [PAWN_nameDef]'s to keep. They are keener and rather enticing to look at.</description>
+		<parts>
+			<li>Eye</li>
+		</parts>
+		<classInfluence>Felidae</classInfluence>
 		<stages>
 			<li>
 				<statOffsets>
@@ -136,5 +148,5 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -120,23 +120,6 @@ namespace Pawnmorph.Hybrids
             }
         }
 
-        /// <summary>
-        /// got through the mutations the pawn has and try to trigger any
-        /// that change if the pawn's race changes 
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <param name="def"></param>
-        static void TryTriggerMutations(Pawn pawn, MorphDef def)
-        {
-            var comps = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>()
-                            .Select(h => h.TryGetComp<Comp_MorphTrigger>())
-                            .Where(c => c != null);
-            foreach (Comp_MorphTrigger trigger in comps)
-            {
-                trigger.TryTrigger(def);
-            }
-        }
-
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)
         {
             var traitSet = pawn.story?.traits;
@@ -222,9 +205,7 @@ namespace Pawnmorph.Hybrids
             if (pawn.IsColonist || pawn.IsPrisonerOfColony)
                 SendHybridTfMessage(pawn, tfSettings);
 
-            //now try to trigger any mutations
-            if (pawn.health?.hediffSet?.hediffs != null)
-                TryTriggerMutations(pawn, morph);
+     
 
             if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
             pawn.TryGainMemory(tfSettings.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
@@ -252,8 +233,8 @@ namespace Pawnmorph.Hybrids
                 
                 // ReSharper disable once AssignNullToNotNullAttribute
                 var mutation = morph.GetMutationForPart(bodyPartRecord.def).RandomElementWithFallback();
-
-                MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord, addedRecords);
+                if(mutation != null)
+                    MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord, addedRecords);
             }
         }
 

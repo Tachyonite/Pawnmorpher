@@ -55,7 +55,7 @@ namespace Pawnmorph.GraphicSys
             if (highestInfluence == null || highestInfluence == curMorph) return false; // If there is not influence or if the highest influence is that of their current race do nothing.
             if (GComp == null || InitialGraphics == null) return false; 
 
-            float lerpVal = tracker.GetNormalizedInfluence(highestInfluence);
+            float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
             var baseColor = curMorph?.GetSkinColorOverride() ?? InitialGraphics.SkinColor;
             var morphColor = highestInfluence.GetSkinColorOverride() ?? InitialGraphics.SkinColor;
 
@@ -79,7 +79,7 @@ namespace Pawnmorph.GraphicSys
             //that of their current race do nothing 
             if (GComp == null || InitialGraphics == null || Pawn.story == null) return false;
 
-            float lerpVal = tracker.GetNormalizedInfluence(highestInfluence);
+            float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
             var baseColor = curMorph?.GetHairColorOverride() ?? InitialGraphics.HairColor;
             var morphColor = highestInfluence.GetHairColorOverride() ?? InitialGraphics.HairColor;
 

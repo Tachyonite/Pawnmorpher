@@ -1,54 +1,60 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
+			<li>Vanilla Animals Expanded — Livestock</li>
 			<li>Horses (1.0)</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+				<!-- Hediff Graphics -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[1]/hediffGraphics</xpath>
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
 						<EtherHorseSnout>Parts/horseface/horseface</EtherHorseSnout>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[2]/hediffGraphics</xpath>
-					<value>
-						<EtherHorseSnout>Parts/horseface/horseface</EtherHorseSnout>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[3]/hediffGraphics</xpath>
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Ear"]/hediffGraphics</xpath>
 					<value>
 						<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[4]/hediffGraphics</xpath>
-					<value>
-						<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[13]/hediffGraphics</xpath>
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Tail" and layerOffset=-0.29]/hediffGraphics</xpath>
 					<value>
 						<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
 					</value>
 				</li>
-				<!--Hediffs-->
+				
+				<!-- Defs -->
 				<li Class="PatchOperationAdd">
+					<success>Always</success>
 					<xpath>Defs</xpath>
 					<value>
-						<!--Morph Def-->
-						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
-							<defName>HorseMorph</defName>
-							<label>horsemorph</label>
-							<race>QuarterHorse</race>
-							<categories>
-								<li>Farm</li>
-							</categories>
-						</Pawnmorph.MorphDef>
-						<!--Morph Reaction-->
+						<!-- Backgrounds -->
+						<AlienRace.BackstoryDef>
+							<defName>HorsemorphGeneral</defName>
+							<title>draft horse</title>
+							<titleShort>horsemorph</titleShort>
+							<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made use of [PAWN_objective] to pull the ploughs and farm equipment there. [PAWN_pronoun] broke a leg and was sold off, where he made his escape en route to who-knows-where.</baseDescription>
+							<slot>Adulthood</slot>
+							<bodyTypeFemale>Female</bodyTypeFemale>
+							<bodyTypeMale>Male</bodyTypeMale>
+							<spawnCategories>
+								<li>MutantWanderer</li>
+								<li>FreeMutant</li>
+							</spawnCategories>
+							<modExtensions>
+								<li Class="Pawnmorph.MorphPawnKindExtension">
+									<hediffRange>6~8</hediffRange>
+									<morphs>
+										<li>HorseMorph</li>
+									</morphs>
+								</li>
+							</modExtensions>
+						</AlienRace.BackstoryDef>
+						
+						<!-- Morph Reaction -->
 						<ThoughtDef>
 							<defName>EtherReactionHorseTF</defName>
 							<workerClass>ThoughtWorker_Hediff</workerClass>
@@ -66,7 +72,18 @@
 								</li>
 							</stages>
 						</ThoughtDef>
-						<!--Full Morph-->
+						
+						<!-- Morph Def -->
+						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+							<defName>HorseMorph</defName>
+							<label>horsemorph</label>
+							<race/>
+							<categories>
+								<li>Farm</li>
+							</categories>
+						</Pawnmorph.MorphDef>
+						
+						<!-- Full TF -->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTF</defName>
 							<label>horsemorph</label>
@@ -84,12 +101,7 @@
 									<hediffGivers>
 										<li Class="Pawnmorph.HediffGiver_TF">
 											<hediff>TransformedHuman</hediff>
-											<pawnkinds>
-												<li>QuarterHorse</li>
-												<li>BlackHorse</li>
-												<li>WhiteHorse</li>
-												<li>Palomino</li>
-											</pawnkinds>
+											<pawnkinds/>
 											<tale>TransformationMisc</tale>
 										</li>
 									</hediffGivers>
@@ -195,7 +207,8 @@
 								</li>
 							</stages>
 						</HediffDef>
-						<!--Partial Morph-->
+						
+						<!-- Partial TF -->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTFPartial</defName>
 							<label>horsemorph partial</label>
@@ -270,7 +283,8 @@
 								</li>
 							</stages>
 						</HediffDef>
-						<!--Morph Parts-->
+						
+						<!-- Morph Parts -->
 						<HediffDef Name="HorsePart" ParentName="PawnmorphPart" Abstract="True">
 							<comps>
 								<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
@@ -343,7 +357,8 @@
 								</li>
 							</stages>
 						</HediffDef>
-						<!--Morph Injector-->
+						
+						<!-- Morph Injector -->
 						<ThingDef ParentName="InjectorBase">
 							<defName>HorseTransformer</defName>
 							<label>mutasyringe, horse</label>
@@ -362,20 +377,93 @@
 										<severity>1.00</severity>
 									</li>
 								</outcomeDoers>
-							</ingestible>	
+							</ingestible>
 						</ThingDef>
-					</value>				
+					</value>
 				</li>
+				
+				<!-- Add the morph to the serums -->
 				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<xpath>Defs/ThingDef[defName="RandomTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
 					<value>
 						<li>PawnmorphHorseTF</li>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[1]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<value>
+						<li>PawnmorphHorseTF</li>
+					</value>
+				</li>
+				
+				<!-- Add the injector to the traders -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="PawnmorpherTrader"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>HorseTransformer</thingDef>
+							<countRange>
+								<min>-3</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Animals Expanded — Livestock</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Update the MorphDef race -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="HorseMorph"]/race</xpath>
+					<value>
+						<race>AEXP_Horse</race>
+					</value>
+				</li>
+				
+				<!-- Add the animal to the mutagun effect -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<value>
+						<li>AEXP_Horse</li>
+					</value>
+				</li>
+				
+
+				<!-- Add the animal to the TF's possible feral animal list -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="PawnmorphHorseTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<value>
+						<li>AEXP_Horse</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Horses (1.0)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Update the MorphDef race -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="HorseMorph"]/race</xpath>
+					<value>
+						<race>QuarterHorse</race>
+					</value>
+				</li>
+				
+				<!-- Add the animal to the mutagun effect -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
 					<value>
 						<li>QuarterHorse</li>
 						<li>BlackHorse</li>
@@ -383,31 +471,16 @@
 						<li>Palomino</li>
 					</value>
 				</li>
+				
+
+				<!-- Add the animal to the TF's possible feral animal list -->
 				<li Class="PatchOperationAdd">
-					<success>Always</success>
-					<xpath>Defs</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphHorseTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
 					<value>
-						<AlienRace.BackstoryDef>
-						<defName>HorsemorphGeneral</defName>
-						<title>draft horse</title>
-						<titleShort>horsemorph</titleShort>
-						<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made use of [PAWN_objective] to pull the ploughs and farm equipment there. [PAWN_pronoun] broke a leg and was sold off, where he made his escape en route to who-knows-where.</baseDescription>
-						<slot>Adulthood</slot>
-						<bodyTypeFemale>Female</bodyTypeFemale>
-						<bodyTypeMale>Male</bodyTypeMale>
-						<spawnCategories>
-							<li>MutantWanderer</li>
-							<li>FreeMutant</li>
-						</spawnCategories>
-						<modExtensions>
-							<li Class="Pawnmorph.MorphPawnKindExtension">
-								<hediffRange>6~8</hediffRange>
-								<morphs>
-									<li>HorseMorph</li>
-								</morphs>
-							</li>
-						</modExtensions>
-					</AlienRace.BackstoryDef>
+						<li>QuarterHorse</li>
+						<li>BlackHorse</li>
+						<li>WhiteHorse</li>
+						<li>Palomino</li>
 					</value>
 				</li>
 			</operations>

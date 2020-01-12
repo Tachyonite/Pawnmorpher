@@ -4,6 +4,7 @@
 		<label>boarmorph</label>
 		<description>a humanoid with many boar like characteristics resulting when a human is exposed to boar specific mutagens. Usually found with thick hide and large tusks making them dangerous combatants</description>
 		<race>WildBoar</race>
+		<classification>Suidae</classification>
 		<categories>
 			<li>Combat</li>
 		</categories>

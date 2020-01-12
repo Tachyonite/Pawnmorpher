@@ -1,0 +1,38 @@
+<Defs>
+    <Pawnmorph.MutationPartGroupDef>
+        this def is for mass assigning mutations parts 
+        
+        this must be set
+        this is the body part def all the below mutations can affect 
+        <part>PartDef</part>
+        this is just a list of mutations that are assigned to this group
+        <mutations>
+            <li>MutationDef</li>
+        </mutations>
+    </Pawnmorph.MutationPartGroupDef>
+
+    <HediffDef>
+        some mutation def
+        <modExtension>
+            <li Class="Pawnmorph.MutationHediffExtension">
+                this is a list of body part defs this mutation can affect 
+                affected parts can be set either with the MutationPartGroupDef or with this list
+                <parts>
+                    <li>Hand</li>
+                </parts>
+                this is a list of categories that this mutation belongs to
+                <categories>
+                    <li>HandMutations</li>
+                    <li>MinorMutations</li>
+                </categories>
+                optional field that if set overrides the default mutation log rule pack
+                <mutationLogRulePack>SomeRulePackDef</mutationLogRulePack>
+                optional thought def that if set will be added to a pawn if they get the mutation
+                <mutationMemory>MemoryDef</mutationMemory>
+                optional tale def that will be added to the tales if a pawn is given this mutation
+                <mutationTale>TaleDef</mutationTale>
+
+            </li>
+        </modExtension>
+    </HediffDef>
+</Defs>

@@ -66,6 +66,9 @@
   <ItemGroup>
     <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="Alerts\SAMinorBreakRisk.cs" />
+    <Compile Include="AnimalClassDef.cs" />
+    <Compile Include="AnimalClassDefOf.cs" />
+    <Compile Include="AnimalClassUtilities.cs" />
     <Compile Include="AnimalDrafterComp.cs" />
     <Compile Include="Aspect.cs" />
     <Compile Include="AspectCapacityImpactor.cs" />
@@ -124,12 +127,20 @@
     <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="FormerHumanStatus.cs" />
+    <Compile Include="FormerHumans\FoodThoughtSettings.cs" />
     <Compile Include="FormerHumans\ISapientVariantHolder.cs" />
     <Compile Include="FormerHumans\SapientVariants.cs" />
     <Compile Include="FormerHumanUtilities.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
+    <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
+    <Compile Include="Hediffs\Giver_MutationClass.cs" />
+    <Compile Include="Hediffs\IExecutableStage.cs" />
+    <Compile Include="Hediffs\MorphTf.cs" />
+    <Compile Include="Hediffs\MorphTransformationStage.cs" />
+    <Compile Include="Hediffs\MutationDef.cs" />
+    <Compile Include="Hediffs\MutationEntry.cs" />
     <Compile Include="Hediffs\MutationStage.cs" />
     <Compile Include="Hediffs\Giver_MutationCategoryGiver.cs" />
     <Compile Include="Hediffs\IDescriptiveStage.cs" />
@@ -137,6 +148,9 @@
     <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
+    <Compile Include="Hediffs\TransformationBase.cs" />
+    <Compile Include="Hediffs\TransformationStage.cs" />
+    <Compile Include="Hediffs\TransformationStageBase.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
     <Compile Include="HPatches\HuntingPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
@@ -176,6 +190,7 @@
     <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
+    <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
@@ -197,7 +212,6 @@
     <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
     <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
-    <Compile Include="Hediffs\Comp_MorphTrigger.cs" />
     <Compile Include="Hediffs\Comp_TerrainProduction.cs" />
     <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
     <Compile Include="Hediffs\Def_MorphTf.cs" />
@@ -345,6 +359,7 @@
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />
     <Compile Include="Thoughts\Worker_SapientAnimalBondedMaster.cs" />
     <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
     <Compile Include="TransformerUtility.cs" />

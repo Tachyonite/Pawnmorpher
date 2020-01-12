@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -114,9 +115,11 @@ namespace Pawnmorph
         private void DoMutationAddedEffects(Pawn pawn)
         {
             IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
-
-            if (tale != null) TaleRecorder.RecordTale(tale, pawn);
-            if (memory != null) TryAddMemory(pawn);
+            var mDef = hediff as MutationDef;
+            var mTale = tale ?? mDef?.mutationTale;
+            var mMem = memory ?? mDef?.mutationMemory; 
+            if (mTale!= null) TaleRecorder.RecordTale(mTale, pawn);
+            if (mMem != null) TryAddMemory(pawn,mMem);
         }
 
 
@@ -202,7 +205,7 @@ namespace Pawnmorph
             return TryApply(pawn, recordToAdd, mutagen, nonMissingRecords);
         }
 
-        private void TryAddMemory(Pawn pawn)
+        private void TryAddMemory(Pawn pawn, ThoughtDef memory)
         {
             ThoughtHandler thoughts = pawn.needs?.mood?.thoughts;
             if (thoughts == null) return;

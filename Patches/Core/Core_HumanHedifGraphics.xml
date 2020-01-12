@@ -9,9 +9,9 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherAlpacaSnout>Parts/alpacaface/alpacaface</EtherAlpacaSnout>
+					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
 					<EtherBearMuzzle>Parts/bearface/bearface</EtherBearMuzzle>
-					<EtherBoarSnout>Parts/boarface/boarface</EtherBoarSnout>
+					<EtherBoarSnout>Parts/Boar/Boar_Jaw</EtherBoarSnout>
 					<EtherBoomalopeSnout>Parts/boomalopeface/boomalopeface</EtherBoomalopeSnout>
 					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
@@ -23,8 +23,11 @@
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
+					<EtherPantherJaw>Parts/Panther/Panther_Jaw</EtherPantherJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
+					<EtherHareJaw>Parts/Hare/Hare_Jaw</EtherHareJaw>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
+					<EtherSquirrelJaw>Parts/Squirrel/Squirrel_Jaw</EtherSquirrelJaw>
 					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
 					<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
@@ -73,9 +76,9 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherAlpacaSnout>Parts/alpacaface/alpacaface</EtherAlpacaSnout>
+					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
 					<EtherBearMuzzle>Parts/bearface/bearface</EtherBearMuzzle>
-					<EtherBoarSnout>Parts/boarface/boarface</EtherBoarSnout>
+					<EtherBoarSnout>Parts/Boar/Boar_Jaw</EtherBoarSnout>
 					<EtherBoomalopeSnout>Parts/boomalopeface/boomalopeface</EtherBoomalopeSnout>
 					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
@@ -87,8 +90,11 @@
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
+					<EtherPantherJaw>Parts/Panther/Panther_Jaw</EtherPantherJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
+					<EtherHareJaw>Parts/Hare/Hare_Jaw</EtherHareJaw>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
+					<EtherSquirrelJaw>Parts/Squirrel/Squirrel_Jaw</EtherSquirrelJaw>
 					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
 					<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
@@ -140,7 +146,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherAlpacaEar>Parts/alpacaface/alpacaears</EtherAlpacaEar>
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
@@ -214,7 +219,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherAlpacaEar>Parts/alpacaface/alpacaears</EtherAlpacaEar>
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
@@ -330,7 +334,11 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -351,9 +359,14 @@
 					</east>
 					<west/>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -405,7 +418,11 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -426,9 +443,14 @@
 						</bodyTypes>
 					</west>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -483,7 +505,11 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -507,9 +533,14 @@
 					</east>
 					<west/>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -564,7 +595,11 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -588,9 +623,14 @@
 						</crownTypes>
 					</west>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
 					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -601,9 +641,9 @@
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<hediffGraphics>
-					<EtherAlpacaTail>Parts/alpacaface/alpacatail</EtherAlpacaTail>
+					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherBearTail>Parts/bearface/beartail</EtherBearTail>
-					<EtherRoughCurlyTail>Parts/boarface/boartail</EtherRoughCurlyTail>
+					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
 					<EtherCatTail>Parts/catface/cattail</EtherCatTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
@@ -612,8 +652,11 @@
 					<EtherFluffyTail>Parts/Fox/Fox_Tail</EtherFluffyTail>
 					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
+					<EtherPantherTail>Parts/Panther/Panther_Tail</EtherPantherTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
+					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>
 					<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
+					<EtherSquirrelTail>Parts/Squirrel/Squirrel_Tail</EtherSquirrelTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>

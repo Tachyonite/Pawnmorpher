@@ -1,0 +1,224 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd"> 
+    <Pawnmorph.AspectDef>
+        <defName>ExampleAstpect</defName> <!-- (string) What this aspect is reference as by the game engine. Use camel case with a leading capital. -->
+        <label>example aspect</label> <!-- (string) The display name of this aspect. Use all lower case characters and let the game handle capitalization. -->
+        <description>An example aspect that you probably shouldn't have. It has default values for everything.</description> <!-- (string) The description as seen when hovering over it in the morph tab. Use proper capitalization. -->
+        <labelColor>(255, 255, 255)</labelColor> <!-- (RGB) The color the aspect dsiplays as in the morph tab. -->
+		<removedByReverter>true</removedByReverter> <!-- (bool) Whether or not this aspect should be removed when a reverter is used. -->
+		<priority>1</priority> <!-- (int) The priority of this aspect, lower priorities come first. -->
+		<transferToAnimal></transferToAnimal> <!-- (bool) Whether or not this aspect should stay with the pawn when they feralize. -->
+		<isBad>false</isBad> <!-- (bool) [Currently unused] Whether or not this aspect is considered bad. Usedto determine if healer items should remove the aspect. -->
+		<nullifiedThoughts></nullifiedThoughts> <!-- (list<ThoughtDef>) Thoughts that are removed and/or supressed while a pawn has this aspect. -->
+        <stages>
+            <li>
+                <skillMods>
+                    <li>
+                        <skillDef>Shooting</skillDef> <!-- (SkillDef) The skill to modify. -->
+                        <addedXp>0</addedXp> <!-- (int) How much xp is added to the specified skill when this aspect is given. -->
+                        <passionOffset>0</passionOffset> <!-- (int) How many levels of passion to add to this skill. "2" will force the skill to burning. -->
+						<forcedPassion></forcedPassion> <!-- (int 0-2) What level of passion to force for this skill. 0 = none, 1 = passion, 2 = burning passion. -->
+                    </li>
+                    <li>
+                        <skillDef>Melee</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Construction</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Mining</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Cooking</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Plants</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Animals</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Crafting</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Artistic</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Medicine</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Social</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                    <li>
+                        <skillDef>Intellectual</skillDef>
+                        <addedXp>0</addedXp>
+                        <passionOffset>0</passionOffset>
+						<forcedPassion></forcedPassion>
+                    </li>
+                </skillMods>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity> <!-- (PawnCapacityModifier) The capacity to modify. -->
+						<offset>0.00</offset> <!-- (float) A simple sum with the current value. i.e. A aspect with this value set to -0.02 and a pawn with 1.00 in this capacity would have it set to 0.98 when they get this aspect. -->
+						<setMax>10.00</setMax> <!-- (float) The max value this capacity can have. The capacity is clamped between this value and zero. -->
+						<postFactor>1.00</postFactor> <!-- (float) Multiplier for the capacity. i.e. An aspect with this value set to 1.25  and a pawn with 0.80 in this capacity would have it set to 1.00 when they get this aspect. -->
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>BloodFiltration</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>BloodPumping</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+					<li>
+						<capacity>Metabolism</capacity>
+						<offset>0.00</offset>
+						<setMax>10.00</setMax>
+						<postFactor>1.00</postFactor>
+					</li>
+				</capMods>
+                <statOffsets> <!-- (float) Modifiers for secondary and derived stats -->
+					<!-- Basics -->
+                    <MoveSpeed>0</MoveSpeed>
+                    <MentalBreakThreshold>0</MentalBreakThreshold>
+                    <ComfyTemperatureMax>0</ComfyTemperatureMax>
+                    <ComfyTemperatureMin>0</ComfyTemperatureMin>
+                    <LeatherAmount>0</LeatherAmount>
+                    <MeatAmount>0</MeatAmount>
+                    <PainShockThreshold>0</PainShockThreshold>
+					<!-- Combat -->
+                    <MeleeDPS>0</MeleeDPS>
+                    <MeleeArmorPenetration>0</MeleeArmorPenetration>
+                    <MeleeHitChance>0</MeleeHitChance>
+                    <MeleeDodgeChance>0</MeleeDodgeChance>
+                    <ShootingAccuracyPawn>0</ShootingAccuracyPawn>
+                    <AimingDelayFactor>0</AimingDelayFactor>
+					<!-- Social -->
+                    <NegotiationAbility>0</NegotiationAbility>
+                    <TradePriceImprovement>0</TradePriceImprovement>
+                    <SocialImpact>0</SocialImpact>
+                    <TameAnimalChance>0</TameAnimalChance>
+                    <TrainAnimalChance>0</TrainAnimalChance>
+					<!-- Work -->
+                    <WorkSpeedGlobal>0</WorkSpeedGlobal>
+                    <AnimalGatherSpeed>0</AnimalGatherSpeed>
+                    <AnimalGatherYield>0</AnimalGatherYield>
+                    <ButcheryFleshEfficiency>0</ButcheryFleshEfficiency>
+                    <ButcheryFleshSpeed>0</ButcheryFleshSpeed>
+                    <ConstructSuccessChance>0</ConstructSuccessChance>
+                    <ConstructionSpeed>0</ConstructionSpeed>
+                    <CookSpeed>0</CookSpeed>
+                    <DrugCookingSpeed>0</DrugCookingSpeed>
+                    <DrugSynthesisSpeed>0</DrugSynthesisSpeed>
+                    <FoodPoisonChance>0</FoodPoisonChance>
+                    <HuntingStealth>0</HuntingStealth>
+                    <ButcheryMechanoidEfficiency>0</ButcheryMechanoidEfficiency>
+                    <ButcheryMechanoidSpeed>0</ButcheryMechanoidSpeed>
+                    <MedicalOperationSpeed>0</MedicalOperationSpeed>
+                    <MedicalSurgerySuccessChance>0</MedicalSurgerySuccessChance>
+                    <MedicalTendQuality>0</MedicalTendQuality>
+                    <MedicalTendSpeed>0</MedicalTendSpeed>
+                    <PlantHarvestYield>0</PlantHarvestYield>
+                    <PlantWorkSpeed>0</PlantWorkSpeed>
+                    <MiningSpeed>0</MiningSpeed>
+                    <MiningYield>0</MiningYield>
+                    <FixBrokenDownBuildingSuccessChance>0</FixBrokenDownBuildingSuccessChance>
+                    <ResearchSpeed>0</ResearchSpeed>
+                    <SculptingSpeed>0</SculptingSpeed>
+                    <SmeltingSpeed>0</SmeltingSpeed>
+                    <SmithingSpeed>0</SmithingSpeed>
+                    <SmoothingSpeed>0</SmoothingSpeed>
+                    <TailoringSpeed>0</TailoringSpeed>
+                    <UnskilledLaborSpeed>0</UnskilledLaborSpeed>
+					<!-- Hidden -->
+                    <CarryingCapacity>0</CarryingCapacity>
+                    <ForagedNutritionPerDay>0</ForagedNutritionPerDay>
+                    <EatingSpeed>0</EatingSpeed>
+                    <GlobalLearningFactor>0</GlobalLearningFactor>
+                    <HungerRateMultiplier>0</HungerRateMultiplier>
+                    <ImmunityGainSpeed>0</ImmunityGainSpeed>
+                    <MinimumHandlingSkill>0</MinimumHandlingSkill>
+                    <PsychicSensitivity>0</PsychicSensitivity>
+                    <RestRateMultiplier>0</RestRateMultiplier>
+                    <ToxicSensitivity>0</ToxicSensitivity>
+                </statOffsets>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+</Defs>

@@ -1,11 +1,23 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/MutationDef.xsd">
 	<!--Morph-specific parts are located in the individual morph's files-->
-	<HediffDef ParentName="PawnmorphSkinPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFurredLimb</defName>
 		<description>Fur has covered the entirety of [PAWN_nameDef]'s limb, giving it a soft fine coat that helps retain warmth.</description>
 		<label>fur</label>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0</initialSeverity>
+		<classInfluence>Mammalia</classInfluence>
+		<mutationTale>LimbGrowsFur</mutationTale>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+		</parts>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
@@ -50,22 +62,14 @@
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
-				<parts>
-					<li>Leg</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
+		</stages>	
+		<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
+	<categories>
 					<li>Minor</li>
 				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphSkinPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherThickFurLimb</defName>
 		<label>thick fur</label>
 		<description>A heavy coat of fur drapes across this limb, insulating a lot of heat.</description>
@@ -74,6 +78,17 @@
 				<severityPerDay>0.33</severityPerDay>
 			</li>
 		</comps>
+		<classInfluence>Mammalia</classInfluence>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>light hair</labelOverride>
@@ -117,24 +132,28 @@
 				</statOffsets>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
-				<parts>
-					<li>Leg</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Minor</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphSkinPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherScaledLimb</defName>
 		<label>scales</label>
 		<description>Smooth, glossy scales now cover this limb, adding some natural defense and dissipating heat.</description>
+		<classInfluence>Reptilia</classInfluence>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+		</parts>
+		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Minor</li>
+		</categories>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
@@ -189,24 +208,28 @@
 				</statOffsets>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
-				<parts>
-					<li>Leg</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Minor</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphSkinPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherHideLimb</defName>
 		<label>hide</label>
 		<description>A thick leathery hide has formed over this limb, adding some natural defense.</description>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+		</parts>
+		<mutationLogRulePack>HideGrowthLogPack</mutationLogRulePack>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Minor</li>
+		</categories>
+		<classInfluence>Mammalia</classInfluence>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
@@ -256,26 +279,17 @@
 				</statOffsets>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<mutationLogRulePack>HideGrowthLogPack</mutationLogRulePack>
-				<parts>
-					<li>Leg</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Minor</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
 
-
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherDigitigradeLeg</defName>
 		<label>digitigrade</label>
 		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
+		<parts>
+			<li>Leg</li>
+		</parts>
+		<mutationTale>LegBecameDigitgrade</mutationTale>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>crooked</labelOverride>
@@ -326,23 +340,17 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Leg</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherPawFoot</defName>
 		<label>paw</label>
 		<description>[PAWN_nameDef]'s feet have stretched out, growing a coat of fur, the toes shortening to clawed digits.</description>
+		<classInfluence>Canidae</classInfluence>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<mutationTale>FootBecomesCanidPaw</mutationTale>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>clawed</labelOverride>
@@ -390,25 +398,18 @@
 				<severityPerDay>0.15</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Foot</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherClovenHoofFoot</defName>
 		<description>[PAWN_nameDef]'s toenails have thickened and grown into a veritable hoof, with a split down the middle.</description>
 		<label>cloven hoof</label>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<classInfluence>Artiodactyla</classInfluence>
+		<mutationTale>FootBecomesHooves</mutationTale>
 		<stages>
-		
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>hard nails</labelOverride>
 				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
@@ -428,7 +429,7 @@
 				</capMods>
 			</li>
 			<li>
-			<minSeverity>0.8</minSeverity>
+				<minSeverity>0.8</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -445,25 +446,21 @@
 				<severityPerDay>0.15</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Foot</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherUnclovenHoofFoot</defName>
 		<description>[PAWN_nameDef]'s feet have shifted into a single-toed hoof, like a horse's.</description>
 		<label>hoof</label>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
 		<stages>
-		
+
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>hard nails</labelOverride>
 				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
@@ -483,7 +480,7 @@
 				</capMods>
 			</li>
 			<li>
-			<minSeverity>0.8</minSeverity>
+				<minSeverity>0.8</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -497,23 +494,20 @@
 				<severityPerDay>0.15</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Foot</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherTrotterFoot</defName>
 		<label>trotter</label>
 		<description>Smaller hooves now sit where [PAWN_nameDef]'s feet once were. Pointed things, they are.</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<classInfluence>Suidae</classInfluence>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>hard nails</labelOverride>
@@ -550,41 +544,5 @@
 				<severityPerDay>0.15</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Foot</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
-
-	<HediffDef ParentName="PawnmorphPart">
-		<hediffClass>HediffWithComps</hediffClass>
-		<defName>EtherColdBlooded</defName>
-		<label>cold blooded</label>
-		<description>[PAWN_nameDef]'s body no longer naturally regulates its body temperature.</description>
-		<stages>
-			<li>
-				<minSeverity>1</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>10</ComfyTemperatureMin>
-					<ComfyTemperatureMax>10</ComfyTemperatureMax>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>mech-blooded</labelOverride>
-				<description>[PAWN_nameDef]'s bloodstream has infused with mechanites, which more efficiently regulate body temperature.</description>
-				<minSeverity>2</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-					<ComfyTemperatureMax>15</ComfyTemperatureMax>
-				</statOffsets>
-			</li>
-		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

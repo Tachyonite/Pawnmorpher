@@ -3,6 +3,7 @@
 		<defName>FoxMorph</defName>
 		<label>foxmorph</label>
 		<description>A somewhat smaller fox-like humanoid, often the result of exposure to the associated mutagens. In addition to physical changes, these humanoids now share many traits with their feral counterparts like their keen hunting instincts, especially towards chickens.</description>
+		<classification>Vulpini</classification>
 		<race>Fox_Red</race>
 		<categories>
 			<li>Canid</li>
