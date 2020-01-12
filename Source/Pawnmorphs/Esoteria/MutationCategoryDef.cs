@@ -17,7 +17,6 @@ namespace Pawnmorph
     public class MutationCategoryDef : Def
     {
 
-        [Unsaved] private List<HediffDef> _allMutationsObs;
 
         [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
         private List<MutationDef> mutations = new List<MutationDef>(); 
@@ -54,31 +53,5 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary> An enumerable collection of all mutations within this category. </summary>
-        [NotNull, Obsolete("use "+ nameof(AllMutations) + " instead")]
-        public IEnumerable<HediffDef> AllMutationsInCategoryObs
-        {
-            get
-            {
-                if (_allMutationsObs == null)
-                {
-                    _allMutationsObs = new List<HediffDef>(mutations.MakeSafe().Cast<HediffDef>());
-
-                    foreach (HediffDef mutationDef in DefDatabase<HediffDef>.AllDefs)
-                    {
-                        List<MutationCategoryDef> categories = (mutationDef as MutationDef)?.categories;
-                        if (categories.MakeSafe().Contains(this))
-                        {
-                            if (_allMutationsObs.Contains(mutationDef))
-                                Log.Warning($"hediff {mutationDef.defName} is added to {defName} in both {defName} and with the def extension, this is redundant");
-                            else
-                                _allMutationsObs.Add(mutationDef);
-                        }
-                    }
-                }
-
-                return _allMutationsObs; 
-            }
-        }
     }
 }

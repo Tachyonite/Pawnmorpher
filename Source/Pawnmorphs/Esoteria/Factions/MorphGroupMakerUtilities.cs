@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using UnityEngine;
@@ -122,6 +123,9 @@ namespace Pawnmorph.Factions
                     break;
                 }
             }
+
+            var outStr = toGive.Select(m => m.defName).Join(","); 
+            Log.Message($"{nameof(toGive)}:{outStr}");
 
             foreach (MutationDef giver in toGive)
             {

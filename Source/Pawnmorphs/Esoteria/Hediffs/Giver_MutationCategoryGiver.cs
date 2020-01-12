@@ -37,9 +37,7 @@ namespace Pawnmorph.Hediffs
         ///     The MTB unit
         /// </summary>
         public float mtbUnits = 60000f;
-
-        private List<HediffGiver_Mutation> _mutationsGivers;
-
+        
         private List<MutationDef> _mutations;
 
         [NotNull]
@@ -63,46 +61,6 @@ namespace Pawnmorph.Hediffs
                 }
 
                 return _mutations;
-            }
-        }
-
-        [NotNull]
-        [Obsolete]
-        private List<HediffGiver_Mutation> MutationsObs
-        {
-            get
-            {
-                if (_mutationsGivers == null)
-                {
-                    var foundMutations = new HashSet<HediffDef>();
-                    _mutationsGivers = new List<HediffGiver_Mutation>();
-                    foreach (MorphCategoryDef morphCategoryDef in morphCategories)
-                    foreach (HediffGiver_Mutation hediffGiverMutation in
-                        morphCategoryDef.AllMorphsInCategories.SelectMany(m => m.AllAssociatedAndAdjacentMutationGivers))
-                    {
-                        if (hediffGiverMutation.hediff == null) continue;
-                        if (foundMutations.Contains(hediffGiverMutation.hediff)) continue;
-                        _mutationsGivers.Add(hediffGiverMutation);
-                        foundMutations.Add(hediffGiverMutation.hediff);
-                    }
-
-                    foreach (HediffDef hediffDef in mutationCategories.SelectMany(c => c.AllMutationsInCategoryObs))
-                    {
-                        if (foundMutations.Contains(hediffDef)) continue;
-
-                        var mDef = hediffDef as MutationDef;
-                        if (mDef == null)
-                        {
-                            Log.Error($"{hediffDef.defName} does not use {nameof(MutationDef)} and is not attached to a hediff giver");
-                            continue;
-                        }
-
-                        _mutationsGivers.Add(mDef.CreateMutationGiver(hediffDef));
-                        foundMutations.Add(hediffDef);
-                    }
-                }
-
-                return _mutationsGivers;
             }
         }
 

@@ -59,9 +59,6 @@ namespace Pawnmorph
 
         [Unsaved] private readonly Dictionary<BodyDef, float> _maxInfluenceCached = new Dictionary<BodyDef, float>();
 
-        /// <summary> Any mutations indirectly associated with this morph (they share a TF hediff with an associated mutation).</summary>
-        private List<HediffGiver_Mutation> _adjacentMutationGivers;
-
         [Unsaved] private Dictionary<BodyPartDef, List<MutationDef>> _mutationsByParts;
 
         [Unsaved] private List<MutationDef> _allAssociatedMutations;
@@ -119,48 +116,6 @@ namespace Pawnmorph
                 return _allAssociatedMutations;
             }
         }
-
-
-        /// <summary>
-        ///     Gets an enumerable collection of HediffGiver_Mutations that are either associated with or 'adjacent' to this morph.
-        ///     <br />
-        ///     An adjacent HediffGiver is one that is found in the same HediffDef as another HediffGiver that gives a part
-        ///     associated with this morph.
-        /// </summary>
-        [NotNull]
-        [Obsolete("use " + nameof(AllAssociatedMutations) + " and " + nameof(MutationUtilities.AddMutation))]
-        public IEnumerable<HediffGiver_Mutation> AllAssociatedAndAdjacentMutationGivers
-        {
-            get //TODO remove this and just use AllAssociateMutations 
-            {
-                if (_adjacentMutationGivers == null) //use lazy initialization 
-                {
-                    bool Selector(HediffDef def)
-                    {
-                        if (!typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)) return false; //only select morph tf hediffs 
-                        if (def.CompProps<HediffCompProperties_Single>() != null) return false; //ignore partial tfs 
-                        IEnumerable<HediffGiver> givers = def.GetAllHediffGivers();
-                        return givers.Any(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == this);
-                        //make sure that the morph has at least one part associated with this morph 
-                    }
-
-                    IEnumerable<HediffGiver_Mutation> allGivers = DefDatabase<HediffDef>.AllDefs.Where(Selector)
-                                                                                        .SelectMany(h => h.GetAllHediffGivers()
-                                                                                                          .OfType<
-                                                                                                               HediffGiver_Mutation
-                                                                                                           >())
-                                                                                        .GroupBy(g => g.hediff,
-                                                                                                 g =>
-                                                                                                     g) //group all hediff givers that give the same mutation together 
-                                                                                        .Select(g =>
-                                                                                                    g.First()); //only keep one giver per mutation 
-                    _adjacentMutationGivers = new List<HediffGiver_Mutation>(allGivers);
-                }
-
-                return _adjacentMutationGivers;
-            }
-        }
-
 
         /// <summary>
         ///     get all configuration errors with this instance

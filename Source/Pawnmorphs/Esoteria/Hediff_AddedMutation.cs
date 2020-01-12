@@ -176,8 +176,7 @@ namespace Pawnmorph
         }
         private void UpdatePawnInfo()
         {
-            if (Current.ProgramState == ProgramState.Playing)
-                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
+           
 
             if (Current.ProgramState == ProgramState.Playing && MutationUtilities.AllMutationsWithGraphics.Contains(def) && pawn.IsColonist)
             {

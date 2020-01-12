@@ -4,9 +4,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -50,75 +52,11 @@ namespace Pawnmorph
         [Unsaved] private Dictionary<AspectDef, List<int>> _addDict;
         [Unsaved] private List<AspectDef> _allAspectDefs;
 
-        [Unsaved] private List<HediffGiver_Mutation> _mutationGivers;
 
         private List<MorphDef> _allMorphs;
 
         [Unsaved] private List<MutationDef> _mutations;
 
-        /// <summary>Gets all mutation givers that pawns in this group can receive.</summary>
-        /// <value>All mutation givers.</value>
-        /// this is created by combining the mutations from
-        /// <seealso cref="morphCategories" />
-        /// <seealso cref="mutationCategories" />
-        /// and
-        /// <seealso cref="morphs" />
-        [NotNull]
-        [Obsolete("use " + nameof(MutationUtilities.AddMutation) + " instead")]
-        public IEnumerable<HediffGiver_Mutation> AllMutationGivers
-        {
-            get
-            {
-                if (_mutationGivers == null)
-                {
-                    var morphSet = new HashSet<MorphDef>();
-                    var defSet = new HashSet<HediffDef>();
-                    _mutationGivers = new List<HediffGiver_Mutation>();
-                    foreach (MorphDef morphDef in morphCategories.SelectMany(c => c.AllMorphsInCategories)
-                    ) //grab all mutation givers from the morphs 
-                    {
-                        morphSet.Add(morphDef);
-                        foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutationGivers)
-                        {
-                            if (defSet.Contains(mutationGiver.hediff)) continue; //don't include duplicates 
-                            _mutationGivers.Add(mutationGiver);
-                            defSet.Add(mutationGiver.hediff);
-                        }
-                    }
-
-                    foreach (MorphDef morphDef in morphs.Where(m => !morphSet.Contains(m))
-                    ) //only grab morphs not already included in the categories 
-                    foreach (HediffGiver_Mutation mutationGiver in morphDef.AllAssociatedAndAdjacentMutationGivers)
-                    {
-                        if (defSet.Contains(mutationGiver.hediff)) continue; //don't include duplicates 
-                        _mutationGivers.Add(mutationGiver);
-                        defSet.Add(mutationGiver.hediff);
-                    }
-
-                    foreach (HediffDef hediffDef in mutationCategories.SelectMany(c => c.AllMutationsInCategoryObs))
-                    {
-                        if (defSet.Contains(hediffDef)) continue;
-                        var defExtension = hediffDef as MutationDef;
-                        if (defExtension == null) //need to use the mutation def to make a hediff giver for them 
-                        {
-                            Log.Error($"mutation {hediffDef.defName} does not use {nameof(MutationDef)}!");
-                            continue;
-                        }
-
-                        var giver = new HediffGiver_Mutation
-                        {
-                            hediff = hediffDef,
-                            partsToAffect = defExtension.parts.ToList(),
-                            countToAffect = defExtension.countToAffect
-                        };
-                        _mutationGivers.Add(giver);
-                        defSet.Add(hediffDef);
-                    }
-                }
-
-                return _mutationGivers;
-            }
-        }
 
         [NotNull]
         private List<MorphDef> AllMorphs
@@ -202,72 +140,13 @@ namespace Pawnmorph
                     if (!mutations.Contains(mutation))
                         mutations.Add(mutation); 
                 }
-
+                
                 return mutations; 
             }
             finally
             {
                 if(seed != null) Rand.PopState(); //make sure to always pop the rand state 
             }
-        }
-
-
-        /// <summary>
-        ///     Gets the random mutation givers from this instance
-        /// </summary>
-        /// <param name="seed">The seed to use to seed <see cref="Rand" />. if null then Rand isn't seeded</param>
-        /// <returns></returns>
-        [NotNull]
-        [Obsolete]
-        public IEnumerable<HediffGiver_Mutation> GetRandomMutationGivers(int? seed = null)
-        {
-            if (pickAnyMutation) return AllMutationGivers;
-
-            if (seed != null) Rand.PushState(seed.Value);
-            try
-            {
-                var givers = new List<HediffGiver_Mutation>();
-                var set = new HashSet<HediffDef>(); //this is to make sure we don't get any duplicates 
-                GetMorphGivers(givers);
-
-
-                set.AddRange(givers.Select(s => s.hediff).Where(s => s != null));
-
-                foreach (HediffDef hediffDef in mutationCategories.SelectMany(cat => cat.AllMutationsInCategoryObs))
-                {
-                    if (set.Contains(hediffDef)) continue;
-                    var mDef = hediffDef as MutationDef;
-                    if (mDef == null) //need a def extension to make a hediff giver for them 
-                    {
-                        Log.Error($"mutation {hediffDef.defName} does not have a mutation def extension!");
-                        continue;
-                    }
-
-                    var giver = new HediffGiver_Mutation
-                    {
-                        hediff = hediffDef,
-                        partsToAffect = mDef.parts.ToList(),
-                        countToAffect = mDef.countToAffect
-                    };
-                    givers.Add(giver);
-                    set.Add(hediffDef);
-                }
-
-                return givers;
-            }
-            finally
-            {
-                if (seed != null) Rand.PopState(); //make sure this is always called 
-            }
-        }
-
-        [Obsolete]
-        private void GetMorphGivers([NotNull] List<HediffGiver_Mutation> storage)
-        {
-            if (AllMorphs.Count == 0) return;
-
-            MorphDef rMorph = AllMorphs.RandElement();
-            storage.AddRange(rMorph.AllAssociatedAndAdjacentMutationGivers);
         }
 
         private void GetMorphMutations([NotNull] List<MutationDef> mutations)
