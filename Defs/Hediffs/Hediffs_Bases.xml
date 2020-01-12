@@ -16,6 +16,9 @@
 			<li Class="Pawnmorph.Hediffs.CompProperties_CheckRace">
 				<triggerStage>1</triggerStage> <!-- this is the index of the stage that will trigger the check when the hediff enters it -->
 			</li>
+			<li Class="Pawnmorph.Hediffs.CompProps_TfStageConfigChecker">
+				<!-- this comp is just here to check for errors in transformation stages -->
+			</li>
 		</comps>
 	</HediffDef>
 

@@ -37,7 +37,7 @@ namespace Pawnmorph.Hediffs
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
-            _allMutations = def.stages.OfType<TransformationStage>().SelectMany(s => s.mutations.MakeSafe()).ToList();
+            _allMutations = def.stages.OfType<TransformationStageBase>().SelectMany(s => s.Entries).ToList();
         }
 
         /// <summary>Ticks this instance.</summary>
@@ -65,7 +65,7 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         protected override IEnumerable<MutationEntry> GetAvailableMutations(HediffStage currentStage)
         {
-            if (currentStage is TransformationStage stage) return stage.mutations.MakeSafe();
+            if (currentStage is TransformationStageBase stage) return stage.Entries;
             return Enumerable.Empty<MutationEntry>();
         }
 
@@ -76,9 +76,9 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         protected override bool AnyMutationsInStage(HediffStage stage)
         {
-            if (stage is TransformationStage tStage)
+            if (stage is TransformationStageBase tStage)
             {
-                return tStage.mutations?.Count > 0; 
+                return tStage.Entries.Any(); 
             }
 
             return false; 

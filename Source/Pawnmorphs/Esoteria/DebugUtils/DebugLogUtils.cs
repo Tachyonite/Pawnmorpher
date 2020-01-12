@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
+using Harmony;
 using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
@@ -129,6 +130,20 @@ namespace Pawnmorph.DebugUtils
                         builder.AppendLine($"{index}) label:{stage.label} description:\"{stage.description}\"".Indented());
                     }
                 }
+            }
+
+            Log.Message(builder.ToString());
+        }
+
+        [Category(MAIN_CATEGORY_NAME), DebugOutput]
+        static void ListMutationsInMorphs()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefsListForReading)
+            {
+                var outStr = morphDef.AllAssociatedMutations.Select(m => m.defName).Join(",");
+                builder.AppendLine($"{morphDef.defName}:{outStr}");
             }
 
             Log.Message(builder.ToString());
