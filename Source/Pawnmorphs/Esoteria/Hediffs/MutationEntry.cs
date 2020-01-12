@@ -13,7 +13,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The mutation
         /// </summary>
-        public HediffDef mutation;
+        public MutationDef mutation;
 
         /// <summary>
         /// The chance to add this mutation 

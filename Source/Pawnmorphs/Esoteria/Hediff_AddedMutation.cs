@@ -19,6 +19,27 @@ namespace Pawnmorph
         private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
 
         /// <summary>
+        /// Gets the influence this mutation confers 
+        /// </summary>
+        /// <value>
+        /// The influence.
+        /// </value>
+        [NotNull]
+        public AnimalClassBase Influence
+        {
+            get
+            {
+                if (def is MutationDef mDef)
+                {
+                    return mDef.classInfluence; 
+                }
+
+                return AnimalClassDefOf.Animal; 
+            }
+        }
+
+
+        /// <summary>
         /// Gets the base label .
         /// </summary>
         /// <value>
@@ -61,9 +82,6 @@ namespace Pawnmorph
         /// </summary>
         public string mutationDescription;
 
-        /// <summary> The influence this mutation exerts on a pawn. </summary>
-        [CanBeNull]
-        public Comp_MorphInfluence Influence => (comps?.OfType<Comp_MorphInfluence>().FirstOrDefault());
 
         /// <summary>
         /// Gets a value indicating whether should be removed.
@@ -158,8 +176,7 @@ namespace Pawnmorph
         }
         private void UpdatePawnInfo()
         {
-            if (Current.ProgramState == ProgramState.Playing)
-                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
+           
 
             if (Current.ProgramState == ProgramState.Playing && MutationUtilities.AllMutationsWithGraphics.Contains(def) && pawn.IsColonist)
             {

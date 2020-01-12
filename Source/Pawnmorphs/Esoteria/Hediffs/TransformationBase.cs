@@ -237,7 +237,7 @@ namespace Pawnmorph.Hediffs
                 IEnumerable<MutationEntry> mutations = GetAvailableMutations(CurStage);
                 _scratchDict.Clear();
                 foreach (var entry in mutations) //fill a lookup dict 
-                foreach (BodyPartDef possiblePart in entry.mutation.GetPossibleParts())
+                foreach (BodyPartDef possiblePart in entry.mutation.parts)
                     if (_scratchDict.TryGetValue(possiblePart, out var lst))
                     {
                         lst.Add(entry);

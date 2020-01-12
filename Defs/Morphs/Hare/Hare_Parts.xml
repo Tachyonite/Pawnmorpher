@@ -1,17 +1,20 @@
-<Defs>
-	<HediffDef Name="HarePart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>HareMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="HarePart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>HareMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="HarePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
 		<defName>EtherHareJaw</defName>
 		<label>leporine muzzle</label>
 		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a hare's, complete with twitchy pink button nose.</description>
 		<initialSeverity>0</initialSeverity>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<countToAffect>1</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
 		<stages>
 			<li>
 				<label>new</label>
@@ -60,45 +63,37 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Jaw</li>
-				</parts>
-				<countToAffect>1</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="HarePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
 		<defName>EtherHareEar</defName>
 		<description>Long furry ears sit atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're suprisingly flexible.</description>
 		<label>leporine</label>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.5</partEfficiencyOffset>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Ear</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="HarePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
 		<defName>EtherHareTail</defName>
 		<label>leporine tail</label>
 		<description>A small puff of fluf peaks out just above [PAWN_nameDef]'s bum. It's rather cute, actually.</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
+		<countToAffect>1</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
 		<stages>
 			<li>
 				<statOffsets>
@@ -106,20 +101,9 @@
 				</statOffsets>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Tail</li>
-				</parts>
-				<countToAffect>1</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="HarePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
 		<defName>EtherHareLeg</defName>
 		<label>spring-loaded leg</label>
 		<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit.</description>
@@ -133,16 +117,12 @@
 				</capMods>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Leg</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Minor</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+		<parts>
+			<li>Leg</li>
+		</parts>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Minor</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

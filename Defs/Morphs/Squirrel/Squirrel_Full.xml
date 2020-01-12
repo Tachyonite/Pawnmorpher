@@ -98,7 +98,7 @@
 						<tale>LimbGrowsFur</tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherPawHand</hediff>
+						<hediff>EtherPawHand</hediff> <!-- I assumed these are assumed to be canid paws, shouldn't squirrels have their own paws? -->
 						<mtbDays>3</mtbDays>
 						<chance>5</chance>
 						<partsToAffect>
@@ -109,7 +109,7 @@
 						<memory>CanidPawHandMemory</memory>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherPawFoot</hediff>
+						<hediff>EtherPawFoot</hediff> <!-- shouldn't squirrel/rodents have their own paws?  -->
 						<mtbDays>3</mtbDays>
 						<partsToAffect>
 							<li>Foot</li>

@@ -8,7 +8,6 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using Verse.Noise;
 using static Pawnmorph.InstinctUtilities;
 
 namespace Pawnmorph
@@ -80,7 +79,7 @@ namespace Pawnmorph
                 threshPercents = threshPercents ?? new List<float>();
                 foreach (VTuple<SapienceLevel, float> sapienceLevelThreshold in FormerHumanUtilities.SapienceLevelThresholds)
                 {
-                    float thresh = sapienceLevelThreshold.second / mLevel;
+                    float thresh = sapienceLevelThreshold.Second / mLevel;
                     if (thresh > 1) continue;
                     threshPercents.Add(thresh);
                 }

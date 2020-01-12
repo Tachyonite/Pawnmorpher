@@ -16,57 +16,13 @@
 			<li Class="Pawnmorph.Hediffs.CompProperties_CheckRace">
 				<triggerStage>1</triggerStage> <!-- this is the index of the stage that will trigger the check when the hediff enters it -->
 			</li>
-		</comps>
-	</HediffDef>
-
-	<HediffDef Name="PartialMorphParent" ParentName="MorphParent" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_Single" />
-		</comps>
-	</HediffDef>
-
-
-	<HediffDef Name="PawnmorphPartNoRmComp" Abstract="True">
-		<hediffClass>Pawnmorph.Hediff_AddedMutation</hediffClass>
-		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<scenarioCanAdd>true</scenarioCanAdd>
-		<addedPartProps>
-			<solid>true</solid>
-		</addedPartProps>
-		<isBad>false</isBad>
-		<maxSeverity>2</maxSeverity> <!-- the custom severity per day comp on most mutations will limit this to 1 for most pawns  -->
-	</HediffDef>
-
-	<HediffDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-				<layers>Skin</layers>
-			</li>
-			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
-				<mtb>60</mtb>
-				<maxTreeSearchDepth>1</maxTreeSearchDepth>
+			<li Class="Pawnmorph.Hediffs.CompProps_TfStageConfigChecker">
+				<!-- this comp is just here to check for errors in transformation stages -->
 			</li>
 		</comps>
 	</HediffDef>
 
-	<HediffDef Name="PawnmorphPart" Abstract="True" ParentName="PawnmorphPartNoRmComp">
-		<initialSeverity>0.1</initialSeverity>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-				<layers>Core</layers>
-			</li>
-		</comps>
-	</HediffDef>
-
-	<HediffDef Name="PawnmorphPartCombo" Abstract="True" ParentName="PawnmorphPartNoRmComp">
-		<defaultLabelColor>(160, 55, 186)</defaultLabelColor>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-				<layers>Core</layers>
-			</li>
-		</comps>
-	</HediffDef>
-
+	
 	<!-- this is going to be used for the full morph hediffs given out by the injectors -->
 	<HediffDef ParentName="MorphParent" Name="AspectedMorphParent" Abstract="true">
 		<modExtensions>

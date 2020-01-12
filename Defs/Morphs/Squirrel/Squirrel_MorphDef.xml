@@ -4,9 +4,9 @@
 		<label>squirrelmorph</label>
 		<description>A smaller, squirrel-like humanoid. These former humans share many characteristics with squirrels, usually making them fragile in combat, but their dextrous paws make them good crafters and artists.</description>
 		<race>Squirrel</race>
+		<classification>Rodentia</classification>
 		<categories>
 			<li>Crafter</li>
-			<li>Rodent</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

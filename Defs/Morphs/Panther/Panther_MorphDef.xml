@@ -8,6 +8,7 @@
 			<li>Combat</li>
 			<li>Feline</li>
 		</categories>
+		<classification>Pantherinae</classification>
 		<addedAspects>
 			<li>
 				<def>PantherAspect</def>

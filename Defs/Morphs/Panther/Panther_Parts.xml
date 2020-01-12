@@ -1,13 +1,9 @@
-<Defs>
-	<HediffDef Name="PantherPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>PantherMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="PantherPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>PantherMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PantherPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherPart">
 		<defName>EtherPantherJaw</defName>
 		<label>pantherine muzzle</label>
 		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a panther. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
@@ -60,20 +56,16 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Jaw</li>
-				</parts>
-				<countToAffect>1</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
 
-	<HediffDef ParentName="PantherPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherPart">
 		<defName>EtherPantherEar</defName>
 		<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
 		<label>pantherine</label>
@@ -82,20 +74,16 @@
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Ear</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
 
-	<HediffDef ParentName="PantherPart">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherPart">
 		<defName>EtherPantherTail</defName>
 		<label>pantherine tail</label>
 		<description>A long, sleek tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
@@ -109,16 +97,11 @@
 				</capMods>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Tail</li>
-				</parts>
-				<countToAffect>1</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
-	</HediffDef>
+		<parts>
+			<li>Tail</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
