@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -19,6 +20,9 @@ namespace Pawnmorph
     {
         [NotNull] private static readonly
             Dictionary<IAnimalClass, List<MorphDef>> _morphsUnderCache = new Dictionary<IAnimalClass, List<MorphDef>>();
+
+        [NotNull] private static readonly Dictionary<IAnimalClass, List<MutationDef>> _mutationClassCache =
+            new Dictionary<IAnimalClass, List<MutationDef>>(); 
 
         [NotNull] private static readonly Dictionary<IAnimalClass, float> _accumInfluenceCache =
             new Dictionary<IAnimalClass, float>();
@@ -60,6 +64,29 @@ namespace Pawnmorph
         private static List<IAnimalClass> PreorderTreeInternal { get; }
 
         private static List<IAnimalClass> PostorderTreeInternal { get; }
+
+        /// <summary>
+        /// Gets all mutation in this class 
+        /// </summary>
+        /// <param name="animalClass">The animal class.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">animalClass</exception>
+        [NotNull]
+        public static IEnumerable<MutationDef> GetAllMutationIn([NotNull] this AnimalClassDef animalClass)
+        {
+            if (animalClass == null) throw new ArgumentNullException(nameof(animalClass));
+            if (_mutationClassCache.TryGetValue(animalClass, out List<MutationDef> mutations))
+            {
+                return mutations; 
+            }
+
+            mutations = animalClass.GetAllMorphsInClass()
+                                   .SelectMany(m => m.AllAssociatedMutations)
+                                   .Distinct()
+                                   .ToList(); //cache this so we only have to calculate this once 
+            _mutationClassCache[animalClass] = mutations;
+            return mutations; 
+        }
 
         /// <summary>
         ///     Fills the influence dictionary.

@@ -22,5 +22,15 @@ namespace Pawnmorph
 
         [NotNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static AnimalClassDef Animal;
+        [NotNull]
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        public static AnimalClassDef Canidae;
+        [NotNull]
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        public static AnimalClassDef Canis;
+
+        [NotNull]
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        public static AnimalClassDef Vulpini; 
     }
 }
