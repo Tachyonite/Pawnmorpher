@@ -7,6 +7,7 @@
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0</initialSeverity>
 		<classInfluence>Mammalia</classInfluence>
+		<mutationTale>LimbGrowsFur</mutationTale>
 		<parts>
 			<li>Torso</li>
 			<li>Head</li>
@@ -61,19 +62,11 @@
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
-				<parts>
-					<li>Leg</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
+		</stages>	
+		<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
+	<categories>
 					<li>Minor</li>
 				</categories>
-			</li>
-		</modExtensions>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
@@ -296,6 +289,7 @@
 		<parts>
 			<li>Leg</li>
 		</parts>
+		<mutationTale>LegBecameDigitgrade</mutationTale>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>crooked</labelOverride>
@@ -356,6 +350,7 @@
 		<parts>
 			<li>Foot</li>
 		</parts>
+		<mutationTale>FootBecomesCanidPaw</mutationTale>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>clawed</labelOverride>
@@ -413,6 +408,7 @@
 			<li>Foot</li>
 		</parts>
 		<classInfluence>Artiodactyla</classInfluence>
+		<mutationTale>FootBecomesHooves</mutationTale>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>hard nails</labelOverride>

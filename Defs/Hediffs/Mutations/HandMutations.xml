@@ -7,6 +7,8 @@
             <li>Hand</li>
         </parts>
         <classInfluence>Canidae</classInfluence>
+        <mutationTale>HandsBecomePaws</mutationTale>
+        <mutationMemory>CanidPawHandMemory</mutationMemory>
         <stages>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>-1</minSeverity>
@@ -91,6 +93,7 @@
             <li>Hand</li>
         </parts>
         <classInfluence>Artiodactyla</classInfluence>
+        <mutationTale>HandsBecomeHooves</mutationTale>
         <stages>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0</minSeverity>

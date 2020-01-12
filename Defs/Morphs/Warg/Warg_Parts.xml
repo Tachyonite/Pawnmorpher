@@ -10,6 +10,7 @@
 		<parts>
 			<li>Jaw</li>
 		</parts>
+		<mutationTale>GrewCanidMuzzle</mutationTale>
 		<stages>
 			<li>
 				<capMods>
@@ -66,6 +67,7 @@
 		<parts>
 			<li>Ear</li>
 		</parts>
+		<mutationTale>EarsChangedCanid</mutationTale>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.25</partEfficiencyOffset>
@@ -80,6 +82,7 @@
 		<parts>
 			<li>Tail</li>
 		</parts>
+		<mutationTale>GrewTail</mutationTale>
 		<stages>
 			<li>
 				<statOffsets>
