@@ -23,6 +23,7 @@ namespace Pawnmorph.Hediffs
         [NotNull] public List<BodyPartDef> parts = new List<BodyPartDef>();
 
         /// <summary>the number of parts to add this mutation to</summary>
+        [Obsolete]
         public int countToAffect;
 
         /// <summary>
@@ -124,24 +125,6 @@ namespace Pawnmorph.Hediffs
             _rmComp = CompProps<RemoveFromPartCompProperties>();
             if (_rmComp == null)
                 yield return "mutation does not have a remover comp!";
-        }
-
-
-        /// <summary>
-        ///     Creates the mutation giver for the parent hediff.
-        /// </summary>
-        /// <param name="parentDef">The parent definition.</param>
-        /// <returns></returns>
-        [NotNull]
-        public HediffGiver_Mutation CreateMutationGiver([NotNull] HediffDef parentDef)
-        {
-            var mutationGiver = new HediffGiver_Mutation
-            {
-                hediff = parentDef,
-                partsToAffect = parts.ToList(),
-                countToAffect = countToAffect
-            };
-            return mutationGiver;
         }
 
         /// <summary>

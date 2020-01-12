@@ -1,0 +1,38 @@
+<Defs>
+    <Pawnmorph.Hediffs.MutationDef>
+        this is a subclass of HediffDef so all hediff stuff can go here 
+
+        the hediff class must be Hediff_AddedMutation or a subclass 
+        <hediffClass>Hediff_AddedMutation</hediffClass>  
+
+        this is a list of all parts the mutation can be applied to 
+        this must be set and have at least 1 entry 
+        <parts>
+            <li>Head</li>
+        </parts>
+
+        'influence' can be added in one of 2 way
+        one of these should be set but never both  
+
+        this field is for setting the influence to a specific morph and only that morph  
+        <morphInfluence>SomeMorphDef</morphInfluence>
+        
+        this field having the mutation give influence for a whole class of morphs  
+        <classInfluence>SomeAnimalClassDef</classInfluence>
+
+        this is a list of all categories this mutation belongs to 
+        <categories>
+            <li>Combat</li>
+        </categories>
+
+        optional field, if set the mutation will add a tale for art when added 
+        <mutationTale>SomeTaleDef</mutationTale>
+
+        optional field that if set will cause the mutation to add a mutation log entry when added 
+        <mutationLogRulePack>LogPackDef</mutationLogRulePack>
+
+        optional field. If set the mutation will add the thought def when added 
+        <mutationMemory>SomeMemoryDef</mutationMemory>
+        
+    </Pawnmorph.Hediffs.MutationDef>
+</Defs>
