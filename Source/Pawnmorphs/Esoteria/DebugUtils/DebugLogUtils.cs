@@ -242,12 +242,12 @@ namespace Pawnmorph.DebugUtils
         [Category(MAIN_CATEGORY_NAME)]
         public static void GetMutationsWithoutStages()
         {
-            IEnumerable<HediffDef> allMutations =
-                MutationUtilities.AllMutations.Where(def => (def.stages?.Count ?? 0) <= 1); //all mutations without stages 
+            var allMutations =
+                MutationDef.AllMutations.Where(def => (def.stages?.Count ?? 0) <= 1); //all mutations without stages 
             var builder = new StringBuilder();
 
 
-            foreach (HediffDef allMutation in allMutations) builder.AppendLine($"{allMutation.defName}");
+            foreach (var allMutation in allMutations) builder.AppendLine($"{allMutation.defName}");
 
             Log.Message(builder.ToString());
         }
@@ -322,7 +322,7 @@ namespace Pawnmorph.DebugUtils
             int spreadablePartsCount = spreadableParts.Count;
 
 
-            var allSpreadableMutations = MutationUtilities.AllMutations.Select(mut => new
+            var allSpreadableMutations = MutationDef.AllMutations.Select(mut => new
                                                            {
                                                                mut, //make an anonymous object to keep track of both the mutation and comp
                                                                comp = mut.CompProps<SpreadingMutationCompProperties>()

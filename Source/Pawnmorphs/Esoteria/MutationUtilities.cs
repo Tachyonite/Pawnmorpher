@@ -101,31 +101,7 @@ namespace Pawnmorph
         ///     The average mutation adaptability value.
         /// </value>
         public static float AverageMutationAdaptabilityValue { get; }
-
-        /// <summary>
-        ///     returns an enumerable collection of all hediffGiver_Mutations active
-        ///     note, this does <i>not</i> check for givers that give the same hediff
-        /// </summary>
-        public static IEnumerable<HediffGiver_Mutation> AllGivers
-        {
-            get
-            {
-                if (_allGivers == null)
-                    _allGivers = AllMorphHediffs.SelectMany(def => def.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
-                                                .ToList();
-
-                return _allGivers;
-            }
-        }
-
-
-        /// <summary>
-        ///     an enumerable collection of all mutations
-        /// </summary>
-        [NotNull]
-        public static IEnumerable<HediffDef> AllMutations =>
-            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass));
-
+        
         /// <summary>
         ///     an enumerable collection of all morph hediffs
         /// </summary>
@@ -140,12 +116,18 @@ namespace Pawnmorph
             get
             {
                 if (_allThoughts == null)
-                    _allThoughts = DefDatabase<HediffDef>.AllDefs.SelectMany(d => d.GetAllHediffGivers()
-                                                                                   .OfType<HediffGiver_Mutation>())
-                                                         .Select(g => g.memory)
-                                                         .Where(t => t != null)
-                                                         .Distinct()
-                                                         .ToList();
+                { 
+                    _allThoughts = MutationDef.AllMutations.Select(m => m.mutationMemory).ToList();
+                    //add in any other memories added by mutation givers 
+                    foreach (HediffGiver_Mutation hediffGiverMutation in AllMorphHediffs.SelectMany(m => m.GetAllHediffGivers().OfType<HediffGiver_Mutation>()))
+                    {
+                        if (!_allThoughts.Contains(hediffGiverMutation.memory))
+                        {
+                            _allThoughts.Add(hediffGiverMutation.memory); 
+                        }
+                    }
+
+                } 
 
                 return _allThoughts;
             }
