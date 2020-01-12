@@ -25,13 +25,13 @@ namespace Pawnmorph
         /// The influence.
         /// </value>
         [NotNull]
-        public IAnimalClass Influence
+        public AnimalClassBase Influence
         {
             get
             {
                 if (def is MutationDef mDef)
                 {
-                    return mDef.InternalInfluence; 
+                    return mDef.classInfluence; 
                 }
 
                 return AnimalClassDefOf.Animal; 

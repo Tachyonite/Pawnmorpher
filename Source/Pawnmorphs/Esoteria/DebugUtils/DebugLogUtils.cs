@@ -528,7 +528,7 @@ namespace Pawnmorph.DebugUtils
         [DebugOutput, Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
         static void GetPawnsNewInfluence()
         {
-            Dictionary<IAnimalClass, float> wDict = new Dictionary<IAnimalClass, float>();
+            Dictionary<AnimalClassBase, float> wDict = new Dictionary<AnimalClassBase, float>();
             List<Hediff_AddedMutation> mutations = new List<Hediff_AddedMutation>();
             List<string> strings = new List<string>();
             float maxInf = MorphUtilities.MaxHumanInfluence; 
@@ -542,7 +542,7 @@ namespace Pawnmorph.DebugUtils
                 //now build the log message entry 
                 StringBuilder builder = new StringBuilder();
                 builder.AppendLine($"{pawn.Name}:");
-                foreach (KeyValuePair<IAnimalClass, float> kvp in wDict)
+                foreach (KeyValuePair<AnimalClassBase, float> kvp in wDict)
                 {
                     var def = (Def) kvp.Key;
                     builder.AppendLine($"\t{def.label}:{(kvp.Value / maxInf).ToStringPercent()}");

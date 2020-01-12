@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="BoarPart" ParentName="PawnmorphPart" Abstract="true">
-		<morphInfluence>BoarMorph</morphInfluence>
+		<classInfluence>BoarMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoarPart">

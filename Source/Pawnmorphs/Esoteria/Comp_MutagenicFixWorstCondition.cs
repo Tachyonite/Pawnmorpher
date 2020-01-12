@@ -176,7 +176,7 @@ namespace Pawnmorph
         }
 
         /// <summary> Add mutations to the given part. </summary>
-        private void AddMutationToPart(BodyPartRecord record, [NotNull] Pawn pawn, IAnimalClass aClass = null, bool recursive = false, MutagenDef mutagen=null)
+        private void AddMutationToPart(BodyPartRecord record, [NotNull] Pawn pawn, AnimalClassBase aClass = null, bool recursive = false, MutagenDef mutagen=null)
         {
             MutationDef mutation;
             if (aClass != null)

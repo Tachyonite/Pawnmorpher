@@ -82,7 +82,7 @@ namespace Pawnmorph
             if (curMorph != setMorph) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations);
         }
 
-        private static MorphDef GetMorphForPawn(Pawn pawn, bool isBelowChimeraThreshold, IAnimalClass hInfluence, out MorphDef curMorph)
+        private static MorphDef GetMorphForPawn(Pawn pawn, bool isBelowChimeraThreshold, AnimalClassBase hInfluence, out MorphDef curMorph)
         {
             MorphDef setMorph;
             curMorph = pawn.def.GetMorphOfRace();
@@ -127,9 +127,12 @@ namespace Pawnmorph
 
             foreach (MutationDef mutationDef in enumerable)
             {
-                if (mutationDef.morphInfluence != null && !lst.Contains(mutationDef.morphInfluence))
+                if (mutationDef.classInfluence is MorphDef morph)
                 {
-                    lst.Add(mutationDef.morphInfluence);
+                    if (!lst.Contains(morph))
+                    {
+                        lst.Add(morph);
+                    }
                 }
             }
             _morphAssociationCache[transformationDef] = lst;
@@ -259,7 +262,7 @@ namespace Pawnmorph
             }
         }
 
-        private static MorphDef GetChimeraRace(IAnimalClass hInfluence)
+        private static MorphDef GetChimeraRace(AnimalClassBase hInfluence)
         {
             var morph = hInfluence as MorphDef;
             //if the highest influence isn't a morph pick a random morph from the animal class
@@ -288,7 +291,7 @@ namespace Pawnmorph
 
             MorphDef highest = null;
             float max = float.NegativeInfinity;
-            foreach (KeyValuePair<IAnimalClass, float> keyValuePair in comp)
+            foreach (KeyValuePair<AnimalClassBase, float> keyValuePair in comp)
             {
                 if (!(keyValuePair.Key is MorphDef morph)) continue;
                 if (max < keyValuePair.Value)

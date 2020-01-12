@@ -14,7 +14,7 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary> Def class for a morph. Used to generate the morph's implicit race. </summary>
-    public class MorphDef : Def, IAnimalClass
+    public class MorphDef :  AnimalClassBase
     {
         /// <summary>
         ///     The categories that the morph belongs to. <br />
@@ -63,9 +63,22 @@ namespace Pawnmorph
 
         [Unsaved] private List<MutationDef> _allAssociatedMutations;
 
-        IEnumerable<IAnimalClass> IAnimalClass.Children => Enumerable.Empty<IAnimalClass>(); //morphs can't have class children
+        /// <summary>
+        /// Gets the children.
+        /// </summary>
+        /// <value>
+        /// The children.
+        /// </value>
+        public override IEnumerable<AnimalClassBase> Children => Enumerable.Empty<AnimalClassBase>(); //morphs can't have class children
 
-        bool IAnimalClass.Contains(IAnimalClass other)
+        /// <summary>
+        /// Determines whether this instance contains the object.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns>
+        ///   <c>true</c> if [contains] [the specified other]; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Contains(AnimalClassBase other)
         {
             return other == this;
         }
@@ -76,9 +89,15 @@ namespace Pawnmorph
         /// <value>
         ///     The label.
         /// </value>
-        public string Label => label;
+        public override string Label => label;
 
-        AnimalClassDef IAnimalClass.ParentClass => classification;
+        /// <summary>
+        /// Gets the parent class.
+        /// </summary>
+        /// <value>
+        /// The parent class.
+        /// </value>
+        public override AnimalClassDef ParentClass => classification;
 
         /// <summary> Gets an enumerable collection of all the morph type's defs.</summary>
         public static IEnumerable<MorphDef> AllDefs => DefDatabase<MorphDef>.AllDefs;
@@ -96,10 +115,10 @@ namespace Pawnmorph
                     _allAssociatedMutations = new List<MutationDef>();
                     //temp set for keeping track of all the 'slots' we have occupied so far
                     var set = new HashSet<VTuple<BodyPartDef, MutationLayer>>();
-                    IAnimalClass aClass = this;
+                    AnimalClassBase aClass = this;
                     while (aClass != null)
                     {
-                        IEnumerable<MutationDef> enumerable = MutationDef.AllMutations.Where(m => m.InternalInfluence == aClass);
+                        IEnumerable<MutationDef> enumerable = MutationDef.AllMutations.Where(m => m.classInfluence == aClass);
 
                         foreach (MutationDef mutationDef in enumerable)
                             if (mutationDef.GetAllDefMutationSites().Any(s => !set.Contains(s))
@@ -258,7 +277,7 @@ namespace Pawnmorph
             foreach (HediffGiver_Mutation giver in morphTfDef.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
             {
                 if (!(giver.hediff is MutationDef mDef)) continue;
-                if (mDef.morphInfluence == this)
+                if (mDef.classInfluence == this)
                     yield return giver;
             }
         }

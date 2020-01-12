@@ -14,14 +14,14 @@ namespace Pawnmorph
     ///     def for an 'animal classification', like canid, feline, etc.
     /// </summary>
     /// <seealso cref="Verse.Def" />
-    public class AnimalClassDef : Def, IAnimalClass
+    public class AnimalClassDef : AnimalClassBase
     {
         /// <summary>
         ///     The parent classification
         /// </summary>
         public AnimalClassDef parent;
 
-        [Unsaved] private List<IAnimalClass> _subClasses;
+        [Unsaved] private List<AnimalClassBase> _subClasses;
 
         [Unsaved] private List<AnimalClassDef> _subDefs;
 
@@ -29,7 +29,13 @@ namespace Pawnmorph
 
         [Unsaved] private List<MutationDef> _mutations;
 
-        IEnumerable<IAnimalClass> IAnimalClass.Children => _subClasses.MakeSafe();
+        /// <summary>
+        /// Gets the children.
+        /// </summary>
+        /// <value>
+        /// The children.
+        /// </value>
+        public override IEnumerable<AnimalClassBase> Children => _subClasses.MakeSafe();
 
 
         /// <summary>
@@ -38,16 +44,28 @@ namespace Pawnmorph
         /// <value>
         /// The label.
         /// </value>
-        public string Label => label; 
-
-        bool IAnimalClass.Contains(IAnimalClass aClass)
+        public override string Label => label;
+        /// <summary>
+        /// Determines whether this instance contains the object.
+        /// </summary>
+        /// <param name="aClass">a class.</param>
+        /// <returns>
+        ///   <c>true</c> if contains the specified a class; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Contains(AnimalClassBase aClass)
         {
             if (aClass == this) return true;
             return
                 _subClasses.Any(c => c == aClass || c.Contains(aClass)); //check if any of the children are a type or contain it 
         }
 
-        AnimalClassDef IAnimalClass.ParentClass => parent;
+        /// <summary>
+        /// Gets the parent class.
+        /// </summary>
+        /// <value>
+        /// The parent class.
+        /// </value>
+        public override AnimalClassDef ParentClass => parent;
 
         /// <summary>
         ///     Gets the sub classes of this classification
@@ -87,7 +105,7 @@ namespace Pawnmorph
         public bool Contains([NotNull] MorphDef morph)
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
-            var c = (IAnimalClass) this;
+            var c = (AnimalClassBase) this;
             return c.Contains(morph);
         }
 
@@ -102,7 +120,7 @@ namespace Pawnmorph
         public bool Contains([NotNull] AnimalClassDef animalClass)
         {
             if (animalClass == null) throw new ArgumentNullException(nameof(animalClass));
-            var c = (IAnimalClass) this;
+            var c = (AnimalClassBase) this;
             return c.Contains(animalClass);
         }
 
@@ -110,7 +128,7 @@ namespace Pawnmorph
         internal void FindChildren()
         {
             //find the children of this classification 
-            _subClasses = new List<IAnimalClass>();
+            _subClasses = new List<AnimalClassBase>();
             _subDefs = new List<AnimalClassDef>();
             _morphs = new List<MorphDef>();
             foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
@@ -148,8 +166,7 @@ namespace Pawnmorph
     /// interface for both MorphDefs and AnimalClassDef
     /// </summary>
     /// this should generally not be implemented outside of these 2 defs 
-    public interface
-        IAnimalClass //implementation detail to make morphs a kind of animal class,  since species is a classification 
+    public abstract class AnimalClassBase : Def 
     {
         /// <summary>
         /// Gets the parent class.
@@ -157,7 +174,7 @@ namespace Pawnmorph
         /// <value>
         /// The parent class.
         /// </value>
-        AnimalClassDef ParentClass { get; }
+        public abstract AnimalClassDef ParentClass { get; }
 
         /// <summary>
         /// Gets the label.
@@ -165,7 +182,7 @@ namespace Pawnmorph
         /// <value>
         /// The label.
         /// </value>
-        string Label { get; }
+        public abstract string Label { get; }
 
         /// <summary>
         /// Gets the children.
@@ -173,7 +190,7 @@ namespace Pawnmorph
         /// <value>
         /// The children.
         /// </value>
-        [NotNull] IEnumerable<IAnimalClass> Children { get; }
+        [NotNull] public abstract IEnumerable<AnimalClassBase> Children { get; }
 
         /// <summary>
         /// Determines whether this instance contains the given class.
@@ -182,6 +199,6 @@ namespace Pawnmorph
         /// <returns>
         ///   <c>true</c> if contains the specified a class; otherwise, <c>false</c>.
         /// </returns>
-        bool Contains([NotNull] IAnimalClass aClass);
+        public abstract bool Contains([NotNull] AnimalClassBase aClass);
     }
 }

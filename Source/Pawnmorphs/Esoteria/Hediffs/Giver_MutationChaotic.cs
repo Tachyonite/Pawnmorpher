@@ -112,11 +112,14 @@ namespace Pawnmorph.Hediffs
             if (blackListDefs.Contains(giver.hediff)) return false;
             if (giver.hediff is MutationDef comp)
             {
-                if (blackListMorphs.Contains(comp.morphInfluence)) return false;
-                IEnumerable<MorphCategoryDef> morphCats = comp.morphInfluence?.categories;
-                foreach (var morphCategory in morphCats.MakeSafe())
+                if (comp.classInfluence is MorphDef morph)
                 {
-                    if (blackListCategories.Contains(morphCategory)) return false;
+                    if (blackListMorphs.Contains(morph)) return false;
+                    IEnumerable<MorphCategoryDef> morphCats = morph?.categories;
+                    foreach (var morphCategory in morphCats.MakeSafe())
+                    {
+                        if (blackListCategories.Contains(morphCategory)) return false;
+                    }
                 }
             }
             else

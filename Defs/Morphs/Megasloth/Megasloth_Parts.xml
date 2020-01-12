@@ -5,7 +5,7 @@
 				<morph>MegaslothMorph</morph>
 			</li>
 		</comps>
-		<morphInfluence>MegaslothMorph</morphInfluence>
+		<classInfluence>MegaslothMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">

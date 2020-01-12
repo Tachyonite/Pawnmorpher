@@ -22,8 +22,7 @@ namespace Pawnmorph
     {
         [NotNull] private static Dictionary<BodyPartDef, List<MutationDef>> _mutationsByParts;
 
-        private static List<HediffGiver_Mutation> _allGivers;
-
+    
         private static List<BodyPartDef> _allMutablePartDefs;
 
         private static readonly Dictionary<BodyDef, List<BodyPartRecord>> _allMutablePartsLookup =

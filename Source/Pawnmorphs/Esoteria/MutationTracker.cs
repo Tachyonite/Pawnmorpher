@@ -13,12 +13,12 @@ using static Pawnmorph.DebugUtils.DebugLogUtils;
 namespace Pawnmorph
 {
     /// <summary> Tracker comp for tracking the current influence a pawn has of a given morph. </summary>
-    public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<IAnimalClass, float>>
+    public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<AnimalClassBase, float>>
     {
 
         [NotNull] private readonly List<Hediff_AddedMutation> _mutationList = new List<Hediff_AddedMutation>();
 
-        [NotNull] private readonly Dictionary<IAnimalClass, float> _influenceDict = new Dictionary<IAnimalClass, float>();
+        [NotNull] private readonly Dictionary<AnimalClassBase, float> _influenceDict = new Dictionary<AnimalClassBase, float>();
 
         /// <summary>Returns an enumerator that iterates through a collection.</summary>
         /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
@@ -33,7 +33,7 @@ namespace Pawnmorph
         ///     A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the
         ///     collection.
         /// </returns>
-        public IEnumerator<KeyValuePair<IAnimalClass, float>> GetEnumerator()
+        public IEnumerator<KeyValuePair<AnimalClassBase, float>> GetEnumerator()
         {
             return _influenceDict.GetEnumerator(); 
         }
@@ -69,7 +69,7 @@ namespace Pawnmorph
         /// <value>
         /// The highest influence.
         /// </value>
-        public IAnimalClass HighestInfluence { get; private set; }
+        public AnimalClassBase HighestInfluence { get; private set; }
 
         /// <summary> All mutations the pawn has. </summary>
         [NotNull]
@@ -100,7 +100,7 @@ namespace Pawnmorph
         /// <param name="class">The morph.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">morph</exception>
-        public float GetDirectNormalizedInfluence([NotNull] IAnimalClass @class)
+        public float GetDirectNormalizedInfluence([NotNull] AnimalClassBase @class)
         {
             if (@class == null) throw new ArgumentNullException(nameof(@class));
             return _influenceDict.TryGetValue(@class) / MorphUtilities.MaxHumanInfluence;
@@ -153,11 +153,11 @@ namespace Pawnmorph
 #pragma warning restore 0612
         }
 
-        private IAnimalClass GetHighestInfluence()
+        private AnimalClassBase GetHighestInfluence()
         {
             float max = 0;
-            IAnimalClass influence = null; 
-            foreach (KeyValuePair<IAnimalClass, float> keyValuePair in _influenceDict)
+            AnimalClassBase influence = null; 
+            foreach (KeyValuePair<AnimalClassBase, float> keyValuePair in _influenceDict)
             {
                 if (keyValuePair.Value > max)
                 {
@@ -187,7 +187,7 @@ namespace Pawnmorph
         {
             MorphDef hMorph = null;
             float max = float.NegativeInfinity;
-            foreach (KeyValuePair<IAnimalClass, float> keyValuePair in _influenceDict)
+            foreach (KeyValuePair<AnimalClassBase, float> keyValuePair in _influenceDict)
                 if (max < keyValuePair.Value)
                 {
                     hMorph = keyValuePair.Key as MorphDef;

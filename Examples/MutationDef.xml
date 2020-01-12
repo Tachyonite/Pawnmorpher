@@ -11,14 +11,8 @@
             <li>Head</li>
         </parts>
 
-        'influence' can be added in one of 2 way
-        one of these should be set but never both  
-
-        this field is for setting the influence to a specific morph and only that morph  
-        <morphInfluence>SomeMorphDef</morphInfluence>
-        
-        this field having the mutation give influence for a whole class of morphs  
-        <classInfluence>SomeAnimalClassDef</classInfluence>
+        this field having the mutation give influence for a morph or a whole class of morphs  
+        <classInfluence>SomeAnimalClassDefOrMorphDef</classInfluence>
 
         this is a list of all categories this mutation belongs to 
         <categories>

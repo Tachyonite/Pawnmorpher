@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -23,8 +22,7 @@ namespace Pawnmorph.Hediffs
         [NotNull] public List<BodyPartDef> parts = new List<BodyPartDef>();
 
         /// <summary>the number of parts to add this mutation to</summary>
-        [Obsolete]
-        public int countToAffect;
+        [Obsolete] public int countToAffect;
 
         /// <summary>
         ///     the various mutation categories this mutation belongs to
@@ -41,15 +39,11 @@ namespace Pawnmorph.Hediffs
         [CanBeNull] public TaleDef mutationTale;
 
         /// <summary>
-        ///     The morph this part gives morph influence for
-        /// </summary>
-        public MorphDef morphInfluence;
-
-        /// <summary>
         ///     The class this part gives influence for
         /// </summary>
         /// only should be set if morphInfluence is not set!
-        public AnimalClassDef classInfluence;
+        [NotNull]
+        public  AnimalClassBase classInfluence;
 
         /// <summary>The mutation memory</summary>
         [CanBeNull] public ThoughtDef mutationMemory;
@@ -95,16 +89,6 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        [NotNull]
-        internal IAnimalClass InternalInfluence
-        {
-            get
-            {
-                if (morphInfluence == null) return classInfluence ?? AnimalClassDefOf.Animal;
-
-                return morphInfluence;
-            }
-        }
 
         /// <summary>
         ///     Gets all configuration errors
@@ -119,8 +103,6 @@ namespace Pawnmorph.Hediffs
 
             if (parts.NullOrEmpty()) yield return "parts list is null or empty!";
 
-            if (morphInfluence != null && classInfluence != null)
-                yield return $"both {nameof(morphInfluence)} and {nameof(classInfluence)} are set!";
 
             _rmComp = CompProps<RemoveFromPartCompProperties>();
             if (_rmComp == null)
@@ -136,8 +118,8 @@ namespace Pawnmorph.Hediffs
         public bool GivesInfluence([NotNull] AnimalClassDef classDef)
         {
             if (classDef == null) throw new ArgumentNullException(nameof(classDef));
-            if (InternalInfluence == null) return false;
-            return ((IAnimalClass) classDef).Contains(InternalInfluence);
+            if (classInfluence == null) return false;
+            return classDef.Contains(classInfluence); 
         }
 
         /// <summary>
@@ -149,11 +131,17 @@ namespace Pawnmorph.Hediffs
         public bool GivesInfluence([NotNull] MorphDef morph)
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
-            if (InternalInfluence == null) return false;
-            return ((IAnimalClass) morph).Contains(InternalInfluence);
+            if (classInfluence == null) return false;
+            return classInfluence.Contains(morph); 
+        }
+
+        /// <summary>
+        /// Resolves the references.
+        /// </summary>
+        public override void ResolveReferences()
+        {
+            base.ResolveReferences();
+            classInfluence = classInfluence ?? AnimalClassDefOf.Animal; 
         }
     }
-
-  
-
 }

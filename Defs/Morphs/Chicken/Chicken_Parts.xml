@@ -5,7 +5,7 @@
 				<morph>ChookMorph</morph>
 			</li>
 		</comps>
-		<morphInfluence>ChookMorph</morphInfluence>
+		<classInfluence>ChookMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">

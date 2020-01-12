@@ -19,17 +19,17 @@ namespace Pawnmorph
     public static class AnimalClassUtilities
     {
         [NotNull] private static readonly
-            Dictionary<IAnimalClass, List<MorphDef>> _morphsUnderCache = new Dictionary<IAnimalClass, List<MorphDef>>();
+            Dictionary<AnimalClassBase, List<MorphDef>> _morphsUnderCache = new Dictionary<AnimalClassBase, List<MorphDef>>();
 
-        [NotNull] private static readonly Dictionary<IAnimalClass, List<MutationDef>> _mutationClassCache =
-            new Dictionary<IAnimalClass, List<MutationDef>>(); 
+        [NotNull] private static readonly Dictionary<AnimalClassBase, List<MutationDef>> _mutationClassCache =
+            new Dictionary<AnimalClassBase, List<MutationDef>>(); 
 
-        [NotNull] private static readonly Dictionary<IAnimalClass, float> _accumInfluenceCache =
-            new Dictionary<IAnimalClass, float>();
+        [NotNull] private static readonly Dictionary<AnimalClassBase, float> _accumInfluenceCache =
+            new Dictionary<AnimalClassBase, float>();
 
-        [NotNull] private static readonly Dictionary<IAnimalClass, float> _trickleCache = new Dictionary<IAnimalClass, float>();
-        [NotNull] private static readonly List<IAnimalClass> _pickedInfluencesCache = new List<IAnimalClass>();
-        [NotNull] private static readonly List<IAnimalClass> _removeList = new List<IAnimalClass>();
+        [NotNull] private static readonly Dictionary<AnimalClassBase, float> _trickleCache = new Dictionary<AnimalClassBase, float>();
+        [NotNull] private static readonly List<AnimalClassBase> _pickedInfluencesCache = new List<AnimalClassBase>();
+        [NotNull] private static readonly List<AnimalClassBase> _removeList = new List<AnimalClassBase>();
         
         static AnimalClassUtilities()
         {
@@ -51,19 +51,19 @@ namespace Pawnmorph
 
 
             //save the pre and post order traversal orders for performance reasons 
-            PostorderTreeInternal = TreeUtilities.Postorder<IAnimalClass>(AnimalClassDefOf.Animal, c => c.Children);
-            PreorderTreeInternal = TreeUtilities.Preorder<IAnimalClass>(AnimalClassDefOf.Animal, c => c.Children).ToList();
+            PostorderTreeInternal = TreeUtilities.Postorder<AnimalClassBase>(AnimalClassDefOf.Animal, c => c.Children);
+            PreorderTreeInternal = TreeUtilities.Preorder<AnimalClassBase>(AnimalClassDefOf.Animal, c => c.Children).ToList();
 
 
             string treeStr =
-                TreeUtilities.PrettyPrintTree<IAnimalClass>(AnimalClassDefOf.Animal, a => a.Children, a => ((Def) a).defName);
+                TreeUtilities.PrettyPrintTree<AnimalClassBase>(AnimalClassDefOf.Animal, a => a.Children, a => ((Def) a).defName);
 
             Log.Message(treeStr); //print a pretty tree c: 
         }
 
-        private static List<IAnimalClass> PreorderTreeInternal { get; }
+        private static List<AnimalClassBase> PreorderTreeInternal { get; }
 
-        private static List<IAnimalClass> PostorderTreeInternal { get; }
+        private static List<AnimalClassBase> PostorderTreeInternal { get; }
 
         /// <summary>
         /// Gets all mutation in this class 
@@ -99,7 +99,7 @@ namespace Pawnmorph
         ///     outDict
         /// </exception>
         public static void FillInfluenceDict([NotNull] List<Hediff_AddedMutation> mutations,
-                                             [NotNull] Dictionary<IAnimalClass, float> outDict)
+                                             [NotNull] Dictionary<AnimalClassBase, float> outDict)
         {
             if (mutations == null) throw new ArgumentNullException(nameof(mutations));
             if (outDict == null) throw new ArgumentNullException(nameof(outDict));
@@ -117,13 +117,13 @@ namespace Pawnmorph
             CalculateTrickledInfluence(outDict); //now all caches are set 
 
 
-            foreach (IAnimalClass animalClass in _pickedInfluencesCache) //now calculate the final values 
+            foreach (AnimalClassBase animalClass in _pickedInfluencesCache) //now calculate the final values 
                 outDict[animalClass] = _trickleCache.TryGetValue(animalClass) + outDict.TryGetValue(animalClass);
 
             _removeList.Clear(); //remove unneeded classes 
             _removeList.AddRange(outDict.Keys.Where(k => !_pickedInfluencesCache
                                                             .Contains(k))); //remove everything from the dict that was not picked 
-            foreach (IAnimalClass animalClass in _removeList) outDict.Remove(animalClass);
+            foreach (AnimalClassBase animalClass in _removeList) outDict.Remove(animalClass);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Pawnmorph
         /// <param name="classDef">The class definition.</param>
         /// <returns></returns>
         [NotNull]
-        public static IEnumerable<MorphDef> GetAllMorphsInClass([NotNull] this IAnimalClass classDef)
+        public static IEnumerable<MorphDef> GetAllMorphsInClass([NotNull] this AnimalClassBase classDef)
         {
             if (classDef == null) throw new ArgumentNullException(nameof(classDef));
            
@@ -156,14 +156,14 @@ namespace Pawnmorph
         /// </summary>
         /// here we iterate over the classification tree in postorder, accumulating the influence points upward
         /// <param name="initialDict">The initial dictionary.</param>
-        private static void CalculateAccumulatedInfluence([NotNull] Dictionary<IAnimalClass, float> initialDict)
+        private static void CalculateAccumulatedInfluence([NotNull] Dictionary<AnimalClassBase, float> initialDict)
         {
             _pickedInfluencesCache.Clear();
             _accumInfluenceCache.Clear();
-            foreach (IAnimalClass animalClass in PostorderTreeInternal)
+            foreach (AnimalClassBase animalClass in PostorderTreeInternal)
             {
                 float accum = initialDict.TryGetValue(animalClass);
-                foreach (IAnimalClass child in animalClass.Children)
+                foreach (AnimalClassBase child in animalClass.Children)
                     accum += _accumInfluenceCache[child]; //add in the child's accumulated influence 
 
                 _accumInfluenceCache[animalClass] = accum;
@@ -176,20 +176,20 @@ namespace Pawnmorph
         /// now iterate over the classification tree in preorder, bringing down accumulated influence from parent to highest influence child 
         /// also fill the _pickedInfluencesCache with nodes with non zero influence and no child nodes with non zero influence
         /// <param name="initialDict">The initial dictionary.</param>
-        private static void CalculateTrickledInfluence([NotNull] Dictionary<IAnimalClass, float> initialDict)
+        private static void CalculateTrickledInfluence([NotNull] Dictionary<AnimalClassBase, float> initialDict)
         {
             _pickedInfluencesCache.Clear();
             _trickleCache.Clear();
-            foreach (IAnimalClass animalClass in PreorderTreeInternal)
+            foreach (AnimalClassBase animalClass in PreorderTreeInternal)
             {
-                IAnimalClass hChild = null;
+                AnimalClassBase hChild = null;
                 float maxInfluence = 0;
                 float trickleDownAmount = initialDict.TryGetValue(animalClass);
                 if (animalClass.ParentClass != null)
                     trickleDownAmount +=
                         _trickleCache.TryGetValue(animalClass); //add in any amount the parent chose to give this node 
 
-                foreach (IAnimalClass child in animalClass.Children)
+                foreach (AnimalClassBase child in animalClass.Children)
                 {
                     float cInf = initialDict.TryGetValue(child) + _accumInfluenceCache[child];
                     if (cInf > maxInfluence)
