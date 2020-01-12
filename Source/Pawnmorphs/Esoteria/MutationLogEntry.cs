@@ -47,6 +47,19 @@ namespace Pawnmorph
             _pawn = pawn;
             _mutationDef = mutationDef;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="mutatedParts">The mutated parts.</param>
+        public MutationLogEntry(Pawn pawn, HediffDef mutationDef, params BodyPartDef[] mutatedParts)
+        {
+            _mutatedRecords = mutatedParts.ToList();
+            _pawn = pawn;
+            _mutationDef = mutationDef; 
+        }
         /// <summary>
         /// true if this log is about the given thing.
         /// </summary>

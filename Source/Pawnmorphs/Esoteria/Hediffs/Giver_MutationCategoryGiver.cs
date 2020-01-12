@@ -38,44 +38,71 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public float mtbUnits = 60000f;
 
-        private List<HediffGiver_Mutation> _mutations;
+        private List<HediffGiver_Mutation> _mutationsGivers;
 
-        [NotNull, Obsolete]
-        private List<HediffGiver_Mutation> Mutations
+        private List<MutationDef> _mutations;
+
+        [NotNull]
+        private List<MutationDef> Mutations
         {
             get
             {
                 if (_mutations == null)
                 {
+                    _mutations = new List<MutationDef>();
+                    foreach (MorphDef morphDef in morphCategories.SelectMany(m => m.AllMorphsInCategories))
+                    foreach (MutationDef mutation in morphDef.AllAssociatedMutations)
+                        if (!_mutations.Contains(mutation))
+                            _mutations.Add(mutation); //add only distinct values 
+
+                    foreach (MutationDef mutation in mutationCategories.SelectMany(m => m.AllMutations))
+                    {
+                        if (!_mutations.Contains(mutation))
+                            _mutations.Add(mutation); 
+                    }
+                }
+
+                return _mutations;
+            }
+        }
+
+        [NotNull]
+        [Obsolete]
+        private List<HediffGiver_Mutation> MutationsObs
+        {
+            get
+            {
+                if (_mutationsGivers == null)
+                {
                     var foundMutations = new HashSet<HediffDef>();
-                    _mutations = new List<HediffGiver_Mutation>();
+                    _mutationsGivers = new List<HediffGiver_Mutation>();
                     foreach (MorphCategoryDef morphCategoryDef in morphCategories)
                     foreach (HediffGiver_Mutation hediffGiverMutation in
                         morphCategoryDef.AllMorphsInCategories.SelectMany(m => m.AllAssociatedAndAdjacentMutationGivers))
                     {
                         if (hediffGiverMutation.hediff == null) continue;
                         if (foundMutations.Contains(hediffGiverMutation.hediff)) continue;
-                        _mutations.Add(hediffGiverMutation);
+                        _mutationsGivers.Add(hediffGiverMutation);
                         foundMutations.Add(hediffGiverMutation.hediff);
                     }
 
-                    foreach (HediffDef hediffDef in mutationCategories.SelectMany(c => c.AllMutationsInCategory))
+                    foreach (HediffDef hediffDef in mutationCategories.SelectMany(c => c.AllMutationsInCategoryObs))
                     {
                         if (foundMutations.Contains(hediffDef)) continue;
 
-                        var mDef = hediffDef as MutationDef; 
+                        var mDef = hediffDef as MutationDef;
                         if (mDef == null)
                         {
                             Log.Error($"{hediffDef.defName} does not use {nameof(MutationDef)} and is not attached to a hediff giver");
                             continue;
                         }
 
-                        _mutations.Add(mDef.CreateMutationGiver(hediffDef));
+                        _mutationsGivers.Add(mDef.CreateMutationGiver(hediffDef));
                         foundMutations.Add(hediffDef);
                     }
                 }
 
-                return _mutations;
+                return _mutationsGivers;
             }
         }
 
@@ -99,21 +126,23 @@ namespace Pawnmorph.Hediffs
             if (MP.IsInMultiplayer) Rand.PopState();
         }
 
+       
         /// <summary>
         ///     Tries to apply this hediff giver
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="cause">The cause.</param>
         /// <param name="mutagen">The mutagen.</param>
-        public void TryApply(Pawn pawn, Hediff cause, MutagenDef mutagen)
+        public void TryApply(Pawn pawn, Hediff cause, [NotNull] MutagenDef mutagen)
         {
-            HediffGiver_Mutation mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
-            if (mut.TryApply(pawn, mutagen, null, cause))
+            if (mutagen == null) throw new ArgumentNullException(nameof(mutagen));
+            var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
+            if (MutationUtilities.AddMutation(pawn, mut))
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
                 if (cause.def.HasComp(typeof(HediffComp_Single))) pawn.health.RemoveHediff(cause);
-
-                if (mut.tale != null) TaleRecorder.RecordTale(mut.tale, pawn);
+                mutagen.TryApplyAspects(pawn); 
+                if (mut.mutationTale != null) TaleRecorder.RecordTale(mut.mutationTale, pawn);
             }
         }
     }

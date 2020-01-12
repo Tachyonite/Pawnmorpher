@@ -26,7 +26,7 @@ namespace Pawnmorph
         [NotNull] private static readonly Dictionary<IAnimalClass, float> _trickleCache = new Dictionary<IAnimalClass, float>();
         [NotNull] private static readonly List<IAnimalClass> _pickedInfluencesCache = new List<IAnimalClass>();
         [NotNull] private static readonly List<IAnimalClass> _removeList = new List<IAnimalClass>();
-
+        
         static AnimalClassUtilities()
         {
             foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
@@ -104,17 +104,25 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="classDef">The class definition.</param>
         /// <returns></returns>
-        public static IEnumerable<MorphDef> GetAllMorphsInClass([NotNull] this AnimalClassDef classDef)
+        [NotNull]
+        public static IEnumerable<MorphDef> GetAllMorphsInClass([NotNull] this IAnimalClass classDef)
         {
-            if (_morphsUnderCache.TryGetValue(classDef, out List<MorphDef> morphs))
-                return morphs;
-            morphs = new List<MorphDef>();
-            foreach (AnimalClassDef animalClassDef in TreeUtilities.Preorder(classDef, cl => cl.SubClasses))
-                morphs.AddRange(animalClassDef.Morphs);
+            if (classDef == null) throw new ArgumentNullException(nameof(classDef));
+           
+                if (_morphsUnderCache.TryGetValue(classDef, out List<MorphDef> morphs))
+                    return morphs;
+                morphs = new List<MorphDef>();
 
-            _morphsUnderCache[classDef] = morphs;
-            return morphs;
+                var preorder = TreeUtilities.Preorder(classDef, c => c.Children);
+                foreach (MorphDef morphDef in preorder.OfType<MorphDef>())
+                {
+                    morphs.Add(morphDef);
+                }
+                _morphsUnderCache[classDef] = morphs;
+                return morphs;
         }
+
+
 
         /// <summary>
         ///     Calculates the accumulated influence.

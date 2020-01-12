@@ -84,53 +84,66 @@ namespace Pawnmorph.Factions
         private static void ApplyMutations([NotNull] Pawn pawn, bool canApplyRestricted, bool setAtMaxStage,
                                            [NotNull] MorphPawnKindExtension kindExtension)
         {
-            List<HediffGiver_Mutation> givers;
+            List<MutationDef> mutations;
             var addedPartsSet = new HashSet<BodyPartDef>();
             if (!canApplyRestricted) canApplyRestricted = pawn.CanReceiveRareMutations();
 
 
             if (canApplyRestricted)
-                givers = kindExtension.GetRandomMutationGivers(pawn.thingIDNumber).ToList();
+                mutations = kindExtension.GetRandomMutations(pawn.thingIDNumber).ToList();
             else
-                givers = kindExtension.GetRandomMutationGivers(pawn.thingIDNumber)
-                                      .Where(g => (g.hediff as MutationDef)?.IsRestricted
-                                               ?? false) //only keep the unrestricted mutations 
-                                      .ToList();
+                mutations = kindExtension.GetRandomMutations(pawn.thingIDNumber)
+                                         .Where(g => !g.IsRestricted) //only keep the unrestricted mutations 
+                                         .ToList();
 
-            var toGive = new List<HediffGiver_Mutation>();
-            List<Hediff> allAdded = setAtMaxStage ? new List<Hediff>() : null;
-            int toGiveCount = kindExtension.hediffRange.RandomInRange;
-            int max = Mathf.Min(givers.Count, toGiveCount);
+            var toGive = new List<MutationDef>();
+            var addedList = new List<BodyPartRecord>();
+
+            int toGiveCount = kindExtension.hediffRange.RandomInRange; //get a random number of mutations to add
+            int max = Mathf.Min(mutations.Count, toGiveCount);
             var i = 0;
             while (i < max)
             {
-                if (givers.Count == 0) break;
+                if (mutations.Count == 0) break;
                 while (true)
                 {
-                    if (givers.Count == 0) break;
-                    int rI = Rand.Range(0, givers.Count);
-                    HediffGiver_Mutation mGiver = givers[rI];
+                    if (mutations.Count == 0) break;
+                    int rI = Rand.Range(0, mutations.Count);
+                    MutationDef mGiver = mutations[rI];
 
-                    givers.RemoveAt(rI); //remove the entry so we don't pull duplicates 
-                    if (mGiver.GetPartsToAddTo().Any(p => p != null && addedPartsSet.Contains(p))
+                    mutations.RemoveAt(rI); //remove the entry so we don't pull duplicates 
+                    if (mGiver.parts.Any(p => p != null && addedPartsSet.Contains(p))
                     ) //make sure its for a part we haven't encountered yet
                         continue;
 
-                    foreach (BodyPartDef part in mGiver.GetPartsToAddTo()) addedPartsSet.Add(part);
+                    foreach (BodyPartDef part in mGiver.parts) addedPartsSet.Add(part);
                     toGive.Add(mGiver);
-                    i += Mathf.Min(1, mGiver.countToAffect); //make sure we count the number of mutations given correctly 
+                    i += Mathf.Min(1, mGiver.parts.Count); //make sure we count the number of mutations given correctly 
                     break;
                 }
             }
 
-            foreach (HediffGiver_Mutation giver in toGive)
+            foreach (MutationDef giver in toGive)
             {
-                giver.ClearOverlappingHediffs(pawn); // make sure to remove any overlapping hediffs added during a different stage 
-                giver.TryApply(pawn, MutagenDefOf.defaultMutagen, allAdded, addLogEntry: false);
+                giver.ClearOverlappingMutations(pawn); // make sure to remove any overlapping hediffs added during a different stage 
+
+                MutationUtilities.AddMutation(pawn, giver, int.MaxValue, addedList,
+                                              MutationUtilities.AncillaryMutationEffects.None);
             }
 
             if (setAtMaxStage)
-                foreach (Hediff_AddedMutation hediff in allAdded.OfType<Hediff_AddedMutation>())
+            {
+                var addedMutations = new List<Hediff_AddedMutation>();
+                List<Hediff_AddedMutation> allMutationsOnPawn =
+                    pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().ToList(); //save these 
+                foreach (BodyPartRecord bodyPartRecord in addedList) //get a list of all mutations we just added 
+                foreach (Hediff_AddedMutation mutation in allMutationsOnPawn)
+                    if (mutation.Part == bodyPartRecord && toGive.Contains(mutation.def as MutationDef))
+                        if (!addedMutations.Contains(mutation))
+                            addedMutations.Add(mutation);
+
+
+                foreach (Hediff_AddedMutation hediff in addedMutations)
                 {
                     if (hediff.pawn == null) continue; //sometimes the hediffs are removed by other mutations 
 
@@ -149,6 +162,7 @@ namespace Pawnmorph.Factions
                     float severity = lastStage.minSeverity + 0.01f;
                     hediff.Severity = severity;
                 }
+            }
 
 
             pawn.CheckRace(false); //don't apply missing mutations to avoid giving restricted mutations and to respect the limit

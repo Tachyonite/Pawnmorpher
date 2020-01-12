@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -97,7 +98,7 @@ namespace Pawnmorph
                 Cure(hediff_Injury2);
 
                 if (hediff_Injury2.Part != null)
-                    AddMutationToPart(hediff_Injury2.Part, usedBy, usedBy.GetMutationTracker()?.HighestMorphInfluence, mutagen:mutagen); 
+                    AddMutationToPart(hediff_Injury2.Part, usedBy, usedBy.GetMutationTracker()?.HighestInfluence, mutagen:mutagen); 
 
 
                 return;
@@ -175,28 +176,23 @@ namespace Pawnmorph
         }
 
         /// <summary> Add mutations to the given part. </summary>
-        private void AddMutationToPart(BodyPartRecord record, [NotNull] Pawn pawn, MorphDef morph = null, bool recursive = false, MutagenDef mutagen=null)
+        private void AddMutationToPart(BodyPartRecord record, [NotNull] Pawn pawn, IAnimalClass aClass = null, bool recursive = false, MutagenDef mutagen=null)
         {
-            HediffDef mutation; 
-            if (morph != null)
-            {
-                mutation = morph.GetMutationForPart(record.def).RandomElementWithFallback();
-            }
+            MutationDef mutation;
+            if (aClass != null)
+                mutation = aClass?.GetAllMorphsInClass()
+                                  .SelectMany(m => m.GetMutationForPart(record.def))
+                                  .RandomElementWithFallback();
             else
-            {
-                mutation = MutationUtilities.GetMutationsByPart(record.def).RandomElementWithFallback(); 
-            }
+                mutation = MutationUtilities.GetMutationsByPart(record.def).RandomElementWithFallback();
 
-            if (mutation != null)
-            {
-                MutationUtilities.AddMutation(pawn, mutation, record); 
-            }
-            
+            if (mutation != null) MutationUtilities.AddMutation(pawn, mutation, record);
+
             mutagen?.TryApplyAspects(pawn); 
 
             if (recursive) // Recursively add mutations to child parts.
                 foreach (BodyPartRecord cPart in record.GetDirectChildParts())
-                    AddMutationToPart(cPart, pawn, morph, true, mutagen);
+                    AddMutationToPart(cPart, pawn, aClass, true, mutagen);
         }
 
         private bool CanEverKill(Hediff hediff)
@@ -237,7 +233,7 @@ namespace Pawnmorph
             pawn.health.RestorePart(part);
             // Add mutations.
 
-            AddMutationToPart(part, pawn, pawn.GetMutationTracker()?.HighestMorphInfluence, true, parent.def.GetModExtension<MutagenExtension>()?.mutagen);
+            AddMutationToPart(part, pawn, pawn.GetMutationTracker()?.HighestInfluence, true, parent.def.GetModExtension<MutagenExtension>()?.mutagen);
 
             Messages.Message("MessageBodyPartCuredByItem".Translate(part.LabelCap), pawn, MessageTypeDefOf.PositiveEvent);
         }

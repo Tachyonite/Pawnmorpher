@@ -6,6 +6,7 @@ using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -190,21 +191,18 @@ namespace Pawnmorph.DebugUtils
             if (pawn == null) return;
 
 
-            IEnumerable<HediffGiver_Mutation> mutations = morph?.AllAssociatedAndAdjacentMutationGivers;
+            var mutations = morph?.AllAssociatedMutations;
             if (mutations == null)
-                mutations = DefDatabase<HediffDef>.AllDefs
-                                                  .Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass))
-                                                  .SelectMany(d => d.GetAllHediffGivers())
-                                                  .OfType<HediffGiver_Mutation>();
+                mutations = DefDatabase<MutationDef>.AllDefs;
 
-            bool CanReceiveGiver(HediffGiver_Mutation mutation)
+            bool CanReceiveGiver(MutationDef mutation)
             {
-                IEnumerable<Hediff> hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation.hediff);
+                IEnumerable<Hediff> hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation);
 
-                return hediffs.Count() < mutation.countToAffect;
+                return hediffs.Count() < mutation.parts.Count;
             }
 
-            List<HediffGiver_Mutation> mutList = mutations.Where(CanReceiveGiver).ToList();
+            var mutList = mutations.Where(CanReceiveGiver).ToList();
             if (mutList.Count == 0) return;
 
             int num = Rand.Range(1, Mathf.Min(10, mutList.Count));
@@ -212,12 +210,11 @@ namespace Pawnmorph.DebugUtils
             var i = 0;
             while (i < num && mutList.Count > 0)
             {
-                HediffGiver_Mutation giver = mutList.RandElement();
+                var giver = mutList.RandElement();
                 mutList.Remove(giver);
 
-
-                giver.TryApply(pawn, MutagenDefOf.defaultMutagen);
-
+                MutationUtilities.AddMutation(pawn, giver); 
+                
                 i++;
             }
         }

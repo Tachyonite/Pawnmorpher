@@ -62,7 +62,7 @@ namespace Pawnmorph
         /// <summary> Any mutations indirectly associated with this morph (they share a TF hediff with an associated mutation).</summary>
         private List<HediffGiver_Mutation> _adjacentMutationGivers;
 
-        [Unsaved] private Dictionary<BodyPartDef, List<HediffDef>> _mutationsByParts;
+        [Unsaved] private Dictionary<BodyPartDef, List<MutationDef>> _mutationsByParts;
 
         [Unsaved] private List<MutationDef> _allAssociatedMutations;
 
@@ -181,29 +181,29 @@ namespace Pawnmorph
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">partDef</exception>
         [NotNull]
-        public IEnumerable<HediffDef> GetMutationForPart([NotNull] BodyPartDef partDef)
+        public IEnumerable<MutationDef> GetMutationForPart([NotNull] BodyPartDef partDef)
         {
             if (partDef == null) throw new ArgumentNullException(nameof(partDef));
             if (_mutationsByParts == null)
             {
-                _mutationsByParts = new Dictionary<BodyPartDef, List<HediffDef>>();
+                _mutationsByParts = new Dictionary<BodyPartDef, List<MutationDef>>();
                 foreach (var mutation in AllAssociatedMutations) //build the lookup dict here 
                 foreach (BodyPartDef part in mutation.parts) //gets a list of all parts this mutation affects 
                 {
-                    List<HediffDef> lst;
+                    List<MutationDef> lst;
                     if (_mutationsByParts.TryGetValue(part, out lst))
                     {
                         lst.Add(mutation);
                     }
                     else
                     {
-                        lst = new List<HediffDef> {mutation};
+                        lst = new List<MutationDef> {mutation};
                         _mutationsByParts[part] = lst;
                     }
                 }
             }
 
-            return _mutationsByParts.TryGetValue(partDef) ?? Enumerable.Empty<HediffDef>();
+            return _mutationsByParts.TryGetValue(partDef) ?? Enumerable.Empty<MutationDef>();
         }
 
 
@@ -271,7 +271,12 @@ namespace Pawnmorph
         public bool IsAnAssociatedMutation([NotNull] Hediff hediff)
         {
             if (hediff?.def == null) throw new ArgumentNullException(nameof(hediff));
-            return IsAnAssociatedMutation(hediff.def);
+            if (hediff is Hediff_AddedMutation mutation)
+            {
+                return AllAssociatedMutations.Contains(mutation.def as MutationDef); 
+            }
+
+            return false; 
         }
 
         /// <summary>

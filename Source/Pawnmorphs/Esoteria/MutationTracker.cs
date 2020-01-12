@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
@@ -71,8 +72,9 @@ namespace Pawnmorph
         public IAnimalClass HighestInfluence { get; private set; }
 
         /// <summary> All mutations the pawn has. </summary>
+        [NotNull]
         public IEnumerable<Hediff_AddedMutation> AllMutations =>
-            _mutationList;
+            _mutationList.MakeSafe();
 
         /// <summary>
         ///     Gets the pawn this is tracking mutations for.

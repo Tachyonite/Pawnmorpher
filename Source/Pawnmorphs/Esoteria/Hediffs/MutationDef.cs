@@ -170,4 +170,7 @@ namespace Pawnmorph.Hediffs
             return ((IAnimalClass) morph).Contains(InternalInfluence);
         }
     }
+
+  
+
 }
