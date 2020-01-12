@@ -647,6 +647,16 @@
 							<defName>EtherLeopardTail</defName>
 							<label>leopard tail</label>
 							<description>A long, spotted tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+							<stages>
+								<li>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>0.01</offset>
+										</li>
+									</capMods>
+								</li>
+							</stages>
 						</HediffDef>
 						
 						<!-- Injector -->
@@ -703,6 +713,13 @@
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RandomCombatTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<value>
+						<li>PawnmorphLeopardTF</li>
+						<li>PawnmorphSnepTF</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RandomFelineTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
 					<value>
 						<li>PawnmorphLeopardTF</li>
 						<li>PawnmorphSnepTF</li>
