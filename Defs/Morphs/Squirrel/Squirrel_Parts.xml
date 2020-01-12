@@ -8,7 +8,7 @@
 		<label>sciurine muzzle</label>
 		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth.</description>
 		<initialSeverity>0</initialSeverity>
-		<parts> 
+		<parts>
 			<li>Jaw</li>
 		</parts>
 		<stages>
@@ -59,17 +59,10 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Jaw</li>
-				</parts>
-				<countToAffect>1</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
+		<mutationTale>GrewMuzzleMisc</mutationTale>
+		<categories>
+			<li>Major</li>
+		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
@@ -84,17 +77,10 @@
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Ear</li>
-				</parts>
-				<countToAffect>2</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
+		<mutationTale>EarsChangedMisc</mutationTale>
+		<categories>
+			<li>Major</li>
+		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
@@ -117,16 +103,9 @@
 				</statOffsets>
 			</li>
 		</stages>
-		<modExtensions>
-			<li Class="Pawnmorph.MutationHediffExtension">
-				<parts>
-					<li>Tail</li>
-				</parts>
-				<countToAffect>1</countToAffect>
-				<categories>
-					<li>Major</li>
-				</categories>
-			</li>
-		</modExtensions>
+		<mutationTale>GrewTail</mutationTale>
+		<categories>
+			<li>Major</li>
+		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

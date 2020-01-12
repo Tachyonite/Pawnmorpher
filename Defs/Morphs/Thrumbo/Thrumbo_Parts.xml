@@ -10,6 +10,7 @@
 		<parts>
 			<li>Jaw</li>
 		</parts>
+		<mutationTale>GrewThrumboMuzzle</mutationTale>
 		<stages>
 			<li>
 				<capMods>
@@ -63,6 +64,7 @@
 		<defName>EtherThrumboEar</defName>
 		<label>thrumbic</label>
 		<description>I didn't know thrumbos had ears, but [PAWN_nameDef] has put that question to rest. Yes, they do -- white-furred, rounded and beautiful.</description>
+		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Tail</li>
 		</parts>
@@ -77,6 +79,7 @@
 		<defName>EtherThrumboTail</defName>
 		<label>thrumbo tail</label>
 		<description>A fluffy thrumbo tail, coated in supple, sleek fur.</description>
+		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
 		</parts>
@@ -99,6 +102,7 @@
 		<parts>
 			<li>Skull</li>
 		</parts>
+		<mutationTale>GrewThrumboHorn</mutationTale>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
