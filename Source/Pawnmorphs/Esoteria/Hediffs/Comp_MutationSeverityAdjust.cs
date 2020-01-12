@@ -79,8 +79,12 @@ namespace Pawnmorph.Hediffs
                     {
                         Comp_MutationSeverityAdjust sevComp = allSimilarMutation.SeverityAdjust;
                         if (sevComp != null)
+                        {
                             sevComp._halted =
                                 value; //use the private variable so we don't trigger an infinite loop of comps setting each other
+                            allSimilarMutation.Severity = parent.Severity; //make sure they have the same severity to 
+
+                        }
                     }
 
                     _halted = value;
