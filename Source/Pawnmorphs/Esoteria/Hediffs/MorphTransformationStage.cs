@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HugsLib.Utils;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -22,6 +23,12 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         [UsedImplicitly]
         public MorphDef morph;
+
+        /// <summary>
+        /// optional black list 
+        /// </summary>
+        [NotNull] 
+        public List<MutationDef> blackList = new List<MutationDef>(); 
 
         [Unsaved] private List<MutationEntry> _entries;
 
@@ -53,6 +60,7 @@ namespace Pawnmorph.Hediffs
                     _entries = new List<MutationEntry>(); 
                     foreach (MutationDef mutation in morph.AllAssociatedMutations)
                     {
+                        if(blackList.Contains(mutation)) continue;
                         _entries.Add(new MutationEntry
                         {
                             mutation = mutation
