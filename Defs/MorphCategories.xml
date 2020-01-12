@@ -46,8 +46,4 @@
 	<Pawnmorph.MorphCategoryDef>
 		<defName>Chimera</defName>
 	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Rodent</defName>
-	</Pawnmorph.MorphCategoryDef>
 </Defs>

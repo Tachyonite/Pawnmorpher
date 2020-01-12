@@ -134,7 +134,7 @@ namespace Pawnmorph
             {
                 if (Rand.Value < MUTATE_IN_RADIUS_CHANCE)
                 {
-                    var num = 0.028758334f/12;
+                    var num = 0.028758334f/8;
                     num *= pawn.GetMutagenicBuildupMultiplier();
                     if (num != 0f)
                     {

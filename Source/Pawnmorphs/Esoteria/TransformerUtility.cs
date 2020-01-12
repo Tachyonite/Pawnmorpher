@@ -45,8 +45,6 @@ namespace Pawnmorph
 
         private const float APPAREL_PDIFF_OFFSET = 0.15f;
 
-        private const int MAX_APPAREL_DAMAGE_PRODUCT_PER_APPAREL = 50; 
-
         /// <summary>
         /// applies damage to all apparel the pawn is wearing based on
         /// </summary>
@@ -87,14 +85,14 @@ namespace Pawnmorph
                 Mathf.Clamp(percentDiff, 0,
                             MAX_APPAREL_PDIFF); //clamp pDiff between [0, Max], if they shrink don't damage apparel  
             percentDamage /= MAX_APPAREL_PDIFF; //normalize the percentDifference to get a percentage to damage apparel by  
-            int totalStuffProduced=0; 
+            var totalDamage = 0;
+
             foreach (Apparel apparel in cachedApparel)
             {
                 int damage = Mathf.CeilToInt(apparel.MaxHitPoints * percentDamage * damageProps.apparelDamageMultiplier)
                            + damageProps.apparelDamageOffset;
                 int newHitPoints = Mathf.Max(apparel.HitPoints - damage, 0);
-                var damageDone = apparel.HitPoints - newHitPoints; //save the actual damage done 
-                
+                totalDamage += apparel.HitPoints - newHitPoints; //save the actual damage done 
                 apparel.HitPoints = newHitPoints;
                 if (apparel.HitPoints == 0)
                 {
@@ -102,15 +100,13 @@ namespace Pawnmorph
                     apparelTracker.Notify_ApparelRemoved(apparel); 
                     apparel.Destroy();
                 }
-
-                var stuffProduced = Mathf.FloorToInt(damageDone * damageProps.spawnedBiproductMult);
-                totalStuffProduced += Mathf.Min(stuffProduced, MAX_APPAREL_DAMAGE_PRODUCT_PER_APPAREL);
             }
 
             if (damageProps.biproduct != null && damageProps.spawnedBiproductMult > EPSILON)
             {
+                int amountToSpawn = Mathf.RoundToInt(totalDamage * damageProps.spawnedBiproductMult);
                 Thing thing = ThingMaker.MakeThing(damageProps.biproduct);
-                thing.stackCount = totalStuffProduced;
+                thing.stackCount = amountToSpawn;
 
                 if (pawn.Spawned)
                 {

@@ -122,18 +122,5 @@ namespace Pawnmorph
             return def?.mutagenSource ??  defExt?.mutagen ??  MutagenDefOf.defaultMutagen;
             // check for a custom def, then for the extension, then return the default 
         }
-        /// <summary> Gets the mutagen associated with this tf hediff. </summary>
-        /// <param name="morphTf"> The morph tf. </param>
-        /// <exception cref="ArgumentNullException"> morphTf is null. </exception>
-        [NotNull]
-        public static MutagenDef GetMutagenDef([NotNull] this HediffDef morphTf)
-        {
-            if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
-
-            var def = morphTf as Def_MorphTf;
-            var defExt = morphTf.GetModExtension<MutagenExtension>();
-            return def?.mutagenSource ?? defExt?.mutagen ?? MutagenDefOf.defaultMutagen;
-            // check for a custom def, then for the extension, then return the default 
-        }
     }
 }

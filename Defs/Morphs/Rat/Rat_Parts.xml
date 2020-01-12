@@ -1,15 +1,16 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="RatPart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>RatMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
+<Defs>
+	<HediffDef Name="RatPart" ParentName="PawnmorphPart" Abstract="True">
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+				<morph>RatMorph</morph>
+			</li>
+		</comps>
+	</HediffDef>
+  
+	<HediffDef ParentName="RatPart">
 		<defName>EtherRatSnout</defName>
 		<label>rodent snout</label>
 		<description>A ratty snout graces [PAWN_nameDef]'s face, long teeth for chewing through anything.</description>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -57,29 +58,23 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
+	<HediffDef ParentName="RatPart">
 		<defName>EtherRatEar</defName>
 		<label>ratty</label>
 		<description>Grey-furred, rounded ears listen carefully for predators.</description>
-		<parts>
-			<li>Ear</li>
-		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
+	</HediffDef>
+	
+	<HediffDef ParentName="RatPart">
 		<defName>EtherRatTail</defName>
 		<label>hairless tail</label>
 		<description>A ratty tail, hairless, long and snaking.</description>
-		<parts>
-			<li>Tail</li>
-		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -90,26 +85,23 @@
 				</capMods>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
+	</HediffDef>
+	
+	<HediffDef ParentName="RatPart">
 		<defName>EtherDextrousPawHand</defName>
 		<label>dextrous paw</label>
 		<description>Thankfully, this more manipulative paw allows [PAWN_nameDef] to keep their thumbs.</description>
-		<initialSeverity>0</initialSeverity>
-		<parts>
-			<li>Hand</li>
-		</parts>
+    <initialSeverity>0</initialSeverity>
 		<stages>
 			<li>
 				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
-				<label>unfamiliar</label>
-			</li>
-			<li>
-				<minSeverity>1</minSeverity>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<label>adapted</label>
-			</li>
+        <label>unfamiliar</label>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <partEfficiencyOffset>0.1</partEfficiencyOffset>
+        <label>adapted</label>
+      </li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
@@ -130,15 +122,12 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
+	</HediffDef>
+	
+	<HediffDef ParentName="RatPart">
 		<defName>EtherRatFoot</defName>
 		<label>rodent</label>
 		<description>[PAWN_nameDef]'s feet are dextrous and elongated, but hairless and pale.</description>
-		<parts>
-			<li>Foot</li>
-		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -149,5 +138,5 @@
 				</capMods>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 </Defs>

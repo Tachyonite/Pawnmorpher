@@ -1,16 +1,17 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="FoxPart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>FoxMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
+<Defs>
+	<HediffDef Name="FoxPart" ParentName="PawnmorphPart" Abstract="True">
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+				<morph>FoxMorph</morph>
+			</li>
+		</comps>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
+	<HediffDef ParentName="FoxPart">
 		<defName>EtherFoxMuzzle</defName>
 		<label>vulpine muzzle</label>
 		<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
 		<initialSeverity>0</initialSeverity>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 		<stages>
 			<li>
 				<label>new</label>
@@ -69,15 +70,12 @@
 				</categories>
 			</li>
 		</modExtensions>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
+	<HediffDef ParentName="FoxPart">
 		<defName>EtherFoxEar</defName>
 		<description>Big fuzzy triangles crown [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're very sensitive, so please don't shout.</description>
 		<label>vulpine</label>
-		<parts>
-			<li>Ear</li>
-		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.3</partEfficiencyOffset>
@@ -94,15 +92,12 @@
 				</categories>
 			</li>
 		</modExtensions>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
+	<HediffDef ParentName="FoxPart">
 		<defName>EtherFluffyTail</defName>
 		<label>fluffy tail</label>
 		<description>A wonderfully fluffy fox tail drapes from [PAWN_nameDef]'s spine. Was that a small wag just then?</description>
-		<parts>
-			<li>Tail</li>
-		</parts>
 		<stages>
 			<li>
 				<statOffsets>
@@ -127,15 +122,12 @@
 				</categories>
 			</li>
 		</modExtensions>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
+	<HediffDef ParentName="FoxPart">
 		<defName>EtherFoxEye</defName>
 		<label>vulpine eye</label>
 		<description>Bright, foxy eyes are now [PAWN_nameDef]'s. [PAWN_pronoun] will see better, and charm people with their exotic appearance.</description>
-		<parts>
-			<li>Eye</li>
-		</parts>
 		<stages>
 			<li>
 				<statOffsets>
@@ -160,5 +152,5 @@
 				</categories>
 			</li>
 		</modExtensions>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 </Defs>

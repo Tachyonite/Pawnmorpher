@@ -1,16 +1,16 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="ThrumboPart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>ThrumboMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+<Defs>
+	<HediffDef Name="ThrumboPart" ParentName="PawnmorphPart" Abstract="True">
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+				<morph>ThrumboMorph</morph>
+			</li>
+		</comps>
+	</HediffDef>
+  
+	<HediffDef ParentName="ThrumboPart">
 		<defName>EtherThrumboSnout</defName>
 		<label>thrumbo snout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze.</description>
-		<parts>
-			<li>Jaw</li>
-		</parts>
-		<mutationTale>GrewThrumboMuzzle</mutationTale>
 		<stages>
 			<li>
 				<capMods>
@@ -58,31 +58,23 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+	</HediffDef>
+	
+	<HediffDef ParentName="ThrumboPart">
 		<defName>EtherThrumboEar</defName>
 		<label>thrumbic</label>
 		<description>I didn't know thrumbos had ears, but [PAWN_nameDef] has put that question to rest. Yes, they do -- white-furred, rounded and beautiful.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
-		<parts>
-			<li>Tail</li>
-		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.05</partEfficiencyOffset>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+	<HediffDef ParentName="ThrumboPart">
 		<defName>EtherThrumboTail</defName>
 		<label>thrumbo tail</label>
 		<description>A fluffy thrumbo tail, coated in supple, sleek fur.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<parts>
-			<li>Tail</li>
-		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -93,39 +85,35 @@
 				</capMods>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+	</HediffDef>
+	
+	<HediffDef ParentName="ThrumboPart">
 		<defName>EtherThrumboHorn</defName>
 		<label>thrumbohorn</label>
 		<description>A razor-sharp thrumbo horn decorates [PAWN_nameDef]'s head.</description>
-		<parts>
-			<li>Skull</li>
-		</parts>
-		<mutationTale>GrewThrumboHorn</mutationTale>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
-					<li>
-						<label>point</label>
-						<capacities>
-							<li>Scratch</li>
-							<li>Stab</li>
-						</capacities>
-						<power>28</power>
-						<cooldownTime>2.6</cooldownTime>
-					</li>
-					<li>
-						<label>base</label>
-						<capacities>
-							<li>Blunt</li>
-						</capacities>
-						<power>9</power>
-						<cooldownTime>2</cooldownTime>
-					</li>
+				  <li>
+					<label>point</label>
+					<capacities>
+					  <li>Scratch</li>
+					  <li>Stab</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>2.6</cooldownTime>
+				  </li>
+				  <li>
+					<label>base</label>
+					<capacities>
+					  <li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2</cooldownTime>
+				  </li>
 				</tools>
 			</li>
 		</comps>
 		<spawnThingOnRemoved>ThrumboHorn</spawnThingOnRemoved>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 </Defs>

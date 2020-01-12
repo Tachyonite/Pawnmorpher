@@ -4,7 +4,6 @@
 		<label>bearmorph</label>
 		<description>Bearmorphs are combat experts. Usually equipped with large claws, paws and maws, they are devastatingly dangerous up close. But they have a tender heart, and a soft spot for plush toys of the ursine variety.</description>
 		<race>Bear_Grizzly</race>
-		<classification>Ursidae</classification>
 		<categories>
 			<li>Combat</li>
 			<li>Ursine</li>

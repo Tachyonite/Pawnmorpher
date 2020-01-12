@@ -2,8 +2,7 @@
 // last updated 12/01/2019  8:55 AM
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -13,133 +12,96 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    ///     hediff comp that acts like severity per day but if affected by the 'Mutation Adaptability Stat'
+    /// hediff comp that acts like severity per day but if affected by the 'Mutation Adaptability Stat'
     /// </summary>
     /// <seealso cref="Pawnmorph.Utilities.HediffCompBase{T}" />
     public class Comp_MutationSeverityAdjust : HediffComp_SeverityPerDay
     {
-        private bool _halted;
+        private bool _halted; 
 
 
         [NotNull]
-        private CompProperties_MutationSeverityAdjust Props
+        CompProperties_MutationSeverityAdjust  Props
         {
             get
             {
                 try
                 {
-                    var p = (CompProperties_MutationSeverityAdjust) props;
+                    var p =  (CompProperties_MutationSeverityAdjust) props;
                     if (p == null)
                         throw new InvalidOperationException($"props on {parent.def.defName} on {Pawn.Name} has not props");
-                    return p;
+                    return p; 
                 }
                 catch (InvalidCastException e) //just incase the properties get miss assigned somehow 
                 {
-                    throw new
-                        InvalidCastException($"could not convert hediff comp props of type {props.GetType().Name} to {nameof(CompProperties_MutationSeverityAdjust)}",
-                                             e);
+                    throw new InvalidCastException($"could not convert hediff comp props of type {props.GetType().Name} to {nameof(CompProperties_MutationSeverityAdjust)}",e);
                 }
             }
         }
 
 
-        /// <summary>
-        ///     Gets the natural severity limit.
-        /// </summary>
-        /// this value is the value the attached hediff should reach if the pawn has had the mutation for an 'infinite' amount of time
-        /// <value>
-        ///     The natural severity limit.
-        /// </value>
-        public float NaturalSeverityLimit => Props.GetNaturalSeverityLimitFor(Pawn);
 
         /// <summary>
-        ///     called to save/load data for this comp.
+        /// Gets the natural severity limit.
+        /// </summary>
+        /// this value is the value the attached hediff should reach if the pawn has had the mutation for an 'infinite' amount of time 
+        /// <value>
+        /// The natural severity limit.
+        /// </value>
+        public float NaturalSeverityLimit
+        {
+            get { return Props.GetNaturalSeverityLimitFor(Pawn); }
+        }
+
+        /// <summary>
+        /// called to save/load data for this comp.
         /// </summary>
         public override void CompExposeData()
         {
             base.CompExposeData();
             Scribe_Values.Look(ref _halted, nameof(_halted));
-            Scribe_Values.Look(ref _curStageIndex, nameof(_curStageIndex));
+            Scribe_Values.Look(ref _curStageIndex, nameof(_curStageIndex)); 
         }
 
+        private int _curStageIndex=-1;
         /// <summary>
-        ///     Gets or sets a value indicating whether this <see cref="Comp_MutationSeverityAdjust" /> is halted.
-        /// </summary>
-        /// <value>
-        ///     <c>true</c> if halted; otherwise, <c>false</c>.
-        /// </value>
-        public bool Halted
-        {
-            get => _halted;
-            private set
-            {
-                if (_halted != value)
-                {
-                    foreach (Hediff_AddedMutation allSimilarMutation in GetAllSimilarMutations())
-                    {
-                        Comp_MutationSeverityAdjust sevComp = allSimilarMutation.SeverityAdjust;
-                        if (sevComp != null)
-                            sevComp._halted =
-                                value; //use the private variable so we don't trigger an infinite loop of comps setting each other
-                    }
-
-                    _halted = value;
-                }
-            }
-        }
-
-        [NotNull]
-        private IEnumerable<Hediff_AddedMutation> GetAllSimilarMutations()
-        {
-            List<Hediff> hediffSet = Pawn.health?.hediffSet?.hediffs;
-            foreach (Hediff_AddedMutation hediff in hediffSet.MakeSafe().OfType<Hediff_AddedMutation>())
-                if (hediff != parent && hediff.def == parent.def)
-                    yield return hediff;
-        }
-
-        private int _curStageIndex = -1;
-
-        /// <summary>
-        ///     called every tick
+        /// called every tick 
         /// </summary>
         /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
 
-            int sIndex = parent.CurStageIndex;
+            var sIndex = parent.CurStageIndex;
             if (sIndex != _curStageIndex)
             {
-                _curStageIndex = sIndex;
-                CheckIfHalted();
+                _curStageIndex = sIndex; 
+                CheckIfHalted(); 
             }
         }
 
         /// <summary>
-        ///     called when the parent is merged with a new hediff of the same type
+        /// called when the parent is merged with a new hediff of the same type 
         /// </summary>
         /// <param name="other">The other.</param>
         public override void CompPostMerged(Hediff other)
         {
             base.CompPostMerged(other);
-            Halted = false; //restart adjusting if halted 
+            _halted = false;  //restart adjusting if halted 
         }
+        const float EPSILON = 0.001f;
 
-        private const float EPSILON = 0.001f;
-
-        private float GetChanceMult()
+        float GetChanceMult()
         {
-            float sVal = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
+            var sVal = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
 
-            float r = MutationUtilities.MaxMutationAdaptabilityValue - MutationUtilities.MinMutationAdaptabilityValue;
-            sVal = Mathf.Abs(MutationUtilities.AverageMutationAdaptabilityValue - sVal)
-                 / r
-                 * 2; //converts the raw stat value to a value representing the distance the state 
+            var r = MutationUtilities.MaxMutationAdaptabilityValue - MutationUtilities.MinMutationAdaptabilityValue;
+            sVal = Mathf.Abs(MutationUtilities.AverageMutationAdaptabilityValue - sVal)/r*2; //converts the raw stat value to a value representing the distance the state 
             //is from the default value, normalized for the total range of the stat 
-            sVal -= r / 2; //shift the range of the modified stat value from [0,r/2] to [-r/2,0]
+            sVal -= r / 2;//shift the range of the modified stat value from [0,r/2] to [-r/2,0]
             sVal *= -2 / r; //shift the range again to [0,1], where a default stat value is 0, and either min or max is 0 
             sVal = Mathf.Max(sVal, 0); //make sure it doesn't go below zero, can happen if the default is not the center point of min and max 
-            return sVal;
+            return sVal; 
         }
 
         //disabled because it caused large amounts of lag, enable only if debugging 
@@ -162,59 +124,63 @@ namespace Pawnmorph.Hediffs
         {
             if (parent.CurStage is MutationStage mStage)
             {
-                float stopChance = mStage.stopChance * GetChanceMult();
-                if (Rand.Value < stopChance) Halted = true;
+                var stopChance = mStage.stopChance * GetChanceMult();
+                if (Rand.Value < stopChance)
+                {
+                    _halted = true; 
+                }
             }
+            else
+                return; 
         }
 
 
         /// <summary>
-        ///     get the change in severity per day
+        /// get the change in severity per day 
         /// </summary>
         /// <returns></returns>
         protected override float SeverityChangePerDay()
         {
-            if (Halted) return 0;
+            if (_halted) return 0; 
             float statValue = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
-            float maxSeverity = Mathf.Max(statValue + 1, 1);
-            float minSeverity = Mathf.Min(statValue, 0); //have the stat influence how high or low the severity can be 
-            float sMult = Props.statEffectMult * (statValue + 1);
+            float maxSeverity = Mathf.Max(statValue+1, 1);
+            float minSeverity = Mathf.Min(statValue,0); //have the stat influence how high or low the severity can be 
+            var sMult = Props.statEffectMult * (statValue+1);
 
             if (parent.Severity > maxSeverity) return 0;
-            if (parent.Severity < minSeverity) return 0;
+            if (parent.Severity < minSeverity) return 0; 
 
 
-            return base.SeverityChangePerDay() * sMult;
+            return base.SeverityChangePerDay() * sMult; 
         }
     }
 
     /// <summary>
-    ///     comp properties for mutation adjust hediff comp
+    /// comp properties for mutation adjust hediff comp 
     /// </summary>
     /// <seealso cref="Pawnmorph.Utilities.HediffCompPropertiesBase{T}" />
     public class CompProperties_MutationSeverityAdjust : HediffCompProperties_SeverityPerDay
     {
-        private const float EPSILON = 0.01f;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CompProperties_MutationSeverityAdjust"/> class.
+        /// </summary>
+        public CompProperties_MutationSeverityAdjust()
+        {
+            compClass = typeof(Comp_MutationSeverityAdjust); 
+        }
 
         /// <summary>
-        ///     The stat effect multiplier
+        /// The stat effect multiplier
         /// </summary>
         /// values less then 1 will make the mutation adaptability stat have less of an effect
         /// values greater then 1 will increase it's effect
         public float statEffectMult = 1;
 
+        private const float EPSILON = 0.01f;
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CompProperties_MutationSeverityAdjust" /> class.
+        /// Gets the natural severity limit for the given pawn
         /// </summary>
-        public CompProperties_MutationSeverityAdjust()
-        {
-            compClass = typeof(Comp_MutationSeverityAdjust);
-        }
-
-        /// <summary>
-        ///     Gets the natural severity limit for the given pawn
-        /// </summary>
-        /// this value is the value the attached hediff should reach if the pawn has had the mutation for an 'infinite' amount of time
+        /// this value is the value the attached hediff should reach if the pawn has had the mutation for an 'infinite' amount of time 
         /// <param name="pawn">The pawn.</param>
         /// <returns></returns>
         public float GetNaturalSeverityLimitFor([NotNull] Pawn pawn)
@@ -222,7 +188,7 @@ namespace Pawnmorph.Hediffs
             float sVal = pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
             float sMul = (sVal + 1) * statEffectMult;
             if (sMul < -EPSILON) return sVal;
-            if (sMul > EPSILON) return sVal + 1;
+            if (sMul > EPSILON) return sVal+1;
             return 0;
         }
     }

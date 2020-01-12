@@ -2,7 +2,7 @@
 	<ThingDef ParentName="SerumBase">
 		<defName>ReversionSyringe</defName>
 		<label>mutaserum, reverter</label>
-		<description>Can turn an animal back into a human, or removes all mutations from a humanoid pawn.</description>
+		<description>Can turn an animal back into a human, and removes all mutations from a humanoid pawn.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/Reversal</texPath>
 		</graphicData>

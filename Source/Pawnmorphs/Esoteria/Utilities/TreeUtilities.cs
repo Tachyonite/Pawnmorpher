@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using JetBrains.Annotations;
 using Verse;
 
@@ -23,28 +22,6 @@ namespace Pawnmorph.Utilities
         /// <returns></returns>
         [NotNull]
         public delegate IEnumerable<T> GetChildrenAction<T>([NotNull] T node);
-
-        /// <summary>
-        ///     traverse a tree using the postorder traversal
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="root">The root.</param>
-        /// <param name="getChildren">The get children.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        ///     root
-        ///     or
-        ///     getChildren
-        /// </exception>
-        public static List<T> Postorder<T>([NotNull] T root, [NotNull] GetChildrenAction<T> getChildren)
-        {
-            if (root == null) throw new ArgumentNullException(nameof(root));
-            if (getChildren == null) throw new ArgumentNullException(nameof(getChildren));
-
-            var outList = new List<T>();
-            PostorderWorker(root, getChildren, outList);
-            return outList;
-        }
 
         /// <summary>traverses the tree in preorder</summary>
         /// <typeparam name="T"></typeparam>
@@ -71,66 +48,22 @@ namespace Pawnmorph.Utilities
             }
         }
 
-
-        
-        /// <summary>
-        /// prints a pretty tree 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="root">The root.</param>
-        /// <param name="getChildren">The get children.</param>
-        /// <param name="toStringFunc">To string function.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        /// root
-        /// or
-        /// getChildren
-        /// </exception>
-        public static string PrettyPrintTree<T>([NotNull] T root, [NotNull] GetChildrenAction<T> getChildren,
-                                                Func<T, string> toStringFunc = null)
+        [NotNull]
+        private static List<BodyPartRecord> RandomizedChildren(BodyPartRecord record)
         {
-            if (root == null) throw new ArgumentNullException(nameof(root));
-            if (getChildren == null) throw new ArgumentNullException(nameof(getChildren));
-            toStringFunc = toStringFunc ?? ((T f) => f.ToString());
-            StringBuilder builder = new StringBuilder();
-            string indent = "";
-
-            PrettyPrintTreeWorker(root, getChildren, toStringFunc, builder, true, indent);
-            return builder.ToString(); 
+            List<BodyPartRecord> children = record.parts.MakeSafe().ToList();
+            children.Shuffle();
+            return children;
         }
 
-        static void PrettyPrintTreeWorker<T>([NotNull] T node, [NotNull] GetChildrenAction<T> getChildren,
-                                               [NotNull] Func<T, string> toStringFunc, StringBuilder builder, bool last, string indent)
-        {
-            builder.Append(indent);
-            if (last)
-            {
-                builder.Append("\\-");
-                indent += "  "; 
-            }
-            else
-            {
-                builder.Append("|-");
-                indent += "| "; 
-            }
-
-            builder.AppendLine(toStringFunc(node));
-
-            var lst = getChildren(node).MakeSafe().ToList();
-            for (int i = 0; i < lst.Count; i++)
-            {
-                var child = lst[i];
-                PrettyPrintTreeWorker<T>(child, getChildren, toStringFunc, builder, i == lst.Count - 1, indent); 
-            }
-        }
 
         /// <summary>add body part defs in to the given list in order of a 'randomized spread traversal' of the given body def</summary>
         /// <param name="bodyDef">The body definition.</param>
         /// <param name="outList">The out list.</param>
         /// <exception cref="ArgumentNullException">
-        ///     bodyDef
-        ///     or
-        ///     outList
+        /// bodyDef
+        /// or
+        /// outList
         /// </exception>
         public static void RandomizedSpreadOrder([NotNull] this BodyDef bodyDef, [NotNull] List<BodyPartRecord> outList)
         {
@@ -158,22 +91,6 @@ namespace Pawnmorph.Utilities
                 lastNode = curNode; //go up one level in the tree 
                 curNode = curNode.parent;
             }
-        }
-
-        private static void PostorderWorker<T>([NotNull] T node, [NotNull] GetChildrenAction<T> getChildren,
-                                               [NotNull] List<T> outList)
-        {
-            foreach (T child in getChildren(node).MakeSafe()) PostorderWorker(child, getChildren, outList);
-
-            outList.Add(node);
-        }
-
-        [NotNull]
-        private static List<BodyPartRecord> RandomizedChildren(BodyPartRecord record)
-        {
-            List<BodyPartRecord> children = record.parts.MakeSafe().ToList();
-            children.Shuffle();
-            return children;
         }
     }
 }

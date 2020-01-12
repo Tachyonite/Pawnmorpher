@@ -110,21 +110,14 @@ namespace Pawnmorph.Hediffs
         {
             if (giver == null) return false; 
             if (blackListDefs.Contains(giver.hediff)) return false;
-            if (giver.hediff is MutationDef comp)
+            var comp = giver.hediff.CompProps<CompProperties_MorphInfluence>();
+            if (comp != null)
             {
-                if (comp.classInfluence is MorphDef morph)
+                if (blackListMorphs.Contains(comp.morph)) return false;
+                foreach (var morphCategory in comp.morph.categories)
                 {
-                    if (blackListMorphs.Contains(morph)) return false;
-                    IEnumerable<MorphCategoryDef> morphCats = morph?.categories;
-                    foreach (var morphCategory in morphCats.MakeSafe())
-                    {
-                        if (blackListCategories.Contains(morphCategory)) return false;
-                    }
+                    if (blackListCategories.Contains(morphCategory)) return false;
                 }
-            }
-            else
-            {
-                Log.Warning($"{giver.hediff.defName} does not use {nameof(MutationDef)}! ");
             }
 
             return true; 

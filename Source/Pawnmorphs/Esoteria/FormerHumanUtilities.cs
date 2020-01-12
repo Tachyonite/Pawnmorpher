@@ -241,75 +241,6 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// The related wild former human letter
-        /// </summary>
-        public const string RELATED_WILD_FORMER_HUMAN_LETTER = "RelatedWildFormerHumanContent";
-        /// <summary>
-        /// The related wild former human letter label
-        /// </summary>
-        public const string RELATED_WILD_FORMER_HUMAN_LETTER_LABEL = "RelatedWildFormerHumanLabel";
-        /// <summary>
-        /// The related sold former human letter
-        /// </summary>
-        public const string RELATED_SOLD_FORMER_HUMAN_LETTER = "RelatedSoldFormerHumanContent";
-        /// <summary>
-        /// The related sold former human letter label
-        /// </summary>
-        public const string RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL = "RelatedSoldFormerHumanLabel";
-        /// <summary>
-        /// generates notification letters if the given former human is related to any colonists 
-        /// </summary>
-        /// <param name="formerHuman">The former human.</param>
-        /// <param name="letterContentID">The letter content identifier.</param>
-        /// <param name="letterLabelID">The letter label identifier.</param>
-        public static void NotifyRelatedPawnsFormerHuman([NotNull] Pawn formerHuman, string letterContentID, string letterLabelID)
-        {
-
-            var fRelation = formerHuman.relations;
-            if (fRelation == null) return;
-            var allPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners.MakeSafe();
-
-            foreach (Pawn pawn in allPawns)
-            {
-                if (pawn == formerHuman) continue;
-                var relation = pawn.GetMostImportantRelation(formerHuman);
-                if (relation != null)
-                {
-                    SendRelationLetter(pawn, formerHuman, relation,letterContentID, letterLabelID); 
-                }
-            }
-        }
-
-        
-        
-
-        private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman, [NotNull] PawnRelationDef relation,string letterContentID, string letterLabelID)
-        {
-            string relationLabel;
-
-            if (formerHuman.gender == Gender.Female && !string.IsNullOrEmpty(relation.labelFemale))
-            {
-                relationLabel = relation.labelFemale; 
-            }
-            else
-            {
-                relationLabel = relation.label;
-            }
-
-
-
-            var letterContent = letterContentID.Translate(formerHuman.Named("formerHuman"),
-                                                                           pawn.Named("relatedPawn"),
-                                                                           relationLabel.Named("relationship"));
-            var letterLabel = letterLabelID.Translate(formerHuman.Named("formerHuman"),
-                                                                               pawn.Named("relatedPawn"),
-                                                                               relationLabel.Named("relationship"));
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, formerHuman, formerHuman.HostFaction);
-
-        }
-
-
-        /// <summary>
         ///     Gets the break alert explanation for sapient animals .
         /// </summary>
         /// <value>
@@ -537,8 +468,7 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferRelations(original, animal);
             PawnTransferUtilities.TransferAspects(original, animal);
             PawnTransferUtilities.TransferSkills(original, animal);
-            PawnTransferUtilities.TransferTraits(original, animal, t => MutationTraits.Contains(t));
-            TryAssignBackstoryToTransformedPawn(animal, original); 
+            PawnTransferUtilities.TransferTraits(original, animal, t => MutationTraits.Contains(t)); 
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
             if (nC == null)
@@ -592,7 +522,6 @@ namespace Pawnmorph
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
-            TryAssignBackstoryToTransformedPawn(animal, lPawn); 
             PawnTransferUtilities.TransferSkills(lPawn, animal);
             PawnTransferUtilities.TransferRelations(lPawn, animal);
             PawnTransferUtilities.TransferTraits(lPawn,animal, t => MutationTraits.Contains(t));
@@ -789,10 +718,13 @@ namespace Pawnmorph
 
 
             BackstoryDef backstoryDef;
+            if (pawn.def.defName.ToLower().StartsWith("chao")
+            ) //TODO mod extension or something to add specific backgrounds for different animals 
+                backstoryDef = BackstoryDefOf.FormerHumanChaomorph;
+            else
+                backstoryDef = BackstoryDefOf.FormerHumanNormal;
 
-            var ext = pawn.def.GetModExtension<FormerHumanSettings>();
-
-            backstoryDef = ext?.backstory ?? BackstoryDefOf.FormerHumanNormal;
+            Log.Message($"adding {backstoryDef.defName} to {pawn.Name}");
 
             pawn.story.adulthood = backstoryDef.backstory;
         }
@@ -919,19 +851,22 @@ namespace Pawnmorph
             if (sapientAnimal == null) throw new ArgumentNullException(nameof(sapientAnimal));
             if (workSettings == null) throw new ArgumentNullException(nameof(workSettings));
             var formerHumanExt = sapientAnimal.def.GetModExtension<FormerHumanSettings>();
-            var backstoryDef = formerHumanExt?.backstory ?? BackstoryDefOf.FormerHumanNormal;
-            var bkStory = backstoryDef.backstory; 
+            var flags = WorkTags.ManualDumb | (formerHumanExt?.allowedWorkTags ?? 0);
+            var allowedWork = formerHumanExt?.allowedWorkTypes;
             StringBuilder builder = new StringBuilder();
             builder.AppendLine($"for {sapientAnimal.Name}");
             foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefsListForReading)
             {
-                if (bkStory.DisabledWorkTypes.Contains(workTypeDef))
+                if ((workTypeDef.workTags & flags) != 0)
                 {
-                    workSettings.SetPriority(workTypeDef, 0); 
+                    workSettings.SetPriority(workTypeDef, 3);
+                }else if (allowedWork != null && allowedWork.Contains(workTypeDef))
+                {
+                    workSettings.SetPriority(workTypeDef, 3);
                 }
                 else
                 {
-                    workSettings.SetPriority(workTypeDef, 3); 
+                    workSettings.SetPriority(workTypeDef, 0);
                 }
             }
 

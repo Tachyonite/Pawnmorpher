@@ -1,15 +1,16 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="BoomalopePart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>BoomalopeMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
+<Defs>
+	<HediffDef Name="BoomalopePart" ParentName="PawnmorphPart" Abstract="True">
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+				<morph>BoomalopeMorph</morph>
+			</li>
+		</comps>
+	</HediffDef>
+  
+	<HediffDef ParentName="BoomalopePart">
 		<defName>EtherBoomalopeSnout</defName>
 		<label>boomasnout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel.</description>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -57,30 +58,24 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
+	<HediffDef ParentName="BoomalopePart">
 		<defName>EtherBoomalopeEar</defName>
 		<label>boomalopic</label>
 		<description>Do boomalopes have ears? It seems so, as two ears belonging to one site at the sides of [PAWN_nameDef]'s head.</description>
-		<parts>
-			<li>Ear</li>
-		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
+	</HediffDef>
+	
+	<HediffDef ParentName="BoomalopePart">
 		<defName>EtherChemfuelUdder</defName>
 		<label>chemical cyst</label>
 		<description>A large cyst filled with chemfuel now covers [PAWN_nameDef]'s waist. They can drain it to produce chemfuel.</description>
-		<initialSeverity>0.01</initialSeverity>
-		<parts>
-			<li>Waist</li>
-		</parts>
+		<initialSeverity>0.01</initialSeverity>		
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ChemMilkedMyself</thought>
@@ -110,7 +105,7 @@
 					</li>
 				</stages>
 			</li>
-		</comps>
+		</comps>		
 		<stages>
 			<li>
 				<minSeverity>0</minSeverity>
@@ -142,5 +137,5 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 </Defs>

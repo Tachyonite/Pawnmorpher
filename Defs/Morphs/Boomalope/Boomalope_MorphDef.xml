@@ -4,7 +4,6 @@
 		<label>boomamorph</label>
 		<description>a humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel</description>
 		<race>Boomalope</race>
-		<classification>Cervidae</classification>
 		<categories>
 			<li>Production</li>
 		</categories>

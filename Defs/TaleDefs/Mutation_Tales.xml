@@ -1,8 +1,13 @@
 ﻿<Defs>
+
 	<!-- 
-	tale_noun: fits in the "this tells the story of [tale_noun]"
-	-->
+	tale_noun: fits in the "this tells the story of [tale_noun]" 
 	
+	
+	
+	-->
+
+
 	<TaleDef Name="MutationTaleBase" Abstract="True">
 		<type>Volatile</type>
 		<baseInterest>16</baseInterest>
@@ -262,23 +267,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-	
-	<TaleDef ParentName="GrowTailBase">
-		<defName>GrewTail</defName>
-		<label>grew a tail</label>
-		<rulePack>
-			<rulesStrings>
-				<li>circumstance_phrase->as [PAWN_possessive] tail flicks, obviously</li>
-				<li>circumstance_phrase->as [PAWN_possessive] tail wags, unwillingly</li>
-				<li>circumstance_phrase->as [PAWN_possessive] tail wags, excited</li>
-				<li>circumstance_phrase->as [PAWN_possessive] tail hangs between [PAWN_possessive] legs, scared</li>
-				<li>circumstance_phrase->as [PAWN_possessive] tail hangs between [PAWN_possessive] legs, embarrased</li>
-				<li>circumstance_phrase->as people pat the fur on [PAWN_nameDef]'s new tail</li>
-				<li>circumstance_phrase->while someone pats [PAWN_possessive] new tail</li>
-				<li>desc_sentence->[PAWN_pronoun] is playing with the fur on it.</li>
-			</rulesStrings>
-		</rulePack>
-	</TaleDef>
 
 	<!--      MISC      -->
 
@@ -290,7 +278,7 @@
 				<li>tale_noun->[PAWN_nameDef]'s legs became that of an animal</li>
 				<li>tale_noun->[PAWN_nameDef]'s legs became digitgrade</li>
 				<li>image->[PAWN_nameFull]'s legs begin to change structure [circumstance_group]</li>
-				<li>image->[PAWN_nameFull]'s legs change structure, forcing [PAWN_possessive] to walk on [PAWN_possessive] toes [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s legs change structure, forcing [PAWN_pronoun] to walk on [PAWN_possessive] toes [circumstance_group]</li>
 				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possesive] new legs.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems remarkably comfortable with [PAWN_possessive] new legs.</li>
 			</rulesStrings>

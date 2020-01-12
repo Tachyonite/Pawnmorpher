@@ -1,13 +1,16 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="AlpacaPart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>AlpacaMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
+<Defs>
+	<HediffDef Name="AlpacaPart" ParentName="PawnmorphPart" Abstract="True">
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
+				<morph>AlpacaMorph</morph>
+			</li>
+		</comps>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
+	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaSnout</defName>
 		<label>wooly snout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, wooly and with lips perfect for spitting.</description>
-		<mutationTale>GrewAlpacaMuzzle</mutationTale>
 		<stages>
 			<li>
 				<capMods>
@@ -74,42 +77,30 @@
 				<!-- takes 4 days to progress -->
 			</li>
 		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
+	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaEar</defName>
 		<label>woolen</label>
 		<description>Wooly ears twitch at the wind, idly.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
-		<parts>
-			<li>Ear</li>
-		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
+	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaTail</defName>
 		<label>wooly tail</label>
 		<description>A wooly tail, it feels like a cloud.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<parts>
-			<li>Tail</li>
-		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
+	<HediffDef ParentName="AlpacaPart">
 		<defName>EtherWooly</defName>
 		<label>wooly</label>
 		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent alpacamorph that don't need no man.</description>
 		<initialSeverity>0.01</initialSeverity>		
-		<mutationTale>StartsGrowingWool</mutationTale>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ShavedMyself</thought>
@@ -171,8 +162,5 @@
 				</hediffGivers>
 			</li>
 		</stages>
-		<parts>
-			<li>Torso</li>
-		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 </Defs>

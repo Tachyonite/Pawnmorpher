@@ -2,7 +2,6 @@
 	<Pawnmorph.MorphDef>
 		<defName>IguanaMorph</defName>
 		<label>iguanamorph</label>
-		<classification>Squamata</classification>
 		<description>A scaly reptile morph with traits similar to that of an iguana.</description>
 		<race>Iguana</race>
 		<categories>

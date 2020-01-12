@@ -137,13 +137,11 @@ namespace Pawnmorph.Hediffs
 
                 if (_curIndex >= _recordList.Count) return; 
                 var record = _recordList[_curIndex];
-
-                if (record.IsMissingAtAllIn(pawn)) return; //don't mutate missing parts 
-
                 _curIndex++;
                 var mutation = _chosenMorphDef.GetMutationForPart(record.def).RandomElementWithFallback();
                 if (mutation != null)
                 {
+                    Log.Message($"Adding {mutation.defName} to {pawn.Name} with set morph of {_chosenMorphDef.defName}");
                     if (MutationUtilities.AddMutation(pawn, mutation, record))
                     {
                         var mutagen = this.GetMutagenDef();

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
-using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -176,23 +175,28 @@ namespace Pawnmorph
         }
 
         /// <summary> Add mutations to the given part. </summary>
-        private void AddMutationToPart(BodyPartRecord record, [NotNull] Pawn pawn, AnimalClassBase aClass = null, bool recursive = false, MutagenDef mutagen=null)
+        private void AddMutationToPart(BodyPartRecord record, [NotNull] Pawn pawn, MorphDef morph = null, bool recursive = false, MutagenDef mutagen=null)
         {
-            MutationDef mutation;
-            if (aClass != null)
-                mutation = aClass?.GetAllMorphsInClass()
-                                  .SelectMany(m => m.GetMutationForPart(record.def))
-                                  .RandomElementWithFallback();
+            HediffDef mutation; 
+            if (morph != null)
+            {
+                mutation = morph.GetMutationForPart(record.def).RandomElementWithFallback();
+            }
             else
-                mutation = MutationUtilities.GetMutationsByPart(record.def).RandomElementWithFallback();
+            {
+                mutation = MutationUtilities.GetMutationsByPart(record.def).RandomElementWithFallback(); 
+            }
 
-            if (mutation != null) MutationUtilities.AddMutation(pawn, mutation, record);
-
+            if (mutation != null)
+            {
+                MutationUtilities.AddMutation(pawn, mutation, record); 
+            }
+            
             mutagen?.TryApplyAspects(pawn); 
 
             if (recursive) // Recursively add mutations to child parts.
                 foreach (BodyPartRecord cPart in record.GetDirectChildParts())
-                    AddMutationToPart(cPart, pawn, aClass, true, mutagen);
+                    AddMutationToPart(cPart, pawn, morph, true, mutagen);
         }
 
         private bool CanEverKill(Hediff hediff)

@@ -14,7 +14,9 @@ namespace Pawnmorph
         [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static BackstoryDef FormerHumanNormal;
 
-       
+        [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        public static BackstoryDef FormerHumanChaomorph;
+
         static BackstoryDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(BackstoryDef));

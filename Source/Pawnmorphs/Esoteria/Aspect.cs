@@ -439,6 +439,26 @@ namespace Pawnmorph
                 }
             }
 
+            if (currentStage.statOffsets != null)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine();
+                for (int j = 0; j < currentStage.statOffsets.Count; j++)
+                {
+                    StatModifier statModifier2 = currentStage.statOffsets[j];
+                    string toStringAsFactor = statModifier2.ValueToStringAsOffset;
+                    string value3 = "    " + statModifier2.stat.LabelCap + " " + toStringAsFactor;
+                    if (j < currentStage.statOffsets.Count - 1)
+                    {
+                        stringBuilder.AppendLine(value3);
+                    }
+                    else
+                    {
+                        stringBuilder.Append(value3);
+                    }
+                }
+            }
+
             if (currentStage.capMods != null)
             {
                 stringBuilder.AppendLine();

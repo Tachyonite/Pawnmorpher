@@ -2,9 +2,7 @@
 // last updated 12/24/2019  9:20 AM
 
 using System.Collections.Generic;
-using AlienRace;
 using JetBrains.Annotations;
-using Pawnmorph.FormerHumans;
 using Verse;
 
 namespace Pawnmorph.DefExtensions
@@ -17,14 +15,14 @@ namespace Pawnmorph.DefExtensions
 
     {
         /// <summary>
-        /// The backstory, uses a default if not set 
+        /// The allowed work types
         /// </summary>
-        public BackstoryDef backstory;
+        [NotNull]
+        public List<WorkTypeDef> allowedWorkTypes = new List<WorkTypeDef>();
 
         /// <summary>
-        /// The food thought settings
+        /// The allowed work tags
         /// </summary>
-        public FoodThoughtSettings foodThoughtSettings; 
-
+        public WorkTags allowedWorkTags; 
     }
 }

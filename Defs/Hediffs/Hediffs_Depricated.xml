@@ -220,30 +220,5 @@
                 </capMods>
             </li>
         </stages>
-	</HediffDef>
-	
-	<HediffDef ParentName="PawnmorphPart">
-		<hediffClass>HediffWithComps</hediffClass>
-		<defName>EtherColdBlooded</defName>
-		<label>cold blooded</label>
-		<description>[PAWN_nameDef]'s body no longer naturally regulates its body temperature.</description>
-		<stages>
-			<li>
-				<minSeverity>1</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>10</ComfyTemperatureMin>
-					<ComfyTemperatureMax>10</ComfyTemperatureMax>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>mech-blooded</labelOverride>
-				<description>[PAWN_nameDef]'s bloodstream has infused with mechanites, which more efficiently regulate body temperature.</description>
-				<minSeverity>2</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>-15</ComfyTemperatureMin>
-					<ComfyTemperatureMax>15</ComfyTemperatureMax>
-				</statOffsets>
-			</li>
-		</stages>
-	</HediffDef>
+    </HediffDef>
 </Defs>

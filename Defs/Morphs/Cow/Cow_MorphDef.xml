@@ -2,13 +2,12 @@
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>CowMorph</defName>
 		<label>cowmorph</label>
-		<description>A bovine humanoid resulting when a human is exposed to cow specific mutagens. Usually capable of producing milk.</description>
+    <description>A bovine humanoid resulting when a human is exposed to cow specific mutagens. Usually capable of producing milk.</description>
 		<race>Cow</race>
 		<categories>
 			<li>Farm</li>
-			<li>Production</li>
+      <li>Production</li>
 		</categories>
-		<classification>Bovidae</classification>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(255,255,255)</skinColorOverride>

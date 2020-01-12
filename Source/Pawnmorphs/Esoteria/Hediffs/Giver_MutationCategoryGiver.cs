@@ -1,7 +1,6 @@
 ﻿// Giver_MutationCategoryGiver.cs modified by Iron Wolf for Pawnmorph on 11/24/2019 5:09 PM
 // last updated 11/24/2019  5:09 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -37,26 +36,41 @@ namespace Pawnmorph.Hediffs
         ///     The MTB unit
         /// </summary>
         public float mtbUnits = 60000f;
-        
-        private List<MutationDef> _mutations;
+
+        private List<HediffGiver_Mutation> _mutations;
 
         [NotNull]
-        private List<MutationDef> Mutations
+        private List<HediffGiver_Mutation> Mutations
         {
             get
             {
                 if (_mutations == null)
                 {
-                    _mutations = new List<MutationDef>();
-                    foreach (MorphDef morphDef in morphCategories.SelectMany(m => m.AllMorphsInCategories))
-                    foreach (MutationDef mutation in morphDef.AllAssociatedMutations)
-                        if (!_mutations.Contains(mutation))
-                            _mutations.Add(mutation); //add only distinct values 
-
-                    foreach (MutationDef mutation in mutationCategories.SelectMany(m => m.AllMutations))
+                    var foundMutations = new HashSet<HediffDef>();
+                    _mutations = new List<HediffGiver_Mutation>();
+                    foreach (MorphCategoryDef morphCategoryDef in morphCategories)
+                    foreach (HediffGiver_Mutation hediffGiverMutation in
+                        morphCategoryDef.AllMorphsInCategories.SelectMany(m => m.AllAssociatedAndAdjacentMutationGivers))
                     {
-                        if (!_mutations.Contains(mutation))
-                            _mutations.Add(mutation); 
+                        if (hediffGiverMutation.hediff == null) continue;
+                        if (foundMutations.Contains(hediffGiverMutation.hediff)) continue;
+                        _mutations.Add(hediffGiverMutation);
+                        foundMutations.Add(hediffGiverMutation.hediff);
+                    }
+
+                    foreach (HediffDef hediffDef in mutationCategories.SelectMany(c => c.AllMutationsInCategory))
+                    {
+                        if (foundMutations.Contains(hediffDef)) continue;
+
+                        var extension = hediffDef.GetModExtension<MutationHediffExtension>();
+                        if (extension == null)
+                        {
+                            Log.Error($"{hediffDef.defName} does not have a  MutationHediffExtension and is not attached to a hediff giver");
+                            continue;
+                        }
+
+                        _mutations.Add(extension.CreateMutationGiver(hediffDef));
+                        foundMutations.Add(hediffDef);
                     }
                 }
 
@@ -84,23 +98,21 @@ namespace Pawnmorph.Hediffs
             if (MP.IsInMultiplayer) Rand.PopState();
         }
 
-       
         /// <summary>
         ///     Tries to apply this hediff giver
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="cause">The cause.</param>
         /// <param name="mutagen">The mutagen.</param>
-        public void TryApply(Pawn pawn, Hediff cause, [NotNull] MutagenDef mutagen)
+        public void TryApply(Pawn pawn, Hediff cause, MutagenDef mutagen)
         {
-            if (mutagen == null) throw new ArgumentNullException(nameof(mutagen));
-            var mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
-            if (MutationUtilities.AddMutation(pawn, mut))
+            HediffGiver_Mutation mut = Mutations[Rand.Range(0, Mutations.Count)]; //grab a random mutation 
+            if (mut.TryApply(pawn, mutagen, null, cause))
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
                 if (cause.def.HasComp(typeof(HediffComp_Single))) pawn.health.RemoveHediff(cause);
-                mutagen.TryApplyAspects(pawn); 
-                if (mut.mutationTale != null) TaleRecorder.RecordTale(mut.mutationTale, pawn);
+
+                if (mut.tale != null) TaleRecorder.RecordTale(mut.tale, pawn);
             }
         }
     }

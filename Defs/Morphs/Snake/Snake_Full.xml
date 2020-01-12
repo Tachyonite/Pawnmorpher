@@ -69,7 +69,7 @@
 						<partsToAffect>
 							<li>Jaw</li>
 						</partsToAffect>
-						<tale><!--add tale to  mutation def not here --></tale>
+						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherSnakeHood</hediff>
@@ -77,7 +77,7 @@
 						<partsToAffect>
 							<li>Head</li>
 						</partsToAffect>
-						<tale><!--add tale to  mutation def not here --></tale>
+						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherSnakeTail</hediff>
@@ -85,7 +85,7 @@
 						<partsToAffect>
 							<li>Tail</li>
 						</partsToAffect>
-						<tale><!--add tale to  mutation def not here --></tale>
+						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherScaledLimb</hediff>
@@ -94,7 +94,7 @@
 							<li>Arm</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-						<tale><!--add tale to  mutation def not here --></tale>
+						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherSnakeHand</hediff>
@@ -104,8 +104,8 @@
 							<li>Hand</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-						<tale><!--add tale to  mutation def not here --></tale>
-						<memory><!--add memory to mutation def not here --></memory>
+						<tale><!--Needs Tale--></tale>
+						<memory><!--Needs Memory--></memory>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherSnakeEye</hediff>
@@ -114,12 +114,12 @@
 							<li>Eye</li>
 						</partsToAffect>
 						<countToAffect>2</countToAffect>
-						<tale><!--add tale to  mutation def not here --></tale>
+						<tale><!--Needs Tale--></tale>
 					</li>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherColdBlooded</hediff>
 						<mtbDays>3</mtbDays>
-						<tale><!--add tale to  mutation def not here --></tale>
+						<tale><!--Needs Tale--></tale>
 					</li>
 				</hediffGivers>
 			</li>

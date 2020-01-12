@@ -37,7 +37,7 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///     The layer.
         /// </value>
-        public MutationLayer Layer => Props.layer;
+        public MutationLayers Layer => Props.layers;
 
         /// <summary>
         ///     exposes all data for this comp.
@@ -100,7 +100,7 @@ namespace Pawnmorph.Hediffs
 
                 if (oComp._addedTick > _addedTick)
                     continue; //the part to be removed must be older or the same age as this comp 
-                if (oComp.Props.layer == Props.layer) 
+                if ((oComp.Props.layers & Props.layers) != 0) // the hediffs must be on the same layer(s) 
                     _rmCache.Add(otherHediff);
             }
         }
@@ -117,14 +117,19 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         ///     The layer to check for mutations
         /// </summary>
-        public MutationLayer layer;
+        public MutationLayers layers;
     }
 
     /// <summary>
     ///     flags representing the 'layer' a mutation resides on
     /// </summary>
-    public enum MutationLayer
+    [Flags]
+    public enum MutationLayers
     {
+        /// <summary>
+        ///     is not a mutation
+        /// </summary>
+        None = 0,
 
         /// <summary>
         ///     the mutation affects the core of the part

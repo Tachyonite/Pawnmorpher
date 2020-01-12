@@ -1,11 +1,9 @@
 ﻿// MutationCategoryDef.cs created by Iron Wolf for Pawnmorph on 09/15/2019 9:00 PM
 // last updated 09/15/2019  9:00 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -17,41 +15,40 @@ namespace Pawnmorph
     public class MutationCategoryDef : Def
     {
 
+        [Unsaved] private List<HediffDef> _allMutations;
 
         [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        private List<MutationDef> mutations = new List<MutationDef>(); 
+        private List<HediffDef> mutations = new List<HediffDef>(); 
 
 
         /// <summary>if mutations in this category should be restricted to special PawnGroupKinds</summary>
-        public bool restricted;
+        public bool restricted; 
 
-        [Unsaved] private List<MutationDef> _allMutations;
-
-        /// <summary>
-        /// Gets all mutations in this category 
-        /// </summary>
-        /// <value>
-        /// All mutations.
-        /// </value>
-        public IEnumerable<MutationDef> AllMutations
+        /// <summary> An enumerable collection of all mutations within this category. </summary>
+        [NotNull]
+        public IEnumerable<HediffDef> AllMutationsInCategory
         {
             get
             {
                 if (_allMutations == null)
                 {
-                    _allMutations = new List<MutationDef>(mutations);
+                    _allMutations = new List<HediffDef>(mutations.MakeSafe());
 
-                    foreach (MutationDef mutation in MutationDef.AllMutations)
+                    foreach (HediffDef mutationDef in DefDatabase<HediffDef>.AllDefs)
                     {
-                        if (!_allMutations.Contains(mutation))
-                            _allMutations.Add(mutation); 
+                        List<MutationCategoryDef> categories = mutationDef.GetModExtension<MutationHediffExtension>()?.categories;
+                        if (categories.MakeSafe().Contains(this))
+                        {
+                            if (_allMutations.Contains(mutationDef))
+                                Log.Warning($"hediff {mutationDef.defName} is added to {defName} in both {defName} and with the def extension, this is redundant");
+                            else
+                                _allMutations.Add(mutationDef);
+                        }
                     }
-
                 }
 
                 return _allMutations; 
             }
         }
-
     }
 }

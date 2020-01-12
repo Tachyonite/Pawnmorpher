@@ -1,7 +1,6 @@
 ﻿// MutationHediffExtension.cs created by Iron Wolf for Pawnmorph on 09/15/2019 8:44 PM
 // last updated 09/15/2019  8:44 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -15,7 +14,6 @@ namespace Pawnmorph
     ///     Note, the results will be additive, so if a mutation has this extension and is in one or more hediff givers,
     ///     the total set of parts it can be applied to is the union of this extension and the givers
     /// </summary>
-    [Obsolete("use " + nameof(Hediffs.MutationDef) + " instead")]
     public class MutationHediffExtension : DefModExtension
     {
         /// <summary>

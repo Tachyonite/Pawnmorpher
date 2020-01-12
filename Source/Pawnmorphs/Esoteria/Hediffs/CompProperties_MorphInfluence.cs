@@ -1,7 +1,6 @@
 ﻿// CompProperties_MorphInfluence.cs modified by Iron Wolf for Pawnmorph on 08/02/2019 2:52 PM
 // last updated 08/02/2019  2:52 PM
 
-using System;
 using System.Collections.Generic;
 using Verse;
 
@@ -10,7 +9,6 @@ namespace Pawnmorph.Hediffs
     /// <summary>
     /// hediff comp that adds influence of a certain morph to the pawn 
     /// </summary>
-    [Obsolete("use " + nameof(MutationDef) + " instead")]
     public class Comp_MorphInfluence : HediffComp
     {
         /// <summary>
@@ -31,7 +29,6 @@ namespace Pawnmorph.Hediffs
     /// <summary>
     /// the props for the morph influence comp 
     /// </summary>
-    [Obsolete("use " + nameof(MutationDef) + " instead")]
     public class CompProperties_MorphInfluence : HediffCompProperties
     {
         /// <summary>

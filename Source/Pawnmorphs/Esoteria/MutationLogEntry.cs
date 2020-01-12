@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -46,19 +45,6 @@ namespace Pawnmorph
             _mutatedRecords = mutatedParts.ToList();
             _pawn = pawn;
             _mutationDef = mutationDef;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="mutationDef">The mutation definition.</param>
-        /// <param name="mutatedParts">The mutated parts.</param>
-        public MutationLogEntry(Pawn pawn, HediffDef mutationDef, params BodyPartDef[] mutatedParts)
-        {
-            _mutatedRecords = mutatedParts.ToList();
-            _pawn = pawn;
-            _mutationDef = mutationDef; 
         }
         /// <summary>
         /// true if this log is about the given thing.
@@ -125,7 +111,7 @@ namespace Pawnmorph
             {
                 GrammarRequest grammarRequest = GenerateGrammarRequest();
 
-                RulePackDef mutationRulePack = (_mutationDef as MutationDef)?.mutationLogRulePack;
+                RulePackDef mutationRulePack = _mutationDef.GetModExtension<MutationHediffExtension>()?.mutationLogRulePack;
 
                 if (mutationRulePack != null)
                 {

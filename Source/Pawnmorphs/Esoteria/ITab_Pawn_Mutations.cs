@@ -184,33 +184,33 @@ namespace Pawnmorph
             if (mutationTracker == null) return; 
 
             // Create a list of the current morph influences upon the pawn.
-            var influences = mutationTracker.ToList();
+            IEnumerable<VTuple<MorphDef, float>> influences = mutationTracker.NormalizedInfluences.ToList();
 
             // Determine the remaining human influence.
-            float humInf = MorphUtilities.MaxHumanInfluence;
-            foreach (var influence in influences)
-                humInf -= influence.Value;
+            float humInf = 1f;
+            foreach (VTuple<MorphDef, float> influence in influences)
+                humInf -= influence.second;
 
             // If the remaining human influence is greater than 0.0001, print its influence first.
             // (0.0001 is used to compensate for floating point number's occasional lack of precision.)
             if (humInf > EPSILON)
             {
                 GUI.color = Color.green;
-                string text = $"Human ({(humInf/MorphUtilities.MaxHumanInfluence).ToStringPercent()})";
+                string text = $"Human ({(humInf).ToStringPercent()})";
                 float rectHeight = Text.CalcHeight(text, width);
-                Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
+                Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), ($"Human ({(humInf).ToStringPercent()})"));
                 curPos.y += rectHeight;
                 GUI.color = Color.white;
             }
             
             // List the morph influences upon the pawn in descending order.
-            foreach (var influence in influences.OrderByDescending(x => x.Value))
+            foreach (VTuple<MorphDef, float> influence in influences.OrderByDescending(x => x.second))
             {
                 // Set the greatest influence's color to cyan
-                if (Math.Abs(influence.Value - influences.MaxBy(x => x.Value).Value) < EPSILON)
+                if (Math.Abs(influence.second - influences.MaxBy(x => x.second).second) < EPSILON)
                     GUI.color = Color.cyan;
-                var nVal = influence.Value / MorphUtilities.MaxHumanInfluence; 
-                string text = $"{influence.Key.Label} ({nVal.ToStringPercent()})";
+
+                string text = $"{influence.first.race.LabelCap} ({influence.second.ToStringPercent()})";
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
                 curPos.y += rectHeight;

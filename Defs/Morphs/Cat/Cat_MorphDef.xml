@@ -3,7 +3,6 @@
 		<defName>CatMorph</defName>
 		<label>catmorph</label>
 		<race>Cat</race>
-		<classification>Felidae</classification>
 		<categories>
 			<li>Feline</li>
 			<li>Combat</li>
@@ -11,6 +10,8 @@
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(216,216,216)</skinColorOverride>
+				<customDrawSize>(1.35, 1.35)</customDrawSize>
+				<customHeadDrawSize>(1.35, 1.35)</customHeadDrawSize>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
