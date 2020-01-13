@@ -40,11 +40,27 @@ namespace Pawnmorph.Hediffs
             if(stages == null || stages.Count == 0) yield break;
             for (int i = 0; i < stages.Count; i++)
             {
-                if (stages[i] is TransformationStageBase tfStage)
+                HediffStage hediffStage = stages[i];
+                if (hediffStage is IInitializable tfStage)
                 {
                     foreach (string configError in tfStage.ConfigErrors())
                     {
                         yield return $"in stage{i}) {configError}"; 
+                    }
+                }
+
+                if (hediffStage.hediffGivers != null)
+                {
+                    for (int j = 0; j < hediffStage.hediffGivers.Count; j++)
+                    {
+                        var giver = hediffStage.hediffGivers[j];
+                        if (giver is IInitializable initGiver)
+                        {
+                            foreach (string configError in initGiver.ConfigErrors())
+                            {
+                                yield return $"in stage[{i}] hediffGiver[{j}]: {configError}"; 
+                            }
+                        }
                     }
                 }
             }

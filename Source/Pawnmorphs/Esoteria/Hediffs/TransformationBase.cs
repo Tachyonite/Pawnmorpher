@@ -170,12 +170,12 @@ namespace Pawnmorph.Hediffs
         /// <summary>Tries to give transformations</summary>
         protected virtual void TryGiveTransformations()
         {
-            if (CurStage.hediffGivers == null) return;
+            if (CurStage == null) return;
 
             RandUtilities.PushState();
 
-            foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
-                if (tfGiver.TryTf(pawn, this))
+            foreach (var tfGiver in CurStage.GetAllTransformers())
+                if (tfGiver.TryTransform(pawn, this))
                     break; //try each one, one by one. break at first one that succeeds  
 
             RandUtilities.PopState();

@@ -25,6 +25,46 @@ namespace Pawnmorph
 
 
         /// <summary>
+        /// Gets all pawn transformers in this stage 
+        /// </summary>
+        /// <param name="stage">The stage.</param>
+        /// <returns></returns>
+        [NotNull]
+        public static IEnumerable<IPawnTransformer> GetAllTransformers([NotNull] this HediffStage stage)
+        {
+            if (stage is IPawnTransformer stageTf) yield return stageTf;
+            foreach (IPawnTransformer pawnTransformer in stage.hediffGivers.MakeSafe().OfType<IPawnTransformer>())
+            {
+                yield return pawnTransformer; 
+            }
+        }
+
+        /// <summary>
+        /// Gets all pawn transformers in this hediff def.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">hediff</exception>
+        [NotNull]
+        public static IEnumerable<IPawnTransformer> GetAllTransformers([NotNull] this HediffDef hediff)
+        {
+            if (hediff == null) throw new ArgumentNullException(nameof(hediff));
+
+            foreach (IPawnTransformer pawnTransformer in hediff.GetAllHediffGivers().OfType<IPawnTransformer>())
+            {
+                yield return pawnTransformer; 
+            }
+
+
+            foreach (IPawnTransformer pawnTransformer in hediff.stages.MakeSafe().OfType<IPawnTransformer>())
+            {
+                yield return pawnTransformer;
+            }
+
+
+        }
+
+        /// <summary>
         /// Gets the net mutagenic buildup multiplier for this pawn.
         /// </summary>
         /// <param name="pawn">The pawn.</param>

@@ -135,8 +135,10 @@
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
     <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
+    <Compile Include="Hediffs\FullTransformationStage.cs" />
     <Compile Include="Hediffs\Giver_MutationClass.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
+    <Compile Include="Hediffs\IInitializable.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
     <Compile Include="Hediffs\MorphTransformationStage.cs" />
     <Compile Include="Hediffs\MutationDef.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="InstinctUtilities.cs" />
+    <Compile Include="IPawnTransformer.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_TerrainProduction.cs" />
     <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />

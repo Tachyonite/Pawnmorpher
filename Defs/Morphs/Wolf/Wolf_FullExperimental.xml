@@ -4,7 +4,7 @@
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
 		<label>wolfmorph (experimental)</label>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -14,16 +14,11 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkinds>
-							<li>Wolf_Timber</li>
-							<li>Wolf_Arctic</li>
-						</pawnkinds>
-						<tale>TransformationCanid</tale>
-					</li>
-				</hediffGivers>
+				<pawnkinds>
+					<li>Wolf_Timber</li>
+					<li>Wolf_Arctic</li>
+				</pawnkinds>
+				<transformationTale>TransformationCanid</transformationTale>
 			</li>
 			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
@@ -103,7 +98,7 @@
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
 
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -113,16 +108,11 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkinds>
-							<li>Wolf_Timber</li>
-							<li>Wolf_Arctic</li>
-						</pawnkinds>
-						<tale>TransformationCanid</tale>
-					</li>
-				</hediffGivers>
+				<pawnkinds>
+					<li>Wolf_Timber</li>
+					<li>Wolf_Arctic</li>
+				</pawnkinds>
+				<tale>TransformationCanid</tale>
 			</li>
 			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>

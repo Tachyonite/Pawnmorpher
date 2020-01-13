@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -10,8 +12,17 @@ namespace Pawnmorph
     /// hediff giver that tries to transform a pawn
     /// </summary>
     /// <seealso cref="Verse.HediffGiver" />
-    public class HediffGiver_TF : HediffGiver
+    public class HediffGiver_TF : HediffGiver, IPawnTransformer, IInitializable
     {
+        /// <summary>
+        /// Gets all Configuration errors in this instance.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<string> ConfigErrors()
+        {
+            if (pawnkinds.NullOrEmpty()) yield return "no pawnkinds set"; 
+        }
+
         /// The pawnKind of the animal to be transformed into.
         public List<PawnKindDef> pawnkinds;
         /// Tale to add to the tales.
@@ -27,7 +38,7 @@ namespace Pawnmorph
         /// <param name="pawn">The pawn.</param>
         /// <param name="cause">The cause.</param>
         /// <returns></returns>
-        public bool TryTf(Pawn pawn, Hediff cause)
+        bool IPawnTransformer.TryTransform(Pawn pawn, [CanBeNull] Hediff cause)
         {
             RandUtilities.PushState();
 
@@ -50,7 +61,7 @@ namespace Pawnmorph
         /// <param name="pawn">The pawn.</param>
         /// <param name="cause">The cause.</param>
         /// <returns></returns>
-        public bool TransformPawn(Pawn pawn, Hediff cause)
+        public bool TransformPawn(Pawn pawn, [CanBeNull] Hediff cause)
         {
             var hediffMorph = (cause as Hediff_Morph);
             var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;

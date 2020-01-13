@@ -1,11 +1,13 @@
 <Defs>
-    <HediffDef ParentName="AspectedMorphParent">
+	<HediffDef ParentName="AspectedMorphParent">
 		<defName>WolfMorphFull_ExperimentalShort</defName>
 		<label>wolfmorph (short experimental)</label>
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
 
 		<stages>
-			<li>
+			this stage is for turning a pawn into an animal with a %chance 
+			it works exactly the same as the old hediff giver, just isn't a hediff giver 
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -15,16 +17,13 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkinds>
-							<li>Wolf_Timber</li>
-							<li>Wolf_Arctic</li>
-						</pawnkinds>
-						<tale>TransformationCanid</tale>
-					</li>
-				</hediffGivers>
+				<pawnkinds>
+					<li>Wolf_Timber</li>
+					<li>Wolf_Arctic</li>
+				</pawnkinds>
+				the only difference is that the tale given when a pawn transforms is this not just 'tale'
+				as that is given regardless if the tranformation happens or not 
+				<transformationTale>TransformationCanid</transformationTale>
 			</li>
 			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
@@ -68,12 +67,13 @@
 					</li>
 				</capMods>
 				<morph>WolfMorph</morph> <!-- grab all mutations associated with the wolf morph and use them -->
-            
-                <blackList> <!-- optional black list to disallow specific mutations  -->
-                    <li>SomeMutation</li>
-                    <li>SomeOtherMutation</li>
-                </blackList>
-            </li>
+
+				<blackList>
+					<!-- optional black list to disallow specific mutations  -->
+					<li>SomeMutation</li>
+					<li>SomeOtherMutation</li>
+				</blackList>
+			</li>
 		</stages>
 	</HediffDef>
 </Defs>

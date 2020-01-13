@@ -108,6 +108,7 @@ namespace Pawnmorph
 
         /// <summary>Gets the cached mutagen </summary>
         /// <value>The cached mutagen </value>
+        [NotNull]
         public Mutagen MutagenCached
         {
             get

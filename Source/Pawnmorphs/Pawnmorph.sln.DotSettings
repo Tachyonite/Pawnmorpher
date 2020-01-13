@@ -475,6 +475,7 @@ last updated $CURRENT_MONTH$/$CURRENT_DAY$/$CURRENT_YEAR$  $CURRENT_TIME$</s:Str
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Harvestable/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=hediff/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=hediffs/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Initializable/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	

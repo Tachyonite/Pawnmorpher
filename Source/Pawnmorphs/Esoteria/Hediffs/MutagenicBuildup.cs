@@ -21,7 +21,7 @@ namespace Pawnmorph.Hediffs
     {
         private MorphDef _chosenMorphDef;
         private HediffDef _chosenMorphTf;
-        private HediffGiver_TF _transformation;
+        private IPawnTransformer _transformation;
         private SimpleCurve _mtbVSeverityCurve;
 
         
@@ -166,7 +166,7 @@ namespace Pawnmorph.Hediffs
 
             if (CurStageIndex == def.stages.Count - 1)
             {
-                _transformation?.TryTf(pawn, this); //this hediff will be removed if successful so we don't have to worry about multiple triggers 
+                _transformation?.TryTransform(pawn, this); //this hediff will be removed if successful so we don't have to worry about multiple triggers 
             }
 
         }
@@ -209,7 +209,7 @@ namespace Pawnmorph.Hediffs
         {
             
             _chosenMorphTf = tfDef ?? throw new ArgumentNullException(nameof(tfDef));
-            var tf = tfDef.stages?.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_TF>() ?? Enumerable.Empty<HediffGiver_TF>());
+            var tf = tfDef.GetAllTransformers(); 
             try
             {
                 _transformation = tf.First();

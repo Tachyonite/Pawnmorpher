@@ -14,7 +14,7 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.HediffStage" />
     /// <seealso cref="Pawnmorph.Hediffs.IDescriptiveStage" />
     /// <seealso cref="Pawnmorph.Hediffs.IExecutableStage" />
-    public abstract class TransformationStageBase : HediffStage, IDescriptiveStage, IExecutableStage
+    public abstract class TransformationStageBase : HediffStage, IDescriptiveStage, IExecutableStage, IInitializable
     {
         /// <summary>
         /// Gets all mutation entries in this stage 

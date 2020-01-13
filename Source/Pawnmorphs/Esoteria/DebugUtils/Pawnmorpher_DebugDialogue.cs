@@ -64,15 +64,17 @@ namespace Pawnmorph.DebugUtils
 
         private void ForceTransformation(Pawn pawn)
         {
-            Hediff morphHediff = pawn?.health.hediffSet.hediffs.FirstOrDefault(h => h is Hediff_Morph);
-            if (morphHediff != null)
-            {
-                HediffGiver_TF giverTf = morphHediff
-                                        .def.stages?.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                                        .OfType<HediffGiver_TF>()
-                                        .FirstOrDefault();
+            var allHediffs = pawn.health.hediffSet.hediffs;
+            if (allHediffs == null) return;
 
-                giverTf?.TryTf(pawn, morphHediff);
+            foreach (Hediff hediff in allHediffs)
+            {
+                var transformer = hediff.def.GetAllTransformers().FirstOrDefault();
+                if (transformer != null)
+                {
+                    transformer.TransformPawn(pawn, hediff);
+                    return; 
+                }
             }
         }
 
