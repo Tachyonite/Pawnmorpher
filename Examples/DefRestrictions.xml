@@ -35,6 +35,19 @@
                     and can be toggled between a black and white list 
                 </mutationFilter>
              </li>
+             <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                this restriction is for restricting by certain aspects the pawn does/doesn't have 
+                
+                this is just a list of entries for the check list 
+                <aspectEntries>
+                    <li>
+                        required field to specify the aspect we're looking for
+                        <aspectDef>AspectDef</aspectDef>
+                        optional field to specify the stage of the aspect we're looking for, if not specified any stage will do 
+                        <stageIndex>0</stageIndex>
+                    </li>
+                </aspectEntries>
+             </li>
         </modExtension>
     </SomeDef>
 </Defs>
