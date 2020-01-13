@@ -8,6 +8,8 @@
 			<li>Feline</li>
 			<li>Combat</li>
 		</categories>
+		<fullTransformation>PawnmorphCatTF</fullTransformation>
+		<partialTransformation>PawnmorphCatTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(216,216,216)</skinColorOverride>

@@ -52,6 +52,8 @@
 							<defName>SheepMorph</defName>
 							<label>sheepmorph</label>
 							<race>AEXP_Sheep</race>
+							<fullTransformation>PawnmorphSheepTF</fullTransformation>
+							<partialTransformation>PawnmorphSheepTFPartial</partialTransformation>
 							<categories>
 								<li>Farm</li>
 							</categories>

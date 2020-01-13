@@ -9,6 +9,8 @@
 			<li>Combat</li>
 		</categories>
 		<classification>Canis</classification>
+		<fullTransformation>PawnmorphHuskyTF</fullTransformation>
+		<partialTransformation>PawnmorphHuskyTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(202,196,192)</skinColorOverride>

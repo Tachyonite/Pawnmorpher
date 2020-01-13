@@ -9,6 +9,8 @@
 			<li>Production</li>
 		</categories>
 		<classification>Suidae</classification>
+		<fullTransformation>PawnmorphPigTF</fullTransformation>
+		<partialTransformation>PawnmorphPigTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(198,160,160)</skinColorOverride>

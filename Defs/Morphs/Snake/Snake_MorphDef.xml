@@ -8,6 +8,8 @@
 			<li>Combat</li>
 			<li>Reptile</li>
 		</categories>
+		<fullTransformation>PawnmorphSnakeTF</fullTransformation>
+		<partialTransformation>PawnmorphWolfTFPartial</partialTransformation>
 		<classification>Serpentes</classification>
 		<raceSettings>
 			<graphicsSettings>

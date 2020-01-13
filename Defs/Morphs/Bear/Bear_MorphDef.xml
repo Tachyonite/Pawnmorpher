@@ -9,6 +9,8 @@
 			<li>Combat</li>
 			<li>Ursine</li>
 		</categories>
+		<fullTransformation>PawnmorphBearTF</fullTransformation>
+		<partialTransformation>PawnmorphBearTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(155,116,89)</skinColorOverride>

@@ -10,6 +10,8 @@
 			<li>Combat</li>
 			<li>Social</li>
 		</categories>
+		<partialTransformation>PawnmorphFoxTFPartial</partialTransformation>
+		<fullTransformation>PawnmorphFoxTF</fullTransformation>
 		<raceSettings>
 			<thoughtSettings>
 				<ateAnimalThought>

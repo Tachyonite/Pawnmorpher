@@ -9,6 +9,8 @@
 			<li>Combat</li>
 		</categories>
 		<classification>Canis</classification>
+		<fullTransformation>PawnmorphWargTF</fullTransformation>
+		<partialTransformation>PawnmorphWargTFPartial</partialTransformation>
 		<raceSettings>
 			<thoughtSettings>
 				<replacerList>

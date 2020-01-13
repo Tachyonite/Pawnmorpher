@@ -14,7 +14,7 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary> Def class for a morph. Used to generate the morph's implicit race. </summary>
-    public class MorphDef :  AnimalClassBase
+    public class MorphDef : AnimalClassBase
     {
         /// <summary>
         ///     The categories that the morph belongs to. <br />
@@ -53,6 +53,16 @@ namespace Pawnmorph
         /// <summary> Aspects that a morph of this race get.</summary>
         public List<AddedAspect> addedAspects = new List<AddedAspect>();
 
+        /// <summary>
+        ///     The full transformation chain
+        /// </summary>
+        [CanBeNull] public HediffDef fullTransformation;
+
+        /// <summary>
+        ///     The partial transformation chain
+        /// </summary>
+        [CanBeNull] public HediffDef partialTransformation;
+
         /// <summary> The morph's implicit race.</summary>
         [Unsaved] public ThingDef hybridRaceDef;
 
@@ -64,24 +74,13 @@ namespace Pawnmorph
         [Unsaved] private List<MutationDef> _allAssociatedMutations;
 
         /// <summary>
-        /// Gets the children.
+        ///     Gets the children.
         /// </summary>
         /// <value>
-        /// The children.
+        ///     The children.
         /// </value>
-        public override IEnumerable<AnimalClassBase> Children => Enumerable.Empty<AnimalClassBase>(); //morphs can't have class children
-
-        /// <summary>
-        /// Determines whether this instance contains the object.
-        /// </summary>
-        /// <param name="other">The other.</param>
-        /// <returns>
-        ///   <c>true</c> if [contains] [the specified other]; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool Contains(AnimalClassBase other)
-        {
-            return other == this;
-        }
+        public override IEnumerable<AnimalClassBase> Children =>
+            Enumerable.Empty<AnimalClassBase>(); //morphs can't have class children
 
         /// <summary>
         ///     Gets the label.
@@ -92,10 +91,10 @@ namespace Pawnmorph
         public override string Label => label;
 
         /// <summary>
-        /// Gets the parent class.
+        ///     Gets the parent class.
         /// </summary>
         /// <value>
-        /// The parent class.
+        ///     The parent class.
         /// </value>
         public override AnimalClassDef ParentClass => classification;
 
@@ -149,6 +148,18 @@ namespace Pawnmorph
             else if (race.race == null) yield return $"Race {race.defName} has no race properties! Are you sure this is a race?";
         }
 
+        /// <summary>
+        ///     Determines whether this instance contains the object.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns>
+        ///     <c>true</c> if [contains] [the specified other]; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Contains(AnimalClassBase other)
+        {
+            return other == this;
+        }
+
 
         /// <summary>Gets the mutation that affect the given part from this morph def</summary>
         /// <param name="partDef">The part definition.</param>
@@ -161,7 +172,7 @@ namespace Pawnmorph
             if (_mutationsByParts == null)
             {
                 _mutationsByParts = new Dictionary<BodyPartDef, List<MutationDef>>();
-                foreach (var mutation in AllAssociatedMutations) //build the lookup dict here 
+                foreach (MutationDef mutation in AllAssociatedMutations) //build the lookup dict here 
                 foreach (BodyPartDef part in mutation.parts.MakeSafe()) //gets a list of all parts this mutation affects 
                 {
                     List<MutationDef> lst;
@@ -209,13 +220,11 @@ namespace Pawnmorph
         public bool IsAnAssociatedMutation([NotNull] HediffDef hediffDef)
         {
             if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
-            if (hediffDef is MutationDef mDef)
-            {
-                return AllAssociatedMutations.Contains(mDef);
-            }
+            if (hediffDef is MutationDef mDef) return AllAssociatedMutations.Contains(mDef);
 
-            return false; 
+            return false;
         }
+
         /// <summary>
         ///     Determines whether the specified hediff definition is an associated mutation .
         /// </summary>
@@ -227,10 +236,8 @@ namespace Pawnmorph
         public bool IsAnAssociatedMutation([NotNull] MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-         
-                return AllAssociatedMutations.Contains(mutationDef);
-            
 
+            return AllAssociatedMutations.Contains(mutationDef);
         }
 
 
@@ -245,12 +252,9 @@ namespace Pawnmorph
         public bool IsAnAssociatedMutation([NotNull] Hediff hediff)
         {
             if (hediff?.def == null) throw new ArgumentNullException(nameof(hediff));
-            if (hediff is Hediff_AddedMutation mutation)
-            {
-                return AllAssociatedMutations.Contains(mutation.def as MutationDef); 
-            }
+            if (hediff is Hediff_AddedMutation mutation) return AllAssociatedMutations.Contains(mutation.def as MutationDef);
 
-            return false; 
+            return false;
         }
 
         /// <summary>
@@ -267,19 +271,6 @@ namespace Pawnmorph
             classification = classification ?? AnimalClassDefOf.Animal;
 
             //TODO patch explicit race based on hybrid race settings? 
-        }
-
-        [NotNull]
-        private IEnumerable<HediffGiver_Mutation> GetMutations()
-        {
-            foreach (HediffDef morphTfDef in
-                DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass)))
-            foreach (HediffGiver_Mutation giver in morphTfDef.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
-            {
-                if (!(giver.hediff is MutationDef mDef)) continue;
-                if (mDef.classInfluence == this)
-                    yield return giver;
-            }
         }
 
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>

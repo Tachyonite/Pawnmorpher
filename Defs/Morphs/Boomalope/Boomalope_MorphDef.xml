@@ -5,6 +5,8 @@
 		<description>a humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel</description>
 		<race>Boomalope</race>
 		<classification>Cervidae</classification>
+		<fullTransformation>PawnmorphBoomalopeTF</fullTransformation>
+		<partialTransformation>PawnmorphBoomalopeTFPartial</partialTransformation>
 		<categories>
 			<li>Production</li>
 		</categories>

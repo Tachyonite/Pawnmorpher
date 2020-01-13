@@ -9,6 +9,8 @@
 			<li>Crafter</li>
 		</categories>
 		<classification>Primates</classification>
+		<partialTransformation>PawnmorphMonkeyTFPartial</partialTransformation>
+		<fullTransformation>PawnmorphMonkeyTF</fullTransformation>
 		<raceSettings>
 			<thoughtSettings>
 				<ateAnimalThought>

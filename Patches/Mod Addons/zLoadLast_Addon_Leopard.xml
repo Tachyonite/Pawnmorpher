@@ -90,6 +90,8 @@
 							<label>leopardmorph</label>
 							<description>A suprisingly docile morph, leopard morphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instinct is sharp and their claws are sharper.</description>
 							<race/>
+							<fullTransformation>PawnmorphLeopardTF</fullTransformation>
+							<partialTranformation>PawnmorphLeopardTFPartial</partialTranformation>
 							<categories>
 								<li>Feline</li>
 								<li>Combat</li>
@@ -105,6 +107,8 @@
 							<label>snepmorph</label>
 							<description>A suprisingly docile morph, snow leopard morphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instinct is sharp and their claws are sharper.</description>
 							<race/>
+							<fullTransformation>PawnmorphSnepTF</fullTransformation>
+							<partialTransformation>PawnmorphSnepTFPartial</partialTransformation>
 							<categories>
 								<li>Feline</li>
 								<li>Combat</li>

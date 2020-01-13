@@ -28,5 +28,7 @@
 	  <categories>
 		  <li>Chimera</li>
 	  </categories>
+	  <fullTransformation>FullRandomTFAnyOutcome</fullTransformation>
+	  <partialTransformation>FullRandomTF</partialTransformation>
   </Pawnmorph.MorphDef>
 </Defs>

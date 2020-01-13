@@ -8,6 +8,8 @@
 			<li>Powerful</li>
 		</categories>
 		<classification>Mammalia</classification>
+		<partialTransformation>PawnmorphMegaslothTFPartial</partialTransformation>
+		<fullTransformation>PawnmorphMegaslothTF</fullTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(191,157,113)</skinColorOverride>

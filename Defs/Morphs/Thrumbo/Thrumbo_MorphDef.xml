@@ -1,4 +1,4 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>ThrumboMorph</defName>
 		<label>thrumbomorph</label>
@@ -7,6 +7,8 @@
 		<categories>
 			<li>Powerful</li>
 		</categories>
+		<fullTransformation>PawnmorphThrumboTF</fullTransformation>
+		<partialTransformation>PawnmorphThrumboTFPartial</partialTransformation>
 		<classification>Artiodactyla</classification>
 		<raceSettings>
 			<graphicsSettings>

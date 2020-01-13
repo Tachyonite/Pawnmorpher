@@ -77,6 +77,8 @@
 						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 							<defName>HorseMorph</defName>
 							<label>horsemorph</label>
+							<fullTransformation>PawnmorphHorseTF</fullTransformation>
+							<partialTransformation>PawnmorphHorseTFPartial</partialTransformation>
 							<race/>
 							<categories>
 								<li>Farm</li>

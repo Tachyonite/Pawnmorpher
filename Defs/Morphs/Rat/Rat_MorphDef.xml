@@ -8,6 +8,8 @@
 		<categories>
 			<li>Crafter</li>
 		</categories>
+		<fullTransformation>PawnmorphRatTF</fullTransformation>
+		<partialTransformation>PawnmorphRatTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(120,120,120)</skinColorOverride>

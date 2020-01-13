@@ -1,4 +1,4 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>CowMorph</defName>
 		<label>cowmorph</label>
@@ -8,6 +8,8 @@
 			<li>Farm</li>
 			<li>Production</li>
 		</categories>
+		<fullTransformation>PawnmorphCowTF</fullTransformation>
+		<partialTransformation>PawnmorphCowTFPartial</partialTransformation>
 		<classification>Bovidae</classification>
 		<raceSettings>
 			<graphicsSettings>

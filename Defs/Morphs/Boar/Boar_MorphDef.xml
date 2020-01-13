@@ -8,6 +8,8 @@
 		<categories>
 			<li>Combat</li>
 		</categories>
+		<fullTransformation>PawnmorphBoarTF</fullTransformation>
+		<partialTransformation>PawnmorphBoarTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(155,116,89)</skinColorOverride>

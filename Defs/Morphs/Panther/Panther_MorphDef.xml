@@ -9,6 +9,8 @@
 			<li>Feline</li>
 		</categories>
 		<classification>Pantherinae</classification>
+		<fullTransformation>PawnmorphPantherTF</fullTransformation>
+		<partialTransformation>PawnmorphSquirrelTFPartial</partialTransformation>
 		<addedAspects>
 			<li>
 				<def>PantherAspect</def>

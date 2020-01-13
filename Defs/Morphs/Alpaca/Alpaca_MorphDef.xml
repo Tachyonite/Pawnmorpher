@@ -9,6 +9,8 @@
 			<li>Farm</li>
 			<li>Production</li>
 		</categories>
+		<fullTransformation>PawnmorphAlpacaTF</fullTransformation>
+		<partialTransformation>PawnmorphAlpacaTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(223,188,126)</skinColorOverride>

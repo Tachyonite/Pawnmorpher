@@ -160,11 +160,8 @@
 		</graphicData>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>PawnmorphIguanaTF</li>
-						<li>PawnmorphSnakeTF</li>
-					</hediffDefs>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Reptilia</animalClass>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>
@@ -180,12 +177,8 @@
 		</graphicData>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>PawnmorphHareTF</li>
-						<li>PawnmorphRatTF</li>
-						<li>PawnmorphSquirrelTF</li>
-					</hediffDefs>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Rodentia</animalClass>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>

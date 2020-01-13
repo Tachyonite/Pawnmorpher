@@ -9,6 +9,8 @@
 			<li>Crafter</li>
 			<li>Reptile</li>
 		</categories>
+		<fullTransformation>PawnmorphIguanaTF</fullTransformation>
+		<partialTransformation>PawnmorphIguanaTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(101,115,57)</skinColorOverride>

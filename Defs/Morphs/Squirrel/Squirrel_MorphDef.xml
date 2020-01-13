@@ -8,6 +8,8 @@
 		<categories>
 			<li>Crafter</li>
 		</categories>
+		<fullTransformation>PawnmorphSquirrelTF</fullTransformation>
+		<partialTransformation>PawnmorphSquirrelTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(161,95,38)</skinColorOverride>

@@ -9,6 +9,8 @@
 			<li>Production</li>
 			<li>Farm</li>
 		</categories>
+		<fullTransformation>PawnmorphChickenTF</fullTransformation>
+		<partialTransformation>PawnmorphChickenTFPartial</partialTransformation>
 		<classification>Aves</classification>
 		<raceSettings>
 			<graphicsSettings>

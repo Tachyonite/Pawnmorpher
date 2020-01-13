@@ -8,6 +8,8 @@
 		<categories>
 			<li>Farm</li>
 		</categories>
+		<fullTransformation>PawnmorphHareTF</fullTransformation>
+		<partialTransformation>PawnmorphHareTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(130,127,106)</skinColorOverride>

@@ -7,6 +7,8 @@
 		<categories>
 			<li>Powerful</li>
 		</categories>
+		<fullTransformation>PawnmorphElephantTF</fullTransformation>
+		<partialTransformation>PawnmorphElephantTFPartial</partialTransformation>
 		<classification>Mammalia</classification>
 		<raceSettings>
 			<graphicsSettings>

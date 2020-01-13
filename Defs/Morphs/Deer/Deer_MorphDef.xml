@@ -8,6 +8,8 @@
 			<li>Combat</li>
 		</categories>
 		<classification>Cervidae</classification>
+		<fullTransformation>PawnmorphDeerTF</fullTransformation>
+		<partialTransformation>PawnmorphDeerTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(170,121,63)</skinColorOverride>
