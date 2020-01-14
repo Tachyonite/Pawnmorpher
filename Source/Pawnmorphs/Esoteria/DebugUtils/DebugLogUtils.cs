@@ -41,6 +41,35 @@ namespace Pawnmorph.DebugUtils
         }
 
         [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME), UsedImplicitly]
+        static void PrintGraphVizAnimalTree()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"digraph animalClassTree\n{{");
+
+            foreach (AnimalClassDef aClass in DefDatabase<AnimalClassDef>.AllDefs)
+            {
+                builder.AppendLine($"{aClass.defName}[shape=square]");
+            }
+
+            BuildGraphvizTree(AnimalClassDefOf.Animal, builder);
+            builder.AppendLine("}");
+            Log.Message(builder.ToString());
+        }
+
+        static void BuildGraphvizTree( [NotNull]AnimalClassBase aBase, StringBuilder builder)
+        {
+            
+
+            foreach (AnimalClassBase child in aBase.Children)
+            {
+                builder.AppendLine($"{aBase.defName}->{child.defName};");
+                BuildGraphvizTree(child, builder); 
+            }
+        }
+
+
+        [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]
         public static void CheckBodyHediffGraphics()
         {
