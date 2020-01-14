@@ -7,6 +7,7 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.27</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
@@ -74,6 +75,7 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.27</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
@@ -332,6 +334,7 @@
 					</west> 
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
@@ -360,6 +363,7 @@
 					<west/>
 				</offsets>
 				<inFrontOfBody>false</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
@@ -416,6 +420,7 @@
 					<west/>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
@@ -444,6 +449,7 @@
 					</west>
 				</offsets>
 				<inFrontOfBody>false</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
@@ -503,6 +509,7 @@
 					</west>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
@@ -534,6 +541,7 @@
 					<west/>
 				</offsets>
 				<inFrontOfBody>false</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
@@ -593,6 +601,7 @@
 					<west/>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
@@ -624,6 +633,7 @@
 					</west>
 				</offsets>
 				<inFrontOfBody>false</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
