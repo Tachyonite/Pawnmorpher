@@ -180,10 +180,9 @@ namespace Pawnmorph.TfSys
             Map oMap = original.Map;
 
             
-            //apply apparel damage 
-            ApplyApparelDamage(original, spawnedAnimal.def);
+            //apply any other post tf effects 
+            ApplyPostTfEffects(original, spawnedAnimal); 
 
-            FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(spawnedAnimal, original);
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 
@@ -201,6 +200,22 @@ namespace Pawnmorph.TfSys
 
 
             return inst;
+        }
+
+        /// <summary>
+        /// Applies the post tf effects.
+        /// this should be called just before the original pawn is cleaned up 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        protected override void ApplyPostTfEffects(Pawn original, Pawn transformedPawn)
+        {
+            //apply apparel damage 
+            ApplyApparelDamage(original, transformedPawn.def);
+            FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(transformedPawn, original);
+            base.ApplyPostTfEffects(original, transformedPawn);
+           
+
         }
 
         private static void SendLetter(TransformationRequest request, Pawn original, Pawn spawnedAnimal)

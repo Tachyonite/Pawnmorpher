@@ -76,6 +76,7 @@
     <Compile Include="AspectDefOf.cs" />
     <Compile Include="AspectGiver.cs" />
     <Compile Include="AspectStage.cs" />
+    <Compile Include="Aspects\PrimalWishGiver.cs" />
     <Compile Include="Aspects\RandomGiver.cs" />
     <Compile Include="Aspects\SkillBasedGiver.cs" />
     <Compile Include="AspectTracker.cs" />
