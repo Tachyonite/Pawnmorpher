@@ -461,7 +461,7 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn"></param>
         /// <returns></returns>
-        public static MutationOutlook GetOutlook([NotNull] this Pawn pawn)
+        public static MutationOutlook GetMutationOutlook([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 

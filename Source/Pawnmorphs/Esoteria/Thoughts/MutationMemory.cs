@@ -13,6 +13,19 @@ namespace Pawnmorph.Thoughts
     {
         /// <summary>Gets the index of the current stage.</summary>
         /// <value>The index of the current stage.</value>
-        public override int CurStageIndex => Mathf.Min(def.stages.Count, (int) pawn.GetOutlook());
+        public override int CurStageIndex
+        {
+            get
+            {
+                int maxStage = def.stages.Count - 1;
+
+                MutationOutlook mutationOutlook = pawn.GetMutationOutlook();
+
+                if (mutationOutlook == MutationOutlook.PrimalWish && maxStage < (int) MutationOutlook.PrimalWish)
+                    mutationOutlook = MutationOutlook.Furry; //use the furry stage if the primal wish stage isn't there 
+
+                return Mathf.Min(maxStage, (int) mutationOutlook);
+            }
+        }
     }
 }

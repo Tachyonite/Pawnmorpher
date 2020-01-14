@@ -1,5 +1,5 @@
 <Defs>
-	<ThoughtDef ParentName="MorphReactionThoughtBaseNone">
+	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>EtherReactionChaosTF</defName>
 		<hediff>FullRandomTFAnyOutcome</hediff>
 		<stages>

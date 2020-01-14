@@ -1,7 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
-	<ThoughtDef ParentName="MorphReactionThoughtBaseFurry">
+	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>EtherReactionThrumboTF</defName>
-		<hediff>PawnmorphThrumboTF</hediff>
 		<stages>
 			<li>
 				<label>changed</label>

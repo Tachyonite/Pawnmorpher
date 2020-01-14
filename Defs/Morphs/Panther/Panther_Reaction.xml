@@ -1,8 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
-	<ThoughtDef>
+	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>PantherMorphTFReaction</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PawnmorphPantherTF</hediff>
 		<stages>
 			<li>
 				<label>changed</label>

@@ -19,6 +19,10 @@ namespace Pawnmorph
         /// <summary>
         /// they especially dislike the idea of having mutations 
         /// </summary>
-        BodyPurist
+        BodyPurist,
+        /// <summary>
+        /// the pawn wants to be a full animal 
+        /// </summary>
+        PrimalWish
     }
 }

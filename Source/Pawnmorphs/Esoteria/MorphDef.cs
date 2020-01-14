@@ -279,8 +279,8 @@ namespace Pawnmorph
             /// <summary> The TaleDef that should be used in art that occurs whenever a pawn shifts to this morph.</summary>
             [CanBeNull] public TaleDef transformTale;
 
-            /// <summary> The ID of the message that should be spawned when a pawn shifts to this morph.</summary>
-            [CanBeNull] public string transformationMessageID;
+            /// <summary> The content of the message that should be spawned when a pawn shifts to this morph.</summary>
+            [CanBeNull] public string transformationMessage;
 
             /// <summary> The message type that should be used when a pawn shifts to this morph.</summary>
             [CanBeNull] public MessageTypeDef messageDef;
@@ -288,35 +288,12 @@ namespace Pawnmorph
             /// <summary> Memory added when a pawn shifts to this morph.</summary>
             [CanBeNull] public ThoughtDef transformationMemory;
 
-            /// <summary> Memory added when the pawn reverts from this morph back to human if they have the furry trait.</summary>
-            [CanBeNull] public ThoughtDef revertedMemoryFurry;
-
-            /// <summary> Memory added when the pawn reverts from this morph back to human if they have the body purist trait.</summary>
-            [CanBeNull] public ThoughtDef revertedMemoryBP;
-
             /// <summary>
             ///     Memory added when the pawn reverts from this morph back to human if they have neither the body purist or
             ///     furry traits.
             /// </summary>
             [CanBeNull] public ThoughtDef revertedMemory;
 
-            /// <summary> Gets the memory for when a pawn is reverted based on their outlook.</summary>
-            /// <param name="outlook"> The mutation outlook of the pawn (i.e. Whether they are a body purist, a furry, or nothing).</param>
-            /// <returns> The ThoughtDef of the memory associated with their outlook.</returns>
-            public ThoughtDef GetReversionMemory(MutationOutlook outlook)
-            {
-                switch (outlook)
-                {
-                    case MutationOutlook.Furry:
-                        return revertedMemoryFurry;
-                    case MutationOutlook.BodyPurist:
-                        return revertedMemoryBP;
-                    case MutationOutlook.Neutral:
-                        return revertedMemory;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(outlook), outlook, null);
-                }
-            }
         }
 
         /// <summary> Aspects to add when a pawn changes race to this morph type and settings asociated with them.</summary>

@@ -2,7 +2,7 @@
   <!-- weird attributes are for telling VS,VSCode,N++ where the schema is -->
   
 
-  <ThoughtDef ParentName="PMMorphMemoryNone">
+  <ThoughtDef ParentName="OutlookMemoryBase">
     <!-- this will be the default memory given when a pawn changes to a hybrid race -->
     <defName>WolfMorphTfReaction</defName> <!--this is a memory and can be added the same as any other -->
     <durationDays>10</durationDays>
