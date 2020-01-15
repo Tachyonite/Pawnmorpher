@@ -69,7 +69,7 @@ namespace Pawnmorph.Hybrids
                 manhunterOnDamageChance = animal.manhunterOnDamageChance,
                 manhunterOnTameFailChance = animal.manhunterOnTameFailChance,
                 litterSizeCurve = human.litterSizeCurve,
-                lifeStageAges = human.lifeStageAges.ToList(),
+                lifeStageAges = MakeLifeStages(human.lifeStageAges, animal.lifeStageAges),
                 soundMeleeHitPawn = animal.soundMeleeHitPawn,
                 soundMeleeHitBuilding = animal.soundMeleeHitBuilding,
                 soundMeleeMiss = animal.soundMeleeMiss,
@@ -86,6 +86,34 @@ namespace Pawnmorph.Hybrids
             };
         }
 
+        private static List<LifeStageAge> MakeLifeStages(List<LifeStageAge> human, List<LifeStageAge> animal)
+        {
+            List<LifeStageAge> ls = new List<LifeStageAge>();
+
+            float convert = ((float) animal.Count) / human.Count;  
+            for (int i = 0; i < human.Count; i++)
+            {
+                int j = (int) (convert * i);
+
+                var hStage = human[i];
+                var aStage = animal[j];
+
+                var newStage = new LifeStageAge()
+                {
+                    minAge = hStage.minAge,
+                    def = hStage.def,
+                    soundAngry = aStage.soundAngry,
+                    soundCall = aStage.soundCall,
+                    soundDeath = aStage.soundDeath,
+                    soundWounded = aStage.soundWounded
+                };
+                ls.Add(newStage); 
+
+            }
+
+            return ls; 
+        }
+
         private static float GetBodySize(RaceProperties animal, RaceProperties human)
         {
             var f = Mathf.Lerp(human.baseBodySize, animal.baseBodySize, 0.5f);
@@ -94,7 +122,8 @@ namespace Pawnmorph.Hybrids
 
         private static float GetHungerRate(RaceProperties animal, RaceProperties human)
         {
-            var f = Mathf.Lerp(human.baseHungerRate, animal.baseHungerRate, 0.5f);
+            
+            var f = Mathf.Lerp(human.baseHungerRate, animal.baseHungerRate, 0.7f);
             return f;
         }
 
