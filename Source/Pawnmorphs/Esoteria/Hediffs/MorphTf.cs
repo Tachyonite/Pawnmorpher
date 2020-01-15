@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -48,8 +49,24 @@ namespace Pawnmorph.Hediffs
             if (pawn.IsHashIntervalTick(200))
             {
                 float statDef = pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
-                _meanPerDay = BASE_MEAN * statDef; 
+                _meanPerDay = GetBaseMutationRate(CurStage) * statDef; 
             }
+        }
+
+        /// <summary>
+        /// Gets the base mutation rate for this stage 
+        /// </summary>
+        /// gets the current mutation rate before the MutagenSensitivity or other stats are taken into account 
+        /// <param name="currentStage">The current stage.</param>
+        /// <returns></returns>
+        protected virtual float GetBaseMutationRate(HediffStage currentStage)
+        {
+            if (currentStage is TransformationStageBase tfStage)
+            {
+                return tfStage.meanMutationsPerDay; 
+            }
+
+            return BASE_MEAN; 
         }
 
         /// <summary>Fills the part check list.</summary>

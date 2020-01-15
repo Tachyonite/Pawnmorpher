@@ -18,17 +18,23 @@ namespace Pawnmorph.Hediffs
     public class MorphTransformationStage : TransformationStageBase
     {
         /// <summary>
-        /// The morph def to get mutations from
+        /// The morph or animal class def to get mutations from
         /// this cannot be null, and must be set in the xml 
         /// </summary>
         [UsedImplicitly]
-        public MorphDef morph;
+        public AnimalClassBase morph;
 
         /// <summary>
         /// optional black list 
         /// </summary>
         [NotNull] 
-        public List<MutationDef> blackList = new List<MutationDef>(); 
+        public List<MutationDef> blackList = new List<MutationDef>();
+
+
+        /// <summary>
+        /// The chance to add each mutation 
+        /// </summary>
+        public float addChance = 0.75f; 
 
         [Unsaved] private List<MutationEntry> _entries;
 
@@ -58,12 +64,13 @@ namespace Pawnmorph.Hediffs
                     }
 
                     _entries = new List<MutationEntry>(); 
-                    foreach (MutationDef mutation in morph.AllAssociatedMutations)
+                    foreach (MutationDef mutation in morph.GetAllMorphsInClass().SelectMany(m => m.AllAssociatedMutations))
                     {
                         if(blackList.Contains(mutation)) continue;
                         _entries.Add(new MutationEntry
                         {
-                            mutation = mutation
+                            mutation = mutation, 
+                            addChance = addChance
                         });
                     }
 

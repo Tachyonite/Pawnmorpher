@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using UnityEngine;
@@ -21,6 +22,30 @@ namespace Pawnmorph.Hediffs
 
         private List<BodyPartRecord> _checkList;
         private int _curIndex;
+
+
+        public override string DebugString()
+        {
+            StringBuilder builder = new StringBuilder( base.DebugString());
+            builder.AppendLine($"{nameof(TransformationBase)}: ");
+            if (FinishedAddingMutations)
+                builder.AppendLine("\tFinished");
+            if (_checkList == null || _checkList.Count == 0)
+            {
+                builder.AppendLine($"\tno parts to check");
+            }
+            else
+            {
+                if (_curIndex < _checkList.Count)
+                {
+                    var nextPart = _checkList[_curIndex];
+                    builder.AppendLine($"going to check {nextPart.Label} next");
+                }
+
+                builder.AppendLine($"\t{(((float) _curIndex) / _checkList.Count).ToStringPercent()} done");
+            }
+            return builder.ToString(); 
+        }
 
         /// <summary>
         ///     Gets the description.
@@ -102,6 +127,7 @@ namespace Pawnmorph.Hediffs
             base.ExposeData();
             Scribe_Collections.Look(ref _checkList, nameof(_checkList), LookMode.BodyPart);
             Scribe_Values.Look(ref _curIndex, nameof(_curIndex));
+            Scribe_Values.Look(ref _lastStageIndex, nameof(_lastStageIndex), -1); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && _checkList == null)
             {
                 ResetMutationOrder();
@@ -121,12 +147,18 @@ namespace Pawnmorph.Hediffs
             _curIndex = 0;
         }
 
+        private int _lastStageIndex = -1; 
+
         /// <summary>Ticks this instance.</summary>
         public override void Tick()
         {
-            HediffStage cStage = CurStage;
+;
             base.Tick();
-            if (CurStage != cStage) OnStageChanged(cStage);
+            if (CurStageIndex != _lastStageIndex)
+            {
+                _lastStageIndex = CurStageIndex;
+                OnStageChanged(CurStage);
+            }
             var mtb = 1 / Mathf.Max(0.0001f, MeanMutationsPerDay); 
             if ( pawn.IsHashIntervalTick(60) && Rand.MTBEventOccurs(mtb, 60000, 60)) AddMutations();
 
@@ -156,13 +188,14 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         ///     Called when the stage changes.
         /// </summary>
-        /// <param name="lastStage">The last stage.</param>
-        protected virtual void OnStageChanged([CanBeNull] HediffStage lastStage)
+        /// <param name="currentStage">The last stage.</param>
+        protected virtual void OnStageChanged([CanBeNull] HediffStage currentStage)
         {
             ResetPossibleMutations();
             TryGiveTransformations();
             if(CurStage is IExecutableStage execStage)
             {
+                Log.Message($"Executing {execStage.GetType().Name} on {def.defName}");
                 execStage.EnteredStage(this); 
             }
         }
