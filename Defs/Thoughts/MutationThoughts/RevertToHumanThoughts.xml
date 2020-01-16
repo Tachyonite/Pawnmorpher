@@ -7,8 +7,8 @@
         <defName>DefaultMorphRevertsToHuman</defName>
         <stages>
             <li>
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>reverted</label>
+                <description>That was...an experience, to say the least. I'm glad to be back to my old self again though.</description>
                 <visible>true</visible>
             </li>
         </stages>
