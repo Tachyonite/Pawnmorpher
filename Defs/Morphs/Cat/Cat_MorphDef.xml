@@ -2,6 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>CatMorph</defName>
 		<label>catmorph</label>
+		<description>A human variant with many cat features. Uusually defined by a short whiskered muzzle, a long, thin tail and sharp clawed hands. They are faster and more dextrous than regular humans, and they have an advantage in melee.</description>
 		<race>Cat</race>
 		<classification>Felidae</classification>
 		<categories>
