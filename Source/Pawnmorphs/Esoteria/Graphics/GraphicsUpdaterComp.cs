@@ -56,8 +56,8 @@ namespace Pawnmorph.GraphicSys
             if (GComp == null || InitialGraphics == null) return false; 
 
             float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
-            var baseColor = curMorph?.GetSkinColorOverride() ?? InitialGraphics.SkinColor;
-            var morphColor = highestInfluence.GetSkinColorOverride() ?? InitialGraphics.SkinColor;
+            var baseColor = curMorph?.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
+            var morphColor = highestInfluence.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
 
             if (baseColor == morphColor)
             {
@@ -80,8 +80,8 @@ namespace Pawnmorph.GraphicSys
             if (GComp == null || InitialGraphics == null || Pawn.story == null) return false;
 
             float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
-            var baseColor = curMorph?.GetHairColorOverride() ?? InitialGraphics.HairColor;
-            var morphColor = highestInfluence.GetHairColorOverride() ?? InitialGraphics.HairColor;
+            var baseColor = curMorph?.GetHairColorOverride(tracker.Pawn) ?? InitialGraphics.HairColor;
+            var morphColor = highestInfluence.GetHairColorOverride(tracker.Pawn) ?? InitialGraphics.HairColor;
 
             if (baseColor == morphColor) return false; //if they're the same color don't  do anything 
 

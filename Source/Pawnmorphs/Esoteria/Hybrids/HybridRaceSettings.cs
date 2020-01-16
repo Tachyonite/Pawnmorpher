@@ -69,10 +69,22 @@ namespace Pawnmorph.Hybrids
         {
             /// <summary>The skin color override</summary>
             public Color? skinColorOverride;
+
+            /// <summary>
+            /// The female skin color override
+            /// </summary>
+            public Color? femaleSkinColorOverride; 
+
             /// <summary>
             /// The skin color override second
             /// </summary>
             public Color? skinColorOverrideSecond;
+
+            /// <summary>
+            /// The female hair color override
+            /// </summary>
+            public Color? femaleHairColorOverride; 
+
             /// <summary>The hair color override</summary>
             public Color? hairColorOverride;
             /// <summary>

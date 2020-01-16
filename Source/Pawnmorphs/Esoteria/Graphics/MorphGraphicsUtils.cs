@@ -4,6 +4,7 @@
 using System;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.Hybrids;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -11,54 +12,37 @@ using Verse;
 namespace Pawnmorph.GraphicSys
 {
     /// <summary>
-    /// collection of useful graphics related utility functions on morphs 
+    ///     collection of useful graphics related utility functions on morphs
     /// </summary>
     public static class MorphGraphicsUtils
     {
         /// <summary>
-        /// refresh the graphics associated with this pawn, including the portraits if it's a colonist 
+        ///     Gets the hair color override.
         /// </summary>
-        /// <param name="pawn"></param>
-        public static void RefreshGraphics([NotNull] this Pawn pawn)
-        {
-            if (Current.ProgramState != ProgramState.Playing) return; //make sure we don't refresh the graphics while the game is loading
-            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-            if (pawn.IsColonist)
-            {
-                PortraitsCache.SetDirty(pawn);
-            }
-        }
-        /// <summary>Gets the skin color override.</summary>
         /// <param name="def">The definition.</param>
+        /// <param name="pawn">The pawn.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">def</exception>
-        public static Color? GetSkinColorOverride([NotNull] this MorphDef def)
+        public static Color? GetHairColorOverride([NotNull] this MorphDef def, Pawn pawn = null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
+            HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
+
             if (def.explicitHybridRace == null)
             {
-                return def.raceSettings?.graphicsSettings?.skinColorOverride;
-            }
-            else
-            {
-                var hRace = def.explicitHybridRace as ThingDef_AlienRace;
-                return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskincolorgen?.NewRandomizedColor();
-            }
-        }
-        /// <summary>Gets the hair color override.</summary>
-        /// <param name="def">The definition.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">def</exception>
-        public static Color? GetHairColorOverride([NotNull] this MorphDef def)
-        {
-            if (def == null) throw new ArgumentNullException(nameof(def));
+                Gender? gender = pawn?.gender;
 
-            if(def.explicitHybridRace == null)
-                return def.raceSettings?.graphicsSettings?.hairColorOverride ?? GetSkinColorOverride(def);
+                if (gender == Gender.Female && gSettings?.femaleHairColorOverride != null)
+                    return gSettings.femaleHairColorOverride;
+
+                return gSettings?.hairColorOverride ?? GetSkinColorOverride(def, pawn);
+            }
 
             var hRace = def.explicitHybridRace as ThingDef_AlienRace;
-            return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhaircolorgen?.NewRandomizedColor() ?? GetSkinColorOverride(def); 
+            return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhaircolorgen?.NewRandomizedColor()
+                ?? GetSkinColorOverride(def, pawn);
         }
+
         /// <summary>Gets the hair color override second.</summary>
         /// <param name="def">The definition.</param>
         /// <returns></returns>
@@ -66,11 +50,37 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetHairColorOverrideSecond([NotNull] this MorphDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            if(def.explicitHybridRace == null)
+            if (def.explicitHybridRace == null)
                 return def.raceSettings?.graphicsSettings?.hairColorOverrideSecond ?? GetSkinColorSecondOverride(def);
             var hRace = def.explicitHybridRace as ThingDef_AlienRace;
-            return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhairsecondcolorgen?.NewRandomizedColor() ?? GetSkinColorSecondOverride(def); 
+            return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhairsecondcolorgen?.NewRandomizedColor()
+                ?? GetSkinColorSecondOverride(def);
         }
+
+        /// <summary>
+        ///     Gets the skin color override.
+        /// </summary>
+        /// <param name="def">The definition.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">def</exception>
+        public static Color? GetSkinColorOverride([NotNull] this MorphDef def, Pawn pawn = null)
+        {
+            if (def == null) throw new ArgumentNullException(nameof(def));
+            if (def.explicitHybridRace == null)
+            {
+                HybridRaceSettings.GraphicsSettings raceGSettings = def.raceSettings?.graphicsSettings;
+                Gender? gender = pawn?.gender;
+                if (gender == Gender.Female && raceGSettings?.femaleSkinColorOverride != null)
+                    return raceGSettings.femaleSkinColorOverride;
+
+                return raceGSettings?.skinColorOverride;
+            }
+
+            var hRace = def.explicitHybridRace as ThingDef_AlienRace;
+            return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskincolorgen?.NewRandomizedColor();
+        }
+
         /// <summary>Gets the skin color second override.</summary>
         /// <param name="def">The definition.</param>
         /// <returns></returns>
@@ -78,10 +88,22 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetSkinColorSecondOverride([NotNull] this MorphDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            if(def.explicitHybridRace == null)
+            if (def.explicitHybridRace == null)
                 return def.raceSettings?.graphicsSettings?.skinColorOverrideSecond;
             var hRace = def.explicitHybridRace as ThingDef_AlienRace;
-            return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskinsecondcolorgen?.NewRandomizedColor(); 
+            return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskinsecondcolorgen?.NewRandomizedColor();
+        }
+
+        /// <summary>
+        ///     refresh the graphics associated with this pawn, including the portraits if it's a colonist
+        /// </summary>
+        /// <param name="pawn"></param>
+        public static void RefreshGraphics([NotNull] this Pawn pawn)
+        {
+            if (Current.ProgramState != ProgramState.Playing)
+                return; //make sure we don't refresh the graphics while the game is loading
+            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            if (pawn.IsColonist) PortraitsCache.SetDirty(pawn);
         }
     }
 }
