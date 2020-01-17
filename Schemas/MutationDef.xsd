@@ -41,6 +41,7 @@
             <xs:element name="classInfluence" minOccurs="0" type="xs:string" />
             <xs:element name="morphInfluence" minOccurs="0" type="xs:string" />
             <xs:element name="mutationMemory" minOccurs="0" type="xs:string" />
+            <xs:element name="memoryIgnoresLimit" minOccurs="0" type="xs:boolean" />
             <xs:element name="mutationLogRulePack" minOccurs="0" type="xs:string" />
             <xs:element name="countToAffect" minOccurs="0" type="xs:int" />
             <xs:element name="modExtensions" minOccurs="0">

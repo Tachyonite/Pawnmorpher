@@ -110,16 +110,21 @@ namespace Pawnmorph
         /// <summary>
         ///     an enumerable collection of all mutation related thoughts
         /// </summary>
+        [NotNull]
         public static IEnumerable<ThoughtDef> AllMutationMemories
         {
             get
             {
                 if (_allThoughts == null)
-                { 
-                    _allThoughts = MutationDef.AllMutations.Select(m => m.mutationMemory).ToList();
+                {
+                    _allThoughts = MutationDef.AllMutations
+                                              .Where(m => !m.memoryIgnoresLimit) //if true, the memory should act like a normal memory not a mutation memory, thus not respecting the limit 
+                                              .Select(m => m.mutationMemory)
+                                              .ToList();
                     //add in any other memories added by mutation givers 
                     foreach (HediffGiver_Mutation hediffGiverMutation in AllMorphHediffs.SelectMany(m => m.GetAllHediffGivers().OfType<HediffGiver_Mutation>()))
                     {
+                        if(hediffGiverMutation.ignoreThoughtLimit) continue;
                         if (!_allThoughts.Contains(hediffGiverMutation.memory))
                         {
                             _allThoughts.Add(hediffGiverMutation.memory); 
@@ -143,6 +148,53 @@ namespace Pawnmorph
 
                 return _allMutationsWithGraphics;
             }
+        }
+
+
+        /// <summary>
+        /// Tries to add a mutation thought.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutationMemory">The mutation memory.</param>
+        /// <param name="ignoreLimit">if set to <c>true</c> ignore the mutation memory limit in the mod settings.</param>
+        public static void TryAddMutationThought([NotNull] this Pawn pawn, [NotNull] ThoughtDef mutationMemory, bool ignoreLimit=false)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (mutationMemory == null) throw new ArgumentNullException(nameof(mutationMemory));
+            var memoryHandler = pawn.needs?.mood?.thoughts?.memories;
+            if (memoryHandler == null) return;
+
+            if (ignoreLimit || !AllMutationMemories.Contains(mutationMemory))//if the memory isn't a mutation memory just add it 
+            {
+                memoryHandler.TryGainMemory(mutationMemory);
+                return; 
+            }
+
+            int counter = 0;
+            Thought_Memory firstAdded = null;
+
+            foreach (Thought_Memory memory in memoryHandler.Memories)
+            {
+                if(!AllMutationMemories.Contains(memory.def)) continue;
+
+                counter++; 
+                if (firstAdded == null || firstAdded.age < memory.age)
+                {
+
+                    firstAdded = memory; 
+                }
+
+            }
+
+            var limit = PMUtilities.GetSettings().maxMutationThoughts;
+            if (counter >= limit)
+            {
+                //if we'er at the limit remove the first thought that was added before adding the new one 
+                if (firstAdded != null)
+                    memoryHandler.RemoveMemory(firstAdded); 
+            }
+
+            memoryHandler.TryGainMemory(mutationMemory); 
         }
 
 
@@ -257,23 +309,30 @@ namespace Pawnmorph
             AncillaryMutationEffects aEffects = ancillaryEffects ?? AncillaryMutationEffects.Default;
             if (addedParts.Count > 0) //only do this if we actually added any mutations 
             {
-                Log.Message(aEffects.ToString());
-                if (mutation.mutationMemory != null && aEffects.AddMemory) pawn.TryGainMemory(mutation.mutationMemory);
-
-                if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
-                    TaleRecorder.RecordTale(mutation.mutationTale, pawn);
-
-                if (aEffects.AddLogEntry)
-                {
-                    var logEntry = new MutationLogEntry(pawn, mutation, addedParts.Select(p => p.def).Distinct());
-                    Find.PlayLog?.Add(logEntry);
-                }
-
-                if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
-                    IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+                DoAncillaryMutationEffects(pawn, mutation, addedParts, aEffects);
             }
 
             return addedParts.Count > 0;
+        }
+
+        private static void DoAncillaryMutationEffects(Pawn pawn, MutationDef mutation, List<BodyPartRecord> addedParts, in AncillaryMutationEffects aEffects)
+        {
+            if (mutation.mutationMemory != null && aEffects.AddMemory)
+            {
+                TryAddMutationThought(pawn, mutation.mutationMemory);
+            }
+
+            if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
+                TaleRecorder.RecordTale(mutation.mutationTale, pawn);
+
+            if (aEffects.AddLogEntry)
+            {
+                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.Select(p => p.def).Distinct());
+                Find.PlayLog?.Add(logEntry);
+            }
+
+            if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
+                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
         }
 
         /// <summary>
@@ -310,20 +369,7 @@ namespace Pawnmorph
             addedRecords?.Add(record);
 
             AncillaryMutationEffects aEffects = ancillaryEffects ?? AncillaryMutationEffects.Default;
-
-            if (mutation.mutationMemory != null && aEffects.AddMemory) pawn.TryGainMemory(mutation.mutationMemory);
-
-            if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
-                TaleRecorder.RecordTale(mutation.mutationTale, pawn);
-
-            if (aEffects.AddLogEntry)
-            {
-                var logEntry = new MutationLogEntry(pawn, mutation, record.def);
-                Find.PlayLog?.Add(logEntry);
-            }
-
-            if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
-                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+            DoAncillaryMutationEffects(pawn, mutation, addedRecords, aEffects);
             return true;
         }
 
@@ -616,32 +662,36 @@ namespace Pawnmorph
         public readonly struct AncillaryMutationEffects
         {
             /// <summary>
-            ///     Initializes a new instance of the <see cref="AncillaryMutationEffects" /> struct.
+            /// Initializes a new instance of the <see cref="AncillaryMutationEffects" /> struct.
             /// </summary>
             /// <param name="addTale">if set to <c>true</c> [add tale].</param>
             /// <param name="addMemory">if set to <c>true</c> [add memory].</param>
             /// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
             /// <param name="throwMagicPuff">if set to <c>true</c> [throw magic puff].</param>
-            public AncillaryMutationEffects(bool addTale, bool addMemory, bool addLogEntry, bool throwMagicPuff)
+            /// <param name="memoryIgnoresLimit">if set to <c>true</c> [memory ignores limit].</param>
+            public AncillaryMutationEffects(bool addTale, bool addMemory, bool addLogEntry, bool throwMagicPuff, bool memoryIgnoresLimit=false)
             {
                 AddTale = addTale;
                 AddMemory = addMemory;
                 AddLogEntry = addLogEntry;
                 ThrowMagicPuff = throwMagicPuff;
+                MemoryIgnoresLimit = memoryIgnoresLimit; 
             }
 
             /// <summary>
-            ///     Initializes a new instance of the <see cref="AncillaryMutationEffects" /> struct.
+            /// Initializes a new instance of the <see cref="AncillaryMutationEffects" /> struct.
             /// </summary>
             /// <param name="addTale">if set to <c>true</c> [add tale].</param>
             /// <param name="addMemory">if set to <c>true</c> [add memory].</param>
             /// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
-            public AncillaryMutationEffects(bool addTale, bool addMemory, bool addLogEntry)
+            /// <param name="memoryIgnoresLimit">if set to <c>true</c> [memory ignores limit].</param>
+            public AncillaryMutationEffects(bool addTale, bool addMemory, bool addLogEntry, bool memoryIgnoresLimit = false)
             {
                 AddTale = addTale;
                 AddMemory = addMemory;
                 AddLogEntry = addLogEntry;
                 ThrowMagicPuff = true;
+                MemoryIgnoresLimit = memoryIgnoresLimit; 
             }
 
             /// <summary>
@@ -692,6 +742,15 @@ namespace Pawnmorph
             /// </value>
             public bool ThrowMagicPuff { get; }
 
+            /// <summary>
+            /// Gets a value indicating whether the mutation memory should ignore the mod setting's max mutation thought limit 
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [memory ignores limit]; otherwise, <c>false</c>.
+            /// </value>
+            public bool MemoryIgnoresLimit { get; }
+
+
             /// <summary>Returns the fully qualified type name of this instance.</summary>
             /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
             public override string ToString()
@@ -701,6 +760,7 @@ namespace Pawnmorph
     {nameof(AddMemory)}:{AddMemory}
     {nameof(AddLogEntry)}:{AddLogEntry}
     {nameof(AddTale)}:{AddTale}
+    {nameof(MemoryIgnoresLimit)}:{MemoryIgnoresLimit}
 ";
             }
         }

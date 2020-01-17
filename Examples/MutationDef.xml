@@ -26,7 +26,11 @@
         <mutationLogRulePack>LogPackDef</mutationLogRulePack>
 
         optional field. If set the mutation will add the thought def when added 
-        <mutationMemory>SomeMemoryDef</mutationMemory>
         
+        <mutationMemory>SomeMemoryDef</mutationMemory>
+        note, by default these respect the 'maxMutationThoughts' in the mod settings 
+        if you want a particular thought to always be added and stay added regardless of other mutation thoughts present 
+        on a pawn set the below field to true 
+        <memoryIgnoresLimit>true</memoryIgnoresLimit>
     </Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -48,6 +48,11 @@ namespace Pawnmorph.Hediffs
         /// <summary>The mutation memory</summary>
         [CanBeNull] public ThoughtDef mutationMemory;
 
+        /// <summary>
+        /// if true, the mutation will not respect the max mutation thoughts mod setting
+        /// </summary>
+        public bool memoryIgnoresLimit; 
+
 
         [Unsaved] private RemoveFromPartCompProperties _rmComp;
 
