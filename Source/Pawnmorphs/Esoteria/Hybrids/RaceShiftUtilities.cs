@@ -258,8 +258,8 @@ namespace Pawnmorph.Hybrids
         {
             var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
             comp.skinColor = comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.skinColor;
-            comp.skinColorSecond = comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride() ?? comp.skinColorSecond;
-            comp.hairColorSecond = comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond() ?? comp.hairColorSecond;
+            comp.skinColorSecond = comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.skinColorSecond;
+            comp.hairColorSecond = comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.hairColorSecond;
             pawn.story.hairColor = comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.hairColor;
         }
 

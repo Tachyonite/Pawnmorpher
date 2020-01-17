@@ -81,21 +81,36 @@ namespace Pawnmorph.Hybrids
             public Color? skinColorOverrideSecond;
 
             /// <summary>
+            /// The female skin color override second
+            /// </summary>
+            public Color? femaleSkinColorOverrideSecond; 
+
+            /// <summary>
             /// The female hair color override
             /// </summary>
             public Color? femaleHairColorOverride; 
 
             /// <summary>The hair color override</summary>
             public Color? hairColorOverride;
+
+            /// <summary>
+            /// The female hair color override second
+            /// </summary>
+            public Color? femaleHairColorOverrideSecond; 
+
             /// <summary>
             /// The hair color override second
             /// </summary>
             public Color? hairColorOverrideSecond;
+
+            
             /// <summary>The custom draw size</summary>
+            [Obsolete("Non Functional")]
             public Vector2? customDrawSize;
             /// <summary>
             /// The custom head draw size
             /// </summary>
+            [Obsolete("Non Functional")]
             public Vector2? customHeadDrawSize;
         }
 

@@ -47,14 +47,22 @@ namespace Pawnmorph.GraphicSys
         /// <param name="def">The definition.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">def</exception>
-        public static Color? GetHairColorOverrideSecond([NotNull] this MorphDef def)
+        public static Color? GetHairColorOverrideSecond([NotNull] this MorphDef def, Pawn pawn=null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
             if (def.explicitHybridRace == null)
-                return def.raceSettings?.graphicsSettings?.hairColorOverrideSecond ?? GetSkinColorSecondOverride(def);
+            {
+                HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
+                if (pawn?.gender == Gender.Female && gSettings?.femaleHairColorOverrideSecond != null)
+                {
+                    return gSettings.femaleHairColorOverrideSecond;
+                }
+
+                return gSettings?.hairColorOverrideSecond ?? GetSkinColorSecondOverride(def, pawn);
+            }
             var hRace = def.explicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhairsecondcolorgen?.NewRandomizedColor()
-                ?? GetSkinColorSecondOverride(def);
+                ?? GetSkinColorSecondOverride(def, pawn);
         }
 
         /// <summary>
@@ -85,11 +93,20 @@ namespace Pawnmorph.GraphicSys
         /// <param name="def">The definition.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">def</exception>
-        public static Color? GetSkinColorSecondOverride([NotNull] this MorphDef def)
+        public static Color? GetSkinColorSecondOverride([NotNull] this MorphDef def, Pawn pawn=null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
             if (def.explicitHybridRace == null)
-                return def.raceSettings?.graphicsSettings?.skinColorOverrideSecond;
+            {
+                HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
+
+                if (pawn?.gender == Gender.Female && gSettings?.femaleSkinColorOverrideSecond != null)
+                {
+                    return gSettings.femaleSkinColorOverrideSecond;
+                }
+
+                return gSettings?.skinColorOverrideSecond;
+            }
             var hRace = def.explicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskinsecondcolorgen?.NewRandomizedColor();
         }
