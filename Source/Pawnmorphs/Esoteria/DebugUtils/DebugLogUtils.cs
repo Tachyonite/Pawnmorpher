@@ -73,11 +73,11 @@ namespace Pawnmorph.DebugUtils
         static void PrintGraphVizAnimalTree()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine($"digraph animalClassTree\n{{");
+            builder.AppendLine($"digraph animalClassTree\n{{\n\trankdir=LR");
 
             foreach (AnimalClassDef aClass in DefDatabase<AnimalClassDef>.AllDefs)
             {
-                builder.AppendLine($"{aClass.defName}[shape=square]");
+                builder.AppendLine($"\t{aClass.defName}[shape=square]");
             }
 
             BuildGraphvizTree(AnimalClassDefOf.Animal, builder);
