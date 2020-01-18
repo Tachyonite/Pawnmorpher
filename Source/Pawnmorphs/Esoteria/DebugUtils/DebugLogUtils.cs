@@ -26,6 +26,39 @@ namespace Pawnmorph.DebugUtils
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
 
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        static void FindPAIgnoredMutations()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (MutationDef allMutation in MutationDef.AllMutations)
+            {
+                if (allMutation.stages == null || allMutation.stages.Count == 0)
+                {
+                    builder.AppendLine($"{allMutation.defName} does not have any stages!");
+                    continue;
+                }
+
+                bool hasAfflicted = false, hasParagon = false;
+
+                foreach (HediffStage allMutationStage in allMutation.stages)
+                {
+                    if (allMutationStage.minSeverity < 0) hasAfflicted = true;
+                    if (allMutationStage.minSeverity > 1) hasParagon = true; 
+                }
+
+                if(hasParagon && hasAfflicted) continue;
+                string missingStr =$"{allMutation.defName} is missing: ";
+                if (!hasAfflicted)
+                    missingStr += "afflicted ";
+                if (!hasParagon)
+                    missingStr += "paragon";
+                builder.AppendLine(missingStr); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
         /// <summary>
         ///     Asserts the specified condition. if false an error message will be displayed
         /// </summary>
