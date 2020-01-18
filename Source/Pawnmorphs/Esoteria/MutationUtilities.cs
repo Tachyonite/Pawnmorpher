@@ -327,7 +327,7 @@ namespace Pawnmorph
 
             if (aEffects.AddLogEntry)
             {
-                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.Select(p => p.def).Distinct());
+                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.MakeSafe().Where(p => p != null).Select(p => p.def).Distinct());
                 Find.PlayLog?.Add(logEntry);
             }
 
