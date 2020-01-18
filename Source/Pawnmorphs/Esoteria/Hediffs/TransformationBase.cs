@@ -22,8 +22,12 @@ namespace Pawnmorph.Hediffs
 
         private List<BodyPartRecord> _checkList;
         private int _curIndex;
+        private int _curMutationIndex; 
 
-
+        /// <summary>
+        /// Creates a debug string for this hediff 
+        /// </summary>
+        /// <returns></returns>
         public override string DebugString()
         {
             StringBuilder builder = new StringBuilder( base.DebugString());
@@ -128,6 +132,7 @@ namespace Pawnmorph.Hediffs
             Scribe_Collections.Look(ref _checkList, nameof(_checkList), LookMode.BodyPart);
             Scribe_Values.Look(ref _curIndex, nameof(_curIndex));
             Scribe_Values.Look(ref _lastStageIndex, nameof(_lastStageIndex), -1); 
+            Scribe_Values.Look(ref _curMutationIndex, nameof(_curMutationIndex));
             if (Scribe.mode == LoadSaveMode.PostLoadInit && _checkList == null)
             {
                 ResetMutationOrder();
@@ -238,16 +243,19 @@ namespace Pawnmorph.Hediffs
             {
                 //add whole body mutations 
                 int mutationsAdded=0;
-                foreach (MutationEntry mutationEntry in _wholeBodyParts)
+
+                for (var index = 0; index < _wholeBodyParts.Count; index++)
                 {
+                    MutationEntry mutationEntry = _wholeBodyParts[index];
                     if (Rand.Value < mutationEntry.addChance)
                     {
                         MutationUtilities.AddMutation(pawn, mutationEntry.mutation);
                         var mutagen = def.GetMutagenDef();
-                        mutagen.TryApplyAspects(pawn); 
-                        mutationsAdded++; 
+                        mutagen.TryApplyAspects(pawn);
+                        mutationsAdded++;
                     }
-                    if(mutationsAdded >= MinMutationsPerCheck) break;
+
+                    if (mutationsAdded >= MinMutationsPerCheck) break;
                 }
 
                 if (mutationsAdded > 0)
@@ -312,27 +320,45 @@ namespace Pawnmorph.Hediffs
                 BodyPartRecord part = _checkList[_curIndex];
 
                 var lst = _scratchDict.TryGetValue(part.def);
-                var mutationToAdd = lst?.RandomElementWithFallback();
-                if (mutationToAdd != null)
+
+                if (lst == null) //end check early if there are no parts that can be added 
                 {
-                    if (Rand.Value < mutationToAdd.addChance)
+                    _curIndex++;
+                    _curMutationIndex = 0; 
+                    continue;
+                }
+                //make sure we try each mutation per part 
+
+                while (_curMutationIndex < lst.Count)
+                {
+                    var mutation = lst[_curMutationIndex];
+                    if (Rand.Value < mutation.addChance)
                     {
-                        MutationUtilities.AddMutation(pawn, mutationToAdd.mutation, part);
+                        MutationUtilities.AddMutation(pawn, mutation.mutation, part);
                         var mutagen = def.GetMutagenDef();
                         mutagen.TryApplyAspects(pawn);
                         mutationsAdded++;
-                    }
-                    else if (mutationToAdd.blocks)
+                    }else if (mutation.blocks)
                     {
-                        return;
+                        return; //wait here until the blocking mutation is added 
                     }
+                    
+                    _curMutationIndex++;
+
+                    //check if we added enough mutations to break early 
+                    if (mutationsAdded >= MinMutationsPerCheck)
+                        goto loopBreak;//break both loops 
+
                 }
 
                 _curIndex++; //increment after so mutations can 'block'
+                _curMutationIndex = 0; //reset the mutation index every time we move up a part 
 
                 //check if we have added enough mutations to end the loop early 
                 if (mutationsAdded >= MinMutationsPerCheck) break;
             }
+
+            loopBreak: //label so we can break both loops 
 
             if (mutationsAdded > 0)
             {

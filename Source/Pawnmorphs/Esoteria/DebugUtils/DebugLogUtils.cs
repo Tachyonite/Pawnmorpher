@@ -40,6 +40,34 @@ namespace Pawnmorph.DebugUtils
             if (!condition) Log.Error($"assertion failed:{message}");
         }
 
+
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        static void GetOldMorphTfDefs()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("Full Transformations:");
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                if (morphDef.fullTransformation != null
+                 && typeof(Hediff_Morph).IsAssignableFrom(morphDef.fullTransformation.hediffClass))
+                {
+                    builder.AppendLine(morphDef.fullTransformation.defName); 
+                }
+            }
+
+            builder.AppendLine("Partials:");
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                if (morphDef.partialTransformation != null
+                 && typeof(Hediff_Morph).IsAssignableFrom(morphDef.partialTransformation.hediffClass))
+                {
+                    builder.AppendLine(morphDef.partialTransformation.defName); 
+                }
+            }
+
+            Log.Message(builder.ToString());
+        }
+
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME), UsedImplicitly]
         static void PrintGraphVizAnimalTree()

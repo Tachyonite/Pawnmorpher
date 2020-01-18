@@ -1,5 +1,5 @@
 <Defs>
-	<HediffDef ParentName="AspectedMorphParent">
+	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphWolfTF_Experimental</defName>
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
 		<label>wolfmorph (experimental)</label>
@@ -92,7 +92,7 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef ParentName="AspectedMorphParent">
+	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>WolfMorphFull_ExperimentalShort</defName>
 		<label>wolfmorph (short experimental)</label>
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>

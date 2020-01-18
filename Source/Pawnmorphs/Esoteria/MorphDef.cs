@@ -99,6 +99,7 @@ namespace Pawnmorph
         public override AnimalClassDef ParentClass => classification;
 
         /// <summary> Gets an enumerable collection of all the morph type's defs.</summary>
+        [NotNull]
         public static IEnumerable<MorphDef> AllDefs => DefDatabase<MorphDef>.AllDefs;
 
 

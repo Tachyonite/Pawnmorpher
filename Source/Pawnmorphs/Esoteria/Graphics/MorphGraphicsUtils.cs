@@ -43,8 +43,11 @@ namespace Pawnmorph.GraphicSys
                 ?? GetSkinColorOverride(def, pawn);
         }
 
-        /// <summary>Gets the hair color override second.</summary>
+        /// <summary>
+        /// Gets the hair color override second.
+        /// </summary>
         /// <param name="def">The definition.</param>
+        /// <param name="pawn">The pawn.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">def</exception>
         public static Color? GetHairColorOverrideSecond([NotNull] this MorphDef def, Pawn pawn=null)
@@ -89,8 +92,11 @@ namespace Pawnmorph.GraphicSys
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskincolorgen?.NewRandomizedColor();
         }
 
-        /// <summary>Gets the skin color second override.</summary>
+        /// <summary>
+        /// Gets the skin color second override.
+        /// </summary>
         /// <param name="def">The definition.</param>
+        /// <param name="pawn">The pawn.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">def</exception>
         public static Color? GetSkinColorSecondOverride([NotNull] this MorphDef def, Pawn pawn=null)

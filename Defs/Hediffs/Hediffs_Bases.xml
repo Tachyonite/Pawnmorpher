@@ -18,6 +18,12 @@
 		</comps>
 	</HediffDef>
 
+
+	<HediffDef Abstract="true" Name="NewAspectedMorphParent" ParentName="AspectedMorphParent">
+		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
+		<defaultLabelColor>(77,68,179)</defaultLabelColor>
+	</HediffDef>
+
 	<!-- This is going to be used for the full morph hediffs given out by the injectors. -->
 	<HediffDef Abstract="true" ParentName="MorphParent" Name="AspectedMorphParent">
 		<modExtensions>
