@@ -3,7 +3,7 @@
 		<classInfluence>Bear</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Abstract="True" ParentName="PawnmorphPart" Name="BearJawBase">
+	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="BearJawBase">
 		<label>ursine muzzle</label>
 		<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
 		<stages>

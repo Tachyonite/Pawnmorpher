@@ -63,6 +63,7 @@
 					</li>
 				</capMods>
 				<hediffGivers>
+					<!-- 
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherSnowhareJaw</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -71,6 +72,7 @@
 						</partsToAffect>
 						<tale>GrewMuzzleMisc</tale>
 					</li>
+					-->
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherHareEar</hediff>
 						<mtbDays>1</mtbDays>
@@ -108,6 +110,7 @@
 						<tale>HandsBecomePaws</tale>
 						<memory>CanidPawHandMemory</memory>
 					</li>
+					<!--
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherSnowhareLeg</hediff>
 						<mtbDays>2</mtbDays>
@@ -117,6 +120,7 @@
 						<countToAffect>2</countToAffect>
 						<tale>LegBecameDigitgrade</tale>
 					</li>
+					-->
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherPawFoot</hediff>
 						<mtbDays>3</mtbDays>

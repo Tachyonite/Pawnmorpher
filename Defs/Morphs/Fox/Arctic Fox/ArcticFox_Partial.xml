@@ -1,6 +1,6 @@
 <Defs>
 	<HediffDef ParentName="PartialMorphParent">
-		<defName>PawnmorphArcticFoxTFPartial</defName>
+		<defName>PawnmorphArticFoxTFPartial</defName>
 		<label>arcticfoxmorph partial</label>
 		<stages>
 			<li>

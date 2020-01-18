@@ -2,5 +2,5 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="WolfJawBase">
 		<defName>EtherWolfMuzzle</defName>
 		<classInfluence>WolfMorph</classInfluence>
-	<Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -21,6 +21,7 @@
 					</li>
 				</capMods>
 				<hediffGivers>
+					<!--
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherSnowhareJaw</hediff>
 						<mtbDays>0.5</mtbDays>
@@ -29,6 +30,7 @@
 						</partsToAffect>
 						<tale>GrewMuzzleMisc</tale>
 					</li>
+					-->
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherHareEar</hediff>
 						<mtbDays>0.5</mtbDays>

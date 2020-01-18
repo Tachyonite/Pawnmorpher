@@ -22,7 +22,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherCougarSnout</hediff>
+						<hediff>EtherCougarJaw</hediff>
 						<mtbDays>0.5</mtbDays>
 						<partsToAffect>
 							<li>Jaw</li>
