@@ -136,17 +136,21 @@ namespace Pawnmorph
         {
             if (classDef == null) throw new ArgumentNullException(nameof(classDef));
            
-                if (_morphsUnderCache.TryGetValue(classDef, out List<MorphDef> morphs))
-                    return morphs;
-                morphs = new List<MorphDef>();
-
-                var preorder = TreeUtilities.Preorder(classDef, c => c.Children);
-                foreach (MorphDef morphDef in preorder.OfType<MorphDef>())
-                {
-                    morphs.Add(morphDef);
-                }
-                _morphsUnderCache[classDef] = morphs;
+            if (_morphsUnderCache.TryGetValue(classDef, out List<MorphDef> morphs))
                 return morphs;
+            morphs = new List<MorphDef>();
+
+            if (classDef is MorphDef morph)
+            {
+                morphs.Add(morph);
+                _morphsUnderCache[classDef] = morphs; 
+                return morphs; 
+            }
+
+            IEnumerable<AnimalClassBase> preorder = TreeUtilities.Preorder(classDef, c => c.Children);
+            foreach (MorphDef morphDef in preorder.OfType<MorphDef>()) morphs.Add(morphDef);
+            _morphsUnderCache[classDef] = morphs;
+            return morphs;
         }
 
 
