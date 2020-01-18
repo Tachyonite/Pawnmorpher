@@ -16,7 +16,6 @@
 				</capMods>
 				<pawnkinds>
 					<li>Wolf_Timber</li>
-					<li>Wolf_Arctic</li>
 				</pawnkinds>
 				<transformationTale>TransformationCanid</transformationTale>
 			</li>

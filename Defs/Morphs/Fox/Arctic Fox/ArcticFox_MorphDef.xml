@@ -9,7 +9,7 @@
 			<li>Social</li>
 			<li>Canid</li>
 		</categories>
-		<partialTransformation>PawnmorphArticFoxTFPartial</partialTransformation>
+		<partialTransformation>PawnmorphArcticFoxTFPartial</partialTransformation>
 		<fullTransformation>PawnmorphArcticFoxTF</fullTransformation>
 		<raceSettings>
 			<graphicsSettings>

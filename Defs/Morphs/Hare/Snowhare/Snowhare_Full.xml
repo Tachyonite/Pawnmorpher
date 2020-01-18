@@ -110,9 +110,8 @@
 						<tale>HandsBecomePaws</tale>
 						<memory>CanidPawHandMemory</memory>
 					</li>
-					<!--
 					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherSnowhareLeg</hediff>
+						<hediff>EtherHareLeg</hediff>
 						<mtbDays>2</mtbDays>
 						<partsToAffect>
 							<li>Leg</li>
@@ -120,7 +119,6 @@
 						<countToAffect>2</countToAffect>
 						<tale>LegBecameDigitgrade</tale>
 					</li>
-					-->
 					<li Class="Pawnmorph.HediffGiver_Mutation">
 						<hediff>EtherPawFoot</hediff>
 						<mtbDays>3</mtbDays>
