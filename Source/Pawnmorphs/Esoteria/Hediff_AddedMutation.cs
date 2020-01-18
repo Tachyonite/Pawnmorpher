@@ -33,6 +33,10 @@ namespace Pawnmorph
                 {
                     return mDef.classInfluence; 
                 }
+                else
+                {
+                    Log.Warning($"{def.defName} is a mutation but does not use {nameof(MutationDef)}! this will cause problems!");
+                }
 
                 return AnimalClassDefOf.Animal; 
             }

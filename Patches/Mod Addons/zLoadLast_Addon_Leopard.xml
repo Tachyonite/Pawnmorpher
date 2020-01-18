@@ -126,7 +126,7 @@
 								<li>Feline</li>
 							</categories>
 							<fullTransformation>PawnmorphLeopardTF</fullTransformation>
-							<partialTranformation>PawnmorphLeopardTFPartial</partialTranformation>
+							<partialTransformation>PawnmorphLeopardTFPartial</partialTransformation>
 							<raceSettings>
 								<graphicsSettings>
 									<skinColorOverride>(215,147,96)</skinColorOverride>
@@ -192,7 +192,7 @@
 									<letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
 									<letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
 								</li>
-								<li>
+								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 									<label>changing</label>
 									<minSeverity>0.65</minSeverity>
 									<painOffset>0.1</painOffset>
@@ -333,9 +333,9 @@
 						</HediffDef>
 						
 						<!-- Morph Parts -->
-						<HediffDef Name="LeopardPart" ParentName="PawnmorphPart" Abstract="True">
+						<Pawnmorph.Hediffs.MutationDef Name="LeopardPart" ParentName="PawnmorphPart" Abstract="True">
 							<classInfluence>Leopard</classInfluence>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
 						<HediffDef Abstract="true" ParentName="PawnmorphPart" Name="LeopardJawBase">
 							<label>pardine muzzle</label>
@@ -392,17 +392,17 @@
 							</comps>
 						</HediffDef>
 						
-						<HediffDef ParentName="LeopardJawBase">
+						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardJawBase">
 							<defName>EtherLeopardJaw</defName>
 							<classInfluence>LeopardMorph</classInfluence>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef ParentName="LeopardJawBase">
+						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardJawBase">
 							<defName>EtherSnowLeopardJaw</defName>
 							<classInfluence>SnowLeopardMorph</classInfluence>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef ParentName="LeopardPart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardPart">
 							<defName>EtherLeopardEar</defName>
 							<label>pardine</label>
 							<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
@@ -414,9 +414,9 @@
 									<partEfficiencyOffset>0.1</partEfficiencyOffset>
 								</li>
 							</stages>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef ParentName="LeopardPart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardPart">
 							<defName>EtherLeopardTail</defName>
 							<label>leopard tail</label>
 							<description>A long, spotted tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
@@ -433,7 +433,7 @@
 									</capMods>
 								</li>
 							</stages>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
 						<!-- Injector -->
 						<ThingDef ParentName="InjectorBase">
