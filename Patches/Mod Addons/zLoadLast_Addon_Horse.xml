@@ -25,7 +25,7 @@
 						<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
 					</value>
 				</li>
-				
+
 				<!-- Defs -->
 				<li Class="PatchOperationAdd">
 					<success>Always</success>
@@ -53,38 +53,96 @@
 								</li>
 							</modExtensions>
 						</AlienRace.BackstoryDef>
-						
-						<!-- Morph Reaction -->
+
+						<!-- Thoughts -->
 						<ThoughtDef>
 							<defName>EtherReactionHorseTF</defName>
-							<workerClass>ThoughtWorker_Hediff</workerClass>
-							<hediff>PawnmorphHorseTF</hediff>
+							<label>depricated thought</label>
+							<description>Feel free to remove this thought if it is hanging around.</description> <!-- Comment is meant for the end user, not devs -->
+						</ThoughtDef>
+
+						<ThoughtDef>
+							<defName>HorseTransformationMemory</defName>
+							<thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+							<durationDays>1</durationDays>
 							<stages>
 								<li>
-									<label>changed</label>
-									<description>N...neigh!?</description>
+									<label>!!!HorseTransformationMemory's default stage needs a label!!!</label>
+									<description>!!!HorseTransformationMemory's default stage needs a description!!!</description>
 									<baseMoodEffect>-3</baseMoodEffect>
 								</li>
 								<li>
-									<label>feeling odd</label>
-									<description>I feel like I should be pulling a plough...or galloping across a steppe.</description>
+									<label>!!!HorseTransformationMemory's mutation affinity stage needs a label!!!</label>
+									<description>!!!HorseTransformationMemory's mutation affinity stage needs a description!!!</description>
+									<baseMoodEffect>+3</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!HorseTransformationMemory's body purist stage needs a label!!!</label>
+									<description>!!!HorseTransformationMemory's body purist stage needs a description!!!</description>
 									<baseMoodEffect>-5</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!HorseTransformationMemory's primal wish stage needs a label!!!</label>
+									<description>!!!HorseTransformationMemory's primal wish stage needs a description!!!</description>
+									<baseMoodEffect>+1</baseMoodEffect>
 								</li>
 							</stages>
 						</ThoughtDef>
-						
+
+						<ThoughtDef>
+							<defName>HorseRevertedMemory</defName>
+							<thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+							<durationDays>1</durationDays>
+							<stages>
+								<li>
+									<label>!!!HorseRevertedMemory's default stage needs a label!!!</label>
+									<description>!!!HorseRevertedMemory's default stage needs a description!!!</description>
+									<baseMoodEffect>-3</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!HorseRevertedMemory's mutation affinity stage needs a label!!!</label>
+									<description>!!!HorseRevertedMemory's mutation affinity stage needs a description!!!</description>
+									<baseMoodEffect>+3</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!HorseRevertedMemory's body purist stage needs a label!!!</label>
+									<description>!!!HorseRevertedMemory's body purist stage needs a description!!!</description>
+									<baseMoodEffect>-5</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!HorseRevertedMemory's primal wish stage needs a label!!!</label>
+									<description>!!!HorseRevertedMemory's primal wish stage needs a description!!!</description>
+									<baseMoodEffect>+1</baseMoodEffect>
+								</li>
+							</stages>
+						</ThoughtDef>
+
 						<!-- Morph Def -->
 						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 							<defName>HorseMorph</defName>
 							<label>horsemorph</label>
-							<fullTransformation>PawnmorphHorseTF</fullTransformation>
-							<partialTransformation>PawnmorphHorseTFPartial</partialTransformation>
+							<description>!!!HorseMorph needs a description!!!</description>
 							<race/>
+							<classification>Camelid</classification>
 							<categories>
+								<li>Arid</li>
+								<li>Temperate</li>
+								<li>Tropical</li>
 								<li>Farm</li>
 							</categories>
+							<fullTransformation>PawnmorphHorseTF</fullTransformation>
+							<partialTransformation>PawnmorphHorseTFPartial</partialTransformation>
+							<raceSettings>
+								<graphicsSettings>
+									<skinColorOverride>(122,78,52)</skinColorOverride>
+								</graphicsSettings>
+							</raceSettings>
+							<transformSettings>
+								<transformationMemory>HorseTransformationMemory</transformationMemory>
+								<revertedMemory>HorseRevertedMemory</revertedMemory>
+							</transformSettings>
 						</Pawnmorph.MorphDef>
-						
+
 						<!-- Full TF -->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTF</defName>
@@ -154,6 +212,7 @@
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
+											<tale>GrewMuzzleMisc</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHorseEar</hediff>
@@ -162,6 +221,7 @@
 												<li>Ear</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>GrewEarMisc</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHorseTail</hediff>
@@ -178,6 +238,7 @@
 												<li>Arm</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>LimbGrowsHide</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHoofHand</hediff>
@@ -187,6 +248,8 @@
 												<li>Hand</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>HandsBecomeHooves</tale>
+											<memory>HoofHandMemory</memory>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherDigitigradeLeg</hediff>
@@ -204,12 +267,13 @@
 												<li>Foot</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>FootBecomesHooves</tale>
 										</li>
 									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
-						
+
 						<!-- Partial TF -->
 						<HediffDef ParentName="MorphParent">
 							<defName>PawnmorphHorseTFPartial</defName>
@@ -239,6 +303,7 @@
 											<partsToAffect>
 												<li>Jaw</li>
 											</partsToAffect>
+											<tale>GrewMuzzleMisc</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHorseEar</hediff>
@@ -247,6 +312,7 @@
 												<li>Ear</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>GrewEarMisc</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherHorseTail</hediff>
@@ -263,6 +329,7 @@
 												<li>Arm</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>LimbGrowsHide</tale>
 										</li>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
 											<hediff>EtherDigitigradeLeg</hediff>
@@ -280,30 +347,45 @@
 												<li>Foot</li>
 											</partsToAffect>
 											<countToAffect>2</countToAffect>
+											<tale>FootBecomesHooves</tale>
 										</li>
 									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
-						
+
 						<!-- Morph Parts -->
-						<HediffDef Name="HorsePart" ParentName="PawnmorphPart" Abstract="True">
-							<comps>
-								<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-									<morph>HorseMorph</morph>
-								</li>
-							</comps>
+						<HediffDef Abstract="True" ParentName="PawnmorphPart" Name="HorsePart">
+							<classInfluence>HorseMorph</classInfluence>
 						</HediffDef>
+
 						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseSnout</defName>
 							<label>equine snout</label>
 							<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_pronoun] teeth are squared off, and this makes speaking more difficult, yet eating is easier.</description>
+							<parts>
+								<li>Jaw</li>
+							</parts>
 							<stages>
 								<li>
 									<capMods>
 										<li>
 											<capacity>Talking</capacity>
 											<offset>-0.40</offset>
+										</li>
+										<li>
+											<capacity>Eating</capacity>
+											<offset>0.40</offset>
+										</li>
+									</capMods>
+								</li>
+								<li>
+									<minSeverity>1</minSeverity>
+									<label>adapted</label>
+									<capMods>
+										<li>
+											<capacity>Talking</capacity>
+											<offset>-0.08</offset>
 										</li>
 										<li>
 											<capacity>Eating</capacity>
@@ -321,33 +403,39 @@
 											<capacities>
 												<li>Bite</li>
 											</capacities>
-											<power>7.0</power>
-											<cooldownTime>1.5</cooldownTime>
+											<power>8.8</power>
+											<cooldownTime>2.6</cooldownTime>
 											<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 										</li>
 									</tools>
 								</li>
+								<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+									<severityPerDay>0.25</severityPerDay>
+								</li>
 							</comps>
 						</HediffDef>
+
 						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseEar</defName>
 							<label>equine</label>
 							<description>Long, equine ears sit atop [PAWN_nameDef]'s head, like that of a horse.</description>
+							<parts>
+								<li>Ear</li>
+							</parts>
 							<stages>
 								<li>
-									<capMods>
-										<li>
-											<capacity>Hearing</capacity>
-											<offset>0.1</offset>
-										</li>
-									</capMods>
+									<partEfficiencyOffset>0.1</partEfficiencyOffset>
 								</li>
 							</stages>
 						</HediffDef>
+						
 						<HediffDef ParentName="HorsePart">
 							<defName>EtherHorseTail</defName>
 							<label>horse tail</label>
 							<description>A horselike tail. It swats at flies occasionally.</description>
+							<parts>
+								<li>Tail</li>
+							</parts>
 							<stages>
 								<li>
 									<capMods>
@@ -359,18 +447,13 @@
 								</li>
 							</stages>
 						</HediffDef>
-						
+
 						<!-- Morph Injector -->
 						<ThingDef ParentName="InjectorBase">
 							<defName>HorseTransformer</defName>
 							<label>mutasyringe, horse</label>
 							<description>A mutagenic injector filled with mechanites and horse DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
-							<graphicData>
-								<texPath>Things/Item/Drug/Specific</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
 							<ingestible>
-								<drugCategory>Medical</drugCategory>
 								<outcomeDoers>
 									<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 										<hediffDefs>
@@ -383,7 +466,7 @@
 						</ThingDef>
 					</value>
 				</li>
-				
+
 				<!-- Add the morph to the serums -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RandomTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
@@ -392,12 +475,30 @@
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<xpath>Defs/ThingDef[defName="RandomAridTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
 					<value>
 						<li>PawnmorphHorseTF</li>
 					</value>
 				</li>
-				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RandomTemperateTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<value>
+						<li>PawnmorphHorseTF</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RandomTropicalTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<value>
+						<li>PawnmorphHorseTF</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RandomDomesticTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<value>
+						<li>PawnmorphHorseTF</li>
+					</value>
+				</li>
+
 				<!-- Add the injector to the traders -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/TraderKindDef[defName="PawnmorpherTrader"]/stockGenerators</xpath>
@@ -411,10 +512,22 @@
 						</li>
 					</value>
 				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="PawnmorpherTraderOrbital"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>HorseTransformer</thingDef>
+							<countRange>
+								<min>-3</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</value>
+				</li>
 			</operations>
 		</match>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Vanilla Animals Expanded — Livestock</li>
@@ -428,7 +541,7 @@
 						<race>AEXP_Horse</race>
 					</value>
 				</li>
-				
+
 				<!-- Add the animal to the mutagun effect -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
@@ -436,7 +549,6 @@
 						<li>AEXP_Horse</li>
 					</value>
 				</li>
-				
 
 				<!-- Add the animal to the TF's possible feral animal list -->
 				<li Class="PatchOperationAdd">
@@ -448,7 +560,7 @@
 			</operations>
 		</match>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Horses (1.0)</li>
@@ -462,7 +574,7 @@
 						<race>QuarterHorse</race>
 					</value>
 				</li>
-				
+
 				<!-- Add the animal to the mutagun effect -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
@@ -473,7 +585,6 @@
 						<li>Palomino</li>
 					</value>
 				</li>
-				
 
 				<!-- Add the animal to the TF's possible feral animal list -->
 				<li Class="PatchOperationAdd">

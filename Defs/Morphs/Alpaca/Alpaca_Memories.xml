@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>AlpacaTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!AlpacaTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!AlpacaTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!AlpacaTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!AlpacaTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!AlpacaTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!AlpacaTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!AlpacaTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!AlpacaTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>AlpacaRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!AlpacaRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!AlpacaRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!AlpacaRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!AlpacaRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!AlpacaRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!AlpacaRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!AlpacaRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!AlpacaRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

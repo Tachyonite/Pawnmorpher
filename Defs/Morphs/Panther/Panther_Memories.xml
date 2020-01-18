@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>PantherTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!PantherTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!PantherTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PantherTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!PantherTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PantherTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!PantherTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PantherTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!PantherTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>PantherRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!PantherRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!PantherRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PantherRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!PantherRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PantherRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!PantherRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PantherRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!PantherRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CapybaraTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!CapybaraTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!CapybaraTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CapybaraTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!CapybaraTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CapybaraTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!CapybaraTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CapybaraTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!CapybaraTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CapybaraRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!CapybaraRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!CapybaraRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CapybaraRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!CapybaraRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CapybaraRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!CapybaraRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CapybaraRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!CapybaraRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

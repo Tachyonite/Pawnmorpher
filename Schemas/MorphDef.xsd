@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="Windows-1252" ?>
-
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
 	<xs:include schemaLocation="include/Enums.xsd" />
@@ -13,7 +12,7 @@
 							<xs:element name="defName" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
-							<xs:element name="race" type="xs:string" minOccurs="0" maxOccurs="1" />
+							<xs:element name="race" type="AnimalRace" minOccurs="0" maxOccurs="1" />
 							<xs:element name="explicitHybridRace" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="group" type="MorphGroups" minOccurs="0" maxOccurs="1" />
 							<xs:element name="categories" minOccurs="0" maxOccurs="1">
@@ -33,8 +32,12 @@
 												<xs:sequence>
 													<xs:element name="skinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="skinColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
+													<xs:element name="femaleSkinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
+													<xs:element name="femaleSkinColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="hairColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="hairColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
+													<xs:element name="femaleHairColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
+													<xs:element name="femaleHairColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="customDrawSize" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="customHeadDrawSize" type="xs:string" minOccurs="0" maxOccurs="1" />
 												</xs:sequence>
@@ -54,7 +57,7 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="classification" type="xs:string" minOccurs="0"/>
+							<xs:element name="classification" type="AnimalClassification" minOccurs="0"/>
 						</xs:all>
 						<xs:attribute name="ParentName" type="xs:string" use="optional" />
 						<xs:attribute name="Name" type="xs:string" use="optional" />

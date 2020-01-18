@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>ChickenTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!ChickenTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!ChickenTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ChickenTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!ChickenTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ChickenTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!ChickenTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ChickenTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!ChickenTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>ChickenRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!ChickenRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!ChickenRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ChickenRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!ChickenRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ChickenRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!ChickenRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ChickenRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!ChickenRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

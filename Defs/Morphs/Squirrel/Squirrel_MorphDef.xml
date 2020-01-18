@@ -1,12 +1,14 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef>
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>SquirrelMorph</defName>
 		<label>squirrelmorph</label>
 		<description>A smaller, squirrel-like humanoid. These former humans share many characteristics with squirrels, usually making them fragile in combat, but their dextrous paws make them good crafters and artists.</description>
 		<race>Squirrel</race>
-		<classification>Rodentia</classification>
+		<classification>Rodent</classification>
 		<categories>
+			<li>Temperate</li>
 			<li>Crafter</li>
+			<li>Rodent</li>
 		</categories>
 		<fullTransformation>PawnmorphSquirrelTF</fullTransformation>
 		<partialTransformation>PawnmorphSquirrelTFPartial</partialTransformation>
@@ -16,7 +18,8 @@
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
-			<transformationMemory>SquirrelMorphTFReaction</transformationMemory>
+			<transformationMemory>RhinocerosTransformationMemory</transformationMemory>
+			<revertedMemory>RhinocerosRevertedMemory</revertedMemory>
 		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

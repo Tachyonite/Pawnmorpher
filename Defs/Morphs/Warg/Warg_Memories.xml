@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>WargTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!WargTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!WargTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WargTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!WargTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WargTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!WargTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WargTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!WargTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>WargRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!WargRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!WargRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WargRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!WargRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WargRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!WargRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WargRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!WargRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

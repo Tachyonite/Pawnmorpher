@@ -4,17 +4,23 @@
 		<label>cowmorph</label>
 		<description>A bovine humanoid resulting when a human is exposed to cow specific mutagens. Usually capable of producing milk.</description>
 		<race>Cow</race>
+		<classification>Bovid</classification>
 		<categories>
 			<li>Farm</li>
 			<li>Production</li>
+			<li>Bovid</li>
 		</categories>
 		<fullTransformation>PawnmorphCowTF</fullTransformation>
 		<partialTransformation>PawnmorphCowTFPartial</partialTransformation>
-		<classification>Bovidae</classification>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(255,255,255)</skinColorOverride>
+				<skinColorOverride>(170,170,170)</skinColorOverride>
+				<femaleSkinColorOverride>(200,200,200)</femaleSkinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
+		<transformSettings>
+			<transformationMemory>CowTransformationMemory</transformationMemory>
+			<revertedMemory>CowRevertedMemory</revertedMemory>
+		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

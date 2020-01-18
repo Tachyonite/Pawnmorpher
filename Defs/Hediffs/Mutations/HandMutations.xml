@@ -6,7 +6,7 @@
         <parts>
             <li>Hand</li>
         </parts>
-        <classInfluence>Canidae</classInfluence>
+        <classInfluence>Canid</classInfluence>
         <mutationTale>HandsBecomePaws</mutationTale>
         <mutationMemory>CanidPawHandMemory</mutationMemory>
         <stages>
@@ -92,7 +92,7 @@
         <parts>
             <li>Hand</li>
         </parts>
-        <classInfluence>Artiodactyla</classInfluence>
+        <classInfluence>Ungulate</classInfluence>
         <mutationTale>HandsBecomeHooves</mutationTale>
         <stages>
             <li Class="Pawnmorph.Hediffs.MutationStage">
@@ -154,7 +154,7 @@
         <defName>EtherTrotterHand</defName>
         <label>trotter</label>
         <description>[PAWN_nameDef]'s hands resemble trotters more than anything else, leaving them with little in the way of grasping ability.</description>
-        <classInfluence>Suidae</classInfluence>
+        <classInfluence>Suid</classInfluence>
         <parts>
             <li>Hand</li>
         </parts>

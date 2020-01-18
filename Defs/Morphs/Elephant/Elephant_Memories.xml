@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>ElephantTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!ElephantTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!ElephantTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ElephantTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!ElephantTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ElephantTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!ElephantTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ElephantTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!ElephantTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>ElephantRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!ElephantRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!ElephantRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ElephantRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!ElephantRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ElephantRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!ElephantRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!ElephantRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!ElephantRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

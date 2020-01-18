@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CowTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!CowTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!CowTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CowTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!CowTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CowTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!CowTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CowTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!CowTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CowRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!CowRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!CowRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CowRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!CowRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CowRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!CowRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!CowRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!CowRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

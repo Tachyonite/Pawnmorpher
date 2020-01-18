@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>PigTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!PigTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!PigTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PigTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!PigTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PigTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!PigTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PigTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!PigTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>PigRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!PigRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!PigRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PigRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!PigRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PigRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!PigRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!PigRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!PigRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

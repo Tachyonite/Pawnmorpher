@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RaccoonTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!RaccoonTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!RaccoonTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!RaccoonTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!RaccoonTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!RaccoonTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!RaccoonTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!RaccoonTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!RaccoonTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RaccoonRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!RaccoonRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!RaccoonRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!RaccoonRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!RaccoonRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!RaccoonRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!RaccoonRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!RaccoonRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!RaccoonRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

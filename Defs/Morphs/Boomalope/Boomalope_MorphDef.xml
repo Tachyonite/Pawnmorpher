@@ -2,21 +2,26 @@
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>BoomalopeMorph</defName>
 		<label>boomamorph</label>
-		<description>a humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel</description>
+		<description>A humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel.</description>
 		<race>Boomalope</race>
-		<classification>Cervidae</classification>
+		<classification>Cervid</classification>
+		<categories>
+			<li>Arid</li>
+			<li>Temperate</li>
+			<li>Tropical</li>
+			<li>Production</li>
+			<li>Cervid</li>
+		</categories>
 		<fullTransformation>PawnmorphBoomalopeTF</fullTransformation>
 		<partialTransformation>PawnmorphBoomalopeTFPartial</partialTransformation>
-		<categories>
-			<li>Production</li>
-		</categories>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(207,207,207)</skinColorOverride>
+				<skinColorOverride>(176,150,106)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
-			<transformationMemory>BoomMorphTfReaction</transformationMemory>
+			<transformationMemory>BoomalopeTransformationMemory</transformationMemory>
+			<revertedMemory>BoomalopeRevertedMemory</revertedMemory>
 		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>HareTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!HareTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!HareTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!HareTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!HareTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!HareTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!HareTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!HareTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!HareTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>HareRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!HareRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!HareRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!HareRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!HareRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!HareRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!HareRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!HareRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!HareRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

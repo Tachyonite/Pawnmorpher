@@ -170,6 +170,27 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>ArcticFoxTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>ArcticWolfTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>AlphabeaverTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>BearTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -191,6 +212,27 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>CapybaraTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>CaribouTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>CassowaryTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>CatTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -199,6 +241,20 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>ChickenTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>ChinchillaTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>CougarTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -219,7 +275,42 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>DromedaryTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>ElkTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>EmuTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>FennecFoxTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>FoxTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>GazelleTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -240,6 +331,13 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>IbexTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>IguanaTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -247,7 +345,35 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>LynxTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>LabradorRetrieverTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>MonkeyTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>MuffaloTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>OstrichTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -262,6 +388,20 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>PigTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>PolarBearTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>RaccoonTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -289,6 +429,27 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>SnowhareTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>TortoiseTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>TurkeyTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>WargTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -297,6 +458,13 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>WolfTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>YorkshireTerrierTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -435,7 +603,21 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>AlpacaTransformer</thingDef>
+				<thingDef>ArcticFoxTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>ArcticWolfTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>AlphabeaverTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -463,6 +645,27 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>CapybaraTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>CaribouTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>CassowaryTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>CatTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -471,6 +674,20 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>ChickenTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>ChinchillaTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>CougarTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -491,7 +708,42 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>DromedaryTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>ElkTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>EmuTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>FennecFoxTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>FoxTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>GazelleTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -512,6 +764,13 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>IbexTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>IguanaTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -519,7 +778,35 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>LynxTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>LabradorRetrieverTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>MonkeyTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>MuffaloTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>OstrichTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -534,6 +821,20 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>PigTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>PolarBearTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>RaccoonTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>
@@ -561,6 +862,27 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>SnowhareTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>TortoiseTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>TurkeyTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>WargTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
@@ -569,6 +891,13 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>WolfTransformer</thingDef>
+				<countRange>
+					<min>-3</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>YorkshireTerrierTransformer</thingDef>
 				<countRange>
 					<min>-3</min>
 					<max>1</max>

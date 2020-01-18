@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>WolfTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!WolfTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!WolfTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WolfTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!WolfTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WolfTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!WolfTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WolfTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!WolfTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>WolfRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!WolfRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!WolfRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WolfRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!WolfRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WolfRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!WolfRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!WolfRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!WolfRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

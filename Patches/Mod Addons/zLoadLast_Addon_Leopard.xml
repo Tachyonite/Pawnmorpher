@@ -11,6 +11,7 @@
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
 						<EtherLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherLeopardJaw>
+						<EtherSnowLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherSnowLeopardJaw>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
@@ -48,71 +49,102 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-						<!-- Morph Reaction -->
+						<!-- Thoughts -->
 						<ThoughtDef>
-							<defName>EtherReactionLeopardTF</defName>
-							<workerClass>ThoughtWorker_Hediff</workerClass>
-							<hediff>PawnmorphLeopardTF</hediff>
+							<defName>LeopardTransformationMemory</defName>
+							<thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+							<durationDays>1</durationDays>
 							<stages>
 								<li>
-									<label>changed</label>
-									<description>Mreow?</description>
+									<label>!!!LeopardTransformationMemory's default stage needs a label!!!</label>
+									<description>!!!LeopardTransformationMemory's default stage needs a description!!!</description>
 									<baseMoodEffect>-3</baseMoodEffect>
 								</li>
 								<li>
-									<label>feeling odd</label>
-									<description>I feel like I should be out hunting... stalking... prowling...</description>
+									<label>!!!LeopardTransformationMemory's mutation affinity stage needs a label!!!</label>
+									<description>!!!LeopardTransformationMemory's mutation affinity stage needs a description!!!</description>
+									<baseMoodEffect>+3</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!LeopardTransformationMemory's body purist stage needs a label!!!</label>
+									<description>!!!LeopardTransformationMemory's body purist stage needs a description!!!</description>
 									<baseMoodEffect>-5</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!LeopardTransformationMemory's primal wish stage needs a label!!!</label>
+									<description>!!!LeopardTransformationMemory's primal wish stage needs a description!!!</description>
+									<baseMoodEffect>+1</baseMoodEffect>
 								</li>
 							</stages>
 						</ThoughtDef>
+
 						<ThoughtDef>
-							<defName>EtherReactionSnepTF</defName>
-							<workerClass>ThoughtWorker_Hediff</workerClass>
-							<hediff>PawnmorphSnepTF</hediff>
+							<defName>LeopardRevertedMemory</defName>
+							<thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+							<durationDays>1</durationDays>
 							<stages>
 								<li>
-									<label>changed</label>
-									<description>Mreow?</description>
+									<label>!!!LeopardRevertedMemory's default stage needs a label!!!</label>
+									<description>!!!LeopardRevertedMemory's default stage needs a description!!!</description>
 									<baseMoodEffect>-3</baseMoodEffect>
 								</li>
 								<li>
-									<label>feeling odd</label>
-									<description>I feel like I should be out hunting... stalking... prowling...</description>
+									<label>!!!LeopardRevertedMemory's mutation affinity stage needs a label!!!</label>
+									<description>!!!LeopardRevertedMemory's mutation affinity stage needs a description!!!</description>
+									<baseMoodEffect>+3</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!LeopardRevertedMemory's body purist stage needs a label!!!</label>
+									<description>!!!LeopardRevertedMemory's body purist stage needs a description!!!</description>
 									<baseMoodEffect>-5</baseMoodEffect>
+								</li>
+								<li>
+									<label>!!!LeopardRevertedMemory's primal wish stage needs a label!!!</label>
+									<description>!!!LeopardRevertedMemory's primal wish stage needs a description!!!</description>
+									<baseMoodEffect>+1</baseMoodEffect>
 								</li>
 							</stages>
 						</ThoughtDef>
 						
-						<!-- Morph Def -->
+						<!-- Morph Defs -->
+						<Pawnmorph.MorphDef Abstract="true" ParentName="SensitiveFoodMorph" Name="LeopardMorphBase">
+							<description>A suprisingly docile morph, Leopardmorphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instincts are sharp and their claws yet sharper.</description>
+							<classification>Leopard</classification>
+							<transformSettings>
+								<transformationMemory>LeopardTransformationMemory</transformationMemory>
+								<revertedMemory>LeopardRevertedMemory</revertedMemory>
+							</transformSettings>
+						</Pawnmorph.MorphDef>
+						
 						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 							<defName>LeopardMorph</defName>
 							<label>leopardmorph</label>
-							<description>A suprisingly docile morph, leopard morphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instinct is sharp and their claws are sharper.</description>
 							<race/>
+							<categories>
+								<li>Temperate</li>
+								<li>Combat</li>
+								<li>Feline</li>
+							</categories>
 							<fullTransformation>PawnmorphLeopardTF</fullTransformation>
 							<partialTranformation>PawnmorphLeopardTFPartial</partialTranformation>
-							<categories>
-								<li>Feline</li>
-								<li>Combat</li>
-							</categories>
 							<raceSettings>
 								<graphicsSettings>
 									<skinColorOverride>(215,147,96)</skinColorOverride>
 								</graphicsSettings>
 							</raceSettings>
 						</Pawnmorph.MorphDef>
+						
 						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
-							<defName>SnepMorph</defName>
+							<defName>SnowLeopardMorph</defName>
 							<label>snepmorph</label>
-							<description>A suprisingly docile morph, snow leopard morphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instinct is sharp and their claws are sharper.</description>
 							<race/>
-							<fullTransformation>PawnmorphSnepTF</fullTransformation>
-							<partialTransformation>PawnmorphSnepTFPartial</partialTransformation>
 							<categories>
-								<li>Feline</li>
+								<li>Temperate</li>
 								<li>Combat</li>
+								<li>Feline</li>
 							</categories>
+							<fullTransformation>PawnmorphSnowLeopardTF</fullTransformation>
+							<partialTransformation>PawnmorphSnowLeopardTFPartial</partialTransformation>
 							<raceSettings>
 								<graphicsSettings>
 									<skinColorOverride>(204,204,204)</skinColorOverride>
@@ -258,8 +290,9 @@
 								</li>
 							</stages>
 						</HediffDef>
+						
 						<HediffDef ParentName="MorphParent">
-							<defName>PawnmorphSnepTF</defName>
+							<defName>PawnmorphSnowLeopardTF</defName>
 							<label>snepmorph</label>
 							<stages>
 								<li>
@@ -321,7 +354,7 @@
 									</capMods>
 									<hediffGivers>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardJaw</hediff>
+											<hediff>EtherSnowLeopardJaw</hediff>
 											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Jaw</li>
@@ -484,8 +517,9 @@
 								</li>
 							</stages>
 						</HediffDef>
+						
 						<HediffDef ParentName="PartialMorphParent">
-							<defName>PawnmorphSnepTFPartial</defName>
+							<defName>PawnmorphSnowLeopardTFPartial</defName>
 							<label>snepmorph partial</label>
 							<stages>
 								<li>
@@ -507,7 +541,7 @@
 									</capMods>
 									<hediffGivers>
 										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardJaw</hediff>
+											<hediff>EtherSnowLeopardJaw</hediff>
 											<mtbDays>0.5</mtbDays>
 											<partsToAffect>
 												<li>Jaw</li>
@@ -574,14 +608,10 @@
 						
 						<!-- Morph Parts -->
 						<HediffDef Name="LeopardPart" ParentName="PawnmorphPart" Abstract="True">
-							<comps>
-								<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-									<morph>LeopardMorph</morph>
-								</li>
-							</comps>
+							<classInfluence>Leopard</classInfluence>
 						</HediffDef>
-						<HediffDef ParentName="LeopardPart">
-							<defName>EtherLeopardJaw</defName>
+						
+						<HediffDef Abstract="true" ParentName="PawnmorphPart" Name="LeopardJawBase">
 							<label>pardine muzzle</label>
 							<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a leopard. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
 							<stages>
@@ -621,8 +651,8 @@
 											<capacities>
 												<li>Bite</li>
 											</capacities>
-											<power>10.0</power>
-											<cooldownTime>1.5</cooldownTime>
+											<power>13</power>
+											<cooldownTime>1.4</cooldownTime>
 											<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 										</li>
 									</tools>
@@ -632,6 +662,17 @@
 								</li>
 							</comps>
 						</HediffDef>
+						
+						<HediffDef ParentName="LeopardJawBase">
+							<defName>EtherLeopardJaw</defName>
+							<classInfluence>LeopardMorph</classInfluence>
+						</HediffDef>
+						
+						<HediffDef ParentName="LeopardJawBase">
+							<defName>EtherSnowLeopardJaw</defName>
+							<classInfluence>SnowLeopardMorph</classInfluence>
+						</HediffDef>
+						
 						<HediffDef ParentName="LeopardPart">
 							<defName>EtherLeopardEar</defName>
 							<label>pardine</label>
@@ -647,18 +688,14 @@
 								</li>
 							</stages>
 						</HediffDef>
+						
 						<HediffDef ParentName="LeopardPart">
 							<defName>EtherLeopardTail</defName>
 							<label>leopard tail</label>
 							<description>A long, spotted tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
 							<stages>
 								<li>
-									<capMods>
-										<li>
-											<capacity>Moving</capacity>
-											<offset>0.01</offset>
-										</li>
-									</capMods>
+									<partEfficiencyOffset>0.1</partEfficiencyOffset>
 								</li>
 							</stages>
 						</HediffDef>
@@ -668,12 +705,7 @@
 							<defName>LeopardTransformer</defName>
 							<label>mutasyringe, leopard</label>
 							<description>A mutagenic injector filled with mechanites and leopard DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
-							<graphicData>
-								<texPath>Things/Item/Drug/Specific</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
 							<ingestible>
-								<drugCategory>Medical</drugCategory>
 								<outcomeDoers>
 									<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 										<hediffDefs>
@@ -684,20 +716,16 @@
 								</outcomeDoers>
 							</ingestible>	
 						</ThingDef>
+						
 						<ThingDef ParentName="InjectorBase">
-							<defName>SnepTransformer</defName>
+							<defName>SnowLeopardTransformer</defName>
 							<label>mutasyringe, snow leopard</label>
 							<description>A mutagenic injector filled with mechanites and snow leopard DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
-							<graphicData>
-								<texPath>Things/Item/Drug/Specific</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
 							<ingestible>
-								<drugCategory>Medical</drugCategory>
 								<outcomeDoers>
 									<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 										<hediffDefs>
-											<li>PawnmorphSnepTF</li>
+											<li>PawnmorphSnowLeopardTF</li>
 										</hediffDefs>
 										<severity>1.00</severity>
 									</li>
@@ -712,21 +740,26 @@
 					<xpath>Defs/ThingDef[defName="RandomTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
 					<value>
 						<li>PawnmorphLeopardTF</li>
-						<li>PawnmorphSnepTF</li>
+						<li>PawnmorphSnowLeopardTF</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RandomColdTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<value>
+						<li>PawnmorphSnowLeopardTF</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RandomTemperateTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
+					<value>
+						<li>PawnmorphLeopardTF</li>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RandomCombatTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
 					<value>
 						<li>PawnmorphLeopardTF</li>
-						<li>PawnmorphSnepTF</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomFelineTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphLeopardTF</li>
-						<li>PawnmorphSnepTF</li>
+						<li>PawnmorphSnowLeopardTF</li>
 					</value>
 				</li>
 				
@@ -742,7 +775,26 @@
 							</countRange>
 						</li>
 						<li Class="StockGenerator_SingleDef">
-							<thingDef>SnepTransformer</thingDef>
+							<thingDef>SnowLeopardTransformer</thingDef>
+							<countRange>
+								<min>-3</min>
+								<max>1</max>
+							</countRange>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="PawnmorpherTraderOrbital"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>LeopardTransformer</thingDef>
+							<countRange>
+								<min>-3</min>
+								<max>1</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>SnowLeopardTransformer</thingDef>
 							<countRange>
 								<min>-3</min>
 								<max>1</max>
@@ -768,7 +820,7 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/Pawnmorph.MorphDef[defName="SnepMorph"]/race</xpath>
+					<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
 					<value>
 						<race>ACPSnowLeopard</race>
 					</value>
@@ -792,7 +844,7 @@
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphSnepTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphSnowLeopardTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
 					<value>
 						<li>ACPSnowLeopard</li>
 					</value>
@@ -815,7 +867,7 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/Pawnmorph.MorphDef[defName="SnepMorph"]/race</xpath>
+					<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
 					<value>
 						<race>SnowLeopard</race>
 					</value>
@@ -838,7 +890,7 @@
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphSnepTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphSnowLeopardTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
 					<value>
 						<li>SnowLeopard</li>
 					</value>
