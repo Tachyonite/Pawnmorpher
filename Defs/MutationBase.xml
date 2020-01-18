@@ -1,11 +1,4 @@
 <Defs>
-    <Pawnmorph.Hediffs.MutationDef Name="PartialMorphParent" ParentName="MorphParent" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.HediffCompProperties_Single" />
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
-
-
 	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphPartNoRmComp" Abstract="True">
 		<hediffClass>Pawnmorph.Hediff_AddedMutation</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>

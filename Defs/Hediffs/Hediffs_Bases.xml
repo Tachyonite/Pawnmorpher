@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/HediffDef.xsd">
-	<HediffDef Name="MorphParent" Abstract="true">
+	<HediffDef Abstract="true" Name="MorphParent">
 		<hediffClass>Pawnmorph.Hediff_Morph</hediffClass>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
 		<scenarioCanAdd>true</scenarioCanAdd>
@@ -18,12 +18,6 @@
 		</comps>
 	</HediffDef>
 
-
-	<HediffDef Abstract="true" Name="NewAspectedMorphParent" ParentName="AspectedMorphParent">
-		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
-		<defaultLabelColor>(77,68,179)</defaultLabelColor>
-	</HediffDef>
-
 	<!-- This is going to be used for the full morph hediffs given out by the injectors. -->
 	<HediffDef Abstract="true" ParentName="MorphParent" Name="AspectedMorphParent">
 		<modExtensions>
@@ -31,6 +25,23 @@
 				<mutagen>AspectGivingMutagen</mutagen>
 			</li>
 		</modExtensions>
+	</HediffDef>
+
+	<HediffDef Abstract="true" ParentName="AspectedMorphParent" Name="NewAspectedMorphParent">
+		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
+		<defaultLabelColor>(77,68,179)</defaultLabelColor>
+	</HediffDef>
+	
+    <HediffDef Abstract="true" ParentName="MorphParent" Name="PartialMorphParent">
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Single" />
+		</comps>
+	</HediffDef>
+	
+    <HediffDef Abstract="true" ParentName="NewAspectedMorphParent" Name="NewPartialAspectedMorphParent">
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Single" />
+		</comps>
 	</HediffDef>
 
 	<!-- Specifically for herbaviours. -->
