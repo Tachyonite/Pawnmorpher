@@ -116,7 +116,7 @@
 							</transformSettings>
 						</Pawnmorph.MorphDef>
 						
-						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+						<Pawnmorph.MorphDef ParentName="LeopardMorphBase">
 							<defName>LeopardMorph</defName>
 							<label>leopardmorph</label>
 							<race/>
@@ -134,7 +134,7 @@
 							</raceSettings>
 						</Pawnmorph.MorphDef>
 						
-						<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+						<Pawnmorph.MorphDef ParentName="LeopardMorphBase">
 							<defName>SnowLeopardMorph</defName>
 							<label>snepmorph</label>
 							<race/>
@@ -153,11 +153,11 @@
 						</Pawnmorph.MorphDef>
 						
 						<!-- Full TF -->
-						<HediffDef ParentName="MorphParent">
+						<HediffDef ParentName="NewAspectedMorphParent">
 							<defName>PawnmorphLeopardTF</defName>
 							<label>leopardmorph</label>
 							<stages>
-								<li>
+								<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 									<label>reeling</label>
 									<hungerRateFactor>1.6</hungerRateFactor>
 									<painOffset>0.05</painOffset>
@@ -167,15 +167,10 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_TF">
-											<hediff>TransformedHuman</hediff>
-											<pawnkinds/>
-											<tale>TransformationMisc</tale>
-										</li>
-									</hediffGivers>
+									<pawnkinds/>
+									<transformationTale>TransformationMisc</transformationTale>
 								</li>
-								<li>
+								<li Class="Pawnmorph.Hediffs.TransformationStage">
 									<label>transforming</label>
 									<minSeverity>0.6</minSeverity>
 									<painOffset>0.1</painOffset>
@@ -194,12 +189,15 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
+									<letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+									<letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
 								</li>
 								<li>
 									<label>changing</label>
 									<minSeverity>0.65</minSeverity>
 									<painOffset>0.1</painOffset>
 									<vomitMtbDays>1</vomitMtbDays>
+									<morph>LeopardMorph</morph>
 									<capMods>
 										<li>
 											<capacity>Moving</capacity>
@@ -214,88 +212,15 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardJaw</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Jaw</li>
-											</partsToAffect>
-											<tale>GrewFelineMuzzle</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardEar</hediff>
-											<mtbDays>1</mtbDays>
-											<partsToAffect>
-												<li>Ear</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>EarsChangedFeline</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardTail</hediff>
-											<mtbDays>1</mtbDays>
-											<partsToAffect>
-												<li>Tail</li>
-											</partsToAffect>
-											<tale>GrewTail</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherFurredLimb</hediff>
-											<mtbDays>2</mtbDays>
-											<partsToAffect>
-												<li>Arm</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>LimbGrowsFur</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherCatClaws</hediff>
-											<mtbDays>3</mtbDays>
-											<chance>5</chance>
-											<partsToAffect>
-												<li>Hand</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>HandsBecomeCatPaws</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherDigitigradeLeg</hediff>
-											<mtbDays>2</mtbDays>
-											<partsToAffect>
-												<li>Leg</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>LegBecameDigitgrade</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherPawFoot</hediff>
-											<mtbDays>3</mtbDays>
-											<partsToAffect>
-												<li>Foot</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>FootBecomesFelinePaw</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherCatEye</hediff>
-											<mtbDays>1.5</mtbDays>
-											<partsToAffect>
-												<li>Eye</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>EyesBecomeFeline</tale>
-										</li>
-									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
 						
-						<HediffDef ParentName="MorphParent">
+						<HediffDef ParentName="NewAspectedMorphParent">
 							<defName>PawnmorphSnowLeopardTF</defName>
 							<label>snepmorph</label>
 							<stages>
-								<li>
+								<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 									<label>reeling</label>
 									<hungerRateFactor>1.6</hungerRateFactor>
 									<painOffset>0.05</painOffset>
@@ -305,15 +230,10 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_TF">
-											<hediff>TransformedHuman</hediff>
-											<pawnkinds/>
-											<tale>TransformationMisc</tale>
-										</li>
-									</hediffGivers>
+									<pawnkinds/>
+									<transformationTale>TransformationMisc</transformationTale>
 								</li>
-								<li>
+								<li Class="Pawnmorph.Hediffs.TransformationStage">
 									<label>transforming</label>
 									<minSeverity>0.6</minSeverity>
 									<painOffset>0.1</painOffset>
@@ -332,12 +252,15 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
+									<letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+									<letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
 								</li>
-								<li>
+								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 									<label>changing</label>
 									<minSeverity>0.65</minSeverity>
 									<painOffset>0.1</painOffset>
 									<vomitMtbDays>1</vomitMtbDays>
+									<morph>SnowLeopardMorph</morph>
 									<capMods>
 										<li>
 											<capacity>Moving</capacity>
@@ -352,91 +275,19 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherSnowLeopardJaw</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Jaw</li>
-											</partsToAffect>
-											<tale>GrewFelineMuzzle</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardEar</hediff>
-											<mtbDays>1</mtbDays>
-											<partsToAffect>
-												<li>Ear</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>EarsChangedFeline</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardTail</hediff>
-											<mtbDays>1</mtbDays>
-											<partsToAffect>
-												<li>Tail</li>
-											</partsToAffect>
-											<tale>GrewTail</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherFurredLimb</hediff>
-											<mtbDays>2</mtbDays>
-											<partsToAffect>
-												<li>Arm</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>LimbGrowsFur</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherCatClaws</hediff>
-											<mtbDays>3</mtbDays>
-											<chance>5</chance>
-											<partsToAffect>
-												<li>Hand</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>HandsBecomeCatPaws</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherDigitigradeLeg</hediff>
-											<mtbDays>2</mtbDays>
-											<partsToAffect>
-												<li>Leg</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>LegBecameDigitgrade</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherPawFoot</hediff>
-											<mtbDays>3</mtbDays>
-											<partsToAffect>
-												<li>Foot</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>FootBecomesFelinePaw</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherCatEye</hediff>
-											<mtbDays>1.5</mtbDays>
-											<partsToAffect>
-												<li>Eye</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>EyesBecomeFeline</tale>
-										</li>
-									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
 						
 						<!-- Partial TF -->
-						<HediffDef ParentName="PartialMorphParent">
+						<HediffDef ParentName="NewPartialAspectedMorphParent">
 							<defName>PawnmorphLeopardTFPartial</defName>
 							<label>leopardmorph partial</label>
 							<stages>
-								<li>
+								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 									<painOffset>0.1</painOffset>
 									<vomitMtbDays>1</vomitMtbDays>
+									<morph>LeopardMorph</morph>
 									<capMods>
 										<li>
 											<capacity>Moving</capacity>
@@ -451,80 +302,18 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardJaw</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Jaw</li>
-											</partsToAffect>
-											<tale>GrewFelineMuzzle</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardEar</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Ear</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>EarsChangedFeline</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardTail</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Tail</li>
-											</partsToAffect>
-											<tale>GrewTail</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherFurredLimb</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Arm</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>LimbGrowsFur</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherDigitigradeLeg</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Leg</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>LegBecameDigitgrade</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherPawFoot</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Foot</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>FootBecomesFelinePaw</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherCatEye</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Eye</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>EyesBecomeFeline</tale>
-										</li>
-									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
 						
-						<HediffDef ParentName="PartialMorphParent">
+						<HediffDef ParentName="NewPartialAspectedMorphParent">
 							<defName>PawnmorphSnowLeopardTFPartial</defName>
 							<label>snepmorph partial</label>
 							<stages>
-								<li>
+								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 									<painOffset>0.1</painOffset>
 									<vomitMtbDays>1</vomitMtbDays>
+									<morph>SnowLeopardMorph</morph>
 									<capMods>
 										<li>
 											<capacity>Moving</capacity>
@@ -539,69 +328,6 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
-									<hediffGivers>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherSnowLeopardJaw</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Jaw</li>
-											</partsToAffect>
-											<tale>GrewFelineMuzzle</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardEar</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Ear</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>EarsChangedFeline</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherLeopardTail</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Tail</li>
-											</partsToAffect>
-											<tale>GrewTail</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherFurredLimb</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Arm</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>LimbGrowsFur</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherDigitigradeLeg</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Leg</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>LegBecameDigitgrade</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherPawFoot</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Foot</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>FootBecomesFelinePaw</tale>
-										</li>
-										<li Class="Pawnmorph.HediffGiver_Mutation">
-											<hediff>EtherCatEye</hediff>
-											<mtbDays>0.5</mtbDays>
-											<partsToAffect>
-												<li>Eye</li>
-											</partsToAffect>
-											<countToAffect>2</countToAffect>
-											<tale>EyesBecomeFeline</tale>
-										</li>
-									</hediffGivers>
 								</li>
 							</stages>
 						</HediffDef>
@@ -614,6 +340,9 @@
 						<HediffDef Abstract="true" ParentName="PawnmorphPart" Name="LeopardJawBase">
 							<label>pardine muzzle</label>
 							<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a leopard. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+							<parts>
+								<li>Jaw</li>
+							</parts>
 							<stages>
 								<li>
 									<capMods>
@@ -677,14 +406,12 @@
 							<defName>EtherLeopardEar</defName>
 							<label>pardine</label>
 							<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
+							<parts>
+								<li>Ear</li>
+							</parts>
 							<stages>
 								<li>
-									<capMods>
-										<li>
-											<capacity>Hearing</capacity>
-											<offset>0.1</offset>
-										</li>
-									</capMods>
+									<partEfficiencyOffset>0.1</partEfficiencyOffset>
 								</li>
 							</stages>
 						</HediffDef>
@@ -693,9 +420,17 @@
 							<defName>EtherLeopardTail</defName>
 							<label>leopard tail</label>
 							<description>A long, spotted tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+							<parts>
+								<li>Tail</li>
+							</parts>
 							<stages>
 								<li>
-									<partEfficiencyOffset>0.1</partEfficiencyOffset>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>0.1</offset>
+										</li>
+									</capMods>
 								</li>
 							</stages>
 						</HediffDef>
