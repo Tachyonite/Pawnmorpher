@@ -147,6 +147,8 @@ namespace Pawnmorph
             if (race == null)
                 yield return "No race def found!";
             else if (race.race == null) yield return $"Race {race.defName} has no race properties! Are you sure this is a race?";
+
+            if (classification == null) yield return $"No classification set!"; 
         }
 
         /// <summary>
@@ -268,8 +270,6 @@ namespace Pawnmorph
                 hybridRaceDef = explicitHybridRace;
                 Log.Warning($"MorphDef {defName} is using an explicit hybrid {explicitHybridRace.defName} for {race.defName}. This has not been tested yet");
             }
-
-            classification = classification ?? AnimalClassDefOf.Animal;
 
             //TODO patch explicit race based on hybrid race settings? 
         }

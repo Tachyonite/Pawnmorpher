@@ -30,5 +30,6 @@
 	  </categories>
 	  <fullTransformation>FullRandomTFAnyOutcome</fullTransformation>
 	  <partialTransformation>FullRandomTF</partialTransformation>
+	  <classification>Animal</classification>
   </Pawnmorph.MorphDef>
 </Defs>
