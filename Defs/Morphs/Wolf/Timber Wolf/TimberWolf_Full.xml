@@ -4,7 +4,7 @@
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
 		<label>wolfmorph</label>
 		<stages>
-			<li Clas="Pawnmorph.Hediffs.FullTransformationStage">
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>

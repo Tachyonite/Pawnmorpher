@@ -13,12 +13,6 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-
-					</li>
-				</hediffGivers>
 				<pawnkinds>
 					<li>Wolf_Arctic</li>
 				</pawnkinds>

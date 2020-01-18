@@ -1,6 +1,6 @@
 <Defs>
 	<HediffDef ParentName="AspectedMorphParent">
-		<defName>PawnmorphBearTF</defName>
+		<defName>PawnmorphPolarBearTF</defName>
 		<label>bearmorph</label>
 		<stages>
 			<li>
