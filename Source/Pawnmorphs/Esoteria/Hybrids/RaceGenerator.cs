@@ -273,7 +273,7 @@ namespace Pawnmorph.Hybrids
         }
 
         [NotNull]
-        private static ThingDef_AlienRace GenerateImplicitRace([NotNull] ThingDef_AlienRace humanDef,[NotNull]  MorphDef morph)
+        private static ThingDef_AlienRace GenerateImplicitRace([NotNull] ThingDef_AlienRace humanDef, [NotNull] MorphDef morph)
         {
             return new ThingDef_AlienRace
             {
