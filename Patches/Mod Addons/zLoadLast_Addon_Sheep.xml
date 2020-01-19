@@ -33,6 +33,9 @@
 							<defName>EtherReactionSheepTF</defName>
 							<label>depricated thought</label>
 							<description>Feel free to remove this thought if it is hanging around.</description> <!-- Comment is meant for the end user, not devs -->
+							<stages>
+								<li/>
+							</stages>
 						</ThoughtDef>
 
 						<ThoughtDef>
@@ -210,11 +213,11 @@
 						</HediffDef>
 						
 						<!-- Morph Parts -->
-						<HediffDef Abstract="True" ParentName="PawnmorphPart" Name="SheepPart">
+						<Pawnmorph.Hediffs.MutationDef Abstract="True" ParentName="PawnmorphPart" Name="SheepPart">
 							<classInfluence>SheepMorph</classInfluence>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef ParentName="SheepPart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 							<defName>EtherWoolySheep</defName>
 							<label>wooly</label>
 							<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent sheepmorph that don't need no man.</description>
@@ -284,9 +287,9 @@
 									</hediffGivers>
 								</li>
 							</stages>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef ParentName="SheepPart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 							<defName>EtherSheepSnout</defName>
 							<label>ovine snout</label>
 							<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_pronoun] teeth are squared off, and this makes speaking more difficult, yet eating is easier.</description>
@@ -340,9 +343,9 @@
 									<severityPerDay>0.25</severityPerDay>
 								</li>
 							</comps>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef ParentName="SheepPart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 							<defName>EtherSheepEar</defName>
 							<label>ovine</label>
 							<description>Fluffy, ovine ears sit at the side of [PAWN_nameDef]'s head, like a sheep.</description>
@@ -354,16 +357,16 @@
 									<partEfficiencyOffset>0.1</partEfficiencyOffset>
 								</li>
 							</stages>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef ParentName="SheepPart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 							<defName>EtherSheepTail</defName>
 							<label>sheep tail</label>
 							<description>A sheeplike tail. It's very wooly but short and not incredibly useful.</description>
 							<parts>
 								<li>Tail</li>
 							</parts>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
 						<!-- Injector -->
 						<ThingDef ParentName="InjectorBase">

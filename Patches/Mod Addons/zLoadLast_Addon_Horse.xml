@@ -59,6 +59,9 @@
 							<defName>EtherReactionHorseTF</defName>
 							<label>depricated thought</label>
 							<description>Feel free to remove this thought if it is hanging around.</description> <!-- Comment is meant for the end user, not devs -->
+							<stages>
+								<li/>
+							</stages>
 						</ThoughtDef>
 
 						<ThoughtDef>
@@ -235,11 +238,11 @@
 						</HediffDef>
 
 						<!-- Morph Parts -->
-						<HediffDef Abstract="True" ParentName="PawnmorphPart" Name="HorsePart">
+						<Pawnmorph.Hediffs.MutationDef Abstract="True" ParentName="PawnmorphPart" Name="HorsePart">
 							<classInfluence>HorseMorph</classInfluence>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 
-						<HediffDef ParentName="HorsePart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="HorsePart">
 							<defName>EtherHorseSnout</defName>
 							<label>equine snout</label>
 							<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_pronoun] teeth are squared off, and this makes speaking more difficult, yet eating is easier.</description>
@@ -293,9 +296,9 @@
 									<severityPerDay>0.25</severityPerDay>
 								</li>
 							</comps>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 
-						<HediffDef ParentName="HorsePart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="HorsePart">
 							<defName>EtherHorseEar</defName>
 							<label>equine</label>
 							<description>Long, equine ears sit atop [PAWN_nameDef]'s head, like that of a horse.</description>
@@ -307,9 +310,9 @@
 									<partEfficiencyOffset>0.1</partEfficiencyOffset>
 								</li>
 							</stages>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef ParentName="HorsePart">
+						<Pawnmorph.Hediffs.MutationDef ParentName="HorsePart">
 							<defName>EtherHorseTail</defName>
 							<label>horse tail</label>
 							<description>A horselike tail. It swats at flies occasionally.</description>
@@ -326,7 +329,7 @@
 									</capMods>
 								</li>
 							</stages>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 
 						<!-- Morph Injector -->
 						<ThingDef ParentName="InjectorBase">
@@ -432,7 +435,7 @@
 
 				<!-- Add the animal to the TF's possible feral animal list -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphHorseTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphHorseTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
 					<value>
 						<li>AEXP_Horse</li>
 					</value>
@@ -468,7 +471,7 @@
 
 				<!-- Add the animal to the TF's possible feral animal list -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphHorseTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphHorseTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
 					<value>
 						<li>QuarterHorse</li>
 						<li>BlackHorse</li>
