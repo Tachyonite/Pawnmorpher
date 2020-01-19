@@ -151,7 +151,31 @@ namespace Pawnmorph
             return string.IsNullOrEmpty(descOverride) ? def.description : descOverride; 
         }
 
-        private bool _waitingForUpdate; 
+        public override void Tick()
+        {
+            base.Tick();
+
+            if (_currentStageIndex != CurStageIndex)
+            {
+                _currentStageIndex = CurStageIndex;
+                OnStageChanges(); 
+            }
+        }
+
+        /// <summary>
+        /// Called when the hediff stage changes.
+        /// </summary>
+        protected virtual void OnStageChanges()
+        {
+            if (CurStage is IExecutableStage exeStage)
+            {
+                exeStage.EnteredStage(this); 
+            }
+        }
+
+        private bool _waitingForUpdate;
+
+        private int _currentStageIndex=-1; 
 
         /// <summary>called after this instance is added to the pawn.</summary>
         /// <param name="dinfo">The dinfo.</param>
@@ -203,6 +227,7 @@ namespace Pawnmorph
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.Look(ref _currentStageIndex, nameof(_currentStageIndex), -1); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
                 Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.", false);
