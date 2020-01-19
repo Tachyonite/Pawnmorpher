@@ -56,11 +56,11 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, and surprissingly only making speaking a little more difficult, yet eating is easier.</description>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, making speaking a little more difficult, yet eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.05</offset>
+						<offset>-0.07</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>

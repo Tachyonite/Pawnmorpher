@@ -11,11 +11,26 @@
 			<li>Jaw</li>
 		</parts>
 		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking nearly impossible outside of barks and whines, yet eating is easier.</description>
+				<minSeverity>-0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.55</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<label>bestial</label>
+			</li>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.50</offset>
+						<offset>-0.30</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
@@ -30,13 +45,24 @@
 			
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.10</offset>
+						<offset>-0.15</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
 						<offset>0.50</offset>
 					</li>
 				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A cute snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_pronoun] teeth are pointed to suit, making eating easier. Oddly this doesn't seem to impact [PAWN_possessive] abilty to speak much</description>
+				<minSeverity>1.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<label>paragon</label>
 			</li>
 		</stages>
 		<comps>

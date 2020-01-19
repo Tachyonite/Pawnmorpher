@@ -11,23 +11,25 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
-				<description>A bestial snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking much more difficult, yet eating is easier.</description>
+				<description>[PAWN_nameDef]'s face has turned into a bestial snout, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking much more difficult, yet eating is easier. Many people find [PAWN_possessive] snout intimidating</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.50</offset>
+						<offset>-0.45</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
 						<offset>0.50</offset>
 					</li>
 				</capMods>
-			</li>
+				<statOffsets>
+					<SocialImpact>-0.1</SocialImpact>
+				</statOffsets>			</li>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.25</offset>
+						<offset>-0.20</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
@@ -52,13 +54,21 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, despite they don't seem to have trouble speaking with it, and eating is easier.</description>
+				<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, this makes speaking difficult, and eating is easier. Animals seem to find [PAWN_pronoun] intimidating and are less likely to disobey [PAWN_pronoun]</description>
 				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
 					<li>
 						<capacity>Eating</capacity>
 						<offset>0.50</offset>
 					</li>
 				</capMods>
+				<statOffsets>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<TameAnimalChance>0.1</TameAnimalChance>
+				</statOffsets>
 			</li>
 		</stages>
 		<comps>
