@@ -76,6 +76,7 @@
     <Compile Include="AspectDefOf.cs" />
     <Compile Include="AspectGiver.cs" />
     <Compile Include="AspectStage.cs" />
+    <Compile Include="Aspects\MeatLover.cs" />
     <Compile Include="Aspects\PrimalWishGiver.cs" />
     <Compile Include="Aspects\RandomGiver.cs" />
     <Compile Include="Aspects\SkillBasedGiver.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
+    <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
     <Compile Include="HPatches\HuntingPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
@@ -347,6 +349,7 @@
     <Compile Include="ThoughtGroupDefExtension.cs" />
     <Compile Include="Thoughts\Def_AspectThought.cs" />
     <Compile Include="Thoughts\FormerHumanMemory.cs" />
+    <Compile Include="Thoughts\IFoodThoughtModifier.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />

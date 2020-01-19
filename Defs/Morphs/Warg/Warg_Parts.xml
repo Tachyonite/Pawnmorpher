@@ -56,7 +56,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, making speaking a little more difficult, yet eating is easier.</description>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, making speaking a little more difficult, yet eating is easier. [PAWN_pronoun] has also developed a taste for raw meat, and is less likely to get sick from it</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -67,6 +67,16 @@
 						<offset>0.50</offset>
 					</li>
 				</capMods>
+				<aspectGivers>
+					<li Class="Pawnmorph.Aspects.RandomGiver">
+						<entries>
+							<li>
+								<aspect>MeatLover</aspect>
+								<chance>1</chance>
+							</li>
+						</entries>
+					</li>
+				</aspectGivers>
 			</li>
 		</stages>
 		<comps>

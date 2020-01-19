@@ -41,6 +41,18 @@ namespace Pawnmorph
         /// </summary>
         public static StatDef MutagenSensitivity;
 
+        /// <summary>
+        /// this stat is the %chance a pawn will get sick from dangerous foods 
+        /// </summary>
+        /// note, the check is applied after the initial check on the food itself, so the actual chance a pawn will get sick from
+        /// a specific, dangerous food is this multiplied by the food's FoodPoisonChanceFixedHuman stat
+        public static StatDef DangerousFoodSensitivity;
+        /// <summary>
+        /// this stat is the %chance a pawn will get sick from rotten foods 
+        /// </summary>
+        /// note, the check is applied after the initial check on the food itself, so the actual chance a pawn will get sick from
+        /// a specific, rotten food is this multiplied by the base chance to get sick from rotten food 
+        public static StatDef RottenFoodSensitivity;
 
         /// <summary>
         /// stat that determines how much 'sapience' a pawn recovers over time 

@@ -151,6 +151,9 @@ namespace Pawnmorph
             return string.IsNullOrEmpty(descOverride) ? def.description : descOverride; 
         }
 
+        /// <summary>
+        /// called every tick 
+        /// </summary>
         public override void Tick()
         {
             base.Tick();
