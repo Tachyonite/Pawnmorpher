@@ -7,11 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
-using Harmony;
 using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -25,40 +23,6 @@ namespace Pawnmorph.DebugUtils
     {
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
-
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
-        static void FindPAIgnoredMutations()
-        {
-            StringBuilder builder = new StringBuilder();
-
-            foreach (MutationDef allMutation in MutationDef.AllMutations)
-            {
-                if (allMutation.stages == null || allMutation.stages.Count == 0)
-                {
-                    builder.AppendLine($"{allMutation.defName} does not have any stages!");
-                    continue;
-                }
-
-                bool hasAfflicted = false, hasParagon = false;
-
-                foreach (HediffStage allMutationStage in allMutation.stages)
-                {
-                    if (allMutationStage.minSeverity < 0) hasAfflicted = true;
-                    if (allMutationStage.minSeverity > 1) hasParagon = true; 
-                }
-
-                if(hasParagon && hasAfflicted) continue;
-                string missingStr =$"{allMutation.defName} is missing: ";
-                if (!hasAfflicted)
-                    missingStr += "afflicted ";
-                if (!hasParagon)
-                    missingStr += "paragon";
-                builder.AppendLine(missingStr); 
-            }
-
-            Log.Message(builder.ToString()); 
-        }
-
         /// <summary>
         ///     Asserts the specified condition. if false an error message will be displayed
         /// </summary>
@@ -71,62 +35,6 @@ namespace Pawnmorph.DebugUtils
         public static void Assert(bool condition, string message)
         {
             if (!condition) Log.Error($"assertion failed:{message}");
-        }
-
-
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
-        static void GetOldMorphTfDefs()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("Full Transformations:");
-            foreach (MorphDef morphDef in MorphDef.AllDefs)
-            {
-                if (morphDef.fullTransformation != null
-                 && typeof(Hediff_Morph).IsAssignableFrom(morphDef.fullTransformation.hediffClass))
-                {
-                    builder.AppendLine(morphDef.fullTransformation.defName); 
-                }
-            }
-
-            builder.AppendLine("Partials:");
-            foreach (MorphDef morphDef in MorphDef.AllDefs)
-            {
-                if (morphDef.partialTransformation != null
-                 && typeof(Hediff_Morph).IsAssignableFrom(morphDef.partialTransformation.hediffClass))
-                {
-                    builder.AppendLine(morphDef.partialTransformation.defName); 
-                }
-            }
-
-            Log.Message(builder.ToString());
-        }
-
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME), UsedImplicitly]
-        static void PrintGraphVizAnimalTree()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine($"digraph animalClassTree\n{{\n\trankdir=LR");
-
-            foreach (AnimalClassDef aClass in DefDatabase<AnimalClassDef>.AllDefs)
-            {
-                builder.AppendLine($"\t{aClass.defName}[shape=square]");
-            }
-
-            BuildGraphvizTree(AnimalClassDefOf.Animal, builder);
-            builder.AppendLine("}");
-            Log.Message(builder.ToString());
-        }
-
-        static void BuildGraphvizTree( [NotNull]AnimalClassBase aBase, StringBuilder builder)
-        {
-            
-
-            foreach (AnimalClassBase child in aBase.Children)
-            {
-                builder.AppendLine($"{aBase.defName}->{child.defName};");
-                BuildGraphvizTree(child, builder); 
-            }
         }
 
 
@@ -201,7 +109,7 @@ namespace Pawnmorph.DebugUtils
         public static void FindAllTODOThoughts()
         {
             var builder = new StringBuilder();
-            List<string> defNames = new List<string>(); 
+            var defNames = new List<string>();
             foreach (ThoughtDef thoughtDef in DefDatabase<ThoughtDef>.AllDefs)
             {
                 var addedHeader = false;
@@ -230,28 +138,16 @@ namespace Pawnmorph.DebugUtils
             builder.AppendLine(defNames.Distinct().Join("\n"));
 
             Log.Message(builder.ToString());
-
-        }
-
-        [Category(MAIN_CATEGORY_NAME), DebugOutput]
-        static void ListMutationsInMorphs()
-        {
-            StringBuilder builder = new StringBuilder();
-
-            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefsListForReading)
-            {
-                var outStr = morphDef.AllAssociatedMutations.Select(m => m.defName).Join(",");
-                builder.AppendLine($"{morphDef.defName}:{outStr}");
-            }
-
-            Log.Message(builder.ToString());
         }
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
         public static void FindMissingMorphDescriptions()
         {
-            List<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs.Where(def => string.IsNullOrEmpty(def.description)).ToList();
+            List<MorphDef> morphs = DefDatabase<MorphDef>
+                                   .AllDefs.Where(def => string.IsNullOrEmpty(def.description)
+                                                      || def.description.StartsWith("!!!"))
+                                   .ToList();
             if (morphs.Count == 0)
             {
                 Log.Message("all morphs have descriptions c:");
@@ -282,29 +178,29 @@ namespace Pawnmorph.DebugUtils
             Log.Message(string.IsNullOrEmpty(str) ? "no parts with missing description" : str);
         }
 
-
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
-        public static void GetMutationsWithoutStages()
+        struct HediffStageInfo
         {
-            var allMutations =
-                MutationDef.AllMutations.Where(def => (def.stages?.Count ?? 0) <= 1); //all mutations without stages 
-            var builder = new StringBuilder();
+            public string defName;
+            public int stageIndex;
+            public float minSeverity;
+            public float severityPerDay;
 
+            /// <summary>Returns the fully qualified type name of this instance.</summary>
+            /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
+            public override string ToString()
+            {
+                return $"{defName},{stageIndex},{minSeverity},{severityPerDay}"; 
+            }
 
-            foreach (var allMutation in allMutations) builder.AppendLine($"{allMutation.defName}");
-
-            Log.Message(builder.ToString());
+            public static string Header => "defName,stageIndex,minSeverity,severityPerDay"; 
         }
+
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
         public static void GetMutationsWithStages()
         {
-            List<HediffDef> allMutations = DefDatabase<HediffDef>
-                                          .AllDefs.Where(def => typeof(Hediff_AddedMutation).IsAssignableFrom(def.hediffClass))
-                                          .Where(def => def.stages?.Count > 1 && def.HasComp(typeof(HediffComp_SeverityPerDay)))
-                                          .ToList();
+            var allMutations = MutationDef.AllMutations.ToList(); 
 
 
             if (allMutations.Count == 0)
@@ -313,40 +209,36 @@ namespace Pawnmorph.DebugUtils
                 return;
             }
 
-            var builder = new StringBuilder();
+            List<HediffStageInfo> infoLst = new List<HediffStageInfo>(); 
+            
+            
 
-            builder.AppendLine("mutations:");
-            foreach (HediffDef allMutation in allMutations)
-                builder.AppendLine($"\t{allMutation.defName}[{allMutation.stages.Count}]");
-
-            builder.AppendLine("\n------------Stats--------------\n");
-
-
-            foreach (HediffDef mutation in allMutations)
+            foreach (var mutation in allMutations)
             {
                 List<HediffStage> stages = mutation.stages;
-                float severityPerDay = mutation.CompProps<HediffCompProperties_SeverityPerDay>().severityPerDay;
-                builder.AppendLine($"{mutation.defName}:");
-                float total = 0;
-                for (var i = 0; i < stages.Count - 1; i++)
-                {
-                    HediffStage s = stages[i];
-                    HediffStage s1 = stages[i + 1];
-                    string sLabel = string.IsNullOrEmpty(s.label) ? i.ToString() : s.label;
-                    string s1Label =
-                        string.IsNullOrEmpty(s1.label)
-                            ? (i + 1).ToString()
-                            : s1.label; //if the label is null just use the index  
-                    float diff = s1.minSeverity - s.minSeverity;
-                    float tDiff = diff / severityPerDay;
-                    total += tDiff;
-                    builder.AppendLine($"\t\tstage[{sLabel}] {{{s.minSeverity}}} => stage[{s1Label}] {{{s1.minSeverity}}} takes {tDiff} days");
-                }
+                if(stages == null) continue;
+                float severityPerDay = mutation.CompProps<CompProperties_MutationSeverityAdjust>()?.severityPerDay ?? 0;
 
-                builder.AppendLine($"\ttotal time is {total} days");
+                if(severityPerDay <= 0) 
+                    continue; //productive mutations don't progress like the others 
+
+
+                for (var index = 0; index < stages.Count; index++)
+                {
+                    HediffStage hediffStage = stages[index];
+                    var stageInfo = new HediffStageInfo()
+                    {
+                        defName = mutation.defName,
+                        minSeverity = hediffStage.minSeverity,
+                        severityPerDay = severityPerDay,
+                        stageIndex = index
+                    };
+                    infoLst.Add(stageInfo); 
+                }
             }
 
-            Log.Message(builder.ToString());
+            var outStr = infoLst.Select(s => s.ToString()).Join("\n");
+            Log.Message($"Mutation Stage Info:\n{HediffStageInfo.Header}\n{outStr}");
         }
 
 
@@ -368,12 +260,12 @@ namespace Pawnmorph.DebugUtils
 
 
             var allSpreadableMutations = MutationDef.AllMutations.Select(mut => new
-                                                           {
-                                                               mut, //make an anonymous object to keep track of both the mutation and comp
-                                                               comp = mut.CompProps<SpreadingMutationCompProperties>()
-                                                           })
-                                                          .Where(o => o.comp != null) //keep only those with a spreading property 
-                                                          .ToList();
+                                                     {
+                                                         mut, //make an anonymous object to keep track of both the mutation and comp
+                                                         comp = mut.CompProps<SpreadingMutationCompProperties>()
+                                                     })
+                                                    .Where(o => o.comp != null) //keep only those with a spreading property 
+                                                    .ToList();
 
             var builder = new StringBuilder();
 
@@ -555,35 +447,13 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
         }
 
-        [DebugOutput, Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
-        static void GetPawnsNewInfluence()
+        private static void BuildGraphvizTree([NotNull] AnimalClassBase aBase, StringBuilder builder)
         {
-            Dictionary<AnimalClassBase, float> wDict = new Dictionary<AnimalClassBase, float>();
-            List<Hediff_AddedMutation> mutations = new List<Hediff_AddedMutation>();
-            List<string> strings = new List<string>();
-            float maxInf = MorphUtilities.MaxHumanInfluence; 
-            foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonists)
+            foreach (AnimalClassBase child in aBase.Children)
             {
-                mutations.Clear();
-                mutations.AddRange(pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
-
-                AnimalClassUtilities.FillInfluenceDict(mutations, wDict);
-                if (wDict.Count == 0) continue;
-                //now build the log message entry 
-                StringBuilder builder = new StringBuilder();
-                builder.AppendLine($"{pawn.Name}:");
-                foreach (KeyValuePair<AnimalClassBase, float> kvp in wDict)
-                {
-                    var def = (Def) kvp.Key;
-                    builder.AppendLine($"\t{def.label}:{(kvp.Value / maxInf).ToStringPercent()}");
-                }
-
-                strings.Add(builder.ToString()); 
+                builder.AppendLine($"{aBase.defName}->{child.defName};");
+                BuildGraphvizTree(child, builder);
             }
-
-            var msg = strings.Join("\n----------------------------\n");
-            Log.Message(msg); 
-
         }
 
         [DebugOutput]
@@ -602,26 +472,148 @@ namespace Pawnmorph.DebugUtils
             Log.Message(msg);
         }
 
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
-        static void MaximumMutationPointsForHumans()
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        private static void GetOldMorphTfDefs()
+        {
+            var builder = new StringBuilder();
+            builder.AppendLine("Full Transformations:");
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+                if (morphDef.fullTransformation != null
+                 && typeof(Hediff_Morph).IsAssignableFrom(morphDef.fullTransformation.hediffClass))
+                    builder.AppendLine(morphDef.fullTransformation.defName);
+
+            builder.AppendLine("Partials:");
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+                if (morphDef.partialTransformation != null
+                 && typeof(Hediff_Morph).IsAssignableFrom(morphDef.partialTransformation.hediffClass))
+                    builder.AppendLine(morphDef.partialTransformation.defName);
+
+            Log.Message(builder.ToString());
+        }
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        [ModeRestrictionPlay]
+        private static void GetPawnsNewInfluence()
+        {
+            var wDict = new Dictionary<AnimalClassBase, float>();
+            var mutations = new List<Hediff_AddedMutation>();
+            var strings = new List<string>();
+            float maxInf = MorphUtilities.MaxHumanInfluence;
+            foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonists)
+            {
+                mutations.Clear();
+                mutations.AddRange(pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
+
+                AnimalClassUtilities.FillInfluenceDict(mutations, wDict);
+                if (wDict.Count == 0) continue;
+                //now build the log message entry 
+                var builder = new StringBuilder();
+                builder.AppendLine($"{pawn.Name}:");
+                foreach (KeyValuePair<AnimalClassBase, float> kvp in wDict)
+                {
+                    var def = (Def) kvp.Key;
+                    builder.AppendLine($"\t{def.label}:{(kvp.Value / maxInf).ToStringPercent()}");
+                }
+
+                strings.Add(builder.ToString());
+            }
+
+            string msg = strings.Join("\n----------------------------\n");
+            Log.Message(msg);
+        }
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        private static void ListAllSpreadableParts()
+        {
+            BodyDef bDef = BodyDefOf.Human;
+            var sBuilder = new StringBuilder();
+
+            foreach (BodyPartDef allMutablePart in bDef.GetAllMutableParts().Select(b => b.def).Distinct())
+                if (allMutablePart.IsSkinCoveredInDefinition_Debug)
+                    sBuilder.AppendLine($"<li>{allMutablePart.defName}</li>");
+
+            Log.Message(sBuilder.ToString());
+        }
+
+        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput]
+        private static void ListMutationsInMorphs()
+        {
+            var builder = new StringBuilder();
+
+            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefsListForReading)
+            {
+                string outStr = morphDef.AllAssociatedMutations.Select(m => m.defName).Join(",");
+                builder.AppendLine($"{morphDef.defName}:{outStr}");
+            }
+
+            Log.Message(builder.ToString());
+        }
+
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        private static void LogMissingMutationStages()
+        {
+            var builder = new StringBuilder();
+            List<string> needsStages = new List<string>(),
+                         needsParagonStage = new List<string>(),
+                         needsAfflictedStage = new List<string>();
+
+
+            foreach (MutationDef allMutation in MutationDef.AllMutations)
+            {
+                if (allMutation.stages == null || allMutation.stages.Count == 0)
+                {
+                    needsStages.Add(allMutation.defName);
+                    continue;
+                }
+
+                bool hasAfflicted = false, hasParagon = false;
+
+                foreach (HediffStage allMutationStage in allMutation.stages)
+                {
+                    if (allMutationStage.minSeverity < 0) hasAfflicted = true;
+                    if (allMutationStage.minSeverity > 1) hasParagon = true;
+                }
+
+                if (!hasParagon)
+                    needsParagonStage.Add(allMutation.defName);
+                if (!hasAfflicted) needsAfflictedStage.Add(allMutation.defName);
+            }
+
+            builder.AppendLine($"Needs Stages:\n{needsStages.Join("\n")}");
+            builder.AppendLine($"\nNeeds Paragon Stages:\n{needsParagonStage.Join("\n")}");
+            builder.AppendLine($"\nNeeds Afflicted Stages:\n{needsAfflictedStage.Join("\n")}");
+
+            Log.Message(builder.ToString());
+        }
+
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        private static void MaximumMutationPointsForHumans()
         {
             Log.Message(MorphUtilities.MaxHumanInfluence.ToString());
         }
 
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
-        static void ListAllSpreadableParts()
+        [DebugOutput]
+        [Category(MAIN_CATEGORY_NAME)]
+        [UsedImplicitly]
+        private static void PrintGraphVizAnimalTree()
         {
-            var bDef = BodyDefOf.Human;
-            var sBuilder = new StringBuilder();
+            var builder = new StringBuilder();
+            builder.AppendLine("digraph animalClassTree\n{\n\trankdir=LR");
 
-            foreach (var allMutablePart in bDef.GetAllMutableParts().Select(b => b.def).Distinct())
-            {
-                if (allMutablePart.IsSkinCoveredInDefinition_Debug)
-                    sBuilder.AppendLine($"<li>{allMutablePart.defName}</li>");
-            }
+            foreach (AnimalClassDef aClass in DefDatabase<AnimalClassDef>.AllDefs)
+                builder.AppendLine($"\t{aClass.defName}[shape=square]");
 
-            Log.Message(sBuilder.ToString()); 
-
+            BuildGraphvizTree(AnimalClassDefOf.Animal, builder);
+            builder.AppendLine("}");
+            Log.Message(builder.ToString());
         }
     }
 }
