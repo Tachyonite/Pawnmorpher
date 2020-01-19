@@ -48,6 +48,11 @@ namespace Pawnmorph.Hediffs
         /// <summary>The letter label</summary>
         public string letterLabel;
 
+        /// <summary>
+        /// The letter definition
+        /// </summary>
+        [CanBeNull]
+        public LetterDef letterDef; 
 
         /// <summary>
         /// the expected number of mutations a pawn would get per day at this stage 
@@ -68,9 +73,26 @@ namespace Pawnmorph.Hediffs
             }
 
             if (!PawnUtility.ShouldSendNotificationAbout(pawn)) return;
-            string letterLabel = this.letterLabel.AdjustedFor(pawn);
-            string letterContent = letterText.AdjustedFor(pawn);
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, new LookTargets(pawn));
+
+            string letterLabel;
+            string letterContent;
+
+            //for translated text use the following keys 
+            // LabelShort - the short label of the pawn 
+            // Name - the full name of the pawn 
+
+            letterLabel = this.letterLabel.CanTranslate()
+                              ? this.letterLabel.Translate(pawn.LabelShort.Named(nameof(pawn.LabelShort)),
+                                                           pawn.Name.Named(nameof(pawn.Name)))
+                              : this.letterLabel.AdjustedFor(pawn);
+
+            letterContent = letterText.CanTranslate()
+                                ? letterText.Translate(pawn.LabelShort.Named(nameof(pawn.LabelShort)),
+                                                       pawn.Name.Named(nameof(pawn.Name)))
+                                : letterText.AdjustedFor(pawn);
+
+
+            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, letterDef ?? LetterDefOf.NeutralEvent, new LookTargets(pawn));
         }
 
         /// <summary>
