@@ -45,6 +45,11 @@
 					</li>
 				</capMods>
 
+				optional field to specify a LetterDef to use to spawn a letter if <letterText/> and <letterLabel/> 
+				specified 
+				if not used, the NeutralEvent letter will be used
+				<letterDef>SomeLetterDef</letterDef>
+
 				these letter fields can be used one of 2 ways,
 				if they contain raw text that can be adjusted for 'PAWN_nameDef' they will be used as is  
 				<letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
