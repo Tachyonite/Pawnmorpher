@@ -1,8 +1,8 @@
 ﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="CanineMorph">
 		<defName>LabradorRetrieverMorph</defName>
-		<label>labradorretrievermorph</label>
-		<description>!!!LabradorRetrieverMorph needs a description!!!</description>
+		<label>labmorph</label>
+		<description>Always dependable and willing to defend their home, labmorphs are a type of dogmorph that everyone will get along with.</description>
 		<race>LabradorRetriever</race>
 		<classification>Canid</classification>
 		<categories>

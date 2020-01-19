@@ -1,7 +1,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>DromedaryMorph</defName>
-		<label>dromedarymorph</label>
+		<label>camelmorph</label>
 		<description>!!!DromedaryMorph needs a description!!!</description>
 		<race>Dromedary</race>
 		<classification>Camelid</classification>

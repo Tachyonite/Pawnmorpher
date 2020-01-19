@@ -1,7 +1,7 @@
 ﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>RhinocerosMorph</defName>
-		<label>rhinocerosmorph</label>
+		<label>rhinomorph</label>
 		<description>!!!RhinocerosMorph needs a description!!!</description>
 		<race>Rhinoceros</race>
 		<classification>ThickHide</classification>
