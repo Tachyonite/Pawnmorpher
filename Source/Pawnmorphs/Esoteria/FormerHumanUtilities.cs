@@ -273,7 +273,7 @@ namespace Pawnmorph
             {
                 if (pawn == formerHuman) continue;
                 var relation = pawn.GetMostImportantRelation(formerHuman);
-                if (relation != null)
+                if (relation != null && relation != PawnRelationDefOf.Bond)
                 {
                     SendRelationLetter(pawn, formerHuman, relation,letterContentID, letterLabelID); 
                 }
