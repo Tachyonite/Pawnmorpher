@@ -201,7 +201,7 @@ namespace Pawnmorph.DebugUtils
         public static void FindAllTODOThoughts()
         {
             var builder = new StringBuilder();
-
+            List<string> defNames = new List<string>(); 
             foreach (ThoughtDef thoughtDef in DefDatabase<ThoughtDef>.AllDefs)
             {
                 var addedHeader = false;
@@ -209,7 +209,11 @@ namespace Pawnmorph.DebugUtils
                 {
                     ThoughtStage stage = thoughtDef?.stages?[index];
                     if (stage == null) continue;
-                    if (stage.label == "TODO" || stage.description == "TODO")
+                    if (string.IsNullOrEmpty(stage.label) || string.IsNullOrEmpty(stage.description)) continue;
+                    if (stage.label == "TODO"
+                     || stage.description == "TODO"
+                     || stage.description.StartsWith("!!!")
+                     || stage.label.StartsWith("!!!"))
                     {
                         if (!addedHeader)
                         {
@@ -217,12 +221,16 @@ namespace Pawnmorph.DebugUtils
                             addedHeader = true;
                         }
 
+                        defNames.Add(thoughtDef.defName);
                         builder.AppendLine($"{index}) label:{stage.label} description:\"{stage.description}\"".Indented());
                     }
                 }
             }
 
+            builder.AppendLine(defNames.Distinct().Join("\n"));
+
             Log.Message(builder.ToString());
+
         }
 
         [Category(MAIN_CATEGORY_NAME), DebugOutput]
@@ -264,7 +272,7 @@ namespace Pawnmorph.DebugUtils
             {
                 if (!typeof(Hediff_AddedMutation).IsAssignableFrom(def.hediffClass))
                     return false; //must be mutation hediff 
-                return string.IsNullOrEmpty(def.description);
+                return string.IsNullOrEmpty(def.description) || def.description.StartsWith("!!!");
             }
 
             IEnumerable<HediffDef> mutations = DefDatabase<HediffDef>.AllDefs.Where(SelectionFunc);
