@@ -64,6 +64,7 @@ namespace Pawnmorph.HPatches
                 }
 
                 pawn.ownership?.UnclaimAll();
+                pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
                 pawn.workSettings?.DisableAll();
                 pawn.ownership = null;
                 pawn.drafter = null;
