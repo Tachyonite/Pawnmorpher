@@ -188,14 +188,131 @@ namespace Pawnmorph.Hybrids
             {
                 alienbodytypes = human.alienbodytypes,
                 aliencrowntypes = human.aliencrowntypes,
-                bodyAddons = human.bodyAddons
+                bodyAddons = GenerateBodyAddons(human.bodyAddons, morph)
             };
 
-            // Make sure to apply custom sizes only if they are defined, otherwise use the defaults.
-            gen.customDrawSize = morph.raceSettings?.graphicsSettings?.customDrawSize ?? gen.customDrawSize;
-            gen.customHeadDrawSize = morph.raceSettings?.graphicsSettings?.customHeadDrawSize ?? gen.customHeadDrawSize;
-
             return gen;
+        }
+
+        private static List<AlienPartGenerator.BodyAddon> GenerateBodyAddons(List<AlienPartGenerator.BodyAddon> human, MorphDef morph)
+        {
+            List<AlienPartGenerator.BodyAddon> returnList = new List<AlienPartGenerator.BodyAddon>();
+
+            Vector2? bodySize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
+            Vector2? headSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
+
+            List<string> headParts = new List<string>();
+            headParts.Add("Jaw");
+            headParts.Add("Ear");
+            headParts.Add("left ear");
+            headParts.Add("right ear");
+            headParts.Add("Skull");
+
+            List<string> bodyParts = new List<string>();
+            bodyParts.Add("Arm");
+            bodyParts.Add("Tail");
+            bodyParts.Add("Waist");
+
+            foreach (AlienPartGenerator.BodyAddon addon in human)
+            {
+                AlienPartGenerator.BodyAddon temp = new AlienPartGenerator.BodyAddon()
+                {
+                    path = addon.path,
+                    bodyPart = addon.bodyPart,
+                    offsets = GenerateBodyAddonOffsets(addon.offsets, morph),
+                    linkVariantIndexWithPrevious = addon.linkVariantIndexWithPrevious,
+                    angle = addon.angle,
+                    inFrontOfBody = addon.inFrontOfBody,
+                    layerOffset = addon.layerOffset,
+                    layerInvert = addon.layerInvert,
+                    drawnOnGround = addon.drawnOnGround,
+                    drawnInBed = addon.drawnInBed,
+                    drawForMale = addon.drawForMale,
+                    drawForFemale = addon.drawForFemale,
+                    drawSize = addon.drawSize,
+                    variantCount = addon.variantCount,
+                    hediffGraphics = addon.hediffGraphics,
+                    backstoryGraphics = addon.backstoryGraphics,
+                    hiddenUnderApparelFor = addon.hiddenUnderApparelFor,
+                    hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
+                    backstoryRequirement = addon.backstoryRequirement
+                };
+
+                if (headParts.Contains(temp.bodyPart))
+                {
+                    if (headSize != null)
+                        temp.drawSize = headSize.GetValueOrDefault();
+                    if (bodySize != null)
+                    {
+                        if (temp?.offsets?.south?.bodyTypes != null)
+                            foreach (AlienPartGenerator.BodyTypeOffset bodyType in temp.offsets.south.bodyTypes)
+                                bodyType.offset.y += 0.34f * (bodySize.GetValueOrDefault().y - 1f);
+                        if (temp?.offsets?.north?.bodyTypes != null)
+                            foreach (AlienPartGenerator.BodyTypeOffset bodyType in temp.offsets.north.bodyTypes)
+                                bodyType.offset.y += 0.34f * (bodySize.GetValueOrDefault().y - 1f);
+                        if (temp?.offsets?.east?.bodyTypes != null)
+                            foreach (AlienPartGenerator.BodyTypeOffset bodyType in temp.offsets.east.bodyTypes)
+                                bodyType.offset.y += 0.34f * (bodySize.GetValueOrDefault().y - 1f);
+                        if (temp?.offsets?.west?.bodyTypes != null)
+                            foreach (AlienPartGenerator.BodyTypeOffset bodyType in temp.offsets.west.bodyTypes)
+                                bodyType.offset.y += 0.34f * (bodySize.GetValueOrDefault().y - 1f);
+                    }
+                }
+
+                if (bodySize != null && bodyParts.Contains(temp.bodyPart))
+                {
+                    temp.drawSize = bodySize.GetValueOrDefault();
+                }
+
+                returnList.Add(temp);
+            }
+
+            return returnList;
+        }
+
+        private static AlienPartGenerator.BodyAddonOffsets GenerateBodyAddonOffsets(AlienPartGenerator.BodyAddonOffsets human, MorphDef morph)
+        {
+            AlienPartGenerator.BodyAddonOffsets returnValue = new AlienPartGenerator.BodyAddonOffsets();
+            if (human.south != null)
+                returnValue.south = GenerateRotationOffsets(human.south, morph);
+            if (human.north != null)
+                returnValue.north = GenerateRotationOffsets(human.north, morph);
+            if (human.east != null)
+                returnValue.east = GenerateRotationOffsets(human.east, morph);
+            if (human.west != null)
+                returnValue.west = GenerateRotationOffsets(human.west, morph);
+            return returnValue;
+        }
+
+        private static AlienPartGenerator.RotationOffset GenerateRotationOffsets(AlienPartGenerator.RotationOffset human, MorphDef morph)
+        {
+            AlienPartGenerator.RotationOffset returnValue = new AlienPartGenerator.RotationOffset()
+            {
+                portraitBodyTypes = human.portraitBodyTypes,
+                portraitCrownTypes = human.portraitCrownTypes,
+                crownTypes = human.crownTypes
+            };
+
+            if (human.bodyTypes != null)
+                returnValue.bodyTypes = GenerateBodyTypeOffsets(human.bodyTypes, morph);
+
+            return returnValue;
+        }
+
+        private static List<AlienPartGenerator.BodyTypeOffset> GenerateBodyTypeOffsets(List<AlienPartGenerator.BodyTypeOffset> human, MorphDef morph)
+        {
+            List<AlienPartGenerator.BodyTypeOffset> returnList = new List<AlienPartGenerator.BodyTypeOffset>();
+            foreach (AlienPartGenerator.BodyTypeOffset bodyTypeOffset in human)
+            {
+                AlienPartGenerator.BodyTypeOffset temp = new AlienPartGenerator.BodyTypeOffset()
+                {
+                    offset = bodyTypeOffset.offset,
+                    bodyType = bodyTypeOffset.bodyType
+                };
+                returnList.Add(temp);
+            }
+
+            return returnList;
         }
 
         /// <summary> Generate the alien race restriction setting from the human default and the given morph.</summary>
@@ -212,12 +329,26 @@ namespace Pawnmorph.Hybrids
             return new ThingDef_AlienRace.AlienSettings
             {
                 generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph),
-                graphicPaths = human.graphicPaths, //TODO put some of these in morph def or generate from the animal 
+                graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph),
                 hairSettings = human.hairSettings,
                 raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
                 relationSettings = human.relationSettings,
                 thoughtSettings = morph.raceSettings.GenerateThoughtSettings(human.thoughtSettings, morph)
             };
+        }
+
+        private static List<GraphicPaths> GenerateGraphicPaths(List<GraphicPaths> humanGraphicPaths, MorphDef morph)
+        {
+            GraphicPaths temp = new GraphicPaths();
+            temp.customDrawSize = morph?.raceSettings?.graphicsSettings?.customDrawSize ?? temp.customDrawSize;
+            temp.customPortraitDrawSize = morph?.raceSettings?.graphicsSettings?.customDrawSize ?? temp.customPortraitDrawSize;
+            temp.customHeadDrawSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize ?? temp.customHeadDrawSize;
+            temp.customPortraitHeadDrawSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize ?? temp.customPortraitHeadDrawSize;
+            temp.headOffset = morph?.raceSettings?.graphicsSettings?.customDrawSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
+
+            List<GraphicPaths> returnList = new List<GraphicPaths>();
+            returnList.Add(temp);
+            return returnList;
         }
 
         static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers, List<StatModifier> statMods)
