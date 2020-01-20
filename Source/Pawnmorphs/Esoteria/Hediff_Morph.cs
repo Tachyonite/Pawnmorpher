@@ -80,6 +80,18 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// called when the hediff is first added 
+        /// </summary>
+        /// <param name="dinfo">The dinfo.</param>
+        public override void PostAdd(DamageInfo? dinfo)
+        {
+            base.PostAdd(dinfo);
+            if (def.stages.MakeSafe().OfType<TransformationStageBase>().Any())
+                Log.Warning($"{def.defName} has transformationHediffStages but still uses {nameof(Hediff_Morph)}!\n {nameof(TransformationStageBase)} only works with {nameof(Hediffs.TransformationBase)}!");
+
+        }
+
         private void UpdateGraphics()
         {
 
