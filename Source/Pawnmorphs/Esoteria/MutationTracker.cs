@@ -47,6 +47,14 @@ namespace Pawnmorph
         public float TotalNormalizedInfluence { get; private set; }
 
         /// <summary>
+        /// Gets the non human influence on the pawn.
+        /// </summary>
+        /// <value>
+        /// The total influence.
+        /// </value>
+        public float TotalInfluence { get; private set; }
+
+        /// <summary>
         ///     Gets the total number of mutations on the pawn being tracked.
         /// </summary>
         /// <value>
@@ -125,7 +133,9 @@ namespace Pawnmorph
 
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
             TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
+            TotalInfluence = _influenceDict.Select(s => s.Value).Sum();
             MutationsCount += 1;
+
 #pragma warning disable 0612
 #pragma warning disable 0618
 
@@ -145,7 +155,8 @@ namespace Pawnmorph
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
 #pragma warning disable 0612
 #pragma warning disable 0618
-            TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence; 
+            TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
+            TotalInfluence = _influenceDict.Select(s => s.Value).Sum(); 
             HighestMorphInfluence = GetHighestMorphInfluence();
             HighestInfluence = GetHighestInfluence(); 
             NotifyCompsRemoved(mutation);
@@ -229,6 +240,7 @@ namespace Pawnmorph
 #pragma warning disable 0618
 
             MorphDef hMorph = GetHighestMorphInfluence();
+            TotalInfluence = _influenceDict.Select(s => s.Value).Sum();
             HighestMorphInfluence = hMorph;
 #pragma warning restore 0612
 #pragma warning restore 0618

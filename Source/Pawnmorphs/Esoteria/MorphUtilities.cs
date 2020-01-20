@@ -145,11 +145,13 @@ namespace Pawnmorph
         /// <returns></returns>
         public static float GetHumanInfluence([NotNull] this Pawn pawn, bool normalize = false)
         {
-            var mutatedRecords = new HashSet<BodyPartRecord>();
+            MutationTracker mTracker = pawn.GetMutationTracker();
+            if (mTracker == null)
+            {
+                return MaxHumanInfluence; //always have non mutatable pawns be considered 'human' so the hybrid system never triggers for them 
+            }
 
-            foreach (Hediff_AddedMutation hediffAddedMutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
-                mutatedRecords.Add(hediffAddedMutation.Part);
-            var hInfluence = MaxHumanInfluence - mutatedRecords.Count;
+            var hInfluence = MaxHumanInfluence - mTracker.TotalInfluence; 
             if (normalize) hInfluence /= MaxHumanInfluence;
             return hInfluence; 
         }
