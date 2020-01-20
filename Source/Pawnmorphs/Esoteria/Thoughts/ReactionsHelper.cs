@@ -123,13 +123,21 @@ namespace Pawnmorph.Thoughts
         }
 
         /// <summary>
-        ///     call when an animal goes permanently feral to handle giving the correct thoughts to colonists
+        /// call when an animal goes permanently feral to handle giving the correct thoughts to colonists
         /// </summary>
-        /// <param name="originalPawn"></param>
-        /// <param name="animalPawn"></param>
-        public static void OnPawnPermFeral(Pawn originalPawn, Pawn animalPawn)
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="animalPawn">The animal pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        /// originalPawn
+        /// or
+        /// animalPawn
+        /// </exception>
+        public static void OnPawnPermFeral([NotNull] Pawn originalPawn, [NotNull] Pawn animalPawn)
         {
-            HandleColonistReactions(originalPawn, animalPawn, false, EventType.PermanentlyFeral);
+            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
+            if (animalPawn == null) throw new ArgumentNullException(nameof(animalPawn));
+            if(originalPawn.Faction == Faction.OfPlayer || animalPawn.Faction == Faction.OfPlayer) //only give thoughts to colonists if the original pawn or animal is part of the player faction 
+                HandleColonistReactions(originalPawn, animalPawn, false, EventType.PermanentlyFeral);
             HandleRelatedPawnsReaction(originalPawn, animalPawn, EventType.PermanentlyFeral);
         }
 
