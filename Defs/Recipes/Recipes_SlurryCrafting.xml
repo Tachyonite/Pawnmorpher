@@ -58,6 +58,7 @@
 		<recipeUsers>
 			<li>DrugLab</li>
 		</recipeUsers>
+		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 	</RecipeDef>
 	
 	<RecipeDef>

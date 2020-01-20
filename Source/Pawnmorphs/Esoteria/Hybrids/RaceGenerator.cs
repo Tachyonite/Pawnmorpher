@@ -340,11 +340,13 @@ namespace Pawnmorph.Hybrids
         private static List<GraphicPaths> GenerateGraphicPaths(List<GraphicPaths> humanGraphicPaths, MorphDef morph)
         {
             GraphicPaths temp = new GraphicPaths();
-            temp.customDrawSize = morph?.raceSettings?.graphicsSettings?.customDrawSize ?? temp.customDrawSize;
-            temp.customPortraitDrawSize = morph?.raceSettings?.graphicsSettings?.customDrawSize ?? temp.customPortraitDrawSize;
-            temp.customHeadDrawSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize ?? temp.customHeadDrawSize;
-            temp.customPortraitHeadDrawSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize ?? temp.customPortraitHeadDrawSize;
-            temp.headOffset = morph?.raceSettings?.graphicsSettings?.customDrawSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
+            Vector2? customSize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
+            temp.customDrawSize = customSize ?? temp.customDrawSize;
+            temp.customPortraitDrawSize = customSize ?? temp.customPortraitDrawSize;
+            Vector2? customHeadSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
+            temp.customHeadDrawSize = customHeadSize ?? temp.customHeadDrawSize;
+            temp.customPortraitHeadDrawSize = customHeadSize ?? temp.customPortraitHeadDrawSize;
+            temp.headOffset = customSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
 
             List<GraphicPaths> returnList = new List<GraphicPaths>();
             returnList.Add(temp);
