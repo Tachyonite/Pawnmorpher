@@ -1,6 +1,12 @@
 ﻿// RaceGenerator.cs modified by Iron Wolf for Pawnmorph on 08/02/2019 7:12 PM
 // last updated 08/02/2019  7:12 PM
 
+
+//uncomment to test custom draw sizes 
+//#define TEST_BODY_SIZE 
+
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -216,12 +222,43 @@ namespace Pawnmorph.Hybrids
             return gen;
         }
 
+        static VTuple<Vector2, Vector2>? GetDebugBodySizes(MorphDef morph)
+        {
+            
+            var pkDef = DefDatabase<PawnKindDef>.AllDefs.FirstOrDefault(pk => pk.race == morph.race);//get the first pawnkindDef that uses the morph's race 
+
+            if (pkDef?.lifeStages == null || pkDef.lifeStages.Count == 0) //if there are no pawnkinds to choose from just return null 
+            {
+                return null;
+            }
+
+            var lastStage = pkDef.lifeStages.Last();
+
+            float cSize = Mathf.Lerp(1, lastStage.bodyGraphicData.drawSize.x,0.5f); //take the average of the animals draw size and a humans, which is a default of 1 
+            return new VTuple<Vector2, Vector2>(cSize * Vector2.one, cSize * Vector2.one); 
+        }
+
+
         private static List<AlienPartGenerator.BodyAddon> GenerateBodyAddons(List<AlienPartGenerator.BodyAddon> human, MorphDef morph)
         {
             List<AlienPartGenerator.BodyAddon> returnList = new List<AlienPartGenerator.BodyAddon>();
 
+#if TEST_BODY_SIZE
+            var tuple = GetDebugBodySizes(morph);
+            Vector2? bodySize = tuple?.First, headSize = tuple?.Second;
+
+            if (tuple != null)
+            {
+                Log.Message($"{morph.defName} draw sizes are: bodySize={tuple.Value.First}, headSize={tuple.Value.Second}");
+            }
+#else
             Vector2? bodySize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
             Vector2? headSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
+
+#endif
+
+
+
 
             List<string> headParts = new List<string>();
             headParts.Add("Jaw");
