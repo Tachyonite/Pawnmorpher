@@ -45,6 +45,7 @@
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
+				<morph>ArcticWolfMorph</morph>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -59,8 +60,6 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-
-				<morph>ArcticWolfMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>
