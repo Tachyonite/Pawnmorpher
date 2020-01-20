@@ -176,6 +176,7 @@
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
     <Compile Include="IPawnTransformer.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />

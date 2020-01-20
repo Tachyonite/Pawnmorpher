@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -140,7 +141,7 @@ namespace Pawnmorph.Hybrids
             catch (InvalidCastException e)
             {
                 throw new
-                    InvalidCastException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?",e);
+                    ModInitializationException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?",e);
             }
 
 
@@ -159,6 +160,8 @@ namespace Pawnmorph.Hybrids
                 {
                     builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.explicitHybridRace.defName}, {race.defName} will not be used but still generated");
                 }
+                
+                CreateImplicitMeshes(builder, race);
 
                 yield return race;
             }
@@ -166,29 +169,48 @@ namespace Pawnmorph.Hybrids
             Log.Message(builder.ToString());
         }
 
+        private static void CreateImplicitMeshes(StringBuilder builder, ThingDef_AlienRace race)
+        {
+            try
+            {
+                //generate any meshes the implied race might need 
+                if (race.alienRace?.graphicPaths != null)
+                {
+                    builder.AppendLine($"Generating mesh pools for {race.defName}");
+                    race.alienRace.generalSettings?.alienPartGenerator?.GenerateMeshsAndMeshPools();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ModInitializationException($"while updating graphics for {race.defName}, caught {e.GetType().Name}",e);
+
+            }
+        }
+
         /// <summary> Generate general settings for the hybrid race given the human settings and morph def.</summary>
         /// <param name="human"></param>
         /// <param name="morph"></param>
         /// <returns></returns>
-        private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph)
+        private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
             var traitSettings = morph.raceSettings.traitSettings;
             return new GeneralSettings
             {
-                alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph),
+                alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph, impliedRace),
                 humanRecipeImport = true,
                 forcedRaceTraitEntries = traitSettings?.forcedTraits
                 // Black list is not currently supported, Rimworld doesn't like it when you remove traits.
             };
         }
 
-        private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph)
+        private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
             AlienPartGenerator gen = new AlienPartGenerator
             {
                 alienbodytypes = human.alienbodytypes,
                 aliencrowntypes = human.aliencrowntypes,
-                bodyAddons = GenerateBodyAddons(human.bodyAddons, morph)
+                bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
+                alienProps = impliedRace
             };
 
             return gen;
@@ -324,11 +346,11 @@ namespace Pawnmorph.Hybrids
             return new RaceRestrictionSettings(); //TODO restriction settings like apparel and stuff  
         }
 
-        private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph)
+        private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
             return new ThingDef_AlienRace.AlienSettings
             {
-                generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph),
+                generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace),
                 graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph),
                 hairSettings = human.hairSettings,
                 raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
@@ -408,7 +430,7 @@ namespace Pawnmorph.Hybrids
         [NotNull]
         private static ThingDef_AlienRace GenerateImplicitRace([NotNull] ThingDef_AlienRace humanDef, [NotNull] MorphDef morph)
         {
-            return new ThingDef_AlienRace
+            var impliedRace =  new ThingDef_AlienRace
             {
                 defName = morph.defName + "Race_Implied", //most of these are guesses, should figure out what's safe to change and what isn't 
                 label = morph.label,
@@ -427,7 +449,6 @@ namespace Pawnmorph.Hybrids
                 comps = humanDef.comps.ToList(),
                 drawGUIOverlay = humanDef.drawGUIOverlay,
                 description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
-                alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph),
                 modContentPack = morph.modContentPack,
                 inspectorTabsResolved = humanDef.inspectorTabsResolved?.ToList() ?? new List<InspectTabBase>(),
                 recipes = new List<RecipeDef>(humanDef.AllRecipes), //this is where the surgery operations live
@@ -442,6 +463,10 @@ namespace Pawnmorph.Hybrids
                 tradeTags = humanDef.tradeTags?.ToList(),
                 tradeability = humanDef.tradeability
             };
+
+            impliedRace.alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph, impliedRace); 
+
+            return impliedRace; 
         }
 
         /// <summary>
