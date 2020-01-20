@@ -3,6 +3,7 @@
 		<defName>WolfMorph</defName>
 		<label>timberwolfmorph</label>
 		<race>Wolf_Timber</race>
+		<!--explicitHybridRace>WolfMorphRace_Explicit</explicitHybridRace-->
 		<categories>
 			<li>Temperate</li>
 			<li>Combat</li>
