@@ -54,6 +54,13 @@ namespace Pawnmorph
         /// a specific, rotten food is this multiplied by the base chance to get sick from rotten food 
         public static StatDef RottenFoodSensitivity;
 
+
+        /// <summary>
+        /// stat that affects the likely hood that a pawn fully transforms
+        /// this is a multiplier on the transformation chance 
+        /// </summary>
+        [NotNull] public static StatDef TransformationSensitivity; 
+
         /// <summary>
         /// stat that determines how much 'sapience' a pawn recovers over time 
         /// </summary>
