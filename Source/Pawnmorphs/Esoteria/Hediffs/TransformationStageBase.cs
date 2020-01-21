@@ -58,7 +58,7 @@ namespace Pawnmorph.Hediffs
         /// the expected number of mutations a pawn would get per day at this stage 
         /// </summary>
         /// note, this is affected by MutagenSensitivity stat 
-        public float meanMutationsPerDay=4; 
+        public float meanMutationsPerDay=7; 
 
 
         /// <summary>called when the given hediff enters this stage</summary>
