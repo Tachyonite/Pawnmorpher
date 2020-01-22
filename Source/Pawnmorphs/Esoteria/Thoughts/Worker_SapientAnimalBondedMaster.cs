@@ -29,7 +29,7 @@ namespace Pawnmorph.Thoughts
             foreach (DirectPawnRelation relationsDirectRelation in p.relations.DirectRelations)
             {
                 if(relationsDirectRelation.def != PawnRelationDefOf.Bond) continue;
-                if (relationsDirectRelation.otherPawn?.GetFormerHumanStatus() != null) continue; //ignore bonds to former humans 
+                if (relationsDirectRelation.otherPawn?.RaceProps.Animal == true) continue; //ignore bonds to former humans 
 
                 isBonded = true;//we can have only 1 bonded relationship 
                 masterToBondedPawn = relationsDirectRelation.otherPawn == p.playerSettings?.RespectedMaster; 
@@ -69,7 +69,7 @@ namespace Pawnmorph.Thoughts
             foreach (DirectPawnRelation relationsDirectRelation in p.relations.DirectRelations)
             {
                 if (relationsDirectRelation.def != PawnRelationDefOf.Bond) continue;
-                if(relationsDirectRelation.otherPawn?.GetFormerHumanStatus() != null) continue; //ignore bonds to former humans 
+                if(relationsDirectRelation.otherPawn?.RaceProps.Animal == true) continue; //ignore bonds to animals
 
                 isBonded = true;//we can have only 1 bonded relationship 
                 masterToBondedPawn = relationsDirectRelation.otherPawn == p.playerSettings?.RespectedMaster;
