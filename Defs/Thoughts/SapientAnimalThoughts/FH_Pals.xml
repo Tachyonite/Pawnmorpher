@@ -6,20 +6,20 @@
         <workerClass>Pawnmorph.Thoughts.AnimalPalsWorker</workerClass>
         <stages>
             <li>
-                <label>Sapient</label>
-                <description>TODO</description>
+                <label>animal pal</label>
+                <description>I never thought I'd share the perspective of my bonded animal...</description>
             </li>
             <li>
-                <label>MostlySapient</label>
-                <description>TODO</description>
+                <label>animal pal</label>
+                <description>They're an animal like me, I'm glad they still recognise me for me...</description>
             </li>
             <li>
-                <label>Conflicted</label>
-                <description>TODO</description>
+                <label>animal pal</label>
+                <description>Animal friend...my friend. We're closer like this...</description>
             </li>
             <li>
-                <label>MostlyFeral</label>
-                <description>TODO</description>
+                <label>animal pal</label>
+                <description>Even closer friends now...both animals.</description>
             </li>
         </stages>
     </ThoughtDef>
@@ -30,20 +30,20 @@
         <workerClass>Pawnmorph.Thoughts.FormerHumanPalsWorker</workerClass>
         <stages>
             <li>
-                <label>Sapient</label>
-                <description>TODO</description>
+                <label>former human pal</label>
+                <description>I'm in the same boat as them now, though I never thought it'd happen...</description>
             </li>
             <li>
-                <label>MostlySapient</label>
-                <description>TODO</description>
+                <label>former human pal</label>
+                <description>Both of us being like this makes our bond stronger.</description>
             </li>
             <li>
-                <label>Conflicted</label>
-                <description>TODO</description>
+                <label>former human pal</label>
+                <description>We'll both figure out...how to live like...this...before we both eventually turn feral...</description>
             </li>
             <li>
-                <label>MostlyFeral</label>
-                <description>TODO</description>
+                <label>former human pal</label>
+                <description>Good friend...pal...closer now as animals.</description>
             </li>
         </stages>
     </ThoughtDef>
