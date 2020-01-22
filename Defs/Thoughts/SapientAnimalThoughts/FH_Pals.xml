@@ -1,0 +1,51 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    
+    <!--this thought is for when a former human is bonded to one or more regular animals  -->
+    <ThoughtDef>
+        <defName>FormerHumanPalsThought</defName>
+        <workerClass>Pawnmorph.Thoughts.AnimalPalsWorker</workerClass>
+        <stages>
+            <li>
+                <label>Sapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>MostlySapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>Conflicted</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>MostlyFeral</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- this thought is for when a former human is bonded to one or more former humans  -->
+    <ThoughtDef>
+        <defName>FormerHumanPalsThought</defName>
+        <workerClass>Pawnmorph.Thoughts.FormerHumanPalsWorker</workerClass>
+        <stages>
+            <li>
+                <label>Sapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>MostlySapient</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>Conflicted</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>MostlyFeral</label>
+                <description>TODO</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

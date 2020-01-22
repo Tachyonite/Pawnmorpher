@@ -350,6 +350,8 @@
     <Compile Include="ThoughtGroupDefExtension.cs" />
     <Compile Include="Thoughts\Def_AspectThought.cs" />
     <Compile Include="Thoughts\FormerHumanMemory.cs" />
+    <Compile Include="Thoughts\FormerHumanPalsWorker.cs" />
+    <Compile Include="Thoughts\FormerHumanSituationalWorkerBase.cs" />
     <Compile Include="Thoughts\IFoodThoughtModifier.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />

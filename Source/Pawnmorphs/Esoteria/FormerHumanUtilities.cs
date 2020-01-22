@@ -280,8 +280,18 @@ namespace Pawnmorph
             }
         }
 
-        
-        
+
+        /// <summary>
+        /// Determines whether the given pawn is a former human.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the given pawn is former human; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFormerHuman([NotNull] this Pawn pawn)
+        {
+            return pawn.GetFormerHumanStatus() != null; 
+        }
 
         private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman, [NotNull] PawnRelationDef relation,string letterContentID, string letterLabelID)
         {
