@@ -22,7 +22,7 @@
 
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>FoxFlu</defName>
-        <label>fox flu</label>
+        <label>fox fever</label>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
@@ -107,7 +107,7 @@
 
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>Chookflu</defName>
-        <label>chook flu</label>
+        <label>chook pox</label>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
@@ -277,7 +277,7 @@
 
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>Cowflu</defName>
-        <label>cow flu</label>
+        <label>mad cow disease</label>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
@@ -364,7 +364,7 @@
 
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>Chaoflu</defName>
-        <label>chao flu</label>
+        <label>mutagenic mechanites</label>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
