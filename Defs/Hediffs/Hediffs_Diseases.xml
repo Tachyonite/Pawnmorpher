@@ -88,8 +88,8 @@
                 <morph>FoxMorph</morph>
                 <meanMutationsPerDay>6</meanMutationsPerDay>
                 <addChance>1</addChance>
-                <letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
-                <letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+                <letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+                <letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
             </li>
             <li Class="Pawnmorph.Hediffs.FullTransformationStage">
                 <minSeverity>0.999</minSeverity>
@@ -173,8 +173,8 @@
                 </capMods>
                 <morph>ChookMorph</morph>
                 <meanMutationsPerDay>6</meanMutationsPerDay>
-                <letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
-                <letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+                <letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+                <letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
                 <addChance>1</addChance>
             </li>
             <li Class="Pawnmorph.Hediffs.FullTransformationStage">
@@ -260,8 +260,8 @@
                 <morph>PigMorph</morph>
                 <meanMutationsPerDay>6</meanMutationsPerDay>
                 <addChance>1</addChance>
-                <letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
-                <letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+                <letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+                <letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
             </li>
             <li Class="Pawnmorph.Hediffs.FullTransformationStage">
                 <minSeverity>0.999</minSeverity>
@@ -344,8 +344,8 @@
                 <morph>CowMorph</morph>
                 <meanMutationsPerDay>6</meanMutationsPerDay>
                 <addChance>1</addChance>
-                <letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
-                <letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+                <letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+                <letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
             </li>
             <li Class="Pawnmorph.Hediffs.FullTransformationStage">
                 <minSeverity>0.999</minSeverity>
@@ -431,8 +431,8 @@
                 <morph>Animal</morph>
                 <meanMutationsPerDay>6</meanMutationsPerDay>
                 <addChance>1</addChance>
-                <letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
-                <letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+                <letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+                <letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
             </li>
             <li Class="Pawnmorph.Hediffs.FullTransformationStage">
                 <minSeverity>0.999</minSeverity>
