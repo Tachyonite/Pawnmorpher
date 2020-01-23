@@ -598,7 +598,8 @@ namespace Pawnmorph
                                               (string) null);
             var lPawn = PawnGenerator.GeneratePawn(local);
 
-
+            lPawn.equipment?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
+            lPawn.apparel?.DestroyAll();
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
