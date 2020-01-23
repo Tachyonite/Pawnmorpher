@@ -201,11 +201,13 @@
     <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
+    <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
+    <Compile Include="StockGenerator_Injectors.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
