@@ -1,5 +1,5 @@
 <Defs>
-    <HediffDef Abstract="true" Name="MorphDiseasBase" ParentName="InfectionBase">
+    <HediffDef Abstract="true" Name="MorphDiseaseBase" ParentName="InfectionBase">
         <hediffClass>Pawnmorph.Hediffs.MorphDisease</hediffClass>
         <makesAlert>true</makesAlert>
         <scenarioCanAdd>true</scenarioCanAdd>
@@ -20,7 +20,7 @@
         </comps>
     </HediffDef>
 
-    <HediffDef ParentName="MorphDiseasBase">
+    <HediffDef ParentName="MorphDiseaseBase">
         <defName>FoxFlu</defName>
         <label>fox flu</label>
         <stages>
@@ -105,7 +105,7 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MorphDiseasBase">
+    <HediffDef ParentName="MorphDiseaseBase">
         <defName>Chookflu</defName>
         <label>chook flu</label>
         <stages>
@@ -191,7 +191,7 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MorphDiseasBase">
+    <HediffDef ParentName="MorphDiseaseBase">
         <defName>Swineflu</defName>
         <label>swine flu</label>
         <stages>
@@ -275,7 +275,7 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="MorphDiseasBase">
+    <HediffDef ParentName="MorphDiseaseBase">
         <defName>Cowflu</defName>
         <label>cow flu</label>
         <stages>
@@ -362,7 +362,7 @@
     </HediffDef>
 
 
-    <HediffDef ParentName="MorphDiseasBase">
+    <HediffDef ParentName="MorphDiseaseBase">
         <defName>Chaoflu</defName>
         <label>chao flu</label>
         <stages>
