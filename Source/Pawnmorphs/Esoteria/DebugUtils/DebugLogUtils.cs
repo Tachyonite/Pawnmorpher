@@ -38,6 +38,24 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        static void ListAllMutationsPerMorph()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                builder.AppendLine(morphDef.defName);
+
+                builder.AppendLine(morphDef.AllAssociatedMutations.Select(m => m.defName).Join(","));
+            }
+
+            Log.Message(builder.ToString()); 
+
+
+        }
+
+
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]
         public static void CheckBodyHediffGraphics()

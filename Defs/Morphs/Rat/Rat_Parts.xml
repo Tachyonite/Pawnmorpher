@@ -129,6 +129,7 @@
 		<label>dextrous paw</label>
 		<description>Thankfully, this more manipulative paw allows [PAWN_nameDef] to keep their thumbs.</description>
 		<initialSeverity>0</initialSeverity>
+		<classInfluence>Rodent</classInfluence>
 		<parts>
 			<li>Hand</li>
 		</parts>

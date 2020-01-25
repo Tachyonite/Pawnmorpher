@@ -68,7 +68,6 @@ namespace Pawnmorph.Hediffs
             Pawn pawn = hediff.pawn;
             if (string.IsNullOrEmpty(this.letterLabel) || string.IsNullOrEmpty(letterText))
             {
-                Log.Warning($"{hediff.def.defName} tried to execute {nameof(TransformationStage)} but {nameof(this.letterLabel)} or {nameof(letterText)} are not set!");
                 return;
             }
 
