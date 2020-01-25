@@ -54,7 +54,15 @@ namespace Pawnmorph
             get
             {
                 var lOverride = (CurStage as MutationStage)?.labelOverride;
-                return string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride; 
+                var label = string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride;
+
+                if (SeverityAdjust?.Halted == true)
+                {
+                    label += " (halted)"; 
+                }
+
+                return label; 
+
             }
         }
 
@@ -134,7 +142,19 @@ namespace Pawnmorph
         /// <value>
         /// The severity adjust comp
         /// </value>
-        [CanBeNull] public Comp_MutationSeverityAdjust SeverityAdjust => this.TryGetComp<Comp_MutationSeverityAdjust>();
+        [CanBeNull]
+        public Comp_MutationSeverityAdjust SeverityAdjust
+        {
+            get
+            {
+                if (_sevAdjComp == null)
+                {
+                    _sevAdjComp = this.TryGetComp<Comp_MutationSeverityAdjust>();
+                }
+
+                return _sevAdjComp;
+            }
+        }
 
 
         /// <summary>
@@ -175,6 +195,8 @@ namespace Pawnmorph
                 exeStage.EnteredStage(this); 
             }
         }
+
+        private Comp_MutationSeverityAdjust _sevAdjComp;
 
         private bool _waitingForUpdate;
 

@@ -89,6 +89,25 @@ namespace Pawnmorph
             base.PostAdd(dinfo);
             if (def.stages.MakeSafe().OfType<TransformationStageBase>().Any())
                 Log.Warning($"{def.defName} has transformationHediffStages but still uses {nameof(Hediff_Morph)}!\n {nameof(TransformationStageBase)} only works with {nameof(Hediffs.TransformationBase)}!");
+            RestartMutations(); 
+        }
+
+        private void RestartMutations()
+        {
+            var allMutations = def.GetAllHediffGivers() //create a list of all mutations added by this hediff to check 
+                                  .OfType<HediffGiver_Mutation>()
+                                  .Select(g => g.hediff)
+                                  .OfType<MutationDef>()
+                                  .Distinct()
+                                  .ToList();
+            var mutations = pawn.health?.hediffSet?.hediffs?.OfType<Hediff_AddedMutation>();
+
+            foreach (Hediff_AddedMutation mutation in mutations.MakeSafe())
+            {
+                if(!allMutations.Contains(mutation.def as MutationDef)) continue;
+                var adjComp = mutation.TryGetComp<Comp_MutationSeverityAdjust>();
+                adjComp?.Restart();//restart the mutation only if it can be added by this comp 
+            }
 
         }
 

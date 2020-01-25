@@ -63,6 +63,14 @@ namespace Pawnmorph.Hediffs
         }
 
         /// <summary>
+        /// Restarts this instance.
+        /// </summary>
+        public void Restart()
+        {
+            Halted = true; 
+        }
+
+        /// <summary>
         ///     Gets or sets a value indicating whether this <see cref="Comp_MutationSeverityAdjust" /> is halted.
         /// </summary>
         /// <value>
@@ -183,12 +191,13 @@ namespace Pawnmorph.Hediffs
             float maxSeverity = Mathf.Max(statValue + 1, 1);
             float minSeverity = Mathf.Min(statValue, 0); //have the stat influence how high or low the severity can be 
             float sMult = Props.statEffectMult * (statValue + 1);
+            var sevPerDay = base.SeverityChangePerDay() * sMult;
+            //make sure the severity can only stay between the max and min 
+            if (parent.Severity > maxSeverity) sevPerDay = Mathf.Min(0, sevPerDay);
+            if (parent.Severity < minSeverity) sevPerDay = Mathf.Max(0, sevPerDay); 
 
-            if (parent.Severity > maxSeverity) return 0;
-            if (parent.Severity < minSeverity) return 0;
 
-
-            return base.SeverityChangePerDay() * sMult;
+            return sevPerDay;
         }
     }
 

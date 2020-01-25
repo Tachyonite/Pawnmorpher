@@ -151,6 +151,24 @@ namespace Pawnmorph.Hediffs
             FillPartCheckList(_checkList);
            
             _curIndex = 0;
+
+            RestartAllMutations();
+
+        }
+
+        private void RestartAllMutations()
+        {
+            var mutations = pawn?.health?.hediffSet?.hediffs?.OfType<Hediff_AddedMutation>();
+            var allMutations = AllAvailableMutations.Select(m => m.mutation).Distinct().ToList(); 
+
+
+            foreach (Hediff_AddedMutation mutation in mutations.MakeSafe())
+            {
+                
+                if(!allMutations.Contains(mutation.def as MutationDef)) continue; 
+                var adjComp = mutation.TryGetComp<Comp_MutationSeverityAdjust>();
+                adjComp?.Restart();
+            }
         }
 
         private int _lastStageIndex = -1; 
