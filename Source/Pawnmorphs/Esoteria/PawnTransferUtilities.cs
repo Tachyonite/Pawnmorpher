@@ -103,6 +103,18 @@ namespace Pawnmorph
                 }
         }
 
+
+        [CanBeNull]
+        static SkillRecord TryGetSkill([NotNull] Pawn_SkillTracker tracker, [NotNull] SkillDef def)
+        {
+            foreach (SkillRecord skillRecord in tracker.skills.MakeSafe())
+            {
+                if (skillRecord.def == def) return skillRecord; 
+            }
+
+            return null; 
+        }
+
         /// <summary>
         /// Transfers skills from pawn1 to pawn2 
         /// </summary>
@@ -121,7 +133,7 @@ namespace Pawnmorph
 
             foreach (SkillRecord skillRecord in pawn1.skills.skills)
             {
-                SkillRecord p2Skill = pawn2.skills.GetSkill(skillRecord.def);
+                SkillRecord p2Skill = TryGetSkill(pawn2.skills, skillRecord.def); 
                 if (p2Skill == null) continue;
                 var oldLevel = p2Skill.Level;
                 int newLevel;
