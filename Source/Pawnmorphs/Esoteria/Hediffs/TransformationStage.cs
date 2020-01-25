@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using Pawnmorph.Utilities;
+using Verse;
 
 namespace Pawnmorph.Hediffs
 {
@@ -16,13 +17,15 @@ namespace Pawnmorph.Hediffs
         /// <summary>The mutations that this stage can add</summary>
         public List<MutationEntry> mutations;
 
+        
         /// <summary>
-        /// Gets all mutation entries in this stage
+        /// Gets the entries for the given pawn
         /// </summary>
-        /// <value>
-        /// The entries.
-        /// </value>
-        public override IEnumerable<MutationEntry> Entries => mutations.MakeSafe(); 
-
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public override IEnumerable<MutationEntry> GetEntries(Pawn pawn)
+        {
+            return mutations.MakeSafe(); 
+        }
     }
 }

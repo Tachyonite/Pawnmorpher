@@ -139,6 +139,7 @@
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
     <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
     <Compile Include="Hediffs\FullTransformationStage.cs" />
+    <Compile Include="Hediffs\FullTransformationStageBase.cs" />
     <Compile Include="Hediffs\Giver_MutationClass.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\IInitializable.cs" />
@@ -152,6 +153,8 @@
     <Compile Include="Hediffs\MorphDisease.cs" />
     <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
+    <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
+    <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />

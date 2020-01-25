@@ -16,14 +16,14 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.IExecutableStage" />
     public abstract class TransformationStageBase : HediffStage, IDescriptiveStage, IExecutableStage, IInitializable
     {
+  
         /// <summary>
-        /// Gets all mutation entries in this stage 
+        /// Gets the entries for the given pawn
         /// </summary>
-        /// <value>
-        /// The entries.
-        /// </value>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
         [NotNull]
-        public abstract IEnumerable<MutationEntry> Entries { get; }
+        public abstract  IEnumerable<MutationEntry> GetEntries([NotNull] Pawn pawn);
 
         /// <summary>
         /// returns all configuration errors in this stage

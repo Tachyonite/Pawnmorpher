@@ -366,8 +366,10 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-
-        private void ResetMutationOrder()
+        /// <summary>
+        /// Resets the mutation order.
+        /// </summary>
+        protected void ResetMutationOrder()
         {
             _checkList = _checkList ?? new List<BodyPartRecord>();
             _checkList.Clear();
