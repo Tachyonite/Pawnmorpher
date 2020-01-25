@@ -133,6 +133,7 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref _curIndex, nameof(_curIndex));
             Scribe_Values.Look(ref _lastStageIndex, nameof(_lastStageIndex), -1); 
             Scribe_Values.Look(ref _curMutationIndex, nameof(_curMutationIndex));
+            Scribe_Values.Look(ref forceRemove, nameof(forceRemove)); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && _checkList == null)
             {
                 ResetMutationOrder();
@@ -175,10 +176,28 @@ namespace Pawnmorph.Hediffs
             var sComp = SingleComp;
             if (sComp == null) return;
             sComp.stacks--;
+
             if (sComp.stacks <= 0)
             {
-                pawn.health.RemoveHediff(this); 
+                forceRemove = true; 
             }
+            
+        }
+
+        /// <summary>
+        /// set to true if this instance should be removed before severity reaches 0 
+        /// </summary>
+        protected bool forceRemove;
+
+        /// <summary>
+        /// Gets a value indicating whether this instance should be removed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance should be removed; otherwise, <c>false</c>.
+        /// </value>
+        public override bool ShouldRemove
+        {
+            get { return base.ShouldRemove || forceRemove;  }
         }
 
 
@@ -321,9 +340,9 @@ namespace Pawnmorph.Hediffs
             if(sComp != null)
             {
                 sComp.stacks = Mathf.Max(sComp.stacks - mutationsAdded, 0);
-                if (sComp.stacks == 0)
+                if (sComp.stacks <= 0)
                 {
-                    pawn.health.RemoveHediff(this); 
+                    forceRemove = true; 
                 }
             }
         }
