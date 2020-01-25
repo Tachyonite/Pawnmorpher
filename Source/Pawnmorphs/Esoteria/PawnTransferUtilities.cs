@@ -119,28 +119,28 @@ namespace Pawnmorph
 
             if (pawn1.skills?.skills == null) return; 
 
-            foreach (SkillRecord skillsSkill in pawn1.skills.skills)
+            foreach (SkillRecord skillRecord in pawn1.skills.skills)
             {
-                var oldLevel = pawn1.skills.GetSkill(skillsSkill.def)?.Level ?? 0;
+                SkillRecord p2Skill = pawn2.skills.GetSkill(skillRecord.def);
+                if (p2Skill == null) continue;
+                var oldLevel = p2Skill.Level;
                 int newLevel;
 
                 switch (mode)
                 {
                     case SkillTransferMode.Set:
-                        newLevel = skillsSkill.Level; 
+                        newLevel = skillRecord.Level; 
                         break;
                     case SkillTransferMode.Min:
-                        newLevel = Mathf.Min(oldLevel, skillsSkill.Level); 
+                        newLevel = Mathf.Min(oldLevel, skillRecord.Level); 
                         break;
                     case SkillTransferMode.Max:
-                        newLevel = Mathf.Max(oldLevel, skillsSkill.Level);
+                        newLevel = Mathf.Max(oldLevel, skillRecord.Level);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
                 }
 
-                var p2Skill = pawn2.skills.GetSkill(skillsSkill.def);
-                if(p2Skill == null) continue;
                 p2Skill.Level = newLevel; 
 
             }
