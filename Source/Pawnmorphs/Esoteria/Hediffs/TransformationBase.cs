@@ -170,6 +170,18 @@ namespace Pawnmorph.Hediffs
             if (pawn.IsHashIntervalTick(10000) && CanReset) ResetMutationOrder();
         }
 
+        void DecrementPartialComp()
+        {
+            var sComp = SingleComp;
+            if (sComp == null) return;
+            sComp.stacks--;
+            if (sComp.stacks <= 0)
+            {
+                pawn.health.RemoveHediff(this); 
+            }
+        }
+
+
         /// <summary>Fills the part check list.</summary>
         /// the check list is a list of all parts in the parents body def in the order mutations should be added
         /// <param name="checkList">The check list.</param>
@@ -228,8 +240,12 @@ namespace Pawnmorph.Hediffs
 
         private void AddMutations()
         {
-            
-            if (FinishedAddingMutations) return;
+
+            if (FinishedAddingMutations)
+            {
+                DecrementPartialComp(); //decrement only if we're finished adding mutations 
+                return;
+            }
             if (!AnyMutationsInStage(CurStage)) return; 
             
             if (_scratchDict.Count == 0)
