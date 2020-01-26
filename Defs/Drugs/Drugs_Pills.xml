@@ -267,7 +267,8 @@
 		<stages>
 			<li>
 				<statOffsets>
-                    <MutagenSensitivity>-1</MutagenSensitivity>
+					<MutagenSensitivity>-1.5</MutagenSensitivity>
+					<TransformationSensitivity>-1.5</TransformationSensitivity>
                 </statOffsets>
 			</li>
 		</stages>
@@ -290,7 +291,7 @@
 			<li>
 				<statOffsets>
 					<MutagenSensitivity>2</MutagenSensitivity>
-					<TransformationSensitivity>0.1</TransformationSensitivity>
+					<TransformationSensitivity>0.2</TransformationSensitivity>
                 </statOffsets>
 			</li>
 		</stages>
