@@ -37,6 +37,11 @@
 			<li Class="Pawnmorph.HediffCompProperties_Single" />
 		</comps>
 	</HediffDef>
+
+	<HediffDef Abstract="true" ParentName="PartialMorphParent" Name="NewPartialMorphParent">
+		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
+		<defaultLabelColor>(77,68,179)</defaultLabelColor>
+	</HediffDef>
 	
     <HediffDef Abstract="true" ParentName="NewAspectedMorphParent" Name="NewPartialAspectedMorphParent">
 		<comps>

@@ -1,9 +1,9 @@
 <Defs>
-	<HediffDef ParentName="AspectedMorphParent">
+	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphMegaslothTF</defName>
 		<label>megamorph</label>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -13,20 +13,14 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkinds>
-							<li>Megasloth</li>
-						</pawnkinds>
-						<tale>TransformationMisc</tale>
-					</li>
-				</hediffGivers>
+				<pawnkinds>
+					<li>Megasloth</li>
+				</pawnkinds>
+				<transformationTale>TransformationMisc</transformationTale>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
 				<minSeverity>0.6</minSeverity>
-				<hungerRateFactor>3</hungerRateFactor>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -43,11 +37,12 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
+				<letterText>TransformationStageWarningContent</letterText>
+				<letterLabel>TransformationStageWarningLabel</letterLabel>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage" >
 				<label>changing</label>
 				<minSeverity>0.65</minSeverity>
-				<hungerRateFactor>3</hungerRateFactor>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -64,69 +59,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherMegaslothSnout</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Jaw</li>
-						</partsToAffect>
-						<tale>GrewMegaslothMuzzle</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherMegaslothTail</hediff>
-						<mtbDays>1</mtbDays>
-						<partsToAffect>
-							<li>Tail</li>
-						</partsToAffect>
-						<tale>GrewTail</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherMegaslothArm</hediff>
-						<mtbDays>2</mtbDays>
-						<partsToAffect>
-							<li>Arm</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LimbGrowsFur</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherMegaslothHand</hediff>
-						<mtbDays>3</mtbDays>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<chance>5</chance>
-						<countToAffect>2</countToAffect>
-						<tale>GrewMegaHand</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherMegaslothLeg</hediff>
-						<mtbDays>2</mtbDays>
-						<partsToAffect>
-							<li>Leg</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LimbGrowsFur</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherMegaslothFoot</hediff>
-						<mtbDays>3</mtbDays>
-						<partsToAffect>
-							<li>Foot</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>GrewMegaslothFoot</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherMegawoolly</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Torso</li>
-						</partsToAffect>
-						<tale>StartsGrowingMegaslothWool</tale>
-					</li>
-				</hediffGivers>
+				<morph>MegaslothMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>
