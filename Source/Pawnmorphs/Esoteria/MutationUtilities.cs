@@ -325,7 +325,7 @@ namespace Pawnmorph
             if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
                 TaleRecorder.RecordTale(mutation.mutationTale, pawn);
 
-            if (aEffects.AddLogEntry)
+            if (aEffects.AddLogEntry && !addedParts.NullOrEmpty())
             {
                 var logEntry = new MutationLogEntry(pawn, mutation, addedParts.MakeSafe().Where(p => p != null).Select(p => p.def).Distinct());
                 Find.PlayLog?.Add(logEntry);
