@@ -110,6 +110,7 @@
             <xs:enumeration value="Feline"/>
             <xs:enumeration value="ThickHide" />
             <xs:enumeration value="Powerful" />
+            <xs:enumeration value="ThickFur" />
         </xs:restriction>
     </xs:simpleType>
 	
