@@ -7,7 +7,7 @@
         <stages>
             <li>
                 <!-- any boosts for this? -->
-                <messageText>TODO</messageText>
+                <messageText>Upon becoming a morph, {PAWN_nameDef} has gained a 'primal wish'. {PAWN_pronoun} might want to go even further with their mutations...</messageText>
             </li>
         </stages>
     </Pawnmorph.AspectDef>

@@ -95,7 +95,7 @@
 						<Pawnmorph.MorphDef ParentName="HerdMorph">
 							<defName>SheepMorph</defName>
 							<label>sheepmorph</label>
-							<description>!!!SheepMorph needs a description!!!</description>
+							<description>With cute, fluffy wool and cuboid pupils, sheepmorphs are a 'farm'-type morph who can be shorn for wool. They often have hooves and are covered in wool that makes them useful in cold biomes.</description>
 							<race>AEXP_Sheep</race>
 							<classification>Bovid</classification>
 							<categories>

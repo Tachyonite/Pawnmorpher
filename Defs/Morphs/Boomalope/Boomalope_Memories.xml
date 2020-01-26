@@ -3,23 +3,23 @@
 		<defName>BoomalopeTransformationMemory</defName>
         <stages>
             <li>
-                <label>!!!BoomalopeTransformationMemory's default stage needs a label!!!</label>
-                <description>!!!BoomalopeTransformationMemory's default stage needs a description!!!</description>
+                <label>morphed</label>
+                <description>Eugh...I smell like chemfuel. Not liking this so far.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!BoomalopeTransformationMemory's mutation affinity stage needs a label!!!</label>
-                <description>!!!BoomalopeTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <label>morphed</label>
+                <description>It's a little weird, but I bet I could get used to these changes! Boom!</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!BoomalopeTransformationMemory's body purist stage needs a label!!!</label>
-                <description>!!!BoomalopeTransformationMemory's body purist stage needs a description!!!</description>
+                <label>morphed</label>
+                <description>Eugh! I reek of chemfuel, and I feel like I could explode at any moment!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
-                <label>!!!BoomalopeTransformationMemory's primal wish stage needs a label!!!</label>
-                <description>!!!BoomalopeTransformationMemory's primal wish stage needs a description!!!</description>
+                <label>morphed</label>
+                <description>Not bad...but it'd be fun to have four hooves on the ground...right?</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
@@ -29,24 +29,24 @@
 		<defName>BoomalopeRevertedMemory</defName>
         <stages>
             <li>
-                <label>!!!BoomalopeRevertedMemory's default stage needs a label!!!</label>
-                <description>!!!BoomalopeRevertedMemory's default stage needs a description!!!</description>
+                <label>reverted</label>
+                <description>I'm back to my normal, human self again! No more chemfuel!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aw man, but I was really enjoying the petrol smell.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!BoomalopeRevertedMemory's mutation affinity stage needs a label!!!</label>
-                <description>!!!BoomalopeRevertedMemory's mutation affinity stage needs a description!!!</description>
-                <baseMoodEffect>+3</baseMoodEffect>
+                <label>reverted</label>
+                <description>No more hooves! Hands, glorious hands!</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label>!!!BoomalopeRevertedMemory's body purist stage needs a label!!!</label>
-                <description>!!!BoomalopeRevertedMemory's body purist stage needs a description!!!</description>
+                <label>reverted</label>
+                <description>I'm human again? I think I wanted the opposite of this.</description>
                 <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-            <li>
-                <label>!!!BoomalopeRevertedMemory's primal wish stage needs a label!!!</label>
-                <description>!!!BoomalopeRevertedMemory's primal wish stage needs a description!!!</description>
-                <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
