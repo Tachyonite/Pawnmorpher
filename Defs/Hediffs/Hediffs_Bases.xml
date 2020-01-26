@@ -59,4 +59,9 @@
 			</li>
 		</modExtensions>
 	</HediffDef>
+
+	<HediffDef Abstract="true" ParentName="HerbavourMorphTfBase" Name="NewHerbavourMorphTfBase">
+		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
+		<defaultLabelColor>(77,68,179)</defaultLabelColor>
+	</HediffDef>
 </Defs>

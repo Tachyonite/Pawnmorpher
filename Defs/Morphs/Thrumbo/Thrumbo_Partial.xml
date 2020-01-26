@@ -1,10 +1,9 @@
 <Defs>
-	<HediffDef ParentName="PartialMorphParent">
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
 		<defName>PawnmorphThrumboTFPartial</defName>
 		<label>thrumbomorph partial</label>
 		<stages>
-			<li>
-				<hungerRateFactor>3</hungerRateFactor>
+			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -21,68 +20,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherThrumboSnout</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Jaw</li>
-						</partsToAffect>
-						<tale>GrewThrumboMuzzle</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherThrumboEar</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Ear</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>EarsChangedMisc</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherThrumboTail</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Tail</li>
-						</partsToAffect>
-						<tale>GrewTail</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherThickFurLimb</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Arm</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LimbGrowsFur</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherDigitigradeLeg</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Leg</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LegBecameDigitgrade</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherClovenHoofFoot</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Foot</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>FootBecomesHooves</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherThrumboHorn</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Skull</li>
-						</partsToAffect>
-            <tale>GrewThrumboHorn</tale>
-					</li>
-				</hediffGivers>
+				<morph>ThrumboMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>
