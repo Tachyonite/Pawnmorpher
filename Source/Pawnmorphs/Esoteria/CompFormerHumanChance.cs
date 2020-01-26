@@ -59,7 +59,16 @@ namespace Pawnmorph
             var pawn = (Pawn) parent;
             if (pawn.relations == null) return true;
             if (pawn.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Child || r.def == PawnRelationDefOf.Parent)) return false;
-            return true;
+
+            //make sure the animal is old enough 
+
+            var age = pawn.ageTracker.AgeBiologicalYears; 
+            //convert to human years 
+            var hAge = age * (ThingDefOf.Human.race.lifeExpectancy) / pawn.RaceProps.lifeExpectancy;
+
+
+
+            return hAge > 20; //make sure their older then 20 human years 
         }
     }
 }
