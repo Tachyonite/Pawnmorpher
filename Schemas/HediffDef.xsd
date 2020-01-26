@@ -106,6 +106,7 @@
 			<xs:element name="label" minOccurs="0" type="xs:string"/>
 			<xs:element name="labelOverride" minOccurs="0" type="xs:string"/>
 			<xs:element name="description" minOccurs="0" type="xs:string"/>
+			<xs:element name="painOffset" minOccurs="0" type="xs:float"/>
 			<xs:element name="capMods" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>

@@ -23,6 +23,8 @@ namespace Pawnmorph
         [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static HediffDef PermanentlyFeral;
 
+        public static HediffDef TransformationParalysis;
+
         [NotNull] public static HediffDef FeralPillSapienceDrop;
     }
 }

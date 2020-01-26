@@ -223,6 +223,8 @@ namespace Pawnmorph.TfSys
                     }
                 }
             }
+
+            transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis); 
         }
     }
 
