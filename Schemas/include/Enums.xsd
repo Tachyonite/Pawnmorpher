@@ -108,6 +108,8 @@
             <xs:enumeration value="Fox"/>
             <xs:enumeration value="Wolf"/>
             <xs:enumeration value="Feline"/>
+            <xs:enumeration value="ThickHide" />
+            <xs:enumeration value="Powerful" />
         </xs:restriction>
     </xs:simpleType>
 	
