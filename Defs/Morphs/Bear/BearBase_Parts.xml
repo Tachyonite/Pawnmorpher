@@ -7,6 +7,21 @@
 		<label>ursine muzzle</label>
 		<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
 		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>bestial</label>
+				<minSeverity>-0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.70</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.80</offset>
+					</li>
+				</capMods>
+				<description>[PAWN_nameDef]'s face has become a ursine massive snout, with teeth pointed to suit. This makes speaking much more difficult, yet eating is easier.</description>
+			</li>
 			<li>
 				<capMods>
 					<li>
@@ -32,6 +47,18 @@
 						<offset>0.80</offset>
 					</li>
 				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>paragon</label>
+				<minSeverity>1.5</minSeverity>
+				<capMods>
+		
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.80</offset>
+					</li>
+				</capMods>
+				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_pronoun] teeth are pointed to suit making eating is easier. Oddly this doesn't seem to impact [PAWN_possessive] ability to talk</description>
 			</li>
 		</stages>
 		<comps>
