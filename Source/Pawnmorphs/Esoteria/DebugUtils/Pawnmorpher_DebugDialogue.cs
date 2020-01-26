@@ -78,6 +78,17 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
+        void ResetMutationProgression( Pawn pawn)
+        {
+            var allHediffs = pawn?.health?.hediffSet?.hediffs;
+            if (allHediffs == null) return;
+
+            foreach (Hediff_AddedMutation mutation in allHediffs.OfType<Hediff_AddedMutation>())
+            {
+                mutation.SeverityAdjust?.Restart();
+            }
+        }
+
         List<DebugMenuOption> GetGiveBackstoriesOptions(Pawn pawn)
         {
             List<DebugMenuOption> options = new List<DebugMenuOption>(); 
@@ -262,6 +273,7 @@ namespace Pawnmorph.DebugUtils
             DebugToolMapForPawns("Add Backstory to Sapient Animal", DoAddBackstoryToPawn);
             DebugToolMapForPawns("Try Random Hunt", TryStartRandomHunt); 
             DebugToolMapForPawns("Make pawn permanently feral", MakePawnPermanentlyFeral);
+            DebugToolMapForPawns("Restart all mutation progression", ResetMutationProgression);
         }
 
         private void MakePawnPermanentlyFeral(Pawn obj)

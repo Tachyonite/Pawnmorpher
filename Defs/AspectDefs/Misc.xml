@@ -94,11 +94,13 @@
         <label>paragon</label>
         <description>{PAWN_nameDef} adapts quickly to new mutations, and can sometimes get better, more powerful mutations than normal morphs.</description>
         <removedByReverter>true</removedByReverter>
+        
         <stages>
             <li>
                 <statOffsets>
                     <MutationAdaptability>1</MutationAdaptability>
                 </statOffsets>
+                <messageText>TODO</messageText>
             </li>
         </stages>
         <conflictingAspects>
@@ -120,6 +122,7 @@
                     <MutationAdaptability>-1.5</MutationAdaptability>
                 </statOffsets>
                 <isBad>true</isBad>
+                <messageText>TODO</messageText>
             </li>
         </stages>
         <conflictingAspects>
