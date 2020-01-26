@@ -15,6 +15,7 @@ using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -590,11 +591,11 @@ namespace Pawnmorph
             
             PawnKindDef kind = pawnKind;
             Faction faction = ofPlayer;
-   
+            var convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true,
                                               false, 20f, false, true, true, false, false, false, false,
                                                null, (Predicate<Pawn>) null, null,
-                                              animal.ageTracker.AgeBiologicalYears, null, null, null,
+                                              convertedAge, null, null, null,
                                               (string) null);
             var lPawn = PawnGenerator.GeneratePawn(local);
 
