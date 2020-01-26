@@ -67,7 +67,7 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public void Restart()
         {
-            Halted = true; 
+            Halted = false; 
         }
 
         /// <summary>
