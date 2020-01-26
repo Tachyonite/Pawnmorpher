@@ -34,7 +34,7 @@
                     </li>
                 </capMods>
                 <morph>Animal</morph>
-                <meanMutationsPerDay>130</meanMutationsPerDay>
+                <meanMutationsPerDay>70</meanMutationsPerDay>
                 <categoryBlackList>
                     <li>Powerful</li>
                     <li>Chimera</li>
@@ -51,7 +51,7 @@
                     </li>
                 </capMods>
                 <morph>Animal</morph>
-                <meanMutationsPerDay>240</meanMutationsPerDay>
+                <meanMutationsPerDay>140</meanMutationsPerDay>
                 <categoryBlackList>
                     <li>Powerful</li>
                     <li>Chimera</li>
@@ -70,7 +70,7 @@
                     </li>
                 </capMods>
                 <morph>Animal</morph>
-                <meanMutationsPerDay>360</meanMutationsPerDay>
+                <meanMutationsPerDay>300</meanMutationsPerDay>
                 <categoryBlackList>
                     <li>Powerful</li>
                     <li>Chimera</li>
@@ -88,7 +88,7 @@
                     </li>
                 </capMods>
                 <morph>Animal</morph>
-                <meanMutationsPerDay>480</meanMutationsPerDay>
+                <meanMutationsPerDay>500</meanMutationsPerDay>
                 <categoryBlackList>
                     <li>Powerful</li>
                     <li>Chimera</li>
