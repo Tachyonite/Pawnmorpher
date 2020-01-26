@@ -1,6 +1,6 @@
 <Defs>
 
-    <HediffDef Name="MutagenicBuildupBase" ParentName="MorphParent" Abstract="true">
+    <HediffDef Name="MutagenicBuildupBase"  Abstract="true">
         <hediffClass>Pawnmorph.Hediffs.MutagenicBuildup</hediffClass>
         <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
         <lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
