@@ -30,11 +30,11 @@ namespace Pawnmorph.Hediffs
         [NotNull] 
         public List<MutationDef> blackList = new List<MutationDef>();
 
-
         /// <summary>
-        /// The chance to add each mutation 
+        /// an override to use for the chance to add mutations from the given morph 
         /// </summary>
-        public float addChance = 0.75f; 
+        public float? addChance; 
+     
 
         [Unsaved] private List<MutationEntry> _entries;
 
@@ -81,7 +81,8 @@ namespace Pawnmorph.Hediffs
                         _entries.Add(new MutationEntry
                         {
                             mutation = mutation, 
-                            addChance = addChance
+                            addChance = addChance ?? mutation.defaultAddChance,
+                            blocks = mutation.defaultBlocks
                         });
                     }
 

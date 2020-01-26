@@ -64,10 +64,7 @@ namespace Pawnmorph.Hediffs
                 return _morphs;
             }
         }
-        /// <summary>
-        /// The chance to add a mutation 
-        /// </summary>
-        public float addChance = 1; 
+        
 
         /// <summary>
         /// Gets the entries for the given pawn
@@ -88,8 +85,8 @@ namespace Pawnmorph.Hediffs
                {
                    var mEntry = new MutationEntry
                    {
-                       addChance = addChance,
-                       blocks = false,
+                       addChance = rMorphAllAssociatedMutation.defaultAddChance,
+                       blocks = rMorphAllAssociatedMutation.defaultBlocks,
                        mutation = rMorphAllAssociatedMutation
                    };
                    lst.Add(mEntry); 
