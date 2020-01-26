@@ -1,9 +1,9 @@
 <Defs>
-	<HediffDef ParentName="PartialMorphParent">
+	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphCowTFPartial</defName>
 		<label>cowmorph partial</label>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -20,80 +20,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherCowSnout</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Jaw</li>
-						</partsToAffect>
-						<tale>GrowCowMuzzle</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherCowEar</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Ear</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>EarsChangedMisc</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherCowTail</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Tail</li>
-						</partsToAffect>
-						<tale>GrewTail</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherHideLimb</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Arm</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LimbGrowsHide</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherDigitigradeLeg</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Leg</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LegBecameDigitgrade</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherClovenHoofFoot</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Foot</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>FootBecomesHooves</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherHorns</hediff>
-						<mtbDays>0.5</mtbDays>
-						<gender>Male</gender>
-						<chance>50</chance>
-						<partsToAffect>
-							<li>Skull</li>
-						</partsToAffect>
-						<tale>GrowCowHorns</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherUdder</hediff>
-						<mtbDays>0.5</mtbDays>
-						<gender>Female</gender>
-						<chance>50</chance>
-						<partsToAffect>
-							<li>Waist</li>
-						</partsToAffect>
-						<tale>GrewUdder</tale>
-					</li>
-				</hediffGivers>
+				<morph>CowMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>

@@ -10,6 +10,7 @@
 		<parts>
 			<li>Jaw</li>
 		</parts>
+		<mutationTale>GrewDeerMuzzle</mutationTale>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
@@ -126,6 +127,7 @@
 		<parts>
 			<li>Skull</li>
 		</parts>
+		<mutationTale>GrewAntlers</mutationTale>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>

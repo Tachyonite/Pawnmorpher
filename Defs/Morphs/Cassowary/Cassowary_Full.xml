@@ -1,9 +1,9 @@
 <Defs>
-	<HediffDef ParentName="AspectedMorphParent">
+	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphCassowaryTF</defName>
 		<label>cassowarymorph</label>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -13,17 +13,12 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkinds>
-							<li>Cassowary</li>
-						</pawnkinds>
-						<tale>TransformationMisc</tale>
-					</li>
-				</hediffGivers>
+				<pawnkinds>
+					<li>Cassowary</li>
+				</pawnkinds>
+				<transformationTale>TransformationCanid</transformationTale>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
 				<minSeverity>0.6</minSeverity>
 				<painOffset>0.1</painOffset>
@@ -42,8 +37,10 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
+				<letterText>TransformationStageWarningContent</letterText>
+				<letterLabel>TransformationStageWarningLabel</letterLabel>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<label>changing</label>
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
@@ -62,33 +59,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherCassowaryJaw</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Jaw</li>
-						</partsToAffect>
-						<tale>GrewMuzzleMisc</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherCassowaryEar</hediff>
-						<mtbDays>1</mtbDays>
-						<partsToAffect>
-							<li>Ear</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>EarsChangedMisc</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherCassowaryTail</hediff>
-						<mtbDays>1</mtbDays>
-						<partsToAffect>
-							<li>Tail</li>
-						</partsToAffect>
-						<tale>GrewTail</tale>
-					</li>
-				</hediffGivers>
+				<morph>CassowaryMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>

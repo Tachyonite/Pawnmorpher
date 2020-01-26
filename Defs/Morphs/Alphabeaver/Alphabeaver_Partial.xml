@@ -1,9 +1,9 @@
 <Defs>
-	<HediffDef ParentName="PartialMorphParent">
+	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphAlphabeaverTFPartial</defName>
 		<label>alphabeavermorph partial</label>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -20,33 +20,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherAlphabeaverJaw</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Jaw</li>
-						</partsToAffect>
-						<tale>GrewMuzzleMisc</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherAlphabeaverEar</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Ear</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>EarsChangedMisc</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherAlphabeaverTail</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Tail</li>
-						</partsToAffect>
-						<tale>GrewTail</tale>
-					</li>
-				</hediffGivers>
+				<morph>AlphabeaverMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>

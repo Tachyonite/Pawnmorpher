@@ -1,9 +1,9 @@
 <Defs>
-	<HediffDef ParentName="AspectedMorphParent">
+	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphBearTF</defName>
 		<label>bearmorph</label>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -13,17 +13,12 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkinds>
-							<li>Bear_Grizzly</li>
-						</pawnkinds>
-						<tale>TransformationMisc</tale>
-					</li>
-				</hediffGivers>
+				<pawnkinds>
+					<li>Bear_Grizzly</li>
+				</pawnkinds>
+				<transformationTale>TransformationCanid</transformationTale>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
 				<minSeverity>0.6</minSeverity>
 				<painOffset>0.1</painOffset>
@@ -42,8 +37,10 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
+				<letterText>TransformationStageWarningContent</letterText>
+				<letterLabel>TransformationStageWarningLabel</letterLabel>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<label>changing</label>
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
@@ -62,70 +59,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherBearMuzzle</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Jaw</li>
-						</partsToAffect>
-						<tale>GrewBearMuzzle</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherBearEar</hediff>
-						<mtbDays>1</mtbDays>
-						<partsToAffect>
-							<li>Ear</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>EarsChangedMisc</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherBearTail</hediff>
-						<mtbDays>1</mtbDays>
-						<partsToAffect>
-							<li>Tail</li>
-						</partsToAffect>
-						<tale>GrewTail</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherThickFurLimb</hediff>
-						<mtbDays>2</mtbDays>
-						<partsToAffect>
-							<li>Arm</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LimbGrowsFur</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherBearPawHand</hediff>
-						<mtbDays>3</mtbDays>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<chance>5</chance>
-						<countToAffect>2</countToAffect>
-						<tale>HandsBecomeUrsinePaws</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherThickFurLimb</hediff>
-						<mtbDays>2</mtbDays>
-						<partsToAffect>
-							<li>Leg</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LimbGrowsFur</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherPawFoot</hediff>
-						<mtbDays>3</mtbDays>
-						<partsToAffect>
-							<li>Foot</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>FootBecomesCanidPaw</tale>
-					</li>
-				</hediffGivers>
+				<morph>BearMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>
