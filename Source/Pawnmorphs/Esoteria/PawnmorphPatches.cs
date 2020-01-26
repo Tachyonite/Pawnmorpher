@@ -7,9 +7,12 @@ using System.Linq;
 using System.Reflection;
 using AlienRace;
 using Harmony;
+using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Thoughts;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -41,7 +44,59 @@ namespace Pawnmorph
             harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
         }
 
+        [NotNull]
+        private static  readonly List<IFoodThoughtModifier> _modifiersCache = new List<IFoodThoughtModifier>();
+
+        class FoodModifierComparer : IComparer<IFoodThoughtModifier>
+        {
+            /// <summary>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.</summary>
+            /// <returns>Value Condition Less than zero<paramref name="x" /> is less than <paramref name="y" />.Zero<paramref name="x" /> equals <paramref name="y" />.Greater than zero<paramref name="x" /> is greater than <paramref name="y" />.</returns>
+            /// <param name="x">The first object to compare.</param>
+            /// <param name="y">The second object to compare.</param>
+            public int Compare(IFoodThoughtModifier x, IFoodThoughtModifier y)
+            {
+                if (ReferenceEquals(x, y)) return 0; 
+                if (x == null) return -1;
+                if (y == null) return 1;
+                return x.Priority.CompareTo(y.Priority); 
+            }
+        }
+        
+        [NotNull] private static FoodModifierComparer ModComparer { get; } = new FoodModifierComparer();
+
         public static void ThoughtsFromIngestingPostfix(Pawn ingester, Thing foodSource, ref List<ThoughtDef> __result)
+        {
+            ApplyMorphFoodThoughts(ingester, foodSource, __result);
+
+            //now apply any modifiers if present 
+
+            //first clear the cache 
+            _modifiersCache.Clear();
+            //add any hediffs 
+            var hModifiers = ingester.health?.hediffSet?.hediffs?.OfType<IFoodThoughtModifier>(); 
+            //any hediff stages 
+            var hStageModifiers = ingester.health?.hediffSet?.hediffs?.Select(h => h.CurStage)
+                                          .Where(s => s != null)
+                                          .OfType<IFoodThoughtModifier>();
+            //now all aspects 
+            var aModifiers = ingester.GetAspectTracker()?.Aspects.OfType<IFoodThoughtModifier>();
+
+            //now add them all to the cache 
+            _modifiersCache.AddRange(hModifiers.MakeSafe());
+            _modifiersCache.AddRange(hStageModifiers.MakeSafe());
+            _modifiersCache.AddRange(aModifiers.MakeSafe()); 
+            //now sort by priority 
+            _modifiersCache.Sort(ModComparer); 
+
+            //now apply them all in order 
+            foreach (IFoodThoughtModifier foodThoughtModifier in _modifiersCache)
+            {
+                foodThoughtModifier.ModifyThoughtsFromFood(foodSource, __result); 
+            }
+
+        }
+
+        private static void ApplyMorphFoodThoughts(Pawn ingester, Thing foodSource, List<ThoughtDef> foodThoughts)
         {
             if (RaceGenerator.TryGetMorphOfRace(ingester.def, out MorphDef morphDef))
             {
@@ -51,13 +106,13 @@ namespace Pawnmorph
 
                 if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
                 {
-                    __result.Add(ThoughtDef.Named(cannibalThought.thought));
+                    foodThoughts.Add(ThoughtDef.Named(cannibalThought.thought));
                     return;
                 }
 
                 ThingDef comp = foodSource.TryGetComp<CompIngredients>()
                                          ?.ingredients?.FirstOrDefault(def => def == morphDef.race.race.meatDef);
-                if (comp != null && !cannibal) __result.Add(ThoughtDef.Named(cannibalThought.ingredientThought));
+                if (comp != null && !cannibal) foodThoughts.Add(ThoughtDef.Named(cannibalThought.ingredientThought));
             }
             else
             {
@@ -65,7 +120,7 @@ namespace Pawnmorph
                 if (fHStatus == null || fHStatus == FormerHumanStatus.PermanentlyFeral) return;
 
                 ThoughtDef thought = GetCannibalThought(ingester, foodSource);
-                if (thought != null) __result.Add(thought);
+                if (thought != null) foodThoughts.Add(thought);
             }
         }
 

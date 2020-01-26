@@ -337,7 +337,7 @@
 							<classInfluence>Leopard</classInfluence>
 						</Pawnmorph.Hediffs.MutationDef>
 						
-						<HediffDef Abstract="true" ParentName="PawnmorphPart" Name="LeopardJawBase">
+						<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="LeopardJawBase">
 							<label>pardine muzzle</label>
 							<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a leopard. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
 							<parts>
@@ -390,7 +390,7 @@
 									<severityPerDay>0.25</severityPerDay>
 								</li>
 							</comps>
-						</HediffDef>
+						</Pawnmorph.Hediffs.MutationDef>
 						
 						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardJawBase">
 							<defName>EtherLeopardJaw</defName>
@@ -573,13 +573,13 @@
 
 				<!-- Add the animal to the TF's possible feral animal list -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphLeopardTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
 					<value>
 						<li>ACPAmurLeopard</li>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphSnowLeopardTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphSnowLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
 					<value>
 						<li>ACPSnowLeopard</li>
 					</value>
@@ -619,13 +619,13 @@
 				
 				<!-- Add the animal to the TF's possible feral animal list -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphLeopardTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
 					<value>
 						<li>Leopard</li>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphSnowLeopardTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
+					<xpath>Defs/HediffDef[defName="PawnmorphSnowLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
 					<value>
 						<li>SnowLeopard</li>
 					</value>

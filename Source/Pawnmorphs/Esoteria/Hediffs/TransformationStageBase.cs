@@ -16,14 +16,14 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.IExecutableStage" />
     public abstract class TransformationStageBase : HediffStage, IDescriptiveStage, IExecutableStage, IInitializable
     {
+  
         /// <summary>
-        /// Gets all mutation entries in this stage 
+        /// Gets the entries for the given pawn
         /// </summary>
-        /// <value>
-        /// The entries.
-        /// </value>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
         [NotNull]
-        public abstract IEnumerable<MutationEntry> Entries { get; }
+        public abstract  IEnumerable<MutationEntry> GetEntries([NotNull] Pawn pawn);
 
         /// <summary>
         /// returns all configuration errors in this stage
@@ -48,12 +48,17 @@ namespace Pawnmorph.Hediffs
         /// <summary>The letter label</summary>
         public string letterLabel;
 
+        /// <summary>
+        /// The letter definition
+        /// </summary>
+        [CanBeNull]
+        public LetterDef letterDef; 
 
         /// <summary>
         /// the expected number of mutations a pawn would get per day at this stage 
         /// </summary>
         /// note, this is affected by MutagenSensitivity stat 
-        public float meanMutationsPerDay=4; 
+        public float meanMutationsPerDay=7; 
 
 
         /// <summary>called when the given hediff enters this stage</summary>
@@ -63,14 +68,30 @@ namespace Pawnmorph.Hediffs
             Pawn pawn = hediff.pawn;
             if (string.IsNullOrEmpty(this.letterLabel) || string.IsNullOrEmpty(letterText))
             {
-                Log.Warning($"{hediff.def.defName} tried to execute {nameof(TransformationStage)} but {nameof(this.letterLabel)} or {nameof(letterText)} are not set!");
                 return;
             }
 
             if (!PawnUtility.ShouldSendNotificationAbout(pawn)) return;
-            string letterLabel = this.letterLabel.AdjustedFor(pawn);
-            string letterContent = letterText.AdjustedFor(pawn);
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, new LookTargets(pawn));
+
+            string letterLabel;
+            string letterContent;
+
+            //for translated text use the following keys 
+            // LabelShort - the short label of the pawn 
+            // Name - the full name of the pawn 
+
+            letterLabel = this.letterLabel.CanTranslate()
+                              ? this.letterLabel.Translate(pawn.LabelShort.Named(nameof(pawn.LabelShort)),
+                                                           pawn.Name.Named(nameof(pawn.Name)))
+                              : this.letterLabel.AdjustedFor(pawn);
+
+            letterContent = letterText.CanTranslate()
+                                ? letterText.Translate(pawn.LabelShort.Named(nameof(pawn.LabelShort)),
+                                                       pawn.Name.Named(nameof(pawn.Name)))
+                                : letterText.AdjustedFor(pawn);
+
+
+            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, letterDef ?? LetterDefOf.NeutralEvent, new LookTargets(pawn));
         }
 
         /// <summary>

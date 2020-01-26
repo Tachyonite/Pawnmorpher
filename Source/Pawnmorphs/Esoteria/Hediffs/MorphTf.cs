@@ -22,6 +22,7 @@ namespace Pawnmorph.Hediffs
         private float _meanPerDay = BASE_MEAN;
 
 
+
         /// <summary>
         /// the expected number of mutations to happen in a single day 
         /// </summary>
@@ -38,7 +39,7 @@ namespace Pawnmorph.Hediffs
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
-            _allMutations = def.stages.OfType<TransformationStageBase>().SelectMany(s => s.Entries).ToList();
+            _allMutations = def.stages.OfType<TransformationStageBase>().SelectMany(s => s.GetEntries(pawn)).ToList();
         }
 
         /// <summary>Ticks this instance.</summary>
@@ -82,7 +83,7 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         protected override IEnumerable<MutationEntry> GetAvailableMutations(HediffStage currentStage)
         {
-            if (currentStage is TransformationStageBase stage) return stage.Entries;
+            if (currentStage is TransformationStageBase stage) return stage.GetEntries(pawn); 
             return Enumerable.Empty<MutationEntry>();
         }
 
@@ -95,7 +96,7 @@ namespace Pawnmorph.Hediffs
         {
             if (stage is TransformationStageBase tStage)
             {
-                return tStage.Entries.Any(); 
+                return tStage.GetEntries(pawn).Any(); 
             }
 
             return false; 

@@ -47,13 +47,24 @@ namespace Pawnmorph.Hediffs
             if (morph == null) yield return "morph def not set!"; 
         }
 
+
+        /// <summary>
+        /// Gets the entries for the given pawn
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public override IEnumerable<MutationEntry> GetEntries(Pawn pawn)
+        {
+            return Entries; 
+        }
+
         /// <summary>
         /// Gets all mutation entries in this stage 
         /// </summary>
         /// <value>
         /// The entries.
         /// </value>
-        public override IEnumerable<MutationEntry> Entries {
+        public IEnumerable<MutationEntry> Entries {
             get
             {
                 if (_entries == null) //use lazy initialization 

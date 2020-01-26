@@ -1,0 +1,8 @@
+<Defs>
+    <StatCategoryDef>
+        <defName>PawnMutagenics</defName>
+        <label>Mutagenic</label>
+        <displayOrder>15</displayOrder>
+        <displayAllByDefault>true</displayAllByDefault>
+    </StatCategoryDef>
+</Defs>

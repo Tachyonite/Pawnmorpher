@@ -12,11 +12,26 @@
 		</parts>
 		<mutationTale>GrewCanidMuzzle</mutationTale>
 		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-0.5</minSeverity>
+				<label>bestial</label>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_possessive] teeth are pointed to suit, and making it nearly impossible for [Pawn_pronoun] to talk outside of growls and barks, yet eating is easier.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.65</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+			</li>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.50</offset>
+						<offset>-0.55</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
@@ -30,13 +45,38 @@
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.10</offset>
+						<offset>-0.15</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
 						<offset>0.50</offset>
 					</li>
 				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<label>paragon</label>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, making speaking a little more difficult, yet eating is easier. [PAWN_pronoun] has also developed a taste for raw meat, and is less likely to get sick from it</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.07</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<aspectGivers>
+					<li Class="Pawnmorph.Aspects.RandomGiver">
+						<entries>
+							<li>
+								<aspect>MeatLover</aspect>
+								<chance>1</chance>
+							</li>
+						</entries>
+					</li>
+				</aspectGivers>
 			</li>
 		</stages>
 		<comps>

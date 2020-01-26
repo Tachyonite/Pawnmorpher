@@ -124,8 +124,6 @@ namespace Pawnmorph.Factions
                 }
             }
 
-            var outStr = toGive.Select(m => m.defName).Join(","); 
-            Log.Message($"{nameof(toGive)}:{outStr}");
 
             foreach (MutationDef giver in toGive)
             {

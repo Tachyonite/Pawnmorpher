@@ -273,15 +273,25 @@ namespace Pawnmorph
             {
                 if (pawn == formerHuman) continue;
                 var relation = pawn.GetMostImportantRelation(formerHuman);
-                if (relation != null)
+                if (relation != null && relation != PawnRelationDefOf.Bond)
                 {
                     SendRelationLetter(pawn, formerHuman, relation,letterContentID, letterLabelID); 
                 }
             }
         }
 
-        
-        
+
+        /// <summary>
+        /// Determines whether the given pawn is a former human.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the given pawn is former human; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFormerHuman([NotNull] this Pawn pawn)
+        {
+            return pawn.GetFormerHumanStatus() != null; 
+        }
 
         private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman, [NotNull] PawnRelationDef relation,string letterContentID, string letterLabelID)
         {
@@ -588,7 +598,8 @@ namespace Pawnmorph
                                               (string) null);
             var lPawn = PawnGenerator.GeneratePawn(local);
 
-
+            lPawn.equipment?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
+            lPawn.apparel?.DestroyAll();
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 

@@ -176,7 +176,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<description>[Pawn_nameDef]'s fingers have turned into large, dexterous feathers</description>
+				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers</description>
 				<partEfficiencyOffset>-0.05</partEfficiencyOffset> <!-- still not quite as good as hands-->
 			</li>
 		</stages>

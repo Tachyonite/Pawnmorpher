@@ -95,6 +95,9 @@ namespace Pawnmorph
 
         }
 
+        private const float EPSILON = 0.01f;
+
+        private const float A = EPSILON * EPSILON * BASE_BUILDUP_RATE; 
         private void MutateInRadius(float radius, HediffDef hediff)
         {
             IntVec3 c = parent.Position + (Rand.InsideUnitCircleVec3 * radius).ToIntVec3();
@@ -105,8 +108,19 @@ namespace Pawnmorph
 
             foreach (Pawn pawn in _pawnsCache)
             {
-                if (pawn.Position.DistanceTo(parent.Position) < radius)
-                    MutatePawn(pawn); 
+                float distanceTo = pawn.Position.DistanceTo(parent.Position);
+                if (distanceTo < radius) //make pawns closer to the mutagenic ship mutate faster 
+                {    //also increase the effect as the radius increases 
+                    float rHat = distanceTo / radius;
+                    float baseMRate;
+                    if (rHat <= EPSILON) baseMRate = BASE_BUILDUP_RATE;
+                    else
+                    {
+                        baseMRate = A / (rHat * rHat); 
+                    }
+
+                    MutatePawn(pawn, baseMRate); 
+                }
             }
           
             
@@ -128,13 +142,15 @@ namespace Pawnmorph
 
         }
 
-        private static void MutatePawn(Pawn pawn)
+        private const float BASE_BUILDUP_RATE = 0.028758334f / 12; 
+
+        private static void MutatePawn(Pawn pawn, float baseBuildupRate)
         {
             if (pawn != null && MutagenDefOf.defaultMutagen.CanInfect(pawn))
             {
                 if (Rand.Value < MUTATE_IN_RADIUS_CHANCE)
                 {
-                    var num = 0.028758334f/12;
+                    var num = baseBuildupRate;
                     num *= pawn.GetMutagenicBuildupMultiplier();
                     if (num != 0f)
                     {

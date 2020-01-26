@@ -4,6 +4,7 @@ using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -45,6 +46,10 @@ namespace Pawnmorph
             float chance = changeChance < 0 // If changeChance wasn't overriden use the default from the settings.
                 ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
                 : changeChance;
+
+            //apply the new stat 
+           
+            chance = Mathf.Clamp(chance*pawn.GetStatValue(PMStatDefOf.TransformationSensitivity), 0, 100); 
 
             bool changed = false;
 

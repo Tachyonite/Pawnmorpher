@@ -18,7 +18,7 @@
             <Mass>0.026</Mass>
             <Flammability>1.2</Flammability>
             <DeteriorationRate>2</DeteriorationRate>
-            <MutagenSensitivity_Stuff>1.1</MutagenSensitivity_Stuff>
+            <MutagenSensitivity_Stuff>0.1</MutagenSensitivity_Stuff>
         </statBases>
 
         <stuffProps>

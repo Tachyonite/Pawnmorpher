@@ -71,6 +71,7 @@
 
 	<ThingDef ParentName="AnimalThingBase" Name="ChaomorphBaseDerived" Abstract="true">
 		<race>
+			<fleshType>Chaomorph</fleshType>
 			<useMeatFrom>Chaocow</useMeatFrom>
 		</race>
 	</ThingDef>

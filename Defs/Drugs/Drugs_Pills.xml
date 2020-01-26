@@ -199,6 +199,54 @@
 		</comps>
 	</ThingDef>
 
+	<ThingDef ParentName="PM_PillBase">
+		<defName>MutagenAccelerator</defName>
+		<label>mutapill, accelerator</label>
+		<description>These pills will enhance any active mechanites in the body and greatly increasing the rate of mutation for five days, also increases the likely hood of a pawn fully transforming</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/pills2</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<statBases>
+			<WorkToMake>600</WorkToMake>
+			<MarketValue>18</MarketValue>
+			<Mass>0.005</Mass>
+			<Flammability>0.7</Flammability>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AcceleratorHigh</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>Stabilisation</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>1</Neutroamine>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+				<overdoseSeverityOffset>
+					<min>0.08</min>
+					<max>0.14</max>
+				</overdoseSeverityOffset>
+			</li>
+		</comps>
+	</ThingDef>
+
 	<HediffDef Class="Pawnmorph.Hediffs.Def_ImmuneToType">
 		<defName>StabiliserHigh</defName>
 		<immuneToType>Pawnmorph.Hediff_Morph</immuneToType>
@@ -220,6 +268,29 @@
 			<li>
 				<statOffsets>
                     <MutagenSensitivity>-1</MutagenSensitivity>
+                </statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>AcceleratorHigh</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>mutagen accelerated</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.18</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>2</MutagenSensitivity>
+					<TransformationSensitivity>0.1</TransformationSensitivity>
                 </statOffsets>
 			</li>
 		</stages>

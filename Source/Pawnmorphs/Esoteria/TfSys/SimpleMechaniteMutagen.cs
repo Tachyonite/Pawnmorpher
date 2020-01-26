@@ -261,7 +261,9 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
 
+            FixBondRelationship(spawned, animal); 
             PawnTransferUtilities.TransferRelations(animal, spawned, r => r != PawnRelationDefOf.Bond); //transfer whatever relations from the animal to the human pawn 
+            
             PawnTransferUtilities.TransferSkills(animal, spawned, PawnTransferUtilities.SkillTransferMode.Max); //keep any skills they learned as an animal 
             //do NOT transfer the bond relationship to humans, Rimworld doesn't like that 
             AddReversionThought(spawned, tfHumanHediff.CurStageIndex);
@@ -273,6 +275,30 @@ namespace Pawnmorph.TfSys
 
             animal.Destroy();
             return true;
+        }
+
+        /// <summary>
+        /// transfers or removes bond relationships from reverted animal to the original 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="revertedAnimal">The reverted animal.</param>
+        protected void FixBondRelationship( Pawn original, Pawn revertedAnimal)
+        {
+            var pRelated = revertedAnimal.relations?.DirectRelations;
+
+            foreach (DirectPawnRelation directPawnRelation in pRelated.MakeSafe().ToList()) //need to cache the values so we don't invalidate the iterator 
+            {
+                if(directPawnRelation.def != PawnRelationDefOf.Bond)  continue;
+
+                //remove the bond relationship 
+                revertedAnimal.relations.RemoveDirectRelation(directPawnRelation); 
+
+                if (directPawnRelation.otherPawn.RaceProps.Animal)
+                {   //add it back to the original if the other pawn is an animal 
+                    original.relations.AddDirectRelation(PawnRelationDefOf.Bond, directPawnRelation.otherPawn); 
+                }
+
+            }
         }
 
         /// <summary>

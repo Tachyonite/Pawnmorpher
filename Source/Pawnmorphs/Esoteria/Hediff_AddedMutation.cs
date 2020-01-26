@@ -54,7 +54,15 @@ namespace Pawnmorph
             get
             {
                 var lOverride = (CurStage as MutationStage)?.labelOverride;
-                return string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride; 
+                var label = string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride;
+
+                if (SeverityAdjust?.Halted == true)
+                {
+                    label += " (halted)"; 
+                }
+
+                return label; 
+
             }
         }
 
@@ -134,7 +142,19 @@ namespace Pawnmorph
         /// <value>
         /// The severity adjust comp
         /// </value>
-        [CanBeNull] public Comp_MutationSeverityAdjust SeverityAdjust => this.TryGetComp<Comp_MutationSeverityAdjust>();
+        [CanBeNull]
+        public Comp_MutationSeverityAdjust SeverityAdjust
+        {
+            get
+            {
+                if (_sevAdjComp == null)
+                {
+                    _sevAdjComp = this.TryGetComp<Comp_MutationSeverityAdjust>();
+                }
+
+                return _sevAdjComp;
+            }
+        }
 
 
         /// <summary>
@@ -151,7 +171,36 @@ namespace Pawnmorph
             return string.IsNullOrEmpty(descOverride) ? def.description : descOverride; 
         }
 
-        private bool _waitingForUpdate; 
+        /// <summary>
+        /// called every tick 
+        /// </summary>
+        public override void Tick()
+        {
+            base.Tick();
+
+            if (_currentStageIndex != CurStageIndex)
+            {
+                _currentStageIndex = CurStageIndex;
+                OnStageChanges(); 
+            }
+        }
+
+        /// <summary>
+        /// Called when the hediff stage changes.
+        /// </summary>
+        protected virtual void OnStageChanges()
+        {
+            if (CurStage is IExecutableStage exeStage)
+            {
+                exeStage.EnteredStage(this); 
+            }
+        }
+
+        private Comp_MutationSeverityAdjust _sevAdjComp;
+
+        private bool _waitingForUpdate;
+
+        private int _currentStageIndex=-1; 
 
         /// <summary>called after this instance is added to the pawn.</summary>
         /// <param name="dinfo">The dinfo.</param>
@@ -203,6 +252,7 @@ namespace Pawnmorph
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.Look(ref _currentStageIndex, nameof(_currentStageIndex), -1); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
                 Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.", false);

@@ -2,8 +2,26 @@
     <Pawnmorph.Hediffs.MutationDef>
         this is a subclass of HediffDef so all hediff stuff can go here 
 
+
+
         the hediff class must be Hediff_AddedMutation or a subclass 
         <hediffClass>Hediff_AddedMutation</hediffClass>  
+
+        <stages>
+            this is a special hediff stage used specifically to give more functionality to mutations 
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <description>text here will override the hediff's normal description</description>
+                <labelOverride>text here will override the hediff's normal label</labelOverride>
+                
+                this element is a list of aspect givers that will trigger only once when the pawn enters this stage
+                see GivingAspects Examples for more information on AspectGivers  
+                <aspectGivers>
+                    <li>...</li>
+                </aspectGivers>
+            </li>
+        </stages>
+
+
 
         this is a list of all parts the mutation can be applied to 
         this must be set and have at least 1 entry 

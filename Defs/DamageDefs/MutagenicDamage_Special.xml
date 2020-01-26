@@ -31,14 +31,17 @@
         </bluntStunChancePerDamagePctOfCorePartToHeadCurve>
         <bluntStunChancePerDamagePctOfCorePartToBodyCurve>
             <points>
-                <li>(0.4, 0.1)</li>
-                <li>(0.9, 0.25)</li>
+                <li>(0.01,0.05)</li>
+                <li>(0.1,0.3)</li>
+                <li>(0.2,0.4)</li>
+                <li>(0.4, 0.7)</li>
+                <li>(0.6, 1)</li>
             </points>
         </bluntStunChancePerDamagePctOfCorePartToBodyCurve>
         <modExtensions>
             <li Class="Pawnmorph.Damage.MutagenicDamageExtension">
-                <severityPerDamage>0.205</severityPerDamage>
-                <reduceValue>0.1</reduceValue>
+                <severityPerDamage>0.025</severityPerDamage>
+                <reduceValue>0.4</reduceValue>
                 <mutagenicBuildup>MutagenicBuildup_Weapon</mutagenicBuildup>
             </li>
         </modExtensions>

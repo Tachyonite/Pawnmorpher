@@ -133,6 +133,7 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref _curIndex, nameof(_curIndex));
             Scribe_Values.Look(ref _lastStageIndex, nameof(_lastStageIndex), -1); 
             Scribe_Values.Look(ref _curMutationIndex, nameof(_curMutationIndex));
+            Scribe_Values.Look(ref forceRemove, nameof(forceRemove)); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && _checkList == null)
             {
                 ResetMutationOrder();
@@ -150,6 +151,24 @@ namespace Pawnmorph.Hediffs
             FillPartCheckList(_checkList);
            
             _curIndex = 0;
+
+            RestartAllMutations();
+
+        }
+
+        private void RestartAllMutations()
+        {
+            var mutations = pawn?.health?.hediffSet?.hediffs?.OfType<Hediff_AddedMutation>();
+            var allMutations = AllAvailableMutations.Select(m => m.mutation).Distinct().ToList(); 
+
+
+            foreach (Hediff_AddedMutation mutation in mutations.MakeSafe())
+            {
+                
+                if(!allMutations.Contains(mutation.def as MutationDef)) continue; 
+                var adjComp = mutation.TryGetComp<Comp_MutationSeverityAdjust>();
+                adjComp?.Restart();
+            }
         }
 
         private int _lastStageIndex = -1; 
@@ -169,6 +188,36 @@ namespace Pawnmorph.Hediffs
 
             if (pawn.IsHashIntervalTick(10000) && CanReset) ResetMutationOrder();
         }
+
+        void DecrementPartialComp()
+        {
+            var sComp = SingleComp;
+            if (sComp == null) return;
+            sComp.stacks--;
+
+            if (sComp.stacks <= 0)
+            {
+                forceRemove = true; 
+            }
+            
+        }
+
+        /// <summary>
+        /// set to true if this instance should be removed before severity reaches 0 
+        /// </summary>
+        protected bool forceRemove;
+
+        /// <summary>
+        /// Gets a value indicating whether this instance should be removed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance should be removed; otherwise, <c>false</c>.
+        /// </value>
+        public override bool ShouldRemove
+        {
+            get { return base.ShouldRemove || forceRemove;  }
+        }
+
 
         /// <summary>Fills the part check list.</summary>
         /// the check list is a list of all parts in the parents body def in the order mutations should be added
@@ -228,8 +277,12 @@ namespace Pawnmorph.Hediffs
 
         private void AddMutations()
         {
-            
-            if (FinishedAddingMutations) return;
+
+            if (FinishedAddingMutations)
+            {
+                DecrementPartialComp(); //decrement only if we're finished adding mutations 
+                return;
+            }
             if (!AnyMutationsInStage(CurStage)) return; 
             
             if (_scratchDict.Count == 0)
@@ -305,9 +358,9 @@ namespace Pawnmorph.Hediffs
             if(sComp != null)
             {
                 sComp.stacks = Mathf.Max(sComp.stacks - mutationsAdded, 0);
-                if (sComp.stacks == 0)
+                if (sComp.stacks <= 0)
                 {
-                    pawn.health.RemoveHediff(this); 
+                    forceRemove = true; 
                 }
             }
         }
@@ -366,8 +419,10 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-
-        private void ResetMutationOrder()
+        /// <summary>
+        /// Resets the mutation order.
+        /// </summary>
+        protected void ResetMutationOrder()
         {
             _checkList = _checkList ?? new List<BodyPartRecord>();
             _checkList.Clear();

@@ -17,6 +17,10 @@
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
+		<thingCategories Inherit="False">
+			<li>PlantMatter</li>
+			<li>Drugs</li>
+		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
@@ -29,6 +33,14 @@
 					<severity>1</severity>
 				</li>
 			</outcomeDoers>
+			<foodType>Seed</foodType>
+			<preferability>NeverForNutrition</preferability>
 		</ingestible>
+		<statBases Inherit="False">
+			<MarketValue>7</MarketValue>
+			<Mass>0.045</Mass>
+			<Flammability>0.2</Flammability>
+			<Nutrition>0.0</Nutrition>
+		</statBases>
 	</ThingDef>
 </Defs>
