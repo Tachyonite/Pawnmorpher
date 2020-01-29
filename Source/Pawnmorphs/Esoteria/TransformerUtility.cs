@@ -12,6 +12,7 @@ using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
+using Verse.AI;
 using Verse.AI.Group;
 
 namespace Pawnmorph
@@ -413,6 +414,16 @@ namespace Pawnmorph
 
             // Make sure any current lords know they can't use this pawn anymore.
             originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+
+            //remove any jobs the pawn may be doing 
+            if (originalPawn.jobs != null && originalPawn.Map != null)
+            {
+                originalPawn.jobs.ClearQueuedJobs();
+                originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced); 
+            }
+
+
+
 
             if (originalPawn.Faction != Faction.OfPlayer) return; //past here is only relevant for colonists 
 
