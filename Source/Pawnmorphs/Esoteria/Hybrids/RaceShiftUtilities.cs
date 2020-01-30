@@ -184,7 +184,7 @@ namespace Pawnmorph.Hybrids
                 Log.Error($"tried to change pawn {pawn.Name.ToStringFull} to morph {morph.defName} but morph has no hybridRace!");
             if (pawn.def != ThingDefOf.Human && !pawn.IsHybridRace())
             {
-                Log.Warning($"hybrids of non human pawns are currently not supported");
+                
                 return;
             }
 
