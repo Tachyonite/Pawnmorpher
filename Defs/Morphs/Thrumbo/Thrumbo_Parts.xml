@@ -3,6 +3,11 @@
 		<classInfluence>ThrumboMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurLimb">
+		<defName>ThrumboFur</defName>
+		<classInfluence>ThrumboMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboSnout</defName>
 		<label>thrumbo snout</label>

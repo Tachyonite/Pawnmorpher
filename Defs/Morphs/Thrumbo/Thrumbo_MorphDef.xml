@@ -4,7 +4,7 @@
 		<label>thrumbomorph</label>
 		<description>A large humanoid often resembling a bipedal thrumbo, usually sporting the characteristic horn. Much like feral thrumbos they are exceptionally dangerous in combat, and enjoy eating trees.</description>
 		<race>Thrumbo</race>
-		<classification>ThickFur</classification>
+		<classification>EvenToedUngulate</classification>
 		<categories>
 			<li>Arid</li>
 			<li>Cold</li>
