@@ -51,4 +51,11 @@
 		<diseaseIncident>Chaoflu</diseaseIncident>
 		<letterLabel>Mutagion (mutagenic mechanites)</letterLabel>
 	</IncidentDef>
+
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_HuskyFlu</defName>
+		<label>kennel cough</label>
+		<diseaseIncident>HuskyFlu</diseaseIncident>
+		<letterLabel>Mutagion (kennel cough)</letterLabel>
+	</IncidentDef>
 </Defs>
