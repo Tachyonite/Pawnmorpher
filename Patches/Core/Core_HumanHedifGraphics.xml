@@ -41,7 +41,6 @@
 					<EtherIbexJaw>Parts/Ibex/Ibex_Jaw</EtherIbexJaw>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherLabradorRetrieverJaw>Parts/LabradorRetriever/LabradorRetriever_Jaw</EtherLabradorRetrieverJaw>
-					<EtherLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherLeopardJaw>
 					<EtherLynxJaw>Parts/Lynx/Lynx_Jaw</EtherLynxJaw>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
@@ -134,7 +133,6 @@
 					<EtherIbexJaw>Parts/Ibex/Ibex_Jaw</EtherIbexJaw>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherLabradorRetrieverJaw>Parts/LabradorRetriever/LabradorRetriever_Jaw</EtherLabradorRetrieverJaw>
-					<EtherLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherLeopardJaw>
 					<EtherLynxJaw>Parts/Lynx/Lynx_Jaw</EtherLynxJaw>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
@@ -403,7 +401,6 @@
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left</EtherIbexEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
-					<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Left</EtherLeopardEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
@@ -452,7 +449,6 @@
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left_Behind</EtherIbexEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
-					<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Left_Behind</EtherLeopardEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left_Behind</EtherLynxEar>
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
@@ -529,7 +525,6 @@
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right</EtherIbexEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
-					<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Right</EtherLeopardEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right</EtherLynxEar>
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
@@ -578,7 +573,6 @@
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right_Behind</EtherIbexEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
-					<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Right_Behind</EtherLeopardEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right_Behind</EtherLynxEar>
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
@@ -658,7 +652,6 @@
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left</EtherIbexEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
-					<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Left</EtherLeopardEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
@@ -710,7 +703,6 @@
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left_Behind</EtherIbexEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
-					<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Left_Behind</EtherLeopardEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left_Behind</EtherLynxEar>
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
@@ -790,7 +782,6 @@
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right</EtherIbexEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
-					<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Right</EtherLeopardEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right</EtherLynxEar>
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
@@ -842,7 +833,6 @@
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right_Behind</EtherIbexEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
-					<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Right_Behind</EtherLeopardEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right_Behind</EtherLynxEar>
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
@@ -886,7 +876,6 @@
 					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
 					<EtherIbexTail>Parts/Ibex/Ibex_Tail</EtherIbexTail>
 					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
-					<EtherLeopardTail>Parts/Leopard/Leopard_Tail</EtherLeopardTail>
 					<EtherLynxTail>Parts/Lynx/Lynx_Tail</EtherLynxTail>
 					<EtherOstrichTail>Parts/Ostrich/Ostrich_Tail</EtherOstrichTail>
 					<EtherPantherTail>Parts/Panther/Panther_Tail</EtherPantherTail>
