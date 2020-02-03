@@ -19,37 +19,36 @@
   
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Cowflu</defName>
-		<label>cowflu</label>
+		<label>mad cow disease</label>
 		<diseaseIncident>Cowflu</diseaseIncident>
-		<letterLabel>Mutagion (cowflu)</letterLabel>
+		<letterLabel>Mutagion (mad cow disease)</letterLabel>
 	</IncidentDef>
 	
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Foxflu</defName>
-		<label>foxflu</label>
+		<label>fox fever</label>
 		<diseaseIncident>FoxFlu</diseaseIncident>
-		<letterLabel>Mutagion (foxflu)</letterLabel>
+		<letterLabel>Mutagion (fox fever)</letterLabel>
 	</IncidentDef>
 
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Chookflu</defName>
-		<label>chookflu</label>
+		<label>chook pox</label>
 		<diseaseIncident>Chookflu</diseaseIncident>
-		<letterLabel>Mutagion (chookflu)</letterLabel>
+		<letterLabel>Mutagion (chook pox)</letterLabel>
 	</IncidentDef>
 
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Swineflu</defName>
-		<label>swineflu</label>
+		<label>swine flu</label>
 		<diseaseIncident>Swineflu</diseaseIncident>
-		<letterLabel>Mutagion (swineflu)</letterLabel>
+		<letterLabel>Mutagion (swine flu)</letterLabel>
 	</IncidentDef>
 
 	<IncidentDef ParentName="DiseaseIncidentMutation">
 		<defName>Disease_Chaoflu</defName>
-		<label>chaoflu</label>
+		<label>mutagenic mechanites</label>
 		<diseaseIncident>Chaoflu</diseaseIncident>
-		<letterLabel>Mutagion (chaoflu)</letterLabel>
+		<letterLabel>Mutagion (mutagenic mechanites)</letterLabel>
 	</IncidentDef>
-	
 </Defs>
