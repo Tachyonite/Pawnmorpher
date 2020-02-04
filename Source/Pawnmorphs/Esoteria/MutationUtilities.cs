@@ -653,7 +653,16 @@ namespace Pawnmorph
                           .Select(h => h.hediff);
 
 
-            foreach (string hediffDef in hediffDefNames) yield return HediffDef.Named(hediffDef);
+            foreach (string hediffDef in hediffDefNames)
+            {
+                var hDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediffDef);
+                if (hDef == null)
+                {
+                    Log.Warning($"there are graphics for {hediffDef} but there is no hediff with that defName!");
+                    continue;
+                }
+                yield return hDef;
+            }
         }
 
         /// <summary>
