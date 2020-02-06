@@ -1,8 +1,8 @@
 <Defs>
 	<ThingDef ParentName="InjectorBase">
 		<defName>SnakeTransformer</defName>
-		<label>mutasyringe, snake</label>
-		<description>A mutagenic injector filled with mechanites and snake DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<label>mutasyringe, cobra</label>
+		<description>A mutagenic injector filled with mechanites and cobra DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">

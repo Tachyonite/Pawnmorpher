@@ -653,7 +653,58 @@ namespace Pawnmorph
                           .Select(h => h.hediff);
 
 
-            foreach (string hediffDef in hediffDefNames) yield return HediffDef.Named(hediffDef);
+            foreach (string hediffDef in hediffDefNames)
+            {
+                var hDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediffDef);
+                if (hDef == null)
+                {
+                    Log.Warning($"there are graphics for {hediffDef} but there is no hediff with that defName!");
+                    continue;
+                }
+                yield return hDef;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether this instance can be applied to the specified pawn 
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can be applied to the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// mutationDef
+        /// or
+        /// pawn
+        /// </exception>
+        public static bool CanApplyMutations([NotNull] this MutationDef mutationDef, [NotNull] Pawn pawn, MutagenDef mutagen= null)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
+            if (!mutagen.CanInfect(pawn)) return false;
+            return true; 
+        }
+
+        /// <summary>
+        /// Determines whether the specified pawn has the given mutation.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutation">The mutation.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn has the given mutation; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool HasMutation([NotNull] this Pawn pawn, [NotNull] MutationDef mutation)
+        {
+            foreach (Hediff hediff in (pawn.health?.hediffSet?.hediffs).MakeSafe())
+            {
+                if (hediff.def == mutation) return true; 
+            }
+
+            return false; 
         }
 
         /// <summary>

@@ -14,6 +14,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Debug = System.Diagnostics.Debug;
 
 #pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
@@ -55,6 +56,25 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        static void FindMutaniteCommonalityOnMap()
+        {
+
+            var mineablesOnMap = Find.CurrentMap.listerThings.AllThings
+                                     .Where(t => t.def.building?.mineableThing != null)
+                                     .ToList();
+            var mutaniteOnMap = mineablesOnMap.Where(t => t.def.defName == "Mutonite")
+                                              .ToList();
+            var chunkCat = ThingCategoryDefOf.Chunks;
+            
+            var totalOres = mineablesOnMap.Where(t => !chunkCat.ContainedInThisOrDescendant(t.def.building.mineableThing)).ToList();
+
+            Log.Message($"Mutonite:{mutaniteOnMap.Count}\tOres:{totalOres.Count}\tAll Chunks:{mineablesOnMap.Count}");
+
+
+
+        }
 
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]

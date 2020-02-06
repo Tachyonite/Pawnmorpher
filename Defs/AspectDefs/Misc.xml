@@ -92,7 +92,7 @@
     <Pawnmorph.AspectDef>
         <defName>Paragon</defName>
         <label>paragon</label>
-        <description>{PAWN_nameDef} adapts quickly to new mutations, and can sometimes get better, more powerful mutations than normal morphs.</description>
+        <description>[PAWN_nameDef] adapts quickly to new mutations, and can sometimes get better, more powerful mutations than normal morphs.</description>
         <removedByReverter>true</removedByReverter>
         
         <stages>
@@ -114,7 +114,7 @@
     <Pawnmorph.AspectDef>
         <defName>Afflicted</defName>
         <label>afflicted</label>
-        <description>{PAWN_nameDef} not only never adapts to new mutations, their mutations sometimes degrade into worse versions.</description>
+        <description>[PAWN_nameDef] not only never adapts to new mutations, their mutations sometimes degrade into worse versions.</description>
         <removedByReverter>true</removedByReverter>
         <stages>
             <li>

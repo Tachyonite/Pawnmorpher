@@ -125,7 +125,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoarPart">
 		<defName>EtherBoarEar</defName>
 		<label>porcine</label>
-		<description>Large, piglike ears sit atop [PAWN_nameDef]'s, but covered in thick bristles.</description>
+		<description>Large, piglike ears sit atop [PAWN_nameDef]'s head, but covered in thick bristles.</description>
 		<parts>
 			<li>Ear</li>
 		</parts>
