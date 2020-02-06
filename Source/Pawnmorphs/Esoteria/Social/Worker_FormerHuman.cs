@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Social
@@ -64,7 +65,6 @@ namespace Pawnmorph.Social
 
             FormerHumanStatus? fHumanStatus = recipient.GetFormerHumanStatus();
             if (fHumanStatus == null) return 0; //only allow for former human recipients 
-            Log.Message($"Checking interaction of {initiator.Name} -> {recipient.Name}");
 
             Filter<FormerHumanStatus> fHumanRestriction =
                 interaction.GetModExtension<FormerHumanRestriction>()?.filter ?? new Filter<FormerHumanStatus>();
@@ -74,6 +74,16 @@ namespace Pawnmorph.Social
             if (!fHumanRestriction.PassesFilter(fHumanStatus.Value))
                 return 0; //make sure they're at the correct stage for the interaction 
 
+
+            float retVal  = GetInteractionWeight(initiator, recipient, relationRestriction, mustBeColonist);
+
+            Debug.Log($"Interaction weight for {initiator.Name} => {recipient.Name} is {retVal}");
+
+            return retVal; 
+        }
+
+        private float GetInteractionWeight(Pawn initiator, Pawn recipient, Filter<PawnRelationDef> relationRestriction, bool mustBeColonist)
+        {
             Pawn oHuman = FormerHumanUtilities.GetOriginalPawnOfFormerHuman(recipient);
             if (relationRestriction != null) //check any relationships if applicable 
             {
@@ -82,8 +92,7 @@ namespace Pawnmorph.Social
                     if (mustBeColonist) return 0; //if there is no original pawn they can't be a colonist 
 
                     if (!relationRestriction.isBlackList)
-                        return
-                            0; //if the filter is a white list a blank original pawn can't pass it because there is no relationship 
+                        return 0; //if the filter is a white list a blank original pawn can't pass it because there is no relationship 
                     return BaseInteractionChance;
                 }
 
@@ -94,7 +103,6 @@ namespace Pawnmorph.Social
 
                 return 0; //none passed 
             }
-
             return BaseInteractionChance;
         }
     }
