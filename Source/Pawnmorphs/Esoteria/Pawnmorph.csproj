@@ -206,6 +206,7 @@
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThingCategoryDefOf.cs" />
+    <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
