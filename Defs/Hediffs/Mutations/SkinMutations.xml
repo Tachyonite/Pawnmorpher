@@ -254,7 +254,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>bristly skin</labelOverride>
-				<description>Rough, thick bristles have srpouted from this limb as the skin grows thicker.</description>
+				<description>Rough, thick bristles have sprouted from this limb as the skin grows thicker.</description>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.01</ArmorRating_Blunt>

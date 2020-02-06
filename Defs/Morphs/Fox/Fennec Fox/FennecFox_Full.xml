@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphFennecFoxTF</defName>
-		<label>fennecfoxmorph</label>
+		<label>foxmorph</label>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>

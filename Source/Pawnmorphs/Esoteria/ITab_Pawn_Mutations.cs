@@ -210,7 +210,7 @@ namespace Pawnmorph
                 if (Math.Abs(influence.Value - influences.MaxBy(x => x.Value).Value) < EPSILON)
                     GUI.color = Color.cyan;
                 var nVal = influence.Value / MorphUtilities.MaxHumanInfluence; 
-                string text = $"{influence.Key.Label} ({nVal.ToStringPercent()})";
+                string text = $"{influence.Key.LabelCap} ({nVal.ToStringPercent()})";
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
                 curPos.y += rectHeight;
