@@ -77,7 +77,7 @@ namespace Pawnmorph.Hediffs
         }
 
       
-        private List<HediffGiver_Mutation> _possibleMutations;
+        private List<MutationDef> _possibleMutations;
         /// <summary>
         /// the morphType to get hediff givers from 
         /// </summary>
@@ -94,66 +94,25 @@ namespace Pawnmorph.Hediffs
         /// list of morphs to exclude 
         /// </summary>
         public List<MorphDef> blackListMorphs = new List<MorphDef>();
-
         
-
-        bool CheckHediff(HediffDef def)
-        {
-            if (!morphType.IsAssignableFrom(def.hediffClass)) return false;
-            if (typeof(MorphDisease).IsAssignableFrom(def.hediffClass)) return false; 
-            if (blackListDefs.Contains(def)) return false;
-            
-            return true; 
-        }
-
-        bool CheckGiver(HediffGiver_Mutation giver)
-        {
-            if (giver == null) return false; 
-            if (blackListDefs.Contains(giver.hediff)) return false;
-            if (giver.hediff is MutationDef comp)
-            {
-                if (comp.classInfluence is MorphDef morph)
-                {
-                    if (blackListMorphs.Contains(morph)) return false;
-                    IEnumerable<MorphCategoryDef> morphCats = morph?.categories;
-                    foreach (var morphCategory in morphCats.MakeSafe())
-                    {
-                        if (blackListCategories.Contains(morphCategory)) return false;
-                    }
-                }
-            }
-            else
-            {
-                Log.Warning($"{giver.hediff.defName} does not use {nameof(MutationDef)}! ");
-            }
-
-            return true; 
-        }
+    
         /// <summary>
         /// how often to give mutations 
         /// </summary>
         public float mtbDays = 0.4f; 
 
         [NotNull]
-        List<HediffGiver_Mutation> Mutations //hediff giver doesn't seem to have a on load or resolve references so I'm using lazy initialization
+        List<MutationDef> Mutations //hediff giver doesn't seem to have a on load or resolve references so I'm using lazy initialization
         {
             get
             {
                 if (_possibleMutations == null)
                 {
-                    _possibleMutations = DefDatabase<HediffDef>
-                                        .AllDefs.Where(CheckHediff)
-                                        .SelectMany(def => def.stages ?? Enumerable.Empty<HediffStage>()) //get all stages 
-                                        .SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>()) //get all givers 
-                                        .OfType<HediffGiver_Mutation>()//convert to giver_mutation
-                                        .Where(CheckGiver)  
-                                        .GroupBy(g => g.hediff)
-                                        .Select(g => g.First()) //keep only the distinct value 
-                                        .ToList(); //make a list to keep around
+                    _possibleMutations = MutationDef.AllMutations.Where(CheckMutation).ToList();
 
                     if (_possibleMutations.Count == 0)
                     {
-                        Log.Warning($"a ChaoticMutation can't get any mutations to add! either things didn't load or the black lists are too large ");
+                        Log.Error($"a ChaoticMutation can't get any mutations to add! either things didn't load or the black lists are too large ");
                     }
                    
 
@@ -166,6 +125,17 @@ namespace Pawnmorph.Hediffs
                 return _possibleMutations; 
             }
         }
+
+        private bool CheckMutation(MutationDef arg)
+        {
+            foreach (var blackMorph in blackListCategories.MakeSafe().SelectMany(c => c.AllMorphsInCategories))
+            {
+                if (arg.classInfluence == blackMorph) return false;
+            }
+
+            return true; 
+        }
+
         /// <summary>
         /// The MTB unit
         /// </summary>
@@ -178,7 +148,7 @@ namespace Pawnmorph.Hediffs
         /// <param name="cause"></param>
         public override void OnIntervalPassed(Pawn pawn, Hediff cause)
         {
-            if (Mutations.Count == 0) return;
+            if (Mutations.Count == 0) { return;}
             
             if (MP.IsInMultiplayer)
             {
@@ -192,6 +162,7 @@ namespace Pawnmorph.Hediffs
             mult *= singleComp?.Props?.mutationRateMultiplier ?? 1;
             
             mult = Mathf.Max(0.001f, mult); //prevent division by zero 
+           
             if (Rand.MTBEventOccurs(mtbDays / mult, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 //mutagen is what contains information like infect-ability of a pawn and post mutation effects 
@@ -214,10 +185,11 @@ namespace Pawnmorph.Hediffs
         /// <param name="mutagen">The mutagen.</param>
         public void TryApply(Pawn pawn, Hediff cause, MutagenDef mutagen)
         {
-            HediffGiver_Mutation mut = GetRandomMutation(pawn); //grab a random mutation 
-            
+            var mut = GetRandomMutation(pawn); //grab a random mutation 
+            var mPart = mut.parts?.Count ?? 0;
 
-            if (mut.TryApply(pawn, mutagen, null, cause))
+            int maxCount = mPart == 0 ? 0 : Rand.Range(1, mPart+1); 
+            if (MutationUtilities.AddMutation(pawn, mut, maxCount))
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
 
@@ -231,24 +203,24 @@ namespace Pawnmorph.Hediffs
                     }
                 }
 
-                if (mut.tale != null)
-                {
-                    TaleRecorder.RecordTale(mut.tale, pawn);
-                }
             }
         }
         
         private const int MAX_TRIES = 10; 
 
-        private HediffGiver_Mutation GetRandomMutation([NotNull] Pawn pawn)
+        private MutationDef GetRandomMutation([NotNull] Pawn pawn)
         {
-            HediffGiver_Mutation mutationGiver = Mutations[Rand.Range(0, Mutations.Count)];
+            var mutationGiver = Mutations[Rand.Range(0, Mutations.Count)];
             int i = 0;
-            while (i < MAX_TRIES && !mutationGiver.CanApplyMutations(pawn)) //doing don't waist too much memory building temporary lists with LINQ 
+            while (i < MAX_TRIES) //doing don't waist too much memory building temporary lists with LINQ 
                                                                             //also means we won't return null if no mutation can be given 
             {
                 i++; //make sure we terminate eventually 
+                
                 mutationGiver = Mutations[Rand.Range(0, Mutations.Count)];
+
+                if (!pawn.HasMutation(mutationGiver))  break; //break if the pawn does not have the mutation yet
+
             }
 
             return mutationGiver; 

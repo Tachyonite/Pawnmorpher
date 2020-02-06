@@ -62,8 +62,8 @@ namespace Pawnmorph.TfSys
 
             pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurLevel;
             pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel;
-
-            var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.PositionHeld, transformedPawn.MapHeld);
+            
+            var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.GetCorrectPosition(), transformedPawn.GetCorrectMap());
             spawned.equipment.DestroyAllEquipment();
             spawned.apparel.DestroyAll();
 
@@ -75,8 +75,8 @@ namespace Pawnmorph.TfSys
 
             for (var i = 0; i < 10; i++)
             {
-                IntermittentMagicSprayer.ThrowMagicPuffDown(spawned.Position.ToVector3(), spawned.MapHeld);
-                IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
+                IntermittentMagicSprayer.ThrowMagicPuffDown(spawned.GetCorrectPosition().ToVector3(), spawned.GetCorrectMap());
+                IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.GetCorrectPosition().ToVector3(), spawned.GetCorrectMap());
             }
 
 
