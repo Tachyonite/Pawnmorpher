@@ -36,7 +36,7 @@ namespace Pawnmorph
             var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution eventually 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
             {
-                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn, singleInst?.originalWasPrisoner ?? false);
+                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn, singleInst?.reactionStatus ?? FormerHumanReactionStatus.Wild);
             }
 
             //remove the original and destroy the pawns 

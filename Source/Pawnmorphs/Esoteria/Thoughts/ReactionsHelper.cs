@@ -97,28 +97,29 @@ namespace Pawnmorph.Thoughts
         }
 
         /// <summary>
-        ///     call when the original pawn transforms into the transformedPawn
+        /// call when the original pawn transforms into the transformedPawn
         /// </summary>
-        /// <param name="original"></param>
-        /// <param name="transformedPawn"></param>
-        /// <param name="wasPrisoner">where they a prisoner of the colony?</param>
-        public static void OnPawnTransforms(Pawn original, Pawn transformedPawn, bool wasPrisoner = false)
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <param name="reactionStatus">The reaction status.</param>
+        public static void OnPawnTransforms(Pawn original, Pawn transformedPawn, FormerHumanReactionStatus reactionStatus = FormerHumanReactionStatus.Wild)
         {
-            HandleColonistReactions(original, transformedPawn, wasPrisoner, EventType.Transformation);
+            HandleColonistReactions(original, transformedPawn, reactionStatus, EventType.Transformation);
 
             HandleRelatedPawnsReaction(original, transformedPawn, EventType.Transformation);
         }
 
-       
+
 
         /// <summary>
-        ///     call when a pawn is reverted from an animal to handle giving the correct thoughts to colonists
+        /// call when a pawn is reverted from an animal to handle giving the correct thoughts to colonists
         /// </summary>
-        /// <param name="originalPawn"></param>
-        /// <param name="animalPawn"></param>
-        public static void OnPawnReverted(Pawn originalPawn, Pawn animalPawn)
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="animalPawn">The animal pawn.</param>
+        /// <param name="reactionStatus">The reaction status of the original pawn</param>
+        public static void OnPawnReverted(Pawn originalPawn, Pawn animalPawn, FormerHumanReactionStatus reactionStatus = FormerHumanReactionStatus.Wild)
         {
-            HandleColonistReactions(originalPawn, animalPawn, false, EventType.Reverted);
+            HandleColonistReactions(originalPawn, animalPawn, reactionStatus, EventType.Reverted);
             HandleRelatedPawnsReaction(originalPawn, animalPawn, EventType.Reverted);
         }
 
@@ -127,16 +128,16 @@ namespace Pawnmorph.Thoughts
         /// </summary>
         /// <param name="originalPawn">The original pawn.</param>
         /// <param name="animalPawn">The animal pawn.</param>
-        /// <param name="wasPrisoner">if set to <c>true</c> [was prisoner].</param>
+        /// <param name="reactionStatus">The reaction status.</param>
         /// <exception cref="ArgumentNullException">originalPawn
         /// or
         /// animalPawn</exception>
-        public static void OnPawnPermFeral([NotNull] Pawn originalPawn, [NotNull] Pawn animalPawn, bool wasPrisoner=false)
+        public static void OnPawnPermFeral([NotNull] Pawn originalPawn, [NotNull] Pawn animalPawn, FormerHumanReactionStatus reactionStatus = FormerHumanReactionStatus.Wild)
         {
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
             if (animalPawn == null) throw new ArgumentNullException(nameof(animalPawn));
             if(originalPawn.Faction == Faction.OfPlayer || animalPawn.Faction == Faction.OfPlayer) //only give thoughts to colonists if the original pawn or animal is part of the player faction 
-                HandleColonistReactions(originalPawn, animalPawn, wasPrisoner, EventType.PermanentlyFeral);
+                HandleColonistReactions(originalPawn, animalPawn, reactionStatus, EventType.PermanentlyFeral);
             HandleRelatedPawnsReaction(originalPawn, animalPawn, EventType.PermanentlyFeral);
         }
 
@@ -148,15 +149,15 @@ namespace Pawnmorph.Thoughts
         /// <param name="merge1">the second pawn of the merge</param>
         /// <param name="wasPrisoner1">if the second pawn was a prisoner</param>
         /// <param name="animalPawn">the resulting animal pawn</param>
-        public static void OnPawnsMerged(Pawn merge0, bool wasPrisoner0, Pawn merge1, bool wasPrisoner1, Pawn animalPawn)
+        public static void OnPawnsMerged(Pawn merge0, bool wasPrisoner0, Pawn merge1, bool wasPrisoner1, Pawn animalPawn) //TODO take reaction status into account 
         {
             _scratchList.Clear();
             _scratchList.AddRange(PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
                                              .Where(p => p != merge0 && p != merge1));
             //don't give the merged pawns thoughts about themselves 
 
-            HandleColonistReactions(merge0, animalPawn, wasPrisoner0, EventType.Merged, _scratchList);
-            HandleColonistReactions(merge1, animalPawn, wasPrisoner1, EventType.Merged, _scratchList);
+            HandleColonistReactions(merge0, animalPawn, wasPrisoner0 ? FormerHumanReactionStatus.Prisoner : FormerHumanReactionStatus.Colonist, EventType.Merged, _scratchList);
+            HandleColonistReactions(merge1, animalPawn, wasPrisoner1 ? FormerHumanReactionStatus.Prisoner : FormerHumanReactionStatus.Colonist, EventType.Merged, _scratchList);
 
 
             //need to handle relationships manually 
@@ -210,14 +211,15 @@ namespace Pawnmorph.Thoughts
         private static readonly List<Pawn> _scratchList = new List<Pawn>();
 
 
-        private static void HandleColonistReactions(Pawn original, Pawn transformedPawn, bool wasPrisoner, EventType type,
+        private static void HandleColonistReactions(Pawn original, Pawn transformedPawn, FormerHumanReactionStatus reactionStatus, EventType type,
                                                     IEnumerable<Pawn> pawns = null)
         {
             pawns = pawns
                  ?? PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
                                .Where(p => p != original); //use all colonists except the original pawn as the default 
             ThoughtDef defaultThought;
-            if (original.IsColonist || wasPrisoner)
+            bool wasPrisoner = reactionStatus == FormerHumanReactionStatus.Prisoner; 
+            if (reactionStatus != FormerHumanReactionStatus.Wild)
                 switch (type)
                 {
                     case EventType.Transformation:
@@ -280,4 +282,28 @@ namespace Pawnmorph.Thoughts
             //TODO handle bond animal reverted? 
         }
     }
+
+    /// <summary>
+    /// enum for tracking the original status of a transformed pawn for colonist reactions 
+    /// </summary>
+    public enum FormerHumanReactionStatus
+    {
+        /// <summary>
+        /// The original status of the former human is unknown 
+        /// </summary>
+        Wild,
+        /// <summary>
+        /// The original pawn was a colonist 
+        /// </summary>
+        Colonist,
+        /// <summary>
+        /// the original pawn was a prisoner 
+        /// </summary>
+        Prisoner,
+        /// <summary>
+        /// The original pawn was a guest 
+        /// </summary>
+        Guest
+    }
+
 }

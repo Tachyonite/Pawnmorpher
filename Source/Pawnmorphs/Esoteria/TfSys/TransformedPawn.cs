@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Thoughts;
 using RimWorld;
 using Verse;
 
@@ -190,6 +191,9 @@ namespace Pawnmorph.TfSys
         }
     }
 
+    
+    
+    
     /// <summary>
     ///     transformed pawn instance for a single original-animal pair
     /// </summary>
@@ -202,9 +206,9 @@ namespace Pawnmorph.TfSys
         public Pawn animal;
 
         /// <summary>
-        /// if the original pawn was a prisoner of the colony 
+        /// The reaction status
         /// </summary>
-        public bool originalWasPrisoner; 
+        public FormerHumanReactionStatus reactionStatus; 
 
         /// <summary>
         /// The faction responsible for turning this pawn into an animal 
@@ -259,10 +263,12 @@ namespace Pawnmorph.TfSys
             base.ExposeData();
             Scribe_Deep.Look(ref original, true, nameof(original));
             Scribe_References.Look(ref animal, nameof(animal), true);
-            Scribe_References.Look(ref factionResponsible, nameof(factionResponsible)); 
-
+            Scribe_References.Look(ref factionResponsible, nameof(factionResponsible));
+            Scribe_Values.Look(ref reactionStatus, nameof(reactionStatus)); 
         }
     }
+
+    
 
 
     /// <summary>

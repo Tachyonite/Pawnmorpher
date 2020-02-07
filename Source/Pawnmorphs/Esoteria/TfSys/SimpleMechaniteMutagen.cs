@@ -153,8 +153,10 @@ namespace Pawnmorph.TfSys
 
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
-            bool wasPrisoner = original.IsPrisonerOfColony;
-            ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner); //this needs to happen before MakeSapientAnimal because that removes relations 
+            var reactionStatus = original.GetFormerHumanReactionStatus();
+            bool wasPrisoner = reactionStatus == FormerHumanReactionStatus.Prisoner;
+
+            ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
             FormerHumanUtilities.MakeAnimalSapient(original, spawnedAnimal, Rand.Range(0.4f, 1)); //use a normal distribution? 
             var rFaction = request.factionResponsible ?? GetFactionResponsible(original); 
@@ -163,7 +165,7 @@ namespace Pawnmorph.TfSys
                 original = original,
                 animal = spawnedAnimal,
                 factionResponsible = rFaction,
-                originalWasPrisoner = wasPrisoner
+                reactionStatus = reactionStatus
             };
 
 
@@ -271,7 +273,7 @@ namespace Pawnmorph.TfSys
 
             spawned.Faction.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
 
-            ReactionsHelper.OnPawnReverted(spawned, animal);
+            ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus); 
 
 
             animal.Destroy();

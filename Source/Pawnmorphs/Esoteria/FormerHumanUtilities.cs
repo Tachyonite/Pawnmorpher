@@ -891,7 +891,7 @@ namespace Pawnmorph
             var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())//needed to handle merges correctly 
             {
-                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn, singleInst?.originalWasPrisoner ?? false);
+                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn, singleInst?.reactionStatus ?? FormerHumanReactionStatus.Wild);
             }
 
             //remove the original and destroy the pawns 
