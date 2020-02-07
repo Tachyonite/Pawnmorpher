@@ -162,7 +162,8 @@ namespace Pawnmorph.TfSys
             {
                 original = original,
                 animal = spawnedAnimal,
-                factionResponsible = rFaction
+                factionResponsible = rFaction,
+                originalWasPrisoner = wasPrisoner
             };
 
 

@@ -202,6 +202,11 @@ namespace Pawnmorph.TfSys
         public Pawn animal;
 
         /// <summary>
+        /// if the original pawn was a prisoner of the colony 
+        /// </summary>
+        public bool originalWasPrisoner; 
+
+        /// <summary>
         /// The faction responsible for turning this pawn into an animal 
         /// </summary>
         public Faction factionResponsible;

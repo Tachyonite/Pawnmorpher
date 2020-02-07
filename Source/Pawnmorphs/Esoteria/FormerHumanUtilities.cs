@@ -888,10 +888,10 @@ namespace Pawnmorph
 
             var loader = Find.World.GetComponent<PawnmorphGameComp>();
             var inst = loader.GetTransformedPawnContaining(pawn)?.First;
-
+            var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())//needed to handle merges correctly 
             {
-                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn);
+                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn, singleInst?.originalWasPrisoner ?? false);
             }
 
             //remove the original and destroy the pawns 
