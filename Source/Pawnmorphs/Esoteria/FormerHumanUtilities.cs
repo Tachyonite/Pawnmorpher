@@ -625,6 +625,16 @@ namespace Pawnmorph
                 return;
             }
 
+            //tame the animal if they are wild and related to a colonist
+            if (animal.Faction == null && animal.GetCorrectMap() != null)
+            {
+
+                bool relatedToColonist = animal.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true;
+                if (relatedToColonist)
+                {
+                    animal.SetFaction(Faction.OfPlayer); 
+                }
+            }
             animal.needs.AddOrRemoveNeedsAsAppropriate();
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
@@ -657,7 +667,6 @@ namespace Pawnmorph
                 animal.training.Train(training, null, true);
             }
 
-           
         }
 
         /// <summary>
