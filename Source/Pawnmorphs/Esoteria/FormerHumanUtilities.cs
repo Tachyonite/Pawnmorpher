@@ -80,7 +80,6 @@ namespace Pawnmorph
                 _randomNameGenerators.Add(factionDef.pawnNameMaker);
             }
 
-            Log.Message($"$$$loaded {_randomNameGenerators.Select(r => r.defName).Join(",")} for random name generation");
         }
 
         /// <summary>
