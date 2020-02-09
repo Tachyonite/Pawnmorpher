@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
+using Harmony;
 using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
@@ -54,6 +55,35 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString()); 
 
 
+        }
+
+        static bool IsTODOThought(ThoughtDef thoughtDef)
+        {
+            if (thoughtDef?.stages == null) return true;
+            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.label) || s.label.StartsWith("TODO") || s.label.StartsWith("!!!")))
+                return true;
+            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.description)
+                                        || s.description.StartsWith("TODO")
+                                        || s.description.StartsWith("!!!")))
+                return true;
+            return false; 
+        }
+
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        static void FindMissingMorphReactions()
+        {
+            List<MorphDef> missingMorphs = new List<MorphDef>();
+
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                var tfSettings = morphDef.transformSettings;
+                if (IsTODOThought(tfSettings?.transformationMemory) || IsTODOThought(tfSettings?.revertedMemory))
+                    missingMorphs.Add(morphDef); 
+            }
+
+            var msgText = missingMorphs.Select(m => m.defName).Join("\n");
+            Log.Message(msgText); 
         }
 
 
@@ -141,6 +171,8 @@ namespace Pawnmorph.DebugUtils
             else
                 Log.Message("no inconsistencies found");
         }
+
+
 
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]

@@ -38,6 +38,12 @@ namespace Pawnmorph.Thoughts
         public static ThoughtDef FriendMergedThought;
         public static ThoughtDef RivalMergedThought; 
 
-        
+
+        //default reactions 
+        public static ThoughtDef DefaultPermanentlyFeralReaction;
+        public static ThoughtDef DefaultRevertedPawnReaction;
+        public static ThoughtDef DefaultTransformationReaction;
+        public static ThoughtDef DefaultMergedThought; 
+
     }
 }

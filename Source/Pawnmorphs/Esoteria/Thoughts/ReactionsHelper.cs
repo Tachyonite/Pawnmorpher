@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Thoughts
@@ -217,40 +218,52 @@ namespace Pawnmorph.Thoughts
             pawns = pawns
                  ?? PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
                                .Where(p => p != original); //use all colonists except the original pawn as the default 
+
+            
+
             ThoughtDef defaultThought;
-            bool wasPrisoner = reactionStatus == FormerHumanReactionStatus.Prisoner; 
-            if (reactionStatus != FormerHumanReactionStatus.Wild)
-                switch (type)
-                {
-                    case EventType.Transformation:
-                        defaultThought = wasPrisoner
-                            ? ThoughtDefOfs.PrisonerTransformedThought
-                            : ThoughtDefOfs.ColonistTransformedThought;
-                        break;
-                    case EventType.Reverted:
-                        defaultThought = wasPrisoner ? null : ThoughtDefOfs.ColonistRevertedThought;
-                        break;
-                    case EventType.PermanentlyFeral:
-                        defaultThought = wasPrisoner ? null : ThoughtDefOfs.ColonistPermFeralThought;
-                        break;
-                    case EventType.Merged:
-                        defaultThought = wasPrisoner ? ThoughtDefOfs.PrisonerMergedThought : ThoughtDefOfs.ColonistMergedThought;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(type), type, null);
-                }
-            else
-                defaultThought = null;
+            switch (type)
+            {
+                case EventType.Transformation:
+                    defaultThought = ThoughtDefOfs.DefaultTransformationReaction;
+                    break;
+                case EventType.Reverted:
+                    defaultThought = ThoughtDefOfs.DefaultRevertedPawnReaction;
+                    break;
+                case EventType.PermanentlyFeral:
+                    defaultThought = ThoughtDefOfs.DefaultPermanentlyFeralReaction;
+                    break;
+                case EventType.Merged:
+                    defaultThought = ThoughtDefOfs.DefaultMergedThought;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+
+            int defaultStage = (int) reactionStatus;
+            defaultStage = Mathf.Min(defaultStage, (defaultThought?.stages?.Count - 1) ?? 0); 
 
 
             foreach (Pawn reactor in pawns)
             {
                 ThoughtDef opinionThought = GetOpinionThought(original, reactor, type);
-                ThoughtDef def = opinionThought ?? defaultThought;
+                ThoughtDef def;
+                if (opinionThought != null)
+                {
+                    def = opinionThought;
+                    defaultStage = 0; 
+                }
+                else
+                {
+                    def = defaultThought; 
+                }
 
                 if (def == null) continue;
                 if (ThoughtUtility.CanGetThought(reactor, def))
-                    reactor.TryGainMemory(def);
+                {
+                    var memory = ThoughtMaker.MakeThought(def, defaultStage);
+                    reactor.TryGainMemory(memory);
+                }
             }
         }
 

@@ -119,7 +119,7 @@ namespace Pawnmorph.TfSys
         protected override TransformedPawnSingle TransformImpl(TransformationRequest request)
         {
             Pawn original = request.originals[0];
-
+            var reactionStatus = original.GetFormerHumanReactionStatus();
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
 
             Faction faction;
@@ -153,8 +153,6 @@ namespace Pawnmorph.TfSys
 
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
-            var reactionStatus = original.GetFormerHumanReactionStatus();
-            bool wasPrisoner = reactionStatus == FormerHumanReactionStatus.Prisoner;
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
@@ -192,7 +190,7 @@ namespace Pawnmorph.TfSys
             //notify the faction that their member has been transformed 
             oFaction.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
-            if(original.Faction.IsPlayer || wasPrisoner) //only send the letter for colonists and prisoners 
+            if(reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
                 SendLetter(request, original, spawnedAnimal);
 
             if (original.Spawned)
