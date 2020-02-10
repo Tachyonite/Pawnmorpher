@@ -1,19 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThoughtDef>
-    <defName>ColonistPermFeralThought</defName>
-    <durationDays>10</durationDays>
-	  <nullifyingTraits>
-		  <li>Psychopath</li>
-	  </nullifyingTraits>
-    <stages>
-      <li>
-        <label>colonist permanently feral</label>
-        <description>We knew it was coming...but now they can never be human again.</description>
-        <baseMoodEffect>-2</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
+  
   <ThoughtDef>
     <defName>FriendPermFeralThought</defName>
     <durationDays>10</durationDays>

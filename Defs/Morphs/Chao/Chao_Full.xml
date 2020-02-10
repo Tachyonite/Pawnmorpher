@@ -73,6 +73,7 @@
 						<blackListCategories>
 							<li>Powerful</li>
 						</blackListCategories>
+						<mtbDays>0.067</mtbDays> <!-- 15 mutations per day base -->
 					</li>
 				</hediffGivers>
 			</li>

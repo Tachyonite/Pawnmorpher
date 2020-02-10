@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
 using Verse;
 using RimWorld;
@@ -32,10 +33,10 @@ namespace Pawnmorph
         {
             var loader = Find.World.GetComponent<PawnmorphGameComp>();
             var inst = loader.GetTransformedPawnContaining(pawn)?.First;
-
+            var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution eventually 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
             {
-                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn);
+                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn, singleInst?.reactionStatus ?? FormerHumanReactionStatus.Wild);
             }
 
             //remove the original and destroy the pawns 

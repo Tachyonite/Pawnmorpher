@@ -283,7 +283,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFeatheredLimb</defName>
 		<label>feathers</label>
-		<description>Rows of feathers have sprouted over [PAWN_nameDef]'s arm, keeping in some warmth...but no, it doesn't let them fly.</description>
+		<description>Rows of feathers have sprouted over this limb, keeping in some warmth...</description>
 		<classInfluence>Avian</classInfluence>
 		<parts>
 			<li>Torso</li>

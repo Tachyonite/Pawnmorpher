@@ -80,7 +80,6 @@ namespace Pawnmorph
                 _randomNameGenerators.Add(factionDef.pawnNameMaker);
             }
 
-            Log.Message($"$$$loaded {_randomNameGenerators.Select(r => r.defName).Join(",")} for random name generation");
         }
 
         /// <summary>
@@ -625,6 +624,16 @@ namespace Pawnmorph
                 return;
             }
 
+            //tame the animal if they are wild and related to a colonist
+            if (animal.Faction == null && animal.GetCorrectMap() != null)
+            {
+
+                bool relatedToColonist = animal.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true;
+                if (relatedToColonist)
+                {
+                    animal.SetFaction(Faction.OfPlayer); 
+                }
+            }
             animal.needs.AddOrRemoveNeedsAsAppropriate();
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
@@ -657,7 +666,6 @@ namespace Pawnmorph
                 animal.training.Train(training, null, true);
             }
 
-           
         }
 
         /// <summary>
@@ -888,10 +896,10 @@ namespace Pawnmorph
 
             var loader = Find.World.GetComponent<PawnmorphGameComp>();
             var inst = loader.GetTransformedPawnContaining(pawn)?.First;
-
+            var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())//needed to handle merges correctly 
             {
-                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn);
+                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn, singleInst?.reactionStatus ?? FormerHumanReactionStatus.Wild);
             }
 
             //remove the original and destroy the pawns 

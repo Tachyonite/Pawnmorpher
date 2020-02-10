@@ -22,6 +22,29 @@ namespace Pawnmorph.Hediffs
         private float _meanPerDay = BASE_MEAN;
 
 
+        /// <summary>
+        /// Gets a value indicating whether this instance should be removed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance should be removed; otherwise, <c>false</c>.
+        /// </value>
+        public override bool ShouldRemove => base.ShouldRemove || MutationStatValue <= 0;
+
+        private float? _statCache;
+
+        float MutationStatValue
+        {
+            get
+            {
+                if (_statCache == null) //getting the stat value is expensive so save the result 
+                {
+                    _statCache = pawn.GetStatValue(PMStatDefOf.MutagenSensitivity); 
+                }
+
+                return _statCache.Value; 
+            }
+        }
+
 
         /// <summary>
         /// the expected number of mutations to happen in a single day 
@@ -48,9 +71,9 @@ namespace Pawnmorph.Hediffs
             base.Tick();
 
             if (pawn.IsHashIntervalTick(200))
-            {
-                float statDef = pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
-                _meanPerDay = GetBaseMutationRate(CurStage) * statDef; 
+            { 
+                _statCache = pawn.GetStatValue(PMStatDefOf.MutagenSensitivity); //recalculate the stat value every so often 
+                _meanPerDay = GetBaseMutationRate(CurStage) * _statCache.Value; 
             }
         }
 

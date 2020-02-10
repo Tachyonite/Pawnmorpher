@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
+using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
@@ -24,6 +25,22 @@ namespace Pawnmorph
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
         private static readonly PawnKindDef[] PossiblePawnKinds;
 
+
+        /// <summary>
+        /// Gets the former human reaction status of the given original pawn 
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <returns></returns>
+        public static FormerHumanReactionStatus GetFormerHumanReactionStatus([NotNull] this Pawn originalPawn)
+        {
+            if (originalPawn.IsColonist)
+                return FormerHumanReactionStatus.Colonist;
+            if (originalPawn.IsPrisonerOfColony)
+                return FormerHumanReactionStatus.Prisoner;
+            if (originalPawn.guest?.HostFaction == Faction.OfPlayer)
+                return FormerHumanReactionStatus.Guest;
+            return FormerHumanReactionStatus.Wild; 
+        }
 
         /// <summary>
         /// Gets all pawn transformers in this stage 
