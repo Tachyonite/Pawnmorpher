@@ -410,51 +410,6 @@
 					</value>				
 				</li>
 				
-				<!-- Add the morph to the serums -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphSheepTF</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomProductionTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphSheepTF</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomDomesticTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphSheepTF</li>
-					</value>
-				</li>
-				
-				<!-- Add the injector to the traders -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraderKindDef[defName="PawnmorpherTrader"]/stockGenerators</xpath>
-					<value>
-						<li Class="StockGenerator_SingleDef">
-							<thingDef>SheepTransformer</thingDef>
-							<countRange>
-								<min>-3</min>
-								<max>1</max>
-							</countRange>
-						</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraderKindDef[defName="PawnmorpherTraderOrbital"]/stockGenerators</xpath>
-					<value>
-						<li Class="StockGenerator_SingleDef">
-							<thingDef>SheepTransformer</thingDef>
-							<countRange>
-								<min>-3</min>
-								<max>1</max>
-							</countRange>
-						</li>
-					</value>
-				</li>
 				
 				<!-- Add the animal to the mutagun effect -->
 				<li Class="PatchOperationAdd">

@@ -350,63 +350,6 @@
 					</value>
 				</li>
 
-				<!-- Add the morph to the serums -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomAridTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomTemperateTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomTropicalTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RandomDomesticTransformer"]/ingestible/outcomeDoers/li/hediffDefs</xpath>
-					<value>
-						<li>PawnmorphHorseTF</li>
-					</value>
-				</li>
-
-				<!-- Add the injector to the traders -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraderKindDef[defName="PawnmorpherTrader"]/stockGenerators</xpath>
-					<value>
-						<li Class="StockGenerator_SingleDef">
-							<thingDef>HorseTransformer</thingDef>
-							<countRange>
-								<min>-3</min>
-								<max>1</max>
-							</countRange>
-						</li>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraderKindDef[defName="PawnmorpherTraderOrbital"]/stockGenerators</xpath>
-					<value>
-						<li Class="StockGenerator_SingleDef">
-							<thingDef>HorseTransformer</thingDef>
-							<countRange>
-								<min>-3</min>
-								<max>1</max>
-							</countRange>
-						</li>
-					</value>
-				</li>
 			</operations>
 		</match>
 	</Operation>
