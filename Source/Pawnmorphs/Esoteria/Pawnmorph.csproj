@@ -178,6 +178,7 @@
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
+    <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="ModInitializationException.cs" />
