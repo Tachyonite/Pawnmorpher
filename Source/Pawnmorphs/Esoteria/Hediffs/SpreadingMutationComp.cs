@@ -18,6 +18,23 @@ namespace Pawnmorph.Hediffs
 
         private const int RECHECK_PART_PERIOD = 1000;
         private int _doneTick = 0;
+
+        private float? _statAdjust;
+
+        float StatAdjust
+        {
+            get
+            {
+                if (_statAdjust == null)
+                {
+                    _statAdjust = Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity); //have the mutagen sensitivity value affect the spread rate 
+                }
+
+                return _statAdjust.Value; 
+            }
+        }
+
+        private const float EPSILON = 0.001f; 
         /// <summary>called after its parent has been updated.</summary>
         /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
@@ -31,7 +48,13 @@ namespace Pawnmorph.Hediffs
                 return;
             }
 
-            if (!Rand.MTBEventOccurs(Props.mtb, 60000f, 30f)) return;
+            if (Pawn.IsHashIntervalTick(60))
+                _statAdjust = null; //only check one every second or so, getting the stat value is expensive
+
+            if(StatAdjust <= EPSILON) return; //prevent division by zero 
+
+            var mtb = Props.mtb / StatAdjust; //have the mutagen sensitivity stat affect the rate of spread  
+            if (!Rand.MTBEventOccurs(mtb, 60000f, 30f)) return;
 
 
             if (TryInfectPart(parent.Part, false)) return; //try infecting downward first 
