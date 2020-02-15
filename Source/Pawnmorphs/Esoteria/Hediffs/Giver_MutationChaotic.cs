@@ -122,10 +122,15 @@ namespace Pawnmorph.Hediffs
         /// <param name="mutagen">The mutagen.</param>
         public void TryApply(Pawn pawn, Hediff cause, MutagenDef mutagen)
         {
-            var mut = GetRandomMutation(pawn); //grab a random mutation 
-            var mPart = mut.parts?.Count ?? 0;
+            MutationDef mut = GetRandomMutation(pawn); //grab a random mutation 
+            int mPart = mut.parts?.Count ?? 0;
 
-            int maxCount = mPart == 0 ? 0 : Rand.Range(1, mPart+1); 
+            int maxCount;
+            if (mPart == 0) maxCount = 0;
+            else
+                maxCount = GetMaxCount(pawn, mut.parts);
+
+
             if (MutationUtilities.AddMutation(pawn, mut, maxCount))
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
@@ -142,7 +147,20 @@ namespace Pawnmorph.Hediffs
 
             }
         }
-        
+
+        private int GetMaxCount([NotNull] Pawn pawn, [NotNull] List<BodyPartDef> mutParts)
+        {
+            var bDef = pawn.RaceProps.body;
+            int counter = 0;
+            foreach (BodyPartRecord bodyPartRecord in bDef.AllParts)
+            {
+                if(bodyPartRecord.IsMissingAtAllIn(pawn)) continue;
+                if (mutParts.Contains(bodyPartRecord.def)) counter++;  //count all parts that can be added 
+            }
+
+            return counter; 
+        }
+
         private const int MAX_TRIES = 10; 
 
         private MutationDef GetRandomMutation([NotNull] Pawn pawn)
