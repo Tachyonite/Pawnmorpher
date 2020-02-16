@@ -19,7 +19,7 @@
             </li>
             <li>
                 <label>changed</label>
-                <description>While this is great, it'd be fun to try the full experience...right? Or maybe I'm just not thinking clearly now...</description>
+                <description>While this is great, it'd be fun to try the full experience...right? Or maybe I'm not thinking clearly now...</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>

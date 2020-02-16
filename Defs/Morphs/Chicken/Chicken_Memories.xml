@@ -4,17 +4,17 @@
         <stages>
             <li>
                 <label>morphed</label>
-                <description>I'm... covered in feathers... OUCH! What!? Did I just lay an *egg*! Oh man!</description>
+                <description>I'm... covered in feathers... OUCH! What!? Did I just lay an *egg*! Oh no...</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
               <label>morphed</label>
-                <description>I'm all feathery, and these wings are nea- BWAK! What the- An egg! AWESOME</description>
+                <description>I'm all feathery, and these wings are nea- BWAK! What the- An egg! Neat!</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
               <label>morphed</label>
-                <description>Oh man, these feathers are disgusting, and the talons look fr- BWAK! What did! Oh no... please tell me that's not an egg...</description>
+                <description>Oh man, these feathers are disgusting, and the talons look fr- BWAK! What the -- oh no... please tell me that's not an egg...</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>

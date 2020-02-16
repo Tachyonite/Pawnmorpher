@@ -12,7 +12,7 @@
         <stages>
             <li>
                 <label>transformed wild pawn</label>
-                <description>TODO</description>
+                <description>I'm not sure whether this is better or worse for them, at least they're better equipped to survive...</description>
             </li>
             <li>
                 <label>transformed colonist</label>
@@ -21,12 +21,13 @@
             </li>
             <li>
                 <label>transformed prisoner</label>
-                <description>We turned a captive into an animal. I know they're our prisoner, but it just seems wrong.</description>
+                <description>We turned a captive into an animal. I know they're our prisoner, but it seems wrong.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>transformed guest</label>
-                <description>TODO</description>
+                <description>Someone came to our colony and we betrayed that trust...</description>
+				<baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -36,7 +37,7 @@
         <stages>
             <li>
                 <label>wild pawn merged</label>
-                <description>TODO</description>
+                <description>I really don't think they appreciated that at all.</description>
             </li>
             <li>
 				<label>colonist merged</label>
@@ -46,13 +47,13 @@
             </li>
             <li>
 				<label>prisoner merged</label>
-				<description>We did mad science on a captive. It just feels wrong to make them a monster...</description>
+				<description>We did mad science on a captive. It's wrong to make them a monster...</description>
 				<baseMoodEffect>-4</baseMoodEffect>
 
             </li>
             <li>
                 <label>guest merged</label>
-                <description>TODO</description>
+                <description>Someone came to our colony for hospitality, and now they're an abomination...</description>
                 <baseMoodEffect>-8</baseMoodEffect>
             </li>
         </stages>
@@ -64,7 +65,7 @@
         <stages>
             <li>
                 <label>wild pawn reverted</label>
-                <description>TODO</description>
+                <description>A wild person is human again, we did a good deed.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
@@ -74,12 +75,12 @@
             </li>
             <li>
                 <label>prisoner reverted</label>
-                <description>TODO</description>
+                <description>At least it can be undone.</description>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>guest reverted</label>
-                <description>TODO</description>
+                <description>A guest is human again, hopefully they'll trust us again eventually.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
         </stages>
@@ -90,7 +91,7 @@
         <stages>
             <li>
                 <label>wild pawn permanently feral</label>
-                <description>TODO</description>
+                <description>Wild forever more, I suppose.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
@@ -100,12 +101,12 @@
             </li>
             <li>
                 <label>prisoner permanently feral</label>
-                <description>TODO</description>
+                <description>If you do something like that, did we really expect to turn them back?</description>
                 <visible>true</visible>
             </li>
             <li>
                 <label>guest permanently feral</label>
-                <description>TODO</description>
+                <description>Uh, whoops...</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
