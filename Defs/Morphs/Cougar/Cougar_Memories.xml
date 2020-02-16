@@ -9,7 +9,7 @@
             </li>
             <li>
                 <label>changed</label>
-                <description>Cat? I'm a kitty cat! And I dance dance dance, and I dance dance dance...</description>
+                <description>I'm so sleek and svelte, this is fantastic!</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
@@ -45,7 +45,7 @@
             </li>
             <li>
                 <label>reverted</label>
-                <description>I'm so sleek and svelte, this is fantastic!</description>
+                <description>This is the opposite of what I wanted.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
