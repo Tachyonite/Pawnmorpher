@@ -15,12 +15,10 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using Debug = System.Diagnostics.Debug;
 
 #pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
 {
-    [HasDebugOutput]
     public static class DebugLogUtils
     {
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
@@ -39,75 +37,7 @@ namespace Pawnmorph.DebugUtils
             if (!condition) Log.Error($"assertion failed:{message}");
         }
 
-
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
-        static void ListAllMutationsPerMorph()
-        {
-            StringBuilder builder = new StringBuilder();
-
-            foreach (MorphDef morphDef in MorphDef.AllDefs)
-            {
-                builder.AppendLine(morphDef.defName);
-
-                builder.AppendLine(morphDef.AllAssociatedMutations.Select(m => m.defName).Join(","));
-            }
-
-            Log.Message(builder.ToString()); 
-
-
-        }
-
-        static bool IsTODOThought(ThoughtDef thoughtDef)
-        {
-            if (thoughtDef?.stages == null) return true;
-            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.label) || s.label.StartsWith("TODO") || s.label.StartsWith("!!!")))
-                return true;
-            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.description)
-                                        || s.description.StartsWith("TODO")
-                                        || s.description.StartsWith("!!!")))
-                return true;
-            return false; 
-        }
-
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
-        static void FindMissingMorphReactions()
-        {
-            List<MorphDef> missingMorphs = new List<MorphDef>();
-
-
-            foreach (MorphDef morphDef in MorphDef.AllDefs)
-            {
-                var tfSettings = morphDef.transformSettings;
-                if (IsTODOThought(tfSettings?.transformationMemory) || IsTODOThought(tfSettings?.revertedMemory))
-                    missingMorphs.Add(morphDef); 
-            }
-
-            var msgText = missingMorphs.Select(m => m.defName).Join("\n");
-            Log.Message(msgText); 
-        }
-
-
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
-        static void FindMutaniteCommonalityOnMap()
-        {
-
-            var mineablesOnMap = Find.CurrentMap.listerThings.AllThings
-                                     .Where(t => t.def.building?.mineableThing != null)
-                                     .ToList();
-            var mutaniteOnMap = mineablesOnMap.Where(t => t.def.defName == "Mutonite")
-                                              .ToList();
-            var chunkCat = ThingCategoryDefOf.Chunks;
-            
-            var totalOres = mineablesOnMap.Where(t => !chunkCat.ContainedInThisOrDescendant(t.def.building.mineableThing)).ToList();
-
-            Log.Message($"Mutonite:{mutaniteOnMap.Count}\tOres:{totalOres.Count}\tAll Chunks:{mineablesOnMap.Count}");
-
-
-
-        }
-
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void CheckBodyHediffGraphics()
         {
             IEnumerable<HediffGiver_Mutation> GetMutationGivers(IEnumerable<HediffStage> stages)
@@ -173,9 +103,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindAllTODOThoughts()
         {
             var builder = new StringBuilder();
@@ -210,8 +138,7 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString());
         }
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindMissingMorphDescriptions()
         {
             List<MorphDef> morphs = DefDatabase<MorphDef>
@@ -230,8 +157,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindMissingMutationDescriptions()
         {
             bool SelectionFunc(HediffDef def)
@@ -248,29 +174,11 @@ namespace Pawnmorph.DebugUtils
             Log.Message(string.IsNullOrEmpty(str) ? "no parts with missing description" : str);
         }
 
-        struct HediffStageInfo
-        {
-            public string defName;
-            public int stageIndex;
-            public float minSeverity;
-            public float severityPerDay;
 
-            /// <summary>Returns the fully qualified type name of this instance.</summary>
-            /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
-            public override string ToString()
-            {
-                return $"{defName},{stageIndex},{minSeverity},{severityPerDay}"; 
-            }
-
-            public static string Header => "defName,stageIndex,minSeverity,severityPerDay"; 
-        }
-
-
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void GetMutationsWithStages()
         {
-            var allMutations = MutationDef.AllMutations.ToList(); 
+            List<MutationDef> allMutations = MutationDef.AllMutations.ToList();
 
 
             if (allMutations.Count == 0)
@@ -279,41 +187,39 @@ namespace Pawnmorph.DebugUtils
                 return;
             }
 
-            List<HediffStageInfo> infoLst = new List<HediffStageInfo>(); 
-            
-            
+            var infoLst = new List<HediffStageInfo>();
 
-            foreach (var mutation in allMutations)
+
+            foreach (MutationDef mutation in allMutations)
             {
                 List<HediffStage> stages = mutation.stages;
-                if(stages == null) continue;
+                if (stages == null) continue;
                 float severityPerDay = mutation.CompProps<CompProperties_MutationSeverityAdjust>()?.severityPerDay ?? 0;
 
-                if(severityPerDay <= 0) 
+                if (severityPerDay <= 0)
                     continue; //productive mutations don't progress like the others 
 
 
                 for (var index = 0; index < stages.Count; index++)
                 {
                     HediffStage hediffStage = stages[index];
-                    var stageInfo = new HediffStageInfo()
+                    var stageInfo = new HediffStageInfo
                     {
                         defName = mutation.defName,
                         minSeverity = hediffStage.minSeverity,
                         severityPerDay = severityPerDay,
                         stageIndex = index
                     };
-                    infoLst.Add(stageInfo); 
+                    infoLst.Add(stageInfo);
                 }
             }
 
-            var outStr = infoLst.Select(s => s.ToString()).Join("\n");
+            string outStr = infoLst.Select(s => s.ToString()).Join("\n");
             Log.Message($"Mutation Stage Info:\n{HediffStageInfo.Header}\n{outStr}");
         }
 
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void GetSpreadingMutationStats()
         {
             FieldInfo isSkinCoveredF =
@@ -377,8 +283,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void GetThoughtlessMutations()
         {
             IEnumerable<VTuple<HediffDef, HediffGiver_Mutation>> SelectionFunc(HediffDef def)
@@ -420,8 +325,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void ListHybridStateOffset()
         {
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
@@ -449,8 +353,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void LogMissingMutationTales()
         {
             bool
@@ -509,9 +412,7 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        [ModeRestrictionPlay]
+        [DebugOutput(MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         public static void OpenActionMenu()
         {
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
@@ -526,8 +427,41 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        private static void FindMissingMorphReactions()
+        {
+            var missingMorphs = new List<MorphDef>();
+
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                MorphDef.TransformSettings tfSettings = morphDef.transformSettings;
+                if (IsTODOThought(tfSettings?.transformationMemory) || IsTODOThought(tfSettings?.revertedMemory))
+                    missingMorphs.Add(morphDef);
+            }
+
+            string msgText = missingMorphs.Select(m => m.defName).Join("\n");
+            Log.Message(msgText);
+        }
+
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        private static void FindMutaniteCommonalityOnMap()
+        {
+            List<Thing> mineablesOnMap = Find.CurrentMap.listerThings.AllThings
+                                             .Where(t => t.def.building?.mineableThing != null)
+                                             .ToList();
+            List<Thing> mutaniteOnMap = mineablesOnMap.Where(t => t.def.defName == "Mutonite")
+                                                      .ToList();
+            ThingCategoryDef chunkCat = ThingCategoryDefOf.Chunks;
+
+            List<Thing> totalOres = mineablesOnMap.Where(t => !chunkCat.ContainedInThisOrDescendant(t.def.building.mineableThing))
+                                                  .ToList();
+
+            Log.Message($"Mutonite:{mutaniteOnMap.Count}\tOres:{totalOres.Count}\tAll Chunks:{mineablesOnMap.Count}");
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void GetNonMutationMutations()
         {
             var builder = new StringBuilder();
@@ -543,8 +477,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void GetOldMorphTfDefs()
         {
             var builder = new StringBuilder();
@@ -563,9 +496,7 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString());
         }
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
-        [ModeRestrictionPlay]
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         private static void GetPawnsNewInfluence()
         {
             var wDict = new Dictionary<AnimalClassBase, float>();
@@ -595,8 +526,37 @@ namespace Pawnmorph.DebugUtils
             Log.Message(msg);
         }
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        private static bool IsTODOThought(ThoughtDef thoughtDef)
+        {
+            if (thoughtDef?.stages == null) return true;
+            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.label)
+                                        || s.label.StartsWith("TODO")
+                                        || s.label.StartsWith("!!!")))
+                return true;
+            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.description)
+                                        || s.description.StartsWith("TODO")
+                                        || s.description.StartsWith("!!!")))
+                return true;
+            return false;
+        }
+
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        private static void ListAllMutationsPerMorph()
+        {
+            var builder = new StringBuilder();
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                builder.AppendLine(morphDef.defName);
+
+                builder.AppendLine(morphDef.AllAssociatedMutations.Select(m => m.defName).Join(","));
+            }
+
+            Log.Message(builder.ToString());
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         private static void ListAllSpreadableParts()
         {
             BodyDef bDef = BodyDefOf.Human;
@@ -609,8 +569,7 @@ namespace Pawnmorph.DebugUtils
             Log.Message(sBuilder.ToString());
         }
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
+        [DebugOutput(MAIN_CATEGORY_NAME, true)]
         private static void ListMutationsInMorphs()
         {
             var builder = new StringBuilder();
@@ -625,8 +584,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(MAIN_CATEGORY_NAME, true)]
         private static void LogMissingMutationStages()
         {
             var builder = new StringBuilder();
@@ -663,15 +621,13 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString());
         }
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void MaximumMutationPointsForHumans()
         {
             Log.Message(MorphUtilities.MaxHumanInfluence.ToString());
         }
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(MAIN_CATEGORY_NAME)]
         [UsedImplicitly]
         private static void PrintGraphVizAnimalTree()
         {
@@ -684,6 +640,23 @@ namespace Pawnmorph.DebugUtils
             BuildGraphvizTree(AnimalClassDefOf.Animal, builder);
             builder.AppendLine("}");
             Log.Message(builder.ToString());
+        }
+
+        private struct HediffStageInfo
+        {
+            public string defName;
+            public int stageIndex;
+            public float minSeverity;
+            public float severityPerDay;
+
+            public static string Header => "defName,stageIndex,minSeverity,severityPerDay";
+
+            /// <summary>Returns the fully qualified type name of this instance.</summary>
+            /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
+            public override string ToString()
+            {
+                return $"{defName},{stageIndex},{minSeverity},{severityPerDay}";
+            }
         }
     }
 }
