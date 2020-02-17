@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -35,6 +36,11 @@ namespace Pawnmorph.Hediffs
         /// this should be in [0,1]
         public float stopChance;
 
+        /// <summary>
+        /// memory to add when this stage is entered 
+        /// </summary>
+        public ThoughtDef memory; 
+
         string IDescriptiveStage.DescriptionOverride => description;
         string IDescriptiveStage.LabelOverride => labelOverride;
 
@@ -48,6 +54,11 @@ namespace Pawnmorph.Hediffs
                 {
                     aspectGiver.TryGiveAspects(hediff.pawn); 
                 }
+            }
+
+            if (memory != null)
+            {
+                hediff.pawn?.TryGainMemory(memory); 
             }
         }
     }
