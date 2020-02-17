@@ -4,22 +4,22 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>all this fur is making me so hot *pants*</description>
+                <description>All this fur is making me so hot...I almost need to start panting.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
-                <description>everything smells so good now!</description>
+                <description>Everything smells so good now!</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
-                <description>this fur is horrible, and all these smells are overwhelming</description>
+                <description>This fur is horrible, and all these smells are overwhelming</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
-                <description>I love this fur and all these smells ... I want to go even further</description>
+                <description>I love this fur and all these smells, I want to go even further!</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
         </stages>
@@ -30,17 +30,17 @@
         <stages>
             <li>
                 <label>reverted</label>
-                <description>no more shedding or panting!</description>
+                <description>No more shedding or panting!</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
-                <description>everything smells so dull now</description>
+                <description>Everything smells so dull now...</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
-                <description>everything smells normal again, and the urge to howl is gone!</description>
+                <description>Everything smells normal again, and the urge to howl is gone!</description>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
