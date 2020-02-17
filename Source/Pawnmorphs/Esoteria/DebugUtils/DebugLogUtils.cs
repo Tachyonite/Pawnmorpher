@@ -1,13 +1,13 @@
 ﻿// DebugLogUtils.cs created by Iron Wolf for Pawnmorph on 09/23/2019 7:54 AM
 // last updated 09/27/2019  8:00 AM
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
-using Harmony;
 using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
@@ -479,9 +479,9 @@ namespace Pawnmorph.DebugUtils
 
             IEnumerable<IGrouping<HediffDef, HediffDef>> missingGivers = DefDatabase<HediffDef>.AllDefs.Where(SelectionFunc)
                                                                                                .SelectMany(GetMissing)
-                                                                                               .GroupBy(tup => tup.Second.hediff, //group by the part that needs a tale  
+                                                                                               .GroupBy(tup => tup.Item2.hediff, //group by the part that needs a tale  
                                                                                                         tup => tup
-                                                                                                           .First); //and select the morph tfs their givers are found 
+                                                                                                           .Item1); //and select the morph tfs their givers are found 
             var builder = new StringBuilder();
 
             var missingLst = new HashSet<HediffDef>();

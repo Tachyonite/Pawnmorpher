@@ -2,7 +2,7 @@
 // last updated 12/02/2019  7:45 AM
 
 using System.Linq;
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;

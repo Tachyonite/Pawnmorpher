@@ -238,9 +238,9 @@ namespace Pawnmorph.TfSys
 
             if (status != null)
             {
-                if (status.Second != TransformedStatus.Transformed) return false;
+                if (status.Item2 != TransformedStatus.Transformed) return false;
 
-                if (status.First is MergedPawns merged)
+                if (status.Item1 is MergedPawns merged)
                 {
                     if (merged.mutagenDef != def) return false;
 

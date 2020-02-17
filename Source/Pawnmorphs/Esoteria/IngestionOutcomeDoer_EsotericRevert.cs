@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
@@ -31,7 +32,7 @@ namespace Pawnmorph
 
                 if (mutagenDef.MutagenCached.TryRevert(pawn))
                 {
-                    TransformedPawn inst = tuple?.First;
+                    TransformedPawn inst = tuple?.Item1;
                     if (inst != null) comp.RemoveInstance(inst);
 
                     return;

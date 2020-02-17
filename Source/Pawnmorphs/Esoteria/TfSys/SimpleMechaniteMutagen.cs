@@ -39,8 +39,8 @@ namespace Pawnmorph.TfSys
             Tuple<TransformedPawn, TransformedStatus> status = GameComp.GetTransformedPawnContaining(transformedPawn);
             if (status != null)
             {
-                if (status.Second != TransformedStatus.Transformed) return false;
-                if (status.First is TransformedPawnSingle inst)
+                if (status.Item2 != TransformedStatus.Transformed) return false;
+                if (status.Item1 is TransformedPawnSingle inst)
                     if (TryRevertImpl(inst))
                     {
                         GameComp.RemoveInstance(inst);

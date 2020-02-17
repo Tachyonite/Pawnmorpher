@@ -879,7 +879,7 @@ namespace Pawnmorph
 
             //transfer relationships back if possible 
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-            var oPawn = gComp.GetTransformedPawnContaining(pawn)?.First?.OriginalPawns.FirstOrDefault();
+            var oPawn = gComp.GetTransformedPawnContaining(pawn)?.Item1?.OriginalPawns.FirstOrDefault();
             if (oPawn == pawn)
             {
                 oPawn = null; 
@@ -895,7 +895,7 @@ namespace Pawnmorph
             pawn.health.RemoveHediff(fHediff); 
 
             var loader = Find.World.GetComponent<PawnmorphGameComp>();
-            var inst = loader.GetTransformedPawnContaining(pawn)?.First;
+            var inst = loader.GetTransformedPawnContaining(pawn)?.Item1;
             var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())//needed to handle merges correctly 
             {

@@ -1,7 +1,7 @@
 ﻿// PlantPatches.cs modified by Iron Wolf for Pawnmorph on 12/31/2019 3:25 PM
 // last updated 12/31/2019  3:25 PM
 
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;
