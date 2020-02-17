@@ -39,20 +39,12 @@
       <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="0MultiplayerAPI, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Assemblies\0MultiplayerAPI.dll</HintPath>
-    </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HugsLib">
-      <HintPath>..\..\Dependencies\HugsLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

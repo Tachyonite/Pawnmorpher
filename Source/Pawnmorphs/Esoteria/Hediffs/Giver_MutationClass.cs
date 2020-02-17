@@ -2,10 +2,9 @@
 // last updated 01/12/2020  1:47 PM
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Multiplayer.API;
+//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -46,7 +45,7 @@ namespace Pawnmorph.Hediffs
         {
             if (!animalClass.GetAllMutationIn().Any()) return;
 
-            if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
+            //if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
 
             if (Rand.MTBEventOccurs(mtbDays, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
@@ -54,7 +53,7 @@ namespace Pawnmorph.Hediffs
                 TryApply(pawn, cause, mutagen);
             }
 
-            if (MP.IsInMultiplayer) Rand.PopState();
+            //if (MP.IsInMultiplayer) Rand.PopState();
         }
 
 

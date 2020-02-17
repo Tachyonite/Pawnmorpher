@@ -1,11 +1,8 @@
 ﻿// MutagenicBuildup.cs modified by Iron Wolf for Pawnmorph on 08/29/2019 8:27 AM
 // last updated 08/29/2019  8:27 AM
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
-using Multiplayer.API;
+
+//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
-using HugsLib.Utils;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
@@ -133,7 +133,7 @@ namespace Pawnmorph.DebugUtils
                 }
             }
 
-            builder.AppendLine(defNames.Distinct().Join("\n"));
+            builder.AppendLine(defNames.Distinct().Join(delimiter: "\n"));
 
             Log.Message(builder.ToString());
         }
@@ -214,7 +214,7 @@ namespace Pawnmorph.DebugUtils
                 }
             }
 
-            string outStr = infoLst.Select(s => s.ToString()).Join("\n");
+            string outStr = infoLst.Select(s => s.ToString()).Join(delimiter:"\n");
             Log.Message($"Mutation Stage Info:\n{HediffStageInfo.Header}\n{outStr}");
         }
 
@@ -440,7 +440,7 @@ namespace Pawnmorph.DebugUtils
                     missingMorphs.Add(morphDef);
             }
 
-            string msgText = missingMorphs.Select(m => m.defName).Join("\n");
+            string msgText = missingMorphs.Select(m => m.defName).Join(delimiter: "\n");
             Log.Message(msgText);
         }
 
@@ -522,7 +522,7 @@ namespace Pawnmorph.DebugUtils
                 strings.Add(builder.ToString());
             }
 
-            string msg = strings.Join("\n----------------------------\n");
+            string msg = strings.Join(delimiter: "\n----------------------------\n");
             Log.Message(msg);
         }
 
@@ -550,7 +550,7 @@ namespace Pawnmorph.DebugUtils
             {
                 builder.AppendLine(morphDef.defName);
 
-                builder.AppendLine(morphDef.AllAssociatedMutations.Select(m => m.defName).Join(","));
+                builder.AppendLine(morphDef.AllAssociatedMutations.Select(m => m.defName).Join(delimiter: ","));
             }
 
             Log.Message(builder.ToString());
@@ -576,7 +576,7 @@ namespace Pawnmorph.DebugUtils
 
             foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefsListForReading)
             {
-                string outStr = morphDef.AllAssociatedMutations.Select(m => m.defName).Join(",");
+                string outStr = morphDef.AllAssociatedMutations.Select(m => m.defName).Join(delimiter: ",");
                 builder.AppendLine($"{morphDef.defName}:{outStr}");
             }
 
@@ -614,9 +614,9 @@ namespace Pawnmorph.DebugUtils
                 if (!hasAfflicted) needsAfflictedStage.Add(allMutation.defName);
             }
 
-            builder.AppendLine($"Needs Stages:\n{needsStages.Join("\n")}");
-            builder.AppendLine($"\nNeeds Paragon Stages:\n{needsParagonStage.Join("\n")}");
-            builder.AppendLine($"\nNeeds Afflicted Stages:\n{needsAfflictedStage.Join("\n")}");
+            builder.AppendLine($"Needs Stages:\n{needsStages.Join(delimiter: "\n")}");
+            builder.AppendLine($"\nNeeds Paragon Stages:\n{needsParagonStage.Join(delimiter: "\n")}");
+            builder.AppendLine($"\nNeeds Afflicted Stages:\n{needsAfflictedStage.Join(delimiter: "\n")}");
 
             Log.Message(builder.ToString());
         }

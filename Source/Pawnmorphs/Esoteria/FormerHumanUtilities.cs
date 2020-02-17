@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using AlienRace;
-using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
