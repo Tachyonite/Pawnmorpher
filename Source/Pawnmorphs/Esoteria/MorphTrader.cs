@@ -23,8 +23,9 @@ namespace Pawnmorph
         /// Generates the things.
         /// </summary>
         /// <param name="forTile">For tile.</param>
+        /// <param name="forFaction">the faction this is being generated for</param>
         /// <returns></returns>
-        public override IEnumerable<Thing> GenerateThings(int forTile)
+        public override IEnumerable<Thing> GenerateThings(int forTile, Faction forFaction = null)
         {
             if (respectPopulationIntent && Rand.Value > StorytellerUtilityPopulation.PopulationIntent)
             {
@@ -79,7 +80,8 @@ namespace Pawnmorph
 
         /// <summary> Generates the things for the given forTile. </summary>
         /// <param name="forTile"> For tile. </param>
-        IEnumerable<Thing> GenerateThingEnumer(int forTile)
+        [NotNull]
+        IEnumerable<Thing> GenerateThingEnumer(int forTile, Faction forFaction)
         {
             int numKinds = kindCountRange.RandomInRange;
             int count = countRange.RandomInRange;
@@ -146,7 +148,12 @@ namespace Pawnmorph
                     pkds.Add(PawnKindDefOf.Drifter);
                     pkds.Add(PawnKindDefOf.AncientSoldier);
 
-                    pawnOriginal = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pkds.RandomElement(), Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(lifeExpectancy), new float?(Rand.Range(lifeExpectancy, lifeExpectancy + 200)), new Gender?(newGender), null, null));
+
+
+
+                    pawnOriginal = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pkds.RandomElement(), Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, true, 0, null,  float?(lifeExpectancy), new float?(Rand.Range(lifeExpectancy, lifeExpectancy + 200)), new Gender?(newGender), null, null));
+                    
+                    
                     pawn.Name = pawnOriginal.Name;
                 }
                 else
@@ -162,14 +169,18 @@ namespace Pawnmorph
                 yield return pawn;
             }
         }
-        /// <summary>Generates the things that can be sold</summary>
+
+        /// <summary>
+        /// Generates the things that can be sold
+        /// </summary>
         /// <param name="forTile">For tile.</param>
+        /// <param name="forFaction">For faction.</param>
         /// <returns></returns>
-        public override IEnumerable<Thing> GenerateThings(int forTile)
+        public override IEnumerable<Thing> GenerateThings(int forTile, Faction forFaction = null)
         {
             RandUtilities.PushState();
 
-            var enumer = GenerateThingEnumer(forTile).ToList();
+            var enumer = GenerateThingEnumer(forTile, forFaction).ToList();
 
             RandUtilities.PopState();
             foreach (Pawn pawn in enumer.OfType<Pawn>())

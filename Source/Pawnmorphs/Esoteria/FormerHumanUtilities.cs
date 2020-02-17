@@ -593,9 +593,8 @@ namespace Pawnmorph
             var convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true,
                                               false, 20f, false, true, true, false, false, false, false,
-                                               null, (Predicate<Pawn>) null, null,
-                                              convertedAge, null, null, null,
-                                              (string) null);
+                                               false, 0, null,
+                                              convertedAge);//TODO wrap in a helper method 
             var lPawn = PawnGenerator.GeneratePawn(local);
 
             lPawn.equipment?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
