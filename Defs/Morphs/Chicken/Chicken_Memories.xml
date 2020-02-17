@@ -19,7 +19,7 @@
             </li>
             <li>
               <label>morphed</label>
-                <description>These feather's and talons are so good, and laying eggs! If only I could just settle down in a nesting box...</description>
+                <description>These feathers and talons are so good, and laying eggs! If only I could just settle down in a nesting box...</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
