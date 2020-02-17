@@ -577,12 +577,58 @@ namespace Pawnmorph
         /// <param name="original">The original.</param>
         /// <param name="faction">The faction.</param>
         /// <param name="context">The context.</param>
+        /// <param name="fixedGender">The fixed gender.</param>
         /// <returns></returns>
-        public static PawnGenerationRequest CreateSapientAnimalRequest([NotNull] PawnKindDef kind, [NotNull] Pawn original, Faction faction=null, PawnGenerationContext context=PawnGenerationContext.NonPlayer)
+        public static PawnGenerationRequest CreateSapientAnimalRequest([NotNull] PawnKindDef kind, [NotNull] Pawn original, Faction faction=null, PawnGenerationContext context=PawnGenerationContext.NonPlayer, Gender? fixedGender=null)
         {
             var age = TransformerUtility.ConvertAge(original.RaceProps, kind.RaceProps, original.ageTracker.AgeBiologicalYears);
             return new PawnGenerationRequest(kind, faction, context, fixedBiologicalAge: age,
-                                             fixedChronologicalAge: original.ageTracker.AgeChronologicalYears);
+                                             fixedChronologicalAge: original.ageTracker.AgeChronologicalYears,
+                                             fixedGender:fixedGender);
+        }
+
+        /// <summary>
+        /// Creates the merged animal request.
+        /// </summary>
+        /// <param name="kind">The kind.</param>
+        /// <param name="originals">The originals.</param>
+        /// <param name="faction">The faction.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="fixedGender">The fixed gender.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// kind
+        /// or
+        /// originals
+        /// </exception>
+        public static PawnGenerationRequest CreateMergedAnimalRequest([NotNull] PawnKindDef kind, [NotNull] IEnumerable<Pawn> originals,
+                                                                      Faction faction = null,
+                                                                      PawnGenerationContext context =
+                                                                          PawnGenerationContext.NonPlayer,
+                                                                      Gender? fixedGender = null)
+        {
+            if (kind == null) throw new ArgumentNullException(nameof(kind));
+            if (originals == null) throw new ArgumentNullException(nameof(originals));
+            float avgOriginalAge = 0, avgOriginalLifeExpectancy=0, avgChronoAge=0;
+            int counter = 0;
+            foreach (Pawn oPawn in originals)
+            {
+                counter++;
+                avgOriginalAge += oPawn.ageTracker.AgeBiologicalYears;
+                avgOriginalLifeExpectancy += oPawn.RaceProps.lifeExpectancy;
+                avgChronoAge += oPawn.ageTracker.AgeChronologicalYears; 
+                
+            }
+
+            avgOriginalLifeExpectancy /= counter;
+            avgChronoAge /= counter;
+            avgOriginalAge /= counter;
+
+            float newAge =
+                TransformerUtility.ConvertAge(avgOriginalAge, avgOriginalLifeExpectancy, kind.RaceProps.lifeExpectancy);
+            float newChronoAge = avgChronoAge * newAge / avgOriginalAge;
+            return new PawnGenerationRequest(kind, faction, context, fixedGender:fixedGender, fixedBiologicalAge:newAge, fixedChronologicalAge:newChronoAge);
+
         }
 
 

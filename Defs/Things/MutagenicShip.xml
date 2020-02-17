@@ -21,7 +21,7 @@
     <category>ThreatBig</category>
     <pointsScaleable>true</pointsScaleable>
     <minThreatPoints>450</minThreatPoints>
-    <shipPart>CrashedMutagenicShipPart</shipPart>
+    <mechClusterBuilding>CrashedMutagenicShipPart</mechClusterBuilding>
     <tale>ShipPartCrash</tale>
   </IncidentDef>
 

@@ -328,6 +328,8 @@ namespace Pawnmorph
             return ConvertAge(originalPawn.RaceProps, race, originalPawn.ageTracker.AgeBiologicalYears);
         }
 
+        
+
         /// <summary>
         /// Converts the age from one race to the equivalent age of another race 
         /// </summary>
@@ -344,7 +346,19 @@ namespace Pawnmorph
         {
             if (originalRace == null) throw new ArgumentNullException(nameof(originalRace));
             if (endRace == null) throw new ArgumentNullException(nameof(endRace));
-            return originalAge * endRace.lifeExpectancy / originalRace.lifeExpectancy; 
+            return ConvertAge(originalAge, originalRace.lifeExpectancy, endRace.lifeExpectancy); 
+        }
+
+        /// <summary>
+        /// Converts the age from one life expectancy range to another 
+        /// </summary>
+        /// <param name="originalAge">The original age.</param>
+        /// <param name="originalLifeExpectancy">The original life expectancy.</param>
+        /// <param name="newLifeExpectancy">The new life expectancy.</param>
+        /// <returns></returns>
+        public static float ConvertAge(float originalAge, float originalLifeExpectancy, float newLifeExpectancy)
+        {
+            return originalAge * newLifeExpectancy / originalLifeExpectancy;
         }
 
         /// <summary> Generates the random human pawn from a given animal pawn. </summary>
