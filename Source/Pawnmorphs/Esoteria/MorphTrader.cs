@@ -6,6 +6,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Verse;
 using Pawnmorph.Utilities;
+using UnityEngine;
 
 namespace Pawnmorph
 {
@@ -78,8 +79,12 @@ namespace Pawnmorph
             new CurvePoint(1f, 2f)
         };
 
-        /// <summary> Generates the things for the given forTile. </summary>
-        /// <param name="forTile"> For tile. </param>
+        /// <summary>
+        /// Generates the things for the given forTile.
+        /// </summary>
+        /// <param name="forTile">For tile.</param>
+        /// <param name="forFaction">For faction.</param>
+        /// <returns></returns>
         [NotNull]
         IEnumerable<Thing> GenerateThingEnumer(int forTile, Faction forFaction)
         {
@@ -136,22 +141,29 @@ namespace Pawnmorph
                     float animalLifeExpectancy = pawn.def.race.lifeExpectancy;
                     float humanLifeExpectancy = 80f;
 
-                    float converted = animalLifeExpectancy / animalAge;
 
-                    float lifeExpectancy = humanLifeExpectancy / converted;
+                    float age = animalAge * humanLifeExpectancy / animalLifeExpectancy;
+                    age = Mathf.Max(age, 17); //make sure the human is at least 17 years old 
+                    float chronoAge = pawn.ageTracker.AgeChronologicalYears * age / animalAge;
+                    var pkds = new List<PawnKindDef>
+                    {
+                        PawnKindDefOf.Slave,
+                        PawnKindDefOf.Colonist,
+                        PawnKindDefOf.SpaceRefugee,
+                        PawnKindDefOf.Villager,
+                        PawnKindDefOf.Drifter,
+                        PawnKindDefOf.AncientSoldier
+                    };
 
-                    List<PawnKindDef> pkds = new List<PawnKindDef>();
-                    pkds.Add(PawnKindDefOf.Slave);
-                    pkds.Add(PawnKindDefOf.Colonist);
-                    pkds.Add(PawnKindDefOf.SpaceRefugee);
-                    pkds.Add(PawnKindDefOf.Villager);
-                    pkds.Add(PawnKindDefOf.Drifter);
-                    pkds.Add(PawnKindDefOf.AncientSoldier);
+
+                    PawnKindDef rKind = pkds.RandElement();
+
+                    var hRequest = new PawnGenerationRequest(rKind, Faction.OfPlayer,
+                                                             PawnGenerationContext.NonPlayer, fixedBiologicalAge: age,
+                                                             fixedChronologicalAge: chronoAge, fixedGender: newGender);
 
 
-
-
-                    pawnOriginal = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pkds.RandomElement(), Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, true, 0, null,  float?(lifeExpectancy), new float?(Rand.Range(lifeExpectancy, lifeExpectancy + 200)), new Gender?(newGender), null, null));
+                    pawnOriginal = PawnGenerator.GeneratePawn(hRequest);
                     
                     
                     pawn.Name = pawnOriginal.Name;

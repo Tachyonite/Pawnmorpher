@@ -66,8 +66,9 @@ namespace Pawnmorph
         /// Generates the things.
         /// </summary>
         /// <param name="forTile">For tile.</param>
+        /// <param name="factionFor">The faction the things are being generated for.</param>
         /// <returns></returns>
-        public override IEnumerable<Thing> GenerateThings(int forTile)
+        public override IEnumerable<Thing> GenerateThings(int forTile, Faction factionFor=null)
          {
              if (Injectors.Count == 0)
              {

@@ -322,11 +322,29 @@ namespace Pawnmorph
         /// <param name="race"> The end race. </param>
         public static float ConvertAge([NotNull] Pawn originalPawn, [NotNull] RaceProperties race)
         {
-            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
+            if (originalPawn?.RaceProps == null) throw new ArgumentNullException(nameof(originalPawn));
             if (race == null) throw new ArgumentNullException(nameof(race));
-            var age = originalPawn.ageTracker.AgeBiologicalYearsFloat;
-            var originalRaceExpectancy = originalPawn.RaceProps.lifeExpectancy;
-            return age * race.lifeExpectancy / originalRaceExpectancy; 
+
+            return ConvertAge(originalPawn.RaceProps, race, originalPawn.ageTracker.AgeBiologicalYears);
+        }
+
+        /// <summary>
+        /// Converts the age from one race to the equivalent age of another race 
+        /// </summary>
+        /// <param name="originalRace">The original race.</param>
+        /// <param name="endRace">The end race.</param>
+        /// <param name="originalAge">The original age.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// originalRace
+        /// or
+        /// endRace
+        /// </exception>
+        public static float ConvertAge([NotNull] RaceProperties originalRace, [NotNull] RaceProperties endRace, float originalAge)
+        {
+            if (originalRace == null) throw new ArgumentNullException(nameof(originalRace));
+            if (endRace == null) throw new ArgumentNullException(nameof(endRace));
+            return originalAge * endRace.lifeExpectancy / originalRace.lifeExpectancy; 
         }
 
         /// <summary> Generates the random human pawn from a given animal pawn. </summary>

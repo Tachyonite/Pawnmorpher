@@ -570,6 +570,22 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// Creates the sapient animal generation request.
+        /// </summary>
+        /// <param name="kind">The kind.</param>
+        /// <param name="original">The original.</param>
+        /// <param name="faction">The faction.</param>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static PawnGenerationRequest CreateSapientAnimalRequest([NotNull] PawnKindDef kind, [NotNull] Pawn original, Faction faction=null, PawnGenerationContext context=PawnGenerationContext.NonPlayer)
+        {
+            var age = TransformerUtility.ConvertAge(original.RaceProps, kind.RaceProps, original.ageTracker.AgeBiologicalYears);
+            return new PawnGenerationRequest(kind, faction, context, fixedBiologicalAge: age,
+                                             fixedChronologicalAge: original.ageTracker.AgeChronologicalYears);
+        }
+
+
         /// <summary>Makes the animal sapient.</summary>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
@@ -591,10 +607,9 @@ namespace Pawnmorph
             PawnKindDef kind = pawnKind;
             Faction faction = ofPlayer;
             var convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
-            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true,
-                                              false, 20f, false, true, true, false, false, false, false,
-                                               false, 0, null,
-                                              convertedAge);//TODO wrap in a helper method 
+            var chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
+            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, fixedChronologicalAge:chronoAge,
+                                              fixedBiologicalAge:convertedAge);//TODO wrap in a helper method 
             var lPawn = PawnGenerator.GeneratePawn(local);
 
             lPawn.equipment?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
