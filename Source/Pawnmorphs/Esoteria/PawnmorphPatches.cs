@@ -25,7 +25,9 @@ namespace Pawnmorph
         private static readonly Type patchType = typeof(PawnmorphPatches);
 
         static PawnmorphPatches()
-        {
+        {   
+            Harmony.DEBUG = true; 
+
             var
                 harmonyInstance = new Harmony("com.pawnmorpher.mod"); //shouldn't this be different? 
             harmonyInstance.Patch(
