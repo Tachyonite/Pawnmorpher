@@ -64,8 +64,9 @@
 				<Beauty>2</Beauty>
 				<Flammability>0.0</Flammability>
 			</statFactors>
-			<smeltable>true</smeltable>
+			
 		</stuffProps>
+		<smeltable>true</smeltable>
 	</ThingDef>
 
 	<TerrainDef ParentName="WaterShallowBase">

@@ -89,7 +89,7 @@
         </options>
       </li>
     </pawnGroupMakers>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
   </FactionDef>
 
   <FactionDef ParentName="PawnmorpherEnclaveBase">
