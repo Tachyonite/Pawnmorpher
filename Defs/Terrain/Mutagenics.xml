@@ -81,7 +81,6 @@
 		<generatedFilth>Filth_Dirt</generatedFilth>
 		<fertility>0</fertility>
 		<takeFootprints>True</takeFootprints>
-		<acceptFilth>false</acceptFilth>
 		<avoidWander>true</avoidWander>
 		<driesTo>MutagenSoil</driesTo>
 		<extinguishesFire>true</extinguishesFire>

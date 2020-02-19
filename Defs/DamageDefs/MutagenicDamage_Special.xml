@@ -15,14 +15,8 @@
         <buildingDamageFactor>1.5</buildingDamageFactor>
         <bluntStunDuration>2.0</bluntStunDuration>
         <bluntInnerHitChance>0.4</bluntInnerHitChance>
-        <bluntInnerHitDamageFractionToConvert>
-            <min>0.1</min>
-            <max>0.2</max>
-        </bluntInnerHitDamageFractionToConvert>
-        <bluntInnerHitDamageFractionToAdd>
-            <min>0.2</min>
-            <max>0.35</max>
-        </bluntInnerHitDamageFractionToAdd>
+        <bluntInnerHitDamageFractionToConvert>0.1~0.2</bluntInnerHitDamageFractionToConvert>
+        <bluntInnerHitDamageFractionToAdd>0.2~0.35</bluntInnerHitDamageFractionToAdd>
         <bluntStunChancePerDamagePctOfCorePartToHeadCurve>
             <points>
                 <li>(0.04, 0.40)</li>

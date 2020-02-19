@@ -17,10 +17,7 @@
 				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
 				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>	
 				<damageFalloff>true</damageFalloff>			
-				<wickTicks>
-					<min>15</min>
-					<max>15</max>
-				</wickTicks>
+				<wickTicks>15~15</wickTicks>
 			</li>
 		</comps>
 		<specialDisplayRadius>5.9</specialDisplayRadius>
