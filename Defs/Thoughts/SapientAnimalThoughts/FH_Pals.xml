@@ -2,7 +2,7 @@
     
     <!--this thought is for when a former human is bonded to one or more regular animals  -->
     <ThoughtDef>
-        <defName>FormerHumanPalsThought</defName>
+        <defName>FormerHumanAnimalPalsThought</defName>
         <workerClass>Pawnmorph.Thoughts.AnimalPalsWorker</workerClass>
         <stages>
             <li>
