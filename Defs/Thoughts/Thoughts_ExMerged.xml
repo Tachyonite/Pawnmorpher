@@ -6,7 +6,9 @@
 		<importance>200</importance>
 		<diedThought>MyMergeMateDied</diedThought>
 		<killedThought>KilledMyMergeMate</killedThought>
-		<soldThought>SoldMyMergeMate</soldThought>
+		<soldThoughts>
+			<li>SoldMyMergeMate</li>
+		</soldThoughts>
 		<opinionOffset>35</opinionOffset>
 		<generationChanceFactor>0</generationChanceFactor>
 		<implied>false</implied>
@@ -20,7 +22,9 @@
 		<importance>200</importance>
 		<diedThought>MyExMergeDied</diedThought>
 		<killedThought>KilledMyExMerge</killedThought>
-		<soldThought>SoldMyExMerge</soldThought>
+		<soldThoughts>
+			<li>SoldMyExMerge</li>
+		</soldThoughts>
 		<opinionOffset>-35</opinionOffset>
 		<generationChanceFactor>0</generationChanceFactor>
 		<implied>false</implied>
