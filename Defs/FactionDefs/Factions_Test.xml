@@ -10,7 +10,7 @@
     <canSiege>true</canSiege>
     <canStageAttacks>true</canStageAttacks>
     <leaderTitle>magistrate</leaderTitle>
-    <expandingIconTexture>UI/Icons/FreeMorphs</expandingIconTexture>
+    <factionIconPath>UI/Icons/FreeMorphs</factionIconPath>
     <factionNameMaker>NamerFactionOutlander</factionNameMaker>
     <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
     <techLevel>Industrial</techLevel>
