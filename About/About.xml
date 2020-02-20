@@ -65,4 +65,16 @@ Feel free to suggest the next to be added, or if there are other QOL things you 
   
   </description>
   <packageId>tachyonite.pawnmorpher</packageId>
+  <modDependencies>
+    <li>
+       <packageId>erdelf.HumanoidAlienRaces</packageId>
+       <displayName>Humanoid Alien Races 2.0</displayName>
+       <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+    </li>
+ </modDependencies>
+ <loadBefore>
+ </loadBefore>
+ <loadAfter>
+ <li>erdelf.HumanoidAlienRaces</li>
+ </loadAfter>
 </ModMetaData>
