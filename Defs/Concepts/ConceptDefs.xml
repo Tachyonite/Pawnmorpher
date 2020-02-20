@@ -4,7 +4,7 @@
 		<label>PM: Getting Started</label>
 		<priority>11</priority>
 		<needsOpportunity>false</needsOpportunity>
-		<helpText>Find, buy or loot two chookmorph eggs and five cowmorph milk. At a drug lab, you'll be able to create mutagenic slurry, which can then be made into specific mutagen types.</helpText>
+		<helpText>Find, buy or loot two chookmorph eggs and five cowmorph milk, or find some chaobulbs. At a drug lab, you'll be able to create mutagenic slurry, which can then be made into specific mutagen types.</helpText>
 	</ConceptDef>
 	
 	<ConceptDef>

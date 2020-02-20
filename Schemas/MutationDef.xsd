@@ -66,6 +66,7 @@
             <xs:element name="partEfficiencyOffset" minOccurs="0" type="xs:float" />
             <xs:element name="hungerRateFactor" minOccurs="0" type="xs:float" />
             <xs:element name="stopChance" minOccurs="0" type="xs:float" />
+            <xs:element name="memory" minOccurs="0" type="xs:string" />
             <xs:element name="capMods" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>

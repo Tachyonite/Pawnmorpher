@@ -58,7 +58,7 @@
         <stages>
             <li>
                 <label>"tamed"</label>
-                <description>I can talk, you know...you don't need to be condescending if you just want me to stick around.</description>
+                <description>I can talk, you know...you don't need to be condescending if you want me to stick around.</description>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
             <li>

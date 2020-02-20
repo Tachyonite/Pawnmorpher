@@ -100,7 +100,7 @@
                 <statOffsets>
                     <MutationAdaptability>1</MutationAdaptability>
                 </statOffsets>
-                <messageText>TODO</messageText>
+                <messageText>Some of {PAWN_nameDef}'s mutations seem to be adapting faster and becoming more powerful.</messageText>
             </li>
         </stages>
         <conflictingAspects>
@@ -122,7 +122,7 @@
                     <MutationAdaptability>-1.5</MutationAdaptability>
                 </statOffsets>
                 <isBad>true</isBad>
-                <messageText>TODO</messageText>
+                <messageText>Some of {PAWN_nameDef}'s mutations seem to be degrading into worse forms.</messageText>
             </li>
         </stages>
         <conflictingAspects>

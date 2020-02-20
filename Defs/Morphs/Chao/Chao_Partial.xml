@@ -4,7 +4,7 @@
 		<label>chaomorph partial</label>
 		<stages>
 			<li>
-				<painOffset>0.1</painOffset>
+				<painOffset>0.3</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
 					<li>

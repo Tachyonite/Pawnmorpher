@@ -13,22 +13,18 @@
             <li>
                 <modifier>alone</modifier>
 				<description>I'm the only one of my kind, I feel unsafe being all alone.</description>
-                <!-- TODO -->
             </li>
             <li>
                 <modifier>lonely</modifier>
 				<description>There's another like me, but we're still only a small herd.</description>
-                <!-- TODO -->
             </li>
             <li>
                 <modifier>comfortable</modifier>
 				<description>There's lots of my kind, safety in numbers.</description>
-                <!-- TODO -->
             </li>
             <li>
                 <modifier>happy</modifier>
 				<description>There's plenty of people in my herd, there's nothing to fear!</description>
-                <!-- TODO -->
             </li>
         </stages>
     </Pawnmorph.AspectDef>

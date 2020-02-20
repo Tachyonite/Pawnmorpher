@@ -6,7 +6,7 @@
         <stages>
             <li>
                 <label>slept on ground</label>
-                <description>I don't even have a pillow anymore, I just have to sleep on the ground!</description>
+                <description>I don't even have a pillow anymore, I have to sleep on the ground!</description>
                 <baseMoodEffect>-4</baseMoodEffect> <!-- need to remember to set these >.> -->
             </li>
         </stages>

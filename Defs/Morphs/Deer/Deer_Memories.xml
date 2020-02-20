@@ -3,23 +3,23 @@
 		<defName>DeerTransformationMemory</defName>
         <stages>
             <li>
-                <label>!!!DeerTransformationMemory's default stage needs a label!!!</label>
-                <description>!!!DeerTransformationMemory's default stage needs a description!!!</description>
+                <label>changed</label>
+                <description>All the sounds are so loud, and kind of scary! AAH, was that you? Who's there?</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!DeerTransformationMemory's mutation affinity stage needs a label!!!</label>
-                <description>!!!DeerTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <label>changed</label>
+                <description>I feel so graceful, like the ruler of the forest...</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!DeerTransformationMemory's body purist stage needs a label!!!</label>
-                <description>!!!DeerTransformationMemory's body purist stage needs a description!!!</description>
+                <label>changed</label>
+                <description>AAH! Who was that!? I heard you! Run away! I hate this...!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
-                <label>!!!DeerTransformationMemory's primal wish stage needs a label!!!</label>
-                <description>!!!DeerTransformationMemory's primal wish stage needs a description!!!</description>
+                <label>changed</label>
+                <description>So regal, this is great, but nice quite all there yet.</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
@@ -29,24 +29,24 @@
 		<defName>DeerRevertedMemory</defName>
         <stages>
             <li>
-                <label>!!!DeerRevertedMemory's default stage needs a label!!!</label>
-                <description>!!!DeerRevertedMemory's default stage needs a description!!!</description>
+                <label>reverted</label>
+                <description>I'm not so jumpy all the time now, phew.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I could have had some nice antlers...</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!DeerRevertedMemory's mutation affinity stage needs a label!!!</label>
-                <description>!!!DeerRevertedMemory's mutation affinity stage needs a description!!!</description>
-                <baseMoodEffect>+3</baseMoodEffect>
+                <label>reverted</label>
+                <description>I'm sorry for being so scared all the time, everyone!</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label>!!!DeerRevertedMemory's body purist stage needs a label!!!</label>
-                <description>!!!DeerRevertedMemory's body purist stage needs a description!!!</description>
-                <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-            <li>
-                <label>!!!DeerRevertedMemory's primal wish stage needs a label!!!</label>
-                <description>!!!DeerRevertedMemory's primal wish stage needs a description!!!</description>
-                <baseMoodEffect>+1</baseMoodEffect>
+                <label>reverted</label>
+                <description>Sure, take all the fun out of my life, why don't ya?</description>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

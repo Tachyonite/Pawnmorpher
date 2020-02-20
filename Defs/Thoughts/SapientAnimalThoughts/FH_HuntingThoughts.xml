@@ -11,7 +11,7 @@
         <stages>
             <li>
                 <label>hunted</label>
-                <description>I was so hungry I...can't believe I just did that. I'm covered in blood and I just want to hide.</description>
+                <description>I was so hungry I...can't believe I did that. I'm covered in blood and I want to hide.</description>
                 <visible>true</visible>
 				<baseMoodEffect>-10</baseMoodEffect>
             </li>
@@ -46,7 +46,7 @@
             </li>
             <li>
                 <label>hunt catharsis</label>
-                <description>I know I shouldn't but...I just feel so alive!</description>
+                <description>I know I shouldn't but...I feel so alive!</description>
 				<baseMoodEffect>30</baseMoodEffect>
             </li>
             <li>
