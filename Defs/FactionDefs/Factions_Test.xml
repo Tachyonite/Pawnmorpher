@@ -14,11 +14,25 @@
     <factionNameMaker>NamerFactionOutlander</factionNameMaker>
     <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
     <techLevel>Industrial</techLevel>
-    <backstoryCategories>
-      <li>MutantWanderer</li>
-      <li>FreeMutant</li>
-      <li>Civil</li> <!-- just to get rid of missing child backstory errors -->
-    </backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <!-- these 2 don't have childhood backstories -->
+          <li>MutantWanderer</li>
+          <li>FreeMutant</li>
+
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.95</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Outlander</li>
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.05</commonality>
+      </li>
+    </backstoryFilters>
     <geneticVariance>0.8</geneticVariance>
     <hairTags>
       <li>Rural</li>
@@ -116,11 +130,6 @@
     <defaultFactionType>PawnmorpherEnclave</defaultFactionType>
     <chemicalAddictionChance>0.05</chemicalAddictionChance>
     <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
-    <backstoryCategories>
-      <li>MutantWanderer</li>
-      <li>FreeMutant</li>
-      <li>Civil</li>
-    </backstoryCategories>
     <invNutrition>2.55</invNutrition>
     <apparelTags>
       <li>IndustrialBasic</li>
@@ -171,11 +180,6 @@
     <combatPower>30</combatPower>
     <race>Human</race>
     <baseRecruitDifficulty>0.30</baseRecruitDifficulty>
-    <backstoryCategories>
-      <li>Slave</li>
-      <li>FreeMutant</li>
-      <li>MutantWanderer</li>
-    </backstoryCategories>
     <defaultFactionType>PawnmorpherEnclave</defaultFactionType>
     <itemQuality>Poor</itemQuality>
     <backstoryCryptosleepCommonality>0.10</backstoryCryptosleepCommonality>

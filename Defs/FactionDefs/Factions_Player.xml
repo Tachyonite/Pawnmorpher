@@ -128,11 +128,15 @@
     <pawnSingular>morph</pawnSingular>
     <pawnsPlural>morphs</pawnsPlural>
     <techLevel>Industrial</techLevel>
-    <backstoryCategories>
-      <li>Civil</li>
-      <li>FreeMutant</li>
-      <li>MutantWanderer</li>
-    </backstoryCategories>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>MutantWanderer</li>
+          <li>FreeMutant</li>
+          <li>Outlander</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerFactionOutlander</factionNameMaker>
@@ -167,11 +171,6 @@
     <defName>Morph</defName>
     <label>morph</label>
     <defaultFactionType>PawnmorpherPlayerColony</defaultFactionType>
-    <backstoryCategories>
-      <li>Civil</li>
-      <li>FreeMutant</li>
-      <li>MutantWanderer</li>
-    </backstoryCategories>
     <chemicalAddictionChance>0.06</chemicalAddictionChance>
     <apparelTags>
       <li>IndustrialBasic</li>
