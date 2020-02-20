@@ -1,5 +1,5 @@
 ﻿using System;
-using Multiplayer.API;
+//using Multiplayer.API;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -18,10 +18,10 @@ namespace Pawnmorph
         /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PushState(RandUtilities.MPSafeSeed); 
+            //}
 
             try
             {
@@ -45,10 +45,10 @@ namespace Pawnmorph
             }
             finally
             {
-                if (MP.IsInMultiplayer)
-                {
-                    Rand.PopState();
-                }
+                //if (MP.IsInMultiplayer)
+                //{
+                //    Rand.PopState();
+                //}
             }
         }
     }

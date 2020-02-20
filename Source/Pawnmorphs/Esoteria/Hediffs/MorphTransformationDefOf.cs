@@ -18,19 +18,6 @@ namespace Pawnmorph.Hediffs
         public static HediffDef FullRandomTF;
         public static HediffDef FullRandomTFAnyOutcome; 
 
-        public static HediffDef PawnmorphWolfTF;
-        public static HediffDef PawnmorphWargTF;
-        public static HediffDef PawnmorphHuskyTF;
-        public static HediffDef PawnmorphFoxTF;
-        public static HediffDef PawnmorphBearTF;
-        public static HediffDef PawnmorphChickenTF;
-        public static HediffDef PawnmorphCowTF;
-        public static HediffDef PawnmorphPigTF;
-        public static HediffDef PawnmorphBoarTF;
-        public static HediffDef PawnmorphDeerTF;
-        public static HediffDef PawnmorphRatTF;
-        public static HediffDef PawnmorphBoomalopeTF;
-        public static HediffDef PawnmorphAlpacaTF; //these are initialized by rimworld at load time 
 
 
         public static HediffDef StabiliserHigh;  //should move this somewhere else 

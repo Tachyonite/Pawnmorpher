@@ -1,7 +1,7 @@
 ﻿// InteractionPatches.cs modified by Iron Wolf for Pawnmorph on 12/10/2019 6:31 PM
 // last updated 12/10/2019  6:31 PM
 
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;

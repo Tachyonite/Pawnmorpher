@@ -64,8 +64,9 @@
 				<Beauty>2</Beauty>
 				<Flammability>0.0</Flammability>
 			</statFactors>
-			<smeltable>true</smeltable>
+			
 		</stuffProps>
+		<smeltable>true</smeltable>
 	</ThingDef>
 
 	<TerrainDef ParentName="WaterShallowBase">
@@ -81,7 +82,6 @@
 		<generatedFilth>Filth_Dirt</generatedFilth>
 		<fertility>0</fertility>
 		<takeFootprints>True</takeFootprints>
-		<acceptFilth>false</acceptFilth>
 		<avoidWander>true</avoidWander>
 		<driesTo>MutagenSoil</driesTo>
 		<extinguishesFire>true</extinguishesFire>
@@ -97,13 +97,14 @@
 		</tools>
 	</TerrainDef>
 
-	<TerrainDef>
+	<TerrainDef ParentName="NaturalTerrainBase">
 		<defName>MutagenSoil</defName>
 		<label>mutagenic soil</label>
 		<texturePath>Terrain/Surfaces/MutagenSoil</texturePath>
 		<edgeType>FadeRough</edgeType>
 		<renderPrecedence>340</renderPrecedence>
 		<pathCost>2</pathCost>
+		
 		<statBases>
 			<Beauty>-1</Beauty>
 			<Cleanliness>-1</Cleanliness>

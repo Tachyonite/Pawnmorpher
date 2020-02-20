@@ -3,6 +3,7 @@
 
 using System.Linq;
 using RimWorld;
+using Verse;
 
 namespace Pawnmorph.Alerts
 {
@@ -34,7 +35,7 @@ namespace Pawnmorph.Alerts
         /// Gets the explanation.
         /// </summary>
         /// <returns></returns>
-        public override string GetExplanation()
+        public override TaggedString GetExplanation()
         {
             return FormerHumanUtilities.BreakAlertExplanation; 
         }
@@ -48,7 +49,7 @@ namespace Pawnmorph.Alerts
             if (FormerHumanUtilities.AllSapientAnimalsExtremeBreakRisk.Any()
              || FormerHumanUtilities.AllSapientAnimalsMajorBreakRisk.Any())
                 return false;
-            return AlertReport.CulpritsAre(FormerHumanUtilities.AllSapientAnimalsMinorBreakRisk);
+            return AlertReport.CulpritsAre(FormerHumanUtilities.AllSapientAnimalsMinorBreakRisk.ToList());
         }
     }
 
@@ -68,7 +69,7 @@ namespace Pawnmorph.Alerts
         /// Gets the explanation.
         /// </summary>
         /// <returns></returns>
-        public override string GetExplanation()
+        public override TaggedString GetExplanation()
         {
             return FormerHumanUtilities.BreakAlertExplanation;
         }
@@ -90,7 +91,8 @@ namespace Pawnmorph.Alerts
         public override AlertReport GetReport()
         {
             return AlertReport.CulpritsAre(FormerHumanUtilities.AllSapientAnimalsMajorBreakRisk.Concat(FormerHumanUtilities
-                                                                                                          .AllSapientAnimalsExtremeBreakRisk));
+                                                                                                          .AllSapientAnimalsExtremeBreakRisk)
+                                                               .ToList());//may need to cache the culprits   
         }
     }
 }

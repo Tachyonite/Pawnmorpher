@@ -7,7 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
-using Multiplayer.API;
+//using Multiplayer.API;
 using Pawnmorph.Chambers;
 using Pawnmorph.Utilities;
 #pragma warning disable 1591 //this is going to be re worked, disabling for now 
@@ -169,7 +169,7 @@ namespace Pawnmorph
             yield return commandAction;
         }
 
-        [SyncMethod]
+        //[SyncMethod]
         private void GizmoListOptions()
         {
             List<Building_MutagenChamber> chambers = Chambers;
@@ -232,13 +232,13 @@ namespace Pawnmorph
 
         }
 
-        [SyncMethod]
+        //[SyncMethod]
         void SetMergeAction(List<PawnKindDef> mergeOptions)
         {
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PushState(RandUtilities.MPSafeSeed); 
+            //}
 
             var firstChamber = GetLinkedChamber();
             var secondChamber = GetLinkedChamber(1);
@@ -259,14 +259,15 @@ namespace Pawnmorph
             random = false; 
 
             End:
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
+            return; 
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PopState();
+            //}
 
         }
 
-        [SyncMethod]
+        //[SyncMethod]
         void SetAnimalAction(PawnKindDef def)
         {
             foreach (Building_MutagenChamber chamber in LinkedFacilities.OfType<Building_MutagenChamber>())

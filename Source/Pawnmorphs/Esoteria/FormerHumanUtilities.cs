@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using AlienRace;
-using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
@@ -570,6 +569,68 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// Creates the sapient animal generation request.
+        /// </summary>
+        /// <param name="kind">The kind.</param>
+        /// <param name="original">The original.</param>
+        /// <param name="faction">The faction.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="fixedGender">The fixed gender.</param>
+        /// <returns></returns>
+        public static PawnGenerationRequest CreateSapientAnimalRequest([NotNull] PawnKindDef kind, [NotNull] Pawn original, Faction faction=null, PawnGenerationContext context=PawnGenerationContext.NonPlayer, Gender? fixedGender=null)
+        {
+            var age = TransformerUtility.ConvertAge(original.RaceProps, kind.RaceProps, original.ageTracker.AgeBiologicalYears);
+            return new PawnGenerationRequest(kind, faction, context, fixedBiologicalAge: age,
+                                             fixedChronologicalAge: original.ageTracker.AgeChronologicalYears,
+                                             fixedGender:fixedGender);
+        }
+
+        /// <summary>
+        /// Creates the merged animal request.
+        /// </summary>
+        /// <param name="kind">The kind.</param>
+        /// <param name="originals">The originals.</param>
+        /// <param name="faction">The faction.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="fixedGender">The fixed gender.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// kind
+        /// or
+        /// originals
+        /// </exception>
+        public static PawnGenerationRequest CreateMergedAnimalRequest([NotNull] PawnKindDef kind, [NotNull] IEnumerable<Pawn> originals,
+                                                                      Faction faction = null,
+                                                                      PawnGenerationContext context =
+                                                                          PawnGenerationContext.NonPlayer,
+                                                                      Gender? fixedGender = null)
+        {
+            if (kind == null) throw new ArgumentNullException(nameof(kind));
+            if (originals == null) throw new ArgumentNullException(nameof(originals));
+            float avgOriginalAge = 0, avgOriginalLifeExpectancy=0, avgChronoAge=0;
+            int counter = 0;
+            foreach (Pawn oPawn in originals)
+            {
+                counter++;
+                avgOriginalAge += oPawn.ageTracker.AgeBiologicalYears;
+                avgOriginalLifeExpectancy += oPawn.RaceProps.lifeExpectancy;
+                avgChronoAge += oPawn.ageTracker.AgeChronologicalYears; 
+                
+            }
+
+            avgOriginalLifeExpectancy /= counter;
+            avgChronoAge /= counter;
+            avgOriginalAge /= counter;
+
+            float newAge =
+                TransformerUtility.ConvertAge(avgOriginalAge, avgOriginalLifeExpectancy, kind.RaceProps.lifeExpectancy);
+            float newChronoAge = avgChronoAge * newAge / avgOriginalAge;
+            return new PawnGenerationRequest(kind, faction, context, fixedGender:fixedGender, fixedBiologicalAge:newAge, fixedChronologicalAge:newChronoAge);
+
+        }
+
+
         /// <summary>Makes the animal sapient.</summary>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
@@ -591,11 +652,9 @@ namespace Pawnmorph
             PawnKindDef kind = pawnKind;
             Faction faction = ofPlayer;
             var convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
-            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true,
-                                              false, 20f, false, true, true, false, false, false, false,
-                                               null, (Predicate<Pawn>) null, null,
-                                              convertedAge, null, null, null,
-                                              (string) null);
+            var chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
+            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, fixedChronologicalAge:chronoAge,
+                                              fixedBiologicalAge:convertedAge);//TODO wrap in a helper method 
             var lPawn = PawnGenerator.GeneratePawn(local);
 
             lPawn.equipment?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
@@ -879,7 +938,7 @@ namespace Pawnmorph
 
             //transfer relationships back if possible 
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-            var oPawn = gComp.GetTransformedPawnContaining(pawn)?.First?.OriginalPawns.FirstOrDefault();
+            var oPawn = gComp.GetTransformedPawnContaining(pawn)?.Item1?.OriginalPawns.FirstOrDefault();
             if (oPawn == pawn)
             {
                 oPawn = null; 
@@ -895,7 +954,7 @@ namespace Pawnmorph
             pawn.health.RemoveHediff(fHediff); 
 
             var loader = Find.World.GetComponent<PawnmorphGameComp>();
-            var inst = loader.GetTransformedPawnContaining(pawn)?.First;
+            var inst = loader.GetTransformedPawnContaining(pawn)?.Item1;
             var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())//needed to handle merges correctly 
             {

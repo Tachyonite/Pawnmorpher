@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-using Multiplayer.API;
+//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -87,10 +87,10 @@ namespace Pawnmorph.Hediffs
         {
             if (Mutations.Count == 0) { return;}
             
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PushState(RandUtilities.MPSafeSeed); 
+            //}
 
             var singleComp = cause.TryGetComp<HediffComp_Single>();
             float mult = singleComp?.stacks
@@ -108,10 +108,10 @@ namespace Pawnmorph.Hediffs
                 TryApply(pawn, cause, mutagen);
             }
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PopState();
+            //}
 
         }
         /// <summary>

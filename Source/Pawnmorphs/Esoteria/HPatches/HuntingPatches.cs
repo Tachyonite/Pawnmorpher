@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -16,14 +16,18 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(typeof(JobDriver_PredatorHunt)), HarmonyPatch("MakeNewToils")]
         static class JobDriver_PredatorHuntPatch
         {
-            static void Postfix(ref IEnumerable<Toil> __result, [NotNull] JobDriver_PredatorHunt __instance)
+            static IEnumerable<Toil> Postfix(IEnumerable<Toil> values, [NotNull] JobDriver_PredatorHunt __instance)
             {
-                var saLevel = __instance.pawn.GetFormerHumanStatus();
-                if (saLevel != FormerHumanStatus.Sapient) return;
-                List<Toil> lst = __result.ToList();
-                var addThoughtToil = Toils_General.Do(() => { FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn, __instance.Prey);  });
-                lst.Add(addThoughtToil);
-                __result = lst; 
+                foreach (Toil toil in values) yield return toil;
+
+                FormerHumanStatus? saLevel = __instance.pawn.GetFormerHumanStatus();
+                if (saLevel != FormerHumanStatus.Sapient) yield break;
+                yield return Toils_General.Do(() =>
+                {
+                    FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn,
+                                                                         __instance.Prey);
+                });
+ 
             }
 
             

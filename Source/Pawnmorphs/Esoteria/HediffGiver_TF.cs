@@ -19,8 +19,12 @@ namespace Pawnmorph
         /// Gets all Configuration errors in this instance.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> ConfigErrors()
+        public override IEnumerable<string> ConfigErrors()
         {
+            foreach (string configError in base.ConfigErrors())
+            {
+                yield return configError; 
+            }
             if (pawnkinds.NullOrEmpty()) yield return "no pawnkinds set"; 
         }
 

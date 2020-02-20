@@ -39,8 +39,8 @@ namespace Pawnmorph.TfSys
             Tuple<TransformedPawn, TransformedStatus> status = GameComp.GetTransformedPawnContaining(transformedPawn);
             if (status != null)
             {
-                if (status.Second != TransformedStatus.Transformed) return false;
-                if (status.First is TransformedPawnSingle inst)
+                if (status.Item2 != TransformedStatus.Transformed) return false;
+                if (status.Item1 is TransformedPawnSingle inst)
                     if (TryRevertImpl(inst))
                     {
                         GameComp.RemoveInstance(inst);
@@ -133,12 +133,9 @@ namespace Pawnmorph.TfSys
             Gender newGender =
                 TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
 
-            var pRequest = new PawnGenerationRequest( //create the request 
-                                                     request.outputDef, faction, PawnGenerationContext.NonPlayer, -1, false,
-                                                     false,
-                                                     false, false, true, false, 1f, false, true, true, false, false, false,
-                                                     false, null, null, null, newAge,
-                                                     original.ageTracker.AgeChronologicalYearsFloat, newGender);
+
+            var pRequest = FormerHumanUtilities.CreateSapientAnimalRequest(request.outputDef, original, faction, fixedGender:newGender); 
+
 
 
             Pawn animalToSpawn = PawnGenerator.GeneratePawn(pRequest); //make the temp pawn 

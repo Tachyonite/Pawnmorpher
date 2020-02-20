@@ -32,7 +32,7 @@ namespace Pawnmorph
         private static void MakeFeral(Pawn pawn)
         {
             var loader = Find.World.GetComponent<PawnmorphGameComp>();
-            var inst = loader.GetTransformedPawnContaining(pawn)?.First;
+            var inst = loader.GetTransformedPawnContaining(pawn)?.Item1;
             var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution eventually 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())
             {

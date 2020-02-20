@@ -119,10 +119,7 @@
 			<harvestTag>Standard</harvestTag>
 			<wildClusterRadius>5</wildClusterRadius>
 			<wildClusterWeight>250</wildClusterWeight>
-			<visualSizeRange>
-				<min>0.95</min>
-				<max>1.7</max>
-			</visualSizeRange>
+			<visualSizeRange>0.95~1.75</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
@@ -176,10 +173,7 @@
 			<sowResearchPrerequisites>
 				<li>MutagenicPlantSowing</li>
 			</sowResearchPrerequisites>
-			<visualSizeRange>
-				<min>0.95</min>
-				<max>1.7</max>
-			</visualSizeRange>
+			<visualSizeRange>0.95~1.7</visualSizeRange>
 			<sowTags>
 				<li>Ground</li>
 				<li>Hydroponic</li>
@@ -229,10 +223,7 @@
 			<harvestTag>Standard</harvestTag>
 			<wildClusterRadius>5</wildClusterRadius>
 			<wildClusterWeight>250</wildClusterWeight>
-			<visualSizeRange>
-				<min>0.95</min>
-				<max>1.7</max>
-			</visualSizeRange>
+			<visualSizeRange>0.95~1.7</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
@@ -284,10 +275,7 @@
 			<growDays>2.5</growDays>
 			<harvestWork>40</harvestWork>
 			<maxMeshCount>9</maxMeshCount>
-			<visualSizeRange>
-				<min>0.4</min>
-				<max>0.6</max>
-			</visualSizeRange>
+			<visualSizeRange>0.4~0.6</visualSizeRange>
 			<topWindExposure>0.4</topWindExposure>
 			<wildOrder>1</wildOrder>
 		</plant>
@@ -344,10 +332,7 @@
 			<growDays>3</growDays>
 			<harvestWork>60</harvestWork>
 			<maxMeshCount>4</maxMeshCount>
-			<visualSizeRange>
-				<min>0.7</min>
-				<max>0.85</max>
-			</visualSizeRange>
+			<visualSizeRange>0.7~0.85</visualSizeRange>
 			<topWindExposure>0.15</topWindExposure>
 			<wildClusterRadius>4</wildClusterRadius>
 			<wildClusterWeight>200</wildClusterWeight>
@@ -410,10 +395,7 @@
 			<growDays>6</growDays>
 			<wildClusterRadius>5</wildClusterRadius>
 			<wildClusterWeight>250</wildClusterWeight>
-			<visualSizeRange>
-				<min>0.95</min>
-				<max>1.7</max>
-			</visualSizeRange>
+			<visualSizeRange>0.95~1.7</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
@@ -468,10 +450,7 @@
 			<immatureGraphicPath>Plants/GnarledTree</immatureGraphicPath>
 			<wildClusterRadius>5</wildClusterRadius>
 			<wildClusterWeight>250</wildClusterWeight>
-			<visualSizeRange>
-				<min>0.95</min>
-				<max>1.7</max>
-			</visualSizeRange>
+			<visualSizeRange>0.95~1.7</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>

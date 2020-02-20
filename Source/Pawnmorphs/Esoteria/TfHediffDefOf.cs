@@ -18,8 +18,7 @@ namespace Pawnmorph
         }
 
         public static HediffDef TransformedHuman;
-        public static HediffDef EtherBroken;
-        public static HediffDef EtherBond;
+       
         [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static HediffDef PermanentlyFeral;
 

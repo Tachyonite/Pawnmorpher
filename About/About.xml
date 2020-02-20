@@ -1,7 +1,10 @@
 <ModMetaData>
   <name>Pawnmorpher</name>
   <author>Mic</author>
-  <supportedVersions><li>1.0</li></supportedVersions>
+  <supportedVersions>
+    <li>1.0</li>
+    <li>1.1</li>
+  </supportedVersions>
   <description>Too many prisoners and not enough animals? We can change that. And maybe you at the same time.
   
   &lt;size=24&gt;Features&lt;/size&gt;
@@ -61,4 +64,5 @@ With all core content out of the way, I can focus on more additions! More chaomo
 Feel free to suggest the next to be added, or if there are other QOL things you can think of.
   
   </description>
+  <packageId>tachyonite.pawnmorpher</packageId>
 </ModMetaData>

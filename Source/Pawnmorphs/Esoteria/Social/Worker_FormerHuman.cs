@@ -27,9 +27,8 @@ namespace Pawnmorph.Social
         /// </value>
         protected virtual float BaseInteractionChance => BASE_INTERACTION_CHANCE;
 
-
         /// <summary>
-        /// called when the initiator interacts with the specified recipient.
+        ///     called when the initiator interacts with the specified recipient.
         /// </summary>
         /// <param name="initiator">The initiator.</param>
         /// <param name="recipient">The recipient.</param>
@@ -37,32 +36,35 @@ namespace Pawnmorph.Social
         /// <param name="letterText">The letter text.</param>
         /// <param name="letterLabel">The letter label.</param>
         /// <param name="letterDef">The letter definition.</param>
-        public override void Interacted(Pawn initiator,  Pawn recipient, [NotNull] List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel,
-                                        out LetterDef letterDef)
+        /// <param name="lookTargets">The look targets.</param>
+        public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks,
+                                        out string letterText, out string letterLabel,
+                                        out LetterDef letterDef, out LookTargets lookTargets)
         {
+            base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef,
+                            out lookTargets);
             letterText = null;
             letterLabel = null;
             letterDef = null;
-            var saLevel = recipient?.GetQuantizedSapienceLevel();
+            SapienceLevel? saLevel = recipient?.GetQuantizedSapienceLevel();
             if (saLevel == null) return;
             var saVariants = interaction.GetModExtension<SapientRulePackVariant>();
-            var rulePackVariant = saVariants?.GetRulePackVariant(saLevel.Value);//check if any variants are attached, if so add them to extra rule packs 
-            if (rulePackVariant != null)
-            {
-                extraSentencePacks.Add(rulePackVariant);
-            }
+            RulePackDef
+                rulePackVariant =
+                    saVariants
+                      ?.GetRulePackVariant(saLevel.Value); //check if any variants are attached, if so add them to extra rule packs 
+            if (rulePackVariant != null) extraSentencePacks.Add(rulePackVariant);
         }
 
+
         /// <summary>
-        /// gets the random selection weight for the initiator and recipient interacting 
+        ///     gets the random selection weight for the initiator and recipient interacting
         /// </summary>
         /// <param name="initiator">The initiator.</param>
         /// <param name="recipient">The recipient.</param>
         /// <returns></returns>
         public override float RandomSelectionWeight([NotNull] Pawn initiator, Pawn recipient)
         {
-
-
             FormerHumanStatus? fHumanStatus = recipient.GetFormerHumanStatus();
             if (fHumanStatus == null) return 0; //only allow for former human recipients 
 
@@ -75,14 +77,15 @@ namespace Pawnmorph.Social
                 return 0; //make sure they're at the correct stage for the interaction 
 
 
-            float retVal  = GetInteractionWeight(initiator, recipient, relationRestriction, mustBeColonist);
+            float retVal = GetInteractionWeight(initiator, recipient, relationRestriction, mustBeColonist);
 
             Debug.Log($"Interaction weight for {initiator.Name} => {recipient.Name} is {retVal}");
 
-            return retVal; 
+            return retVal;
         }
 
-        private float GetInteractionWeight(Pawn initiator, Pawn recipient, Filter<PawnRelationDef> relationRestriction, bool mustBeColonist)
+        private float GetInteractionWeight(Pawn initiator, Pawn recipient, Filter<PawnRelationDef> relationRestriction,
+                                           bool mustBeColonist)
         {
             Pawn oHuman = FormerHumanUtilities.GetOriginalPawnOfFormerHuman(recipient);
             if (relationRestriction != null) //check any relationships if applicable 
@@ -92,7 +95,8 @@ namespace Pawnmorph.Social
                     if (mustBeColonist) return 0; //if there is no original pawn they can't be a colonist 
 
                     if (!relationRestriction.isBlackList)
-                        return 0; //if the filter is a white list a blank original pawn can't pass it because there is no relationship 
+                        return
+                            0; //if the filter is a white list a blank original pawn can't pass it because there is no relationship 
                     return BaseInteractionChance;
                 }
 
@@ -103,6 +107,7 @@ namespace Pawnmorph.Social
 
                 return 0; //none passed 
             }
+
             return BaseInteractionChance;
         }
     }

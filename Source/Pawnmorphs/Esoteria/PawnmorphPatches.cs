@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AlienRace;
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
@@ -25,9 +25,11 @@ namespace Pawnmorph
         private static readonly Type patchType = typeof(PawnmorphPatches);
 
         static PawnmorphPatches()
-        {
-            HarmonyInstance
-                harmonyInstance = HarmonyInstance.Create("com.BioReactor.rimworld.mod"); //shouldn't this be different? 
+        {   
+            Harmony.DEBUG = true; 
+
+            var
+                harmonyInstance = new Harmony("com.pawnmorpher.mod"); //shouldn't this be different? 
             harmonyInstance.Patch(
                                   AccessTools.Method(typeof(FoodUtility),
                                                      nameof(FoodUtility.ThoughtsFromIngesting)),

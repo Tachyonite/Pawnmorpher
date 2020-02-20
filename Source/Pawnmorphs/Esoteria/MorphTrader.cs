@@ -6,6 +6,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Verse;
 using Pawnmorph.Utilities;
+using UnityEngine;
 
 namespace Pawnmorph
 {
@@ -23,8 +24,9 @@ namespace Pawnmorph
         /// Generates the things.
         /// </summary>
         /// <param name="forTile">For tile.</param>
+        /// <param name="forFaction">the faction this is being generated for</param>
         /// <returns></returns>
-        public override IEnumerable<Thing> GenerateThings(int forTile)
+        public override IEnumerable<Thing> GenerateThings(int forTile, Faction forFaction = null)
         {
             if (respectPopulationIntent && Rand.Value > StorytellerUtilityPopulation.PopulationIntent)
             {
@@ -77,9 +79,14 @@ namespace Pawnmorph
             new CurvePoint(1f, 2f)
         };
 
-        /// <summary> Generates the things for the given forTile. </summary>
-        /// <param name="forTile"> For tile. </param>
-        IEnumerable<Thing> GenerateThingEnumer(int forTile)
+        /// <summary>
+        /// Generates the things for the given forTile.
+        /// </summary>
+        /// <param name="forTile">For tile.</param>
+        /// <param name="forFaction">For faction.</param>
+        /// <returns></returns>
+        [NotNull]
+        IEnumerable<Thing> GenerateThingEnumer(int forTile, Faction forFaction)
         {
             int numKinds = kindCountRange.RandomInRange;
             int count = countRange.RandomInRange;
@@ -134,19 +141,31 @@ namespace Pawnmorph
                     float animalLifeExpectancy = pawn.def.race.lifeExpectancy;
                     float humanLifeExpectancy = 80f;
 
-                    float converted = animalLifeExpectancy / animalAge;
 
-                    float lifeExpectancy = humanLifeExpectancy / converted;
+                    float age = animalAge * humanLifeExpectancy / animalLifeExpectancy;
+                    age = Mathf.Max(age, 17); //make sure the human is at least 17 years old 
+                    float chronoAge = pawn.ageTracker.AgeChronologicalYears * age / animalAge;
+                    var pkds = new List<PawnKindDef>
+                    {
+                        PawnKindDefOf.Slave,
+                        PawnKindDefOf.Colonist,
+                        PawnKindDefOf.SpaceRefugee,
+                        PawnKindDefOf.Villager,
+                        PawnKindDefOf.Drifter,
+                        PawnKindDefOf.AncientSoldier
+                    };
 
-                    List<PawnKindDef> pkds = new List<PawnKindDef>();
-                    pkds.Add(PawnKindDefOf.Slave);
-                    pkds.Add(PawnKindDefOf.Colonist);
-                    pkds.Add(PawnKindDefOf.SpaceRefugee);
-                    pkds.Add(PawnKindDefOf.Villager);
-                    pkds.Add(PawnKindDefOf.Drifter);
-                    pkds.Add(PawnKindDefOf.AncientSoldier);
 
-                    pawnOriginal = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pkds.RandomElement(), Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, new float?(lifeExpectancy), new float?(Rand.Range(lifeExpectancy, lifeExpectancy + 200)), new Gender?(newGender), null, null));
+                    PawnKindDef rKind = pkds.RandElement();
+
+                    var hRequest = new PawnGenerationRequest(rKind, Faction.OfPlayer,
+                                                             PawnGenerationContext.NonPlayer, fixedBiologicalAge: age,
+                                                             fixedChronologicalAge: chronoAge, fixedGender: newGender);
+
+
+                    pawnOriginal = PawnGenerator.GeneratePawn(hRequest);
+                    
+                    
                     pawn.Name = pawnOriginal.Name;
                 }
                 else
@@ -162,14 +181,18 @@ namespace Pawnmorph
                 yield return pawn;
             }
         }
-        /// <summary>Generates the things that can be sold</summary>
+
+        /// <summary>
+        /// Generates the things that can be sold
+        /// </summary>
         /// <param name="forTile">For tile.</param>
+        /// <param name="forFaction">For faction.</param>
         /// <returns></returns>
-        public override IEnumerable<Thing> GenerateThings(int forTile)
+        public override IEnumerable<Thing> GenerateThings(int forTile, Faction forFaction = null)
         {
             RandUtilities.PushState();
 
-            var enumer = GenerateThingEnumer(forTile).ToList();
+            var enumer = GenerateThingEnumer(forTile, forFaction).ToList();
 
             RandUtilities.PopState();
             foreach (Pawn pawn in enumer.OfType<Pawn>())

@@ -193,9 +193,12 @@ namespace Pawnmorph.Hybrids
             }
         }
 
-        /// <summary> Generate general settings for the hybrid race given the human settings and morph def.</summary>
-        /// <param name="human"></param>
-        /// <param name="morph"></param>
+        /// <summary>
+        /// Generate general settings for the hybrid race given the human settings and morph def.
+        /// </summary>
+        /// <param name="human">The human.</param>
+        /// <param name="morph">The morph.</param>
+        /// <param name="impliedRace">The implied race.</param>
         /// <returns></returns>
         private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {

@@ -170,9 +170,11 @@
 				</countRange>
 			</li>
 
-			<li Class="StockGenerator_BuyArt" />
+			<li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
 			<li Class="StockGenerator_BuyExpensiveSimple" />
+			<!-- weird organic gone and I don't know what replaced it 
 			<li Class="StockGenerator_BuyWeirdOrganic" />
+			-->
 		</stockGenerators>
 	</TraderKindDef>
 	
@@ -309,9 +311,11 @@
 				</countRange>
 			</li>
 						
-			<li Class="StockGenerator_BuyArt" />
+			<li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
 			<li Class="StockGenerator_BuyExpensiveSimple" />
+			<!--
 			<li Class="StockGenerator_BuyWeirdOrganic" />
+			-->
 		</stockGenerators>
 	</TraderKindDef>
 </Defs>

@@ -10,7 +10,7 @@
     <canSiege>true</canSiege>
     <canStageAttacks>true</canStageAttacks>
     <leaderTitle>magistrate</leaderTitle>
-    <expandingIconTexture>UI/Icons/FreeMorphs</expandingIconTexture>
+    <factionIconPath>UI/Icons/FreeMorphs</factionIconPath>
     <factionNameMaker>NamerFactionOutlander</factionNameMaker>
     <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
     <techLevel>Industrial</techLevel>
@@ -89,7 +89,7 @@
         </options>
       </li>
     </pawnGroupMakers>
-    <homeIconPath>World/WorldObjects/DefaultSettlement</homeIconPath>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
   </FactionDef>
 
   <FactionDef ParentName="PawnmorpherEnclaveBase">

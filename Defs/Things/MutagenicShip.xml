@@ -21,49 +21,13 @@
     <category>ThreatBig</category>
     <pointsScaleable>true</pointsScaleable>
     <minThreatPoints>450</minThreatPoints>
-    <shipPart>CrashedMutagenicShipPart</shipPart>
+    <mechClusterBuilding>CrashedMutagenicShipPart</mechClusterBuilding>
     <tale>ShipPartCrash</tale>
   </IncidentDef>
 
-  <ThingDef ParentName="BuildingBase" Name="MutagenicShipPartBase" Abstract="True">
+  <ThingDef ParentName="CrashedShipPartBase" Name="MutagenicShipPartBase" Abstract="True">
     <!-- same as ship part base minus the snow expanding comp -->
-    <thingClass>Building_CrashedShipPart</thingClass>
-    <altitudeLayer>Building</altitudeLayer>
-    <pathCost>150</pathCost>
-    <blockWind>true</blockWind>
-    <passability>Impassable</passability>
-    <fillPercent>1.0</fillPercent>
-    <size>(6,3)</size>
-    <statBases>
-      <MaxHitPoints>1000</MaxHitPoints>
-      <Flammability>0</Flammability>
-      <Beauty>-200</Beauty>
-    </statBases>
-    <tickerType>Normal</tickerType>
-    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
-    <killedLeavings>
-      <Steel>100</Steel>
-      <Plasteel>35</Plasteel>
-      <ChunkSlagSteel>8</ChunkSlagSteel>
-      <ComponentIndustrial>4</ComponentIndustrial>
-      <ComponentSpacer>1</ComponentSpacer>
-    </killedLeavings>
-    <rotatable>true</rotatable>
-    <selectable>true</selectable>
-    <neverMultiSelect>true</neverMultiSelect>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
-    <drawerType>MapMeshOnly</drawerType>
-    <repairEffect>ConstructMetal</repairEffect>
-    <forceDebugSpawnable>true</forceDebugSpawnable>
-    <building>
-      <claimable>false</claimable>
-      <soundAmbient>CrashedShipPart_Ambience</soundAmbient>
-      <roofCollapseDamageMultiplier>0.2</roofCollapseDamageMultiplier>
-    </building>
-    <comps>
-      <li Class="CompProperties_SpawnerMechanoidsOnDamaged" />
-    </comps>
+   
   </ThingDef>
 
   <ThingDef ParentName="MutagenicShipPartBase">

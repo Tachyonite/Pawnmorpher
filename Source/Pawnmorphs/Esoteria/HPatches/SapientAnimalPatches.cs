@@ -1,7 +1,7 @@
 ﻿// SapientAnimalPatches.cs modified by Iron Wolf for Pawnmorph on 12/17/2019 7:21 PM
 // last updated 12/17/2019  7:21 PM
 
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;

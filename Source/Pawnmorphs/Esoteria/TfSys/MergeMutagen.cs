@@ -77,12 +77,8 @@ namespace Pawnmorph.TfSys
 
             Faction faction = request.forcedFaction ?? Faction.OfPlayer;
 
-            var pRequest = new PawnGenerationRequest(request.outputDef,faction ,
-                                                    PawnGenerationContext.NonPlayer, -1, false,
-                                                    false, false, false, true, false, 1f,
-                                                    false, true, true, false, false, false,
-                                                    false, null, null, null,
-                                                    newAge, averageAge);
+            var pRequest = FormerHumanUtilities.CreateMergedAnimalRequest(request.outputDef, request.originals, faction);
+
 
 
             Pawn meldToSpawn = PawnGenerator.GeneratePawn(pRequest);
@@ -238,9 +234,9 @@ namespace Pawnmorph.TfSys
 
             if (status != null)
             {
-                if (status.Second != TransformedStatus.Transformed) return false;
+                if (status.Item2 != TransformedStatus.Transformed) return false;
 
-                if (status.First is MergedPawns merged)
+                if (status.Item1 is MergedPawns merged)
                 {
                     if (merged.mutagenDef != def) return false;
 

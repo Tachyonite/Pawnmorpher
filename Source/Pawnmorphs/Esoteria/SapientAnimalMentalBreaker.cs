@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;
