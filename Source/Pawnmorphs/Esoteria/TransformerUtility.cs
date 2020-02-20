@@ -534,18 +534,6 @@ namespace Pawnmorph
                 return etherAspect.StageIndex == 0 ? EtherState.Broken : EtherState.Bond; 
             }
 
-
-            HediffSet hediffs = pawn.health.hediffSet;
-            if (hediffs.HasHediff(HediffDef.Named(ETHER_BOND_DEF_NAME)))
-            {
-                return EtherState.Bond; 
-            }
-
-            if (hediffs.HasHediff(HediffDef.Named(ETHER_BROKEN_DEF_NAME)))
-            {
-                return EtherState.Broken; 
-            }
-
             return EtherState.None; 
         }
 
