@@ -7,6 +7,7 @@
 		<initialSeverity>0</initialSeverity>
 		<classInfluence>Animal</classInfluence>
 		<mutationTale>LimbGrowsFur</mutationTale>
+		<mutationMemory>EtherFurredLimb</mutationMemory>
 		<parts>
 			<li>Torso</li>
 			<li>Head</li>
@@ -72,6 +73,7 @@
 		<defName>EtherThickFurLimb</defName>
 		<label>thick fur</label>
 		<description>A heavy coat of fur drapes across this limb, insulating a lot of heat.</description>
+		<mutationMemory>EtherThickFurLimb</mutationMemory>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>

@@ -8,6 +8,7 @@
 		<label>!!!EtherAlphabeaverJaw needs a label!!!</label>
 		<description>!!!EtherAlphabeaverJaw needs a description!!!</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
+		<mutationMemory>EtherAlphabeaverJaw</mutationMemory>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 			<minSeverity>-1</minSeverity>
@@ -97,6 +98,7 @@
 		<label>!!!EtherAlphabeaverEar needs a label!!!</label>
 		<description>!!!EtherAlphabeaverEar needs a description!!!</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
+		<mutationMemory>EtherAlphabeaverEar</mutationMemory>
 		<parts>
 			<li>Ear</li>
 		</parts>
@@ -107,6 +109,7 @@
 		<label>!!!EtherAlphabeaverTail needs a label!!!</label>
 		<description>!!!EtherAlphabeaverTail needs a description!!!</description>
 		<mutationTale>GrewTail</mutationTale>
+		<mutationMemory>EtherAlphabeaverTail</mutationMemory>
 		<parts>
 			<li>Tail</li>
 		</parts>

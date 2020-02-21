@@ -50,4 +50,77 @@
             </li>
         </stages>
     </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlphabeaverJaw</defName>
+        <stages>
+            <li>
+                <label>Beaver face</label>
+                <description>That tree over there looks delicious...</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver face</label>
+                <description>I CAN EAT TREES!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver face</label>
+                <description>I CAN EAT TREES?!?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlphabeaverEar</defName>
+        <stages>
+            <li>
+                <label>Beaver ear</label>
+                <description>These ears are kind of weird.</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver ear</label>
+                <description>Can I hear underwater now?</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver ear</label>
+                <description>These ears are really weird, get them off!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlphabeaverTail</defName>
+        <stages>
+            <li>
+                <label>Beaver tail</label>
+                <description>Why is it so flat?</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver tail</label>
+                <description>Time to build a dam!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver tail</label>
+                <description>I want to use this thing to slap whoever did this to me!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 </Defs>

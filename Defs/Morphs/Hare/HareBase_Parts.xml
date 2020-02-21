@@ -7,6 +7,7 @@
 		<label>leporine muzzle</label>
 		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a hare's, complete with twitchy pink button nose.</description>
 		<initialSeverity>0</initialSeverity>
+		<mutationMemory>EtherHareJaw</mutationMemory>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -80,6 +81,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
 		<defName>EtherHareTail</defName>
+		<mutationMemory>EtherHareTail</mutationMemory>
 		<label>cotton-tail</label>
 		<description>A small puff of fluff peaks out just above [PAWN_nameDef]'s rear. It's rather cute, actually.</description>
 		<parts>

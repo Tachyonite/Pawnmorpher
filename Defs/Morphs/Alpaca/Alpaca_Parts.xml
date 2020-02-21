@@ -8,6 +8,7 @@
 		<label>wooly snout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, wooly and with lips perfect for spitting.</description>
 		<mutationTale>GrewAlpacaMuzzle</mutationTale>
+		<mutationMemory>EtherAlpacaSnout</mutationMemory>
 		<stages>
 			<li>
 				<capMods>
@@ -84,6 +85,7 @@
 		<label>woolen</label>
 		<description>Wooly ears twitch at the wind, idly.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
+		<mutationMemory>EtherAlpacaEar</mutationMemory>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
@@ -102,6 +104,7 @@
 		<parts>
 			<li>Tail</li>
 		</parts>
+		<mutationMemory>EtherAlpacaTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
@@ -110,6 +113,7 @@
 		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent alpacamorph that don't need no man.</description>
 		<initialSeverity>0.01</initialSeverity>		
 		<mutationTale>StartsGrowingWool</mutationTale>
+		<mutationMemory>EtherWooly</mutationMemory>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ShavedMyself</thought>

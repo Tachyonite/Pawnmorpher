@@ -50,4 +50,78 @@
             </li>
         </stages>
     </ThoughtDef>
+
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlpacaSnout</defName>
+        <stages>
+            <li>
+                <label>Wooly snout</label>
+                <description>Ew, I feel like I need to spit...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Wooly snout</label>
+                <description>So soft and wooly, awesome!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Wooly snout</label>
+                <description>My face...it's so ugly and drooly!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlpacaEar</defName>
+        <stages>
+            <li>
+                <label>Wooly ears</label>
+                <description>They're annoyingly long and get in the way...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Wooly ears</label>
+                <description>Tall ears are cool.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Wooly ears</label>
+                <description>Eugh, I don't want these...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlpacaTail</defName>
+        <stages>
+            <li>
+                <label>Wooly tail</label>
+                <description>It's dangly and in the way...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Wooly tail</label>
+                <description>I suppose it's part of the aesthetic, if not all that useful. But cool, a tail!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Wooly tail</label>
+                <description>I think I can cut it it off, right?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 </Defs>

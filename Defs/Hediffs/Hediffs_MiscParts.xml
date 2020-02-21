@@ -11,6 +11,7 @@
 		</parts>
 		<classInfluence>Carnivora</classInfluence>
 		<mutationTale>LegBecameDigitgrade</mutationTale>
+		<mutationMemory>EtherDigitigradeLeg</mutationMemory>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>crooked</labelOverride>
@@ -187,6 +188,7 @@
 		<defName>EtherClovenHoofFoot</defName>
 		<description>[PAWN_nameDef]'s toenails have thickened and grown into a veritable hoof, with a split down the middle.</description>
 		<label>cloven hoof</label>
+		<mutationMemory>EtherClovenHoofFoot</mutationMemory>
 		<parts>
 			<li>Foot</li>
 		</parts>

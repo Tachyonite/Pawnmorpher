@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -155,6 +156,16 @@ namespace Pawnmorph.Hediffs
         {
             base.ResolveReferences();
             classInfluence = classInfluence ?? AnimalClassDefOf.Animal;
+
+            if (mutationMemory == null)
+            {
+                mutationMemory = DefDatabase<ThoughtDef>.GetNamedSilentFail(defName);
+                if (mutationMemory != null)
+                {
+                    //Log.Message($"{defName} has implicitly defined {nameof(mutationMemory)}, this should be assigned explicitly");
+                }
+            }
+
         }
     }
 }

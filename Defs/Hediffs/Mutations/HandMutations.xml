@@ -92,6 +92,7 @@
         <parts>
             <li>Hand</li>
         </parts>
+        <mutationMemory>EtherHoofHand</mutationMemory>
         <classInfluence>Ungulate</classInfluence>
         <mutationTale>HandsBecomeHooves</mutationTale>
         <stages>

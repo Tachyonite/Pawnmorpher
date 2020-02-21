@@ -381,42 +381,10 @@ namespace Pawnmorph.DebugUtils
         [DebugOutput]
         public static void GetThoughtlessMutations()
         {
-            IEnumerable<VTuple<HediffDef, HediffGiver_Mutation>> SelectionFunc(HediffDef def)
-            {
-                foreach (HediffGiver_Mutation hediffGiverMutation in def.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
-                {
-                    if (hediffGiverMutation.memory != null) continue; //if it has a memory associated with it ignore it 
 
-                    yield return new VTuple<HediffDef, HediffGiver_Mutation>(def, hediffGiverMutation);
-                }
-            }
+            var missingThought = DefDatabase<MutationDef>.AllDefs.Where(m => m.mutationMemory == null).Join(m => m.defName, "\n"); 
 
-            List<IGrouping<HediffDef, HediffGiver_Mutation>> allGiversWithData = DefDatabase<HediffDef>
-                                                                                .AllDefs
-                                                                                .Where(d =>
-                                                                                           typeof(Hediff_Morph)
-                                                                                              .IsAssignableFrom(d.hediffClass)) //grab all morph hediffs 
-                                                                                .SelectMany(SelectionFunc) //select all hediffGivers but keep the morph hediff around 
-                                                                                .GroupBy(vT => vT.First,
-                                                                                         vT => vT.Second) //group by morph Hediff 
-                                                                                .ToList(); //save it as a list 
-
-
-            if (allGiversWithData.Count == 0) Log.Message("All mutations have memories");
-            var builder = new StringBuilder();
-            IEnumerable<HediffDef> allMuts = allGiversWithData.SelectMany(g => g.Select(mG => mG.hediff)).Distinct();
-            foreach (HediffDef mutation in allMuts) builder.AppendLine(mutation.defName);
-
-
-            builder.AppendLine("---------Giver Locations----------------");
-
-            foreach (IGrouping<HediffDef, HediffGiver_Mutation> group in allGiversWithData)
-            {
-                builder.AppendLine($"{group.Key.defName} contains givers of the following mutations that do not have memories with them:");
-                foreach (HediffDef mutation in group.Select(g => g.hediff)) builder.AppendLine($"\t\t{mutation.defName}");
-            }
-
-            Log.Message(builder.ToString());
+            Log.Message(missingThought);
         }
 
 
