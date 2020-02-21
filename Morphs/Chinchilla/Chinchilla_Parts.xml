@@ -65,6 +65,7 @@
 		<label>!!!EtherChinchillaEar needs a label!!!</label>
 		<description>!!!EtherChinchillaEar needs a description!!!</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
+		<mutationMemory>EtherChinchillaEar</mutationMemory>
 		<parts>
 			<li>Ear</li>
 		</parts>
@@ -75,6 +76,7 @@
 		<label>!!!EtherChinchillaTail needs a label!!!</label>
 		<description>!!!EtherChinchillaTail needs a description!!!</description>
 		<mutationTale>GrewTail</mutationTale>
+		<mutationMemory>EtherChinchillaTail</mutationMemory>
 		<parts>
 			<li>Tail</li>
 		</parts>

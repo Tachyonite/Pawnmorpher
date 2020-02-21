@@ -50,4 +50,29 @@
             </li>
         </stages>
     </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherElkJaw</defName>
+        <stages>
+            <li>
+                <label>Elk face</label>
+                <description>I can barely talk with this thing...</description>
+                <visible>True</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Elk face</label>
+                <description>...This is kinda cool, I guess?</description>
+                <visible>True</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Elk face</label>
+                <description>What happened to my face?!?</description>
+                <visible>True</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 </Defs>

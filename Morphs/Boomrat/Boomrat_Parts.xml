@@ -36,6 +36,7 @@
 				</capMods>
 			</li>
 		</stages>
+		<mutationMemory>EtherBoomratJaw</mutationMemory>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -68,6 +69,7 @@
 		<parts>
 			<li>Ear</li>
 		</parts>
+		<mutationMemory>EtherBoomratEar</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoomratPart">
@@ -78,5 +80,6 @@
 		<parts>
 			<li>Tail</li>
 		</parts>
+		<mutationMemory>EtherBoomratTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
