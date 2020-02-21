@@ -3,4 +3,12 @@
 		<defName>EtherFennecFoxMuzzle</defName>
 		<classInfluence>FennecFoxMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxEarBase">
+		<defName>EtherFennecFoxEar</defName>
+		<classInfluence>FennecFoxMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxTailBase">
+		<defName>EtherFennecFluffyTail</defName>
+		<classInfluence>FennecFoxMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

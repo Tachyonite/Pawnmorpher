@@ -8,7 +8,7 @@
 		<stages>
 			<li>
 				<label>prisoner merged</label>
-				<description>We did mad science on a captive. It just feels wrong to make them a monster...</description>
+				<description>We did mad science on a captive. It feels wrong to make them a monster...</description>
 				<baseMoodEffect>-4</baseMoodEffect>
 
 			</li>
@@ -85,7 +85,7 @@
 		<stages>
 			<li>
 				<label>transformed prisoner</label>
-				<description>We turned a captive into an animal. I know they're our prisoner, but it just seems wrong.</description>
+				<description>We turned a captive into an animal. I know they're our prisoner, but it seems wrong.</description>
 				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 

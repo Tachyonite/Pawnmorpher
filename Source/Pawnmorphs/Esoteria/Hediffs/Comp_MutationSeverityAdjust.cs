@@ -20,6 +20,20 @@ namespace Pawnmorph.Hediffs
     {
         private bool _halted;
 
+        private float? _statAdjust;
+
+        float StatAdjust
+        {
+            get
+            {
+                if (_statAdjust == null)
+                {
+                    _statAdjust = Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity); //make mutagen sensitivity influence how fast the adjustment works 
+                }
+
+                return _statAdjust.Value; 
+            }
+        }
 
         [NotNull]
         private CompProperties_MutationSeverityAdjust Props
@@ -67,7 +81,8 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public void Restart()
         {
-            Halted = false; 
+            Halted = false;
+            _statAdjust = null; 
         }
 
         /// <summary>
@@ -125,6 +140,11 @@ namespace Pawnmorph.Hediffs
                 _curStageIndex = sIndex;
                 CheckIfHalted();
             }
+
+            if (Pawn.IsHashIntervalTick(60))
+            {
+                _statAdjust = null; //only check the stat every so often, this is expensive 
+            }
         }
 
         /// <summary>
@@ -135,6 +155,7 @@ namespace Pawnmorph.Hediffs
         {
             base.CompPostMerged(other);
             Halted = false; //restart adjusting if halted 
+            _statAdjust = null;
         }
 
         private const float EPSILON = 0.001f;
@@ -194,10 +215,10 @@ namespace Pawnmorph.Hediffs
             var sevPerDay = base.SeverityChangePerDay() * sMult;
             //make sure the severity can only stay between the max and min 
             if (parent.Severity > maxSeverity) sevPerDay = Mathf.Min(0, sevPerDay);
-            if (parent.Severity < minSeverity) sevPerDay = Mathf.Max(0, sevPerDay); 
+            if (parent.Severity < minSeverity) sevPerDay = Mathf.Max(0, sevPerDay);
 
 
-            return sevPerDay;
+            return sevPerDay * Mathf.Max(StatAdjust, 0); //take the mutagen sensitivity stat into account 
         }
     }
 

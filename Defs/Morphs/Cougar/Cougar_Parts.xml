@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CougarPart">
 		<defName>EtherCougarJaw</defName>
-		<label>!!!EtherCougarJaw needs a label!!!</label>
-		<description>!!!EtherCougarJaw needs a description!!!</description>
+		<label>cougar snout</label>
+		<description>[PAWN_nameDef]'s face has pressed out into this rather feline shape, which is useful for eating, though they may hiss and meow more than talk.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -62,8 +62,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CougarPart">
 		<defName>EtherCougarEar</defName>
-		<label>!!!EtherCougarEar needs a label!!!</label>
-		<description>!!!EtherCougarEar needs a description!!!</description>
+		<label>feline</label>
+		<description>This ear has grown pointed and furred, keen and twitching, turning to listen to distant sounds.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
@@ -72,8 +72,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CougarPart">
 		<defName>EtherCougarTail</defName>
-		<label>!!!EtherCougarTail needs a label!!!</label>
-		<description>!!!EtherCougarTail needs a description!!!</description>
+		<label>cougar tail</label>
+		<description>A long, catlike tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>

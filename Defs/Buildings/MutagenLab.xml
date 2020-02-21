@@ -67,7 +67,7 @@
       <li>PlaceWorker_ShowFacilitiesConnections</li>
     </placeWorkers>
     <researchPrerequisites>
-      <li>AdvancedSerumSynthesis</li>
+      <li>SerumSynthesis</li>
     </researchPrerequisites>
   </ThingDef>
   

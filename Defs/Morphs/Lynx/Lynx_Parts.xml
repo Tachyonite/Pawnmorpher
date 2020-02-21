@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
 		<defName>EtherLynxJaw</defName>
-		<label>!!!EtherLynxJaw needs a label!!!</label>
-		<description>!!!EtherLynxJaw needs a description!!!</description>
+		<label>lynx snout</label>
+		<description>[PAWN_nameDef]'s face has grown into a rather regal face resembling a lynx's.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -62,8 +62,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
 		<defName>EtherLynxEar</defName>
-		<label>!!!EtherLynxEar needs a label!!!</label>
-		<description>!!!EtherLynxEar needs a description!!!</description>
+		<label>lynx-like</label>
+		<description>With a pointed tip and fluff of fur at the end, this ear has grown into what looks like a lynx's style of auditory apparatus.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
@@ -72,8 +72,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
 		<defName>EtherLynxTail</defName>
-		<label>!!!EtherLynxTail needs a label!!!</label>
-		<description>!!!EtherLynxTail needs a description!!!</description>
+		<label>stubby feline tail</label>
+		<description>Unlike most felines, the tail of a lynx is short and stubby. [PAWN_nameDef] has one of them now.</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>

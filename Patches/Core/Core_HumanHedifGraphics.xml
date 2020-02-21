@@ -32,9 +32,9 @@
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
 					<EtherElkJaw>Parts/Elk/Elk_Jaw</EtherElkJaw>
 					<EtherEmuJaw>Parts/Emu/Emu_Jaw</EtherEmuJaw>
-					<EtherFoxMuzzle>Parts/Fox/Fox_Jaw</EtherFoxMuzzle>
-					<EtherFennecFoxMuzzle>Parts/Fox/Fox_Jaw</EtherFennecFoxMuzzle>
-					<EtherArcticFoxMuzzle>Parts/Fox/Fox_Jaw</EtherArcticFoxMuzzle>
+					<EtherFoxMuzzle>Parts/FoxUpdated/RedFox_Jaw</EtherFoxMuzzle>
+					<EtherFennecFoxMuzzle>Parts/FoxFennec/FennecFox_Jaw</EtherFennecFoxMuzzle>
+					<EtherArcticFoxMuzzle>Parts/FoxArctic/ArcticFox_Jaw</EtherArcticFoxMuzzle>
 					<EtherGazelleJaw>Parts/Gazelle/Gazelle_Jaw</EtherGazelleJaw>
 					<EtherHareJaw>Parts/Hare/Hare_Jaw</EtherHareJaw>
 					<EtherSnowhareJaw>Parts/Hare/Hare_Jaw</EtherSnowhareJaw>
@@ -124,9 +124,9 @@
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
 					<EtherElkJaw>Parts/Elk/Elk_Jaw</EtherElkJaw>
 					<EtherEmuJaw>Parts/Emu/Emu_Jaw</EtherEmuJaw>
-					<EtherFoxMuzzle>Parts/Fox/Fox_Jaw</EtherFoxMuzzle>
-					<EtherFennecFoxMuzzle>Parts/Fox/Fox_Jaw</EtherFennecFoxMuzzle>
-					<EtherArcticFoxMuzzle>Parts/Fox/Fox_Jaw</EtherArcticFoxMuzzle>
+					<EtherFoxMuzzle>Parts/FoxUpdated/RedFox_Jaw</EtherFoxMuzzle>
+					<EtherFennecFoxMuzzle>Parts/FoxFennec/FennecFox_Jaw</EtherFennecFoxMuzzle>
+					<EtherArcticFoxMuzzle>Parts/FoxArctic/ArcticFox_Jaw</EtherArcticFoxMuzzle>
 					<EtherGazelleJaw>Parts/Gazelle/Gazelle_Jaw</EtherGazelleJaw>
 					<EtherHareJaw>Parts/Hare/Hare_Jaw</EtherHareJaw>
 					<EtherSnowhareJaw>Parts/Hare/Hare_Jaw</EtherSnowhareJaw>
@@ -396,7 +396,9 @@
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left</EtherDromedaryEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Left</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Left</EtherEmuEar>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left</EtherFennecFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left</EtherIbexEar>
@@ -443,7 +445,9 @@
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left_Behind</EtherDromedaryEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Left_Behind</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Left_Behind</EtherEmuEar>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left_Behind</EtherFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left_Behind</EtherFennecFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</EtherArcticFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left_Behind</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left_Behind</EtherIbexEar>
@@ -519,7 +523,9 @@
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right</EtherDromedaryEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Right</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Right</EtherEmuEar>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Right</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Right</EtherFennecFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right</EtherIbexEar>
@@ -566,7 +572,9 @@
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right_Behind</EtherDromedaryEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Right_Behind</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Right_Behind</EtherEmuEar>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right_Behind</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Right_Behind</EtherFennecFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right_Behind</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right_Behind</EtherIbexEar>
@@ -644,8 +652,10 @@
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left</EtherDromedaryEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Left</EtherElkEar>
-					<EtherEmuEar>Parts/Emu/Emu_Ear_Left</EtherEmuEar>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Left</EtherEmuEar>					
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left</EtherFennecFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left</EtherIbexEar>
@@ -695,7 +705,9 @@
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left_Behind</EtherDromedaryEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Left_Behind</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Left_Behind</EtherEmuEar>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left_Behind</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left_Behind</EtherFennecFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left_Behind</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left_Behind</EtherIbexEar>
@@ -774,7 +786,9 @@
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right</EtherDromedaryEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Right</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Right</EtherEmuEar>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Right</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Right</EtherFennecFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right</EtherIbexEar>
@@ -824,7 +838,9 @@
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right_Behind</EtherDromedaryEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Right_Behind</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Right_Behind</EtherEmuEar>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right_Behind</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Right_Behind</EtherFennecFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right_Behind</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
 					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right_Behind</EtherIbexEar>
@@ -865,7 +881,9 @@
 					<EtherElephantTail>Parts/elephantface/elephanttail</EtherElephantTail>
 					<EtherElkTail>Parts/Elk/Elk_Tail</EtherElkTail>
 					<EtherEmuTail>Parts/Emu/Emu_Tail</EtherEmuTail>
-					<EtherFluffyTail>Parts/Fox/Fox_Tail</EtherFluffyTail>
+					<EtherFluffyTail>Parts/FoxUpdated/RedFox_Tail</EtherFluffyTail>
+					<EtherArcticFluffyTail>Parts/FoxArctic/ArcticFox_Tail</EtherArcticFluffyTail>
+					<EtherFennecFluffyTail>Parts/FoxFennec/FennecFox_Tail</EtherFennecFluffyTail>
 					<EtherGazelleTail>Parts/Gazelle/Gazelle_Tail</EtherGazelleTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
 					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>

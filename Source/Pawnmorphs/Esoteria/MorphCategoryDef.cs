@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph
@@ -14,6 +15,7 @@ namespace Pawnmorph
 
         /// <summary>Gets all morphs in this category.</summary>
         /// <value>All morphs in categories.</value>
+        [NotNull]
         public IEnumerable<MorphDef> AllMorphsInCategories
         {
             get

@@ -41,7 +41,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
-				<description>A charming snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit, making eating is easier.</description>
+				<description>A charming snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit, making eating easier.</description>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -55,7 +55,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>paragon</label>
-				<description>A charming snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit, making eating is easier.</description>
+				<description>A very sculpted and charming snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit, making eating easier, and the silver tongue is a good boost in social events.</description>
 				<minSeverity>1.5</minSeverity>
 				<capMods>
 					<li>
@@ -64,7 +64,7 @@
 					</li>
 				</capMods>
 				<statOffsets>
-					<SocialImpact>+0.15</SocialImpact>
+					<SocialImpact>+0.20</SocialImpact>
 				</statOffsets>
 			</li>
 		</stages>
@@ -100,7 +100,7 @@
 		</modExtensions>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
+	<Pawnmorph.Hediffs.MutationDef Abstract="true" Name="FoxEarBase" ParentName="FoxPart">
 		<defName>EtherFoxEar</defName>
 		<description>Big fuzzy triangles crown [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're very sensitive, so please don't shout.</description>
 		<label>vulpine</label>
@@ -125,7 +125,7 @@
 		</modExtensions>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
+	<Pawnmorph.Hediffs.MutationDef Abstract="true" Name="FoxTailBase" ParentName="FoxPart">
 		<defName>EtherFluffyTail</defName>
 		<label>fluffy tail</label>
 		<description>A wonderfully fluffy fox tail drapes from [PAWN_nameDef]'s spine. Was that a small wag just then?</description>

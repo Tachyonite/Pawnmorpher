@@ -3,23 +3,23 @@
 		<defName>ThrumboTransformationMemory</defName>
         <stages>
             <li>
-                <label>!!!ThrumboTransformationMemory's default stage needs a label!!!</label>
-                <description>!!!ThrumboTransformationMemory's default stage needs a description!!!</description>
+                <label>changed</label>
+                <description>This strength isn't bad but I feel like I'm constantly hungry...</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!ThrumboTransformationMemory's mutation affinity stage needs a label!!!</label>
-                <description>!!!ThrumboTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <label>changed</label>
+                <description>I feel so strong and graceful!</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!ThrumboTransformationMemory's body purist stage needs a label!!!</label>
-                <description>!!!ThrumboTransformationMemory's body purist stage needs a description!!!</description>
+                <label>changed</label>
+                <description>Ugh! Get this horn off of me!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
-                <label>!!!ThrumboTransformationMemory's primal wish stage needs a label!!!</label>
-                <description>!!!ThrumboTransformationMemory's primal wish stage needs a description!!!</description>
+                <label>changed</label>
+                <description>I love this strength and this beautiful horn...I bet it would feel better to fully become the wisest animal on the Rim!</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
@@ -29,24 +29,24 @@
 		<defName>ThrumboRevertedMemory</defName>
         <stages>
             <li>
-                <label>!!!ThrumboRevertedMemory's default stage needs a label!!!</label>
-                <description>!!!ThrumboRevertedMemory's default stage needs a description!!!</description>
+                <label>reverted</label>
+                <description>Feels good to rid of that heavy fur...</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I miss all that strength, and that graceful horn...</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!ThrumboRevertedMemory's mutation affinity stage needs a label!!!</label>
-                <description>!!!ThrumboRevertedMemory's mutation affinity stage needs a description!!!</description>
-                <baseMoodEffect>+3</baseMoodEffect>
+                <label>reverted</label>
+                <description>I don't think I could have handled being like that for much longer...</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label>!!!ThrumboRevertedMemory's body purist stage needs a label!!!</label>
-                <description>!!!ThrumboRevertedMemory's body purist stage needs a description!!!</description>
+                <label>reverted</label>
+                <description>I wanted to go further not go back!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-            <li>
-                <label>!!!ThrumboRevertedMemory's primal wish stage needs a label!!!</label>
-                <description>!!!ThrumboRevertedMemory's primal wish stage needs a description!!!</description>
-                <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

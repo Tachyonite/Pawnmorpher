@@ -1,7 +1,7 @@
 <Defs>
     <StatDef>
         <defName>SapientAnimalA</defName>
-        <label>???</label><!--TODO -->
+        <label>resolve</label>
         <description>controls the degree to which a pawn resists changes in instinct</description>
         <!-- higher values mean the pawn is less affected by a raise in instincts  -->
         <category>BasicsPawn</category>
@@ -15,7 +15,7 @@
 
     <StatDef>
         <defName>SapientAnimalResistance</defName>
-        <label>instinct resistance</label> <!--TODO -->
+        <label>instinct resistance</label>
         <description>controls how much control a sapient animal has before going feral</description>
         <category>BasicsPawn</category>
         <defaultBaseValue>1.0</defaultBaseValue>
