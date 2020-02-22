@@ -148,6 +148,9 @@ namespace Pawnmorph
         private void OnSapienceLevelChanges()
         {
             var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman) as FormerHuman;
+            var fTracker = pawn.GetFormerHumanTracker();
+            if (fTracker == null) return;
+            fTracker.SapienceLevel = _currentLevel; 
             if (fHediff == null) return;
 
             switch (_currentLevel)

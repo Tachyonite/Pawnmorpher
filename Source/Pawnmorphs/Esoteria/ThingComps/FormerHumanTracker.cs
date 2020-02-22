@@ -13,7 +13,8 @@ namespace Pawnmorph.ThingComps
     {
         private bool _isFormerHuman;
 
-        private bool _permanentlyFeral;
+        
+        private SapienceLevel _sapienceLevel; 
 
         /// <summary>
         ///     Gets a value indicating whether this instance is a former human.
@@ -30,14 +31,39 @@ namespace Pawnmorph.ThingComps
         /// <value>
         ///     <c>true</c> if this instance is permanently feral; otherwise, <c>false</c>.
         /// </value>
-        public bool IsPermanentlyFeral => _isFormerHuman && _permanentlyFeral;
+        public bool IsPermanentlyFeral => _isFormerHuman && _sapienceLevel == SapienceLevel.PermanentlyFeral;
+
+        /// <summary>
+        /// Gets or sets the sapience level.
+        /// </summary>
+        /// <value>
+        /// The sapience level.
+        /// </value>
+        public SapienceLevel SapienceLevel
+        {
+            get { return _sapienceLevel;  }
+            set
+            {
+                if (_sapienceLevel != value)
+                {
+                    _sapienceLevel = value;
+                    OnSapienceLevelChanges(); 
+                }
+
+            }
+        }
+
+        private void OnSapienceLevelChanges()
+        {
+            
+        }
 
 
         /// <summary>
         ///     Makes the parent a former human.
         /// </summary>
         /// <returns></returns>
-        public void MakeFormerHuman() //TODO move most of FormerHumanUtilities.MakeAnimalSapient here 
+        public void MakeFormerHuman(float initialLevel) //TODO move most of FormerHumanUtilities.MakeAnimalSapient here 
         {
             if (_isFormerHuman)
             {
@@ -46,6 +72,7 @@ namespace Pawnmorph.ThingComps
             }
 
             _isFormerHuman = true;
+            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel); 
         }
 
 
@@ -57,7 +84,7 @@ namespace Pawnmorph.ThingComps
             if (!_isFormerHuman)
                 Log.Error($"trying to make a non former human \"{PMThingUtilities.GetDebugLabel(parent)}\" permanently feral");
 
-            _permanentlyFeral = true;
+            SapienceLevel = SapienceLevel.PermanentlyFeral; 
             //TODO move most of FormerHumanUtilities.MakePermanentlyFeral here 
         }
 
@@ -67,7 +94,7 @@ namespace Pawnmorph.ThingComps
         public override void PostExposeData()
         {
             Scribe_Values.Look(ref _isFormerHuman, "isFormerHuman");
-            Scribe_Values.Look(ref _permanentlyFeral, nameof(_permanentlyFeral));
+            Scribe_Values.Look(ref _sapienceLevel, "sapience");   
             base.PostExposeData();
         }
     }

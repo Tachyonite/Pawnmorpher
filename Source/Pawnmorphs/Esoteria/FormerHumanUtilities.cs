@@ -10,6 +10,7 @@ using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
+using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Thoughts;
@@ -431,13 +432,10 @@ namespace Pawnmorph
         /// <returns>returns null if the pawn isn't a former human</returns>
         public static SapienceLevel? GetQuantizedSapienceLevel([NotNull] this Pawn pawn)
         {
-            float? sLevel = GetSapienceLevel(pawn);
             FormerHumanTracker tracker = pawn.GetFormerHumanTracker();
             if (tracker == null) return null;
-            if (sLevel == null) return null;
-            if (tracker.IsPermanentlyFeral) return SapienceLevel.PermanentlyFeral;
-
-            return GetQuantizedSapienceLevel(sLevel.Value); 
+            if (!tracker.IsFormerHuman) return null; 
+            return tracker.SapienceLevel; 
         }
 
         /// <summary>
@@ -450,20 +448,9 @@ namespace Pawnmorph
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
         {
-            switch (pawn.GetQuantizedSapienceLevel())
-            {
-                case SapienceLevel.Sapient:
-                case SapienceLevel.MostlySapient:
-                case SapienceLevel.Conflicted:
-                case SapienceLevel.MostlyFeral:
-                    return true; 
-                case SapienceLevel.Feral:
-                case SapienceLevel.PermanentlyFeral:
-                case null:
-                    return false;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            var fTracker = pawn.GetFormerHumanTracker();
+            if (fTracker == null) return false;
+            return fTracker.IsFormerHuman && !fTracker.IsPermanentlyFeral; 
         }
 
         /// <summary>
@@ -526,17 +513,7 @@ namespace Pawnmorph
             return pawn;
         }
 
-        /// <summary>Gets the sapience level of this pawn</summary>
-        /// <param name="formerHuman">The former human.</param>
-        /// <returns>the sapience level. If feral this is 0, if the given pawn is not a former human returns null</returns>
-        public static float? GetSapienceLevel([NotNull] this Pawn formerHuman)
-        {
-            if (formerHuman == null) throw new ArgumentNullException(nameof(formerHuman));
-            var fComp = formerHuman.GetComp<FormerHumanTracker>();
-            if (fComp == null) return 0;
-            if (fComp.IsPermanentlyFeral) return 0;
-            return formerHuman?.needs?.TryGetNeed<Need_Control>()?.CurLevel;
-        }
+       
 
         /// <summary>
         ///     Gets the sapient animal comp.
@@ -574,18 +551,19 @@ namespace Pawnmorph
             }
 
 
-            comp.MakeFormerHuman();
+            comp.MakeFormerHuman(sapienceLevel);
 
             if (original.Faction == Faction.OfPlayer) animal.SetFaction(original.Faction);
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
+
             if (animal.needs == null)
             {
                 Log.Error(nameof(animal.needs));
                 return;
             }
-
             animal.needs.AddOrRemoveNeedsAsAppropriate();
+
             PawnTransferUtilities.TransferRelations(original, animal);
             PawnTransferUtilities.TransferAspects(original, animal);
             PawnTransferUtilities.TransferSkills(original, animal);
@@ -599,7 +577,9 @@ namespace Pawnmorph
                 return;
             }
 
-            nC.SetInitialLevel(sapienceLevel); 
+            nC.SetInitialLevel(sapienceLevel);      
+            animal.needs.AddOrRemoveNeedsAsAppropriate();
+
             //nC.CurLevelPercentage = sapienceLevel;
 
             if (animal.training == null) return;
@@ -868,29 +848,6 @@ namespace Pawnmorph
 
         [NotNull]
         private static readonly List<RulePackDef> _randomNameGenerators;
-
-        private static Name CreateRandomNameFor([NotNull] Pawn formerHumanPawn, float sapienceLevel)
-        {
-            Log.Message($"$$$$giving name to pawn {formerHumanPawn?.LabelShort ?? "[NULL]"}"); 
-
-
-            SapienceLevel qSapience = GetQuantizedSapienceLevel(sapienceLevel);
-            switch (qSapience)
-            {
-                case SapienceLevel.Sapient:
-                case SapienceLevel.MostlySapient:
-                    break;
-                case SapienceLevel.Conflicted:
-                case SapienceLevel.MostlyFeral:
-                case SapienceLevel.Feral:
-                case SapienceLevel.PermanentlyFeral:
-                    return new NameSingle(formerHumanPawn.LabelShort);
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            return PawnBioAndNameGenerator.TryGetRandomUnusedSolidName(formerHumanPawn.gender);
-        }
 
 
         /// <summary>

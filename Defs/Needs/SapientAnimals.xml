@@ -17,6 +17,7 @@
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
                 <filter>
+                    <isBlackList>true</isBlackList>
                     <filterList>
                         <li>PermanentlyFeral</li>
                     </filterList>

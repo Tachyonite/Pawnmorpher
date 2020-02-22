@@ -24,7 +24,7 @@ namespace Pawnmorph.HPatches
                 if (pawn.RaceProps.Animal)
                 {
                     var formerHumanStats = pawn.GetQuantizedSapienceLevel();
-
+                    
                     switch (formerHumanStats)
                     {
                         case SapienceLevel.Sapient:
@@ -108,6 +108,7 @@ namespace Pawnmorph.HPatches
                 pawn.apparel = pawn.apparel ?? new  Pawn_ApparelTracker(pawn); //need this to not break thoughts and stuff 
                 pawn.skills = pawn.skills ?? new Pawn_SkillTracker(pawn); //need this for thoughts 
                 pawn.royalty = pawn.royalty ?? new Pawn_RoyaltyTracker(pawn);// former humans can be royalty  
+                pawn.mindState = pawn.mindState ?? new Pawn_MindState(pawn); 
                 Comp_SapientAnimal nComp = pawn.GetComp<Comp_SapientAnimal>();
                 bool addedComp = false;
                 

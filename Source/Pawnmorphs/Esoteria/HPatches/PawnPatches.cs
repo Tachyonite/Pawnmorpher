@@ -43,7 +43,13 @@ namespace Pawnmorph.HPatches
                     __result = nd.IsValidFor(___pawn);
                     return;
                 }
-                if (!___pawn.IsSapientFormerHuman()) return; 
+                if (___pawn?.IsSapientFormerHuman() != true) return;
+                if (nd?.defName == "SapientAnimalControl")
+                {
+                    __result = true;
+                    return; 
+                }
+                
                 var isColonist = ___pawn.Faction?.IsPlayer == true;
                 if (nd.defName == "Mood")
                 {
