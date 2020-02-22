@@ -3,6 +3,7 @@
         <defName>TransformationParalysis</defName>
         <label>transformation paralysis</label>
         <hediffClass>HediffWithComps</hediffClass>
+        <description>transformation paralysis</description>
         <initialSeverity>1</initialSeverity>
         <maxSeverity>1</maxSeverity>
         <comps>
