@@ -466,7 +466,6 @@
     <Compile Include="Graphics\MorphGraphicsUtils.cs" />
     <Compile Include="HediffGiver_Mutation.cs" />
     <Compile Include="Hediffs\CompProperties_DependentPart.cs" />
-    <Compile Include="Hediffs\CompProperties_MorphInfluence.cs" />
     <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
     <Compile Include="Hediffs\Comp_TerrainProduction.cs" />

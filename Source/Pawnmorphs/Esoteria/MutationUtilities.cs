@@ -53,25 +53,6 @@ namespace Pawnmorph
                 anyWarnings = true;
             }
 
-            //warnings for use of the old def extension 
-
-            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
-            {
-#pragma warning disable 618
-                if (hediffDef.HasModExtension<MutationHediffExtension>())
-                {
-                    warningBuilder.AppendLine($"{hediffDef.defName} is still using the old MutationHediffExtension!");
-                    anyWarnings = true;
-                }
-
-                if (hediffDef.HasComp(typeof(Comp_MorphInfluence)))
-                {
-                    warningBuilder.AppendLine($"{hediffDef.defName} is still using the old {nameof(Comp_MorphInfluence)}!");
-                    anyWarnings = true;
-                }
-#pragma warning restore 618
-            }
-
             if (anyWarnings) Log.Warning(warningBuilder.ToString());
             BuildLookupDicts();
         }

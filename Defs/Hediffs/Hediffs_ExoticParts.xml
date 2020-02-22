@@ -1,6 +1,6 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/MutationDef.xsd">
 	<!--Morph-specific parts are located in the individual morph's files-->
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherGutswell</defName>
 		<description>[PAWN_nameDef] functions as a nutrient generator by some unknown process, and this is given back as nutrient paste.</description>
 		<label>gutswell</label>
@@ -67,9 +67,9 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherIntoxica</defName>
 		<description>[PAWN_nameDef] functions as a natural distillery, producing beer by some obscure fermentation process.</description>
 		<label>intoxica</label>
@@ -136,9 +136,9 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherIchoric</defName>
 		<description>[PAWN_nameDef] produces ambrosia, the food of the gods -- though this is very taxing on their own body.</description>
 		<label>ichoric</label>
@@ -205,9 +205,9 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherGellic</defName>
 		<description>[PAWN_nameDef] produces insect jelly, via a coagulation process not fully understood.</description>
 		<label>gellic</label>
@@ -274,9 +274,9 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherPrototoxica</defName>
 		<description>[PAWN_nameDef]'s stomach is lined with a fungus that helps ferment hops, but not to the complete state of beer.</description>
 		<label>prototoxica</label>
@@ -343,9 +343,9 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 	<!--
-	<HediffDef ParentName="PawnmorphPartCombo">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPartCombo">
 		<defName>PawnmorphTerrorspines</defName>
 		<description>[PAWN_nameDef]'s head is covered in jagged, serrated tusks, teeth and thorns that make headbutts from them very, very risky.</description>
 		<label>prototoxica</label>
@@ -360,6 +360,6 @@
 				</mutationFilter>
 			</li>
 		</modExtensions>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 	-->
 </Defs>
