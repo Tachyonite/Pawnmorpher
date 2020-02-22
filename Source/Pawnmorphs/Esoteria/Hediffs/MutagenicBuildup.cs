@@ -10,10 +10,10 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    /// hediff type for mutagenic buildup 
+    /// hediff type for mutagenic buildup
     /// </summary>
-    /// should add more and more mutations as severity increases, with a full tf at a severity of 1 
-    /// <seealso cref="Pawnmorph.Hediff_Morph" />
+    /// <seealso cref="Pawnmorph.Hediffs.MorphTf" />
+    /// should add more and more mutations as severity increases, with a full tf at a severity of 1
     public class MutagenicBuildup : MorphTf
     {
         /// <summary>

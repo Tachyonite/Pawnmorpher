@@ -11,6 +11,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.TfSys;
+using Pawnmorph.ThingComps;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -377,6 +378,7 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn"></param>
         /// <returns>the former human status, null if the given pawn is not a former human </returns>
+        [Obsolete("use " + nameof(GetQuantizedSapienceLevel) + " instead")]
         public static FormerHumanStatus? GetFormerHumanStatus([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -490,20 +492,10 @@ namespace Pawnmorph
         public static float? GetSapienceLevel([NotNull] this Pawn formerHuman)
         {
             if (formerHuman == null) throw new ArgumentNullException(nameof(formerHuman));
-            FormerHumanStatus? fHumanStatus = formerHuman.GetFormerHumanStatus();
-            switch (fHumanStatus)
-            {
-                case FormerHumanStatus.Sapient:
-                    return formerHuman.needs?.TryGetNeed<Need_Control>()?.CurLevel;
-                case FormerHumanStatus.Feral:
-                    return 0;
-                case FormerHumanStatus.PermanentlyFeral:
-                    return 0;
-                case null:
-                    return null;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            var fComp = formerHuman.GetComp<FormerHumanTracker>();
+            if (fComp == null) return 0;
+            if (fComp.IsPermanentlyFeral) return 0;
+            return formerHuman?.needs?.TryGetNeed<Need_Control>()?.CurLevel;
         }
 
         /// <summary>
@@ -532,6 +524,17 @@ namespace Pawnmorph
             }
 
             fHumanHediff.Severity = 1;
+
+            var comp = animal.GetComp<FormerHumanTracker>();
+
+            if (comp == null)
+            {
+                Log.Error($"{animal.Name},{animal.def.defName} does not have a {nameof(FormerHumanTracker)} comp!");
+                return; 
+            }
+
+
+            comp.MakeFormerHuman();
 
             if (original.Faction == Faction.OfPlayer) animal.SetFaction(original.Faction);
 
@@ -933,9 +936,11 @@ namespace Pawnmorph
         public static void MakePermanentlyFeral(Pawn pawn)
         {
             Hediff fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            var comp = pawn.GetComp<FormerHumanTracker>();
+            if (comp == null) return; 
             if (fHediff == null) return;
-           
-
+            
+            comp.MakePermanentlyFeral();
             //transfer relationships back if possible 
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
             var oPawn = gComp.GetTransformedPawnContaining(pawn)?.Item1?.OriginalPawns.FirstOrDefault();
