@@ -688,7 +688,7 @@ namespace Pawnmorph
 
             lPawn.equipment?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
             lPawn.apparel?.DestroyAll();
-
+            fTracker.MakeFormerHuman(sapienceLevel); 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
             TryAssignBackstoryToTransformedPawn(animal, lPawn); 
