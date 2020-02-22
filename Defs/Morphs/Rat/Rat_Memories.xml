@@ -25,26 +25,26 @@
 	
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>RatRevertedMemory</defName>
-        <stages>
+		<stages>
             <li>
-                <label>!!!RatRevertedMemory's default stage needs a label!!!</label>
-                <description>!!!RatRevertedMemory's default stage needs a description!!!</description>
-                <baseMoodEffect>-3</baseMoodEffect>
-            </li>
-            <li>
-                <label>!!!RatRevertedMemory's mutation affinity stage needs a label!!!</label>
-                <description>!!!RatRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <label>reverted</label>
+                <description>Back to normal, those teeth were annoying.</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!RatRevertedMemory's body purist stage needs a label!!!</label>
-                <description>!!!RatRevertedMemory's body purist stage needs a description!!!</description>
-                <baseMoodEffect>-5</baseMoodEffect>
+                <label>reverted</label>
+                <description>Aw, but I kind of liked being a rat.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!RatRevertedMemory's primal wish stage needs a label!!!</label>
-                <description>!!!RatRevertedMemory's primal wish stage needs a description!!!</description>
-                <baseMoodEffect>+1</baseMoodEffect>
+                <label>reverted</label>
+                <description>I'm never going to eat cheese again!</description>
+                <baseMoodEffect>+10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>But I wanted to be a cute rat!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
