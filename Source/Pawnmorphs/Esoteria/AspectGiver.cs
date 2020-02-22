@@ -90,7 +90,7 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Checks the pawn traits
+        /// Checks if the pawn has any traits that block the given aspect
         /// </summary>
         /// <param name="traitSet">The trait set.</param>
         /// <param name="testAspect">The test aspect.</param>

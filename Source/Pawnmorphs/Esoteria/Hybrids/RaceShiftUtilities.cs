@@ -120,23 +120,6 @@ namespace Pawnmorph.Hybrids
             }
         }
 
-        /// <summary>
-        /// got through the mutations the pawn has and try to trigger any
-        /// that change if the pawn's race changes 
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <param name="def"></param>
-        static void TryTriggerMutations(Pawn pawn, MorphDef def)
-        {
-            var comps = pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>()
-                            .Select(h => h.TryGetComp<Comp_MorphTrigger>())
-                            .Where(c => c != null);
-            foreach (Comp_MorphTrigger trigger in comps)
-            {
-                trigger.TryTrigger(def);
-            }
-        }
-
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)
         {
             var traitSet = pawn.story?.traits;
@@ -201,7 +184,7 @@ namespace Pawnmorph.Hybrids
                 Log.Error($"tried to change pawn {pawn.Name.ToStringFull} to morph {morph.defName} but morph has no hybridRace!");
             if (pawn.def != ThingDefOf.Human && !pawn.IsHybridRace())
             {
-                Log.Warning($"hybrids of non human pawns are currently not supported");
+                
                 return;
             }
 
@@ -222,12 +205,10 @@ namespace Pawnmorph.Hybrids
             if (pawn.IsColonist || pawn.IsPrisonerOfColony)
                 SendHybridTfMessage(pawn, tfSettings);
 
-            //now try to trigger any mutations
-            if (pawn.health?.hediffSet?.hediffs != null)
-                TryTriggerMutations(pawn, morph);
+     
 
-            if (tfSettings.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
-            pawn.TryGainMemory(tfSettings.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
+            if (tfSettings?.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
+            pawn.TryGainMemory(tfSettings?.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
         }
 
         private static void SwapMutations([NotNull] Pawn pawn,[NotNull] MorphDef morph)
@@ -252,24 +233,22 @@ namespace Pawnmorph.Hybrids
                 
                 // ReSharper disable once AssignNullToNotNullAttribute
                 var mutation = morph.GetMutationForPart(bodyPartRecord.def).RandomElementWithFallback();
-
-                MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord, addedRecords);
+                if(mutation != null)
+                    MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord, addedRecords);
             }
         }
 
         private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)
         {
-            string labelId = string.IsNullOrEmpty(tfSettings.transformationMessageID)
-                ? RACE_CHANGE_MESSAGE_ID
-                : tfSettings.transformationMessageID;//assign the correct default values if none are present 
-            //string contentID = string.IsNullOrEmpty(tfSettings.transformLetterContentId)
-            //    ? RACE_CHANGE_LETTER_CONTENT
-            //    : tfSettings.transformLetterContentId; 
+            string label;
 
-            string label = labelId.Translate(pawn.LabelShort).CapitalizeFirst();
-            //string content = contentID.Translate(pawn.LabelShort).CapitalizeFirst();
-            //LetterDef letterDef = tfSettings.letterDef ?? LetterDefOf.PositiveEvent;
-            //Find.LetterStack.ReceiveLetter(label, content, letterDef, pawn);
+            label = string.IsNullOrEmpty(tfSettings?.transformationMessage)
+                        ? RACE_CHANGE_MESSAGE_ID.Translate(pawn.LabelShort)
+                        : tfSettings.transformationMessage.Formatted(pawn.LabelShort);
+
+            label = label.CapitalizeFirst(); 
+
+         
 
             var messageDef = tfSettings.messageDef ?? MessageTypeDefOf.NeutralEvent;
             Messages.Message(label, pawn, messageDef);
@@ -278,10 +257,10 @@ namespace Pawnmorph.Hybrids
         private static void HandleGraphicsChanges(Pawn pawn, MorphDef morph)
         {
             var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            comp.skinColor = comp.ColorChannels["skin"].first = morph.GetSkinColorOverride() ?? comp.skinColor;
-            comp.skinColorSecond = comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride() ?? comp.skinColorSecond;
-            comp.hairColorSecond = comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond() ?? comp.hairColorSecond;
-            pawn.story.hairColor = comp.ColorChannels["hair"].first = morph.GetHairColorOverride() ?? pawn.story.hairColor;
+            comp.skinColor = comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.skinColor;
+            comp.skinColorSecond = comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.skinColorSecond;
+            comp.hairColorSecond = comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.hairColorSecond;
+            pawn.story.hairColor = comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.hairColor;
         }
 
         /// <summary>
@@ -308,22 +287,12 @@ namespace Pawnmorph.Hybrids
 
             ChangePawnRace(pawn, human);
 
-            //TODO traits or something? 
-
-
-
-
-
-            //var letterLabel = RaceRevertLetterLabel.Translate(pawn.LabelShort).CapitalizeFirst();
-            //var letterContent = RaceRevertLetterContent.Translate(pawn.LabelShort).CapitalizeFirst();
-
-            //Find.LetterStack.ReceiveLetter(letterLabel, letterContent, RevertToHumanLetterDef, pawn); 
-
-            MutationOutlook mutationOutlook = pawn.GetOutlook();
-            var defaultReversionThought = PMThoughtDefOf.GetDefaultMorphRevertThought(mutationOutlook); //get the correct memory to add to the pawn 
-            var morphRThought = oldMorph.transformSettings?.GetReversionMemory(mutationOutlook);
-
-            pawn.TryGainMemory(morphRThought ?? defaultReversionThought);
+            
+            var morphRThought = oldMorph.transformSettings?.revertedMemory;
+            morphRThought = morphRThought ?? PMThoughtDefOf.DefaultMorphRevertsToHuman; 
+            
+            if(morphRThought != null)
+                pawn.TryGainMemory(morphRThought);
             var messageStr = RACE_REVERT_MESSAGE_ID.Translate(pawn.LabelShort).CapitalizeFirst();
             Messages.Message(messageStr, pawn, MessageTypeDefOf.NeutralEvent);
         }

@@ -199,7 +199,33 @@ namespace Pawnmorph.TfSys
         /// <returns>
         ///   <c>true</c> if this instance can revert the specified transformed pawn; otherwise, <c>false</c>.
         /// </returns>
-        public abstract bool CanRevert([NotNull] TransformedPawn transformedPawn); 
+        public abstract bool CanRevert([NotNull] TransformedPawn transformedPawn);
+
+        /// <summary>
+        /// Applies the post tf effects.
+        /// this should be called just before the original pawn is cleaned up 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        protected virtual void ApplyPostTfEffects(Pawn original, Pawn transformedPawn)
+        {
+            List<Aspect> aspects = new List<Aspect>(); 
+            foreach (AspectGiver aspectGiver in def.tfAspectGivers.MakeSafe())
+            {
+                aspects.Clear();
+                if (aspectGiver.TryGiveAspects(original, aspects))
+                {
+                    foreach (Aspect aspect in aspects) //make sure we add them to both pawns 
+                    {
+                        var aDef = aspect;
+                        var tracker = transformedPawn.GetAspectTracker();
+                        tracker?.Add(aDef, aspect.StageIndex); 
+                    }
+                }
+            }
+
+            transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis); 
+        }
     }
 
     //generic base for convenience 

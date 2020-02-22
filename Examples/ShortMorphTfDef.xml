@@ -1,0 +1,100 @@
+<Defs>
+	<HediffDef ParentName="AspectedMorphParent">
+		<defName>WolfMorphFull_ExperimentalShort</defName>
+		<label>wolfmorph (short experimental)</label>
+		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
+
+		<stages>
+			this stage is for turning a pawn into an animal with a %chance 
+			it works exactly the same as the old hediff giver, just isn't a hediff giver 
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
+				<label>reeling</label>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<pawnkinds>
+					<li>Wolf_Timber</li>
+					<li>Wolf_Arctic</li>
+				</pawnkinds>
+				the only difference is that the tale given when a pawn transforms is this not just 'tale'
+				as that is given regardless if the tranformation happens or not 
+				<transformationTale>TransformationCanid</transformationTale>
+			</li>
+			<li Class="Pawnmorph.Hediffs.TransformationStage">
+				<label>transforming</label>
+				<minSeverity>0.6</minSeverity>
+				<painOffset>0.1</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+
+				optional field to specify a LetterDef to use to spawn a letter if <letterText/> and <letterLabel/> 
+				specified 
+				if not used, the NeutralEvent letter will be used
+				<letterDef>SomeLetterDef</letterDef>
+
+				these letter fields can be used one of 2 ways,
+				if they contain raw text that can be adjusted for 'PAWN_nameDef' they will be used as is  
+				<letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+				<letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+
+
+				if they contain IDs that are exist in the keyed language files, then they will use the id to 
+				to fetch and adjust the text using the following keys 
+				LabelShort - the short label of the pawn 
+				Name - the full name of the pawn 
+				
+				<letterText>SomeTranslationID</letterText>
+				<letterLabel>SomeOtherTranslationID</letterLabel>
+
+				the text associated with the keys should be in the following form 
+				<SomeTranslationID>{ShortLabel} is about to transform</SomeTranslationID>
+				<SomeOtherTranslationID>{Name} is about to transform</SomeOtherTranslationID>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+				<label>changing</label>
+				<minSeverity>0.65</minSeverity>
+				<painOffset>0.1</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<morph>WolfMorph</morph> <!-- grab all mutations associated with the wolf morph and use them -->
+
+				<blackList>
+					<!-- optional black list to disallow specific mutations  -->
+					<li>SomeMutation</li>
+					<li>SomeOtherMutation</li>
+				</blackList>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

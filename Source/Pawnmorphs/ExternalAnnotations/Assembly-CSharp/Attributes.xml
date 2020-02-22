@@ -1,0 +1,8 @@
+<assembly name="Assembly-CSharp">
+    <member name="P:Verse.DefDatabase`1.AllDefs">
+        <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor" />
+    </member>
+    <member name="P:Verse.DefDatabase`1.AllDefsListForReading">
+        <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor" />
+    </member>
+</assembly>

@@ -1,0 +1,22 @@
+<Defs>
+    <ThoughtDef>
+        <modExtension>
+            <li Class="Pawnmorph.ThoughtGroupDefExtension">
+                the group def extensions is for adding a list of alternatives for a specific thought 
+                note, this extension does *not* work for situational thoughts, only memories 
+                
+                this is a list of possible alternatives for the attached ThoughtDef 
+                the thought actually given is chosen by starting the beginning of the list, and picking the first thought 
+                that is valid for a given pawn, so they should always be ordered in most specific to most general  
+                the thought's restricted/required traits are checked, as well as any DefRestrictions (see DefRestrictions.xml) 
+                the thought might have attached 
+                if no thought in the below list is valid for a pawn the original thought is given,assuming it's valid for the pawn 
+                <thoughts>
+                    <li>ThoughtDef1</li>
+                    <li>ThoughtDef2</li>
+                    ...
+                </thoughts> 
+            </li>
+        </modExtension>
+    </ThoughtDef>
+</Defs>

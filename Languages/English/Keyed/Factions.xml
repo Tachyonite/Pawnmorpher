@@ -19,7 +19,7 @@
     <FactionLeaderTransformedLabel>the {leaderTitle} of {factionName} turned into a {species}</FactionLeaderTransformedLabel>
 
     <!--memberName(the name of the oldLeader),species,factionName,leaderTitle,oldLeader,animal,newLeader -->
-    <FactionLeaderTransformedContent>TODO</FactionLeaderTransformedContent>
+    <FactionLeaderTransformedContent>{memberName}, former {leaderTitle} of the {factionName}, was turned into a {species} and can no longer lead. They've been replaced by {newLeader}.</FactionLeaderTransformedContent>
 
     <!--memberLabel,species-->
     <GoodwillChangedReason_PawnReverted>{memberLabel} is no longer a {species}</GoodwillChangedReason_PawnReverted>

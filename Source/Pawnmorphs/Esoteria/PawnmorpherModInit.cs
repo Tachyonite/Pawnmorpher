@@ -18,9 +18,16 @@ namespace Pawnmorph
     {
         static PawnmorpherModInit() // The one true constructor.
         {
-            NotifySettingsChanged();
-            GenerateImplicitRaces();
-            CheckForObsoletedComponents();
+            try
+            {
+                NotifySettingsChanged();
+                GenerateImplicitRaces();
+                CheckForObsoletedComponents();
+            }
+            catch (Exception e)
+            {
+                throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
+            }
         }
 
         private static void CheckForObsoletedComponents()

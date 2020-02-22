@@ -42,6 +42,7 @@ namespace Pawnmorph
         /// <summary>
         /// text displayed in a message when a pawn is given this aspect 
         /// </summary>
+        /// this is adjusted for [PAWN_nameDef] kinds of substitution 
         public string messageText;
 
         /// <summary>

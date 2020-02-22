@@ -29,6 +29,8 @@ namespace Pawnmorph.Thoughts
             foreach (DirectPawnRelation relationsDirectRelation in p.relations.DirectRelations)
             {
                 if(relationsDirectRelation.def != PawnRelationDefOf.Bond) continue;
+                if (relationsDirectRelation.otherPawn?.RaceProps.Animal == true) continue; //ignore bonds to former humans 
+
                 isBonded = true;//we can have only 1 bonded relationship 
                 masterToBondedPawn = relationsDirectRelation.otherPawn == p.playerSettings?.RespectedMaster; 
                 break;
@@ -60,7 +62,6 @@ namespace Pawnmorph.Thoughts
         {
             SapienceLevel? sapienceLevel = p.GetQuantizedSapienceLevel();
             if (sapienceLevel == null || sapienceLevel == SapienceLevel.Feral || sapienceLevel == SapienceLevel.PermanentlyFeral) return false;
-
             if (p.Faction != Faction.OfPlayer) return false;
 
             bool isBonded = false;
@@ -68,6 +69,8 @@ namespace Pawnmorph.Thoughts
             foreach (DirectPawnRelation relationsDirectRelation in p.relations.DirectRelations)
             {
                 if (relationsDirectRelation.def != PawnRelationDefOf.Bond) continue;
+                if(relationsDirectRelation.otherPawn?.RaceProps.Animal == true) continue; //ignore bonds to animals
+
                 isBonded = true;//we can have only 1 bonded relationship 
                 masterToBondedPawn = relationsDirectRelation.otherPawn == p.playerSettings?.RespectedMaster;
                 break;

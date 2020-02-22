@@ -169,10 +169,15 @@ namespace Pawnmorph
         {
             RandUtilities.PushState();
 
-            IEnumerable<Thing> enumer = GenerateThingEnumer(forTile);
+            var enumer = GenerateThingEnumer(forTile).ToList();
 
             RandUtilities.PopState();
-
+            foreach (Pawn pawn in enumer.OfType<Pawn>())
+            {
+                if (pawn.GetFormerHumanStatus() == null) continue;
+                FormerHumanUtilities.NotifyRelatedPawnsFormerHuman(pawn, FormerHumanUtilities.RELATED_SOLD_FORMER_HUMAN_LETTER,
+                                                                   FormerHumanUtilities.RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL);
+            }
             return enumer;
 
         }

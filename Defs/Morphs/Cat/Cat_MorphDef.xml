@@ -2,20 +2,24 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>CatMorph</defName>
 		<label>catmorph</label>
+		<description>A human variant with many cat features. Uusually defined by a short whiskered muzzle, a long, thin tail and sharp clawed hands. They are faster and more dextrous than regular humans, and they have an advantage in melee.</description>
 		<race>Cat</race>
+		<classification>Feline</classification>
 		<categories>
-			<li>Feline</li>
+			<li>Pet</li>
 			<li>Combat</li>
+			<li>Feline</li>
 		</categories>
+		<fullTransformation>PawnmorphCatTF</fullTransformation>
+		<partialTransformation>PawnmorphCatTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(216,216,216)</skinColorOverride>
-				<customDrawSize>(1.35, 1.35)</customDrawSize>
-				<customHeadDrawSize>(1.35, 1.35)</customHeadDrawSize>
+				<skinColorOverride>(189,171,159)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
-			<transformationMemory>CatMorphTfReaction</transformationMemory>
+			<transformationMemory>CatTransformationMemory</transformationMemory>
+			<revertedMemory>CatRevertedMemory</revertedMemory>
 		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

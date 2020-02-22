@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Pawnmorph.Hediffs.MutationDef" type="MutationDef" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="MutationDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="maxSeverity" type="xs:float" minOccurs="0" />
+            <xs:element name="initialSeverity" type="xs:float" minOccurs="0" />
+            <xs:element name="hediffClass" type="xs:string" minOccurs="0" />
+            <xs:element name="defaultAddChance" type="xs:float" minOccurs="0"/>
+            <xs:element name="defaultBlocks" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="comps" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="xs:anyType"  maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="stages" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="HediffStage" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="spawnThingOnRemoved" type="xs:string" minOccurs="0"/>
+            <xs:element name="parts" minOccurs="0" type="ListOfStrings" />
+            <xs:element name="categories" minOccurs="0" type="ListOfStrings" />
+            <xs:element name="mutationTale" minOccurs="0" type="xs:string" />
+            <xs:element name="classInfluence" minOccurs="0" type="xs:string" />
+            <xs:element name="morphInfluence" minOccurs="0" type="xs:string" />
+            <xs:element name="mutationMemory" minOccurs="0" type="xs:string" />
+            <xs:element name="memoryIgnoresLimit" minOccurs="0" type="xs:boolean" />
+            <xs:element name="mutationLogRulePack" minOccurs="0" type="xs:string" />
+            <xs:element name="countToAffect" minOccurs="0" type="xs:int" />
+            <xs:element name="modExtensions" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="xs:anyType" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+    </xs:complexType>
+    <xs:complexType name="HediffStage">
+        <xs:all>
+            <xs:element name="minSeverity" minOccurs="0" type="xs:float" />
+            <xs:element name="label" minOccurs="0" type="xs:string" />
+            <xs:element name="labelOverride" minOccurs="0" type="xs:string" />
+            <xs:element name="description" minOccurs="0" type="xs:string" />
+            <xs:element name="partEfficiencyOffset" minOccurs="0" type="xs:float" />
+            <xs:element name="hungerRateFactor" minOccurs="0" type="xs:float" />
+            <xs:element name="stopChance" minOccurs="0" type="xs:float" />
+            <xs:element name="memory" minOccurs="0" type="xs:string" />
+            <xs:element name="capMods" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any processContents="lax" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="hediffGivers" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="xs:anyType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="statOffsets" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any processContents="lax" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="aspectGivers" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="xs:anyType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="Class" type="CustomHediffStages" use="optional" />
+    </xs:complexType>
+
+    <xs:simpleType name="CustomHediffStages">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pawnmorph.Hediffs.DescriptiveStage" />
+            <xs:enumeration value="Pawnmorph.Hediffs.MutationStage" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,16 +1,20 @@
-<Defs>
-	<HediffDef Name="ChookPart" ParentName="PawnmorphPart" Abstract="True">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="ChookPart" ParentName="PawnmorphPart" Abstract="true">
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
 				<morph>ChookMorph</morph>
 			</li>
 		</comps>
-	</HediffDef>
+		<classInfluence>ChookMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="ChookPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">
 		<defName>EtherBeak</defName>
 		<label>beak</label>
 		<description>A beak graces [PAWN_nameDef]'s face, like that of a chicken. They may bok and squawk about birdlike things.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
 			<li>
 				<capMods>
@@ -54,12 +58,15 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="ChookPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">
 		<defName>EtherTailfeathers</defName>
 		<description>A plume of feathers sprout from a dimpled chicken tail above [PAWN_nameDef]'s butt.</description>
 		<label>tailfeathers</label>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li>
 				<statOffsets>
@@ -67,60 +74,17 @@
 				</statOffsets>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="PawnmorphSkinPart">
-		<defName>EtherFeatheredLimb</defName>
-		<label>feathers</label>
-		<description>Rows of feathers have sprouted over [PAWN_nameDef]'s arm, keeping in some warmth...but no, it doesn't let them fly.</description>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.33</severityPerDay>
-			</li>
-		</comps>
-		<stages>
-			<li>
-				<label>isolated</label>
-				<minSeverity>0</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
-				</statOffsets>
-			</li>
-			<li>
-				<label>bristles</label>
-				<minSeverity>0.2</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
-				</statOffsets>
-			</li>
-			<li>
-				<label>patches</label>
-				<minSeverity>0.4</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
-				</statOffsets>
-			</li>
-			<li>
-				<label>swathes</label>
-				<minSeverity>0.6</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
-				</statOffsets>
-			</li>
-			<li>
-				<label>covered</label>
-				<minSeverity>0.8</minSeverity>
-				<statOffsets>
-					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
-				</statOffsets>
-			</li>
-		</stages>
-	</HediffDef>
+	
 
-	<HediffDef ParentName="ChookPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">
 		<defName>EtherWing</defName>
 		<label>wing</label>
 		<description>[PAWN_nameDef]'s entire arm has contorted and feathered into a wing, however it is not strong enough to allow them to fly. But that's like, the best bit dude!</description>
+		<parts>
+			<li>Arm</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>-0.7</partEfficiencyOffset>
@@ -141,23 +105,34 @@
 				</mutationDependency>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="ChookPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">
 		<defName>EtherWingTip</defName>
 		<label>wingtip</label>
 		<description>[PAWN_nameDef]'s fingers have disappeared into a lump of bird-skinned flesh, with many feathers protruding from the nub.</description>
+		<parts>
+			<li>Hand</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
 			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers</description>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset> <!-- still not quite as good as hands-->
+			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="ChookPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">
 		<defName>EtherAvianFoot</defName>
 		<label>avian</label>
 		<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
 		<stages>
 			<li>
 				<label>unfamiliar</label>
@@ -193,12 +168,15 @@
 				<severityPerDay>0.20</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="ChookPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">
 		<defName>EtherEggLayer</defName>
 		<label>egglayer</label>
 		<description>[PAWN_nameDef] can now lay eggs. Don't ask, don't tell. It's rather embarrassing.</description>
+		<parts>
+			<li>Pelvis</li>
+		</parts>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>LaidEgg</thought>
@@ -272,5 +250,5 @@
 				</hediffGivers>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -33,39 +33,44 @@ namespace Pawnmorph
 
                 if (mPlantProps == null) continue;
                 if (thingDef.plant == null) continue;
-
-                LinkedListNode<MPlantEntry> node = _plantEntries.First;
-                while (node != null && node.Value.priority < mPlantProps.priority)
-                    node = node.Next; //get the correct place to insert 
-
-                MPlantEntry entry;
-
-                if (node == null) //insert at end 
-                {
-                    entry = new MPlantEntry
-                    {
-                        priority = mPlantProps.priority,
-                        plants = new List<ThingDef>()
-                    };
-                    _plantEntries.AddLast(entry);
-                }
-                else if (node.Value.priority == mPlantProps.priority)
-                {
-                    entry = node.Value; //don't insert at all
-                }
-                else //insert before 
-                {
-                    entry = new MPlantEntry
-                    {
-                        priority = mPlantProps.priority,
-                        plants = new List<ThingDef>()
-                    };
-                    _plantEntries.AddBefore(node, entry);
-                }
-
-                entry.plants.Add(thingDef);
+                if(!mPlantProps.ignore)
+                    AddNewPlantEntry(thingDef, mPlantProps);
                 _mutantPlants.Add(thingDef);
             }
+        }
+
+        private static void AddNewPlantEntry(ThingDef thingDef, MutantPlantExtension mPlantProps)
+        {
+            LinkedListNode<MPlantEntry> node = _plantEntries.First;
+            while (node != null && node.Value.priority < mPlantProps.priority)
+                node = node.Next; //get the correct place to insert 
+
+            MPlantEntry entry;
+
+            if (node == null) //insert at end 
+            {
+                entry = new MPlantEntry
+                {
+                    priority = mPlantProps.priority,
+                    plants = new List<ThingDef>()
+                };
+                _plantEntries.AddLast(entry);
+            }
+            else if (node.Value.priority == mPlantProps.priority)
+            {
+                entry = node.Value; //don't insert at all
+            }
+            else //insert before 
+            {
+                entry = new MPlantEntry
+                {
+                    priority = mPlantProps.priority,
+                    plants = new List<ThingDef>()
+                };
+                _plantEntries.AddBefore(node, entry);
+            }
+
+            entry.plants.Add(thingDef);
         }
 
         /// <summary>

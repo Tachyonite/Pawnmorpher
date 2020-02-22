@@ -1,9 +1,9 @@
 <Defs>
-	<HediffDef ParentName="PartialMorphParent">
+	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphIguanaTFPartial</defName>
 		<label>iguanamorph partial</label>
 		<stages>
-			<li>
+			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -20,64 +20,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherIguanaSnout</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Jaw</li>
-						</partsToAffect>
-						<tale><!--Needs Tale--></tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherIguanaHorns</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Skull</li>
-						</partsToAffect>
-						<tale><!--Needs Tale--></tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherIguanaTail</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Tail</li>
-						</partsToAffect>
-						<tale><!--Needs Tale--></tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherScaledLimb</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Arm</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale><!--Needs Tale--></tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherScaledLimb</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Leg</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale><!--Needs Tale--></tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherIguanaFoot</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Foot</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale><!--Needs Tale--></tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherColdBlooded</hediff>
-						<mtbDays>0.5</mtbDays>
-						<tale><!--Needs Tale--></tale>
-					</li>
-				</hediffGivers>
+				<morph>IguanaMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>

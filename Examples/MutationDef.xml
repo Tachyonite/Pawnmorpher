@@ -1,0 +1,58 @@
+<Defs>
+    <Pawnmorph.Hediffs.MutationDef>
+        this is a subclass of HediffDef so all hediff stuff can go here 
+
+
+
+        the hediff class must be Hediff_AddedMutation or a subclass 
+        <hediffClass>Hediff_AddedMutation</hediffClass>  
+
+        <stages>
+            this is a special hediff stage used specifically to give more functionality to mutations 
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <description>text here will override the hediff's normal description</description>
+                <labelOverride>text here will override the hediff's normal label</labelOverride>
+                
+                this element is a list of aspect givers that will trigger only once when the pawn enters this stage
+                see GivingAspects Examples for more information on AspectGivers  
+                <aspectGivers>
+                    <li>...</li>
+                </aspectGivers>
+
+                memory that will be given to the pawn when the mutation enters this stage 
+                <memory>ThoughtDef</memory>
+
+            </li>
+        </stages>
+
+
+
+        this is a list of all parts the mutation can be applied to 
+        this must be set and have at least 1 entry 
+        <parts>
+            <li>Head</li>
+        </parts>
+
+        this field having the mutation give influence for a morph or a whole class of morphs  
+        <classInfluence>SomeAnimalClassDefOrMorphDef</classInfluence>
+
+        this is a list of all categories this mutation belongs to 
+        <categories>
+            <li>Combat</li>
+        </categories>
+
+        optional field, if set the mutation will add a tale for art when added 
+        <mutationTale>SomeTaleDef</mutationTale>
+
+        optional field that if set will cause the mutation to add a mutation log entry when added 
+        <mutationLogRulePack>LogPackDef</mutationLogRulePack>
+
+        optional field. If set the mutation will add the thought def when added 
+        
+        <mutationMemory>SomeMemoryDef</mutationMemory>
+        note, by default these respect the 'maxMutationThoughts' in the mod settings 
+        if you want a particular thought to always be added and stay added regardless of other mutation thoughts present 
+        on a pawn set the below field to true 
+        <memoryIgnoresLimit>true</memoryIgnoresLimit>
+    </Pawnmorph.Hediffs.MutationDef>
+</Defs>

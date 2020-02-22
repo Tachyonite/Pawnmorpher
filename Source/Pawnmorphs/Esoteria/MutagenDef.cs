@@ -57,7 +57,12 @@ namespace Pawnmorph
         /// The aspect givers
         /// </summary>
         [NotNull]
-        public List<AspectGiver> aspectGivers = new List<AspectGiver>(); 
+        public List<AspectGiver> aspectGivers = new List<AspectGiver>();
+
+        /// <summary>
+        /// list of aspect givers that are tried when a pawn transforms 
+        /// </summary>
+        [NotNull] public List<AspectGiver> tfAspectGivers = new List<AspectGiver>(); 
 
         /// <summary>Get all Configuration Errors with this instance</summary>
         /// <returns></returns>
@@ -108,6 +113,7 @@ namespace Pawnmorph
 
         /// <summary>Gets the cached mutagen </summary>
         /// <value>The cached mutagen </value>
+        [NotNull]
         public Mutagen MutagenCached
         {
             get

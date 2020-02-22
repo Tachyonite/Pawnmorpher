@@ -80,6 +80,37 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// called when the hediff is first added 
+        /// </summary>
+        /// <param name="dinfo">The dinfo.</param>
+        public override void PostAdd(DamageInfo? dinfo)
+        {
+            base.PostAdd(dinfo);
+            if (def.stages.MakeSafe().OfType<TransformationStageBase>().Any())
+                Log.Warning($"{def.defName} has transformationHediffStages but still uses {nameof(Hediff_Morph)}!\n {nameof(TransformationStageBase)} only works with {nameof(Hediffs.TransformationBase)}!");
+            RestartMutations(); 
+        }
+
+        private void RestartMutations()
+        {
+            var allMutations = def.GetAllHediffGivers() //create a list of all mutations added by this hediff to check 
+                                  .OfType<HediffGiver_Mutation>()
+                                  .Select(g => g.hediff)
+                                  .OfType<MutationDef>()
+                                  .Distinct()
+                                  .ToList();
+            var mutations = pawn.health?.hediffSet?.hediffs?.OfType<Hediff_AddedMutation>();
+
+            foreach (Hediff_AddedMutation mutation in mutations.MakeSafe())
+            {
+                if(!allMutations.Contains(mutation.def as MutationDef)) continue;
+                var adjComp = mutation.TryGetComp<Comp_MutationSeverityAdjust>();
+                adjComp?.Restart();//restart the mutation only if it can be added by this comp 
+            }
+
+        }
+
         private void UpdateGraphics()
         {
 
@@ -152,13 +183,13 @@ namespace Pawnmorph
         /// <summary>Tries to give transformations</summary>
         protected virtual void TryGiveTransformations()
         {
-            if (CurStage.hediffGivers == null) return;
+            if (CurStage == null) return;
 
             RandUtilities.PushState();
 
-            foreach (HediffGiver_TF tfGiver in CurStage.hediffGivers.OfType<HediffGiver_TF>())
+            foreach (var tfGiver in CurStage.GetAllTransformers())
             {
-                if (tfGiver.TryTf(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
+                if (tfGiver.TryTransform(pawn, this)) break; //try each one, one by one. break at first one that succeeds  
             }
 
             RandUtilities.PopState();

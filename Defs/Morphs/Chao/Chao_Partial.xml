@@ -4,7 +4,7 @@
 		<label>chaomorph partial</label>
 		<stages>
 			<li>
-				<painOffset>0.1</painOffset>
+				<painOffset>0.3</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
 					<li>
@@ -26,6 +26,7 @@
 						<blackListCategories>
 							<li>Powerful</li>
 						</blackListCategories>
+						<mtbDays>0.067</mtbDays> <!-- 15 mutations per day base -->
 					</li>
 				</hediffGivers>
 			</li>

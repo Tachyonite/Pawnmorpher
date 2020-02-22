@@ -1,22 +1,36 @@
-<Defs>
-	<HediffDef Name="HuskyPart" ParentName="PawnmorphPart" Abstract="True">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>HuskyMorph</morph>
-			</li>
-		</comps>
-	</HediffDef>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="HuskyPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>HuskyMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
   
-	<HediffDef ParentName="HuskyPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="HuskyPart">
 		<defName>EtherHuskyMuzzle</defName>
 		<label>canine muzzle</label>
 		<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
 		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking nearly impossible outside of barks and whines, yet eating is easier.</description>
+				<minSeverity>-0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.55</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<label>bestial</label>
+			</li>
 			<li>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.50</offset>
+						<offset>-0.30</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
@@ -31,13 +45,24 @@
 			
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.10</offset>
+						<offset>-0.15</offset>
 					</li>
 					<li>
 						<capacity>Eating</capacity>
 						<offset>0.50</offset>
 					</li>
 				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A cute snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_pronoun] teeth are pointed to suit, making eating easier. Oddly this doesn't seem to impact [PAWN_possessive] abilty to speak much</description>
+				<minSeverity>1.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<label>paragon</label>
 			</li>
 		</stages>
 		<comps>
@@ -59,23 +84,29 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="HuskyPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="HuskyPart">
 		<defName>EtherHuskyEar</defName>
 		<label>canine</label>
 		<description>Triangular, floofy black-and-white dog ears flick around at the sides of [PAWN_nameDef]'s head. They are incredibly cute.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.3</partEfficiencyOffset>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 
-	<HediffDef ParentName="HuskyPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="HuskyPart">
 		<defName>EtherHuskyTail</defName>
 		<label>curled fluffy tail</label>
 		<description>A wonderfully fluffy husky tail curls over [PAWN_nameDef]'s back. Was that a small wag just then?</description>
+		<parts>
+			<li>Tail</li>
+		</parts>
 		<stages>
 			<li>
 				<statOffsets>
@@ -89,5 +120,5 @@
 				</capMods>
 			</li>
 		</stages>
-	</HediffDef>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

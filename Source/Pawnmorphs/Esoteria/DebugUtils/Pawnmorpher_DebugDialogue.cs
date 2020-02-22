@@ -6,6 +6,7 @@ using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -63,15 +64,28 @@ namespace Pawnmorph.DebugUtils
 
         private void ForceTransformation(Pawn pawn)
         {
-            Hediff morphHediff = pawn?.health.hediffSet.hediffs.FirstOrDefault(h => h is Hediff_Morph);
-            if (morphHediff != null)
-            {
-                HediffGiver_TF giverTf = morphHediff
-                                        .def.stages?.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                                        .OfType<HediffGiver_TF>()
-                                        .FirstOrDefault();
+            var allHediffs = pawn.health.hediffSet.hediffs;
+            if (allHediffs == null) return;
 
-                giverTf?.TryTf(pawn, morphHediff);
+            foreach (Hediff hediff in allHediffs)
+            {
+                var transformer = hediff.def.GetAllTransformers().FirstOrDefault();
+                if (transformer != null)
+                {
+                    transformer.TransformPawn(pawn, hediff);
+                    return; 
+                }
+            }
+        }
+
+        void ResetMutationProgression( Pawn pawn)
+        {
+            var allHediffs = pawn?.health?.hediffSet?.hediffs;
+            if (allHediffs == null) return;
+
+            foreach (Hediff_AddedMutation mutation in allHediffs.OfType<Hediff_AddedMutation>())
+            {
+                mutation.SeverityAdjust?.Restart();
             }
         }
 
@@ -190,21 +204,18 @@ namespace Pawnmorph.DebugUtils
             if (pawn == null) return;
 
 
-            IEnumerable<HediffGiver_Mutation> mutations = morph?.AllAssociatedAndAdjacentMutationGivers;
+            var mutations = morph?.AllAssociatedMutations;
             if (mutations == null)
-                mutations = DefDatabase<HediffDef>.AllDefs
-                                                  .Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass))
-                                                  .SelectMany(d => d.GetAllHediffGivers())
-                                                  .OfType<HediffGiver_Mutation>();
+                mutations = DefDatabase<MutationDef>.AllDefs;
 
-            bool CanReceiveGiver(HediffGiver_Mutation mutation)
+            bool CanReceiveGiver(MutationDef mutation)
             {
-                IEnumerable<Hediff> hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation.hediff);
+                IEnumerable<Hediff> hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation);
 
-                return hediffs.Count() < mutation.countToAffect;
+                return hediffs.Count() < mutation.parts?.Count;
             }
 
-            List<HediffGiver_Mutation> mutList = mutations.Where(CanReceiveGiver).ToList();
+            var mutList = mutations.Where(CanReceiveGiver).ToList();
             if (mutList.Count == 0) return;
 
             int num = Rand.Range(1, Mathf.Min(10, mutList.Count));
@@ -212,12 +223,11 @@ namespace Pawnmorph.DebugUtils
             var i = 0;
             while (i < num && mutList.Count > 0)
             {
-                HediffGiver_Mutation giver = mutList.RandElement();
+                var giver = mutList.RandElement();
                 mutList.Remove(giver);
 
-
-                giver.TryApply(pawn, MutagenDefOf.defaultMutagen);
-
+                MutationUtilities.AddMutation(pawn, giver); 
+                
                 i++;
             }
         }
@@ -263,6 +273,7 @@ namespace Pawnmorph.DebugUtils
             DebugToolMapForPawns("Add Backstory to Sapient Animal", DoAddBackstoryToPawn);
             DebugToolMapForPawns("Try Random Hunt", TryStartRandomHunt); 
             DebugToolMapForPawns("Make pawn permanently feral", MakePawnPermanentlyFeral);
+            DebugToolMapForPawns("Restart all mutation progression", ResetMutationProgression);
         }
 
         private void MakePawnPermanentlyFeral(Pawn obj)

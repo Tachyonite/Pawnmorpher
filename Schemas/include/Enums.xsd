@@ -27,17 +27,24 @@
     </xs:simpleType>
     <xs:simpleType name="MorphCategory">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="Powerful" />
+            <xs:enumeration value="Arid" />
+            <xs:enumeration value="Cold" />
+            <xs:enumeration value="Temperate" />
+            <xs:enumeration value="Tropical" />
             <xs:enumeration value="Farm" />
+            <xs:enumeration value="Pet" />
             <xs:enumeration value="Combat" />
+            <xs:enumeration value="Crafter" />
             <xs:enumeration value="Production" />
             <xs:enumeration value="Social" />
-            <xs:enumeration value="Crafter" />
-            <xs:enumeration value="Ursine" />
-            <xs:enumeration value="Feline" />
             <xs:enumeration value="Avian" />
+            <xs:enumeration value="Bovid" />
             <xs:enumeration value="Canid" />
+            <xs:enumeration value="Cervid" />
             <xs:enumeration value="Chimera"/>
+            <xs:enumeration value="Feline" />
+            <xs:enumeration value="Powerful" />
+            <xs:enumeration value="Rodent" />
             <xs:enumeration value="Reptile"/>
         </xs:restriction>
     </xs:simpleType>
@@ -78,6 +85,86 @@
             <xs:enumeration value="Excelllent"/>
             <xs:enumeration value="Masterwork"/>
             <xs:enumeration value="Legendary"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+    <xs:simpleType name="AnimalClassification">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Animal"/>
+            <xs:enumeration value="Powerful" />
+            <xs:enumeration value="Reptile"/>
+            <xs:enumeration value="Avian"/>
+            <xs:enumeration value="EvenToedUngulate"/>
+            <xs:enumeration value="Bovid"/>
+            <xs:enumeration value="Camelid"/>
+            <xs:enumeration value="Cervid"/>
+            <xs:enumeration value="Suid"/>
+            <xs:enumeration value="PawFooted"/>
+            <xs:enumeration value="Bear"/>
+            <xs:enumeration value="Hare"/>
+            <xs:enumeration value="Rodent"/>
+            <xs:enumeration value="Carnivora"/>
+            <xs:enumeration value="Canid"/>
+            <xs:enumeration value="Fox"/>
+            <xs:enumeration value="Wolf"/>
+            <xs:enumeration value="Feline"/>
+            <xs:enumeration value="ThickHide" />
+            <xs:enumeration value="Powerful" />
+            <xs:enumeration value="ThickFur" />
+        </xs:restriction>
+    </xs:simpleType>
+	
+    <xs:simpleType name="AnimalRace">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Alpaca"/>
+            <xs:enumeration value="Alphabeaver" />
+            <xs:enumeration value="Bear_Grizzly"/>
+            <xs:enumeration value="Bear_Polar"/>
+            <xs:enumeration value="Boomalope"/>
+            <xs:enumeration value="Boomrat"/>
+            <xs:enumeration value="Capybara"/>
+            <xs:enumeration value="Caribou"/>
+            <xs:enumeration value="Cassowary"/>
+            <xs:enumeration value="Cat"/>
+            <xs:enumeration value="Chicken"/>
+            <xs:enumeration value="Chinchilla"/>
+            <xs:enumeration value="Cobra"/>
+            <xs:enumeration value="Cougar"/>
+            <xs:enumeration value="Cow"/>
+            <xs:enumeration value="Deer"/>
+            <xs:enumeration value="Dromedary"/>
+            <xs:enumeration value="Elephant"/>
+            <xs:enumeration value="Elk"/>
+            <xs:enumeration value="Emu"/>
+            <xs:enumeration value="Fox_Red"/>
+            <xs:enumeration value="Fox_Arctic"/>
+            <xs:enumeration value="Fox_Fennec"/>
+            <xs:enumeration value="Gazelle"/>
+            <xs:enumeration value="Hare"/>
+            <xs:enumeration value="Husky"/>
+            <xs:enumeration value="Ibex"/>
+            <xs:enumeration value="Iguana"/>
+            <xs:enumeration value="LabradorRetriever"/>
+            <xs:enumeration value="Lynx"/>
+            <xs:enumeration value="Megasloth"/>
+            <xs:enumeration value="Monkey"/>
+            <xs:enumeration value="Muffalo"/>
+            <xs:enumeration value="Ostrich"/>
+            <xs:enumeration value="Panther"/>
+            <xs:enumeration value="Pig"/>
+            <xs:enumeration value="Raccoon"/>
+            <xs:enumeration value="Rat"/>
+            <xs:enumeration value="Rhinoceros"/>
+            <xs:enumeration value="Snowhare"/>
+            <xs:enumeration value="Squirrel"/>
+            <xs:enumeration value="Thrumbo"/>
+            <xs:enumeration value="Tortoise"/>
+            <xs:enumeration value="Turkey"/>
+            <xs:enumeration value="Warg"/>
+            <xs:enumeration value="WildBoar"/>
+            <xs:enumeration value="Wolf_Timber"/>
+            <xs:enumeration value="Wolf_Arctic"/>
+            <xs:enumeration value="YorkshireTerrier"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

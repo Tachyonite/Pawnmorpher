@@ -62,8 +62,8 @@ namespace Pawnmorph.TfSys
 
             pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurLevel;
             pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel;
-
-            var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.PositionHeld, transformedPawn.MapHeld);
+            
+            var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.GetCorrectPosition(), transformedPawn.GetCorrectMap());
             spawned.equipment.DestroyAllEquipment();
             spawned.apparel.DestroyAll();
 
@@ -75,8 +75,8 @@ namespace Pawnmorph.TfSys
 
             for (var i = 0; i < 10; i++)
             {
-                IntermittentMagicSprayer.ThrowMagicPuffDown(spawned.Position.ToVector3(), spawned.MapHeld);
-                IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
+                IntermittentMagicSprayer.ThrowMagicPuffDown(spawned.GetCorrectPosition().ToVector3(), spawned.GetCorrectMap());
+                IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.GetCorrectPosition().ToVector3(), spawned.GetCorrectMap());
             }
 
 
@@ -119,7 +119,7 @@ namespace Pawnmorph.TfSys
         protected override TransformedPawnSingle TransformImpl(TransformationRequest request)
         {
             Pawn original = request.originals[0];
-
+            var reactionStatus = original.GetFormerHumanReactionStatus();
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
 
             Faction faction;
@@ -153,8 +153,8 @@ namespace Pawnmorph.TfSys
 
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
-            bool wasPrisoner = original.IsPrisonerOfColony;
-            ReactionsHelper.OnPawnTransforms(original, animalToSpawn, wasPrisoner); //this needs to happen before MakeSapientAnimal because that removes relations 
+
+            ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
             FormerHumanUtilities.MakeAnimalSapient(original, spawnedAnimal, Rand.Range(0.4f, 1)); //use a normal distribution? 
             var rFaction = request.factionResponsible ?? GetFactionResponsible(original); 
@@ -162,7 +162,8 @@ namespace Pawnmorph.TfSys
             {
                 original = original,
                 animal = spawnedAnimal,
-                factionResponsible = rFaction
+                factionResponsible = rFaction,
+                reactionStatus = reactionStatus
             };
 
 
@@ -180,17 +181,16 @@ namespace Pawnmorph.TfSys
             Map oMap = original.Map;
 
             
-            //apply apparel damage 
-            ApplyApparelDamage(original, spawnedAnimal.def);
+            //apply any other post tf effects 
+            ApplyPostTfEffects(original, spawnedAnimal); 
 
-            FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(spawnedAnimal, original);
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 
             //notify the faction that their member has been transformed 
             oFaction.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
-            if(original.Faction.IsPlayer || wasPrisoner) //only send the letter for colonists and prisoners 
+            if(reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
                 SendLetter(request, original, spawnedAnimal);
 
             if (original.Spawned)
@@ -201,6 +201,22 @@ namespace Pawnmorph.TfSys
 
 
             return inst;
+        }
+
+        /// <summary>
+        /// Applies the post tf effects.
+        /// this should be called just before the original pawn is cleaned up 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        protected override void ApplyPostTfEffects(Pawn original, Pawn transformedPawn)
+        {
+            //apply apparel damage 
+            ApplyApparelDamage(original, transformedPawn.def);
+            FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(transformedPawn, original);
+            base.ApplyPostTfEffects(original, transformedPawn);
+           
+
         }
 
         private static void SendLetter(TransformationRequest request, Pawn original, Pawn spawnedAnimal)
@@ -246,18 +262,44 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
 
+            FixBondRelationship(spawned, animal); 
             PawnTransferUtilities.TransferRelations(animal, spawned, r => r != PawnRelationDefOf.Bond); //transfer whatever relations from the animal to the human pawn 
+            
             PawnTransferUtilities.TransferSkills(animal, spawned, PawnTransferUtilities.SkillTransferMode.Max); //keep any skills they learned as an animal 
             //do NOT transfer the bond relationship to humans, Rimworld doesn't like that 
             AddReversionThought(spawned, tfHumanHediff.CurStageIndex);
 
             spawned.Faction.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
 
-            ReactionsHelper.OnPawnReverted(spawned, animal);
+            ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus); 
 
 
             animal.Destroy();
             return true;
+        }
+
+        /// <summary>
+        /// transfers or removes bond relationships from reverted animal to the original 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="revertedAnimal">The reverted animal.</param>
+        protected void FixBondRelationship( Pawn original, Pawn revertedAnimal)
+        {
+            var pRelated = revertedAnimal.relations?.DirectRelations;
+
+            foreach (DirectPawnRelation directPawnRelation in pRelated.MakeSafe().ToList()) //need to cache the values so we don't invalidate the iterator 
+            {
+                if(directPawnRelation.def != PawnRelationDefOf.Bond)  continue;
+
+                //remove the bond relationship 
+                revertedAnimal.relations.RemoveDirectRelation(directPawnRelation); 
+
+                if (directPawnRelation.otherPawn.RaceProps.Animal)
+                {   //add it back to the original if the other pawn is an animal 
+                    original.relations.AddDirectRelation(PawnRelationDefOf.Bond, directPawnRelation.otherPawn); 
+                }
+
+            }
         }
 
         /// <summary>

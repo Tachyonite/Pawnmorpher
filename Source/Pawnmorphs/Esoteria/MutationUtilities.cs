@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
@@ -19,23 +20,15 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     public static class MutationUtilities
     {
-        private const float EPSILON = 0.01f;
+        [NotNull] private static Dictionary<BodyPartDef, List<MutationDef>> _mutationsByParts;
 
-        [NotNull] private static readonly Dictionary<BodyPartDef, List<HediffDef>> _mutationsByParts;
-
-        private static List<HediffGiver_Mutation> _allGivers;
-
+    
         private static List<BodyPartDef> _allMutablePartDefs;
 
-        
-        private static Dictionary<HediffDef, List<VTuple<MorphDef, float>>> _influenceLookupTable =
-            new Dictionary<HediffDef, List<VTuple<MorphDef, float>>>();
+        private static readonly Dictionary<BodyDef, List<BodyPartRecord>> _allMutablePartsLookup =
+            new Dictionary<BodyDef, List<BodyPartRecord>>();
 
-
-        private static Dictionary<BodyDef, List<BodyPartRecord>>
-            _allMutablePartsLookup = new Dictionary<BodyDef, List<BodyPartRecord>>();
-
-        [NotNull] private static readonly Dictionary<HediffDef, List<BodyPartDef>> _partLookupDict;
+        [NotNull] private static Dictionary<MutationDef, List<BodyPartDef>> _partLookupDict;
 
         private static List<ThoughtDef> _allThoughts;
 
@@ -49,33 +42,38 @@ namespace Pawnmorph
             MaxMutationAdaptabilityValue = stat.maxValue;
             AverageMutationAdaptabilityValue = stat.defaultBaseValue;
 
-            //build the lookup table of part sorted by the mutations that affect them 
-            _mutationsByParts = new Dictionary<BodyPartDef, List<HediffDef>>();
-            _partLookupDict = new Dictionary<HediffDef, List<BodyPartDef>>();
-            foreach (HediffDef mutation in AllMutations)
+            //generate some warning for missing mutation defs 
+            var warningBuilder = new StringBuilder();
+            var anyWarnings = false;
+            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
             {
-                IEnumerable<BodyPartDef> allParts = GetAffectedParts(mutation).Distinct();
-                _partLookupDict[mutation] = allParts.ToList();
+                if (!typeof(Hediff_AddedMutation).IsAssignableFrom(hediffDef.hediffClass)) continue;
+                if (hediffDef is MutationDef) continue;
+                warningBuilder.AppendLine($"{hediffDef.defName} is a mutation but does not use {nameof(MutationDef)}!");
+                anyWarnings = true;
             }
-            //now build the reverse lookup table 
 
-            foreach (KeyValuePair<HediffDef, List<BodyPartDef>> kvp in _partLookupDict)
-            foreach (BodyPartDef bodyPartDef in kvp.Value)
+            //warnings for use of the old def extension 
+
+            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
             {
-                List<HediffDef> mutations;
-                if (!_mutationsByParts.TryGetValue(bodyPartDef, out mutations))
+#pragma warning disable 618
+                if (hediffDef.HasModExtension<MutationHediffExtension>())
                 {
-                    mutations = new List<HediffDef>
-                    {
-                        kvp.Key
-                    };
-                    _mutationsByParts[bodyPartDef] = mutations;
+                    warningBuilder.AppendLine($"{hediffDef.defName} is still using the old MutationHediffExtension!");
+                    anyWarnings = true;
                 }
-                else
+
+                if (hediffDef.HasComp(typeof(Comp_MorphInfluence)))
                 {
-                    mutations.Add(kvp.Key);
+                    warningBuilder.AppendLine($"{hediffDef.defName} is still using the old {nameof(Comp_MorphInfluence)}!");
+                    anyWarnings = true;
                 }
+#pragma warning restore 618
             }
+
+            if (anyWarnings) Log.Warning(warningBuilder.ToString());
+            BuildLookupDicts();
         }
 
 
@@ -102,31 +100,7 @@ namespace Pawnmorph
         ///     The average mutation adaptability value.
         /// </value>
         public static float AverageMutationAdaptabilityValue { get; }
-
-        /// <summary>
-        ///     returns an enumerable collection of all hediffGiver_Mutations active
-        ///     note, this does <i>not</i> check for givers that give the same hediff
-        /// </summary>
-        public static IEnumerable<HediffGiver_Mutation> AllGivers
-        {
-            get
-            {
-                if (_allGivers == null)
-                    _allGivers = AllMorphHediffs.SelectMany(def => def.GetAllHediffGivers().OfType<HediffGiver_Mutation>())
-                                                .ToList();
-
-                return _allGivers;
-            }
-        }
-
-
-        /// <summary>
-        ///     an enumerable collection of all mutations
-        /// </summary>
-        [NotNull]
-        public static IEnumerable<HediffDef> AllMutations =>
-            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation).IsAssignableFrom(d.hediffClass));
-
+        
         /// <summary>
         ///     an enumerable collection of all morph hediffs
         /// </summary>
@@ -136,17 +110,28 @@ namespace Pawnmorph
         /// <summary>
         ///     an enumerable collection of all mutation related thoughts
         /// </summary>
+        [NotNull]
         public static IEnumerable<ThoughtDef> AllMutationMemories
         {
             get
             {
                 if (_allThoughts == null)
-                    _allThoughts = DefDatabase<HediffDef>.AllDefs.SelectMany(d => d.GetAllHediffGivers()
-                                                                                   .OfType<HediffGiver_Mutation>())
-                                                         .Select(g => g.memory)
-                                                         .Where(t => t != null)
-                                                         .Distinct()
-                                                         .ToList();
+                {
+                    _allThoughts = MutationDef.AllMutations
+                                              .Where(m => !m.memoryIgnoresLimit) //if true, the memory should act like a normal memory not a mutation memory, thus not respecting the limit 
+                                              .Select(m => m.mutationMemory)
+                                              .ToList();
+                    //add in any other memories added by mutation givers 
+                    foreach (HediffGiver_Mutation hediffGiverMutation in AllMorphHediffs.SelectMany(m => m.GetAllHediffGivers().OfType<HediffGiver_Mutation>()))
+                    {
+                        if(hediffGiverMutation.ignoreThoughtLimit) continue;
+                        if (!_allThoughts.Contains(hediffGiverMutation.memory))
+                        {
+                            _allThoughts.Add(hediffGiverMutation.memory); 
+                        }
+                    }
+
+                } 
 
                 return _allThoughts;
             }
@@ -166,6 +151,53 @@ namespace Pawnmorph
         }
 
 
+        /// <summary>
+        /// Tries to add a mutation thought.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutationMemory">The mutation memory.</param>
+        /// <param name="ignoreLimit">if set to <c>true</c> ignore the mutation memory limit in the mod settings.</param>
+        public static void TryAddMutationThought([NotNull] this Pawn pawn, [NotNull] ThoughtDef mutationMemory, bool ignoreLimit=false)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (mutationMemory == null) throw new ArgumentNullException(nameof(mutationMemory));
+            var memoryHandler = pawn.needs?.mood?.thoughts?.memories;
+            if (memoryHandler == null) return;
+
+            if (ignoreLimit || !AllMutationMemories.Contains(mutationMemory))//if the memory isn't a mutation memory just add it 
+            {
+                memoryHandler.TryGainMemory(mutationMemory);
+                return; 
+            }
+
+            int counter = 0;
+            Thought_Memory firstAdded = null;
+
+            foreach (Thought_Memory memory in memoryHandler.Memories)
+            {
+                if(!AllMutationMemories.Contains(memory.def)) continue;
+
+                counter++; 
+                if (firstAdded == null || firstAdded.age < memory.age)
+                {
+
+                    firstAdded = memory; 
+                }
+
+            }
+
+            var limit = PMUtilities.GetSettings().maxMutationThoughts;
+            if (counter >= limit)
+            {
+                //if we'er at the limit remove the first thought that was added before adding the new one 
+                if (firstAdded != null)
+                    memoryHandler.RemoveMemory(firstAdded); 
+            }
+
+            memoryHandler.TryGainMemory(mutationMemory); 
+        }
+
+
         private static List<BodyPartDef> AllMutablePartDefs //use lazy initialization 
         {
             get
@@ -176,128 +208,169 @@ namespace Pawnmorph
             }
         }
 
-        /// <summary>Adds the mutation to the pawn without a hediff giver.</summary>
+        /// <summary>
+        ///     Adds the mutation to the given pawn
+        /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
-        /// <param name="parts">The part.</param>
-        /// <param name="addParts">if not null, this will be filled with all part that mutations were added to</param>
+        /// <param name="countToAdd">The count to add.</param>
+        /// <param name="partsAdded">The parts added.</param>
+        /// <param name="ancillaryEffects">The ancillary effects.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        ///     pawn
+        ///     or
+        ///     mutation
+        /// </exception>
+        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, int countToAdd = int.MaxValue,
+                                       List<BodyPartRecord> partsAdded = null, AncillaryMutationEffects? ancillaryEffects = null)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+            return AddMutation(pawn, mutation, mutation.parts, countToAdd, partsAdded, ancillaryEffects);
+        }
+
+        /// <summary>
+        ///     Adds the mutation to the given pawn
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutation">The mutation.</param>
+        /// <param name="parts">The parts.</param>
+        /// <param name="countToAdd">The count to add.</param>
+        /// <param name="addedParts">The added parts.</param>
+        /// <param name="ancillaryEffects">The ancillary effects.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        ///     pawn
+        ///     or
+        ///     mutation
+        /// </exception>
+        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, [CanBeNull] List<BodyPartDef> parts,
+                                       int countToAdd = int.MaxValue, List<BodyPartRecord> addedParts = null,
+                                       AncillaryMutationEffects? ancillaryEffects = null)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+
+            var addLst = new List<BodyPartRecord>();
+
+            if (parts != null)
+            {
+                foreach (BodyPartRecord notMissingPart in pawn.health.hediffSet.GetNotMissingParts())
+                    if (parts.Contains(notMissingPart.def))
+                    {
+                        addLst.Add(notMissingPart);
+                        if (parts.Count >= countToAdd) break;
+                    }
+
+                if (addLst.Count == 0) return false;
+                return AddMutation(pawn, mutation, addLst, addedParts, ancillaryEffects);
+            }
+
+            Hediff hDef = HediffMaker.MakeHediff(mutation, pawn);
+            pawn.health.AddHediff(hDef);
+            return true;
+
+        }
+
+        /// <summary>
+        ///     Adds the mutation to the given pawn
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutation">The mutation.</param>
+        /// <param name="records">The records to add mutations to</param>
+        /// <param name="addedParts">The added parts.</param>
+        /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <exception cref="ArgumentNullException">
         ///     pawn
         ///     or
         ///     mutation
         ///     or
-        ///     part
+        ///     records
         /// </exception>
-        /// <returns>if any mutations were added</returns>
-        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] HediffDef mutation,
-                                       [NotNull] IEnumerable<BodyPartRecord> parts, List<BodyPartRecord> addParts=null)
+        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
+                                       [NotNull] IEnumerable<BodyPartRecord> records, List<BodyPartRecord> addedParts = null,
+                                       AncillaryMutationEffects? ancillaryEffects = null)
         {
-            if (pawn?.health?.hediffSet == null) throw new ArgumentNullException(nameof(pawn));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-            if (parts == null) throw new ArgumentNullException(nameof(parts));
-
-            Pawn_HealthTracker health = pawn.health;
-            var addedRecords = new List<BodyPartRecord>();
-            foreach (BodyPartRecord bodyPartRecord in parts)
+            if (records == null) throw new ArgumentNullException(nameof(records));
+            HediffSet hSet = pawn.health?.hediffSet;
+            if (hSet == null) return false;
+            addedParts = addedParts ?? new List<BodyPartRecord>();
+            foreach (BodyPartRecord bodyPartRecord in records)
             {
-                if (health.hediffSet.PartIsMissing(bodyPartRecord))
-                    //make sure none of the part are missing 
-                    continue;
-                if (health.hediffSet.HasHediff(mutation, bodyPartRecord)) continue;
-
+                if (bodyPartRecord.IsMissingAtAllIn(pawn)) continue;
                 Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, bodyPartRecord);
-                health.AddHediff(hediff, bodyPartRecord);
-                addedRecords.Add(bodyPartRecord);
-                addParts?.Add(bodyPartRecord); 
-                var ext = mutation.GetModExtension<MutationHediffExtension>();
-                if (ext == null)
-                {
-                    Log.Warning($"{mutation.defName} has no mutation def extension");
-                    continue;
-                }
-
-                if (ext.mutationMemory != null) pawn.TryGainMemory(ext.mutationMemory);
-
-                if (PawnUtility.ShouldSendNotificationAbout(pawn) && ext.mutationTale != null)
-                    TaleRecorder.RecordTale(ext.mutationTale, pawn);
+                hSet.AddDirect(hediff);
+                addedParts.Add(bodyPartRecord);
             }
 
-            if (addedRecords.Count > 0) //only do this if we actually added any mutations 
+            AncillaryMutationEffects aEffects = ancillaryEffects ?? AncillaryMutationEffects.Default;
+            if (addedParts.Count > 0) //only do this if we actually added any mutations 
             {
-                var logEntry = new MutationLogEntry(pawn, mutation, addedRecords.Select(p => p.def).Distinct());
+                DoAncillaryMutationEffects(pawn, mutation, addedParts, aEffects);
+            }
+
+            return addedParts.Count > 0;
+        }
+
+        private static void DoAncillaryMutationEffects(Pawn pawn, MutationDef mutation, List<BodyPartRecord> addedParts, in AncillaryMutationEffects aEffects)
+        {
+            if (mutation.mutationMemory != null && aEffects.AddMemory)
+            {
+                TryAddMutationThought(pawn, mutation.mutationMemory);
+            }
+
+            if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
+                TaleRecorder.RecordTale(mutation.mutationTale, pawn);
+
+            if (aEffects.AddLogEntry && !addedParts.NullOrEmpty())
+            {
+                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.MakeSafe().Where(p => p != null).Select(p => p.def).Distinct());
                 Find.PlayLog?.Add(logEntry);
-                if (pawn.MapHeld != null) IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
             }
 
-            return addedRecords.Count > 0; 
+            if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
+                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
         }
 
-        /// <summary>Adds the mutation to the pawn without a hediff giver.</summary>
+        /// <summary>
+        ///     Adds the mutation to the given pawn
+        /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
-        /// <param name="part">The part.</param>
-        /// <param name="addParts">if not null, this will be filled with all part that mutations were added to</param>
+        /// <param name="record">The records to add mutations to</param>
+        /// <param name="addedRecords">The added records.</param>
+        /// <param name="ancillaryEffects">The ancillary effects.</param>
+        /// <returns></returns>
         /// <exception cref="ArgumentNullException">
         ///     pawn
         ///     or
         ///     mutation
         ///     or
-        ///     part
+        ///     records
         /// </exception>
-        /// <returns>if any mutations were added</returns>
-        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] HediffDef mutation,
-                                       [NotNull] BodyPartRecord part, List<BodyPartRecord> addParts = null)
+        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
+                                       [NotNull] BodyPartRecord record, List<BodyPartRecord> addedRecords = null,
+                                       AncillaryMutationEffects? ancillaryEffects = null)
         {
-            if (pawn?.health?.hediffSet == null) throw new ArgumentNullException(nameof(pawn));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-            if (part == null) throw new ArgumentNullException(nameof(part));
-            if (pawn.health.hediffSet.HasHediff(mutation, part)) return false; 
-            Pawn_HealthTracker health = pawn.health;
-            var addedRecords = new List<BodyPartRecord>();
-            if (health.hediffSet.PartIsMissing(part))
-                //make sure none of the part are missing 
-                return false;
+            if (record == null) throw new ArgumentNullException(nameof(record));
+            HediffSet hSet = pawn.health?.hediffSet;
+            if (hSet == null) return false;
 
-            Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, part);
-            health.AddHediff(hediff, part);
-            addedRecords.Add(part);
-            addParts?.Add(part);
-            var ext = mutation.GetModExtension<MutationHediffExtension>();
-            var logEntry = new MutationLogEntry(pawn, mutation, addedRecords.Select(p => p.def).Distinct());
-            Find.PlayLog?.Add(logEntry);
-            if (pawn.MapHeld != null) IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+            if (record.IsMissingAtAllIn(pawn)) return false;
 
 
-            if (ext == null)
-            {
-                Log.Warning($"{mutation.defName} has no mutation def extension");
-                return true;
-            }
+            Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, record);
+            hSet.AddDirect(hediff);
+            addedRecords?.Add(record);
 
-            if (ext.mutationMemory != null) pawn.TryGainMemory(ext.mutationMemory);
-
-            if (PawnUtility.ShouldSendNotificationAbout(pawn) && ext.mutationTale != null)
-                TaleRecorder.RecordTale(ext.mutationTale, pawn);
-
-
-            return addedRecords.Count > 0;
-        }
-
-        /// <summary>Adds the mutation to the pawn without a hediff giver.</summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="mutation">The mutation.</param>
-        /// <param name="parts">The part.</param>
-        /// <exception cref="ArgumentNullException">
-        ///     pawn
-        ///     or
-        ///     mutation
-        ///     or
-        ///     part
-        /// </exception>
-        /// <returns>if any mutations were added</returns>
-        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] HediffDef mutation, [NotNull] params BodyPartRecord[] parts)
-        {
-            return AddMutation(pawn, mutation, (IEnumerable<BodyPartRecord>) parts);
+            AncillaryMutationEffects aEffects = ancillaryEffects ?? AncillaryMutationEffects.Default;
+            DoAncillaryMutationEffects(pawn, mutation, addedRecords, aEffects);
+            return true;
         }
 
 
@@ -328,6 +401,46 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        ///     Clears the overlapping mutations.
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     mutationDef
+        ///     or
+        ///     pawn
+        /// </exception>
+        public static void ClearOverlappingMutations([NotNull] this MutationDef mutationDef, [NotNull] Pawn pawn)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            var rmLst = new List<Hediff_AddedMutation>();
+            foreach (Hediff_AddedMutation mutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
+                //make a list of all the stuff to remove 
+                if (mutation.def != mutationDef && mutationDef.parts?.Contains(mutation.Part?.def)==true)
+                    rmLst.Add(mutation);
+
+            //no remove all the mutations 
+            foreach (Hediff_AddedMutation hediffAddedMutation in rmLst) pawn.health.RemoveHediff(hediffAddedMutation);
+        }
+
+        /// <summary>
+        ///     Gets all part def mutation sites.
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">mutationDef</exception>
+        public static IEnumerable<VTuple<BodyPartDef, MutationLayer>> GetAllDefMutationSites(
+            [NotNull] this MutationDef mutationDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            foreach (BodyPartDef mutationDefPart in mutationDef.parts)
+                yield return new VTuple<BodyPartDef, MutationLayer>(mutationDefPart, mutationDef.RemoveComp.layer);
+        }
+
+
+        /// <summary>
         ///     Gets all mutable part on this body def
         /// </summary>
         /// <param name="bodyDef">The body definition.</param>
@@ -351,94 +464,27 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Gets all non zero morph influences the given hediff def gives to a pawn
-        /// </summary>
-        /// <param name="def">The definition.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">def</exception>
-        public static IEnumerable<VTuple<MorphDef, float>> GetAllNonZeroInfluences([NotNull] HediffDef def)
-        {
-            if (def == null) throw new ArgumentNullException(nameof(def));
-            if (_influenceLookupTable.TryGetValue(def, out List<VTuple<MorphDef, float>> lst)
-            ) //check if we calculated the value already 
-                return lst;
-
-            lst = new List<VTuple<MorphDef, float>>();
-            _influenceLookupTable[def] = lst; //make sure the list is saved so we don't have to calculate this more then once 
-
-            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefs)
-            {
-                float influence = GetInfluenceOf(def, morphDef);
-                if (influence > EPSILON)
-                    lst.Add(new VTuple<MorphDef, float>(morphDef, influence));
-            }
-
-            return lst;
-        }
-
-        /// <summary>
-        ///     get the largest influence on this pawn
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <returns></returns>
-        [CanBeNull]
-        public static MorphDef GetHighestInfluence([NotNull] this Pawn pawn)
-        {
-            MutationTracker comp = pawn.GetMutationTracker();
-            if (comp == null) return null;
-
-
-            MorphDef highest = null;
-            float max = float.NegativeInfinity;
-            foreach (KeyValuePair<MorphDef, float> keyValuePair in comp)
-                if (max < keyValuePair.Value)
-                {
-                    max = keyValuePair.Value;
-                    highest = keyValuePair.Key;
-                }
-
-            return highest;
-        }
-
-
-        /// <summary>
-        ///     Gets the influence of the given morph this mutationDef provides.
+        ///     Gets all mutation sites.
         /// </summary>
         /// <param name="mutationDef">The mutation definition.</param>
-        /// <param name="morph">The morph.</param>
+        /// <param name="bDef">The b definition.</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        ///     mutationDef
-        ///     or
-        ///     morph
-        /// </exception>
-        public static float GetInfluenceOf([NotNull] this HediffDef mutationDef, [NotNull] MorphDef morph)
+        public static IEnumerable<VTuple<BodyPartRecord, MutationLayer>> GetAllMutationSites(
+            [NotNull] this MutationDef mutationDef, BodyDef bDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (morph == null) throw new ArgumentNullException(nameof(morph));
-
-            if (!typeof(Hediff_AddedMutation).IsAssignableFrom(mutationDef.hediffClass))
-                return 0; //if not a mutation just return 0 
-
-            if (mutationDef.HasComp(typeof(SpreadingMutationComp)))
-                return 0; //spreading mutations shouldn't give influence, too messy to deal with 
-
-            var comp = mutationDef.CompProps<CompProperties_MorphInfluence>();
-            if (comp != null && comp.morph == morph)
-                return comp.influence; //if it has a morph influence comp return the influence value
-
-            if (morph.AllAssociatedAndAdjacentMutationGivers.Select(g => g.hediff).Contains(mutationDef))
-                return 0.0f; //might want to let these guys give influence 
-            return 0;
+            foreach (BodyPartRecord bodyPartRecord in bDef.AllParts)
+                if (mutationDef.parts.MakeSafe().Contains(bodyPartRecord.def))
+                    yield return new VTuple<BodyPartRecord, MutationLayer>(bodyPartRecord, mutationDef.RemoveComp.layer);
         }
 
 
         /// <summary>Gets the mutations by part def.</summary>
         /// <param name="bodyPartDef">The body part definition.</param>
         /// <returns></returns>
-        public static IEnumerable<HediffDef> GetMutationsByPart([NotNull] BodyPartDef bodyPartDef)
+        public static IEnumerable<MutationDef> GetMutationsByPart([NotNull] BodyPartDef bodyPartDef)
         {
-            return _mutationsByParts.TryGetValue(bodyPartDef) ?? Enumerable.Empty<HediffDef>();
+            return _mutationsByParts.TryGetValue(bodyPartDef) ?? Enumerable.Empty<MutationDef>();
         }
 
         /// <summary>
@@ -461,7 +507,7 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn"></param>
         /// <returns></returns>
-        public static MutationOutlook GetOutlook([NotNull] this Pawn pawn)
+        public static MutationOutlook GetMutationOutlook([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
@@ -482,22 +528,6 @@ namespace Pawnmorph
             return giver.partsToAffect ?? Enumerable.Empty<BodyPartDef>();
         }
 
-        /// <summary>
-        ///     get the body part this hediff can be assigned to
-        /// </summary>
-        /// <param name="def"></param>
-        /// <returns>
-        ///     an enumerable collection of all part this hediff can be assigned to, Note the elements can contain duplicates
-        ///     and null
-        /// </returns>
-        [NotNull]
-        public static IEnumerable<BodyPartDef> GetPossibleParts([NotNull] this HediffDef def)
-        {
-            if (def == null) throw new ArgumentNullException(nameof(def));
-            List<BodyPartDef> lst;
-            if (_partLookupDict.TryGetValue(def, out lst)) return lst;
-            return Enumerable.Empty<BodyPartDef>();
-        }
 
         /// <summary>
         ///     get the production hediffs of the pawn
@@ -513,6 +543,34 @@ namespace Pawnmorph
                     yield return mutation;
         }
 
+        /// <summary>
+        ///     Determines whether this part or any of it's parent is missing at all in the specified pawn.
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///     <c>true</c> if this part or any of it's parents is missing at all in the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     record
+        ///     or
+        ///     pawn
+        /// </exception>
+        public static bool IsMissingAtAllIn([NotNull] this BodyPartRecord record, [NotNull] Pawn pawn)
+        {
+            if (record is null) throw new ArgumentNullException(nameof(record));
+
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            HediffSet hediffSet = pawn.health.hediffSet;
+            while (record != null)
+            {
+                if (hediffSet.PartIsMissing(record)) return true;
+                record = record.parent;
+            }
+
+            return false;
+        }
+
         /// <summary>Determines whether this instance is obsolete.</summary>
         /// <param name="def">The definition.</param>
         /// <returns>
@@ -525,23 +583,64 @@ namespace Pawnmorph
             return def.GetType().HasAttribute<ObsoleteAttribute>() || def.hediffClass.HasAttribute<ObsoleteAttribute>();
         }
 
-        /// <summary>internal function for getting the part a mutation affects </summary>
+        /// <summary>
+        ///     checks if this mutation overlaps with the given mutation
+        /// </summary>
         /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="otherMutation">The other mutation.</param>
         /// <returns></returns>
-        [NotNull]
-        private static IEnumerable<BodyPartDef> GetAffectedParts([NotNull] HediffDef mutationDef)
+        /// <exception cref="ArgumentNullException">
+        ///     mutationDef
+        ///     or
+        ///     otherMutation
+        /// </exception>
+        [Pure]
+        public static bool OverlapsWith([NotNull] this MutationDef mutationDef, [NotNull] MutationDef otherMutation)
         {
-            List<BodyPartDef> extParts = mutationDef.GetModExtension<MutationHediffExtension>()?.parts;
-            foreach (BodyPartDef bodyPartDef in extParts.MakeSafe()) yield return bodyPartDef;
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (otherMutation == null) throw new ArgumentNullException(nameof(otherMutation));
 
-            //for backwards compatibility 
-            foreach (HediffDef hDef in DefDatabase<HediffDef>.AllDefs)
+            //make sure this mutation def has all the same parts as other mutation 
+
+            foreach (BodyPartDef bodyPartDef in mutationDef.parts.MakeSafe())
+                if (otherMutation.parts.MakeSafe().Contains(bodyPartDef) == false)
+                    return false; //if mutation Def has any part that other mutation does not they do not overlap 
+
+            RemoveFromPartCompProperties thRmComp = mutationDef.RemoveComp;
+            RemoveFromPartCompProperties othRmComp = otherMutation.RemoveComp;
+
+            //make sure the layers overlap 
+            return thRmComp.layer != othRmComp.layer;
+        }
+
+        private static void BuildLookupDicts()
+        {
+            //build the lookup table of part sorted by the mutations that affect them 
+            _mutationsByParts = new Dictionary<BodyPartDef, List<MutationDef>>();
+            _partLookupDict = new Dictionary<MutationDef, List<BodyPartDef>>();
+            foreach (MutationDef mutation in MutationDef.AllMutations)
             {
-                if (hDef == mutationDef) continue;
-                IEnumerable<HediffGiver> allGivers = hDef.GetAllHediffGivers().Where(g => g.hediff == mutationDef);
-                foreach (HediffGiver hediffGiver in allGivers)
-                foreach (BodyPartDef bodyPartDef in hediffGiver.partsToAffect.MakeSafe())
-                    yield return bodyPartDef;
+                IEnumerable<BodyPartDef> allParts = mutation.parts.MakeSafe();
+                _partLookupDict[mutation] = allParts.ToList();
+            }
+            //now build the reverse lookup table 
+
+            foreach (KeyValuePair<MutationDef, List<BodyPartDef>> kvp in _partLookupDict)
+            foreach (BodyPartDef bodyPartDef in kvp.Value)
+            {
+                List<MutationDef> mutations;
+                if (!_mutationsByParts.TryGetValue(bodyPartDef, out mutations))
+                {
+                    mutations = new List<MutationDef>
+                    {
+                        kvp.Key
+                    };
+                    _mutationsByParts[bodyPartDef] = mutations;
+                }
+                else
+                {
+                    mutations.Add(kvp.Key);
+                }
             }
         }
 
@@ -554,7 +653,167 @@ namespace Pawnmorph
                           .Select(h => h.hediff);
 
 
-            foreach (string hediffDef in hediffDefNames) yield return HediffDef.Named(hediffDef);
+            foreach (string hediffDef in hediffDefNames)
+            {
+                var hDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediffDef);
+                if (hDef == null)
+                {
+                    Log.Warning($"there are graphics for {hediffDef} but there is no hediff with that defName!");
+                    continue;
+                }
+                yield return hDef;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether this instance can be applied to the specified pawn 
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can be applied to the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// mutationDef
+        /// or
+        /// pawn
+        /// </exception>
+        public static bool CanApplyMutations([NotNull] this MutationDef mutationDef, [NotNull] Pawn pawn, MutagenDef mutagen= null)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
+            if (!mutagen.CanInfect(pawn)) return false;
+            return true; 
+        }
+
+        /// <summary>
+        /// Determines whether the specified pawn has the given mutation.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutation">The mutation.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn has the given mutation; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool HasMutation([NotNull] this Pawn pawn, [NotNull] MutationDef mutation)
+        {
+            foreach (Hediff hediff in (pawn.health?.hediffSet?.hediffs).MakeSafe())
+            {
+                if (hediff.def == mutation) return true; 
+            }
+
+            return false; 
+        }
+
+        /// <summary>
+        ///     simple struct to contain all options for addition actions to be taken when adding a mutation
+        /// </summary>
+        public readonly struct AncillaryMutationEffects
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="AncillaryMutationEffects" /> struct.
+            /// </summary>
+            /// <param name="addTale">if set to <c>true</c> [add tale].</param>
+            /// <param name="addMemory">if set to <c>true</c> [add memory].</param>
+            /// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
+            /// <param name="throwMagicPuff">if set to <c>true</c> [throw magic puff].</param>
+            /// <param name="memoryIgnoresLimit">if set to <c>true</c> [memory ignores limit].</param>
+            public AncillaryMutationEffects(bool addTale, bool addMemory, bool addLogEntry, bool throwMagicPuff, bool memoryIgnoresLimit=false)
+            {
+                AddTale = addTale;
+                AddMemory = addMemory;
+                AddLogEntry = addLogEntry;
+                ThrowMagicPuff = throwMagicPuff;
+                MemoryIgnoresLimit = memoryIgnoresLimit; 
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="AncillaryMutationEffects" /> struct.
+            /// </summary>
+            /// <param name="addTale">if set to <c>true</c> [add tale].</param>
+            /// <param name="addMemory">if set to <c>true</c> [add memory].</param>
+            /// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
+            /// <param name="memoryIgnoresLimit">if set to <c>true</c> [memory ignores limit].</param>
+            public AncillaryMutationEffects(bool addTale, bool addMemory, bool addLogEntry, bool memoryIgnoresLimit = false)
+            {
+                AddTale = addTale;
+                AddMemory = addMemory;
+                AddLogEntry = addLogEntry;
+                ThrowMagicPuff = true;
+                MemoryIgnoresLimit = memoryIgnoresLimit; 
+            }
+
+            /// <summary>
+            ///     Gets the default value for the ancillary effects
+            /// </summary>
+            /// <value>
+            ///     The default.
+            /// </value>
+            public static AncillaryMutationEffects Default { get; } = new AncillaryMutationEffects(true, true, true, true);
+
+            /// <summary>
+            ///     instance representing no effects
+            /// </summary>
+            /// <value>
+            ///     The none.
+            /// </value>
+            public static AncillaryMutationEffects None { get; } = new AncillaryMutationEffects(false, false, false, false);
+
+            /// <summary>
+            ///     Gets a value indicating whether the  tale should be added.
+            /// </summary>
+            /// <value>
+            ///     <c>true</c> if the tale should be added; otherwise, <c>false</c>.
+            /// </value>
+            public bool AddTale { get; }
+
+            /// <summary>
+            ///     Gets a value indicating whether the memory should be added.
+            /// </summary>
+            /// <value>
+            ///     <c>true</c> if the memory should be added; otherwise, <c>false</c>.
+            /// </value>
+            public bool AddMemory { get; }
+
+            /// <summary>
+            ///     Gets a value indicating whether the log entry should be added log.
+            /// </summary>
+            /// <value>
+            ///     <c>true</c> if [add log entry]; otherwise, <c>false</c>.
+            /// </value>
+            public bool AddLogEntry { get; }
+
+            /// <summary>
+            ///     Gets a value indicating whether throw magic puff.
+            /// </summary>
+            /// <value>
+            ///     <c>true</c> if magic puffs should be thrown; otherwise, <c>false</c>.
+            /// </value>
+            public bool ThrowMagicPuff { get; }
+
+            /// <summary>
+            /// Gets a value indicating whether the mutation memory should ignore the mod setting's max mutation thought limit 
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [memory ignores limit]; otherwise, <c>false</c>.
+            /// </value>
+            public bool MemoryIgnoresLimit { get; }
+
+
+            /// <summary>Returns the fully qualified type name of this instance.</summary>
+            /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
+            public override string ToString()
+            {
+                return $@"
+    {nameof(AddTale)}:{AddTale}
+    {nameof(AddMemory)}:{AddMemory}
+    {nameof(AddLogEntry)}:{AddLogEntry}
+    {nameof(AddTale)}:{AddTale}
+    {nameof(MemoryIgnoresLimit)}:{MemoryIgnoresLimit}
+";
+            }
         }
     }
 }

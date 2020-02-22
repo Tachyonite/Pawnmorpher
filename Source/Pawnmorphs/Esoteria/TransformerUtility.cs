@@ -7,11 +7,13 @@ using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
+using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
+using Verse.AI;
 using Verse.AI.Group;
 
 namespace Pawnmorph
@@ -23,6 +25,62 @@ namespace Pawnmorph
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
         private static readonly PawnKindDef[] PossiblePawnKinds;
 
+
+        /// <summary>
+        /// Gets the former human reaction status of the given original pawn 
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <returns></returns>
+        public static FormerHumanReactionStatus GetFormerHumanReactionStatus([NotNull] this Pawn originalPawn)
+        {
+            if (originalPawn.IsColonist)
+                return FormerHumanReactionStatus.Colonist;
+            if (originalPawn.IsPrisonerOfColony)
+                return FormerHumanReactionStatus.Prisoner;
+            if (originalPawn.guest?.HostFaction == Faction.OfPlayer)
+                return FormerHumanReactionStatus.Guest;
+            return FormerHumanReactionStatus.Wild; 
+        }
+
+        /// <summary>
+        /// Gets all pawn transformers in this stage 
+        /// </summary>
+        /// <param name="stage">The stage.</param>
+        /// <returns></returns>
+        [NotNull]
+        public static IEnumerable<IPawnTransformer> GetAllTransformers([NotNull] this HediffStage stage)
+        {
+            if (stage is IPawnTransformer stageTf) yield return stageTf;
+            foreach (IPawnTransformer pawnTransformer in stage.hediffGivers.MakeSafe().OfType<IPawnTransformer>())
+            {
+                yield return pawnTransformer; 
+            }
+        }
+
+        /// <summary>
+        /// Gets all pawn transformers in this hediff def.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">hediff</exception>
+        [NotNull]
+        public static IEnumerable<IPawnTransformer> GetAllTransformers([NotNull] this HediffDef hediff)
+        {
+            if (hediff == null) throw new ArgumentNullException(nameof(hediff));
+
+            foreach (IPawnTransformer pawnTransformer in hediff.GetAllHediffGivers().OfType<IPawnTransformer>())
+            {
+                yield return pawnTransformer; 
+            }
+
+
+            foreach (IPawnTransformer pawnTransformer in hediff.stages.MakeSafe().OfType<IPawnTransformer>())
+            {
+                yield return pawnTransformer;
+            }
+
+
+        }
 
         /// <summary>
         /// Gets the net mutagenic buildup multiplier for this pawn.
@@ -44,6 +102,8 @@ namespace Pawnmorph
         private const float MAX_APPAREL_PDIFF = 0.35f;
 
         private const float APPAREL_PDIFF_OFFSET = 0.15f;
+
+        private const int MAX_APPAREL_DAMAGE_PRODUCT_PER_APPAREL = 50; 
 
         /// <summary>
         /// applies damage to all apparel the pawn is wearing based on
@@ -85,14 +145,14 @@ namespace Pawnmorph
                 Mathf.Clamp(percentDiff, 0,
                             MAX_APPAREL_PDIFF); //clamp pDiff between [0, Max], if they shrink don't damage apparel  
             percentDamage /= MAX_APPAREL_PDIFF; //normalize the percentDifference to get a percentage to damage apparel by  
-            var totalDamage = 0;
-
+            int totalStuffProduced=0; 
             foreach (Apparel apparel in cachedApparel)
             {
                 int damage = Mathf.CeilToInt(apparel.MaxHitPoints * percentDamage * damageProps.apparelDamageMultiplier)
                            + damageProps.apparelDamageOffset;
                 int newHitPoints = Mathf.Max(apparel.HitPoints - damage, 0);
-                totalDamage += apparel.HitPoints - newHitPoints; //save the actual damage done 
+                var damageDone = apparel.HitPoints - newHitPoints; //save the actual damage done 
+                
                 apparel.HitPoints = newHitPoints;
                 if (apparel.HitPoints == 0)
                 {
@@ -100,13 +160,15 @@ namespace Pawnmorph
                     apparelTracker.Notify_ApparelRemoved(apparel); 
                     apparel.Destroy();
                 }
+
+                var stuffProduced = Mathf.FloorToInt(damageDone * damageProps.spawnedBiproductMult);
+                totalStuffProduced += Mathf.Min(stuffProduced, MAX_APPAREL_DAMAGE_PRODUCT_PER_APPAREL);
             }
 
             if (damageProps.biproduct != null && damageProps.spawnedBiproductMult > EPSILON)
             {
-                int amountToSpawn = Mathf.RoundToInt(totalDamage * damageProps.spawnedBiproductMult);
                 Thing thing = ThingMaker.MakeThing(damageProps.biproduct);
-                thing.stackCount = amountToSpawn;
+                thing.stackCount = totalStuffProduced;
 
                 if (pawn.Spawned)
                 {
@@ -271,7 +333,7 @@ namespace Pawnmorph
         /// <param name="animal"> The animal. </param>
         public static PawnGenerationRequest GenerateRandomPawnFromAnimal(Pawn animal)
         {
-            var convertedAge = ConvertAge(animal, ThingDefOf.Human.race);
+            var convertedAge = Mathf.Max(ConvertAge(animal, ThingDefOf.Human.race),17);
             var gender = animal.gender;
             if (Rand.RangeInclusive(0, 100) <= 50)
             {
@@ -369,6 +431,16 @@ namespace Pawnmorph
 
             // Make sure any current lords know they can't use this pawn anymore.
             originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+
+            //remove any jobs the pawn may be doing 
+            if (originalPawn.jobs != null && originalPawn.Map != null)
+            {
+                originalPawn.jobs.ClearQueuedJobs();
+                originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced); 
+            }
+
+
+
 
             if (originalPawn.Faction != Faction.OfPlayer) return; //past here is only relevant for colonists 
 

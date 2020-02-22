@@ -79,7 +79,7 @@ namespace Pawnmorph
                 threshPercents = threshPercents ?? new List<float>();
                 foreach (VTuple<SapienceLevel, float> sapienceLevelThreshold in FormerHumanUtilities.SapienceLevelThresholds)
                 {
-                    float thresh = sapienceLevelThreshold.second / mLevel;
+                    float thresh = sapienceLevelThreshold.Second / mLevel;
                     if (thresh > 1) continue;
                     threshPercents.Add(thresh);
                 }
@@ -99,6 +99,7 @@ namespace Pawnmorph
                 if (_seekerLevel < 0)
                     _seekerLevel = CurLevel;
                 _currentLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(_seekerLevel);
+                CurLevel = Mathf.Clamp(CurLevel, 0, MaxLevel);
             }
         }
 

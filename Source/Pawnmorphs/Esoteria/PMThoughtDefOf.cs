@@ -15,35 +15,13 @@ namespace Pawnmorph
             DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDef)); 
         }
 
-        /// <summary> Get the correct default memory for a pawn that was a morph that returns to being human. </summary>
-        /// <param name="mutationOutlook">the mutation outlook of the pawn</param>
-        /// <returns> The ThoughtDef of the thought to use based on their traits. </returns>
-        public static ThoughtDef GetDefaultMorphRevertThought(MutationOutlook mutationOutlook)
-        {
-
-            switch (mutationOutlook)
-            {
-                case MutationOutlook.Neutral:
-                    return DefaultMorphRevertsToHuman; 
-                case MutationOutlook.Furry:
-                    return DefaultMorphRevertsToHumanFurry;
-                case MutationOutlook.BodyPurist:
-                    return DefaultMorphRevertsToHumanBP;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(mutationOutlook), mutationOutlook, null);
-            }
-        }
+       
 
         public static ThoughtDef DefaultMorphTfMemory;
 
         /// <summary> Default thought for pawns that were a morph that reverts back to a human. </summary>
         public static ThoughtDef DefaultMorphRevertsToHuman;
 
-        /// <summary> Default thought for pawns that have the MutationAffinity Trait and were a morph that reverts back to human. </summary>
-        public static ThoughtDef DefaultMorphRevertsToHumanFurry;
-
-        /// <summary> Default thought for pawns that have the BodyPurist Trait and were a morph that reverts back to human. </summary>
-        public static ThoughtDef DefaultMorphRevertsToHumanBP;
 
         /// <summary>
         /// The former human taming success thought
@@ -63,7 +41,21 @@ namespace Pawnmorph
         /// The sapient animal hunting memory
         /// </summary>
         /// this is for hunting out of necessity not for the hunting mental break 
-        public static ThoughtDef SapientAnimalHuntingMemory; 
+        public static ThoughtDef SapientAnimalHuntingMemory;
+
+
+        /// <summary>
+        /// The default thought for former humans that have bad thoughts for eating meat of the same species they are 
+        /// </summary>
+        public static ThoughtDef FHDefaultCannibalThought_Direct;
+
+        /// <summary>
+        /// The fh default cannibal thought ingredient
+        /// </summary>
+        public static ThoughtDef FHDefaultCannibalThought_Ingredient;
+
+        public static ThoughtDef FHDefaultCannibalGoodThought_Direct;
+        public static ThoughtDef FHDefaultCannibalGoodThought_Ingredient; 
 
     }
 }

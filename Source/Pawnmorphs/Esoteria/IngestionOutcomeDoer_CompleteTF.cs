@@ -1,4 +1,5 @@
-﻿using Multiplayer.API;
+﻿using System;
+using Multiplayer.API;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -22,54 +23,32 @@ namespace Pawnmorph
                 Rand.PushState(RandUtilities.MPSafeSeed); 
             }
 
-            if (pawn.GetFormerHumanStatus() == FormerHumanStatus.Sapient)
+            try
             {
-                pawn.health.AddHediff(TfHediffDefOf.FeralPillSapienceDrop);
-                return; 
-            }
-
-
-            foreach (Hediff hediff in pawn.health.hediffSet.hediffs) // Loop through all the hediffs on the pawn.
-            {
-                if (hediff is Hediff_Morph morph && morph.CurStage == morph.def.stages[0]) // When you find one that is a pawnmorph in the final stage...
+                if (pawn.GetFormerHumanStatus() == FormerHumanStatus.Sapient)
                 {
-                    foreach (HediffStage stage in morph.def.stages) // ...loop through its stages...
+                    pawn.health.AddHediff(TfHediffDefOf.FeralPillSapienceDrop);
+                    return; 
+                }
+
+
+                foreach (Hediff hediff in pawn.health.hediffSet.hediffs) // Loop through all the hediffs on the pawn.
+                {
+                    if(hediff?.def == null) continue;
+                    foreach (IPawnTransformer pawnTransformer in hediff.def.GetAllTransformers())
                     {
-                        foreach (HediffGiver giver in stage.hediffGivers) // ...and their hediffGivers...
-                        {
-                            if (giver is HediffGiver_TF giverTF) // ...until you find one that is of type HediffGiver_TF.
-                            {
-                                var mutagen = morph.GetMutagenDef();
-
-                                pawn.health.RemoveHediff(morph);
-
-                                var request = new TransformationRequest(giverTF.pawnkinds.RandElement(), pawn)
-                                {
-                                    tale = giverTF.tale
-                                };
-
-                                var inst = mutagen.MutagenCached.Transform(request);
-                                if (inst != null)
-                                {
-                                    var comp = Find.World.GetComponent<PawnmorphGameComp>();
-                                    comp.AddTransformedPawn(inst); 
-                                }
-
-                                if (MP.IsInMultiplayer)
-                                {
-                                    Rand.PopState();
-                                }
-
-                                return;
-                            }
-                        }
+                        if (pawnTransformer.TransformPawn(pawn, hediff)) return; //break at the first transformer that works 
                     }
                 }
-            }
 
-            if (MP.IsInMultiplayer)
+              
+            }
+            finally
             {
-                Rand.PopState();
+                if (MP.IsInMultiplayer)
+                {
+                    Rand.PopState();
+                }
             }
         }
     }

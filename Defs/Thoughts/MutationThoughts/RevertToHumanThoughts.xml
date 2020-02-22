@@ -1,58 +1,19 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
     
-    <ThoughtDef Abstract="true" Name="MorphRevertsToHumanBase"> 
-        <thoughtClass>Thought_Memory</thoughtClass>
-        <durationDays>5</durationDays>
-    </ThoughtDef>
 
-    <ThoughtDef Abstract="true" Name="MorphRevertsToHumanBaseNone" ParentName="MorphRevertsToHumanBase">
-        <nullifyingTraits>
-            <li>MutationAffinity</li>
-            <li>BodyPurist</li>
-        </nullifyingTraits>
-    </ThoughtDef>
-    
-    <ThoughtDef Abstract="true" Name="MorphRevertsToHumanBaseFurry" ParentName="MorphRevertsToHumanBase">
-        <requiredTraits>
-            <li>MutationAffinity</li>
-        </requiredTraits>
-    </ThoughtDef>
-    
-    <ThoughtDef Abstract="true" Name="MorphRevertsToHumanBaseBP" ParentName="MorphRevertsToHumanBase">
-        <requiredTraits>
-            <li>BodyPurist</li>
-        </requiredTraits>
-    </ThoughtDef>
 
     <!-- these are thoughts for when a pawn is reverted from a morph back to being human  -->
-    <ThoughtDef ParentName="MorphRevertsToHumanBaseNone" > <!-- default for pawns that have neither trait  -->
+    <ThoughtDef ParentName="OutlookMemoryBase" > <!-- default for pawns that have neither trait  -->
         <defName>DefaultMorphRevertsToHuman</defName>
         <stages>
             <li>
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>reverted</label>
+                <description>That was...an experience, to say the least. I'm glad to be back to my old self again though.</description>
+                <visible>true</visible>
             </li>
         </stages>
     </ThoughtDef>
 
-    <ThoughtDef ParentName="MorphRevertsToHumanBaseFurry">
-        <defName>DefaultMorphRevertsToHumanFurry</defName>
-        <stages>
-                <li>
-                    <label>TODO</label>
-                    <description>TODO</description>
-                </li>
-            </stages>
-    </ThoughtDef>
-
-    <ThoughtDef ParentName="MorphRevertsToHumanBaseBP">
-        <defName>DefaultMorphRevertsToHumanBP</defName>
-        <stages>
-                <li>
-                    <label>TODO</label>
-                    <description>TODO</description>
-                </li>
-            </stages>
-    </ThoughtDef>
+  
 
 </Defs> 

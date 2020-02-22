@@ -13,6 +13,50 @@ namespace Pawnmorph.Thoughts
     /// <seealso cref="RimWorld.Thought_Memory" />
     public class FormerHumanMemory : Thought_Memory
     {
+        private string _cachedLabel;
+
+        private Pawn _cachedPawn; 
+
+        /// <summary>
+        /// save/load data.
+        /// </summary>
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref _cachedLabel, nameof(LabelCap)); 
+            Scribe_References.Look(ref _cachedPawn, nameof(_cachedPawn));
+        }
+        
+        /// <summary>
+        /// Gets the label cap.
+        /// </summary>
+        /// <value>
+        /// The label cap.
+        /// </value>
+        public override string LabelCap
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_cachedLabel) || _cachedPawn != pawn)
+                {
+                    _cachedPawn = pawn; //memories can sometimes be re assigned? 
+                    _cachedLabel = GenerateLabel(); 
+                }
+
+                return _cachedLabel;
+            }
+        }
+
+        /// <summary>
+        /// Generates the label for this thought.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual string GenerateLabel()
+        {
+            if (string.IsNullOrEmpty(CurStage.label)) return ""; 
+            return CurStage.label.Formatted(pawn.kindDef.label.Named("animal")).CapitalizeFirst(); 
+        }
+
         /// <summary>Gets the index of the current stage.</summary>
         /// <value>The index of the current stage.</value>
         public override int CurStageIndex

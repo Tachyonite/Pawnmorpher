@@ -20,12 +20,12 @@
 			</li>
 			<li>
 				<label>body purist violated</label>
-				<description>I feel grossed out just looking at the changes! No more, please!</description>
+				<description>I feel grossed out looking at the changes! No more, please!</description>
 				<baseMoodEffect>-15</baseMoodEffect>
 			</li>
 			<li>
 				<label>body purist horrified</label>
-				<description>I feel sick in my own skin. I just want to be human again.</description>
+				<description>I feel sick in my own skin. I want to be human again.</description>
 				<baseMoodEffect>-20</baseMoodEffect>
 			</li>
 			<li>

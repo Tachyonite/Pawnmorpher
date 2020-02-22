@@ -98,7 +98,7 @@ namespace Pawnmorph
             if (PawnUtility.ShouldSendNotificationAbout(Pawn) && !string.IsNullOrEmpty(cStage.messageText))
             {
                 var mDef = cStage.messageDef ?? MessageTypeDefOf.NeutralEvent;
-                Messages.Message(cStage.messageText.AdjustedFor(Pawn), mDef); 
+                Messages.Message(cStage.messageText.AdjustedFor(Pawn), Pawn, mDef); 
             }
         }
 

@@ -3,7 +3,7 @@
 		<defName>PawnmorpherTrader</defName>
 		<label>Morph trader</label>
 		<orbital>false</orbital>
-		<commonality>10000000000000000000</commonality> <!--1 -->
+		<commonality>1</commonality> <!--1 -->
 		<stockGenerators>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Silver</thingDef>
@@ -162,123 +162,11 @@
 					<max>3</max>
 				</countRange>
 			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>AlpacaTransformer</thingDef>
+			<li Class="Pawnmorph.StockGenerator_Injectors">
+				<animalClass>Animal</animalClass> <!-- this will grab injectors from all morphs under the given category -->
 				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>BearTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>BoarTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>BoomalopeTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>CatTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>ChickenTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>CowTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>DeerTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>FoxTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>HuskyTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>IguanaTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>MonkeyTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>PigTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>RatTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>SnakeTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>WargTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>WolfTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
+					<min>-10</min>
+					<max>20</max>
 				</countRange>
 			</li>
 
@@ -413,105 +301,14 @@
 					<max>3</max>
 				</countRange>
 			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>FoxTransformer</thingDef>
+			<li Class="Pawnmorph.StockGenerator_Injectors">
+				<animalClass>Animal</animalClass> <!-- this will grab injectors from all morphs under the given category -->
 				<countRange>
-					<min>-3</min>
-					<max>1</max>
+					<min>-10</min>
+					<max>20</max>
 				</countRange>
 			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>HuskyTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>WargTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>BearTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>CatTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>ChickenTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>CowTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>PigTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>DeerTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>AlpacaTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>BoomalopeTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>BoarTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>RatTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>PigTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>1</max>
-				</countRange>
-			</li>
-
+						
 			<li Class="StockGenerator_BuyArt" />
 			<li Class="StockGenerator_BuyExpensiveSimple" />
 			<li Class="StockGenerator_BuyWeirdOrganic" />

@@ -6,6 +6,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -57,7 +58,8 @@ namespace Pawnmorph.Hediffs
         private void Produce(IntVec3 pos, CompProperties_TerrainProduction.DictEntry productionElement)
         {
             Thing thing = ThingMaker.MakeThing(productionElement.Resource);
-            thing.stackCount = (int)productionElement.Mtb;
+            var statValue = Pawn.GetStatValue(StatDefOf.PlantHarvestYield);
+            thing.stackCount = Mathf.RoundToInt(productionElement.Amount * statValue); 
             if (thing.stackCount > 0)
                 GenPlace.TryPlaceThing(thing, pos, Pawn.Map, ThingPlaceMode.Near);
         }

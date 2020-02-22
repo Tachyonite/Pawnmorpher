@@ -14,7 +14,7 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary> Def class for a morph. Used to generate the morph's implicit race. </summary>
-    public class MorphDef : Def
+    public class MorphDef : AnimalClassBase
     {
         /// <summary>
         ///     The categories that the morph belongs to. <br />
@@ -31,6 +31,13 @@ namespace Pawnmorph
         /// <summary> If specified, the race to use in place of the implicit one.</summary>
         public ThingDef explicitHybridRace;
 
+
+        /// <summary>
+        ///     The genus of this morph
+        ///     this should be a class like 'canis'
+        /// </summary>
+        public AnimalClassDef classification;
+
         /// <summary>
         ///     The group the morph belongs to. <br />
         ///     For example, a Huskymorph belongs to the pack, while a Cowmorph is a member of the herd.
@@ -46,106 +53,88 @@ namespace Pawnmorph
         /// <summary> Aspects that a morph of this race get.</summary>
         public List<AddedAspect> addedAspects = new List<AddedAspect>();
 
+        /// <summary>
+        ///     The full transformation chain
+        /// </summary>
+        [CanBeNull] public HediffDef fullTransformation;
+
+        /// <summary>
+        ///     The partial transformation chain
+        /// </summary>
+        [CanBeNull] public HediffDef partialTransformation;
+
         /// <summary> The morph's implicit race.</summary>
         [Unsaved] public ThingDef hybridRaceDef;
 
 
         [Unsaved] private readonly Dictionary<BodyDef, float> _maxInfluenceCached = new Dictionary<BodyDef, float>();
 
-       
+        [Unsaved] private Dictionary<BodyPartDef, List<MutationDef>> _mutationsByParts;
 
-        /// <summary> Any mutations directly associated with this morph (the hediff specifies this MorphDef).</summary>
-        [Unsaved] private List<HediffGiver_Mutation> _associatedMutations;
+        [Unsaved] private List<MutationDef> _allAssociatedMutations;
 
-        /// <summary> Any mutations indirectly associated with this morph (they share a TF hediff with an associated mutation).</summary>
-        private List<HediffGiver_Mutation> _adjacentMutationGivers;
+        /// <summary>
+        ///     Gets the children.
+        /// </summary>
+        /// <value>
+        ///     The children.
+        /// </value>
+        public override IEnumerable<AnimalClassBase> Children =>
+            Enumerable.Empty<AnimalClassBase>(); //morphs can't have class children
 
-        [Unsaved] private Dictionary<BodyPartDef, List<HediffDef>> _mutationsByParts;
+        /// <summary>
+        ///     Gets the label.
+        /// </summary>
+        /// <value>
+        ///     The label.
+        /// </value>
+        public override string Label => label;
 
-        [Unsaved] private List<HediffDef> _allAssociatedMutations;
-
-        [CanBeNull] [Unsaved] private HashSet<HediffDef> _associatedMutationsLookup;
+        /// <summary>
+        ///     Gets the parent class.
+        /// </summary>
+        /// <value>
+        ///     The parent class.
+        /// </value>
+        public override AnimalClassDef ParentClass => classification;
 
         /// <summary> Gets an enumerable collection of all the morph type's defs.</summary>
+        [NotNull]
         public static IEnumerable<MorphDef> AllDefs => DefDatabase<MorphDef>.AllDefs;
 
-        /// <summary> Gets the mutations associated with this morph. </summary>
-        public IEnumerable<HediffGiver_Mutation> AssociatedMutations =>
-            _associatedMutations ?? (_associatedMutations = GetMutations());
 
         /// <summary>Gets the collection of all mutations associated with this morph def</summary>
         /// <value>All associated mutations.</value>
         [NotNull]
-        public IEnumerable<HediffDef> AllAssociatedMutations
+        public IEnumerable<MutationDef> AllAssociatedMutations
         {
             get
             {
                 if (_allAssociatedMutations == null)
                 {
-                    _allAssociatedMutations = new List<HediffDef>();
-                    _allAssociatedMutations.AddRange(AllAssociatedAndAdjacentMutationGivers.Select(g => g.hediff).Distinct());
+                    _allAssociatedMutations = new List<MutationDef>();
+                    //temp set for keeping track of all the 'slots' we have occupied so far
+                    var set = new HashSet<VTuple<BodyPartDef, MutationLayer>>();
+                    AnimalClassBase aClass = this;
+                    while (aClass != null)
+                    {
+                        IEnumerable<MutationDef> enumerable = MutationDef.AllMutations.Where(m => m.classInfluence == aClass);
+
+                        foreach (MutationDef mutationDef in enumerable)
+                            if (mutationDef.GetAllDefMutationSites().Any(s => !set.Contains(s))
+                            ) //if there are any free sites available add the mutation to the list 
+                            {
+                                _allAssociatedMutations.Add(mutationDef);
+                                set.AddRange(mutationDef.GetAllDefMutationSites());
+                            }
+
+                        aClass = aClass.ParentClass; //move up one in the classification tree 
+                    }
                 }
 
                 return _allAssociatedMutations;
             }
         }
-
-        /// <summary>
-        ///     Gets an enumerable collection of HediffGiver_Mutations that are either associated with or 'adjacent' to this morph.
-        ///     <br />
-        ///     An adjacent HediffGiver is one that is found in the same HediffDef as another HediffGiver that gives a part
-        ///     associated with this morph.
-        /// </summary>
-        [NotNull]
-        public IEnumerable<HediffGiver_Mutation> AllAssociatedAndAdjacentMutationGivers
-        {
-            get //TODO remove this and just use AllAssociateMutations 
-            {
-                if (_adjacentMutationGivers == null) //use lazy initialization 
-                {
-                    bool Selector(HediffDef def)
-                    {
-                        if (!typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)) return false; //only select morph tf hediffs 
-                        if (def.CompProps<HediffCompProperties_Single>() != null) return false; //ignore partial tfs 
-                        IEnumerable<HediffGiver> givers = def.GetAllHediffGivers();
-                        return givers.Any(g => g.hediff.CompProps<CompProperties_MorphInfluence>()?.morph == this);
-                        //make sure that the morph has at least one part associated with this morph 
-                    }
-
-                    IEnumerable<HediffGiver_Mutation> allGivers = DefDatabase<HediffDef>.AllDefs.Where(Selector)
-                                                                                        .SelectMany(h => h.GetAllHediffGivers()
-                                                                                                          .OfType<
-                                                                                                               HediffGiver_Mutation
-                                                                                                           >())
-                                                                                        .GroupBy(g => g.hediff,
-                                                                                                 g =>
-                                                                                                     g) //group all hediff givers that give the same mutation together 
-                                                                                        .Select(g =>
-                                                                                                    g.First()); //only keep one giver per mutation 
-                    _adjacentMutationGivers = new List<HediffGiver_Mutation>(allGivers);
-                }
-
-                return _adjacentMutationGivers;
-            }
-        }
-
- 
-        //simply a cached hash Set of all hediffs added by the HediffGivers in AllAssociatedAndAdjacentMutationGivers 
-        [NotNull]
-        private HashSet<HediffDef> AssociatedMutationsLookup
-        {
-            get
-            {
-                if (_associatedMutationsLookup == null)
-                    _associatedMutationsLookup =
-                        new HashSet<HediffDef>(AllAssociatedAndAdjacentMutationGivers
-                                              .Select(g => g.hediff)
-                                              .Where(h => h != null));
-
-                return _associatedMutationsLookup;
-            }
-        }
-
 
         /// <summary>
         ///     get all configuration errors with this instance
@@ -158,63 +147,51 @@ namespace Pawnmorph
             if (race == null)
                 yield return "No race def found!";
             else if (race.race == null) yield return $"Race {race.defName} has no race properties! Are you sure this is a race?";
+
+            if (classification == null) yield return $"No classification set!"; 
         }
 
         /// <summary>
-        ///     Gets the maximum possible influence this morph has on a given body
+        ///     Determines whether this instance contains the object.
         /// </summary>
-        /// <param name="bodyDef">The body definition.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">bodyDef</exception>
-        public float GetMaximumInfluence([NotNull] BodyDef bodyDef)
+        /// <param name="other">The other.</param>
+        /// <returns>
+        ///     <c>true</c> if [contains] [the specified other]; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Contains(AnimalClassBase other)
         {
-            if (bodyDef == null) throw new ArgumentNullException(nameof(bodyDef));
-
-            if (_maxInfluenceCached.TryGetValue(bodyDef, out float accum)) return accum; //see if we calculated this before 
-
-            foreach (HediffGiver_Mutation giver in AllAssociatedAndAdjacentMutationGivers)
-            {
-                int mutationCount =
-                    bodyDef.GetAllMutableParts()
-                           .Count(m => giver.partsToAffect?
-                                          .Contains(m.def)
-                                    ?? false); //get the total number of unique mutations the body can have at once 
-                float influence = giver.hediff.GetInfluenceOf(this); //get the influence this mutation gives 
-                accum += influence * mutationCount;
-            }
-
-            _maxInfluenceCached[bodyDef] = accum; //cache the result so we only have to do this once per body def
-            return accum;
+            return other == this;
         }
+
 
         /// <summary>Gets the mutation that affect the given part from this morph def</summary>
         /// <param name="partDef">The part definition.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">partDef</exception>
         [NotNull]
-        public IEnumerable<HediffDef> GetMutationForPart([NotNull] BodyPartDef partDef)
+        public IEnumerable<MutationDef> GetMutationForPart([NotNull] BodyPartDef partDef)
         {
             if (partDef == null) throw new ArgumentNullException(nameof(partDef));
             if (_mutationsByParts == null)
             {
-                _mutationsByParts = new Dictionary<BodyPartDef, List<HediffDef>>();
-                foreach (HediffDef mutation in AllAssociatedMutations) //build the lookup dict here 
-                foreach (BodyPartDef part in mutation.GetPossibleParts()) //gets a list of all parts this mutation affects 
+                _mutationsByParts = new Dictionary<BodyPartDef, List<MutationDef>>();
+                foreach (MutationDef mutation in AllAssociatedMutations) //build the lookup dict here 
+                foreach (BodyPartDef part in mutation.parts.MakeSafe()) //gets a list of all parts this mutation affects 
                 {
-                    List<HediffDef> lst;
+                    List<MutationDef> lst;
                     if (_mutationsByParts.TryGetValue(part, out lst))
                     {
                         lst.Add(mutation);
                     }
                     else
                     {
-                        lst = new List<HediffDef> {mutation};
+                        lst = new List<MutationDef> {mutation};
                         _mutationsByParts[part] = lst;
                     }
                 }
             }
 
-            return _mutationsByParts.TryGetValue(partDef) ?? Enumerable.Empty<HediffDef>();
+            return _mutationsByParts.TryGetValue(partDef) ?? Enumerable.Empty<MutationDef>();
         }
 
 
@@ -242,12 +219,30 @@ namespace Pawnmorph
         ///     <c>true</c> if the specified hediff definition is an associated mutation; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">hediffDef</exception>
+        [Obsolete]
         public bool IsAnAssociatedMutation([NotNull] HediffDef hediffDef)
         {
             if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
+            if (hediffDef is MutationDef mDef) return AllAssociatedMutations.Contains(mDef);
 
-            return AssociatedMutationsLookup.Contains(hediffDef);
+            return false;
         }
+
+        /// <summary>
+        ///     Determines whether the specified hediff definition is an associated mutation .
+        /// </summary>
+        /// <param name="mutationDef">The hediff definition.</param>
+        /// <returns>
+        ///     <c>true</c> if the specified hediff definition is an associated mutation; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">hediffDef</exception>
+        public bool IsAnAssociatedMutation([NotNull] MutationDef mutationDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+
+            return AllAssociatedMutations.Contains(mutationDef);
+        }
+
 
         /// <summary>
         ///     Determines whether the given hediff is an associated mutation.
@@ -260,7 +255,9 @@ namespace Pawnmorph
         public bool IsAnAssociatedMutation([NotNull] Hediff hediff)
         {
             if (hediff?.def == null) throw new ArgumentNullException(nameof(hediff));
-            return IsAnAssociatedMutation(hediff.def);
+            if (hediff is Hediff_AddedMutation mutation) return AllAssociatedMutations.Contains(mutation.def as MutationDef);
+
+            return false;
         }
 
         /// <summary>
@@ -277,29 +274,14 @@ namespace Pawnmorph
             //TODO patch explicit race based on hybrid race settings? 
         }
 
-        private List<HediffGiver_Mutation> GetMutations()
-        {
-            IEnumerable<HediffGiver_Mutation> linq =
-                DefDatabase<HediffDef>.AllDefs
-                                      .Where(def => typeof(Hediff_Morph)
-                                                .IsAssignableFrom(def.hediffClass)) // Get all morph hediff defs.
-                                      .SelectMany(def => def.stages ?? Enumerable.Empty<HediffStage>()) // Get all stages.
-                                      .SelectMany(s => s.hediffGivers
-                                                    ?? Enumerable.Empty<HediffGiver>()) // Get all hediff givers.
-                                      .OfType<HediffGiver_Mutation>() // Keep only the mutation givers.
-                                      .Where(mut => mut.hediff.CompProps<CompProperties_MorphInfluence>()?.morph
-                                                 == this); // Keep only those associated with this morph.
-            return linq.ToList();
-        }
-
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>
         public class TransformSettings
         {
             /// <summary> The TaleDef that should be used in art that occurs whenever a pawn shifts to this morph.</summary>
             [CanBeNull] public TaleDef transformTale;
 
-            /// <summary> The ID of the message that should be spawned when a pawn shifts to this morph.</summary>
-            [CanBeNull] public string transformationMessageID;
+            /// <summary> The content of the message that should be spawned when a pawn shifts to this morph.</summary>
+            [CanBeNull] public string transformationMessage;
 
             /// <summary> The message type that should be used when a pawn shifts to this morph.</summary>
             [CanBeNull] public MessageTypeDef messageDef;
@@ -307,35 +289,12 @@ namespace Pawnmorph
             /// <summary> Memory added when a pawn shifts to this morph.</summary>
             [CanBeNull] public ThoughtDef transformationMemory;
 
-            /// <summary> Memory added when the pawn reverts from this morph back to human if they have the furry trait.</summary>
-            [CanBeNull] public ThoughtDef revertedMemoryFurry;
-
-            /// <summary> Memory added when the pawn reverts from this morph back to human if they have the body purist trait.</summary>
-            [CanBeNull] public ThoughtDef revertedMemoryBP;
-
             /// <summary>
             ///     Memory added when the pawn reverts from this morph back to human if they have neither the body purist or
             ///     furry traits.
             /// </summary>
             [CanBeNull] public ThoughtDef revertedMemory;
 
-            /// <summary> Gets the memory for when a pawn is reverted based on their outlook.</summary>
-            /// <param name="outlook"> The mutation outlook of the pawn (i.e. Whether they are a body purist, a furry, or nothing).</param>
-            /// <returns> The ThoughtDef of the memory associated with their outlook.</returns>
-            public ThoughtDef GetReversionMemory(MutationOutlook outlook)
-            {
-                switch (outlook)
-                {
-                    case MutationOutlook.Furry:
-                        return revertedMemoryFurry;
-                    case MutationOutlook.BodyPurist:
-                        return revertedMemoryBP;
-                    case MutationOutlook.Neutral:
-                        return revertedMemory;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(outlook), outlook, null);
-                }
-            }
         }
 
         /// <summary> Aspects to add when a pawn changes race to this morph type and settings asociated with them.</summary>

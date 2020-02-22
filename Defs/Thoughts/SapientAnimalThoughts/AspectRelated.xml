@@ -10,12 +10,12 @@
         <stages>
             <li>
                 <label>{0}'s master</label>
-                <description>TODO</description>
+                <description>It feels good being with {0}. It's easier, them being an animal.</description>
                 <baseMoodEffect>5</baseMoodEffect>
             </li>
             <li>
                 <label>master of {0}</label>
-                <description>TODO</description>
+                <description>It's nice to be around animals that understand you.</description>
                 <baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>

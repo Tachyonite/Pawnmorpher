@@ -65,19 +65,7 @@
 
 	<xs:simpleType name="AbstractThoughts">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="MorphReactionThoughtBase" />
-			<xs:enumeration value="MorphReactionThoughtBaseNone" />
-			<xs:enumeration value="MorphReactionThoughtBaseFurry" />
-			<xs:enumeration value="MorphReactionThoughtBaseBodyPurist" />
-			<xs:enumeration value="RevertedThoughtBase" />
-			<xs:enumeration value="PMMorphMemoryBase" />
-			<xs:enumeration value="PMMorphMemoryNone" />
-			<xs:enumeration value="PMMorphMemoryFurry" />
-			<xs:enumeration value="PMMorphMemoryBP" />
-			<xs:enumeration value="MorphRevertsToHumanBase" />
-			<xs:enumeration value="MorphRevertsToHumanBaseNone" />
-			<xs:enumeration value="MorphRevertsToHumanBaseFurry" />
-			<xs:enumeration value="MorphRevertsToHumanBaseBP" />
+			<xs:enumeration value="OutlookMemoryBase" />
 			<xs:enumeration value="GroupThoughtBase" />
 			<xs:enumeration value="FH_NakedThought"/>
 			<xs:enumeration value="FH_PersistentThought" />
@@ -86,16 +74,19 @@
 			<xs:enumeration value="FH_FeralPillBase" />
 			<xs:enumeration value="SapientAnimalBondedMasterBase" />
 			<xs:enumeration value="SapientAnimalBondedNonMasterBase" />
+			<xs:enumeration value="FormerHumanCannibalThoughtBase" />
+			<xs:enumeration value="FormerHumanCannibalThoughtGoodBase" />
+			<xs:enumeration value="DefaultReactionBase"/>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:complexType name="ThoughtStage">
-		<xs:sequence>
+		<xs:all>
 			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1" />
 			<xs:element name="labelSocial" type="xs:string" minOccurs="0" maxOccurs="1" />
 			<xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1" />
 			<xs:element name="visible" type="xs:boolean" default="true" minOccurs="0" maxOccurs="1" />
 			<xs:element name="baseMoodEffect" type="xs:float" minOccurs="0" maxOccurs="1" />
-		</xs:sequence>
+		</xs:all>
 	</xs:complexType>
 </xs:schema>

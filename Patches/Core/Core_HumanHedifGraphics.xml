@@ -7,28 +7,56 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.27</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherAlpacaSnout>Parts/alpacaface/alpacaface</EtherAlpacaSnout>
-					<EtherBearMuzzle>Parts/bearface/bearface</EtherBearMuzzle>
-					<EtherBoarSnout>Parts/boarface/boarface</EtherBoarSnout>
+					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
+					<EtherAlphabeaverJaw>Parts/Alphabeaver/Alphabeaver_Jaw</EtherAlphabeaverJaw>
+					<EtherArcticWolfJaw>Parts/wolfface/wolfface</EtherArcticWolfJaw>
+					<EtherBearMuzzle>Parts/Bear/Bear_Jaw</EtherBearMuzzle>
+					<EtherPolarBearMuzzle>Parts/Bear/Bear_Jaw</EtherPolarBearMuzzle>
+					<EtherBoarSnout>Parts/Boar/Boar_Jaw</EtherBoarSnout>
 					<EtherBoomalopeSnout>Parts/boomalopeface/boomalopeface</EtherBoomalopeSnout>
+					<EtherBoomratJaw>Parts/Boomrat/Boomrat_Jaw</EtherBoomratJaw>
+					<EtherCapybaraJaw>Parts/Capybara/Capybara_Jaw</EtherCapybaraJaw>
+					<EtherCaribouJaw>Parts/Caribou/Caribou_Jaw</EtherCaribouJaw>
+					<EtherCassowaryJaw>Parts/Cassowary/Cassowary_Jaw</EtherCassowaryJaw>
 					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
+					<EtherChinchillaJaw>Parts/Chinchilla/Chinchilla_Jaw</EtherChinchillaJaw>
+					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
+					<EtherCougarJaw>Parts/Cougar/Cougar_Jaw</EtherCougarJaw>
 					<EtherCowSnout>Parts/cowface/cowface</EtherCowSnout>
 					<EtherDeerSnout>Parts/deerface/deerface</EtherDeerSnout>
+					<EtherDromedaryJaw>Parts/Dromedary/Dromedary_Jaw</EtherDromedaryJaw>
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
-					<EtherFoxMuzzle>Parts/Fox/Fox_Jaw</EtherFoxMuzzle>
+					<EtherElkJaw>Parts/Elk/Elk_Jaw</EtherElkJaw>
+					<EtherEmuJaw>Parts/Emu/Emu_Jaw</EtherEmuJaw>
+					<EtherFoxMuzzle>Parts/FoxUpdated/RedFox_Jaw</EtherFoxMuzzle>
+					<EtherFennecFoxMuzzle>Parts/FoxFennec/FennecFox_Jaw</EtherFennecFoxMuzzle>
+					<EtherArcticFoxMuzzle>Parts/FoxArctic/ArcticFox_Jaw</EtherArcticFoxMuzzle>
+					<EtherGazelleJaw>Parts/Gazelle/Gazelle_Jaw</EtherGazelleJaw>
+					<EtherHareJaw>Parts/Hare/Hare_Jaw</EtherHareJaw>
+					<EtherSnowhareJaw>Parts/Hare/Hare_Jaw</EtherSnowhareJaw>
 					<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
+					<EtherIbexJaw>Parts/Ibex/Ibex_Jaw</EtherIbexJaw>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
+					<EtherLabradorRetrieverJaw>Parts/LabradorRetriever/LabradorRetriever_Jaw</EtherLabradorRetrieverJaw>
+					<EtherLynxJaw>Parts/Lynx/Lynx_Jaw</EtherLynxJaw>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
+					<EtherOstrichJaw>Parts/Ostrich/Ostrich_Jaw</EtherOstrichJaw>
+					<EtherPantherJaw>Parts/Panther/Panther_Jaw</EtherPantherJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
-					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
+					<EtherSquirrelJaw>Parts/Squirrel/Squirrel_Jaw</EtherSquirrelJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
+					<EtherTortoiseJaw>Parts/Tortoise/Tortoise_Jaw</EtherTortoiseJaw>
+					<EtherTurkeyJaw>Parts/Turkey/Turkey_Jaw</EtherTurkeyJaw>
 					<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
 					<EtherWolfMuzzle>Parts/wolfface/wolfface</EtherWolfMuzzle>
+					<EtherArcticWolfMuzzle>Parts/wolfface/wolfface</EtherArcticWolfMuzzle>
+					<EtherYorkshireTerrierJaw>Parts/YorkshireTerrier/YorkshireTerrier_Jaw</EtherYorkshireTerrierJaw>
 				</hediffGraphics>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
@@ -36,32 +64,32 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.0078125,0.00390625)</Average_Wide>
-							<Average_Pointy>(0,0.00390625)</Average_Pointy>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
 						</crownTypes>
 					</south>
 					<north />
 					<east>
 						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
+							<Male>(-0.46,0.56)</Male>
+							<Female>(-0.52,0.56)</Female>
+							<Thin>(-0.51,0.56)</Thin>
+							<Hulk>(-0.52,0.56)</Hulk>
+							<Fat>(-0.51,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.0078125,0)</Average_Wide>
-							<Average_Pointy>(0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0.0703125,-0.0546875)</Narrow_Normal>
-							<Narrow_Wide>(0.0703125,-0.0546875)</Narrow_Wide>
-							<Narrow_Pointy>(0.0703125,-0.0625)</Narrow_Pointy>
+							<Average_Wide>(-0.01,0)</Average_Wide>
+							<Average_Pointy>(0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0.07,-0.05)</Narrow_Normal>
+							<Narrow_Wide>(0.07,-0.05)</Narrow_Wide>
+							<Narrow_Pointy>(0.07,-0.06)</Narrow_Pointy>
 						</crownTypes>
 					</east>
 				</offsets>
@@ -71,28 +99,56 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.27</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherAlpacaSnout>Parts/alpacaface/alpacaface</EtherAlpacaSnout>
-					<EtherBearMuzzle>Parts/bearface/bearface</EtherBearMuzzle>
-					<EtherBoarSnout>Parts/boarface/boarface</EtherBoarSnout>
+					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
+					<EtherAlphabeaverJaw>Parts/Alphabeaver/Alphabeaver_Jaw</EtherAlphabeaverJaw>
+					<EtherArcticWolfJaw>Parts/wolfface/wolfface</EtherArcticWolfJaw>
+					<EtherBearMuzzle>Parts/Bear/Bear_Jaw</EtherBearMuzzle>
+					<EtherPolarBearMuzzle>Parts/Bear/Bear_Jaw</EtherPolarBearMuzzle>
+					<EtherBoarSnout>Parts/Boar/Boar_Jaw</EtherBoarSnout>
 					<EtherBoomalopeSnout>Parts/boomalopeface/boomalopeface</EtherBoomalopeSnout>
+					<EtherBoomratJaw>Parts/Boomrat/Boomrat_Jaw</EtherBoomratJaw>
+					<EtherCapybaraJaw>Parts/Capybara/Capybara_Jaw</EtherCapybaraJaw>
+					<EtherCaribouJaw>Parts/Caribou/Caribou_Jaw</EtherCaribouJaw>
+					<EtherCassowaryJaw>Parts/Cassowary/Cassowary_Jaw</EtherCassowaryJaw>
 					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
+					<EtherChinchillaJaw>Parts/Chinchilla/Chinchilla_Jaw</EtherChinchillaJaw>
+					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
+					<EtherCougarJaw>Parts/Cougar/Cougar_Jaw</EtherCougarJaw>
 					<EtherCowSnout>Parts/cowface/cowface</EtherCowSnout>
 					<EtherDeerSnout>Parts/deerface/deerface</EtherDeerSnout>
+					<EtherDromedaryJaw>Parts/Dromedary/Dromedary_Jaw</EtherDromedaryJaw>
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
-					<EtherFoxMuzzle>Parts/Fox/Fox_Jaw</EtherFoxMuzzle>
+					<EtherElkJaw>Parts/Elk/Elk_Jaw</EtherElkJaw>
+					<EtherEmuJaw>Parts/Emu/Emu_Jaw</EtherEmuJaw>
+					<EtherFoxMuzzle>Parts/FoxUpdated/RedFox_Jaw</EtherFoxMuzzle>
+					<EtherFennecFoxMuzzle>Parts/FoxFennec/FennecFox_Jaw</EtherFennecFoxMuzzle>
+					<EtherArcticFoxMuzzle>Parts/FoxArctic/ArcticFox_Jaw</EtherArcticFoxMuzzle>
+					<EtherGazelleJaw>Parts/Gazelle/Gazelle_Jaw</EtherGazelleJaw>
+					<EtherHareJaw>Parts/Hare/Hare_Jaw</EtherHareJaw>
+					<EtherSnowhareJaw>Parts/Hare/Hare_Jaw</EtherSnowhareJaw>
 					<EtherHuskyMuzzle>Parts/huskyface/huskyface</EtherHuskyMuzzle>
+					<EtherIbexJaw>Parts/Ibex/Ibex_Jaw</EtherIbexJaw>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
+					<EtherLabradorRetrieverJaw>Parts/LabradorRetriever/LabradorRetriever_Jaw</EtherLabradorRetrieverJaw>
+					<EtherLynxJaw>Parts/Lynx/Lynx_Jaw</EtherLynxJaw>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
+					<EtherPantherJaw>Parts/Panther/Panther_Jaw</EtherPantherJaw>
+					<EtherOstrichJaw>Parts/Ostrich/Ostrich_Jaw</EtherOstrichJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
-					<EtherSnakeJaw>Parts/snakeface/snakeface</EtherSnakeJaw>
+					<EtherSquirrelJaw>Parts/Squirrel/Squirrel_Jaw</EtherSquirrelJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
+					<EtherTortoiseJaw>Parts/Tortoise/Tortoise_Jaw</EtherTortoiseJaw>
+					<EtherTurkeyJaw>Parts/Turkey/Turkey_Jaw</EtherTurkeyJaw>
 					<EtherWargMuzzle>Parts/wargface/wargface</EtherWargMuzzle>
 					<EtherWolfMuzzle>Parts/wolfface/wolfface</EtherWolfMuzzle>
+					<EtherArcticWolfMuzzle>Parts/wolfface/wolfface</EtherArcticWolfMuzzle>
+					<EtherYorkshireTerrierJaw>Parts/YorkshireTerrier/YorkshireTerrier_Jaw</EtherYorkshireTerrierJaw>
 				</hediffGraphics>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
@@ -100,35 +156,35 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,0.015625)</Narrow_Normal>
-							<Narrow_Wide>(-0.015625,0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,0.02)</Narrow_Normal>
+							<Narrow_Wide>(-0.02,0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
 						</crownTypes>
 					</south>
 					<north />
 					<east>
 						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
+							<Male>(-0.46,0.56)</Male>
+							<Female>(-0.52,0.56)</Female>
+							<Thin>(-0.51,0.56)</Thin>
+							<Hulk>(-0.52,0.56)</Hulk>
+							<Fat>(-0.51,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Normal>(0.03125,0.0078125)</Average_Normal>
-							<Average_Wide>(0.03125,0.0078125)</Average_Wide>
-							<Average_Pointy>(0.03515625,0.0078125)</Average_Pointy>
-							<Narrow_Normal>(0.0703125,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0.0703125,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0.0703125,-0.04296875)</Narrow_Pointy>
+							<Average_Normal>(0.03,0.01)</Average_Normal>
+							<Average_Wide>(0.03,0.01)</Average_Wide>
+							<Average_Pointy>(0.035,0.01)</Average_Pointy>
+							<Narrow_Normal>(0.07,-0.02)</Narrow_Normal>
+							<Narrow_Wide>(0.07,-0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0.07,-0.05)</Narrow_Pointy>
 						</crownTypes>
 					</east>
 				</offsets>
@@ -140,7 +196,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherAlpacaEar>Parts/alpacaface/alpacaears</EtherAlpacaEar>
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
@@ -214,7 +269,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherAlpacaEar>Parts/alpacaface/alpacaears</EtherAlpacaEar>
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
@@ -249,17 +303,17 @@
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.9375)</Male>
-							<Female>(0,0.9375)</Female>
-							<Thin>(0,0.9375)</Thin>
-							<Hulk>(0,0.9375)</Hulk>
-							<Fat>(0,0.9375)</Fat>
+							<Male>(0,0.94)</Male>
+							<Female>(0,0.94)</Female>
+							<Thin>(0,0.94)</Thin>
+							<Hulk>(0,0.94)</Hulk>
+							<Fat>(0,0.94)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.015625)</Narrow_Pointy>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,-0.015)</Narrow_Normal>
+							<Narrow_Wide>(0,-0.015)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.015)</Narrow_Pointy>
 						</crownTypes>
 					</north>
 					<east>
@@ -328,9 +382,35 @@
 					</west> 
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
+					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</EtherAlphabeaverEar>
+					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Left</EtherBoomratEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left</EtherCapybaraEar>
+					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Left</EtherCaribouEar>
+					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Left</EtherCassowaryEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left</EtherChinchillaEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
+					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left</EtherDromedaryEar>
+					<EtherElkEar>Parts/Elk/Elk_Ear_Left</EtherElkEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Left</EtherEmuEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left</EtherFennecFoxEar>
+					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left</EtherGazelleEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left</EtherIbexEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
+					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left</EtherOstrichEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
+					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
+					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
+					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left</EtherTurkeyEar>
+					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Left</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -351,9 +431,35 @@
 					</east>
 					<west/>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
+					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left_Behind</EtherAlphabeaverEar>
+					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Left_Behind</EtherBoomratEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left_Behind</EtherCapybaraEar>
+					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Left_Behind</EtherCaribouEar>
+					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Left_Behind</EtherCassowaryEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</EtherChinchillaEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left_Behind</EtherCougarEar>
+					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left_Behind</EtherDromedaryEar>
+					<EtherElkEar>Parts/Elk/Elk_Ear_Left_Behind</EtherElkEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Left_Behind</EtherEmuEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left_Behind</EtherFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left_Behind</EtherFennecFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</EtherArcticFoxEar>
+					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left_Behind</EtherGazelleEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left_Behind</EtherIbexEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left_Behind</EtherLynxEar>
+					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left_Behind</EtherOstrichEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
+					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
+					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
+					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left_Behind</EtherTurkeyEar>
+					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Left_Behind</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -403,9 +509,35 @@
 					<west/>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
+					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</EtherAlphabeaverEar>
+					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Right</EtherBoomratEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right</EtherCapybaraEar>
+					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Right</EtherCaribouEar>
+					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Right</EtherCassowaryEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right</EtherChinchillaEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
+					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right</EtherDromedaryEar>
+					<EtherElkEar>Parts/Elk/Elk_Ear_Right</EtherElkEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Right</EtherEmuEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Right</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Right</EtherFennecFoxEar>
+					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right</EtherGazelleEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right</EtherIbexEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right</EtherLynxEar>
+					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right</EtherOstrichEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
+					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
+					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right</EtherTortoiseEar>
+					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right</EtherTurkeyEar>
+					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Right</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -426,9 +558,35 @@
 						</bodyTypes>
 					</west>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
+					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right_Behind</EtherAlphabeaverEar>
+					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Right_Behind</EtherBoomratEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right_Behind</EtherCapybaraEar>
+					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Right_Behind</EtherCaribouEar>
+					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Right_Behind</EtherCassowaryEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</EtherChinchillaEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right_Behind</EtherCougarEar>
+					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right_Behind</EtherDromedaryEar>
+					<EtherElkEar>Parts/Elk/Elk_Ear_Right_Behind</EtherElkEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Right_Behind</EtherEmuEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right_Behind</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Right_Behind</EtherFennecFoxEar>
+					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right_Behind</EtherGazelleEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right_Behind</EtherIbexEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right_Behind</EtherLynxEar>
+					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right_Behind</EtherOstrichEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
+					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
+					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
+					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right_Behind</EtherTurkeyEar>
+					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Right_Behind</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -481,9 +639,35 @@
 					</west>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Left</EtherFoxEar>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
+					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</EtherAlphabeaverEar>
+					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Left</EtherBoomratEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left</EtherCapybaraEar>
+					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Left</EtherCaribouEar>
+					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Left</EtherCassowaryEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left</EtherChinchillaEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
+					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left</EtherDromedaryEar>
+					<EtherElkEar>Parts/Elk/Elk_Ear_Left</EtherElkEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Left</EtherEmuEar>					
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left</EtherFennecFoxEar>
+					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left</EtherGazelleEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left</EtherIbexEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
+					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left</EtherOstrichEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
+					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
+					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
+					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left</EtherTurkeyEar>
+					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Left</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -507,9 +691,35 @@
 					</east>
 					<west/>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Left_Behind</EtherFoxEar>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
+					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left_Behind</EtherAlphabeaverEar>
+					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Left_Behind</EtherBoomratEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left_Behind</EtherCapybaraEar>
+					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Left_Behind</EtherCaribouEar>
+					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Left_Behind</EtherCassowaryEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</EtherChinchillaEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left_Behind</EtherCougarEar>
+					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left_Behind</EtherDromedaryEar>
+					<EtherElkEar>Parts/Elk/Elk_Ear_Left_Behind</EtherElkEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Left_Behind</EtherEmuEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left_Behind</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left_Behind</EtherFennecFoxEar>
+					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left_Behind</EtherGazelleEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left_Behind</EtherIbexEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left_Behind</EtherLynxEar>
+					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left_Behind</EtherOstrichEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
+					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
+					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
+					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left_Behind</EtherTurkeyEar>
+					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Left_Behind</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -562,9 +772,35 @@
 					<west/>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Right</EtherFoxEar>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
+					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</EtherAlphabeaverEar>
+					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Right</EtherBoomratEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right</EtherCapybaraEar>
+					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Right</EtherCaribouEar>
+					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Right</EtherCassowaryEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right</EtherChinchillaEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
+					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right</EtherDromedaryEar>
+					<EtherElkEar>Parts/Elk/Elk_Ear_Right</EtherElkEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Right</EtherEmuEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Right</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Right</EtherFennecFoxEar>
+					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right</EtherGazelleEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right</EtherIbexEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right</EtherLynxEar>
+					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right</EtherOstrichEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
+					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
+					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right</EtherTortoiseEar>
+					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right</EtherTurkeyEar>
+					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Right</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -588,89 +824,139 @@
 						</crownTypes>
 					</west>
 				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherFoxEar>Parts/Fox/Fox_Ear_Right_Behind</EtherFoxEar>
+					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
+					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right_Behind</EtherAlphabeaverEar>
+					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Right_Behind</EtherBoomratEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right_Behind</EtherCapybaraEar>
+					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Right_Behind</EtherCaribouEar>
+					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Right_Behind</EtherCassowaryEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</EtherChinchillaEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right_Behind</EtherCougarEar>
+					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right_Behind</EtherDromedaryEar>
+					<EtherElkEar>Parts/Elk/Elk_Ear_Right_Behind</EtherElkEar>
+					<EtherEmuEar>Parts/Emu/Emu_Ear_Right_Behind</EtherEmuEar>
+					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right_Behind</EtherFoxEar>
+					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</EtherArcticFoxEar>
+					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Right_Behind</EtherFennecFoxEar>
+					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right_Behind</EtherGazelleEar>
+					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right_Behind</EtherIbexEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right_Behind</EtherLynxEar>
+					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right_Behind</EtherOstrichEar>
+					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
+					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
+					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
+					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
+					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right_Behind</EtherTurkeyEar>
+					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Right_Behind</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 			</li>
 			<li>
-				<!-- Old-Style Tails -->
+				<!-- Normal Tails -->
 				<path>Parts/None/None</path>
 				<bodyPart>Tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<hediffGraphics>
-					<EtherAlpacaTail>Parts/alpacaface/alpacatail</EtherAlpacaTail>
+					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
+					<EtherAlphabeaverTail>Parts/Alphabeaver/Alphabeaver_Tail</EtherAlphabeaverTail>
 					<EtherBearTail>Parts/bearface/beartail</EtherBearTail>
-					<EtherRoughCurlyTail>Parts/boarface/boartail</EtherRoughCurlyTail>
+					<EtherBoomratTail>Parts/Boomrat/Boomrat_Tail</EtherBoomratTail>
+					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
+					<EtherCapybaraTail>Parts/Capybara/Capybara_Tail</EtherCapybaraTail>
+					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
+					<EtherCassowaryTail>Parts/Cassowary/Cassowary_Tail</EtherCassowaryTail>
 					<EtherCatTail>Parts/catface/cattail</EtherCatTail>
+					<EtherChinchillaTail>Parts/Chinchilla/Chinchilla_Tail</EtherChinchillaTail>
+					<EtherCougarTail>Parts/Cougar/Cougar_Tail</EtherCougarTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
 					<EtherShortTail>Parts/deerface/deertail</EtherShortTail>
+					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
 					<EtherElephantTail>Parts/elephantface/elephanttail</EtherElephantTail>
-					<EtherFluffyTail>Parts/Fox/Fox_Tail</EtherFluffyTail>
-					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
+					<EtherElkTail>Parts/Elk/Elk_Tail</EtherElkTail>
+					<EtherEmuTail>Parts/Emu/Emu_Tail</EtherEmuTail>
+					<EtherFluffyTail>Parts/FoxUpdated/RedFox_Tail</EtherFluffyTail>
+					<EtherArcticFluffyTail>Parts/FoxArctic/ArcticFox_Tail</EtherArcticFluffyTail>
+					<EtherFennecFluffyTail>Parts/FoxFennec/FennecFox_Tail</EtherFennecFluffyTail>
+					<EtherGazelleTail>Parts/Gazelle/Gazelle_Tail</EtherGazelleTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
+					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>
+					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
+					<EtherIbexTail>Parts/Ibex/Ibex_Tail</EtherIbexTail>
+					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
+					<EtherLynxTail>Parts/Lynx/Lynx_Tail</EtherLynxTail>
+					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
+					<EtherOstrichTail>Parts/Ostrich/Ostrich_Tail</EtherOstrichTail>
+					<EtherPantherTail>Parts/Panther/Panther_Tail</EtherPantherTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
+					<EtherRaccoonTail>Parts/Raccoon/Raccoon_Tail</EtherRaccoonTail>
 					<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
+					<EtherSquirrelTail>Parts/Squirrel/Squirrel_Tail</EtherSquirrelTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
+					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
+					<EtherTurkeyTail>Parts/Turkey/Turkey_Tail</EtherTurkeyTail>
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
+					<EtherYorkshireTerrierTail>Parts/YorkshireTerrier/YorkshireTerrier_Tail</EtherYorkshireTerrierTail>
 				</hediffGraphics>
 				<offsets>
 					<south />
 					<north>
 						<bodyTypes>
-							<Male>(0,0.203125)</Male>
-							<Female>(0,0.15625)</Female>
-							<Thin>(0,0.1953125)</Thin>
-							<Hulk>(0,0)</Hulk>
-							<Fat>(0,0.15625)</Fat>
+							<Male>(0.00,0.20)</Male>
+							<Female>(0.00,0.16)</Female>
+							<Thin>(0.00,0.20)</Thin>
+							<Hulk>(0.00,0.00)</Hulk>
+							<Fat>(0.00,0.16)</Fat>
 						</bodyTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.21875,-0.0390625)</Male>
-							<Female>(-0.109375,-0.0625)</Female>
-							<Thin>(-0.203125,-0.0390625)</Thin>
-							<Hulk>(-0.015625,-0.234375)</Hulk>
-							<Fat>(0.0390625,0)</Fat>
+							<Male>(-0.22,-0.04)</Male>
+							<Female>(-0.11,-0.06)</Female>
+							<Thin>(-0.20,-0.04)</Thin>
+							<Hulk>(-0.02,-0.23)</Hulk>
+							<Fat>(0.04,0.00)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
 			</li>
 			<li>
-				<!-- New-Style Tails -->
+				<!-- Body Tails -->
 				<path>Parts/None/None</path>
 				<bodyPart>Tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<hediffGraphics>
-					<EtherSnakeTail>Parts/snakeface/snaketail</EtherSnakeTail>
+					<EtherSnakeTail>Parts/Cobra/Cobra_Tail</EtherSnakeTail>
 					<EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
-					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
 				</hediffGraphics>
 				<layerOffset>-0.29</layerOffset>
 				<offsets>
 					<south />
 					<north>
 						<bodyTypes>
-							<Male>(0,0.203125)</Male>
-							<Female>(0,0.15625)</Female>
-							<Thin>(0,0.1953125)</Thin>
+							<Male>(0,0.20)</Male>
+							<Female>(0,0.16)</Female>
+							<Thin>(0,0.20)</Thin>
 							<Hulk>(0,0)</Hulk>
-							<Fat>(0,0.15625)</Fat>
+							<Fat>(0,0.16)</Fat>
 						</bodyTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.1953125,-0.024)</Male>
-							<Female>(-0.24218755,-0.0859375)</Female>
-							<Thin>(-0.25,-0.024)</Thin>
-							<Hulk>(-0.0625,-0.234375)</Hulk>
-							<Fat>(0.0234375,-0.046875)</Fat>
+							<Male>(-0.20,-0.02)</Male>
+							<Female>(-0.24,-0.09)</Female>
+							<Thin>(-0.25,-0.02)</Thin>
+							<Hulk>(-0.06,-0.23)</Hulk>
+							<Fat>(0.02,-0.05)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -684,8 +970,8 @@
 					<EtherWing>Parts/chickenface/chickenwings</EtherWing>
 				</hediffGraphics>
 				<offsets>
-					<north />
-					<south />
+					<north/>
+					<south/>
 					<east>
 						<bodyTypes>
 							<Male>(-0.24,0.2)</Male>
@@ -712,50 +998,47 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.015625,0.00390625)</Average_Wide>
-							<Average_Pointy>(0,0.00390625)</Average_Pointy>
-							<Narrow_Normal>(0,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
 						</crownTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.9375)</Male>
-							<Female>(0,0.9375)</Female>
-							<Thin>(0,0.9375)</Thin>
-							<Hulk>(0,0.9375)</Hulk>
-							<Fat>(0,0.9375)</Fat>
+							<Male>(0,0.94)</Male>
+							<Female>(0,0.94)</Female>
+							<Thin>(0,0.94)</Thin>
+							<Hulk>(0,0.94)</Hulk>
+							<Fat>(0,0.94)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.015625,0.00390625)</Average_Wide>
-							<Average_Pointy>(0,0.00390625)</Average_Pointy>
-							<Narrow_Normal>(0,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
+							<Average_Wide>(-0.015,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+							<Narrow_Normal>(0,-0.01)</Narrow_Normal>
+							<Narrow_Wide>(0,-0.01)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
 						</crownTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
+							<Male>(-0.46,0.56)</Male>
+							<Female>(-0.52,0.56)</Female>
+							<Thin>(-0.51,0.56)</Thin>
+							<Hulk>(-0.52,0.56)</Hulk>
+							<Fat>(-0.51,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.0078125,0)</Average_Wide>
-							<Average_Pointy>(0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0.0078125,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0.0078125,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0.0078125,-0.0234375)</Narrow_Pointy>
+							<Average_Wide>(-0.01,0)</Average_Wide>
+							<Average_Pointy>(0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0.07,-0.05)</Narrow_Normal>
+							<Narrow_Wide>(0.07,-0.05)</Narrow_Wide>
+							<Narrow_Pointy>(0.07,-0.06)</Narrow_Pointy>
 						</crownTypes>
 					</east>
 				</offsets>
@@ -775,61 +1058,62 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(-0.015625,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.046875)</Narrow_Pointy>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,0.02)</Narrow_Normal>
+							<Narrow_Wide>(-0.02,0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
 						</crownTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.9375)</Male>
-							<Female>(0,0.9375)</Female>
-							<Thin>(0,0.9375)</Thin>
-							<Hulk>(0,0.9375)</Hulk>
-							<Fat>(0,0.9375)</Fat>
+							<Male>(0,0.94)</Male>
+							<Female>(0,0.94)</Female>
+							<Thin>(0,0.94)</Thin>
+							<Hulk>(0,0.94)</Hulk>
+							<Fat>(0,0.94)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.015625)</Narrow_Pointy>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,-0.015)</Narrow_Normal>
+							<Narrow_Wide>(0,-0.015)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.015)</Narrow_Pointy>
 						</crownTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
+							<Male>(-0.46,0.56)</Male>
+							<Female>(-0.52,0.56)</Female>
+							<Thin>(-0.51,0.56)</Thin>
+							<Hulk>(-0.52,0.56)</Hulk>
+							<Fat>(-0.51,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Normal>(0.03125,0.0078125)</Average_Normal>
-							<Average_Wide>(0.03125,0.0078125)</Average_Wide>
-							<Average_Pointy>(0.03515625,0.0078125)</Average_Pointy>
-							<Narrow_Normal>(0.03125,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0.03125,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0.03125,-0.03125)</Narrow_Pointy>
+							<Average_Normal>(0.03,0.01)</Average_Normal>
+							<Average_Wide>(0.03,0.01)</Average_Wide>
+							<Average_Pointy>(0.035,0.01)</Average_Pointy>
+							<Narrow_Normal>(0.07,-0.02)</Narrow_Normal>
+							<Narrow_Wide>(0.07,-0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0.07,-0.05)</Narrow_Pointy>
 						</crownTypes>
 					</east>
 				</offsets>
 			</li>
 			<li>
-				<!-- Male Snake Hood FG -->
+				<!-- Male Cobra Hood (Foreground) -->
 				<path>Parts/None/None</path>
-				<bodyPart>Head</bodyPart>
+				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherSnakeHood>Parts/snakeface/snakehoodfg</EtherSnakeHood>
+					<EtherSnakeHood>Parts/Cobra/Cobra_Hood</EtherSnakeHood>
 				</hediffGraphics>
 				<hiddenUnderApparelFor>
 					<li>UpperHead</li>
@@ -838,125 +1122,44 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.015625,0.00390625)</Average_Wide>
-							<Average_Pointy>(0,0.00390625)</Average_Pointy>
-							<Narrow_Normal>(0,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
 						</crownTypes>
 					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.9375)</Male>
-							<Female>(0,0.9375)</Female>
-							<Thin>(0,0.9375)</Thin>
-							<Hulk>(0,0.9375)</Hulk>
-							<Fat>(0,0.9375)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Wide>(-0.015625,0.00390625)</Average_Wide>
-							<Average_Pointy>(0,0.00390625)</Average_Pointy>
-							<Narrow_Normal>(0,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
-						</crownTypes>
-					</north>
+					<north/>
 					<east>
 						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
+							<Male>(-0.46,0.56)</Male>
+							<Female>(-0.52,0.56)</Female>
+							<Thin>(-0.51,0.56)</Thin>
+							<Hulk>(-0.52,0.56)</Hulk>
+							<Fat>(-0.51,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.0078125,0)</Average_Wide>
-							<Average_Pointy>(0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0.0078125,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0.0078125,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0.0078125,-0.0234375)</Narrow_Pointy>
+							<Average_Wide>(-0.01,0)</Average_Wide>
+							<Average_Pointy>(0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0.07,-0.05)</Narrow_Normal>
+							<Narrow_Wide>(0.07,-0.05)</Narrow_Wide>
+							<Narrow_Pointy>(0.07,-0.06)</Narrow_Pointy>
 						</crownTypes>
 					</east>
 				</offsets>
 			</li>
 			<li>
-				<!-- Female Snake Hood FG -->
+				<!-- Male Cobra Hood (Background) -->
 				<path>Parts/None/None</path>
-				<bodyPart>Head</bodyPart>
-				<inFrontOfBody>true</inFrontOfBody>
-				<drawForMale>false</drawForMale>
-				<hediffGraphics>
-					<EtherSnakeHood>Parts/snakeface/snakehoodfg</EtherSnakeHood>
-				</hediffGraphics>
-				<hiddenUnderApparelFor>
-					<li>UpperHead</li>
-					<li>FullHead</li>
-				</hiddenUnderApparelFor>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(-0.015625,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.046875)</Narrow_Pointy>
-						</crownTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.9375)</Male>
-							<Female>(0,0.9375)</Female>
-							<Thin>(0,0.9375)</Thin>
-							<Hulk>(0,0.9375)</Hulk>
-							<Fat>(0,0.9375)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.015625)</Narrow_Pointy>
-						</crownTypes>
-					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Normal>(0.03125,0.0078125)</Average_Normal>
-							<Average_Wide>(0.03125,0.0078125)</Average_Wide>
-							<Average_Pointy>(0.03515625,0.0078125)</Average_Pointy>
-							<Narrow_Normal>(0.03125,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0.03125,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0.03125,-0.03125)</Narrow_Pointy>
-						</crownTypes>
-					</east>
-				</offsets>
-			</li>
-			<li>
-				<!-- Male Snake Hood BG -->
-				<path>Parts/None/None</path>
-				<bodyPart>Head</bodyPart>
+				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<EtherSnakeHood>Parts/snakeface/snakehoodbg</EtherSnakeHood>
+					<EtherSnakeHood>Parts/Cobra/Cobra_Hood_Behind</EtherSnakeHood>
 				</hediffGraphics>
 				<hiddenUnderApparelFor>
 					<li>UpperHead</li>
@@ -965,62 +1168,94 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.015625,0.00390625)</Average_Wide>
-							<Average_Pointy>(0,0.00390625)</Average_Pointy>
-							<Narrow_Normal>(0,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
 						</crownTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.9375)</Male>
-							<Female>(0,0.9375)</Female>
-							<Thin>(0,0.9375)</Thin>
-							<Hulk>(0,0.9375)</Hulk>
-							<Fat>(0,0.9375)</Fat>
+							<Male>(0,0.94)</Male>
+							<Female>(0,0.94)</Female>
+							<Thin>(0,0.94)</Thin>
+							<Hulk>(0,0.94)</Hulk>
+							<Fat>(0,0.94)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.015625,0.00390625)</Average_Wide>
-							<Average_Pointy>(0,0.00390625)</Average_Pointy>
-							<Narrow_Normal>(0,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
+							<Average_Wide>(-0.015,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+							<Narrow_Normal>(0,-0.01)</Narrow_Normal>
+							<Narrow_Wide>(0,-0.01)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
 						</crownTypes>
 					</north>
-					<east>
+					<east/>
+				</offsets>
+			</li>
+			<li>
+				<!-- Female Cobra Hood (Foreground) -->
+				<path>Parts/None/None</path>
+				<bodyPart>Skull</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
+				<drawForMale>false</drawForMale>
+				<hediffGraphics>
+					<EtherSnakeHood>Parts/Cobra/Cobra_Hood</EtherSnakeHood>
+				</hediffGraphics>
+				<hiddenUnderApparelFor>
+					<li>UpperHead</li>
+					<li>FullHead</li>
+				</hiddenUnderApparelFor>
+				<offsets>
+					<south>
 						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Wide>(-0.0078125,0)</Average_Wide>
-							<Average_Pointy>(0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0.0078125,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0.0078125,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0.0078125,-0.0234375)</Narrow_Pointy>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,0.02)</Narrow_Normal>
+							<Narrow_Wide>(-0.02,0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
+						</crownTypes>
+					</south>
+					<north/>
+					<east>
+						<bodyTypes>
+							<Male>(-0.46,0.56)</Male>
+							<Female>(-0.52,0.56)</Female>
+							<Thin>(-0.51,0.56)</Thin>
+							<Hulk>(-0.52,0.56)</Hulk>
+							<Fat>(-0.51,0.56)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Normal>(0.03,0.01)</Average_Normal>
+							<Average_Wide>(0.03,0.01)</Average_Wide>
+							<Average_Pointy>(0.035,0.01)</Average_Pointy>
+							<Narrow_Normal>(0.07,-0.02)</Narrow_Normal>
+							<Narrow_Wide>(0.07,-0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0.07,-0.05)</Narrow_Pointy>
 						</crownTypes>
 					</east>
 				</offsets>
 			</li>
 			<li>
-				<!-- Female Snake Hood BG -->
+				<!-- Female Cobra Hood (Background) -->
 				<path>Parts/None/None</path>
-				<bodyPart>Head</bodyPart>
+				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<EtherSnakeHood>Parts/snakeface/snakehoodbg</EtherSnakeHood>
+					<EtherSnakeHood>Parts/Cobra/Cobra_Hood_Behind</EtherSnakeHood>
 				</hediffGraphics>
 				<hiddenUnderApparelFor>
 					<li>UpperHead</li>
@@ -1029,51 +1264,35 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(-0.015625,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.046875)</Narrow_Pointy>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,0.02)</Narrow_Normal>
+							<Narrow_Wide>(-0.02,0.02)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
 						</crownTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.9375)</Male>
-							<Female>(0,0.9375)</Female>
-							<Thin>(0,0.9375)</Thin>
-							<Hulk>(0,0.9375)</Hulk>
-							<Fat>(0,0.9375)</Fat>
+							<Male>(0,0.94)</Male>
+							<Female>(0,0.94)</Female>
+							<Thin>(0,0.94)</Thin>
+							<Hulk>(0,0.94)</Hulk>
+							<Fat>(0,0.94)</Fat>
 						</bodyTypes>
 						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.015625)</Narrow_Pointy>
+							<Average_Pointy>(-0.01,0)</Average_Pointy>
+							<Narrow_Normal>(0,-0.015)</Narrow_Normal>
+							<Narrow_Wide>(0,-0.015)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.015)</Narrow_Pointy>
 						</crownTypes>
 					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Normal>(0.03125,0.0078125)</Average_Normal>
-							<Average_Wide>(0.03125,0.0078125)</Average_Wide>
-							<Average_Pointy>(0.03515625,0.0078125)</Average_Pointy>
-							<Narrow_Normal>(0.03125,-0.0078125)</Narrow_Normal>
-							<Narrow_Wide>(0.03125,-0.0078125)</Narrow_Wide>
-							<Narrow_Pointy>(0.03125,-0.03125)</Narrow_Pointy>
-						</crownTypes>
-					</east>
+					<east/>
 				</offsets>
 			</li>
 			<li>
@@ -1090,176 +1309,25 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.421875,0.21875)</Male>
-							<Female>(-0.421875,0.171875)</Female>
-							<Thin>(-0.421875,0.21875)</Thin>
-							<Hulk>(-0.421875,0.0078125)</Hulk>
-							<Fat>(-0.421875,0.15625)</Fat>
+							<Male>(-0.42,0.22)</Male>
+							<Female>(-0.42,0.17)</Female>
+							<Thin>(-0.42,0.22)</Thin>
+							<Hulk>(-0.42,0.01)</Hulk>
+							<Fat>(-0.425,0.16)</Fat>
 						</bodyTypes>
 					</south>
 					<north />
 					<east>
 						<bodyTypes>
-							<Male>(-0.421875,0.21875)</Male>
-							<Female>(-0.390625,0.15625)</Female>
-							<Thin>(-0.3671875,0.21875)</Thin>
-							<Hulk>(-0.421875,0.0078125)</Hulk>
-							<Fat>(-0.671875,0.1328125)</Fat>
+							<Male>(-0.42,0.22)</Male>
+							<Female>(-0.39,0.16)</Female>
+							<Thin>(-0.37,0.22)</Thin>
+							<Hulk>(-0.42,0.01)</Hulk>
+							<Fat>(-0.67,0.13)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
 			</li>
-			<li>
-				<!-- Male Eye Overlays -->
-				<path>Parts/None/None</path>
-				<bodyPart>Eye</bodyPart>
-				<inFrontOfBody>true</inFrontOfBody>
-				<drawForFemale>false</drawForFemale>
-				<drawnInBed>false</drawnInBed>
-				<hediffGraphics>
-					<EtherSnakeEye>Parts/snakeface/snakeeyesmale</EtherSnakeEye>
-				</hediffGraphics>
-				<layerOffset>-0.29</layerOffset>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Wide>(-0.0078125,0.00390625)</Average_Wide>
-							<Average_Pointy>(0,0.00390625)</Average_Pointy>
-						</crownTypes>
-					</south>
-					<north />
-					<east>
-						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Wide>(-0.0078125,0)</Average_Wide>
-							<Average_Pointy>(0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0.0703125,-0.0546875)</Narrow_Normal>
-							<Narrow_Wide>(0.0703125,-0.0546875)</Narrow_Wide>
-							<Narrow_Pointy>(0.0703125,-0.0625)</Narrow_Pointy>
-						</crownTypes>
-					</east>
-				</offsets>
-			</li>
-			<li>
-				<!-- Female Eye Overlays -->
-				<path>Parts/None/None</path>
-				<bodyPart>Eye</bodyPart>
-				<inFrontOfBody>true</inFrontOfBody>
-				<drawForMale>false</drawForMale>
-				<drawnInBed>false</drawnInBed>
-				<hediffGraphics>
-					<EtherSnakeEye>Parts/snakeface/snakeeyesfemale</EtherSnakeEye>
-				</hediffGraphics>
-				<layerOffset>-0.29</layerOffset>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.421875,0.5625)</Male>
-							<Female>(-0.421875,0.5625)</Female>
-							<Thin>(-0.421875,0.5625)</Thin>
-							<Hulk>(-0.421875,0.5625)</Hulk>
-							<Fat>(-0.421875,0.5625)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Pointy>(-0.0078125,0)</Average_Pointy>
-							<Narrow_Normal>(0,0.015625)</Narrow_Normal>
-							<Narrow_Wide>(-0.015625,0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0,-0.0078125)</Narrow_Pointy>
-						</crownTypes>
-					</south>
-					<north />
-					<east>
-						<bodyTypes>
-							<Male>(-0.453125,0.5703125)</Male>
-							<Female>(-0.515625,0.5703125)</Female>
-							<Thin>(-0.5078125,0.5703125)</Thin>
-							<Hulk>(-0.515625,0.5703125)</Hulk>
-							<Fat>(-0.5078125,0.5703125)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Normal>(0.03125,0.0078125)</Average_Normal>
-							<Average_Wide>(0.03125,0.0078125)</Average_Wide>
-							<Average_Pointy>(0.03515625,0.0078125)</Average_Pointy>
-							<Narrow_Normal>(0.0703125,-0.015625)</Narrow_Normal>
-							<Narrow_Wide>(0.0703125,-0.015625)</Narrow_Wide>
-							<Narrow_Pointy>(0.0703125,-0.04296875)</Narrow_Pointy>
-						</crownTypes>
-					</east>
-				</offsets>
-			</li>
-			<!--li>
-				<path>Alignment/testhead</path>
-				<bodyPart>Head</bodyPart>
-				<useSkinColor>true</useSkinColor>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.425, 0.560)</Male>
-							<Female>(-0.425, 0.560)</Female>
-							<Thin>(-0.425, 0.560)</Thin>
-							<Hulk>(-0.425, 0.560)</Hulk>
-							<Fat>(-0.425, 0.560)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Wide>(-0.010, 0.000)</Average_Wide>
-							<Average_Pointy>(0.000, 0.000)</Average_Pointy>
-							<Narrow_Normal>(0.000, 0.000)</Narrow_Normal>
-							<Narrow_Wide>(0.000, 0.000)</Narrow_Wide>
-							<Narrow_Pointy>(0.000, 0.000)</Narrow_Pointy>
-						</crownTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0.000, 0.890)</Male>
-							<Female>(0.000, 0.890)</Female>
-							<Thin>(0.000, 0.890)</Thin>
-							<Hulk>(0.000, 0.890)</Hulk>
-							<Fat>(0.000, 0.890)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Wide>(0.000, 0.000)</Average_Wide>
-							<Average_Pointy>(0.000, 0.000)</Average_Pointy>
-							<Narrow_Normal>(0.000, 0.000)</Narrow_Normal>
-							<Narrow_Wide>(0.000, 0.000)</Narrow_Wide>
-							<Narrow_Pointy>(0.000, 0.000)</Narrow_Pointy>
-						</crownTypes>
-					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.460, 0.560)</Male>
-							<Female>(-0.520, 0.560)</Female>
-							<Thin>(-0.510, 0.560)</Thin>
-							<Hulk>(-0.520, 0.560)</Hulk>
-							<Fat>(-0.510, 0.560)</Fat>
-						</bodyTypes>
-						<crownTypes>
-							<Average_Wide>(-0.005, 0.000)</Average_Wide>
-							<Average_Pointy>(0.010, 0.000)</Average_Pointy>
-							<Narrow_Normal>(0.060, -0.015)</Narrow_Normal>
-							<Narrow_Wide>(0.060, -0.015)</Narrow_Wide>
-							<Narrow_Pointy>(0.060, -0.020)</Narrow_Pointy>
-						</crownTypes>
-					</east>
-				</offsets>
-				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.27</layerOffset>
-				<layerInvert>false</layerInvert>
-				<drawForMale>true</drawForMale>
-				<drawForFemale>false</drawForFemale>
-			</li-->
 		</value>
 	</Operation>
 </Patch>

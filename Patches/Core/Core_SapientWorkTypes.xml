@@ -6,7 +6,7 @@
                 <value>
                     <modExtensions>
 						<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
-							<allowedWorkTags>ManualSkilled,Crafting,Cooking</allowedWorkTags>
+							<backstory>FormerHumanCrafter</backstory>
 						</li>
 					</modExtensions>
                 </value>
@@ -16,7 +16,7 @@
                 <value>
                     <modExtensions>
 						<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
-							<allowedWorkTags>ManualSkilled,Crafting,Cooking,Caring</allowedWorkTags>
+							<backstory>FormerHumanCrafter</backstory>
 						</li>
 					</modExtensions>
                 </value>

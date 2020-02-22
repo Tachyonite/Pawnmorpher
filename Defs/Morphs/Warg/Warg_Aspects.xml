@@ -1,0 +1,19 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/AspectDef.xsd">
+    <Pawnmorph.AspectDef>
+        <defName>MeatLover</defName>
+        <aspectType>Pawnmorph.Aspects.MeatLover</aspectType>
+        <labelColor>(191,25,61)</labelColor>
+        <label>meat lover</label>
+        <description>[PAWN_nameDef] has developed a taste for raw meat, and is less likely to get sick from it</description>
+        <removedByReverter>true</removedByReverter>
+        <stages>
+            <li>
+                <statOffsets>
+                    <!-- 50% chance to not get sick from dangerous foods  -->
+                    <DangerousFoodSensitivity>-0.5</DangerousFoodSensitivity>
+                </statOffsets>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+
+</Defs>

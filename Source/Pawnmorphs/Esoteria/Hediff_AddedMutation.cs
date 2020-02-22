@@ -19,6 +19,31 @@ namespace Pawnmorph
         private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
 
         /// <summary>
+        /// Gets the influence this mutation confers 
+        /// </summary>
+        /// <value>
+        /// The influence.
+        /// </value>
+        [NotNull]
+        public AnimalClassBase Influence
+        {
+            get
+            {
+                if (def is MutationDef mDef)
+                {
+                    return mDef.classInfluence; 
+                }
+                else
+                {
+                    Log.Warning($"{def.defName} is a mutation but does not use {nameof(MutationDef)}! this will cause problems!");
+                }
+
+                return AnimalClassDefOf.Animal; 
+            }
+        }
+
+
+        /// <summary>
         /// Gets the base label .
         /// </summary>
         /// <value>
@@ -29,7 +54,15 @@ namespace Pawnmorph
             get
             {
                 var lOverride = (CurStage as MutationStage)?.labelOverride;
-                return string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride; 
+                var label = string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride;
+
+                if (SeverityAdjust?.Halted == true)
+                {
+                    label += " (halted)"; 
+                }
+
+                return label; 
+
             }
         }
 
@@ -61,9 +94,6 @@ namespace Pawnmorph
         /// </summary>
         public string mutationDescription;
 
-        /// <summary> The influence this mutation exerts on a pawn. </summary>
-        [CanBeNull]
-        public Comp_MorphInfluence Influence => (comps?.OfType<Comp_MorphInfluence>().FirstOrDefault());
 
         /// <summary>
         /// Gets a value indicating whether should be removed.
@@ -106,13 +136,71 @@ namespace Pawnmorph
             builder.AppendLine(res);
         }
 
+        /// <summary>
+        /// Gets the severity adjust comp 
+        /// </summary>
+        /// <value>
+        /// The severity adjust comp
+        /// </value>
+        [CanBeNull]
+        public Comp_MutationSeverityAdjust SeverityAdjust
+        {
+            get
+            {
+                if (_sevAdjComp == null)
+                {
+                    _sevAdjComp = this.TryGetComp<Comp_MutationSeverityAdjust>();
+                }
+
+                return _sevAdjComp;
+            }
+        }
+
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether progression is halted or not.
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if progression halted; otherwise, <c>false</c>.
+        /// </value>
+        public bool ProgressionHalted => SeverityAdjust?.Halted == true;
+
         private string GetRawDescription()
         {
             var descOverride = (CurStage as IDescriptiveStage)?.DescriptionOverride;
             return string.IsNullOrEmpty(descOverride) ? def.description : descOverride; 
         }
 
-        private bool _waitingForUpdate; 
+        /// <summary>
+        /// called every tick 
+        /// </summary>
+        public override void Tick()
+        {
+            base.Tick();
+
+            if (_currentStageIndex != CurStageIndex)
+            {
+                _currentStageIndex = CurStageIndex;
+                OnStageChanges(); 
+            }
+        }
+
+        /// <summary>
+        /// Called when the hediff stage changes.
+        /// </summary>
+        protected virtual void OnStageChanges()
+        {
+            if (CurStage is IExecutableStage exeStage)
+            {
+                exeStage.EnteredStage(this); 
+            }
+        }
+
+        private Comp_MutationSeverityAdjust _sevAdjComp;
+
+        private bool _waitingForUpdate;
+
+        private int _currentStageIndex=-1; 
 
         /// <summary>called after this instance is added to the pawn.</summary>
         /// <param name="dinfo">The dinfo.</param>
@@ -141,8 +229,7 @@ namespace Pawnmorph
         }
         private void UpdatePawnInfo()
         {
-            if (Current.ProgramState == ProgramState.Playing)
-                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map); // Spawn some fairy dust ;).
+           
 
             if (Current.ProgramState == ProgramState.Playing && MutationUtilities.AllMutationsWithGraphics.Contains(def) && pawn.IsColonist)
             {
@@ -165,6 +252,7 @@ namespace Pawnmorph
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.Look(ref _currentStageIndex, nameof(_currentStageIndex), -1); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
                 Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.", false);

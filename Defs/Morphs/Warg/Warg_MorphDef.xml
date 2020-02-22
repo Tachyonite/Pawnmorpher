@@ -4,10 +4,13 @@
 		<label>wargmorph</label>
 		<description>A large humanoid canine resulting from a human that has been exposed to warg specific mutagens. Much like feral wargs, they are exceptionally dangerous in combat, and easily upset if there aren't other canines around.</description>
 		<race>Warg</race>
+		<classification>Canid</classification>
 		<categories>
 			<li>Canid</li>
 			<li>Combat</li>
 		</categories>
+		<fullTransformation>PawnmorphWargTF</fullTransformation>
+		<partialTransformation>PawnmorphWargTFPartial</partialTransformation>
 		<raceSettings>
 			<thoughtSettings>
 				<replacerList>
@@ -20,11 +23,12 @@
 				<canEatRaw>true</canEatRaw>
 			</thoughtSettings>
 			<graphicsSettings>
-				<skinColorOverride>(158,124,96)</skinColorOverride>
+				<skinColorOverride>(123,104,89)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
-			<transformationMemory>WargMorphTfReaction</transformationMemory>
+			<transformationMemory>WargTransformationMemory</transformationMemory>
+			<revertedMemory>WargRevertedMemory</revertedMemory>
 		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

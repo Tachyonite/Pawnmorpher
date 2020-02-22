@@ -20,8 +20,9 @@
 		<building>
 			<claimable>false</claimable>
 			<mineableThing>Mutanite</mineableThing>
-			<mineableDropChance>0.5</mineableDropChance>
+			<mineableDropChance>1</mineableDropChance>
 			<mineableYield>1</mineableYield>
+			<mineableScatterCommonality>0.05</mineableScatterCommonality>
 			<isNaturalRock>false</isNaturalRock>
 		</building>
 	</ThingDef>

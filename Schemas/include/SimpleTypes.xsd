@@ -34,4 +34,10 @@
             <xs:pattern value="[+-]?([0-9]*[.])?[0-9]+~[+-]?([0-9]*[.])?[0-9]+" />
         </xs:restriction>
     </xs:simpleType>
+	<xs:simpleType name="UShort">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="65535"/>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>

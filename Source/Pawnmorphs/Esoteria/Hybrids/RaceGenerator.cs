@@ -1,12 +1,19 @@
 ﻿// RaceGenerator.cs modified by Iron Wolf for Pawnmorph on 08/02/2019 7:12 PM
 // last updated 08/02/2019  7:12 PM
 
+
+//uncomment to test custom draw sizes 
+//#define TEST_BODY_SIZE 
+
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -69,7 +76,7 @@ namespace Pawnmorph.Hybrids
                 manhunterOnDamageChance = animal.manhunterOnDamageChance,
                 manhunterOnTameFailChance = animal.manhunterOnTameFailChance,
                 litterSizeCurve = human.litterSizeCurve,
-                lifeStageAges = human.lifeStageAges.ToList(),
+                lifeStageAges = MakeLifeStages(human.lifeStageAges, animal.lifeStageAges),
                 soundMeleeHitPawn = animal.soundMeleeHitPawn,
                 soundMeleeHitBuilding = animal.soundMeleeHitBuilding,
                 soundMeleeMiss = animal.soundMeleeMiss,
@@ -86,6 +93,34 @@ namespace Pawnmorph.Hybrids
             };
         }
 
+        private static List<LifeStageAge> MakeLifeStages(List<LifeStageAge> human, List<LifeStageAge> animal)
+        {
+            List<LifeStageAge> ls = new List<LifeStageAge>();
+
+            float convert = ((float) animal.Count) / human.Count;  
+            for (int i = 0; i < human.Count; i++)
+            {
+                int j = (int) (convert * i);
+
+                var hStage = human[i];
+                var aStage = animal[j];
+
+                var newStage = new LifeStageAge()
+                {
+                    minAge = hStage.minAge,
+                    def = hStage.def,
+                    soundAngry = aStage.soundAngry,
+                    soundCall = aStage.soundCall,
+                    soundDeath = aStage.soundDeath,
+                    soundWounded = aStage.soundWounded
+                };
+                ls.Add(newStage); 
+
+            }
+
+            return ls; 
+        }
+
         private static float GetBodySize(RaceProperties animal, RaceProperties human)
         {
             var f = Mathf.Lerp(human.baseBodySize, animal.baseBodySize, 0.5f);
@@ -94,7 +129,8 @@ namespace Pawnmorph.Hybrids
 
         private static float GetHungerRate(RaceProperties animal, RaceProperties human)
         {
-            var f = Mathf.Lerp(human.baseHungerRate, animal.baseHungerRate, 0.5f);
+            
+            var f = Mathf.Lerp(human.baseHungerRate, animal.baseHungerRate, 0.7f);
             return f;
         }
 
@@ -102,13 +138,25 @@ namespace Pawnmorph.Hybrids
         private static IEnumerable<ThingDef_AlienRace> GenerateAllImpliedRaces()
         {
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
-            var human = (ThingDef_AlienRace)ThingDef.Named("Human");
-            StringBuilder builder = new StringBuilder();
+            ThingDef_AlienRace human;
+
+            try
+            {
+                human = (ThingDef_AlienRace) ThingDef.Named("Human");
+            }
+            catch (InvalidCastException e)
+            {
+                throw new
+                    ModInitializationException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?",e);
+            }
+
+
+            var builder = new StringBuilder();
             // ReSharper disable once PossibleNullReferenceException
             foreach (MorphDef morphDef in morphs)
             {
                 builder.AppendLine($"generating implied race for {morphDef.defName}");
-                var race = GenerateImplicitRace(human, morphDef);
+                ThingDef_AlienRace race = GenerateImplicitRace(human, morphDef);
                 if (morphDef.explicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
                 {
                     morphDef.hybridRaceDef = race;
@@ -118,42 +166,212 @@ namespace Pawnmorph.Hybrids
                 {
                     builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.explicitHybridRace.defName}, {race.defName} will not be used but still generated");
                 }
+                
+                CreateImplicitMeshes(builder, race);
+
                 yield return race;
             }
 
             Log.Message(builder.ToString());
         }
 
+        private static void CreateImplicitMeshes(StringBuilder builder, ThingDef_AlienRace race)
+        {
+            try
+            {
+                //generate any meshes the implied race might need 
+                if (race.alienRace?.graphicPaths != null)
+                {
+                    builder.AppendLine($"Generating mesh pools for {race.defName}");
+                    race.alienRace.generalSettings?.alienPartGenerator?.GenerateMeshsAndMeshPools();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ModInitializationException($"while updating graphics for {race.defName}, caught {e.GetType().Name}",e);
+
+            }
+        }
+
         /// <summary> Generate general settings for the hybrid race given the human settings and morph def.</summary>
         /// <param name="human"></param>
         /// <param name="morph"></param>
         /// <returns></returns>
-        private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph)
+        private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
             var traitSettings = morph.raceSettings.traitSettings;
             return new GeneralSettings
             {
-                alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph),
+                alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph, impliedRace),
                 humanRecipeImport = true,
                 forcedRaceTraitEntries = traitSettings?.forcedTraits
                 // Black list is not currently supported, Rimworld doesn't like it when you remove traits.
             };
         }
 
-        private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph)
+        private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
             AlienPartGenerator gen = new AlienPartGenerator
             {
                 alienbodytypes = human.alienbodytypes,
                 aliencrowntypes = human.aliencrowntypes,
-                bodyAddons = human.bodyAddons
+                bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
+                alienProps = impliedRace
             };
 
-            // Make sure to apply custom sizes only if they are defined, otherwise use the defaults.
-            gen.customDrawSize = morph.raceSettings?.graphicsSettings?.customDrawSize ?? gen.customDrawSize;
-            gen.customHeadDrawSize = morph.raceSettings?.graphicsSettings?.customHeadDrawSize ?? gen.customHeadDrawSize;
-
             return gen;
+        }
+
+        static VTuple<Vector2, Vector2>? GetDebugBodySizes(MorphDef morph)
+        {
+            
+            var pkDef = DefDatabase<PawnKindDef>.AllDefs.FirstOrDefault(pk => pk.race == morph.race);//get the first pawnkindDef that uses the morph's race 
+
+            if (pkDef?.lifeStages == null || pkDef.lifeStages.Count == 0) //if there are no pawnkinds to choose from just return null 
+            {
+                return null;
+            }
+
+            var lastStage = pkDef.lifeStages.Last();
+
+            float cSize = Mathf.Lerp(1, lastStage.bodyGraphicData.drawSize.x,0.5f); //take the average of the animals draw size and a humans, which is a default of 1 
+            return new VTuple<Vector2, Vector2>(cSize * Vector2.one, cSize * Vector2.one); 
+        }
+
+
+        private static List<AlienPartGenerator.BodyAddon> GenerateBodyAddons(List<AlienPartGenerator.BodyAddon> human, MorphDef morph)
+        {
+            List<AlienPartGenerator.BodyAddon> returnList = new List<AlienPartGenerator.BodyAddon>();
+
+#if TEST_BODY_SIZE
+            var tuple = GetDebugBodySizes(morph);
+            Vector2? bodySize = tuple?.First, headSize = tuple?.Second;
+
+            if (tuple != null)
+            {
+                Log.Message($"{morph.defName} draw sizes are: bodySize={tuple.Value.First}, headSize={tuple.Value.Second}");
+            }
+#else
+            Vector2? bodySize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
+            Vector2? headSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
+
+#endif
+
+
+
+
+            List<string> headParts = new List<string>();
+            headParts.Add("Jaw");
+            headParts.Add("Ear");
+            headParts.Add("left ear");
+            headParts.Add("right ear");
+            headParts.Add("Skull");
+
+            List<string> bodyParts = new List<string>();
+            bodyParts.Add("Arm");
+            bodyParts.Add("Tail");
+            bodyParts.Add("Waist");
+
+            foreach (AlienPartGenerator.BodyAddon addon in human)
+            {
+                AlienPartGenerator.BodyAddon temp = new AlienPartGenerator.BodyAddon()
+                {
+                    path = addon.path,
+                    bodyPart = addon.bodyPart,
+                    offsets = GenerateBodyAddonOffsets(addon.offsets, morph),
+                    linkVariantIndexWithPrevious = addon.linkVariantIndexWithPrevious,
+                    angle = addon.angle,
+                    inFrontOfBody = addon.inFrontOfBody,
+                    layerOffset = addon.layerOffset,
+                    layerInvert = addon.layerInvert,
+                    drawnOnGround = addon.drawnOnGround,
+                    drawnInBed = addon.drawnInBed,
+                    drawForMale = addon.drawForMale,
+                    drawForFemale = addon.drawForFemale,
+                    drawSize = addon.drawSize,
+                    variantCount = addon.variantCount,
+                    hediffGraphics = addon.hediffGraphics,
+                    backstoryGraphics = addon.backstoryGraphics,
+                    hiddenUnderApparelFor = addon.hiddenUnderApparelFor,
+                    hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
+                    backstoryRequirement = addon.backstoryRequirement
+                };
+
+                if (headParts.Contains(temp.bodyPart))
+                {
+                    if (headSize != null)
+                        temp.drawSize = headSize.GetValueOrDefault();
+                    if (bodySize != null)
+                    {
+                        if (temp?.offsets?.south?.bodyTypes != null)
+                            foreach (AlienPartGenerator.BodyTypeOffset bodyType in temp.offsets.south.bodyTypes)
+                                bodyType.offset.y += 0.34f * (bodySize.GetValueOrDefault().y - 1f);
+                        if (temp?.offsets?.north?.bodyTypes != null)
+                            foreach (AlienPartGenerator.BodyTypeOffset bodyType in temp.offsets.north.bodyTypes)
+                                bodyType.offset.y += 0.34f * (bodySize.GetValueOrDefault().y - 1f);
+                        if (temp?.offsets?.east?.bodyTypes != null)
+                            foreach (AlienPartGenerator.BodyTypeOffset bodyType in temp.offsets.east.bodyTypes)
+                                bodyType.offset.y += 0.34f * (bodySize.GetValueOrDefault().y - 1f);
+                        if (temp?.offsets?.west?.bodyTypes != null)
+                            foreach (AlienPartGenerator.BodyTypeOffset bodyType in temp.offsets.west.bodyTypes)
+                                bodyType.offset.y += 0.34f * (bodySize.GetValueOrDefault().y - 1f);
+                    }
+                }
+
+                if (bodySize != null && bodyParts.Contains(temp.bodyPart))
+                {
+                    temp.drawSize = bodySize.GetValueOrDefault();
+                }
+
+                returnList.Add(temp);
+            }
+
+            return returnList;
+        }
+
+        private static AlienPartGenerator.BodyAddonOffsets GenerateBodyAddonOffsets(AlienPartGenerator.BodyAddonOffsets human, MorphDef morph)
+        {
+            AlienPartGenerator.BodyAddonOffsets returnValue = new AlienPartGenerator.BodyAddonOffsets();
+            if (human.south != null)
+                returnValue.south = GenerateRotationOffsets(human.south, morph);
+            if (human.north != null)
+                returnValue.north = GenerateRotationOffsets(human.north, morph);
+            if (human.east != null)
+                returnValue.east = GenerateRotationOffsets(human.east, morph);
+            if (human.west != null)
+                returnValue.west = GenerateRotationOffsets(human.west, morph);
+            return returnValue;
+        }
+
+        private static AlienPartGenerator.RotationOffset GenerateRotationOffsets(AlienPartGenerator.RotationOffset human, MorphDef morph)
+        {
+            AlienPartGenerator.RotationOffset returnValue = new AlienPartGenerator.RotationOffset()
+            {
+                portraitBodyTypes = human.portraitBodyTypes,
+                portraitCrownTypes = human.portraitCrownTypes,
+                crownTypes = human.crownTypes
+            };
+
+            if (human.bodyTypes != null)
+                returnValue.bodyTypes = GenerateBodyTypeOffsets(human.bodyTypes, morph);
+
+            return returnValue;
+        }
+
+        private static List<AlienPartGenerator.BodyTypeOffset> GenerateBodyTypeOffsets(List<AlienPartGenerator.BodyTypeOffset> human, MorphDef morph)
+        {
+            List<AlienPartGenerator.BodyTypeOffset> returnList = new List<AlienPartGenerator.BodyTypeOffset>();
+            foreach (AlienPartGenerator.BodyTypeOffset bodyTypeOffset in human)
+            {
+                AlienPartGenerator.BodyTypeOffset temp = new AlienPartGenerator.BodyTypeOffset()
+                {
+                    offset = bodyTypeOffset.offset,
+                    bodyType = bodyTypeOffset.bodyType
+                };
+                returnList.Add(temp);
+            }
+
+            return returnList;
         }
 
         /// <summary> Generate the alien race restriction setting from the human default and the given morph.</summary>
@@ -165,17 +383,33 @@ namespace Pawnmorph.Hybrids
             return new RaceRestrictionSettings(); //TODO restriction settings like apparel and stuff  
         }
 
-        private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph)
+        private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
             return new ThingDef_AlienRace.AlienSettings
             {
-                generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph),
-                graphicPaths = human.graphicPaths, //TODO put some of these in morph def or generate from the animal 
+                generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace),
+                graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph),
                 hairSettings = human.hairSettings,
                 raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
                 relationSettings = human.relationSettings,
                 thoughtSettings = morph.raceSettings.GenerateThoughtSettings(human.thoughtSettings, morph)
             };
+        }
+
+        private static List<GraphicPaths> GenerateGraphicPaths(List<GraphicPaths> humanGraphicPaths, MorphDef morph)
+        {
+            GraphicPaths temp = new GraphicPaths();
+            Vector2? customSize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
+            temp.customDrawSize = customSize ?? temp.customDrawSize;
+            temp.customPortraitDrawSize = customSize ?? temp.customPortraitDrawSize;
+            Vector2? customHeadSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
+            temp.customHeadDrawSize = customHeadSize ?? temp.customHeadDrawSize;
+            temp.customPortraitHeadDrawSize = customHeadSize ?? temp.customPortraitHeadDrawSize;
+            temp.headOffset = customSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
+
+            List<GraphicPaths> returnList = new List<GraphicPaths>();
+            returnList.Add(temp);
+            return returnList;
         }
 
         static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers, List<StatModifier> statMods)
@@ -231,9 +465,9 @@ namespace Pawnmorph.Hybrids
         }
 
         [NotNull]
-        private static ThingDef_AlienRace GenerateImplicitRace([NotNull] ThingDef_AlienRace humanDef,[NotNull]  MorphDef morph)
+        private static ThingDef_AlienRace GenerateImplicitRace([NotNull] ThingDef_AlienRace humanDef, [NotNull] MorphDef morph)
         {
-            return new ThingDef_AlienRace
+            var impliedRace =  new ThingDef_AlienRace
             {
                 defName = morph.defName + "Race_Implied", //most of these are guesses, should figure out what's safe to change and what isn't 
                 label = morph.label,
@@ -252,7 +486,6 @@ namespace Pawnmorph.Hybrids
                 comps = humanDef.comps.ToList(),
                 drawGUIOverlay = humanDef.drawGUIOverlay,
                 description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
-                alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph),
                 modContentPack = morph.modContentPack,
                 inspectorTabsResolved = humanDef.inspectorTabsResolved?.ToList() ?? new List<InspectTabBase>(),
                 recipes = new List<RecipeDef>(humanDef.AllRecipes), //this is where the surgery operations live
@@ -267,6 +500,10 @@ namespace Pawnmorph.Hybrids
                 tradeTags = humanDef.tradeTags?.ToList(),
                 tradeability = humanDef.tradeability
             };
+
+            impliedRace.alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph, impliedRace); 
+
+            return impliedRace; 
         }
 
         /// <summary>

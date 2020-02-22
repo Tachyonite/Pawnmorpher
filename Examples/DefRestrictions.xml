@@ -1,0 +1,53 @@
+<Defs>
+    <SomeDef>
+        'def restrictions' are bunch of different mod extensions who's purpose is to add specific 
+        restrictions to a def 
+        <modExtension>
+             <li Class="Pawnmorph.DefExtensions.$SomeRestrictionSubClass">
+                RestrictionExtension is an abstract class so it cannot be used directly, only it's subclasses, however all 
+                RestrictionExtension have the following field 
+                
+                
+                this field if set to true will invert the normal behavior of the restriction, whatever it is 
+                <invert>false</invert>
+             </li>
+             below is a non exhaustive list of restrictions and what they do 
+             <li Class="Pawnmorph.DefExtensions.MorphRestriction">
+                this restriction restricts the def to specific morphs 
+                <morphFilter>
+                    this is a filter, filters are generic and have 2 fields 
+                    <filterList> this is just a list of MorphDefs in this case 
+                        <li>SomeMorphDef</li>    
+                    </filterList>
+                    
+                    this field toggles the filter between a using a black list and a white list 
+                    this is by default true
+                    <isBlackList>true</isBlackList>
+                </morphFilter>
+
+                in this example everything but SomeMorphDef would be able to use the def, including normal humans 
+                if <isBlackList/> was false then only SomeMorphDef would be able to use this def 
+             </li>
+             <li Class="Pawnmorph.DefExtensions.MutationRestriction">
+                this is very similar to MorphRestriction, just for mutations 
+                <mutationFilter>
+                    the same as the filter in MorphRestriction, just for mutations instead of morphs, 
+                    and can be toggled between a black and white list 
+                </mutationFilter>
+             </li>
+             <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                this restriction is for restricting by certain aspects the pawn does/doesn't have 
+                
+                this is just a list of entries for the check list 
+                <aspectEntries>
+                    <li>
+                        required field to specify the aspect we're looking for
+                        <aspectDef>AspectDef</aspectDef>
+                        optional field to specify the stage of the aspect we're looking for, if not specified any stage will do 
+                        <stageIndex>0</stageIndex>
+                    </li>
+                </aspectEntries>
+             </li>
+        </modExtension>
+    </SomeDef>
+</Defs>

@@ -67,22 +67,53 @@ namespace Pawnmorph.Hybrids
         /// </summary>
         public class GraphicsSettings
         {
-            /// <summary>The skin color override</summary>
-            public Color? skinColorOverride;
             /// <summary>
-            /// The skin color override second
+            /// The skin color override.
+            /// </summary>
+            public Color? skinColorOverride;
+
+            /// <summary>
+            /// The female skin color override.
+            /// </summary>
+            public Color? femaleSkinColorOverride; 
+
+            /// <summary>
+            /// The skin color override second.
             /// </summary>
             public Color? skinColorOverrideSecond;
-            /// <summary>The hair color override</summary>
-            public Color? hairColorOverride;
+
             /// <summary>
-            /// The hair color override second
+            /// The female skin color override second.
+            /// </summary>
+            public Color? femaleSkinColorOverrideSecond; 
+
+            /// <summary>
+            /// The female hair color override.
+            /// </summary>
+            public Color? femaleHairColorOverride; 
+
+            /// <summary>
+            /// The hair color override.
+            /// </summary>
+            public Color? hairColorOverride;
+
+            /// <summary>
+            /// The female hair color override second.
+            /// </summary>
+            public Color? femaleHairColorOverrideSecond; 
+
+            /// <summary>
+            /// The hair color override second.
             /// </summary>
             public Color? hairColorOverrideSecond;
-            /// <summary>The custom draw size</summary>
-            public Vector2? customDrawSize;
+
             /// <summary>
-            /// The custom head draw size
+            /// The custom draw size.
+            /// </summary>
+            public Vector2? customDrawSize;
+
+            /// <summary>
+            /// The custom head draw size.
             /// </summary>
             public Vector2? customHeadDrawSize;
         }

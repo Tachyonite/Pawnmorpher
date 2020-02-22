@@ -1,9 +1,9 @@
 <Defs>
-	<HediffDef ParentName="AspectedMorphParent">
+	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphChickenTF</defName>
 		<label>chookmorph</label>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -13,19 +13,12 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
-						<pawnkinds>
-							<li>Chicken</li>
-						</pawnkinds>
-						<tale>TransformationChicken</tale>
-						<forceGender>Female</forceGender>
-						<forceGenderChance>70</forceGenderChance>
-					</li>
-				</hediffGivers>
+				<pawnkinds>
+					<li>Chicken</li>
+				</pawnkinds>
+				<transformationTale>TransformationCanid</transformationTale>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
 				<minSeverity>0.6</minSeverity>
 				<painOffset>0.1</painOffset>
@@ -44,8 +37,10 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
+				<letterText>TransformationStageWarningContent</letterText>
+				<letterLabel>TransformationStageWarningLabel</letterLabel>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<label>changing</label>
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.1</painOffset>
@@ -64,73 +59,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherBeak</hediff>
-						<mtbDays>0.5</mtbDays>
-						<partsToAffect>
-							<li>Jaw</li>
-						</partsToAffect>
-						<tale>GrewBeak</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherTailfeathers</hediff>
-						<mtbDays>1</mtbDays>
-						<partsToAffect>
-							<li>Tail</li>
-						</partsToAffect>
-						<tale>GrewTail</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherFeatheredLimb</hediff>
-						<mtbDays>2</mtbDays>
-						<partsToAffect>
-							<li>Arm</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>LimbGrowsFeathers</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherWing</hediff>
-						<mtbDays>3</mtbDays>
-						<chance>5</chance>
-						<partsToAffect>
-							<li>Arm</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>ArmsBecomeWings</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherWingTip</hediff>
-						<mtbDays>3</mtbDays>
-						<chance>5</chance>
-						<partsToAffect>
-							<li>Hand</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>HandsBecomeWingTips</tale>
-						<memory>WingTipMemory</memory>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherAvianFoot</hediff>
-						<mtbDays>3</mtbDays>
-						<partsToAffect>
-							<li>Foot</li>
-						</partsToAffect>
-						<countToAffect>2</countToAffect>
-						<tale>FeetBecomeTalons</tale>
-					</li>
-					<li Class="Pawnmorph.HediffGiver_Mutation">
-						<hediff>EtherEggLayer</hediff>
-						<mtbDays>0.5</mtbDays>
-						<gender>Female</gender>
-						<chance>50</chance>
-						<partsToAffect>
-							<li>Pelvis</li>
-						</partsToAffect>
-						<tale>GrewEgglayer</tale>
-					</li>
-				</hediffGivers>
+				<morph>ChookMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>

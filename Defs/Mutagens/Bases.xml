@@ -13,6 +13,12 @@
         <immunizingHediffs>
             <li>StabiliserHigh</li>
         </immunizingHediffs>
+        <tfAspectGivers>
+            <li Class="Pawnmorph.Aspects.PrimalWishGiver">
+                <normalChance>0.1</normalChance>
+                <mutationAffinityChance>0.2</mutationAffinityChance>
+            </li>
+        </tfAspectGivers>
     </Pawnmorph.MutagenDef>
 
     <Pawnmorph.MutagenDef ParentName="SimpleMutagenBase" Abstract="true" Name="AspectGivingMutagenBase">

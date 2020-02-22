@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/GenStepDef[defName="PreciousLump"]/genStep/mineables</xpath>
+        <value>
+            <li>Mutonite</li>
+        </value>
+    </Operation>
+</Patch>
