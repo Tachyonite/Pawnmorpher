@@ -1,6 +1,6 @@
 <Defs>
 	<IncidentDef Name="DiseaseIncidentMutation" Abstract="True">
-		<workerClass>IncidentWorker_DiseaseHuman</workerClass>
+		<workerClass>Pawnmorph.IncidentWorkers.MutagenicDiseasesHuman</workerClass>
 		<category>DiseaseHuman</category>
 		<targetTags>
 			<li>Map_PlayerHome</li>
