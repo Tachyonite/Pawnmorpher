@@ -112,9 +112,7 @@ namespace Pawnmorph
         {
             PawnmorpherSettings settings = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
             IncidentDef mutagenIncident = IncidentDef.Named("MutagenicShipPartCrash");
-            IncidentDef cowfluIncident = IncidentDef.Named("Disease_Cowflu");
-            IncidentDef foxfluIncident = IncidentDef.Named("Disease_Foxflu");
-            IncidentDef chookfluIncident = IncidentDef.Named("Disease_Chookflu");
+            
 
             if (!settings.enableMutagenShipPart)
                 mutagenIncident.baseChance = 0.0f;
@@ -124,18 +122,6 @@ namespace Pawnmorph
             if (!settings.enableFallout)
                 PMIncidentDefOf.MutagenicFallout.baseChance = 0;
 
-            if (!settings.enableMutagenDiseases)
-            {
-                cowfluIncident.baseChance = 0.0f;
-                foxfluIncident.baseChance = 0.0f;
-                chookfluIncident.baseChance = 0.0f;
-            }
-            else
-            {
-                cowfluIncident.baseChance = 0.5f;
-                foxfluIncident.baseChance = 0.5f;
-                chookfluIncident.baseChance = 0.5f;
-            }
         }
     }
 }
