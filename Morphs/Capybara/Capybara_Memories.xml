@@ -50,4 +50,54 @@
             </li>
         </stages>
     </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherCapybaraJaw</defName>
+        <stages>
+            <li>
+                <label>Rodent face</label>
+                <description>What's up with these teeth?</description>
+                <visible>True</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Rodent face</label>
+                <description>I can eat whatever I want!</description>
+                <visible>True</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Rodent face</label>
+                <description>God, I look so ugly with this thing...</description>
+                <visible>True</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherCapybaraEar</defName>
+        <stages>
+            <li>
+                <label>Rodent ears</label>
+                <description>Why are my ears so small?</description>
+                <visible>True</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Rodent ears</label>
+                <description>These tiny ears are so cute!</description>
+                <visible>True</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Rodent ears</label>
+                <description>Does anyone have a hat I can hide these things under?</description>
+                <visible>True</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    
 </Defs>

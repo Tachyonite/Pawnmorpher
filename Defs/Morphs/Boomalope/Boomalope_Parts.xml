@@ -57,6 +57,7 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
+		<mutationMemory>EtherBoomalopeSnout</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
@@ -71,6 +72,7 @@
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
+		<mutationMemory>EtherBoomalopeEar</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">

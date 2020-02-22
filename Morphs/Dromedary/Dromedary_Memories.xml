@@ -50,4 +50,53 @@
             </li>
         </stages>
     </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherDromedaryEar</defName>
+        <stages>
+            <li>
+                <label>Camel ears</label>
+                <description>What am I supposed to do with these?</description>
+                <visible>True</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Camel ears</label>
+                <description>Perfect for the desert heat!</description>
+                <visible>True</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Camel ears</label>
+                <description>These things are so twitchy, get them off me!</description>
+                <visible>True</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherDromedaryTail</defName>
+        <stages>
+            <li>
+                <label>Camel tail</label>
+                <description>This tail is pretty useless.</description>
+                <visible>True</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Camel tail</label>
+                <description>Well, a tali's a tail!</description>
+                <visible>True</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Camel tail</label>
+                <description>It's just... hanging there...</description>
+                <visible>True</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 </Defs>

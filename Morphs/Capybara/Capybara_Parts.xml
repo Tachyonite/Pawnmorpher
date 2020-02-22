@@ -55,6 +55,7 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
+		<mutationMemory>EtherCapybaraJaw</mutationMemory>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -68,6 +69,7 @@
 		<parts>
 			<li>Ear</li>
 		</parts>
+		<mutationMemory>EtherCapybaraEar</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CapybaraPart">

@@ -7,6 +7,7 @@
 		<label>wolf muzzle</label>
 		<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking difficult, yet eating is easier.</description>
 		<mutationTale>GrewCanidMuzzle</mutationTale>
+		<mutationMemory>EtherWolfMuzzle</mutationMemory>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
@@ -103,6 +104,7 @@
 		<label>lupine</label>
 		<description>Two pointed and furred ears crown [PAWN_nameDef]'s head, as they flick left and right, listening for the sounds of prey.</description>
 		<mutationTale>EarsChangedCanid</mutationTale>
+		<mutationMemory>EtherWolfEar</mutationMemory>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
@@ -121,6 +123,7 @@
 		<label>wolfish tail</label>
 		<description>A grey wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
 		<mutationTale>GrewTail</mutationTale>
+		<mutationMemory>EtherWolfTail</mutationMemory>
 		<stages>
 			<li>
 				<capMods>

@@ -50,4 +50,78 @@
             </li>
         </stages>
     </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherHareJaw</defName>
+        <stages>
+            <li>
+                <label>Rabbit face</label>
+                <description>These whiskers and teeth are dumb...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Rabbit face</label>
+                <description>Check out my cute little button nose I love it!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Rabbit face</label>
+                <description>I wasn't eating a leaf, you didn't see that!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherHareEar</defName>
+        <stages>
+            <li>
+                <label>Rabbit ears</label>
+                <description>This has been one bad magic trick...sort of</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Rabbit ears</label>
+                <description>I feel like a cutie...or like a belong in a playboy!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Rabbit ears</label>
+                <description>These ears keep getting in the way!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherHareTail</defName>
+        <stages>
+            <li>
+                <label>Cotton tail</label>
+                <description>Small and puffy.</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Cotton tail</label>
+                <description>Soft!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Cotton tail</label>
+                <description>No, stop asking if i stole the carrots...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
 </Defs>

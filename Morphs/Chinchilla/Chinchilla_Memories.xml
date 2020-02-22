@@ -50,4 +50,54 @@
             </li>
         </stages>
     </ThoughtDef>
+
+    
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherChinchillaEar</defName>
+        <stages>
+            <li>
+                <label>Tiny rodent ears</label>
+                <description>Huh... they're kinda cute, I guess.</description>
+                <visible>True</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Tiny rodent ears</label>
+                <description>These ears are adorable!</description>
+                <visible>True</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Tiny rodent ears</label>
+                <description>Does anyone have a hat I can hide these things under?</description>
+                <visible>True</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherChinchillaTail</defName>
+        <stages>
+            <li>
+                <label>Tiny rodent tail</label>
+                <description>Well, it *is* a little cool, I guess.</description>
+                <visible>True</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Tiny rodent tail</label>
+                <description>Awww, it's so tiny! I love it!</description>
+                <visible>True</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Tiny rodent tail</label>
+                <description>At least I can hide it...</description>
+                <visible>True</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 </Defs>
