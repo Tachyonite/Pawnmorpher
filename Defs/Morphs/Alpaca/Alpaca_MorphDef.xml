@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>AlpacaMorph</defName>
 		<label>alpacamorph</label>
-		<description>Alpacamorphs are rather wooly herbivorous humanoids who often have hooves. They produce good amounts of soft wool, which they can shave off themselves... and they don't need your help, thank you.</description>
+		<description>Alpacamorphs are rather woolly herbivorous humanoids who often have hooves. They produce good amounts of soft wool, which they can shave off themselves... and they don't need your help, thank you.</description>
 		<race>Alpaca</race>
 		<classification>Camelid</classification>
 		<categories>
