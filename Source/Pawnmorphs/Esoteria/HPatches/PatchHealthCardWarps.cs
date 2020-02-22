@@ -8,7 +8,7 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary> Draw an info icon for mutations with their descriptions in tooltip. </summary>
+    // <summary> Draw an info icon for mutations with their descriptions in tooltip. </summary>
     //[HarmonyPatch(typeof(HealthCardUtility), "DrawHediffRow")]
     //[StaticConstructorOnStartup]
     //public static class PatchHealthCardUtilityDrawHediffRow

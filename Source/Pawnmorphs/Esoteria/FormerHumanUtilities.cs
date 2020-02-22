@@ -106,7 +106,7 @@ namespace Pawnmorph
             get
             {
                 foreach (Pawn allMap in PawnsFinder.AllMaps)
-                    if (allMap.GetFormerHumanStatus() != null)
+                    if (allMap.IsFormerHuman())
                         yield return allMap;
             }
         }
@@ -123,7 +123,7 @@ namespace Pawnmorph
             get
             {
                 foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive)
-                    if (pawn.GetFormerHumanStatus() != null)
+                    if (pawn.IsFormerHuman())
                         yield return pawn;
             }
         }
@@ -290,7 +290,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsFormerHuman([NotNull] this Pawn pawn)
         {
-            return pawn.GetFormerHumanStatus() != null; 
+            return pawn.GetFormerHumanTracker()?.IsFormerHuman == true; 
         }
 
         private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman, [NotNull] PawnRelationDef relation,string letterContentID, string letterLabelID)
@@ -414,16 +414,56 @@ namespace Pawnmorph
         }
 
 
+        /// <summary>
+        /// Gets the former human tracker.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static FormerHumanTracker GetFormerHumanTracker([NotNull] this Pawn pawn)
+        {
+            var tComp = pawn.GetComp<FormerHumanTracker>();
+            return tComp; 
+        }
+
         /// <summary>Gets the quantized sapience level.</summary>
         /// <param name="pawn">The pawn.</param>
         /// <returns>returns null if the pawn isn't a former human</returns>
         public static SapienceLevel? GetQuantizedSapienceLevel([NotNull] this Pawn pawn)
         {
             float? sLevel = GetSapienceLevel(pawn);
+            FormerHumanTracker tracker = pawn.GetFormerHumanTracker();
+            if (tracker == null) return null;
             if (sLevel == null) return null;
-            if (pawn.GetFormerHumanStatus() == FormerHumanStatus.PermanentlyFeral) return SapienceLevel.PermanentlyFeral;
+            if (tracker.IsPermanentlyFeral) return SapienceLevel.PermanentlyFeral;
 
             return GetQuantizedSapienceLevel(sLevel.Value); 
+        }
+
+        /// <summary>
+        /// Determines whether this pawn is a sapient former human.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
+        {
+            switch (pawn.GetQuantizedSapienceLevel())
+            {
+                case SapienceLevel.Sapient:
+                case SapienceLevel.MostlySapient:
+                case SapienceLevel.Conflicted:
+                case SapienceLevel.MostlyFeral:
+                    return true; 
+                case SapienceLevel.Feral:
+                case SapienceLevel.PermanentlyFeral:
+                case null:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>
@@ -862,7 +902,7 @@ namespace Pawnmorph
         public static void TryAssignBackstoryToTransformedPawn([NotNull] Pawn pawn, [CanBeNull] Pawn originalPawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return;
+            if (!pawn.IsFormerHuman()) return;
             if (pawn.story == null) return;
 
             if (originalPawn != null)

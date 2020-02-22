@@ -20,8 +20,7 @@ namespace Pawnmorph.HPatches
             {
                 foreach (Toil toil in values) yield return toil;
 
-                FormerHumanStatus? saLevel = __instance.pawn.GetFormerHumanStatus();
-                if (saLevel != FormerHumanStatus.Sapient) yield break;
+                if (!__instance.pawn.IsSapientFormerHuman()) yield break;
                 yield return Toils_General.Do(() =>
                 {
                     FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn,

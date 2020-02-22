@@ -197,7 +197,7 @@ namespace Pawnmorph
             RandUtilities.PopState();
             foreach (Pawn pawn in enumer.OfType<Pawn>())
             {
-                if (pawn.GetFormerHumanStatus() == null) continue;
+                if (!pawn.IsFormerHuman()) continue;
                 FormerHumanUtilities.NotifyRelatedPawnsFormerHuman(pawn, FormerHumanUtilities.RELATED_SOLD_FORMER_HUMAN_LETTER,
                                                                    FormerHumanUtilities.RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL);
             }

@@ -25,7 +25,7 @@ namespace Pawnmorph
 
             try
             {
-                if (pawn.GetFormerHumanStatus() == FormerHumanStatus.Sapient)
+                if (pawn.IsSapientFormerHuman())
                 {
                     pawn.health.AddHediff(TfHediffDefOf.FeralPillSapienceDrop);
                     return; 

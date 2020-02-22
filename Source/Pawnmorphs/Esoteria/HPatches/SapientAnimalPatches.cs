@@ -4,6 +4,7 @@
 using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
+using TMPro;
 using Verse;
 using Verse.AI;
 
@@ -37,8 +38,7 @@ namespace Pawnmorph.HPatches
 
                 bool CanMate(Pawn p) //only pure animals and permanently ferals can mate
                 {
-                    var fStatus = p?.GetFormerHumanStatus();
-                    return fStatus == null || fStatus == FormerHumanStatus.PermanentlyFeral;
+                    return p?.IsSapientFormerHuman() != true; 
                 }
             }
         }

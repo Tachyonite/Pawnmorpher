@@ -182,7 +182,7 @@ namespace Pawnmorph
         /// <value>
         ///     <c>true</c> if this instance can do random mental breaks; otherwise, <c>false</c>.
         /// </value>
-        private bool CanDoRandomMentalBreaks => (Pawn.Spawned || Pawn.IsCaravanMember()) && Pawn.GetFormerHumanStatus() != FormerHumanStatus.PermanentlyFeral;
+        private bool CanDoRandomMentalBreaks => (Pawn.Spawned || Pawn.IsCaravanMember()) && Pawn.GetQuantizedSapienceLevel() != SapienceLevel.PermanentlyFeral;
 
         private MentalBreakIntensity CurrentDesiredMoodBreakIntensity
         {

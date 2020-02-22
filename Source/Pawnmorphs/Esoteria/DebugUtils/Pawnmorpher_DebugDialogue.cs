@@ -256,7 +256,7 @@ namespace Pawnmorph.DebugUtils
 
         void DoAddBackstoryToPawn(Pawn pawn)
         {
-            if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return;
+            if (!pawn.IsSapientFormerHuman()) return;
 
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetGiveBackstoriesOptions(pawn))); 
 
@@ -278,7 +278,7 @@ namespace Pawnmorph.DebugUtils
 
         private void MakePawnPermanentlyFeral(Pawn obj)
         {
-            if (obj?.GetFormerHumanStatus() == null) return;
+            if (obj?.IsFormerHuman() != true) return;
 
             FormerHumanUtilities.MakePermanentlyFeral(obj); 
         }

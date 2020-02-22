@@ -23,17 +23,18 @@ namespace Pawnmorph.HPatches
             {
                 if (pawn.RaceProps.Animal)
                 {
-                    var formerHumanStats = pawn.GetFormerHumanStatus();
+                    var formerHumanStats = pawn.GetQuantizedSapienceLevel();
 
                     switch (formerHumanStats)
                     {
-                        case FormerHumanStatus.Sapient:
-                            AddSapientAnimalComponents(pawn);
+                        case SapienceLevel.Sapient:
+                        case SapienceLevel.Conflicted:
+                        case SapienceLevel.MostlySapient:
+                        case SapienceLevel.MostlyFeral:
+                        case SapienceLevel.Feral: 
+                            AddSapientAnimalComponents(pawn);//ferals need to keep them so stuff doesn't break, like relationships 
                             break;
-                        case FormerHumanStatus.Feral:
-                            AddSapientAnimalComponents(pawn); //they need to keep them so stuff doesn't break, like relationships 
-                            break;
-                        case FormerHumanStatus.PermanentlyFeral:
+                        case SapienceLevel.PermanentlyFeral:
                             RemoveSapientAnimalComponents(pawn); //actually removing the components seems to break stuff for some reason 
                             break;
                         case null:

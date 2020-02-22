@@ -94,7 +94,7 @@ namespace Pawnmorph.Thoughts
         protected bool IsValidFor([NotNull] Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            return def.IsValidFor(pawn) && pawn.GetFormerHumanStatus() != null; //only valid for former humans 
+            return def.IsValidFor(pawn) && pawn.IsFormerHuman(); //only valid for former humans 
         }
 
         /// <summary>

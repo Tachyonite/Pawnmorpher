@@ -65,11 +65,11 @@ namespace Pawnmorph.Social
         /// <returns></returns>
         public override float RandomSelectionWeight([NotNull] Pawn initiator, Pawn recipient)
         {
-            FormerHumanStatus? fHumanStatus = recipient.GetFormerHumanStatus();
+            SapienceLevel? fHumanStatus = recipient.GetQuantizedSapienceLevel();
             if (fHumanStatus == null) return 0; //only allow for former human recipients 
 
-            Filter<FormerHumanStatus> fHumanRestriction =
-                interaction.GetModExtension<FormerHumanRestriction>()?.filter ?? new Filter<FormerHumanStatus>();
+            Filter<SapienceLevel> fHumanRestriction =
+                interaction.GetModExtension<FormerHumanRestriction>()?.filter ?? new Filter<SapienceLevel>();
             var relationshipInteractionRestriction = interaction.GetModExtension<RelationshipInteractionRestriction>();
             Filter<PawnRelationDef> relationRestriction = relationshipInteractionRestriction?.relationFilter;
             bool mustBeColonist = relationshipInteractionRestriction?.mustBeColonist ?? false;

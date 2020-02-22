@@ -118,8 +118,8 @@ namespace Pawnmorph
             }
             else
             {
-                FormerHumanStatus? fHStatus = ingester.GetFormerHumanStatus();
-                if (fHStatus == null || fHStatus == FormerHumanStatus.PermanentlyFeral) return;
+                 var fHStatus = ingester.GetQuantizedSapienceLevel();
+                if (fHStatus == null || fHStatus == SapienceLevel.PermanentlyFeral) return;
 
                 ThoughtDef thought = GetCannibalThought(ingester, foodSource);
                 if (thought != null) foodThoughts.Add(thought);
