@@ -3,24 +3,22 @@
 		<defName>SquirrelTransformationMemory</defName>
         <stages>
             <li>
-                <label>!!!SquirrelTransformationMemory's default stage needs a label!!!</label>
-                <description>!!!SquirrelTransformationMemory's default stage needs a description!!!</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <label>Became squirrelmorph</label>
+                <description>Does anyone have any acorns?</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
-                <label>!!!SquirrelTransformationMemory's mutation affinity stage needs a label!!!</label>
-                <description>!!!SquirrelTransformationMemory's mutation affinity stage needs a description!!!</description>
-                <baseMoodEffect>+3</baseMoodEffect>
+                <label>Became squirrelmorph</label>
+                <description>Climbing trees, burying nuts... this is the life!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
-                <label>!!!SquirrelTransformationMemory's body purist stage needs a label!!!</label>
-                <description>!!!SquirrelTransformationMemory's body purist stage needs a description!!!</description>
+                <label>Became squirrelmorph</label>
+                <description>These giant teeth, this massive, bushy tail... turn me back, please!</description>
+                <visible>true</visible>
                 <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-            <li>
-                <label>!!!SquirrelTransformationMemory's primal wish stage needs a label!!!</label>
-                <description>!!!SquirrelTransformationMemory's primal wish stage needs a description!!!</description>
-                <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

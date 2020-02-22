@@ -56,24 +56,22 @@
 							<durationDays>1</durationDays>
 							<stages>
 								<li>
-									<label>!!!LeopardTransformationMemory's default stage needs a label!!!</label>
-									<description>!!!LeopardTransformationMemory's default stage needs a description!!!</description>
-									<baseMoodEffect>-3</baseMoodEffect>
+									<label>Became leopardmorph</label>
+									<description>I'd much rather be hunting right now.</description>
+									<visible>True</visible>
+									<baseMoodEffect>0</baseMoodEffect>
 								</li>
 								<li>
-									<label>!!!LeopardTransformationMemory's mutation affinity stage needs a label!!!</label>
-									<description>!!!LeopardTransformationMemory's mutation affinity stage needs a description!!!</description>
-									<baseMoodEffect>+3</baseMoodEffect>
+									<label>Became leopardmorph</label>
+									<description>Mrrow!</description>
+									<visible>True</visible>
+									<baseMoodEffect>5</baseMoodEffect>
 								</li>
 								<li>
-									<label>!!!LeopardTransformationMemory's body purist stage needs a label!!!</label>
-									<description>!!!LeopardTransformationMemory's body purist stage needs a description!!!</description>
+									<label>Became leopardmorph</label>
+									<description>I just want to laze around in a tree all day...</description>
+									<visible>True</visible>
 									<baseMoodEffect>-5</baseMoodEffect>
-								</li>
-								<li>
-									<label>!!!LeopardTransformationMemory's primal wish stage needs a label!!!</label>
-									<description>!!!LeopardTransformationMemory's primal wish stage needs a description!!!</description>
-									<baseMoodEffect>+1</baseMoodEffect>
 								</li>
 							</stages>
 						</ThoughtDef>
@@ -106,6 +104,31 @@
 							</stages>
 						</ThoughtDef>
 						
+						<ThoughtDef ParentName="OutlookMemoryBase">
+							<durationDays>1</durationDays>
+							<defName>SnowLeopardMorphTranformationMemory</defName>
+							<stages>
+								<li>
+									<label>Became snepmorph</label>
+									<description>I feel like I should be jumping around in the snow.</description>
+									<visible>True</visible>
+									<baseMoodEffect>0</baseMoodEffect>
+								</li>
+								<li>
+									<label>Became snepmorph</label>
+									<description>I've got a built-in winter coat, with a cool design to boot!</description>
+									<visible>True</visible>
+									<baseMoodEffect>5</baseMoodEffect>
+								</li>
+								<li>
+									<label>Became snepmorph</label>
+									<description>Ughhh... why am I so clumsy now?</description>
+									<visible>True</visible>
+									<baseMoodEffect>-5</baseMoodEffect>
+								</li>
+							</stages>
+						 </ThoughtDef>
+
 						<!-- Morph Defs -->
 						<Pawnmorph.MorphDef Abstract="true" ParentName="SensitiveFoodMorph" Name="LeopardMorphBase">
 							<description>A suprisingly docile morph, Leopardmorphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instincts are sharp and their claws yet sharper.</description>
@@ -150,6 +173,10 @@
 									<skinColorOverride>(204,204,204)</skinColorOverride>
 								</graphicsSettings>
 							</raceSettings>
+							<transformSettings>
+								<transformationMemory>SnowLeopardMorphTranformationMemory</transformationMemory>
+								<revertedMemory>LeopardRevertedMemory</revertedMemory>
+							</transformSettings>
 						</Pawnmorph.MorphDef>
 						
 						<!-- Full TF -->
