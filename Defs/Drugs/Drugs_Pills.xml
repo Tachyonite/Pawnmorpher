@@ -252,6 +252,7 @@
 		<description>This pawn has been stabilised to further mutations. This lasts for five days, and cannot receive additional mutations in this timeframe.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>mutagen stabilised</label>
+		<description>This pawn has been stabilised to further mutations. This lasts for five days, and cannot receive additional mutations in this timeframe.</description>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<maxSeverity>1.0</maxSeverity>
