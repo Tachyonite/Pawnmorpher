@@ -247,10 +247,9 @@
 		</comps>
 	</ThingDef>
 
-	<HediffDef Class="Pawnmorph.Hediffs.Def_ImmuneToType">
+	<HediffDef>
 		<defName>StabiliserHigh</defName>
 		<description>This pawn has been stabilised to further mutations. This lasts for five days, and cannot receive additional mutations in this timeframe.</description>
-		<immuneToType>Pawnmorph.Hediff_Morph</immuneToType>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>mutagen stabilised</label>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
@@ -262,7 +261,7 @@
 				<severityPerDay>-0.18</severityPerDay>
 			</li>
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
-				<removeType>Pawnmorph.Hediff_Morph</removeType>
+				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
 			</li>
 		</comps>
 		<stages>

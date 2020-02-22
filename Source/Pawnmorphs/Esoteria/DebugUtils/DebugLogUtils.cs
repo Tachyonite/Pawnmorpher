@@ -37,71 +37,7 @@ namespace Pawnmorph.DebugUtils
             if (!condition) Log.Error($"assertion failed:{message}");
         }
 
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        public static void CheckBodyHediffGraphics()
-        {
-            IEnumerable<HediffGiver_Mutation> GetMutationGivers(IEnumerable<HediffStage> stages)
-            {
-                return stages.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                             .OfType<HediffGiver_Mutation>();
-            }
-
-
-            var givers = DefDatabase<HediffDef>
-                        .AllDefs.Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass))
-                        .Select(def => new
-                         {
-                             def,
-                             givers = GetMutationGivers(def.stages ?? Enumerable.Empty<HediffStage>())
-                                .ToList() //grab all mutation givers but keep the def it came from around 
-                         })
-                        .Where(a => a.givers.Count
-                                  > 0); //keep only the entries that have some givers in them 
-
-            var human = (ThingDef_AlienRace) ThingDefOf.Human;
-
-            List<AlienPartGenerator.BodyAddon> bodyAddons = human.alienRace.generalSettings.alienPartGenerator.bodyAddons;
-
-
-            var lookupDict = new Dictionary<string, string>();
-
-            foreach (AlienPartGenerator.BodyAddon bodyAddon in bodyAddons)
-            foreach (AlienPartGenerator.BodyAddonHediffGraphic bodyAddonHediffGraphic in bodyAddon.hediffGraphics)
-                lookupDict[bodyAddonHediffGraphic.hediff] =
-                    bodyAddon.bodyPart; //find out what parts what hediffs are assigned to in the patch file 
-
-            var builder = new StringBuilder();
-            var errStrs = new List<string>();
-            foreach (var giverEntry in givers)
-            {
-                errStrs.Clear();
-                foreach (HediffGiver_Mutation hediffGiverMutation in giverEntry.givers)
-                {
-                    HediffDef hediff = hediffGiverMutation.hediff;
-
-                    BodyPartDef addPart = hediffGiverMutation.partsToAffect.FirstOrDefault();
-                    if (addPart == null) continue; //if there are no parts to affect just skip 
-
-                    if (lookupDict.TryGetValue(hediff.defName, out string part))
-                        if (part != addPart.defName)
-                            errStrs.Add($"hediff {hediff.defName} is being attached to {addPart.defName} but is assigned to {part} in patch file");
-                }
-
-                if (errStrs.Count > 0)
-                {
-                    builder.AppendLine($"in def {giverEntry.def.defName}: ");
-                    foreach (string errStr in errStrs) builder.AppendLine($"\t\t{errStr}");
-
-                    builder.AppendLine("");
-                }
-            }
-
-            if (builder.Length > 0)
-                Log.Warning(builder.ToString());
-            else
-                Log.Message("no inconsistencies found");
-        }
-
+       
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindAllTODOThoughts()
@@ -321,64 +257,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        public static void LogMissingMutationTales()
-        {
-            bool
-                SelectionFunc(
-                    HediffDef def) //local function to grab all morph hediffDefs that have givers that are missing tales 
-            {
-                if (!typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)) return false;
-                return (def.stages ?? Enumerable.Empty<HediffStage>())
-                      .SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                      .OfType<HediffGiver_Mutation>()
-                      .Any(g => g.tale == null);
-            }
-
-            IEnumerable<Tuple<HediffDef, HediffGiver_Mutation>>
-                GetMissing(HediffDef def) //local function that will grab all hediff givers missing a tale 
-            {
-                //and keep the def it came from around 
-                IEnumerable<HediffGiver_Mutation> givers =
-                    def.stages?.SelectMany(s => s.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                       .OfType<HediffGiver_Mutation>()
-                       .Where(g => g.tale == null)
-                 ?? Enumerable.Empty<HediffGiver_Mutation>();
-                foreach (HediffGiver_Mutation hediffGiverMutation in givers)
-                    yield return new Tuple<HediffDef, HediffGiver_Mutation>(def, hediffGiverMutation);
-            }
-
-            IEnumerable<IGrouping<HediffDef, HediffDef>> missingGivers = DefDatabase<HediffDef>.AllDefs.Where(SelectionFunc)
-                                                                                               .SelectMany(GetMissing)
-                                                                                               .GroupBy(tup => tup.Item2.hediff, //group by the part that needs a tale  
-                                                                                                        tup => tup
-                                                                                                           .Item1); //and select the morph tfs their givers are found 
-            var builder = new StringBuilder();
-
-            var missingLst = new HashSet<HediffDef>();
-
-            foreach (IGrouping<HediffDef, HediffDef> missingGiver in missingGivers)
-            {
-                string keyStr = $"{missingGiver.Key.defName} is missing a tale in the following morph hediffs:";
-                missingLst.Add(missingGiver.Key); //keep the keys for the summary later
-                builder.AppendLine(keyStr);
-                foreach (HediffDef hediffDef in missingGiver) builder.AppendLine($"\t\t{hediffDef.defName}");
-            }
-
-
-            if (builder.Length > 0)
-            {
-                Log.Message(builder.ToString());
-                builder = new StringBuilder();
-                builder.AppendLine($"-------------------{missingLst.Count} parts need tales----------------"); //summary for convenience 
-                builder.AppendLine(string.Join("\n", missingLst.Select(def => def.defName).ToArray()));
-                Log.Message(builder.ToString());
-            }
-            else
-            {
-                Log.Message("All parts have a tale");
-            }
-        }
+      
 
         [DebugOutput(MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         public static void OpenActionMenu()
@@ -444,25 +323,6 @@ namespace Pawnmorph.DebugUtils
             Log.Message(msg);
         }
 
-
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        private static void GetOldMorphTfDefs()
-        {
-            var builder = new StringBuilder();
-            builder.AppendLine("Full Transformations:");
-            foreach (MorphDef morphDef in MorphDef.AllDefs)
-                if (morphDef.fullTransformation != null
-                 && typeof(Hediff_Morph).IsAssignableFrom(morphDef.fullTransformation.hediffClass))
-                    builder.AppendLine(morphDef.fullTransformation.defName);
-
-            builder.AppendLine("Partials:");
-            foreach (MorphDef morphDef in MorphDef.AllDefs)
-                if (morphDef.partialTransformation != null
-                 && typeof(Hediff_Morph).IsAssignableFrom(morphDef.partialTransformation.hediffClass))
-                    builder.AppendLine(morphDef.partialTransformation.defName);
-
-            Log.Message(builder.ToString());
-        }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         private static void GetPawnsNewInfluence()

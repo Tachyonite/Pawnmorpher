@@ -5,6 +5,7 @@ using System.Security.Policy;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
@@ -24,6 +25,36 @@ namespace Pawnmorph
         private const string ETHER_BOND_DEF_NAME = "EtherBond";
         private const string ETHER_BROKEN_DEF_NAME = "EtherBroken";
         private static readonly PawnKindDef[] PossiblePawnKinds;
+
+
+        private static List<HediffDef> _allMorphTfs;
+
+        /// <summary>
+        /// Gets all morph tf hediffs.
+        /// </summary>
+        /// <value>
+        /// All morph TFS.
+        /// </value>
+        [NotNull]
+        public static IReadOnlyList<HediffDef> AllMorphTfs
+        {
+            get
+            {
+                if (_allMorphTfs == null)
+                {
+                    _allMorphTfs = new List<HediffDef>(); 
+                    foreach (MorphDef morphDef in MorphDef.AllDefs)
+                    {
+                        if(morphDef.fullTransformation != null)
+                            _allMorphTfs.AddDistinct(morphDef.fullTransformation);
+                        if(morphDef.partialTransformation != null)
+                            _allMorphTfs.AddDistinct(morphDef.partialTransformation);
+                    } 
+                }
+
+                return _allMorphTfs; 
+            }
+        }
 
 
         /// <summary>
@@ -214,7 +245,7 @@ namespace Pawnmorph
                 }
             }
 
-            foreach (Hediff_Morph hediffMorph in hS2.OfType<Hediff_Morph>()) //do this second so the morph hediff can cleanup properly 
+            foreach (MorphTf hediffMorph in hS2.OfType<MorphTf>()) //do this second so the morph hediff can cleanup properly 
             {
                 pawn.health.RemoveHediff(hediffMorph); //remove ongoing morph hediffs 
             }

@@ -20,10 +20,7 @@ namespace Pawnmorph.Hediffs
     public class Giver_MutationChaotic : HediffGiver
     {
         private List<MutationDef> _possibleMutations;
-        /// <summary>
-        /// the morphType to get hediff givers from 
-        /// </summary>
-        public System.Type morphType = typeof(Hediff_Morph); //the hediff type to get possible mutations from 
+       
         /// <summary>
         /// list of morph categories to exclude 
         /// </summary>
@@ -103,7 +100,7 @@ namespace Pawnmorph.Hediffs
             if (Rand.MTBEventOccurs(mtbDays / mult, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 //mutagen is what contains information like infect-ability of a pawn and post mutation effects 
-                var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+                var mutagen = cause?.def?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
                 TryApply(pawn, cause, mutagen);
             }

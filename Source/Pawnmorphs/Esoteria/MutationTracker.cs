@@ -97,8 +97,8 @@ namespace Pawnmorph
         /// </summary>
         public override void CompTick()
         {
-            if (Pawn.IsHashIntervalTick(1400) && !Pawn.health.hediffSet.hediffs.OfType<Hediff_Morph>().Any())
-                Pawn.CheckRace(); //check the race every so often, but not too often 
+            if (Pawn.IsHashIntervalTick(1400))
+                 Pawn.CheckRace(); //check the race every so often, but not too often 
         }
 
         /// <summary>

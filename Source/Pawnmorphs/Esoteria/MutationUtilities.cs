@@ -102,12 +102,6 @@ namespace Pawnmorph
         public static float AverageMutationAdaptabilityValue { get; }
         
         /// <summary>
-        ///     an enumerable collection of all morph hediffs
-        /// </summary>
-        public static IEnumerable<HediffDef> AllMorphHediffs =>
-            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass));
-
-        /// <summary>
         ///     an enumerable collection of all mutation related thoughts
         /// </summary>
         [NotNull]
@@ -117,18 +111,15 @@ namespace Pawnmorph
             {
                 if (_allThoughts == null)
                 {
-                    _allThoughts = MutationDef.AllMutations
-                                              .Where(m => !m.memoryIgnoresLimit) //if true, the memory should act like a normal memory not a mutation memory, thus not respecting the limit 
-                                              .Select(m => m.mutationMemory)
-                                              .ToList();
-                    //add in any other memories added by mutation givers 
-                    foreach (HediffGiver_Mutation hediffGiverMutation in AllMorphHediffs.SelectMany(m => m.GetAllHediffGivers().OfType<HediffGiver_Mutation>()))
+                    var mutationsToCheck = MutationDef.AllMutations
+                                                      .Where(m =>
+                                                                 !m.memoryIgnoresLimit); //if true, the memory should act like a normal memory not a mutation memory, thus not respecting the limit 
+
+                    _allThoughts = new List<ThoughtDef>();
+                    foreach (MutationDef mutationDef in mutationsToCheck)
                     {
-                        if(hediffGiverMutation.ignoreThoughtLimit) continue;
-                        if (!_allThoughts.Contains(hediffGiverMutation.memory))
-                        {
-                            _allThoughts.Add(hediffGiverMutation.memory); 
-                        }
+                        if(mutationDef.mutationMemory != null)
+                            _allThoughts.AddDistinct(mutationDef.mutationMemory);
                     }
 
                 } 

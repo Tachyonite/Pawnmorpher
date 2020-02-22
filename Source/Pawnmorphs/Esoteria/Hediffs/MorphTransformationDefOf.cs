@@ -24,49 +24,13 @@ namespace Pawnmorph.Hediffs
 
         //special def 
         public static HediffDef MutagenicBuildup;
-        public static HediffDef MutagenicBuildup_Weapon; 
+        public static HediffDef MutagenicBuildup_Weapon;
 
-        /// <summary>
-        ///     warning, this is slow and recalculates each call!
-        /// </summary>
-        public static IEnumerable<HediffDef> AllMorphs
-        {
-            get { return DefDatabase<HediffDef>.AllDefs.Where(def => typeof(Hediff_Morph).IsAssignableFrom(def.hediffClass)); }
-        }
-
-
-        /// <summary>
-        ///     all morphs loaded at the start of the game
-        /// </summary>
-        public static IEnumerable<HediffDef> AllMorphsCached => AllTransformationLst;
-
-        /// <summary>
-        /// Gets a random transformation hediff def.
-        /// </summary>
-        /// <returns></returns>
-        public static HediffDef GetRandomTransformation() //needs MP compatibility done in MPCompat branch 
-        {
-            return AllTransformationLst.RandElement();
-        }
-
-
-
-        private static List<HediffDef> AllTransformationLst { get; set; } 
-
-        /// <summary>
-        ///     the number of morphs loaded at the start of the game
-        /// </summary>
-        public static int AllMorphsCachedCount { get; }
 
         static MorphTransformationDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
-
-
-           AllTransformationLst = AllMorphs.ToList();
-            AllMorphsCachedCount = AllTransformationLst.Count;
-
-            if (AllMorphsCachedCount == 0) Log.Warning("there are no morph tf hediffs loaded!");
+            
         }
     }
 }

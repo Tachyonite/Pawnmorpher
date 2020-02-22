@@ -471,16 +471,12 @@
     <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
     <Compile Include="Hediffs\Comp_CheckRace.cs" />
     <Compile Include="Hediffs\Comp_TerrainProduction.cs" />
-    <Compile Include="Hediffs\Def_ImmuneToTypes.cs" />
-    <Compile Include="Hediffs\Def_MorphTf.cs" />
     <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
-    <Compile Include="Hediffs\InsectInjectionInjury.cs" />
     <Compile Include="Hediffs\MutagenicBuildup.cs" />
     <Compile Include="Hediffs\MutationDependency.cs" />
     <Compile Include="Hediffs\MorphTransformationDefOf.cs" />
     <Compile Include="Hediffs\RemoveFromPartComp.cs" />
     <Compile Include="Hediffs\SpreadingMutationComp.cs" />
-    <Compile Include="Hediff_Morph.cs" />
     <Compile Include="Hediff_ProductionThought.cs" />
     <Compile Include="HPatches\PawnCapacityUtilsPatch.cs" />
     <Compile Include="HPatches\StatWorkerPatches.cs" />
@@ -490,7 +486,6 @@
     <Compile Include="IMutationEventReceiver.cs" />
     <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
     <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
-    <Compile Include="Hediffs\IPostTfHediffComp.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffAll.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffIfNonePresent.cs" />
     <Compile Include="IngestionOutcomeDoer_MultipleTfBase.cs" />
