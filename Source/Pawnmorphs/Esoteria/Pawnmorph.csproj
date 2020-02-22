@@ -542,7 +542,7 @@
     <Compile Include="Projectile_EtherBullet.cs" />
     <Compile Include="Projectile_EtherExplosive.cs" />
     <Compile Include="Projectile_TaggingBullet.cs" />
-    <Compile Include="RaceMutagenExtension.cs" />
+    <Compile Include="RaceMutationSettingsExtension.cs" />
     <Compile Include="Social\InteractionWorkers.cs" />
     <Compile Include="Social\PMInteractionWorkerBase.cs" />
     <Compile Include="Social\PMInteractionDef.cs" />

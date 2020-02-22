@@ -89,10 +89,10 @@ namespace Pawnmorph.TfSys
         {
             if (!def.canInfectAnimals && pawn.RaceProps.Animal) return false;
             if (!def.canInfectMechanoids && pawn.RaceProps.FleshType != FleshTypeDefOf.Normal) return false;
-            var ext = pawn.def.GetModExtension<RaceMutagenExtension>();
+            var ext = pawn.def.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null)
             {
-                return !ext.immuneToAll && !ext.blackList.Contains(def);
+                return !ext.immuneToAll;
             }
 
             return !HasAnyImmunizingHediffs(pawn); 
@@ -128,10 +128,10 @@ namespace Pawnmorph.TfSys
             if (raceDef.race == null) return false; 
             if (!def.canInfectAnimals && raceDef.race.Animal) return false;
             if (!def.canInfectMechanoids && raceDef.race.IsMechanoid) return false;
-            var ext = raceDef.GetModExtension<RaceMutagenExtension>();
+            var ext = raceDef.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null)
             {
-                return !ext.immuneToAll && !ext.blackList.Contains(def);
+                return !ext.immuneToAll;
             }
 
             return true;
