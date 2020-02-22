@@ -2,6 +2,7 @@
 	<HediffDef>
 		<defName>PawnmorphGunshotTF</defName>
 		<hediffClass>Pawnmorph.Hediff_Morph</hediffClass>
+		<description>This pawn has been shot with a powerful, fast-acting dose of mutagenic mechanites and is highly likely to change into something very quickly, which may leave them paralysed for a time.</description>
 		<label>ethermorph</label>
 		<makesAlert>true</makesAlert>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>

@@ -139,6 +139,7 @@
 
     <HediffDef ParentName="PMMutagenicBuildupWBase">
         <defName>MutagenicBuildup_Weapon</defName>
+		<description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
         <comps>
             <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
                 <recoveryTime>43.25</recoveryTime>
@@ -149,6 +150,7 @@
 
     <HediffDef ParentName="PMMutagenicBuildupWBase">
         <defName>MutagenicBuildup_SmallExplosion</defName>
+		<description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
         <comps>
             <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
                 <recoveryTime>70.75</recoveryTime>
@@ -158,6 +160,7 @@
     </HediffDef>
     <HediffDef ParentName="PMMutagenicBuildupWBase">
         <defName>MutagenicBuildup_LargeExplosion</defName>
+		<description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
         <comps>
             <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
                 <recoveryTime>150.25</recoveryTime>
@@ -170,6 +173,7 @@
     <!-- storm buildup  -->
     <HediffDef ParentName="MutagenicBuildupBase">
         <defName>MutagenicBuildup</defName>
+		<description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
         <makesSickThought>true</makesSickThought>
         <scenarioCanAdd>true</scenarioCanAdd>
         <taleOnVisible>MutationToxicityRevealed</taleOnVisible>

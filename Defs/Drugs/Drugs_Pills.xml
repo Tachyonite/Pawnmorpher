@@ -249,6 +249,7 @@
 
 	<HediffDef Class="Pawnmorph.Hediffs.Def_ImmuneToType">
 		<defName>StabiliserHigh</defName>
+		<description>This pawn has been stabilised to further mutations. This lasts for five days, and cannot receive additional mutations in this timeframe.</description>
 		<immuneToType>Pawnmorph.Hediff_Morph</immuneToType>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>mutagen stabilised</label>
@@ -278,6 +279,7 @@
 		<defName>AcceleratorHigh</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>mutagen accelerated</label>
+		<description>This pawn's mutations are appearing at an accelerated rate.</description>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<maxSeverity>1.0</maxSeverity>

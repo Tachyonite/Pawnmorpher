@@ -2,6 +2,7 @@
 	<HediffDef ParentName="InjuryBase">
 		<defName>MegaspiderInjection</defName>
 		<label>stab</label>
+		<description>BUGS</description>
 		<hediffClass>Pawnmorph.Hediffs.InsectInjectionInjury</hediffClass>
 		<injuryProps>
 			<painPerSeverity>2</painPerSeverity>

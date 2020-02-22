@@ -4,6 +4,7 @@
 		<defName>ProductionPillUdderEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<description>This pawn's productive capabilities are on the rise. Increasing this too high may lead to a catatonic 'productive bliss' state.</description>
 		<label>production increasing</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
@@ -28,6 +29,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
 		<label>production increasing</label>
+		<description>This pawn's productive capabilities are on the rise. Increasing this too high may lead to a catatonic 'productive bliss' state.</description>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -51,6 +53,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
 		<label>production increasing</label>
+		<description>This pawn's productive capabilities are on the rise. Increasing this too high may lead to a catatonic 'productive bliss' state.</description>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -74,6 +77,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
 		<label>production increasing</label>
+		<description>This pawn's productive capabilities are on the rise. Increasing this too high may lead to a catatonic 'productive bliss' state.</description>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -97,6 +101,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
 		<label>production increasing</label>
+		<description>This pawn's productive capabilities are on the rise. Increasing this too high may lead to a catatonic 'productive bliss' state.</description>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
