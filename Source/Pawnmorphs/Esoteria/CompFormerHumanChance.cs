@@ -17,10 +17,13 @@ namespace Pawnmorph
         public CompProperties_FormerHumanChance Props => props as CompProperties_FormerHumanChance;
 
         /// <summary>
-        ///     called every tick after it's parent updates
+        /// called after the parent thing is spawned
         /// </summary>
-        public override void CompTick()
+        /// <param name="respawningAfterLoad">if set to <c>true</c> [respawning after load].</param>
+        public override void PostSpawnSetup(bool respawningAfterLoad)
         {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if (respawningAfterLoad) return; 
             RandUtilities.PushState();
 
             if (!triggered)
@@ -37,18 +40,19 @@ namespace Pawnmorph
                 }
             }
 
-            TransformerUtility.RemoveHediffIfPermanentlyFeral(parent as Pawn, HediffDef.Named("TransformedHuman"));
 
             RandUtilities.PopState();
+
         }
 
+        
         /// <summary>
         ///     called to save/load data
         /// </summary>
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look(ref triggered, nameof(triggered));
+            Scribe_Values.Look(ref triggered, nameof(triggered)); 
         }
 
 

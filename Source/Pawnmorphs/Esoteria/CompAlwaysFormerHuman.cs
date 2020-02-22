@@ -13,27 +13,29 @@ namespace Pawnmorph
         private CompProperties_AlwaysFormerHuman Props => props as CompProperties_AlwaysFormerHuman;
 
         /// <summary>
-        ///     called every tick after it's parent updates
+        /// called after the parent thing is spawned 
         /// </summary>
-        public override void CompTick()
+        /// <param name="respawningAfterLoad">if set to <c>true</c> [respawning after load].</param>
+        public override void PostSpawnSetup(bool respawningAfterLoad)
         {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if (respawningAfterLoad) return;
+
             if (!triggered)
             {
                 triggered = true;
 
-                if (((Pawn) parent).health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman)) return;
+                if (((Pawn)parent).health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman)) return;
 
                 float sL = Rand.Value;
-                FormerHumanUtilities.MakeAnimalSapient((Pawn) parent, sL);
-                FormerHumanUtilities.NotifyRelatedPawnsFormerHuman((Pawn) parent,
+                FormerHumanUtilities.MakeAnimalSapient((Pawn)parent, sL);
+                FormerHumanUtilities.NotifyRelatedPawnsFormerHuman((Pawn)parent,
                                                                    FormerHumanUtilities.RELATED_WILD_FORMER_HUMAN_LETTER,
                                                                    FormerHumanUtilities
                                                                       .RELATED_WILD_FORMER_HUMAN_LETTER_LABEL);
             }
-
-            TransformerUtility.RemoveHediffIfPermanentlyFeral(parent as Pawn, Props.hediff);
         }
-
+        
         /// <summary>
         ///     Posts the expose data.
         /// </summary>
