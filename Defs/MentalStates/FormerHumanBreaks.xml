@@ -5,8 +5,13 @@
         <baseCommonality>0.333</baseCommonality>
         <intensity>Major</intensity>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction">
-                <sapienceRange>0~0.6</sapienceRange>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <filter>
+                    <isBlackList>true</isBlackList>
+                    <filterList>
+                        <li>Sapient</li>
+                    </filterList>
+                </filter>
             </li>
             <li Class="Pawnmorph.DefExtensions.InstinctEffector">
                 <baseInstinctOffset>20</baseInstinctOffset>
@@ -33,8 +38,13 @@
         <baseInspectLine>Mental state: Hunting</baseInspectLine>
         <allowBeatfire>true</allowBeatfire>
         <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.SapientAnimalRestriction">
-                <sapienceRange>0.0~0.6</sapienceRange>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <filter>
+                    <isBlackList>true</isBlackList>
+                    <filterList>
+                        <li>Sapient</li>
+                    </filterList>
+                </filter>
             </li>
             <li Class="Pawnmorph.DefExtensions.InstinctEffector">
                 <baseInstinctOffset>20</baseInstinctOffset>
