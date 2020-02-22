@@ -661,10 +661,16 @@ namespace Pawnmorph
         {
             animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
             Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            var fTracker = animal.GetFormerHumanTracker(); 
             if (fHumanHediff == null)
             {
                 Log.Error(nameof(fHumanHediff));
                 return;
+            }
+
+            if (fTracker == null)
+            {
+                Log.Error($"trying to make {PMThingUtilities.GetDebugLabel(animal)} sapient but they have no former human tracker!");
             }
 
             fHumanHediff.Severity = 1;
@@ -706,6 +712,13 @@ namespace Pawnmorph
                 return;
             }
 
+            //now give the animal a name 
+            SapienceLevel sapienceQLevel = GetQuantizedSapienceLevel(sapienceLevel);
+            if (sapienceQLevel == SapienceLevel.Sapient || sapienceQLevel == SapienceLevel.MostlySapient)
+                animal.Name = lPawn.Name;
+            else
+                animal.Name = new NameSingle(animal.LabelShort);
+
             //tame the animal if they are wild and related to a colonist
             if (animal.Faction == null && animal.GetCorrectMap() != null)
             {
@@ -721,23 +734,16 @@ namespace Pawnmorph
 
             if (nC == null)
             {
-                Log.Error(nameof(nC));
+                if (sapienceLevel > 0)
+                {
+                    Log.Error($"unable to set sapient level on {animal.Name} while trying to make the sapient because they have no control need");
+                    
+                }
                 return;
             }
 
             nC.SetInitialLevel(sapienceLevel);
-            sapienceLevel = nC.SeekerLevel;
 
-            //now give the animal a name 
-            var sapienceQLevel = GetQuantizedSapienceLevel(sapienceLevel);
-            if (sapienceQLevel == SapienceLevel.Sapient || sapienceQLevel == SapienceLevel.MostlySapient)
-            {
-                animal.Name = lPawn.Name; 
-            }
-            else
-            {
-                animal.Name = new NameSingle(animal.LabelShort);
-            }
 
             if (animal.training == null) return;
 
