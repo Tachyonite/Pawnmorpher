@@ -118,7 +118,7 @@ namespace Pawnmorph.Factions
 
                     foreach (BodyPartDef part in mGiver.parts) addedPartsSet.Add(part);
                     toGive.Add(mGiver);
-                    i += Mathf.Min(1, mGiver.parts.Count); //make sure we count the number of mutations given correctly 
+                    i ++; //only count 1 regardless of what was added 
                     break;
                 }
             }
