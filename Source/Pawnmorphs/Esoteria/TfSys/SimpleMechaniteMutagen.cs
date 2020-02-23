@@ -4,6 +4,7 @@
 using System;
 using System.Linq;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -269,10 +270,10 @@ namespace Pawnmorph.TfSys
             //do NOT transfer the bond relationship to humans, Rimworld doesn't like that 
             AddReversionThought(spawned, tfHumanHediff.CurStageIndex);
 
-            spawned.Faction.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
+            spawned.Faction?.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
 
-            ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus); 
-
+            ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus);
+            spawned.health.AddHediff(MorphTransformationDefOf.StabiliserHigh); //add stabilizer on reversion 
 
             animal.Destroy();
             return true;
