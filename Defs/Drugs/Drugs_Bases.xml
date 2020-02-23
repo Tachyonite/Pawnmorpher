@@ -25,6 +25,12 @@
 			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
 			<chairSearchRadius>8</chairSearchRadius>
 		</ingestible>
+		<recipeMaker>
+			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<workSkill>Intellectual</workSkill>
+			<effectWorking>Cook</effectWorking>
+			<soundWorking>Recipe_CookMeal</soundWorking>
+		</recipeMaker>
 		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
 	</ThingDef>
 
