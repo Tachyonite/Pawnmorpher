@@ -83,14 +83,14 @@ namespace Pawnmorph.TfSys
         /// <value>The originals debug string.</value>
         public IEnumerable<string> OriginalsDebugString
         {
-            get { return OriginalPawns.Select(p => p?.Name.ToStringFull ?? "[Null]"); }
+            get { return OriginalPawns.Select(p => p?.ThingID ?? "[Null]"); }
         }
 
         /// <summary>Gets the transformed debug string.</summary>
         /// <value>The transformed debug string.</value>
         public IEnumerable<string> TransformedDebugString
         {
-            get { return TransformedPawns.Select(p => p?.Name.ToStringFull ?? "[Null]"); }
+            get { return TransformedPawns.Select(p => p?.ThingID ?? "[Null]"); }
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
@@ -174,7 +174,23 @@ namespace Pawnmorph.TfSys
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <returns>if the pawn is the original pawn, transformed pawn, or null if neither</returns>
-        public abstract TransformedStatus? GetStatus(Pawn pawn);
+        public TransformedStatus? GetStatus(Pawn pawn)
+        {
+            //checking thingID manually because SaveReference seems to make new pawns when loading sometimes 
+            //this is hacky, but can't come up with a better solution
+
+            foreach (Pawn originalPawn in OriginalPawns) 
+            {
+                if (originalPawn == pawn || originalPawn?.ThingID == pawn?.ThingID) return TransformedStatus.Original;
+            }
+
+            foreach (Pawn tfPawn in TransformedPawns)
+            {
+                if (tfPawn == pawn || tfPawn?.ThingID == pawn?.ThingID) return TransformedStatus.Transformed; 
+            }
+
+            return null; 
+        }
 
         /// <summary>generates a debug string</summary>
         /// <returns></returns>
@@ -245,24 +261,13 @@ namespace Pawnmorph.TfSys
         /// </value>
         public override bool CanRevert => animal.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman);
 
-        /// <summary>
-        ///     Gets the status of the given pawn with regards to this instance
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns>if the pawn is the original pawn, transformed pawn, or null if neither</returns>
-        public override TransformedStatus? GetStatus(Pawn pawn)
-        {
-            if (pawn == original) return TransformedStatus.Original;
-            if (pawn == animal) return TransformedStatus.Transformed;
-            return null;
-        }
-
+        
         /// <summary>Exposes the data.</summary>
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Deep.Look(ref original, true, nameof(original));
-            Scribe_References.Look(ref animal, nameof(animal), true);
+            Scribe_References.Look(ref animal, nameof(animal), false);
             Scribe_References.Look(ref factionResponsible, nameof(factionResponsible));
             Scribe_Values.Look(ref reactionStatus, nameof(reactionStatus)); 
         }
@@ -313,17 +318,7 @@ namespace Pawnmorph.TfSys
         /// </value>
         public override bool CanRevert => meld.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman);
 
-        /// <summary>
-        ///     Gets the status of the given pawn with regards to this instance
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns>if the pawn is the original pawn, transformed pawn, or null if neither</returns>
-        public override TransformedStatus? GetStatus(Pawn pawn)
-        {
-            if (originals?.Contains(pawn) ?? false) return TransformedStatus.Original;
-            if (pawn == meld) return TransformedStatus.Transformed;
-            return null;
-        }
+        
 
         /// <summary>Exposes the data.</summary>
         public override void ExposeData()

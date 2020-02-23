@@ -85,7 +85,6 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///     The remove comp.
         /// </value>
-        [NotNull]
         public RemoveFromPartCompProperties RemoveComp => _rmComp;
 
         /// <summary>Gets a value indicating whether this instance is restricted to special PawnKindGroups</summary>

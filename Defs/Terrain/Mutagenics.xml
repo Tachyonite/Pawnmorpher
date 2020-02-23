@@ -22,7 +22,7 @@
 			<mineableThing>Mutanite</mineableThing>
 			<mineableDropChance>1</mineableDropChance>
 			<mineableYield>1</mineableYield>
-			<mineableScatterCommonality>0.05</mineableScatterCommonality>
+			<mineableScatterCommonality>0.0</mineableScatterCommonality>
 			<isNaturalRock>false</isNaturalRock>
 		</building>
 	</ThingDef>

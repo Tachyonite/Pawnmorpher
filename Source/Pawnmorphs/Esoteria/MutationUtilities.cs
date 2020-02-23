@@ -442,11 +442,14 @@ namespace Pawnmorph
         /// <param name="bDef">The b definition.</param>
         /// <returns></returns>
         public static IEnumerable<VTuple<BodyPartRecord, MutationLayer>> GetAllMutationSites(
-            [NotNull] this MutationDef mutationDef, BodyDef bDef)
+            [NotNull] this MutationDef mutationDef, [NotNull] BodyDef bDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            foreach (BodyPartRecord bodyPartRecord in bDef.AllParts)
-                if (mutationDef.parts.MakeSafe().Contains(bodyPartRecord.def))
+            if (bDef == null) throw new ArgumentNullException(nameof(bDef));
+            if(mutationDef.RemoveComp == null) yield break;
+            
+            foreach (BodyPartRecord bodyPartRecord in bDef.AllParts.MakeSafe())
+                if (mutationDef.parts.MakeSafe().Contains(bodyPartRecord?.def))
                     yield return new VTuple<BodyPartRecord, MutationLayer>(bodyPartRecord, mutationDef.RemoveComp.layer);
         }
 
