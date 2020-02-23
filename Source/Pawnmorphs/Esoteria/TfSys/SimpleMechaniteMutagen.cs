@@ -47,8 +47,19 @@ namespace Pawnmorph.TfSys
                         GameComp.RemoveInstance(inst);
                         return true;
                     }
-
+                    else
+                    {
+                        Log.Warning($"could not revert original pawn instance {inst}"); 
+                    }
+                else
+                {
+                    Log.Warning($"{nameof(SimpleMechaniteMutagen)} received \"{status.First?.GetType()?.Name ??"NULL"}\" but was expecting \"{nameof(TransformedPawnSingle)}\"");
+                }
                 return false;
+            }
+            else
+            {
+                Log.Warning($"unable to find status for transformed pawn {transformedPawn.ThingID}");
             }
 
             Hediff formerHuman =
@@ -63,7 +74,7 @@ namespace Pawnmorph.TfSys
 
             pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurLevel;
             pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel;
-            
+            Log.Message($"going to spawn {pawnTf.Name} {pawnTf.KindLabel}");
             var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.GetCorrectPosition(), transformedPawn.GetCorrectMap());
             spawned.equipment.DestroyAllEquipment();
             spawned.apparel.DestroyAll();
@@ -241,14 +252,21 @@ namespace Pawnmorph.TfSys
         protected override bool TryRevertImpl(TransformedPawnSingle transformedPawn)
         {
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
-            if (!transformedPawn.IsValid) return false;
+            if (!transformedPawn.IsValid)
+            {
+                Log.Warning(nameof(SimpleMechaniteMutagen) + " received an invalid transformed pawn to revert");
+                return false;
+            }
 
 
             Pawn animal = transformedPawn.animal;
 
             Hediff tfHumanHediff = animal?.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             if (tfHumanHediff == null) return false;
-            var rFaction = transformedPawn.FactionResponsible; 
+            var rFaction = transformedPawn.FactionResponsible;
+
+
+            Log.Message($"going to spawn {transformedPawn.original.Name} {transformedPawn.original.KindLabel}");
             var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
 
             if (spawned.Faction != animal.Faction && rFaction == null) //if the responsible faction is null (no one knows who did it) have the reverted pawn join that faction   
