@@ -53,7 +53,7 @@ namespace Pawnmorph.TfSys
                     }
                 else
                 {
-                    Log.Warning($"{nameof(SimpleMechaniteMutagen)} received \"{status.First?.GetType()?.Name ??"NULL"}\" but was expecting \"{nameof(TransformedPawnSingle)}\"");
+                    Log.Warning($"{nameof(SimpleMechaniteMutagen)} received \"{status.Item1?.GetType()?.Name ??"NULL"}\" but was expecting \"{nameof(TransformedPawnSingle)}\"");
                 }
                 return false;
             }
