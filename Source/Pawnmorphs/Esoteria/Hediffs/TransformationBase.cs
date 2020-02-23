@@ -202,6 +202,12 @@ namespace Pawnmorph.Hediffs
             
         }
 
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+            pawn.CheckRace(); 
+        }
+
         /// <summary>
         /// set to true if this instance should be removed before severity reaches 0 
         /// </summary>
