@@ -191,9 +191,8 @@
 		</graphicData>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
-					<fullTf>true</fullTf>
-					<morphCategory>Farm</morphCategory>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Powerful</animalClass>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>

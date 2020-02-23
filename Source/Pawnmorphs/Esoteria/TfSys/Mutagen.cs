@@ -18,14 +18,11 @@ namespace Pawnmorph.TfSys
     /// </summary>
     public abstract class Mutagen
     {
-        //some convenience stuff 
-
-        private static PawnmorphGameComp _comp;
 
         //do this here so all the derived code doesn't have to         
         /// <summary>Gets the game comp.</summary>
         /// <value>The game comp.</value>
-        protected static PawnmorphGameComp GameComp => _comp ?? (_comp = Find.World.GetComponent<PawnmorphGameComp>());
+        protected PawnmorphGameComp GameComp => Find.World.GetComponent<PawnmorphGameComp>();
 
         /// <summary>
         /// tries to infer the faction responsible for turning the original pawn into an animal 

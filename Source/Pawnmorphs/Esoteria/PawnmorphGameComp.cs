@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -43,7 +44,12 @@ namespace Pawnmorph
         {
             get
             {
-                if (_transformedPawns == null) _transformedPawns = new List<TransformedPawn>();
+                if (_transformedPawns == null)
+                {
+                    
+                    Log.Warning(nameof(_transformedPawns) + " is null! ");
+                    _transformedPawns = new List<TransformedPawn>();
+                }
 
                 return _transformedPawns;
             }
@@ -163,9 +169,10 @@ namespace Pawnmorph
         [CanBeNull]
         public Tuple<TransformedPawn, TransformedStatus> GetTransformedPawnContaining(Pawn pawn)
         {
-            foreach (var transformedPawn in TransformedPawnsLst)
+            foreach (TransformedPawn transformedPawn in TransformedPawns)
             {
-                var status = transformedPawn.GetStatus(pawn);
+                TransformedStatus? status = transformedPawn.GetStatus(pawn);
+
                 if (status != null) return new Tuple<TransformedPawn, TransformedStatus>(transformedPawn, status.Value);
             }
 

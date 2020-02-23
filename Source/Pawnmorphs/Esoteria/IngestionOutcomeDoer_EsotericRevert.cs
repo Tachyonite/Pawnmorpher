@@ -21,8 +21,6 @@ namespace Pawnmorph
         /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
-            var comp = Find.World.GetComponent<PawnmorphGameComp>();
-            Tuple<TransformedPawn, TransformedStatus> tuple = comp.GetTransformedPawnContaining(pawn);
 
             foreach (MutagenDef mutagenDef in DefDatabase<MutagenDef>.AllDefs)
             {
@@ -31,9 +29,7 @@ namespace Pawnmorph
 
                 if (mutagenDef.MutagenCached.TryRevert(pawn))
                 {
-                    TransformedPawn inst = tuple?.First;
-                    if (inst != null) comp.RemoveInstance(inst);
-
+                    
                     return;
                 }
             }

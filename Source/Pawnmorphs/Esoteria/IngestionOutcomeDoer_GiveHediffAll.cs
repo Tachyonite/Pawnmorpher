@@ -24,11 +24,9 @@ namespace Pawnmorph
         /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
-            StringBuilder builder = new StringBuilder();
             foreach (HediffDef h in AllCompleteDefs.Concat(AllPartialDefs))
             {
                 if (!h.CanInfect(pawn)) continue;
-                builder.AppendLine($"adding {h.defName}");
 
                 Hediff hediff = HediffMaker.MakeHediff(h, pawn);
 
@@ -42,7 +40,6 @@ namespace Pawnmorph
                 hediff.Severity = num;
                 pawn.health.AddHediff(hediff, null, null);
             }
-            Log.Message(builder.ToString());
         }
     }
 }
