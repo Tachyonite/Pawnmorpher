@@ -244,8 +244,13 @@ namespace Pawnmorph
 
         
 
-        private static MorphDef GetChimeraRace(AnimalClassBase hInfluence)
+        private static MorphDef GetChimeraRace([CanBeNull] AnimalClassBase hInfluence)
         {
+            if (hInfluence == null)
+            {
+                return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
+            }
+
             var morph = hInfluence as MorphDef;
             //if the highest influence isn't a morph pick a random morph from the animal class
             morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
