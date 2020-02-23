@@ -1,0 +1,20 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/JoyGiver.xsd">
+    <JoyGiverDef>
+        <defName>HuntingForMushrooms</defName>
+        <giverClass>Pawnmorph.Joy.Giver_TerrainProduction</giverClass>
+        <baseChance>1</baseChance>
+        <jobDef>PMHuntingForMushrooms</jobDef>
+        <joyKind>Meditative</joyKind>
+        <modExtensions>
+          <li Class="Pawnmorph.DefExtensions.MutationRestriction">
+            <mutationFilter>
+              <isBlackList>false</isBlackList>
+              <filterList>
+                <li>EtherBoarSnout</li>
+                <li>EtherPigSnout</li>
+              </filterList>
+            </mutationFilter>
+          </li>
+        </modExtensions>
+      </JoyGiverDef>
+</Defs>

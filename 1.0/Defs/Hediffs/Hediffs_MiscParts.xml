@@ -1,0 +1,334 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/MutationDef.xsd">
+	<!--Morph-specific parts are located in the individual morph's files-->
+	
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherDigitigradeLeg</defName>
+		<label>digitigrade</label>
+		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
+		<parts>
+			<li>Leg</li>
+		</parts>
+		<classInfluence>Carnivora</classInfluence>
+		<mutationTale>LegBecameDigitgrade</mutationTale>
+		<mutationMemory>EtherDigitigradeLeg</mutationMemory>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>crooked</labelOverride>
+				<description>[PAWN_nameDef]'s leg seems to have degraded into something that looks awfully uncomfortable to walk on.</description>
+				<minSeverity>-1</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.4</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>readjusting</labelOverride>
+				<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.3</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>unfamiliar</label>
+				<minSeverity>0.3</minSeverity>
+				<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. They'll need some time to get used to the new shape.</description>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherUnguligradeLeg</defName>
+		<label>unguligrade</label>
+		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
+		<parts>
+			<li>Leg</li>
+		</parts>
+		<classInfluence>Ungulate</classInfluence>
+		<mutationTale>LegBecameDigitgrade</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>crooked</labelOverride>
+				<description>[PAWN_nameDef]'s leg seems to have degraded into something that looks awfully uncomfortable to walk on.</description>
+				<minSeverity>-1</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.4</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>readjusting</labelOverride>
+				<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.3</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>unfamiliar</label>
+				<minSeverity>0.3</minSeverity>
+				<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. They'll need some time to get used to the new shape.</description>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherPawFoot</defName>
+		<label>paw</label>
+		<description>[PAWN_nameDef]'s feet have stretched out, growing a coat of fur, the toes shortening to clawed digits.</description>
+		<classInfluence>PawFooted</classInfluence>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<mutationTale>FootBecomesCanidPaw</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>clawed</labelOverride>
+				<description>[PAWN_nameDef]'s nails have lengthened and turned darker, now blunt claws.</description>
+				<minSeverity>0.1</minSeverity>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>padded</labelOverride>
+				<description>Pads have begun to develop on the ball and toes of [PAWN_nameDef]'s foot, making it slightly easier to move over rough terrain.</description>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>footpaw</labelOverride>
+				<description>This foot more closely resembles a paw, but still retains some humanlike features to aid stability.</description>
+				<minSeverity>0.7</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.03</offset>
+					</li>
+				</capMods>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>paw</labelOverride>
+				<minSeverity>0.8</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherClovenHoofFoot</defName>
+		<description>[PAWN_nameDef]'s toenails have thickened and grown into a veritable hoof, with a split down the middle.</description>
+		<label>cloven hoof</label>
+		<mutationMemory>EtherClovenHoofFoot</mutationMemory>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<classInfluence>EvenToedUngulate</classInfluence>
+		<mutationTale>FootBecomesHooves</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>hard nails</labelOverride>
+				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
+				<minSeverity>0.1</minSeverity>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>hooflike</labelOverride>
+				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
+				<minSeverity>0.5</minSeverity>
+				<stopChance>0.3</stopChance>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.8</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherUnclovenHoofFoot</defName>
+		<description>[PAWN_nameDef]'s feet have shifted into a single-toed hoof, like a horse's.</description>
+		<label>hoof</label>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<classInfluence>OddToedUngulate</classInfluence>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>hard nails</labelOverride>
+				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
+				<minSeverity>0.1</minSeverity>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>hooflike</labelOverride>
+				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
+				<minSeverity>0.5</minSeverity>
+				<stopChance>0.3</stopChance>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.8</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherTrotterFoot</defName>
+		<label>trotter</label>
+		<description>Smaller hooves now sit where [PAWN_nameDef]'s feet once were. Pointed things, they are.</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<classInfluence>Suid</classInfluence>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>hard nails</labelOverride>
+				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
+				<minSeverity>0.1</minSeverity>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>hooflike</labelOverride>
+				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
+				<minSeverity>0.5</minSeverity>
+				<stopChance>0.3</stopChance>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.02</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>trotter</labelOverride>
+				<description>[PAWN_nameDef]'s foot has lengthened and broadened into a full trotter, with the heel much longer than before.</description>
+				<minSeverity>0.8</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

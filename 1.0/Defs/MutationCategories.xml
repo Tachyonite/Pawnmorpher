@@ -1,0 +1,31 @@
+<Defs>
+    <Pawnmorph.MutationCategoryDef> <!-- meant for mutations like fur, scales, ect that do not alter the body shape greatly -->
+        <defName>Minor</defName> 
+    </Pawnmorph.MutationCategoryDef>
+
+    <Pawnmorph.MutationCategoryDef>
+        <defName>Major</defName>
+    </Pawnmorph.MutationCategoryDef>
+
+    <Pawnmorph.MutationCategoryDef>
+        <defName>Extreme</defName>
+    </Pawnmorph.MutationCategoryDef>
+
+    <Pawnmorph.MutationCategoryDef> 
+        <defName>Combat</defName>
+    </Pawnmorph.MutationCategoryDef>
+    <Pawnmorph.MutationCategoryDef>
+        <defName>Productive</defName>
+    </Pawnmorph.MutationCategoryDef>
+
+        
+    <Pawnmorph.MutationCategoryDef>
+        <defName>Exotic</defName>
+        <restricted>true</restricted>
+    </Pawnmorph.MutationCategoryDef>
+    <Pawnmorph.MutationCategoryDef>
+        <defName>Powerful</defName>
+        <restricted>true</restricted>
+    </Pawnmorph.MutationCategoryDef>
+
+</Defs> 

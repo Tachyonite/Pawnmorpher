@@ -1,0 +1,249 @@
+<Defs>
+
+	<HediffDef Name="ObsoletePart" ParentName="PawnmorphPart" Abstract="true">
+		<hediffClass>Pawnmorph.Hediffs.ObsoletePart</hediffClass>
+	</HediffDef>
+
+<!--These hediffs are currently unused but had a purpose in pervious versions of the mod and old saves may still contain them-->
+	<HediffDef ParentName="ObsoletePart">
+		<defName>EtherMuzzle</defName>
+		<label>muzzle (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.50</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="ObsoletePart">
+		<defName>EtherSnout</defName>
+		<label>snout (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.40</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</HediffDef>
+	
+	<HediffDef ParentName="ObsoletePart">
+		<defName>EtherClaws</defName>
+		<label>clawed (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>tip</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>15.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</HediffDef>
+	
+	<HediffDef ParentName="ObsoletePart">
+		<defName>EtherTail</defName>
+		<label>tail (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.01</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="ObsoletePart">
+		<defName>EtherFurryEar</defName>
+		<label>fuzzy (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="ObsoletePart">
+		<defName>EtherPointedEar</defName>
+		<label>pointed (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="ObsoletePart">
+		<defName>EtherDogEar</defName>
+		<label>floppy (depricated)</label>
+		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
+		<stages>
+			<li>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<HediffDef>
+		<defName>EtherProductiveBliss</defName>
+		<label>etherbroken</label>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>		
+	</HediffDef>
+	
+    <HediffDef>
+        <defName>EtherBroken</defName>
+        <label>etherbroken</label>
+        <hediffClass>Pawnmorph.Hediff_ProductionThought</hediffClass>
+        <defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+        <isBad>false</isBad>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.30</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <HediffDef>
+        <defName>EtherBond</defName>
+        <label>etherbond</label>
+        <hediffClass>Pawnmorph.Hediff_ProductionThought</hediffClass>
+        <defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+        <isBad>false</isBad>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+	</HediffDef>
+	
+	<HediffDef ParentName="PawnmorphPart">
+		<hediffClass>HediffWithComps</hediffClass>
+		<defName>EtherColdBlooded</defName>
+		<label>cold blooded</label>
+		<description>[PAWN_nameDef]'s body no longer naturally regulates its body temperature.</description>
+		<stages>
+			<li>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>10</ComfyTemperatureMin>
+					<ComfyTemperatureMax>10</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>mech-blooded</labelOverride>
+				<description>[PAWN_nameDef]'s bloodstream has infused with mechanites, which more efficiently regulate body temperature.</description>
+				<minSeverity>2</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-15</ComfyTemperatureMin>
+					<ComfyTemperatureMax>15</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

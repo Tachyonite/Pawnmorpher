@@ -1,0 +1,34 @@
+<Defs>
+	<ConceptDef>
+		<defName>SerumExtraction</defName>
+		<label>PM: Getting Started</label>
+		<priority>11</priority>
+		<needsOpportunity>false</needsOpportunity>
+		<helpText>Find, buy or loot two chookmorph eggs and five cowmorph milk, or find some chaobulbs. At a drug lab, you'll be able to create mutagenic slurry, which can then be made into specific mutagen types.</helpText>
+	</ConceptDef>
+	
+	<ConceptDef>
+		<defName>MergingPawns</defName>
+		<label>PM: Merging Pawns</label>
+		<priority>11</priority>
+		<needsOpportunity>false</needsOpportunity>
+		<helpText>Once you have two chambers linked to a modulator, send two pawns inside them. On the modulator, select the newly unlocked option 'merge chambers' (which can still be picked if the two pawns are already mutating) and wait. This option won't show up if there aren't pawns in the chambers.</helpText>
+	</ConceptDef>
+	
+	<ConceptDef>
+		<defName>Chaomorphs</defName>
+		<label>PM: Chaomorphs</label>
+		<priority>11</priority>
+		<needsOpportunity>false</needsOpportunity>
+		<helpText>Slurries should never be fed to pawns. Please don't do this, they're very genetically unstable and you may end up with a CHAOMORPH, a terrifying creature with a high production capacity.</helpText>
+	</ConceptDef>
+	
+	<ConceptDef>
+		<defName>Tagging</defName>
+		<label>PM: Tagging</label>
+		<priority>11</priority>
+		<needsOpportunity>false</needsOpportunity>
+		<helpText>If you want to make creatures in the mutagenic chamber, you'll need a tagging rifle, which can be made at a machining table. Equip it, then go and shoot animals with it to 'tag' them, thereby adding them to the database of creatures you can turn people into with the chambers. Note that if you have no tagged creatures, you will still be able to make chaomorphs in chambers by default.</helpText>
+	</ConceptDef>
+	
+</Defs>

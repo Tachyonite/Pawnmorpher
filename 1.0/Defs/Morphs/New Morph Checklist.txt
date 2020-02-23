@@ -1,0 +1,7 @@
+New morphs need:
+-Morph folder based on the pre-existing morphs.
+-A graphics patch for new parts.
+-Staged productive parts need an udderpill effect.
+-Added to the production, combat or powerful serums.
+-Pawntypes added to GunshotTf (skip if pawn is powerful).
+-Injector added to trader.

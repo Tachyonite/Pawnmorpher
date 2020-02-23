@@ -1,0 +1,39 @@
+<Defs>
+    <ThingDef ParentName="ResourceBase">
+        <defName>Morphsilk</defName>
+        <label>morphsilk</label>
+        <description>scraps of fabric that has been impregnated with mutagenic nanites, despite its improved flexibility and durability compared to regular fabric, it’s not recommended to make clothing out of this.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/Morphsilk</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <StuffPower_Armor_Sharp>0.46</StuffPower_Armor_Sharp>
+            <StuffPower_Armor_Blunt>0</StuffPower_Armor_Blunt>
+            <StuffPower_Armor_Heat>0.28</StuffPower_Armor_Heat>
+            <StuffPower_Insulation_Cold>25</StuffPower_Insulation_Cold>
+            <StuffPower_Insulation_Heat>25</StuffPower_Insulation_Heat>
+            <MaxHitPoints>140</MaxHitPoints>
+            <MarketValue>2.5</MarketValue>
+            <Mass>0.026</Mass>
+            <Flammability>1.2</Flammability>
+            <DeteriorationRate>2</DeteriorationRate>
+            <MutagenSensitivity_Stuff>0.1</MutagenSensitivity_Stuff>
+        </statBases>
+
+        <stuffProps>
+            <color>(0.74,1,0.5)</color>
+            <statFactors>
+                <Flammability>1.2</Flammability>
+            </statFactors>
+            <categories>
+                <li>Fabric</li>
+            </categories>
+            <commonality>0.4</commonality>
+        </stuffProps>
+        <thingCategories>
+            <li>Textiles</li>
+        </thingCategories>
+    </ThingDef>
+
+</Defs>

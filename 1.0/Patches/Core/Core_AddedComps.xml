@@ -1,0 +1,45 @@
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!--add comps node only if another mod doesn't add it first  -->
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Human"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
+		<value>
+
+			<li Class="Pawnmorph.MorphTrackingCompProperties"></li>
+			<li>
+				<compClass>Pawnmorph.GraphicSys.InitialGraphicsComp</compClass>
+			</li>
+			<li>
+				<compClass>Pawnmorph.GraphicSys.GraphicsUpdaterComp</compClass>
+			</li>
+
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>Pawnmorph.AspectTracker</compClass>
+			</li>
+			<li>
+				<compClass>Pawnmorph.MutationTracker</compClass>
+			</li>
+		</value>
+	</Operation>
+		
+</Patch>

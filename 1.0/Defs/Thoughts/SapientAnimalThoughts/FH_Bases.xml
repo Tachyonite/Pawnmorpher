@@ -1,0 +1,6 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Name="FH_MemoryBase" Abstract="true">
+        <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+        <durationDays>1</durationDays>
+    </ThoughtDef>
+</Defs>
