@@ -21,16 +21,21 @@ namespace Pawnmorph
         /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
+            var gComp = Find.World.GetComponent<PawnmorphGameComp>();
 
-            foreach (MutagenDef mutagenDef in DefDatabase<MutagenDef>.AllDefs)
+            var status = gComp.GetPawnStatus(pawn);
+
+            if (status == TransformedStatus.Transformed)
             {
-                if (blackList.Contains(mutagenDef))
-                    return; // Make it so this reverted can not revert certain kinds of transformations.
-
-                if (mutagenDef.MutagenCached.TryRevert(pawn))
+                foreach (MutagenDef mutagenDef in DefDatabase<MutagenDef>.AllDefs)
                 {
+                    if (blackList.Contains(mutagenDef))
+                        return; // Make it so this reverted can not revert certain kinds of transformations.
+                    if (mutagenDef.MutagenCached.TryRevert(pawn))
+                    {
                     
-                    return;
+                        return;
+                    }
                 }
             }
 
