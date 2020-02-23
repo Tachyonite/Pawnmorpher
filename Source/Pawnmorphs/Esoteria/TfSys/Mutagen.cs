@@ -18,9 +18,6 @@ namespace Pawnmorph.TfSys
     /// </summary>
     public abstract class Mutagen
     {
-        //some convenience stuff 
-
-        private static PawnmorphGameComp _comp;
 
         //do this here so all the derived code doesn't have to         
         /// <summary>Gets the game comp.</summary>
