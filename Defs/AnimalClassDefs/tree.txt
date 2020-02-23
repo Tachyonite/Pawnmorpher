@@ -57,11 +57,11 @@
   |   | | |-FennecFoxMorph
   |   | | \-FoxMorph
   |   | |-Wolf
+  |   | | |-WolfMorph
+  |   | | \-ArcticWolfMorph
   |   | |-HuskyMorph
   |   | |-LabradorRetrieverMorph
   |   | |-WargMorph
-  |   | |-ArcticWolfMorph
-  |   | |-WolfMorph
   |   | \-YorkshireTerrierMorph
   |   \-Feline
   |     |-Leopard
