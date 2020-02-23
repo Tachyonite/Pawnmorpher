@@ -254,6 +254,9 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        /// <summary>
+        /// called when the hediff is removed.
+        /// </summary>
         public override void PostRemoved()
         {
             base.PostRemoved();
