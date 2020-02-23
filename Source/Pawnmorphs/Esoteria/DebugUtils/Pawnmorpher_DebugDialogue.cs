@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
@@ -194,6 +195,22 @@ namespace Pawnmorph.DebugUtils
             return outLst;
         }
 
+        void RunRaceCheck(Pawn pawn)
+        {
+            if (pawn == null) return;
+            if (pawn.IsAnimalOrMerged()) return;
+            var oldRace = pawn.def;
+            pawn.CheckRace();
+            if (pawn.def == oldRace)
+            {
+                Log.Message($"no change in {pawn.Name}");
+            }
+            else
+            {
+                Log.Message($"{pawn.Name} was {oldRace.defName} and is now {pawn.def.defName}");
+            }
+        }
+
 
         private void GivePawnRandomMutations([CanBeNull] MorphDef morph)
         {
@@ -262,10 +279,20 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        void RunRaceCheck()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonistsAndPrisonersSpawned)
+            {
+                RunRaceCheck(pawn); 
+            }
+        }
+
         private void ListPlayOptions()
         {
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
             DebugAction("give random mutations", GetRandomMutationsOptions);
+            DebugAction("run race check on all pawn", RunRaceCheck); 
             DebugToolMapForPawns("force full transformation", ForceTransformation);
             DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics);
             DebugToolMapForPawns("Remove Aspect", DoRemoveAspectsOption);
@@ -274,6 +301,7 @@ namespace Pawnmorph.DebugUtils
             DebugToolMapForPawns("Try Random Hunt", TryStartRandomHunt); 
             DebugToolMapForPawns("Make pawn permanently feral", MakePawnPermanentlyFeral);
             DebugToolMapForPawns("Restart all mutation progression", ResetMutationProgression);
+            DebugToolMapForPawns("Run Race Check", RunRaceCheck); 
         }
 
         private void MakePawnPermanentlyFeral(Pawn obj)
