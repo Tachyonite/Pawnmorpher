@@ -88,6 +88,7 @@ namespace Pawnmorph
         ///     The pawn.
         /// </value>
         public Pawn Pawn => (Pawn) parent;
+        
 
         /// <summary>
         ///     called every tick
@@ -95,7 +96,18 @@ namespace Pawnmorph
         public override void CompTick()
         {
             if (Pawn.IsHashIntervalTick(1400))
-                 Pawn.CheckRace(); //check the race every so often, but not too often 
+            {
+                RecalcIfNeeded();
+                if (TotalNormalizedInfluence < 0 || TotalNormalizedInfluence > 1)
+                {
+                    Log.Warning(nameof(TotalNormalizedInfluence) + $" is {TotalNormalizedInfluence}, recalculating mutation influences for {Pawn.Name}");
+                    RecalculateMutationInfluences();
+                }
+                Pawn.CheckRace(); //check the race every so often, but not too often 
+                
+            }
+
+            
         }
 
         /// <summary>
@@ -120,6 +132,47 @@ namespace Pawnmorph
         {
             base.Initialize(props);
             Assert(parent is Pawn, "parent is Pawn");
+        }
+
+        /// <summary>
+        /// Recalculates the mutation influences if needed.
+        /// </summary>
+        public void RecalcIfNeeded()
+        {
+            int counter=0; 
+            foreach (Hediff hediff in Pawn.health.hediffSet.hediffs)
+            {
+                if (hediff is Hediff_AddedMutation) counter++; 
+            }
+
+            if (counter != MutationsCount)
+            {
+                Log.Warning($"{Pawn.Name} mutation tracker has only {MutationsCount} tracked mutations but pawn actually has {counter}");
+                RecalculateMutationInfluences();
+            }
+
+        }
+
+        /// <summary>
+        ///     preforms a full recalculation of all mutation influences
+        /// </summary>
+        public void RecalculateMutationInfluences()
+        {
+            _mutationList.Clear();
+            _influenceDict.Clear();
+
+            _mutationList.AddRange(Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
+            MutationsCount = _mutationList.Count;
+            AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
+            TotalNormalizedInfluence = _influenceDict.Sum(s => s.Value) / MorphUtilities.MaxHumanInfluence;
+
+
+#pragma warning disable 0612
+#pragma warning disable 0618
+
+            HighestMorphInfluence = GetHighestMorphInfluence();
+#pragma warning restore 0618
+#pragma warning restore 0612
         }
 
         /// <summary> Called to notify this tracker that a mutation has been added. </summary>

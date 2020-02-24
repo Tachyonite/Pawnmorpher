@@ -79,6 +79,19 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
+        void RecalculateInfluence(Pawn pawn)
+        {
+            pawn?.GetComp<MutationTracker>()?.RecalculateMutationInfluences();
+        }
+
+        void AllRecalculateInfluence()
+        {
+            foreach (Pawn colonist in PawnsFinder.AllMaps_FreeColonists)
+            {
+                RecalculateInfluence(colonist); 
+            }
+        }
+
         void ResetMutationProgression( Pawn pawn)
         {
             var allHediffs = pawn?.health?.hediffSet?.hediffs;
@@ -292,6 +305,7 @@ namespace Pawnmorph.DebugUtils
         {
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
             DebugAction("give random mutations", GetRandomMutationsOptions);
+            DebugAction("recalculate all colonist mutation influence", AllRecalculateInfluence);
             DebugAction("run race check on all pawn", RunRaceCheck); 
             DebugToolMapForPawns("force full transformation", ForceTransformation);
             DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics);
@@ -301,6 +315,7 @@ namespace Pawnmorph.DebugUtils
             DebugToolMapForPawns("Try Random Hunt", TryStartRandomHunt); 
             DebugToolMapForPawns("Make pawn permanently feral", MakePawnPermanentlyFeral);
             DebugToolMapForPawns("Restart all mutation progression", ResetMutationProgression);
+            DebugToolMapForPawns("recalculate mutation influence", RecalculateInfluence); 
             DebugToolMapForPawns("Run Race Check", RunRaceCheck); 
         }
 
