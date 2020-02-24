@@ -407,6 +407,8 @@ namespace Pawnmorph
             [NotNull] this MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if(mutationDef.parts == null) yield break;
+            if(mutationDef.RemoveComp == null) yield break;
             foreach (BodyPartDef mutationDefPart in mutationDef.parts)
                 yield return new VTuple<BodyPartDef, MutationLayer>(mutationDefPart, mutationDef.RemoveComp.layer);
         }
