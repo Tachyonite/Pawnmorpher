@@ -166,13 +166,6 @@ namespace Pawnmorph
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
             TotalNormalizedInfluence = _influenceDict.Sum(s => s.Value) / MorphUtilities.MaxHumanInfluence;
 
-
-#pragma warning disable 0612
-#pragma warning disable 0618
-
-            HighestMorphInfluence = GetHighestMorphInfluence();
-#pragma warning restore 0618
-#pragma warning restore 0612
         }
 
         /// <summary> Called to notify this tracker that a mutation has been added. </summary>
