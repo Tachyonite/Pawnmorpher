@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Manifest>
   <identifier>Pawnmorpher</identifier>
-  <version>1.7.1</version>
+  <version>1.7.2</version>
   <dependencies>
     <li>HumanoidAlienRaces2.0</li>
     <li>HugsLib</li>
