@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
 		<defName>EtherRhinocerosJaw</defName>
-		<label>!!!EtherRhinocerosJaw needs a label!!!</label>
-		<description>!!!EtherRhinocerosJaw needs a description!!!</description>
+		<label>ceratorhine muzzle</label>
+		<description>A oversize rhino jaw, complete with horn perfect for goring your foes.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -45,7 +45,27 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>10</power>
+						<power>19</power>
+						<cooldownTime>2.6</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>horn</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>19</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>horn</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>19</power>
 						<cooldownTime>2</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -62,9 +82,14 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
 		<defName>EtherRhinocerosEar</defName>
-		<label>!!!EtherRhinocerosEar needs a label!!!</label>
-		<description>!!!EtherRhinocerosEar needs a description!!!</description>
+		<label>ceratorhine</label>
+		<description>A large, curved rhinoceros ear.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
+		<stages>
+			<li>
+                <partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+		</stages>
 		<parts>
 			<li>Ear</li>
 		</parts>
@@ -72,8 +97,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
 		<defName>EtherRhinocerosTail</defName>
-		<label>!!!EtherRhinocerosTail needs a label!!!</label>
-		<description>!!!EtherRhinocerosTail needs a description!!!</description>
+		<label>rhinoceros tail</label>
+		<description>A short, leathery rhinoceros tail, complete with tuft.</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>

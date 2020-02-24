@@ -49,6 +49,7 @@
 					<EtherPantherJaw>Parts/Panther/Panther_Jaw</EtherPantherJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
+					<EtherRhinocerosJaw>Parts/Rhinoceros/Rhinoceros_Jaw</EtherRhinocerosJaw>
 					<EtherSquirrelJaw>Parts/Squirrel/Squirrel_Jaw</EtherSquirrelJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
 					<EtherTortoiseJaw>Parts/Tortoise/Tortoise_Jaw</EtherTortoiseJaw>
@@ -141,6 +142,7 @@
 					<EtherOstrichJaw>Parts/Ostrich/Ostrich_Jaw</EtherOstrichJaw>
 					<EtherPigSnout>Parts/pigface/pigface</EtherPigSnout>
 					<EtherRatSnout>Parts/ratface/ratface</EtherRatSnout>
+					<EtherRhinocerosJaw>Parts/Rhinoceros/Rhinoceros_Jaw</EtherRhinocerosJaw>
 					<EtherSquirrelJaw>Parts/Squirrel/Squirrel_Jaw</EtherSquirrelJaw>
 					<EtherThrumboSnout>Parts/thrumboface/thrumboface</EtherThrumboSnout>
 					<EtherTortoiseJaw>Parts/Tortoise/Tortoise_Jaw</EtherTortoiseJaw>
@@ -407,6 +409,7 @@
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
 					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left</EtherTurkeyEar>
@@ -456,6 +459,7 @@
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
 					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left_Behind</EtherTurkeyEar>
@@ -534,6 +538,7 @@
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right</EtherTortoiseEar>
 					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right</EtherTurkeyEar>
@@ -583,6 +588,7 @@
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
 					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right_Behind</EtherTurkeyEar>
@@ -664,6 +670,7 @@
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
 					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left</EtherTurkeyEar>
@@ -716,6 +723,7 @@
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
 					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left_Behind</EtherTurkeyEar>
@@ -797,6 +805,7 @@
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right</EtherTortoiseEar>
 					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right</EtherTurkeyEar>
@@ -849,6 +858,7 @@
 					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
 					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right_Behind</EtherTurkeyEar>
@@ -897,6 +907,7 @@
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherRaccoonTail>Parts/Raccoon/Raccoon_Tail</EtherRaccoonTail>
 					<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
+					<EtherRhinocerosTail>Parts/Rhinoceros/Rhinoceros_Tail</EtherRhinocerosTail>
 					<EtherSquirrelTail>Parts/Squirrel/Squirrel_Tail</EtherSquirrelTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
 					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
