@@ -77,7 +77,22 @@ namespace Pawnmorph
         /// <value>
         /// The highest influence.
         /// </value>
-        public AnimalClassBase HighestInfluence { get; private set; }
+        public AnimalClassBase HighestInfluence
+        {
+            get
+            {
+                float max = float.NegativeInfinity;
+                AnimalClassBase aMax = null;
+                foreach (KeyValuePair<AnimalClassBase, float> keyValuePair in _influenceDict)
+                    if (keyValuePair.Value > max)
+                    {
+                        aMax = keyValuePair.Key;
+                        max = keyValuePair.Value;
+                    }
+
+                return aMax;
+            }
+        }
 
         /// <summary> All mutations the pawn has. </summary>
         [NotNull]
@@ -211,7 +226,6 @@ namespace Pawnmorph
             TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
             TotalInfluence = _influenceDict.Select(s => s.Value).Sum(); 
             HighestMorphInfluence = GetHighestMorphInfluence();
-            HighestInfluence = GetHighestInfluence(); 
             NotifyCompsRemoved(mutation);
 #pragma warning restore 0618
 #pragma warning restore 0612
