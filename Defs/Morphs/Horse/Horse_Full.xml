@@ -2,7 +2,7 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphHorseTF</defName>
 		<label>horsemorph</label>
-		<description>This person has mechanites in their blood that are slowly mutating them into a huskymorph. Keep an eye on them, as leaving the mechanites unattended may leave them feeling a little hoarse.</description>
+		<description>This person has mechanites in their blood that are slowly mutating them into a horsemorph. Keep an eye on them, as leaving the mechanites unattended may leave them feeling a little hoarse.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
@@ -14,7 +14,9 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<pawnkinds/>
+				<pawnkinds>
+					<li>Horse</li>
+				</pawnkinds>
 				<transformationTale>TransformationMisc</transformationTale>
 			</li>
 			<li Class="Pawnmorph.Hediffs.TransformationStage">
