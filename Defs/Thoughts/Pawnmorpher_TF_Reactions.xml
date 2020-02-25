@@ -1,8 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Defs>
-	
-
+﻿<Defs>
 	<ThoughtDef>
 		<defName>RivalTransformedThought</defName>
 		<durationDays>10</durationDays>
@@ -30,7 +26,6 @@
 				<baseMoodEffect>-4</baseMoodEffect>
 			</li>
 		</stages>
-
 	</ThoughtDef>
 
 	<ThoughtDef>
@@ -49,7 +44,6 @@
 		</stages>
 	</ThoughtDef>
 
-
 	<ThoughtDef>
 		<defName>MotherTransformed</defName>
 		<durationDays>10</durationDays>
@@ -65,6 +59,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+
 	<ThoughtDef>
 		<defName>HusbandTransformed</defName>
 		<durationDays>10</durationDays>
@@ -97,7 +92,6 @@
 		</stages>
 	</ThoughtDef>
 
-
 	<ThoughtDef>
 		<defName>BrotherTransformed</defName>
 		<durationDays>10</durationDays>
@@ -113,7 +107,6 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-
 
 	<ThoughtDef>
 		<defName>SisterTransformed</defName>
@@ -178,5 +171,4 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-
 </Defs>

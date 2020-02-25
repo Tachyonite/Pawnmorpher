@@ -2,6 +2,7 @@
 	<HediffDef ParentName="PartialMorphParent">
 		<defName>FullRandomTF</defName>
 		<label>chaomorph partial</label>
+		<description>This person has mechanites in their blood that are providing them with all sorts of mutations.</description>
 		<stages>
 			<li>
 				<painOffset>0.3</painOffset>

@@ -2,6 +2,7 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphHareTF</defName>
 		<label>haremorph</label>
+		<description>This person has mechanites in their blood that are slowly mutating them into a haremorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more rabbit-like than human.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>

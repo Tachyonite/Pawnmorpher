@@ -27,7 +27,7 @@
 		</building>
 	</ThingDef>
 
-    <ThingDef ParentName="ResourceBase">
+	<ThingDef ParentName="ResourceBase">
 		<defName>Mutanite</defName>
 		<label>mutanite</label>
 		<description>A glowing green hunk of activated mechanites, whatever that means. The smaller lumps are safer to handle than the meteors they come from.</description>
@@ -64,9 +64,7 @@
 				<Beauty>2</Beauty>
 				<Flammability>0.0</Flammability>
 			</statFactors>
-			
 		</stuffProps>
-		<smeltable>true</smeltable>
 	</ThingDef>
 
 	<TerrainDef ParentName="WaterShallowBase">
@@ -104,7 +102,6 @@
 		<edgeType>FadeRough</edgeType>
 		<renderPrecedence>340</renderPrecedence>
 		<pathCost>2</pathCost>
-		
 		<statBases>
 			<Beauty>-1</Beauty>
 			<Cleanliness>-1</Cleanliness>
@@ -114,6 +111,7 @@
 			<li>Light</li>
 			<li>Medium</li>
 			<li>Heavy</li>
+			<li>Diggable</li>
 		</affordances>
 		<generatedFilth>Filth_Dirt</generatedFilth>
 		<fertility>0.0</fertility>
@@ -135,6 +133,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<defName>TFDirtInEyes</defName>
 		<label>mutagenic dirt</label>
+		<description>This feature is unimplemented, so you probably shouldn't be seeeing this hediff.</description>
 		<labelNoun>mutagenic dirt</labelNoun>
 		<battleStateLabel>blind</battleStateLabel>
 		<maxSeverity>1</maxSeverity>
@@ -191,6 +190,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<defName>OozeInEyes</defName>
 		<label>oozed</label>
+		<description>This feature is unimplemented, so you probably shouldn't be seeeing this hediff.</description>
 		<labelNoun>oozed</labelNoun>
 		<battleStateLabel>blind</battleStateLabel>
 		<maxSeverity>1</maxSeverity>

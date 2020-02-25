@@ -211,6 +211,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherCatClaws</defName>
 		<label>feline</label>
+		<description>This hand has reshaped to become like a paw, complete with retractable claws. This gives [PAWN_objective] a combat advantage, yet makes it harder to wipe [PAWN_possessive] ass.</description>
 		<parts>
 			<li>Hand</li>
 		</parts>
@@ -226,7 +227,7 @@
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0</minSeverity>
-                <label>growing</label>
+                <label>long nails</label>
                 <description>[PAWN_nameDef]'s fingernails are growing at an alarming rate.</description>
                 <stopChance>0.3</stopChance>
             </li>

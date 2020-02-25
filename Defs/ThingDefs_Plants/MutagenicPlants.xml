@@ -1,8 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Defs>
+﻿<Defs>
 
-	
-  
 	<ChemicalDef>
 		<defName>TFPlantAddiction</defName>
 		<label>mutagenic plants</label>
@@ -22,6 +19,7 @@
 		<defName>TFPlantAddiction</defName>
 		<hediffClass>Hediff_Addiction</hediffClass>
 		<label>mutaplant need</label>
+		<description>This person has a developed a dependancy on mutagenic plants. Take care to not let them go without it, as withdrawal symtoms risk them transforming into an animal.</description>
 		<causesNeed>Chemical_TFPlant</causesNeed>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
@@ -124,10 +122,10 @@
 			<wildOrder>2</wildOrder>
 		</plant>
 		<comps>
-		  <li Class="CompProperties_Glower">
-			<glowRadius>2</glowRadius>
-			<glowColor>(219,214,81,0)</glowColor>
-		  </li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(219,214,81,0)</glowColor>
+			</li>
 		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
@@ -182,10 +180,10 @@
 			<wildOrder>2</wildOrder>
 		</plant>
 		<comps>
-		  <li Class="CompProperties_Glower">
-			<glowRadius>2</glowRadius>
-			<glowColor>(219,214,81,0)</glowColor>
-		  </li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(219,214,81,0)</glowColor>
+			</li>
 		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
@@ -193,8 +191,8 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-	
-	
+
+
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_Glowvine</defName>
 		<label>glowvine</label>
@@ -253,7 +251,7 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedGrass</defName>
 		<label>mutagrass</label>
@@ -262,7 +260,7 @@
 			<MaxHitPoints>85</MaxHitPoints>
 			<Flammability>1.3</Flammability>
 			<Nutrition>0.15</Nutrition>
-    </statBases>
+		</statBases>
 		<graphicData>
 			<texPath>Plants/MutatedGrass</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
@@ -280,10 +278,10 @@
 			<wildOrder>1</wildOrder>
 		</plant>
 		<comps>
-		  <li Class="CompProperties_Glower">
-			<glowRadius>2</glowRadius>
-			<glowColor>(24,183,177,0)</glowColor>
-		  </li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(24,183,177,0)</glowColor>
+			</li>
 		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
@@ -310,8 +308,8 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-	
-	
+
+
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedBrambles</defName>
 		<label>mutabrambles</label>
@@ -336,14 +334,14 @@
 			<topWindExposure>0.15</topWindExposure>
 			<wildClusterRadius>4</wildClusterRadius>
 			<wildClusterWeight>200</wildClusterWeight>
-      <wildOrder>1</wildOrder>
-      <wildEqualLocalDistribution>false</wildEqualLocalDistribution>
+			<wildOrder>1</wildOrder>
+			<wildEqualLocalDistribution>false</wildEqualLocalDistribution>
 		</plant>
 		<comps>
-		  <li Class="CompProperties_Glower">
-			<glowRadius>2</glowRadius>
-			<glowColor>(188,40,41,0)</glowColor>
-		  </li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(188,40,41,0)</glowColor>
+			</li>
 		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
@@ -369,9 +367,8 @@
 				-->
 			</li>
 		</modExtensions>
-		
 	</ThingDef>
-	
+
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedBush</defName>
 		<label>mutant bush</label>
@@ -464,7 +461,6 @@
 				<priority>5</priority>
 				<!-- the source plant must be a tree -->
 				<mustBeTree>true</mustBeTree>
-				
 			</li>
 		</modExtensions>
 	</ThingDef>

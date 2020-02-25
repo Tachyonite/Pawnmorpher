@@ -1,10 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="MegaslothPart" ParentName="PawnmorphPart" Abstract="true">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MorphInfluence">
-				<morph>MegaslothMorph</morph>
-			</li>
-		</comps>
 		<classInfluence>MegaslothMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 

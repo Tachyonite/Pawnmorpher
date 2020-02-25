@@ -2,6 +2,7 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphPolarBearTF</defName>
 		<label>bearmorph</label>
+		<description>This person has mechanites in their blood that are slowly mutating them into a bearmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more polar bear than human.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>

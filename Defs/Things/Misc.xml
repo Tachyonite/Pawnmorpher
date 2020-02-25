@@ -20,7 +20,6 @@
             <DeteriorationRate>2</DeteriorationRate>
             <MutagenSensitivity_Stuff>0.1</MutagenSensitivity_Stuff>
         </statBases>
-
         <stuffProps>
             <color>(0.74,1,0.5)</color>
             <statFactors>
@@ -35,5 +34,4 @@
             <li>Textiles</li>
         </thingCategories>
     </ThingDef>
-
 </Defs>

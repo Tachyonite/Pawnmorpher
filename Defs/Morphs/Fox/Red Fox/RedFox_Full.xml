@@ -2,6 +2,7 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphFoxTF</defName>
 		<label>foxmorph</label>
+		<description>This person has mechanites in their blood that are slowly mutating them into a foxmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming a far more cunning version of themselves.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage" >
 				<label>reeling</label>

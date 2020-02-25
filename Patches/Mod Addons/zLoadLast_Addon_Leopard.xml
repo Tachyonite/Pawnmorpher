@@ -62,13 +62,12 @@
 								</li>
 								<li>
 									<label>changed</label>
-									<description>Rrowwl!</description>
+									<description>Rrowwl! I feel so sleek and powerful.</description>
 									<baseMoodEffect>+3</baseMoodEffect>
 								</li>
 								<li>
-									<label>Became leopardmorph</label>
-									<description>I just want to laze around in a tree all day...</description>
-									<visible>True</visible>
+									<label>changed</label>
+									<description>I'm a big stupid cat! I don't wanna be a big stupid cat!</description>
 									<baseMoodEffect>-5</baseMoodEffect>
 								</li>
 								<li>

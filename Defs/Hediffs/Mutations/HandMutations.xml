@@ -227,20 +227,20 @@
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0</minSeverity>
-                <labelOverride>long nails</labelOverride>
+                <label>long nails</label>
                 <description>[PAWN_nameDef]'s fingernails are growing at an alarming rate.</description>
                 <stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.2</minSeverity>
                 <partEfficiencyOffset>0</partEfficiencyOffset>
-                <labelOverride>clawed</labelOverride>
+                <label>clawed</label>
                 <description>[PAWN_nameDef]'s fingernails have become long, curved and pointed, like that of a feline.</description>
                 <stopChance>0.3</stopChance>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.4</minSeverity>
-                <labelOverride>padded</labelOverride>
+                <label>padded</label>
                 <description>Fleshy pads have appeared on [PAWN_nameDef]'s palm and fingers, giving the clawed hand a more catlike appearance. [PAWN_objective] thumb has grown weaker as well, making grasping things much more difficult.</description>
                 <partEfficiencyOffset>-0.15</partEfficiencyOffset>
             </li>

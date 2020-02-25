@@ -6,7 +6,6 @@
         <transferToAnimal>true</transferToAnimal>
         <stages>
             <li>
-                <!-- any boosts for this? -->
                 <messageText>Upon becoming a morph, [PAWN_nameDef] has gained a 'primal wish'. [PAWN_pronoun] might want to go even further with their mutations...</messageText>
             </li>
         </stages>
@@ -17,7 +16,7 @@
         <label>beastmaster</label>
         <description>[PAWN_nameDef] likes the company of animals who were once people, and feels more at ease being around them.</description> <!--temp description, need to redo this -->
         <stages>
-            <li></li>
+            <li/>
         </stages>
     </Pawnmorph.AspectDef>
 </Defs>

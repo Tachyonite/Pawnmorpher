@@ -23,7 +23,7 @@
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>FoxFlu</defName>
         <label>fox fever</label>
-		<description>This pawn has contracted a mutagenic disease that seems to be making them feel much more...foxy.</description>
+        <description>This pawn has contracted a mutagenic disease that seems to be making them feel much more...foxy.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
@@ -109,7 +109,7 @@
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>Chookflu</defName>
         <label>chook pox</label>
-		<description>This pawn has contracted a mutagenic disease that seems to be making them cluck and strut.</description>
+        <description>This pawn has contracted a mutagenic disease that seems to be making them cluck and strut.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
@@ -196,7 +196,7 @@
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>Swineflu</defName>
         <label>swine flu</label>
-		<description>This pawn has contracted a mutagenic disease that seems to make them want to roll in mud and root at the ground.</description>
+        <description>This pawn has contracted a mutagenic disease that seems to make them want to roll in mud and root at the ground.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
@@ -281,7 +281,7 @@
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>Cowflu</defName>
         <label>mad cow disease</label>
-		<description>This pawn his contracted a mutagenic disease that seems to make them want to let out a loud moo.</description>
+        <description>This pawn his contracted a mutagenic disease that seems to make them want to let out a loud moo.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
@@ -369,7 +369,7 @@
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>Chaoflu</defName>
         <label>mutagenic mechanites</label>
-		<description>This pawn has contracted a mutagenic disease that seems to be very random and chaotic, due to the high level of conflicting mutagenic mechanites in their system.</description>
+        <description>This pawn has contracted a mutagenic disease that seems to be very random and chaotic, due to the high level of conflicting mutagenic mechanites in their system.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>
@@ -458,7 +458,7 @@
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>HuskyFlu</defName>
         <label>kennel cough</label>
-		<description>This pawn has contracted a mutagenic disease that seems to be making them bark and wag their tail.</description>
+        <description>This pawn has contracted a mutagenic disease that seems to be making them bark and wag their tail.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>

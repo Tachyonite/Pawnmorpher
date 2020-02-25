@@ -1,8 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Defs>
-	
-
+﻿<Defs>
 	<ThoughtDef>
 		<defName>FriendMergedThought</defName>
 		<durationDays>10</durationDays>
@@ -14,7 +10,6 @@
 				<label>friend merged</label>
 				<description>The colony did mad science on my friend and now they're a monster!</description>
 				<baseMoodEffect>-8</baseMoodEffect>
-
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -27,11 +22,7 @@
 				<label>rival merged</label>
 				<description>We did mad science on my rival...serves them right.</description>
 				<baseMoodEffect>8</baseMoodEffect>
-
 			</li>
 		</stages>
 	</ThoughtDef>
-
-	
-
 </Defs>
