@@ -385,6 +385,8 @@ namespace Pawnmorph
             Hediff formerHumanHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             if (formerHumanHediff == null)
             {
+                bool hasMergedHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(HediffDef.Named("2xMergedHuman")) != null;
+                if (hasMergedHediff) return FormerHumanStatus.Sapient; 
                 bool hasPFeralHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.PermanentlyFeral) != null;
 
                 if (hasPFeralHediff) return FormerHumanStatus.PermanentlyFeral;
