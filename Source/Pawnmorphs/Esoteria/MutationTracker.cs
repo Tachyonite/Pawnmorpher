@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -110,7 +111,7 @@ namespace Pawnmorph
         /// </summary>
         public override void CompTick()
         {
-            if (Pawn.IsHashIntervalTick(1400))
+            if (Pawn.IsHashIntervalTick(4400) && CanRaceCheckNow)
             {
                 RecalcIfNeeded();
                 if (TotalNormalizedInfluence < 0 || TotalNormalizedInfluence > 1)
@@ -118,12 +119,13 @@ namespace Pawnmorph
                     Log.Warning(nameof(TotalNormalizedInfluence) + $" is {TotalNormalizedInfluence}, recalculating mutation influences for {Pawn.Name}");
                     RecalculateMutationInfluences();
                 }
-                Pawn.CheckRace(); //check the race every so often, but not too often 
+                Pawn.CheckRace(false); //check the race every so often, but not too often 
                 
             }
 
-            
         }
+
+        private bool CanRaceCheckNow => !Pawn.health.hediffSet.hediffs.OfType<TransformationBase>().Any(); 
 
         /// <summary>
         ///     Gets the normalized direct influence of the given morph
