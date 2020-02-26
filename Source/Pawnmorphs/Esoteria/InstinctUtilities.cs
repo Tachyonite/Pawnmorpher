@@ -29,6 +29,7 @@ namespace Pawnmorph
         /// use this value to scale control values to a better range
         public const float AVERAGE_MAX_SAPIENCE = AVERAGE_INT * ALPHA + AVERAGE_RESISTANCE_STAT * BETA;
 
+
         /// <summary>
         /// a very small value 
         /// </summary>
@@ -119,6 +120,10 @@ namespace Pawnmorph
             return i * ALPHA + rs * BETA;
         }
 
+        /// <summary>
+        /// The average resistance
+        /// </summary>
+        public const float AVERAGE_RESISTANCE = AVERAGE_INT * ALPHA + AVERAGE_RESISTANCE_STAT * BETA; 
 
         /// <summary>
         /// Gets the control need of the given pawn
