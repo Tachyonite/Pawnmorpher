@@ -121,7 +121,7 @@ namespace Pawnmorph
                     Log.Warning(nameof(TotalNormalizedInfluence) + $" is {TotalNormalizedInfluence}, recalculating mutation influences for {Pawn.Name}");
                     RecalculateMutationInfluences();
                 }
-                Pawn.CheckRace(); //check the race every so often, but not too often 
+                Pawn.CheckRace(false); //check the race every so often, but not too often 
                 
             }
 
