@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/BackstoryDef.xsd">
+<Defs>
     <AlienRace.BackstoryDef Name="FormerHumanBase" Abstract="true" >
         <slot>Adulthood</slot>
         <spawnCategories>
@@ -48,5 +48,4 @@
             <li>Crafting</li>
         </workAllows>
     </AlienRace.BackstoryDef>
-
 </Defs>

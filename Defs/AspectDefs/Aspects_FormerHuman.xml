@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
+<Defs>
     <Pawnmorph.AspectDef>
         <defName>PrimalWish</defName>
         <label>primal wish</label>
@@ -14,7 +14,7 @@
     <Pawnmorph.AspectDef>
         <defName>Beastmaster</defName>
         <label>beastmaster</label>
-        <description>[PAWN_nameDef] likes the company of animals who were once people, and feels more at ease being around them.</description> <!--temp description, need to redo this -->
+        <description>[PAWN_nameDef] likes the company of animals who were once people, and feels more at ease being around them.</description>
         <stages>
             <li/>
         </stages>

@@ -30,5 +30,4 @@
 		<needsOpportunity>false</needsOpportunity>
 		<helpText>If you want to make creatures in the mutagenic chamber, you'll need a tagging rifle, which can be made at a machining table. Equip it, then go and shoot animals with it to 'tag' them, thereby adding them to the database of creatures you can turn people into with the chambers. Note that if you have no tagged creatures, you will still be able to make chaomorphs in chambers by default.</helpText>
 	</ConceptDef>
-	
 </Defs>

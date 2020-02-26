@@ -8,7 +8,7 @@
         <stages>
             <li>
 				<label>productive</label>
-				<description>{PAWN_nameDef}'s productive mutations output rate has been increased. This has caused them to become increasingly hungry, so be sure to keep them fed.</description>
+				<description>[PAWN_nameDef]'s productive mutations output rate has been increased. This has caused them to become increasingly hungry, so be sure to keep them fed.</description>
                 <productionBoosts>
                     <li>
                         <productionBoost>0.301</productionBoost>
@@ -20,7 +20,7 @@
             </li>
             <li>
 				<label>very productive</label>
-				<description>{PAWN_nameDef}'s production output and caloric intake have been further increased. Take care, as their body may not be able to handle further productive increases.</description>
+				<description>[PAWN_nameDef]'s production output and caloric intake have been further increased. Take care, as their body may not be able to handle further productive increases.</description>
                 <productionBoosts>
                     <li>
                         <productionBoost>0.601</productionBoost>
@@ -32,7 +32,7 @@
             </li>
             <li>
                 <label>productive bliss</label>
-				<description>{PAWN_nameDef}'s productive mutations have achieved maximum productive output. The constant production has left their body and mind weakened, and they may occasionally fall into a catatonic state as a result.</description>
+				<description>[PAWN_nameDef]'s productive mutations have achieved maximum productive output. The constant production has left their body and mind weakened, and they may occasionally fall into a catatonic state as a result.</description>
                 <productionBoosts>
                     <li>
                         <productionBoost>0.901</productionBoost>
@@ -44,6 +44,4 @@
             </li>
         </stages>
     </Pawnmorph.AspectDef>
-
-
 </Defs>

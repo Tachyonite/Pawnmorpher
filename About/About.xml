@@ -1,14 +1,14 @@
 <ModMetaData>
-  <name>Pawnmorpher</name>
-  <author>Mic</author>
-  <supportedVersions>
-    <li>1.0</li>
-    <li>1.1</li>
-  </supportedVersions>
-  <description>Too many prisoners and not enough animals? We can change that. And maybe you at the same time.
-  
+	<name>Pawnmorpher</name>
+	<author>Mic</author>
+	<supportedVersions>
+		<li>1.0</li>
+		<li>1.1</li>
+	</supportedVersions>
+	<description>Too many prisoners and not enough animals? We can change that. And maybe you at the same time.
+
   &lt;size=24&gt;Features&lt;/size&gt;
-  
+
 - Buy, find or create a range of mutagens to augment your pawns or prisoners, with an expanding array of animal-themed mutations! There is often a high chance that the affected pawn will fully transform into an animal, so mind that.
 
 - Boost existing mutations with pills that improve their efficiency. Can that pawn lay eggs any faster? Sure they can!
@@ -24,15 +24,15 @@
 - Chimera: There are three types of animal that can be attained by some special means or encountered in the wild.
 
   &lt;size=24&gt;Dependencies&lt;/size&gt;
-  
+
   Requires Humanoid Alien Framework.
 
   &lt;size=24&gt;Full Release&lt;/size&gt;
-  
+
 You heard that right. This version is an improvement over Pawnmorpher Beta with a tonne of new features, visuals for mutations and some intricate little systems nobody will notice. There are more animal morphs, special chimeras and all manner of QOL addons.
-  
+
 This mod does require Humanoid Alien Framework to function, but also ships with out-of-the-box support for Giddy Up! Battle Mounts saddles (for the new chimeras).
-  
+
 Pawns who have been turned into animals can be reverted back to human with the right serum -- and they may have different outlooks on their time on all fours.
 
 There's a new trader type, which buys prisoners and sells animals (as well as a stock of mutagens)...I'll leave you to connect the dots there.
@@ -40,11 +40,11 @@ There's a new trader type, which buys prisoners and sells animals (as well as a 
 Overall, this mod is just...better in every way to the original. Even so, there may be more to come.
 
   &lt;size=24&gt;Issues&lt;/size&gt;
-  
+
 Currently, only some small graphics issues with mutation offsets. Please report any you find, and any other bugs.
-  
+
   &lt;size=24&gt;Integrations&lt;/size&gt;
-  
+
 - Giddy Up! | Perfectly compatible. Chaomorphs can be ridden, and if you're using Battle Mounts, they have saddles too.
 
 - Horses (1.0) | Perfectly compatible. Patched in so pawns can turn into horses, with special injector as well.
@@ -52,29 +52,29 @@ Currently, only some small graphics issues with mutation offsets. Please report 
 - A Dog Said... | Perfectly compatible. Chaomorphs can have bionics now!
 
   &lt;size=24&gt;Friends&lt;/size&gt;
-  
+
 Massive, incredible thanks to Rocka, for doing basically all the textures. This version would not have happened without you.
-  
+
 Thanks to Menhi, Erdelf, and...many, many others who put up with me and my stupid questions on the RimWorld Discord.
 
   &lt;size=24&gt;Future Plans&lt;/size&gt;
-  
+
 With all core content out of the way, I can focus on more additions! More chaomorphs! More weapons! More end animals!
-  
+
 Feel free to suggest the next to be added, or if there are other QOL things you can think of.
-  
-  </description>
-  <packageId>tachyonite.pawnmorpher</packageId>
-  <modDependencies>
-    <li>
-       <packageId>erdelf.HumanoidAlienRaces</packageId>
-       <displayName>Humanoid Alien Races 2.0</displayName>
-       <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
-    </li>
- </modDependencies>
- <loadBefore>
- </loadBefore>
- <loadAfter>
- <li>erdelf.HumanoidAlienRaces</li>
- </loadAfter>
+
+	</description>
+	<packageId>tachyonite.pawnmorpher</packageId>
+	<modDependencies>
+		<li>
+			<packageId>erdelf.HumanoidAlienRaces</packageId>
+			<displayName>Humanoid Alien Races 2.0</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadBefore>
+	</loadBefore>
+	<loadAfter>
+		<li>erdelf.HumanoidAlienRaces</li>
+	</loadAfter>
 </ModMetaData>
