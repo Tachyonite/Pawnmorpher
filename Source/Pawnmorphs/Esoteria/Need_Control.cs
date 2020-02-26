@@ -140,6 +140,12 @@ namespace Pawnmorph
         /// </summary>
         public override void SetInitialLevel()
         {
+            if (Scribe.mode != LoadSaveMode.Inactive) //if we're saving or loading a game we have to be careful about how we pick the initial level
+            {
+                CurLevel = AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE; 
+                return;
+            }
+            
             CurLevelPercentage = 1;
             _seekerLevel = MaxLevel;
         }

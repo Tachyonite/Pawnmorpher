@@ -387,6 +387,8 @@ namespace Pawnmorph
             Hediff formerHumanHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             if (formerHumanHediff == null)
             {
+                bool hasMergedHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(HediffDef.Named("2xMergedHuman")) != null;
+                if (hasMergedHediff) return FormerHumanStatus.Sapient; 
                 bool hasPFeralHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.PermanentlyFeral) != null;
 
                 if (hasPFeralHediff) return FormerHumanStatus.PermanentlyFeral;
@@ -532,6 +534,12 @@ namespace Pawnmorph
         /// <param name="sapienceLevel">The sapience level.</param>
         public static void MakeAnimalSapient([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel = 1)
         {
+            if (animal.IsFormerHuman())
+            {
+                Log.Warning($"trying to make {original.Name} a former human twice!");
+                return; 
+            }
+
             animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
             Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             if (fHumanHediff == null)
@@ -659,6 +667,12 @@ namespace Pawnmorph
         /// <param name="sapienceLevel">The sapience level.</param>
         public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1)
         {
+            if (animal.IsFormerHuman())
+            {
+                Log.Warning($"trying to make {animal.Name} a former human twice!");
+                return; 
+            }
+
             animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
             Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             var fTracker = animal.GetFormerHumanTracker(); 
