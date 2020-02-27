@@ -72,8 +72,8 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public bool TransformPawn(Pawn pawn, Hediff cause)
         {
-            var hediffMorph = (cause as Hediff_Morph);
-            var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+            var hediffMorph = cause;
+            var mutagen = hediffMorph?.def?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
             var request = new TransformationRequest(GetPawnKindDefFor(pawn), pawn)
             {

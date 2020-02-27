@@ -36,6 +36,7 @@ namespace Pawnmorph.TfSys
             cause = null;
             tale = null;
             this.maxSeverity = maxSeverity;
+            addMutationToOriginal = true; 
             minSeverity = 0;
             forcedFaction = default;
             factionResponsible = null; 
@@ -54,6 +55,7 @@ namespace Pawnmorph.TfSys
             forcedGenderChance = 50;
             cause = null;
             tale = null;
+            addMutationToOriginal = true; 
             this.maxSeverity = 1;
             minSeverity = 0;
             forcedFaction = default;
@@ -73,6 +75,11 @@ namespace Pawnmorph.TfSys
         public Hediff cause;
         /// <summary>The tale to record</summary>
         public TaleDef tale;
+
+        /// <summary>
+        /// if true add mutation to original
+        /// </summary>
+        public bool addMutationToOriginal; 
 
         /// <summary>
         /// The faction responsible for this transformation 
