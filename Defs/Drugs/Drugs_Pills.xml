@@ -38,7 +38,7 @@
 			</li>
 		</comps>
 	</ThingDef>
-	
+
 	<!--Feral Pills-->
 	<ThingDef ParentName="PM_PillBase">
 		<defName>FeralPill</defName>
@@ -90,8 +90,10 @@
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_AddAspect" >
 					<aspectDef>MutagenInfused</aspectDef>
-					<stage>2</stage> <!-- the dry aspect is the third stage -->
-					<force>true</force> <!-- this means if the pawn has either of the other 2 stages, force the aspect to the 'dry' stage-->
+					<stage>2</stage>
+					<!-- the dry aspect is the third stage -->
+					<force>true</force>
+					<!-- this means if the pawn has either of the other 2 stages, force the aspect to the 'dry' stage-->
 				</li>
 			</outcomeDoers>
 		</ingestible>
@@ -113,7 +115,7 @@
 		</comps>
 	</ThingDef>
 
-	<!--Dry Pills-->
+	<!--Aspect Remover Pills-->
 	<ThingDef ParentName="PM_PillBase">
 		<defName>AspectReverterPills</defName>
 		<label>mutapill, X-aspect</label>
@@ -148,7 +150,6 @@
 			</li>
 		</comps>
 	</ThingDef>
-
 
 	<!--Stabilizer Pills-->
 	<ThingDef ParentName="PM_PillBase">
@@ -269,7 +270,7 @@
 				<statOffsets>
 					<MutagenSensitivity>-1.5</MutagenSensitivity>
 					<TransformationSensitivity>-1.5</TransformationSensitivity>
-                </statOffsets>
+				</statOffsets>
 			</li>
 		</stages>
 	</HediffDef>
@@ -293,7 +294,7 @@
 				<statOffsets>
 					<MutagenSensitivity>2</MutagenSensitivity>
 					<TransformationSensitivity>0.2</TransformationSensitivity>
-                </statOffsets>
+				</statOffsets>
 			</li>
 		</stages>
 	</HediffDef>
