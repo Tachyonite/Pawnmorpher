@@ -452,7 +452,20 @@ namespace Pawnmorph
         {
             var fTracker = pawn.GetFormerHumanTracker();
             if (fTracker == null) return false;
-            return fTracker.IsFormerHuman && !fTracker.IsPermanentlyFeral; 
+            if (!fTracker.IsFormerHuman) return false; 
+            switch (fTracker.SapienceLevel)
+            {
+                case SapienceLevel.Sapient:
+                case SapienceLevel.MostlySapient:
+                case SapienceLevel.Conflicted:
+                case SapienceLevel.MostlyFeral:
+                    return true; 
+                case SapienceLevel.Feral:
+                case SapienceLevel.PermanentlyFeral:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>
