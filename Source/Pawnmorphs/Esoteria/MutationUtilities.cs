@@ -121,6 +121,46 @@ namespace Pawnmorph
                 return _allMutationsWithGraphics;
             }
         }
+        [NotNull]
+        private static readonly List<BodyPartRecord> _recordCache = new List<BodyPartRecord>();
+
+        /// <summary>
+        /// Adds all morph mutations.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="morph">The morph.</param>
+        /// <exception cref="ArgumentNullException">
+        /// pawn
+        /// or
+        /// morph
+        /// </exception>
+        public static void AddAllMorphMutations([NotNull] Pawn pawn, [NotNull] MorphDef morph)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (morph == null) throw new ArgumentNullException(nameof(morph));
+            var hediffSet = pawn.health.hediffSet; 
+            _recordCache.Clear();
+            _recordCache.AddRange(hediffSet.GetNotMissingParts());
+            foreach (MutationDef mutation in morph.AllAssociatedMutations)
+            {
+                if (mutation.parts != null)
+                {
+                    foreach (BodyPartDef mutationPart in mutation.parts)
+                    foreach (BodyPartRecord bodyPartRecord in _recordCache.Where(r => r.def == mutationPart))
+                    {
+                        if (hediffSet.HasHediff(mutation, bodyPartRecord)) continue;
+                        AddMutation(pawn, mutation, bodyPartRecord);
+                    }
+                }
+                else
+                {
+                    if (!hediffSet.HasHediff(mutation))
+                    {
+                        AddMutation(pawn, mutation); 
+                    }
+                }
+            }
+        }
 
 
         /// <summary>

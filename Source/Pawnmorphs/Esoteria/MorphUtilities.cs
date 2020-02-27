@@ -56,6 +56,23 @@ namespace Pawnmorph
             }
         }
 
+
+        /// <summary>
+        /// Gets the morph of the given animal.
+        /// </summary>
+        /// <param name="animalDef">The animal definition.</param>
+        /// <returns></returns>
+        [NotNull, Pure]
+        public static IEnumerable<MorphDef> GetMorphOfAnimal([NotNull] ThingDef animalDef)
+        {
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                if (morphDef.race == animalDef) yield return morphDef; 
+            }
+        }
+    
+
+
         /// <summary>
         ///     Checks the race of this pawn. If the pawn is mutated enough it's race is changed to one of the hybrids
         /// </summary>
