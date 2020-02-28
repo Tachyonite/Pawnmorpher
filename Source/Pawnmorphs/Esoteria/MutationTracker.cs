@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -66,9 +67,6 @@ namespace Pawnmorph
         public float this[MorphDef key] => _influenceDict.TryGetValue(key);
 
 
-        /// <summary> The morph with the most influence on this pawn, not necessarily the morph the pawn currently is. </summary>
-        [CanBeNull, Obsolete("use " + nameof(HighestInfluence) + " instead")]
-        public MorphDef HighestMorphInfluence { get; private set; }
 
 
         /// <summary>
@@ -77,7 +75,22 @@ namespace Pawnmorph
         /// <value>
         /// The highest influence.
         /// </value>
-        public AnimalClassBase HighestInfluence { get; private set; }
+        public AnimalClassBase HighestInfluence
+        {
+            get
+            {
+                AnimalClassBase h = null;
+                float max = float.NegativeInfinity;
+                foreach (KeyValuePair<AnimalClassBase, float> keyValuePair in _influenceDict)
+                    if (max < keyValuePair.Value)
+                    {
+                        h = keyValuePair.Key;
+                        max = keyValuePair.Value;
+                    }
+
+                return h;
+            }
+        }
 
         /// <summary> All mutations the pawn has. </summary>
         [NotNull]
@@ -91,15 +104,28 @@ namespace Pawnmorph
         ///     The pawn.
         /// </value>
         public Pawn Pawn => (Pawn) parent;
+        
 
         /// <summary>
         ///     called every tick
         /// </summary>
         public override void CompTick()
         {
-            if (Pawn.IsHashIntervalTick(1400) && !Pawn.health.hediffSet.hediffs.OfType<Hediff_Morph>().Any())
-                Pawn.CheckRace(); //check the race every so often, but not too often 
+            if (Pawn.IsHashIntervalTick(4400) && CanRaceCheckNow)
+            {
+                RecalcIfNeeded();
+                if (TotalNormalizedInfluence < 0 || TotalNormalizedInfluence > 1)
+                {
+                    Log.Warning(nameof(TotalNormalizedInfluence) + $" is {TotalNormalizedInfluence}, recalculating mutation influences for {Pawn.Name}");
+                    RecalculateMutationInfluences();
+                }
+                Pawn.CheckRace(false); //check the race every so often, but not too often 
+                
+            }
+
         }
+
+        private bool CanRaceCheckNow => !Pawn.health.hediffSet.hediffs.OfType<TransformationBase>().Any(); 
 
         /// <summary>
         ///     Gets the normalized direct influence of the given morph
@@ -125,6 +151,40 @@ namespace Pawnmorph
             Assert(parent is Pawn, "parent is Pawn");
         }
 
+        /// <summary>
+        /// Recalculates the mutation influences if needed.
+        /// </summary>
+        public void RecalcIfNeeded()
+        {
+            int counter=0; 
+            foreach (Hediff hediff in Pawn.health.hediffSet.hediffs)
+            {
+                if (hediff is Hediff_AddedMutation) counter++; 
+            }
+
+            if (counter != MutationsCount)
+            {
+                Log.Warning($"{Pawn.Name} mutation tracker has only {MutationsCount} tracked mutations but pawn actually has {counter}");
+                RecalculateMutationInfluences();
+            }
+
+        }
+
+        /// <summary>
+        ///     preforms a full recalculation of all mutation influences
+        /// </summary>
+        public void RecalculateMutationInfluences()
+        {
+            _mutationList.Clear();
+            _influenceDict.Clear();
+
+            _mutationList.AddRange(Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
+            MutationsCount = _mutationList.Count;
+            AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
+            TotalNormalizedInfluence = _influenceDict.Sum(s => s.Value) / MorphUtilities.MaxHumanInfluence;
+
+        }
+
         /// <summary> Called to notify this tracker that a mutation has been added. </summary>
         public void NotifyMutationAdded([NotNull] Hediff_AddedMutation mutation)
         {
@@ -136,12 +196,7 @@ namespace Pawnmorph
             TotalInfluence = _influenceDict.Select(s => s.Value).Sum();
             MutationsCount += 1;
 
-#pragma warning disable 0612
-#pragma warning disable 0618
 
-            HighestMorphInfluence = GetHighestMorphInfluence();
-#pragma warning restore 0618
-#pragma warning restore 0612
             NotifyCompsAdded(mutation);
         }
 
@@ -153,31 +208,10 @@ namespace Pawnmorph
             MutationsCount -= 1;
 
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
-#pragma warning disable 0612
-#pragma warning disable 0618
+
             TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
             TotalInfluence = _influenceDict.Select(s => s.Value).Sum(); 
-            HighestMorphInfluence = GetHighestMorphInfluence();
-            HighestInfluence = GetHighestInfluence(); 
             NotifyCompsRemoved(mutation);
-#pragma warning restore 0618
-#pragma warning restore 0612
-        }
-
-        private AnimalClassBase GetHighestInfluence()
-        {
-            float max = 0;
-            AnimalClassBase influence = null; 
-            foreach (KeyValuePair<AnimalClassBase, float> keyValuePair in _influenceDict)
-            {
-                if (keyValuePair.Value > max)
-                {
-                    influence = keyValuePair.Key;
-                    max = keyValuePair.Value; 
-                }
-            }
-
-            return influence; 
         }
 
         /// <summary>
@@ -236,14 +270,8 @@ namespace Pawnmorph
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
             TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
             // Now find the highest influence.
-#pragma warning disable 0612
-#pragma warning disable 0618
 
-            MorphDef hMorph = GetHighestMorphInfluence();
             TotalInfluence = _influenceDict.Select(s => s.Value).Sum();
-            HighestMorphInfluence = hMorph;
-#pragma warning restore 0612
-#pragma warning restore 0618
 
             MutationsCount = Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Count();
         }

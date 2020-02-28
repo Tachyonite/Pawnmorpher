@@ -1,7 +1,7 @@
 ﻿// RandUtilities.cs modified by Iron Wolf for Pawnmorph on 08/27/2019 7:03 PM
 // last updated 08/27/2019  7:03 PM
 
-using Multiplayer.API;
+//using Multiplayer.API;
 using UnityEngine;
 using Verse;
 
@@ -56,11 +56,11 @@ namespace Pawnmorph.Utilities
         /// </summary>
         public static void PushState()
         {
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(MPSafeSeed);
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PushState(MPSafeSeed);
 
-            }
+            //}
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Pawnmorph.Utilities
         /// </summary>
         public static void PopState()
         {
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PopState();
+            //}
         }
 
 

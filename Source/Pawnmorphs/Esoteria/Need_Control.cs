@@ -55,6 +55,7 @@ namespace Pawnmorph
         /// <param name="instinctChange">The instinct change.</param>
         public void AddInstinctChange(int instinctChange)
         {
+            _maxLevelCached = null; 
             _seekerLevel += CalculateControlChange(pawn, instinctChange) / AVERAGE_MAX_SAPIENCE;
             _seekerLevel = Mathf.Clamp(_seekerLevel, 0, MaxLevel);
         }
@@ -75,7 +76,10 @@ namespace Pawnmorph
             if (threshPercents == null || _maxLevelCached == null)
             {
                 _maxLevelCached = _maxLevelCached ?? MaxLevel;
+                
                 float mLevel = _maxLevelCached.Value;
+                _seekerLevel = Mathf.Clamp(_seekerLevel, 0, mLevel);
+                CurLevel = Mathf.Clamp(CurLevel, 0, mLevel); //make sure the levels fall within the correct bounds 
                 threshPercents = threshPercents ?? new List<float>();
                 foreach (VTuple<SapienceLevel, float> sapienceLevelThreshold in FormerHumanUtilities.SapienceLevelThresholds)
                 {
@@ -114,7 +118,7 @@ namespace Pawnmorph
             {
                 float instinctChange = GetInstinctChangePerTick(pawn) * TimeMetrics.TICKS_PER_REAL_SECOND;
                 if (Mathf.Abs(instinctChange) > EPSILON) AddInstinctChange(Mathf.CeilToInt(instinctChange));
-
+                _maxLevelCached = null; 
                 SapienceLevel sLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
                 if (sLevel != _currentLevel)
                 {
@@ -140,6 +144,12 @@ namespace Pawnmorph
         /// </summary>
         public override void SetInitialLevel()
         {
+            if (Scribe.mode != LoadSaveMode.Inactive) //if we're saving or loading a game we have to be careful about how we pick the initial level
+            {
+                CurLevel = AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE; 
+                return;
+            }
+            
             CurLevelPercentage = 1;
             _seekerLevel = MaxLevel;
         }
@@ -148,6 +158,9 @@ namespace Pawnmorph
         private void OnSapienceLevelChanges()
         {
             var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman) as FormerHuman;
+            var fTracker = pawn.GetFormerHumanTracker();
+            if (fTracker == null) return;
+            fTracker.SapienceLevel = _currentLevel; 
             if (fHediff == null) return;
 
             switch (_currentLevel)

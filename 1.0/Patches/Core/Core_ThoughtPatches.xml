@@ -1,0 +1,51 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThoughtDef[defName="AteKibble"]</xpath>
+        <value>
+            <!-- this mod extension if for substituting a thought for another thought -->
+            <li Class="Pawnmorph.ThoughtGroupDefExtension">
+                <!-- the first thought that can be assigned to the pawn will be picked -->
+                <thoughts>
+                    <li>SapientAnimalAteKibble</li>
+                </thoughts>
+            </li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThoughtDef[defName="AteCorpse"]</xpath>
+        <value>
+            <!-- this mod extension if for substituting a thought for another thought -->
+            <li Class="Pawnmorph.ThoughtGroupDefExtension">
+                <!-- the first thought that can be assigned to the pawn will be picked -->
+                <thoughts>
+                    <li>WargAteCorpse</li>
+                </thoughts>
+            </li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThoughtDef[defName="Naked"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <filter>
+                    <isBlackList>false</isBlackList> <!-- an empty white list won't let anything pass -->
+                </filter>
+                <mustBeFormerHuman>false</mustBeFormerHuman> <!-- the naked thought should now only show up for regular pawns   -->
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThoughtDef[defName="AteRawFood"]</xpath>
+        <value>
+            <!-- this mod extension if for substituting a thought for another thought -->
+            <li Class="Pawnmorph.ThoughtGroupDefExtension">
+                <!-- the first thought that can be assigned to the pawn will be picked -->
+                <thoughts>
+                    <li>SapientAnimalAteRawFood</li>
+                </thoughts>
+            </li>
+        </value>
+    </Operation>
+</Patch>

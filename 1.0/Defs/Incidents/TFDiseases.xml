@@ -1,0 +1,61 @@
+<Defs>
+	<IncidentDef Name="DiseaseIncidentMutation" Abstract="True">
+		<workerClass>Pawnmorph.IncidentWorkers.MutagenicDiseasesHuman</workerClass>
+		<category>DiseaseHuman</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+			<li>Map_TempIncident</li>
+			<li>Map_Misc</li>
+			<li>Map_RaidBeacon</li>
+			<li>Caravan</li>
+		</targetTags>
+		<diseaseVictimFractionRange>
+			<min>0.1</min>
+			<max>0.3</max>
+		</diseaseVictimFractionRange>
+		<letterText>{0} of your {1} have gotten sick from {2}.\n\nEnsure you have mutagen stabiliser, or you may end up with your pawns being significantly more animal.\n\nThe following {1} have gotten sick:\n\n{3}</letterText>
+		<letterDef>NegativeEvent</letterDef>
+	</IncidentDef>
+  
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_Cowflu</defName>
+		<label>mad cow disease</label>
+		<diseaseIncident>Cowflu</diseaseIncident>
+		<letterLabel>Mutagion (mad cow disease)</letterLabel>
+	</IncidentDef>
+	
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_Foxflu</defName>
+		<label>fox fever</label>
+		<diseaseIncident>FoxFlu</diseaseIncident>
+		<letterLabel>Mutagion (fox fever)</letterLabel>
+	</IncidentDef>
+
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_Chookflu</defName>
+		<label>chook pox</label>
+		<diseaseIncident>Chookflu</diseaseIncident>
+		<letterLabel>Mutagion (chook pox)</letterLabel>
+	</IncidentDef>
+
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_Swineflu</defName>
+		<label>swine flu</label>
+		<diseaseIncident>Swineflu</diseaseIncident>
+		<letterLabel>Mutagion (swine flu)</letterLabel>
+	</IncidentDef>
+
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_Chaoflu</defName>
+		<label>mutagenic mechanites</label>
+		<diseaseIncident>Chaoflu</diseaseIncident>
+		<letterLabel>Mutagion (mutagenic mechanites)</letterLabel>
+	</IncidentDef>
+
+	<IncidentDef ParentName="DiseaseIncidentMutation">
+		<defName>Disease_HuskyFlu</defName>
+		<label>kennel cough</label>
+		<diseaseIncident>HuskyFlu</diseaseIncident>
+		<letterLabel>Mutagion (kennel cough)</letterLabel>
+	</IncidentDef>
+</Defs>

@@ -1,11 +1,8 @@
 ﻿// MutagenicBuildup.cs modified by Iron Wolf for Pawnmorph on 08/29/2019 8:27 AM
 // last updated 08/29/2019  8:27 AM
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
-using Multiplayer.API;
+
+//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
@@ -13,10 +10,10 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    /// hediff type for mutagenic buildup 
+    /// hediff type for mutagenic buildup
     /// </summary>
-    /// should add more and more mutations as severity increases, with a full tf at a severity of 1 
-    /// <seealso cref="Pawnmorph.Hediff_Morph" />
+    /// <seealso cref="Pawnmorph.Hediffs.MorphTf" />
+    /// should add more and more mutations as severity increases, with a full tf at a severity of 1
     public class MutagenicBuildup : MorphTf
     {
         /// <summary>

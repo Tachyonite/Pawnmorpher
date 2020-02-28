@@ -3,6 +3,7 @@
 
 using System;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Thoughts;
@@ -40,8 +41,8 @@ namespace Pawnmorph.TfSys
             Tuple<TransformedPawn, TransformedStatus> status = GameComp.GetTransformedPawnContaining(transformedPawn);
             if (status != null)
             {
-                if (status.Second != TransformedStatus.Transformed) return false;
-                if (status.First is TransformedPawnSingle inst)
+                if (status.Item2 != TransformedStatus.Transformed) return false;
+                if (status.Item1 is TransformedPawnSingle inst)
                     if (TryRevertImpl(inst))
                     {
                         GameComp.RemoveInstance(inst);
@@ -53,7 +54,7 @@ namespace Pawnmorph.TfSys
                     }
                 else
                 {
-                    Log.Warning($"{nameof(SimpleMechaniteMutagen)} received \"{status.First?.GetType()?.Name ??"NULL"}\" but was expecting \"{nameof(TransformedPawnSingle)}\"");
+                    Log.Warning($"{nameof(SimpleMechaniteMutagen)} received \"{status.Item1?.GetType()?.Name ??"NULL"}\" but was expecting \"{nameof(TransformedPawnSingle)}\"");
                 }
                 return false;
             }
@@ -131,6 +132,10 @@ namespace Pawnmorph.TfSys
         protected override TransformedPawnSingle TransformImpl(TransformationRequest request)
         {
             Pawn original = request.originals[0];
+
+            if (request.addMutationToOriginal)
+                TryAddMutationsToPawn(original, request.cause, request.outputDef);  
+
             var reactionStatus = original.GetFormerHumanReactionStatus();
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
 
@@ -145,12 +150,9 @@ namespace Pawnmorph.TfSys
             Gender newGender =
                 TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
 
-            var pRequest = new PawnGenerationRequest( //create the request 
-                                                     request.outputDef, faction, PawnGenerationContext.NonPlayer, -1, false,
-                                                     false,
-                                                     false, false, true, false, 1f, false, true, true, false, false, false,
-                                                     false, null, null, null, newAge,
-                                                     original.ageTracker.AgeChronologicalYearsFloat, newGender);
+
+            var pRequest = FormerHumanUtilities.CreateSapientAnimalRequest(request.outputDef, original, faction, fixedGender:newGender); 
+
 
 
             Pawn animalToSpawn = PawnGenerator.GeneratePawn(pRequest); //make the temp pawn 
@@ -163,12 +165,12 @@ namespace Pawnmorph.TfSys
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
 
 
+            FormerHumanUtilities.MakeAnimalSapient(original, animalToSpawn, Rand.Range(0.4f, 1)); //use a normal distribution? 
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
-            FormerHumanUtilities.MakeAnimalSapient(original, spawnedAnimal, Rand.Range(0.4f, 1)); //use a normal distribution? 
             var rFaction = request.factionResponsible ?? GetFactionResponsible(original); 
             var inst = new TransformedPawnSingle
             {
@@ -213,6 +215,32 @@ namespace Pawnmorph.TfSys
 
 
             return inst;
+        }
+
+        private void TryAddMutationsToPawn([NotNull] Pawn original, [CanBeNull] Hediff requestCause,
+                                           [NotNull] PawnKindDef requestOutputDef)
+        {
+            MorphDef mDef = null;
+
+            if (requestCause != null) //first check the cause 
+                foreach (MorphDef morphDef in MorphDef.AllDefs)
+                    if (morphDef.fullTransformation == requestCause.def || morphDef.partialTransformation == requestCause.def)
+                    {
+                        mDef = morphDef;
+                        goto applyMutations; //ugly, but it's the easiest solution
+                    }
+
+            mDef = MorphUtilities.GetMorphOfAnimal(requestOutputDef.race).FirstOrDefault();
+
+            if (mDef == null)
+            {
+                Log.Warning($"could not apply mutations to {original} with cause {requestCause?.def?.defName ?? "NULL"} and target {requestOutputDef.defName}");
+                return;
+            }
+
+
+            applyMutations:
+            MutationUtilities.AddAllMorphMutations(original, mDef);
         }
 
         /// <summary>

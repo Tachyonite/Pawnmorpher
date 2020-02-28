@@ -19,8 +19,12 @@ namespace Pawnmorph
         /// Gets all Configuration errors in this instance.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> ConfigErrors()
+        public override IEnumerable<string> ConfigErrors()
         {
+            foreach (string configError in base.ConfigErrors())
+            {
+                yield return configError; 
+            }
             if (pawnkinds.NullOrEmpty()) yield return "no pawnkinds set"; 
         }
 
@@ -68,14 +72,13 @@ namespace Pawnmorph
         /// <returns></returns>
         public bool TransformPawn(Pawn pawn, [CanBeNull] Hediff cause)
         {
-            var hediffMorph = (cause as Hediff_Morph);
-            var mutagen = hediffMorph?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+            var mutagen = cause?.def?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
             var request = new TransformationRequest(pawnkinds.RandElement(), pawn)
             {
                 forcedGender = forceGender,
                 forcedGenderChance = forceGenderChance,
-                cause = hediffMorph,
+                cause = cause,
                 tale = tale
             };
 

@@ -1,0 +1,43 @@
+<Defs>
+	<ThingDef ParentName="SerumBase">
+		<defName>ReversionSyringe</defName>
+		<label>mutaserum, reverter</label>
+		<description>Can turn an animal back into a human, or removes all mutations from a humanoid pawn.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Reversal</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>600</WorkToMake>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffAll">
+					<hediffDefs>
+						<li>StabiliserHigh</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_EsotericRevert">
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>Reversion</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MutagenStabiliser>1</MutagenStabiliser>
+			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>2</Neutroamine>
+			<Mutanite>2</Mutanite>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

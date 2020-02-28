@@ -202,6 +202,8 @@ namespace Pawnmorph.Hediffs
             
         }
 
+   
+
         /// <summary>
         /// set to true if this instance should be removed before severity reaches 0 
         /// </summary>
@@ -253,6 +255,16 @@ namespace Pawnmorph.Hediffs
                 execStage.EnteredStage(this); 
             }
         }
+
+        /// <summary>
+        /// called when the hediff is removed.
+        /// </summary>
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+            pawn.CheckRace();
+        }
+
 
         /// <summary>Tries to give transformations</summary>
         protected virtual void TryGiveTransformations()

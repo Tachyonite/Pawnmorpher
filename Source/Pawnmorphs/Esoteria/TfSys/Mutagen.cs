@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
-using Multiplayer.API;
+//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -18,9 +18,6 @@ namespace Pawnmorph.TfSys
     /// </summary>
     public abstract class Mutagen
     {
-        //some convenience stuff 
-
-        private static PawnmorphGameComp _comp;
 
         //do this here so all the derived code doesn't have to         
         /// <summary>Gets the game comp.</summary>
@@ -89,10 +86,10 @@ namespace Pawnmorph.TfSys
         {
             if (!def.canInfectAnimals && pawn.RaceProps.Animal) return false;
             if (!def.canInfectMechanoids && pawn.RaceProps.FleshType != FleshTypeDefOf.Normal) return false;
-            var ext = pawn.def.GetModExtension<RaceMutagenExtension>();
+            var ext = pawn.def.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null)
             {
-                return !ext.immuneToAll && !ext.blackList.Contains(def);
+                return !ext.immuneToAll;
             }
 
             return !HasAnyImmunizingHediffs(pawn); 
@@ -128,10 +125,10 @@ namespace Pawnmorph.TfSys
             if (raceDef.race == null) return false; 
             if (!def.canInfectAnimals && raceDef.race.Animal) return false;
             if (!def.canInfectMechanoids && raceDef.race.IsMechanoid) return false;
-            var ext = raceDef.GetModExtension<RaceMutagenExtension>();
+            var ext = raceDef.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null)
             {
-                return !ext.immuneToAll && !ext.blackList.Contains(def);
+                return !ext.immuneToAll;
             }
 
             return true;
@@ -297,7 +294,7 @@ namespace Pawnmorph.TfSys
                 throw new ArgumentNullException(nameof(pawn));
             bool reverted;
 
-            if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
+            //if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
 
             try
             {
@@ -305,13 +302,13 @@ namespace Pawnmorph.TfSys
             }
             catch (InvalidCastException e)
             {
-                if (MP.IsInMultiplayer) Rand.PopState();
+                //if (MP.IsInMultiplayer) Rand.PopState();
                 throw new
                     InvalidTransformedPawnInstance($"tfPawn instance of type {pawn.GetType().Name} can not be cast to {typeof(T).Name}",
                                                    e);
             }
 
-            if (MP.IsInMultiplayer) Rand.PopState();
+            //if (MP.IsInMultiplayer) Rand.PopState();
 
             return reverted; 
         }
@@ -328,19 +325,19 @@ namespace Pawnmorph.TfSys
             bool reverted;
             try
             {
-                if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
+                //if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
 
                 reverted =
                     TryRevertImpl((T) transformedPawn); //this class will handle all casting for us, and error appropriately 
             }
             catch (InvalidCastException e)
             {
-                if (MP.IsInMultiplayer) Rand.PopState();
+                //if (MP.IsInMultiplayer) Rand.PopState();
                 throw new InvalidTransformedPawnInstance(
                                                          $"tfPawn instance of type {transformedPawn.GetType().Name} can not be cast to {typeof(T).Name}",
                                                          e);
             }
-            if (MP.IsInMultiplayer) Rand.PopState();
+            //if (MP.IsInMultiplayer) Rand.PopState();
 
             return reverted;
         }

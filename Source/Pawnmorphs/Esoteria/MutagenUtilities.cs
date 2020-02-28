@@ -72,22 +72,6 @@ namespace Pawnmorph
 
         }
 
-
-        /// <summary> Determines whether this instance can infect the specified pawn. </summary>
-        /// <param name="morphTf"> The morph tf hediff. </param>
-        /// <param name="pawn"> The pawn. </param>
-        /// <returns> <c>true</c> if this instance can infect the specified pawn; otherwise, <c>false</c>. </returns>
-        /// <exception cref="ArgumentNullException"> morphTf or pawn is null. </exception>
-        public static bool CanInfect([NotNull] this Hediff_Morph morphTf, [NotNull] Pawn pawn)
-        {
-            if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-
-            var mutDef = morphTf.def as Def_MorphTf;
-            var mutagen = mutDef?.mutagenSource ?? MutagenDefOf.defaultMutagen;
-            return mutagen.CanInfect(pawn);
-        }
-
         /// <summary> Determines whether this instance can infect the specified pawn. </summary>
         /// <param name="mutationDef"> The mutation definition. </param>
         /// <param name="pawn"> The pawn. </param>
@@ -98,13 +82,9 @@ namespace Pawnmorph
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
-            MutagenDef mutagenSource;
 
-            if (mutationDef is Def_MorphTf morphTf)
-            {
-                mutagenSource = morphTf.mutagenSource ?? MutagenDefOf.defaultMutagen;
-            }
-            else mutagenSource = MutagenDefOf.defaultMutagen; 
+
+            MutagenDef mutagenSource = mutationDef.GetMutagenDef(); 
 
             return mutagenSource.CanInfect(pawn);
         }
@@ -113,15 +93,16 @@ namespace Pawnmorph
         /// <param name="morphTf"> The morph tf. </param>
         /// <exception cref="ArgumentNullException"> morphTf is null. </exception>
         [NotNull]
-        public static MutagenDef GetMutagenDef([NotNull] this Hediff_Morph morphTf)
+        public static MutagenDef GetMutagenDef([NotNull] this MorphTf morphTf)
         {
             if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
 
-            var def = morphTf.def as Hediffs.Def_MorphTf;
+
             var defExt = morphTf.def.GetModExtension<MutagenExtension>();
-            return def?.mutagenSource ??  defExt?.mutagen ??  MutagenDefOf.defaultMutagen;
+            return defExt?.mutagen ?? MutagenDefOf.defaultMutagen;
             // check for a custom def, then for the extension, then return the default 
         }
+
         /// <summary> Gets the mutagen associated with this tf hediff. </summary>
         /// <param name="morphTf"> The morph tf. </param>
         /// <exception cref="ArgumentNullException"> morphTf is null. </exception>
@@ -130,9 +111,8 @@ namespace Pawnmorph
         {
             if (morphTf == null) throw new ArgumentNullException(nameof(morphTf));
 
-            var def = morphTf as Def_MorphTf;
             var defExt = morphTf.GetModExtension<MutagenExtension>();
-            return def?.mutagenSource ?? defExt?.mutagen ?? MutagenDefOf.defaultMutagen;
+            return defExt?.mutagen ?? MutagenDefOf.defaultMutagen;
             // check for a custom def, then for the extension, then return the default 
         }
     }

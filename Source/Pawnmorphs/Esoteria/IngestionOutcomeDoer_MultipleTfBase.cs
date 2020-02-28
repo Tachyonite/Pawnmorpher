@@ -80,7 +80,7 @@ namespace Pawnmorph
             var completeSet = new HashSet<HediffDef>(hediffDefsComplete); // Use hash sets so we don't have any duplicates.
             var partialSet = new HashSet<HediffDef>(hediffDefs);
 
-            IEnumerable<HediffDef> allTfHediffs = MorphTransformationDefOf.AllMorphs;
+            IEnumerable<HediffDef> allTfHediffs = TransformerUtility.AllMorphTfs;
 
             foreach (HediffDef morphTf in allTfHediffs)
                 if (IsValidTfDef(morphTf))

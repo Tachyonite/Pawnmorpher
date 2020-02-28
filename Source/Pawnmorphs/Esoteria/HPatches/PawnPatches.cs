@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;
@@ -28,7 +28,7 @@ namespace Pawnmorph.HPatches
                 if (!__instance.Spawned) return;
                 if (__instance.HostFaction != null) return; 
                 
-                __result = __instance.GetFormerHumanStatus() == FormerHumanStatus.Sapient; 
+                __result = __instance.IsSapientFormerHuman(); 
             }
         }
 
@@ -43,7 +43,13 @@ namespace Pawnmorph.HPatches
                     __result = nd.IsValidFor(___pawn);
                     return;
                 }
-                if (___pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return; 
+                if (___pawn?.IsSapientFormerHuman() != true) return;
+                if (nd?.defName == "SapientAnimalControl")
+                {
+                    __result = true;
+                    return; 
+                }
+                
                 var isColonist = ___pawn.Faction?.IsPlayer == true;
                 if (nd.defName == "Mood")
                 {

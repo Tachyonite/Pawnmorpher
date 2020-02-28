@@ -7,11 +7,12 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using AlienRace;
-using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
+using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
+using Pawnmorph.ThingComps;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -106,7 +107,7 @@ namespace Pawnmorph
             get
             {
                 foreach (Pawn allMap in PawnsFinder.AllMaps)
-                    if (allMap.GetFormerHumanStatus() != null)
+                    if (allMap.IsFormerHuman())
                         yield return allMap;
             }
         }
@@ -123,7 +124,7 @@ namespace Pawnmorph
             get
             {
                 foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive)
-                    if (pawn.GetFormerHumanStatus() != null)
+                    if (pawn.IsFormerHuman())
                         yield return pawn;
             }
         }
@@ -290,7 +291,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsFormerHuman([NotNull] this Pawn pawn)
         {
-            return pawn.GetFormerHumanStatus() != null; 
+            return pawn.GetFormerHumanTracker()?.IsFormerHuman == true; 
         }
 
         private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman, [NotNull] PawnRelationDef relation,string letterContentID, string letterLabelID)
@@ -378,6 +379,7 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn"></param>
         /// <returns>the former human status, null if the given pawn is not a former human </returns>
+        [Obsolete("use " + nameof(GetQuantizedSapienceLevel) + " instead")]
         public static FormerHumanStatus? GetFormerHumanStatus([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -385,6 +387,8 @@ namespace Pawnmorph
             Hediff formerHumanHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             if (formerHumanHediff == null)
             {
+                bool hasMergedHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(HediffDef.Named("2xMergedHuman")) != null;
+                if (hasMergedHediff) return FormerHumanStatus.Sapient; 
                 bool hasPFeralHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.PermanentlyFeral) != null;
 
                 if (hasPFeralHediff) return FormerHumanStatus.PermanentlyFeral;
@@ -413,16 +417,55 @@ namespace Pawnmorph
         }
 
 
+        /// <summary>
+        /// Gets the former human tracker.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static FormerHumanTracker GetFormerHumanTracker([NotNull] this Pawn pawn)
+        {
+            var tComp = pawn.GetComp<FormerHumanTracker>();
+            return tComp; 
+        }
+
         /// <summary>Gets the quantized sapience level.</summary>
         /// <param name="pawn">The pawn.</param>
         /// <returns>returns null if the pawn isn't a former human</returns>
         public static SapienceLevel? GetQuantizedSapienceLevel([NotNull] this Pawn pawn)
         {
-            float? sLevel = GetSapienceLevel(pawn);
-            if (sLevel == null) return null;
-            if (pawn.GetFormerHumanStatus() == FormerHumanStatus.PermanentlyFeral) return SapienceLevel.PermanentlyFeral;
+            FormerHumanTracker tracker = pawn.GetFormerHumanTracker();
+            if (tracker == null) return null;
+            if (!tracker.IsFormerHuman) return null; 
+            return tracker.SapienceLevel; 
+        }
 
-            return GetQuantizedSapienceLevel(sLevel.Value); 
+        /// <summary>
+        /// Determines whether this pawn is a sapient former human.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
+        {
+            var fTracker = pawn.GetFormerHumanTracker();
+            if (fTracker == null) return false;
+            if (!fTracker.IsFormerHuman) return false; 
+            switch (fTracker.SapienceLevel)
+            {
+                case SapienceLevel.Sapient:
+                case SapienceLevel.MostlySapient:
+                case SapienceLevel.Conflicted:
+                case SapienceLevel.MostlyFeral:
+                    return true; 
+                case SapienceLevel.Feral:
+                case SapienceLevel.PermanentlyFeral:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>
@@ -485,27 +528,7 @@ namespace Pawnmorph
             return pawn;
         }
 
-        /// <summary>Gets the sapience level of this pawn</summary>
-        /// <param name="formerHuman">The former human.</param>
-        /// <returns>the sapience level. If feral this is 0, if the given pawn is not a former human returns null</returns>
-        public static float? GetSapienceLevel([NotNull] this Pawn formerHuman)
-        {
-            if (formerHuman == null) throw new ArgumentNullException(nameof(formerHuman));
-            FormerHumanStatus? fHumanStatus = formerHuman.GetFormerHumanStatus();
-            switch (fHumanStatus)
-            {
-                case FormerHumanStatus.Sapient:
-                    return formerHuman.needs?.TryGetNeed<Need_Control>()?.CurLevel;
-                case FormerHumanStatus.Feral:
-                    return 0;
-                case FormerHumanStatus.PermanentlyFeral:
-                    return 0;
-                case null:
-                    return null;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+       
 
         /// <summary>
         ///     Gets the sapient animal comp.
@@ -524,6 +547,12 @@ namespace Pawnmorph
         /// <param name="sapienceLevel">The sapience level.</param>
         public static void MakeAnimalSapient([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel = 1)
         {
+            if (animal.IsFormerHuman())
+            {
+                Log.Warning($"trying to make {original.Name} a former human twice!");
+                return; 
+            }
+
             animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
             Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             if (fHumanHediff == null)
@@ -534,16 +563,28 @@ namespace Pawnmorph
 
             fHumanHediff.Severity = 1;
 
+            var comp = animal.GetComp<FormerHumanTracker>();
+
+            if (comp == null)
+            {
+                Log.Error($"{animal.Name},{animal.def.defName} does not have a {nameof(FormerHumanTracker)} comp!");
+                return; 
+            }
+
+
+            comp.MakeFormerHuman(sapienceLevel);
+
             if (original.Faction == Faction.OfPlayer) animal.SetFaction(original.Faction);
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
+
             if (animal.needs == null)
             {
                 Log.Error(nameof(animal.needs));
                 return;
             }
-
             animal.needs.AddOrRemoveNeedsAsAppropriate();
+
             PawnTransferUtilities.TransferRelations(original, animal);
             PawnTransferUtilities.TransferAspects(original, animal);
             PawnTransferUtilities.TransferSkills(original, animal);
@@ -557,7 +598,9 @@ namespace Pawnmorph
                 return;
             }
 
-            nC.SetInitialLevel(sapienceLevel); 
+            nC.SetInitialLevel(sapienceLevel);      
+            animal.needs.AddOrRemoveNeedsAsAppropriate();
+
             //nC.CurLevelPercentage = sapienceLevel;
 
             if (animal.training == null) return;
@@ -570,17 +613,91 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// Creates the sapient animal generation request.
+        /// </summary>
+        /// <param name="kind">The kind.</param>
+        /// <param name="original">The original.</param>
+        /// <param name="faction">The faction.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="fixedGender">The fixed gender.</param>
+        /// <returns></returns>
+        public static PawnGenerationRequest CreateSapientAnimalRequest([NotNull] PawnKindDef kind, [NotNull] Pawn original, Faction faction=null, PawnGenerationContext context=PawnGenerationContext.NonPlayer, Gender? fixedGender=null)
+        {
+            var age = TransformerUtility.ConvertAge(original.RaceProps, kind.RaceProps, original.ageTracker.AgeBiologicalYears);
+            return new PawnGenerationRequest(kind, faction, context, fixedBiologicalAge: age,
+                                             fixedChronologicalAge: original.ageTracker.AgeChronologicalYears,
+                                             fixedGender:fixedGender);
+        }
+
+        /// <summary>
+        /// Creates the merged animal request.
+        /// </summary>
+        /// <param name="kind">The kind.</param>
+        /// <param name="originals">The originals.</param>
+        /// <param name="faction">The faction.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="fixedGender">The fixed gender.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// kind
+        /// or
+        /// originals
+        /// </exception>
+        public static PawnGenerationRequest CreateMergedAnimalRequest([NotNull] PawnKindDef kind, [NotNull] IEnumerable<Pawn> originals,
+                                                                      Faction faction = null,
+                                                                      PawnGenerationContext context =
+                                                                          PawnGenerationContext.NonPlayer,
+                                                                      Gender? fixedGender = null)
+        {
+            if (kind == null) throw new ArgumentNullException(nameof(kind));
+            if (originals == null) throw new ArgumentNullException(nameof(originals));
+            float avgOriginalAge = 0, avgOriginalLifeExpectancy=0, avgChronoAge=0;
+            int counter = 0;
+            foreach (Pawn oPawn in originals)
+            {
+                counter++;
+                avgOriginalAge += oPawn.ageTracker.AgeBiologicalYears;
+                avgOriginalLifeExpectancy += oPawn.RaceProps.lifeExpectancy;
+                avgChronoAge += oPawn.ageTracker.AgeChronologicalYears; 
+                
+            }
+
+            avgOriginalLifeExpectancy /= counter;
+            avgChronoAge /= counter;
+            avgOriginalAge /= counter;
+
+            float newAge =
+                TransformerUtility.ConvertAge(avgOriginalAge, avgOriginalLifeExpectancy, kind.RaceProps.lifeExpectancy);
+            float newChronoAge = avgChronoAge * newAge / avgOriginalAge;
+            return new PawnGenerationRequest(kind, faction, context, fixedGender:fixedGender, fixedBiologicalAge:newAge, fixedChronologicalAge:newChronoAge);
+
+        }
+
+
         /// <summary>Makes the animal sapient.</summary>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
         public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1)
         {
+            if (animal.IsFormerHuman())
+            {
+                Log.Warning($"trying to make {animal.Name} a former human twice!");
+                return; 
+            }
+
             animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
             Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            var fTracker = animal.GetFormerHumanTracker(); 
             if (fHumanHediff == null)
             {
                 Log.Error(nameof(fHumanHediff));
                 return;
+            }
+
+            if (fTracker == null)
+            {
+                Log.Error($"trying to make {PMThingUtilities.GetDebugLabel(animal)} sapient but they have no former human tracker!");
             }
 
             fHumanHediff.Severity = 1;
@@ -591,16 +708,14 @@ namespace Pawnmorph
             PawnKindDef kind = pawnKind;
             Faction faction = ofPlayer;
             var convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
-            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true,
-                                              false, 20f, false, true, true, false, false, false, false,
-                                               null, (Predicate<Pawn>) null, null,
-                                              convertedAge, null, null, null,
-                                              (string) null);
+            var chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
+            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, fixedChronologicalAge:chronoAge,
+                                              fixedBiologicalAge:convertedAge);//TODO wrap in a helper method 
             var lPawn = PawnGenerator.GeneratePawn(local);
 
             lPawn.equipment?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
             lPawn.apparel?.DestroyAll();
-
+            fTracker.MakeFormerHuman(sapienceLevel); 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
             TryAssignBackstoryToTransformedPawn(animal, lPawn); 
@@ -624,6 +739,13 @@ namespace Pawnmorph
                 return;
             }
 
+            //now give the animal a name 
+            SapienceLevel sapienceQLevel = GetQuantizedSapienceLevel(sapienceLevel);
+            if (sapienceQLevel == SapienceLevel.Sapient || sapienceQLevel == SapienceLevel.MostlySapient)
+                animal.Name = lPawn.Name;
+            else
+                animal.Name = new NameSingle(animal.LabelShort);
+
             //tame the animal if they are wild and related to a colonist
             if (animal.Faction == null && animal.GetCorrectMap() != null)
             {
@@ -639,23 +761,16 @@ namespace Pawnmorph
 
             if (nC == null)
             {
-                Log.Error(nameof(nC));
+                if (sapienceLevel > 0)
+                {
+                    Log.Error($"unable to set sapient level on {animal.Name} while trying to make the sapient because they have no control need");
+                    
+                }
                 return;
             }
 
             nC.SetInitialLevel(sapienceLevel);
-            sapienceLevel = nC.SeekerLevel;
 
-            //now give the animal a name 
-            var sapienceQLevel = GetQuantizedSapienceLevel(sapienceLevel);
-            if (sapienceQLevel == SapienceLevel.Sapient || sapienceQLevel == SapienceLevel.MostlySapient)
-            {
-                animal.Name = lPawn.Name; 
-            }
-            else
-            {
-                animal.Name = new NameSingle(animal.LabelShort);
-            }
 
             if (animal.training == null) return;
 
@@ -767,29 +882,6 @@ namespace Pawnmorph
         [NotNull]
         private static readonly List<RulePackDef> _randomNameGenerators;
 
-        private static Name CreateRandomNameFor([NotNull] Pawn formerHumanPawn, float sapienceLevel)
-        {
-            Log.Message($"$$$$giving name to pawn {formerHumanPawn?.LabelShort ?? "[NULL]"}"); 
-
-
-            SapienceLevel qSapience = GetQuantizedSapienceLevel(sapienceLevel);
-            switch (qSapience)
-            {
-                case SapienceLevel.Sapient:
-                case SapienceLevel.MostlySapient:
-                    break;
-                case SapienceLevel.Conflicted:
-                case SapienceLevel.MostlyFeral:
-                case SapienceLevel.Feral:
-                case SapienceLevel.PermanentlyFeral:
-                    return new NameSingle(formerHumanPawn.LabelShort);
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            return PawnBioAndNameGenerator.TryGetRandomUnusedSolidName(formerHumanPawn.gender);
-        }
-
 
         /// <summary>
         ///     Tries the assign the correct backstory to transformed pawn.
@@ -800,7 +892,7 @@ namespace Pawnmorph
         public static void TryAssignBackstoryToTransformedPawn([NotNull] Pawn pawn, [CanBeNull] Pawn originalPawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return;
+            if (!pawn.IsFormerHuman()) return;
             if (pawn.story == null) return;
 
             if (originalPawn != null)
@@ -874,12 +966,14 @@ namespace Pawnmorph
         public static void MakePermanentlyFeral(Pawn pawn)
         {
             Hediff fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
+            var comp = pawn.GetComp<FormerHumanTracker>();
+            if (comp == null) return; 
             if (fHediff == null) return;
-           
-
+            
+            comp.MakePermanentlyFeral();
             //transfer relationships back if possible 
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-            var oPawn = gComp.GetTransformedPawnContaining(pawn)?.First?.OriginalPawns.FirstOrDefault();
+            var oPawn = gComp.GetTransformedPawnContaining(pawn)?.Item1?.OriginalPawns.FirstOrDefault();
             if (oPawn == pawn)
             {
                 oPawn = null; 
@@ -895,7 +989,7 @@ namespace Pawnmorph
             pawn.health.RemoveHediff(fHediff); 
 
             var loader = Find.World.GetComponent<PawnmorphGameComp>();
-            var inst = loader.GetTransformedPawnContaining(pawn)?.First;
+            var inst = loader.GetTransformedPawnContaining(pawn)?.Item1;
             var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution 
             foreach (var instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>())//needed to handle merges correctly 
             {

@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.BackstoryDef>
+		<defName>SheepmorphGeneral</defName>
+		<title>farm sheep</title>
+		<titleShort>sheepmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the sheep flock. [PAWN_pronoun] escaped before being shorn, and fled with [PAWN_possessive] fleece still on [PAWN_possessive] back.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>SheepMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.BackstoryDef>
+</Defs>

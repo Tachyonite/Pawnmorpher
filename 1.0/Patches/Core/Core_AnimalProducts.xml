@@ -1,0 +1,18 @@
+<Patch>
+    <Operation Class="PatchOperationSequence">
+
+        <operations>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Cow"]/comps/li[@Class="CompProperties_Milkable"]</xpath>
+                <value>
+                    <mutagenicProduct>TFMilk</mutagenicProduct>
+                </value>
+            </li>
+            <li Class="PatchOperationAttributeSet">
+                <xpath>/Defs/ThingDef[defName="Cow"]/comps/li[@Class="CompProperties_Milkable"]</xpath>
+                <attribute>Class</attribute>
+                <value>Pawnmorph.ThingComps.TFMilkableProps</value>
+            </li>
+        </operations>
+    </Operation>
+</Patch>

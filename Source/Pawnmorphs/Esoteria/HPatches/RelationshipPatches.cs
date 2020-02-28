@@ -1,7 +1,7 @@
 ﻿// RelationshipPatches.cs modified by Iron Wolf for Pawnmorph on 12/22/2019 8:22 PM
 // last updated 12/22/2019  8:22 PM
 
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -16,7 +16,7 @@ namespace Pawnmorph.HPatches
             [HarmonyPrefix]
             static bool DisableForSapients([NotNull] Pawn p, ref ThoughtState __result)
             {
-                if (p.GetFormerHumanStatus() == FormerHumanStatus.Sapient)
+                if (p.IsSapientFormerHuman())
                 {
                     __result = false;
                     return false; 

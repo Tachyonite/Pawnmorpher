@@ -39,6 +39,10 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        /// <summary>
+        /// Gets all Configuration errors in this instance.
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
         {
             if (pawnkinds.NullOrEmpty()) yield return "no pawnkinds set"; 

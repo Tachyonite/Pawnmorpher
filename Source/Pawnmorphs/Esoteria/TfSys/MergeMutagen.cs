@@ -77,15 +77,30 @@ namespace Pawnmorph.TfSys
 
             Faction faction = request.forcedFaction ?? Faction.OfPlayer;
 
-            var pRequest = new PawnGenerationRequest(request.outputDef,faction ,
-                                                    PawnGenerationContext.NonPlayer, -1, false,
-                                                    false, false, false, true, false, 1f,
-                                                    false, true, true, false, false, false,
-                                                    false, null, null, null,
-                                                    newAge, averageAge);
+            var pRequest = FormerHumanUtilities.CreateMergedAnimalRequest(request.outputDef, request.originals, faction);
+
 
 
             Pawn meldToSpawn = PawnGenerator.GeneratePawn(pRequest);
+      
+            HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF); //make sure hediff is added before spawning meld 
+
+            //make them count as former humans 
+            var tracker = meldToSpawn.GetFormerHumanTracker();
+            if (tracker == null)
+            {
+                Log.Error($"{meldToSpawn.def.defName} is a meld but does not have a former human tracker!");
+            }
+            else
+            {
+                tracker.MakeFormerHuman(1);
+            }
+
+
+
+            Hediff hediff = HediffMaker.MakeHediff(hediffToAdd, meldToSpawn);
+            hediff.Severity = Rand.Range(request.minSeverity, request.maxSeverity);
+            meldToSpawn.health.AddHediff(hediff);
 
             Pawn_NeedsTracker needs = meldToSpawn.needs;
             needs.food.CurLevel = firstPawn.needs.food.CurLevel;
@@ -101,13 +116,7 @@ namespace Pawnmorph.TfSys
             }
 
             meld.SetFaction(Faction.OfPlayer);
-            
-            HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF);
-
-            Hediff hediff = HediffMaker.MakeHediff(hediffToAdd, meld);
-            hediff.Severity = Rand.Range(request.minSeverity, request.maxSeverity);
-            meld.health.AddHediff(hediff);
-
+      
             ReactionsHelper.OnPawnsMerged(firstPawn, firstPawn.IsPrisoner, secondPawn, secondPawn.IsPrisoner, meld);
 
 
@@ -238,9 +247,9 @@ namespace Pawnmorph.TfSys
 
             if (status != null)
             {
-                if (status.Second != TransformedStatus.Transformed) return false;
+                if (status.Item2 != TransformedStatus.Transformed) return false;
 
-                if (status.First is MergedPawns merged)
+                if (status.Item1 is MergedPawns merged)
                 {
                     if (merged.mutagenDef != def) return false;
 
