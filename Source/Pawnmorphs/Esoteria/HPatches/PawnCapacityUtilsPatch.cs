@@ -15,13 +15,13 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(typeof(PawnCapacityUtility))]
         [HarmonyPatch(nameof(PawnCapacityUtility.CalculateCapacityLevel), new Type[]
         {
-            typeof(HediffSet), typeof(PawnCapacityDef), typeof(List<PawnCapacityUtility.CapacityImpactor>)
+            typeof(HediffSet), typeof(PawnCapacityDef), typeof(List<PawnCapacityUtility.CapacityImpactor>), typeof(bool) 
         })]
         public static class GetCapacityLvPatch
         {
 
             static void Postfix(ref float __result, HediffSet diffSet, PawnCapacityDef capacity,
-                                List<AspectCapacityImpactor> impactors)
+                                List<PawnCapacityUtility.CapacityImpactor> impactors, bool forTradePrice)
             {
                 var pawn = diffSet.pawn;
                 var aspectTracker = pawn.GetAspectTracker();
