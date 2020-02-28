@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-using Multiplayer.API;
+//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -20,10 +20,7 @@ namespace Pawnmorph.Hediffs
     public class Giver_MutationChaotic : HediffGiver
     {
         private List<MutationDef> _possibleMutations;
-        /// <summary>
-        /// the morphType to get hediff givers from 
-        /// </summary>
-        public System.Type morphType = typeof(Hediff_Morph); //the hediff type to get possible mutations from 
+       
         /// <summary>
         /// list of morph categories to exclude 
         /// </summary>
@@ -87,10 +84,10 @@ namespace Pawnmorph.Hediffs
         {
             if (Mutations.Count == 0) { return;}
             
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PushState(RandUtilities.MPSafeSeed); 
-            }
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PushState(RandUtilities.MPSafeSeed); 
+            //}
 
             var singleComp = cause.TryGetComp<HediffComp_Single>();
             float mult = singleComp?.stacks
@@ -103,15 +100,15 @@ namespace Pawnmorph.Hediffs
             if (Rand.MTBEventOccurs(mtbDays / mult, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 //mutagen is what contains information like infect-ability of a pawn and post mutation effects 
-                var mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+                var mutagen = cause?.def?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
                 TryApply(pawn, cause, mutagen);
             }
 
-            if (MP.IsInMultiplayer)
-            {
-                Rand.PopState();
-            }
+            //if (MP.IsInMultiplayer)
+            //{
+            //    Rand.PopState();
+            //}
 
         }
         /// <summary>

@@ -1,0 +1,11 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingSetMakerDef[defName="MapGen_AncientTempleContents"]/root/options[last()]/thingSetMaker/fixedParams/filter/thingDefs</xpath>
+		<success>Always</success>
+		<value>
+			  <li>RandomTransformer</li>
+			  <li>RandomCombatTransformer</li>
+			  <li>RandomProductionTransformer</li>
+		</value>
+	</Operation>
+</Patch>

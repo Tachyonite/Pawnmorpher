@@ -18,7 +18,7 @@ namespace Pawnmorph.DefExtensions
         /// The filter for specific kinds of former humans 
         /// </summary>
         [NotNull]
-        public Filter<FormerHumanStatus> filter = new Filter<FormerHumanStatus>();
+        public Filter<SapienceLevel> filter = new Filter<SapienceLevel>();
 
         /// <summary>
         /// The race filter
@@ -41,7 +41,7 @@ namespace Pawnmorph.DefExtensions
         protected override bool PassesRestrictionImpl(Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            var fHumanStatus = pawn.GetFormerHumanStatus();
+            var fHumanStatus = pawn.GetQuantizedSapienceLevel();
             if (fHumanStatus == null)
             {
                 return !mustBeFormerHuman; 

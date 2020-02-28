@@ -1,0 +1,24 @@
+<Defs>  
+	<ThingDef ParentName="TrapIEDBase">
+		<defName>TrapIED_TF</defName>
+		<label>IED mutagen trap</label>
+		<description>A pair of mutagenic shells connected to a touch-activated trigger. The explosion can mutate organics caught in the blast. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
+		<graphicData>
+			<texPath>Things/Building/tfIED</texPath>
+		</graphicData>
+		<costList>
+			<Shell_TF>2</Shell_TF>
+		</costList>
+		<designationHotKey>Misc12</designationHotKey>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>	
+				<damageFalloff>true</damageFalloff>			
+				<wickTicks>15~15</wickTicks>
+			</li>
+		</comps>
+		<specialDisplayRadius>5.9</specialDisplayRadius>
+	</ThingDef>
+</Defs>

@@ -181,7 +181,7 @@ namespace Pawnmorph
         public static MorphTransformationTypes GetTransformationType([NotNull] this HediffDef inst)
         {
             if (inst == null) throw new ArgumentNullException(nameof(inst));
-            if (!typeof(Hediff_Morph).IsAssignableFrom(inst.hediffClass)) return 0;
+            if (!typeof(TransformationBase).IsAssignableFrom(inst.hediffClass)) return 0;
 
             var comp = inst.CompProps<HediffCompProperties_Single>();
             return comp == null ? MorphTransformationTypes.Full : MorphTransformationTypes.Partial;
@@ -259,30 +259,15 @@ namespace Pawnmorph
             return humanInfluence > MORPH_TF_THRESHOLD;
         }
 
-        /// <summary> Get all morphs defs associated with this transformation hediff def. </summary>
-        /// <param name="transformationDef"> The transformation definition. </param>
-        [Obsolete]
-        private static IEnumerable<MorphDef> GetAssociatedMorphInternal(
-                HediffDef transformationDef) //might want to add it the hediff defs themselves rather then check at runtime 
-        {
-            IEnumerable<HediffGiver_Mutation> mutationsGiven =
-                transformationDef.stages?.SelectMany(s => s.hediffGivers?.OfType<HediffGiver_Mutation>()
-                                                       ?? Enumerable.Empty<HediffGiver_Mutation>())
-             ?? Enumerable.Empty<HediffGiver_Mutation>(); //all mutations in the def 
+        
 
-            foreach (HediffGiver_Mutation hediffGiverMutation in mutationsGiven)
+        private static MorphDef GetChimeraRace([CanBeNull] AnimalClassBase hInfluence)
+        {
+            if (hInfluence == null)
             {
-                IEnumerable<CompProperties_MorphInfluence> comps =
-                    hediffGiverMutation.hediff.comps?.OfType<CompProperties_MorphInfluence>();
-
-                if (comps == null) continue;
-
-                foreach (CompProperties_MorphInfluence morphInfluence in comps) yield return morphInfluence.morph;
+                return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
             }
-        }
 
-        private static MorphDef GetChimeraRace(AnimalClassBase hInfluence)
-        {
             var morph = hInfluence as MorphDef;
             //if the highest influence isn't a morph pick a random morph from the animal class
             morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();

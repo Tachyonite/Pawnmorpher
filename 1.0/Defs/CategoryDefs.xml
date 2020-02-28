@@ -1,0 +1,17 @@
+﻿<Defs>
+	<ThingCategoryDef>
+		<defName>Injector</defName>
+		<label>injector</label>
+		<parent>Drugs</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>UI/Icons/ThingCategories/Drugs</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>Serum</defName>
+		<label>serums</label>
+		<parent>Drugs</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>UI/Icons/ThingCategories/Drugs</iconPath>
+	</ThingCategoryDef>
+</Defs>

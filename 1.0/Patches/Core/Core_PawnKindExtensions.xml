@@ -1,0 +1,17 @@
+<Patch>
+    
+    <!-- uncomment to turn all tribals into dogs 
+    
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/PawnKindDef[@Name="TribalBase"]</xpath>
+        <value>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <hediffRange>5~6</hediffRange>
+                <morphCategories>
+                    <li>Canid</li>
+                </morphCategories>
+            </li>
+        </value>
+    </Operation>
+    -->
+</Patch>

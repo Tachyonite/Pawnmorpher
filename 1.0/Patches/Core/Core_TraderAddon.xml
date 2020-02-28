@@ -1,0 +1,9 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/FactionDef[@Name="OutlanderFactionBase"]/caravanTraderKinds</xpath>
+		<success>Always</success>
+		<value>
+			  <li>PawnmorpherTrader</li>
+		</value>
+	</Operation>
+</Patch>

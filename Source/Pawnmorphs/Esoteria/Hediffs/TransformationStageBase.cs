@@ -73,8 +73,8 @@ namespace Pawnmorph.Hediffs
 
             if (!PawnUtility.ShouldSendNotificationAbout(pawn)) return;
 
-            string letterLabel;
-            string letterContent;
+            TaggedString letterLabel;
+            TaggedString letterContent;
 
             //for translated text use the following keys 
             // LabelShort - the short label of the pawn 
@@ -83,12 +83,12 @@ namespace Pawnmorph.Hediffs
             letterLabel = this.letterLabel.CanTranslate()
                               ? this.letterLabel.Translate(pawn.LabelShort.Named(nameof(pawn.LabelShort)),
                                                            pawn.Name.Named(nameof(pawn.Name)))
-                              : this.letterLabel.AdjustedFor(pawn);
+                              : (TaggedString) this.letterLabel.AdjustedFor(pawn);
 
             letterContent = letterText.CanTranslate()
                                 ? letterText.Translate(pawn.LabelShort.Named(nameof(pawn.LabelShort)),
                                                        pawn.Name.Named(nameof(pawn.Name)))
-                                : letterText.AdjustedFor(pawn);
+                                : (TaggedString) letterText.AdjustedFor(pawn);
 
 
             Find.LetterStack.ReceiveLetter(letterLabel, letterContent, letterDef ?? LetterDefOf.NeutralEvent, new LookTargets(pawn));

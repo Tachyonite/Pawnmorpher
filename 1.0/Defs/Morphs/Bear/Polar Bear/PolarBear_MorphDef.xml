@@ -1,0 +1,18 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="BearMorphBase">
+		<defName>PolarBearMorph</defName>
+		<label>bearmorph</label>
+		<race>Bear_Polar</race>
+		<fullTransformation>PawnmorphPolarBearTF</fullTransformation>
+		<partialTransformation>PawnmorphBearTFPartial</partialTransformation>
+		<categories>
+			<li>Temperate</li>
+			<li>Combat</li>
+		</categories>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(180,180,180)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

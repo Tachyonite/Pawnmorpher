@@ -1,7 +1,7 @@
 ﻿// WorkSettingsPatches.cs modified by Iron Wolf for Pawnmorph on 12/24/2019 1:34 PM
 // last updated 12/24/2019  1:34 PM
 
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -16,7 +16,7 @@ namespace Pawnmorph.HPatches
             [HarmonyPostfix]
             static void InitializeForFormerHumans([NotNull] Pawn_WorkSettings __instance, [NotNull] Pawn ___pawn)
             {
-                if (___pawn.GetFormerHumanStatus() == FormerHumanStatus.Sapient)
+                if (___pawn.IsSapientFormerHuman())
                 {
 
                     FormerHumanUtilities.InitializeWorkSettingsFor(___pawn, __instance); 

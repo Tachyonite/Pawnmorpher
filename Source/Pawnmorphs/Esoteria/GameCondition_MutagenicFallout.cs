@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using JetBrains.Annotations;
-using Multiplayer.API;
+//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -141,7 +138,7 @@ namespace Pawnmorph
             RandUtilities.PopState();
         }
 
-        [SyncMethod]
+        //[SyncMethod]
         private void SubstitutePlant([NotNull] Plant plant)
         {
 

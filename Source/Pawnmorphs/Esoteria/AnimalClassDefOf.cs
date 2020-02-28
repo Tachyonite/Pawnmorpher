@@ -20,7 +20,6 @@ namespace Pawnmorph
             DefOfHelper.EnsureInitializedInCtor(typeof(AnimalClassDef));
         }
 
-        [NotNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static AnimalClassDef Animal;
        
     }

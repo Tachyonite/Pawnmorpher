@@ -66,11 +66,8 @@ namespace Pawnmorph
             shouldShow |= (pawn.GetAspectTracker()?.AspectCount ?? 0) > 0;
             if (shouldShow) return true;
 
-            var fHumanStatus = pawn.GetFormerHumanStatus();
-            if (fHumanStatus == null) return false;
-            return true; //just always showing for former humans for now 
-
-
+            return pawn.IsFormerHuman();
+            //just always showing for former humans for now 
         }
 
 

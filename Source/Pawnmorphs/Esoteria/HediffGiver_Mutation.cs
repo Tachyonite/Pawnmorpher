@@ -77,7 +77,7 @@ namespace Pawnmorph
             if (Rand.MTBEventOccurs( mtbDays/mult, mtbUnits, 30f) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 //mutagen is what contains information like infect-ability of a pawn and post mutation effects
-                MutagenDef mutagen = (cause as Hediff_Morph)?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+                MutagenDef mutagen = cause.def?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
 
                 // Check if this HediffGiver has the HediffComp_Single property (basically a dummy property that only comes into play in this function).
                 var comp = singleComp;

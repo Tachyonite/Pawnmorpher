@@ -43,7 +43,7 @@ namespace Pawnmorph.Thoughts
             foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_Alive)
             {
                 if (pawn.playerSettings?.Master != p) continue;
-                if (pawn.GetFormerHumanStatus() == null) continue;
+                if (!pawn.IsFormerHuman()) continue;
 
                 if (pawn.Faction != p.Faction) continue;
 

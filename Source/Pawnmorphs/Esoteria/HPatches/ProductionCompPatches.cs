@@ -1,7 +1,7 @@
 ﻿// ProductionCompPatches.cs modified by Iron Wolf for Pawnmorph on 12/26/2019 7:34 AM
 // last updated 12/26/2019  7:34 AM
 
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;

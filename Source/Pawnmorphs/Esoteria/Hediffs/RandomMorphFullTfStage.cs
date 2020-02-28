@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -24,6 +25,11 @@ namespace Pawnmorph.Hediffs
         public AnimalClassBase morph;
 
         [Unsaved] private List<MorphDef> _morphs;
+
+        /// <summary>
+        /// The change chance
+        /// </summary>
+        public float changeChance=100; 
 
         /// <summary>
         /// a list of morph categories not to include 
@@ -85,6 +91,8 @@ namespace Pawnmorph.Hediffs
         /// <param name="hediff">The hediff.</param>
         public void EnteredStage(Hediff hediff)
         {
+            if (!(Rand.Range(0, 100) < changeChance)) return;
+
             MorphDef morphFor = GetMorphFor(hediff.pawn);
             var transformer = morphFor?.fullTransformation?.GetAllTransformers().FirstOrDefault();
             if (transformer == null)
@@ -92,9 +100,7 @@ namespace Pawnmorph.Hediffs
                 Log.Error($"could not find transformer for morph {morphFor?.defName ?? "NULL"} with full tf {morphFor?.fullTransformation?.defName ?? "NULL"}");
                 return;
             }
-
-            transformer.TransformPawn(hediff.pawn, hediff); 
-
+            transformer.TransformPawn(hediff.pawn, hediff);
         }
     }
 }

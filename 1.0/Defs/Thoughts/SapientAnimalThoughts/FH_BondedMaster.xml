@@ -1,0 +1,32 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Name="SapientAnimalBondedMasterBase" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Worker_SapientAnimalBondedMaster</workerClass>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="SapientAnimalBondedMasterBase">
+        <defName>SapientAnimalBondedMaster</defName> <!-- thought for when a sapient animal is bonded to a pawn but that pawn is their master -->
+        <stages>
+            <li>
+                <label>friend</label>
+                <description>My bonded friend is great, helping me to get used to life like this.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>friend</label>
+                <description>My bonded friend is great, even though I can't express it with words.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>...master?</label>
+                <description>My bonded friend...or is it master? Great person...want to be close.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>master</label>
+                <description>Nice person...my master. Feeds me.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

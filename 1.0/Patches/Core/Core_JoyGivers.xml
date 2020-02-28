@@ -1,0 +1,18 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/JoyGiverDef[defName="Play_Hoopstone"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <invert>true</invert> <!-- we don't want former humans using this -->
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/JoyGiverDef[defName="Play_Horseshoes"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <invert>true</invert> <!-- we don't want former humans using this -->
+            </li>
+        </value>
+    </Operation>
+</Patch>
