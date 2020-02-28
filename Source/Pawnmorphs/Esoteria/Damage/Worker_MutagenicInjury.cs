@@ -91,16 +91,15 @@ namespace Pawnmorph.Damage
                 break; //if we apply a mutation break the loop 
             }
         }
-
-
         /// <summary>
-        ///     called when an explosion damages the given thing
+        /// does explosive damage to a thing 
         /// </summary>
         /// <param name="explosion">The explosion.</param>
         /// <param name="t">The t.</param>
         /// <param name="damagedThings">The damaged things.</param>
+        /// <param name="ignoredThings">The ignored things.</param>
         /// <param name="cell">The cell.</param>
-        protected override void ExplosionDamageThing(Explosion explosion, Thing t, List<Thing> damagedThings, IntVec3 cell)
+        protected override void ExplosionDamageThing(Explosion explosion, Thing t, List<Thing> damagedThings, List<Thing> ignoredThings, IntVec3 cell)
         {
             if (t.def.category == ThingCategory.Mote || t.def.category == ThingCategory.Ethereal) return;
             if (damagedThings.Contains(t)) return;
@@ -113,9 +112,18 @@ namespace Pawnmorph.Damage
             }
             //only affects pawns 
 
-            if (!(t is Pawn pawn)) return;
+            if (!(t is Pawn pawn))
+            {
+                ignoredThings?.Add(t);
+                return;
+            }
 
-            if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return; //only affects susceptible pawns 
+            if (!MutagenDefOf.defaultMutagen.CanInfect(pawn))
+            {
+
+                ignoredThings?.Add(pawn); 
+                return; //only affects susceptible pawns 
+            }
 
 
             float num;
@@ -124,7 +132,7 @@ namespace Pawnmorph.Damage
             else
                 num = (t.Position - explosion.Position).AngleFlat;
             DamageDef damageDef = def;
-            var amount = (float) explosion.GetDamageAmountAt(cell);
+            var amount = (float)explosion.GetDamageAmountAt(cell);
             float armorPenetrationAt = explosion.GetArmorPenetrationAt(cell);
             float angle = num;
             Thing instigator = explosion.instigator;
@@ -143,6 +151,9 @@ namespace Pawnmorph.Damage
 
             pawn.stances?.StaggerFor(95);
         }
+
+
+       
 
         /// <summary>Reduces the damage.</summary>
         /// <param name="dInfo">The d information.</param>

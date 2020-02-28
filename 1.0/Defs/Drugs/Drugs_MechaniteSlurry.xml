@@ -1,0 +1,42 @@
+<Defs>
+	<ThingDef ParentName="SerumBase">
+		<defName>MechaniteSlurry</defName>
+		<label>mechanite slurry</label>
+		<description>A chaotic mix of DNA and mechanites. Useful to make your own serums. DO NOT DRINK THIS. It can be fatal with other health complications, and more than likely you will end up with a mutated beast.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Slurry</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>200</WorkToMake>
+			<MarketValue>80</MarketValue>
+		</statBases>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>FullRandomTFAnyOutcome</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<TFMilk>5</TFMilk>
+			<TFEgg>2</TFEgg>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

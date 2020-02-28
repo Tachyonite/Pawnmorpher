@@ -6,9 +6,9 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    /// hediff for morph diseases 
+    /// hediff for morph diseases
     /// </summary>
-    /// <seealso cref="Pawnmorph.Hediff_Morph" />
+    /// <seealso cref="Pawnmorph.Hediffs.MorphTf" />
     public class MorphDisease : MorphTf
     {
         private HediffComp_Immunizable ImmunizableComp => this.TryGetComp<HediffComp_Immunizable>();

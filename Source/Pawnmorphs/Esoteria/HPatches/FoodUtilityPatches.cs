@@ -1,7 +1,7 @@
 ﻿// FoodUtilityPatches.cs modified by Iron Wolf for Pawnmorph on 01/19/2020 4:33 PM
 // last updated 01/19/2020  4:33 PM
 
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 

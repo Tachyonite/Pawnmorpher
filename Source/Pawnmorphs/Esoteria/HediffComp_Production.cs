@@ -243,25 +243,7 @@ namespace Pawnmorph
 
                 aspectTracker.Add(AspectDefOf.EtherState, stageNum);
             }
-            else
-            {
-                Log.Warning($"{Pawn.Name} does not have an aspect tracker! adding the deprecated hediff instead");
-                HediffDef hDef;
-                switch (state)
-                {
-                    case EtherState.Broken:
-                        hDef = TfHediffDefOf.EtherBroken;
-                        break;
-                    case EtherState.Bond:
-                        hDef = TfHediffDefOf.EtherBond;
-                        break;
-                    case EtherState.None:
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(state), state, null);
-                }
-
-                Pawn.health.AddHediff(hDef);
-            }
+           
         }
     }
 }

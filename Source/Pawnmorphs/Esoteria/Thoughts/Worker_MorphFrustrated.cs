@@ -21,7 +21,7 @@ namespace Pawnmorph.Thoughts
         /// <returns></returns>
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            if (p.GetFormerHumanStatus() != null) return false; //disable this for former humans 
+            if (p.IsFormerHuman()) return false; //disable this for former humans 
 
             var hediffs = p.health?.hediffSet?.hediffs;
             foreach (Hediff hediff in hediffs.MakeSafe())

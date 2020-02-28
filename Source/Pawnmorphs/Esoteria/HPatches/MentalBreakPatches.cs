@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;

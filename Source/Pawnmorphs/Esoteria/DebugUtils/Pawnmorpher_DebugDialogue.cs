@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
@@ -60,7 +61,43 @@ namespace Pawnmorph.DebugUtils
             pawn.jobs?.StartJob(job, JobCondition.InterruptForced);
         }
 
-        
+
+        void GetMutationInfo(Pawn pawn)
+        {
+            var tracker = pawn?.GetMutationTracker();
+            if (tracker == null)
+            {
+                Log.Message($"no tracker on {pawn?.Name?.ToStringFull ?? "NULL"}");
+                return;
+            }
+
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"---{pawn.Name}---");
+            builder.AppendLine("---Raw Influence---"); 
+            foreach (KeyValuePair<AnimalClassBase, float> kvp in tracker)
+            {
+                builder.AppendLine($"{kvp.Key.Label}:{kvp.Value}"); 
+            }
+
+            builder.AppendLine($"---Total={tracker.TotalInfluence} N:{tracker.TotalNormalizedInfluence} NN:{tracker.TotalInfluence/MorphUtilities.MaxHumanInfluence}---");
+
+
+            builder.AppendLine($"---HighestInfluence={tracker.HighestInfluence?.Label ?? "NULL"}---");
+
+
+
+            Log.Message(builder.ToString()); 
+
+        }
+
+        void GetAllMutationInfo()
+        {
+            foreach (Pawn pawn in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
+            {
+                GetMutationInfo(pawn); 
+            }
+        }
+
 
         private void ForceTransformation(Pawn pawn)
         {
@@ -207,6 +244,22 @@ namespace Pawnmorph.DebugUtils
             return outLst;
         }
 
+        void RunRaceCheck(Pawn pawn)
+        {
+            if (pawn == null) return;
+            if (pawn.IsAnimalOrMerged()) return;
+            var oldRace = pawn.def;
+            pawn.CheckRace();
+            if (pawn.def == oldRace)
+            {
+                Log.Message($"no change in {pawn.Name}");
+            }
+            else
+            {
+                Log.Message($"{pawn.Name} was {oldRace.defName} and is now {pawn.def.defName}");
+            }
+        }
+
 
         private void GivePawnRandomMutations([CanBeNull] MorphDef morph)
         {
@@ -269,10 +322,19 @@ namespace Pawnmorph.DebugUtils
 
         void DoAddBackstoryToPawn(Pawn pawn)
         {
-            if (pawn.GetFormerHumanStatus() != FormerHumanStatus.Sapient) return;
+            if (!pawn.IsSapientFormerHuman()) return;
 
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetGiveBackstoriesOptions(pawn))); 
 
+        }
+
+        void RunRaceCheck()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonistsAndPrisonersSpawned)
+            {
+                RunRaceCheck(pawn); 
+            }
         }
 
         private void ListPlayOptions()
@@ -280,6 +342,8 @@ namespace Pawnmorph.DebugUtils
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
             DebugAction("give random mutations", GetRandomMutationsOptions);
             DebugAction("recalculate all colonist mutation influence", AllRecalculateInfluence);
+            DebugAction("run race check on all pawn", RunRaceCheck);
+            DebugAction("get mutation info for all pawns", GetAllMutationInfo); 
             DebugToolMapForPawns("force full transformation", ForceTransformation);
             DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics);
             DebugToolMapForPawns("Remove Aspect", DoRemoveAspectsOption);
@@ -289,11 +353,13 @@ namespace Pawnmorph.DebugUtils
             DebugToolMapForPawns("Make pawn permanently feral", MakePawnPermanentlyFeral);
             DebugToolMapForPawns("Restart all mutation progression", ResetMutationProgression);
             DebugToolMapForPawns("recalculate mutation influence", RecalculateInfluence); 
+            DebugToolMapForPawns("Run Race Check", RunRaceCheck);
+            DebugToolMapForPawns("get mutation info for pawn", GetMutationInfo); 
         }
 
         private void MakePawnPermanentlyFeral(Pawn obj)
         {
-            if (obj?.GetFormerHumanStatus() == null) return;
+            if (obj?.IsFormerHuman() != true) return;
 
             FormerHumanUtilities.MakePermanentlyFeral(obj); 
         }

@@ -1,5 +1,5 @@
 ﻿using Verse;
-using Multiplayer.API;
+//using Multiplayer.API;
 
 namespace Pawnmorph
 {
@@ -11,9 +11,9 @@ namespace Pawnmorph
     {
         static PawnmorphMPCompat()
         {
-            if (!MP.enabled) return;
+            //if (!MP.enabled) return;
 
-            MP.RegisterAll();
+            //MP.RegisterAll();
         }
     }
 }

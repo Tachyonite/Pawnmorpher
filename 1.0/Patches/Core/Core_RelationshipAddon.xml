@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnRelationDef[defName="Parent"]</xpath>
+    <value>
+      <li Class="Pawnmorph.Thoughts.RelationshipDefExtension">
+        <transformThought>FatherTransformed</transformThought>
+        <transformThoughtFemale>MotherTransformed</transformThoughtFemale>
+        <!-- TODO add other thoughts -->
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnRelationDef[defName="Spouse"]</xpath>
+    <value>
+      <li Class="Pawnmorph.Thoughts.RelationshipDefExtension">
+        <transformThought>HusbandTransformed</transformThought>
+        <transformThoughtFemale>WifeTransformed</transformThoughtFemale>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnRelationDef[defName="Sibling"]</xpath>
+    <value>
+      <li Class="Pawnmorph.Thoughts.RelationshipDefExtension">
+        <transformThought>BrotherTransformed</transformThought>
+        <transformThoughtFemale>SisterTransformed</transformThoughtFemale>
+      </li>
+    </value>
+  </Operation>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnRelationDef[defName="Child"]</xpath>
+		<value>
+			<li Class="Pawnmorph.Thoughts.RelationshipDefExtension">
+				<transformThought>SonTransformed</transformThought>
+				<transformThoughtFemale>DaughterTransformed</transformThoughtFemale>
+			</li>
+		</value>
+	</Operation>
+</Patch>

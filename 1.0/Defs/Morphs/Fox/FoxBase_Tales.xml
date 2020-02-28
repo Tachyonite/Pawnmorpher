@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>EyesBecomeVulpine</defName>
+		<label>eyes become vulpine</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s eyes become vulpine</li>
+				<li>image->[PAWN_nameFull] pupils shift to fox-like slits [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s eyes begin to change into ones that look like they belong on a fox [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] suddenly has trouble telling different colors apart [circumstance_group]</li>
+				<li>circumstance_phrase->as someone looks dazzled by [PAWN_possessive] exotic eyes</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

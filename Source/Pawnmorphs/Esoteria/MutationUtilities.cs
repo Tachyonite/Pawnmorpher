@@ -53,25 +53,6 @@ namespace Pawnmorph
                 anyWarnings = true;
             }
 
-            //warnings for use of the old def extension 
-
-            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
-            {
-#pragma warning disable 618
-                if (hediffDef.HasModExtension<MutationHediffExtension>())
-                {
-                    warningBuilder.AppendLine($"{hediffDef.defName} is still using the old MutationHediffExtension!");
-                    anyWarnings = true;
-                }
-
-                if (hediffDef.HasComp(typeof(Comp_MorphInfluence)))
-                {
-                    warningBuilder.AppendLine($"{hediffDef.defName} is still using the old {nameof(Comp_MorphInfluence)}!");
-                    anyWarnings = true;
-                }
-#pragma warning restore 618
-            }
-
             if (anyWarnings) Log.Warning(warningBuilder.ToString());
             BuildLookupDicts();
         }
@@ -102,12 +83,6 @@ namespace Pawnmorph
         public static float AverageMutationAdaptabilityValue { get; }
         
         /// <summary>
-        ///     an enumerable collection of all morph hediffs
-        /// </summary>
-        public static IEnumerable<HediffDef> AllMorphHediffs =>
-            DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_Morph).IsAssignableFrom(d.hediffClass));
-
-        /// <summary>
         ///     an enumerable collection of all mutation related thoughts
         /// </summary>
         [NotNull]
@@ -117,18 +92,15 @@ namespace Pawnmorph
             {
                 if (_allThoughts == null)
                 {
-                    _allThoughts = MutationDef.AllMutations
-                                              .Where(m => !m.memoryIgnoresLimit) //if true, the memory should act like a normal memory not a mutation memory, thus not respecting the limit 
-                                              .Select(m => m.mutationMemory)
-                                              .ToList();
-                    //add in any other memories added by mutation givers 
-                    foreach (HediffGiver_Mutation hediffGiverMutation in AllMorphHediffs.SelectMany(m => m.GetAllHediffGivers().OfType<HediffGiver_Mutation>()))
+                    var mutationsToCheck = MutationDef.AllMutations
+                                                      .Where(m =>
+                                                                 !m.memoryIgnoresLimit); //if true, the memory should act like a normal memory not a mutation memory, thus not respecting the limit 
+
+                    _allThoughts = new List<ThoughtDef>();
+                    foreach (MutationDef mutationDef in mutationsToCheck)
                     {
-                        if(hediffGiverMutation.ignoreThoughtLimit) continue;
-                        if (!_allThoughts.Contains(hediffGiverMutation.memory))
-                        {
-                            _allThoughts.Add(hediffGiverMutation.memory); 
-                        }
+                        if(mutationDef.mutationMemory != null)
+                            _allThoughts.AddDistinct(mutationDef.mutationMemory);
                     }
 
                 } 

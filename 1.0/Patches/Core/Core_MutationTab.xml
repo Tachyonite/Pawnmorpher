@@ -1,0 +1,8 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[thingClass="Pawn"]/inspectorTabs</xpath>
+		<value>
+				<li>Pawnmorph.ITab_Pawn_Mutations</li>
+		</value>
+	</Operation>
+</Patch>

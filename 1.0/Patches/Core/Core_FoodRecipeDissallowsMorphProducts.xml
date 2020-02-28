@@ -1,0 +1,16 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/RecipeDef[@Name="CookMealBase"]/defaultIngredientFilter/disallowedThingDefs</xpath>
+		<value>
+			  <li>TFEgg</li>
+			  <li>TFMilk</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Hopper"]/building/defaultStorageSettings/filter/disallowedThingDefs</xpath>
+		<value>
+			  <li>TFEgg</li>
+			  <li>TFMilk</li>
+		</value>
+	</Operation>
+</Patch>

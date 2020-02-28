@@ -1,0 +1,16 @@
+<Defs>
+	<TraitDef>
+		<defName>MutationAffinity</defName>
+		<commonality>0.9</commonality>
+		<degreeDatas>
+			<li>
+				<label>mutation affinity</label>
+				<description>{PAWN_nameDef} is intrigued by the idea of becoming something other than human.</description>
+			</li>
+		</degreeDatas>
+		<conflictingTraits>
+			<li>Transhumanist</li>
+			<li>BodyPurist</li>
+		</conflictingTraits>
+	</TraitDef>
+</Defs>

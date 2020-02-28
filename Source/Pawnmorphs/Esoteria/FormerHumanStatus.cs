@@ -1,13 +1,16 @@
 ﻿// FormerHumanStatus.cs modified by Iron Wolf for Pawnmorph on 11/29/2019 7:53 AM
 // last updated 11/29/2019  7:53 AM
 
+using System;
 using System.ComponentModel;
+using Pawnmorph.ThingComps;
 
 namespace Pawnmorph
 {
     /// <summary>
     /// enum that 
     /// </summary>
+    [Obsolete("use \"" + nameof(SapienceLevel) + "\" level and \"" + nameof(FormerHumanTracker) + "\" instead")]
     public enum FormerHumanStatus
     {
         /// <summary>

@@ -1,0 +1,40 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="EggChickenUnfertilized"]</xpath>
+		<value>
+			<socialPropernessMatters>false</socialPropernessMatters>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="EggChickenUnfertilized"]</xpath>
+		<value>
+			<ingestible>
+				<preferability>DesperateOnlyForHumanlikes</preferability>
+			</ingestible>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Milk"]/socialPropernessMatters</xpath>
+		<value>
+			<socialPropernessMatters>false</socialPropernessMatters>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Milk"]/ingestible/preferability</xpath>
+		<value>
+			<preferability>DesperateOnlyForHumanlikes</preferability>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="RawFungus"]</xpath>
+		<value>
+			<socialPropernessMatters>false</socialPropernessMatters>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="RawFungus"]/ingestible</xpath>
+		<value>
+			<preferability>DesperateOnlyForHumanlikes</preferability>
+		</value>
+	</Operation>
+</Patch>

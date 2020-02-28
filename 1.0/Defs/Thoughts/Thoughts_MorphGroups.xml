@@ -1,0 +1,64 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Abstract="true" Name="GroupThoughtBase">
+        <workerClass>Pawnmorph.Thoughts.Worker_HasAspect</workerClass>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="GroupThoughtBase" Class="Pawnmorph.Thoughts.Def_AspectThought">
+        <defName>PackMindAThought</defName>
+        <aspect>CanidMind</aspect>
+        <stages>
+            <!-- should have the same number of stages as the aspect -->
+            <li>
+                <label>alone</label>
+                <description>I'm the only one of my kind, I wish I had a proper pack.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>lonely</label>
+                <description>There's another like me, but we're still only a small pack.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>comfortable</label>
+                <description>There's lots of my kind, strength in numbers.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>happy</label>
+                <description>There's plenty of people in my pack, this is great!</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="GroupThoughtBase" Class="Pawnmorph.Thoughts.Def_AspectThought">
+        <defName>HerdMindedAThought</defName>
+        <aspect>HerdMind</aspect>
+        <stages>
+            <!-- should have the same number of stages as the aspect -->
+            <li>
+                <label>alone</label>
+                <description>I'm the only one of my kind, I feel unsafe being all alone.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>lonely</label>
+                <description>There's another like me, but we're still only a small herd.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>comfortable</label>
+                <description>There's lots of my kind, safety in numbers.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>happy</label>
+                <description>There's plenty of people in my herd, there's nothing to fear!</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

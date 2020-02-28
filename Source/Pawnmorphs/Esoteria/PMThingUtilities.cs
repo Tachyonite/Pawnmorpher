@@ -26,6 +26,16 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Gets a debug label for the given thing. useful for debug printing 
+        /// </summary>
+        /// <param name="thing">The thing.</param>
+        /// <returns></returns>
+        public static string GetDebugLabel([NotNull] Thing thing)
+        {
+            return $"[{thing.Label},{thing.def.defName},{thing.thingIDNumber}]";
+        }
+
+        /// <summary>
         /// Gets the correct map, taking account of whether or not this thing is held by something 
         /// </summary>
         /// <param name="thing">The thing.</param>

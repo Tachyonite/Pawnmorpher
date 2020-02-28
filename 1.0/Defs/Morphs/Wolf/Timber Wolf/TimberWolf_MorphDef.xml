@@ -1,0 +1,20 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="WolfMorphBase">
+		<defName>WolfMorph</defName>
+		<label>timberwolfmorph</label>
+		<race>Wolf_Timber</race>
+		<!--explicitHybridRace>WolfMorphRace_Explicit</explicitHybridRace-->
+		<categories>
+			<li>Temperate</li>
+			<li>Combat</li>
+			<li>Canid</li>
+		</categories>
+		<fullTransformation>PawnmorphWolfTF</fullTransformation>
+		<partialTransformation>PawnmorphWolfTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(104,98,93)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

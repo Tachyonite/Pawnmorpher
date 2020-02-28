@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Manifest>
-  <identifier>Pawnmorpher</identifier>
-  <version>1.7.3</version>
-  <dependencies>
-    <li>HumanoidAlienRaces2.0</li>
-    <li>HugsLib</li>
-  </dependencies>
-  <incompatibleWith>
-    <li>FacialStuff1.0</li>
-  </incompatibleWith>
+﻿<Manifest>
+	<identifier>Pawnmorpher</identifier>
+	<version>1.7.3</version>
+	<dependencies>
+		<li>HumanoidAlienRaces2.0</li>
+		<li>HugsLib</li>
+	</dependencies>
+	<incompatibleWith>
+		<li>FacialStuff1.0</li>
+	</incompatibleWith>
 </Manifest>

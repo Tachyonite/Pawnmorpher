@@ -1,0 +1,25 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/RulePackDef[defName="Sentence_RecruitAttemptAccepted"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.SapientRulePackVariant">
+                <variants>
+                    <sapient>SapientAnimalRecruitSuccess</sapient>
+                    <mostlySapient>MostlySapientAnimalRecruitSuccess</mostlySapient>
+                </variants>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/RulePackDef[defName="Sentence_RecruitAttemptRejected"]</xpath>
+        <value>
+
+            <li Class="Pawnmorph.DefExtensions.SapientRulePackVariant">
+                <variants>
+                    <sapient>MostlySapientAnimalRecruitRejected</sapient>
+                    <mostlySapient>MostlySapientAnimalRecruitSuccess</mostlySapient>
+                </variants>
+            </li>
+        </value>
+    </Operation>
+</Patch>

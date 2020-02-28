@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;
@@ -32,9 +30,9 @@ namespace Pawnmorph
         private const int MENTAL_BREAK_HASH_INTERVAL = 150;
 
         private const int MinTicksSinceRecoveryToBreak = 15000;
-        private const float MENTAL_BREAK_OFFSET = 0.15f;
-   
-        [NotNull] private static readonly List<Thought> _scratchList = new List<Thought>();
+        private const float MAJOR_BREAK_SCALAR = 0.5714286f;
+        private const float EXTREME_BREAK_SCALAR = 0.1428571f;
+            [NotNull] private static readonly List<Thought> _scratchList = new List<Thought>();
 
         //these three just look like debug helpers 
         private int _ticksBelowExtreme;
@@ -140,7 +138,7 @@ namespace Pawnmorph
         /// <value>
         ///     The break threshold extreme.
         /// </value>
-        public float BreakThresholdExtreme => Pawn.GetStatValue(StatDefOf.MentalBreakThreshold);
+        public float BreakThresholdExtreme => Pawn.GetStatValue(StatDefOf.MentalBreakThreshold) * EXTREME_BREAK_SCALAR; 
 
         /// <summary>
         ///     Gets the break threshold major.
@@ -148,7 +146,7 @@ namespace Pawnmorph
         /// <value>
         ///     The break threshold major.
         /// </value>
-        public float BreakThresholdMajor => Pawn.GetStatValue(StatDefOf.MentalBreakThreshold) + MENTAL_BREAK_OFFSET;
+        public float BreakThresholdMajor => Pawn.GetStatValue(StatDefOf.MentalBreakThreshold) * MAJOR_BREAK_SCALAR; 
 
         /// <summary>
         ///     Gets the break threshold minor.
@@ -157,7 +155,7 @@ namespace Pawnmorph
         ///     The break threshold minor.
         /// </value>
         public float BreakThresholdMinor =>
-            Pawn.GetStatValue(StatDefOf.MentalBreakThreshold) + MENTAL_BREAK_OFFSET + MENTAL_BREAK_OFFSET;
+            Pawn.GetStatValue(StatDefOf.MentalBreakThreshold);
 
 
         /// <summary>
@@ -184,7 +182,7 @@ namespace Pawnmorph
         /// <value>
         ///     <c>true</c> if this instance can do random mental breaks; otherwise, <c>false</c>.
         /// </value>
-        private bool CanDoRandomMentalBreaks => (Pawn.Spawned || Pawn.IsCaravanMember()) && Pawn.GetFormerHumanStatus() != FormerHumanStatus.PermanentlyFeral;
+        private bool CanDoRandomMentalBreaks => (Pawn.Spawned || Pawn.IsCaravanMember()) && Pawn.GetQuantizedSapienceLevel() != SapienceLevel.PermanentlyFeral;
 
         private MentalBreakIntensity CurrentDesiredMoodBreakIntensity
         {

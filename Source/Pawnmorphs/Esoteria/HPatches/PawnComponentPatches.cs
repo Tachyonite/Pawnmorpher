@@ -2,7 +2,7 @@
 // last updated 11/27/2019  1:00 PM
 
 using System;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -23,17 +23,18 @@ namespace Pawnmorph.HPatches
             {
                 if (pawn.RaceProps.Animal)
                 {
-                    var formerHumanStats = pawn.GetFormerHumanStatus();
-
+                    var formerHumanStats = pawn.GetQuantizedSapienceLevel();
+                    
                     switch (formerHumanStats)
                     {
-                        case FormerHumanStatus.Sapient:
-                            AddSapientAnimalComponents(pawn);
+                        case SapienceLevel.Sapient:
+                        case SapienceLevel.Conflicted:
+                        case SapienceLevel.MostlySapient:
+                        case SapienceLevel.MostlyFeral:
+                        case SapienceLevel.Feral: 
+                            AddSapientAnimalComponents(pawn);//ferals need to keep them so stuff doesn't break, like relationships 
                             break;
-                        case FormerHumanStatus.Feral:
-                            AddSapientAnimalComponents(pawn); //they need to keep them so stuff doesn't break, like relationships 
-                            break;
-                        case FormerHumanStatus.PermanentlyFeral:
+                        case SapienceLevel.PermanentlyFeral:
                             RemoveSapientAnimalComponents(pawn); //actually removing the components seems to break stuff for some reason 
                             break;
                         case null:
@@ -70,7 +71,7 @@ namespace Pawnmorph.HPatches
                 pawn.drafter = null;
                 pawn.apparel = null;
                 pawn.equipment = null;
-               
+                pawn.royalty = null; 
                 
                 pawn.story = null;
                 pawn.skills = null;
@@ -106,6 +107,8 @@ namespace Pawnmorph.HPatches
                 pawn.story = pawn.story ?? new Pawn_StoryTracker(pawn); //need to add story component to not break hospitality 
                 pawn.apparel = pawn.apparel ?? new  Pawn_ApparelTracker(pawn); //need this to not break thoughts and stuff 
                 pawn.skills = pawn.skills ?? new Pawn_SkillTracker(pawn); //need this for thoughts 
+                pawn.royalty = pawn.royalty ?? new Pawn_RoyaltyTracker(pawn);// former humans can be royalty  
+                pawn.mindState = pawn.mindState ?? new Pawn_MindState(pawn); 
                 Comp_SapientAnimal nComp = pawn.GetComp<Comp_SapientAnimal>();
                 bool addedComp = false;
                 

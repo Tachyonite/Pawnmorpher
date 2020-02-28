@@ -1,0 +1,73 @@
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Hospitality</li>
+        </mods>
+        <match Class="PatchOperationAdd">
+            <xpath>/Defs</xpath>
+            <value>
+                <ThingDef ParentName="BedWithQualityBase">
+                    <defName>MutaniteBed</defName>
+                    <label>mutanite bed</label>
+                    <description>A cozy mattress and sheets on a frame for resting.</description>
+                    <graphicData>
+                        <texPath>Things/Building/Furniture/Bed/Bed</texPath>
+                        <graphicClass>Graphic_Multi</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                        <drawSize>(2,2)</drawSize>
+                        <damageData>
+                            <rect>(0,0.05,1,1.95)</rect>
+                        </damageData>
+                    </graphicData>
+                    <comps>
+                        <li Class="CompProperties_AffectedByFacilities">
+                            <linkableFacilities>
+                                <li>EndTable</li>
+                                <li>Dresser</li>
+                            </linkableFacilities>
+                        </li>
+                        <li>
+                            <compClass>Pawnmorph.Comp_MutaniteBed</compClass>
+                        </li>
+                    </comps>
+                    <statBases>
+                        <MaxHitPoints>140</MaxHitPoints>
+                        <Flammability>1.0</Flammability>
+                        <Beauty>1</Beauty>
+                        <WorkToBuild>1100</WorkToBuild>
+                        <Mass>50</Mass>
+                        <BedRestEffectiveness>1.5</BedRestEffectiveness>
+                        <Comfort>0.85</Comfort>
+                        <ImmunityGainSpeedFactor>1.27</ImmunityGainSpeedFactor>
+                        <SurgerySuccessChanceFactor>1.1</SurgerySuccessChanceFactor>
+                    </statBases>
+                    <size>(1,2)</size>
+                    <stuffCategories>
+                        <li>Metallic</li>
+                        <li>Woody</li>
+                        <li>Stony</li>
+                    </stuffCategories>
+                    <costList>
+                        <Mutanite>3</Mutanite>
+                    </costList>
+                    <costStuffCount>45</costStuffCount>
+                    <building>
+                        <bed_showSleeperBody>False</bed_showSleeperBody>
+                        <bed_healPerDay>4</bed_healPerDay>
+                    </building>
+                    <fillPercent>0.4</fillPercent>
+                    <pathCost>60</pathCost>
+                    <staticSunShadowHeight>0.17</staticSunShadowHeight>
+                    <castEdgeShadows>True</castEdgeShadows>
+                    <designationHotKey>Misc2</designationHotKey>
+                    <techLevel>Medieval</techLevel>
+                    <researchPrerequisites>
+                        <li>ComplexFurniture</li>
+                    </researchPrerequisites>
+                    <uiIconScale>0.90</uiIconScale>
+                </ThingDef>
+
+            </value>
+        </match>
+    </Operation>
+</Patch>

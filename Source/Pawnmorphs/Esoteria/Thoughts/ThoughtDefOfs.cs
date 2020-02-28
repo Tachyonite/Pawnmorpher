@@ -17,24 +17,18 @@ namespace Pawnmorph.Thoughts
         }
 
         //transformed 
-        public static ThoughtDef ColonistTransformedThought;
-        public static ThoughtDef PrisonerTransformedThought;
         public static ThoughtDef RivalTransformedThought;
         public static ThoughtDef FriendTransformedThought; 
 
         //reverted 
-        public static ThoughtDef ColonistRevertedThought;
         public static ThoughtDef RivalRevertedThought;
         public static ThoughtDef FriendRevertedThought; 
         
         //permanently feral reactions
-        public static ThoughtDef ColonistPermFeralThought;
         public static ThoughtDef FriendPermFeralThought;
         public static ThoughtDef RivalPermFeralThought; 
 
         //merging 
-        public static ThoughtDef ColonistMergedThought;
-        public static ThoughtDef PrisonerMergedThought;
         public static ThoughtDef FriendMergedThought;
         public static ThoughtDef RivalMergedThought; 
 

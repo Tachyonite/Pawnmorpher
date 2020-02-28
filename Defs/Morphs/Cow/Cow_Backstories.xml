@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.BackstoryDef>
+		<defName>CowmorphGeneral</defName>
+		<title>dairy cow</title>
+		<titleShort>cowmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the livestock. [PAWN_pronoun] was allowed to leave once [PAWN_pronoun]'d "paid [PAWN_possessive] due."</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Fat</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>CowMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.BackstoryDef>
+</Defs>
