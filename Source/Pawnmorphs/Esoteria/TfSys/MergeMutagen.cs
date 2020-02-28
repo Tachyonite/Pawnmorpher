@@ -86,6 +86,12 @@ namespace Pawnmorph.TfSys
 
 
             Pawn meldToSpawn = PawnGenerator.GeneratePawn(pRequest);
+      
+            HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF); //make sure hediff is added before spawning meld 
+
+            Hediff hediff = HediffMaker.MakeHediff(hediffToAdd, meldToSpawn);
+            hediff.Severity = Rand.Range(request.minSeverity, request.maxSeverity);
+            meldToSpawn.health.AddHediff(hediff);
 
             Pawn_NeedsTracker needs = meldToSpawn.needs;
             needs.food.CurLevel = firstPawn.needs.food.CurLevel;
@@ -101,13 +107,7 @@ namespace Pawnmorph.TfSys
             }
 
             meld.SetFaction(Faction.OfPlayer);
-            
-            HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF);
-
-            Hediff hediff = HediffMaker.MakeHediff(hediffToAdd, meld);
-            hediff.Severity = Rand.Range(request.minSeverity, request.maxSeverity);
-            meld.health.AddHediff(hediff);
-
+      
             ReactionsHelper.OnPawnsMerged(firstPawn, firstPawn.IsPrisoner, secondPawn, secondPawn.IsPrisoner, meld);
 
 

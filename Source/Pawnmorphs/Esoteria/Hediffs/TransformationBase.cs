@@ -254,6 +254,16 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        /// <summary>
+        /// called when the hediff is removed.
+        /// </summary>
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+            pawn.CheckRace();
+        }
+
+
         /// <summary>Tries to give transformations</summary>
         protected virtual void TryGiveTransformations()
         {
