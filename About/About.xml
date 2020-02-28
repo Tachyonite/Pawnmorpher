@@ -25,7 +25,7 @@
 
   &lt;size=24&gt;Dependencies&lt;/size&gt;
 
-  Requires Humanoid Alien Framework.
+  Requires Humanoid Alien Framework and Hugslib.
 
   &lt;size=24&gt;Full Release&lt;/size&gt;
 
