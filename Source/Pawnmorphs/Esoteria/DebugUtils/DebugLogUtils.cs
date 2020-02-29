@@ -22,92 +22,19 @@ using Debug = System.Diagnostics.Debug;
 namespace Pawnmorph.DebugUtils
 {
     [HasDebugOutput]
-    public static class DebugLogUtils
+    [StaticConstructorOnStartup]
+    public static partial class DebugLogUtils
     {
+        [NotNull]
+        private static MutationOutlook[] Outlooks { get; }
+
+        static DebugLogUtils()
+        {
+            Outlooks = Enum.GetValues(typeof(MutationOutlook)).OfType<MutationOutlook>().ToArray(); 
+        }
+
+
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
-
-
-        public static bool ShouldLog(LogLevel logLevel)
-        {
-            var cLevel = PMUtilities.GetSettings().logLevel;
-            return logLevel <= cLevel; 
-        }
-
-        [DebuggerHidden]
-        public static void LogMsg(LogLevel logLevel, string message)
-        {
-            if (!ShouldLog(logLevel)) return;
-            switch (logLevel)
-            {
-                case LogLevel.Error:
-                    Log.Error(message); 
-                    break;
-                case LogLevel.Warnings:
-                    Log.Warning(message); 
-                    break;
-                case LogLevel.Messages:
-                case LogLevel.Pedantic:
-                    Log.Message(message); 
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
-            }
-        }
-
-        [DebuggerHidden]
-        public static void LogMsg(LogLevel logLevel, object message)
-        {
-            string msg;
-            if (message is IDebugString bObj)
-            {
-                msg = bObj.ToStringFull();
-            }
-            else
-            {
-                msg = message.ToStringSafe();
-            }
-
-            LogMsg(logLevel, msg);
-        }
-
-        [DebuggerHidden]
-        public static void Warning(string message)
-        {
-            LogMsg(LogLevel.Warnings, message); 
-        }
-
-        [DebuggerHidden]
-        public static void Warning(object message)
-        {
-            LogMsg(LogLevel.Warnings, message);
-        }
-
-
-        [DebuggerHidden]
-        public static void Error(string message)
-        {
-            LogMsg(LogLevel.Error, message);
-        }
-
-        [DebuggerHidden]
-        public static void Error(object message)
-        {
-            LogMsg(LogLevel.Error, message); 
-        }
-
-        /// <summary>
-        ///     Asserts the specified condition. if false an error message will be displayed
-        /// </summary>
-        /// <param name="condition">if false will display an error message</param>
-        /// <param name="message">The message.</param>
-        /// <returns>the condition</returns>
-        [DebuggerHidden]
-        [Conditional("DEBUG")]
-        [AssertionMethod]
-        public static void Assert(bool condition, string message)
-        {
-            if (!condition) Log.Error($"assertion failed:{message}");
-        }
 
 
         [DebugOutput, Category(MAIN_CATEGORY_NAME)]
@@ -125,18 +52,6 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString()); 
 
 
-        }
-
-        static bool IsTODOThought(ThoughtDef thoughtDef)
-        {
-            if (thoughtDef?.stages == null) return true;
-            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.label) || s.label.StartsWith("TODO") || s.label.StartsWith("!!!")))
-                return true;
-            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.description)
-                                        || s.description.StartsWith("TODO")
-                                        || s.description.StartsWith("!!!")))
-                return true;
-            return false; 
         }
 
         [DebugOutput, Category(MAIN_CATEGORY_NAME)]
@@ -264,43 +179,6 @@ namespace Pawnmorph.DebugUtils
                 Log.Message("no inconsistencies found");
         }
 
-
-
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
-        public static void FindAllTODOThoughts()
-        {
-            var builder = new StringBuilder();
-            var defNames = new List<string>();
-            foreach (ThoughtDef thoughtDef in DefDatabase<ThoughtDef>.AllDefs)
-            {
-                var addedHeader = false;
-                for (var index = 0; index < (thoughtDef?.stages?.Count ?? 0); index++)
-                {
-                    ThoughtStage stage = thoughtDef?.stages?[index];
-                    if (stage == null) continue;
-                    if (string.IsNullOrEmpty(stage.label) || string.IsNullOrEmpty(stage.description)) continue;
-                    if (stage.label == "TODO"
-                     || stage.description == "TODO"
-                     || stage.description.StartsWith("!!!")
-                     || stage.label.StartsWith("!!!"))
-                    {
-                        if (!addedHeader)
-                        {
-                            builder.AppendLine($"In {thoughtDef.defName}:");
-                            addedHeader = true;
-                        }
-
-                        defNames.Add(thoughtDef.defName);
-                        builder.AppendLine($"{index}) label:{stage.label} description:\"{stage.description}\"".Indented());
-                    }
-                }
-            }
-
-            builder.AppendLine(defNames.Distinct().Join("\n"));
-
-            Log.Message(builder.ToString());
-        }
 
         [Category(MAIN_CATEGORY_NAME)]
         [DebugOutput]
@@ -466,17 +344,6 @@ namespace Pawnmorph.DebugUtils
 
 
             Log.Message(builder.ToString());
-        }
-
-
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
-        public static void GetThoughtlessMutations()
-        {
-
-            var missingThought = DefDatabase<MutationDef>.AllDefs.Where(m => m.mutationMemory == null).Join(m => m.defName, "\n"); 
-
-            Log.Message(missingThought);
         }
 
 
