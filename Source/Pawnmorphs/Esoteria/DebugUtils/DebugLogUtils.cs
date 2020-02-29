@@ -19,60 +19,20 @@ using Verse;
 #pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
 {
-    public static class DebugLogUtils
+    [StaticConstructorOnStartup]
+    public static partial class DebugLogUtils
     {
+        [NotNull]
+        private static MutationOutlook[] Outlooks { get; }
+
+        static DebugLogUtils()
+        {
+            Outlooks = Enum.GetValues(typeof(MutationOutlook)).OfType<MutationOutlook>().ToArray(); 
+        }
+
+
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
-        /// <summary>
-        ///     Asserts the specified condition. if false an error message will be displayed
-        /// </summary>
-        /// <param name="condition">if false will display an error message</param>
-        /// <param name="message">The message.</param>
-        /// <returns>the condition</returns>
-        [DebuggerHidden]
-        [Conditional("DEBUG")]
-        [AssertionMethod]
-        public static void Assert(bool condition, string message)
-        {
-            if (!condition) Log.Error($"assertion failed:{message}");
-        }
-
-       
-
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        public static void FindAllTODOThoughts()
-        {
-            var builder = new StringBuilder();
-            var defNames = new List<string>();
-            foreach (ThoughtDef thoughtDef in DefDatabase<ThoughtDef>.AllDefs)
-            {
-                var addedHeader = false;
-                for (var index = 0; index < (thoughtDef?.stages?.Count ?? 0); index++)
-                {
-                    ThoughtStage stage = thoughtDef?.stages?[index];
-                    if (stage == null) continue;
-                    if (string.IsNullOrEmpty(stage.label) || string.IsNullOrEmpty(stage.description)) continue;
-                    if (stage.label == "TODO"
-                     || stage.description == "TODO"
-                     || stage.description.StartsWith("!!!")
-                     || stage.label.StartsWith("!!!"))
-                    {
-                        if (!addedHeader)
-                        {
-                            builder.AppendLine($"In {thoughtDef.defName}:");
-                            addedHeader = true;
-                        }
-
-                        defNames.Add(thoughtDef.defName);
-                        builder.AppendLine($"{index}) label:{stage.label} description:\"{stage.description}\"".Indented());
-                    }
-                }
-            }
-
-            builder.AppendLine(defNames.Distinct().Join(delimiter: "\n"));
-
-            Log.Message(builder.ToString());
-        }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindMissingMorphDescriptions()
@@ -219,17 +179,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        public static void GetThoughtlessMutations()
-        {
-
-            var missingThought = DefDatabase<MutationDef>.AllDefs.Where(m => m.mutationMemory == null).Join(m => m.defName, "\n"); 
-
-            Log.Message(missingThought);
-        }
-
-
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        [DebugOutput(category=MAIN_CATEGORY_NAME)]
         public static void ListHybridStateOffset()
         {
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
@@ -354,19 +304,6 @@ namespace Pawnmorph.DebugUtils
             Log.Message(msg);
         }
 
-        private static bool IsTODOThought(ThoughtDef thoughtDef)
-        {
-            if (thoughtDef?.stages == null) return true;
-            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.label)
-                                        || s.label.StartsWith("TODO")
-                                        || s.label.StartsWith("!!!")))
-                return true;
-            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.description)
-                                        || s.description.StartsWith("TODO")
-                                        || s.description.StartsWith("!!!")))
-                return true;
-            return false;
-        }
 
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
@@ -485,6 +422,22 @@ namespace Pawnmorph.DebugUtils
             {
                 return $"{defName},{stageIndex},{minSeverity},{severityPerDay}";
             }
+        }
+
+        [DebugOutput(category=MAIN_CATEGORY_NAME)]
+        static void LogAllBackstoryInfo()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var backstory in DefDatabase<AlienRace.BackstoryDef>.AllDefs)
+            {
+                var ext = backstory.GetModExtension<MorphPawnKindExtension>(); 
+                if(ext == null) continue;
+                builder.AppendLine($"---{backstory.defName}---");
+                builder.AppendLine(ext.ToStringFull()); 
+
+            }
+
+            Log.Message(builder.ToString()); 
         }
     }
 }

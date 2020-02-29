@@ -78,7 +78,7 @@
 				<li>talkedabout->chatted about plumage styling tips with</li>
 				<li>talkedabout->preened [INITIATOR_objective] feathers towards</li>
 
-				<li>askedabout->laying eggs for [RECIPIENT_objective]</li>
+				<li>askedabout->laying eggs for [INITIATOR_possessive]</li>
 				<li>askedabout->collecting eggs</li>
 				<li>askedabout->battery farms</li>
 				<li>askedabout->free-range living</li>

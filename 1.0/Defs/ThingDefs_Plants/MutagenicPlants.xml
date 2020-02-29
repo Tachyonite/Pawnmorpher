@@ -1,5 +1,8 @@
-﻿<Defs>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
 
+	
+  
 	<ChemicalDef>
 		<defName>TFPlantAddiction</defName>
 		<label>mutagenic plants</label>
@@ -19,7 +22,6 @@
 		<defName>TFPlantAddiction</defName>
 		<hediffClass>Hediff_Addiction</hediffClass>
 		<label>mutaplant need</label>
-		<description>This person has a developed a dependancy on mutagenic plants. Take care to not let them go without it, as withdrawal symtoms risk them transforming into an animal.</description>
 		<causesNeed>Chemical_TFPlant</causesNeed>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
@@ -117,15 +119,18 @@
 			<harvestTag>Standard</harvestTag>
 			<wildClusterRadius>5</wildClusterRadius>
 			<wildClusterWeight>250</wildClusterWeight>
-			<visualSizeRange>0.95~1.75</visualSizeRange>
+			<visualSizeRange>
+				<min>0.95</min>
+				<max>1.7</max>
+			</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
 		<comps>
-			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
-				<glowColor>(219,214,81,0)</glowColor>
-			</li>
+		  <li Class="CompProperties_Glower">
+			<glowRadius>2</glowRadius>
+			<glowColor>(219,214,81,0)</glowColor>
+		  </li>
 		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
@@ -171,7 +176,10 @@
 			<sowResearchPrerequisites>
 				<li>MutagenicPlantSowing</li>
 			</sowResearchPrerequisites>
-			<visualSizeRange>0.95~1.7</visualSizeRange>
+			<visualSizeRange>
+				<min>0.95</min>
+				<max>1.7</max>
+			</visualSizeRange>
 			<sowTags>
 				<li>Ground</li>
 				<li>Hydroponic</li>
@@ -180,10 +188,10 @@
 			<wildOrder>2</wildOrder>
 		</plant>
 		<comps>
-			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
-				<glowColor>(219,214,81,0)</glowColor>
-			</li>
+		  <li Class="CompProperties_Glower">
+			<glowRadius>2</glowRadius>
+			<glowColor>(219,214,81,0)</glowColor>
+		  </li>
 		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
@@ -191,8 +199,8 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-
-
+	
+	
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_Glowvine</defName>
 		<label>glowvine</label>
@@ -221,7 +229,10 @@
 			<harvestTag>Standard</harvestTag>
 			<wildClusterRadius>5</wildClusterRadius>
 			<wildClusterWeight>250</wildClusterWeight>
-			<visualSizeRange>0.95~1.7</visualSizeRange>
+			<visualSizeRange>
+				<min>0.95</min>
+				<max>1.7</max>
+			</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
@@ -251,7 +262,7 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-
+	
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedGrass</defName>
 		<label>mutagrass</label>
@@ -260,7 +271,7 @@
 			<MaxHitPoints>85</MaxHitPoints>
 			<Flammability>1.3</Flammability>
 			<Nutrition>0.15</Nutrition>
-		</statBases>
+    </statBases>
 		<graphicData>
 			<texPath>Plants/MutatedGrass</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
@@ -273,15 +284,18 @@
 			<growDays>2.5</growDays>
 			<harvestWork>40</harvestWork>
 			<maxMeshCount>9</maxMeshCount>
-			<visualSizeRange>0.4~0.6</visualSizeRange>
+			<visualSizeRange>
+				<min>0.4</min>
+				<max>0.6</max>
+			</visualSizeRange>
 			<topWindExposure>0.4</topWindExposure>
 			<wildOrder>1</wildOrder>
 		</plant>
 		<comps>
-			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
-				<glowColor>(24,183,177,0)</glowColor>
-			</li>
+		  <li Class="CompProperties_Glower">
+			<glowRadius>2</glowRadius>
+			<glowColor>(24,183,177,0)</glowColor>
+		  </li>
 		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
@@ -308,8 +322,8 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-
-
+	
+	
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedBrambles</defName>
 		<label>mutabrambles</label>
@@ -330,18 +344,21 @@
 			<growDays>3</growDays>
 			<harvestWork>60</harvestWork>
 			<maxMeshCount>4</maxMeshCount>
-			<visualSizeRange>0.7~0.85</visualSizeRange>
+			<visualSizeRange>
+				<min>0.7</min>
+				<max>0.85</max>
+			</visualSizeRange>
 			<topWindExposure>0.15</topWindExposure>
 			<wildClusterRadius>4</wildClusterRadius>
 			<wildClusterWeight>200</wildClusterWeight>
-			<wildOrder>1</wildOrder>
-			<wildEqualLocalDistribution>false</wildEqualLocalDistribution>
+      <wildOrder>1</wildOrder>
+      <wildEqualLocalDistribution>false</wildEqualLocalDistribution>
 		</plant>
 		<comps>
-			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
-				<glowColor>(188,40,41,0)</glowColor>
-			</li>
+		  <li Class="CompProperties_Glower">
+			<glowRadius>2</glowRadius>
+			<glowColor>(188,40,41,0)</glowColor>
+		  </li>
 		</comps>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
@@ -367,8 +384,9 @@
 				-->
 			</li>
 		</modExtensions>
+		
 	</ThingDef>
-
+	
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedBush</defName>
 		<label>mutant bush</label>
@@ -392,7 +410,10 @@
 			<growDays>6</growDays>
 			<wildClusterRadius>5</wildClusterRadius>
 			<wildClusterWeight>250</wildClusterWeight>
-			<visualSizeRange>0.95~1.7</visualSizeRange>
+			<visualSizeRange>
+				<min>0.95</min>
+				<max>1.7</max>
+			</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
@@ -447,7 +468,10 @@
 			<immatureGraphicPath>Plants/GnarledTree</immatureGraphicPath>
 			<wildClusterRadius>5</wildClusterRadius>
 			<wildClusterWeight>250</wildClusterWeight>
-			<visualSizeRange>0.95~1.7</visualSizeRange>
+			<visualSizeRange>
+				<min>0.95</min>
+				<max>1.7</max>
+			</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
 		</plant>
@@ -461,6 +485,7 @@
 				<priority>5</priority>
 				<!-- the source plant must be a tree -->
 				<mustBeTree>true</mustBeTree>
+				
 			</li>
 		</modExtensions>
 	</ThingDef>

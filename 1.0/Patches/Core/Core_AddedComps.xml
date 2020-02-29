@@ -1,5 +1,7 @@
 <Patch>
 	<Operation Class="PatchOperationSequence">
+		<!--add comps node only if another mod doesn't add it first  -->
+		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationTest">
 				<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
@@ -17,16 +19,17 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
 		<value>
-			<li Class="Pawnmorph.MorphTrackingCompProperties"/>
+
+			<li Class="Pawnmorph.MorphTrackingCompProperties"></li>
 			<li>
 				<compClass>Pawnmorph.GraphicSys.InitialGraphicsComp</compClass>
 			</li>
 			<li>
 				<compClass>Pawnmorph.GraphicSys.GraphicsUpdaterComp</compClass>
 			</li>
+
 		</value>
 	</Operation>
-	
 	<Operation Class="PatchOperationAdd">
 		<xpath>/Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
 		<value>
@@ -38,4 +41,5 @@
 			</li>
 		</value>
 	</Operation>
+		
 </Patch>

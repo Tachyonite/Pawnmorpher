@@ -3,7 +3,6 @@
 		<defName>PawnmorphWolfTF</defName>
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
 		<label>wolfmorph</label>
-		<description>This person has mechanites in their blood that are slowly mutating them into a articwolfmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more wolfish than human. But would that really be so bad?</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>

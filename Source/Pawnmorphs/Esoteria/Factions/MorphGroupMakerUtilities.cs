@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils; 
 
 namespace Pawnmorph.Factions
 {
@@ -96,6 +98,11 @@ namespace Pawnmorph.Factions
                                          .Where(g => !g.IsRestricted) //only keep the unrestricted mutations 
                                          .ToList();
 
+            if (mutations.Count == 0)
+            {
+                Warning($"could not get any mutations for {pawn.Name} using extension\n{kindExtension.ToStringFull()}");
+            }
+
             var toGive = new List<MutationDef>();
             var addedList = new List<BodyPartRecord>();
 
@@ -130,6 +137,11 @@ namespace Pawnmorph.Factions
 
                 MutationUtilities.AddMutation(pawn, giver, int.MaxValue, addedList,
                                               MutationUtilities.AncillaryMutationEffects.None);
+            }
+
+            if (toGive.Count > 0 && (addedList.Count == 0 || !pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Any()))
+            {
+                LogMsg(LogLevel.Warnings, $"could not add mutations to pawn {pawn.Name} with ext\n{kindExtension}");
             }
 
             if (setAtMaxStage)

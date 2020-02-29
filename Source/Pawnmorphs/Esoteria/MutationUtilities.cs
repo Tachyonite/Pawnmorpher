@@ -443,6 +443,7 @@ namespace Pawnmorph
         /// <param name="mutationDef">The mutation definition.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">mutationDef</exception>
+        [NotNull]
         public static IEnumerable<VTuple<BodyPartDef, MutationLayer>> GetAllDefMutationSites(
             [NotNull] this MutationDef mutationDef)
         {
@@ -527,11 +528,15 @@ namespace Pawnmorph
         public static MutationOutlook GetMutationOutlook([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-
+            var aspectTracker = pawn.GetAspectTracker();
+            if (aspectTracker?.Contains(AspectDefOf.PrimalWish) == true) return MutationOutlook.PrimalWish; 
             TraitSet traits = pawn.story?.traits;
             if (traits == null) return MutationOutlook.Neutral;
             if (traits.HasTrait(PMTraitDefOf.MutationAffinity)) return MutationOutlook.Furry;
             if (traits.HasTrait(TraitDefOf.BodyPurist)) return MutationOutlook.BodyPurist;
+
+            
+
             return MutationOutlook.Neutral;
         }
 

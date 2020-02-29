@@ -1,12 +1,13 @@
 <Defs>
+
 	<HediffDef Name="ObsoletePart" ParentName="PawnmorphPart" Abstract="true">
 		<hediffClass>Pawnmorph.Hediffs.ObsoletePart</hediffClass>
 	</HediffDef>
 
-	<!--These hediffs are currently unused but had a purpose in pervious versions of the mod and old saves may still contain them-->
-	<Pawnmorph.Hediffs.MutationDef ParentName="ObsoletePart">
+<!--These hediffs are currently unused but had a purpose in pervious versions of the mod and old saves may still contain them-->
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherMuzzle</defName>
-		<label>depricated</label>
+		<label>muzzle (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
@@ -38,11 +39,11 @@
 				</tools>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ObsoletePart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherSnout</defName>
-		<label>depricated</label>
+		<label>snout (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
@@ -74,11 +75,11 @@
 				</tools>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ObsoletePart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherClaws</defName>
-		<label>depricated</label>
+		<label>clawed (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
@@ -106,11 +107,11 @@
 				</tools>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ObsoletePart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherTail</defName>
-		<label>depricated</label>
+		<label>tail (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
@@ -122,11 +123,11 @@
 				</capMods>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ObsoletePart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherFurryEar</defName>
-		<label>depricated</label>
+		<label>fuzzy (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
@@ -138,11 +139,11 @@
 				</capMods>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ObsoletePart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherPointedEar</defName>
-		<label>depricated</label>
+		<label>pointed (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
@@ -154,23 +155,22 @@
 				</capMods>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ObsoletePart">
+	<HediffDef ParentName="ObsoletePart">
 		<defName>EtherDogEar</defName>
-		<label>depricated</label>
+		<label>floppy (depricated)</label>
 		<description>You should not have this part, if you do, please use any one of the mutation items to get a more up-to-date mutation.</description>
 		<stages>
 			<li>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 	
 	<HediffDef>
 		<defName>EtherProductiveBliss</defName>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<label>etherbroken</label>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
 		<isBad>false</isBad>
@@ -188,8 +188,7 @@
 	
     <HediffDef>
         <defName>EtherBroken</defName>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+        <label>etherbroken</label>
         <hediffClass>Pawnmorph.Hediff_ProductionThought</hediffClass>
         <defaultLabelColor>(121, 55, 145)</defaultLabelColor>
         <isBad>false</isBad>
@@ -207,8 +206,7 @@
 
     <HediffDef>
         <defName>EtherBond</defName>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+        <label>etherbond</label>
         <hediffClass>Pawnmorph.Hediff_ProductionThought</hediffClass>
         <defaultLabelColor>(121, 55, 145)</defaultLabelColor>
         <isBad>false</isBad>
@@ -224,10 +222,11 @@
         </stages>
 	</HediffDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<HediffDef ParentName="PawnmorphPart">
+		<hediffClass>HediffWithComps</hediffClass>
 		<defName>EtherColdBlooded</defName>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<label>cold blooded</label>
+		<description>[PAWN_nameDef]'s body no longer naturally regulates its body temperature.</description>
 		<stages>
 			<li>
 				<minSeverity>1</minSeverity>
@@ -237,6 +236,8 @@
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>mech-blooded</labelOverride>
+				<description>[PAWN_nameDef]'s bloodstream has infused with mechanites, which more efficiently regulate body temperature.</description>
 				<minSeverity>2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-15</ComfyTemperatureMin>
@@ -244,5 +245,5 @@
 				</statOffsets>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</HediffDef>
 </Defs>

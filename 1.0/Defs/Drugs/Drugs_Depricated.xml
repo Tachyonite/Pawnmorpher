@@ -4,8 +4,7 @@
 		<defName>ProductionPillUdderEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<label>production increasing</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -28,8 +27,7 @@
 		<defName>ProductionPillChemfuelUdderEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<label>production increasing</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -52,8 +50,7 @@
 		<defName>ProductionPillEggEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<label>production increasing</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -76,8 +73,7 @@
 		<defName>ProductionPillWoolEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<label>production increasing</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -100,8 +96,7 @@
 		<defName>ProductionPillMegawoolEffect</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
-		<label>depricated</label>
-		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<label>production increasing</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>

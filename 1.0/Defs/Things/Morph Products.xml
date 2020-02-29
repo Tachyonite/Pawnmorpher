@@ -26,7 +26,7 @@
 			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
 		</statBases>
 	</ThingDef>
-
+	
 	<!-- ========== CowMorph Milk ========== -->
 
 	<ThingDef ParentName="TFItemBase">
@@ -60,7 +60,7 @@
 			</outcomeDoers>
 		</ingestible>
 	</ThingDef>
-
+  
 	<ChemicalDef>
 		<defName>TFMilk</defName>
 		<label>cowmorph milk</label>
@@ -80,7 +80,6 @@
 		<defName>TFMilkAddiction</defName>
 		<hediffClass>Hediff_Addiction</hediffClass>
 		<label>milk addiction</label>
-		<description>This person has a developed a dependancy on morph milk. Take care to not let them go without it, as withdrawal symtoms risk them transforming into a cow.</description>
 		<causesNeed>Chemical_TFMilk</causesNeed>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
@@ -127,7 +126,7 @@
 			</li>
 		</stages>
 	</HediffDef>
-
+	
 	<!-- ========== ChookMorph Eggs ========== -->
 
 	<ThingDef ParentName="TFItemBase">
@@ -152,18 +151,14 @@
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>PawnmorphChickenTFPartial</li>
-					</hediffDefs>
-					<hediffDefsComplete>
-						<li>PawnmorphChickenTF</li>
-					</hediffDefsComplete>
+					<hediffDefs><li>PawnmorphChickenTFPartial</li></hediffDefs>
+					<hediffDefsComplete><li>PawnmorphChickenTF</li></hediffDefsComplete>
 					<severity>1</severity>
 				</li>
 			</outcomeDoers>
 		</ingestible>
 	</ThingDef>
-
+  
 	<ChemicalDef>
 		<defName>TFEgg</defName>
 		<label>chookmorph egg</label>
@@ -183,7 +178,6 @@
 		<defName>TFEggAddiction</defName>
 		<hediffClass>Hediff_Addiction</hediffClass>
 		<label>egg addiction</label>
-		<description>This person has a developed a dependancy on chook eggs. Take care to not let them go without it, as withdrawal symtoms risk them transforming into a chicken.</description>
 		<causesNeed>Chemical_TFEgg</causesNeed>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">

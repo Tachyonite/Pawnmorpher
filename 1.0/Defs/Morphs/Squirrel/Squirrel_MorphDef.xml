@@ -18,8 +18,8 @@
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
-			<transformationMemory>RhinocerosTransformationMemory</transformationMemory>
-			<revertedMemory>RhinocerosRevertedMemory</revertedMemory>
+			<transformationMemory>SquirrelTransformationMemory</transformationMemory>
+			<revertedMemory>SquirrelRevertedMemory</revertedMemory>
 		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>
