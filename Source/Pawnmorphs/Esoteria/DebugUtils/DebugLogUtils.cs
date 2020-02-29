@@ -19,94 +19,25 @@ using Verse;
 #pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
 {
-    public static class DebugLogUtils
+    [StaticConstructorOnStartup]
+    public static partial class DebugLogUtils
     {
+        [NotNull]
+        private static MutationOutlook[] Outlooks { get; }
+
+        static DebugLogUtils()
+        {
+            Outlooks = Enum.GetValues(typeof(MutationOutlook)).OfType<MutationOutlook>().ToArray(); 
+        }
+
+
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
 
-        public static bool ShouldLog(LogLevel logLevel)
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        static void ListAllMutationsPerMorph()
         {
-            var cLevel = PMUtilities.GetSettings().logLevel;
-            return logLevel <= cLevel; 
-        }
-
-        [DebuggerHidden]
-        public static void LogMsg(LogLevel logLevel, string message)
-        {
-            if (!ShouldLog(logLevel)) return;
-            switch (logLevel)
-            {
-                case LogLevel.Error:
-                    Log.Error(message); 
-                    break;
-                case LogLevel.Warnings:
-                    Log.Warning(message); 
-                    break;
-                case LogLevel.Messages:
-                case LogLevel.Pedantic:
-                    Log.Message(message); 
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
-            }
-        }
-
-        [DebuggerHidden]
-        public static void LogMsg(LogLevel logLevel, object message)
-        {
-            string msg;
-            if (message is IDebugString bObj)
-            {
-                msg = bObj.ToStringFull();
-            }
-            else
-            {
-                msg = message.ToStringSafe();
-            }
-
-            LogMsg(logLevel, msg);
-        }
-
-        [DebuggerHidden]
-        public static void Warning(string message)
-        {
-            LogMsg(LogLevel.Warnings, message); 
-        }
-
-        [DebuggerHidden]
-        public static void Warning(object message)
-        {
-            LogMsg(LogLevel.Warnings, message);
-        }
-
-
-        [DebuggerHidden]
-        public static void Error(string message)
-        {
-            LogMsg(LogLevel.Error, message);
-        }
-
-        [DebuggerHidden]
-        public static void Error(object message)
-        {
-            LogMsg(LogLevel.Error, message); 
-        }
-
-        /// <summary>
-        ///     Asserts the specified condition. if false an error message will be displayed
-        /// </summary>
-        /// <param name="condition">if false will display an error message</param>
-        /// <param name="message">The message.</param>
-        /// <returns>the condition</returns>
-        [DebuggerHidden]
-        [Conditional("DEBUG")]
-        [AssertionMethod]
-        public static void Assert(bool condition, string message)
-        {
-            if (!condition) Log.Error($"assertion failed:{message}");
-        }
-
-       
+            StringBuilder builder = new StringBuilder();
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindAllTODOThoughts()
@@ -288,17 +219,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        public static void GetThoughtlessMutations()
-        {
-
-            var missingThought = DefDatabase<MutationDef>.AllDefs.Where(m => m.mutationMemory == null).Join(m => m.defName, "\n"); 
-
-            Log.Message(missingThought);
-        }
-
-
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        [DebugOutput(category=MAIN_CATEGORY_NAME)]
         public static void ListHybridStateOffset()
         {
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
