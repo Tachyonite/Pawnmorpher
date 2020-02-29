@@ -6,7 +6,7 @@
 		<targetTags>
 			<li>Map_PlayerHome</li>
 		</targetTags>
-		<workerClass>IncidentWorker_MakeGameCondition</workerClass>
+		<workerClass>Pawnmorph.IncidentWorker.MutagenicFallout</workerClass>
 		<gameCondition>MutagenicFallout</gameCondition>
 		<letterLabel>Mutagenic fallout</letterLabel>
 		<letterText>An unknown source far away has released a plume of mutagenic mechanites into the air, which are now passing over the area. Anyone outside will slowly mutate, and as the number of mechanites in their system increases, the mutations will increase in severity. It can last from a few days to over a season.</letterText>
