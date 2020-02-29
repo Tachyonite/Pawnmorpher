@@ -116,11 +116,20 @@ namespace Pawnmorph
                     //temp set for keeping track of all the 'slots' we have occupied so far
                     var set = new HashSet<VTuple<BodyPartDef, MutationLayer>>();
                     AnimalClassBase aClass = this;
+                    List<MutationDef> tmpList = new List<MutationDef>(); 
                     while (aClass != null)
                     {
-                        IEnumerable<MutationDef> enumerable = MutationDef.AllMutations.Where(m => m.classInfluence == aClass);
+                        tmpList.Clear();
 
-                        foreach (MutationDef mutationDef in enumerable)
+                        foreach (MutationDef allMutation in MutationDef.AllMutations) //add all mutations that give the current influence to the list 
+                        {
+                            if (allMutation.classInfluence == aClass)
+                            {
+                                tmpList.Add(allMutation); 
+                            }
+                        }
+
+                        foreach (MutationDef mutationDef in tmpList)
                             if (mutationDef.GetAllDefMutationSites().Any(s => !set.Contains(s))
                             ) //if there are any free sites available add the mutation to the list 
                             {
