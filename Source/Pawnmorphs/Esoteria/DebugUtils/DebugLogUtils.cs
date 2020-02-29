@@ -1,6 +1,7 @@
 ﻿// DebugLogUtils.cs created by Iron Wolf for Pawnmorph on 09/23/2019 7:54 AM
 // last updated 09/27/2019  8:00 AM
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -24,6 +25,65 @@ namespace Pawnmorph.DebugUtils
     public static class DebugLogUtils
     {
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
+
+
+        public static bool ShouldLog(LogLevel logLevel)
+        {
+            var cLevel = PMUtilities.GetSettings().logLevel;
+            return logLevel <= cLevel; 
+        }
+
+        [DebuggerHidden]
+        public static void LogMsg(LogLevel logLevel, string message)
+        {
+            if (!ShouldLog(logLevel)) return;
+            switch (logLevel)
+            {
+                case LogLevel.Error:
+                    Log.Error(message); 
+                    break;
+                case LogLevel.Warnings:
+                    Log.Warning(message); 
+                    break;
+                case LogLevel.Messages:
+                case LogLevel.Pedantic:
+                    Log.Message(message); 
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
+            }
+        }
+
+        [DebuggerHidden]
+        public static void LogMsg(LogLevel logLevel, object message)
+        {
+            LogMsg(logLevel, message?.ToString() ?? "NULL");
+        }
+
+        [DebuggerHidden]
+        public static void Warning(string message)
+        {
+            LogMsg(LogLevel.Warnings, message); 
+        }
+
+        [DebuggerHidden]
+        public static void Warning(object message)
+        {
+            LogMsg(LogLevel.Warnings, message);
+        }
+
+
+        [DebuggerHidden]
+        public static void Error(string message)
+        {
+            LogMsg(LogLevel.Error, message);
+        }
+
+        [DebuggerHidden]
+        public static void Error(object message)
+        {
+            LogMsg(LogLevel.Error, message); 
+        }
 
         /// <summary>
         ///     Asserts the specified condition. if false an error message will be displayed
