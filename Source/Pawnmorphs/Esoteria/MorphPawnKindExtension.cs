@@ -4,7 +4,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -13,7 +16,7 @@ using Verse;
 namespace Pawnmorph
 {
     /// <summary> Mod extension for applying morphs to various PawnKinds. </summary>
-    public class MorphPawnKindExtension : DefModExtension
+    public class MorphPawnKindExtension : DefModExtension, IDebugString
     {
         /// <summary>the min and max number of hediffs this kind can have</summary>
         public IntRange hediffRange;
@@ -66,6 +69,7 @@ namespace Pawnmorph
                     _allMorphs = morphCategories.MakeSafe()
                                                 .SelectMany(cat => cat.AllMorphsInCategories)
                                                 .Concat(morphs) //add in the morphs added in the xml 
+                                                .Where(m => m.AllAssociatedMutations.Any()) //make sure the morphs have mutations associated with them 
                                                 .Distinct()
                                                 .ToList();
 
@@ -153,6 +157,30 @@ namespace Pawnmorph
             if (!AllMutations.Any()) return;
             MorphDef rMorph = AllMorphs.RandElement();
             mutations.AddRange(rMorph.AllAssociatedMutations);
+        }
+
+
+        /// <summary>
+        /// Converts this object to a full debug string 
+        /// </summary>
+        /// <returns></returns>
+        public string ToStringFull()
+        {
+            StringBuilder builder = new StringBuilder();
+            if (mutationCategories != null)
+            {
+                builder.AppendLine($"{nameof(mutationCategories)}:[{mutationCategories.Join(d => d.defName)}]"); 
+            }
+
+            if (morphCategories != null)
+                builder.AppendLine($"{nameof(morphCategories)}:[{morphCategories.Join(d => d.defName)}]");
+            builder.AppendLine($"{nameof(morphs)}:[{morphs.Join(d => d.defName)}]");
+
+            //total mutation info 
+            builder.AppendLine($"---Full Mutation Info, total count={AllMutations.Count()}, {nameof(pickAnyMutation)}:{pickAnyMutation}---");
+            builder.AppendLine($"[{AllMutations.Join(m => m.defName)}]"); 
+
+            return builder.ToString(); 
         }
 
         /// <summary>

@@ -19,7 +19,6 @@
 		<defName>SerumAddiction</defName>
 		<hediffClass>Hediff_Addiction</hediffClass>
 		<label>serum addiction</label>
-		<description>This pawn is now addicted to serums, and will require them on a regular basis. If they go into withdrawal, they may have concerning mental breaks.</description>
 		<causesNeed>Chemical_TransformerSerums</causesNeed>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<comps>

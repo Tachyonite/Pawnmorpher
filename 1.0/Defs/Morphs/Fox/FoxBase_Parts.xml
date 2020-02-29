@@ -87,6 +87,17 @@
 				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Jaw</li>
+				</parts>
+				<countToAffect>1</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" Name="FoxEarBase" ParentName="FoxPart">
@@ -101,6 +112,17 @@
 				<partEfficiencyOffset>0.3</partEfficiencyOffset>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Ear</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" Name="FoxTailBase" ParentName="FoxPart">
@@ -123,6 +145,17 @@
 				</capMods>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Tail</li>
+				</parts>
+				<countToAffect>1</countToAffect>
+				<categories>
+					<li>Major</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
@@ -145,5 +178,16 @@
 				</capMods>
 			</li>
 		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.MutationHediffExtension">
+				<parts>
+					<li>Eye</li>
+				</parts>
+				<countToAffect>2</countToAffect>
+				<categories>
+					<li>Minor</li>
+				</categories>
+			</li>
+		</modExtensions>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

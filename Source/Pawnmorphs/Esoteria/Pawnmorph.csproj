@@ -37,7 +37,7 @@
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
@@ -347,6 +347,10 @@
     <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.Logging.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.ThoughtListing.cs" />
+    <Compile Include="DebugUtils\IDebugString.cs" />
+    <Compile Include="DebugUtils\LogLevel.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_DebugDialogue.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
     <Compile Include="DefExtensions\AspectGiverExtension.cs" />
@@ -418,6 +422,7 @@
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
+    <Compile Include="IncidentWorker\MutagenicFallout.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
