@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HugsLib.Utils;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using UnityEngine;
 using Verse;
@@ -137,6 +138,11 @@ namespace Pawnmorph.Factions
 
                 MutationUtilities.AddMutation(pawn, giver, int.MaxValue, addedList,
                                               MutationUtilities.AncillaryMutationEffects.None);
+            }
+
+            if (toGive.Count > 0 && (addedList.Count == 0 || !pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Any()))
+            {
+                LogMsg(LogLevel.Warnings, $"could not add mutations to pawn {pawn.Name} with ext\n{kindExtension}");
             }
 
             if (setAtMaxStage)
