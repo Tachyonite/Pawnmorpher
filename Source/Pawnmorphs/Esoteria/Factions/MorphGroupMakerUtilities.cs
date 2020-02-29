@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils; 
 
 namespace Pawnmorph.Factions
 {
@@ -96,6 +97,11 @@ namespace Pawnmorph.Factions
                 mutations = kindExtension.GetRandomMutations(pawn.thingIDNumber)
                                          .Where(g => !g.IsRestricted) //only keep the unrestricted mutations 
                                          .ToList();
+
+            if (mutations.Count == 0)
+            {
+                Warning($"could not get any mutations for {pawn.Name} using extension");
+            }
 
             var toGive = new List<MutationDef>();
             var addedList = new List<BodyPartRecord>();

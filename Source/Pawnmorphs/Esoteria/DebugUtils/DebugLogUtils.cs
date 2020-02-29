@@ -57,7 +57,17 @@ namespace Pawnmorph.DebugUtils
         [DebuggerHidden]
         public static void LogMsg(LogLevel logLevel, object message)
         {
-            LogMsg(logLevel, message?.ToString() ?? "NULL");
+            string msg;
+            if (message is IDebugString bObj)
+            {
+                msg = bObj.ToStringFull();
+            }
+            else
+            {
+                msg = message.ToStringSafe();
+            }
+
+            LogMsg(logLevel, msg);
         }
 
         [DebuggerHidden]
