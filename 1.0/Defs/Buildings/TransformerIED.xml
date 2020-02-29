@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>  
 	<ThingDef ParentName="TrapIEDBase">
 		<defName>TrapIED_TF</defName>
@@ -16,7 +17,10 @@
 				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
 				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>	
 				<damageFalloff>true</damageFalloff>			
-				<wickTicks>15~15</wickTicks>
+				<wickTicks>
+					<min>15</min>
+					<max>15</max>
+				</wickTicks>
 			</li>
 		</comps>
 		<specialDisplayRadius>5.9</specialDisplayRadius>

@@ -1,0 +1,32 @@
+<Defs>
+
+	<ThoughtDef>
+		<defName>WasMergedRelieved</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>WasMergedRelieved</hediff>
+		<stages>
+			<li>
+				<label>was melded and feral (permanent)</label>
+				<description>I was trapped as a beast in the same body as another! It was horribly uncomfortable to forget my humanity and I can't look them in the eyes for the things they made us do!</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+			<li>
+				<label>was melded and feral</label>
+				<description>I was trapped as a beast in the same body as another! It was horribly uncomfortable to forget my humanity and I can't look them in the eyes for the things they made us do!</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a sapient animal</label>
+				<description>I was trapped in the body of a beast with another person right next to me! I knew what they were thinking and they knew everything about me...I'm almost traumatised!</description>
+				<baseMoodEffect>-15</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a mad animal</label>
+				<description>I'm sorry! It was the other guy I swear!</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+</Defs>

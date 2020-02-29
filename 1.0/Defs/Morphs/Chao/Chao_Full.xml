@@ -2,7 +2,6 @@
 	<HediffDef ParentName="MorphParent">
 		<defName>FullRandomTFAnyOutcome</defName>
 		<label>Chaomorph</label>
-		<description>This person has raw, unfocused mechanites simultaniously mutating them into every animal imaginable. Pray to Randy they don't come out the other end on all fours.</description>
 		<stages>
 			<li>
 				<label>reeling</label>

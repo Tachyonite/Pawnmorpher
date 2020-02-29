@@ -2,7 +2,6 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphSnakeTF</defName>
 		<label>cobramorph</label>
-		<description>This person has mechanites in their blood that are slowly mutating them into a cobramorph. Keep an eye on them, or they might just show you how snakelike they can be.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>

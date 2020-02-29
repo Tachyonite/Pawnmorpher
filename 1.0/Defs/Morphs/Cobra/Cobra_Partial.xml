@@ -2,7 +2,6 @@
 	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphSnakeTFPartial</defName>
 		<label>cobramorph partial</label>
-		<description>This person has mechanites in their blood that are providing them with cobra-esk mutations.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
