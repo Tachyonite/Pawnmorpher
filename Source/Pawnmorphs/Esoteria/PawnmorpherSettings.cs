@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using Pawnmorph.DebugUtils;
+using Verse;
 
 namespace Pawnmorph
 {
@@ -35,7 +36,12 @@ namespace Pawnmorph
         /// <summary>
         /// The maximum mutation thoughts that can be active at once 
         /// </summary>
-        public int maxMutationThoughts=3; 
+        public int maxMutationThoughts=3;
+
+        /// <summary>
+        /// The current log level
+        /// </summary>
+        public LogLevel logLevel = LogLevel.Warnings; 
 
         /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
         public override void ExposeData()
@@ -48,7 +54,8 @@ namespace Pawnmorph
             Scribe_Values.Look(ref transformChance, "transformChance");
             Scribe_Values.Look(ref formerChance, "formerChance");
             Scribe_Values.Look(ref partialChance, "partialChance");
-            Scribe_Values.Look(ref maxMutationThoughts, nameof(maxMutationThoughts), 1); 
+            Scribe_Values.Look(ref maxMutationThoughts, nameof(maxMutationThoughts), 1);
+            Scribe_Values.Look(ref logLevel, nameof(logLevel), LogLevel.Warnings, true); 
             base.ExposeData();
         }
     }

@@ -23,6 +23,75 @@ namespace Pawnmorph.DebugUtils
     {
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
+
+        public static bool ShouldLog(LogLevel logLevel)
+        {
+            var cLevel = PMUtilities.GetSettings().logLevel;
+            return logLevel <= cLevel; 
+        }
+
+        [DebuggerHidden]
+        public static void LogMsg(LogLevel logLevel, string message)
+        {
+            if (!ShouldLog(logLevel)) return;
+            switch (logLevel)
+            {
+                case LogLevel.Error:
+                    Log.Error(message); 
+                    break;
+                case LogLevel.Warnings:
+                    Log.Warning(message); 
+                    break;
+                case LogLevel.Messages:
+                case LogLevel.Pedantic:
+                    Log.Message(message); 
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
+            }
+        }
+
+        [DebuggerHidden]
+        public static void LogMsg(LogLevel logLevel, object message)
+        {
+            string msg;
+            if (message is IDebugString bObj)
+            {
+                msg = bObj.ToStringFull();
+            }
+            else
+            {
+                msg = message.ToStringSafe();
+            }
+
+            LogMsg(logLevel, msg);
+        }
+
+        [DebuggerHidden]
+        public static void Warning(string message)
+        {
+            LogMsg(LogLevel.Warnings, message); 
+        }
+
+        [DebuggerHidden]
+        public static void Warning(object message)
+        {
+            LogMsg(LogLevel.Warnings, message);
+        }
+
+
+        [DebuggerHidden]
+        public static void Error(string message)
+        {
+            LogMsg(LogLevel.Error, message);
+        }
+
+        [DebuggerHidden]
+        public static void Error(object message)
+        {
+            LogMsg(LogLevel.Error, message); 
+        }
+
         /// <summary>
         ///     Asserts the specified condition. if false an error message will be displayed
         /// </summary>
@@ -485,6 +554,22 @@ namespace Pawnmorph.DebugUtils
             {
                 return $"{defName},{stageIndex},{minSeverity},{severityPerDay}";
             }
+        }
+
+        [DebugOutput(category=MAIN_CATEGORY_NAME)]
+        static void LogAllBackstoryInfo()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var backstory in DefDatabase<AlienRace.BackstoryDef>.AllDefs)
+            {
+                var ext = backstory.GetModExtension<MorphPawnKindExtension>(); 
+                if(ext == null) continue;
+                builder.AppendLine($"---{backstory.defName}---");
+                builder.AppendLine(ext.ToStringFull()); 
+
+            }
+
+            Log.Message(builder.ToString()); 
         }
     }
 }

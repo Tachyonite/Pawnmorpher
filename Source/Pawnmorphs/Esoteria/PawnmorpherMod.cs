@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Pawnmorph.DebugUtils;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -45,6 +46,12 @@ namespace Pawnmorph
             settings.partialChance = listingStandard.Slider(settings.partialChance, 0f, 100f);
             listingStandard.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
             settings.maxMutationThoughts = (int)listingStandard.Slider(settings.maxMutationThoughts, 1, 10);
+            
+            listingStandard.Label($"logging level:{settings.logLevel}");
+            float f = (float) ((int) settings.logLevel);
+            var maxLevel = (int) LogLevel.Pedantic;
+            f = listingStandard.Slider(f, 0, maxLevel + 1);
+            settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(f, 0, maxLevel)); 
             listingStandard.End();
             base.DoSettingsWindowContents(inRect);
         }
