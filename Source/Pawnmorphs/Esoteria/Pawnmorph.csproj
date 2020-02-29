@@ -184,6 +184,7 @@
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
+    <Compile Include="IncidentWorker\MutagenicFallout.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
