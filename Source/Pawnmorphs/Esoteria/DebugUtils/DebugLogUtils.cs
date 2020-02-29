@@ -745,5 +745,21 @@ namespace Pawnmorph.DebugUtils
             builder.AppendLine("}");
             Log.Message(builder.ToString());
         }
+
+        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
+        static void LogAllBackstoryInfo()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var backstory in DefDatabase<AlienRace.BackstoryDef>.AllDefs)
+            {
+                var ext = backstory.GetModExtension<MorphPawnKindExtension>(); 
+                if(ext == null) continue;
+                builder.AppendLine($"---{backstory.defName}---");
+                builder.AppendLine(ext.ToStringFull()); 
+
+            }
+
+            Log.Message(builder.ToString()); 
+        }
     }
 }

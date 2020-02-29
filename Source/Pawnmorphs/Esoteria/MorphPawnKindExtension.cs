@@ -70,6 +70,7 @@ namespace Pawnmorph
                     _allMorphs = morphCategories.MakeSafe()
                                                 .SelectMany(cat => cat.AllMorphsInCategories)
                                                 .Concat(morphs) //add in the morphs added in the xml 
+                                                .Where(m => m.AllAssociatedMutations.Any()) //make sure the morphs have mutations associated with them 
                                                 .Distinct()
                                                 .ToList();
 
@@ -175,6 +176,11 @@ namespace Pawnmorph
             if (morphCategories != null)
                 builder.AppendLine($"{nameof(morphCategories)}:[{morphCategories.Join(d => d.defName)}]");
             builder.AppendLine($"{nameof(morphs)}:[{morphs.Join(d => d.defName)}]");
+
+            //total mutation info 
+            builder.AppendLine($"---Full Mutation Info, total count={AllMutations.Count()}, {nameof(pickAnyMutation)}:{pickAnyMutation}---");
+            builder.AppendLine($"[{AllMutations.Join(m => m.defName)}]"); 
+
             return builder.ToString(); 
         }
 

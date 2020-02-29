@@ -100,7 +100,7 @@ namespace Pawnmorph.Factions
 
             if (mutations.Count == 0)
             {
-                Warning($"could not get any mutations for {pawn.Name} using extension");
+                Warning($"could not get any mutations for {pawn.Name} using extension\n{kindExtension.ToStringFull()}");
             }
 
             var toGive = new List<MutationDef>();
