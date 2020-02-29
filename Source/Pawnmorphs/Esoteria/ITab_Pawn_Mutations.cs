@@ -202,12 +202,14 @@ namespace Pawnmorph
                 curPos.y += rectHeight;
                 GUI.color = Color.white;
             }
-            
+
+            float maxInfluence = influences.MaxBy(x => x.Value).Value;
+
             // List the morph influences upon the pawn in descending order.
             foreach (var influence in influences.OrderByDescending(x => x.Value))
             {
                 // Set the greatest influence's color to cyan
-                if (Math.Abs(influence.Value - influences.MaxBy(x => x.Value).Value) < EPSILON)
+                if (Math.Abs(influence.Value - maxInfluence) < EPSILON)
                     GUI.color = Color.cyan;
                 var nVal = influence.Value / MorphUtilities.MaxHumanInfluence; 
                 string text = $"{influence.Key.LabelCap} ({nVal.ToStringPercent()})";

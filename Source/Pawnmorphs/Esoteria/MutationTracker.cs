@@ -8,6 +8,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
+using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
@@ -45,7 +46,7 @@ namespace Pawnmorph
         /// <value>
         /// The total normalized influence.
         /// </value>
-        public float TotalNormalizedInfluence { get; private set; }
+        public float TotalNormalizedInfluence => TotalInfluence / MorphUtilities.MaxHumanInfluence; 
 
         /// <summary>
         /// Gets the non human influence on the pawn.
@@ -154,6 +155,8 @@ namespace Pawnmorph
             Assert(parent is Pawn, "parent is Pawn");
         }
 
+        private const float EPSILON = 0.01f; 
+
         /// <summary>
         /// Recalculates the mutation influences if needed.
         /// </summary>
@@ -168,6 +171,31 @@ namespace Pawnmorph
             if (counter != MutationsCount)
             {
                 Log.Warning($"{Pawn.Name} mutation tracker has only {MutationsCount} tracked mutations but pawn actually has {counter}");
+                RecalculateMutationInfluences();
+                return; 
+            }
+
+            bool anyNegative=false; 
+            float totalInfluence=0; 
+            foreach (KeyValuePair<AnimalClassBase, float> keyValuePair in _influenceDict)
+            {
+                if (keyValuePair.Value < 0) anyNegative = true; 
+                totalInfluence += keyValuePair.Value; 
+            }
+
+            if (anyNegative)
+            {
+                Log.Warning($"{Pawn.Name} has negative mutation influence");
+                RecalculateMutationInfluences();
+            }
+            if (Mathf.Abs(totalInfluence - TotalInfluence) > EPSILON)
+            {
+                Log.Warning($"{Pawn.Name} mutation tracker total is incorrect calculated:{totalInfluence} vs cached:{TotalInfluence}");
+                RecalculateMutationInfluences();
+            }
+            else if (totalInfluence > MorphUtilities.MaxHumanInfluence)
+            {
+                Log.Warning($"{Pawn.Name} mutation tracker total is incorrect calculated:{totalInfluence}  greater then max:{MorphUtilities.MaxHumanInfluence}");
                 RecalculateMutationInfluences();
             }
 
@@ -184,7 +212,8 @@ namespace Pawnmorph
             _mutationList.AddRange(Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
             MutationsCount = _mutationList.Count;
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
-            TotalNormalizedInfluence = _influenceDict.Sum(s => s.Value) / MorphUtilities.MaxHumanInfluence;
+            TotalInfluence = _influenceDict.Sum(s => s.Value);
+
 
 
 #pragma warning disable 0612
@@ -202,7 +231,6 @@ namespace Pawnmorph
             _mutationList.Add(mutation);
 
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
-            TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
             TotalInfluence = _influenceDict.Select(s => s.Value).Sum();
             MutationsCount += 1;
 
@@ -225,7 +253,6 @@ namespace Pawnmorph
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
 #pragma warning disable 0612
 #pragma warning disable 0618
-            TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
             TotalInfluence = _influenceDict.Select(s => s.Value).Sum(); 
             HighestMorphInfluence = GetHighestMorphInfluence();
             NotifyCompsRemoved(mutation);
@@ -258,8 +285,9 @@ namespace Pawnmorph
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
                 // Generate lookup dict manually during load for backwards compatibility.
-
-                RecalculateCaches();
+            {
+                RecalculateMutationInfluences();
+            }
         }
 
         [Obsolete]
@@ -297,24 +325,5 @@ namespace Pawnmorph
             }
         }
 
-        private void RecalculateCaches()
-        {
-            foreach (Hediff_AddedMutation mutation in Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
-                _mutationList.Add(mutation);
-
-            AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
-            TotalNormalizedInfluence = _influenceDict.Select(s => s.Value).Sum() / MorphUtilities.MaxHumanInfluence;
-            // Now find the highest influence.
-#pragma warning disable 0612
-#pragma warning disable 0618
-
-            MorphDef hMorph = GetHighestMorphInfluence();
-            TotalInfluence = _influenceDict.Select(s => s.Value).Sum();
-            HighestMorphInfluence = hMorph;
-#pragma warning restore 0612
-#pragma warning restore 0618
-
-            MutationsCount = Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Count();
-        }
     }
 }

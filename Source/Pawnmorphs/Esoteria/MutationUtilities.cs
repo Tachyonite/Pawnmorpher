@@ -471,6 +471,7 @@ namespace Pawnmorph
         /// <param name="mutationDef">The mutation definition.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">mutationDef</exception>
+        [NotNull]
         public static IEnumerable<VTuple<BodyPartDef, MutationLayer>> GetAllDefMutationSites(
             [NotNull] this MutationDef mutationDef)
         {

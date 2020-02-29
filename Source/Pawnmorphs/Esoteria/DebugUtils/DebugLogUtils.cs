@@ -106,6 +106,28 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugOutput, Category(MAIN_CATEGORY_NAME), ModeRestrictionPlay]
+        static void GetMutationStatsOfColonists()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (Pawn colonist in PawnsFinder.AllMaps_FreeColonists)
+            {
+                var mTracker = colonist.GetMutationTracker(); 
+                if(mTracker == null) continue;
+
+                builder.AppendLine($"----{colonist.Name}----");
+                builder.AppendLine($"{nameof(mTracker.TotalInfluence)}:{mTracker.TotalInfluence}\t{nameof(mTracker.TotalNormalizedInfluence)}:{mTracker.TotalNormalizedInfluence}");
+                
+                var calculatedInfluence = mTracker.Sum(s => s.Value);
+
+                builder.AppendLine($"{nameof(calculatedInfluence)}:{calculatedInfluence}"); 
+                
+            }
+
+            Log.Message(builder.ToString());
+        }
+
         [DebugOutput]
         [Category(MAIN_CATEGORY_NAME)]
         public static void CheckBodyHediffGraphics()
