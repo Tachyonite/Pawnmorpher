@@ -5,8 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Harmony;
-using HugsLib.Utils;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Thoughts;
@@ -31,8 +30,7 @@ namespace Pawnmorph.DebugUtils
             return false;
         }
 
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindAllTODOThoughts()
         {
             var builder = new StringBuilder();
@@ -62,13 +60,12 @@ namespace Pawnmorph.DebugUtils
                 }
             }
 
-            builder.AppendLine(defNames.Distinct().Join("\n"));
+            builder.AppendLine(defNames.Distinct().Join(d => d,"\n"));
 
             Log.Message(builder.ToString());
         }
 
-        [Category(MAIN_CATEGORY_NAME)]
-        [DebugOutput]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void GetThoughtlessMutations()
         {
             var missingThought = DefDatabase<MutationDef>.AllDefs.Where(m => m.mutationMemory == null).Join(m => m.defName, "\n");
@@ -76,7 +73,7 @@ namespace Pawnmorph.DebugUtils
             Log.Message(missingThought);
         }
 
-        [Category(MAIN_CATEGORY_NAME), DebugOutput]
+        [ DebugOutput(category = MAIN_CATEGORY_NAME)]
         static void ListMutationOutlookThoughts()
         {
             StringBuilder builder = new StringBuilder(); 

@@ -34,46 +34,6 @@ namespace Pawnmorph.DebugUtils
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
 
-        [DebugOutput, Category(MAIN_CATEGORY_NAME)]
-        static void ListAllMutationsPerMorph()
-        {
-            StringBuilder builder = new StringBuilder();
-
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        public static void FindAllTODOThoughts()
-        {
-            var builder = new StringBuilder();
-            var defNames = new List<string>();
-            foreach (ThoughtDef thoughtDef in DefDatabase<ThoughtDef>.AllDefs)
-            {
-                var addedHeader = false;
-                for (var index = 0; index < (thoughtDef?.stages?.Count ?? 0); index++)
-                {
-                    ThoughtStage stage = thoughtDef?.stages?[index];
-                    if (stage == null) continue;
-                    if (string.IsNullOrEmpty(stage.label) || string.IsNullOrEmpty(stage.description)) continue;
-                    if (stage.label == "TODO"
-                     || stage.description == "TODO"
-                     || stage.description.StartsWith("!!!")
-                     || stage.label.StartsWith("!!!"))
-                    {
-                        if (!addedHeader)
-                        {
-                            builder.AppendLine($"In {thoughtDef.defName}:");
-                            addedHeader = true;
-                        }
-
-                        defNames.Add(thoughtDef.defName);
-                        builder.AppendLine($"{index}) label:{stage.label} description:\"{stage.description}\"".Indented());
-                    }
-                }
-            }
-
-            builder.AppendLine(defNames.Distinct().Join(delimiter: "\n"));
-
-            Log.Message(builder.ToString());
-        }
-
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindMissingMorphDescriptions()
         {
@@ -344,19 +304,6 @@ namespace Pawnmorph.DebugUtils
             Log.Message(msg);
         }
 
-        private static bool IsTODOThought(ThoughtDef thoughtDef)
-        {
-            if (thoughtDef?.stages == null) return true;
-            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.label)
-                                        || s.label.StartsWith("TODO")
-                                        || s.label.StartsWith("!!!")))
-                return true;
-            if (thoughtDef.stages.Any(s => string.IsNullOrEmpty(s?.description)
-                                        || s.description.StartsWith("TODO")
-                                        || s.description.StartsWith("!!!")))
-                return true;
-            return false;
-        }
 
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
