@@ -3,7 +3,7 @@
 
 using System.Linq;
 using System.Text;
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using RimWorld;
@@ -15,8 +15,7 @@ namespace Pawnmorph.DebugUtils
 
     public static partial class DebugLogUtils
     {
-        [DebugOutput]
-        [Category(MAIN_CATEGORY_NAME)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void LogAllMutationInfo()
         {
             var builder = new StringBuilder();

@@ -10,7 +10,7 @@ using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 
 namespace Pawnmorph
 {

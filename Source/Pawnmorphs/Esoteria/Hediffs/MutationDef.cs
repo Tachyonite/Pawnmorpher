@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Harmony;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using RimWorld;
