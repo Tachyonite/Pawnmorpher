@@ -282,6 +282,46 @@ namespace Pawnmorph
         }
 
 
+
+        /// <summary>
+        /// Determines whether this pawn is a colonist former human
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn is a colonist former human; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsColonistAnimal([NotNull] this Pawn pawn)
+        {
+            var fhStatus = pawn.GetQuantizedSapienceLevel();
+            if (fhStatus == null) return false;
+            return IsColonistAnimal(fhStatus.Value); 
+        }
+
+        /// <summary>
+        /// Determines whether this status is for a colonist animal.
+        /// </summary>
+        /// <param name="fhStatus">The fh status.</param>
+        /// <returns>
+        ///   <c>true</c> if this status is for a colonist animal; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static bool IsColonistAnimal(this SapienceLevel fhStatus)
+        {
+            switch (fhStatus)
+            {
+                case SapienceLevel.Sapient:
+                case SapienceLevel.MostlySapient:
+                case SapienceLevel.Conflicted:
+                case SapienceLevel.MostlyFeral:
+                    return true;
+                case SapienceLevel.Feral:
+                case SapienceLevel.PermanentlyFeral:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         /// <summary>
         /// Determines whether the given pawn is a former human.
         /// </summary>
