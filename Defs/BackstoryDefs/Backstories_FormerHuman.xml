@@ -8,6 +8,11 @@
             <li>Violent</li>
             <li>ManualDumb</li>
             <li>Hauling</li>
+            <li>Firefighting</li>
+            <li>Cleaning</li>
+            <li>Commoner</li>
+            <li>Social</li>
+            <li>Caring</li>
         </workAllows>
         <bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>

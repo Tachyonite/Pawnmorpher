@@ -53,6 +53,16 @@
                 <mustBeColonist>true</mustBeColonist>
                 <subNodes>
 
+                    <!-- Emergency work -->
+                    <li Class="JobGiver_Work">
+                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                        <emergency>true</emergency>
+                    </li>
+
+                    <!-- sapient animal hook  -->
+                    <li Class="ThinkNode_SubtreesByTag">
+                        <insertTag>SapientAnimal_EmergencyWork</insertTag>
+                    </li>
                     <!-- Lord directives (medium priority) -->
                     <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
                         <dutyHook>MediumPriority</dutyHook>
@@ -63,10 +73,7 @@
                         </subNodes>
                     </li>
 
-                    <!-- sapient animal hook  -->
-                    <li Class="ThinkNode_SubtreesByTag">
-                        <insertTag>SapientAnimal_EmergencyWork</insertTag>
-                    </li>
+
                 </subNodes>
             </li>
         </value>
