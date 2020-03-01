@@ -296,6 +296,22 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Determines whether this instance is humanlike.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsHumanlike([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (pawn.RaceProps.Humanlike) return true;
+            if (pawn.IsSapientFormerHuman()) return true;
+            return false; 
+        }
+
+        /// <summary>
         /// Determines whether this pawn is a colonist former human
         /// </summary>
         /// <param name="pawn">The pawn.</param>
