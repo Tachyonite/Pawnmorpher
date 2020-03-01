@@ -347,6 +347,7 @@
     <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.FormerHumanLogging.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Logging.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.MutationLogging.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.ThoughtListing.cs" />
@@ -598,6 +599,7 @@
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
+    <Compile Include="ThinkNodes\ConditionalSapientAnimal.cs" />
     <Compile Include="ThoughtGroupDefExtension.cs" />
     <Compile Include="Thoughts\Def_AspectThought.cs" />
     <Compile Include="Thoughts\FormerHumanMemory.cs" />
