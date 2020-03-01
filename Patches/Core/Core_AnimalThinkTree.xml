@@ -1,9 +1,10 @@
 <Patch>
+    <!--
     <Operation Class="PatchOperationInsert">
         <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes/li[@Class="ThinkNode_QueuedJob"]</xpath>
         <order>Append</order>
         <value>
-            <!-- Wait if drafted -->
+            
             <li Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
                 <mustBeColonist>true</mustBeColonist>
                 <subNodes>
@@ -18,4 +19,5 @@
             </li>
         </value>
     </Operation>
+    -->
 </Patch>
