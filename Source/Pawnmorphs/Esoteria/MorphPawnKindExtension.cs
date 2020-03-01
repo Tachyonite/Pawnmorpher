@@ -59,7 +59,7 @@ namespace Pawnmorph
         private List<MorphDef> _allMorphs;
 
         [Unsaved] private List<MutationDef> _mutations;
-
+        [Unsaved] private int _morphTries; 
 
         [NotNull]
         private List<MorphDef> AllMorphs
@@ -67,17 +67,46 @@ namespace Pawnmorph
             get
             {
                 if (_allMorphs == null)
-                    _allMorphs = morphCategories.MakeSafe()
-                                                .SelectMany(cat => cat.AllMorphsInCategories)
-                                                .Concat(morphs) //add in the morphs added in the xml 
-                                                .Where(m => m.AllAssociatedMutations.Any()) //make sure the morphs have mutations associated with them 
-                                                .Distinct()
-                                                .ToList();
+                {
+                    _allMorphs = GetAllMorphs();
+                }
+                else if (_allMorphs.Count == 0 && _morphTries < MAX_TRIES)
+                {
+                    Log.Warning($"{nameof(MorphPawnKindExtension)} could not get morphs on try {_morphTries}, attempting to correct");
+                    _allMorphs.AddRange(GetAllMorphs()); 
+                }
 
                 return _allMorphs;
             }
         }
 
+        [NotNull]
+        private List<MorphDef> GetAllMorphs()
+        {
+            List<MorphDef> retList = new List<MorphDef>();
+            foreach (MorphDef morphDef in morphCategories.MakeSafe().SelectMany(c => c.AllMorphsInCategories)) //get all morphs in the various categories 
+            {
+                if (!retList.Contains(morphDef) && morphDef.AllAssociatedMutations.Any())
+                {
+                    retList.Add(morphDef); 
+                }
+            }
+
+            foreach (MorphDef morphDef in morphs) //add any morphs that are in the list 
+            {
+                if (!retList.Contains(morphDef) && morphDef.AllAssociatedMutations.Any())
+                {
+                    retList.Add(morphDef);
+                }
+            }
+
+            return retList; 
+
+        }
+
+        private const int MAX_TRIES = 10;
+        [Unsaved]
+        private int _mutationTries; 
         [NotNull]
         private IEnumerable<MutationDef> AllMutations
         {
@@ -85,18 +114,33 @@ namespace Pawnmorph
             {
                 if (_mutations == null)
                 {
-                    IEnumerable<MutationDef> morphMutations = AllMorphs.SelectMany(m => m.AllAssociatedMutations).Distinct();
-                    _mutations = new List<MutationDef>(morphMutations);
-
-                    foreach (MutationDef mutationDef in mutationCategories.SelectMany(c => c.AllMutations))
-                        if (!_mutations.Contains(mutationDef))
-                            _mutations.Add(mutationDef);
+                    _mutations = new List<MutationDef>(GetAllMutations().Distinct()); 
+                }else if (_mutations.Count == 0 && _mutationTries < MAX_TRIES)
+                {
+                    Log.Warning($"could not get mutations for {nameof(MorphPawnKindExtension)} on try {_mutationTries}, attempting to correct");
+                    _mutations.AddRange(GetAllMutations().Distinct());
+                    _mutationTries++; 
                 }
 
                 return _mutations;
             }
         }
 
+        [NotNull]
+        IEnumerable<MutationDef> GetAllMutations()
+        {
+            foreach (MutationDef mutation in AllMorphs.SelectMany(allMorph => allMorph.AllAssociatedMutations))
+            {
+                yield return mutation;
+            }
+
+            foreach (MutationDef mutation in mutationCategories.MakeSafe().SelectMany(m => m.AllMutations))
+            {
+                yield return mutation; 
+            }
+        }
+
+        
 
         /// <summary>Gets all aspect defs that can be added by this instance.</summary>
         /// <returns></returns>
@@ -176,6 +220,10 @@ namespace Pawnmorph
             if (morphCategories != null)
                 builder.AppendLine($"{nameof(morphCategories)}:[{morphCategories.Join(d => d.defName)}]");
             builder.AppendLine($"{nameof(morphs)}:[{morphs.Join(d => d.defName)}]");
+
+            //all morph info 
+            builder.AppendLine($"---Full Morph Info, total count{AllMorphs.Count}---");
+            builder.AppendLine($"[{AllMorphs.Join(m => m.defName + "/" + m.label)}]"); 
 
             //total mutation info 
             builder.AppendLine($"---Full Mutation Info, total count={AllMutations.Count()}, {nameof(pickAnyMutation)}:{pickAnyMutation}---");

@@ -4,6 +4,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Harmony;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
@@ -112,37 +114,59 @@ namespace Pawnmorph
             {
                 if (_allAssociatedMutations == null)
                 {
-                    _allAssociatedMutations = new List<MutationDef>();
-                    //temp set for keeping track of all the 'slots' we have occupied so far
-                    var set = new HashSet<VTuple<BodyPartDef, MutationLayer>>();
-                    AnimalClassBase aClass = this;
-                    List<MutationDef> tmpList = new List<MutationDef>(); 
-                    while (aClass != null)
-                    {
-                        tmpList.Clear();
-
-                        foreach (MutationDef allMutation in MutationDef.AllMutations) //add all mutations that give the current influence to the list 
-                        {
-                            if (allMutation.classInfluence == aClass)
-                            {
-                                tmpList.Add(allMutation); 
-                            }
-                        }
-
-                        foreach (MutationDef mutationDef in tmpList)
-                            if (mutationDef.GetAllDefMutationSites().Any(s => !set.Contains(s))
-                            ) //if there are any free sites available add the mutation to the list 
-                            {
-                                _allAssociatedMutations.Add(mutationDef);
-                                set.AddRange(mutationDef.GetAllDefMutationSites());
-                            }
-
-                        aClass = aClass.ParentClass; //move up one in the classification tree 
-                    }
+                    _allAssociatedMutations = GetAllAssociatedMutations().Distinct().ToList(); 
                 }
 
                 return _allAssociatedMutations;
             }
+        }
+
+
+
+        [NotNull]
+        IEnumerable<MutationDef> GetAllAssociatedMutations()
+        {
+            var set = new HashSet<VTuple<BodyPartDef, MutationLayer>>();
+            AnimalClassBase curNode = this;
+            List<MutationDef> tmpList = new List<MutationDef>();
+            List<VTuple<BodyPartDef, MutationLayer>> tmpSiteLst = new List<VTuple<BodyPartDef, MutationLayer>>();
+            while (curNode != null)
+            {
+                tmpList.Clear();
+                foreach (MutationDef mutation in MutationDef.AllMutations) //grab all mutations that give the current influence directly 
+                {
+                    if (mutation.classInfluence == curNode)
+                    {
+                        tmpList.Add(mutation);
+                    }
+                }
+
+                foreach (MutationDef mutationDef in tmpList)
+                {
+                    tmpSiteLst.Clear();
+                    tmpSiteLst.AddRange(mutationDef.GetAllDefMutationSites());
+                    bool shouldReject = true; 
+                    foreach (VTuple<BodyPartDef, MutationLayer> vTuple in tmpSiteLst)
+                    {
+                        if (!set.Contains(vTuple))
+                        {
+                            shouldReject = false; 
+                            break;
+                        }
+                    }
+
+                    if (!shouldReject) //if there are any free slots yield the mutation 
+                    {
+                        set.AddRange(tmpSiteLst);
+                        yield return mutationDef; 
+                    }
+
+                }
+
+
+                curNode = curNode.ParentClass; //move up one in the hierarchy 
+            }
+
         }
 
         /// <summary>
@@ -278,6 +302,11 @@ namespace Pawnmorph
             {
                 hybridRaceDef = explicitHybridRace;
                 Log.Warning($"MorphDef {defName} is using an explicit hybrid {explicitHybridRace.defName} for {race.defName}. This has not been tested yet");
+            }
+
+            if (_allAssociatedMutations.NullOrEmpty())
+            {
+                _allAssociatedMutations = GetAllAssociatedMutations().Distinct().ToList(); 
             }
 
             //TODO patch explicit race based on hybrid race settings? 
