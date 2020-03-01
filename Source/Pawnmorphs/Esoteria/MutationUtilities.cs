@@ -518,8 +518,15 @@ namespace Pawnmorph
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
             if (bDef == null) throw new ArgumentNullException(nameof(bDef));
             if(mutationDef.RemoveComp == null) yield break;
-            
-            foreach (BodyPartRecord bodyPartRecord in bDef.AllParts.MakeSafe())
+
+            IEnumerable<BodyPartRecord> bodyPartRecords;
+            if (bDef.AllParts.NullOrEmpty())
+            {
+                Log.Error($"body def \"{bDef.defName}\" has no body parts or has not been initialized correctly");
+                bodyPartRecords = TreeUtilities.Preorder(bDef.corePart, r => r.parts.MakeSafe()); 
+            }else 
+                bodyPartRecords = bDef.AllParts.MakeSafe();
+            foreach (BodyPartRecord bodyPartRecord in bodyPartRecords)
                 if (mutationDef.parts.MakeSafe().Contains(bodyPartRecord?.def))
                     yield return new VTuple<BodyPartRecord, MutationLayer>(bodyPartRecord, mutationDef.RemoveComp.layer);
         }
