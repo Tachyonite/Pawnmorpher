@@ -281,7 +281,19 @@ namespace Pawnmorph
             }
         }
 
-
+        /// <summary>
+        /// Determines whether the given pawn is a tool user.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the given pawn is a tool user ; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsToolUser([NotNull] this Pawn pawn)
+        {
+            if (pawn.RaceProps.ToolUser) return true;
+            if (pawn.IsSapientFormerHuman()) return true;
+            return false; 
+        }
 
         /// <summary>
         /// Determines whether this pawn is a colonist former human
