@@ -3,7 +3,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
+using Harmony;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -14,7 +17,7 @@ namespace Pawnmorph.Hediffs
     ///     custom hediff def for mutations
     /// </summary>
     /// <seealso cref="Verse.HediffDef" />
-    public class MutationDef : HediffDef
+    public class MutationDef : HediffDef, IDebugString
     {
         /// <summary>
         ///     list of body parts this mutation can be added to
@@ -85,7 +88,7 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///     The remove comp.
         /// </value>
-        public RemoveFromPartCompProperties RemoveComp => _rmComp;
+        public RemoveFromPartCompProperties RemoveComp => CompProps<RemoveFromPartCompProperties>();
 
         /// <summary>Gets a value indicating whether this instance is restricted to special PawnKindGroups</summary>
         /// <value>
@@ -165,6 +168,26 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
+        }
+
+        /// <summary>
+        /// returns a full, detailed, representation of the object in string form 
+        /// </summary>
+        /// <returns></returns>
+        public string ToStringFull()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"-{defName}/{label}-");
+            if (parts == null)
+            {
+                builder.AppendLine($"full body mutation");
+            }
+            else
+            {
+                builder.AppendLine($"parts:[{parts.Join(n => n.defName)}]");
+            }
+
+            return builder.ToString(); 
         }
     }
 }

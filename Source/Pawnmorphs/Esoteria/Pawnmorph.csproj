@@ -348,6 +348,7 @@
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Logging.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.MutationLogging.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.ThoughtListing.cs" />
     <Compile Include="DebugUtils\IDebugString.cs" />
     <Compile Include="DebugUtils\LogLevel.cs" />
