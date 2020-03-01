@@ -10,7 +10,7 @@ using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
-using Verse.Noise;
+using HarmonyLib;
 
 namespace Pawnmorph
 {
@@ -18,8 +18,22 @@ namespace Pawnmorph
     ///     Static collection of useful morph related functions. <br />
     ///     TransformerUtilities was getting a bit crowded.
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class MorphUtilities
     {
+        static MorphUtilities()
+        {
+            //check for mod incompatibilities here 
+
+            if (ThingDefOf.Human.race.body != BodyDefOf.Human)
+            {
+                Log.Error($"human ThingDef is using {ThingDefOf.Human.race.body.defName} not {BodyDefOf.Human.defName}!\nmost likely cause is mod incompatibilities please check mod list");
+            }
+
+
+        }
+
+
         /// <summary>
         ///     scalar used to make it easier for pawns to become hybrids
         /// </summary>
@@ -39,6 +53,18 @@ namespace Pawnmorph
 
         private static float? _maxHumanInfluence;
 
+        static string GetRecordInfo([NotNull] BodyPartRecord record)
+        {
+            string modStr;
+            if (record.def?.modContentPack != null)
+                modStr = (record.def.modContentPack.Name ?? "") + "-";
+            else
+                modStr = ""; 
+            return $"{modStr}{record.def?.defName}/{record.Label}";
+        }
+
+        private const int MAX_TRIES = 10;
+        private static int _tries = 0; 
         /// <summary> The maximum possible human influence. </summary>
         public static float MaxHumanInfluence
         {
@@ -46,14 +72,33 @@ namespace Pawnmorph
             {
                 if (_maxHumanInfluence == null)
                 {
-                    HashSet<VTuple<BodyPartRecord, MutationLayer>> set = new HashSet<VTuple<BodyPartRecord, MutationLayer>>();
-                    var enumerable = MutationDef.AllMutations.SelectMany(m => m.GetAllMutationSites(BodyDefOf.Human));
-                    set.AddRange(enumerable);
-                    _maxHumanInfluence = set.Count; 
+                   _maxHumanInfluence =  CalculateMaxHumanInfluence();
+                }else if (Math.Abs(_maxHumanInfluence.Value) < 0.01f && _tries < MAX_TRIES)
+                {
+                    Log.Warning($"could not resolve Max Human Influence on try {_tries}");
+                    _tries++; 
+                    _maxHumanInfluence = CalculateMaxHumanInfluence(); 
                 }
 
                 return _maxHumanInfluence.Value;
             }
+        }
+
+        private static float CalculateMaxHumanInfluence()
+        {
+            HashSet<VTuple<BodyPartRecord, MutationLayer>> set = new HashSet<VTuple<BodyPartRecord, MutationLayer>>();
+            IEnumerable<VTuple<BodyPartRecord, MutationLayer>> enumerable =
+                MutationDef.AllMutations.SelectMany(m => m.GetAllMutationSites(BodyDefOf.Human));
+            set.AddRange(enumerable);
+
+            if (set.Count == 0)
+            {
+                var allCheckedParts = BodyDefOf.Human.AllParts.Join(GetRecordInfo);
+
+                Log.Error($"unable to find any mutation sites on {BodyDefOf.Human.defName} after checking {MutationDef.AllMutations.Count()} mutations!\nchecked parts:[{allCheckedParts}]");
+            }
+
+            return set.Count;
         }
 
 
