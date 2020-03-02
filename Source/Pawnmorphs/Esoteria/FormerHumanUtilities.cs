@@ -984,7 +984,18 @@ namespace Pawnmorph
         /// <param name="prey">The prey.</param>
         public static void GiveSapientAnimalHuntingThought([NotNull] Pawn sapientAnimal, [NotNull] Pawn prey)
         {
-            sapientAnimal.TryGainMemory(PMThoughtDefOf.SapientAnimalHuntingMemory); 
+            ThoughtDef thoughtDef;
+
+            if (sapientAnimal.GetMutationOutlook() == MutationOutlook.PrimalWish)
+            {
+                thoughtDef = PMThoughtDefOf.SapientAnimalHuntingMemoryPrimalWish; 
+            }
+            else
+            {
+                thoughtDef = PMThoughtDefOf.SapientAnimalHuntingMemory; 
+            }
+
+            sapientAnimal.TryGainMemory(thoughtDef); 
         }
 
 
