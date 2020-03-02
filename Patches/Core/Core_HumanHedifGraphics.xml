@@ -26,6 +26,7 @@
 					<EtherChinchillaJaw>Parts/Chinchilla/Chinchilla_Jaw</EtherChinchillaJaw>
 					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
 					<EtherCougarJaw>Parts/Cougar/Cougar_Jaw</EtherCougarJaw>
+					<EtherDonkeySnout>Parts/Donkey/Donkey_Jaw</EtherDonkeySnout>
 					<EtherCowSnout>Parts/cowface/cowface</EtherCowSnout>
 					<EtherDeerSnout>Parts/deerface/deerface</EtherDeerSnout>
 					<EtherDromedaryJaw>Parts/Dromedary/Dromedary_Jaw</EtherDromedaryJaw>
@@ -122,6 +123,7 @@
 					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
 					<EtherCougarJaw>Parts/Cougar/Cougar_Jaw</EtherCougarJaw>
 					<EtherCowSnout>Parts/cowface/cowface</EtherCowSnout>
+					<EtherDonkeySnout>Parts/Donkey/Donkey_Jaw</EtherDonkeySnout>
 					<EtherDeerSnout>Parts/deerface/deerface</EtherDeerSnout>
 					<EtherDromedaryJaw>Parts/Dromedary/Dromedary_Jaw</EtherDromedaryJaw>
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
@@ -407,6 +409,7 @@
 					<EtherElkEar>Parts/Elk/Elk_Ear_Left</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Left</EtherEmuEar>
 					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left</EtherFoxEar>
+					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left</EtherDonkeyEar>
 					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left</EtherArcticFoxEar>
 					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left</EtherFennecFoxEar>
 					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left</EtherGazelleEar>
@@ -454,6 +457,7 @@
 					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</EtherChinchillaEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left_Behind</EtherCougarEar>
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left_Behind</EtherDromedaryEar>
+					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left_Behind</EtherDonkeyEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Left_Behind</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Left_Behind</EtherEmuEar>
 					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left_Behind</EtherFoxEar>
@@ -533,6 +537,7 @@
 					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right</EtherChinchillaEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right</EtherDromedaryEar>
+					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right</EtherDonkeyEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Right</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Right</EtherEmuEar>
 					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right</EtherFoxEar>
@@ -583,6 +588,7 @@
 					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</EtherChinchillaEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right_Behind</EtherCougarEar>
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right_Behind</EtherDromedaryEar>
+					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right_Behind</EtherDonkeyEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Right_Behind</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Right_Behind</EtherEmuEar>
 					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right_Behind</EtherFoxEar>
@@ -665,6 +671,7 @@
 					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left</EtherChinchillaEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left</EtherDromedaryEar>
+					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left</EtherDonkeyEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Left</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Left</EtherEmuEar>					
 					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left</EtherFoxEar>
@@ -718,6 +725,7 @@
 					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</EtherChinchillaEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left_Behind</EtherCougarEar>
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left_Behind</EtherDromedaryEar>
+					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left_Behind</EtherDonkeyEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Left_Behind</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Left_Behind</EtherEmuEar>
 					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Left_Behind</EtherFoxEar>
@@ -800,6 +808,7 @@
 					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right</EtherChinchillaEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right</EtherDromedaryEar>
+					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right</EtherDonkeyEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Right</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Right</EtherEmuEar>
 					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right</EtherFoxEar>
@@ -853,6 +862,7 @@
 					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</EtherChinchillaEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right_Behind</EtherCougarEar>
 					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right_Behind</EtherDromedaryEar>
+					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right_Behind</EtherDonkeyEar>
 					<EtherElkEar>Parts/Elk/Elk_Ear_Right_Behind</EtherElkEar>
 					<EtherEmuEar>Parts/Emu/Emu_Ear_Right_Behind</EtherEmuEar>
 					<EtherFoxEar>Parts/FoxUpdated/RedFox_Ear_Right_Behind</EtherFoxEar>
@@ -896,6 +906,7 @@
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
 					<EtherShortTail>Parts/deerface/deertail</EtherShortTail>
 					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
+					<EtherDonkeyTail>Parts/Donkey/Donkey_Tail</EtherDonkeyTail>
 					<EtherElephantTail>Parts/elephantface/elephanttail</EtherElephantTail>
 					<EtherElkTail>Parts/Elk/Elk_Tail</EtherElkTail>
 					<EtherEmuTail>Parts/Emu/Emu_Tail</EtherEmuTail>
