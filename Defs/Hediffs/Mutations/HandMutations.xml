@@ -96,6 +96,20 @@
         <classInfluence>Ungulate</classInfluence>
         <mutationTale>HandsBecomeHooves</mutationTale>
         <stages>
+	     <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>-1</minSeverity>
+                <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+                <labelOverride>mishappen hoof</labelOverride>
+                <description>This entire hand has melded together in a grotesque fashion, causing it to look like a malformed hoof.</description>
+                <stopChance>0.3</stopChance>
+            </li>
+	    <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>-0.5</minSeverity>
+                <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+                <labelOverride>clumsy nails</labelOverride>
+                <description>The fingernails on this hand have broadened and thickened to a point where they're much harder to use, and they get in the way contstantly.</description>
+                <stopChance>0.3</stopChance>
+            </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0</minSeverity>
                 <partEfficiencyOffset>0</partEfficiencyOffset>
@@ -160,6 +174,20 @@
             <li>Hand</li>
         </parts>
         <stages>
+	    <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>-1</minSeverity>
+                <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+                <labelOverride>mishappen hoof</labelOverride>
+                <description>This entire hand has melded together in a grotesque fashion, causing it to look like a malformed hoof.</description>
+                <stopChance>0.3</stopChance>
+            </li>
+	    <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>-0.5</minSeverity>
+                <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+                <labelOverride>clumsy nails</labelOverride>
+                <description>The fingernails on this hand have broadened and thickened to a point where they're much harder to use, and they get in the way contstantly.</description>
+                <stopChance>0.3</stopChance>
+            </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0</minSeverity>
                 <partEfficiencyOffset>0</partEfficiencyOffset>
