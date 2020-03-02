@@ -45,24 +45,24 @@
         <stages>
             <li>
                 <label>hunted</label>
-                <description>TODO</description>
+                <description>I don't want to get that hungry again...but hunting is fun!</description>
                 <visible>true</visible>
-                <baseMoodEffect>-10</baseMoodEffect>
+                <baseMoodEffect>5</baseMoodEffect>
             </li>
             <li>
                 <label>hunted</label>
-                <description>TODO</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <description>Nothing like a good hunt to get the blood flowing.</description>
+                <baseMoodEffect>8</baseMoodEffect>
             </li>
             <li>
                 <label>hunted</label>
-                <description>TODO</description>
-                <baseMoodEffect>2</baseMoodEffect>
-            </li>
-            <li>
-                <label>hunted</label>
-                <description>TODO</description>
+                <description>What a rush! Tastes good.</description>
                 <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>Primal feelings...so strong, more hunt!</description>
+                <baseMoodEffect>20</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
