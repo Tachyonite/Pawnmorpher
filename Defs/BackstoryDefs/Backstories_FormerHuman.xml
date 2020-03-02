@@ -39,6 +39,7 @@
         <workAllows>
             <li>ManualSkilled</li>
             <li>Crafting</li>
+            <li>Caring</li>
         </workAllows>
     </AlienRace.BackstoryDef>
 
@@ -50,6 +51,7 @@
         <workAllows>
             <li>ManualSkilled</li>
             <li>Crafting</li>
+            <li>Caring</li>
         </workAllows>
     </AlienRace.BackstoryDef>
 </Defs>
