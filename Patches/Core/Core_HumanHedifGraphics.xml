@@ -10,7 +10,9 @@
 				<layerOffset>-0.27</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					
+					<!-- SPECIAL COMBINATION PIECES -->
+					<EtherComboWolfspike>Parts/COMBINATIONS/Wolfspike/Wolfspike</EtherComboWolfspike>
+					<!-- REGULAR PAWN PIECES -->
 					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
 					<EtherAlphabeaverJaw>Parts/Alphabeaver/Alphabeaver_Jaw</EtherAlphabeaverJaw>
 					<EtherArcticWolfJaw>Parts/wolfface/wolfface</EtherArcticWolfJaw>
@@ -107,6 +109,9 @@
 				<layerOffset>-0.27</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<!-- SPECIAL COMBINATION PIECES -->
+					<EtherComboWolfspike>Parts/COMBINATIONS/Wolfspike/Wolfspike</EtherComboWolfspike>
+					<!-- REGULAR PAWN PIECES -->
 					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
 					<EtherAlphabeaverJaw>Parts/Alphabeaver/Alphabeaver_Jaw</EtherAlphabeaverJaw>
 					<EtherArcticWolfJaw>Parts/wolfface/wolfface</EtherArcticWolfJaw>
