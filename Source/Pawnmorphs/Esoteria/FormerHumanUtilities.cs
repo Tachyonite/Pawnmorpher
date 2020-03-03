@@ -657,6 +657,8 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferAspects(original, animal);
             PawnTransferUtilities.TransferSkills(original, animal);
             PawnTransferUtilities.TransferTraits(original, animal, t => MutationTraits.Contains(t));
+            animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
+
             TryAssignBackstoryToTransformedPawn(animal, original); 
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
@@ -790,6 +792,7 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferSkills(lPawn, animal);
             PawnTransferUtilities.TransferRelations(lPawn, animal);
             PawnTransferUtilities.TransferTraits(lPawn,animal, t => MutationTraits.Contains(t));
+            animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
             var inst = new TransformedPawnSingle()
             {
                 original = lPawn,
