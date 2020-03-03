@@ -745,10 +745,13 @@ namespace Pawnmorph
         }
 
 
-        /// <summary>Makes the animal sapient.</summary>
+        /// <summary>
+        /// Makes the animal sapient.
+        /// </summary>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
-        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1)
+        /// <param name="joinIfRelated">if set to <c>true</c> and the resulting pawn is related to a colonist have the animal join the colony.</param>
+        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated=true)
         {
             if (animal.IsFormerHuman())
             {
@@ -821,10 +824,13 @@ namespace Pawnmorph
             if (animal.Faction == null && animal.GetCorrectMap() != null)
             {
 
-                bool relatedToColonist = animal.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true;
-                if (relatedToColonist)
+                if (joinIfRelated)
                 {
-                    animal.SetFaction(Faction.OfPlayer); 
+                    bool relatedToColonist = animal.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true;
+                    if (relatedToColonist)
+                    {
+                        animal.SetFaction(Faction.OfPlayer); 
+                    }
                 }
             }
             animal.needs.AddOrRemoveNeedsAsAppropriate();
