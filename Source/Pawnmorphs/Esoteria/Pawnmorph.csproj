@@ -408,9 +408,11 @@
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
     <Compile Include="HPatches\HuntingPatches.cs" />
     <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
+    <Compile Include="HPatches\IngestJobPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
     <Compile Include="HPatches\MapPawnsPatches.cs" />
     <Compile Include="HPatches\MentalBreakPatches.cs" />
+    <Compile Include="HPatches\NativeVerbPatches.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
@@ -424,6 +426,7 @@
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
+    <Compile Include="IMentalStateRecoveryReceiver.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />

@@ -31,7 +31,7 @@ namespace Pawnmorph.HPatches
                 __result = __instance.IsSapientFormerHuman(); 
             }
         }
-#if false
+#if true
         [HarmonyPatch(typeof(Pawn)), HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter)]
         internal static class MakeFormerHumansColonists
         {

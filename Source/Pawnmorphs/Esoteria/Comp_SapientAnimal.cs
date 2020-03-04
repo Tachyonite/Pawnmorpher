@@ -15,7 +15,7 @@ namespace Pawnmorph
     ///     component for controlling instinct and mental breaks of sapient animals
     /// </summary>
     /// <seealso cref="Verse.ThingComp" />
-    public class Comp_SapientAnimal : ThingComp
+    public class Comp_SapientAnimal : ThingComp, IMentalStateRecoveryReceiver
     {
         private SapientAnimalMentalBreaker _mentalBreaker;
 
@@ -103,7 +103,7 @@ namespace Pawnmorph
         ///     call this to notify the comp that the attached pawn has recovered from the given mental state
         /// </summary>
         /// <param name="state">The state.</param>
-        public void Notify_RecoveredFromState([NotNull] MentalState state)
+        public void OnRecoveredFromMentalState([NotNull] MentalState state)
         {
             _mentalBreaker?.NotifyRecoveredFromMentalBreak();
 

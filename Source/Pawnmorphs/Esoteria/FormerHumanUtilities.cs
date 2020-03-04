@@ -281,7 +281,35 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// Determines whether the given pawn is a tool user.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the given pawn is a tool user ; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsToolUser([NotNull] this Pawn pawn)
+        {
+            if (pawn.RaceProps.ToolUser) return true;
+            if (pawn.IsSapientFormerHuman()) return true;
+            return false; 
+        }
 
+        /// <summary>
+        /// Determines whether this instance is humanlike.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsHumanlike([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (pawn.RaceProps.Humanlike) return true;
+            if (pawn.IsSapientFormerHuman()) return true;
+            return false; 
+        }
 
         /// <summary>
         /// Determines whether this pawn is a colonist former human
@@ -629,6 +657,8 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferAspects(original, animal);
             PawnTransferUtilities.TransferSkills(original, animal);
             PawnTransferUtilities.TransferTraits(original, animal, t => MutationTraits.Contains(t));
+            animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
+
             TryAssignBackstoryToTransformedPawn(animal, original); 
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
@@ -715,10 +745,13 @@ namespace Pawnmorph
         }
 
 
-        /// <summary>Makes the animal sapient.</summary>
+        /// <summary>
+        /// Makes the animal sapient.
+        /// </summary>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
-        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1)
+        /// <param name="joinIfRelated">if set to <c>true</c> and the resulting pawn is related to a colonist have the animal join the colony.</param>
+        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated=true)
         {
             if (animal.IsFormerHuman())
             {
@@ -762,6 +795,7 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferSkills(lPawn, animal);
             PawnTransferUtilities.TransferRelations(lPawn, animal);
             PawnTransferUtilities.TransferTraits(lPawn,animal, t => MutationTraits.Contains(t));
+            animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
             var inst = new TransformedPawnSingle()
             {
                 original = lPawn,
@@ -790,10 +824,13 @@ namespace Pawnmorph
             if (animal.Faction == null && animal.GetCorrectMap() != null)
             {
 
-                bool relatedToColonist = animal.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true;
-                if (relatedToColonist)
+                if (joinIfRelated)
                 {
-                    animal.SetFaction(Faction.OfPlayer); 
+                    bool relatedToColonist = animal.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true;
+                    if (relatedToColonist)
+                    {
+                        animal.SetFaction(Faction.OfPlayer); 
+                    }
                 }
             }
             animal.needs.AddOrRemoveNeedsAsAppropriate();
