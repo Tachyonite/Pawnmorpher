@@ -260,5 +260,12 @@ namespace Pawnmorph
                 return;
             }
         }
+        /// <summary>
+        /// Restarts the adaption progression for this mutation if halted, does nothing if the part is fully adapted or not halted 
+        /// </summary>
+        public void ResumeAdaption()
+        {
+            SeverityAdjust?.Restart();
+        }
     }
 }

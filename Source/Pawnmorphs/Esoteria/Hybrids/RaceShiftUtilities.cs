@@ -233,8 +233,14 @@ namespace Pawnmorph.Hybrids
                 
                 // ReSharper disable once AssignNullToNotNullAttribute
                 var mutation = morph.GetMutationForPart(bodyPartRecord.def).RandomElementWithFallback();
-                if(mutation != null)
-                    MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord, addedRecords);
+                if (mutation != null)
+                {
+                    var result = MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord);
+                    foreach (Hediff_AddedMutation addedMutation in result)
+                    {
+                        addedRecords.Add(addedMutation.Part); 
+                    }
+                }
             }
         }
 
