@@ -1197,13 +1197,14 @@
 				</offsets>
 			</li>
 			<li>
-				<!-- Male Cobra Hood (Background) -->
+				<!-- Male Cobra Hood & Iguana horns (Background) -->
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
 					<EtherSnakeHood>Parts/Cobra/Cobra_Hood_Behind</EtherSnakeHood>
+					<EtherIguanaHorns>Parts/iguanaface/iguanahorns_Behind</EtherIguanaHorns>
 				</hediffGraphics>
 				<hiddenUnderApparelFor>
 					<li>UpperHead</li>
