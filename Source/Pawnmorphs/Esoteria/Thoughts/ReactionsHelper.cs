@@ -246,6 +246,7 @@ namespace Pawnmorph.Thoughts
 
             foreach (Pawn reactor in pawns)
             {
+                if(reactor == transformedPawn) continue; //make sure pawns don't react to themselves as if they were a different pawn 
                 ThoughtDef opinionThought = GetOpinionThought(original, reactor, type);
                 ThoughtDef def;
                 if (opinionThought != null)
@@ -273,6 +274,7 @@ namespace Pawnmorph.Thoughts
         {
             foreach (Pawn pReactor in original.relations.PotentiallyRelatedPawns)
             {
+                if(pReactor == animalPawn) continue; //make sure pawns don't react to themselves as if it were a different pawn
                 if (pReactor == original) continue;
                 if (pReactor.needs?.mood == null) continue;
                 PawnRelationDef importantRelation = pReactor.GetMostImportantRelation(original);
