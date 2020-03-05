@@ -8,10 +8,13 @@ using System.Linq;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+
 
 namespace Pawnmorph
 {
@@ -56,6 +59,7 @@ namespace Pawnmorph
 
             if (anyWarnings) Log.Warning(warningBuilder.ToString());
             BuildLookupDicts();
+
         }
 
 
@@ -222,6 +226,25 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Determines whether the specified hediff is prosthetic.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified hediff is prosthetic; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">hediff</exception>
+        public static bool IsProsthetic([NotNull] this Hediff hediff)
+        {
+            if (hediff == null) throw new ArgumentNullException(nameof(hediff));
+            if (hediff is Hediff_AddedMutation || hediff.def is Hediffs.MutationDef) return false; 
+          
+            var isProsthetic =  hediff.def?.spawnThingOnRemoved != null;
+            
+
+            return isProsthetic; 
+        }
+
+        /// <summary>
         ///     Adds the mutation to the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
@@ -253,7 +276,7 @@ namespace Pawnmorph
 
             foreach (BodyPartRecord notMissingPart in hSet.GetNotMissingParts().MakeSafe())
             {
-                if(hSet.hediffs.Any(h => h.Part== notMissingPart && h is Hediff_AddedMutation)) continue;
+                if(hSet.hediffs.Any(h => h.Part== notMissingPart && h.IsProsthetic())) continue;
                 yield return notMissingPart; 
             }
 
@@ -351,11 +374,17 @@ namespace Pawnmorph
             List<Hediff_AddedMutation> lst = new List<Hediff_AddedMutation>();
             foreach (BodyPartRecord bodyPartRecord in records)
             {
-                if (bodyPartRecord.IsMissingAtAllIn(pawn)) continue;
+                if (bodyPartRecord.IsMissingAtAllIn(pawn))
+                {
+                    LogMsg(LogLevel.Pedantic, $"could not add {mutation.defName} to {pawn.Name} on {bodyPartRecord.Label} because it is missing or has a prosthetic");
+                    continue;
+                }
 
                 var existingMutation = hSet.hediffs.FirstOrDefault(h => h.def == mutation && h.Part == bodyPartRecord);
                 if (existingMutation != null) //resume adaption for mutations that are already added instead of re adding them
                 {
+                    LogMsg(LogLevel.Pedantic, $"could not add {mutation.defName} to {pawn.Name} on {bodyPartRecord.Label} because it already has that mutation");
+
                     existingMutation.ResumeAdjustment(); //don't do count restarted mutations as new ones 
                     continue;
                 }
@@ -687,7 +716,8 @@ namespace Pawnmorph
             while (record != null)
             {
                 //check if the part is missing or it has a prosthetic attached to it 
-                if (hediffSet.PartIsMissing(record) || hediffSet.hediffs.Any(h => h.Part == record && h is Hediff_AddedPart)) return true;
+                BodyPartRecord record1 = record;
+                if (hediffSet.PartIsMissing(record) || hediffSet.hediffs.Any(h => h.Part == record1 && h.IsProsthetic())) return true;
                 record = record.parent;
             }
 
