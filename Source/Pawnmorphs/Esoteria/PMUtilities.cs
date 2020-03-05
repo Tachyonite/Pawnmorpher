@@ -19,5 +19,19 @@ namespace Pawnmorph
         {
             return LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
         }
+
+
+        /// <summary>
+        /// Determines whether this pawn is loading or spawning.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn is loading or spawning ; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsLoadingOrSpawning([NotNull] this Pawn pawn)
+        {
+            if (pawn.health == null || pawn.mindState?.inspirationHandler == null || pawn.needs == null) return true;
+            return false; 
+        }
     }
 }

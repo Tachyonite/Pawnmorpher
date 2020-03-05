@@ -58,7 +58,7 @@ namespace Pawnmorph.Hediffs
 
             if (memory != null)
             {
-                hediff.pawn?.TryGainMemory(memory); 
+                hediff.pawn.TryAddMutationThought(memory); 
             }
         }
     }

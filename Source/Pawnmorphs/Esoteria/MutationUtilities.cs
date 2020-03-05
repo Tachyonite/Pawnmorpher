@@ -3,14 +3,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+
 
 namespace Pawnmorph
 {
@@ -55,6 +59,7 @@ namespace Pawnmorph
 
             if (anyWarnings) Log.Warning(warningBuilder.ToString());
             BuildLookupDicts();
+
         }
 
 
@@ -221,12 +226,30 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Determines whether the specified hediff is prosthetic.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified hediff is prosthetic; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">hediff</exception>
+        public static bool IsProsthetic([NotNull] this Hediff hediff)
+        {
+            if (hediff == null) throw new ArgumentNullException(nameof(hediff));
+            if (hediff is Hediff_AddedMutation || hediff.def is Hediffs.MutationDef) return false; 
+          
+            var isProsthetic =  hediff.def?.spawnThingOnRemoved != null;
+            
+
+            return isProsthetic; 
+        }
+
+        /// <summary>
         ///     Adds the mutation to the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="countToAdd">The count to add.</param>
-        /// <param name="partsAdded">The parts added.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">
@@ -234,12 +257,29 @@ namespace Pawnmorph
         ///     or
         ///     mutation
         /// </exception>
-        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, int countToAdd = int.MaxValue,
-                                       List<BodyPartRecord> partsAdded = null, AncillaryMutationEffects? ancillaryEffects = null)
+        public static MutationResult AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, int countToAdd = int.MaxValue, AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-            return AddMutation(pawn, mutation, mutation.parts, countToAdd, partsAdded, ancillaryEffects);
+            return AddMutation(pawn, mutation, mutation.parts, countToAdd,  ancillaryEffects);
+        }
+
+        /// <summary>
+        /// Gets all non missing without prosthetics.
+        /// </summary>
+        /// <param name="hSet">The h set.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">hSet</exception>
+        public static IEnumerable<BodyPartRecord> GetAllNonMissingWithoutProsthetics([NotNull] this HediffSet hSet)
+        {
+            if (hSet == null) throw new ArgumentNullException(nameof(hSet));
+
+            foreach (BodyPartRecord notMissingPart in hSet.GetNotMissingParts().MakeSafe())
+            {
+                if(hSet.hediffs.Any(h => h.Part== notMissingPart && h.IsProsthetic())) continue;
+                yield return notMissingPart; 
+            }
+
         }
 
         /// <summary>
@@ -249,7 +289,6 @@ namespace Pawnmorph
         /// <param name="mutation">The mutation.</param>
         /// <param name="parts">The parts.</param>
         /// <param name="countToAdd">The count to add.</param>
-        /// <param name="addedParts">The added parts.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">
@@ -257,8 +296,8 @@ namespace Pawnmorph
         ///     or
         ///     mutation
         /// </exception>
-        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, [CanBeNull] List<BodyPartDef> parts,
-                                       int countToAdd = int.MaxValue, List<BodyPartRecord> addedParts = null,
+        public static MutationResult AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, [CanBeNull] List<BodyPartDef> parts,
+                                       int countToAdd = int.MaxValue, 
                                        AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -268,21 +307,45 @@ namespace Pawnmorph
 
             if (parts != null)
             {
-                foreach (BodyPartRecord notMissingPart in pawn.health.hediffSet.GetNotMissingParts())
+                foreach (BodyPartRecord notMissingPart in pawn.health.hediffSet.GetAllNonMissingWithoutProsthetics())
                     if (parts.Contains(notMissingPart.def))
                     {
                         addLst.Add(notMissingPart);
                         if (parts.Count >= countToAdd) break;
                     }
 
-                if (addLst.Count == 0) return false;
-                return AddMutation(pawn, mutation, addLst, addedParts, ancillaryEffects);
+                if (addLst.Count == 0) return MutationResult.Empty;
+                return AddMutation(pawn, mutation, addLst, ancillaryEffects);
             }
 
-            Hediff hDef = HediffMaker.MakeHediff(mutation, pawn);
-            pawn.health.AddHediff(hDef);
-            return true;
 
+            var existingHediff = pawn.health.hediffSet.hediffs.FirstOrDefault(m => m.def == mutation && m.Part == null);
+            if (existingHediff != null)
+            {
+                (existingHediff as Hediff_AddedMutation)?.ResumeAdaption();
+                return MutationResult.Empty;
+            }
+
+            if (!(HediffMaker.MakeHediff(mutation, pawn) is Hediff_AddedMutation hDef))
+            {
+                Log.Error($"{mutation.defName} is not a mutation but is being added like one!");
+                return MutationResult.Empty;
+            }
+
+            pawn.health.AddHediff(hDef);
+            return new MutationResult(hDef);
+
+        }
+
+        /// <summary>
+        /// Resumes the adjustment process for this hediff if it is a mutation, does nothing 
+        /// </summary>
+        /// Resumes the adjustment process for this hediff if it is a mutation, does nothing if the hediff is not a mutation, the mutation is not halted
+        /// or the process is complete 
+        /// <param name="hediff">The hediff.</param>
+        public static void ResumeAdjustment(this Hediff hediff)
+        {
+            (hediff as Hediff_AddedMutation)?.ResumeAdaption();
         }
 
         /// <summary>
@@ -291,7 +354,6 @@ namespace Pawnmorph
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="records">The records to add mutations to</param>
-        /// <param name="addedParts">The added parts.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <exception cref="ArgumentNullException">
         ///     pawn
@@ -300,34 +362,56 @@ namespace Pawnmorph
         ///     or
         ///     records
         /// </exception>
-        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
-                                       [NotNull] IEnumerable<BodyPartRecord> records, List<BodyPartRecord> addedParts = null,
+        public static MutationResult AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
+                                       [NotNull] IEnumerable<BodyPartRecord> records, 
                                        AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (records == null) throw new ArgumentNullException(nameof(records));
             HediffSet hSet = pawn.health?.hediffSet;
-            if (hSet == null) return false;
-            addedParts = addedParts ?? new List<BodyPartRecord>();
+            if (hSet == null) return MutationResult.Empty; 
+            List<Hediff_AddedMutation> lst = new List<Hediff_AddedMutation>();
             foreach (BodyPartRecord bodyPartRecord in records)
             {
-                if (bodyPartRecord.IsMissingAtAllIn(pawn)) continue;
-                Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, bodyPartRecord);
+                if (bodyPartRecord.IsMissingAtAllIn(pawn))
+                {
+                    LogMsg(LogLevel.Pedantic, $"could not add {mutation.defName} to {pawn.Name} on {bodyPartRecord.Label} because it is missing or has a prosthetic");
+                    continue;
+                }
+
+                var existingMutation = hSet.hediffs.FirstOrDefault(h => h.def == mutation && h.Part == bodyPartRecord);
+                if (existingMutation != null) //resume adaption for mutations that are already added instead of re adding them
+                {
+                    LogMsg(LogLevel.Pedantic, $"could not add {mutation.defName} to {pawn.Name} on {bodyPartRecord.Label} because it already has that mutation");
+
+                    existingMutation.ResumeAdjustment(); //don't do count restarted mutations as new ones 
+                    continue;
+                }
+
+                var hediff = HediffMaker.MakeHediff(mutation, pawn, bodyPartRecord) as Hediff_AddedMutation;
+                if (hediff == null)
+                {
+                    Log.Error($"{mutation.defName} is not a mutation but is being added like one!");
+                    continue;
+                }
+
+                lst.Add(hediff); 
                 hSet.AddDirect(hediff);
-                addedParts.Add(bodyPartRecord);
             }
 
             AncillaryMutationEffects aEffects = ancillaryEffects ?? AncillaryMutationEffects.Default;
-            if (addedParts.Count > 0) //only do this if we actually added any mutations 
+            if (lst.Count > 0) //only do this if we actually added any mutations 
             {
-                DoAncillaryMutationEffects(pawn, mutation, addedParts, aEffects);
+                DoAncillaryMutationEffects(pawn, mutation, lst, aEffects);
             }
 
-            return addedParts.Count > 0;
+            return new MutationResult(lst);
         }
 
-        private static void DoAncillaryMutationEffects(Pawn pawn, MutationDef mutation, List<BodyPartRecord> addedParts, in AncillaryMutationEffects aEffects)
+
+
+        private static void DoAncillaryMutationEffects(Pawn pawn, MutationDef mutation, List<Hediff_AddedMutation> addedParts, in AncillaryMutationEffects aEffects)
         {
             if (mutation.mutationMemory != null && aEffects.AddMemory)
             {
@@ -339,7 +423,7 @@ namespace Pawnmorph
 
             if (aEffects.AddLogEntry && !addedParts.NullOrEmpty())
             {
-                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.MakeSafe().Where(p => p != null).Select(p => p.def).Distinct());
+                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.MakeSafe().Where(p => p?.Part != null).Select(p => p.Part.def).Distinct());
                 Find.PlayLog?.Add(logEntry);
             }
 
@@ -347,13 +431,33 @@ namespace Pawnmorph
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
         }
 
+        private static void DoAncillaryMutationEffects(Pawn pawn, MutationDef mutation, Hediff_AddedMutation addedParts, in AncillaryMutationEffects aEffects)
+        {
+            if (mutation.mutationMemory != null && aEffects.AddMemory)
+            {
+                TryAddMutationThought(pawn, mutation.mutationMemory);
+            }
+
+            if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
+                TaleRecorder.RecordTale(mutation.mutationTale, pawn);
+
+            if (aEffects.AddLogEntry && addedParts?.Part != null)
+            {
+                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.Part.def);
+                Find.PlayLog?.Add(logEntry);
+            }
+
+            if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
+                IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
+        }
+
+
         /// <summary>
         ///     Adds the mutation to the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="record">The records to add mutations to</param>
-        /// <param name="addedRecords">The added records.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">
@@ -363,26 +467,41 @@ namespace Pawnmorph
         ///     or
         ///     records
         /// </exception>
-        public static bool AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
-                                       [NotNull] BodyPartRecord record, List<BodyPartRecord> addedRecords = null,
+        public static MutationResult AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
+                                       [NotNull] BodyPartRecord record,
                                        AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (record == null) throw new ArgumentNullException(nameof(record));
             HediffSet hSet = pawn.health?.hediffSet;
-            if (hSet == null) return false;
+            if (hSet == null) return MutationResult.Empty;
 
-            if (record.IsMissingAtAllIn(pawn)) return false;
+            if (record.IsMissingAtAllIn(pawn)) return MutationResult.Empty;
 
 
-            Hediff hediff = HediffMaker.MakeHediff(mutation, pawn, record);
+            Hediff existingMutation = pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == mutation && h.Part == record);
+            if (existingMutation != null)
+            {
+                existingMutation.ResumeAdjustment();
+                return MutationResult.Empty;
+            }
+
+            var hediff = HediffMaker.MakeHediff(mutation, pawn, record) as Hediff_AddedMutation;
+            if (hediff == null)
+            {
+                Log.Error($"{mutation.defName} is not a mutation but is being added like one!");
+                return MutationResult.Empty;
+            }
+
             hSet.AddDirect(hediff);
-            addedRecords?.Add(record);
+
 
             AncillaryMutationEffects aEffects = ancillaryEffects ?? AncillaryMutationEffects.Default;
-            DoAncillaryMutationEffects(pawn, mutation, addedRecords, aEffects);
-            return true;
+
+            DoAncillaryMutationEffects(pawn, mutation, hediff, aEffects);
+            return new MutationResult(hediff);
+
         }
 
 
@@ -596,7 +715,9 @@ namespace Pawnmorph
             HediffSet hediffSet = pawn.health.hediffSet;
             while (record != null)
             {
-                if (hediffSet.PartIsMissing(record)) return true;
+                //check if the part is missing or it has a prosthetic attached to it 
+                BodyPartRecord record1 = record;
+                if (hediffSet.PartIsMissing(record) || hediffSet.hediffs.Any(h => h.Part == record1 && h.IsProsthetic())) return true;
                 record = record.parent;
             }
 
