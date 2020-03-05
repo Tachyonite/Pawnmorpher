@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
@@ -274,27 +275,33 @@ namespace Pawnmorph.DebugUtils
             if (mutations == null)
                 mutations = DefDatabase<MutationDef>.AllDefs;
 
-            bool CanReceiveGiver(MutationDef mutation)
-            {
-                IEnumerable<Hediff> hediffs = pawn.health.hediffSet.hediffs.Where(h => h.def == mutation);
+           
 
-                return hediffs.Count() < mutation.parts?.Count;
-            }
-
-            var mutList = mutations.Where(CanReceiveGiver).ToList();
+            var mutList = mutations.ToList();
             if (mutList.Count == 0) return;
 
             int num = Rand.Range(1, Mathf.Min(10, mutList.Count));
 
             var i = 0;
+            List<Hediff_AddedMutation> givenList = new List<Hediff_AddedMutation>();
+            List<MutationDef> triedGive = new List<MutationDef>(); 
             while (i < num && mutList.Count > 0)
             {
                 var giver = mutList.RandElement();
                 mutList.Remove(giver);
-
-                MutationUtilities.AddMutation(pawn, giver); 
-                
+                triedGive.Add(giver); 
+                var res = MutationUtilities.AddMutation(pawn, giver);
+                givenList.AddRange(res); 
                 i++;
+            }
+
+            if (givenList.Count > 0)
+            {
+                Log.Message($"gave {pawn.Name} [{givenList.Join(m => m.Label)}] from [{triedGive.Join(m => m.defName)}]");
+            }
+            else
+            {
+                Log.Message($"could not give {pawn.Name} any from [{triedGive.Join(m => m.defName)}]");
             }
         }
 
