@@ -50,6 +50,11 @@ namespace Pawnmorph.Hediffs
         public List<BlockEntry> blockList = new List<BlockEntry>();
 
         /// <summary>
+        /// list of body part defs that this mutations blocks other mutations from being added onto 
+        /// </summary>
+        public List<BodyPartDef> blockSites = new List<BodyPartDef>(); 
+
+        /// <summary>
         ///     the rule pack to use when generating mutation logs for this mutation
         /// </summary>
         [CanBeNull] public RulePackDef mutationLogRulePack;
@@ -141,6 +146,7 @@ namespace Pawnmorph.Hediffs
         public bool BlocksMutation([NotNull] MutationDef otherMutation, [CanBeNull] BodyPartRecord thisPart,
                                    [CanBeNull] BodyPartRecord addPart)
         {
+            if (blockSites?.Contains(addPart?.def) == true) return true; 
             BlockEntry entry = blockList?.FirstOrDefault(e => e.mutation == otherMutation);
             if (entry == null) return false;
             return thisPart == addPart || entry.blockOnAnyPart;
@@ -228,5 +234,7 @@ namespace Pawnmorph.Hediffs
             /// </summary>
             public bool blockOnAnyPart;
         }
+
+        
     }
 }

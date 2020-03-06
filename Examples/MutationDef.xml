@@ -36,6 +36,13 @@
             </li>
         </blockList>
 
+        list of body part defs that this mutations blocks other mutations from being added onto 
+        <blockSites>
+            <li>BodyPartDef</li>
+        </blockSites>
+
+        <blocksAllOnSamePart></blocksAllOnSamePart>
+
         this is a list of all parts the mutation can be applied to 
         this must be set and have at least 1 entry 
         <parts>
