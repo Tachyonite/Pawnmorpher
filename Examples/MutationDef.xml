@@ -25,7 +25,16 @@
             </li>
         </stages>
 
-
+        a list of all mutations this mutation will not allow to be added to the pawn
+        <blockList>
+            <li>
+                the mutation to block from being added
+                <mutation>MutationDef</mutation>
+                if true, this mutation will block the addition of the above mutation on any part of the pawn 
+                not just on the part this mutation is currently on 
+                <blockOnAnyPart>true</blockOnAnyPart>
+            </li>
+        </blockList>
 
         this is a list of all parts the mutation can be applied to 
         this must be set and have at least 1 entry 

@@ -3,12 +3,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.Utilities;
 using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -34,14 +35,19 @@ namespace Pawnmorph.Hediffs
         public List<MutationCategoryDef> categories = new List<MutationCategoryDef>();
 
         /// <summary>
-        /// The default chance to add this mutation 
+        ///     The default chance to add this mutation
         /// </summary>
         public float defaultAddChance = 1f;
 
         /// <summary>
-        /// The default value indicating weather or not this mutation blocks a transformation chain until it is added 
+        ///     The default value indicating weather or not this mutation blocks a transformation chain until it is added
         /// </summary>
-        public bool defaultBlocks = false; 
+        public bool defaultBlocks = false;
+
+        /// <summary>
+        ///     list of other mutations this mutation blocks
+        /// </summary>
+        public List<BlockEntry> blockList = new List<BlockEntry>();
 
         /// <summary>
         ///     the rule pack to use when generating mutation logs for this mutation
@@ -71,6 +77,22 @@ namespace Pawnmorph.Hediffs
         [Unsaved] private RemoveFromPartCompProperties _rmComp;
 
         [Unsaved] private bool? _isRestricted;
+
+        /// <summary>
+        ///     returns a full, detailed, representation of the object in string form
+        /// </summary>
+        /// <returns></returns>
+        public string ToStringFull()
+        {
+            var builder = new StringBuilder();
+            builder.AppendLine($"-{defName}/{label}-");
+            if (parts == null)
+                builder.AppendLine("full body mutation");
+            else
+                builder.AppendLine($"parts:[{parts.Join(n => n.defName)}]");
+
+            return builder.ToString();
+        }
 
         /// <summary>
         ///     Gets all mutations.
@@ -107,6 +129,23 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        /// <summary>
+        ///     checks if this mutation blocks the addition of the otherMutation.
+        /// </summary>
+        /// checks if this mutation on the 'thisPart' blocks the addition of the otherMutation on the 'addPart'
+        /// checks if this mutation on the 'thisPart' blocks the addition of the otherMutation on the 'addPart'
+        /// <param name="otherMutation">The other mutation.</param>
+        /// <param name="thisPart">The part this mutation is already on.</param>
+        /// <param name="addPart">The  part the otherMutation will be added to.</param>
+        /// <returns></returns>
+        public bool BlocksMutation([NotNull] MutationDef otherMutation, [CanBeNull] BodyPartRecord thisPart,
+                                   [CanBeNull] BodyPartRecord addPart)
+        {
+            BlockEntry entry = blockList?.FirstOrDefault(e => e.mutation == otherMutation);
+            if (entry == null) return false;
+            return thisPart == addPart || entry.blockOnAnyPart;
+        }
+
 
         /// <summary>
         ///     Gets all configuration errors
@@ -123,7 +162,12 @@ namespace Pawnmorph.Hediffs
             _rmComp = CompProps<RemoveFromPartCompProperties>();
             if (_rmComp == null)
                 yield return "mutation does not have a remover comp!";
+
+            foreach (BlockEntry entry in blockList.MakeSafe())
+                if (entry.mutation == null)
+                    yield return "block entry has missing mutation def!";
         }
+
 
         /// <summary>
         ///     checks if this instance gives influence for the given animal class
@@ -167,27 +211,22 @@ namespace Pawnmorph.Hediffs
                     //Log.Message($"{defName} has implicitly defined {nameof(mutationMemory)}, this should be assigned explicitly");
                 }
             }
-
         }
 
         /// <summary>
-        /// returns a full, detailed, representation of the object in string form 
+        ///     simple class for a single 'block entry'
         /// </summary>
-        /// <returns></returns>
-        public string ToStringFull()
+        public class BlockEntry
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine($"-{defName}/{label}-");
-            if (parts == null)
-            {
-                builder.AppendLine($"full body mutation");
-            }
-            else
-            {
-                builder.AppendLine($"parts:[{parts.Join(n => n.defName)}]");
-            }
+            /// <summary>
+            ///     The mutation to block from being added
+            /// </summary>
+            public MutationDef mutation;
 
-            return builder.ToString(); 
+            /// <summary>
+            ///     if true, the mutation will be block from any part, not just on the same part this mutation is on
+            /// </summary>
+            public bool blockOnAnyPart;
         }
     }
 }
