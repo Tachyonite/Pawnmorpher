@@ -38,8 +38,15 @@ namespace Pawnmorph
         /// <value>
         ///     The maximum level.
         /// </value>
-        public override float MaxLevel =>
-            Mathf.Max(CalculateNetResistance(pawn) / AVERAGE_MAX_SAPIENCE, 0.01f); //this should never be zero 
+        public override float MaxLevel
+        {
+            get
+            {
+                if(!pawn.IsLoadingOrSpawning()) //make sure we don't look for stats while the pawn is loading 
+                    return Mathf.Max(CalculateNetResistance(pawn) / AVERAGE_MAX_SAPIENCE, 0.01f);
+                return AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE; 
+            }
+        }
 
         /// <summary>
         ///     Gets the current instant level.
