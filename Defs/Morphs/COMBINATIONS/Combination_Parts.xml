@@ -2,15 +2,14 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherComboHornbill</defName>
 		<label>hornbill</label>
-		<description>Horns and beak have fused into one bony monstrosity of a beak, that runs up the skull and leaves only small holes for sight.</description>
+		<description>Horns and beak have fused into one bony monstrosity of a maw, that runs up the skull and leaves only small holes for sight.</description>
 		<parts>
 			<li>Skull</li>
 		</parts>
-		<!-- Will be needed for mutations that take up multiple places
-		<partBlocker>
+		<blockSites>
 			<li>Jaw</li>
-		</partBlocker>
-		-->
+		</blockSites>
+		<blocksAllOnSamePart>True</blocksAllOnSamePart>
 		<stages>
 			<li>
 				<capMods>
@@ -65,12 +64,9 @@
 		<parts>
 			<li>Skull</li>
 		</parts>
-		<!-- Will be needed for mutations that take up multiple places
 		<partBlocker>
 			<li>Jaw</li>
 		</partBlocker>
-		-->
-		<!-- TODO ACTUAL STAGES -->
 		<stages>
 			<li>
 				<capMods>

@@ -258,6 +258,7 @@ namespace Pawnmorph
             if (entry.partDef == null)
             {
                 pawn.health.AddHediff(entry.hediffDef);
+                IntermittentMagicSprayer.ThrowMagicPuffUp(pawn.GetCorrectPosition().ToVector3(), pawn.GetCorrectMap());
                 return;
             }
 
@@ -267,6 +268,7 @@ namespace Pawnmorph
                 if (partRecord.def != entry.partDef) continue;
                 //add the hediff to all parts 
                 pawn.health.AddHediff(entry.hediffDef, partRecord);
+                IntermittentMagicSprayer.ThrowMagicPuffUp(pawn.GetCorrectPosition().ToVector3(), pawn.GetCorrectMap());
             }
         }
     }

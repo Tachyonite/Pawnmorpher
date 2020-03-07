@@ -1,0 +1,40 @@
+<Defs>
+    <Pawnmorph.MutationRuleDef>
+		<!-- HORNBILL Combo Mutation -->
+        <priority>10</priority>    
+        <mtth>0</mtth>
+        <conditions>
+            <li>
+                <hediffDef>EtherBeak</hediffDef>
+                <partDef>Jaw</partDef>
+            </li>
+            <li>
+                <hediffDef>EtherHorns</hediffDef>
+                <partDef>Skull</partDef>
+            </li>
+        </conditions>
+        <result>
+            <hediffDef>EtherComboHornbill</hediffDef>
+            <partDef>Skull</partDef>
+        </result>   
+    </Pawnmorph.MutationRuleDef>
+    <Pawnmorph.MutationRuleDef>
+		<!-- WOLFSPIKE Combo Mutation -->
+        <priority>10</priority>    
+        <mtth>0</mtth>
+        <conditions>
+            <li>
+                <hediffDef>EtherWolfMuzzle</hediffDef>
+                <partDef>Jaw</partDef>
+            </li>
+            <li>
+                <hediffDef>EtherIguanaSpike</hediffDef>
+                <partDef>Skull</partDef>
+            </li>
+        </conditions>
+        <result>
+            <hediffDef>EtherComboWolfSpike</hediffDef>
+            <partDef>Skull</partDef>
+        </result>   
+    </Pawnmorph.MutationRuleDef>
+</Defs>
