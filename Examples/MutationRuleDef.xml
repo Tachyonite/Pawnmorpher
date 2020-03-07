@@ -1,0 +1,41 @@
+<Defs>
+    <Pawnmorph.MutationRuleDef>
+        value used to influence the order in which rules are checked 
+        lower values are checked before higher ones, and only one rule will be successfully executed on a pawn 
+        at a time 
+        <priority>10</priority>    
+
+        mean time (in days) it takes for the rule to trigger once the conditions have been met  
+        a zero or negitive value will make the rule trigger as soon as the conditions are met 
+        <mtth>1</mtth>
+
+
+        list of conditions that must be met before the rule can execute 
+        <conditions>
+            <li>
+                the hediff def to check for 
+                <hediffDef>HediffDef</hediffDef>
+                the part def to check for the above hediff def 
+                <partDef>PartDef</partDef>
+
+                if set to true, all body parts will be check for the above hediff 
+                <anyPart>true</anyPart>
+
+                if set, then this condition is only true if the above hediff is in this stage 
+                <stageIndex>1</stageIndex>
+            </li>
+        </conditions>
+
+        the result of the rule being executed 
+        <result>
+            the hediff to add when the rule is executed 
+            <hediffDef>HediffDef</hediffDef>
+            
+            the body part to add the hediff to 
+            if the hediff is a MutationDef this is ignored 
+            <partDef>PartDef</partDef>
+        </result>   
+
+
+    </Pawnmorph.MutationRuleDef>
+</Defs>
