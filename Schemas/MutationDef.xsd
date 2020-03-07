@@ -20,6 +20,14 @@
             <xs:element name="hediffClass" type="xs:string" minOccurs="0" />
             <xs:element name="defaultAddChance" type="xs:float" minOccurs="0"/>
             <xs:element name="defaultBlocks" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="blockSites" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="blockEntries" minOccurs="0" >
+                <xs:complexType>
+                    <xs:sequence>
+                         <xs:element name="li" minOccurs="1"  type="BlockEntry" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="comps" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
@@ -105,4 +113,10 @@
             <xs:enumeration value="Pawnmorph.Hediffs.MutationStage" />
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="BlockEntry">
+        <xs:all>
+            <xs:element name="mutation" type="xs:string" minOccurs="1" />
+            <xs:element name="blockOnAnyPart" type="xs:boolean" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
 </xs:schema>

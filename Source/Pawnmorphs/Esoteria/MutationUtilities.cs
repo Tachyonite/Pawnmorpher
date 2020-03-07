@@ -380,6 +380,8 @@ namespace Pawnmorph
                     continue;
                 }
 
+                if(HasAnyBlockingMutations(pawn, mutation, bodyPartRecord)) continue;
+
                 var existingMutation = hSet.hediffs.FirstOrDefault(h => h.def == mutation && h.Part == bodyPartRecord);
                 if (existingMutation != null) //resume adaption for mutations that are already added instead of re adding them
                 {
@@ -480,11 +482,18 @@ namespace Pawnmorph
             if (record.IsMissingAtAllIn(pawn)) return MutationResult.Empty;
 
 
+           
+
             Hediff existingMutation = pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == mutation && h.Part == record);
             if (existingMutation != null)
             {
                 existingMutation.ResumeAdjustment();
                 return MutationResult.Empty;
+            }
+
+            if (HasAnyBlockingMutations(pawn, mutation, record))
+            {
+
             }
 
             var hediff = HediffMaker.MakeHediff(mutation, pawn, record) as Hediff_AddedMutation;
@@ -502,6 +511,16 @@ namespace Pawnmorph
             DoAncillaryMutationEffects(pawn, mutation, hediff, aEffects);
             return new MutationResult(hediff);
 
+        }
+
+        private static bool HasAnyBlockingMutations(Pawn pawn, MutationDef mutation, BodyPartRecord record)
+        {
+            foreach (Hediff_AddedMutation curMutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
+            {
+                if (curMutation.Blocks(mutation, record)) return true; 
+            }
+
+            return false; 
         }
 
 
