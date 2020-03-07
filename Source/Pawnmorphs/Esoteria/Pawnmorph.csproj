@@ -347,6 +347,7 @@
     <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FormerHumanLogging.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Logging.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.MutationLogging.cs" />
