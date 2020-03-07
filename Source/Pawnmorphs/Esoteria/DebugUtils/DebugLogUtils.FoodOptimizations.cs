@@ -11,6 +11,7 @@ using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace Pawnmorph.DebugUtils
 {
@@ -100,34 +101,40 @@ namespace Pawnmorph.DebugUtils
                 stdDev = Mathf.Sqrt(stdDev); 
             }
         }
-        
 
+        private const int ITERATIONS = 15; 
         static void TestFoodFunction([NotNull] FoodFinderFunc func, [NotNull] List<Pawn> testers, [NotNull] List<float> results)
         {
-            foreach (Pawn p in testers)
+            for (int i = 0; i < ITERATIONS; i++)
             {
-                if (p == null || p.Dead || p.Destroyed || p.Map == null) continue;
+                Stopwatch sWatch = Stopwatch.StartNew();
+                foreach (Pawn p in testers)
+                {
+                    if (p == null || p.Dead || p.Destroyed || p.Map == null) continue;
 
-                try
-                {
-                    var dur = TestFoodFunction(FoodUtility.TryFindBestFoodSourceFor, p);
-                    results.Add(dur);
+                    try
+                    {
+                        TestFoodFunction(func, p);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Message($"caught {e.GetType().Name} while testing {p.Name}\n{e}");
+                    }
                 }
-                catch (Exception e)
-                {
-                    Log.Message($"caught {e.GetType().Name} while testing {p.Name}\n{e}");
-                }
+
+                var dur = sWatch.ElapsedMilliseconds; 
+                sWatch.Stop();
+                results.Add(dur);
+
+
             }
         }
 
-        static float TestFoodFunction([NotNull] FoodFinderFunc func, [NotNull] Pawn tstPawn)
+      
+        static void TestFoodFunction([NotNull] FoodFinderFunc func, [NotNull] Pawn tstPawn)
         {
-            var sw = Stopwatch.StartNew();
             bool desperate = tstPawn.needs.food.CurCategory == HungerCategory.Starving;
             func(tstPawn, tstPawn, desperate, out Thing t, out ThingDef tt);
-            sw.Stop();
-            return sw.ElapsedMilliseconds; 
-
         }
 
     }
