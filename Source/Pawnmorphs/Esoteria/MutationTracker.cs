@@ -112,6 +112,12 @@ namespace Pawnmorph
         /// </summary>
         public override void CompTick()
         {
+            if (Pawn.IsHashIntervalTick(MutationRuleDef.CHECK_RATE))
+            {
+                MutationRuleUtilities.TryExecuteRulesOn(Pawn); 
+            }
+
+
             if (Pawn.IsHashIntervalTick(4400) && CanRaceCheckNow)
             {
                 RecalcIfNeeded();

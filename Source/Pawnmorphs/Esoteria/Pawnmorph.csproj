@@ -455,6 +455,7 @@
     <Compile Include="Mental\State_Hunting.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
+    <Compile Include="MutationRuleUtilities.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
