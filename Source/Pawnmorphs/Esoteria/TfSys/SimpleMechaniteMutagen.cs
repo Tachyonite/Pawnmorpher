@@ -202,7 +202,7 @@ namespace Pawnmorph.TfSys
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 
             //notify the faction that their member has been transformed 
-            oFaction.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
+            oFaction?.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
             if(reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
                 SendLetter(request, original, spawnedAnimal);
