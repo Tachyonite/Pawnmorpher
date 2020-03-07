@@ -304,7 +304,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddMorphsToPawn.cs" />
-    <Compile Include="Alerts\SAMinorBreakRisk.cs" />
     <Compile Include="AnimalClassDef.cs" />
     <Compile Include="AnimalClassDefOf.cs" />
     <Compile Include="AnimalClassUtilities.cs" />
@@ -434,6 +433,7 @@
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="Jobs\Giver_FoodOptimized.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
     <Compile Include="IPawnTransformer.cs" />
@@ -646,7 +646,9 @@
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Alerts\" />
+  </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

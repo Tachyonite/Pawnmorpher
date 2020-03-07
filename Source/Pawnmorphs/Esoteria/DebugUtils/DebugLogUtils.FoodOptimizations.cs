@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace Pawnmorph.DebugUtils
 {
@@ -43,9 +45,9 @@ namespace Pawnmorph.DebugUtils
             StringBuilder builder = new StringBuilder();
             List<float> resultList = new List<float>(); 
             builder.AppendLine("--------------Rimworld--------------");
-            builder.AppendLine(Results.HEADER); 
 
-            TestFoodFunction(FoodUtility.TryFindBestFoodSourceFor, mapPawns, resultList);
+            TestFoodFunction(FoodUtility.TryFindBestFoodSourceFor, mapPawns, resultList, builder);
+            builder.AppendLine(Results.HEADER); 
 
             var rmResults = new Results(resultList); 
             resultList.Clear();
@@ -54,13 +56,42 @@ namespace Pawnmorph.DebugUtils
 
             builder.AppendLine("--------------Pawnmorpher--------------");
 
-            TestFoodFunction(PMFoodUtilities.TryFindBestFoodSourceForOptimized, mapPawns, resultList);
+            TestFoodFunction(PMFoodUtilities.TryFindBestFoodSourceForOptimized, mapPawns, resultList, builder);
             builder.AppendLine(Results.HEADER);
 
             var pmResults = new Results(resultList); 
             resultList.Clear();
             builder.AppendLine(pmResults.ToString());
             Log.Message(builder.ToString()); 
+        }
+
+        [DebugOutput(FOOD_OP_CATEGORY, true)]
+        static void CheckIfPawnsEatPlants()
+        {
+            Map map = Find.CurrentMap;
+            if (map == null) return; 
+            var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => p.RaceProps.Humanlike
+                                                                             && (p.RaceProps.foodType
+                                                                               & (FoodTypeFlags.Plant | FoodTypeFlags.Tree))
+                                                                             != 0);
+            var plants = map.listerThings.AllThings.OfType<Plant>().Where(p => p.def.ingestible != null).Take(20).ToList();
+            StringBuilder builder = new StringBuilder();
+            List<string> entries = new List<string>(); 
+            foreach (Pawn pawn in pawns)
+            {
+                entries.Clear();
+                foreach (Plant plant in plants)
+                {
+                    bool isIngestible = plant.def.IsNutritionGivingIngestible;
+                    bool canEatNow = plant.IngestibleNow; 
+                    entries.Add($"{{{plant.Label},{nameof(isIngestible)}:{isIngestible},{nameof(canEatNow)}:{canEatNow}}}");
+                }
+
+                builder.AppendLine($"{pawn.Name}:[{entries.Join(s => s)}]"); 
+            }
+
+            Log.Message(builder.ToString()); 
+
         }
 
         class Results
@@ -100,34 +131,60 @@ namespace Pawnmorph.DebugUtils
                 stdDev = Mathf.Sqrt(stdDev); 
             }
         }
-        
 
-        static void TestFoodFunction([NotNull] FoodFinderFunc func, [NotNull] List<Pawn> testers, [NotNull] List<float> results)
+        private const int ITERATIONS = 1; 
+        static void TestFoodFunction([NotNull] FoodFinderFunc func, [NotNull] List<Pawn> testers, [NotNull] List<float> results, StringBuilder messageBuilder)
         {
-            foreach (Pawn p in testers)
-            {
-                if (p == null || p.Dead || p.Destroyed || p.Map == null) continue;
 
-                try
+            List<(Plant plant, ThingDef eatingDef, Pawn eater)> plantsFound = new List<(Plant plant, ThingDef eatingDef, Pawn eater)>(); 
+            for (int i = 0; i < ITERATIONS; i++)
+            {
+                Stopwatch sWatch = Stopwatch.StartNew();
+                foreach (Pawn p in testers)
                 {
-                    var dur = TestFoodFunction(FoodUtility.TryFindBestFoodSourceFor, p);
-                    results.Add(dur);
+                    if (p == null || p.Dead || p.Destroyed || p.Map == null) continue;
+
+                    try
+                    {
+                        ThingDef tDef; 
+                       var t =  TestFoodFunction(func,  p , out tDef);
+                       if (t is Plant plant && p.IsHumanlike())
+                       {
+                           plantsFound.Add((plant, tDef, p)); 
+                       }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Message($"caught {e.GetType().Name} while testing {p.Name}\n{e}");
+                    }
                 }
-                catch (Exception e)
+
+
+
+
+                var dur = sWatch.ElapsedMilliseconds; 
+                sWatch.Stop();
+                results.Add(dur);
+                if(plantsFound.Count > 0)
                 {
-                    Log.Message($"caught {e.GetType().Name} while testing {p.Name}\n{e}");
+                     
+
+                    var lStr = plantsFound.Join(tup => $"{tup.plant.def.defName}, {tup.eatingDef.defName}, {tup.eater.Name}",
+                                                "\n");
+                    messageBuilder.AppendLine(lStr); 
+
                 }
+                
+
             }
         }
 
-        static float TestFoodFunction([NotNull] FoodFinderFunc func, [NotNull] Pawn tstPawn)
+      
+        static Thing TestFoodFunction([NotNull] FoodFinderFunc func, [NotNull] Pawn tstPawn, out ThingDef oDef)
         {
-            var sw = Stopwatch.StartNew();
             bool desperate = tstPawn.needs.food.CurCategory == HungerCategory.Starving;
-            func(tstPawn, tstPawn, desperate, out Thing t, out ThingDef tt);
-            sw.Stop();
-            return sw.ElapsedMilliseconds; 
-
+            func(tstPawn, tstPawn, desperate, out Thing thing, out oDef);
+            return thing; 
         }
 
     }
