@@ -59,6 +59,48 @@ namespace Pawnmorph.HPatches
             private static readonly MethodInfo _humanlikeTarget =
                 typeof(RaceProperties).GetProperty(nameof(RaceProperties.Humanlike)).GetGetMethod();
 
+            [HarmonyPrefix]
+            static bool Prefix(
+                ref Thing __result,
+                [NotNull] Pawn getter,
+                [NotNull] Pawn eater,
+                bool desperate,
+                ref ThingDef foodDef,
+                FoodPreferability maxPref = FoodPreferability.MealLavish,
+                bool allowPlant = true,
+                bool allowDrug = true,
+                bool allowCorpse = true,
+                bool allowDispenserFull = true,
+                bool allowDispenserEmpty = true,
+                bool allowForbidden = false,
+                bool allowSociallyImproper = false,
+                bool allowHarvest = false,
+                bool forceScanWholeMap = false,
+                bool ignoreReservations = false,
+                FoodPreferability minPrefOverride = FoodPreferability.Undefined)
+            {
+                if (ShouldUseOptimizedCode(eater))
+                {
+                    __result = PMFoodUtilities.BestFoodSourceOnMapOptimized(getter, eater, desperate, out foodDef, maxPref,
+                                                                            allowPlant, allowDrug, allowCorpse,
+                                                                            allowDispenserFull,
+                                                                            allowDispenserEmpty, allowForbidden,
+                                                                            allowSociallyImproper, allowHarvest,
+                                                                            forceScanWholeMap, ignoreReservations,
+                                                                            minPrefOverride);
+                    return false; 
+                }
+
+                return true; 
+            }
+
+            private static bool ShouldUseOptimizedCode(Pawn eater)
+            {
+                var shouldUseOptimizedPath = eater.IsHumanlike() && (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) != 0;
+                //shouldUseOptimizedPath |= eater.IsSapientFormerHuman();
+                return shouldUseOptimizedPath; 
+            }
+
             [HarmonyTranspiler]
             static
                 IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -101,5 +143,8 @@ namespace Pawnmorph.HPatches
                 return codes;
             }
         }
+
+ 
+
     }
 }
