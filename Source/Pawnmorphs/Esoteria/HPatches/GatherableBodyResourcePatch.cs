@@ -17,7 +17,7 @@ namespace Pawnmorph.HPatches
         internal static void GenerateThoughtsAbout([NotNull] Pawn doer, [NotNull] CompHasGatherableBodyResource __instance)
         {
             var selfPawn = __instance.parent as Pawn;
-            if (!selfPawn.IsSapientFormerHuman()) return; 
+            if (!selfPawn.IsSapientOrFeralFormerHuman()) return; 
 
             //TODO put this in a def extension or something 
             if (__instance is CompMilkable)

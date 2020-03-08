@@ -292,7 +292,7 @@ namespace Pawnmorph
         public static bool IsToolUser([NotNull] this Pawn pawn)
         {
             if (pawn.RaceProps.ToolUser) return true;
-            if (pawn.IsSapientFormerHuman()) return true;
+            if (pawn.IsSapientOrFeralFormerHuman()) return true;
             return false; 
         }
 
@@ -308,7 +308,7 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (pawn.RaceProps.Humanlike) return true;
-            if (pawn.IsSapientFormerHuman()) return true;
+            if (pawn.IsSapientOrFeralFormerHuman()) return true;
             return false; 
         }
 
@@ -517,7 +517,7 @@ namespace Pawnmorph
         ///   <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
+        public static bool IsSapientOrFeralFormerHuman([NotNull] this Pawn pawn)
         {
             var fTracker = pawn.GetFormerHumanTracker();
             if (fTracker == null) return false;
@@ -536,6 +536,9 @@ namespace Pawnmorph
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+
+        
 
         /// <summary>
         /// Gets the quantized sapience level.

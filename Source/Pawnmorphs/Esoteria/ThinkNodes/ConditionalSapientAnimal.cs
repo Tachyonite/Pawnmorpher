@@ -23,7 +23,7 @@ namespace Pawnmorph.ThinkNodes
         /// <returns></returns>
         protected override bool Satisfied(Pawn pawn)
         {
-            if (!pawn.IsSapientFormerHuman()) return false;
+            if (!pawn.IsSapientOrFeralFormerHuman()) return false;
             if (mustBeColonist) return pawn.IsColonist;
             return true; 
         }

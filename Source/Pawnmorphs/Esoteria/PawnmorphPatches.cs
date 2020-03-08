@@ -190,7 +190,7 @@ namespace Pawnmorph
 
                     return false;
                 }
-            }else if (__instance.pawn.IsSapientFormerHuman())
+            }else if (__instance.pawn.IsSapientOrFeralFormerHuman())
             {
                 if (thing.def.ingestible == null) return true;
 
