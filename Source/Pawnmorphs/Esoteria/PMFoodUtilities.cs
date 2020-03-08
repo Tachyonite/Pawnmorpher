@@ -22,7 +22,6 @@ namespace Pawnmorph
 
         [NotNull] private static readonly HashSet<Thing> filtered = new HashSet<Thing>();
 
-        private static uint cnt = 0;
 
         static PMFoodUtilities()
         {
