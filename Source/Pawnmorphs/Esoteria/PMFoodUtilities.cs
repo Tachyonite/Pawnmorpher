@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -13,12 +14,38 @@ namespace Pawnmorph
     /// <summary>
     ///     static class for food related utilities
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class PMFoodUtilities
     {
         [NotNull] private static readonly List<Pawn> tmpPredatorCandidates = new List<Pawn>();
 
 
         [NotNull] private static readonly HashSet<Thing> filtered = new HashSet<Thing>();
+
+
+        static PMFoodUtilities()
+        {
+            NutrientPastePreferability = ThingDefOf.MealNutrientPaste.ingestible.preferability;
+        }
+
+        private static FoodPreferability NutrientPastePreferability { get; }
+
+        static FoodPreferability GetAdjustedPreferability(Pawn pawn, [NotNull] Thing food)
+        {
+            var rawPref = food.def.ingestible?.preferability;
+            if (rawPref == null) return FoodPreferability.Undefined;
+            var rPrefVal = rawPref.Value; 
+            FoodTypeFlags plantOrTree = FoodTypeFlags.Plant | FoodTypeFlags.Tree;
+            if((food.def.ingestible.foodType & plantOrTree) != 0 && (pawn.RaceProps.foodType & plantOrTree) != 0 )
+            {
+                var nx = ((int) rPrefVal) + 1; //make plants appear better then they actually are 
+                nx = Mathf.Clamp(nx, 0, 9);
+                rPrefVal = (FoodPreferability) nx; 
+            }
+
+            return rPrefVal; 
+        }
+
 
         /// <summary>
         ///     Gets the best food source on the map for the given getter and eater pawns
@@ -61,6 +88,7 @@ namespace Pawnmorph
             FoodPreferability minPrefOverride = FoodPreferability.Undefined)
         {
             foodDef = null;
+            HungerCategory foodCurCategory = eater.needs.food.CurCategory;
             bool getterCanManipulate = getter.IsToolUser() && getter.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
             if (!getterCanManipulate && getter != eater)
             {
@@ -73,88 +101,105 @@ namespace Pawnmorph
                 return null;
             }
 
-            FoodPreferability minPref = minPrefOverride != FoodPreferability.Undefined
-                                            ? minPrefOverride
-                                            :
-                                            !eater.NonHumanlikeOrWildMan()
-                                                ?
-                                                !desperate ? eater.needs.food.CurCategory >= HungerCategory.UrgentlyHungry
-                                                                 ?
-                                                                 FoodPreferability.RawBad
-                                                                 : FoodPreferability.MealAwful : FoodPreferability.DesperateOnly
-                                                : FoodPreferability.NeverForNutrition;
+            FoodPreferability minPref;
+            if (minPrefOverride != FoodPreferability.Undefined)
+                minPref = minPrefOverride;
+            else if (!eater.NonHumanlikeOrWildMan())
+                if (!desperate)
+                {
+                    if (foodCurCategory >= HungerCategory.UrgentlyHungry)
+                        minPref = FoodPreferability.RawBad;
+                    else
+                        minPref = FoodPreferability.MealAwful;
+                }
+                else
+                {
+                    minPref = FoodPreferability.DesperateOnly;
+                }
+            else
+                minPref = FoodPreferability.NeverForNutrition;
 
             bool FoodValidator(Thing t)
             {
-                if (t is Building_NutrientPasteDispenser nutrientPasteDispenser)
+                if (allowDispenserFull && getterCanManipulate && t is Building_NutrientPasteDispenser nutrientPDispenser)
                 {
-                    if (!allowDispenserFull
-                     || !getterCanManipulate
-                     || ThingDefOf.MealNutrientPaste.ingestible.preferability < minPref
+                    if (ThingDefOf.MealNutrientPaste.ingestible.preferability < minPref
                      || ThingDefOf.MealNutrientPaste.ingestible.preferability > maxPref
                      || !eater.WillEat(ThingDefOf.MealNutrientPaste, getter)
                      || t.Faction != getter.Faction && t.Faction != getter.HostFaction
                      || !allowForbidden && t.IsForbidden(getter)
-                     || !nutrientPasteDispenser.powerComp.PowerOn
-                     || !allowDispenserEmpty && !nutrientPasteDispenser.HasEnoughFeedstockInHoppers()
+                     || !nutrientPDispenser.powerComp.PowerOn
+                     || !allowDispenserEmpty && !nutrientPDispenser.HasEnoughFeedstockInHoppers()
                      || !t.InteractionCell.Standable(t.Map)
                      || !IsFoodSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)
                      || !getter.Map.reachability.CanReachNonLocal(getter.Position, new TargetInfo(t.InteractionCell, t.Map),
                                                                   PathEndMode.OnCell, TraverseParms.For(getter, Danger.Some)))
                         return false;
                 }
-                else if (t.def.ingestible.preferability < minPref
-                      || t.def.ingestible.preferability > maxPref
-                      || !eater.WillEat(t, getter)
-                      || !t.def.IsNutritionGivingIngestible
-                      || !t.IngestibleNow
-                      || !allowCorpse && t is Corpse
-                      || !allowDrug && t.def.IsDrug
-                      || !allowForbidden && t.IsForbidden(getter)
-                      || !desperate && t.IsNotFresh()
-                      || t.IsDessicated()
-                      || !IsFoodSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)
-                      || !getter.AnimalAwareOf(t) && !forceScanWholeMap
-                      || !ignoreReservations && !getter.CanReserve((LocalTargetInfo) t, 10, 1))
+                else
                 {
-                    return false;
+                    FoodPreferability pref = GetAdjustedPreferability(eater, t);
+                    if (pref < minPref
+                     || pref > maxPref)
+                        return false;
+
+                    if (!eater.WillEat(t, getter)) return false;
+
+                    if (!t.def.IsNutritionGivingIngestible || !t.IngestibleNow) return false;
+
+                    if (!allowCorpse && t is Corpse
+                     || !allowDrug && t.def.IsDrug
+                     || !allowForbidden && t.IsForbidden(getter)
+                     || !desperate && t.IsNotFresh()
+                     || t.IsDessicated()
+                     || !IsFoodSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)
+                     || !getter.AnimalAwareOf(t) && !forceScanWholeMap
+                     || !ignoreReservations && !getter.CanReserve((LocalTargetInfo) t, 10, 1)) return false;
                 }
 
                 return true;
             }
 
-            ThingRequest thingRequest =
-                !(((uint) (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) > 0U) & allowPlant)
-                    ? ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree)
-                    : ThingRequest.ForGroup(ThingRequestGroup.FoodSource);
+            ThingRequest thingRequest;
+            if (!CanEatPlants(eater, allowPlant, foodCurCategory))
+                thingRequest = ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree);
+            else
+                thingRequest = ThingRequest.ForGroup(ThingRequestGroup.FoodSource);
             Thing bestThing;
-            if (getter.RaceProps.Humanlike)
+            if (getter.IsHumanlike())
             {
+                //TODO split up search for hungry humanlike into 2 phases 
+                //whole map search for good food 
+                //small search for good plants 
                 bestThing = SpawnedFoodSearchInnerScan(eater, getter.Position,
                                                        getter.Map.listerThings.ThingsMatching(thingRequest),
                                                        PathEndMode.ClosestTouch, TraverseParms.For(getter), 9999f, FoodValidator);
+
+               
+
                 if (allowHarvest & getterCanManipulate)
                 {
                     int searchRegionsMax = !forceScanWholeMap || bestThing != null ? 30 : -1;
+
+                    bool HarvestValidator(Thing x)
+                    {
+                        var t = (Plant) x;
+                        if (!t.HarvestableNow) return false;
+                        ThingDef harvestedThingDef = t.def.plant.harvestedThingDef;
+                        return harvestedThingDef.IsNutritionGivingIngestible
+                            && eater.WillEat(harvestedThingDef, getter)
+                            && getter.CanReserve((LocalTargetInfo) t)
+                            && (allowForbidden || !t.IsForbidden(getter))
+                            && (bestThing == null
+                             || FoodUtility.GetFinalIngestibleDef(bestThing)
+                                           .ingestible.preferability
+                              < harvestedThingDef.ingestible.preferability);
+                    }
+
                     Thing foodSource = GenClosest.ClosestThingReachable(getter.Position, getter.Map,
                                                                         ThingRequest.ForGroup(ThingRequestGroup.HarvestablePlant),
-                                                                        PathEndMode.Touch, TraverseParms.For(getter), 9999f, x =>
-                                                                        {
-                                                                            var t = (Plant) x;
-                                                                            if (!t.HarvestableNow)
-                                                                                return false;
-                                                                            ThingDef harvestedThingDef =
-                                                                                t.def.plant.harvestedThingDef;
-                                                                            return harvestedThingDef.IsNutritionGivingIngestible
-                                                                                && eater.WillEat(harvestedThingDef, getter)
-                                                                                && getter.CanReserve((LocalTargetInfo) t)
-                                                                                && (allowForbidden || !t.IsForbidden(getter))
-                                                                                && (bestThing == null
-                                                                                 || FoodUtility
-                                                                                   .GetFinalIngestibleDef(bestThing)
-                                                                                   .ingestible.preferability
-                                                                                  < harvestedThingDef.ingestible.preferability);
-                                                                        }, null, 0, searchRegionsMax);
+                                                                        PathEndMode.Touch, TraverseParms.For(getter), 9999f,
+                                                                        HarvestValidator, null, 0, searchRegionsMax);
                     if (foodSource != null)
                     {
                         bestThing = foodSource;
@@ -167,7 +212,9 @@ namespace Pawnmorph
             }
             else
             {
-                int maxRegionsToScan = GetMaxRegionsToScan(getter, forceScanWholeMap);
+                int maxRegionsToScan =
+                    GetMaxRegionsToScan(getter, forceScanWholeMap, foodCurCategory); //this is where the lag comes from 
+                //humanlikes alwayse scan the whole map 
                 filtered.Clear();
                 foreach (Thing thing in GenRadial.RadialDistinctThingsAround(getter.Position, getter.Map, 2f, true))
                 {
@@ -182,7 +229,8 @@ namespace Pawnmorph
                 }
 
                 bool ignoreEntirelyForbiddenRegions = !allowForbidden
-                                                   && ForbidUtility.CaresAboutForbidden(getter, true) && getter.playerSettings?.EffectiveAreaRestrictionInPawnCurrentMap != null;
+                                                   && ForbidUtility.CaresAboutForbidden(getter, true)
+                                                   && getter.playerSettings?.EffectiveAreaRestrictionInPawnCurrentMap != null;
                 var validator = (Predicate<Thing>) (t => FoodValidator(t)
                                                       && !filtered.Contains(t)
                                                       && (t is Building_NutrientPasteDispenser
@@ -379,7 +427,7 @@ namespace Pawnmorph
                 return null;
             bool flag = predator.health.summaryHealth.SummaryHealthPercent < 0.25;
             tmpPredatorCandidates.Clear();
-            if (GetMaxRegionsToScan(predator, forceScanWholeMap) < 0)
+            if (GetMaxRegionsToScan(predator, forceScanWholeMap, predator.needs.food.CurCategory) < 0)
             {
                 tmpPredatorCandidates.AddRange(predator.Map.mapPawns.AllPawnsSpawned);
             }
@@ -425,10 +473,44 @@ namespace Pawnmorph
             return pawn;
         }
 
-        private static int GetMaxRegionsToScan(Pawn getter, bool forceScanWholeMap)
+        private static bool CanEatPlants(Pawn eater, bool allowPlant, HungerCategory category)
         {
-            if (getter.RaceProps.Humanlike || forceScanWholeMap)
+            bool retval;
+            //humanlikes will never eat plants unless they are urgently hungry or starving
+            if (eater.IsHumanlike() && category < HungerCategory.UrgentlyHungry)
+                retval = false;
+            else
+                retval = ((uint) (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) > 0U) & allowPlant;
+
+            return retval;
+        }
+
+        private static int GetMaxRegionsToScan(Pawn getter, bool forceScanWholeMap, HungerCategory curCategory)
+        {
+            if (forceScanWholeMap)
                 return -1;
+            if (getter.IsHumanlike()) //make sure human likes don't always scan the whole map 
+            {
+                int retVal;
+                switch (curCategory)
+                {
+                    case HungerCategory.Fed:
+                    case HungerCategory.Hungry:
+                        retVal = -1;
+                        break;
+                    case HungerCategory.UrgentlyHungry:
+                        retVal = 200;
+                        break;
+                    case HungerCategory.Starving:
+                        retVal = 100;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(curCategory), curCategory, null);
+                }
+
+                return retVal;
+            }
+
             return getter.Faction == Faction.OfPlayer ? 100 : 30;
         }
 

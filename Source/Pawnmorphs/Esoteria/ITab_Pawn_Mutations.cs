@@ -200,6 +200,8 @@ namespace Pawnmorph
                 GUI.color = Color.white;
             }
 
+            if (influences.Count == 0) return;  
+
             float maxInfluence = influences.MaxBy(x => x.Value).Value;
 
             // List the morph influences upon the pawn in descending order.

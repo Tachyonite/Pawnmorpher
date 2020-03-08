@@ -24,6 +24,10 @@
 		<restricted>true</restricted>
 	</Pawnmorph.MutationCategoryDef>
 
+	<Pawnmorph.MutationCategoryDef> <!-- category for all 'combo parts' -->
+		<defName>Combo</defName>
+	</Pawnmorph.MutationCategoryDef>
+
 	<Pawnmorph.MutationCategoryDef>
 		<defName>Powerful</defName>
 		<restricted>true</restricted>
