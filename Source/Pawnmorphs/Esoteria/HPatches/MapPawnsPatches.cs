@@ -21,7 +21,7 @@ namespace Pawnmorph.HPatches
             {
                 foreach (Pawn p in __instance.AllPawns)
                 {
-                    if(p.IsSapientOrFeralFormerHuman() && p.Faction == faction && p.HostFaction == null)
+                    if(p.IsSapientFormerHuman() && p.Faction == faction && p.HostFaction == null)
                         __result.Add(p);
                 }
             }
@@ -35,7 +35,7 @@ namespace Pawnmorph.HPatches
             {
                 foreach (Pawn p in __instance.AllPawns)
                 {
-                    if (p.IsSapientOrFeralFormerHuman() && p.Faction == faction && p.Spawned && p.HostFaction == null)
+                    if (p.IsSapientFormerHuman() && p.Faction == faction && p.Spawned && p.HostFaction == null)
                         __result.Add(p);
                 }
             }

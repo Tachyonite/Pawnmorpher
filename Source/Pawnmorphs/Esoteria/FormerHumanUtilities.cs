@@ -308,7 +308,7 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (pawn.RaceProps.Humanlike) return true;
-            if (pawn.IsSapientOrFeralFormerHuman()) return true;
+            if (pawn.IsSapientFormerHuman()) return true;
             return false; 
         }
 
@@ -340,9 +340,9 @@ namespace Pawnmorph
             {
                 case SapienceLevel.Sapient:
                 case SapienceLevel.MostlySapient:
+                    return true;
                 case SapienceLevel.Conflicted:
                 case SapienceLevel.MostlyFeral:
-                    return true;
                 case SapienceLevel.Feral:
                 case SapienceLevel.PermanentlyFeral:
                     return false;
@@ -510,7 +510,7 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Determines whether this pawn is a sapient former human.
+        /// Determines whether this pawn is a sapient or mostly feral former human 
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <returns>
@@ -529,6 +529,34 @@ namespace Pawnmorph
                 case SapienceLevel.Conflicted:
                 case SapienceLevel.MostlyFeral:
                     return true; 
+                case SapienceLevel.Feral:
+                case SapienceLevel.PermanentlyFeral:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        /// Determines whether this pawn is a sapient former human.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
+        {
+            var fTracker = pawn.GetFormerHumanTracker();
+            if (fTracker == null) return false;
+            if (!fTracker.IsFormerHuman) return false;
+            switch (fTracker.SapienceLevel)
+            {
+                case SapienceLevel.Sapient:
+                case SapienceLevel.MostlySapient:
+                    return true;
+                case SapienceLevel.Conflicted:
+                case SapienceLevel.MostlyFeral:
                 case SapienceLevel.Feral:
                 case SapienceLevel.PermanentlyFeral:
                     return false;

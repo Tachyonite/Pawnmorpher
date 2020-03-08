@@ -46,16 +46,35 @@ namespace Pawnmorph.ThingComps
             {
                 if (_sapienceLevel != value)
                 {
+                    var last = _sapienceLevel; 
                     _sapienceLevel = value;
-                    OnSapienceLevelChanges(); 
+                    OnSapienceLevelChanges(last); 
                 }
 
             }
         }
 
-        private void OnSapienceLevelChanges()
+        private void OnSapienceLevelChanges(SapienceLevel lastSapienceLevel)
         {
-            
+            if (lastSapienceLevel.IsColonistAnimal() && !_sapienceLevel.IsColonistAnimal())
+            {
+                OnNoLongerColonist(); 
+            }else if (lastSapienceLevel <= SapienceLevel.MostlyFeral && _sapienceLevel > SapienceLevel.MostlyFeral)
+            {
+                OnNoLongerSapient(); 
+            }
+
+
+        }
+
+        private void OnNoLongerSapient()
+        {
+           
+        }
+
+        private void OnNoLongerColonist()
+        {
+            Find.ColonistBar.MarkColonistsDirty();
         }
 
 
