@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ComboPartBase">
 		<defName>EtherComboHornbill</defName>
 		<label>hornbill</label>
 		<description>Horns and beak have fused into one bony monstrosity of a maw, that runs up the skull and leaves only small holes for sight.</description>
@@ -56,7 +56,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ComboPartBase">
 		<defName>EtherComboWolfSpike</defName>
 		<label>wolfspike</label>
 		<description>The iguana horns have spread over this lupine muzzle, covering it partly in scales and giving it a particularly sharp point.</description>
