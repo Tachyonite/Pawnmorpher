@@ -45,8 +45,8 @@
     </Operation>
 
     <Operation Class="PatchOperationInsert">
-        <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalOfPlayerFaction"][1]</xpath>
-        <order>Append</order>
+        <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes/li[@Class="ThinkNode_SubtreesByTag"][1]</xpath>
+        <order>Prepend</order>
         <value>
             <!-- If on colonist team, do forced and emergency work -->
             <li Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
@@ -72,8 +72,6 @@
                             </li>
                         </subNodes>
                     </li>
-
-
                 </subNodes>
             </li>
         </value>
