@@ -50,7 +50,7 @@ namespace Pawnmorph
         /// <summary>
         ///     The output entry when this rule is run
         /// </summary>
-        public HediffEntry result;
+        public List<Result> results;
 
         [NotNull] public MutationRuleWorker Worker { get; private set; }
 
@@ -63,10 +63,10 @@ namespace Pawnmorph
             foreach (string configError in base.ConfigErrors().MakeSafe()) yield return configError;
 
             foreach (HediffEntry hediffEntry in conditions.MakeSafe())
-                if (hediffEntry.hediffDef == null)
+                if (hediffEntry.hediffs == null || hediffEntry.hediffs.Count == 0)
                     yield return "rule entry with null hediff";
 
-            if (result?.hediffDef == null)
+            if (results == null || results.Count == 0)
                 yield return "no output effect set";
         }
 
@@ -109,13 +109,32 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// simple POD for rule results 
         /// </summary>
-        public class HediffEntry
+        public class Result
         {
             /// <summary>
             ///     The hediff definition
             /// </summary>
             public HediffDef hediffDef;
+
+
+            /// <summary>
+            ///     The record the hediff must be on
+            /// </summary>
+            public BodyPartDef partDef;
+        }
+
+
+        /// <summary>
+        /// </summary>
+        public class HediffEntry
+        {
+            /// <summary>
+            /// list of hediffs to check for 
+            /// </summary>
+            public List<HediffDef> hediffs = new List<HediffDef>(); 
+
 
             /// <summary>
             ///     The record the hediff must be on
@@ -139,10 +158,11 @@ namespace Pawnmorph
             /// <returns></returns>
             public bool Satisfied([NotNull] Pawn pawn)
             {
+                hediffs = hediffs ?? new List<HediffDef>(); 
                 Hediff hediff;
                 hediff = anyPart
-                             ? pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == hediffDef && (stageIndex == null || stageIndex.Value == h.CurStageIndex))
-                             : pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == hediffDef && h.Part?.def == partDef);
+                             ? pawn.health.hediffSet.hediffs.FirstOrDefault(h => hediffs.Contains(h.def) && (stageIndex == null || stageIndex.Value == h.CurStageIndex))
+                             : pawn.health.hediffSet.hediffs.FirstOrDefault(h => hediffs.Contains(h.def) && h.Part?.def == partDef);
 
                 if (hediff == null) return false;
                 if (stageIndex == null) return true;
@@ -245,19 +265,32 @@ namespace Pawnmorph
         /// <exception cref="System.ArgumentNullException">pawn</exception>
         protected override void DoRule(Pawn pawn)
         {
-            MutationRuleDef.HediffEntry entry = RuleDef.result;
-            if (entry?.hediffDef == null) return;
-            if (entry.hediffDef is MutationDef mDef)
+            var entry = RuleDef.results;
+            foreach (MutationRuleDef.Result result in entry.MakeSafe())
+            {
+                DoRule(pawn, result); 
+            }
+        }
+
+        /// <summary>
+        /// Does the rule on the given pawn
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="result">The result.</param>
+        protected virtual void DoRule([NotNull] Pawn pawn, [NotNull] MutationRuleDef.Result result)
+        {
+            if (result?.hediffDef == null) return;
+            if (result.hediffDef is MutationDef mDef)
             {
                 //handle mutations correctly 
                 MutationUtilities.AddMutation(pawn, mDef);
-                return; 
+                return;
             }
 
 
-            if (entry.partDef == null)
+            if (result.partDef == null)
             {
-                pawn.health.AddHediff(entry.hediffDef);
+                pawn.health.AddHediff(result.hediffDef);
                 IntermittentMagicSprayer.ThrowMagicPuffUp(pawn.GetCorrectPosition().ToVector3(), pawn.GetCorrectMap());
                 return;
             }
@@ -265,9 +298,9 @@ namespace Pawnmorph
 
             foreach (BodyPartRecord partRecord in pawn.health.hediffSet.GetAllNonMissingWithoutProsthetics())
             {
-                if (partRecord.def != entry.partDef) continue;
+                if (partRecord.def != result.partDef) continue;
                 //add the hediff to all parts 
-                pawn.health.AddHediff(entry.hediffDef, partRecord);
+                pawn.health.AddHediff(result.hediffDef, partRecord);
                 IntermittentMagicSprayer.ThrowMagicPuffUp(pawn.GetCorrectPosition().ToVector3(), pawn.GetCorrectMap());
             }
         }

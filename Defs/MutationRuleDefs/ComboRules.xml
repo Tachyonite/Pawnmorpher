@@ -1,40 +1,54 @@
 <Defs>
     <Pawnmorph.MutationRuleDef>
-		<!-- HORNBILL Combo Mutation -->
-        <priority>10</priority>    
+        <!-- HORNBILL Combo Mutation -->
+        <defName>HornbillRule</defName>
+        <priority>10</priority>
         <mtth>0</mtth>
         <conditions>
             <li>
-                <hediffDef>EtherBeak</hediffDef>
+                <hediffs>
+                    <li>EtherBeak</li>
+                </hediffs>
                 <partDef>Jaw</partDef>
             </li>
             <li>
-                <hediffDef>EtherHorns</hediffDef>
+                <hediffs>
+                    <li>EtherHorns</li>
+                </hediffs>
                 <partDef>Skull</partDef>
             </li>
         </conditions>
-        <result>
-            <hediffDef>EtherComboHornbill</hediffDef>
-            <partDef>Skull</partDef>
-        </result>   
+        <results>
+            <li>
+                <hediffDef>EtherComboHornbill</hediffDef>
+                <partDef>Skull</partDef>
+            </li>
+        </results>
     </Pawnmorph.MutationRuleDef>
     <Pawnmorph.MutationRuleDef>
-		<!-- WOLFSPIKE Combo Mutation -->
-        <priority>10</priority>    
+        <!-- WOLFSPIKE Combo Mutation -->
+        <defName>WolfSpikeRule</defName>
+        <priority>10</priority>
         <mtth>0</mtth>
         <conditions>
             <li>
-                <hediffDef>EtherWolfMuzzle</hediffDef>
+                <hediffs>
+                    <li>EtherWolfMuzzle</li>
+                </hediffs>
                 <partDef>Jaw</partDef>
             </li>
             <li>
-                <hediffDef>EtherIguanaSpike</hediffDef>
+                <hediffs>
+                    <li>EtherIguanaHorns</li>
+                </hediffs>
                 <partDef>Skull</partDef>
             </li>
         </conditions>
-        <result>
-            <hediffDef>EtherComboWolfSpike</hediffDef>
-            <partDef>Skull</partDef>
-        </result>   
+        <results>
+            <li>
+                <hediffDef>EtherComboWolfSpike</hediffDef>
+                <partDef>Skull</partDef>
+            </li>
+        </results>
     </Pawnmorph.MutationRuleDef>
 </Defs>

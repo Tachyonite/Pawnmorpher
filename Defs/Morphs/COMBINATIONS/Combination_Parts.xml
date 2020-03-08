@@ -1,4 +1,4 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherComboHornbill</defName>
 		<label>hornbill</label>
@@ -9,7 +9,6 @@
 		<blockSites>
 			<li>Jaw</li>
 		</blockSites>
-		<blocksAllOnSamePart>True</blocksAllOnSamePart>
 		<stages>
 			<li>
 				<capMods>
@@ -58,15 +57,15 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<defName>EtherComboWolfspike</defName>
+		<defName>EtherComboWolfSpike</defName>
 		<label>wolfspike</label>
 		<description>The iguana horns have spread over this lupine muzzle, covering it partly in scales and giving it a particularly sharp point.</description>
 		<parts>
 			<li>Skull</li>
 		</parts>
-		<partBlocker>
+		<blockSites>
 			<li>Jaw</li>
-		</partBlocker>
+		</blockSites>
 		<stages>
 			<li>
 				<capMods>
