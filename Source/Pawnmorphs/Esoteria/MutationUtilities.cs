@@ -39,12 +39,24 @@ namespace Pawnmorph
 
         private static List<HediffDef> _allMutationsWithGraphics;
 
+        /// <summary>
+        /// Gets a list of all non restricted mutations.
+        /// </summary>
+        /// <value>
+        /// All non restricted mutations.
+        /// </value>
+        [NotNull]
+        public static IReadOnlyList<MutationDef> AllNonRestrictedMutations { get; }
+
         static MutationUtilities()
         {
             StatDef stat = PMStatDefOf.MutationAdaptability;
             MinMutationAdaptabilityValue = stat.minValue;
             MaxMutationAdaptabilityValue = stat.maxValue;
             AverageMutationAdaptabilityValue = stat.defaultBaseValue;
+
+            AllNonRestrictedMutations = MutationDef.AllMutations.Where(m => !m.IsRestricted).ToList(); 
+
 
             //generate some warning for missing mutation defs 
             var warningBuilder = new StringBuilder();
