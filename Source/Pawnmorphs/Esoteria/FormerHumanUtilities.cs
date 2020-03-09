@@ -829,7 +829,7 @@ namespace Pawnmorph
                 }
                 else
                 {
-                    MutationUtilities.AddAllMorphMutations(lPawn, morph); 
+                    MutationUtilities.AddAllMorphMutations(lPawn, morph, MutationUtilities.AncillaryMutationEffects.None); 
                 }
             }
 
@@ -925,13 +925,14 @@ namespace Pawnmorph
             _mScratchList.Clear();
             _mScratchList.AddRange(MutationUtilities.AllNonRestrictedMutations);
 
-            int i = 0; 
+            int i = 0;
+            var aEffects = MutationUtilities.AncillaryMutationEffects.None; 
             while (i < mutationsToAdd)
             {
                 var rM = _mScratchList.RandomElementWithFallback(); 
                 if(rM == null) break;
 
-                var res = MutationUtilities.AddMutation(lPawn, rM);
+                var res = MutationUtilities.AddMutation(lPawn, rM, ancillaryEffects: aEffects); 
                 _mScratchList.Remove(rM);
                 if (res) i++; //only increment if we actually added any mutations 
             }
