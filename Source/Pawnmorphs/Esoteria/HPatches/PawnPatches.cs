@@ -28,7 +28,7 @@ namespace Pawnmorph.HPatches
                 if (!__instance.Spawned) return;
                 if (__instance.HostFaction != null) return; 
                 
-                __result = __instance.IsSapientFormerHuman(); 
+                __result = __instance.IsSapientOrFeralFormerHuman(); 
             }
         }
 #if true
@@ -58,7 +58,7 @@ namespace Pawnmorph.HPatches
                     __result = nd.IsValidFor(___pawn);
                     return;
                 }
-                if (___pawn?.IsSapientFormerHuman() != true) return;
+                if (___pawn?.IsSapientOrFeralFormerHuman() != true) return;
                 if (nd?.defName == "SapientAnimalControl")
                 {
                     __result = true;

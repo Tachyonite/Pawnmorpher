@@ -329,7 +329,7 @@ namespace Pawnmorph.DebugUtils
 
         void DoAddBackstoryToPawn(Pawn pawn)
         {
-            if (!pawn.IsSapientFormerHuman()) return;
+            if (!pawn.IsSapientOrFeralFormerHuman()) return;
 
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetGiveBackstoriesOptions(pawn))); 
 

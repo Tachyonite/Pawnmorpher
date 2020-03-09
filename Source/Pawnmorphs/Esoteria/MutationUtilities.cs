@@ -39,12 +39,24 @@ namespace Pawnmorph
 
         private static List<HediffDef> _allMutationsWithGraphics;
 
+        /// <summary>
+        /// Gets a list of all non restricted mutations.
+        /// </summary>
+        /// <value>
+        /// All non restricted mutations.
+        /// </value>
+        [NotNull]
+        public static IReadOnlyList<MutationDef> AllNonRestrictedMutations { get; }
+
         static MutationUtilities()
         {
             StatDef stat = PMStatDefOf.MutationAdaptability;
             MinMutationAdaptabilityValue = stat.minValue;
             MaxMutationAdaptabilityValue = stat.maxValue;
             AverageMutationAdaptabilityValue = stat.defaultBaseValue;
+
+            AllNonRestrictedMutations = MutationDef.AllMutations.Where(m => !m.IsRestricted).ToList(); 
+
 
             //generate some warning for missing mutation defs 
             var warningBuilder = new StringBuilder();
@@ -134,12 +146,11 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="morph">The morph.</param>
-        /// <exception cref="ArgumentNullException">
-        /// pawn
+        /// <param name="ancillaryEffects">The ancillary effects.</param>
+        /// <exception cref="ArgumentNullException">pawn
         /// or
-        /// morph
-        /// </exception>
-        public static void AddAllMorphMutations([NotNull] Pawn pawn, [NotNull] MorphDef morph)
+        /// morph</exception>
+        public static void AddAllMorphMutations([NotNull] Pawn pawn, [NotNull] MorphDef morph, AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (morph == null) throw new ArgumentNullException(nameof(morph));
@@ -154,14 +165,14 @@ namespace Pawnmorph
                     foreach (BodyPartRecord bodyPartRecord in _recordCache.Where(r => r.def == mutationPart))
                     {
                         if (hediffSet.HasHediff(mutation, bodyPartRecord)) continue;
-                        AddMutation(pawn, mutation, bodyPartRecord);
+                        AddMutation(pawn, mutation, bodyPartRecord, ancillaryEffects:ancillaryEffects);
                     }
                 }
                 else
                 {
                     if (!hediffSet.HasHediff(mutation))
                     {
-                        AddMutation(pawn, mutation); 
+                        AddMutation(pawn, mutation, ancillaryEffects:ancillaryEffects); 
                     }
                 }
             }

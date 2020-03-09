@@ -35,6 +35,7 @@
         <insertTag>Animal_PreMain</insertTag>
         <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
             <mustBeColonist>true</mustBeColonist>
+            <mustBeFullySapient>true</mustBeFullySapient>
             <subNodes>
                 <li Class="ThinkNode_ConditionalColonist">
                     <subNodes>

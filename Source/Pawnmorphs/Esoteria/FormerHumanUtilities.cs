@@ -11,6 +11,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Thoughts;
@@ -291,7 +292,7 @@ namespace Pawnmorph
         public static bool IsToolUser([NotNull] this Pawn pawn)
         {
             if (pawn.RaceProps.ToolUser) return true;
-            if (pawn.IsSapientFormerHuman()) return true;
+            if (pawn.IsSapientOrFeralFormerHuman()) return true;
             return false; 
         }
 
@@ -339,9 +340,9 @@ namespace Pawnmorph
             {
                 case SapienceLevel.Sapient:
                 case SapienceLevel.MostlySapient:
+                    return true;
                 case SapienceLevel.Conflicted:
                 case SapienceLevel.MostlyFeral:
-                    return true;
                 case SapienceLevel.Feral:
                 case SapienceLevel.PermanentlyFeral:
                     return false;
@@ -509,14 +510,14 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Determines whether this pawn is a sapient former human.
+        /// Determines whether this pawn is a sapient or mostly feral former human 
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <returns>
         ///   <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
+        public static bool IsSapientOrFeralFormerHuman([NotNull] this Pawn pawn)
         {
             var fTracker = pawn.GetFormerHumanTracker();
             if (fTracker == null) return false;
@@ -535,6 +536,37 @@ namespace Pawnmorph
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        /// <summary>
+        /// Determines whether this pawn is a sapient former human.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
+        {
+            var fTracker = pawn.GetFormerHumanTracker();
+            if (fTracker == null) return false;
+            if (!fTracker.IsFormerHuman) return false;
+            switch (fTracker.SapienceLevel)
+            {
+                case SapienceLevel.Sapient:
+                case SapienceLevel.MostlySapient:
+                    return true;
+                case SapienceLevel.Conflicted:
+                case SapienceLevel.MostlyFeral:
+                case SapienceLevel.Feral:
+                case SapienceLevel.PermanentlyFeral:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+
+        
 
         /// <summary>
         /// Gets the quantized sapience level.
@@ -786,6 +818,29 @@ namespace Pawnmorph
                                               fixedBiologicalAge:convertedAge);//TODO wrap in a helper method 
             var lPawn = PawnGenerator.GeneratePawn(local);
 
+
+            var morph = MorphUtilities.GetMorphOfAnimal(animal.def).FirstOrDefault(); 
+
+            if (morph != null)
+            {
+                if (morph.IsChimera())
+                {
+                    AddRandomMutationToPawn(lPawn);
+                }
+                else
+                {
+                    MutationUtilities.AddAllMorphMutations(lPawn, morph, MutationUtilities.AncillaryMutationEffects.None); 
+                }
+            }
+
+            var mTracker = lPawn.GetMutationTracker();
+            if (mTracker != null)
+            {
+                mTracker.RecalculateMutationInfluences();
+                lPawn.CheckRace(false, false);
+            }
+            
+
             lPawn.equipment?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
             lPawn.apparel?.DestroyAll();
             fTracker.MakeFormerHuman(sapienceLevel); 
@@ -857,6 +912,31 @@ namespace Pawnmorph
 
                 animal.training.Train(training, null, true);
             }
+
+        }
+
+        [NotNull]
+        private static readonly List<MutationDef> _mScratchList = new List<MutationDef>(); 
+
+        private static void AddRandomMutationToPawn(Pawn lPawn)
+        {
+            //give at least as many mutations as there are slots, plus some more to make it a bit more chaotic 
+            var mutationsToAdd = Mathf.CeilToInt(MorphUtilities.MaxHumanInfluence) + 5;
+            _mScratchList.Clear();
+            _mScratchList.AddRange(MutationUtilities.AllNonRestrictedMutations);
+
+            int i = 0;
+            var aEffects = MutationUtilities.AncillaryMutationEffects.None; 
+            while (i < mutationsToAdd)
+            {
+                var rM = _mScratchList.RandomElementWithFallback(); 
+                if(rM == null) break;
+
+                var res = MutationUtilities.AddMutation(lPawn, rM, ancillaryEffects: aEffects); 
+                _mScratchList.Remove(rM);
+                if (res) i++; //only increment if we actually added any mutations 
+            }
+
 
         }
 
