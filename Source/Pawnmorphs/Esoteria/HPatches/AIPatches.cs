@@ -27,10 +27,8 @@ namespace Pawnmorph.HPatches
                         case SapienceLevel.Sapient:
                         case SapienceLevel.MostlySapient:
                             return false; //sapient and mostly sapient always respect their restrictions 
-                            break;
                         case SapienceLevel.Conflicted:
                             return Rand.Value < 0.5f; //conflicted pawns mostly respect the food restrictions 
-                            break; 
                         case SapienceLevel.MostlyFeral:
                         case SapienceLevel.Feral:
                         case SapienceLevel.PermanentlyFeral:
@@ -38,9 +36,6 @@ namespace Pawnmorph.HPatches
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
-
-
-                    return false; 
                 }
 
                 return true; 

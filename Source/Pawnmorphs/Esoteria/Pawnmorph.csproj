@@ -463,6 +463,7 @@
     <Compile Include="PawnTransferUtilities.cs" />
     <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMPlantUtilities.cs" />
+    <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />

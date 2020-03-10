@@ -344,6 +344,9 @@ namespace Pawnmorph
             }
 
             pawn.health.AddHediff(hDef);
+
+            DoAncillaryMutationEffects(pawn, mutation, hDef, ancillaryEffects ?? AncillaryMutationEffects.Default); 
+
             return new MutationResult(hDef);
 
         }
@@ -426,6 +429,7 @@ namespace Pawnmorph
 
         private static void DoAncillaryMutationEffects(Pawn pawn, MutationDef mutation, List<Hediff_AddedMutation> addedParts, in AncillaryMutationEffects aEffects)
         {
+
             if (mutation.mutationMemory != null && aEffects.AddMemory)
             {
                 TryAddMutationThought(pawn, mutation.mutationMemory);
@@ -504,7 +508,7 @@ namespace Pawnmorph
 
             if (HasAnyBlockingMutations(pawn, mutation, record))
             {
-
+                return MutationResult.Empty;
             }
 
             var hediff = HediffMaker.MakeHediff(mutation, pawn, record) as Hediff_AddedMutation;
@@ -912,21 +916,7 @@ namespace Pawnmorph
                 MemoryIgnoresLimit = memoryIgnoresLimit; 
             }
 
-            /// <summary>
-            /// Initializes a new instance of the <see cref="AncillaryMutationEffects" /> struct.
-            /// </summary>
-            /// <param name="addTale">if set to <c>true</c> [add tale].</param>
-            /// <param name="addMemory">if set to <c>true</c> [add memory].</param>
-            /// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
-            /// <param name="memoryIgnoresLimit">if set to <c>true</c> [memory ignores limit].</param>
-            public AncillaryMutationEffects(bool addTale, bool addMemory, bool addLogEntry, bool memoryIgnoresLimit = false)
-            {
-                AddTale = addTale;
-                AddMemory = addMemory;
-                AddLogEntry = addLogEntry;
-                ThrowMagicPuff = true;
-                MemoryIgnoresLimit = memoryIgnoresLimit; 
-            }
+            
 
             /// <summary>
             ///     Gets the default value for the ancillary effects
@@ -934,7 +924,7 @@ namespace Pawnmorph
             /// <value>
             ///     The default.
             /// </value>
-            public static AncillaryMutationEffects Default { get; } = new AncillaryMutationEffects(true, true, true, true);
+            public static AncillaryMutationEffects Default { get; } = new AncillaryMutationEffects(true, true, true, true,false);
 
             /// <summary>
             ///     instance representing no effects
@@ -942,7 +932,7 @@ namespace Pawnmorph
             /// <value>
             ///     The none.
             /// </value>
-            public static AncillaryMutationEffects None { get; } = new AncillaryMutationEffects(false, false, false, false);
+            public static AncillaryMutationEffects None { get; } = new AncillaryMutationEffects(false, false, false, false,false);
 
             /// <summary>
             ///     Gets a value indicating whether the  tale should be added.
@@ -989,12 +979,13 @@ namespace Pawnmorph
             /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
             public override string ToString()
             {
-                return $@"
-    {nameof(AddTale)}:{AddTale}
-    {nameof(AddMemory)}:{AddMemory}
-    {nameof(AddLogEntry)}:{AddLogEntry}
-    {nameof(AddTale)}:{AddTale}
+                return $@"{{
+    {nameof(AddTale)}:{AddTale},
+    {nameof(AddMemory)}:{AddMemory},
+    {nameof(AddLogEntry)}:{AddLogEntry},
+    {nameof(AddTale)}:{AddTale},
     {nameof(MemoryIgnoresLimit)}:{MemoryIgnoresLimit}
+}}
 ";
             }
         }

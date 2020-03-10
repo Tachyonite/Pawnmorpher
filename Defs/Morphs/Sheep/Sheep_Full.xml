@@ -38,8 +38,8 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
-				<letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+				<letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+				<letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<label>changing</label>
