@@ -97,6 +97,7 @@ namespace Pawnmorph.Hediffs
         /// <param name="hediff">The hediff.</param>
         public void EnteredStage(Hediff hediff)
         {
+            if (hediff.pawn.Dead) return; //don't tf dead pawns
             TryTransform(hediff.pawn, hediff);
         }
 
