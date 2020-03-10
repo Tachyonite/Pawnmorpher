@@ -13,7 +13,9 @@ namespace Pawnmorph
     {
         private bool triggered = false;
         private bool _finishedCheck = false;
-         
+
+        private bool _isRelatedToColonist; 
+
         /// <summary>
         ///     the properties for this comp
         /// </summary>
@@ -36,10 +38,11 @@ namespace Pawnmorph
                 {
                     float sL = Rand.Value;
                     FormerHumanUtilities.MakeAnimalSapient((Pawn) parent, sL, false);
-                    FormerHumanUtilities.NotifyRelatedPawnsFormerHuman((Pawn) parent,
+                    FormerHumanUtilities.NotifyRelatedPawnsFormerHuman((Pawn)parent,
                                                                        FormerHumanUtilities.RELATED_WILD_FORMER_HUMAN_LETTER,
                                                                        FormerHumanUtilities
                                                                           .RELATED_WILD_FORMER_HUMAN_LETTER_LABEL);
+                    _isRelatedToColonist = Pawn.IsRelatedToColonistPawn(); 
                 }
             }
 
@@ -55,7 +58,7 @@ namespace Pawnmorph
         {
             base.CompTick();
             //wait approximately a second before having the former human join the colony 
-            if (triggered && !_finishedCheck && parent.IsHashIntervalTick(60))
+            if (triggered && _isRelatedToColonist && !_finishedCheck && parent.IsHashIntervalTick(60))
             {
                 _finishedCheck = true;
                 if (parent.Faction != null) return; //only wild former humans can automatically join 
@@ -63,7 +66,7 @@ namespace Pawnmorph
                  || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent)
                     return;
                 //have the former human join only if it's not part of a manhunter pack 
-                if (Pawn.IsFormerHuman() && Pawn.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true)
+                if (Pawn.IsFormerHuman())
                 {
                     Pawn.SetFaction(Faction.OfPlayer);
                 }
@@ -79,6 +82,7 @@ namespace Pawnmorph
             base.PostExposeData();
             Scribe_Values.Look(ref triggered, nameof(triggered));
             Scribe_Values.Look(ref _finishedCheck, "finishedCheck"); 
+            Scribe_Values.Look(ref _isRelatedToColonist, "isRelatedToColonists");
         }
 
 
@@ -111,7 +115,7 @@ namespace Pawnmorph
         {
             if (mentalState.def == MentalStateDefOf.ManhunterPermanent || mentalState.def == MentalStateDefOf.Manhunter)
             {
-                if (Pawn.Faction == null  && Pawn.IsFormerHuman() && Pawn.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true)
+                if (Pawn.Faction == null  && Pawn.IsFormerHuman() && _isRelatedToColonist)
                 {
                     Pawn.SetFaction(Faction.OfPlayer);
                 }

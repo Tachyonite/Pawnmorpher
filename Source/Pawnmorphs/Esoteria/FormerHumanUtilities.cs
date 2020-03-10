@@ -282,6 +282,22 @@ namespace Pawnmorph
             }
         }
 
+
+        /// <summary>
+        /// Determines whether the specified pawn is a manhunter.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is a manhunter; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsManhunter([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var ms = pawn.MentalStateDef;
+            return ms == MentalStateDefOf.ManhunterPermanent || ms == MentalStateDefOf.Manhunter;
+        }
+
         /// <summary>
         /// Determines whether the given pawn is a tool user.
         /// </summary>
