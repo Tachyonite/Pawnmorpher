@@ -504,7 +504,7 @@ namespace Pawnmorph
 
             if (HasAnyBlockingMutations(pawn, mutation, record))
             {
-
+                return MutationResult.Empty;
             }
 
             var hediff = HediffMaker.MakeHediff(mutation, pawn, record) as Hediff_AddedMutation;
@@ -989,12 +989,13 @@ namespace Pawnmorph
             /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
             public override string ToString()
             {
-                return $@"
-    {nameof(AddTale)}:{AddTale}
-    {nameof(AddMemory)}:{AddMemory}
-    {nameof(AddLogEntry)}:{AddLogEntry}
-    {nameof(AddTale)}:{AddTale}
+                return $@"{{
+    {nameof(AddTale)}:{AddTale},
+    {nameof(AddMemory)}:{AddMemory},
+    {nameof(AddLogEntry)}:{AddLogEntry},
+    {nameof(AddTale)}:{AddTale},
     {nameof(MemoryIgnoresLimit)}:{MemoryIgnoresLimit}
+}}
 ";
             }
         }
