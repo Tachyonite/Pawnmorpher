@@ -52,8 +52,8 @@
 
 				these letter fields can be used one of 2 ways,
 				if they contain raw text that can be adjusted for 'PAWN_nameDef' they will be used as is  
-				<letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
-				<letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+				<letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+				<letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
 
 
 				if they contain IDs that are exist in the keyed language files, then they will use the id to 
