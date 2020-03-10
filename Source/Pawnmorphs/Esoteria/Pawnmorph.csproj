@@ -403,6 +403,7 @@
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
+    <Compile Include="HPatches\AIPatches.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />

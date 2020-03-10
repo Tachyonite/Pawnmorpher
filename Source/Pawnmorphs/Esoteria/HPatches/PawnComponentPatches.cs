@@ -70,6 +70,7 @@ namespace Pawnmorph.HPatches
                 pawn.ownership = null;
                 pawn.drafter = null;
                 pawn.apparel = null;
+                pawn.foodRestriction = null; 
                 pawn.equipment = null;
                 pawn.royalty = null;
                 pawn.drugs = null; 
@@ -110,6 +111,7 @@ namespace Pawnmorph.HPatches
                 pawn.royalty = pawn.royalty ?? new Pawn_RoyaltyTracker(pawn);// former humans can be royalty  
                 pawn.mindState = pawn.mindState ?? new Pawn_MindState(pawn);
                 pawn.drugs = pawn.drugs ?? new Pawn_DrugPolicyTracker(pawn);
+                pawn.foodRestriction = pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(pawn); 
                 pawn.timetable = pawn.timetable ?? new Pawn_TimetableTracker(pawn); 
                 Comp_SapientAnimal nComp = pawn.GetComp<Comp_SapientAnimal>();
                 bool addedComp = false;
