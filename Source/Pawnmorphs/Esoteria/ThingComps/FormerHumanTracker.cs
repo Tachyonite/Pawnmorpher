@@ -1,6 +1,7 @@
 ﻿// FormerHuman.cs modified by Iron Wolf for Pawnmorph on 02/17/2020 9:29 PM
 // last updated 02/17/2020  9:29 PM
 
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.ThingComps
@@ -58,13 +59,42 @@ namespace Pawnmorph.ThingComps
         {
             if (lastSapienceLevel.IsColonistAnimal() && !_sapienceLevel.IsColonistAnimal())
             {
-                OnNoLongerColonist(); 
-            }else if (lastSapienceLevel <= SapienceLevel.MostlyFeral && _sapienceLevel > SapienceLevel.MostlyFeral)
+                OnNoLongerColonist();
+            }
+            else if (lastSapienceLevel <= SapienceLevel.MostlyFeral && _sapienceLevel > SapienceLevel.MostlyFeral)
             {
-                OnNoLongerSapient(); 
+                OnNoLongerSapient();
             }
 
 
+
+            //try to send a message 
+            if (Pawn.Faction?.IsPlayer == true)  
+                SendTransitionLetter();
+
+        }
+
+        private Pawn Pawn => (Pawn) parent; 
+        private void SendTransitionLetter()
+        {
+
+
+            // the translation keys should be $SapienceLevel_TransitionLabel and $SapienceLevel_TransitionContent
+            string translationLabel = _sapienceLevel + "_Transition";
+            string letterLabelKey = translationLabel + "Label";
+            string letterContentKey = translationLabel + "Content";
+            TaggedString letterContent, letterLabel;
+
+
+            if (letterLabelKey.TryTranslate(out letterLabel) && letterContentKey.TryTranslate(out letterContent))
+            {
+                letterLabel = letterLabel.AdjustedFor(Pawn);
+                letterContent = letterContent.AdjustedFor(Pawn);
+
+                Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, new LookTargets(Pawn));
+            }
+            
+           
         }
 
         private void OnNoLongerSapient()

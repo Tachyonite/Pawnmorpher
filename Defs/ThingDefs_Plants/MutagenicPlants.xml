@@ -255,7 +255,7 @@
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedGrass</defName>
 		<label>mutagrass</label>
-		<description>Wild, somewhat mutated grass. A product of groundwater contamination.</description>
+		<description>Wild, somewhat mutated grass. A product of groundwater contamination. Can be sown, but only useful for decoration.</description>
 		<statBases>
 			<MaxHitPoints>85</MaxHitPoints>
 			<Flammability>1.3</Flammability>
@@ -276,6 +276,12 @@
 			<visualSizeRange>0.4~0.6</visualSizeRange>
 			<topWindExposure>0.4</topWindExposure>
 			<wildOrder>1</wildOrder>
+			<sowResearchPrerequisites>
+				<li>MutagenicPlantSowing</li>
+			</sowResearchPrerequisites>
+			<sowTags>
+				<li>Ground</li>
+			</sowTags>
 		</plant>
 		<comps>
 			<li Class="CompProperties_Glower">
@@ -293,7 +299,7 @@
 				<priority>1</priority>
 				<!-- if true the source plant must be something that can be havested -->
 				<mustBeHarvestable>false</mustBeHarvestable>
-
+				
 				<sourcePlantFilter>
 					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
 					<filterList> <!-- glowvine will only come from healroot  -->
@@ -336,6 +342,12 @@
 			<wildClusterWeight>200</wildClusterWeight>
 			<wildOrder>1</wildOrder>
 			<wildEqualLocalDistribution>false</wildEqualLocalDistribution>
+			<sowResearchPrerequisites>
+				<li>MutagenicPlantSowing</li>
+			</sowResearchPrerequisites>
+			<sowTags>
+				<li>Ground</li>
+			</sowTags>
 		</plant>
 		<comps>
 			<li Class="CompProperties_Glower">
@@ -372,7 +384,7 @@
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedBush</defName>
 		<label>mutant bush</label>
-		<description>An otherworldly shrub.</description>
+		<description>An otherworldly shrub, looks nice but not much use beyond that.</description>
 		<statBases>
 			<MaxHitPoints>85</MaxHitPoints>
 			<Beauty>4</Beauty>
@@ -395,6 +407,12 @@
 			<visualSizeRange>0.95~1.7</visualSizeRange>
 			<topWindExposure>0.3</topWindExposure>
 			<wildOrder>2</wildOrder>
+			<sowResearchPrerequisites>
+				<li>MutagenicPlantSowing</li>
+			</sowResearchPrerequisites>
+			<sowTags>
+				<li>Ground</li>
+			</sowTags>
 		</plant>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">

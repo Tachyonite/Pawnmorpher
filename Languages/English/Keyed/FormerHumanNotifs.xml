@@ -12,4 +12,13 @@
     <!-- these are for when a former human with a relationship to some pawn shows up as part of a morph trader -->
     <RelatedSoldFormerHumanContent>{0} is a former human related to {1} and has appeared as part of a morph trader's stock. You can buy them if you want. They are {1}'s {2}.</RelatedSoldFormerHumanContent>
     <RelatedSoldFormerHumanLabel>Morph trader (relationship)</RelatedSoldFormerHumanLabel>
+
+
+
+    <!-- 
+        other sapience levels are supported as well, just use the form $SapienceLevel_TransitionContent/$SapienceLevel_TransitionLabel 
+        ex: MostlyFeral_TransitionLabel/MostlyFeral_TransitionContent would show up for when a former human becomes 'mostly feral'
+    -->
+    <Conflicted_TransitionLabel>[Pawn_nameDef] sapience has dropped significantly</Conflicted_TransitionLabel>
+    <Conflicted_TransitionContent>[Pawn_nameDef] sapience has dropped to the point they are no longer considered a full colonist</Conflicted_TransitionContent>
 </LanguageData>
