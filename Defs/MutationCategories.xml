@@ -26,6 +26,8 @@
 
 	<Pawnmorph.MutationCategoryDef> <!-- category for all 'combo parts' -->
 		<defName>Combo</defName>
+		<!-- make sure pawns don't spawn with it -->
+		<restricted>true</restricted>
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef>
