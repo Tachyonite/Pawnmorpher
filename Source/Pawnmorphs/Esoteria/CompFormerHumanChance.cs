@@ -68,6 +68,7 @@ namespace Pawnmorph
                 //have the former human join only if it's not part of a manhunter pack 
                 if (Pawn.IsFormerHuman())
                 {
+
                     Pawn.SetFaction(Faction.OfPlayer);
                 }
 
