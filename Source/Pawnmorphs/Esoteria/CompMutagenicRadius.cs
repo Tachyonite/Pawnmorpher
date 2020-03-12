@@ -37,8 +37,11 @@ namespace Pawnmorph
         }
 
         [NotNull]
-        private readonly List<Pawn> _pawnsCache = new List<Pawn>(); 
+        private readonly List<Pawn> _pawnsCache = new List<Pawn>();
 
+
+        //set this constant to increase/decrease the radius growth rate for debugging 
+        private const float EVAL_MULTIPLIER =1; 
 
         /// <summary>
         /// called every tick after it's parent updates 
@@ -56,7 +59,7 @@ namespace Pawnmorph
                 if (ticksToPlantHarm <= 0)
                 {
                     float x = plantHarmAge / 60000f;
-                    float num = PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x);
+                    float num = PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x * EVAL_MULTIPLIER);
                     float num2 = Mathf.PI * num * num;
                     float num3 = num2 * PropsPlantHarmRadius.harmFrequencyPerArea;
                     float num4 = 60f / num3;
@@ -84,7 +87,8 @@ namespace Pawnmorph
             {
                 _pawnsCache.Clear();
                 float x = plantHarmAge / 60000f;
-                float num = PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x) * Rand.Range(0.7f, 1f);
+                float num = PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x * EVAL_MULTIPLIER) * Rand.Range(0.7f, 1f);
+                num = Mathf.Min(num, GenRadial.MaxRadialPatternRadius - EPSILON); 
                 var pawns = GenRadial.RadialDistinctThingsAround(parent.Position, parent.Map, num, true)
                                      .MakeSafe()
                                      .OfType<Pawn>()
@@ -97,7 +101,7 @@ namespace Pawnmorph
 
         private const float EPSILON = 0.01f;
 
-        private const float A = EPSILON * EPSILON * BASE_BUILDUP_RATE; 
+        private const float A =  EPSILON * BASE_BUILDUP_RATE; 
         private void MutateInRadius(float radius, HediffDef hediff)
         {
             IntVec3 c = parent.Position + (Rand.InsideUnitCircleVec3 * radius).ToIntVec3();
@@ -116,7 +120,7 @@ namespace Pawnmorph
                     if (rHat <= EPSILON) baseMRate = BASE_BUILDUP_RATE;
                     else
                     {
-                        baseMRate = A / (rHat * rHat); 
+                        baseMRate = A / (rHat); 
                     }
 
                     MutatePawn(pawn, baseMRate); 
@@ -142,7 +146,7 @@ namespace Pawnmorph
 
         }
 
-        private const float BASE_BUILDUP_RATE = 0.028758334f / 12; 
+        private const float BASE_BUILDUP_RATE = 0.028758334f / 5; 
 
         private static void MutatePawn(Pawn pawn, float baseBuildupRate)
         {
