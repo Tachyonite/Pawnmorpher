@@ -2,7 +2,11 @@
 // last updated 03/10/2020  5:20 PM
 
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
+using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {
@@ -25,8 +29,19 @@ namespace Pawnmorph
                 throw new System.ArgumentNullException(nameof(pawn));
             }
 
+            var allPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists.MakeSafe(); 
+            foreach (Pawn cPawn in allPawns)
+            {
+                if (cPawn == pawn) continue;
+                var relation = pawn.GetMostImportantRelation(pawn);
+                if (relation != null && relation != PawnRelationDefOf.Bond)
+                {
+                    LogMsg(LogLevel.Messages, $"{pawn.Name} is related to {cPawn.Name} by relation {relation.defName}");
+                    return true; 
+                }
+            }
 
-            return pawn.relations?.DirectRelations?.Any(p => p.otherPawn?.Faction?.IsPlayer == true) == true; 
+            return false;
         }
     }
 }
