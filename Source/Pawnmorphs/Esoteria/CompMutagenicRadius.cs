@@ -16,7 +16,10 @@ namespace Pawnmorph
     {
         private const float LEAFLESS_PLANT_KILL_CHANCE = 0.09f;
         private const float MUTATE_IN_RADIUS_CHANCE = 0.50f;
+        //determines how quickly mutagenic effects falls off with distance 
+        private const float DISTANCE_POW = 0.8004695f;
 
+        
         private int plantHarmAge;
         private int ticksToPlantHarm;
         
@@ -97,7 +100,7 @@ namespace Pawnmorph
 
         private const float EPSILON = 0.01f;
 
-        private const float A = EPSILON * EPSILON * BASE_BUILDUP_RATE; 
+        private const float A = EPSILON * BASE_BUILDUP_RATE; 
         private void MutateInRadius(float radius, HediffDef hediff)
         {
             IntVec3 c = parent.Position + (Rand.InsideUnitCircleVec3 * radius).ToIntVec3();
@@ -116,7 +119,7 @@ namespace Pawnmorph
                     if (rHat <= EPSILON) baseMRate = BASE_BUILDUP_RATE;
                     else
                     {
-                        baseMRate = A / (rHat * rHat); 
+                        baseMRate = A / (Mathf.Pow(rHat, DISTANCE_POW)); 
                     }
 
                     MutatePawn(pawn, baseMRate); 
@@ -142,7 +145,7 @@ namespace Pawnmorph
 
         }
 
-        private const float BASE_BUILDUP_RATE = 0.028758334f / 12; 
+        private const float BASE_BUILDUP_RATE = 0.007984825f; 
 
         private static void MutatePawn(Pawn pawn, float baseBuildupRate)
         {
