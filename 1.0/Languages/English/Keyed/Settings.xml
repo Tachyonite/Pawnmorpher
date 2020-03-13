@@ -1,0 +1,17 @@
+<LanguageData>
+	<PawnmorpherModName>Pawnmorpher</PawnmorpherModName>
+	<enableFalloutCheckboxLabel>Enable Mutagenic Fallout (Work In Progress)</enableFalloutCheckboxLabel>
+	<enableFalloutCheckboxTooltip>Toggles a special fallout event that can spawn and mutate exposed pawns.</enableFalloutCheckboxTooltip>
+	<enableMutagenCheckboxLabel>Enable Mutagenic Ship Parts</enableMutagenCheckboxLabel>
+	<enableMutagenCheckboxTooltip>Toggles a new ship part type that mutates pawns in an expanding radius.</enableMutagenCheckboxTooltip>
+	<enableMutagenDiseasesCheckboxLabel>Enable Mutagenic Diseases</enableMutagenDiseasesCheckboxLabel>
+	<enableMutagenDiseasesCheckboxTooltip>Toggles mutagenic disease events that will morph pawns.</enableMutagenDiseasesCheckboxTooltip>
+	<enableMutagenMeteorCheckboxLabel>Enable Mutagenic Meteorite Mutation Radius</enableMutagenMeteorCheckboxLabel>
+	<enableMutagenMeteorCheckboxTooltip>Toggles the ability of mutonite meteors to mutate nearby pawns.</enableMutagenMeteorCheckboxTooltip>
+	<enableWildFormersCheckboxLabel>Enable Wild Former Humans</enableWildFormersCheckboxLabel>
+	<enableWildFormersCheckboxTooltip>Toggles animals spawning onto the map as former humans, allowing them to be reverted.</enableWildFormersCheckboxTooltip>
+	<transformChanceSliderLabel>Chance for mutagens to fully transform pawns</transformChanceSliderLabel>
+	<formerChanceSliderLabel>Chance for animals to spawn as former humans</formerChanceSliderLabel>
+	<partialChanceSliderLabel>Chance for morph eggs/milk to trigger a complete transformation instead of a single mutation</partialChanceSliderLabel>
+	<maxMutationThoughtsSliderLabel>How many mutation related thoughts will show up at once</maxMutationThoughtsSliderLabel>
+</LanguageData>

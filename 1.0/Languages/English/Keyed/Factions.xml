@@ -1,0 +1,26 @@
+<LanguageData>
+    <!-- 
+    All translated content here should use the same parameter names if they use those parameters 
+    each translation entry should list the parameters that can be used  
+    "memberName" - the full name of the faction member being discused 
+    "memberLabel" - the short label of the above faction member 
+    "species" - the label of the species (probably context sensitive)  
+    "oldLeader" - the old leader of the faction 
+    "newLeader" - the new leader of the faction 
+    "animal" - the animal (usually the animal someone was turned into) 
+    "leaderTitle" - the title of the leader for a faction 
+    "factionName" - the faction name of the faction being discussed 
+    -->
+
+    <!--uses "memberLabel" and "species"  -->
+    <GoodwillChangedReason_PawnTransformed>{memberLabel} turned into a {species}</GoodwillChangedReason_PawnTransformed>
+
+    <!--factionName,species,leaderTitle -->
+    <FactionLeaderTransformedLabel>the {leaderTitle} of {factionName} turned into a {species}</FactionLeaderTransformedLabel>
+
+    <!--memberName(the name of the oldLeader),species,factionName,leaderTitle,oldLeader,animal,newLeader -->
+    <FactionLeaderTransformedContent>{memberName}, former {leaderTitle} of the {factionName}, was turned into a {species} and can no longer lead. They've been replaced by {newLeader}.</FactionLeaderTransformedContent>
+
+    <!--memberLabel,species-->
+    <GoodwillChangedReason_PawnReverted>{memberLabel} is no longer a {species}</GoodwillChangedReason_PawnReverted>
+</LanguageData>
