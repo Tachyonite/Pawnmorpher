@@ -1,0 +1,15 @@
+<LanguageData>
+    <!-- 
+        keys 
+        formerHuman - the former human 
+        relatedPawn - the related pawn 
+        relationship - the label of the relationship the former human has to the given pawn 
+    -->
+    <!--these are for when a wild former human with a relationship to some pawn showes up -->
+    <RelatedWildFormerHumanContent>{0} is a former human related to {1} and has appeared on the map. They may still need to be tamed. They are {1}'s {2}.</RelatedWildFormerHumanContent>
+    <RelatedWildFormerHumanLabel>Sapient animal (relationship)</RelatedWildFormerHumanLabel>
+
+    <!-- these are for when a former human with a relationship to some pawn shows up as part of a morph trader -->
+    <RelatedSoldFormerHumanContent>{0} is a former human related to {1} and has appeared as part of a morph trader's stock. You can buy them if you want. They are {1}'s {2}.</RelatedSoldFormerHumanContent>
+    <RelatedSoldFormerHumanLabel>Morph trader (relationship)</RelatedSoldFormerHumanLabel>
+</LanguageData>
