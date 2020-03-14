@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
@@ -17,6 +18,20 @@ namespace Pawnmorph
     {
         [NotNull]
         private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
+
+        /// <summary>
+        /// checks if this mutation blocks the addition of a new mutation at the given part
+        /// </summary>
+        /// <param name="otherMutation">The other mutation.</param>
+        /// <param name="addPart">The add part.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">otherMutation</exception>
+        public virtual bool Blocks([NotNull] MutationDef otherMutation, [CanBeNull] BodyPartRecord addPart)
+        {
+            if (otherMutation == null) throw new ArgumentNullException(nameof(otherMutation));
+            var mDef = def as MutationDef;
+            return mDef?.BlocksMutation(otherMutation, Part, addPart) == true; 
+        }
 
         /// <summary>
         /// Gets the influence this mutation confers 
@@ -259,6 +274,13 @@ namespace Pawnmorph
                 pawn.health.hediffSet.hediffs.Remove(this);
                 return;
             }
+        }
+        /// <summary>
+        /// Restarts the adaption progression for this mutation if halted, does nothing if the part is fully adapted or not halted 
+        /// </summary>
+        public void ResumeAdaption()
+        {
+            SeverityAdjust?.Restart();
         }
     }
 }

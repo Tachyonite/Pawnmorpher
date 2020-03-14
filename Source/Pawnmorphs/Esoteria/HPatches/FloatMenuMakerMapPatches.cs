@@ -3,12 +3,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
+using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-
+#pragma warning disable 1591
 namespace Pawnmorph
 {
     internal static class FloatMenuMakerMapPatches
@@ -81,7 +85,37 @@ namespace Pawnmorph
         }
    
 #endif
+        [HarmonyPatch(typeof(FloatMenuMakerMap), nameof(FloatMenuMakerMap.ChoicesAtFor))]
+        static class AddHumanlikeOrdersToSA
+        {
 
+            [NotNull]
+            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike));
+
+            [NotNull] private static readonly MethodInfo _targetMethodSig =
+                typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod(); 
+            [HarmonyTranspiler]
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var codes = instructions.ToList(); //convert the code instructions to a list so we can do 2 at a time 
+
+                for (var i = 0; i < codes.Count - 1; i++)
+                {
+                    int j = i + 1;
+                    CodeInstruction instI = codes[i];
+                    //need to be more specific because the patched method is longer, don't want to patch stuff we don't intend to 
+                    if (instI.opcode == OpCodes.Callvirt  && (MethodInfo) codes[i].operand == _targetMethodSig  && codes[j].opcode == OpCodes.Callvirt)
+                    {
+                        instI.opcode =
+                            OpCodes.Call; //replace the callVirt to get_RaceProps with call to FormerHumanUtilities.IsToolUser 
+                        instI.operand = _isToolUser; //set the method that the call op is going to call 
+                        codes[j].opcode = OpCodes.Nop; //replace the second  callVirt to a No op so we don't fuck up the stack 
+                    }
+                }
+
+                return codes;
+            }
+        }
 
     }
 }

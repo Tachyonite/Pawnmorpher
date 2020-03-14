@@ -142,6 +142,7 @@
 						<HediffDef ParentName="NewAspectedMorphParent">
 							<defName>PawnmorphMartenTF</defName>
 							<label>martenmorph</label>
+							<description>This person has mechanites in their blood that are slowly mutating them into a martenmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more marten than human.</description>
 							<stages>
 								<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 									<label>reeling</label>
@@ -183,8 +184,8 @@
 											<offset>-0.05</offset>
 										</li>
 									</capMods>
-									<letterText>PAWN_nameDef is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
-									<letterLabel>PAWN_nameDef is at risk of fully changing very soon.</letterLabel>
+									<letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+									<letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
 								</li>
 								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 									<label>changing</label>
@@ -214,6 +215,7 @@
 						<HediffDef ParentName="NewPartialAspectedMorphParent">
 							<defName>PawnmorphMartenTFPartial</defName>
 							<label>martenmorph partial</label>
+							<description>This person has mechanites in their blood that are providing them with marten-esk mutations.</description>
 							<stages>
 								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 									<painOffset>0.1</painOffset>
@@ -446,20 +448,6 @@
 							</stages>
 						</Pawnmorph.AspectDef>
 					</value>				
-				</li>
-
-				<!-- Add the animal to the mutagun effect -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[1]/hediffGivers/li/pawnkinds</xpath>
-					<value>
-						<li>ZGF_BeechMart</li>
-						<li>ZGF_JapaneseMart</li>
-						<li>ZGF_NilgiriMart</li>
-						<li>ZGF_PineMart</li>
-						<li>ZGF_RimMart</li>
-						<li>ZGF_Sable</li>
-						<li>ZGF_YellowMart</li>
-					</value>
 				</li>
 			</operations>
 		</match>

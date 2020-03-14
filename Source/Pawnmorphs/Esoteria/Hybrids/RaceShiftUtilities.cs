@@ -171,12 +171,18 @@ namespace Pawnmorph.Hybrids
         }
 
         /// <summary>
-        /// change the given pawn to the hybrid race of the desired morph 
+        /// change the given pawn to the hybrid race of the desired morph
         /// </summary>
-        /// <param name="pawn"></param>
+        /// <param name="pawn">The pawn.</param>
         /// <param name="morph">the morph to change the pawn to</param>
         /// <param name="addMissingMutations">if true, any missing mutations will be applied to the pawn</param>
-        public static void ChangePawnToMorph([NotNull] Pawn pawn, [NotNull] MorphDef morph, bool addMissingMutations=true)
+        /// <param name="displayNotifications">if set to <c>true</c> display race shit notifications.</param>
+        /// <exception cref="ArgumentNullException">
+        /// pawn
+        /// or
+        /// morph
+        /// </exception>
+        public static void ChangePawnToMorph([NotNull] Pawn pawn, [NotNull] MorphDef morph, bool addMissingMutations=true, bool displayNotifications=true)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (morph == null) throw new ArgumentNullException(nameof(morph));
@@ -202,7 +208,7 @@ namespace Pawnmorph.Hybrids
                 PortraitsCache.SetDirty(pawn);
             }
 
-            if (pawn.IsColonist || pawn.IsPrisonerOfColony)
+            if (displayNotifications && (pawn.IsColonist || pawn.IsPrisonerOfColony))
                 SendHybridTfMessage(pawn, tfSettings);
 
      
@@ -233,8 +239,14 @@ namespace Pawnmorph.Hybrids
                 
                 // ReSharper disable once AssignNullToNotNullAttribute
                 var mutation = morph.GetMutationForPart(bodyPartRecord.def).RandomElementWithFallback();
-                if(mutation != null)
-                    MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord, addedRecords);
+                if (mutation != null)
+                {
+                    var result = MutationUtilities.AddMutation(pawn, mutation, bodyPartRecord);
+                    foreach (Hediff_AddedMutation addedMutation in result)
+                    {
+                        addedRecords.Add(addedMutation.Part); 
+                    }
+                }
             }
         }
 

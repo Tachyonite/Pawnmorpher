@@ -28,10 +28,10 @@ namespace Pawnmorph.HPatches
                 if (!__instance.Spawned) return;
                 if (__instance.HostFaction != null) return; 
                 
-                __result = __instance.IsSapientFormerHuman(); 
+                __result = __instance.IsSapientOrFeralFormerHuman(); 
             }
         }
-#if false
+#if true
         [HarmonyPatch(typeof(Pawn)), HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter)]
         internal static class MakeFormerHumansColonists
         {
@@ -58,7 +58,7 @@ namespace Pawnmorph.HPatches
                     __result = nd.IsValidFor(___pawn);
                     return;
                 }
-                if (___pawn?.IsSapientFormerHuman() != true) return;
+                if (___pawn?.IsSapientOrFeralFormerHuman() != true) return;
                 if (nd?.defName == "SapientAnimalControl")
                 {
                     __result = true;

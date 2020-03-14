@@ -135,8 +135,8 @@ namespace Pawnmorph.Factions
             {
                 giver.ClearOverlappingMutations(pawn); // make sure to remove any overlapping hediffs added during a different stage 
 
-                MutationUtilities.AddMutation(pawn, giver, int.MaxValue, addedList,
-                                              MutationUtilities.AncillaryMutationEffects.None);
+                var result = MutationUtilities.AddMutation(pawn, giver, int.MaxValue, MutationUtilities.AncillaryMutationEffects.None);
+                addedList.AddRange(result.Parts); 
             }
 
             if (toGive.Count > 0 && (addedList.Count == 0 || !pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Any()))

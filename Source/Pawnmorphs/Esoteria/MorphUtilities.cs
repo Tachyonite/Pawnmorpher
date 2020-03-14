@@ -115,16 +115,31 @@ namespace Pawnmorph
                 if (morphDef.race == animalDef) yield return morphDef; 
             }
         }
-    
-
 
         /// <summary>
-        ///     Checks the race of this pawn. If the pawn is mutated enough it's race is changed to one of the hybrids
+        /// Determines whether this instance is a chimera.
+        /// </summary>
+        /// <param name="morph">The morph.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified morph is a chimera; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">morph</exception>
+        [Pure]
+        public static bool IsChimera([NotNull] this MorphDef morph)
+        {
+            if (morph == null) throw new ArgumentNullException(nameof(morph));
+            return morph.categories?.Contains(MorphCategoryDefOf.Chimera) == true; 
+        }
+
+        /// <summary>
+        /// Checks the race of this pawn. If the pawn is mutated enough it's race is changed to one of the hybrids
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="addMissingMutations">if true, any missing mutations from the highest morph influence will be added</param>
+        /// <param name="displayNotifications">if set to <c>true</c> display race shift notifications.</param>
+        /// <exception cref="ArgumentNullException">pawn</exception>
         /// <exception cref="System.ArgumentNullException">pawn</exception>
-        public static void CheckRace([NotNull] this Pawn pawn, bool addMissingMutations = true)
+        public static void CheckRace([NotNull] this Pawn pawn, bool addMissingMutations = true, bool displayNotifications=true)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
@@ -141,7 +156,7 @@ namespace Pawnmorph
 
             MorphDef setMorph = GetMorphForPawn(pawn, isBelowChimeraThreshold, hInfluence, out MorphDef curMorph);
 
-            if (curMorph != setMorph) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations);
+            if (curMorph != setMorph) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
         }
 
         private static MorphDef GetMorphForPawn(Pawn pawn, bool isBelowChimeraThreshold, AnimalClassBase hInfluence, out MorphDef curMorph)

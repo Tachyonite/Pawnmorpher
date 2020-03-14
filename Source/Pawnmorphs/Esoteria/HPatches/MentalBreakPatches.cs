@@ -6,6 +6,7 @@ using System.Linq;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -33,7 +34,11 @@ namespace Pawnmorph.HPatches
             [HarmonyPostfix]
             private static void SendNotificationToComp([NotNull] MentalState __instance)
             {
-                __instance.pawn?.GetSapientAnimalComp()?.Notify_RecoveredFromState(__instance);
+                var receivers = __instance.pawn?.AllComps?.OfType<IMentalStateRecoveryReceiver>();
+                foreach (IMentalStateRecoveryReceiver receiver in receivers.MakeSafe())
+                {
+                    receiver.OnRecoveredFromMentalState(__instance); 
+                }
             }
         }
 

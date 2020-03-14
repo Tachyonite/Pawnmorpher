@@ -185,6 +185,7 @@
 						<HediffDef ParentName="NewAspectedMorphParent">
 							<defName>PawnmorphLeopardTF</defName>
 							<label>leopardmorph</label>
+							<description>This person has mechanites in their blood that are slowly mutating them into a leopardmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more feline than human.</description>
 							<stages>
 								<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 									<label>reeling</label>
@@ -248,6 +249,7 @@
 						<HediffDef ParentName="NewAspectedMorphParent">
 							<defName>PawnmorphSnowLeopardTF</defName>
 							<label>snepmorph</label>
+							<description>This person has mechanites in their blood that are slowly mutating them into a snowy variety of leopardmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more feline than human.</description>
 							<stages>
 								<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 									<label>reeling</label>
@@ -312,6 +314,7 @@
 						<HediffDef ParentName="NewPartialAspectedMorphParent">
 							<defName>PawnmorphLeopardTFPartial</defName>
 							<label>leopardmorph partial</label>
+							<description>This person has mechanites in their blood that are providing them with leopard-esk mutations.</description>
 							<stages>
 								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 									<painOffset>0.1</painOffset>
@@ -338,6 +341,7 @@
 						<HediffDef ParentName="NewPartialAspectedMorphParent">
 							<defName>PawnmorphSnowLeopardTFPartial</defName>
 							<label>snepmorph partial</label>
+							<description>This person has mechanites in their blood that are providing them with snow leopard-esk mutations.</description>
 							<stages>
 								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 									<painOffset>0.1</painOffset>
@@ -522,16 +526,6 @@
 					</value>
 				</li>
 				
-				<!-- Add the animal to the mutagun effect -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
-					<value>
-						<li>ACPAmurLeopard</li>
-						<li>ACPSnowLeopard</li>
-					</value>
-				</li>
-				
-
 				<!-- Add the animal to the TF's possible feral animal list -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/HediffDef[defName="PawnmorphLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
@@ -566,15 +560,6 @@
 					<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
 					<value>
 						<race>SnowLeopard</race>
-					</value>
-				</li>
-				
-				<!-- Add the animal to the mutagun effect -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/HediffDef[defName="PawnmorphGunshotTF"]/stages/li[label="reeling"]/hediffGivers/li/pawnkinds</xpath>
-					<value>
-						<li>Leopard</li>
-						<li>SnowLeopard</li>
 					</value>
 				</li>
 				

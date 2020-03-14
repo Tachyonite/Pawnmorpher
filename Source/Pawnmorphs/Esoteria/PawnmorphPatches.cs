@@ -37,13 +37,25 @@ namespace Pawnmorph
                                   new HarmonyMethod(patchType, nameof(ThoughtsFromIngestingPostfix))
                                  );
 
+#if true 
             // Job patches.
-            harmonyInstance.Patch(AccessTools.Method(typeof(JobDriver_Ingest),
+           harmonyInstance.Patch(AccessTools.Method(typeof(JobDriver_Ingest),
                                                      "PrepareToIngestToils"),
                                   new HarmonyMethod(patchType, nameof(PrepareToIngestToilsPrefix))
-                                 );
+                                 ); 
+#endif
 
-            harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+
+
+            try
+            {
+
+                harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher cannot preform harmony patches! caught {e.GetType().Name}\n{e}"); 
+            }
         }
 
         [NotNull]
@@ -160,11 +172,11 @@ namespace Pawnmorph
             return thought;
         }
 
-        private static bool PrepareToIngestToilsPrefix(JobDriver __instance, Toil chewToil, ref IEnumerable<Toil> __result)
+        private static bool PrepareToIngestToilsPrefix(JobDriver __instance, Toil chewToil, ref IEnumerable<Toil> __result) //TODO figure out how to turn this into a transpiler patch 
         {
+            Thing thing = __instance.job.targetA.Thing;
             if (RaceGenerator.TryGetMorphOfRace(__instance.pawn.def, out MorphDef def))
             {
-                Thing thing = __instance.job.targetA.Thing;
                 if (thing.def.ingestible == null) return true;
 
                 FoodTypeFlags flg = thing.def.ingestible.foodType & (FoodTypeFlags.Tree | FoodTypeFlags.Plant);
@@ -178,6 +190,10 @@ namespace Pawnmorph
 
                     return false;
                 }
+            }else if (__instance.pawn.IsSapientOrFeralFormerHuman())
+            {
+                if (thing.def.ingestible == null) return true;
+
             }
 
             return true;

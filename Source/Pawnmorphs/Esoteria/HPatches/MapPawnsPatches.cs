@@ -10,7 +10,7 @@ using Verse;
 #pragma warning disable 1591
 namespace Pawnmorph.HPatches
 {
-#if false
+#if true
     public class MapPawnsPatches
     {
         [HarmonyPatch(typeof(MapPawns)), HarmonyPatch(nameof(MapPawns.FreeHumanlikesOfFaction))]

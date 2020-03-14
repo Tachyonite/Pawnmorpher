@@ -8,6 +8,10 @@
             <li>Violent</li>
             <li>ManualDumb</li>
             <li>Hauling</li>
+            <li>Firefighting</li>
+            <li>Cleaning</li>
+            <li>Commoner</li>
+            <li>Social</li>
         </workAllows>
         <bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -35,6 +39,7 @@
         <workAllows>
             <li>ManualSkilled</li>
             <li>Crafting</li>
+            <li>Caring</li>
         </workAllows>
     </AlienRace.BackstoryDef>
 
@@ -46,6 +51,7 @@
         <workAllows>
             <li>ManualSkilled</li>
             <li>Crafting</li>
+            <li>Caring</li>
         </workAllows>
     </AlienRace.BackstoryDef>
 </Defs>

@@ -5,7 +5,6 @@
         <insertTag>Animal_PreWander</insertTag>
         <thinkRoot Class="ThinkNode_Priority">
             <subNodes>
-
                 <li Class="Pawnmorph.ThinkNodes.ConditionalOfFormerHuman">
                     <filter>
                         <isBlackList>true</isBlackList>
@@ -27,6 +26,25 @@
                         </li>
                     </subNodes>
                 </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+    <ThinkTreeDef>
+        <defName>SapientAnimalMainTreeSegment</defName>
+        <insertTag>Animal_PreMain</insertTag>
+        <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
+            <mustBeColonist>true</mustBeColonist>
+            <mustBeFullySapient>true</mustBeFullySapient>
+            <subNodes>
+                <li Class="ThinkNode_ConditionalColonist">
+                    <subNodes>
+                      <li Class="ThinkNode_Subtree">
+                        <treeDef>MainColonistBehaviorCore</treeDef>
+                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                      </li>
+                    </subNodes>
+                  </li>
             </subNodes>
         </thinkRoot>
     </ThinkTreeDef>

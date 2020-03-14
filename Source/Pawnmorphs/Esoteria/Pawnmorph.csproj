@@ -304,7 +304,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddMorphsToPawn.cs" />
-    <Compile Include="Alerts\SAMinorBreakRisk.cs" />
     <Compile Include="AnimalClassDef.cs" />
     <Compile Include="AnimalClassDefOf.cs" />
     <Compile Include="AnimalClassUtilities.cs" />
@@ -347,6 +346,7 @@
     <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FormerHumanLogging.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Logging.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.MutationLogging.cs" />
@@ -403,20 +403,24 @@
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
+    <Compile Include="HPatches\AIPatches.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
     <Compile Include="HPatches\HuntingPatches.cs" />
     <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
+    <Compile Include="HPatches\IngestJobPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
     <Compile Include="HPatches\MapPawnsPatches.cs" />
     <Compile Include="HPatches\MentalBreakPatches.cs" />
+    <Compile Include="HPatches\NativeVerbPatches.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
     <Compile Include="HPatches\PawnPatches.cs" />
     <Compile Include="HPatches\PlantGrowingPatches.cs" />
     <Compile Include="HPatches\PlantPatches.cs" />
+    <Compile Include="HPatches\PortraitCachePatches.cs" />
     <Compile Include="HPatches\ProductionCompPatches.cs" />
     <Compile Include="HPatches\RelationshipPatches.cs" />
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
@@ -424,12 +428,14 @@
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
+    <Compile Include="IMentalStateRecoveryReceiver.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="Jobs\Giver_FoodOptimized.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
     <Compile Include="IPawnTransformer.cs" />
@@ -449,11 +455,15 @@
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
     <Compile Include="Mental\StateWorker_Hunt.cs" />
     <Compile Include="Mental\State_Hunting.cs" />
+    <Compile Include="MutationResult.cs" />
+    <Compile Include="MutationRuleDef.cs" />
+    <Compile Include="MutationRuleUtilities.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
     <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMPlantUtilities.cs" />
+    <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
@@ -639,7 +649,9 @@
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Alerts\" />
+  </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
