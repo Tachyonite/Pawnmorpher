@@ -251,35 +251,35 @@
 				<thingDef>Mutanite</thingDef>
 				<countRange>
 					<min>-1</min>
-					<max>5</max>
+					<max>15</max>
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>RandomPowerfulTransformer</thingDef>
 				<countRange>
-					<min>-10</min>
-					<max>1</max>
+					<min>-3</min>
+					<max>4</max>
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>RandomCombatTransformer</thingDef>
 				<countRange>
-					<min>-2</min>
-					<max>2</max>
+					<min>-1</min>
+					<max>4</max>
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>RandomProductionTransformer</thingDef>
 				<countRange>
-					<min>-2</min>
+					<min>-1</min>
 					<max>2</max>
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>ReversionSyringe</thingDef>
 				<countRange>
-					<min>-5</min>
-					<max>1</max>
+					<min>-1</min>
+					<max>2</max>
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
@@ -306,7 +306,7 @@
 			<li Class="Pawnmorph.StockGenerator_Injectors">
 				<animalClass>Animal</animalClass> <!-- this will grab injectors from all morphs under the given category -->
 				<countRange>
-					<min>-10</min>
+					<min>1</min>
 					<max>20</max>
 				</countRange>
 			</li>

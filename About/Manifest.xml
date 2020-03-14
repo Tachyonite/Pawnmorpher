@@ -1,6 +1,6 @@
 ﻿<Manifest>
 	<identifier>Pawnmorpher</identifier>
-	<version>1.7.3</version>
+	<version>1.8.0</version>
 	<dependencies>
 		<li>HumanoidAlienRaces2.0</li>
 		<li>HugsLib</li>

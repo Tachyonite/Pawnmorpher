@@ -24,6 +24,7 @@
 					<EtherCapybaraJaw>Parts/Capybara/Capybara_Jaw</EtherCapybaraJaw>
 					<EtherCaribouJaw>Parts/Caribou/Caribou_Jaw</EtherCaribouJaw>
 					<EtherCassowaryJaw>Parts/Cassowary/Cassowary_Jaw</EtherCassowaryJaw>
+					<EtherRaccoonJaw>Parts/Raccoon/Raccoon_Jaw</EtherRaccoonJaw>
 					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
 					<EtherChinchillaJaw>Parts/Chinchilla/Chinchilla_Jaw</EtherChinchillaJaw>
@@ -129,6 +130,7 @@
 					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
 					<EtherCougarJaw>Parts/Cougar/Cougar_Jaw</EtherCougarJaw>
 					<EtherCowSnout>Parts/cowface/cowface</EtherCowSnout>
+					<EtherRaccoonJaw>Parts/Raccoon/Raccoon_Jaw</EtherRaccoonJaw>
 					<EtherDonkeySnout>Parts/Donkey/Donkey_Jaw</EtherDonkeySnout>
 					<EtherDeerSnout>Parts/deerface/deerface</EtherDeerSnout>
 					<EtherDromedaryJaw>Parts/Dromedary/Dromedary_Jaw</EtherDromedaryJaw>
