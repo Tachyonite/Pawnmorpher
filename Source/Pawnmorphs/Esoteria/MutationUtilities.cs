@@ -519,7 +519,7 @@ namespace Pawnmorph
             }
 
             hSet.AddDirect(hediff);
-
+            
 
             AncillaryMutationEffects aEffects = ancillaryEffects ?? AncillaryMutationEffects.Default;
 
@@ -528,6 +528,7 @@ namespace Pawnmorph
 
         }
 
+       
         private static bool HasAnyBlockingMutations(Pawn pawn, MutationDef mutation, BodyPartRecord record)
         {
             foreach (Hediff_AddedMutation curMutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
