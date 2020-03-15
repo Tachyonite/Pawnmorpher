@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -71,6 +72,24 @@ namespace Pawnmorph
 
             if (anyWarnings) Log.Warning(warningBuilder.ToString());
             BuildLookupDicts();
+
+
+            //check for parts with 'Animal' influence, these might be because of a mistake 
+
+            var mutationDefs =
+                MutationDef.AllMutations.Where(m => m.classInfluence == null || m.classInfluence == AnimalClassDefOf.Animal)
+                           .ToList();
+            if (mutationDefs.Count > 0)
+            {
+                warningBuilder.Clear();
+
+                warningBuilder.AppendLine($"found {mutationDefs.Count} mutations with null or animal influence");
+                warningBuilder.AppendLine(mutationDefs.Join(d => d.defName, "\n"));
+                Log.Warning(warningBuilder.ToString()); 
+            } 
+
+            
+
 
         }
 
