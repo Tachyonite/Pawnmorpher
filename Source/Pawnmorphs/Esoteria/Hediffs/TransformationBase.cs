@@ -481,5 +481,13 @@ namespace Pawnmorph.Hediffs
                 throw new NullReferenceException($"null reference exception while trying reset mutations! are all mutations set in {def.defName}?",e);
             }
         }
+
+        /// <summary>
+        /// Marks this hediff removal.
+        /// </summary>
+        public void MarkForRemoval()
+        {
+            forceRemove = true; 
+        }
     }
 }

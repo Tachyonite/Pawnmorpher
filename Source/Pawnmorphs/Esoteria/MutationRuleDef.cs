@@ -354,7 +354,32 @@ namespace Pawnmorph
         protected override void DoRule(Pawn pawn)
         {
             List<MutationRuleDef.Result> entry = RuleDef.results;
-            foreach (MutationRuleDef.Result result in entry.MakeSafe()) DoRule(pawn, result);
+            foreach (MutationRuleDef.Result result in entry.MakeSafe())
+            {
+                DoRule(pawn, result);
+                OnRuleApplied(pawn, result); 
+            }
+            OnRuleApplied(pawn); 
+        }
+
+
+        /// <summary>
+        /// Called when the rule is successfully applied 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        protected virtual void OnRuleApplied([NotNull] Pawn pawn)
+        {
+            //empty 
+        }
+
+        /// <summary>
+        /// Called when the rule is successfully applied
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="result">The result.</param>
+        protected virtual void OnRuleApplied([NotNull] Pawn pawn, [NotNull] MutationRuleDef.Result result)
+        {
+
         }
 
         /// <summary>
