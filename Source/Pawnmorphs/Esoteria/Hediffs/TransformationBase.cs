@@ -152,6 +152,11 @@ namespace Pawnmorph.Hediffs
            
             _curIndex = 0;
 
+            var mutagen = def.GetMutagenDef();
+            if (!mutagen.CanInfect(pawn)) //if we somehow got a pawn that can't be mutated just remove the hediff
+                forceRemove = true; 
+
+
             RestartAllMutations();
 
         }
