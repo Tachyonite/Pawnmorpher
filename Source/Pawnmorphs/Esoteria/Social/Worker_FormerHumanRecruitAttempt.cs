@@ -163,7 +163,17 @@ namespace Pawnmorph.Social
         }
 
 
-        void PostInteracted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks)
+        /// <summary>
+        ///     called when the initiator interacts with the specified recipient.
+        /// </summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <param name="extraSentencePacks">The extra sentence packs.</param>
+        /// <param name="letterText">The letter text.</param>
+        /// <param name="letterLabel">The letter label.</param>
+        /// <param name="letterDef">The letter definition.</param>
+        /// <param name="lookTargets">The look targets.</param>
+        public void PostInteracted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks)
         {
             if (extraSentencePacks == null) return;
             SapienceLevel? sapientLevel = recipient?.GetQuantizedSapienceLevel();
