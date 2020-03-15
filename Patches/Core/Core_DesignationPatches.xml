@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/DesignationCategoryDef[defName="Orders"]/specialDesignatorClasses</xpath>
+        <value>
+            <li>Pawnmorph.Designations.RecruitSapientFormerHuman</li>
+        </value>
+    </Operation>
+</Patch>

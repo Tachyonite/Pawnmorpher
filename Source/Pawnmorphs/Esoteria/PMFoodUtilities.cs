@@ -41,6 +41,12 @@ namespace Pawnmorph
                 var nx = ((int) rPrefVal) + 1; //make plants appear better then they actually are 
                 nx = Mathf.Clamp(nx, 0, 9);
                 rPrefVal = (FoodPreferability) nx; 
+            }else if (pawn.RaceProps.foodType == FoodTypeFlags.CarnivoreAnimalStrict
+                   && (food.def.ingestible.foodType & FoodTypeFlags.CarnivoreAnimalStrict) != 0)
+            {
+                var nx = ((int)rPrefVal) + 2; //make meat appear better then they actually are for strict carnivorous 
+                nx = Mathf.Clamp(nx, 0, 9);
+                rPrefVal = (FoodPreferability)nx;
             }
 
             return rPrefVal; 
@@ -104,7 +110,7 @@ namespace Pawnmorph
             FoodPreferability minPref;
             if (minPrefOverride != FoodPreferability.Undefined)
                 minPref = minPrefOverride;
-            else if (!eater.NonHumanlikeOrWildMan())
+            else if (!eater.NonHumanlikeOrWildMan()) //with the new patch, to 'recruit' sapient former humans pawns will need 
                 if (!desperate)
                 {
                     if (foodCurCategory >= HungerCategory.UrgentlyHungry)
