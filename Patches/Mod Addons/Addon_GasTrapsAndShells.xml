@@ -75,7 +75,8 @@
 							<thingClass>GasTrap.Thing_AddsHediff</thingClass>
 							<addHediff>MutagenicBuildup</addHediff>
 							<hediffAddChance>1.0</hediffAddChance>
-							<hediffSeverity>0.0001</hediffSeverity>
+							<hediffSeverity>0.05</hediffSeverity>
+							<tickUpdateSpeed>30</tickUpdateSpeed>
 							<!--
 							<affectLungs>true</affectLungs> 
 							<affectEyes>false</affectEyes>
@@ -125,7 +126,7 @@
 								<Beauty>-4</Beauty>
 								<!--	  <TrapSpringChance>0.8</TrapSpringChance> -->
 							</statBases>
-							<description>This trap releases toxic gas when a cute, little pawn walks too close. Aw, look at that cute thing dying!</description>
+							<description>This trap releases mutagenic gas when a hapless human gets too close. They won't be human for too long after inhaling the aerosolised mechanites contained in this trap.</description>
 							<costList>
 								<Shell_GasTF>1</Shell_GasTF>
 								<ComponentIndustrial>1</ComponentIndustrial>
