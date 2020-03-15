@@ -6,7 +6,7 @@
 		<parts>
 			<li>Skull</li>
 		</parts>
-		<morphInfluence>Avian</morphInfluence>
+		<classInfluence>Avian</classInfluence>
 		<blockSites>
 			<li>Jaw</li>
 		</blockSites>
@@ -67,7 +67,7 @@
 		<blockSites>
 			<li>Jaw</li>
 		</blockSites>
-		<morphInfluence>Wolf</morphInfluence>
+		<classInfluence>Wolf</classInfluence>
 		<stages>
 			<li>
 				<capMods>
