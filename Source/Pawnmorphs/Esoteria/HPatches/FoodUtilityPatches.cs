@@ -79,8 +79,6 @@ namespace Pawnmorph.HPatches
                 bool ignoreReservations = false,
                 FoodPreferability minPrefOverride = FoodPreferability.Undefined)
             {
-                
-
                 if (ShouldUseOptimizedCode(eater))
                 {
                     __result = PMFoodUtilities.BestFoodSourceOnMapOptimized(getter, eater, desperate, out foodDef, maxPref,
@@ -98,7 +96,6 @@ namespace Pawnmorph.HPatches
 
             private static bool ShouldUseOptimizedCode(Pawn eater)
             {
-                if (eater.IsFormerHuman()) return true; //always use custom code for former humans, they need preference tweaks 
                 var shouldUseOptimizedPath = eater.IsHumanlike() && (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) != 0;
                 //shouldUseOptimizedPath |= eater.IsSapientFormerHuman();
                 return shouldUseOptimizedPath; 
