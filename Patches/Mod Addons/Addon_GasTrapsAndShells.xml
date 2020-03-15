@@ -76,7 +76,7 @@
 							<addHediff>MutagenicBuildup</addHediff>
 							<hediffAddChance>1.0</hediffAddChance>
 							<hediffSeverity>0.05</hediffSeverity>
-							<tickUpdateSpeed>30</tickUpdateSpeed>
+							<ticksPerApplication>30</ticksPerApplication>
 							<!--
 							<affectLungs>true</affectLungs> 
 							<affectEyes>false</affectEyes>
