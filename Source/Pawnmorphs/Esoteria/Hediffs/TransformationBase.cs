@@ -152,6 +152,11 @@ namespace Pawnmorph.Hediffs
            
             _curIndex = 0;
 
+            var mutagen = def.GetMutagenDef();
+            if (!mutagen.CanInfect(pawn)) //if we somehow got a pawn that can't be mutated just remove the hediff
+                forceRemove = true; 
+
+
             RestartAllMutations();
 
         }
@@ -475,6 +480,14 @@ namespace Pawnmorph.Hediffs
             {
                 throw new NullReferenceException($"null reference exception while trying reset mutations! are all mutations set in {def.defName}?",e);
             }
+        }
+
+        /// <summary>
+        /// Marks this hediff removal.
+        /// </summary>
+        public void MarkForRemoval()
+        {
+            forceRemove = true; 
         }
     }
 }

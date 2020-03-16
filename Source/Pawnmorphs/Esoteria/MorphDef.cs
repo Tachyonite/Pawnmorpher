@@ -33,6 +33,11 @@ namespace Pawnmorph
         /// <summary> If specified, the race to use in place of the implicit one.</summary>
         public ThingDef explicitHybridRace;
 
+        /// <summary>
+        /// if true, then all restricted mutations (not just those that are directly tied to this morph) will be added to <see cref="AllAssociatedMutations"/>
+        /// </summary>
+        public bool allowAllRestrictedParts; 
+
 
         /// <summary>
         ///     The genus of this morph
@@ -135,10 +140,16 @@ namespace Pawnmorph
                 tmpList.Clear();
                 foreach (MutationDef mutation in MutationDef.AllMutations) //grab all mutations that give the current influence directly 
                 {
+                    if (curNode != this && mutation.IsRestricted && !allowAllRestrictedParts)
+                    {
+                        continue; //do not allow restricted parts for higher up in the hierarchy to show up unless allowAllRestrictedParts is set to true
+                    }
+                    
                     if (mutation.classInfluence == curNode)
                     {
                         tmpList.Add(mutation);
                     }
+
                 }
 
                 foreach (MutationDef mutationDef in tmpList)

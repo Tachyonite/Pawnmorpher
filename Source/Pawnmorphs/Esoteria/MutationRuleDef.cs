@@ -24,6 +24,30 @@ namespace Pawnmorph
         public const int CHECK_RATE = TimeMetrics.TICKS_PER_REAL_SECOND * 3 / 2;
 
 
+        [Unsaved] private List<IMRuleEntry> _allRules;
+
+        /// <summary>
+        /// Gets all rules in this def 
+        /// </summary>
+        /// <value>
+        /// All rules.
+        /// </value>
+        public IReadOnlyList<IMRuleEntry> AllRules
+        {
+            get
+            {
+                if (_allRules == null)
+                {
+                    _allRules = new List<IMRuleEntry>(); 
+                    _allRules.AddRange(conditions.MakeSafe());
+                    _allRules.AddRange(aspectConditions.MakeSafe());
+                }
+
+                return _allRules; 
+            }
+        }
+
+
         /// <summary>
         ///     the mean time to happen (in days)
         /// </summary>
@@ -48,6 +72,11 @@ namespace Pawnmorph
         public List<HediffEntry> conditions = new List<HediffEntry>();
 
         /// <summary>
+        /// list of aspect conditions
+        /// </summary>
+        public List<AspectEntry> aspectConditions = new List<AspectEntry>(); 
+
+        /// <summary>
         ///     The output entry when this rule is run
         /// </summary>
         public List<Result> results;
@@ -65,6 +94,14 @@ namespace Pawnmorph
             foreach (HediffEntry hediffEntry in conditions.MakeSafe())
                 if (hediffEntry.hediffs == null || hediffEntry.hediffs.Count == 0)
                     yield return "rule entry with null hediff";
+
+            foreach (AspectEntry aspectEntry in aspectConditions.MakeSafe())
+            {
+                if (aspectEntry.aspectDef == null)
+                {
+                    yield return "aspect rule entry with null aspect def";
+                }
+            }
 
             if (results == null || results.Count == 0)
                 yield return "no output effect set";
@@ -109,7 +146,42 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// simple POD for rule results 
+        /// aspect rule entry
+        /// </summary>
+        /// <seealso cref="Pawnmorph.MutationRuleDef.IMRuleEntry" />
+        public class AspectEntry : IMRuleEntry
+        {
+            /// <summary>
+            ///     The aspect definition to look for
+            /// </summary>
+            public AspectDef aspectDef;
+
+            /// <summary>
+            ///     if set, then the aspect must be in this given stage
+            /// </summary>
+            public int? aspectStage;
+
+
+            /// <summary>
+            /// check if this entry is satisfied by the given pawn
+            /// </summary>
+            /// <param name="pawn">The pawn.</param>
+            /// <returns></returns>
+            /// <exception cref="ArgumentNullException">pawn</exception>
+            public bool Satisfied([NotNull] Pawn pawn)
+            {
+                if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+                AspectTracker tracker = pawn.GetAspectTracker();
+                if (tracker == null) return false;
+
+                Aspect a = tracker.GetAspect(aspectDef);
+                if (aspectStage == null) return a != null;
+                return a?.StageIndex == aspectStage.Value;
+            }
+        }
+
+        /// <summary>
+        ///     simple POD for rule results
         /// </summary>
         public class Result
         {
@@ -128,12 +200,12 @@ namespace Pawnmorph
 
         /// <summary>
         /// </summary>
-        public class HediffEntry
+        public class HediffEntry : IMRuleEntry
         {
             /// <summary>
-            /// list of hediffs to check for 
+            ///     list of hediffs to check for
             /// </summary>
-            public List<HediffDef> hediffs = new List<HediffDef>(); 
+            public List<HediffDef> hediffs = new List<HediffDef>();
 
 
             /// <summary>
@@ -158,16 +230,32 @@ namespace Pawnmorph
             /// <returns></returns>
             public bool Satisfied([NotNull] Pawn pawn)
             {
-                hediffs = hediffs ?? new List<HediffDef>(); 
+                hediffs = hediffs ?? new List<HediffDef>();
                 Hediff hediff;
                 hediff = anyPart
-                             ? pawn.health.hediffSet.hediffs.FirstOrDefault(h => hediffs.Contains(h.def) && (stageIndex == null || stageIndex.Value == h.CurStageIndex))
-                             : pawn.health.hediffSet.hediffs.FirstOrDefault(h => hediffs.Contains(h.def) && h.Part?.def == partDef);
+                             ? pawn.health.hediffSet.hediffs.FirstOrDefault(h => hediffs.Contains(h.def)
+                                                                              && (stageIndex == null
+                                                                               || stageIndex.Value == h.CurStageIndex))
+                             : pawn.health.hediffSet.hediffs.FirstOrDefault(h => hediffs.Contains(h.def)
+                                                                              && h.Part?.def == partDef);
 
                 if (hediff == null) return false;
                 if (stageIndex == null) return true;
                 return stageIndex.Value == hediff.CurStageIndex;
             }
+        }
+        /// <summary>
+        /// interface for all rule entries 
+        /// </summary>
+        public interface IMRuleEntry
+        {
+            /// <summary>
+            ///     check if this entry is satisfied by the given pawn
+            /// </summary>
+            /// <param name="pawn">The pawn.</param>
+            /// <returns></returns>
+            bool Satisfied([NotNull] Pawn pawn);
+
         }
     }
 
@@ -255,7 +343,7 @@ namespace Pawnmorph
         /// <exception cref="ArgumentNullException">pawn</exception>
         protected override bool ConditionsMet(Pawn pawn)
         {
-            return RuleDef.conditions?.TrueForAll(p => p.Satisfied(pawn)) == true;
+            return RuleDef.AllRules?.All(p => p.Satisfied(pawn)) == true;
         }
 
         /// <summary>
@@ -265,15 +353,37 @@ namespace Pawnmorph
         /// <exception cref="System.ArgumentNullException">pawn</exception>
         protected override void DoRule(Pawn pawn)
         {
-            var entry = RuleDef.results;
+            List<MutationRuleDef.Result> entry = RuleDef.results;
             foreach (MutationRuleDef.Result result in entry.MakeSafe())
             {
-                DoRule(pawn, result); 
+                DoRule(pawn, result);
+                OnRuleApplied(pawn, result); 
             }
+            OnRuleApplied(pawn); 
+        }
+
+
+        /// <summary>
+        /// Called when the rule is successfully applied 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        protected virtual void OnRuleApplied([NotNull] Pawn pawn)
+        {
+            //empty 
         }
 
         /// <summary>
-        /// Does the rule on the given pawn
+        /// Called when the rule is successfully applied
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="result">The result.</param>
+        protected virtual void OnRuleApplied([NotNull] Pawn pawn, [NotNull] MutationRuleDef.Result result)
+        {
+
+        }
+
+        /// <summary>
+        ///     Does the rule on the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="result">The result.</param>

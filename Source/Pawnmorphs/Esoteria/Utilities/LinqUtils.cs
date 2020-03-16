@@ -28,6 +28,32 @@ namespace Pawnmorph.Utilities
         }
 
 
+        /// <summary>
+        /// Determines whether this enumeration of hediffDefs contains the def of the given hediff.
+        /// </summary>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns>
+        ///   <c>true</c> if this enumeration of hediffDefs contains the def of the given hediff; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// enumerable
+        /// or
+        /// hediff
+        /// </exception>
+        public static bool ContainsHediff([NotNull] this IEnumerable<HediffDef> enumerable, [NotNull] Hediff hediff)
+        {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (hediff == null) throw new ArgumentNullException(nameof(hediff));
+
+            foreach (HediffDef hediffDef in enumerable)
+            {
+                if (hediffDef == hediff.def) return true; 
+            }
+
+            return false; 
+        }
+
 
         /// <summary>gets a random element from the list</summary>
         /// <typeparam name="T"></typeparam>
