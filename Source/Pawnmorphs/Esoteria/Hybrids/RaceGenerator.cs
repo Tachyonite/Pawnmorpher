@@ -157,14 +157,14 @@ namespace Pawnmorph.Hybrids
             {
                 builder.AppendLine($"generating implied race for {morphDef.defName}");
                 ThingDef_AlienRace race = GenerateImplicitRace(human, morphDef);
-                if (morphDef.explicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
+                if (morphDef.ExplicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
                 {
                     morphDef.hybridRaceDef = race;
                     _raceLookupTable[race] = morphDef;
                 }
                 else
                 {
-                    builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.explicitHybridRace.defName}, {race.defName} will not be used but still generated");
+                    builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.ExplicitHybridRace.defName}, {race.defName} will not be used but still generated");
                 }
                 
                 CreateImplicitMeshes(builder, race);
@@ -216,8 +216,8 @@ namespace Pawnmorph.Hybrids
         {
             AlienPartGenerator gen = new AlienPartGenerator
             {
-                alienbodytypes = human.alienbodytypes,
-                aliencrowntypes = human.aliencrowntypes,
+                alienbodytypes = human.alienbodytypes.MakeSafe().ToList(),
+                aliencrowntypes = human.aliencrowntypes.MakeSafe().ToList(),
                 bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
                 alienProps = impliedRace
             };

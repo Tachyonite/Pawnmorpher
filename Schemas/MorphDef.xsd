@@ -13,7 +13,6 @@
 							<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="race" type="AnimalRace" minOccurs="0" maxOccurs="1" />
-							<xs:element name="explicitHybridRace" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="group" type="MorphGroups" minOccurs="0" maxOccurs="1" />
 							<xs:element name="categories" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
@@ -24,7 +23,7 @@
 							</xs:element>
 							<xs:element name="raceSettings" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
-									<xs:sequence>
+									<xs:all>
 										<xs:element name="statModifiers" type="StatModifiersList" minOccurs="0" maxOccurs="1" />
 										<xs:element name="thoughtSettings" type="HybridThoughtSettings" maxOccurs="1" minOccurs="0" />
 										<xs:element name="graphicsSettings" minOccurs="0" maxOccurs="1">
@@ -44,7 +43,9 @@
 											</xs:complexType>
 										</xs:element>
 										<xs:element name="traitSettings" type="TraitSettings" minOccurs="0" maxOccurs="1" />
-									</xs:sequence>
+										<xs:element name="explicitHybridRace" type="xs:string" minOccurs="0" maxOccurs="1" />
+										<xs:element name="transferHumanBodyAddons" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+									</xs:all>
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="transformSettings" type="TransformationSettings" minOccurs="0" maxOccurs="1" />

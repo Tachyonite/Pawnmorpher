@@ -34,6 +34,16 @@ namespace Pawnmorph.Hybrids
         public TraitSettings traitSettings;
 
         /// <summary>
+        /// The explicit hybrid race
+        /// </summary>
+        public ThingDef explicitHybridRace;
+
+        /// <summary>
+        /// if true and explicitHybridRace is set, human hediff graphics will be added onto the explicit hybrid race 
+        /// </summary>
+        public bool transferHumanBodyAddons; 
+
+        /// <summary>
         /// settings for the hybrid race's thoughts 
         /// </summary>
         public class HybridThoughtSettings

@@ -1,0 +1,17 @@
+<Patch>
+    
+    <!-- For testing purposes only -->
+    <!--
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Warhammer: Skaven</li>
+        </mods>
+        <match Class="PatchOperationAdd">
+            <xpath>/Defs/Pawnmorph.MorphDef[defName="RatMorph"]/raceSettings</xpath>
+            <value>
+                <explicitHybridRace>Alien_Skaven</explicitHybridRace>
+            </value>
+        </match>
+    </Operation>
+    -->
+</Patch>

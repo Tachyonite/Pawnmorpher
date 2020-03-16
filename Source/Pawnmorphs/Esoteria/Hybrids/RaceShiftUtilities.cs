@@ -50,11 +50,12 @@ namespace Pawnmorph.Hybrids
 
 
         /// <summary>
-        /// safely change the pawns race 
+        /// safely change the pawns race
         /// </summary>
-        /// <param name="pawn"></param>
-        /// <param name="race"></param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="race">The race.</param>
         /// <param name="reRollTraits">if race related traits should be reRolled</param>
+        /// <exception cref="ArgumentNullException">pawn</exception>
         public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits = false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -105,19 +106,147 @@ namespace Pawnmorph.Hybrids
                 comp.NotifyPawnRaceChanged(pawn, oldMorph);
             }
 
+            if (race == ThingDefOf.Human)
+                ValidateReversion(pawn); 
+            else 
+                ValidateExplicitRaceChange(pawn, race, oldRace);
+
+            
+
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.RefreshGraphics();
 
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
 
             //save location 
-            if(Current.ProgramState == ProgramState.Playing)
+            if (Current.ProgramState == ProgramState.Playing)
                 pawn.ExposeData();
             if (pawn.Faction != faction) pawn.SetFaction(faction);
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
                 raceChangeEventReceiver.OnRaceChange(oldRace);
             }
+        }
+
+        private static void ValidateReversion(Pawn pawn)
+        {
+            var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+            var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+            var story = pawn.story; 
+            if (alienComp == null)
+            {
+                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
+                return;
+            }
+
+            if (graphicsComp == null)
+            {
+                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(InitialGraphicsComp)}!");
+
+            }
+
+            story.bodyType = graphicsComp.BodyType;
+            alienComp.crownType = graphicsComp.CrownType;
+            story.hairDef = graphicsComp.HairDef; 
+        }
+
+
+        private static void ValidateExplicitRaceChange(Pawn pawn, ThingDef race, ThingDef oldRace)
+        {
+            if (oldRace is ThingDef_AlienRace oldARace)
+            {
+                if (race is ThingDef_AlienRace aRace)
+                {
+                    ValidateGraphicsPaths(pawn, oldARace, aRace);
+                } //validating the graphics paths only works for aliens 
+                else
+                {
+                    Log.Warning($"trying change the race of {pawn.Name} to {race.defName} which is not {nameof(ThingDef_AlienRace)}!");
+
+                }
+            }
+            else
+            {
+                Log.Warning($"trying change the race of {pawn.Name} from {oldRace.defName} which is not {nameof(ThingDef_AlienRace)}!");
+            }
+        }
+
+        private static void ValidateGraphicsPaths([NotNull] Pawn pawn, [NotNull] ThingDef_AlienRace oldRace, [NotNull] ThingDef_AlienRace race)
+        {
+            //this implimentation is a work in progress 
+            //currently, when shifting to an explicit race the body and head types will come out 'shuffled'
+            //
+            var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+            var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+            var story = pawn.story; 
+            if (alienComp == null)
+            {
+                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
+                return; 
+            }
+
+            if(graphicsComp == null)
+            {
+                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(InitialGraphicsComp)}!");
+
+            }
+
+           
+
+            var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;
+            var newGen = race.alienRace.generalSettings.alienPartGenerator; 
+
+            //get the new head type 
+            var oldHIndex = oldGen.aliencrowntypes.FindIndex(s => s == alienComp.crownType);
+            float hRatio = newGen.aliencrowntypes.Count / ((float) oldGen.aliencrowntypes.Count) ; 
+
+            int newHIndex; 
+            if (oldHIndex == -1) //-1 means not found 
+            {
+                newHIndex = Rand.Range(0, newGen.aliencrowntypes.Count); //just pick a random head 
+            }
+            else
+            {
+                newHIndex = Mathf.FloorToInt(oldHIndex * hRatio); //squeeze the old index into the range of the new crow type 
+            }
+
+
+            //now get the new body type 
+
+            var bRatio = newGen.alienbodytypes.Count / ((float) oldGen.alienbodytypes.Count);
+            var oldBIndex = oldGen.alienbodytypes.FindIndex(b => b == story.bodyType);
+
+            int newBIndex; 
+            if (oldBIndex == -1 )
+            {
+                newBIndex = Rand.Range(0, newGen.alienbodytypes.Count); 
+            }
+            else
+            {
+                newBIndex = Mathf.FloorToInt(oldBIndex * bRatio);
+            }
+
+            Log.Message($"{nameof(newHIndex)}:{newHIndex}/Count:{newGen.aliencrowntypes.Count}");
+            Log.Message($"{nameof(newBIndex)}:{newBIndex}/Count:{newGen.alienbodytypes.Count}");
+
+
+            //now set the body and head type 
+
+            var newHeadType = newGen.aliencrowntypes[newHIndex];
+            
+            alienComp.crownType = newHeadType;
+
+            if (newGen.alienbodytypes.Count > 0)
+            {
+                var newBType = newGen.alienbodytypes[newBIndex];
+                story.bodyType = newBType; 
+            }
+
+            //TODO make hair disaper if explicit race doesn't have hair 
+            //if (oldRace.alienRace.hairSettings?.hasHair == true && race.alienRace.hairSettings?.hasHair == false)
+            //{
+            //    story.hairDef = null; 
+            //}
         }
 
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)
