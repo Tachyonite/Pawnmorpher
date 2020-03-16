@@ -33,6 +33,11 @@ namespace Pawnmorph.Hediffs
         /// list of morphs to exclude 
         /// </summary>
         public List<MorphDef> blackListMorphs = new List<MorphDef>();
+
+        /// <summary>
+        /// if true, then this giver can give restricted mutations as well
+        /// </summary>
+        public bool allowRestricted; 
         
     
         /// <summary>
@@ -66,6 +71,9 @@ namespace Pawnmorph.Hediffs
             {
                 if (arg.classInfluence == blackMorph) return false;
             }
+
+            if (arg.IsRestricted && !allowRestricted) return false; 
+
 
             return true; 
         }
