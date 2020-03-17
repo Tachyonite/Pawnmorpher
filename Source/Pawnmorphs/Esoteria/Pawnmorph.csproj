@@ -321,6 +321,7 @@
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
     <Compile Include="BackstoryDefOf.cs" />
+    <Compile Include="BodyUtilities.cs" />
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
@@ -427,6 +428,7 @@
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
+    <Compile Include="Hybrids\IPartTransformer.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IMentalStateRecoveryReceiver.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
@@ -460,6 +462,7 @@
     <Compile Include="MutationRules\Worker_MorphHediff.cs" />
     <Compile Include="MutationRuleUtilities.cs" />
     <Compile Include="Need_Control.cs" />
+    <Compile Include="PartAddress.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
     <Compile Include="PMFoodUtilities.cs" />

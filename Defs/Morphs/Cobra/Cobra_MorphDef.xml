@@ -17,6 +17,8 @@
 				<skinColorOverride>(99,85,74)</skinColorOverride>
 				<hairColorOverride>(0,0,0,0)</hairColorOverride>
 			</graphicsSettings>
+			<explicitHybridRace>SnakeMorph</explicitHybridRace>
+			<transferHumanBodyAddons>true</transferHumanBodyAddons>
 		</raceSettings>
 		<transformSettings>
 			<transformationMemory>CobraTransformationMemory</transformationMemory>

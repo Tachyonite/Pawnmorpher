@@ -101,12 +101,13 @@
 		<!--Needs Stats-->
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="SnakePart">
+	<Pawnmorph.Hediffs.MutationDef Name="SnakeTail" ParentName="SnakePart">
 		<defName>EtherSnakeTail</defName>
 		<label>snake tail</label>
 		<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
 		<parts>
 			<li>Tail</li>
+			<li>TailLeg</li>
 		</parts>
 		<stages>
 			<li>
@@ -144,6 +145,9 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+
+
+
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="SnakePart">
 		<defName>EtherSnakeHand</defName>
