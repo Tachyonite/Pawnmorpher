@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -46,6 +47,12 @@ namespace Pawnmorph.Hybrids
 
         private Type partTransformer;
         private IPartTransformer _transformer;
+
+
+        /// <summary>
+        /// a list of mutations that will be added to a pawn when they become a hybrid if they do not have them already 
+        /// </summary>
+        public List<MutationDef> requiredMutations = new List<MutationDef>(); 
 
         /// <summary>
         /// Gets the transformer.

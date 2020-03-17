@@ -75,5 +75,44 @@ namespace Pawnmorph
             return curRecord;
         }
 
+        /// <summary>
+        /// Gets all non missing parts of the given part defs 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="partDefs">The part defs.</param>
+        /// <returns></returns>
+        [NotNull]
+        public static IEnumerable<BodyPartRecord> GetAllNonMissingParts([NotNull] this Pawn pawn,
+                                                                        [NotNull] IEnumerable<BodyPartDef> partDefs)
+        {
+            var lookup = partDefs.ToList(); 
+            foreach (BodyPartRecord record in pawn.health.hediffSet.GetAllNonMissingWithoutProsthetics())
+            {
+                if (lookup.Contains(record.def))
+                {
+                    yield return record; 
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all non missing parts of the given part defs 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="partDefs">The part defs.</param>
+        /// <returns></returns>
+        [NotNull]
+        public static IEnumerable<BodyPartRecord> GetAllNonMissingParts([NotNull] this Pawn pawn,
+                                                                        [NotNull] IReadOnlyList<BodyPartDef> partDefs)
+        {
+           
+            foreach (BodyPartRecord record in pawn.health.hediffSet.GetAllNonMissingWithoutProsthetics())
+            {
+                if (partDefs.Contains(record.def))
+                {
+                    yield return record;
+                }
+            }
+        }
     }
 }

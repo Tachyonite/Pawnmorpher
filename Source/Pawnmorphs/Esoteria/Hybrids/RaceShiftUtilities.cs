@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -328,6 +329,11 @@ namespace Pawnmorph.Hybrids
             if (addMissingMutations)
                 SwapMutations(pawn, morph);
 
+            if (morph.raceSettings?.requiredMutations != null)
+            {
+                CheckRequiredMutations(pawn, morph.raceSettings.requiredMutations); 
+            }
+
             var hRace = morph.hybridRaceDef;
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
             HandleGraphicsChanges(pawn, morph);
@@ -351,6 +357,31 @@ namespace Pawnmorph.Hybrids
                 FixHediffs(pawn, oldRace, morph); 
             }
 
+        }
+
+        private static void CheckRequiredMutations([NotNull] Pawn pawn, [NotNull] List<MutationDef> requiredMutations)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (requiredMutations == null) throw new ArgumentNullException(nameof(requiredMutations));
+            List<BodyPartRecord> addLst = new List<BodyPartRecord>(); 
+            foreach (MutationDef requiredMutation in requiredMutations)
+            {
+                if(requiredMutation.parts == null) continue;
+                addLst.Clear();
+                foreach (BodyPartRecord record in pawn.GetAllNonMissingParts(requiredMutation.parts)) //get all parts missing the required mutations 
+                {
+                    var hediff = pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == requiredMutation && h.Part == record);
+                    if (hediff == null)
+                    {
+                        addLst.Add(record); 
+                    }
+                }
+
+                if (addLst.Count != 0)
+                {
+                    MutationUtilities.AddMutation(pawn, requiredMutation, addLst); 
+                }
+            }
         }
 
         [NotNull]
