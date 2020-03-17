@@ -323,6 +323,7 @@ namespace Pawnmorph.Hybrids
                 return;
             }
 
+            var oldRace = pawn.def; 
             //apply mutations 
             if (addMissingMutations)
                 SwapMutations(pawn, morph);
@@ -344,6 +345,42 @@ namespace Pawnmorph.Hybrids
 
             if (tfSettings?.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
             pawn.TryGainMemory(tfSettings?.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
+
+            if (oldRace.race.body != pawn.RaceProps.body)
+            {
+                FixHediffs(pawn, oldRace, morph); 
+            }
+
+        }
+
+        [NotNull]
+        private static readonly List<Hediff> _rmList = new List<Hediff>(); 
+
+        private static void FixHediffs([NotNull] Pawn pawn, [NotNull] ThingDef oldRace, [NotNull] MorphDef morph)
+        {
+            var transformer = morph.raceSettings.Transformer;
+
+
+            _rmList.Clear();
+            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+            {
+                if(hediff.Part == null) continue;
+                var newRecord = transformer.Transform(hediff.Part, pawn.RaceProps.body);
+                if (newRecord != null)
+                {
+                    hediff.Part = newRecord; 
+                }
+                else
+                {
+                    _rmList.Add(hediff);
+                }
+            }
+
+            foreach (Hediff hediff in _rmList)
+            {
+                pawn.health.RemoveHediff(hediff);
+            }
+
         }
 
         private static void SwapMutations([NotNull] Pawn pawn,[NotNull] MorphDef morph)

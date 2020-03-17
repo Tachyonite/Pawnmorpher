@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
+using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -41,7 +42,50 @@ namespace Pawnmorph.Hybrids
         /// <summary>
         /// if true and explicitHybridRace is set, human hediff graphics will be added onto the explicit hybrid race 
         /// </summary>
-        public bool transferHumanBodyAddons; 
+        public bool transferHumanBodyAddons;
+
+        private Type partTransformer;
+        private IPartTransformer _transformer;
+
+        /// <summary>
+        /// Gets the transformer.
+        /// </summary>
+        /// <value>
+        /// The transformer.
+        /// </value>
+        /// <exception cref="InvalidCastException">tried to cast {partTransformer.Name} to {nameof(IPartTransformer)}</exception>
+        [NotNull]
+        public IPartTransformer Transformer
+        {
+            get
+            {
+                if (_transformer == null)
+                {
+                    if (partTransformer == null)
+                    {
+                        _transformer = new DefaultPartTransformer(); 
+                    }
+                    else
+                    {
+                        try
+                        {
+                            _transformer = (IPartTransformer) Activator.CreateInstance(partTransformer);
+                            if (_transformer == null)
+                            {
+                                throw new InvalidCastException($"could not create type from {partTransformer.Name}");
+                            }
+                        }
+                        catch (InvalidCastException e)
+                        {
+                            throw new InvalidCastException($"tried to cast {partTransformer.Name} to {nameof(IPartTransformer)}",e); 
+                        }
+                    }
+                }
+
+                return _transformer; 
+            }
+        }
+
 
         /// <summary>
         /// settings for the hybrid race's thoughts 
