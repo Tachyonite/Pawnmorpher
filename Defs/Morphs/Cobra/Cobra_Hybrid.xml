@@ -436,7 +436,7 @@
     <ThingDef Class="AlienRace.ThingDef_AlienRace" ParentName="BasePawn">
         <defName>SnakeMorph</defName>
         <label>naga</label>
-        <description>A baseline human, mostly unmodified by gene engineering and mostly unchanged by evolutionary pressures on non-Earth planets.</description>
+        <description>A snakelike human, with a large and powerful tail that has replaced its legs. This allows for viper-quick movement, and while you might expect them to lack arms, most cobramorphs do retain their arms. In many respects, they are a mutagenic-born mythological naga.</description>
         <statBases>
           <MarketValue>1750</MarketValue>
           <MoveSpeed>4.6</MoveSpeed>
