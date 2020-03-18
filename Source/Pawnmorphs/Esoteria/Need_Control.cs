@@ -125,7 +125,7 @@ namespace Pawnmorph
             {
                 float instinctChange = GetInstinctChangePerTick(pawn) * TimeMetrics.TICKS_PER_REAL_SECOND;
                 if (Mathf.Abs(instinctChange) > EPSILON) AddInstinctChange(Mathf.CeilToInt(instinctChange));
-                _maxLevelCached = null; 
+                //_maxLevelCached = null; 
                 SapienceLevel sLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
                 if (sLevel != _currentLevel)
                 {

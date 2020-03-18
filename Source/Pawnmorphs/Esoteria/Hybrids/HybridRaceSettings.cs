@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
+using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -32,6 +34,65 @@ namespace Pawnmorph.Hybrids
         public GraphicsSettings graphicsSettings;
         /// <summary>The trait settings</summary>
         public TraitSettings traitSettings;
+
+        /// <summary>
+        /// The explicit hybrid race
+        /// </summary>
+        public ThingDef explicitHybridRace;
+
+        /// <summary>
+        /// if true and explicitHybridRace is set, human hediff graphics will be added onto the explicit hybrid race 
+        /// </summary>
+        public bool transferHumanBodyAddons;
+
+        private Type partTransformer;
+        private IPartTransformer _transformer;
+
+
+        /// <summary>
+        /// a list of mutations that will be added to a pawn when they become a hybrid if they do not have them already 
+        /// </summary>
+        public List<MutationDef> requiredMutations = new List<MutationDef>(); 
+
+        /// <summary>
+        /// Gets the transformer.
+        /// </summary>
+        /// <value>
+        /// The transformer.
+        /// </value>
+        /// <exception cref="InvalidCastException">tried to cast {partTransformer.Name} to {nameof(IPartTransformer)}</exception>
+        [NotNull]
+        public IPartTransformer Transformer
+        {
+            get
+            {
+                if (_transformer == null)
+                {
+                    if (partTransformer == null)
+                    {
+                        _transformer = new DefaultPartTransformer(); 
+                    }
+                    else
+                    {
+                        try
+                        {
+                            _transformer = (IPartTransformer) Activator.CreateInstance(partTransformer);
+                            if (_transformer == null)
+                            {
+                                throw new InvalidCastException($"could not create type from {partTransformer.Name}");
+                            }
+                        }
+                        catch (InvalidCastException e)
+                        {
+                            throw new InvalidCastException($"tried to cast {partTransformer.Name} to {nameof(IPartTransformer)}",e); 
+                        }
+                    }
+                }
+
+                return _transformer; 
+            }
+        }
+
 
         /// <summary>
         /// settings for the hybrid race's thoughts 

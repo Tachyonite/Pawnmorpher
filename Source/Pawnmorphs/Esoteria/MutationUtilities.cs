@@ -266,9 +266,18 @@ namespace Pawnmorph
         public static bool IsProsthetic([NotNull] this Hediff hediff)
         {
             if (hediff == null) throw new ArgumentNullException(nameof(hediff));
-            if (hediff is Hediff_AddedMutation || hediff.def is Hediffs.MutationDef) return false; 
-          
-            var isProsthetic =  hediff.def?.spawnThingOnRemoved != null;
+            if (hediff is Hediff_AddedMutation || hediff.def is Hediffs.MutationDef) return false;
+
+            ThingDef prosthetic = hediff.def?.spawnThingOnRemoved;
+            bool isProsthetic; 
+            if (prosthetic != null)
+            {
+                isProsthetic = hediff.def.addedPartProps?.solid == true; 
+            }
+            else
+            {
+                isProsthetic = false; 
+            }
             
 
             return isProsthetic; 
@@ -698,7 +707,7 @@ namespace Pawnmorph
         public static MutationTracker GetMutationTracker([NotNull] this Pawn pawn, bool warnOnFail = true)
         {
             var comp = pawn.GetComp<MutationTracker>();
-            if (comp == null && warnOnFail) Log.Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
+            if (comp == null && warnOnFail) Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
             return comp;
         }
 
@@ -859,16 +868,21 @@ namespace Pawnmorph
                 bodyAddons.SelectMany(add => add.hediffGraphics ?? Enumerable.Empty<AlienPartGenerator.BodyAddonHediffGraphic>())
                           .Select(h => h.hediff);
 
-
+            StringBuilder builder = new StringBuilder(); 
             foreach (string hediffDef in hediffDefNames)
             {
                 var hDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediffDef);
                 if (hDef == null)
                 {
-                    Log.Warning($"there are graphics for {hediffDef} but there is no hediff with that defName!");
+                    builder.AppendLine($"there are graphics for {hediffDef} but there is no hediff with that defName!");
                     continue;
                 }
                 yield return hDef;
+            }
+
+            if (builder.Length > 0)
+            {
+                Warning(builder); 
             }
         }
 

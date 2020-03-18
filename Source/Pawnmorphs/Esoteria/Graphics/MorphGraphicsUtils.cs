@@ -28,7 +28,7 @@ namespace Pawnmorph.GraphicSys
             if (def == null) throw new ArgumentNullException(nameof(def));
             HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
 
-            if (def.explicitHybridRace == null)
+            if (def.ExplicitHybridRace == null)
             {
                 Gender? gender = pawn?.gender;
 
@@ -38,7 +38,7 @@ namespace Pawnmorph.GraphicSys
                 return gSettings?.hairColorOverride ?? GetSkinColorOverride(def, pawn);
             }
 
-            var hRace = def.explicitHybridRace as ThingDef_AlienRace;
+            var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhaircolorgen?.NewRandomizedColor()
                 ?? GetSkinColorOverride(def, pawn);
         }
@@ -53,7 +53,7 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetHairColorOverrideSecond([NotNull] this MorphDef def, Pawn pawn=null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            if (def.explicitHybridRace == null)
+            if (def.ExplicitHybridRace == null)
             {
                 HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
                 if (pawn?.gender == Gender.Female && gSettings?.femaleHairColorOverrideSecond != null)
@@ -63,7 +63,7 @@ namespace Pawnmorph.GraphicSys
 
                 return gSettings?.hairColorOverrideSecond ?? GetSkinColorSecondOverride(def, pawn);
             }
-            var hRace = def.explicitHybridRace as ThingDef_AlienRace;
+            var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhairsecondcolorgen?.NewRandomizedColor()
                 ?? GetSkinColorSecondOverride(def, pawn);
         }
@@ -78,7 +78,7 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetSkinColorOverride([NotNull] this MorphDef def, Pawn pawn = null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            if (def.explicitHybridRace == null)
+            if (def.ExplicitHybridRace == null)
             {
                 HybridRaceSettings.GraphicsSettings raceGSettings = def.raceSettings?.graphicsSettings;
                 Gender? gender = pawn?.gender;
@@ -88,7 +88,7 @@ namespace Pawnmorph.GraphicSys
                 return raceGSettings?.skinColorOverride;
             }
 
-            var hRace = def.explicitHybridRace as ThingDef_AlienRace;
+            var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskincolorgen?.NewRandomizedColor();
         }
 
@@ -102,7 +102,7 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetSkinColorSecondOverride([NotNull] this MorphDef def, Pawn pawn=null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            if (def.explicitHybridRace == null)
+            if (def.ExplicitHybridRace == null)
             {
                 HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
 
@@ -113,7 +113,7 @@ namespace Pawnmorph.GraphicSys
 
                 return gSettings?.skinColorOverrideSecond;
             }
-            var hRace = def.explicitHybridRace as ThingDef_AlienRace;
+            var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
             return hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskinsecondcolorgen?.NewRandomizedColor();
         }
 

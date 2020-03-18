@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph.Hediffs
 {
@@ -256,7 +257,7 @@ namespace Pawnmorph.Hediffs
             TryGiveTransformations();
             if(CurStage is IExecutableStage execStage)
             {
-                Log.Message($"Executing {execStage.GetType().Name} on {def.defName}");
+                Pedantic($"Executing {execStage.GetType().Name} on {def.defName}");
                 execStage.EnteredStage(this); 
             }
         }
