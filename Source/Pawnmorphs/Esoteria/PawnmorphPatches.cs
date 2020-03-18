@@ -71,6 +71,7 @@ namespace Pawnmorph
 
         private static void PatchCaravanUI([NotNull] Harmony harmInstance)
         {
+            //TODO make patch utilities for mass patching delegates 
             var cUIType = typeof(CaravanUIUtility);
             var flg = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance;
 
@@ -79,10 +80,14 @@ namespace Pawnmorph
             {
                 var parameters = methodInfo.GetParameters();
                 if (parameters.Length != 1) return false;
-                return parameters[0].ParameterType == typeof(TransferableOneWay);
+                return parameters[0].ParameterType == typeof(TransferableOneWay) || parameters[0].ParameterType == typeof(Pawn);
             }
             
             var allInnerTypes = cUIType.GetNestedTypes(flg).Where(IsCompilerGenerated);
+            //add in the delegates from LordToil_PrepareCaravan_GatherAnimals
+            allInnerTypes = allInnerTypes.Concat(typeof(LordToil_PrepareCaravan_GatherAnimals)
+                                                .GetNestedTypes(flg)
+                                                .Where(IsCompilerGenerated)); 
             var allMethods = allInnerTypes.SelectMany(t => t.GetMethods(flg).Where(CorrectSignature));
             var tsMethodInfo = typeof(PawnmorphPatches).GetMethod(nameof(CaravanDelegatePatch), flg); 
             foreach (MethodInfo methodInfo in allMethods)
