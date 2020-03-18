@@ -147,7 +147,7 @@ namespace Pawnmorph
                 debug = addon.debug,
                 drawForFemale = addon.drawForFemale,
                 drawForMale =  addon.drawForMale,
-                drawnInBed = addon.drawForFemale,
+                drawnInBed = addon.drawnInBed,
                 drawnOnGround = addon.drawnOnGround,
                 drawSize = addon.drawSize,
                 hiddenUnderApparelFor = addon.hiddenUnderApparelFor.MakeSafe().ToList(),
