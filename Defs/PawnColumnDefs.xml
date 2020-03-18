@@ -1,0 +1,11 @@
+<Defs>
+    
+  <PawnColumnDef>
+    <defName>RecruitSapientFormerHuman</defName>
+    <workerClass>Pawnmorph.PawnColumnWorker_RecruitSapientAnimal</workerClass>
+    <sortable>true</sortable>
+    <headerIcon>UI/Icons/Animal/Tame</headerIcon>
+    <headerTip>Tame a wild animal.</headerTip>
+    <paintable>true</paintable>
+  </PawnColumnDef>
+</Defs>
