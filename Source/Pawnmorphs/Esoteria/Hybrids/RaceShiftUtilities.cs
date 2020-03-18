@@ -227,9 +227,7 @@ namespace Pawnmorph.Hybrids
                 newBIndex = Mathf.FloorToInt(oldBIndex * bRatio);
             }
 
-            Log.Message($"{nameof(newHIndex)}:{newHIndex}/Count:{newGen.aliencrowntypes.Count}");
-            Log.Message($"{nameof(newBIndex)}:{newBIndex}/Count:{newGen.alienbodytypes.Count}");
-
+            
 
             //now set the body and head type 
 
