@@ -439,5 +439,25 @@ namespace Pawnmorph.DebugUtils
 
             Log.Message(builder.ToString()); 
         }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        static void ListDesignatedFormerHumans()
+        {
+            var map = Find.CurrentMap;
+            if (map == null) return;
+            var designation =
+                map.designationManager.allDesignations.Where(d => d.def == PMDesignationDefOf.RecruitSapientFormerHuman).ToList();
+            if (designation.Count == 0)
+            {
+                Log.Message($"No {nameof(PMDesignationDefOf.RecruitSapientFormerHuman)} on map");
+                return;
+            }
+
+            var str = designation.Join(s => s.target.Label, "\n");
+            Log.Message(str); 
+
+
+
+        }
     }
 }

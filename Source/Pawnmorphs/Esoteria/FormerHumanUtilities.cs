@@ -14,6 +14,7 @@ using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
+using Pawnmorph.Work;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -103,6 +104,9 @@ namespace Pawnmorph
                 if (!factionDef.humanlikeFaction || factionDef.hidden || factionDef.pawnNameMaker == null) continue;
                 _randomNameGenerators.Add(factionDef.pawnNameMaker);
             }
+
+            Giver_RecruitSapientAnimal.ResetStaticData();
+
         }
 
         /// <summary>
@@ -618,9 +622,26 @@ namespace Pawnmorph
         public static bool IsHumanlike([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (pawn.RaceProps.Humanlike) return true;
+            if (pawn.RaceProps.Humanlike) return !pawn.IsWildMan();
             if (pawn.IsSapientFormerHuman()) return true;
             return false;
+        }
+
+        /// <summary>
+        /// Determines whether this instance is an animal.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is an animal; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsAnimal([NotNull] this Pawn pawn)
+        {
+            if (pawn.RaceProps.Animal)
+            {
+                return !pawn.IsSapientFormerHuman(); 
+            }
+
+            return false; 
         }
 
 

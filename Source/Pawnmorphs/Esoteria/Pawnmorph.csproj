@@ -346,6 +346,7 @@
     <Compile Include="Damage\Worker_MutagenicInjury.cs" />
     <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
+    <Compile Include="DebugUtils\PMDebugActions.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FormerHumanLogging.cs" />
@@ -372,6 +373,7 @@
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
+    <Compile Include="Designations\RecruitSapientFormerHuman.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="FormerHumanStatus.cs" />
     <Compile Include="FormerHumans\FoodThoughtSettings.cs" />
@@ -405,6 +407,7 @@
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
     <Compile Include="HPatches\AIPatches.cs" />
+    <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
@@ -427,6 +430,7 @@
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\WildmanUtilityPatches.cs" />
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="Hybrids\IPartTransformer.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
@@ -437,6 +441,8 @@
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
@@ -463,9 +469,12 @@
     <Compile Include="MutationRuleUtilities.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PartAddress.cs" />
+    <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
+    <Compile Include="PMDesignationDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
+    <Compile Include="PMInteractionDefOf.cs" />
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
@@ -645,12 +654,14 @@
     <Compile Include="Utilities\HediffCompBase.cs" />
     <Compile Include="Utilities\HediffDefUtilities.cs" />
     <Compile Include="Utilities\LinqUtils.cs" />
+    <Compile Include="Utilities\PatchUtilities.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\SkillMod.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
     <Compile Include="Utilities\VTuple.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
+    <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
   </ItemGroup>
   <ItemGroup>
