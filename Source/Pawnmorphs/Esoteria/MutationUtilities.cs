@@ -266,9 +266,18 @@ namespace Pawnmorph
         public static bool IsProsthetic([NotNull] this Hediff hediff)
         {
             if (hediff == null) throw new ArgumentNullException(nameof(hediff));
-            if (hediff is Hediff_AddedMutation || hediff.def is Hediffs.MutationDef) return false; 
-          
-            var isProsthetic =  hediff.def?.spawnThingOnRemoved != null;
+            if (hediff is Hediff_AddedMutation || hediff.def is Hediffs.MutationDef) return false;
+
+            ThingDef prosthetic = hediff.def?.spawnThingOnRemoved;
+            bool isProsthetic; 
+            if (prosthetic != null)
+            {
+                isProsthetic = hediff.def.addedPartProps?.solid == true; 
+            }
+            else
+            {
+                isProsthetic = false; 
+            }
             
 
             return isProsthetic; 
