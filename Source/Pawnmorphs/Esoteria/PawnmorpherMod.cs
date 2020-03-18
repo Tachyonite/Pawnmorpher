@@ -47,11 +47,15 @@ namespace Pawnmorph
             listingStandard.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
             settings.maxMutationThoughts = (int)listingStandard.Slider(settings.maxMutationThoughts, 1, 10);
             
-            listingStandard.Label($"logging level:{settings.logLevel}");
-            float f = (float) ((int) settings.logLevel);
-            var maxLevel = (int) LogLevel.Pedantic;
-            f = listingStandard.Slider(f, 0, maxLevel + 1);
-            settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(f, 0, maxLevel)); 
+            if (Prefs.DevMode)
+            {
+                listingStandard.Label($"logging level:{settings.logLevel}");
+                float f = (float) ((int) settings.logLevel);
+                var maxLevel = (int) LogLevel.Pedantic;
+                f = listingStandard.Slider(maxLevel - f, 0, maxLevel);
+                settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(f, 0, maxLevel));
+            }
+
             listingStandard.End();
             base.DoSettingsWindowContents(inRect);
         }
