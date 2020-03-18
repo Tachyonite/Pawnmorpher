@@ -74,7 +74,7 @@ namespace Pawnmorph.Designations
         /// <returns></returns>
         public override AcceptanceReport CanDesignateThing(Thing t)
         {
-            return t is Pawn pawn && pawn.IsSapientFormerHuman() && Map.designationManager.DesignationOn(pawn, Designation) == null;
+            return t is Pawn pawn && pawn.IsSapientFormerHuman() && pawn.Faction == null && Map.designationManager.DesignationOn(pawn, Designation) == null;
         }
 
         /// <summary>
