@@ -48,6 +48,16 @@ namespace Pawnmorph.Social
             new CurvePoint(0.0f, 2f)
         };
 
+        /// <summary>
+        /// performs the interaction between the initiator and recipient.
+        /// </summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <param name="extraSentencePacks">The extra sentence packs.</param>
+        /// <param name="letterText">The letter text.</param>
+        /// <param name="letterLabel">The letter label.</param>
+        /// <param name="letterDef">The letter definition.</param>
+        /// <param name="lookTargets">The look targets.</param>
         public override void Interacted(
             Pawn initiator,
             Pawn recipient,
@@ -201,8 +211,17 @@ namespace Pawnmorph.Social
             return base.RandomSelectionWeight(initiator, recipient);
         }
 
-
-        private static void DoRecruit(
+        /// <summary>
+        /// recruits the sapient animal
+        /// </summary>
+        /// <param name="recruiter">The recruiter.</param>
+        /// <param name="recruitee">The recruitee.</param>
+        /// <param name="recruitChance">The recruit chance.</param>
+        /// <param name="letterLabel">The letter label.</param>
+        /// <param name="letter">The letter.</param>
+        /// <param name="useAudiovisualEffects">if set to <c>true</c> [use audiovisual effects].</param>
+        /// <param name="sendLetter">if set to <c>true</c> [send letter].</param>
+        public static void DoRecruit(
             Pawn recruiter,
             Pawn recruitee,
             float recruitChance,
@@ -278,7 +297,14 @@ namespace Pawnmorph.Social
         }
 
 
-        private static void DoRecruit(
+        /// <summary>
+        /// recruits the sapient animal
+        /// </summary>
+        /// <param name="recruiter">The recruiter.</param>
+        /// <param name="recruitee">The recruitee.</param>
+        /// <param name="recruitChance">The recruit chance.</param>
+        /// <param name="useAudiovisualEffects">if set to <c>true</c> [use audiovisual effects].</param>
+        public static void DoRecruit(
             Pawn recruiter,
             Pawn recruitee,
             float recruitChance,

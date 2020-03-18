@@ -15,6 +15,9 @@ namespace Pawnmorph.Jobs
     /// <seealso cref="Verse.AI.JobDriver" />
     public abstract class Driver_InteractFormerHuman : JobDriver
     {
+        /// <summary>
+        /// The animal index
+        /// </summary>
         protected const TargetIndex AnimalInd = TargetIndex.A;
 
         private const TargetIndex FoodHandInd = TargetIndex.B;
@@ -27,8 +30,14 @@ namespace Pawnmorph.Jobs
 
         private const float MaxMinNutritionPerFeed = 0.3f;
 
+        /// <summary>
+        /// The feed count
+        /// </summary>
         public const int FeedCount = 2;
 
+        /// <summary>
+        /// The maximum food preferability
+        /// </summary>
         public const FoodPreferability MaxFoodPreferability = FoodPreferability.RawTasty;
 
         private float feedNutritionLeft;

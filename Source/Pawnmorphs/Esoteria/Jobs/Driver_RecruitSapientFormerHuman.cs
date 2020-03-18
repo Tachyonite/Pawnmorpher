@@ -25,6 +25,10 @@ namespace Pawnmorph.Jobs
         /// </value>
         protected override bool CanInteractNow => !TameUtility.TriedToTameTooRecently(Animal);
 
+        /// <summary>
+        /// Gets the Final indirect toil
+        /// </summary>
+        /// <returns></returns>
         protected override Toil FinalInteractToil()
         {
             return TryRecruit(TargetIndex.A);

@@ -19,7 +19,10 @@ namespace Pawnmorph.Work
         private static string CantInteractAnimalAsleepTrans;
         private static string CantInteractAnimalBusyTrans;
 
-        public static void ResetStaticData()
+        /// <summary>
+        /// Resets the static data.
+        /// </summary>
+        public new static void ResetStaticData()
         {
        
             CantInteractAnimalDownedTrans = (string)"CantInteractAnimalDowned".Translate(); //TODO make these sapient animal specific 

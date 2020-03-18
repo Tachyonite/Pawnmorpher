@@ -627,6 +627,23 @@ namespace Pawnmorph
             return false;
         }
 
+        /// <summary>
+        /// Determines whether this instance is an animal.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is an animal; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsAnimal([NotNull] this Pawn pawn)
+        {
+            if (pawn.RaceProps.Animal)
+            {
+                return !pawn.IsSapientFormerHuman(); 
+            }
+
+            return false; 
+        }
+
 
         /// <summary>
         ///     Determines whether the specified pawn is a manhunter.
