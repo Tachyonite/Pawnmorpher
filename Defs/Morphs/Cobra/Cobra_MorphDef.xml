@@ -19,6 +19,9 @@
 			</graphicsSettings>
 			<explicitHybridRace>SnakeMorph</explicitHybridRace>
 			<transferHumanBodyAddons>true</transferHumanBodyAddons>
+			<requiredMutations>
+				<li>EtherSnakeTail</li>
+			</requiredMutations>
 		</raceSettings>
 		<transformSettings>
 			<transformationMemory>CobraTransformationMemory</transformationMemory>

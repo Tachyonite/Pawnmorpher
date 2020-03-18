@@ -2,6 +2,7 @@
 // last updated 09/09/2019  7:38 PM
 
 using JetBrains.Annotations;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Hybrids;
 using Verse;
 
@@ -84,7 +85,25 @@ namespace Pawnmorph
             }
 
             if (respawningAfterLoad)
+            {
                 RemoveObsoleteHediffs();
+                FisExplicitRaceGraphics();
+            }
+        }
+
+        private void FisExplicitRaceGraphics()
+        {
+            //work around for the portraits of explicit hybrid races not updating correctly after load for some reason 
+            //should be removed when that is fixed 
+
+            MorphDef morph;
+            if (RaceGenerator.TryGetMorphOfRace(Pawn.def, out morph))
+            {
+                if (Pawn.def == morph.ExplicitHybridRace)
+                {
+                    Pawn.RefreshGraphics();
+                }
+            }
         }
 
         private void RecalculateMorphCount(MorphTracker tracker)

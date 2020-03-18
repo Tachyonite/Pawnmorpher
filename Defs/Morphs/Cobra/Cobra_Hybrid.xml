@@ -580,6 +580,15 @@
           <li>Euthanize</li>
           <li>Anesthetize</li>
         </recipes>
+        <comps>
+            <li Class="Pawnmorph.MorphTrackingCompProperties"/>
+			<li>
+				<compClass>Pawnmorph.GraphicSys.InitialGraphicsComp</compClass>
+			</li>
+			<li>
+				<compClass>Pawnmorph.GraphicSys.GraphicsUpdaterComp</compClass>
+			</li>
+        </comps>
         <alienRace>
             <generalSettings>
                 <alienPartGenerator>

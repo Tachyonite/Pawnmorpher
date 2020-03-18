@@ -30,6 +30,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsLoadingOrSpawning([NotNull] this Pawn pawn)
         {
+            if (PawnGenerator.IsBeingGenerated(pawn)) return true; 
             if (pawn.health == null || pawn.mindState?.inspirationHandler == null || pawn.needs == null) return true;
             return false; 
         }
