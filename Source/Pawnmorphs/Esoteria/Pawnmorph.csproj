@@ -324,8 +324,6 @@
     <Compile Include="BodyUtilities.cs" />
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
-    <Compile Include="Caravans\LordJob_FormAndSendSapientAnimalCaravan.cs" />
-    <Compile Include="Caravans\LordToil_PrepareCaravanSA_GatherAnimals.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
@@ -409,7 +407,6 @@
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
     <Compile Include="HPatches\AIPatches.cs" />
-    <Compile Include="HPatches\CaravanPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
