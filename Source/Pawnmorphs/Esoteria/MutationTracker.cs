@@ -112,6 +112,8 @@ namespace Pawnmorph
         /// </summary>
         public override void CompTick()
         {
+            if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn)) return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
+
             if (Pawn.IsHashIntervalTick(MutationRuleDef.CHECK_RATE))
             {
                 MutationRuleUtilities.TryExecuteRulesOn(Pawn); 
@@ -257,6 +259,8 @@ namespace Pawnmorph
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
                 // Generate lookup dict manually during load for backwards compatibility.
             {
+                if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn)) return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
+
                 RecalculateMutationInfluences();
             }
         }
