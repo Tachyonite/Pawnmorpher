@@ -221,7 +221,7 @@
 		</skillRequirements>
 		<workSkill>Crafting</workSkill>
 	</RecipeDef>
-
+	<!-- 
 	<RecipeDef>
 		<defName>Make_Morphskilk</defName>
 		<label>make morph skilk</label>
@@ -311,4 +311,5 @@
 		</skillRequirements>
 		<workSkill>Crafting</workSkill>
 	</RecipeDef>
+	-->
 </Defs>
