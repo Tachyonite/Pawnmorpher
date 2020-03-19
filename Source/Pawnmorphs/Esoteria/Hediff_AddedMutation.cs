@@ -170,6 +170,17 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Gets a value indicating whether this instance is a core mutation.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is a core mutation; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsCoreMutation
+        {
+            get { return this.TryGetComp<RemoveFromPartComp>()?.Layer == MutationLayer.Core;  }
+        }
+
+        /// <summary>
         /// Gets the severity adjust comp 
         /// </summary>
         /// <value>
