@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -119,5 +120,63 @@ namespace Pawnmorph.Utilities
 
         }
 
+
+        /// <summary>
+        /// substitutes all instances of RaceProps Humanlike, Animal, and Tooluser with their equivalent in FormerHumanUtilities
+        /// </summary>
+        /// <param name="instructions">The code instructions.</param>
+        /// <exception cref="System.ArgumentNullException">codeInstructions</exception>
+        public static void SubstituteFormerHumanMethods([NotNull] IEnumerable<CodeInstruction> instructions)
+        {
+            if (instructions == null) throw new ArgumentNullException(nameof(instructions));
+            var codeInstructions = instructions.ToList(); 
+            for (int i = 0; i < codeInstructions.Count - 1; i++)
+            {
+                int j = i + 1;
+                var opI = codeInstructions[i];
+                var opJ = codeInstructions[j];
+                if (opI == null || opJ == null) continue;
+                //the segment we're interested in always start with pawn.get_RaceProps() (ie pawn.RaceProps) 
+                if (opI.opcode == OpCodes.Callvirt && ((MethodInfo)opI.operand) == _getRacePropsMethod)
+                {
+                    //signatures we care about always have a second callVirt 
+                    if (opJ.opcode != OpCodes.Callvirt) continue;
+
+                    var jMethod = opJ.operand as MethodInfo;
+                    bool patched;
+                    //figure out which method, if any, we're going to be replacing 
+                    if (jMethod == _getHumanlikeMethod)
+                    {
+                        patched = true;
+                        opI.operand = IsHumanoidMethod;
+                    }
+                    else if (jMethod == _getAnimalMethod)
+                    {
+                        patched = true;
+                        opI.operand = IsAnimalMethod;
+                    }
+                    else if (jMethod == _toolUserMethod)
+                    {
+                        patched = true;
+                        opI.operand = IsToolUserMethod;
+                    }
+                    else
+                        patched = false;
+
+                    if (patched)
+                    {
+                        //now clean up if we did any patching 
+
+                        opI.opcode = OpCodes.Call;//always uses call 
+
+                        //replace opJ with nop (no operation) so we don't fuck up the stack 
+                        opJ.opcode = OpCodes.Nop;
+                        opJ.operand = null;
+                    }
+                }
+
+            }
+
+        }
     }
 }
