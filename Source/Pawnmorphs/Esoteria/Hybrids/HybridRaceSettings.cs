@@ -45,7 +45,7 @@ namespace Pawnmorph.Hybrids
         /// </summary>
         public bool transferHumanBodyAddons;
 
-        private Type partTransformer;
+        private Type partTransformer = default;
         private IPartTransformer _transformer;
 
 

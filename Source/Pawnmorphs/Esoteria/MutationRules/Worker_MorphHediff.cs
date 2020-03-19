@@ -24,7 +24,6 @@ namespace Pawnmorph.MutationRules
         {
         }
 
-        private List<HediffDef> _resultsList;
 
         private List<HediffDef> _condList;
 

@@ -127,11 +127,12 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Transfers skills from pawn1 to pawn2 
+        /// Transfers skills from pawn1 to pawn2
         /// </summary>
         /// <param name="pawn1">The pawn1.</param>
         /// <param name="pawn2">The pawn2.</param>
         /// <param name="mode">The transfer mode.</param>
+        /// <param name="passionTransferMode">The passion transfer mode.</param>
         public static void TransferSkills([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, SkillTransferMode mode = SkillTransferMode.Set, SkillPassionTransferMode passionTransferMode=SkillPassionTransferMode.Ignore)
         {
             if (pawn2.skills == null)
