@@ -495,7 +495,7 @@ namespace Pawnmorph.Hybrids
                 description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
                 modContentPack = morph.modContentPack,
                 inspectorTabsResolved = humanDef.inspectorTabsResolved?.ToList() ?? new List<InspectTabBase>(),
-                recipes = new List<RecipeDef>(humanDef.AllRecipes), //this is where the surgery operations live
+                recipes = new List<RecipeDef>(humanDef.recipes.MakeSafe()), //this is where the surgery operations live
                 filth = morph.race.filth,
                 filthLeaving = morph.race.filthLeaving,
                 soundDrop = morph.race.soundDrop,
