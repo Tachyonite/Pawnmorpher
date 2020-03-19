@@ -258,7 +258,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Morphsilk>1</Morphsilk>
+			<Morphsilk>60</Morphsilk>
 		</products>
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 		<skillRequirements>
@@ -303,7 +303,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Morphsilk>1</Morphsilk>
+			<Morphsilk>60</Morphsilk>
 		</products>
 		<researchPrerequisite>MutagenicPlantSowing</researchPrerequisite>
 		<skillRequirements>
