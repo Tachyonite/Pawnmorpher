@@ -71,7 +71,6 @@ namespace Pawnmorph
         private void AddSurgeriesToMorphs()
         {
 
-            Debug.Log($"$$$$$$Adding Surgeries to Morphs");
 
             var humanRecipes = ThingDefOf.Human.AllRecipes; 
             foreach (ThingDef_AlienRace race in RaceGenerator.ImplicitRaces)
