@@ -280,12 +280,12 @@ namespace Pawnmorph.DebugUtils
             var wDict = new Dictionary<AnimalClassBase, float>();
             var mutations = new List<Hediff_AddedMutation>();
             var strings = new List<string>();
-            float maxInf = MorphUtilities.MaxHumanInfluence;
+           
             foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonists)
             {
                 mutations.Clear();
                 mutations.AddRange(pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
-
+                float maxInf = MorphUtilities.GetMaxInfluenceOfRace(pawn.def);
                 AnimalClassUtilities.FillInfluenceDict(mutations, wDict);
                 if (wDict.Count == 0) continue;
                 //now build the log message entry 
@@ -389,7 +389,7 @@ namespace Pawnmorph.DebugUtils
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void MaximumMutationPointsForHumans()
         {
-            Log.Message(MorphUtilities.MaxHumanInfluence.ToString());
+            Log.Message(MorphUtilities.GetMaxInfluenceOfRace(ThingDefOf.Human).ToString());
         }
 
         [DebugOutput(MAIN_CATEGORY_NAME)]

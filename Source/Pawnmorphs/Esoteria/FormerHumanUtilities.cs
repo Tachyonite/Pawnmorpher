@@ -1141,7 +1141,7 @@ namespace Pawnmorph
         private static void AddRandomMutationToPawn(Pawn lPawn)
         {
             //give at least as many mutations as there are slots, plus some more to make it a bit more chaotic 
-            int mutationsToAdd = Mathf.CeilToInt(MorphUtilities.MaxHumanInfluence) + 5;
+            int mutationsToAdd = Mathf.CeilToInt(MorphUtilities.GetMaxInfluenceOfRace(lPawn.def)) + 5;
             _mScratchList.Clear();
             _mScratchList.AddRange(MutationUtilities.AllNonRestrictedMutations);
 

@@ -15,7 +15,7 @@ using static Pawnmorph.DebugUtils.DebugLogUtils;
 namespace Pawnmorph
 {
     /// <summary> Tracker comp for tracking the current influence a pawn has of a given morph. </summary>
-    public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<AnimalClassBase, float>>
+    public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<AnimalClassBase, float>>, IRaceChangeEventReceiver
     {
 
         [NotNull] private readonly List<Hediff_AddedMutation> _mutationList = new List<Hediff_AddedMutation>();
@@ -46,7 +46,7 @@ namespace Pawnmorph
         /// <value>
         /// The total normalized influence.
         /// </value>
-        public float TotalNormalizedInfluence => TotalInfluence / MorphUtilities.MaxHumanInfluence; 
+        public float TotalNormalizedInfluence => TotalInfluence / MorphUtilities.GetMaxInfluenceOfRace(parent.def);  
 
         /// <summary>
         /// Gets the non human influence on the pawn.
@@ -144,7 +144,7 @@ namespace Pawnmorph
         public float GetDirectNormalizedInfluence([NotNull] AnimalClassBase @class)
         {
             if (@class == null) throw new ArgumentNullException(nameof(@class));
-            return _influenceDict.TryGetValue(@class) / MorphUtilities.MaxHumanInfluence;
+            return _influenceDict.TryGetValue(@class) / MorphUtilities.GetMaxInfluenceOfRace(parent.def); 
         }
 
         /// <summary>
@@ -186,6 +186,7 @@ namespace Pawnmorph
                 totalInfluence += keyValuePair.Value; 
             }
 
+            var maxInfluence = MorphUtilities.GetMaxInfluenceOfRace(parent.def); 
             if (anyNegative)
             {
                 Log.Warning($"{Pawn.Name} has negative mutation influence");
@@ -196,9 +197,9 @@ namespace Pawnmorph
                 Log.Warning($"{Pawn.Name} mutation tracker total is incorrect calculated:{totalInfluence} vs cached:{TotalInfluence}");
                 RecalculateMutationInfluences();
             }
-            else if (totalInfluence > MorphUtilities.MaxHumanInfluence)
+            else if (totalInfluence > maxInfluence)
             {
-                Log.Warning($"{Pawn.Name} mutation tracker total is incorrect calculated:{totalInfluence}  greater then max:{MorphUtilities.MaxHumanInfluence}");
+                Log.Warning($"{Pawn.Name} mutation tracker total is incorrect calculated:{totalInfluence}  greater then max:{maxInfluence}");
                 RecalculateMutationInfluences();
             }
 
@@ -295,5 +296,16 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// Called when the pawn's race changes.
+        /// </summary>
+        /// <param name="oldRace">The old race.</param>
+        void IRaceChangeEventReceiver.OnRaceChange(ThingDef oldRace)
+        {
+            if (oldRace.race.body != parent.def.race.body)
+            {
+                RecalculateMutationInfluences();
+            }
+        }
     }
 }

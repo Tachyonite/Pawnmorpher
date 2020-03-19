@@ -80,7 +80,7 @@ namespace Pawnmorph.DebugUtils
                 builder.AppendLine($"{kvp.Key.Label}:{kvp.Value}"); 
             }
 
-            builder.AppendLine($"---Total={tracker.TotalInfluence} N:{tracker.TotalNormalizedInfluence} NN:{tracker.TotalInfluence/MorphUtilities.MaxHumanInfluence}---");
+            builder.AppendLine($"---Total={tracker.TotalInfluence} N:{tracker.TotalNormalizedInfluence} NN:{tracker.TotalInfluence/MorphUtilities.GetMaxInfluenceOfRace(pawn.def)}---");
 
 
             builder.AppendLine($"---HighestInfluence={tracker.HighestInfluence?.Label ?? "NULL"}---");

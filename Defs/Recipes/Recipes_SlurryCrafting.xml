@@ -221,4 +221,94 @@
 		</skillRequirements>
 		<workSkill>Crafting</workSkill>
 	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Make_Morphskilk</defName>
+		<label>make morph skilk</label>
+		<description>Turn cloth into morphskilk using mechanite slurry</description>
+		<jobString>creating morph silk</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
+		<workAmount>100</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MechaniteSlurry</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Cloth</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<recipeUsers>
+			<li>HandTailoringBench</li>
+			<li>ElectricTailoringBench</li>
+		</recipeUsers>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MechaniteSlurry</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Morphsilk>1</Morphsilk>
+		</products>
+		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>3</Crafting>
+		</skillRequirements>
+		<workSkill>Crafting</workSkill>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Make_MorphskilkChaobulbs</defName>
+		<label>make morph skilk</label>
+		<description>Turn cloth into morphskilk using chaobulbs</description>
+		<jobString>creating morph silk</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
+		<workAmount>100</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chaobulb</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Cloth</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<recipeUsers>
+			<li>HandTailoringBench</li>
+			<li>ElectricTailoringBench</li>
+		</recipeUsers>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MechaniteSlurry</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Morphsilk>1</Morphsilk>
+		</products>
+		<researchPrerequisite>MutagenicPlantSowing</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>3</Crafting>
+		</skillRequirements>
+		<workSkill>Crafting</workSkill>
+	</RecipeDef>
 </Defs>
