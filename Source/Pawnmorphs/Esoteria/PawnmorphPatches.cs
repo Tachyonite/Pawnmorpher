@@ -58,6 +58,7 @@ namespace Pawnmorph
                 Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching caravan UI delegates\n{e}");
             }
 
+
             try
             {
 
@@ -68,6 +69,8 @@ namespace Pawnmorph
                 Log.Error($"Pawnmorpher cannot preform harmony patches! caught {e.GetType().Name}\n{e}"); 
             }
         }
+
+        
 
         private static void PatchCaravanUI([NotNull] Harmony harmInstance)
         {
