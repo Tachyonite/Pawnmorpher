@@ -58,7 +58,7 @@ namespace Pawnmorph
         private List<MorphDef> _allMorphs;
 
         [Unsaved] private List<MutationDef> _mutations;
-        [Unsaved] private int _morphTries; 
+        [Unsaved] private int _morphTries = 0; 
 
         [NotNull]
         private List<MorphDef> AllMorphs

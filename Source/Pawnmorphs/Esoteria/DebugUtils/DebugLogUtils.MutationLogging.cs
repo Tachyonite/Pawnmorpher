@@ -26,5 +26,17 @@ namespace Pawnmorph.DebugUtils
 
             Log.Message(builder.ToString());
         }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void GetRaceMaxInfluence()
+        {
+            StringBuilder builder = new StringBuilder(); 
+            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.body != null))
+            {
+                builder.AppendLine($"{thingDef.defName}/{thingDef.label}={MorphUtilities.GetMaxInfluenceOfRace(thingDef)}"); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
     }
 }

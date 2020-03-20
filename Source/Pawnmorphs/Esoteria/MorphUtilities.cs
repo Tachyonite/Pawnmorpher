@@ -63,39 +63,65 @@ namespace Pawnmorph
             return $"{modStr}{record.def?.defName}/{record.Label}";
         }
 
+        [NotNull]
+        private  static readonly Dictionary<BodyDef, float> _maxInfluenceDict = new Dictionary<BodyDef, float>(); 
+
         private const int MAX_TRIES = 10;
         private static int _tries = 0; 
         /// <summary> The maximum possible human influence. </summary>
+        [Obsolete("use " + nameof(GetMaxInfluenceOfRace) + " instead")]
         public static float MaxHumanInfluence
         {
             get
             {
                 if (_maxHumanInfluence == null)
                 {
-                   _maxHumanInfluence =  CalculateMaxHumanInfluence();
+                   _maxHumanInfluence =  CalculateMaxBodyInfluence(BodyDefOf.Human);
                 }else if (Math.Abs(_maxHumanInfluence.Value) < 0.01f && _tries < MAX_TRIES)
                 {
                     Log.Warning($"could not resolve Max Human Influence on try {_tries}");
                     _tries++; 
-                    _maxHumanInfluence = CalculateMaxHumanInfluence(); 
+                    _maxHumanInfluence = CalculateMaxBodyInfluence(BodyDefOf.Human); 
                 }
 
                 return _maxHumanInfluence.Value;
             }
         }
 
-        private static float CalculateMaxHumanInfluence()
+        /// <summary>
+        /// Gets the maximum influence of race.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">raceDef</exception>
+        /// <exception cref="ArgumentException"></exception>
+        public static float GetMaxInfluenceOfRace([NotNull] ThingDef raceDef)
+        {
+            if (raceDef == null) throw new ArgumentNullException(nameof(raceDef));
+            if (raceDef.race?.body == null)
+                throw new ArgumentException($"{nameof(raceDef)}:{raceDef.defName} does not have a body def"); 
+            if (_maxInfluenceDict.TryGetValue(raceDef.race.body, out float val))
+            {
+                return val; 
+            }
+
+            val = CalculateMaxBodyInfluence(raceDef.race.body);
+            _maxInfluenceDict[raceDef.race.body] = val;
+            return val; 
+        }
+
+        private static float CalculateMaxBodyInfluence(BodyDef bodyDef)
         {
             HashSet<VTuple<BodyPartRecord, MutationLayer>> set = new HashSet<VTuple<BodyPartRecord, MutationLayer>>();
             IEnumerable<VTuple<BodyPartRecord, MutationLayer>> enumerable =
-                MutationDef.AllMutations.SelectMany(m => m.GetAllMutationSites(BodyDefOf.Human));
+                MutationDef.AllMutations.SelectMany(m => m.GetAllMutationSites(bodyDef));
             set.AddRange(enumerable);
 
             if (set.Count == 0)
             {
-                var allCheckedParts = BodyDefOf.Human.AllParts.Join(GetRecordInfo);
+                var allCheckedParts = bodyDef.AllParts.Join(GetRecordInfo);
 
-                Log.Error($"unable to find any mutation sites on {BodyDefOf.Human.defName} after checking {MutationDef.AllMutations.Count()} mutations!\nchecked parts:[{allCheckedParts}]");
+                Log.Error($"unable to find any mutation sites on {bodyDef.defName} after checking {MutationDef.AllMutations.Count()} mutations!\nchecked parts:[{allCheckedParts}]");
             }
 
             return set.Count;
@@ -223,13 +249,14 @@ namespace Pawnmorph
         public static float GetHumanInfluence([NotNull] this Pawn pawn, bool normalize = false)
         {
             MutationTracker mTracker = pawn.GetMutationTracker();
+            var mxInfluence = GetMaxInfluenceOfRace(pawn.def); 
             if (mTracker == null)
             {
-                return MaxHumanInfluence; //always have non mutatable pawns be considered 'human' so the hybrid system never triggers for them 
+                return mxInfluence; //always have non mutatable pawns be considered 'human' so the hybrid system never triggers for them 
             }
 
-            var hInfluence = MaxHumanInfluence - mTracker.TotalInfluence; 
-            if (normalize) hInfluence /= MaxHumanInfluence;
+            var hInfluence = mxInfluence - mTracker.TotalInfluence; 
+            if (normalize) hInfluence /= mxInfluence;
             return hInfluence; 
         }
 

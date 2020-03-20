@@ -81,6 +81,12 @@ namespace Pawnmorph
         /// </summary>
         public List<Result> results;
 
+        /// <summary>
+        /// Gets the instantiated mutation rule worker.
+        /// </summary>
+        /// <value>
+        /// The worker.
+        /// </value>
         [NotNull] public MutationRuleWorker Worker { get; private set; }
 
         /// <summary>

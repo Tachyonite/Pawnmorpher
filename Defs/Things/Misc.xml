@@ -14,7 +14,7 @@
             <StuffPower_Insulation_Cold>25</StuffPower_Insulation_Cold>
             <StuffPower_Insulation_Heat>25</StuffPower_Insulation_Heat>
             <MaxHitPoints>140</MaxHitPoints>
-            <MarketValue>2.5</MarketValue>
+            <MarketValue>2.8</MarketValue>
             <Mass>0.026</Mass>
             <Flammability>1.2</Flammability>
             <DeteriorationRate>2</DeteriorationRate>
