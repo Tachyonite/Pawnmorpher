@@ -509,7 +509,7 @@
           <intelligence>Humanlike</intelligence>
           <makesFootprints>true</makesFootprints>
           <lifeExpectancy>80</lifeExpectancy>
-          <leatherDef>Leather_Human</leatherDef>
+          <leatherDef>Leather_Lizard</leatherDef>
           <nameCategory>HumanStandard</nameCategory>
           <body>SnakeHybridBody</body>
           <baseBodySize>1</baseBodySize>
