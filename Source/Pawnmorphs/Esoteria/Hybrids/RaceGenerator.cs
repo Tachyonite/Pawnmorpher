@@ -124,7 +124,7 @@ namespace Pawnmorph.Hybrids
         private static float GetBodySize(RaceProperties animal, RaceProperties human)
         {
             var f = Mathf.Lerp(human.baseBodySize, animal.baseBodySize, 0.5f);
-            return Mathf.Max(f, human.baseBodySize / 0.7f);
+            return Mathf.Max(f, human.baseBodySize * 0.7f);
         }
 
         private static float GetHungerRate(RaceProperties animal, RaceProperties human)
