@@ -241,11 +241,10 @@ namespace Pawnmorph.Hybrids
                 story.bodyType = newBType; 
             }
 
-            //TODO make hair disaper if explicit race doesn't have hair 
-            //if (oldRace.alienRace.hairSettings?.hasHair == true && race.alienRace.hairSettings?.hasHair == false)
-            //{
-            //    story.hairDef = null; 
-            //}
+            if (oldRace.alienRace.hairSettings?.hasHair == true && race.alienRace.hairSettings?.hasHair == false)
+            {
+                story.hairDef = HairDefOf.Shaved; 
+            }
         }
 
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)

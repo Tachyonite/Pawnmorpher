@@ -253,11 +253,11 @@ namespace Pawnmorph.DebugUtils
             pawn.CheckRace();
             if (pawn.def == oldRace)
             {
-                Log.Message($"no change in {pawn.Name}");
+                DebugLogUtils.LogMsg(LogLevel.Messages,$"no change in {pawn.Name}");
             }
             else
             {
-                Log.Message($"{pawn.Name} was {oldRace.defName} and is now {pawn.def.defName}");
+                DebugLogUtils.LogMsg(LogLevel.Messages, $"{pawn.Name} was {oldRace.defName} and is now {pawn.def.defName}");
             }
         }
 
