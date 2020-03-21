@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -34,38 +35,26 @@ namespace Pawnmorph.DebugUtils
                                       bool allowHarvest = false,
                                       bool forceScanWholeMap = false,
                                       bool ignoreReservations = false,
-                                      FoodPreferability minPrefOverride = FoodPreferability.Undefined); 
+                                      FoodPreferability minPrefOverride = FoodPreferability.Undefined);
 
-        [DebugOutput(category = FOOD_OP_CATEGORY, onlyWhenPlaying = true)]
-        static void TestFoodOptimizations()
+
+        [DebugOutput(FOOD_OP_CATEGORY)]
+        static void GetRacialFoodStats()
         {
-            var mapPawns = Find.CurrentMap?.mapPawns?.AllPawns;
-            if (mapPawns == null) return;
-            //var validGetters = mapPawns.Where(p => p.IsToolUser()).ToList();  
             StringBuilder builder = new StringBuilder();
-            List<float> resultList = new List<float>(); 
-            builder.AppendLine("--------------Rimworld--------------");
+            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.MakeSafe())
+            {
+                var race = thingDef.race; 
+                if(race == null) continue;
 
-            TestFoodFunction(FoodUtility.TryFindBestFoodSourceFor, mapPawns, resultList, builder);
-            builder.AppendLine(Results.HEADER); 
+                builder.AppendLine($"{thingDef.defName},{race.baseBodySize},{race.baseHungerRate}"); 
 
-            var rmResults = new Results(resultList); 
-            resultList.Clear();
-            builder.AppendLine(rmResults.ToString());
+            }
 
-
-            builder.AppendLine("--------------Pawnmorpher--------------");
-
-            TestFoodFunction(PMFoodUtilities.TryFindBestFoodSourceForOptimized, mapPawns, resultList, builder);
-            builder.AppendLine(Results.HEADER);
-
-            var pmResults = new Results(resultList); 
-            resultList.Clear();
-            builder.AppendLine(pmResults.ToString());
             Log.Message(builder.ToString()); 
         }
 
-        [DebugOutput(FOOD_OP_CATEGORY, true)]
+        [DebugOutput(FOOD_OP_CATEGORY,  true)]
         static void CheckIfPawnsEatPlants()
         {
             Map map = Find.CurrentMap;

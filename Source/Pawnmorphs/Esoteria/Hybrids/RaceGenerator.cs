@@ -54,8 +54,11 @@ namespace Pawnmorph.Hybrids
             return _raceLookupTable.TryGetValue(race);
         }
 
-        private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
+        private static RaceProperties GenerateHybridProperties([NotNull] RaceProperties human, [NotNull] RaceProperties animal)
         {
+            (float hSize, float hHRate) = GetFoodStats(human, animal); 
+
+
             return new RaceProperties
             {
                 thinkTreeMain = human.thinkTreeMain, //most of these are just guesses, have to figure out what's safe to change and what isn't 
@@ -66,9 +69,9 @@ namespace Pawnmorph.Hybrids
                 leatherDef = animal.leatherDef,
                 nameCategory = human.nameCategory,
                 body = human.body,
-                baseBodySize = GetBodySize(animal, human),
+                baseBodySize = hSize,
                 baseHealthScale = Mathf.Lerp(human.baseHealthScale, animal.baseHealthScale, HEALTH_SCALE_LERP_VALUE),
-                baseHungerRate = GetHungerRate(animal, human),
+                baseHungerRate = hHRate,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 meatColor = animal.meatColor,
@@ -92,6 +95,25 @@ namespace Pawnmorph.Hybrids
                 packAnimal = animal.packAnimal
             };
         }
+
+        static (float bodySize, float hungerSize) GetFoodStats([NotNull] RaceProperties human, [NotNull] RaceProperties animal)
+        {
+            //'gamma' is a ratio describing how long it takes an animal to become hungry 
+            //larger values mean the animal needs to eat less often 
+            float gammaH = human.baseBodySize / human.baseHungerRate;
+            float gammaA = animal.baseBodySize / animal.baseHungerRate;
+
+            float f = Mathf.Pow(Math.Abs((gammaA - gammaH) / gammaH), 0.5f);
+            //scale things back a bit if the animal has very different hunger characteristics then humans  
+            float a = 1 / (1f + f); 
+
+            float hGamma = Mathf.Lerp(gammaA, gammaH, a);
+            //body size is just an average of animal and human 
+            float hBSize = Mathf.Lerp(animal.baseBodySize, human.baseBodySize, a);
+            float hHRate = hBSize / hGamma; //calculate the hunger rate the hybrid should have to have an average gamma value between the animal and human 
+
+            return (hBSize, hHRate); 
+        } 
 
         private static List<LifeStageAge> MakeLifeStages(List<LifeStageAge> human, List<LifeStageAge> animal)
         {
