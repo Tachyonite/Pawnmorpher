@@ -45,7 +45,7 @@
 
     <StatDef>
         <defName>MutagenSensitivity_Apparel</defName>
-        <label>mutagen sensitivity</label>
+        <label>mutagen sensitivity (apparel)</label>
         <description>Multiplier on the impact of mutagenic effects on this creature.</description>
         <category>StuffStatFactors</category>
         <defaultBaseValue>0</defaultBaseValue>
@@ -62,7 +62,7 @@
     </StatDef>
     <StatDef>
         <defName>MutagenSensitivity_Stuff</defName>
-        <label>mutagen sensitivity</label>
+        <label>mutagen sensitivity (stuff)</label>
         <description>Multiplier on the impact of mutagenic effects on this creature.</description>
         <category>StuffStatFactors</category>
         <defaultBaseValue>0</defaultBaseValue>
@@ -73,7 +73,7 @@
     </StatDef>
     <StatDef>
         <defName>MutagenSensitivity_StuffMult</defName>
-        <label>mutagen sensitivity</label>
+        <label>mutagen sensitivity (stuff multiplier)</label>
         <description>Multiplier on the impact of mutagenic effects on this creature.</description>
         <category>StuffStatFactors</category>
         <defaultBaseValue>1</defaultBaseValue>
