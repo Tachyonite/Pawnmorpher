@@ -67,9 +67,9 @@
 				<backstory>FormerHumanChaomorph</backstory>
 			</li>
 		</modExtensions>
-		<traderTags>
+		<tradeTags>
 			<li>Chaomorph</li>
-		</traderTags>
+		</tradeTags>
 	</ThingDef>
 
 	<ThingDef ParentName="AnimalThingBase" Name="ChaomorphBaseDerived" Abstract="true">
