@@ -37,6 +37,9 @@
 		</graphicData>
 		<soundInteract>Metal_Drop</soundInteract>
 		<soundDrop>Metal_Drop</soundDrop>
+		<traderTags>
+			<li>Mutagenic</li>
+		</traderTags>
 		<statBases>
 			<MarketValue>50</MarketValue>
 			<Mass>0.5</Mass>

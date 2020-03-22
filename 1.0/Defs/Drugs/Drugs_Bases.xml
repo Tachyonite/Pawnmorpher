@@ -95,6 +95,7 @@
 		<tradeTags>
 			<li>ExoticMisc</li>
 			<li>Mutasyringe</li>
+			<li>Mutagenic</li>
 		</tradeTags>
 		<recipeMaker>
 			<researchPrerequisite>Injectors</researchPrerequisite>
@@ -143,6 +144,7 @@
 		<tradeTags>
 			<li>ExoticMisc</li>
 			<li>Mutaserum</li>
+			<li>Mutagenic</li>
 		</tradeTags>
 		<ingestible>
 			<drugCategory>Medical</drugCategory>
