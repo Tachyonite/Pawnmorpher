@@ -58,6 +58,16 @@ namespace Pawnmorph
                 Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching caravan UI delegates\n{e}");
             }
 
+            try
+            {
+                MassPatchFormerHumanChecks(harmonyInstance); 
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while mass patching former human functions\n{e}");
+
+            }
+
 
             try
             {
@@ -70,7 +80,32 @@ namespace Pawnmorph
             }
         }
 
-        
+        private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
+        {
+            var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public; 
+            var instanceFlags = BindingFlags.Instance| BindingFlags.NonPublic | BindingFlags.Public;
+
+            List<MethodInfo> methodsToPatch = new List<MethodInfo>(); 
+            
+            //bed stuff 
+            var bedUtilType = typeof(RestUtility);
+            var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
+            methodsToPatch.Add(canUseBedMethod); 
+
+            
+
+
+
+            //now patch them 
+            foreach (MethodInfo methodInfo in methodsToPatch)
+            {
+                if(methodInfo == null) continue;
+                harmonyInstance.ILPatchCommonMethods(methodInfo); 
+            }
+
+
+        }
+
 
         private static void PatchCaravanUI([NotNull] Harmony harmInstance)
         {
