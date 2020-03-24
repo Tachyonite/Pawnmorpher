@@ -204,7 +204,7 @@ namespace Pawnmorph.TfSys
             //notify the faction that their member has been transformed 
             oFaction?.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
-            if(reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
+            if(!request.noLetter && reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
                 SendLetter(request, original, spawnedAnimal);
 
             if (original.Spawned)
