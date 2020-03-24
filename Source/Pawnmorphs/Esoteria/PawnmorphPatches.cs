@@ -30,7 +30,7 @@ namespace Pawnmorph
 
         static PawnmorphPatches()
         {   
-            Harmony.DEBUG = true; 
+           
 
             var
                 harmonyInstance = new Harmony("com.pawnmorpher.mod"); //shouldn't this be different? 
@@ -91,10 +91,6 @@ namespace Pawnmorph
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod); 
-
-            
-
-
 
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
