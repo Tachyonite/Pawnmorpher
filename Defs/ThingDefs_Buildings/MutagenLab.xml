@@ -4,9 +4,9 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>MutaniteCentrifuge</defName>
 		<label>mutanite centrifuge</label>
-		<description>When mutagenic resources are placed next to it in hoppers, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a mutasilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy. The ratios are:\n Slurry - 10:1\n Chookmorph eggs - 30:1 \n Cowmorph milk - 30:1\n Chaobulb seedpods - 40:1</description>
+		<description>When mutagenic resources are placed next to it in hoppers, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a morphsilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy. The ratios are:\n Slurry - 10:1\n Chookmorph eggs - 30:1 \n Cowmorph milk - 30:1\n Chaobulb seedpods - 40:1</description>
 		<graphicData>
-			<texPath>Things/Building/Misc/MutaniteCentrifuge/MutaniteCentrifuge</texPath>
+			<texPath>Things/Building/MutaniteCentrifuge</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(4, 4)</drawSize>
 			<shadowData>
@@ -17,7 +17,7 @@
 		<costList>
 			<Steel>500</Steel>
 			<Plasteel>50</Plasteel>
-			<Mutasilk>20</Mutasilk>
+			<Morphsilk>20</Morphsilk>
 			<ComponentIndustrial>8</ComponentIndustrial>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
