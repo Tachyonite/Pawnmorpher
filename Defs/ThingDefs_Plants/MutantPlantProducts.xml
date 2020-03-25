@@ -42,7 +42,7 @@
 			<Mass>0.045</Mass>
 			<Flammability>0.2</Flammability>
 			<Nutrition>0.0</Nutrition>
-			<MutaniteConcentration>0.05</MutaniteConcentration>
+			<MutaniteConcentration>0.012</MutaniteConcentration>
 		</statBases>
 	</ThingDef>
 </Defs>

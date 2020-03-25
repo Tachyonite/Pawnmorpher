@@ -1,0 +1,4 @@
+<LanguageData>
+    <MutaniteCentrifugeRunModeDesc>enable or disable 'high yield' mode. this makes the centrifuge more efficent and faster, but dangerous to be around</MutaniteCentrifugeRunModeDesc>
+    <MutaniteCentrifugeRunModeLabel>Toggle Running Mode</MutaniteCentrifugeRunModeLabel>
+</LanguageData>
