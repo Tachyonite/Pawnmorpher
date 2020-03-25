@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
@@ -36,7 +37,7 @@ namespace Pawnmorph.Buildings
             HighYield
         }
 
-        private const int TICKS_TO_PRODUCE = TimeMetrics.TICKS_PER_REAL_SECOND * 110;
+        private const int TICKS_TO_PRODUCE = TimeMetrics.TICKS_PER_REAL_SECOND * 510;
 
         private const string MUTANITE_CENTRIFUGE_MODE_DESCRIPTION = "MutaniteCentrifugeRunModeDesc";
         private const string MUTANITE_CENTRIFUGE_MODE_LABEL = "MutaniteCentrifugeRunModeLabel";
@@ -45,9 +46,9 @@ namespace Pawnmorph.Buildings
 
         private const float EPSILON = 0.0001f;
 
-        private const int DANGER_RADIUS = 3;
+        private const int DANGER_RADIUS = 4;
 
-        private const float MUTAGENIC_BUILDUP_RATE = 0.01f;
+        private const float MUTAGENIC_BUILDUP_RATE = 0.005f;
 
         [NotNull] private readonly List<Building_Storage> _hoppers = new List<Building_Storage>();
 
@@ -82,6 +83,9 @@ namespace Pawnmorph.Buildings
                 if (_mode != value) SetRunningMode(value);
             }
         }
+
+        private ColorInt _initialColor;
+        private static ColorInt Clear { get; } = new ColorInt(0, 0, 0, 0); 
 
         /// <summary>
         ///     Gets a value indicating whether this <see cref="MutaniteCentrifuge" /> is enabled.
@@ -120,6 +124,8 @@ namespace Pawnmorph.Buildings
 
         private CompGlower Glower => GetComp<CompGlower>();
 
+       
+
         /// <summary>
         ///     Exposes the data.
         /// </summary>
@@ -132,26 +138,61 @@ namespace Pawnmorph.Buildings
             Scribe_Values.Look(ref _producing, "producing");
         }
 
-
+        /// <summary>
+        /// Gets the gizmos.
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
 
-            var toggleGizmo = new Command_Action
+            if (Faction == Faction.OfPlayer)
             {
-                action = ToggleRunMode,
-                defaultDesc = MUTANITE_CENTRIFUGE_MODE_DESCRIPTION.Translate(),
-                defaultLabel = MUTANITE_CENTRIFUGE_MODE_LABEL.Translate()
-            };
-            yield return toggleGizmo;
+                Command_Toggle command_Toggle = new Command_Toggle
+                {
+                    hotKey = KeyBindingDefOf.Command_TogglePower,
+                    defaultLabel = MUTANITE_CENTRIFUGE_MODE_LABEL.Translate(),
+                    defaultDesc = MUTANITE_CENTRIFUGE_MODE_DESCRIPTION.Translate(),
+                    isActive = (() => CurrentMode == RunningMode.HighYield),
+                    toggleAction = ToggleRunMode
+                };
+
+                yield return command_Toggle;
+            }
+            
         }
 
-
+        /// <summary>
+        /// set up the object on spawn
+        /// </summary>
+        /// <param name="map">The map.</param>
+        /// <param name="respawningAfterLoad">if set to <c>true</c> [respawning after load].</param>
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
             _initialRadius = Glower?.Props?.glowRadius ?? 0;
             _flickable = GetComp<CompFlickable>();
+            _initialColor = Glower?.Props?.glowColor ?? Clear;
+            _glowRadius = GetGlowRadius(CurrentMode);
+            if (Glower != null)
+            {
+                if (!_producing)
+                {
+                    if (PowerComp != null)
+                    {
+                        PowerComp.PowerOn = false;
+                   
+                    } 
+                    Glower.Props.glowRadius = 0;
+                }
+                else
+                {
+                    Glower.Props.glowRadius = _glowRadius; 
+                }
+
+                Glower.UpdateLit(Map);
+            }
+
         }
 
         /// <summary>
@@ -172,12 +213,17 @@ namespace Pawnmorph.Buildings
             }
 
 
-            if (this.IsHashIntervalTick(30)) _hoppers.Clear();
 
             //introduce a delay between starting and ending production 
             if (this.IsHashIntervalTick(20))
+            { 
+                _hoppers.Clear();
                 if (TryStartProduction())
+                {
                     StartProduction();
+                }
+
+            }
         }
 
         private void DoMutagenicBuildup()
@@ -197,8 +243,10 @@ namespace Pawnmorph.Buildings
         private void EndProduction()
         {
             if (PowerComp != null) PowerComp.PowerOn = false;
-
+            if(Glower != null)
+                Glower.Props.glowColor = Clear; 
             _producing = false;
+            UpdateGlower();
         }
 
 
@@ -210,20 +258,7 @@ namespace Pawnmorph.Buildings
                 if (IsAcceptableFeedstock(thing))
                     yield return thing;
         }
-
-
-        [NotNull]
-        private IEnumerable<Building> GetHoppers([NotNull] Pawn reacher)
-        {
-            for (var i = 0; i < AdjCellsCardinalInBounds.Count; i++)
-            {
-                Building edifice = AdjCellsCardinalInBounds[i].GetEdifice(Map);
-                if (edifice != null
-                 && (edifice.def == PMThingDefOf.MutagenHopper || edifice.def == ThingDefOf.Hopper)
-                 && reacher.CanReach(edifice, PathEndMode.Touch, Danger.Deadly)) yield return edifice;
-            }
-        }
-
+        
         [NotNull]
         private IEnumerable<Building> GetHoppers()
         {
@@ -240,7 +275,6 @@ namespace Pawnmorph.Buildings
             {
                 case RunningMode.Normal:
                     return BASE_MUTANITE_REQUIRED;
-                    break;
                 case RunningMode.HighYield:
                     return Mathf.Max(1, BASE_MUTANITE_REQUIRED / 1.5f);
                 default:
@@ -285,11 +319,32 @@ namespace Pawnmorph.Buildings
             _hoppers.AddRange(GetHoppers().OfType<Building_Storage>());
         }
 
+        private float _glowRadius; 
         private void SetRunningMode(RunningMode value)
         {
-            float radius;
+
+
+            _mode = value;
             CompGlower glower = Glower;
             if (glower == null) return;
+            _glowRadius = GetGlowRadius(value);
+            if (_producing)
+            {
+                if (FlickableComp?.SwitchIsOn != false) PowerComp.PowerOn = true;
+
+                glower.Props.glowRadius = _glowRadius; //increase size so it shows the danger zone 
+                UpdateGlower();
+            }
+            else
+                glower.Props.glowRadius = 0;
+
+
+
+        }
+
+        private float GetGlowRadius(RunningMode value)
+        {
+            float radius;
             switch (value)
             {
                 case RunningMode.Normal:
@@ -302,17 +357,52 @@ namespace Pawnmorph.Buildings
                     throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
 
-            glower.Props.glowRadius = radius;
+            const float scalar = 2.3f;
+            var r = radius * scalar;
+            return r;
+        }
+
+        /// <summary>
+        /// Gets the inspect string.
+        /// </summary>
+        /// <returns></returns>
+        public override string GetInspectString()
+        {
+            StringBuilder builder = new StringBuilder(); 
+            builder.AppendLine(base.GetInspectString());
+            builder.Append($"Mode: {CurrentMode}");
+            return builder.ToString(); 
         }
 
         private void StartProduction()
         {
-            if (PowerComp != null)
-                PowerComp.PowerOn = true;
+           
 
             _producing = true;
             _timeCounter = 0;
+            if (Glower != null)
+            {
+                Glower.Props.glowColor = _initialColor;
+                Glower.Props.glowRadius = _glowRadius; 
+            } 
+            
+            UpdateGlower();
         }
+
+        void UpdateGlower()
+        {
+            if (PowerComp.PowerOn)
+            {
+                PowerComp.PowerOn = false;
+            }
+            else return;
+
+            if (Glower == null) return; 
+            Glower.UpdateLit(Map);
+            PowerComp.PowerOn = true; 
+
+        }
+
 
         private void ToggleRunMode()
         {
@@ -327,14 +417,17 @@ namespace Pawnmorph.Buildings
             float minAmount = GetRequiredMutaniteCount(CurrentMode);
             var curAmount = 0f;
             var canProduce = false;
+            StringBuilder builder = new StringBuilder();
             foreach (Thing thing in GetFeed())
             {
                 float concentration = thing.GetStatValue(PMStatDefOf.MutaniteConcentration);
                 float needed = minAmount - curAmount;
-                int take = Mathf.FloorToInt(concentration * thing.stackCount / needed);
+                int take = Mathf.CeilToInt(needed / (concentration)); 
                 take = Mathf.Min(take, thing.stackCount);
+                builder.AppendLine($"found {thing.Label} take: {take}"); 
                 _rmCache.Add((thing, take));
                 curAmount += concentration * take;
+                
                 if (minAmount - curAmount < EPSILON)
                 {
                     canProduce = true;

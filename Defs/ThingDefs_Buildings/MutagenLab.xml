@@ -36,14 +36,6 @@
 			</li>
 			<li Class="CompProperties_Breakdownable"/>
 			<li Class="CompProperties_Flickable"/>
-			<li Class="CompProperties_Spawner">
-				<requiresPower>true</requiresPower>
-				<thingToSpawn>Mutanite</thingToSpawn>
-				<spawnCount>1</spawnCount>
-				<spawnIntervalRange><min>600000</min><max>600000</max></spawnIntervalRange>
-				<writeTimeLeftToSpawn>true</writeTimeLeftToSpawn>
-				<showMessageIfOwned>true</showMessageIfOwned>
-			</li>
 			<li Class="CompProperties_Explosive">
 				<explosiveRadius>8</explosiveRadius>
 				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
@@ -69,16 +61,18 @@
 		<passability>Impassable</passability>
 		<rotatable>false</rotatable>
 		<canOverlapZones>false</canOverlapZones>
-		<minifiedDef>MinifiedThing</minifiedDef>
 		<tradeability>Sellable</tradeability>
+		<designationCategory>Production</designationCategory>
 		<tradeTags>
 			<li>ExoticBuilding</li>
 		</tradeTags>
+		<uiIconPath>Things/Building/Production/Hopper_MenuIcon</uiIconPath>
+		<uiIconScale>0.85</uiIconScale>
 	</ThingDef>
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>MutagenHopper</defName>
-		<label>hopper</label>
+		<label>mutagen hopper</label>
 		<description>Holds resources for use by machines like nutrient paste dispensers.</description>
 		<thingClass>Building_Storage</thingClass>
 		<graphicData>
@@ -100,7 +94,7 @@
 			<priority>Important</priority>
 			<filter>
 			  <categories>
-				<li>FoodRaw</li>
+				<li>RawMutagen</li>
 			  </categories>
 			</filter>
 		  </fixedStorageSettings>
