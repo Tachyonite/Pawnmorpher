@@ -367,6 +367,7 @@
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
     <Compile Include="DefExtensions\MorphRestriction.cs" />
+    <Compile Include="DefExtensions\MutagenicBuildupSourceSettings.cs" />
     <Compile Include="DefExtensions\MutagenExtension.cs" />
     <Compile Include="DefExtensions\MutantPlantExtension.cs" />
     <Compile Include="DefExtensions\MutationRestriction.cs" />
@@ -466,6 +467,7 @@
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
     <Compile Include="Mental\StateWorker_Hunt.cs" />
     <Compile Include="Mental\State_Hunting.cs" />
+    <Compile Include="MutagenicBuildupUtilities.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
     <Compile Include="MutationRules\Worker_MorphHediff.cs" />
