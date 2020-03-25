@@ -54,7 +54,7 @@
 			<li>RewardStandardHighFreq</li>
 		</thingSetMakerTags>
 		<tickerType>Normal</tickerType>
-		<size>(4, 4)</size>
+		<size>(3, 3)</size>
 		<fillPercent>1.0</fillPercent>
 		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
 		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
@@ -66,8 +66,9 @@
 		<tradeTags>
 			<li>ExoticBuilding</li>
 		</tradeTags>
-		<uiIconPath>Things/Building/Production/Hopper_MenuIcon</uiIconPath>
-		<uiIconScale>0.85</uiIconScale>
+		<researchPrerequisites>
+		  <li>NutrientPaste</li>
+		</researchPrerequisites>
 	</ThingDef>
 
 	<ThingDef ParentName="BuildingBase">
@@ -76,8 +77,9 @@
 		<description>Holds resources for use by machines like nutrient paste dispensers.</description>
 		<thingClass>Building_Storage</thingClass>
 		<graphicData>
-		  <texPath>Things/Building/Production/Hopper</texPath>
-		  <graphicClass>Graphic_Multi</graphicClass>
+		  <texPath>Things/Building/MutaniteHopper</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		  <drawSize>(1.9,1.9)</drawSize>
 		  <damageData>
 			<rect>(0.05,0.1,0.9,0.9)</rect>
 			<cornerTL>Damage/Corner</cornerTL>
@@ -120,7 +122,7 @@
 		  <Steel>15</Steel>
 		</costList>
 		<tickerType>Never</tickerType>
-		<rotatable>true</rotatable>
+		<rotatable>false</rotatable>
 		<neverMultiSelect>true</neverMultiSelect>
 		<designationCategory>Production</designationCategory>
 		<surfaceType>Item</surfaceType>
@@ -131,8 +133,6 @@
 		<researchPrerequisites>
 		  <li>NutrientPaste</li>
 		</researchPrerequisites>
-		<uiIconPath>Things/Building/Production/Hopper_MenuIcon</uiIconPath>
-		<uiIconScale>0.85</uiIconScale>
 	  </ThingDef>
 
 	<ThingDef ParentName="BenchBase">
