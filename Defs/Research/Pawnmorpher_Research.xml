@@ -77,9 +77,28 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>3</researchViewX>
 		<researchViewY>2.5</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<prerequisites>
 			<li>AdvancedSerumSynthesis</li>
 		</prerequisites>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>MutagenCentrifuging</defName>
+		<label>Mutagen centrifuging</label>
+		<description>Develop plans to construct a centrifuge to refine slurry and chaobulbs back to mutanite by a process that involves straining the mechanites from other matter via a morphsilk filter and centrifugal motion. This process will not be efficient and will use quite a bit of power, but if mutanite is otherwise unobtainable...this is one way.</description>
+		<baseCost>3000</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>4</researchViewX>
+		<researchViewY>2.5</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<prerequisites>
+			<li>AdvancedSerumSynthesis</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+		  <li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>
@@ -91,6 +110,7 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>3</researchViewX>
 		<researchViewY>1.5</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<prerequisites>
 			<li>AdvancedSerumSynthesis</li>
 			<li>Stabilisation</li>
@@ -107,6 +127,10 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>4</researchViewX>
 		<researchViewY>1.5</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
 		<prerequisites>
 			<li>Injectors</li>
 			<li>PowerfulSerumSynthesis</li>
@@ -121,6 +145,10 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>6</researchViewX>
 		<researchViewY>1.5</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
 		<prerequisites>
 			<li>ChamberModulator</li>
 		</prerequisites>
@@ -134,6 +162,10 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>5</researchViewX>
 		<researchViewY>1.5</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
 		<prerequisites>
 			<li>MutagenChambers</li>
 		</prerequisites>
@@ -148,6 +180,10 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>4</researchViewX>
 		<researchViewY>1</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
 		<prerequisites>
 			<li>Injectors</li>
 		</prerequisites>
@@ -162,6 +198,10 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>4</researchViewX>
 		<researchViewY>2</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
 		<prerequisites>
 			<li>Injectors</li>
 			<li>PowerfulSerumSynthesis</li>
@@ -191,6 +231,7 @@
 		<tab>Pawnmorpher</tab>
 		<researchViewX>3</researchViewX>
 		<researchViewY>1</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<prerequisites>
 			<li>Stabilisation</li>
 		</prerequisites>
