@@ -1,4 +1,77 @@
 <Defs>
+
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>MutaniteCentrifuge</defName>
+		<label>mutanite centrifuge</label>
+		<description>When mutagenic resources are placed next to it in hoppers, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a mutasilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy. The ratios are:\n Slurry - 10:1\n Chookmorph eggs - 30:1 \n Cowmorph milk - 30:1\n Chaobulb seedpods - 40:1</description>
+		<graphicData>
+			<texPath>Things/Building/Misc/MutaniteCentrifuge/MutaniteCentrifuge</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(4, 4)</drawSize>
+			<shadowData>
+				<volume>(1.4, 0.4, 1.4)</volume>
+				<offset>(0,0,-0.1)</offset>
+			</shadowData>
+		</graphicData>
+		<costList>
+			<Steel>500</Steel>
+			<Plasteel>50</Plasteel>
+			<Mutasilk>20</Mutasilk>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>1500</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>3</glowRadius>
+				<glowColor>(0, 255, 0,0)</glowColor>
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Spawner">
+				<requiresPower>true</requiresPower>
+				<thingToSpawn>Mutanite</thingToSpawn>
+				<spawnCount>1</spawnCount>
+				<spawnIntervalRange><min>600000</min><max>600000</max></spawnIntervalRange>
+				<writeTimeLeftToSpawn>true</writeTimeLeftToSpawn>
+				<showMessageIfOwned>true</showMessageIfOwned>
+			</li>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>8</explosiveRadius>
+				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+			</li>
+		</comps>
+		<altitudeLayer>Building</altitudeLayer>
+		<statBases>
+			<MarketValue>1500</MarketValue>
+			<MaxHitPoints>200</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<Beauty>-10</Beauty>
+			<Mass>35</Mass>
+			<WorkToBuild>8000</WorkToBuild>
+		</statBases>
+		<thingSetMakerTags>
+			<li>RewardStandardHighFreq</li>
+		</thingSetMakerTags>
+		<tickerType>Normal</tickerType>
+		<size>(4, 4)</size>
+		<fillPercent>1.0</fillPercent>
+		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<passability>Impassable</passability>
+		<rotatable>false</rotatable>
+		<canOverlapZones>false</canOverlapZones>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<tradeability>Sellable</tradeability>
+		<tradeTags>
+			<li>ExoticBuilding</li>
+		</tradeTags>
+	</ThingDef>
+
 	<ThingDef ParentName="BenchBase">
 		<defName>MutagenLab</defName>
 		<label>mutagen lab</label>
