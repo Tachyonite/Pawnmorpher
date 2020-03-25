@@ -19,6 +19,8 @@ namespace Pawnmorph
         public static ThingDef Plant_GnarledTree;
         public static ThingDef Morphsilk;
         public static ThingDef CrashedMutagenicShipPartIncoming;
+        public static ThingDef Mutanite; 
+        public static ThingDef MutagenHopper; 
 
         public static ThingDef EggChickenUnfertilized;
         public static ThingDef Chicken;

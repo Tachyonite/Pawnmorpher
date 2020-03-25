@@ -24,6 +24,7 @@
 			<Flammability>0.2</Flammability>
 			<Nutrition>0.05</Nutrition>
 			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+			<MutaniteConcentration>0.02</MutaniteConcentration>
 		</statBases>
 	</ThingDef>
 

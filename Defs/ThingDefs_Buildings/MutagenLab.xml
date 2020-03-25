@@ -4,6 +4,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>MutaniteCentrifuge</defName>
 		<label>mutanite centrifuge</label>
+		<thingClass>Pawnmorph.Buildings.MutaniteCentrifuge</thingClass>
 		<description>When mutagenic resources are placed next to it in hoppers, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a morphsilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy. The ratios are:\n Slurry - 10:1\n Chookmorph eggs - 30:1 \n Cowmorph milk - 30:1\n Chaobulb seedpods - 40:1</description>
 		<graphicData>
 			<texPath>Things/Building/MutaniteCentrifuge</texPath>
@@ -14,6 +15,9 @@
 				<offset>(0,0,-0.1)</offset>
 			</shadowData>
 		</graphicData>
+		<building>
+			<wantsHopperAdjacent>true</wantsHopperAdjacent>
+		</building>
 		<costList>
 			<Steel>500</Steel>
 			<Plasteel>50</Plasteel>
@@ -27,7 +31,7 @@
 				<basePowerConsumption>1500</basePowerConsumption>
 			</li>
 			<li Class="CompProperties_Glower">
-				<glowRadius>3</glowRadius>
+				<glowRadius>1</glowRadius>
 				<glowColor>(0, 255, 0,0)</glowColor>
 			</li>
 			<li Class="CompProperties_Breakdownable"/>
@@ -71,6 +75,71 @@
 			<li>ExoticBuilding</li>
 		</tradeTags>
 	</ThingDef>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>MutagenHopper</defName>
+		<label>hopper</label>
+		<description>Holds resources for use by machines like nutrient paste dispensers.</description>
+		<thingClass>Building_Storage</thingClass>
+		<graphicData>
+		  <texPath>Things/Building/Production/Hopper</texPath>
+		  <graphicClass>Graphic_Multi</graphicClass>
+		  <damageData>
+			<rect>(0.05,0.1,0.9,0.9)</rect>
+			<cornerTL>Damage/Corner</cornerTL>
+			<cornerTR>Damage/Corner</cornerTR>
+		  </damageData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<fillPercent>0.5</fillPercent>
+		<pathCost>70</pathCost>
+		<canOverlapZones>false</canOverlapZones>
+		<building>
+		  <fixedStorageSettings>
+			<priority>Important</priority>
+			<filter>
+			  <categories>
+				<li>FoodRaw</li>
+			  </categories>
+			</filter>
+		  </fixedStorageSettings>
+		  <defaultStorageSettings>
+			<priority>Important</priority>
+			<filter>
+			  <categories>
+				<li>RawMutagen</li>
+			  </categories>
+			</filter>
+		  </defaultStorageSettings>
+		</building>
+		<inspectorTabs>
+		  <li>ITab_Storage</li>
+		</inspectorTabs>
+		<castEdgeShadows>true</castEdgeShadows>
+		<statBases>
+		  <WorkToBuild>300</WorkToBuild>
+		  <MaxHitPoints>100</MaxHitPoints>
+		  <Flammability>0.5</Flammability>
+		</statBases>
+		<costList>
+		  <Steel>15</Steel>
+		</costList>
+		<tickerType>Never</tickerType>
+		<rotatable>true</rotatable>
+		<neverMultiSelect>true</neverMultiSelect>
+		<designationCategory>Production</designationCategory>
+		<surfaceType>Item</surfaceType>
+		<placeWorkers>
+		  <li>PlaceWorker_NextToHopperAccepter</li>
+		</placeWorkers>
+		<constructEffect>ConstructMetal</constructEffect>
+		<researchPrerequisites>
+		  <li>NutrientPaste</li>
+		</researchPrerequisites>
+		<uiIconPath>Things/Building/Production/Hopper_MenuIcon</uiIconPath>
+		<uiIconScale>0.85</uiIconScale>
+	  </ThingDef>
 
 	<ThingDef ParentName="BenchBase">
 		<defName>MutagenLab</defName>
