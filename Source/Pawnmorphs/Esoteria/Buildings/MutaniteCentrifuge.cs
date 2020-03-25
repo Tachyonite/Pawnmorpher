@@ -48,7 +48,7 @@ namespace Pawnmorph.Buildings
 
         private const int DANGER_RADIUS = 4;
 
-        private const float MUTAGENIC_BUILDUP_RATE = 0.005f;
+        private const float MUTAGENIC_BUILDUP_RATE = 0.002f;
 
         [NotNull] private readonly List<Building_Storage> _hoppers = new List<Building_Storage>();
 
@@ -234,9 +234,7 @@ namespace Pawnmorph.Buildings
             {
                 if (!(thing is Pawn pawn)) continue;
                 if (!mutagen.CanInfect(pawn)) return;
-                float stat = pawn.GetMutagenicBuildupMultiplier();
-                if (stat * MUTAGENIC_BUILDUP_RATE < EPSILON) continue;
-                HealthUtility.AdjustSeverity(pawn, MorphTransformationDefOf.MutagenicBuildup, stat * MUTAGENIC_BUILDUP_RATE);
+                MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, pawn, MUTAGENIC_BUILDUP_RATE); 
             }
         }
 
@@ -370,9 +368,23 @@ namespace Pawnmorph.Buildings
         {
             StringBuilder builder = new StringBuilder(); 
             builder.AppendLine(base.GetInspectString());
-            builder.Append($"Mode: {CurrentMode}");
+            builder.Append(GetModeString(CurrentMode));
             return builder.ToString(); 
         }
+
+        string GetModeString(RunningMode mode)
+        {
+            switch (mode)
+            {
+                case RunningMode.Normal:
+                    return "CentrifugeNormalYield".Translate();
+                case RunningMode.HighYield:
+                    return "CentrifugeHighYield".Translate();
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+            }
+        }
+
 
         private void StartProduction()
         {
