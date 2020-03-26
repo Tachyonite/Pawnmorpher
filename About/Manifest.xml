@@ -7,5 +7,8 @@
 	</dependencies>
 	<incompatibleWith>
 		<li>FacialStuff1.0</li>
+		<li>Change Dresser</li>
+		<li>Prepare Carefully</li>
+		
 	</incompatibleWith>
 </Manifest>

@@ -74,6 +74,9 @@
 		<researchPrerequisites>
 		  <li>NutrientPaste</li>
 		</researchPrerequisites>
+		<researchPrerequisites>
+		  <li>MutagenCentrifuging</li>
+		</researchPrerequisites>
 	</ThingDef>
 
 	<ThingDef ParentName="BuildingBase">
@@ -136,7 +139,7 @@
 		</placeWorkers>
 		<constructEffect>ConstructMetal</constructEffect>
 		<researchPrerequisites>
-		  <li>NutrientPaste</li>
+		  <li>MutagenCentrifuging</li>
 		</researchPrerequisites>
 	  </ThingDef>
 
