@@ -66,8 +66,6 @@
 		<tradeTags>
 			<li>ExoticBuilding</li>
 		</tradeTags>
-		<uiIconPath>Things/Building/Production/Hopper_MenuIcon</uiIconPath>
-		<uiIconScale>0.85</uiIconScale>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutagenicBuildupSourceSettings">
 				<maxBuildup>0.5</maxBuildup>
