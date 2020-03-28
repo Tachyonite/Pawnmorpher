@@ -80,7 +80,8 @@ namespace Pawnmorph.HPatches
                 pawn.abilities = null; 
                 pawn.skills = null;
                 pawn.timetable = null; 
-                pawn.workSettings = null; 
+                pawn.workSettings = null;
+                pawn.outfits = null; 
                 var saComp = pawn.GetComp<Comp_SapientAnimal>();
                 if (saComp != null)
                 {
@@ -116,6 +117,7 @@ namespace Pawnmorph.HPatches
                 pawn.mindState = pawn.mindState ?? new Pawn_MindState(pawn);
                 pawn.drugs = pawn.drugs ?? new Pawn_DrugPolicyTracker(pawn);
                 pawn.guest = pawn.guest ?? new Pawn_GuestTracker(pawn);
+                pawn.outfits = pawn.outfits ?? new Pawn_OutfitTracker(pawn); 
                 pawn.guilt = pawn.guilt ?? new Pawn_GuiltTracker(); 
                 pawn.foodRestriction = pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(pawn); 
                 pawn.timetable = pawn.timetable ?? new Pawn_TimetableTracker(pawn); 
