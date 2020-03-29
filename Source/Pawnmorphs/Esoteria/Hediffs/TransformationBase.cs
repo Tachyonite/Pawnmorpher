@@ -308,6 +308,8 @@ namespace Pawnmorph.Hediffs
                 ResetPossibleMutations();   
             }
             
+
+
             if(_curIndex < _checkList.Count)
                 AddPartMutations();
             else
@@ -389,6 +391,13 @@ namespace Pawnmorph.Hediffs
             while (_curIndex < _checkList.Count)
             {
                 BodyPartRecord part = _checkList[_curIndex];
+                if (!pawn.RaceProps.body.AllParts.Contains(part))
+                {
+                    //if the pawn's race changes the mutation order may no longer be valid 
+                    //need to reset it and try again later 
+                    ResetMutationOrder();
+                    break;
+                }
 
                 var lst = _scratchDict.TryGetValue(part.def);
 
