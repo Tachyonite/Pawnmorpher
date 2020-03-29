@@ -395,7 +395,6 @@ namespace Pawnmorph.Hediffs
                 {
                     //if the pawn's race changes the mutation order may no longer be valid 
                     //need to reset it and try again later 
-                    ResetMutationOrder();
                     break;
                 }
 
