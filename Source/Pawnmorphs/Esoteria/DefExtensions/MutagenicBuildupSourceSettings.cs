@@ -23,6 +23,11 @@ namespace Pawnmorph.DefExtensions
         /// </summary>
         /// if null a default will be used instead 
         [CanBeNull]
-        public HediffDef mutagenicBuildupDef; 
+        public HediffDef mutagenicBuildupDef;
+
+        /// <summary>
+        /// The mutagen definition
+        /// </summary>
+        [CanBeNull] public MutagenDef mutagenDef; 
     }
 }

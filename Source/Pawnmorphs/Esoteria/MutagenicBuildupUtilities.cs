@@ -21,8 +21,10 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <returns></returns>
-        public static float GetMutagenicBuildupMultiplier([NotNull] this Pawn pawn)
+        public static float GetMutagenicBuildupMultiplier([NotNull] this Pawn pawn, MutagenDef mutagenDef = null)
         {
+            mutagenDef = mutagenDef ?? MutagenDefOf.defaultMutagen;
+            if (!mutagenDef.CanInfect(pawn)) return 0; 
             return (pawn.GetStatValue(StatDefOf.ToxicSensitivity) + pawn.GetStatValue(PMStatDefOf.MutagenSensitivity))/2; 
         }
 
@@ -38,7 +40,9 @@ namespace Pawnmorph
             var settings = source.GetModExtension<MutagenicBuildupSourceSettings>();
             float max = settings?.maxBuildup ?? 1;
             var hediffDef = settings?.mutagenicBuildupDef ?? MorphTransformationDefOf.MutagenicBuildup;
-            adjustValue *= pawn.GetMutagenicBuildupMultiplier(); 
+            var mutagen = settings?.mutagenDef ?? MutagenDefOf.defaultMutagen;
+            if (!mutagen.CanInfect(pawn)) return; 
+            adjustValue *= pawn.GetMutagenicBuildupMultiplier(mutagen);  
 
             var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
             if (fHediff == null)
