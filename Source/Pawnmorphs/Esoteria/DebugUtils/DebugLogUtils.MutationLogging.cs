@@ -38,5 +38,26 @@ namespace Pawnmorph.DebugUtils
 
             Log.Message(builder.ToString()); 
         }
+
+
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        static void LogMutationSensitivity()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonistsAndPrisoners)
+            {
+                var mStat = pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
+                var mFStat = pawn.GetMutagenicBuildupMultiplier();
+
+                builder.AppendLine($"{pawn.Name} = {{{PMStatDefOf.MutagenSensitivity}:{mStat}, MutagenicBuildupMultiplier:{mFStat} }}"); 
+
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
     }
 }
