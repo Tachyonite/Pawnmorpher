@@ -435,7 +435,7 @@ namespace Pawnmorph.Hybrids
             temp.customHeadDrawSize = customHeadSize ?? temp.customHeadDrawSize;
             temp.customPortraitHeadDrawSize = customHeadSize ?? temp.customPortraitHeadDrawSize;
             temp.headOffset = customSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
-
+            temp.headOffsetDirectional = humanGraphicPaths.First().headOffsetDirectional; 
             List<GraphicPaths> returnList = new List<GraphicPaths>();
             returnList.Add(temp);
             return returnList;
