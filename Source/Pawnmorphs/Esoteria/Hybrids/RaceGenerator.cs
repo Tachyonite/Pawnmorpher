@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
@@ -529,6 +530,12 @@ namespace Pawnmorph.Hybrids
                 tradeTags = humanDef.tradeTags?.ToList(),
                 tradeability = humanDef.tradeability
             };
+            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(morph.race.tools.MakeSafe()));
+            var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance); 
+            var vLst = impliedRace.Verbs.MakeSafe().Concat(morph.race.Verbs.MakeSafe()).ToList();
+
+            verbField.SetValue(impliedRace, vLst); 
+
 
             impliedRace.alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph, impliedRace); 
 
