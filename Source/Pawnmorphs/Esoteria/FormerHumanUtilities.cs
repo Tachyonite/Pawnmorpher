@@ -1138,22 +1138,58 @@ namespace Pawnmorph
             return false;
         }
 
+        [NotNull]
+        private static readonly List<BodyPartRecord> _brScratchList = new List<BodyPartRecord>(); 
+
         private static void AddRandomMutationToPawn(Pawn lPawn)
         {
             //give at least as many mutations as there are slots, plus some more to make it a bit more chaotic 
-            int mutationsToAdd = Mathf.CeilToInt(MorphUtilities.GetMaxInfluenceOfRace(lPawn.def)) + 5;
+            int mutationsToAdd = Mathf.CeilToInt(MorphUtilities.GetMaxInfluenceOfRace(lPawn.def)) + 10;
             _mScratchList.Clear();
             _mScratchList.AddRange(MutationUtilities.AllNonRestrictedMutations);
+            List<BodyPartRecord> addList = new List<BodyPartRecord>();
+            List<BodyPartRecord> addedList = new List<BodyPartRecord>(); 
+            _brScratchList.Clear();
+            _brScratchList.AddRange(lPawn.health.hediffSet.GetAllNonMissingWithoutProsthetics());  
+
+
 
             var i = 0;
             MutationUtilities.AncillaryMutationEffects aEffects = MutationUtilities.AncillaryMutationEffects.None;
             while (i < mutationsToAdd)
             {
+                addList.Clear();
                 MutationDef rM = _mScratchList.RandomElementWithFallback();
                 if (rM == null) break;
-
-                MutationResult res = MutationUtilities.AddMutation(lPawn, rM, ancillaryEffects: aEffects);
                 _mScratchList.Remove(rM);
+
+                //handle whole body mutations first 
+                if (rM.parts == null)
+                {
+                    if (MutationUtilities.AddMutation(lPawn, rM, ancillaryEffects: aEffects)) i++; 
+                    continue;
+                }
+
+                //get the body parts to add to 
+
+                //how many parts to grab 
+                //+3 is to make it more likely that all parts will be added 
+                int countToAdd = Rand.Range(1, rM.parts.Count+3);
+                countToAdd = Mathf.Min(countToAdd, rM.parts.Count); //make sure it's less then or equal to 
+                foreach (BodyPartRecord record in _brScratchList)
+                {
+                    if (!rM.parts.Any(p => p == record.def)) continue; 
+
+                    if(addedList.Contains(record)) continue;
+
+                    addedList.Add(record);
+                    addList.Add(record); 
+
+                    if(addList.Count >= countToAdd) break; 
+                }
+
+
+                MutationResult res = MutationUtilities.AddMutation(lPawn, rM, addList, aEffects);
                 if (res) i++; //only increment if we actually added any mutations 
             }
         }

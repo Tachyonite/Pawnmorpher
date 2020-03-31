@@ -43,7 +43,7 @@ namespace Pawnmorph.Hediffs
         public override void CompExposeData()
         {
             Scribe_Values.Look(ref _addedTick, "addedTick", -1, true);
-
+            Scribe_Values.Look(ref _shouldRemove, nameof(CompShouldRemove)); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (_addedTick == -1)
@@ -74,12 +74,19 @@ namespace Pawnmorph.Hediffs
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
-
+            if (_shouldRemove) return; 
             RemoveOtherMutations();
         }
 
-        
+        private bool _shouldRemove;
 
+        /// <summary>
+        /// Gets a value indicating whether the parent hediff should be removed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if hediff should be removed; otherwise, <c>false</c>.
+        /// </value>
+        public override bool CompShouldRemove => _shouldRemove; 
 
         private void RemoveOtherMutations()
         {
@@ -94,7 +101,7 @@ namespace Pawnmorph.Hediffs
                     continue; //the part to be removed must be older or the same age as this comp 
                 if (oComp.Props.layer == Props.layer)
                 {
-                    otherHediff.MarkForRemoval();
+                    oComp._shouldRemove = true; 
                 }
             }
         }
