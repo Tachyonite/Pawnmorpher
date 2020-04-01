@@ -1,24 +1,20 @@
 <Patch>
     <Operation Class="PatchOperationSequence">
         <operations>
-            <li Class="PatchOperationAdd">
+            <li Class="PatchOperationAddModExtension">
                 <xpath>/Defs/ThingDef[defName="Rat"]</xpath>
                 <value>
-                    <modExtensions>
-						<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
-							<backstory>FormerHumanCrafter</backstory>
-						</li>
-					</modExtensions>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>FormerHumanCrafter</backstory>
+                    </li>
                 </value>
             </li>
-            <li Class="PatchOperationAdd">
+            <li Class="PatchOperationAddModExtension">
                 <xpath>/Defs/ThingDef[defName="Raccoon"]</xpath>
                 <value>
-                    <modExtensions>
-						<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
-							<backstory>FormerHumanCrafter</backstory>
-						</li>
-					</modExtensions>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>FormerHumanCrafter</backstory>
+                    </li>
                 </value>
             </li>
         </operations>
