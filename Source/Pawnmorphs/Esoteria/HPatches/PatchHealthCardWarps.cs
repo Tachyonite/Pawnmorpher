@@ -8,34 +8,37 @@ using Verse;
 
 namespace Pawnmorph
 {
-    // <summary> Draw an info icon for mutations with their descriptions in tooltip. </summary>
-    //[HarmonyPatch(typeof(HealthCardUtility), "DrawHediffRow")]
-    //[StaticConstructorOnStartup]
-    //public static class PatchHealthCardUtilityDrawHediffRow
-    //{
-    //    private static readonly Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/Info", true);
-    //    static bool Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
-    //    {
-    //        if (diffs.OfType<IDescriptiveHediff>().FirstOrDefault(x => x.Description != null) == null) return true; 
-    //                float firstRowWidth = rect.width * 0.375f;
-    //        Rect rectIcon = new Rect(firstRowWidth - icon.width - 4, curY + 1, icon.width, icon.height);
-    //        GUI.DrawTexture(rectIcon, icon);
-    //        TooltipHandler.TipRegion(rectIcon, () => Tooltip(diffs), (int)curY + 117857);
-    //        return false; //make sure we replace Rimworld's drawer with our own 
-    //    }
+    /// <summary> Draw an info icon for mutations with their descriptions in tooltip. </summary>
+    [HarmonyPatch(typeof(HealthCardUtility), "DrawHediffRow")]
+    [StaticConstructorOnStartup]
+    public static class PatchHealthCardUtilityDrawHediffRow
+    {
+        private static readonly Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/Info", true);
 
-    //    static string Tooltip(IEnumerable<Hediff> diffs)
-    //    {
-    //        StringBuilder tooltip = new StringBuilder();
-    //        foreach (var mutation in diffs.OfType<IDescriptiveHediff>())
-    //        {
-    //            var desc = mutation.Description;
-    //            if (desc == null) continue;
+        static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
+        {
+            if (diffs.OfType<IDescriptiveHediff>().FirstOrDefault(x => x.Description != null) == null) return;
 
-    //            tooltip.AppendLine(desc);
-    //        }
+            float firstRowWidth = rect.width * 0.375f;
+            Rect rectIcon = new Rect(firstRowWidth - icon.width - 4, curY + 1, icon.width, icon.height);
+            GUI.DrawTexture(rectIcon, icon);
+            TooltipHandler.TipRegion(rectIcon, () => Tooltip(diffs), (int) curY + 117857);
+        }
 
-    //        return tooltip.ToString();
-    //    }
-    //}
+        static string Tooltip(IEnumerable<Hediff> diffs)
+        {
+            StringBuilder tooltip = new StringBuilder();
+            foreach (var mutation in diffs.OfType<IDescriptiveHediff>())
+            {
+                var desc = mutation.Description;
+                if (desc == null) continue;
+
+                tooltip.AppendLine(desc);
+            }
+
+            return tooltip.ToString();
+
+        }
+    }
 }
+
