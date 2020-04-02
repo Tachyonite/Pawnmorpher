@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HarmonyLib;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
 
@@ -17,12 +18,18 @@ namespace Pawnmorph
 
         static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
         {
-            if (diffs.OfType<IDescriptiveHediff>().FirstOrDefault(x => x.Description != null) == null) return;
+            var dLst = diffs.MakeSafe().ToList(); 
+            if (dLst.OfType<IDescriptiveHediff>().FirstOrDefault(x => x.Description != null) == null) return;
 
-            float firstRowWidth = rect.width * 0.375f;
+            float firstRowWidth = rect.width * 0.275f;
             Rect rectIcon = new Rect(firstRowWidth - icon.width - 4, curY + 1, icon.width, icon.height);
-            GUI.DrawTexture(rectIcon, icon);
-            TooltipHandler.TipRegion(rectIcon, () => Tooltip(diffs), (int) curY + 117857);
+            var toolTipRect = rect;
+            toolTipRect.x = rectIcon.x;
+            toolTipRect.y = rectIcon.y;
+            toolTipRect.height = rectIcon.height * dLst.Count; 
+            
+            //GUI.DrawTexture(rectIcon, icon);
+            TooltipHandler.TipRegion(toolTipRect, () => Tooltip(dLst), (int) curY + 117857);
         }
 
         static string Tooltip(IEnumerable<Hediff> diffs)
