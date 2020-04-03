@@ -15,7 +15,7 @@ namespace Pawnmorph
     public static class PatchHealthCardUtilityDrawHediffRow
     {
         private static readonly Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/Info", true);
-
+        [HarmonyAfter("PeteTimesSix.CompactHediffs")]
         static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
         {
             var dLst = diffs.MakeSafe().ToList(); 
