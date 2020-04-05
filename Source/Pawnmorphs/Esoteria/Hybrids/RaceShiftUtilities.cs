@@ -57,9 +57,10 @@ namespace Pawnmorph.Hybrids
         /// <param name="race">The race.</param>
         /// <param name="reRollTraits">if race related traits should be reRolled</param>
         /// <exception cref="ArgumentNullException">pawn</exception>
-        public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits = false)
+        public static void ChangePawnRace([NotNull] Pawn pawn, [NotNull] ThingDef race, bool reRollTraits = false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (race == null) throw new ArgumentNullException(nameof(race));
             MorphDef oldMorph = pawn.def.GetMorphOfRace();
             ThingDef oldRace = pawn.def;
 
@@ -80,7 +81,7 @@ namespace Pawnmorph.Hybrids
                 RegionListersUpdater.DeregisterInRegions(pawn, map);
             var removed = false;
 
-            if (map != null)
+            if (map?.listerThings != null)
                 if (map.listerThings.Contains(pawn))
                 {
                     map.listerThings.Remove(pawn); //make sure to update the lister things or else dying will break 
@@ -314,7 +315,10 @@ namespace Pawnmorph.Hybrids
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (morph == null) throw new ArgumentNullException(nameof(morph));
             if (morph.hybridRaceDef == null)
+            {
                 Log.Error($"tried to change pawn {pawn.Name.ToStringFull} to morph {morph.defName} but morph has no hybridRace!");
+                return; 
+            }
             if (pawn.def != ThingDefOf.Human && !pawn.IsHybridRace())
             {
                 
@@ -332,6 +336,9 @@ namespace Pawnmorph.Hybrids
             }
 
             var hRace = morph.hybridRaceDef;
+
+           
+
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
             HandleGraphicsChanges(pawn, morph);
             ChangePawnRace(pawn, hRace, true);
