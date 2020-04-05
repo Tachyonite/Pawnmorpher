@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using Verse;
 using RimWorld;
@@ -199,7 +200,7 @@ namespace Pawnmorph
                 {
                     builder.Append(string.Join("\n", tmp.ToArray()).Indented());
                     tmp.Clear();
-                    Log.Warning(builder.ToString());
+                    DebugLogUtils.Warning(builder.ToString());
                 }
             }
         }
