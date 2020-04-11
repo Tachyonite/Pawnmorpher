@@ -260,6 +260,7 @@ namespace Pawnmorph.GraphicSys
             _customPortraitDrawSize = comp.customPortraitDrawSize;
             _fixedGenderPostSpawn = comp.fixGenderPostSpawn;
             _skinColor = comp.skinColor;
+            _hairDef = Pawn.story.hairDef; 
             _skinColorSecond = comp.skinColorSecond;
             _hairColorSecond = comp.hairColorSecond;
             _crownType = comp.crownType;
