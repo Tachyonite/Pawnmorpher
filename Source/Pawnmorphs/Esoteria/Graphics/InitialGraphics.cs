@@ -242,7 +242,6 @@ namespace Pawnmorph.GraphicSys
             comp.skinColorSecond = SkinColorSecond;
             comp.hairColorSecond = HairColorSecond;
             comp.crownType = CrownType;
-            comp.hairColorSecond = HairColorSecond;
 
             Pawn_StoryTracker story = ((Pawn)parent).story;
             story.hairColor = HairColor;
@@ -264,7 +263,7 @@ namespace Pawnmorph.GraphicSys
             _skinColorSecond = comp.skinColorSecond;
             _hairColorSecond = comp.hairColorSecond;
             _crownType = comp.crownType;
-            _hairColorSecond = Pawn.story.hairColor;
+            _hairColor = Pawn.story.hairColor;
             _body = Pawn.story.bodyType; 
         }
     }
