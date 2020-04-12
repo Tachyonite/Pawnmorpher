@@ -4,7 +4,6 @@
 using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
-using TMPro;
 using Verse;
 using Verse.AI;
 

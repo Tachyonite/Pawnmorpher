@@ -26,6 +26,18 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetHairColorOverride([NotNull] this MorphDef def, Pawn pawn = null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
+
+            if (pawn != null)
+            {
+                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                if(colorationAspect != null) 
+                {
+                    Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.HairFirst);
+                    if (aspectColor.HasValue)
+                        return aspectColor;
+                }
+            }
+
             HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
 
             if (def.ExplicitHybridRace == null)
@@ -69,6 +81,18 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetHairColorOverrideSecond([NotNull] this MorphDef def, Pawn pawn = null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
+
+            if (pawn != null)
+            {
+                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                if (colorationAspect != null)
+                {
+                    Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.HairSecond);
+                    if (aspectColor.HasValue)
+                        return aspectColor;
+                }
+            }
+
             if (def.ExplicitHybridRace == null)
             {
                 HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
@@ -109,6 +133,18 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetSkinColorOverride([NotNull] this MorphDef def, Pawn pawn = null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
+
+            if(pawn != null)
+            {
+                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                if (colorationAspect != null)
+                {
+                    Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinFirst);
+                    if (aspectColor.HasValue)
+                        return aspectColor;
+                }
+            }
+
             if (def.ExplicitHybridRace == null)
             {
                 HybridRaceSettings.GraphicsSettings raceGSettings = def.raceSettings?.graphicsSettings;
@@ -126,7 +162,6 @@ namespace Pawnmorph.GraphicSys
                 try
                 {
                     if (pawn != null) Rand.PushState(pawn.thingIDNumber);
-
                     color = colorGenerator.NewRandomizedColor();
                 }
                 finally
@@ -149,6 +184,18 @@ namespace Pawnmorph.GraphicSys
         public static Color? GetSkinColorSecondOverride([NotNull] this MorphDef def, Pawn pawn = null)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
+
+            if (pawn != null)
+            {
+                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                if (colorationAspect != null)
+                {
+                    Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinSecond);
+                    if (aspectColor.HasValue)
+                        return aspectColor;
+                }
+            }
+
             if (def.ExplicitHybridRace == null)
             {
                 HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
