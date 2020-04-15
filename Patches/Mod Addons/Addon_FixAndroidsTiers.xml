@@ -1,0 +1,23 @@
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Android tiers</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier" or defName="Android2Tier" or defName="Android3Tier" or defName="Android4Tier" or defName="Android5Tier" or @Name="BasePawnMech"]</xpath>
+                    <value>
+                        <li Class="Pawnmorph.RaceMutationSettingsExtension">
+                            <immuneToAll>true</immuneToAll>
+                        </li>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+    
+    
+
+</Patch>
