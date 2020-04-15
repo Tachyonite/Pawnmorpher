@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pawnmorph", "Esoteria\Pawnmorph.csproj", "{04338000-4A27-47AB-A654-9F4BEF21BBBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMCompactHediffIIntegration", "PMCompactHediffIIntegration\PMCompactHediffIIntegration.csproj", "{51282A11-B461-496D-8D88-34B98E887AE0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{04338000-4A27-47AB-A654-9F4BEF21BBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04338000-4A27-47AB-A654-9F4BEF21BBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04338000-4A27-47AB-A654-9F4BEF21BBBD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51282A11-B461-496D-8D88-34B98E887AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51282A11-B461-496D-8D88-34B98E887AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51282A11-B461-496D-8D88-34B98E887AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51282A11-B461-496D-8D88-34B98E887AE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
