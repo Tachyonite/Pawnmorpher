@@ -3,8 +3,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
@@ -14,6 +17,7 @@ using Pawnmorph.Hybrids;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -26,7 +30,7 @@ namespace Pawnmorph
 
         static PawnmorphPatches()
         {   
-            Harmony.DEBUG = true; 
+           
 
             var
                 harmonyInstance = new Harmony("com.pawnmorpher.mod"); //shouldn't this be different? 
@@ -45,6 +49,24 @@ namespace Pawnmorph
                                  ); 
 #endif
 
+            try
+            {
+                PatchCaravanUI(harmonyInstance);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching caravan UI delegates\n{e}");
+            }
+
+            try
+            {
+                MassPatchFormerHumanChecks(harmonyInstance); 
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while mass patching former human functions\n{e}");
+
+            }
 
 
             try
@@ -57,6 +79,104 @@ namespace Pawnmorph
                 Log.Error($"Pawnmorpher cannot preform harmony patches! caught {e.GetType().Name}\n{e}"); 
             }
         }
+
+        private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
+        {
+            var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public; 
+            var instanceFlags = BindingFlags.Instance| BindingFlags.NonPublic | BindingFlags.Public;
+
+            List<MethodInfo> methodsToPatch = new List<MethodInfo>(); 
+            
+            //bed stuff 
+            var bedUtilType = typeof(RestUtility);
+            var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
+            methodsToPatch.Add(canUseBedMethod); 
+
+            //now patch them 
+            foreach (MethodInfo methodInfo in methodsToPatch)
+            {
+                if(methodInfo == null) continue;
+                harmonyInstance.ILPatchCommonMethods(methodInfo); 
+            }
+
+
+        }
+
+
+        private static void PatchCaravanUI([NotNull] Harmony harmInstance)
+        {
+            //TODO make patch utilities for mass patching delegates 
+            var cUIType = typeof(CaravanUIUtility);
+            var flg = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance;
+
+
+            bool CorrectSignature(MethodInfo methodInfo)
+            {
+                var parameters = methodInfo.GetParameters();
+                if (parameters.Length != 1) return false;
+                return parameters[0].ParameterType == typeof(TransferableOneWay) || parameters[0].ParameterType == typeof(Pawn);
+            }
+            
+            var allInnerTypes = cUIType.GetNestedTypes(flg).Where(IsCompilerGenerated);
+            //add in the delegates from LordToil_PrepareCaravan_GatherAnimals
+            allInnerTypes = allInnerTypes.Concat(typeof(LordToil_PrepareCaravan_GatherAnimals)
+                                                .GetNestedTypes(flg)
+                                                .Where(IsCompilerGenerated)); 
+            var allMethods = allInnerTypes.SelectMany(t => t.GetMethods(flg).Where(CorrectSignature));
+            var tsMethodInfo = typeof(PawnmorphPatches).GetMethod(nameof(CaravanDelegatePatch), flg); 
+            foreach (MethodInfo methodInfo in allMethods)
+            {
+                var hMethod = new HarmonyMethod(tsMethodInfo);
+                harmInstance.Patch(methodInfo, transpiler: hMethod); 
+            }
+
+        }
+
+        
+
+        static IEnumerable<CodeInstruction> CaravanDelegatePatch(IEnumerable<CodeInstruction> instructions)
+        {
+            List<CodeInstruction> ilList = instructions.ToList();
+            MethodInfo methodSig1 = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod();
+            MethodInfo methodSig2 = typeof(RaceProperties).GetProperty(nameof(RaceProperties.Animal)).GetGetMethod();
+            MethodInfo replaceMethod = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsAnimal));
+            for (var i = 0; i < ilList.Count - 1; i++)
+            {
+                int j = i + 1;
+                CodeInstruction opI = ilList[i];
+                CodeInstruction opJ = ilList[j];
+
+                // looking for 
+                // pawn.RaceProps.Animal 
+                // which is 
+                // race =  pawn.get_RaceProps()
+                // race.get_Animal()
+                if (opI.opcode == OpCodes.Callvirt
+                 && (MethodInfo) opI.operand == methodSig1
+                 && opJ.opcode == OpCodes.Callvirt
+                 && (MethodInfo) opJ.operand == methodSig2)
+                {
+                    //now replace with one call to FormerHumanUtilities.IsAnimal(Pawn)
+                    opI.opcode = OpCodes.Call;
+                    opI.operand = replaceMethod;
+
+                    //replace race.get_Animal() op with nop (no operation) so we don't fuck up the stack 
+                    opJ.opcode = OpCodes.Nop;
+                    opJ.operand = null;
+                }
+            }
+
+            return ilList;
+        }
+
+        static bool IsCompilerGenerated(Type type)
+        {
+            if (type.GetCustomAttribute<CompilerGeneratedAttribute>() != null) return true;
+            if (type.Name.Contains(">") || type.Name.Contains("<")) return true; 
+            return false; 
+        }
+
+        
 
         [NotNull]
         private static  readonly List<IFoodThoughtModifier> _modifiersCache = new List<IFoodThoughtModifier>();

@@ -18,7 +18,6 @@ namespace Pawnmorph.Hediffs
     /// </seealso>
     public class RemoveFromPartComp : HediffCompBase<RemoveFromPartCompProperties>
     {
-        [NotNull] private readonly List<Hediff> _rmCache = new List<Hediff>();
 
         private int _addedTick = -1;
 
@@ -44,8 +43,18 @@ namespace Pawnmorph.Hediffs
         public override void CompExposeData()
         {
             Scribe_Values.Look(ref _addedTick, "addedTick", -1, true);
+            Scribe_Values.Look(ref _shouldRemove, nameof(CompShouldRemove)); 
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (_addedTick == -1)
+                {
+                    _addedTick = Find.TickManager.TicksAbs;
+                   
+                }
+                RemoveOtherMutations();
+            }
 
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && _addedTick == -1) _addedTick = Find.TickManager.TicksAbs;
+
         }
 
         /// <summary>
@@ -65,27 +74,19 @@ namespace Pawnmorph.Hediffs
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
-
+            if (_shouldRemove) return; 
             RemoveOtherMutations();
         }
 
-        /// <summary>
-        ///     called every tick after the parent is updated.
-        /// </summary>
-        /// <param name="severityAdjustment">The severity adjustment.</param>
-        public override void CompPostTick(ref float severityAdjustment)
-        {
-           
-            if (_rmCache.Count == 0)
-                return; //remove hediffs one at a time to not trigger exceptions about invalidating hediff set's internal enumerator 
-            Hediff hm = _rmCache[0];
-            _rmCache.RemoveAt(0);
-            if (Pawn.health.hediffSet.hediffs.Contains(hm))
-            {
-                Pawn.health.RemoveHediff(hm);
-            }
-        }
+        private bool _shouldRemove;
 
+        /// <summary>
+        /// Gets a value indicating whether the parent hediff should be removed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if hediff should be removed; otherwise, <c>false</c>.
+        /// </value>
+        public override bool CompShouldRemove => _shouldRemove; 
 
         private void RemoveOtherMutations()
         {
@@ -93,14 +94,15 @@ namespace Pawnmorph.Hediffs
                                                         .health.hediffSet.hediffs.OfType<Hediff_AddedMutation>()
                                                         .Where(m => m != parent && m.Part == parent.Part))
             {
-                if (_rmCache.Contains(otherHediff)) continue;
                 var oComp = otherHediff.TryGetComp<RemoveFromPartComp>();
                 if (oComp == null) continue; //the hediffs must have this comp to 
 
                 if (oComp._addedTick > _addedTick)
                     continue; //the part to be removed must be older or the same age as this comp 
-                if (oComp.Props.layer == Props.layer) 
-                    _rmCache.Add(otherHediff);
+                if (oComp.Props.layer == Props.layer)
+                {
+                    oComp._shouldRemove = true; 
+                }
             }
         }
     }

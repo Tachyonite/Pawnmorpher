@@ -1,0 +1,19 @@
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Androids</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjAndroid" or defName="ChjDroid"]</xpath>
+                    <value>
+                        <li Class="Pawnmorph.RaceMutationSettingsExtension">
+                            <immuneToAll>true</immuneToAll>
+                        </li>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>

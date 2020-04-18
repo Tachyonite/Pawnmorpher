@@ -80,7 +80,7 @@ namespace Pawnmorph.DebugUtils
                 builder.AppendLine($"{kvp.Key.Label}:{kvp.Value}"); 
             }
 
-            builder.AppendLine($"---Total={tracker.TotalInfluence} N:{tracker.TotalNormalizedInfluence} NN:{tracker.TotalInfluence/MorphUtilities.MaxHumanInfluence}---");
+            builder.AppendLine($"---Total={tracker.TotalInfluence} N:{tracker.TotalNormalizedInfluence} NN:{tracker.TotalInfluence/MorphUtilities.GetMaxInfluenceOfRace(pawn.def)}---");
 
 
             builder.AppendLine($"---HighestInfluence={tracker.HighestInfluence?.Label ?? "NULL"}---");
@@ -253,11 +253,11 @@ namespace Pawnmorph.DebugUtils
             pawn.CheckRace();
             if (pawn.def == oldRace)
             {
-                Log.Message($"no change in {pawn.Name}");
+                DebugLogUtils.LogMsg(LogLevel.Messages,$"no change in {pawn.Name}");
             }
             else
             {
-                Log.Message($"{pawn.Name} was {oldRace.defName} and is now {pawn.def.defName}");
+                DebugLogUtils.LogMsg(LogLevel.Messages, $"{pawn.Name} was {oldRace.defName} and is now {pawn.def.defName}");
             }
         }
 

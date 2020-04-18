@@ -20,6 +20,7 @@
 		<thingCategories Inherit="False">
 			<li>PlantMatter</li>
 			<li>Drugs</li>
+			<li>RawMutagen</li>
 		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
@@ -41,6 +42,7 @@
 			<Mass>0.045</Mass>
 			<Flammability>0.2</Flammability>
 			<Nutrition>0.0</Nutrition>
+			<MutaniteConcentration>0.012</MutaniteConcentration>
 		</statBases>
 	</ThingDef>
 </Defs>

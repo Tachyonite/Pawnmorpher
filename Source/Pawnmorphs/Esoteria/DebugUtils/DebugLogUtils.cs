@@ -280,12 +280,12 @@ namespace Pawnmorph.DebugUtils
             var wDict = new Dictionary<AnimalClassBase, float>();
             var mutations = new List<Hediff_AddedMutation>();
             var strings = new List<string>();
-            float maxInf = MorphUtilities.MaxHumanInfluence;
+           
             foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonists)
             {
                 mutations.Clear();
                 mutations.AddRange(pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
-
+                float maxInf = MorphUtilities.GetMaxInfluenceOfRace(pawn.def);
                 AnimalClassUtilities.FillInfluenceDict(mutations, wDict);
                 if (wDict.Count == 0) continue;
                 //now build the log message entry 
@@ -389,7 +389,7 @@ namespace Pawnmorph.DebugUtils
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void MaximumMutationPointsForHumans()
         {
-            Log.Message(MorphUtilities.MaxHumanInfluence.ToString());
+            Log.Message(MorphUtilities.GetMaxInfluenceOfRace(ThingDefOf.Human).ToString());
         }
 
         [DebugOutput(MAIN_CATEGORY_NAME)]
@@ -438,6 +438,26 @@ namespace Pawnmorph.DebugUtils
             }
 
             Log.Message(builder.ToString()); 
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        static void ListDesignatedFormerHumans()
+        {
+            var map = Find.CurrentMap;
+            if (map == null) return;
+            var designation =
+                map.designationManager.allDesignations.Where(d => d.def == PMDesignationDefOf.RecruitSapientFormerHuman).ToList();
+            if (designation.Count == 0)
+            {
+                Log.Message($"No {nameof(PMDesignationDefOf.RecruitSapientFormerHuman)} on map");
+                return;
+            }
+
+            var str = designation.Join(s => s.target.Label, "\n");
+            Log.Message(str); 
+
+
+
         }
     }
 }

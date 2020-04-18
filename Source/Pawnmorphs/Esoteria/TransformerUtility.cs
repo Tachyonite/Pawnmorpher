@@ -113,16 +113,6 @@ namespace Pawnmorph
 
         }
 
-        /// <summary>
-        /// Gets the net mutagenic buildup multiplier for this pawn.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns></returns>
-        public static float GetMutagenicBuildupMultiplier([NotNull] this Pawn pawn)
-        {
-            return (pawn.GetStatValue(StatDefOf.ToxicSensitivity) + pawn.GetStatValue(PMStatDefOf.MutagenSensitivity))/2; 
-        }
-
         [NotNull]
         private static MutagenDamageProperties DefaultDamageValues { get; }
 

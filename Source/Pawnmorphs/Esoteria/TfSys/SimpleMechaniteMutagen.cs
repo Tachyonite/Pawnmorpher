@@ -204,7 +204,7 @@ namespace Pawnmorph.TfSys
             //notify the faction that their member has been transformed 
             oFaction?.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
-            if(reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
+            if(!request.noLetter && reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
                 SendLetter(request, original, spawnedAnimal);
 
             if (original.Spawned)
@@ -309,12 +309,8 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
 
-            FixBondRelationship(spawned, animal); 
-            PawnTransferUtilities.TransferRelations(animal, spawned, r => r != PawnRelationDefOf.Bond); //transfer whatever relations from the animal to the human pawn 
-            
-            PawnTransferUtilities.TransferSkills(animal, spawned, PawnTransferUtilities.SkillTransferMode.Max); //keep any skills they learned as an animal 
-            //do NOT transfer the bond relationship to humans, Rimworld doesn't like that 
-            AddReversionThought(spawned, tfHumanHediff.CurStageIndex);
+            FixBondRelationship(spawned, animal);
+            FormerHumanUtilities.TransferEverything(animal, spawned); 
 
             spawned.Faction?.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
 

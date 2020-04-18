@@ -184,16 +184,16 @@ namespace Pawnmorph
             var influences = mutationTracker.ToList();
 
             // Determine the remaining human influence.
-            float humInf = MorphUtilities.MaxHumanInfluence;
+            float humInf = MorphUtilities.GetMaxInfluenceOfRace(PawnToShowMutationsFor.def);
             foreach (var influence in influences)
                 humInf -= influence.Value;
-
+            var maxRaceInfluence = MorphUtilities.GetMaxInfluenceOfRace(PawnToShowMutationsFor.def); 
             // If the remaining human influence is greater than 0.0001, print its influence first.
             // (0.0001 is used to compensate for floating point number's occasional lack of precision.)
             if (humInf > EPSILON)
             {
                 GUI.color = Color.green;
-                string text = $"Human ({(humInf/MorphUtilities.MaxHumanInfluence).ToStringPercent()})";
+                string text = $"Human ({(humInf/maxRaceInfluence).ToStringPercent()})";
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
                 curPos.y += rectHeight;
@@ -210,7 +210,7 @@ namespace Pawnmorph
                 // Set the greatest influence's color to cyan
                 if (Math.Abs(influence.Value - maxInfluence) < EPSILON)
                     GUI.color = Color.cyan;
-                var nVal = influence.Value / MorphUtilities.MaxHumanInfluence; 
+                var nVal = influence.Value / maxRaceInfluence; 
                 string text = $"{influence.Key.LabelCap} ({nVal.ToStringPercent()})";
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);

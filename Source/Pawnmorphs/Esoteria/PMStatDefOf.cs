@@ -54,6 +54,11 @@ namespace Pawnmorph
         /// a specific, rotten food is this multiplied by the base chance to get sick from rotten food 
         public static StatDef RottenFoodSensitivity;
 
+        /// <summary>
+        /// the concentration of mutanite in a thing, this is used by refineries to determine how much of a thing is required to make mutanite 
+        /// </summary>
+        public static StatDef MutaniteConcentration; 
+
 
         /// <summary>
         /// stat that affects the likely hood that a pawn fully transforms

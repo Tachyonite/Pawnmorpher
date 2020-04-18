@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph.Hediffs
 {
@@ -152,6 +153,11 @@ namespace Pawnmorph.Hediffs
            
             _curIndex = 0;
 
+            var mutagen = def.GetMutagenDef();
+            if (!mutagen.CanInfect(pawn)) //if we somehow got a pawn that can't be mutated just remove the hediff
+                forceRemove = true; 
+
+
             RestartAllMutations();
 
         }
@@ -251,7 +257,7 @@ namespace Pawnmorph.Hediffs
             TryGiveTransformations();
             if(CurStage is IExecutableStage execStage)
             {
-                Log.Message($"Executing {execStage.GetType().Name} on {def.defName}");
+                Pedantic($"Executing {execStage.GetType().Name} on {def.defName}");
                 execStage.EnteredStage(this); 
             }
         }
@@ -302,6 +308,8 @@ namespace Pawnmorph.Hediffs
                 ResetPossibleMutations();   
             }
             
+
+
             if(_curIndex < _checkList.Count)
                 AddPartMutations();
             else
@@ -383,6 +391,12 @@ namespace Pawnmorph.Hediffs
             while (_curIndex < _checkList.Count)
             {
                 BodyPartRecord part = _checkList[_curIndex];
+                if (!pawn.RaceProps.body.AllParts.Contains(part))
+                {
+                    //if the pawn's race changes the mutation order may no longer be valid 
+                    //need to reset it and try again later 
+                    break;
+                }
 
                 var lst = _scratchDict.TryGetValue(part.def);
 
@@ -475,6 +489,14 @@ namespace Pawnmorph.Hediffs
             {
                 throw new NullReferenceException($"null reference exception while trying reset mutations! are all mutations set in {def.defName}?",e);
             }
+        }
+
+        /// <summary>
+        /// Marks this hediff removal.
+        /// </summary>
+        public void MarkForRemoval()
+        {
+            forceRemove = true; 
         }
     }
 }

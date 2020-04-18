@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
@@ -54,8 +55,11 @@ namespace Pawnmorph.Hybrids
             return _raceLookupTable.TryGetValue(race);
         }
 
-        private static RaceProperties GenerateHybridProperties(RaceProperties human, RaceProperties animal)
+        private static RaceProperties GenerateHybridProperties([NotNull] RaceProperties human, [NotNull] RaceProperties animal)
         {
+            (float hSize, float hHRate) = GetFoodStats(human, animal); 
+
+
             return new RaceProperties
             {
                 thinkTreeMain = human.thinkTreeMain, //most of these are just guesses, have to figure out what's safe to change and what isn't 
@@ -66,9 +70,9 @@ namespace Pawnmorph.Hybrids
                 leatherDef = animal.leatherDef,
                 nameCategory = human.nameCategory,
                 body = human.body,
-                baseBodySize = GetBodySize(animal, human),
+                baseBodySize = hSize,
                 baseHealthScale = Mathf.Lerp(human.baseHealthScale, animal.baseHealthScale, HEALTH_SCALE_LERP_VALUE),
-                baseHungerRate = GetHungerRate(animal, human),
+                baseHungerRate = hHRate,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 meatColor = animal.meatColor,
@@ -92,6 +96,25 @@ namespace Pawnmorph.Hybrids
                 packAnimal = animal.packAnimal
             };
         }
+
+        static (float bodySize, float hungerSize) GetFoodStats([NotNull] RaceProperties human, [NotNull] RaceProperties animal)
+        {
+            //'gamma' is a ratio describing how long it takes an animal to become hungry 
+            //larger values mean the animal needs to eat less often 
+            float gammaH = human.baseBodySize / human.baseHungerRate;
+            float gammaA = animal.baseBodySize / animal.baseHungerRate;
+
+            float f = Mathf.Pow(Math.Abs((gammaA - gammaH) / gammaH), 0.5f);
+            //scale things back a bit if the animal has very different hunger characteristics then humans  
+            float a = 1 / (1f + f); 
+
+            float hGamma = Mathf.Lerp(gammaA, gammaH, a);
+            //body size is just an average of animal and human 
+            float hBSize = Mathf.Lerp(animal.baseBodySize, human.baseBodySize, a);
+            float hHRate = hBSize / hGamma; //calculate the hunger rate the hybrid should have to have an average gamma value between the animal and human 
+
+            return (hBSize, hHRate); 
+        } 
 
         private static List<LifeStageAge> MakeLifeStages(List<LifeStageAge> human, List<LifeStageAge> animal)
         {
@@ -124,7 +147,7 @@ namespace Pawnmorph.Hybrids
         private static float GetBodySize(RaceProperties animal, RaceProperties human)
         {
             var f = Mathf.Lerp(human.baseBodySize, animal.baseBodySize, 0.5f);
-            return Mathf.Max(f, human.baseBodySize / 0.7f);
+            return Mathf.Max(f, human.baseBodySize * 0.7f);
         }
 
         private static float GetHungerRate(RaceProperties animal, RaceProperties human)
@@ -157,16 +180,20 @@ namespace Pawnmorph.Hybrids
             {
                 builder.AppendLine($"generating implied race for {morphDef.defName}");
                 ThingDef_AlienRace race = GenerateImplicitRace(human, morphDef);
-                if (morphDef.explicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
+                _raceLookupTable[race] = morphDef;
+
+                if (morphDef.ExplicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
                 {
                     morphDef.hybridRaceDef = race;
-                    _raceLookupTable[race] = morphDef;
                 }
                 else
                 {
-                    builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.explicitHybridRace.defName}, {race.defName} will not be used but still generated");
+                    _raceLookupTable[morphDef.ExplicitHybridRace] = morphDef;
+                    builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.ExplicitHybridRace.defName}, {race.defName} will not be used but still generated");
                 }
                 
+
+
                 CreateImplicitMeshes(builder, race);
 
                 yield return race;
@@ -216,8 +243,8 @@ namespace Pawnmorph.Hybrids
         {
             AlienPartGenerator gen = new AlienPartGenerator
             {
-                alienbodytypes = human.alienbodytypes,
-                aliencrowntypes = human.aliencrowntypes,
+                alienbodytypes = human.alienbodytypes.MakeSafe().ToList(),
+                aliencrowntypes = human.aliencrowntypes.MakeSafe().ToList(),
                 bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
                 alienProps = impliedRace
             };
@@ -491,7 +518,7 @@ namespace Pawnmorph.Hybrids
                 description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
                 modContentPack = morph.modContentPack,
                 inspectorTabsResolved = humanDef.inspectorTabsResolved?.ToList() ?? new List<InspectTabBase>(),
-                recipes = new List<RecipeDef>(humanDef.AllRecipes), //this is where the surgery operations live
+                recipes = new List<RecipeDef>(humanDef.recipes.MakeSafe()), //this is where the surgery operations live
                 filth = morph.race.filth,
                 filthLeaving = morph.race.filthLeaving,
                 soundDrop = morph.race.soundDrop,
@@ -503,6 +530,12 @@ namespace Pawnmorph.Hybrids
                 tradeTags = humanDef.tradeTags?.ToList(),
                 tradeability = humanDef.tradeability
             };
+            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(morph.race.tools.MakeSafe()));
+            var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance); 
+            var vLst = impliedRace.Verbs.MakeSafe().Concat(morph.race.Verbs.MakeSafe()).ToList();
+
+            verbField.SetValue(impliedRace, vLst); 
+
 
             impliedRace.alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph, impliedRace); 
 

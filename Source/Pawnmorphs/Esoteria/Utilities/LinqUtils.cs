@@ -27,6 +27,62 @@ namespace Pawnmorph.Utilities
             return enumerable ?? Enumerable.Empty<T>();
         }
 
+        /// <summary>
+        /// Adds the element to the list with the given key, or creates a new list if the key is not in the dictionary already 
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <typeparam name="TElem">The type of the elem.</typeparam>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="elem">The elem.</param>
+        /// <exception cref="ArgumentNullException">
+        /// dict
+        /// or
+        /// key
+        /// </exception>
+        public static void AddToKey<TKey, TElem>([NotNull] this IDictionary<TKey, List<TElem>> dict, [NotNull] TKey key,
+                                               [CanBeNull]  TElem elem)
+        {
+            if (dict == null) throw new ArgumentNullException(nameof(dict));
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
+            if (!dict.TryGetValue(key, out List<TElem> lst))
+            {
+                lst = new List<TElem>() {elem};
+                dict[key] = lst; 
+            }
+            else
+            {
+                lst.Add(elem); 
+            }
+
+        }
+
+        /// <summary>
+        /// Determines whether this enumeration of hediffDefs contains the def of the given hediff.
+        /// </summary>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns>
+        ///   <c>true</c> if this enumeration of hediffDefs contains the def of the given hediff; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// enumerable
+        /// or
+        /// hediff
+        /// </exception>
+        public static bool ContainsHediff([NotNull] this IEnumerable<HediffDef> enumerable, [NotNull] Hediff hediff)
+        {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (hediff == null) throw new ArgumentNullException(nameof(hediff));
+
+            foreach (HediffDef hediffDef in enumerable)
+            {
+                if (hediffDef == hediff.def) return true; 
+            }
+
+            return false; 
+        }
 
 
         /// <summary>gets a random element from the list</summary>

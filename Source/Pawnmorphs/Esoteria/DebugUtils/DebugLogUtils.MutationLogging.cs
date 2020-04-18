@@ -26,5 +26,38 @@ namespace Pawnmorph.DebugUtils
 
             Log.Message(builder.ToString());
         }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void GetRaceMaxInfluence()
+        {
+            StringBuilder builder = new StringBuilder(); 
+            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.body != null))
+            {
+                builder.AppendLine($"{thingDef.defName}/{thingDef.label}={MorphUtilities.GetMaxInfluenceOfRace(thingDef)}"); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
+
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        static void LogMutationSensitivity()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonistsAndPrisoners)
+            {
+                var mStat = pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
+                var mFStat = pawn.GetMutagenicBuildupMultiplier();
+
+                builder.AppendLine($"{pawn.Name} = {{{PMStatDefOf.MutagenSensitivity}:{mStat}, MutagenicBuildupMultiplier:{mFStat} }}"); 
+
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
     }
 }

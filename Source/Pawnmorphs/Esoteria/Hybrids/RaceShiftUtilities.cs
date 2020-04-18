@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -50,14 +51,16 @@ namespace Pawnmorph.Hybrids
 
 
         /// <summary>
-        /// safely change the pawns race 
+        /// safely change the pawns race
         /// </summary>
-        /// <param name="pawn"></param>
-        /// <param name="race"></param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="race">The race.</param>
         /// <param name="reRollTraits">if race related traits should be reRolled</param>
-        public static void ChangePawnRace([NotNull] Pawn pawn, ThingDef race, bool reRollTraits = false)
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static void ChangePawnRace([NotNull] Pawn pawn, [NotNull] ThingDef race, bool reRollTraits = false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (race == null) throw new ArgumentNullException(nameof(race));
             MorphDef oldMorph = pawn.def.GetMorphOfRace();
             ThingDef oldRace = pawn.def;
 
@@ -78,7 +81,7 @@ namespace Pawnmorph.Hybrids
                 RegionListersUpdater.DeregisterInRegions(pawn, map);
             var removed = false;
 
-            if (map != null)
+            if (map?.listerThings != null)
                 if (map.listerThings.Contains(pawn))
                 {
                     map.listerThings.Remove(pawn); //make sure to update the lister things or else dying will break 
@@ -105,18 +108,143 @@ namespace Pawnmorph.Hybrids
                 comp.NotifyPawnRaceChanged(pawn, oldMorph);
             }
 
+            if (race == ThingDefOf.Human)
+                ValidateReversion(pawn); 
+            else 
+                ValidateExplicitRaceChange(pawn, race, oldRace);
+
+            
+
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.RefreshGraphics();
 
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
 
             //save location 
-            if(Current.ProgramState == ProgramState.Playing)
+            if (Current.ProgramState == ProgramState.Playing)
                 pawn.ExposeData();
             if (pawn.Faction != faction) pawn.SetFaction(faction);
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
                 raceChangeEventReceiver.OnRaceChange(oldRace);
+            }
+        }
+
+        private static void ValidateReversion(Pawn pawn)
+        {
+            var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+            var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+            var story = pawn.story; 
+            if (alienComp == null)
+            {
+                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
+                return;
+            }
+
+            if (graphicsComp == null)
+            {
+                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(InitialGraphicsComp)}!");
+
+            }
+
+            story.bodyType = graphicsComp.BodyType;
+            alienComp.crownType = graphicsComp.CrownType;
+            story.hairDef = graphicsComp.HairDef; 
+        }
+
+
+        private static void ValidateExplicitRaceChange(Pawn pawn, ThingDef race, ThingDef oldRace)
+        {
+            if (oldRace is ThingDef_AlienRace oldARace)
+            {
+                if (race is ThingDef_AlienRace aRace)
+                {
+                    ValidateGraphicsPaths(pawn, oldARace, aRace);
+                } //validating the graphics paths only works for aliens 
+                else
+                {
+                    Log.Warning($"trying change the race of {pawn.Name} to {race.defName} which is not {nameof(ThingDef_AlienRace)}!");
+
+                }
+            }
+            else
+            {
+                Log.Warning($"trying change the race of {pawn.Name} from {oldRace.defName} which is not {nameof(ThingDef_AlienRace)}!");
+            }
+        }
+
+        private static void ValidateGraphicsPaths([NotNull] Pawn pawn, [NotNull] ThingDef_AlienRace oldRace, [NotNull] ThingDef_AlienRace race)
+        {
+            //this implimentation is a work in progress 
+            //currently, when shifting to an explicit race the body and head types will come out 'shuffled'
+            //
+            var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+            var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+            var story = pawn.story; 
+            if (alienComp == null)
+            {
+                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
+                return; 
+            }
+
+            if(graphicsComp == null)
+            {
+                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(InitialGraphicsComp)}!");
+
+            }
+
+           
+
+            var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;
+            var newGen = race.alienRace.generalSettings.alienPartGenerator; 
+
+            //get the new head type 
+            var oldHIndex = oldGen.aliencrowntypes.FindIndex(s => s == alienComp.crownType);
+            float hRatio = newGen.aliencrowntypes.Count / ((float) oldGen.aliencrowntypes.Count) ; 
+
+            int newHIndex; 
+            if (oldHIndex == -1) //-1 means not found 
+            {
+                newHIndex = Rand.Range(0, newGen.aliencrowntypes.Count); //just pick a random head 
+            }
+            else
+            {
+                newHIndex = Mathf.FloorToInt(oldHIndex * hRatio); //squeeze the old index into the range of the new crow type 
+            }
+
+
+            //now get the new body type 
+
+            var bRatio = newGen.alienbodytypes.Count / ((float) oldGen.alienbodytypes.Count);
+            var oldBIndex = oldGen.alienbodytypes.FindIndex(b => b == story.bodyType);
+
+            int newBIndex; 
+            if (oldBIndex == -1 )
+            {
+                newBIndex = Rand.Range(0, newGen.alienbodytypes.Count); 
+            }
+            else
+            {
+                newBIndex = Mathf.FloorToInt(oldBIndex * bRatio);
+            }
+
+            
+
+            //now set the body and head type 
+
+            var newHeadType = newGen.aliencrowntypes[newHIndex];
+            
+            alienComp.crownType = newHeadType;
+
+            if (newGen.alienbodytypes.Count > 0)
+            {
+                var newBType = newGen.alienbodytypes[newBIndex];
+                story.bodyType = newBType; 
+            }
+
+            if (oldRace.alienRace.hairSettings?.hasHair == true && race.alienRace.hairSettings?.hasHair == false)
+            {
+                story.hairDef = HairDefOf.Shaved; 
             }
         }
 
@@ -187,18 +315,30 @@ namespace Pawnmorph.Hybrids
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (morph == null) throw new ArgumentNullException(nameof(morph));
             if (morph.hybridRaceDef == null)
+            {
                 Log.Error($"tried to change pawn {pawn.Name.ToStringFull} to morph {morph.defName} but morph has no hybridRace!");
+                return; 
+            }
             if (pawn.def != ThingDefOf.Human && !pawn.IsHybridRace())
             {
                 
                 return;
             }
 
+            var oldRace = pawn.def; 
             //apply mutations 
             if (addMissingMutations)
                 SwapMutations(pawn, morph);
 
+            if (morph.raceSettings?.requiredMutations != null)
+            {
+                CheckRequiredMutations(pawn, morph.raceSettings.requiredMutations); 
+            }
+
             var hRace = morph.hybridRaceDef;
+
+           
+
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
             HandleGraphicsChanges(pawn, morph);
             ChangePawnRace(pawn, hRace, true);
@@ -215,6 +355,67 @@ namespace Pawnmorph.Hybrids
 
             if (tfSettings?.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
             pawn.TryGainMemory(tfSettings?.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
+
+            if (oldRace.race.body != pawn.RaceProps.body)
+            {
+                FixHediffs(pawn, oldRace, morph); 
+            }
+
+        }
+
+        private static void CheckRequiredMutations([NotNull] Pawn pawn, [NotNull] List<MutationDef> requiredMutations)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (requiredMutations == null) throw new ArgumentNullException(nameof(requiredMutations));
+            List<BodyPartRecord> addLst = new List<BodyPartRecord>(); 
+            foreach (MutationDef requiredMutation in requiredMutations)
+            {
+                if(requiredMutation.parts == null) continue;
+                addLst.Clear();
+                foreach (BodyPartRecord record in pawn.GetAllNonMissingParts(requiredMutation.parts)) //get all parts missing the required mutations 
+                {
+                    var hediff = pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == requiredMutation && h.Part == record);
+                    if (hediff == null)
+                    {
+                        addLst.Add(record); 
+                    }
+                }
+
+                if (addLst.Count != 0)
+                {
+                    MutationUtilities.AddMutation(pawn, requiredMutation, addLst); 
+                }
+            }
+        }
+
+        [NotNull]
+        private static readonly List<Hediff> _rmList = new List<Hediff>(); 
+
+        private static void FixHediffs([NotNull] Pawn pawn, [NotNull] ThingDef oldRace, [NotNull] MorphDef morph)
+        {
+            var transformer = morph.raceSettings.Transformer;
+
+
+            _rmList.Clear();
+            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+            {
+                if(hediff.Part == null) continue;
+                var newRecord = transformer.Transform(hediff.Part, pawn.RaceProps.body);
+                if (newRecord != null)
+                {
+                    hediff.Part = newRecord; 
+                }
+                else
+                {
+                    _rmList.Add(hediff);
+                }
+            }
+
+            foreach (Hediff hediff in _rmList)
+            {
+                pawn.health.RemoveHediff(hediff);
+            }
+
         }
 
         private static void SwapMutations([NotNull] Pawn pawn,[NotNull] MorphDef morph)

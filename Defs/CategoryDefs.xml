@@ -14,4 +14,12 @@
 		<resourceReadoutRoot>true</resourceReadoutRoot>
 		<iconPath>UI/Icons/ThingCategories/Drugs</iconPath>
 	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>RawMutagen</defName>
+		<label>raw mutagens</label>
+		<parent>ResourcesRaw</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>UI/Icons/ThingCategories/ResourcesRaw</iconPath>
+	</ThingCategoryDef>
 </Defs>

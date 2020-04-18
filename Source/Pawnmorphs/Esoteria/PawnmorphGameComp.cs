@@ -5,9 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
+using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
@@ -52,6 +55,35 @@ namespace Pawnmorph
                 }
 
                 return _transformedPawns;
+            }
+        }
+
+        /// <summary>
+        /// called when the world is finishing initialization 
+        /// </summary>
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+
+            AddSurgeriesToMorphs(); 
+        }
+
+        private void AddSurgeriesToMorphs()
+        {
+
+
+            var humanRecipes = ThingDefOf.Human.AllRecipes; 
+            foreach (ThingDef_AlienRace race in RaceGenerator.ImplicitRaces)
+            {
+                var rcList = race.AllRecipes;
+
+                //add all that were added by other mods/recipie users/etc. to the morphs 
+                foreach (RecipeDef recipe in humanRecipes)
+                {
+                    if (!rcList.Contains(recipe))
+                        rcList.Add(recipe); 
+                }
+
             }
         }
 

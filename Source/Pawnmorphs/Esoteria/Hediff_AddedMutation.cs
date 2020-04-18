@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -109,6 +110,18 @@ namespace Pawnmorph
         /// </summary>
         public string mutationDescription;
 
+        /// <summary>
+        /// if this part should be removed or not
+        /// </summary>
+        protected bool shouldRemove;
+
+        /// <summary>
+        /// Marks this mutation for removal.
+        /// </summary>
+        public void MarkForRemoval()
+        {
+            shouldRemove = true; 
+        }
 
         /// <summary>
         /// Gets a value indicating whether should be removed.
@@ -118,10 +131,15 @@ namespace Pawnmorph
         {
             get
             {
-                return false;
+                foreach (HediffComp hediffComp in comps.MakeSafe())
+                {
+                    if (hediffComp.CompShouldRemove) return true; 
+                }
+                
+                return shouldRemove;
             }
         }
-     
+
         /// <summary>Gets the extra tip string .</summary>
         /// <value>The extra tip string .</value>
         public override string TipStringExtra
@@ -149,6 +167,17 @@ namespace Pawnmorph
             
             string res = rawDescription.AdjustedFor(pawn);
             builder.AppendLine(res);
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is a core mutation.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is a core mutation; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsCoreMutation
+        {
+            get { return this.TryGetComp<RemoveFromPartComp>()?.Layer == MutationLayer.Core;  }
         }
 
         /// <summary>
@@ -222,13 +251,31 @@ namespace Pawnmorph
         public override void PostAdd(DamageInfo? dinfo)
         // After the hediff has been applied.
         {
-            base.PostAdd(dinfo); // Do the inherited method.
-            if (PawnGenerator.IsBeingGenerated(pawn) || !pawn.Spawned) //if the pawn is still being generated do not update graphics until it's done 
-            {
-                _waitingForUpdate = true;
-                return; 
-            }
-            UpdatePawnInfo();
+           
+                base.PostAdd(dinfo); // Do the inherited method.
+                if (PawnGenerator.IsBeingGenerated(pawn) || !pawn.Spawned) //if the pawn is still being generated do not update graphics until it's done 
+                {
+                    _waitingForUpdate = true;
+                    return; 
+                }
+                UpdatePawnInfo();
+
+                foreach (Hediff_AddedMutation otherMutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
+                {
+                    try
+                    {
+                        if (Blocks((MutationDef) otherMutation.def, otherMutation.Part))
+                        {
+                            otherMutation.shouldRemove = true; //don't actually remove the hediffs, just mark them for removal
+                        }
+                    }
+                    catch (InvalidCastException e) //just pretty up the error message a bit and continue on 
+                    {
+                        Log.Error($"could not cast {otherMutation.def.defName} of type {otherMutation.def.GetType().Name} to {nameof(MutationDef)}!\n{e}");
+                    }
+                }
+           
+
         }
         /// <summary>
         /// Posts the tick.
@@ -268,6 +315,7 @@ namespace Pawnmorph
         {
             base.ExposeData();
             Scribe_Values.Look(ref _currentStageIndex, nameof(_currentStageIndex), -1); 
+            Scribe_Values.Look(ref shouldRemove, nameof(shouldRemove));
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
                 Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.", false);

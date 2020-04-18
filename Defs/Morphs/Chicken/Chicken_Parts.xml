@@ -84,6 +84,12 @@
 			<li>
 				<partEfficiencyOffset>-0.7</partEfficiencyOffset>
 			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>dextrous wings</labelOverride>
+				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers</description>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset> <!-- still not quite as good as hands-->
+			</li>
 		</stages>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
@@ -98,6 +104,9 @@
 					<memory>WingTipMemory</memory>
 					<tale>HandsBecomeWingTips</tale>
 				</mutationDependency>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.20</severityPerDay>
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>

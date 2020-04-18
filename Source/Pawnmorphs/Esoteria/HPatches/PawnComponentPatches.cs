@@ -73,11 +73,15 @@ namespace Pawnmorph.HPatches
                 pawn.foodRestriction = null; 
                 pawn.equipment = null;
                 pawn.royalty = null;
+                pawn.guest = null;
+                pawn.guilt = null; 
                 pawn.drugs = null; 
                 pawn.story = null;
+                pawn.abilities = null; 
                 pawn.skills = null;
                 pawn.timetable = null; 
-                pawn.workSettings = null; 
+                pawn.workSettings = null;
+                pawn.outfits = null; 
                 var saComp = pawn.GetComp<Comp_SapientAnimal>();
                 if (saComp != null)
                 {
@@ -109,8 +113,12 @@ namespace Pawnmorph.HPatches
                 pawn.apparel = pawn.apparel ?? new  Pawn_ApparelTracker(pawn); //need this to not break thoughts and stuff 
                 pawn.skills = pawn.skills ?? new Pawn_SkillTracker(pawn); //need this for thoughts 
                 pawn.royalty = pawn.royalty ?? new Pawn_RoyaltyTracker(pawn);// former humans can be royalty  
+                pawn.abilities = pawn.abilities ?? new Pawn_AbilityTracker(pawn); 
                 pawn.mindState = pawn.mindState ?? new Pawn_MindState(pawn);
                 pawn.drugs = pawn.drugs ?? new Pawn_DrugPolicyTracker(pawn);
+                pawn.guest = pawn.guest ?? new Pawn_GuestTracker(pawn);
+                pawn.outfits = pawn.outfits ?? new Pawn_OutfitTracker(pawn); 
+                pawn.guilt = pawn.guilt ?? new Pawn_GuiltTracker(); 
                 pawn.foodRestriction = pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(pawn); 
                 pawn.timetable = pawn.timetable ?? new Pawn_TimetableTracker(pawn); 
                 Comp_SapientAnimal nComp = pawn.GetComp<Comp_SapientAnimal>();

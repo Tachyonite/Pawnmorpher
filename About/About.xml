@@ -76,5 +76,6 @@ Feel free to suggest the next to be added, or if there are other QOL things you 
 	</loadBefore>
 	<loadAfter>
 		<li>erdelf.HumanoidAlienRaces</li>
+		<li>PeteTimesSix.CompactHediffs</li>
 	</loadAfter>
 </ModMetaData>

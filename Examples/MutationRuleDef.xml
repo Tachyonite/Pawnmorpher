@@ -23,6 +23,19 @@
                 <stageIndex>1</stageIndex>
             </li>
         </conditions>
+
+        this is a list of aspect conditions for this rule 
+        <aspectConditions>
+            <li>
+                the aspect def to look for 
+                this field is required 
+                <aspectDef>AspectDef</aspectDef>
+
+                if set, then the aspect def must be this stage on a given pawn to satisfy this condition 
+                <aspectStage>1</aspectStage>
+            </li>
+        </aspectConditions>
+
         the result of the rule being executed
         <results>
             <li>

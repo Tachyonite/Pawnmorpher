@@ -3,6 +3,7 @@
 
 using System.Text;
 using AlienRace;
+using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -124,6 +125,44 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>
+        /// Gets the initial body type of this pawn
+        /// </summary>
+        /// <value>
+        /// The type of the body.
+        /// </value>
+        [NotNull]
+        public BodyTypeDef BodyType
+        {
+            get
+            {
+                if (!_scanned)
+                {
+                    ScanGraphics();
+                }
+
+                return _body; 
+            }
+        }
+
+        private HairDef _hairDef;
+
+        /// <summary>
+        /// Gets the initial hair definition.
+        /// </summary>
+        /// <value>
+        /// The hair definition.
+        /// </value>
+        public HairDef HairDef
+        {
+            get
+            {
+                if(!_scanned)
+                    ScanGraphics();
+                return _hairDef; 
+            }
+        }
+
         private Pawn Pawn => (Pawn) parent;
 
         /// <summary>Gets the debug string.</summary>
@@ -146,6 +185,7 @@ namespace Pawnmorph.GraphicSys
             Assert(parent is Pawn, "parent is Pawn");
         }
 
+        private BodyTypeDef _body; 
 
         /// <summary>expose data.</summary>
         public override void PostExposeData()
@@ -160,6 +200,8 @@ namespace Pawnmorph.GraphicSys
             Scribe_Values.Look(ref _crownType, "crownType");
             Scribe_Values.Look(ref _hairColor, nameof(HairColor));
             Scribe_Values.Look(ref _scanned, nameof(_scanned));
+            Scribe_Defs.Look(ref _body, nameof(_body));
+            Scribe_Defs.Look(ref _hairDef, nameof(_hairDef));
 
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -167,6 +209,10 @@ namespace Pawnmorph.GraphicSys
                 if (_skinColor == Color.clear)
                 {
                     _skinColor = PawnSkinColors.GetSkinColor(Pawn.story.melanin); 
+                }
+                if(_body == null)
+                {
+                    _body = Pawn.story.bodyType; 
                 }
             }
         }
@@ -196,8 +242,11 @@ namespace Pawnmorph.GraphicSys
             comp.skinColorSecond = SkinColorSecond;
             comp.hairColorSecond = HairColorSecond;
             comp.crownType = CrownType;
-            comp.hairColorSecond = HairColorSecond;
-            ((Pawn) parent).story.hairColor = HairColor;
+
+            Pawn_StoryTracker story = ((Pawn)parent).story;
+            story.hairColor = HairColor;
+            story.hairDef = HairDef;
+            story.bodyType = BodyType; 
         }
 
         private void ScanGraphics()
@@ -210,10 +259,12 @@ namespace Pawnmorph.GraphicSys
             _customPortraitDrawSize = comp.customPortraitDrawSize;
             _fixedGenderPostSpawn = comp.fixGenderPostSpawn;
             _skinColor = comp.skinColor;
+            _hairDef = Pawn.story.hairDef; 
             _skinColorSecond = comp.skinColorSecond;
             _hairColorSecond = comp.hairColorSecond;
             _crownType = comp.crownType;
-            _hairColorSecond = Pawn.story.hairColor;
+            _hairColor = Pawn.story.hairColor;
+            _body = Pawn.story.bodyType; 
         }
     }
 }

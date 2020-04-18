@@ -1,0 +1,7 @@
+<loadFolders>
+    <v1.1>
+        <li>1.1</li>
+        <li>/</li>
+        <li IfModActive="PeteTimesSix.CompactHediffs">1.1/ModIntegrations/CompactHediffs/</li>
+    </v1.1>
+</loadFolders>

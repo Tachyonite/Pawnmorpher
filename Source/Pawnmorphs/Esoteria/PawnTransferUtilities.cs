@@ -2,6 +2,7 @@
 // last updated 12/24/2019  6:29 AM
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Thoughts;
@@ -96,11 +97,21 @@ namespace Pawnmorph
 
 
             foreach (Aspect aspect in oTracker)
+            { 
+                if(animalTracker.Contains(aspect.def, aspect.StageIndex)) continue;
+
+
                 if (aspect.def.transferToAnimal)
                 {
                     int stageIndex = aspect.StageIndex;
-                    animalTracker.Add(aspect.def, stageIndex);
+                    Aspect aAspect = animalTracker.GetAspect(aspect.def);
+                    if (aAspect != null)
+                        aAspect.StageIndex = stageIndex; //set the stage but do not re add it 
+                    else
+                        animalTracker.Add(aspect.def, stageIndex); //add it if the animal does not have the aspect
                 }
+
+            }
         }
 
 
@@ -116,12 +127,13 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Transfers skills from pawn1 to pawn2 
+        /// Transfers skills from pawn1 to pawn2
         /// </summary>
         /// <param name="pawn1">The pawn1.</param>
         /// <param name="pawn2">The pawn2.</param>
         /// <param name="mode">The transfer mode.</param>
-        public static void TransferSkills([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, SkillTransferMode mode = SkillTransferMode.Set)
+        /// <param name="passionTransferMode">The passion transfer mode.</param>
+        public static void TransferSkills([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, SkillTransferMode mode = SkillTransferMode.Set, SkillPassionTransferMode passionTransferMode=SkillPassionTransferMode.Ignore)
         {
             if (pawn2.skills == null)
             {
@@ -153,9 +165,78 @@ namespace Pawnmorph
                         throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
                 }
 
-                p2Skill.Level = newLevel; 
+                
+                p2Skill.Level = newLevel;
 
+
+                Passion passionLevel; 
+                switch (passionTransferMode)
+                {
+                    case SkillPassionTransferMode.Min:
+                        passionLevel = (Passion) Mathf.Min((int) p2Skill.passion, (int) skillRecord.passion); 
+                        break;
+                    case SkillPassionTransferMode.Max:
+                        passionLevel = (Passion) Mathf.Max((int) p2Skill.passion, (int) skillRecord.passion); 
+                        break;
+                    case SkillPassionTransferMode.Set:
+                        passionLevel = skillRecord.passion; 
+                        break;
+                    case SkillPassionTransferMode.Ignore:
+                        continue;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(passionTransferMode), passionTransferMode, null);
+                }
+
+                p2Skill.passion = passionLevel; 
             }
+        }
+
+        [NotNull]
+        private static readonly List<Faction> _facScratchList = new List<Faction>();
+
+
+        /// <summary>
+        /// Transfers the favor of all factions from pawn1 to pawn2 
+        /// </summary>
+        /// <param name="pawn1">The pawn1.</param>
+        /// <param name="pawn2">The pawn2.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// pawn1
+        /// or
+        /// pawn2
+        /// </exception>
+        public static void TransferFavor([NotNull] Pawn pawn1, [NotNull] Pawn pawn2)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            Pawn_RoyaltyTracker rTracker1 = pawn1.royalty;
+            Pawn_RoyaltyTracker rTracker2 = pawn2.royalty;
+            if (rTracker1 == null) return; 
+            if (rTracker2 == null)
+            {
+                Log.Error($"trying to transfer titles from {pawn1.Name}/{pawn1.thingIDNumber} to {pawn2.Name}/{pawn2.thingIDNumber} but {pawn2.Name} does not have a royalty tracker!");
+                return; 
+            }
+
+            _facScratchList.Clear();
+            _facScratchList.AddRange(rTracker1.AllTitlesForReading.MakeSafe().Select(f => f.faction).Distinct()); //make a copy so we can remove safely while transferring 
+
+
+            foreach (Faction faction in _facScratchList)
+            {
+                var favor = rTracker1.GetFavor(faction);
+                var favor2 = rTracker2.GetFavor(faction); 
+                if(favor2 >= favor) continue; //don't transfer if pawn2 already has a title equal or greater to this 
+                if (!rTracker1.TryRemoveFavor(faction, favor)) //try to reduce to zero 
+                {
+                    Log.Error($"could not reduce favor of faction {faction.Name}/{faction.def.defName} for {pawn1.Name} to 0");
+                    continue;
+                }
+
+                //now add the favor to pawn2 
+                rTracker2.SetFavor(faction, favor); 
+            }
+
         }
 
         /// <summary>
@@ -176,5 +257,28 @@ namespace Pawnmorph
             /// </summary>
             Max
         }
+
+        /// <summary>
+        /// the method to use when transferring skill passions 
+        /// </summary>
+        public enum SkillPassionTransferMode
+        {
+            ///do not transfer passions
+            Ignore,
+            /// <summary>
+            /// take the minimum of the passions 
+            /// </summary>
+            Min,
+            /// <summary>
+            /// take the maximum of the passions 
+            /// </summary>
+            Max,
+            /// <summary>
+            /// just set the passion level 
+            /// </summary>
+            Set
+        }
+
+        
     }
 }
