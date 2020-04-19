@@ -412,6 +412,7 @@
     <Compile Include="HPatches\AIPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
+    <Compile Include="HPatches\DoorPatches.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
