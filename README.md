@@ -1,5 +1,5 @@
 # Pawnmorpher
-## A mod all about mutation for Rimworld 1.0!
+## A mod all about mutation for Rimworld 1.0/1.1!
 
 ![Preview](https://github.com/TACHYON-Micah/Pawnmorpher/blob/master/About/Preview.png) 
 
