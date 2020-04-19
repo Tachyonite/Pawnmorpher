@@ -9,6 +9,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using System;
 
 namespace Pawnmorph
 {
@@ -217,6 +218,10 @@ namespace Pawnmorph
 
         /// <summary> Called after the pawn is despawned. </summary>
         public virtual void PostDeSpawn()
+        {
+        }
+
+        public virtual void OnTransferToAnimal(Aspect newAspect)
         {
         }
 

@@ -310,6 +310,8 @@
     <Compile Include="AspectDefOf.cs" />
     <Compile Include="AspectGiver.cs" />
     <Compile Include="AspectStage.cs" />
+    <Compile Include="Comp_PlayerPickedColoration.cs" />
+    <Compile Include="Dialogs\ColonistColorPicker.cs" />
     <Compile Include="Aspects\Coloration.cs" />
     <Compile Include="Aspects\MeatLover.cs" />
     <Compile Include="Aspects\PrimalWishGiver.cs" />

@@ -18,7 +18,7 @@ namespace Pawnmorph.HPatches
             [HarmonyPostfix]
             static void Postfix(PawnGraphicSet __instance)
             {
-                var colorationAspect = __instance.pawn?.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                var colorationAspect = __instance.pawn?.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
                 if (colorationAspect != null)
                     colorationAspect.TryDirectRecolor(__instance);
             }

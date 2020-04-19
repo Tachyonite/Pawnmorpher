@@ -276,9 +276,9 @@ namespace Pawnmorph
 
         /// <summary> Get the aspect in this tracker of the given type, if one exists. </summary>
         [CanBeNull]
-        public Aspect GetAspect(Type aspectType)
+        public T GetAspect<T>() where T: Aspect
         {
-            return _aspects.FirstOrDefault(d => aspectType.IsInstanceOfType(d));
+            return _aspects.FirstOrDefault(d => d is T) as T;
         }
 
         /// <summary> Get the aspect in this tracker of the given def, if one exists. </summary>

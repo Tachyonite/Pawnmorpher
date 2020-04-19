@@ -50,10 +50,34 @@ namespace Pawnmorph.GraphicSys
 
         bool UpdateSkinColor([NotNull] MutationTracker tracker, bool force = false)
         {
+            if (GComp == null || InitialGraphics == null) return false;
+
+            var colorationAspect = tracker.Pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+            if (colorationAspect != null && colorationAspect.IsFullOverride)
+            {
+                var color = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinFirst);
+                if (color.HasValue)
+                {
+                    GComp.skinColor = color.Value;
+                    return true;
+                }
+            }
+
             var highestInfluence = Pawn.GetHighestInfluence();
             var curMorph = Pawn.def.GetMorphOfRace();
-            if (highestInfluence == null || (!force && highestInfluence == curMorph)) return false; // If there is not influence or if the highest influence is that of their current race do nothing.
-            if (GComp == null || InitialGraphics == null) return false;
+            if (highestInfluence == null || (!force && highestInfluence == curMorph))
+            {
+                if (GComp.skinColor == InitialGraphics.SkinColor)
+                {
+                    return false; // If there is not influence or if the highest influence is that of their current race do nothing.
+                }
+                else 
+                {
+                    GComp.skinColor = InitialGraphics.SkinColor;
+                    return true;
+                }
+            }
+
 
             float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
             var baseColor = curMorph?.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
@@ -73,11 +97,35 @@ namespace Pawnmorph.GraphicSys
 
         bool UpdateHairColor([NotNull] MutationTracker tracker, bool force = false)
         {
-            var highestInfluence = Pawn.GetHighestInfluence();
-            var curMorph = Pawn.def.GetMorphOfRace();
-            if (highestInfluence == null || (!force && highestInfluence == curMorph)) return false; // If there is not influence or if the highest influence is that of their current race do nothing.
             if (GComp == null || InitialGraphics == null || Pawn.story == null) return false;
 
+            var colorationAspect = tracker.Pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+            if (colorationAspect != null && colorationAspect.IsFullOverride)
+            {
+                var color = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.HairFirst);
+                if (color.HasValue)
+                {
+                    Pawn.story.hairColor = color.Value;
+                    return true;
+                }
+            }
+
+            var highestInfluence = Pawn.GetHighestInfluence();
+            var curMorph = Pawn.def.GetMorphOfRace();
+
+            if (highestInfluence == null || (!force && highestInfluence == curMorph))
+            {
+                if (Pawn.story.hairColor == InitialGraphics.HairColor)
+                {
+                    return false; // If there is not influence or if the highest influence is that of their current race do nothing.
+                }
+                else
+                {
+                    Pawn.story.hairColor = InitialGraphics.HairColor;
+                    return true;
+                }
+            }
+                
             float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
             var baseColor = curMorph?.GetHairColorOverride(tracker.Pawn) ?? InitialGraphics.HairColor;
             var morphColor = highestInfluence.GetHairColorOverride(tracker.Pawn) ?? InitialGraphics.HairColor;

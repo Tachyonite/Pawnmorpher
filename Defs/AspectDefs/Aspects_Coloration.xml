@@ -12,6 +12,7 @@
 			<li>ColorationAlbinism</li>
 			<li>ColorationMelanism</li>
 			<li>ColorationUnnatural</li>
+			<li>ColorationPlayerPicked</li>
 		</conflictingAspects>
 		<stages>
 			<li>
@@ -27,6 +28,7 @@
 			<li>ColorationNatural</li>
 			<li>ColorationMelanism</li>
 			<li>ColorationUnnatural</li>
+			<li>ColorationPlayerPicked</li>
 		</conflictingAspects>
 		<stages>
 			<li>
@@ -42,6 +44,7 @@
 			<li>ColorationNatural</li>
 			<li>ColorationAlbinism</li>
 			<li>ColorationUnnatural</li>
+			<li>ColorationPlayerPicked</li>
 		</conflictingAspects>
 		<stages>
 			<li>
@@ -57,11 +60,23 @@
 			<li>ColorationNatural</li>
 			<li>ColorationAlbinism</li>
 			<li>ColorationMelanism</li>
+			<li>ColorationPlayerPicked</li>
 		</conflictingAspects>
 		<stages>
 			<li>
 				<label>Unusual colors (unnatural)</label>
 				<description>[PAWN_nameDef]'s coloration has shifted to one not typically seen in nature (except in highly poisonous frogs).</description>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef ParentName="ColorationAspect">
+		<defName>ColorationPlayerPicked</defName>
+		<labelColor>(120,255,205)</labelColor>
+		<removedByReverter>false</removedByReverter>
+		<stages>
+			<li>
+				<label>Dermal repigmentation</label>
+				<description>[PAWN_nameDef]'s coloration has been artifically shifted to a personalised set.</description>
 			</li>
 		</stages>
 	</Pawnmorph.AspectDef>

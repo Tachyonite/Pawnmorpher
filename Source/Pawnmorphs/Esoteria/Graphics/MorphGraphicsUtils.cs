@@ -29,7 +29,7 @@ namespace Pawnmorph.GraphicSys
 
             if (pawn != null)
             {
-                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
                 if(colorationAspect != null) 
                 {
                     Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.HairFirst);
@@ -84,7 +84,7 @@ namespace Pawnmorph.GraphicSys
 
             if (pawn != null)
             {
-                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
                 if (colorationAspect != null)
                 {
                     Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.HairSecond);
@@ -136,7 +136,7 @@ namespace Pawnmorph.GraphicSys
 
             if(pawn != null)
             {
-                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
                 if (colorationAspect != null)
                 {
                     Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinFirst);
@@ -187,7 +187,7 @@ namespace Pawnmorph.GraphicSys
 
             if (pawn != null)
             {
-                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect(typeof(Aspects.Coloration)) as Aspects.Coloration;
+                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
                 if (colorationAspect != null)
                 {
                     Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinSecond);

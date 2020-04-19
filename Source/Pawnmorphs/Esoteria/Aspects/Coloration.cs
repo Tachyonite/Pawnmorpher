@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using Pawnmorph.Dialogs;
 using Pawnmorph.GraphicSys;
 using RimWorld;
 using System;
@@ -11,6 +12,23 @@ using Verse;
 
 namespace Pawnmorph.Aspects
 {
+
+    public class PawnColorSet : IExposable
+    {
+        public Color? skinColor = null;
+        public Color? skinColorTwo = null;
+        public Color? hairColor = null;
+        public Color? hairColorTwo = null;
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look<Color?>(ref skinColor, "skinColor");
+            Scribe_Values.Look<Color?>(ref skinColorTwo, "skinColorTwo");
+            Scribe_Values.Look<Color?>(ref hairColor, "hairColor");
+            Scribe_Values.Look<Color?>(ref hairColorTwo, "hairColorTwo");
+        }
+    }
+
     public class Coloration : Aspect
     {
         private static ColorGenerator_HSV NaturalColors { get; } = new ColorGenerator_HSV()
@@ -33,6 +51,17 @@ namespace Pawnmorph.Aspects
             ValueRange = new FloatRange(0.8f, 0.9f)
         };
 
+        private PawnColorSet _colorSet = new PawnColorSet();
+        public PawnColorSet ColorSet { get { return _colorSet; } set { _colorSet = value; } }
+        public bool IsFullOverride { get { return this.def == ColorationAspectDefOfs.ColorationPlayerPicked; } }
+
+
+        protected override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Deep.Look<PawnColorSet>(ref _colorSet, "colorSet");
+        }
+
         public void TryDirectRecolor(PawnGraphicSet graphics) 
         {
             if (this.Pawn != null && this.Pawn.RaceProps != null && !this.Pawn.RaceProps.Humanlike)
@@ -47,28 +76,21 @@ namespace Pawnmorph.Aspects
             }
         }
 
-        protected override void PostAdd()
+        public void RemoveOthers() 
         {
-            base.PostAdd();
-            if (this.Pawn != null)
+
+            var tracker = this.Pawn.GetAspectTracker();
+            foreach(var aspect in tracker.Aspects) 
             {
-                
-                if (this.Pawn.RaceProps.Humanlike)
-                {
-                    var graphicsUpdater = this.Pawn.GetComp<GraphicsUpdaterComp>();
-                    if (graphicsUpdater != null)
-                        graphicsUpdater.RefreshGraphics(this.Pawn.GetComp<MutationTracker>(), this.Pawn, true);
-                }
-                else
-                {
-                    /*handled in ResolveAllGraphicsPatch*/
-                }
+                if (!(aspect is Coloration) || aspect == this)
+                    continue;
+
+                tracker.Remove(aspect); //this should be fine since the removal is delayed
             }
         }
 
-        public override void PostRemove()
+        public void UpdatePawn()
         {
-            base.PostRemove();
             if (this.Pawn != null)
             {
                 if (this.Pawn.RaceProps.Humanlike)
@@ -85,6 +107,25 @@ namespace Pawnmorph.Aspects
             }
         }
 
+        public override void OnTransferToAnimal(Aspect newAspect)
+        {
+            base.OnTransferToAnimal(newAspect);
+            (newAspect as Coloration).ColorSet = this.ColorSet;
+        }
+
+        protected override void PostAdd()
+        {
+            base.PostAdd();
+            RemoveOthers();
+            UpdatePawn();
+        }
+
+        public override void PostRemove()
+        {
+            base.PostRemove();
+            UpdatePawn();
+        }
+
 
         public enum PawnColorSlot 
         {
@@ -96,9 +137,9 @@ namespace Pawnmorph.Aspects
 
         public Color? TryGetColorationAspectColor(PawnColorSlot colorSlot)
         {
+            Log.Message("getting coloration for " + this.Pawn.Label + " aspect is " + this.def);
             var transformedPawn = Find.World.GetComponent<PawnmorphGameComp>()?.GetTransformedPawnContaining(this.Pawn);
             var seed = (transformedPawn != null && transformedPawn.Item2 == TfSys.TransformedStatus.Transformed) ? transformedPawn.Item1.OriginalPawns.Sum(p => p.thingIDNumber) : this.Pawn.thingIDNumber;
-            Log.Message(transformedPawn.ToStringSafe());
             ColorGenerator colorGen = TryGetColorationAspectColorGenerator(colorSlot);
             if (colorGen != null)
             {
@@ -119,7 +160,6 @@ namespace Pawnmorph.Aspects
         {
             if(this.def == ColorationAspectDefOfs.ColorationNatural)
             {
-                //Log.Message("coloring ColorationNatural");
                 switch (colorSlot)
                 {
                     case PawnColorSlot.SkinFirst:
@@ -132,7 +172,6 @@ namespace Pawnmorph.Aspects
             }
             else if (this.def == ColorationAspectDefOfs.ColorationAlbinism)
             {
-                //Log.Message("coloring ColorationAlbinism");
                 switch (colorSlot)
                 {
                     case PawnColorSlot.SkinFirst:
@@ -147,7 +186,6 @@ namespace Pawnmorph.Aspects
             }
             else if (this.def == ColorationAspectDefOfs.ColorationMelanism)
             {
-                //Log.Message("coloring ColorationMelanism");
                 switch (colorSlot)
                 {
                     case PawnColorSlot.SkinFirst:
@@ -162,7 +200,6 @@ namespace Pawnmorph.Aspects
             }
             else if (this.def == ColorationAspectDefOfs.ColorationUnnatural)
             {
-                //Log.Message("coloring ColorationUnnatural");
                 switch (colorSlot)
                 {
                     case PawnColorSlot.SkinFirst:
@@ -173,6 +210,35 @@ namespace Pawnmorph.Aspects
                         return UnnaturalColors;
                     case PawnColorSlot.HairSecond:
                         return UnnaturalColors;
+                    default:
+                        return null;
+                }
+            }
+            else if (this.def == ColorationAspectDefOfs.ColorationPlayerPicked)
+            {
+                Log.Message("using player picked colors");
+                switch (colorSlot)
+                {
+                    case PawnColorSlot.SkinFirst:
+                        if (ColorSet != null && ColorSet.skinColor.HasValue)
+                            return new ColorGenerator_Single() { color = ColorSet.skinColor.Value };
+                        else
+                            return null;
+                    case PawnColorSlot.SkinSecond:
+                        if (ColorSet != null && ColorSet.skinColorTwo.HasValue)
+                            return new ColorGenerator_Single() { color = ColorSet.skinColorTwo.Value };
+                        else
+                            return null;
+                    case PawnColorSlot.HairFirst:
+                        if (ColorSet != null && ColorSet.hairColor.HasValue)
+                            return new ColorGenerator_Single() { color = ColorSet.hairColor.Value };
+                        else
+                            return null;
+                    case PawnColorSlot.HairSecond:
+                        if (ColorSet != null && ColorSet.hairColorTwo.HasValue)
+                            return new ColorGenerator_Single() { color = ColorSet.hairColorTwo.Value };
+                        else
+                            return null;
                     default:
                         return null;
                 }
@@ -199,5 +265,8 @@ namespace Pawnmorph.Aspects
 
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
         public static AspectDef ColorationUnnatural;
+
+        [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
+        public static AspectDef ColorationPlayerPicked;
     }
 }

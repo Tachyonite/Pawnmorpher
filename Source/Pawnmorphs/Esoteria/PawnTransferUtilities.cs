@@ -18,6 +18,12 @@ namespace Pawnmorph
     /// </summary>
     public static class PawnTransferUtilities
     {
+        public enum TransferDirection 
+        {
+            HumanlikeToAnimal,
+            AnimalToHumanlike
+        }
+
         /// <summary>
         /// Transfers the relations from pawn1 to pawn2 
         /// </summary>
@@ -106,9 +112,17 @@ namespace Pawnmorph
                     int stageIndex = aspect.StageIndex;
                     Aspect aAspect = animalTracker.GetAspect(aspect.def);
                     if (aAspect != null)
+                    {
                         aAspect.StageIndex = stageIndex; //set the stage but do not re add it 
+                        aspect.OnTransferToAnimal(aAspect);
+                    }
                     else
-                        animalTracker.Add(aspect.def, stageIndex); //add it if the animal does not have the aspect
+                    {
+                        var newAspect = aspect.def.CreateInstance();
+                        aspect.OnTransferToAnimal(newAspect);
+                        animalTracker.Add(newAspect, stageIndex); //add it if the animal does not have the aspect
+                    }
+
                 }
 
             }
