@@ -30,9 +30,10 @@ namespace Pawnmorph
             {
                 NotifySettingsChanged();
                 GenerateImplicitRaces();
-                TransferPatchesToExplicitRaces(); 
+                TransferPatchesToExplicitRaces();
                 CheckForObsoletedComponents();
             }
+           
             catch (Exception e)
             {
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
@@ -207,22 +208,31 @@ namespace Pawnmorph
 
         private static void GenerateImplicitRaces()
         {
-            var allLoadedThingDefs = DefDatabase<ThingDef>.AllDefs;
-            HashSet<ushort> takenHashes = new HashSet<ushort>(allLoadedThingDefs.Select(t => t.shortHash));  // Get the hashes already being used 
-
-            List<ThingDef> genRaces = new List<ThingDef>();
-
-            foreach (ThingDef_AlienRace thingDefAlienRace in RaceGenerator.ImplicitRaces)
+            try
             {
-                var race = (ThingDef)thingDefAlienRace;
-                genRaces.Add(race);
-                DefGenerator.AddImpliedDef(race);
-                DefGenerator.AddImpliedDef(thingDefAlienRace); 
+                var allLoadedThingDefs = DefDatabase<ThingDef>.AllDefs;
+                HashSet<ushort> takenHashes = new HashSet<ushort>(allLoadedThingDefs.Select(t => t.shortHash));  // Get the hashes already being used 
+
+                List<ThingDef> genRaces = new List<ThingDef>();
+
+                foreach (ThingDef_AlienRace thingDefAlienRace in RaceGenerator.ImplicitRaces)
+                {
+                    var race = (ThingDef)thingDefAlienRace;
+                    genRaces.Add(race);
+                    DefGenerator.AddImpliedDef(race);
+                    DefGenerator.AddImpliedDef(thingDefAlienRace); 
+                }
+
+                foreach (ThingDef thingDef in genRaces)
+                {
+                    GiveHash(thingDef, takenHashes);
+                }
             }
-
-            foreach (ThingDef thingDef in genRaces)
+            catch (MissingMethodException e)
             {
-                GiveHash(thingDef, takenHashes);
+                throw new
+                    ModInitializationException($"caught missing method exception while generating implicit races! is HAR up to date?",
+                                               e);
             }
         }
 
