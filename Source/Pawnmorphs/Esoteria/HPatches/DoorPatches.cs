@@ -12,14 +12,20 @@ namespace Pawnmorph.HPatches
     {
 
         [HarmonyPatch(nameof(Building_Door.PawnCanOpen)), HarmonyPostfix]
-        static bool FixFormerHumanDoorPatch(bool result, Pawn p, Building_Door __instance)
+        static void FixFormerHumanDoorPatch(ref bool __result, Pawn p, Building_Door __instance)
         {
-            if (result)
+            if (__result)
             {
-                if (p.Faction != __instance.Faction && p.IsFormerHuman()) return false; 
+                if (p.Faction != __instance.Faction)
+                {
+                    if (p.IsFormerHuman())
+                    {
+                        __result = false;
+                    }
+                } 
             }
 
-            return result; 
+            return; 
         }
     }
 }
