@@ -45,6 +45,52 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void TestFormerHumanDoorPatch()
+        {
+            var doors = Find.CurrentMap.listerThings.AllThings.OfType<Building_Door>().ToList();
+            var allFHs = Find.CurrentMap.listerThings.AllThings.OfType<Pawn>().Where(p => p.IsFormerHuman()).ToList();
+
+            if (doors.Count == 0)
+            {
+                Log.Message("No doors on map?");
+                return;
+            }
+
+            if (allFHs.Count == 0)
+            {
+                Log.Message("no former humans on map");
+                return;
+            }
+
+            string BuildFHInfo(Pawn formerHuman)
+            {
+                return $"{formerHuman.Name}/{formerHuman.LabelShort}[{formerHuman.GetQuantizedSapienceLevel()}]"; 
+            }
+
+            string BuildDoorStr(Building_Door bDoor)
+            {
+                return $"{bDoor.ThingID} def=\"{bDoor.def.defName}\""; 
+            }
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (Building_Door door in doors)
+            {
+                builder.AppendLine($"testing door {BuildDoorStr(door)}:"); 
+
+                foreach (Pawn formerHuman in allFHs)
+                {
+                    var canPass = door.PawnCanOpen(formerHuman);
+                    var str = BuildFHInfo(formerHuman) + nameof(Building_Door.PawnCanOpen) + "=" + canPass;
+                    builder.AppendLine(str.Indented("|\t")); 
+                }
+            }
+
+            Log.Message(builder.ToString());
+
+        }
+
         static IEnumerable<ThinkNode> GetChildren([NotNull] ThinkNode node)
         {
             if (node is ThinkNode_SubtreesByTag) return Enumerable.Empty<ThinkNode>();
