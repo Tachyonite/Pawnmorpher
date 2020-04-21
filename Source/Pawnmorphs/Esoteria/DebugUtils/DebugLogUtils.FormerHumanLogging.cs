@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -48,6 +49,7 @@ namespace Pawnmorph.DebugUtils
         [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
         static void TestFormerHumanDoorPatch()
         {
+            
             var doors = Find.CurrentMap.listerThings.AllThings.OfType<Building_Door>().ToList();
             var allFHs = Find.CurrentMap.listerThings.AllThings.OfType<Pawn>().Where(p => p.IsFormerHuman()).ToList();
 
@@ -74,6 +76,33 @@ namespace Pawnmorph.DebugUtils
             }
 
             StringBuilder builder = new StringBuilder();
+
+            //patch info
+            var methodInfo =
+                typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), BindingFlags.Instance | BindingFlags.Public);
+
+            Patches patchInfo = Harmony.GetPatchInfo(methodInfo);
+
+            string GetPatchInfo(Patch patch)
+            {
+                return $"{patch.owner}:{{\"{nameof(Patch.index)}\":{patch.index}}},{{\"priority\":{patch.priority}}}";
+            }
+
+
+            if (patchInfo == null)
+            {
+                builder.AppendLine($"{nameof(Building_Door.PawnCanOpen)} is not patched!");
+            }
+            else
+            {
+                builder.AppendLine($"Patch info for {nameof(Building_Door.PawnCanOpen)}:");
+                foreach (Patch postfix in patchInfo.Postfixes.MakeSafe())
+                {
+                    builder.AppendLine(GetPatchInfo(postfix).Indented("|\t"));
+                }
+
+                builder.AppendLine("---------------Pawn Info------------------"); 
+            }
 
             foreach (Building_Door door in doors)
             {
