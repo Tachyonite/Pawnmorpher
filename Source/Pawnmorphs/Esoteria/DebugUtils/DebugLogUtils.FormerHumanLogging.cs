@@ -72,7 +72,7 @@ namespace Pawnmorph.DebugUtils
 
             string BuildDoorStr(Building_Door bDoor)
             {
-                return $"{bDoor.ThingID} def=\"{bDoor.def.defName}\""; 
+                return $"{bDoor.ThingID} def=\"{bDoor.def.defName}\" faction={bDoor.Faction?.Name ?? "None"}"; 
             }
 
             StringBuilder builder = new StringBuilder();
@@ -85,7 +85,7 @@ namespace Pawnmorph.DebugUtils
 
             string GetPatchInfo(Patch patch)
             {
-                return $"{patch.owner}:{{\"{nameof(Patch.index)}\":{patch.index}}},{{\"priority\":{patch.priority}}}";
+                return $"{patch.owner}:{{\"{nameof(Patch.index)}\":{patch.index},\"priority\":{patch.priority}}}";
             }
 
 
