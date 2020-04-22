@@ -19,6 +19,14 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     public class Need_Control : Need_Seeker
     {
+        public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel sapienceLevel);
+
+        /// <summary>
+        /// Occurs when the sapience level changes .
+        /// </summary>
+        public event SapienceLevelChangedHandle SapienceLevelChanged; 
+
+
         /// <summary>
         /// Determines whether the control need is enabled for the pawn.
         /// </summary>
@@ -215,8 +223,8 @@ namespace Pawnmorph
 
             pawn.needs?.AddOrRemoveNeedsAsAppropriate();
             PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
-            fHediff.NotifySapienceLevelChanges();
-            
+           
+            SapienceLevelChanged?.Invoke(this, pawn, _currentLevel); 
 
         }
 
