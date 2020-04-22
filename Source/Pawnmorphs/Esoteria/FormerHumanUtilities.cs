@@ -612,18 +612,33 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Determines whether this instance is humanlike.
+        /// Determines whether this instance is humanlike.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <returns>
-        ///     <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">pawn</exception>
+        //overload here so harmony patches don't break
         public static bool IsHumanlike([NotNull] this Pawn pawn)
+        {
+            return IsHumanlike(pawn, false);
+        }
+
+        /// <summary>
+        /// Determines whether this instance is humanlike.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="includeNonSapientFormerHumans">if set to <c>true</c> include non sapient former humans.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsHumanlike([NotNull] this Pawn pawn, bool includeNonSapientFormerHumans)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (pawn.RaceProps.Humanlike) return !pawn.IsWildMan();
-            if (pawn.IsSapientFormerHuman()) return true;
+            if (includeNonSapientFormerHumans ? pawn.IsFormerHuman() : pawn.IsSapientFormerHuman()) return true;
             return false;
         }
 

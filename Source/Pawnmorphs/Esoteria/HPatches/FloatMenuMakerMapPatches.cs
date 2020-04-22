@@ -90,7 +90,7 @@ namespace Pawnmorph
         {
 
             [NotNull]
-            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike));
+            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)});
 
             [NotNull] private static readonly MethodInfo _targetMethodSig =
                 typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod(); 

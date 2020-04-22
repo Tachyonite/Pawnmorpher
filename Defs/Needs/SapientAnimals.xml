@@ -14,16 +14,6 @@
 		<major>true</major>
 		<freezeWhileSleeping>true</freezeWhileSleeping>
 		<showForCaravanMembers>true</showForCaravanMembers>
-		<modExtensions>
-			<li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
-				<filter>
-					<isBlackList>true</isBlackList>
-					<filterList>
-						<li>PermanentlyFeral</li>
-					</filterList>
-				</filter>
-			</li>
-		</modExtensions>
 	</NeedDef>
 
 </Defs>

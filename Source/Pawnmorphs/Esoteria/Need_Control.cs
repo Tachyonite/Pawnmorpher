@@ -111,6 +111,7 @@ namespace Pawnmorph
                     _seekerLevel = CurLevel;
                 _currentLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(_seekerLevel);
                 CurLevel = Mathf.Clamp(CurLevel, 0, MaxLevel);
+                OnSapienceLevelChanges();
             }
         }
 
