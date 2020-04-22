@@ -55,8 +55,7 @@ namespace Pawnmorph.HPatches
             {
                 if (nd == PMNeedDefOf.SapientAnimalControl)
                 {
-                    var fhLevel = ___pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
-                    __result = fhLevel != SapienceLevel.PermanentlyFeral|| ___pawn.IsHumanlike() ; 
+                    __result = Need_Control.IsEnabledFor(___pawn); 
                 }
 
 

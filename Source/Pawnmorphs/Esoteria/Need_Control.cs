@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -15,8 +16,38 @@ namespace Pawnmorph
     /// <summary>
     ///     need that represents a sapient animal's control or humanity left
     /// </summary>
+    [StaticConstructorOnStartup]
     public class Need_Control : Need_Seeker
     {
+        /// <summary>
+        /// Determines whether the control need is enabled for the pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if control need is enabled for the given humanoid race; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsEnabledFor([NotNull] Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var fhLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
+            return fhLevel != SapienceLevel.PermanentlyFeral || _enabledRaces.Contains(pawn.def); 
+        }
+
+        [NotNull]
+        private static readonly HashSet<ThingDef> _enabledRaces; 
+        static Need_Control()
+        {
+            _enabledRaces = new HashSet<ThingDef>();
+            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs)
+            {
+                if(thingDef.race?.Humanlike != true) continue;
+
+                if(!DefDatabase<MutagenDef>.AllDefsListForReading.Any(d => d.CanTransform(thingDef))) continue;
+                _enabledRaces.Add(thingDef); 
+
+            }
+        }
+
         private float _seekerLevel;
 
         private SapienceLevel _currentLevel;
