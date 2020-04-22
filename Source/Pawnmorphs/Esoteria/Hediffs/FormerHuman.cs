@@ -118,16 +118,6 @@ namespace Pawnmorph.Hediffs
             if (pawn.needs == null) return; //dead pawns don't have needs for some reason 
         }
 
-        
-
-        /// <summary>
-        /// Notifies this instance that the sapience level changes.
-        /// </summary>
-        public void NotifySapienceLevelChanges()
-        {
-            SapienceLevel? saLabel = pawn?.GetQuantizedSapienceLevel();
-        }
-
         private void OnSapienceLevelChanged()
         {
             _lastStage = CurStageIndex;
