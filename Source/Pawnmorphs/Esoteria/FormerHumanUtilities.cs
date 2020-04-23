@@ -456,7 +456,7 @@ namespace Pawnmorph
         /// <param name="pawn">The pawn.</param>
         /// <returns></returns>
         [CanBeNull]
-        public static SapienceTracker GetFormerHumanTracker([NotNull] this Pawn pawn)
+        public static SapienceTracker GetSapienceTracker([NotNull] this Pawn pawn)
         {
             var tComp = pawn.GetComp<SapienceTracker>();
             return tComp;
@@ -482,7 +482,7 @@ namespace Pawnmorph
         /// <returns>returns null if the pawn isn't a former human</returns>
         public static SapienceLevel? GetQuantizedSapienceLevel([NotNull] this Pawn pawn)
         {
-            SapienceTracker tracker = pawn.GetFormerHumanTracker();
+            SapienceTracker tracker = pawn.GetSapienceTracker();
             if (tracker == null) return null;
             if (!tracker.IsFormerHuman) return null;
             return tracker.SapienceLevel;
@@ -608,7 +608,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsFormerHuman([NotNull] this Pawn pawn)
         {
-            return pawn.GetFormerHumanTracker()?.IsFormerHuman == true;
+            return pawn.GetSapienceTracker()?.IsFormerHuman == true;
         }
 
         /// <summary>
@@ -685,7 +685,7 @@ namespace Pawnmorph
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
         {
-            SapienceTracker fTracker = pawn.GetFormerHumanTracker();
+            SapienceTracker fTracker = pawn.GetSapienceTracker();
             if (fTracker == null) return false;
             if (!fTracker.IsFormerHuman) return false;
             switch (fTracker.SapienceLevel)
@@ -713,7 +713,7 @@ namespace Pawnmorph
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static bool IsSapientOrFeralFormerHuman([NotNull] this Pawn pawn)
         {
-            SapienceTracker fTracker = pawn.GetFormerHumanTracker();
+            SapienceTracker fTracker = pawn.GetSapienceTracker();
             if (fTracker == null) return false;
             if (!fTracker.IsFormerHuman) return false;
             switch (fTracker.SapienceLevel)
@@ -838,7 +838,7 @@ namespace Pawnmorph
 
             animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
             Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            SapienceTracker fTracker = animal.GetFormerHumanTracker();
+            SapienceTracker fTracker = animal.GetSapienceTracker();
             if (fHumanHediff == null)
             {
                 Log.Error(nameof(fHumanHediff));

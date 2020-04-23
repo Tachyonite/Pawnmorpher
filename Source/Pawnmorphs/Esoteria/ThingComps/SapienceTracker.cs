@@ -28,6 +28,17 @@ namespace Pawnmorph.ThingComps
         /// </value>
         public bool IsFormerHuman => _isFormerHuman;
 
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+            if (!(parent is Pawn))
+            {
+                Log.Error($"{nameof(SapienceTracker)} is attached to {parent.GetType().Name}! this comp can only be added to a pawn");
+                return; 
+            }
+
+            _sapienceNeed = Pawn.needs?.TryGetNeed<Need_Control>();
+        }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is permanently feral.
@@ -77,7 +88,21 @@ namespace Pawnmorph.ThingComps
 
         }
 
-        private Pawn Pawn => (Pawn) parent; 
+        private Pawn Pawn => (Pawn) parent;
+
+        private Need_Control _sapienceNeed;
+
+        /// <summary>
+        /// Gets the sapience level of the pawn
+        /// </summary>
+        /// <value>
+        /// The sapience.
+        /// </value>
+        public float Sapience
+        {
+            get { return _sapienceNeed?.CurLevel ?? 0;  }
+        }
+
         private void SendTransitionLetter()
         {
 
@@ -148,6 +173,21 @@ namespace Pawnmorph.ThingComps
             Scribe_Values.Look(ref _isFormerHuman, "isFormerHuman");
             Scribe_Values.Look(ref _sapienceLevel, "sapience");   
             base.PostExposeData();
+        }
+
+        /// <summary>
+        /// Sets the sapience.
+        /// </summary>
+        /// <param name="sapience">The sapience.</param>
+        public void SetSapience(float sapience)
+        {
+            if (_sapienceNeed == null)
+            {
+                Log.Error("trying to set the sapience level of a pawn that does not have the sapience need!");
+                return;
+            }
+
+            _sapienceNeed.SetSapience(sapience); 
         }
     }
 }

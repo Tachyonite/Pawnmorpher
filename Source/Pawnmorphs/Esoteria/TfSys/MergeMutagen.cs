@@ -86,7 +86,7 @@ namespace Pawnmorph.TfSys
             HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF); //make sure hediff is added before spawning meld 
 
             //make them count as former humans 
-            var tracker = meldToSpawn.GetFormerHumanTracker();
+            var tracker = meldToSpawn.GetSapienceTracker();
             if (tracker == null)
             {
                 Log.Error($"{meldToSpawn.def.defName} is a meld but does not have a former human tracker!");

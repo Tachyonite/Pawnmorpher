@@ -103,6 +103,15 @@ namespace Pawnmorph
         public override float CurInstantLevel => _seekerLevel;
 
         /// <summary>
+        /// Sets the sapience.
+        /// </summary>
+        /// <param name="sapience">The sapience.</param>
+        public void SetSapience(float sapience)
+        {
+            _seekerLevel = Mathf.Clamp(sapience, 0, MaxLevel); 
+        }
+
+        /// <summary>
         ///     Adds the instinct change to this need
         /// </summary>
         /// <param name="instinctChange">The instinct change.</param>
@@ -206,7 +215,7 @@ namespace Pawnmorph
         private void OnSapienceLevelChanges()
         {
             var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman) as FormerHuman;
-            var fTracker = pawn.GetFormerHumanTracker();
+            var fTracker = pawn.GetSapienceTracker();
             if (fTracker == null) return;
             fTracker.SapienceLevel = _currentLevel; 
             if (fHediff == null) return;
