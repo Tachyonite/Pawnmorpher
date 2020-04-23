@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
@@ -38,23 +39,29 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             var fhLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
-            return fhLevel != SapienceLevel.PermanentlyFeral || _enabledRaces.Contains(pawn.def); 
+            return fhLevel != SapienceLevel.PermanentlyFeral || EnabledRaces.Contains(pawn.def); 
         }
 
         [NotNull]
-        private static readonly HashSet<ThingDef> _enabledRaces; 
-        static Need_Control()
+        private static HashSet<ThingDef> EnabledRaces
         {
-            _enabledRaces = new HashSet<ThingDef>();
-            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs)
+            get
             {
-                if(thingDef.race?.Humanlike != true) continue;
+                if (_enabledRaces == null)
+                {
+                    _enabledRaces = new HashSet<ThingDef>();
+                    foreach (ThingDef race in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.Humanlike == true))
+                    {
+                        if (!DefDatabase<MutagenDef>.AllDefs.Any(m => m.CanTransform(race))) continue;
+                        _enabledRaces.Add(race);
+                    }
+                }
 
-                if(!DefDatabase<MutagenDef>.AllDefsListForReading.Any(d => d.CanTransform(thingDef))) continue;
-                _enabledRaces.Add(thingDef); 
-
+                return _enabledRaces;
             }
         }
+
+        private static HashSet<ThingDef> _enabledRaces; 
 
         private float _seekerLevel;
 

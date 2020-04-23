@@ -495,7 +495,7 @@
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
-    <Compile Include="ThingComps\FormerHumanTracker.cs" />
+    <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />

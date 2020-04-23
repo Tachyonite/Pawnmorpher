@@ -10,8 +10,11 @@ namespace Pawnmorph.ThingComps
     ///     thing comp to track the 'former human' status of a pawn
     /// </summary>
     /// <seealso cref="Verse.ThingComp" />
-    public class FormerHumanTracker : ThingComp
+    public class SapienceTracker : ThingComp
     {
+
+        //TODO make this more extendable some how 
+        //pawn state or something? 
         private bool _isFormerHuman;
 
         
@@ -116,7 +119,7 @@ namespace Pawnmorph.ThingComps
         {
             if (_isFormerHuman)
             {
-                Log.Warning($"{nameof(MakeFormerHuman)} is being called on {parent.def}'s {nameof(FormerHumanTracker)} more then once!");
+                Log.Warning($"{nameof(MakeFormerHuman)} is being called on {parent.def}'s {nameof(SapienceTracker)} more then once!");
                 return;
             }
 
