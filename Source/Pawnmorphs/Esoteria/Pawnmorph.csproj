@@ -641,6 +641,7 @@
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
+    <Compile Include="Thoughts\SapienceMemory.cs" />
     <Compile Include="Thoughts\ThoughtDefOfs.cs" />
     <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />
