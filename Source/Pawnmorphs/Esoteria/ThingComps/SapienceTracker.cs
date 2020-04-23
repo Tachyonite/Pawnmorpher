@@ -1,6 +1,7 @@
 ﻿// FormerHuman.cs modified by Iron Wolf for Pawnmorph on 02/17/2020 9:29 PM
 // last updated 02/17/2020  9:29 PM
 
+using JetBrains.Annotations;
 using RimWorld;
 using Verse;
 
@@ -12,13 +13,22 @@ namespace Pawnmorph.ThingComps
     /// <seealso cref="Verse.ThingComp" />
     public class SapienceTracker : ThingComp
     {
-
         //TODO make this more extendable some how 
         //pawn state or something? 
         private bool _isFormerHuman;
 
-        
-        private SapienceLevel _sapienceLevel; 
+
+        private SapienceLevel _sapienceLevel;
+
+
+        /// <summary>
+        ///     Gets the sapience need.
+        /// </summary>
+        /// <value>
+        ///     The sapience need.
+        /// </value>
+        [CanBeNull]
+        public Need_Control SapienceNeed { get; private set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is a former human.
@@ -28,17 +38,6 @@ namespace Pawnmorph.ThingComps
         /// </value>
         public bool IsFormerHuman => _isFormerHuman;
 
-        public override void Initialize(CompProperties props)
-        {
-            base.Initialize(props);
-            if (!(parent is Pawn))
-            {
-                Log.Error($"{nameof(SapienceTracker)} is attached to {parent.GetType().Name}! this comp can only be added to a pawn");
-                return; 
-            }
-
-            _sapienceNeed = Pawn.needs?.TryGetNeed<Need_Control>();
-        }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is permanently feral.
@@ -49,90 +48,49 @@ namespace Pawnmorph.ThingComps
         public bool IsPermanentlyFeral => _isFormerHuman && _sapienceLevel == SapienceLevel.PermanentlyFeral;
 
         /// <summary>
-        /// Gets or sets the sapience level.
+        ///     Gets or sets the sapience level.
         /// </summary>
         /// <value>
-        /// The sapience level.
+        ///     The sapience level.
         /// </value>
         public SapienceLevel SapienceLevel
         {
-            get { return _sapienceLevel;  }
+            get => _sapienceLevel;
             set
             {
                 if (_sapienceLevel != value)
                 {
-                    var last = _sapienceLevel; 
+                    SapienceLevel last = _sapienceLevel;
                     _sapienceLevel = value;
-                    OnSapienceLevelChanges(last); 
+                    OnSapienceLevelChanges(last);
                 }
-
             }
         }
 
-        private void OnSapienceLevelChanges(SapienceLevel lastSapienceLevel)
-        {
-            if (lastSapienceLevel.IsColonistAnimal() && !_sapienceLevel.IsColonistAnimal())
-            {
-                OnNoLongerColonist();
-            }
-            else if (lastSapienceLevel <= SapienceLevel.MostlyFeral && _sapienceLevel > SapienceLevel.MostlyFeral)
-            {
-                OnNoLongerSapient();
-            }
-
-
-
-            //try to send a message 
-            if (Pawn.Faction?.IsPlayer == true)  
-                SendTransitionLetter();
-
-        }
+        /// <summary>
+        ///     Gets the sapience level of the pawn
+        /// </summary>
+        /// <value>
+        ///     The sapience.
+        /// </value>
+        public float Sapience => SapienceNeed?.CurLevel ?? 0;
 
         private Pawn Pawn => (Pawn) parent;
 
-        private Need_Control _sapienceNeed;
-
         /// <summary>
-        /// Gets the sapience level of the pawn
+        ///     Initializes the specified props.
         /// </summary>
-        /// <value>
-        /// The sapience.
-        /// </value>
-        public float Sapience
+        /// <param name="props">The props.</param>
+        public override void Initialize(CompProperties props)
         {
-            get { return _sapienceNeed?.CurLevel ?? 0;  }
-        }
-
-        private void SendTransitionLetter()
-        {
-
-
-            // the translation keys should be $SapienceLevel_TransitionLabel and $SapienceLevel_TransitionContent
-            string translationLabel = _sapienceLevel + "_Transition";
-            string letterLabelKey = translationLabel + "Label";
-            string letterContentKey = translationLabel + "Content";
-            TaggedString letterContent, letterLabel;
-
-
-            if (letterLabelKey.TryTranslate(out letterLabel) && letterContentKey.TryTranslate(out letterContent))
+            base.Initialize(props);
+            if (!(parent is Pawn))
             {
-                letterLabel = letterLabel.AdjustedFor(Pawn);
-                letterContent = letterContent.AdjustedFor(Pawn);
-
-                Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, new LookTargets(Pawn));
+                Log.Error($"{nameof(SapienceTracker)} is attached to {parent.GetType().Name}! this comp can only be added to a pawn");
+                return;
             }
-            
-           
-        }
 
-        private void OnNoLongerSapient()
-        {
-           
-        }
-
-        private void OnNoLongerColonist()
-        {
-            Find.ColonistBar.MarkColonistsDirty();
+            SapienceNeed = Pawn.needs?.TryGetNeed<Need_Control>();
         }
 
 
@@ -149,7 +107,7 @@ namespace Pawnmorph.ThingComps
             }
 
             _isFormerHuman = true;
-            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel); 
+            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
         }
 
 
@@ -161,7 +119,7 @@ namespace Pawnmorph.ThingComps
             if (!_isFormerHuman)
                 Log.Error($"trying to make a non former human \"{PMThingUtilities.GetDebugLabel(parent)}\" permanently feral");
 
-            SapienceLevel = SapienceLevel.PermanentlyFeral; 
+            SapienceLevel = SapienceLevel.PermanentlyFeral;
             //TODO move most of FormerHumanUtilities.MakePermanentlyFeral here 
         }
 
@@ -171,23 +129,63 @@ namespace Pawnmorph.ThingComps
         public override void PostExposeData()
         {
             Scribe_Values.Look(ref _isFormerHuman, "isFormerHuman");
-            Scribe_Values.Look(ref _sapienceLevel, "sapience");   
+            Scribe_Values.Look(ref _sapienceLevel, "sapience");
             base.PostExposeData();
         }
 
         /// <summary>
-        /// Sets the sapience.
+        ///     Sets the sapience.
         /// </summary>
         /// <param name="sapience">The sapience.</param>
         public void SetSapience(float sapience)
         {
-            if (_sapienceNeed == null)
+            if (SapienceNeed == null)
             {
                 Log.Error("trying to set the sapience level of a pawn that does not have the sapience need!");
                 return;
             }
 
-            _sapienceNeed.SetSapience(sapience); 
+            SapienceNeed.SetSapience(sapience);
+        }
+
+        private void OnNoLongerColonist()
+        {
+            Find.ColonistBar.MarkColonistsDirty();
+        }
+
+        private void OnNoLongerSapient()
+        {
+        }
+
+        private void OnSapienceLevelChanges(SapienceLevel lastSapienceLevel)
+        {
+            if (lastSapienceLevel.IsColonistAnimal() && !_sapienceLevel.IsColonistAnimal())
+                OnNoLongerColonist();
+            else if (lastSapienceLevel <= SapienceLevel.MostlyFeral && _sapienceLevel > SapienceLevel.MostlyFeral)
+                OnNoLongerSapient();
+
+
+            //try to send a message 
+            if (Pawn.Faction?.IsPlayer == true)
+                SendTransitionLetter();
+        }
+
+        private void SendTransitionLetter()
+        {
+            // the translation keys should be $SapienceLevel_TransitionLabel and $SapienceLevel_TransitionContent
+            string translationLabel = _sapienceLevel + "_Transition";
+            string letterLabelKey = translationLabel + "Label";
+            string letterContentKey = translationLabel + "Content";
+            TaggedString letterContent, letterLabel;
+
+
+            if (letterLabelKey.TryTranslate(out letterLabel) && letterContentKey.TryTranslate(out letterContent))
+            {
+                letterLabel = letterLabel.AdjustedFor(Pawn);
+                letterContent = letterContent.AdjustedFor(Pawn);
+
+                Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, new LookTargets(Pawn));
+            }
         }
     }
 }

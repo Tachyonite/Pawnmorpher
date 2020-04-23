@@ -43,6 +43,7 @@ namespace Pawnmorph.Hediffs
             if (controlNeed != null)
             {
                 _subscribed = true;
+                _initialized = true; 
                 controlNeed.SapienceLevelChanged += SapienceLevelChanged;
             }
             
@@ -64,6 +65,14 @@ namespace Pawnmorph.Hediffs
         private void SapienceLevelChanged(Need_Control sender, Pawn pawn1, SapienceLevel sapiencelevel)
         {
             SetLabel(sapiencelevel);
+        }
+
+        private bool _initialized;
+
+        void TryInit()
+        {
+            SubscribeToEvents();
+            SetLabel(); 
         }
 
         void SetLabel(SapienceLevel level)
@@ -116,6 +125,7 @@ namespace Pawnmorph.Hediffs
             if (_lastStage != CurStageIndex) OnSapienceLevelChanged();
 
             if (pawn.needs == null) return; //dead pawns don't have needs for some reason 
+            if(!_initialized) TryInit(); 
         }
 
         private void OnSapienceLevelChanged()
