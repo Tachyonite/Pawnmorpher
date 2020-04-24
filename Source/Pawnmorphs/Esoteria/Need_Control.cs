@@ -20,6 +20,12 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     public class Need_Control : Need_Seeker
     {
+        /// <summary>
+        /// delegate for the sapience level changed handle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="pawn"></param>
+        /// <param name="sapienceLevel"></param>
         public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel sapienceLevel);
 
         /// <summary>
