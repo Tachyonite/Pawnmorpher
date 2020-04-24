@@ -325,6 +325,15 @@ namespace Pawnmorph.TfSys
 
         private void SetHumanoidSapience([NotNull] Pawn humanoid, [NotNull] Pawn animal)
         {
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(humanoid);
+            try
+            {
+                humanoid.needs.AddOrRemoveNeedsAsAppropriate();
+            }
+            catch (Exception e)
+            {
+                Log.Message($"caught {e.GetType().Name} \n{e}");
+            }
             var hSapienceTracker = humanoid.GetSapienceTracker();
             var aSapienceTracker = animal.GetSapienceTracker();
             if (hSapienceTracker == null || aSapienceTracker == null) return;

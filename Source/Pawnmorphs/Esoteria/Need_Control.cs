@@ -108,7 +108,8 @@ namespace Pawnmorph
         /// <param name="sapience">The sapience.</param>
         public void SetSapience(float sapience)
         {
-            _seekerLevel = Mathf.Clamp(sapience, 0, MaxLevel); 
+            _seekerLevel = Mathf.Clamp(sapience, 0, MaxLevel);
+            CurLevel = _seekerLevel; 
         }
 
         /// <summary>

@@ -21,6 +21,9 @@ namespace Pawnmorph.ThingComps
         private SapienceLevel _sapienceLevel;
 
 
+
+
+
         /// <summary>
         ///     Gets the sapience need.
         /// </summary>
@@ -28,7 +31,7 @@ namespace Pawnmorph.ThingComps
         ///     The sapience need.
         /// </value>
         [CanBeNull]
-        public Need_Control SapienceNeed { get; private set; }
+        public Need_Control SapienceNeed => Pawn.needs?.TryGetNeed<Need_Control>(); 
 
         /// <summary>
         ///     Gets a value indicating whether this instance is a former human.
@@ -67,6 +70,8 @@ namespace Pawnmorph.ThingComps
             }
         }
 
+
+
         /// <summary>
         ///     Gets the sapience level of the pawn
         /// </summary>
@@ -89,8 +94,6 @@ namespace Pawnmorph.ThingComps
                 Log.Error($"{nameof(SapienceTracker)} is attached to {parent.GetType().Name}! this comp can only be added to a pawn");
                 return;
             }
-
-            SapienceNeed = Pawn.needs?.TryGetNeed<Need_Control>();
         }
 
 
