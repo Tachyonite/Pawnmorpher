@@ -195,8 +195,6 @@ namespace Pawnmorph
                     _currentLevel = sLevel;
                     OnSapienceLevelChanges();
                 }
-
-                if (_currentLevel == SapienceLevel.Feral && Rand.MTBEventOccurs(4, 60000f, 30f)) TriggerPermanentlyFeralChange();
             }
         }
 
@@ -233,10 +231,7 @@ namespace Pawnmorph
 
         }
 
-        private void TriggerPermanentlyFeralChange()
-        {
-            FormerHumanUtilities.MakePermanentlyFeral(pawn);
-        }
+   
 
         /// <summary>
         /// Gets the seeker level.
