@@ -63,9 +63,7 @@ namespace Pawnmorph.TfSys
                 Log.Warning($"unable to find status for transformed pawn {transformedPawn.ThingID}");
             }
 
-            Hediff formerHuman =
-                transformedPawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == TfHediffDefOf.TransformedHuman);
-            if (formerHuman == null) return false;
+           
 
             PawnGenerationRequest request = TransformerUtility.GenerateRandomPawnFromAnimal(transformedPawn);
             
@@ -93,7 +91,7 @@ namespace Pawnmorph.TfSys
             }
 
 
-            AddReversionThought(spawned, formerHuman.CurStageIndex);
+            AddReversionThought(spawned);
 
 
 
@@ -111,7 +109,9 @@ namespace Pawnmorph.TfSys
         protected override bool CanRevertPawnImp(TransformedPawnSingle transformedPawn)
         {
             if (!transformedPawn.IsValid) return false;
-            return transformedPawn.animal.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman);
+            var tracker = transformedPawn.animal.GetSapienceTracker();
+            if (tracker == null) return false;
+            return tracker.IsFormerHuman && !tracker.IsPermanentlyFeral; 
         }
 
         /// <summary>Returns true if the specified request is valid.</summary>
@@ -164,8 +164,10 @@ namespace Pawnmorph.TfSys
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
 
+            float sapienceLevel = Rand.Range(0.4f, 1);
+            GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
-            FormerHumanUtilities.MakeAnimalSapient(original, animalToSpawn, Rand.Range(0.4f, 1)); //use a normal distribution? 
+            FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel); //use a normal distribution? 
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
 
@@ -288,9 +290,7 @@ namespace Pawnmorph.TfSys
 
 
             Pawn animal = transformedPawn.animal;
-
-            Hediff tfHumanHediff = animal?.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            if (tfHumanHediff == null) return false;
+            if (animal == null) return false; 
             var rFaction = transformedPawn.FactionResponsible;
 
 
@@ -371,7 +371,7 @@ namespace Pawnmorph.TfSys
         /// </summary>
         /// <param name="spawned"></param>
         /// <param name="curStageIndex"></param>
-        private void AddReversionThought(Pawn spawned, int curStageIndex)
+        private void AddReversionThought(Pawn spawned)
         {
             TraitSet traits = spawned.story.traits;
             ThoughtDef thoughtDef;
@@ -387,8 +387,8 @@ namespace Pawnmorph.TfSys
 
             if (thoughtDef != null)
             {
-                curStageIndex = Mathf.Min(curStageIndex, thoughtDef.stages.Count - 1); //avoid index out of bounds issues 
-                Thought_Memory mem = ThoughtMaker.MakeThought(thoughtDef, curStageIndex);
+                //TODO fix this with special memory for animalistic pawns 
+                Thought_Memory mem = ThoughtMaker.MakeThought(thoughtDef, 0);
                 spawned.TryGainMemory(mem);
             }
         }

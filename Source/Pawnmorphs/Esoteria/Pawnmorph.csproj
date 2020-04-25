@@ -493,6 +493,7 @@
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="SapienceState.cs" />
     <Compile Include="SapienceStateDef.cs" />
+    <Compile Include="SapienceStateDefOf.cs" />
     <Compile Include="SapienceStates\FormerHuman.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />

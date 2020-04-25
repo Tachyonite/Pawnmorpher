@@ -44,15 +44,26 @@ namespace Pawnmorph.ThingComps
 
 
         /// <summary>
-        /// enter the given sapience state 
+        /// enter the given sapience state
         /// </summary>
         /// <param name="stateDef">The state definition.</param>
-        public void EnterState([NotNull] SapienceStateDef stateDef)
+        /// <param name="initialLevel">The initial level.</param>
+        public void EnterState([NotNull] SapienceStateDef stateDef, float initialLevel)
         {
             _sapienceState?.Exit();
             _sapienceState = stateDef.CreateState();
-            _sapienceState.Init(this); 
+            _sapienceState.Init(this);
+
+            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
+            //need to refresh comps and needs for pawn here 
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
+            Pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+
             _sapienceState.Enter();
+
+          
+
+
         }
 
         /// <summary>
@@ -79,7 +90,8 @@ namespace Pawnmorph.ThingComps
         /// <value>
         ///     <c>true</c> if this instance is a former human; otherwise, <c>false</c>.
         /// </value>
-        public bool IsFormerHuman => _isFormerHuman;
+        [Obsolete("use " + nameof(CurrentIntelligence) + " or " + nameof(CurrentState) + " instead")]
+        public bool IsFormerHuman => _sapienceState?.StateDef == SapienceStateDefOf.FormerHuman;
 
 
         /// <summary>
@@ -149,6 +161,7 @@ namespace Pawnmorph.ThingComps
         ///     Makes the parent a former human.
         /// </summary>
         /// <returns></returns>
+        [Obsolete("use " + nameof(EnterState) + "instead")]
         public void MakeFormerHuman(float initialLevel) //TODO move most of FormerHumanUtilities.MakeAnimalSapient here 
         {
             if (_isFormerHuman)

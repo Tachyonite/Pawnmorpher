@@ -114,6 +114,48 @@ namespace Pawnmorph.TfSys
 
 
         /// <summary>
+        /// gives the transformed pawn the correct sapience state for this mutagen 
+        /// </summary>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <param name="initialLevel">The initial level.</param>
+        /// <exception cref="System.ArgumentNullException">transformedPawn</exception>
+        protected void GiveTransformedPawnSapienceState([NotNull] Pawn transformedPawn, float initialLevel)
+        {
+            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            var tracker = transformedPawn.GetSapienceTracker();
+            if (tracker == null)
+            {
+                Log.Error($"unable to give {transformedPawn.LabelShort}/{transformedPawn.Name} a sapience state because they have no sapience tracker!");
+                return;
+            }
+            var sapienceState = def.transformedSapienceState ?? SapienceStateDefOf.FormerHuman;
+            tracker.EnterState(sapienceState, initialLevel); 
+        }
+
+        /// <summary>
+        /// gives the reverted pawn the correct sapience state for this mutagen 
+        /// </summary>
+        /// <param name="revertedPawn">The reverted pawn.</param>
+        /// <param name="initialLevel">The initial level.</param>
+        /// <exception cref="System.ArgumentNullException">revertedPawn</exception>
+        protected void GiveRevertedPawnSapienceState([NotNull] Pawn revertedPawn, float initialLevel)
+        {
+            if (revertedPawn == null) throw new ArgumentNullException(nameof(revertedPawn));
+            var tracker = revertedPawn.GetSapienceTracker();
+            if (tracker == null)
+            {
+                Log.Error($"unable to give {revertedPawn.LabelShort}/{revertedPawn.Name} a sapience state because they have no sapience tracker!");
+                return;
+            }
+
+            var sapienceState = def.revertedSapienceState;
+            if (sapienceState == null) return;
+            tracker.EnterState(sapienceState, initialLevel); 
+
+        }
+
+
+        /// <summary>
         /// Determines whether this instance can infect the specified race definition.
         /// </summary>
         /// <param name="raceDef">The race definition.</param>

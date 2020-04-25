@@ -17,7 +17,6 @@ namespace Pawnmorph
             DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
         }
 
-        public static HediffDef TransformedHuman;
        
         [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public static HediffDef PermanentlyFeral;

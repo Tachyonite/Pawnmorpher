@@ -221,28 +221,10 @@ namespace Pawnmorph
 
         private void OnSapienceLevelChanges()
         {
-            var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman) as FormerHuman;
             var fTracker = pawn.GetSapienceTracker();
             if (fTracker == null) return;
             fTracker.SapienceLevel = _currentLevel; 
-            if (fHediff == null) return;
 
-            switch (_currentLevel)
-            {
-                case SapienceLevel.Sapient:
-                case SapienceLevel.MostlySapient:
-                case SapienceLevel.Conflicted:
-                case SapienceLevel.MostlyFeral:
-                    fHediff.Severity = 1;
-                    break;
-                case SapienceLevel.Feral:
-                    fHediff.Severity = 0.5f;
-                    break;
-                case SapienceLevel.PermanentlyFeral:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
 
             pawn.needs?.AddOrRemoveNeedsAsAppropriate();
             PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);

@@ -39,7 +39,8 @@ namespace Pawnmorph.SapienceStates
 
             if (StateDef.forcedHediff != null)
             {
-                fHediff = Pawn.health.hediffSet.GetFirstHediffOfDef(StateDef.forcedHediff); 
+                fHediff = Pawn.health.hediffSet.GetFirstHediffOfDef(StateDef.forcedHediff);
+           
             }
             else
             {
@@ -95,7 +96,6 @@ namespace Pawnmorph.SapienceStates
                     case SapienceLevel.Sapient:
                     case SapienceLevel.MostlySapient:
                         return Intelligence.Humanlike;
-                        break;
                     case SapienceLevel.Conflicted:
                         return Intelligence.ToolUser; 
                     case SapienceLevel.MostlyFeral:
@@ -115,7 +115,12 @@ namespace Pawnmorph.SapienceStates
         public override void Enter()
         {
             if (StateDef.forcedHediff != null)
-                Pawn.health.AddHediff(StateDef.forcedHediff); 
+            {
+                var hediff = HediffMaker.MakeHediff(StateDef.forcedHediff, Pawn);
+                hediff.Severity = 1; 
+                
+                Pawn.health.AddHediff(hediff);
+            } 
         }
 
         /// <summary>

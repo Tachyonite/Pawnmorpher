@@ -423,31 +423,7 @@ namespace Pawnmorph
             return pawn;
         }
 
-        /// <summary>
-        ///     get the former human status of the given pawn
-        /// </summary>
-        /// <param name="pawn"></param>
-        /// <returns>the former human status, null if the given pawn is not a former human </returns>
-        [Obsolete("use " + nameof(GetQuantizedSapienceLevel) + " instead")]
-        public static FormerHumanStatus? GetFormerHumanStatus([NotNull] this Pawn pawn)
-        {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-
-            Hediff formerHumanHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            if (formerHumanHediff == null)
-            {
-                bool hasMergedHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(HediffDef.Named("2xMergedHuman")) != null;
-                if (hasMergedHediff) return FormerHumanStatus.Sapient;
-                bool hasPFeralHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.PermanentlyFeral) != null;
-
-                if (hasPFeralHediff) return FormerHumanStatus.PermanentlyFeral;
-                return null;
-            }
-
-
-            if (formerHumanHediff.CurStageIndex >= 2) return FormerHumanStatus.Sapient;
-            return FormerHumanStatus.Feral;
-        }
+       
 
 
         /// <summary>
@@ -757,27 +733,37 @@ namespace Pawnmorph
                 return;
             }
 
-            animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
-            Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            if (fHumanHediff == null)
-            {
-                Log.Error(nameof(fHumanHediff));
-                return;
-            }
+            var sTracker = animal.GetSapienceTracker();
 
-            fHumanHediff.Severity = 1;
-
-            var comp = animal.GetComp<SapienceTracker>();
-
-            if (comp == null)
+            if (sTracker == null)
             {
                 Log.Error($"{animal.Name},{animal.def.defName} does not have a {nameof(SapienceTracker)} comp!");
                 return;
             }
 
+            sTracker.EnterState(SapienceStateDefOf.FormerHuman, 1);
 
-            comp.MakeFormerHuman(sapienceLevel);
 
+
+            sTracker.MakeFormerHuman(sapienceLevel);
+            InitializeTransformedPawn(original, animal, sapienceLevel);
+        }
+
+        /// <summary>
+        /// Initializes the transformed pawn with the given original pawn and sapience level 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="animal">The animal.</param>
+        /// <param name="sapienceLevel">The sapience level.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// original
+        /// or
+        /// animal
+        /// </exception>
+        public static void InitializeTransformedPawn([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (animal == null) throw new ArgumentNullException(nameof(animal));
             if (original.Faction == Faction.OfPlayer) animal.SetFaction(original.Faction);
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
@@ -790,7 +776,7 @@ namespace Pawnmorph
 
             animal.needs.AddOrRemoveNeedsAsAppropriate();
 
-            TransferEverything(original, animal, passionTransferMode:PawnTransferUtilities.SkillPassionTransferMode.Set);
+            TransferEverything(original, animal, passionTransferMode: PawnTransferUtilities.SkillPassionTransferMode.Set);
 
             animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
 
@@ -835,20 +821,15 @@ namespace Pawnmorph
                 Log.Warning($"trying to make {animal.Name} a former human twice!");
                 return;
             }
+            var sTracker = animal.GetSapienceTracker();
 
-            animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
-            Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            SapienceTracker fTracker = animal.GetSapienceTracker();
-            if (fHumanHediff == null)
+            if (sTracker == null)
             {
-                Log.Error(nameof(fHumanHediff));
+                Log.Error($"{animal.Name},{animal.def.defName} does not have a {nameof(SapienceTracker)} comp!");
                 return;
             }
-
-            if (fTracker == null)
-                Log.Error($"trying to make {PMThingUtilities.GetDebugLabel(animal)} sapient but they have no former human tracker!");
-
-            fHumanHediff.Severity = 1;
+            
+            
 
             PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
             Faction ofPlayer = Faction.OfPlayer;
@@ -884,7 +865,7 @@ namespace Pawnmorph
             lPawn.equipment
                 ?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
             lPawn.apparel?.DestroyAll();
-            fTracker.MakeFormerHuman(sapienceLevel);
+            sTracker.EnterState(SapienceStateDefOf.FormerHuman, sapienceLevel);
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
             TryAssignBackstoryToTransformedPawn(animal, lPawn);
@@ -950,13 +931,11 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <exception cref="NotImplementedException"></exception>
-        public static void MakePermanentlyFeral(Pawn pawn)
+        public static void MakePermanentlyFeral([NotNull] Pawn pawn)
         {
-            Hediff fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
             var comp = pawn.GetComp<SapienceTracker>();
             if (comp == null) return;
-            if (fHediff == null) return;
-
+            if (!comp.IsFormerHuman || comp.IsPermanentlyFeral) return;
             comp.MakePermanentlyFeral();
         }
 

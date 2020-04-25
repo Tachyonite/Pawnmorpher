@@ -27,7 +27,7 @@ namespace Pawnmorph
             {
                 triggered = true;
 
-                if (Pawn.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman)) return;
+                if (Pawn.IsFormerHuman()) return;
 
                 float sL = Rand.Value;
                 FormerHumanUtilities.MakeAnimalSapient((Pawn)parent, sL, false);
