@@ -65,7 +65,10 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        private const int CYCLE_RATE = TimeMetrics.TICKS_PER_DAY * 2/3; 
+        /// <summary>
+        /// how fast the mutation types change 
+        /// </summary>
+        public const int CYCLE_RATE = TimeMetrics.TICKS_PER_DAY * 2/3; 
 
         /// <summary>
         /// Gets the entries for the given pawn
