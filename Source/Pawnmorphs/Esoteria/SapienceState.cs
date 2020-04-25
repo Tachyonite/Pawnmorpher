@@ -15,14 +15,26 @@ namespace Pawnmorph
     {
         private SapienceStateDef _def;
 
+        /// <summary>
+        /// Gets the pawn this state is for 
+        /// </summary>
+        /// <value>
+        /// The pawn.
+        /// </value>
+        public Pawn Pawn => Tracker?.Pawn; 
+
         void IExposable.ExposeData()
         {
             Scribe_Defs.Look(ref _def, nameof(StateDef));
-
             ExposeData();
         }
 
-        
+
+        /// <summary>
+        /// called after every tick 
+        /// </summary>
+        public abstract void Tick(); 
+
         /// <summary>
         ///     Gets the current intelligence.
         /// </summary>
@@ -38,6 +50,7 @@ namespace Pawnmorph
         /// <value>
         ///     The state definition.
         /// </value>
+        [NotNull]
         public SapienceStateDef StateDef => _def;
 
         /// <summary>
@@ -53,6 +66,11 @@ namespace Pawnmorph
         ///     called when a pawn enters this sapience state
         /// </summary>
         public abstract void Enter();
+
+        /// <summary>
+        /// called when the pawn exits this state 
+        /// </summary>
+        public abstract void Exit(); 
 
         /// <summary>
         ///     Initializes this instance with the specified sapience tracker.
@@ -74,5 +92,10 @@ namespace Pawnmorph
         /// </summary>
         /// this is always called before enter and after loading a pawn
         protected abstract void Init();
+
+        internal void SetDef([NotNull] SapienceStateDef def)
+        {
+            _def = def;
+        }
     }
 }

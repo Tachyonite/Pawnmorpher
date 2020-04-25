@@ -1,0 +1,8 @@
+<Defs>
+    <Pawnmorph.SapienceStateDef>
+        <defName>FormerHuman</defName>
+        <label>former huamn</label>
+        <forcedHediff>TransformedHuman</forcedHediff>
+        <stateType>Pawnmorph.SapienceStates.FormerHuman</stateType>
+    </Pawnmorph.SapienceStateDef>
+</Defs>

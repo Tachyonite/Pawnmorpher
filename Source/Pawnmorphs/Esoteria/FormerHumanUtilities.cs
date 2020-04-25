@@ -958,37 +958,6 @@ namespace Pawnmorph
             if (fHediff == null) return;
 
             comp.MakePermanentlyFeral();
-            //transfer relationships back if possible 
-            var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-            Pawn oPawn = gComp.GetTransformedPawnContaining(pawn)?.Item1?.OriginalPawns.FirstOrDefault();
-            if (oPawn == pawn) oPawn = null;
-
-            Pawn_RelationsTracker aRelations = pawn.relations;
-            if (aRelations != null) TransferRelationsToOriginal(pawn, oPawn, aRelations);
-
-            pawn.health.AddHediff(TfHediffDefOf.PermanentlyFeral);
-            pawn.health.RemoveHediff(fHediff);
-
-            var loader = Find.World.GetComponent<PawnmorphGameComp>();
-            TransformedPawn inst = loader.GetTransformedPawnContaining(pawn)?.Item1;
-            var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution 
-            foreach (Pawn instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>()
-            ) //needed to handle merges correctly 
-                ReactionsHelper.OnPawnPermFeral(instOriginalPawn, pawn,
-                                                singleInst?.reactionStatus ?? FormerHumanReactionStatus.Wild);
-
-            //remove the original and destroy the pawns 
-            foreach (Pawn instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>()) instOriginalPawn.Destroy();
-
-            if (inst != null) loader.RemoveInstance(inst);
-
-            if (inst != null || pawn.Faction == Faction.OfPlayer)
-                Find.LetterStack.ReceiveLetter("LetterHediffFromPermanentTFLabel".Translate(pawn.LabelShort).CapitalizeFirst(),
-                                               "LetterHediffFromPermanentTF".Translate(pawn.LabelShort).CapitalizeFirst(),
-                                               LetterDefOf.NegativeEvent, pawn);
-
-            pawn.needs?.AddOrRemoveNeedsAsAppropriate(); //make sure any comps get added/removed as appropriate 
-            PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
         }
 
         /// <summary>
@@ -1231,7 +1200,26 @@ namespace Pawnmorph
         }
 
 
-        private static void TransferRelationsToOriginal([NotNull] Pawn pawn, [CanBeNull] Pawn oPawn,
+        /// <summary>
+        /// Transfers the relations back to the original pawn after they've been transformed into the transformedPawn
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        /// original
+        /// or
+        /// transformedPawn
+        /// </exception>
+        public static void TransferRelationsToOriginal([NotNull] Pawn original, [NotNull] Pawn transformedPawn)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            var rTracker = original.relations;
+            if (rTracker == null) return;
+            TransferRelationsToOriginal(original, transformedPawn, rTracker); 
+        }
+
+        static void TransferRelationsToOriginal([NotNull] Pawn pawn, [CanBeNull] Pawn oPawn,
                                                         [NotNull] Pawn_RelationsTracker aRelations)
         {
             List<DirectPawnRelation> dRelations = aRelations.DirectRelations.MakeSafe().Where(r => !r.def.implied).ToList();

@@ -20,13 +20,28 @@ namespace Pawnmorph
         public Type stateType;
 
         /// <summary>
+        /// the hediff the pawn is given when in this sapience state
+        /// </summary>
+        [CanBeNull]
+        public HediffDef forcedHediff; 
+
+        /// <summary>
         /// Creates a new state instance.
         /// </summary>
         /// <returns></returns>
         [NotNull]
         public SapienceState CreateState()
         {
-            return (SapienceState) Activator.CreateInstance(stateType); 
+            try
+            {
+                var state =  (SapienceState) Activator.CreateInstance(stateType);
+                state.SetDef(this);
+                return state;
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException($"caught {e.GetType().Name} while trying to create new {stateType?.Name ?? "NULL"}!",e);
+            }
         }
 
         /// <summary>
