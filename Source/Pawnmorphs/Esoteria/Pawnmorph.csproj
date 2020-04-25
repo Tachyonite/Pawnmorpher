@@ -373,6 +373,7 @@
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Designations\RecruitSapientFormerHuman.cs" />
@@ -420,6 +421,7 @@
     <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
     <Compile Include="HPatches\IngestJobPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
+    <Compile Include="HPatches\JobGiver_GetJoyPatches.cs" />
     <Compile Include="HPatches\MentalBreakPatches.cs" />
     <Compile Include="HPatches\NativeVerbPatches.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
@@ -659,6 +661,7 @@
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
     <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />
+    <Compile Include="Thoughts\Worker_Sapience.cs" />
     <Compile Include="Thoughts\Worker_SapientAnimalBondedMaster.cs" />
     <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
     <Compile Include="TransformerUtility.cs" />

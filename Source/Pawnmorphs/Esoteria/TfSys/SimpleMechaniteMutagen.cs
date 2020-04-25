@@ -337,9 +337,7 @@ namespace Pawnmorph.TfSys
             var hSapienceTracker = humanoid.GetSapienceTracker();
             var aSapienceTracker = animal.GetSapienceTracker();
             if (hSapienceTracker == null || aSapienceTracker == null) return;
-
-            hSapienceTracker.SetSapience(aSapienceTracker.Sapience);
-            //TODO equalize sapience and set the 'sapience state' 
+            GiveRevertedPawnSapienceState(humanoid, aSapienceTracker.Sapience);
         }
 
         /// <summary>

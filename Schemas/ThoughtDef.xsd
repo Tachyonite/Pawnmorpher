@@ -76,6 +76,7 @@
 			<xs:enumeration value="SapientAnimalBondedNonMasterBase" />
 			<xs:enumeration value="FormerHumanCannibalThoughtBase" />
 			<xs:enumeration value="FormerHumanCannibalThoughtGoodBase" />
+			<xs:enumeration value="AnimalisticPersistentThoughtBase" />
 			<xs:enumeration value="DefaultReactionBase"/>
 		</xs:restriction>
 	</xs:simpleType>

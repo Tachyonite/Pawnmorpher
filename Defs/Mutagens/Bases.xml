@@ -5,6 +5,8 @@
         <revertedThoughtGood>WasAnimalRelieved</revertedThoughtGood>
         <revertedThoughtBad>WasAnimal</revertedThoughtBad>
         <revertedPrimalWish>WasAnimalPrimalWish</revertedPrimalWish>
+        <transformedSapienceState>FormerHuman</transformedSapienceState>
+        <revertedSapienceState>Animalistic</revertedSapienceState>
         <damageProperties>
             <apparelDamageOffset>20</apparelDamageOffset>
             <spawnedBiproductMult>0.07</spawnedBiproductMult>
