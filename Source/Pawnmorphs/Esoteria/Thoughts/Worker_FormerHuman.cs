@@ -23,7 +23,7 @@ namespace Pawnmorph.Thoughts
         {
             var sapientLevel = p.GetQuantizedSapienceLevel();
 
-            if (sapientLevel == null) return false;
+            if (sapientLevel == null && p.GetSapienceState()?.StateDef == SapienceStateDefOf.FormerHuman) return false;
 
             if (!def.IsValidFor(p)) return false;
 
