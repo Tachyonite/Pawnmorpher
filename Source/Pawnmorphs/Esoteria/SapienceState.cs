@@ -31,6 +31,17 @@ namespace Pawnmorph
 
 
         /// <summary>
+        /// Gets the current sapience level
+        /// </summary>
+        /// <value>
+        /// The current sapience.
+        /// </value>
+        protected SapienceLevel CurrentSapience
+        {
+            get { return Tracker?.SapienceLevel ?? SapienceLevel.PermanentlyFeral; }
+        }
+
+        /// <summary>
         /// called after every tick 
         /// </summary>
         public abstract void Tick(); 
@@ -65,12 +76,31 @@ namespace Pawnmorph
         /// <summary>
         ///     called when a pawn enters this sapience state
         /// </summary>
-        public abstract void Enter();
+        public virtual void Enter()
+        {
+            if (StateDef.forcedHediff != null)
+            {
+                Hediff hediff = HediffMaker.MakeHediff(StateDef.forcedHediff, Pawn);
+                hediff.Severity = 1;
+
+                Pawn.health.AddHediff(hediff);
+            }
+        }
+
+
 
         /// <summary>
         /// called when the pawn exits this state 
         /// </summary>
-        public abstract void Exit(); 
+        public virtual void Exit()
+        {
+            if (StateDef.forcedHediff != null)
+            {
+                Hediff hediff = Pawn.health.hediffSet.GetFirstHediffOfDef(StateDef.forcedHediff);
+                if(hediff != null)
+                    Pawn.health.RemoveHediff(hediff); 
+            }
+        } 
 
         /// <summary>
         ///     Initializes this instance with the specified sapience tracker.

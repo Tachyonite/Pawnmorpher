@@ -5,4 +5,11 @@
         <forcedHediff>TransformedHuman</forcedHediff>
         <stateType>Pawnmorph.SapienceStates.FormerHuman</stateType>
     </Pawnmorph.SapienceStateDef>
+
+    <Pawnmorph.SapienceStateDef>
+        <defName>Animalistic</defName>
+        <label>animalistic</label>
+        <forcedHediff>Animalistic</forcedHediff>
+        <stateType>Pawnmorph.SapienceStates.Animalistic</stateType>
+    </Pawnmorph.SapienceStateDef>
 </Defs>

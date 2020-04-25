@@ -35,6 +35,19 @@
 	</HediffDef>
 	
 	<HediffDef>
+		<defName>Animalistic</defName>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
+		<description>TODO</description>
+		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
+		<label>animalistic</label>
+		<stages>
+			<li>
+				<label>feral</label>
+			</li>
+		</stages>		
+	</HediffDef>
+
+	<HediffDef>
 		<defName>2xMergedHuman</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<description>[PAWN_defName] is a creature that should never have been, a fusion of two beings which mutated to become one animalistic monstrosity.</description>

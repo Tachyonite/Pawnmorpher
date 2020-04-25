@@ -22,7 +22,7 @@ namespace Pawnmorph.HPatches
             }
         
 
-        [HarmonyPatch(nameof(WildManUtility.AnimalOrWildMan))]
+            [HarmonyPatch(nameof(WildManUtility.AnimalOrWildMan))]
        
             [HarmonyPostfix]
             static void FixAnimalOrWildman(ref bool __result, [NotNull] Pawn p)
@@ -38,7 +38,7 @@ namespace Pawnmorph.HPatches
             [HarmonyPostfix]
             private static void FixIsWildman(ref bool __result, [NotNull] Pawn p)
             {
-                __result = __result || p.RaceProps.Humanlike && p.GetIntelligence() <= Intelligence.ToolUser;
+                __result = __result || p.RaceProps.Humanlike && p.GetIntelligence() == Intelligence.Animal;
             }
 
 

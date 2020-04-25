@@ -109,25 +109,14 @@ namespace Pawnmorph.SapienceStates
 
             }}
 
-        /// <summary>
-        ///     called when a pawn enters this sapience state
-        /// </summary>
-        public override void Enter()
-        {
-            if (StateDef.forcedHediff != null)
-            {
-                var hediff = HediffMaker.MakeHediff(StateDef.forcedHediff, Pawn);
-                hediff.Severity = 1; 
-                
-                Pawn.health.AddHediff(hediff);
-            } 
-        }
 
         /// <summary>
         /// called when the pawn exits this state 
         /// </summary>
         public override void Exit()
         {
+            base.Exit(); 
+
             if (_subscribed)
             {
                 var need = Tracker.SapienceNeed;
