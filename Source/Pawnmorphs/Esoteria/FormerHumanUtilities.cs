@@ -721,6 +721,20 @@ namespace Pawnmorph
             return false;
         }
 
+        /// <summary>
+        /// Gets the intelligence of this pawn
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">pawn</exception>
+        public static Intelligence GetIntelligence([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var sTracker = pawn.GetSapienceTracker();
+            if (sTracker == null) return pawn.RaceProps.intelligence;
+            return sTracker.CurrentIntelligence; 
+        }
+
         /// <summary>Makes the animal sapient. including adding necessary comps, need, training, etc  </summary>
         /// <param name="original">The original.</param>
         /// <param name="animal">The animal.</param>
