@@ -2,9 +2,11 @@
 // last updated 09/13/2019  8:14 AM
 
 #pragma warning disable 1591
+using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -20,6 +22,8 @@ namespace Pawnmorph.GraphicSys
     {
         private bool _subOnce;
 
+        public bool IsDirty { get; set; }
+
         [NotNull]
         private Pawn Pawn => (Pawn) parent;
 
@@ -30,6 +34,16 @@ namespace Pawnmorph.GraphicSys
         {
             base.Initialize(props);
             Assert(parent is Pawn, "parent is Pawn");
+        }
+
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if (IsDirty)
+            {
+                RefreshGraphics();
+            }
         }
 
         public override void PostExposeData()
@@ -46,6 +60,22 @@ namespace Pawnmorph.GraphicSys
                 Assert(Pawn.GetComp<AlienPartGenerator.AlienComp>() != null, "Pawn.GetComp<AlienPartGenerator.AlienComp>() != null");
                 Assert(InitialGraphics != null, "InitialGraphics != null");
             }
+        }
+
+        public override void CompTick()
+        {
+            base.CompTick();
+            if (IsDirty)
+            {
+                IsDirty = false;
+                RefreshGraphics();
+            }
+        }
+
+        private void RefreshGraphics()
+        {
+            var pawn = (Pawn)parent;
+            pawn?.RefreshGraphics();
         }
 
         bool UpdateSkinColor([NotNull] MutationTracker tracker)
@@ -95,23 +125,13 @@ namespace Pawnmorph.GraphicSys
 
         void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
-            RefreshGraphics(tracker, Pawn);
+            IsDirty = true; 
         }
 
-        private void RefreshGraphics([NotNull] MutationTracker sender, [NotNull] Pawn pawn)
-        {
-            bool needsUpdate = UpdateSkinColor(sender);
-            needsUpdate |= UpdateHairColor(sender);
-
-            if (needsUpdate) //make sure to only refresh the graphics if they've been modified 
-            {
-                pawn.RefreshGraphics();
-            }
-        }
-
+     
         void IMutationEventReceiver.MutationRemoved(Hediff_AddedMutation mutation,  MutationTracker tracker)
         {
-            RefreshGraphics(tracker, Pawn);
+            IsDirty = true; 
         }
     }
 }

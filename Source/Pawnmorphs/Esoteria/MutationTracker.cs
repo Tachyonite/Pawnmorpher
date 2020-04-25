@@ -113,6 +113,11 @@ namespace Pawnmorph
         public override void CompTick()
         {
             if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn)) return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
+            if (InfluencesDirty)
+            {
+                RecalcInfluences();
+                InfluencesDirty = false; 
+            }
 
             if (Pawn.IsHashIntervalTick(MutationRuleDef.CHECK_RATE))
             {
@@ -160,7 +165,21 @@ namespace Pawnmorph
             Assert(parent is Pawn, "parent is Pawn");
         }
 
-        private const float EPSILON = 0.01f; 
+        private const float EPSILON = 0.01f;
+
+        /// <summary>
+        /// called just before spawning in the pawn 
+        /// </summary>
+        /// <param name="respawningAfterLoad">if set to <c>true</c> [respawning after load].</param>
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if (InfluencesDirty)
+            {
+                RecalcInfluences();
+                InfluencesDirty = false; 
+            }
+        }
 
         /// <summary>
         /// Recalculates the mutation influences if needed.
@@ -222,18 +241,31 @@ namespace Pawnmorph
 
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the morph influences caches are dirty.
+        /// if true the influences will be recalculated on the next tick 
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [influences dirty]; otherwise, <c>false</c>.
+        /// </value>
+        public bool InfluencesDirty { get; set; }
+
         /// <summary> Called to notify this tracker that a mutation has been added. </summary>
         public void NotifyMutationAdded([NotNull] Hediff_AddedMutation mutation)
         {
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             _mutationList.Add(mutation);
 
+            InfluencesDirty = true; 
+
+            NotifyCompsAdded(mutation);
+        }
+
+        private void RecalcInfluences()
+        {
             AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
             TotalInfluence = _influenceDict.Select(s => s.Value).Sum();
             MutationsCount += 1;
-
-
-            NotifyCompsAdded(mutation);
         }
 
         /// <summary> Called to notify this tracker that a mutation has been removed. </summary>
@@ -243,10 +275,7 @@ namespace Pawnmorph
             _mutationList.Remove(mutation);
             MutationsCount -= 1;
 
-            AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
-
-            TotalInfluence = _influenceDict.Select(s => s.Value).Sum(); 
-            NotifyCompsRemoved(mutation);
+            InfluencesDirty = true; 
         }
 
         /// <summary>
