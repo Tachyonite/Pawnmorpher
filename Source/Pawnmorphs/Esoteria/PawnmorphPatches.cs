@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using System.Text;
 using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
@@ -80,10 +81,16 @@ namespace Pawnmorph
             }
         }
 
+        
+
+
         private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
         {
             var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public; 
             var instanceFlags = BindingFlags.Instance| BindingFlags.NonPublic | BindingFlags.Public;
+
+
+
 
             List<MethodInfo> methodsToPatch = new List<MethodInfo>(); 
             
@@ -92,6 +99,16 @@ namespace Pawnmorph
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod); 
 
+            //animal tabs 
+            var methods = typeof(MainTabWindow_Animals).GetNestedTypes(staticFlags | instanceFlags)//looking for delegates used by the animal tab 
+                                                       .Where(t => t.IsCompilerGenerated())
+                                                       .SelectMany(t => t.GetMethods(instanceFlags).Where(m=> m.HasSignature(typeof(Pawn))));
+
+
+            methodsToPatch.AddRange(methods); 
+
+
+
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
             {
@@ -99,7 +116,15 @@ namespace Pawnmorph
                 harmonyInstance.ILPatchCommonMethods(methodInfo); 
             }
 
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("Patched:");
+            foreach (MethodInfo methodInfo in methodsToPatch)
+            {
+                if(methodInfo == null) continue;
+                builder.AppendLine($"{methodInfo.Name}");
+            }
 
+            Log.Message(builder.ToString());
         }
 
 
