@@ -16,7 +16,8 @@ namespace Pawnmorph.DebugUtils
         [DebugAction(category = FORMER_HUMAN_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void RecruitFormerHuman(Pawn pawn)
         {
-            if (pawn?.IsSapientFormerHuman() == true)
+            var sapienceState = pawn?.GetSapienceState();
+            if (sapienceState?.StateDef != SapienceStateDefOf.FormerHuman && sapienceState.CurrentIntelligence >= Intelligence.ToolUser)
             {
                 Worker_FormerHumanRecruitAttempt.DoRecruit(pawn.Map.mapPawns.FreeColonists.FirstOrDefault(), pawn, 1f);
                 DebugActionsUtility.DustPuffFrom(pawn);
@@ -27,7 +28,7 @@ namespace Pawnmorph.DebugUtils
         static void MakeAnimalSapientFormerHuman(Pawn pawn)
         {
             if (pawn == null) return;
-            if (pawn.IsFormerHuman()) return;
+            if (pawn.GetSapienceState() != null) return;
             if (!pawn.RaceProps.Animal) return;
 
             FormerHumanUtilities.MakeAnimalSapient(pawn); 
@@ -37,7 +38,7 @@ namespace Pawnmorph.DebugUtils
         static void MakeAnimalFormerHuman(Pawn pawn)
         {
             if (pawn == null) return;
-            if (pawn.IsFormerHuman()) return;
+            if (pawn.GetSapienceState() != null) return;
             if (!pawn.RaceProps.Animal) return;
 
             FormerHumanUtilities.MakeAnimalSapient(pawn, Rand.Range(0.1f, 1f));

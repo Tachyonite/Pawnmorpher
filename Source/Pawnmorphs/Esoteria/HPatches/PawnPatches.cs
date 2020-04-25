@@ -16,36 +16,7 @@ namespace Pawnmorph.HPatches
 {
     public static class PawnPatches
     {
-        [HarmonyPatch(typeof(Pawn)),HarmonyPatch(nameof(Pawn.IsColonistPlayerControlled), MethodType.Getter)]
-        internal static class IsColonistPlayerControlledPatch
-        {
-            [HarmonyPostfix]
-            static void MakeSapientAnimalsColonists(Pawn __instance, ref bool __result)
-            {
-                if (__instance.Faction?.IsPlayer != true) return;
-                if (!__instance.RaceProps.Animal) return;
-                if (__instance.MentalStateDef != null) return;
-                if (!__instance.Spawned) return;
-                if (__instance.HostFaction != null) return; 
-                
-                __result = __instance.IsSapientOrFeralFormerHuman(); 
-            }
-        }
-#if true
-        [HarmonyPatch(typeof(Pawn)), HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter)]
-        internal static class MakeFormerHumansColonists
-        {
-            [HarmonyPostfix]
-            static void MakeSapientAnimalsColonists([NotNull] Pawn __instance, ref bool __result)
-            {
-                if (!__result && __instance.Faction?.IsPlayer == true)
-                {
-                    __result = __instance.IsColonistAnimal();
-                }
-            }
-        }
-
-#endif 
+       
 
         [HarmonyPatch(typeof(Pawn_NeedsTracker)), HarmonyPatch("ShouldHaveNeed")]
         internal static class NeedsTracker_ShouldHaveNeedPatch
@@ -55,7 +26,8 @@ namespace Pawnmorph.HPatches
             {
                 if (nd == PMNeedDefOf.SapientAnimalControl)
                 {
-                    __result = Need_Control.IsEnabledFor(___pawn); 
+                    __result = Need_Control.IsEnabledFor(___pawn);
+                    return;
                 }
 
 
@@ -64,12 +36,8 @@ namespace Pawnmorph.HPatches
                     __result = nd.IsValidFor(___pawn);
                     return;
                 }
-                if (___pawn?.IsSapientOrFeralFormerHuman() != true) return;
-                if (nd?.defName == "SapientAnimalControl")
-                {
-                    __result = true;
-                    return; 
-                }
+                if (___pawn?.IsFormerHuman() != true || ___pawn.GetIntelligence() == Intelligence.Animal) return;
+              
                 
                 var isColonist = ___pawn.Faction?.IsPlayer == true;
                 if (nd.defName == "Mood")

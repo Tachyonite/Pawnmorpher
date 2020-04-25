@@ -109,9 +109,9 @@ namespace Pawnmorph.TfSys
         protected override bool CanRevertPawnImp(TransformedPawnSingle transformedPawn)
         {
             if (!transformedPawn.IsValid) return false;
-            var tracker = transformedPawn.animal.GetSapienceTracker();
+            var tracker = transformedPawn.animal?.GetSapienceTracker();
             if (tracker == null) return false;
-            return tracker.IsFormerHuman && !tracker.IsPermanentlyFeral; 
+            return transformedPawn.animal.GetSapienceState()?.StateDef == def.transformedSapienceState && !tracker.IsPermanentlyFeral; 
         }
 
         /// <summary>Returns true if the specified request is valid.</summary>
@@ -367,10 +367,9 @@ namespace Pawnmorph.TfSys
         }
 
         /// <summary>
-        ///     add the correct reversion thought at the correct stage
+        /// add the correct reversion thought at the correct stage
         /// </summary>
-        /// <param name="spawned"></param>
-        /// <param name="curStageIndex"></param>
+        /// <param name="spawned">The spawned.</param>
         private void AddReversionThought(Pawn spawned)
         {
             TraitSet traits = spawned.story.traits;

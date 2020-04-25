@@ -13,9 +13,13 @@ namespace Pawnmorph.HPatches
     {
         static void Postfix(ref bool __result, [NotNull] Pawn p, ThingDef bedDef)
         {
-            if (!__result && p.IsSapientFormerHuman())
+            if (!__result && p.GetIntelligence() == Intelligence.Humanlike)
             {
                 __result = bedDef?.building?.bed_humanlike == true; 
+            }else if (__result && p.GetIntelligence() < Intelligence.ToolUser)
+            {
+                BuildingProperties building = bedDef?.building;
+                __result = building != null &&  p.BodySize <= (double) building.bed_maxBodySize;
             }
         }
     }

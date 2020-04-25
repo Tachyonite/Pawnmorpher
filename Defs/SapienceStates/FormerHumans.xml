@@ -4,6 +4,7 @@
         <label>former huamn</label>
         <forcedHediff>TransformedHuman</forcedHediff>
         <stateType>Pawnmorph.SapienceStates.FormerHuman</stateType>
+        <canGoPermanentlyFeral>true</canGoPermanentlyFeral>
     </Pawnmorph.SapienceStateDef>
 
     <Pawnmorph.SapienceStateDef>

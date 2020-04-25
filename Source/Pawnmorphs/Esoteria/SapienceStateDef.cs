@@ -23,7 +23,12 @@ namespace Pawnmorph
         /// the hediff the pawn is given when in this sapience state
         /// </summary>
         [CanBeNull]
-        public HediffDef forcedHediff; 
+        public HediffDef forcedHediff;
+
+        /// <summary>
+        /// if a pawn in this state can go permanently feral
+        /// </summary>
+        public bool canGoPermanentlyFeral; 
 
         /// <summary>
         /// Creates a new state instance.

@@ -93,7 +93,7 @@ namespace Pawnmorph.TfSys
             }
             else
             {
-                tracker.MakeFormerHuman(1);
+                GiveTransformedPawnSapienceState(meldToSpawn, 1); 
             }
 
 

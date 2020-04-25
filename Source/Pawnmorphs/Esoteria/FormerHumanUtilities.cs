@@ -459,9 +459,7 @@ namespace Pawnmorph
         public static SapienceLevel? GetQuantizedSapienceLevel([NotNull] this Pawn pawn)
         {
             SapienceTracker tracker = pawn.GetSapienceTracker();
-            if (tracker == null) return null;
-            if (!tracker.IsFormerHuman) return null;
-            return tracker.SapienceLevel;
+            return tracker?.SapienceLevel;
         }
 
 
@@ -584,40 +582,48 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsFormerHuman([NotNull] this Pawn pawn)
         {
-            return pawn.GetSapienceTracker()?.IsFormerHuman == true;
+            return pawn.GetSapienceState()?.StateDef == SapienceStateDefOf.FormerHuman;
         }
 
         /// <summary>
-        /// Determines whether this instance is humanlike.
+        /// Gets the current sapience state the pawn is in 
         /// </summary>
         /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">pawn</exception>
-        //overload here so harmony patches don't break
-        public static bool IsHumanlike([NotNull] this Pawn pawn)
-        {
-            return IsHumanlike(pawn, false);
-        }
-
-        /// <summary>
-        /// Determines whether this instance is humanlike.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="includeNonSapientFormerHumans">if set to <c>true</c> include non sapient former humans.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">pawn</exception>
-        public static bool IsHumanlike([NotNull] this Pawn pawn, bool includeNonSapientFormerHumans)
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">pawn</exception>
+        [CanBeNull]
+        public static SapienceState GetSapienceState([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (pawn.RaceProps.Humanlike) return !pawn.IsWildMan();
-            if (includeNonSapientFormerHumans ? pawn.IsFormerHuman() : pawn.IsSapientFormerHuman()) return true;
-            return false;
+            return pawn.GetSapienceTracker()?.CurrentState; 
         }
 
+        /// <summary>
+        /// Determines this pawn's sapience is in a special state like FormerHuman or Animalistic
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn's sapience is in a special state like FormerHuman or Animalistic; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool HasSapienceState([NotNull] this Pawn pawn)
+        {
+            return GetSapienceState(pawn) != null; 
+        }
+
+        /// <summary>
+        /// Determines whether this instance is humanlike.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsHumanlike([NotNull] this Pawn pawn)
+        {
+            return pawn.GetIntelligence() == Intelligence.Humanlike; 
+        }
+
+     
         /// <summary>
         /// Determines whether this instance is an animal.
         /// </summary>
@@ -627,12 +633,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsAnimal([NotNull] this Pawn pawn)
         {
-            if (pawn.RaceProps.Animal)
-            {
-                return !pawn.IsSapientFormerHuman(); 
-            }
-
-            return false; 
+            return pawn.GetIntelligence() == Intelligence.Animal; 
         }
 
 
@@ -661,22 +662,10 @@ namespace Pawnmorph
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
         {
-            SapienceTracker fTracker = pawn.GetSapienceTracker();
-            if (fTracker == null) return false;
-            if (!fTracker.IsFormerHuman) return false;
-            switch (fTracker.SapienceLevel)
-            {
-                case SapienceLevel.Sapient:
-                case SapienceLevel.MostlySapient:
-                    return true;
-                case SapienceLevel.Conflicted:
-                case SapienceLevel.MostlyFeral:
-                case SapienceLevel.Feral:
-                case SapienceLevel.PermanentlyFeral:
-                    return false;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var sapienceState = pawn.GetSapienceState();
+            if (sapienceState?.StateDef != SapienceStateDefOf.FormerHuman) return false;
+            return sapienceState.CurrentIntelligence == Intelligence.Humanlike; 
         }
 
         /// <summary>
@@ -687,6 +676,7 @@ namespace Pawnmorph
         ///     <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
+        [Obsolete("use " + nameof(GetIntelligence) + " instead")]
         public static bool IsSapientOrFeralFormerHuman([NotNull] this Pawn pawn)
         {
             SapienceTracker fTracker = pawn.GetSapienceTracker();
@@ -716,9 +706,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsToolUser([NotNull] this Pawn pawn)
         {
-            if (pawn.RaceProps.ToolUser) return true;
-            if (pawn.IsSapientOrFeralFormerHuman()) return true;
-            return false;
+            return pawn.GetIntelligence() >= Intelligence.ToolUser; 
         }
 
         /// <summary>
@@ -757,9 +745,6 @@ namespace Pawnmorph
 
             sTracker.EnterState(SapienceStateDefOf.FormerHuman, 1);
 
-
-
-            sTracker.MakeFormerHuman(sapienceLevel);
             InitializeTransformedPawn(original, animal, sapienceLevel);
         }
 
@@ -949,7 +934,7 @@ namespace Pawnmorph
         {
             var comp = pawn.GetComp<SapienceTracker>();
             if (comp == null) return;
-            if (!comp.IsFormerHuman || comp.IsPermanentlyFeral) return;
+            if (comp.CurrentState?.StateDef.canGoPermanentlyFeral != true || comp.IsPermanentlyFeral) return;
             comp.MakePermanentlyFeral();
         }
 

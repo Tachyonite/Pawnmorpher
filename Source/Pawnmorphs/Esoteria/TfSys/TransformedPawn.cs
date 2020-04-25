@@ -265,7 +265,7 @@ namespace Pawnmorph.TfSys
             {
                 var tracker = animal.GetSapienceTracker();
                 if (tracker == null) return false;
-                return tracker.IsFormerHuman && !tracker.IsPermanentlyFeral;
+                return tracker.CurrentState?.StateDef == mutagenDef?.transformedSapienceState && !tracker.IsPermanentlyFeral;
             }
         }
 
@@ -329,7 +329,7 @@ namespace Pawnmorph.TfSys
             {
                 var sTracker = meld?.GetSapienceTracker();
                 if (sTracker == null) return false;
-                return sTracker.IsFormerHuman && !sTracker.IsPermanentlyFeral;
+                return meld.GetSapienceState()?.StateDef == mutagenDef?.transformedSapienceState && !sTracker.IsPermanentlyFeral;
             } }
 
         

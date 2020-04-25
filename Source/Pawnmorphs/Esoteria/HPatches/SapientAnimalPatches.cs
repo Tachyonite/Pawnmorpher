@@ -38,7 +38,9 @@ namespace Pawnmorph.HPatches
 
                 bool CanMate(Pawn p) //only pure animals and permanently ferals can mate
                 {
-                    return p?.IsSapientOrFeralFormerHuman() != true; 
+                    if (p?.IsFormerHuman() != true) return true; 
+                    var sapienceLevel = p.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral; 
+                    return sapienceLevel == SapienceLevel.PermanentlyFeral; 
                 }
             }
         }
