@@ -57,10 +57,18 @@ namespace Pawnmorph.Hediffs
                 return _morphs; 
             }
         }
-
         MorphDef GetMorphFor(Pawn pawn)
         {
-            Rand.PushState(pawn.thingIDNumber);
+            int seed;
+
+            unchecked
+            {
+                seed = pawn.thingIDNumber + (Find.TickManager.TicksAbs / RandomMorphTransformationStage.CYCLE_RATE);
+            }
+
+
+
+            Rand.PushState(seed);
             try
             {
                 return AllMorphs.RandomElement(); 
