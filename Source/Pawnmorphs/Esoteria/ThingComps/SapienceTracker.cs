@@ -17,6 +17,30 @@ namespace Pawnmorph.ThingComps
     public class SapienceTracker : ThingComp
     {
         private SapienceState _sapienceState;
+        private Intelligence? _lastLevel; 
+        private bool _subscribed;
+
+        void TrySubscribe()
+        {   
+            if (_subscribed) return; 
+            var sNeed = SapienceNeed;
+            if (sNeed != null)
+            {
+                _subscribed = true; 
+                sNeed.SapienceLevelChanged += SapienceLevelChanges; 
+            }
+        }
+
+        private void SapienceLevelChanges(Need_Control sender, Pawn pawn, SapienceLevel sapiencelevel)
+        {
+            if (pawn.Faction != Faction.OfPlayer) return;
+
+            if (CurrentIntelligence != _lastLevel)
+            {
+                _lastLevel = CurrentIntelligence; 
+                Find.ColonistBar.MarkColonistsDirty();
+            }
+        }
 
         /// <summary>
         /// Gets the current sapience state that pawn is in 
@@ -155,6 +179,7 @@ namespace Pawnmorph.ThingComps
             }
 
             _sapienceState?.Init(this); 
+            TrySubscribe();
         }
 
 
@@ -215,6 +240,7 @@ namespace Pawnmorph.ThingComps
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 _sapienceState?.Init(this); 
+                TrySubscribe();
             }
 
 
