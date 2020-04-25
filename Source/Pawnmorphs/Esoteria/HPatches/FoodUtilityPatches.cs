@@ -1,6 +1,7 @@
 ﻿// FoodUtilityPatches.cs modified by Iron Wolf for Pawnmorph on 01/19/2020 4:33 PM
 // last updated 01/19/2020  4:33 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -39,10 +40,10 @@ namespace Pawnmorph.HPatches
         static class FixBestFoodSourceForFormerHumans
         {
             [NotNull]
-            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike));
+            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsToolUser));
 
             [NotNull] private static readonly MethodInfo _isHumanlike =
-                typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike)); 
+                typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)}); 
 
 
 

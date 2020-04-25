@@ -363,6 +363,7 @@
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
     <Compile Include="DefExtensions\FormerHumanSettings.cs" />
+    <Compile Include="DefExtensions\HumanlikeRestriction.cs" />
     <Compile Include="DefExtensions\InstinctEffector.cs" />
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
@@ -412,6 +413,7 @@
     <Compile Include="HPatches\AIPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
+    <Compile Include="HPatches\DoorPatches.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
@@ -483,6 +485,7 @@
     <Compile Include="PMDesignationDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
+    <Compile Include="PMNeedDefOf.cs" />
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
@@ -494,7 +497,7 @@
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
-    <Compile Include="ThingComps\FormerHumanTracker.cs" />
+    <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
@@ -640,6 +643,7 @@
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
+    <Compile Include="Thoughts\SapienceMemory.cs" />
     <Compile Include="Thoughts\ThoughtDefOfs.cs" />
     <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
     <Compile Include="Thoughts\Thought_EtherMemory.cs" />

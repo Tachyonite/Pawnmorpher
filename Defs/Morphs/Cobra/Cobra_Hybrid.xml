@@ -433,7 +433,7 @@
         </corePart>
     </BodyDef>
 
-    <ThingDef Class="AlienRace.ThingDef_AlienRace" ParentName="BasePawn">
+    <ThingDef Class="AlienRace.ThingDef_AlienRace" ParentName="HumanRace">
         <defName>SnakeMorph</defName>
         <label>naga</label>
         <description>A snakelike human, with a large and powerful tail that has replaced its legs. This allows for viper-quick movement, and while you might expect them to lack arms, most cobramorphs do retain their arms. In many respects, they are a mutagenic-born mythological naga.</description>
@@ -519,78 +519,14 @@
           <meatMarketValue>0.8</meatMarketValue>
           <manhunterOnDamageChance>0.20</manhunterOnDamageChance>
           <manhunterOnTameFailChance>0.02</manhunterOnTameFailChance>
-          <litterSizeCurve>
-            <points>
-              <li>(0.5, 0)</li>
-              <li>(1, 1)</li>
-              <li>(1.01, 0.02)</li>
-              <li>(3.5, 0)</li>
-            </points>
-          </litterSizeCurve>
-          <lifeStageAges>
-            <li>
-              <def>HumanlikeBaby</def>
-              <minAge>0</minAge>
-            </li>
-            <li>
-              <def>HumanlikeToddler</def>
-              <minAge>1.2</minAge>
-            </li>
-            <li>
-              <def>HumanlikeChild</def>
-              <minAge>4</minAge>
-            </li>
-            <li>
-              <def>HumanlikeTeenager</def>
-              <minAge>13</minAge>
-            </li>
-            <li>
-              <def>HumanlikeAdult</def>
-              <minAge>18</minAge>
-            </li>
-          </lifeStageAges>
+    
           <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
           <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
           <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
-          <specialShadowData>
-            <volume>(0.3, 0.8, 0.4)</volume>
-            <offset>(0,0,-0.3)</offset>
-          </specialShadowData>
-          <ageGenerationCurve>
-            <points>
-              <li>(14,0)</li>
-              <li>(16,100)</li>
-              <li>(50,100)</li>
-              <li>(60,30)</li>
-              <li>(70,18)</li>
-              <li>(80,10)</li>
-              <li>(90,3)</li>
-              <li>(100,0)</li>
-            </points>
-          </ageGenerationCurve>
-          <hediffGiverSets>
-            <li>OrganicStandard</li>
-            <li>Human</li>
-          </hediffGiverSets>
         </race>
-        <recipes>
-          <li>ExciseCarcinoma</li>
-          <li>AdministerMechSerumHealer</li>
-          <li>RemoveBodyPart</li>
-          <li>Euthanize</li>
-          <li>Anesthetize</li>
-        </recipes>
-        <comps>
-            <li Class="Pawnmorph.MorphTrackingCompProperties"/>
-			<li>
-				<compClass>Pawnmorph.GraphicSys.InitialGraphicsComp</compClass>
-			</li>
-			<li>
-				<compClass>Pawnmorph.GraphicSys.GraphicsUpdaterComp</compClass>
-			</li>
-        </comps>
         <alienRace>
             <generalSettings>
+                <humanRecipeImport>true</humanRecipeImport>
                 <alienPartGenerator>
                     <aliencrowntypes>
                         <li>Average_Normal</li>
@@ -668,6 +604,7 @@
                 <conceptList></conceptList>
                 <workGiverList></workGiverList>
             </raceRestriction>
+
         </alienRace>
       </ThingDef>
 </Defs>

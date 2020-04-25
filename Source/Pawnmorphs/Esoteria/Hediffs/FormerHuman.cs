@@ -34,6 +34,57 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        private bool _subscribed; 
+
+        void SubscribeToEvents()
+        {
+            if(_subscribed) return;
+            var controlNeed = pawn.needs?.TryGetNeed<Need_Control>();
+            if (controlNeed != null)
+            {
+                _subscribed = true;
+                _initialized = true; 
+                controlNeed.SapienceLevelChanged += SapienceLevelChanged;
+            }
+            
+        }
+
+        /// <summary>
+        /// called when the hediff is removed 
+        /// </summary>
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+            if (_subscribed)
+            {
+                var needControl = pawn?.needs?.TryGetNeed<Need_Control>();
+                if (needControl != null) needControl.SapienceLevelChanged -= SapienceLevelChanged; 
+            }
+        }
+
+        private void SapienceLevelChanged(Need_Control sender, Pawn pawn1, SapienceLevel sapiencelevel)
+        {
+            SetLabel(sapiencelevel);
+        }
+
+        private bool _initialized;
+
+        void TryInit()
+        {
+            SubscribeToEvents();
+            SetLabel(); 
+        }
+
+        void SetLabel(SapienceLevel level)
+        {
+            _labelCached = level.GetLabel();
+        }
+
+        void SetLabel()
+        {
+            _labelCached = pawn?.GetQuantizedSapienceLevel()?.GetLabel() ?? "unknown";
+            
+        }
 
         private string _labelCached;
 
@@ -44,6 +95,12 @@ namespace Pawnmorph.Hediffs
 
             Scribe_Values.Look(ref _lastStage, nameof(_lastStage));
             Scribe_Values.Look(ref _labelCached, nameof(_labelCached));
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                SubscribeToEvents();
+                SetLabel();
+            }
         }
 
         /// <summary>
@@ -55,30 +112,20 @@ namespace Pawnmorph.Hediffs
             base.PostAdd(dinfo);
             if (pawn.Name == null)
                 pawn.Name = new NameSingle(pawn.Label); //make sure they always have a name, is needed for sapients 
+            SubscribeToEvents();
+            SetLabel();
         }
+
 
         /// <summary>called after the pawn's tick method.</summary>
         public override void PostTick()
         {
             base.PostTick();
 
-            if (_lastStage != CurStageIndex)
-            {
-                OnSapienceLevelChanged();
-            }
+            if (_lastStage != CurStageIndex) OnSapienceLevelChanged();
 
-            if (pawn.needs == null) return;//dead pawns don't have needs for some reason 
-            
-        }
-
-
-        /// <summary>
-        /// Notifies this instance that the sapience level changes.
-        /// </summary>
-        public void NotifySapienceLevelChanges()
-        {
-            SapienceLevel? saLabel = pawn?.GetQuantizedSapienceLevel();
-            _labelCached = saLabel?.GetLabel() ?? "unknown";
+            if (pawn.needs == null) return; //dead pawns don't have needs for some reason 
+            if(!_initialized) TryInit(); 
         }
 
         private void OnSapienceLevelChanged()

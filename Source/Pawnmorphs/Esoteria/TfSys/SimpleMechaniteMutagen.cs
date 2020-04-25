@@ -309,6 +309,8 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
 
+            SetHumanoidSapience(spawned, animal); 
+
             FixBondRelationship(spawned, animal);
             FormerHumanUtilities.TransferEverything(animal, spawned); 
 
@@ -319,6 +321,25 @@ namespace Pawnmorph.TfSys
 
             animal.Destroy();
             return true;
+        }
+
+        private void SetHumanoidSapience([NotNull] Pawn humanoid, [NotNull] Pawn animal)
+        {
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(humanoid);
+            try
+            {
+                humanoid.needs.AddOrRemoveNeedsAsAppropriate();
+            }
+            catch (Exception e)
+            {
+                Log.Message($"caught {e.GetType().Name} \n{e}");
+            }
+            var hSapienceTracker = humanoid.GetSapienceTracker();
+            var aSapienceTracker = animal.GetSapienceTracker();
+            if (hSapienceTracker == null || aSapienceTracker == null) return;
+
+            hSapienceTracker.SetSapience(aSapienceTracker.Sapience);
+            //TODO equalize sapience and set the 'sapience state' 
         }
 
         /// <summary>

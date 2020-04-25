@@ -3,6 +3,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -15,8 +17,52 @@ namespace Pawnmorph
     /// <summary>
     ///     need that represents a sapient animal's control or humanity left
     /// </summary>
+    [StaticConstructorOnStartup]
     public class Need_Control : Need_Seeker
     {
+        public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel sapienceLevel);
+
+        /// <summary>
+        /// Occurs when the sapience level changes .
+        /// </summary>
+        public event SapienceLevelChangedHandle SapienceLevelChanged; 
+
+
+        /// <summary>
+        /// Determines whether the control need is enabled for the pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if control need is enabled for the given humanoid race; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsEnabledFor([NotNull] Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var fhLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
+            return fhLevel != SapienceLevel.PermanentlyFeral || EnabledRaces.Contains(pawn.def); 
+        }
+
+        [NotNull]
+        private static HashSet<ThingDef> EnabledRaces
+        {
+            get
+            {
+                if (_enabledRaces == null)
+                {
+                    _enabledRaces = new HashSet<ThingDef>();
+                    foreach (ThingDef race in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.Humanlike == true))
+                    {
+                        if (!DefDatabase<MutagenDef>.AllDefs.Any(m => m.CanTransform(race))) continue;
+                        _enabledRaces.Add(race);
+                    }
+                }
+
+                return _enabledRaces;
+            }
+        }
+
+        private static HashSet<ThingDef> _enabledRaces; 
+
         private float _seekerLevel;
 
         private SapienceLevel _currentLevel;
@@ -55,6 +101,16 @@ namespace Pawnmorph
         ///     The current instant level.
         /// </value>
         public override float CurInstantLevel => _seekerLevel;
+
+        /// <summary>
+        /// Sets the sapience.
+        /// </summary>
+        /// <param name="sapience">The sapience.</param>
+        public void SetSapience(float sapience)
+        {
+            _seekerLevel = Mathf.Clamp(sapience, 0, MaxLevel);
+            CurLevel = _seekerLevel; 
+        }
 
         /// <summary>
         ///     Adds the instinct change to this need
@@ -111,6 +167,7 @@ namespace Pawnmorph
                     _seekerLevel = CurLevel;
                 _currentLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(_seekerLevel);
                 CurLevel = Mathf.Clamp(CurLevel, 0, MaxLevel);
+                OnSapienceLevelChanges();
             }
         }
 
@@ -159,7 +216,7 @@ namespace Pawnmorph
         private void OnSapienceLevelChanges()
         {
             var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman) as FormerHuman;
-            var fTracker = pawn.GetFormerHumanTracker();
+            var fTracker = pawn.GetSapienceTracker();
             if (fTracker == null) return;
             fTracker.SapienceLevel = _currentLevel; 
             if (fHediff == null) return;
@@ -183,8 +240,8 @@ namespace Pawnmorph
 
             pawn.needs?.AddOrRemoveNeedsAsAppropriate();
             PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
-            fHediff.NotifySapienceLevelChanges();
-            
+           
+            SapienceLevelChanged?.Invoke(this, pawn, _currentLevel); 
 
         }
 

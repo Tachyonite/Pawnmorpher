@@ -64,7 +64,8 @@ namespace Pawnmorph.Hediffs
                 return _morphs;
             }
         }
-        
+
+        private const int CYCLE_RATE = TimeMetrics.TICKS_PER_DAY * 2/3; 
 
         /// <summary>
         /// Gets the entries for the given pawn
@@ -75,9 +76,18 @@ namespace Pawnmorph.Hediffs
         {
             if (_cache.TryGetValue(pawn, out List<MutationEntry> lst))
                 return lst;
-            lst = new List<MutationEntry>(); 
+            lst = new List<MutationEntry>();
 
-           Rand.PushState(pawn.thingIDNumber);
+            int seed;
+
+            unchecked
+            {
+                seed = pawn.thingIDNumber + (Find.TickManager.TicksAbs / CYCLE_RATE);
+            }
+            
+            
+            
+            Rand.PushState(seed);
            try
            {
                var rMorph = AllMorphs.RandomElement();

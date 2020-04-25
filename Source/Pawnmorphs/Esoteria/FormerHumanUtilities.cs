@@ -456,9 +456,9 @@ namespace Pawnmorph
         /// <param name="pawn">The pawn.</param>
         /// <returns></returns>
         [CanBeNull]
-        public static FormerHumanTracker GetFormerHumanTracker([NotNull] this Pawn pawn)
+        public static SapienceTracker GetSapienceTracker([NotNull] this Pawn pawn)
         {
-            var tComp = pawn.GetComp<FormerHumanTracker>();
+            var tComp = pawn.GetComp<SapienceTracker>();
             return tComp;
         }
 
@@ -482,7 +482,7 @@ namespace Pawnmorph
         /// <returns>returns null if the pawn isn't a former human</returns>
         public static SapienceLevel? GetQuantizedSapienceLevel([NotNull] this Pawn pawn)
         {
-            FormerHumanTracker tracker = pawn.GetFormerHumanTracker();
+            SapienceTracker tracker = pawn.GetSapienceTracker();
             if (tracker == null) return null;
             if (!tracker.IsFormerHuman) return null;
             return tracker.SapienceLevel;
@@ -608,22 +608,37 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsFormerHuman([NotNull] this Pawn pawn)
         {
-            return pawn.GetFormerHumanTracker()?.IsFormerHuman == true;
+            return pawn.GetSapienceTracker()?.IsFormerHuman == true;
         }
 
         /// <summary>
-        ///     Determines whether this instance is humanlike.
+        /// Determines whether this instance is humanlike.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <returns>
-        ///     <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
         /// </returns>
         /// <exception cref="ArgumentNullException">pawn</exception>
+        //overload here so harmony patches don't break
         public static bool IsHumanlike([NotNull] this Pawn pawn)
+        {
+            return IsHumanlike(pawn, false);
+        }
+
+        /// <summary>
+        /// Determines whether this instance is humanlike.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="includeNonSapientFormerHumans">if set to <c>true</c> include non sapient former humans.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsHumanlike([NotNull] this Pawn pawn, bool includeNonSapientFormerHumans)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (pawn.RaceProps.Humanlike) return !pawn.IsWildMan();
-            if (pawn.IsSapientFormerHuman()) return true;
+            if (includeNonSapientFormerHumans ? pawn.IsFormerHuman() : pawn.IsSapientFormerHuman()) return true;
             return false;
         }
 
@@ -670,7 +685,7 @@ namespace Pawnmorph
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static bool IsSapientFormerHuman([NotNull] this Pawn pawn)
         {
-            FormerHumanTracker fTracker = pawn.GetFormerHumanTracker();
+            SapienceTracker fTracker = pawn.GetSapienceTracker();
             if (fTracker == null) return false;
             if (!fTracker.IsFormerHuman) return false;
             switch (fTracker.SapienceLevel)
@@ -698,7 +713,7 @@ namespace Pawnmorph
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static bool IsSapientOrFeralFormerHuman([NotNull] this Pawn pawn)
         {
-            FormerHumanTracker fTracker = pawn.GetFormerHumanTracker();
+            SapienceTracker fTracker = pawn.GetSapienceTracker();
             if (fTracker == null) return false;
             if (!fTracker.IsFormerHuman) return false;
             switch (fTracker.SapienceLevel)
@@ -752,11 +767,11 @@ namespace Pawnmorph
 
             fHumanHediff.Severity = 1;
 
-            var comp = animal.GetComp<FormerHumanTracker>();
+            var comp = animal.GetComp<SapienceTracker>();
 
             if (comp == null)
             {
-                Log.Error($"{animal.Name},{animal.def.defName} does not have a {nameof(FormerHumanTracker)} comp!");
+                Log.Error($"{animal.Name},{animal.def.defName} does not have a {nameof(SapienceTracker)} comp!");
                 return;
             }
 
@@ -823,7 +838,7 @@ namespace Pawnmorph
 
             animal.health.AddHediff(TfHediffDefOf.TransformedHuman);
             Hediff fHumanHediff = animal.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            FormerHumanTracker fTracker = animal.GetFormerHumanTracker();
+            SapienceTracker fTracker = animal.GetSapienceTracker();
             if (fHumanHediff == null)
             {
                 Log.Error(nameof(fHumanHediff));
@@ -938,7 +953,7 @@ namespace Pawnmorph
         public static void MakePermanentlyFeral(Pawn pawn)
         {
             Hediff fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            var comp = pawn.GetComp<FormerHumanTracker>();
+            var comp = pawn.GetComp<SapienceTracker>();
             if (comp == null) return;
             if (fHediff == null) return;
 

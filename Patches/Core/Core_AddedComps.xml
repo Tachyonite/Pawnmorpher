@@ -38,7 +38,7 @@
 				<compClass>Pawnmorph.MutationTracker</compClass>
 			</li>
 			<li>
-				<compClass>Pawnmorph.ThingComps.FormerHumanTracker</compClass>
+				<compClass>Pawnmorph.ThingComps.SapienceTracker</compClass>
 			</li>
 		</value>
 	</Operation>

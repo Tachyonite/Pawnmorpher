@@ -53,6 +53,12 @@ namespace Pawnmorph.HPatches
             [HarmonyPostfix]
             static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
             {
+                if (nd == PMNeedDefOf.SapientAnimalControl)
+                {
+                    __result = Need_Control.IsEnabledFor(___pawn); 
+                }
+
+
                 if (__result)
                 {
                     __result = nd.IsValidFor(___pawn);
