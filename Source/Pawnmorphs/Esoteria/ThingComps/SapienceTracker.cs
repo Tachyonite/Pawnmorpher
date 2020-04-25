@@ -58,7 +58,8 @@ namespace Pawnmorph.ThingComps
             //need to refresh comps and needs for pawn here 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
             Pawn.needs?.AddOrRemoveNeedsAsAppropriate();
-
+            var sNeed = SapienceNeed;
+            sNeed?.SetSapience(initialLevel);
             _sapienceState.Enter();
 
           
