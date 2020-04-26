@@ -31,6 +31,11 @@ namespace Pawnmorph
 
 
         /// <summary>
+        /// Adds the or remove dynamic components.
+        /// </summary>
+        public abstract void AddOrRemoveDynamicComponents(); 
+
+        /// <summary>
         /// Gets the current sapience level
         /// </summary>
         /// <value>

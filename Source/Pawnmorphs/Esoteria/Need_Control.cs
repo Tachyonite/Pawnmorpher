@@ -115,7 +115,15 @@ namespace Pawnmorph
         public void SetSapience(float sapience)
         {
             _seekerLevel = Mathf.Clamp(sapience, 0, MaxLevel);
-            CurLevel = _seekerLevel; 
+            CurLevel = _seekerLevel;
+
+            var cLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
+            if (_currentLevel != cLevel)
+            {
+                _currentLevel = cLevel; 
+                OnSapienceLevelChanges();
+            }
+
         }
 
         /// <summary>
@@ -220,13 +228,27 @@ namespace Pawnmorph
         private void OnSapienceLevelChanges()
         {
             var fTracker = pawn.GetSapienceTracker();
-            if (fTracker == null) return;
+            if (fTracker == null)
+            {
+                Log.Error($"{pawn.Name} has the sapience need but not tracker!");
+                return;
+            }
             fTracker.SapienceLevel = _currentLevel; 
 
-
-            pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+            if(pawn.needs != null)
+                pawn.needs.AddOrRemoveNeedsAsAppropriate();
+            else
+            {
+                Log.Warning($"{pawn.Name} does not have needs!");
+            }
+            
             PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
-           
+
+            if (pawn.Faction == Faction.OfPlayer)
+            {
+                Find.ColonistBar?.MarkColonistsDirty();
+            }
+
             SapienceLevelChanged?.Invoke(this, pawn, _currentLevel); 
 
         }

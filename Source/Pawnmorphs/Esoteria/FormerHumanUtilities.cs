@@ -458,8 +458,10 @@ namespace Pawnmorph
         /// <returns>returns null if the pawn isn't a former human</returns>
         public static SapienceLevel? GetQuantizedSapienceLevel([NotNull] this Pawn pawn)
         {
+
             SapienceTracker tracker = pawn.GetSapienceTracker();
-            return tracker?.SapienceLevel;
+            if (tracker?.CurrentState == null) return null; 
+            return tracker.SapienceLevel;
         }
 
 

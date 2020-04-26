@@ -8,6 +8,7 @@ using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Pawnmorph.SapienceStates
 {
@@ -133,6 +134,122 @@ namespace Pawnmorph.SapienceStates
         protected override void ExposeData()
         {
             Scribe_Values.Look(ref _countdownStarted, "countdownStarted");
+        }
+
+        /// <summary>
+        /// Adds the or remove dynamic components.
+        /// </summary>
+        public override void AddOrRemoveDynamicComponents()
+        {
+            switch (CurrentSapience)
+            {
+                case SapienceLevel.Sapient:
+                case SapienceLevel.Conflicted:
+                case SapienceLevel.MostlySapient:
+                case SapienceLevel.MostlyFeral:
+                case SapienceLevel.Feral:
+                    AddSapientAnimalComponents();//ferals need to keep them so stuff doesn't break, like relationships 
+                    break;
+                case SapienceLevel.PermanentlyFeral:
+                    RemoveSapientAnimalComponents(); //actually removing the components seems to break stuff for some reason 
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void RemoveSapientAnimalComponents()
+        {
+            if (Pawn.drafter == null) return;
+
+            //remove the drafter component if the animal is now feral 
+            Pawn.drafter.Drafted = false;
+
+            if (Pawn.MapHeld != null)
+            {
+                Pawn.equipment?.DropAllEquipment(Pawn.PositionHeld, Pawn.Faction?.IsPlayer != true);
+                Pawn.apparel?.DropAll(Pawn.PositionHeld, Pawn.Faction?.IsPlayer != true);
+            }
+            else
+            {
+                Pawn.equipment?.DestroyAllEquipment();
+                Pawn.apparel?.DestroyAll();
+            }
+
+            Pawn.ownership?.UnclaimAll();
+            Pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
+            Pawn.workSettings?.DisableAll();
+            Pawn.ownership = null;
+            Pawn.drafter = null;
+            Pawn.apparel = null;
+            Pawn.foodRestriction = null;
+            Pawn.equipment = null;
+            Pawn.royalty = null;
+            Pawn.guest = null;
+            Pawn.guilt = null;
+            Pawn.drugs = null;
+            Pawn.story = null;
+            Pawn.abilities = null;
+            Pawn.skills = null;
+            Pawn.timetable = null;
+            Pawn.workSettings = null;
+            Pawn.outfits = null;
+            var saComp = Pawn.GetComp<Comp_SapientAnimal>();
+            if (saComp != null)
+            {
+                Pawn.AllComps.Remove(saComp);
+            }
+        }
+
+        private void AddSapientAnimalComponents()
+        {
+            //add the drafter and equipment components 
+            //if 
+            if (Pawn.Faction?.IsPlayer == true)
+            {
+                if (Pawn.drafter == null)
+                {
+                    Pawn.drafter = new Pawn_DraftController(Pawn);
+                    Pawn.jobs = Pawn.jobs ?? new Pawn_JobTracker(Pawn);
+                }
+
+                if (Pawn.workSettings == null)
+                {
+                    Pawn.workSettings = new Pawn_WorkSettings(Pawn);
+                }
+            }
+
+            Pawn.ownership = Pawn.ownership ?? new Pawn_Ownership(Pawn);
+            Pawn.equipment = Pawn.equipment ?? new Pawn_EquipmentTracker(Pawn);
+            Pawn.story = Pawn.story ?? new Pawn_StoryTracker(Pawn); //need to add story component to not break hospitality 
+            Pawn.apparel = Pawn.apparel ?? new Pawn_ApparelTracker(Pawn); //need this to not break thoughts and stuff 
+            Pawn.skills = Pawn.skills ?? new Pawn_SkillTracker(Pawn); //need this for thoughts 
+            Pawn.royalty = Pawn.royalty ?? new Pawn_RoyaltyTracker(Pawn);// former humans can be royalty  
+            Pawn.abilities = Pawn.abilities ?? new Pawn_AbilityTracker(Pawn);
+            Pawn.mindState = Pawn.mindState ?? new Pawn_MindState(Pawn);
+            Pawn.drugs = Pawn.drugs ?? new Pawn_DrugPolicyTracker(Pawn);
+            Pawn.guest = Pawn.guest ?? new Pawn_GuestTracker(Pawn);
+            Pawn.outfits = Pawn.outfits ?? new Pawn_OutfitTracker(Pawn);
+            Pawn.guilt = Pawn.guilt ?? new Pawn_GuiltTracker();
+            Pawn.foodRestriction = Pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(Pawn);
+            Pawn.timetable = Pawn.timetable ?? new Pawn_TimetableTracker(Pawn);
+            Comp_SapientAnimal nComp = Pawn.GetComp<Comp_SapientAnimal>();
+            bool addedComp = false;
+
+            if (nComp == null)
+            {
+                addedComp = true;
+                nComp = new Comp_SapientAnimal { parent = Pawn };
+                Pawn.AllComps.Add(nComp);
+
+            }
+
+            //now initialize the comp 
+            if (addedComp)
+            {
+                nComp.Initialize(new CompProperties());//just pass in empty props 
+            }
+
         }
 
 

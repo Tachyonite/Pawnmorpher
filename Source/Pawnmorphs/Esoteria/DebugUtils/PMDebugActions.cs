@@ -6,7 +6,9 @@ using System.Linq;
 using Pawnmorph.Jobs;
 using Pawnmorph.Social;
 using Pawnmorph.TfSys;
+using Pawnmorph.ThingComps;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.DebugUtils
@@ -24,6 +26,15 @@ namespace Pawnmorph.DebugUtils
                 Worker_FormerHumanRecruitAttempt.DoRecruit(pawn.Map.mapPawns.FreeColonists.FirstOrDefault(), pawn, 1f);
                 DebugActionsUtility.DustPuffFrom(pawn);
             }
+        }
+
+        [DebugAction(category = FORMER_HUMAN_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void ReduceSapience(Pawn pawn)
+        {
+            var sTracker = pawn?.GetComp<SapienceTracker>();
+            if (sTracker == null) return; 
+
+            sTracker.SetSapience(Mathf.Max(0, sTracker.Sapience -0.2f ));
         }
 
         [DebugAction(category = FORMER_HUMAN_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]

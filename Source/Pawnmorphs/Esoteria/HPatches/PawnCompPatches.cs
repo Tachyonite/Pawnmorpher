@@ -1,9 +1,6 @@
 ﻿// PawnPatches.cs created by Iron Wolf for Pawnmorph on 11/27/2019 1:16 PM
 // last updated 11/27/2019  1:16 PM
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
@@ -16,13 +13,26 @@ namespace Pawnmorph.HPatches
 {
     public static class PawnCompPatches
     {
-       
+        private static bool MoodIsEnabled([NotNull] Pawn pawn)
+        {
+            bool val;
+            SapienceLevel? qSapience = pawn.GetQuantizedSapienceLevel();
+            if (!pawn.HasSapienceState() || qSapience == null)
+                val = pawn.RaceProps.Humanlike;
+            else val = qSapience.Value < SapienceLevel.Feral;
 
-        [HarmonyPatch(typeof(Pawn_NeedsTracker)), HarmonyPatch("ShouldHaveNeed")]
+            //Log.Message($"mood is enabled for {pawn.LabelShort}: {val}");
+
+            return val;
+        }
+
+
+        [HarmonyPatch(typeof(Pawn_NeedsTracker))]
+        [HarmonyPatch("ShouldHaveNeed")]
         internal static class NeedsTracker_ShouldHaveNeedPatch
         {
             [HarmonyPostfix]
-            static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
+            private static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
             {
                 if (nd == PMNeedDefOf.SapientAnimalControl)
                 {
@@ -30,54 +40,36 @@ namespace Pawnmorph.HPatches
                     return;
                 }
 
+                bool isColonist = ___pawn.Faction?.IsPlayer == true;
 
-                if (__result)
-                {
-                    __result = nd.IsValidFor(___pawn);
-                    return;
-                }
+                if (nd.defName == "Joy" && isColonist)
+                    __result = MoodIsEnabled(___pawn);
+
                 if (nd.defName == "Mood")
                     __result = MoodIsEnabled(___pawn);
 
-                bool isColonist = ___pawn.Faction?.IsPlayer == true;
-                if (nd.defName == "Joy" && isColonist)
-                    __result = MoodIsEnabled(___pawn); 
 
+                if (__result) __result = nd.IsValidFor(___pawn);
             }
-        }
-
-
-        static bool MoodIsEnabled([NotNull] Pawn pawn)
-        {
-            bool val; 
-            SapienceLevel? qSapience = pawn.GetQuantizedSapienceLevel();
-            if (!pawn.HasSapienceState() || qSapience == null)
-            {
-                val = pawn.RaceProps.Humanlike;
-            }
-            else val = qSapience.Value < SapienceLevel.Feral; 
-            return val; 
         }
 
         [HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BodyAngle))]
-        static class PawnRenderAnglePatch
+        private static class PawnRenderAnglePatch
         {
-            static bool Prefix(ref float __result, [NotNull] Pawn ___pawn)
+            private static bool Prefix(ref float __result, [NotNull] Pawn ___pawn)
             {
                 if (___pawn.IsSapientFormerHuman() && ___pawn.GetPosture() == PawnPosture.LayingInBed)
                 {
                     Building_Bed buildingBed = ___pawn.CurrentBed();
                     Rot4 rotation = buildingBed.Rotation;
-                    rotation.AsInt += Rand.ValueSeeded(___pawn.thingIDNumber) > 0.5 ?  1 : 3;
+                    rotation.AsInt += Rand.ValueSeeded(___pawn.thingIDNumber) > 0.5 ? 1 : 3;
                     __result = rotation.AsAngle;
-                    return false; 
+                    return false;
                 }
 
-                return true; 
+                return true;
             }
         }
     }
-
-
 }
 #endif

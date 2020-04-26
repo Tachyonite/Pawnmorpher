@@ -427,6 +427,7 @@
     <Compile Include="HPatches\NativeVerbPatches.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
+    <Compile Include="HPatches\PawnGraphicsSetPatches.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
     <Compile Include="HPatches\PawnCompPatches.cs" />
     <Compile Include="HPatches\PawnPatches.cs" />
