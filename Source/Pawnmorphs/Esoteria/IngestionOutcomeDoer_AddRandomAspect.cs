@@ -30,7 +30,7 @@ namespace Pawnmorph
 
             var giver = new RandomGiver();
             giver.entries = entries;
-            giver.GiveExactlyOneAspect(pawn);
+            giver.GiveOneAspect(pawn);
         }
     }
 }

@@ -56,14 +56,11 @@ namespace Pawnmorph.Aspects
         }
 
         /// <summary>
-        ///     Tries to give aspects to the given pawn
+        ///     Tries to give a single aspect to the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
-        /// <param name="outList">if not null, all given aspects will be placed into the list</param>
-        /// <param name="maxAspects">maximum </param>
-        /// <param name="cumulative">if not null, all given aspects will be placed into the list</param>
-        /// <returns>if any aspects were successfully given to the pawn</returns>
-        public Aspect GiveExactlyOneAspect(Pawn pawn)
+        /// <returns>the aspect if any was successfully given to the pawn</returns>
+        public Aspect GiveOneAspect(Pawn pawn)
         {
             float totalChance = entries.Sum(e => e.chance);
             float chanceMult = 1f / totalChance;
