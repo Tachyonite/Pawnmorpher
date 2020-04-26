@@ -114,6 +114,9 @@ namespace Pawnmorph
             //now pawns 
             methodsToPatch.Add(typeof(Pawn).GetProperty(nameof(Pawn.IsColonist) ,instanceFlags).GetMethod); 
 
+            //jobs and toils 
+            methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
+
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
             {
