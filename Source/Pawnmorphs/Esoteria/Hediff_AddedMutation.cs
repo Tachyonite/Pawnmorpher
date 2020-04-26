@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -291,15 +292,24 @@ namespace Pawnmorph
         }
         private void UpdatePawnInfo()
         {
-           
+            pawn.GetMutationTracker()?.NotifyMutationAdded(this);
+            var gUpdater = pawn.GetComp<GraphicsUpdaterComp>();
+            if (gUpdater != null)
+            {
+                //try and defer graphics update to the next tick so we don't lag when adding a bunch of mutations at once 
+                gUpdater.IsDirty = true;
+                return;
+            }
 
-            if (Current.ProgramState == ProgramState.Playing && MutationUtilities.AllMutationsWithGraphics.Contains(def) && pawn.IsColonist)
+            if (Current.ProgramState == ProgramState.Playing
+             && MutationUtilities.AllMutationsWithGraphics.Contains(def)
+             && pawn.IsColonist)
             {
                 pawn.Drawer.renderer.graphics.ResolveAllGraphics();
                 PortraitsCache.SetDirty(pawn);
             }
 
-            pawn.GetMutationTracker()?.NotifyMutationAdded(this);
+           
         }
 
         /// <summary>called after this instance is removed from the pawn</summary>

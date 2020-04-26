@@ -131,6 +131,37 @@ namespace Pawnmorph.Utilities
             }
         }
 
+        /// <summary>
+        /// Determines whether this method has the given type signature 
+        /// </summary>
+        /// <param name="methodInfo">The method information.</param>
+        /// <param name="types">The types.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified method information has signature; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// methodInfo
+        /// or
+        /// types
+        /// </exception>
+        public static bool HasSignature([NotNull] this MethodInfo methodInfo, [NotNull] params Type[] types)
+        {
+            if (methodInfo == null) throw new ArgumentNullException(nameof(methodInfo));
+            if (types == null) throw new ArgumentNullException(nameof(types));
+            var parameters = methodInfo.GetParameters();
+            if (parameters.Length != types.Length)
+            {
+                return false; 
+            }
+
+            for(int i=0; i < parameters.Length; i++)
+            {
+                if (parameters[i].ParameterType != types[i]) return false; 
+            }
+
+            return true; 
+        }
+
         static void GetInternalTypes([NotNull] Type type, [NotNull] List<Type> outList)
         {
             var internalTypes = type.GetNestedTypes(AllFlags);
