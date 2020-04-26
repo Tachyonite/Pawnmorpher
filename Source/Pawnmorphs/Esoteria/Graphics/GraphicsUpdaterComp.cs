@@ -75,7 +75,14 @@ namespace Pawnmorph.GraphicSys
         private void RefreshGraphics()
         {
             var pawn = (Pawn)parent;
+            var mTracker = pawn.GetMutationTracker();
+            if (mTracker != null)
+            {
+                UpdateSkinColor(mTracker);
+                UpdateSkinColor(mTracker);
+            }
             pawn?.RefreshGraphics();
+            IsDirty = false; 
         }
 
         bool UpdateSkinColor([NotNull] MutationTracker tracker, bool force = false)
