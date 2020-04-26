@@ -27,9 +27,8 @@ namespace Pawnmorph.SapienceStates
                     case SapienceLevel.Sapient:
                     case SapienceLevel.MostlySapient:
                     case SapienceLevel.Conflicted:
-                        return Intelligence.Humanlike;
                     case SapienceLevel.MostlyFeral:
-                        return Intelligence.ToolUser;
+                        return Intelligence.Humanlike;
                     case SapienceLevel.Feral:
                     case SapienceLevel.PermanentlyFeral:
                         return Intelligence.Animal;

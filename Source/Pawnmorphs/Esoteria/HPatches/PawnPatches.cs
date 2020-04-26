@@ -1,71 +1,70 @@
-﻿// PawnPatches.cs created by Iron Wolf for Pawnmorph on 11/27/2019 1:16 PM
-// last updated 11/27/2019  1:16 PM
+﻿// PawnPatches.cs created by Iron Wolf for Pawnmorph on 02/19/2020 5:41 PM
+// last updated 04/26/2020  9:22 AM
 
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using HarmonyLib;
 using JetBrains.Annotations;
-using Pawnmorph.DefExtensions;
-using RimWorld;
+using Pawnmorph.Utilities;
 using Verse;
 
-#pragma warning disable 01591
-#if true
 namespace Pawnmorph.HPatches
 {
-    public static class PawnPatches
+    [HarmonyPatch(typeof(Pawn))]
+    static class PawnPatches
     {
-       
-
-        [HarmonyPatch(typeof(Pawn_NeedsTracker)), HarmonyPatch("ShouldHaveNeed")]
-        internal static class NeedsTracker_ShouldHaveNeedPatch
+        [HarmonyPatch(nameof(Pawn.CombinedDisabledWorkTags), MethodType.Getter), HarmonyPostfix]
+        static void FixCombinedDisabledWorkTags(ref WorkTags __result, [NotNull] Pawn __instance)
         {
-            [HarmonyPostfix]
-            static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
+            var hediffs = __instance.health?.hediffSet?.hediffs;       
+            if (hediffs == null) return;
+
+            foreach (Hediff hediff in hediffs)
             {
-                if (nd == PMNeedDefOf.SapientAnimalControl)
+                if (hediff is IWorkModifier wM)
                 {
-                    __result = Need_Control.IsEnabledFor(___pawn);
-                    return;
+                    __result |= ~wM.AllowedWorkTags;
                 }
-
-
-                if (__result)
+                else
                 {
-                    __result = nd.IsValidFor(___pawn);
-                    return;
+                    foreach (HediffStage hediffStage in hediff.def.stages.MakeSafe())
+                    {
+                        if (hediffStage is IWorkModifier sWM)
+                        {
+                            __result |= ~sWM.AllowedWorkTags; 
+                        }
+                    }
                 }
-                if (___pawn?.IsFormerHuman() != true || ___pawn.GetIntelligence() == Intelligence.Animal) return;
-              
-                
-                var isColonist = ___pawn.Faction?.IsPlayer == true;
-                if (nd.defName == "Mood")
-                {
-                    __result = true; 
-                }else if (nd.defName == "Joy" && isColonist)
-                    __result = true; 
-
             }
         }
 
-        [HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BodyAngle))]
-        static class PawnRenderAnglePatch
+        [HarmonyPatch(nameof(Pawn.WorkTypeIsDisabled)), HarmonyPostfix]
+        static void FixWorkTypeIsDisabled(ref bool __result, [NotNull] WorkTypeDef w, [NotNull] Pawn __instance)
         {
-            static bool Prefix(ref float __result, [NotNull] Pawn ___pawn)
-            {
-                if (___pawn.IsSapientFormerHuman() && ___pawn.GetPosture() == PawnPosture.LayingInBed)
-                {
-                    Building_Bed buildingBed = ___pawn.CurrentBed();
-                    Rot4 rotation = buildingBed.Rotation;
-                    rotation.AsInt += Rand.ValueSeeded(___pawn.thingIDNumber) > 0.5 ?  1 : 3;
-                    __result = rotation.AsAngle;
-                    return false; 
-                }
+            if (__result) return;
 
-                return true; 
-            }
+            List<Hediff> hediffs = __instance.health?.hediffSet?.hediffs;
+            if (hediffs == null) return;
+
+            foreach (Hediff hediff in hediffs)
+                if (hediff is IWorkModifier wM)
+                {
+                    if (wM.WorkTypeFilter == null) continue;
+                    if (!wM.WorkTypeFilter.PassesFilter(w))
+                    {
+                        __result = true;
+                        return;
+                    }
+                }
+                else
+                {
+                    foreach (HediffStage hediffStage in hediff.def.stages.MakeSafe())
+                        if (hediffStage is IWorkModifier sWM)
+                            if (sWM.WorkTypeFilter?.PassesFilter(w) == false)
+                            {
+                                __result = true;
+                                return;
+                            }
+                }
         }
     }
 }
-#endif

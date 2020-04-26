@@ -410,6 +410,7 @@
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
+    <Compile Include="Hediffs\WorkSettingsStage.cs" />
     <Compile Include="HPatches\AIPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
@@ -427,6 +428,7 @@
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
+    <Compile Include="HPatches\PawnCompPatches.cs" />
     <Compile Include="HPatches\PawnPatches.cs" />
     <Compile Include="HPatches\PlantGrowingPatches.cs" />
     <Compile Include="HPatches\PlantPatches.cs" />
@@ -447,6 +449,7 @@
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
