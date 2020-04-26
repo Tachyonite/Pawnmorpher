@@ -36,17 +36,27 @@ namespace Pawnmorph.HPatches
                     __result = nd.IsValidFor(___pawn);
                     return;
                 }
-                if (___pawn?.IsFormerHuman() != true || ___pawn.GetIntelligence() == Intelligence.Animal) return;
-              
-                
-                var isColonist = ___pawn.Faction?.IsPlayer == true;
                 if (nd.defName == "Mood")
-                {
-                    __result = true; 
-                }else if (nd.defName == "Joy" && isColonist)
-                    __result = true; 
+                    __result = MoodIsEnabled(___pawn);
+
+                bool isColonist = ___pawn.Faction?.IsPlayer == true;
+                if (nd.defName == "Joy" && isColonist)
+                    __result = MoodIsEnabled(___pawn); 
 
             }
+        }
+
+
+        static bool MoodIsEnabled([NotNull] Pawn pawn)
+        {
+            bool val; 
+            SapienceLevel? qSapience = pawn.GetQuantizedSapienceLevel();
+            if (!pawn.HasSapienceState() || qSapience == null)
+            {
+                val = pawn.RaceProps.Humanlike;
+            }
+            else val = qSapience.Value < SapienceLevel.Feral; 
+            return val; 
         }
 
         [HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BodyAngle))]
