@@ -1,7 +1,7 @@
 <Defs>    
 
 	<Pawnmorph.AspectDef Abstract="true" Name="ColorationAspect">
-		<aspectType>Pawnmorph.Aspects.Coloration</aspectType>
+		<aspectType>Pawnmorph.Aspects.ColorationAspect</aspectType>
 		<transferToAnimal>true</transferToAnimal>
     </Pawnmorph.AspectDef>
 	

@@ -119,4 +119,18 @@
 			<MechaniteSlurry>6</MechaniteSlurry>
 		</costList>
 	</ThingDef>
+	
+
+  <ThingDef ParentName="ResourceBase" Name="GenekitBase" Abstract="True">
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Mass>0.2</Mass>
+      <DeteriorationRate>2.0</DeteriorationRate>
+      <Flammability>0.2</Flammability>
+    </statBases>
+    <techLevel>Ultra</techLevel>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+  </ThingDef>
 </Defs>

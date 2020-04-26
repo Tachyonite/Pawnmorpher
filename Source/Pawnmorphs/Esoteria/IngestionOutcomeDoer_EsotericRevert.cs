@@ -27,22 +27,32 @@ namespace Pawnmorph
 
             if (status == TransformedStatus.Transformed)
             {
+                //revert transformations
                 foreach (MutagenDef mutagenDef in DefDatabase<MutagenDef>.AllDefs)
                 {
                     if (blackList.Contains(mutagenDef))
                         return; // Make it so this reverted can not revert certain kinds of transformations.
                     if (mutagenDef.MutagenCached.TryRevert(pawn))
                     {
-                    
                         return;
                     }
                 }
             }
+            else 
+            {
+                //revert mutations
+                TransformerUtility.RemoveAllMutations(pawn);
+                AspectTracker aT = pawn.GetAspectTracker();
+                if (aT != null) RemoveAspects(aT);
 
-            TransformerUtility.RemoveAllMutations(pawn);
-            pawn.RefreshGraphics();
-            AspectTracker aT = pawn.GetAspectTracker();
-            if (aT != null) RemoveAspects(aT);
+                MutationTracker tracker = pawn.GetComp<MutationTracker>();
+                GraphicsUpdaterComp graphicsComp = pawn.GetComp<GraphicsUpdaterComp>();
+                if (tracker != null && graphicsComp != null)
+                {
+                    graphicsComp.RefreshGraphicOverrides(tracker, pawn);
+                }
+                pawn.RefreshGraphics();
+            }
         }
 
         private void RemoveAspects(AspectTracker tracker)

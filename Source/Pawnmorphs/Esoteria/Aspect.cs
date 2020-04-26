@@ -221,7 +221,9 @@ namespace Pawnmorph
         {
         }
 
-        public virtual void OnTransferToAnimal(Aspect newAspect)
+        /// <summary> Called after transfer to/from animal </summary>
+        /// <param name="newAspect">Aspect on destination pawn</param>
+        public virtual void PostTransfer(Aspect newAspect)
         {
         }
 

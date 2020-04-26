@@ -494,6 +494,7 @@
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
+    <Compile Include="SimplePawnColorSet.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />

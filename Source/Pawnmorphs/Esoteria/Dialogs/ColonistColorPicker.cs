@@ -1,10 +1,16 @@
-﻿using System;
+﻿using Pawnmorph.Aspects;
+using Pawnmorph.GraphicSys;
+using System;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.SimplePawnColorSet;
 
 namespace Pawnmorph.Dialogs
 {
 
+    /// <summary>
+    /// A simple color picker dialog
+    /// </summary>
     public class ColonistColorPicker : Window
     {
         private Color skinFirstColor;
@@ -15,20 +21,38 @@ namespace Pawnmorph.Dialogs
 
         private Pawn targetPawn;
 
+        /// <summary> Show color picker dialog for given pawn </summary>
+        /// <param name="pawn">Pawn</param>
         public static void showDialogForPawn(Pawn pawn)
         {
             Find.WindowStack.Add(new ColonistColorPicker(pawn));
         }
 
+        /// <summary> Constructor </summary>
+        /// <param name="pawn">Pawn</param>
         public ColonistColorPicker(Pawn pawn)
         {
             this.targetPawn = pawn;
-            this.skinFirstColor = pawn.Drawer.renderer.graphics.nakedGraphic.Color;
-            this.hairFirstColor = pawn.story.hairColor;
+
+            this.skinFirstColor = getOriginalColor(PawnColorSlot.SkinFirst);
+            this.hairFirstColor = getOriginalColor(PawnColorSlot.HairFirst);
+
+            var pawnColorSet = pawn.GetAspectTracker()?.GetAspect<ColorationAspect>()?.ColorSet;
+            if(pawnColorSet != null)
+            {
+                if (pawnColorSet.skinColor.HasValue)
+                    this.skinFirstColor = pawnColorSet.skinColor.Value;
+                if (pawnColorSet.hairColor.HasValue)
+                    this.hairFirstColor = pawnColorSet.hairColor.Value;
+
+                this.customSkinColor = pawnColorSet.skinColor.HasValue;
+                this.customHairColor = pawnColorSet.hairColor.HasValue;
+            }
 
             this.forcePause = true;
         }
 
+        /// <inheritdoc />
         public override Vector2 InitialSize
         {
             get
@@ -37,10 +61,11 @@ namespace Pawnmorph.Dialogs
             }
         }
 
+        /// <inheritdoc />
         public override void Close(bool doCloseSound = true)
         {
             var tracker = targetPawn.GetAspectTracker();
-            var preexistingAspect = tracker.GetAspect<Aspects.Coloration>();
+            var preexistingAspect = tracker.GetAspect(ColorationAspectDefOfs.ColorationPlayerPicked);
             bool hasPreexisingAspect = preexistingAspect != null;
 
             if (!customSkinColor && !customHairColor)
@@ -50,9 +75,9 @@ namespace Pawnmorph.Dialogs
             }
             else
             {
-                Aspects.Coloration aspect = preexistingAspect;
+                ColorationAspect aspect = preexistingAspect as ColorationAspect;
                 if(!hasPreexisingAspect)
-                    aspect = Aspects.ColorationAspectDefOfs.ColorationPlayerPicked.CreateInstance() as Aspects.Coloration;
+                    aspect = ColorationAspectDefOfs.ColorationPlayerPicked.CreateInstance() as ColorationAspect;
                 if (customSkinColor)
                 {
                     aspect.ColorSet.skinColor = this.skinFirstColor;
@@ -77,12 +102,13 @@ namespace Pawnmorph.Dialogs
                     aspect.UpdatePawn();
             }
 
-            targetPawn.Drawer.renderer.graphics.SetAllGraphicsDirty();
-            targetPawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            //targetPawn.Drawer.renderer.graphics.SetAllGraphicsDirty();
+            //targetPawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
             base.Close(doCloseSound);
         }
 
+        /// <inheritdoc />
         public override void DoWindowContents(Rect inRect)
         {
             Rect titleRect = new Rect(inRect.x, inRect.y, inRect.width, 42f).Rounded();
@@ -91,9 +117,16 @@ namespace Pawnmorph.Dialogs
             Text.Font = GameFont.Small;
             Rect contentRect = new Rect(inRect.x, 45f, inRect.width, inRect.height - 45f).ContractedBy(5f).Rounded();
 
+            var hintText = "<i>" + "ColorPicker_RemovalHint".Translate()+ "</i>";
+            var hintTextSize = Text.CalcSize(hintText);
+            Rect hintRect = new Rect(contentRect.center.x - (hintTextSize.x / 2), contentRect.y, hintTextSize.x, hintTextSize.y).Rounded();
+            Widgets.Label(hintRect, hintText);
+            contentRect.y += hintRect.height;
+            contentRect.height -= hintRect.height;
+
             Rect skinRect = new Rect(contentRect.x, contentRect.y, contentRect.width / 2, 30f).Rounded();
 
-            Widgets.DrawBoxSolid(skinRect.ContractedBy(5f), skinFirstColor);
+            Widgets.DrawBoxSolid(skinRect.ContractedBy(5f), customSkinColor ? skinFirstColor : getOriginalColor(PawnColorSlot.SkinFirst));
             skinRect.y += 30f;
             Widgets.CheckboxLabeled(skinRect.Rounded(), "ColorPicker_CustomSkinColorCheckbox".Translate(), ref customSkinColor);
             if (customSkinColor) 
@@ -112,7 +145,7 @@ namespace Pawnmorph.Dialogs
 
             Rect hairRect = new Rect(contentRect.x + (contentRect.width / 2), contentRect.y, contentRect.width / 2, 30f).Rounded();
 
-            Widgets.DrawBoxSolid(hairRect.ContractedBy(5f), hairFirstColor);
+            Widgets.DrawBoxSolid(hairRect.ContractedBy(5f), customHairColor ? hairFirstColor : getOriginalColor(PawnColorSlot.HairFirst));
             hairRect.y += 30f;
             Widgets.CheckboxLabeled(hairRect.TopPartPixels(30f).Rounded(), "ColorPicker_CustomHairColorCheckbox".Translate(), ref customHairColor);
             if (customHairColor)
@@ -134,6 +167,28 @@ namespace Pawnmorph.Dialogs
             {
                 this.Close(true);
             }
+        }
+
+        private Color getOriginalColor(PawnColorSlot slot)
+        {
+
+            var initialGraphicsComp = targetPawn.GetComp<InitialGraphicsComp>();
+            switch (slot) 
+            {
+                case PawnColorSlot.SkinFirst:
+                    return initialGraphicsComp != null ? initialGraphicsComp.SkinColor : targetPawn.Drawer.renderer.graphics.nakedGraphic.Color;
+                    break;
+                case PawnColorSlot.SkinSecond:
+                    return initialGraphicsComp != null ? initialGraphicsComp.SkinColorSecond : targetPawn.Drawer.renderer.graphics.nakedGraphic.ColorTwo;
+                    break;
+                case PawnColorSlot.HairFirst:
+                    return initialGraphicsComp != null ? initialGraphicsComp.HairColor : targetPawn.story.hairColor;
+                    break;
+                case PawnColorSlot.HairSecond:
+                    return initialGraphicsComp != null ? initialGraphicsComp.HairColorSecond : Color.white;
+                    break;
+            }
+            return Color.white;
         }
     }
 }

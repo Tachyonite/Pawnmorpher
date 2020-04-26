@@ -43,7 +43,7 @@
 	<ThingDef ParentName="PM_PillBase">
 		<defName>ColorsPill</defName>
 		<label>mutapill, rgb</label>
-		<description>A pill that induces a random change in genes affecting pigmentation.</description>
+		<description>A pill that induces a random change in genes affecting pigmentation that accompanies other mutations.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/Pills3</texPath>
 		</graphicData>
@@ -54,12 +54,24 @@
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_AddRandomAspect">
-					<aspects>
-						<li>ColorationNatural</li>
-						<li>ColorationAlbinism</li>
-						<li>ColorationMelanism</li>
-						<li>ColorationUnnatural</li>
-					</aspects>
+					<entries>
+						<li>
+							<aspect>ColorationNatural</aspect>
+							<chance>0.0015</chance>
+						</li>
+						<li>
+							<aspect>ColorationAlbinism</aspect>
+							<chance>0.00075</chance>
+						</li>
+						<li>
+							<aspect>ColorationMelanism</aspect>
+							<chance>0.00075</chance>
+						</li>
+						<li>
+							<aspect>ColorationUnnatural</aspect>
+							<chance>0.0005</chance>
+						</li>
+					</entries>
 				</li>
 			</outcomeDoers>
 		</ingestible>

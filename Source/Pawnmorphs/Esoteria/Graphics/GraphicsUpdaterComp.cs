@@ -5,6 +5,7 @@
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -52,10 +53,10 @@ namespace Pawnmorph.GraphicSys
         {
             if (GComp == null || InitialGraphics == null) return false;
 
-            var colorationAspect = tracker.Pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+            var colorationAspect = tracker.Pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
             if (colorationAspect != null && colorationAspect.IsFullOverride)
             {
-                var color = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinFirst);
+                var color = colorationAspect.ColorSet.skinColor;
                 if (color.HasValue)
                 {
                     GComp.skinColor = color.Value;
@@ -99,10 +100,10 @@ namespace Pawnmorph.GraphicSys
         {
             if (GComp == null || InitialGraphics == null || Pawn.story == null) return false;
 
-            var colorationAspect = tracker.Pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+            var colorationAspect = tracker.Pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
             if (colorationAspect != null && colorationAspect.IsFullOverride)
             {
-                var color = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.HairFirst);
+                var color = colorationAspect.ColorSet.hairColor;
                 if (color.HasValue)
                 {
                     Pawn.story.hairColor = color.Value;
@@ -144,23 +145,31 @@ namespace Pawnmorph.GraphicSys
 
         void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)
         {
-            RefreshGraphics(tracker, Pawn);
+            var needsUpdate = RefreshGraphicOverrides(tracker, Pawn);
+            if(needsUpdate)
+                Pawn.RefreshGraphics();
         }
 
-        internal void RefreshGraphics([NotNull] MutationTracker sender, [NotNull] Pawn pawn, bool force = false)
+        /// <summary>
+        /// Refresh skin/hair color overrides
+        /// </summary>
+        /// <param name="sender">Mutation tracker for pawn</param>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="force">Force update</param>
+        /// <returns>Is graphics refresh needed</returns>
+        public bool RefreshGraphicOverrides([NotNull] MutationTracker sender, [NotNull] Pawn pawn, bool force = false)
         {
             bool needsUpdate = UpdateSkinColor(sender, force);
             needsUpdate |= UpdateHairColor(sender, force);
 
-            if (needsUpdate || force) //make sure to only refresh the graphics if they've been modified 
-            {
-                pawn.RefreshGraphics();
-            }
+            return (needsUpdate || force);
         }
 
         void IMutationEventReceiver.MutationRemoved(Hediff_AddedMutation mutation,  MutationTracker tracker)
         {
-            RefreshGraphics(tracker, Pawn);
+            var needsUpdate = RefreshGraphicOverrides(tracker, Pawn);
+            if (needsUpdate)
+                Pawn.RefreshGraphics();
         }
     }
 }

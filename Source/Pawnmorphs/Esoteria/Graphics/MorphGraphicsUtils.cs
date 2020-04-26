@@ -29,10 +29,10 @@ namespace Pawnmorph.GraphicSys
 
             if (pawn != null)
             {
-                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+                Aspects.ColorationAspect colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
                 if(colorationAspect != null) 
                 {
-                    Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.HairFirst);
+                    Color? aspectColor = colorationAspect.ColorSet.hairColor;
                     if (aspectColor.HasValue)
                         return aspectColor;
                 }
@@ -84,10 +84,10 @@ namespace Pawnmorph.GraphicSys
 
             if (pawn != null)
             {
-                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+                Aspects.ColorationAspect colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
                 if (colorationAspect != null)
                 {
-                    Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.HairSecond);
+                    Color? aspectColor = colorationAspect.ColorSet.hairColorTwo;
                     if (aspectColor.HasValue)
                         return aspectColor;
                 }
@@ -136,10 +136,10 @@ namespace Pawnmorph.GraphicSys
 
             if(pawn != null)
             {
-                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+                Aspects.ColorationAspect colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
                 if (colorationAspect != null)
                 {
-                    Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinFirst);
+                    Color? aspectColor = colorationAspect.ColorSet.skinColor;
                     if (aspectColor.HasValue)
                         return aspectColor;
                 }
@@ -187,10 +187,10 @@ namespace Pawnmorph.GraphicSys
 
             if (pawn != null)
             {
-                Aspects.Coloration colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+                Aspects.ColorationAspect colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
                 if (colorationAspect != null)
                 {
-                    Color? aspectColor = colorationAspect.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinSecond);
+                    Color? aspectColor = colorationAspect.ColorSet.skinColorTwo;
                     if (aspectColor.HasValue)
                         return aspectColor;
                 }

@@ -1,0 +1,10 @@
+<LanguageData>
+	<ColorPicker_Title>Color picker for {0}</ColorPicker_Title>
+	<ColorPicker_RemovalHint><i>Disable both skin and hair color to remove.</i></ColorPicker_RemovalHint>
+	<ColorPicker_CustomSkinColorCheckbox>Override skin color</ColorPicker_CustomSkinColorCheckbox>
+	<ColorPicker_CustomHairColorCheckbox>Override hair color</ColorPicker_CustomHairColorCheckbox>
+	<ColorPicker_r>Red</ColorPicker_r>
+	<ColorPicker_g>Green</ColorPicker_g>
+	<ColorPicker_b>Blue</ColorPicker_b>
+	<ColorPicker_Confirm>Apply</ColorPicker_Confirm>
+</LanguageData>

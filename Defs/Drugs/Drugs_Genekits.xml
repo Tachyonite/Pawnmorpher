@@ -1,13 +1,13 @@
 <Defs>
-	<ThingDef ParentName="MechSerumBase">
-		<defName>ColorPicker</defName>
-		<label>Dermal repigmentation genekit</label>
-		<description>Dermal repigmentation genekit</description>
+	<ThingDef ParentName="GenekitBase">
+		<defName>GenekitColorPicker</defName>
+		<label>dermal repigmentation genekit</label>
+		<description>Dermal repigmentation genekits are a favorite of party crowds on some glitterworlds. With a simple push of a button, a person's skin and hair color can be nearly instaneously and permanently altered on the genetic level. Another kit can be used afterward to either revert the effect, or change the color selection.</description>
 		<graphicData>
-			<texPath>Things/Item/Special/MechSerumHealer</texPath>
+			<texPath>Things/Item/Drug/Genekit_rgb</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<stackLimit>10</stackLimit>
+		<stackLimit>25</stackLimit>
 		<statBases>
 			<MarketValue>150</MarketValue>
 		</statBases>
@@ -16,7 +16,7 @@
 			<li Class="CompProperties_Usable">
 				<useJob>UseItem</useJob>
 				<useLabel>Apply kit</useLabel>
-				<useDuration>600</useDuration>
+				<useDuration>60</useDuration>
 			</li>
 			<li Class="CompProperties_UseEffect">
 				<compClass>Pawnmorph.Comp_PlayerPickedRecoloration</compClass>

@@ -8,7 +8,7 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    public static class PawnGraphicSetPatch
+    static class PawnGraphicSetPatch
     {
 
         [HarmonyPatch(typeof(PawnGraphicSet), nameof(PawnGraphicSet.ResolveAllGraphics))]
@@ -18,9 +18,13 @@ namespace Pawnmorph.HPatches
             [HarmonyPostfix]
             static void Postfix(PawnGraphicSet __instance)
             {
-                var colorationAspect = __instance.pawn?.GetAspectTracker()?.GetAspect<Aspects.Coloration>();
+                Pawn pawn = __instance.pawn;
+                var colorationAspect = pawn?.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
                 if (colorationAspect != null)
-                    colorationAspect.TryDirectRecolor(__instance);
+                {
+                    if(!pawn.RaceProps.Humanlike)
+                        colorationAspect.TryDirectRecolorAnimal(__instance);
+                }
             }
 
         }

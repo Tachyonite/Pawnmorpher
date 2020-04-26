@@ -9,27 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.SimplePawnColorSet;
 
 namespace Pawnmorph.Aspects
 {
 
-    public class PawnColorSet : IExposable
-    {
-        public Color? skinColor = null;
-        public Color? skinColorTwo = null;
-        public Color? hairColor = null;
-        public Color? hairColorTwo = null;
 
-        public void ExposeData()
-        {
-            Scribe_Values.Look<Color?>(ref skinColor, "skinColor");
-            Scribe_Values.Look<Color?>(ref skinColorTwo, "skinColorTwo");
-            Scribe_Values.Look<Color?>(ref hairColor, "hairColor");
-            Scribe_Values.Look<Color?>(ref hairColorTwo, "hairColorTwo");
-        }
-    }
-
-    public class Coloration : Aspect
+    /// <summary>
+    /// Aspect that applies non-standard skin/hair coloration to the pawn.
+    /// </summary>
+    public class ColorationAspect : Aspect
     {
         private static ColorGenerator_HSV NaturalColors { get; } = new ColorGenerator_HSV()
         {
@@ -51,44 +40,88 @@ namespace Pawnmorph.Aspects
             ValueRange = new FloatRange(0.8f, 0.9f)
         };
 
-        private PawnColorSet _colorSet = new PawnColorSet();
-        public PawnColorSet ColorSet { get { return _colorSet; } set { _colorSet = value; } }
+        private SimplePawnColorSet _colorSet;
+
+        /// <summary> Color set assigned to this instance </summary>
+        public SimplePawnColorSet ColorSet { 
+            get {
+                if(_colorSet == null) 
+                {
+                    GenerateColorSet();
+                }
+                return _colorSet; 
+            } 
+            set { _colorSet = value; } 
+        }
+
+        /// <summary> True if color should apply at 100% regardless of current putation percentage, false otherwise </summary>
         public bool IsFullOverride { get { return this.def == ColorationAspectDefOfs.ColorationPlayerPicked; } }
 
+        /// <summary> Coloration needs to update when possible </summary>
+        public bool NeedsDelayedUpdate { get; private set; } = false;
 
+
+        /// <inheritdoc />
         protected override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Deep.Look<PawnColorSet>(ref _colorSet, "colorSet");
+            Scribe_Deep.Look<SimplePawnColorSet>(ref _colorSet, "colorSet");
         }
 
-        public void TryDirectRecolor(PawnGraphicSet graphics) 
-        {
-            if (this.Pawn != null && this.Pawn.RaceProps != null && !this.Pawn.RaceProps.Humanlike)
-            {
-                Color? colorFirst = this.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinFirst);
-                Color? colorSecond = this.TryGetColorationAspectColor(Aspects.Coloration.PawnColorSlot.SkinSecond);
-
-                if (colorFirst.HasValue || colorSecond.HasValue)
-                {
-                    graphics.nakedGraphic = graphics.nakedGraphic.GetColoredVersion(graphics.nakedGraphic.Shader, colorFirst.HasValue ? colorFirst.Value : graphics.nakedGraphic.color, colorSecond.HasValue ? colorSecond.Value : graphics.nakedGraphic.colorTwo);
-                }
-            }
-        }
-
+        /// <summary>
+        /// Remove other ColorationAspects from parent pawn
+        /// </summary>
         public void RemoveOthers() 
         {
 
             var tracker = this.Pawn.GetAspectTracker();
             foreach(var aspect in tracker.Aspects) 
             {
-                if (!(aspect is Coloration) || aspect == this)
+                if (!(aspect is ColorationAspect) || aspect == this)
                     continue;
 
+                Log.Message(String.Format("{0} is removing {1}", this.def.defName, aspect.def.defName));
                 tracker.Remove(aspect); //this should be fine since the removal is delayed
             }
         }
 
+        /// <inheritdoc />
+        public override void PostTick()
+        {
+            base.PostTick();
+            if(NeedsDelayedUpdate && this.Pawn != null)
+            {
+                NeedsDelayedUpdate = false;
+                UpdatePawn();
+            }
+        }
+
+        /// <inheritdoc />
+        public override void PostTransfer(Aspect newAspect)
+        {
+            base.PostTransfer(newAspect);
+            (newAspect as ColorationAspect).ColorSet = this.ColorSet;
+            (newAspect as ColorationAspect).UpdatePawn();
+        }
+
+        /// <inheritdoc />
+        protected override void PostAdd()
+        {
+            base.PostAdd();
+            RemoveOthers();
+            UpdatePawn();
+        }
+
+        /// <inheritdoc />
+        public override void PostRemove()
+        {
+            base.PostRemove();
+            UpdatePawn();
+        }
+
+        /// <summary>
+        /// Update parent pawn's coloration via standard channels.
+        /// </summary>
         public void UpdatePawn()
         {
             if (this.Pawn != null)
@@ -97,7 +130,11 @@ namespace Pawnmorph.Aspects
                 {
                     var graphicsUpdater = this.Pawn.GetComp<GraphicsUpdaterComp>();
                     if (graphicsUpdater != null)
-                        graphicsUpdater.RefreshGraphics(this.Pawn.GetComp<MutationTracker>(), this.Pawn, true);
+                    {
+                        var needsUpdate = graphicsUpdater.RefreshGraphicOverrides(this.Pawn.GetComp<MutationTracker>(), this.Pawn, true);
+                        if (needsUpdate)
+                            this.Pawn.RefreshGraphics();
+                    }
                 }
                 else
                 {
@@ -105,41 +142,55 @@ namespace Pawnmorph.Aspects
                     this.Pawn.Drawer.renderer.graphics.ResolveAllGraphics();
                 }
             }
+            else 
+            {
+                this.NeedsDelayedUpdate = true;
+            }
         }
 
-        public override void OnTransferToAnimal(Aspect newAspect)
+        /// <summary>
+        /// Apply this coloration to a pawn directly.
+        /// </summary>
+        /// <param name="graphics">Pawn's graphics set</param>
+        public void TryDirectRecolorAnimal(PawnGraphicSet graphics)
         {
-            base.OnTransferToAnimal(newAspect);
-            (newAspect as Coloration).ColorSet = this.ColorSet;
+            if (this.Pawn != null && this.Pawn.RaceProps != null && !this.Pawn.RaceProps.Humanlike)
+            {
+                Color? colorFirst = this.TryGetColorationAspectColor(PawnColorSlot.SkinFirst);
+                Color? colorSecond = this.TryGetColorationAspectColor(PawnColorSlot.SkinSecond);
+
+                if (colorFirst.HasValue || colorSecond.HasValue)
+                {
+                    graphics.nakedGraphic = graphics.nakedGraphic.GetColoredVersion(graphics.nakedGraphic.Shader, colorFirst.HasValue ? colorFirst.Value : graphics.nakedGraphic.color, colorSecond.HasValue ? colorSecond.Value : graphics.nakedGraphic.colorTwo);
+                }
+                if (this.Pawn.IsColonist || this.Pawn.IsColonistAnimal())
+                {
+                    PortraitsCache.SetDirty(this.Pawn);
+                    Find.ColonistBar.MarkColonistsDirty();
+                }
+            }
         }
 
-        protected override void PostAdd()
+        /// <summary>
+        /// Generate color set using generators based on this instance's aspectDef
+        /// </summary>
+        private void GenerateColorSet() 
         {
-            base.PostAdd();
-            RemoveOthers();
-            UpdatePawn();
+            ColorSet = new SimplePawnColorSet();
+            ColorSet.skinColor = TryGetColorationAspectColor(PawnColorSlot.SkinFirst);
+            ColorSet.skinColorTwo = TryGetColorationAspectColor(PawnColorSlot.SkinSecond);
+            ColorSet.hairColor = TryGetColorationAspectColor(PawnColorSlot.HairFirst);
+            ColorSet.hairColorTwo = TryGetColorationAspectColor(PawnColorSlot.HairSecond);
         }
 
-        public override void PostRemove()
+        /// <summary>
+        /// Generate a color using base Rand generator and the slot-appropriate color generator
+        /// </summary>
+        /// <param name="colorSlot">Color slot</param>
+        /// <returns>Generated color, or null if base color should be used</returns>
+        private Color? TryGetColorationAspectColor(PawnColorSlot colorSlot)
         {
-            base.PostRemove();
-            UpdatePawn();
-        }
-
-
-        public enum PawnColorSlot 
-        {
-            SkinFirst,
-            SkinSecond,
-            HairFirst, 
-            HairSecond
-        }
-
-        public Color? TryGetColorationAspectColor(PawnColorSlot colorSlot)
-        {
-            Log.Message("getting coloration for " + this.Pawn.Label + " aspect is " + this.def);
-            var transformedPawn = Find.World.GetComponent<PawnmorphGameComp>()?.GetTransformedPawnContaining(this.Pawn);
-            var seed = (transformedPawn != null && transformedPawn.Item2 == TfSys.TransformedStatus.Transformed) ? transformedPawn.Item1.OriginalPawns.Sum(p => p.thingIDNumber) : this.Pawn.thingIDNumber;
+            var seed = Find.TickManager.TicksAbs;
             ColorGenerator colorGen = TryGetColorationAspectColorGenerator(colorSlot);
             if (colorGen != null)
             {
@@ -156,7 +207,7 @@ namespace Pawnmorph.Aspects
             return null;
         }
 
-        public ColorGenerator TryGetColorationAspectColorGenerator(PawnColorSlot colorSlot) 
+        private ColorGenerator TryGetColorationAspectColorGenerator(PawnColorSlot colorSlot) 
         {
             if(this.def == ColorationAspectDefOfs.ColorationNatural)
             {
@@ -216,7 +267,6 @@ namespace Pawnmorph.Aspects
             }
             else if (this.def == ColorationAspectDefOfs.ColorationPlayerPicked)
             {
-                Log.Message("using player picked colors");
                 switch (colorSlot)
                 {
                     case PawnColorSlot.SkinFirst:
@@ -250,23 +300,35 @@ namespace Pawnmorph.Aspects
         }
     }
 
+    /// <summary>
+    /// Helper clas for ColorationAspect defs
+    /// </summary>
     [DefOf]
     public static class ColorationAspectDefOfs
     {
-
+        /// <summary> Mild, natural colors </summary>
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
         public static AspectDef ColorationNatural;
 
+        /// <summary> Albinism </summary>
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
         public static AspectDef ColorationAlbinism;
 
+        /// <summary> Melanism </summary>
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
         public static AspectDef ColorationMelanism;
 
+        /// <summary> High-contrast, saturated colors </summary>
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
         public static AspectDef ColorationUnnatural;
 
+        /// <summary> Colors picked by player </summary>
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
         public static AspectDef ColorationPlayerPicked;
+
+        static ColorationAspectDefOfs()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(AspectDef));
+        }
     }
 }
