@@ -666,6 +666,7 @@
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
     <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />
+    <Compile Include="Thoughts\Worker_SapientNaked.cs" />
     <Compile Include="Thoughts\Worker_Sapience.cs" />
     <Compile Include="Thoughts\Worker_SapientAnimalBondedMaster.cs" />
     <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
