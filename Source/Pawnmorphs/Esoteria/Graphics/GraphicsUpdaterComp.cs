@@ -79,7 +79,7 @@ namespace Pawnmorph.GraphicSys
             if (mTracker != null)
             {
                 UpdateSkinColor(mTracker);
-                UpdateSkinColor(mTracker);
+                UpdateHairColor(mTracker);
             }
             pawn?.RefreshGraphics();
             IsDirty = false; 
