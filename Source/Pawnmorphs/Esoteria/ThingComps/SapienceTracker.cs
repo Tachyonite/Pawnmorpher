@@ -17,7 +17,6 @@ namespace Pawnmorph.ThingComps
     public class SapienceTracker : ThingComp
     {
         private SapienceState _sapienceState;
-        private Intelligence? _lastLevel; 
         private bool _subscribed;
 
         void TrySubscribe()
@@ -35,11 +34,9 @@ namespace Pawnmorph.ThingComps
         {
             if (pawn.Faction != Faction.OfPlayer) return;
 
-            if (CurrentIntelligence != _lastLevel)
-            {
-                _lastLevel = CurrentIntelligence; 
+           
                 Find.ColonistBar.MarkColonistsDirty();
-            }
+            
         }
 
         /// <summary>
