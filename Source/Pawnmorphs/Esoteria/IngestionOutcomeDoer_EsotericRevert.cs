@@ -45,13 +45,9 @@ namespace Pawnmorph
                 AspectTracker aT = pawn.GetAspectTracker();
                 if (aT != null) RemoveAspects(aT);
 
-                MutationTracker tracker = pawn.GetComp<MutationTracker>();
                 GraphicsUpdaterComp graphicsComp = pawn.GetComp<GraphicsUpdaterComp>();
-                if (tracker != null && graphicsComp != null)
-                {
-                    graphicsComp.RefreshGraphicOverrides(tracker, pawn);
-                }
-                pawn.RefreshGraphics();
+                if (graphicsComp != null)
+                    graphicsComp.IsDirty = true;
             }
         }
 

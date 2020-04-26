@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Pawnmorph.Dialogs;
 using Pawnmorph.GraphicSys;
+using Pawnmorph.Hybrids;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -130,11 +131,7 @@ namespace Pawnmorph.Aspects
                 {
                     var graphicsUpdater = this.Pawn.GetComp<GraphicsUpdaterComp>();
                     if (graphicsUpdater != null)
-                    {
-                        var needsUpdate = graphicsUpdater.RefreshGraphicOverrides(this.Pawn.GetComp<MutationTracker>(), this.Pawn, true);
-                        if (needsUpdate)
-                            this.Pawn.RefreshGraphics();
-                    }
+                        graphicsUpdater.IsDirty = true;
                 }
                 else
                 {
