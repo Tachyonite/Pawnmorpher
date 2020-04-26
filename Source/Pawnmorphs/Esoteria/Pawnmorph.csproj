@@ -425,6 +425,7 @@
     <Compile Include="HPatches\JobGiver_GetJoyPatches.cs" />
     <Compile Include="HPatches\MentalBreakPatches.cs" />
     <Compile Include="HPatches\NativeVerbPatches.cs" />
+    <Compile Include="HPatches\OptimizeApparelPatch.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGraphicsSetPatches.cs" />
