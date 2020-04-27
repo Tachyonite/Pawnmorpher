@@ -18,6 +18,7 @@ namespace Pawnmorph
     /// </summary>
     public static class PawnTransferUtilities
     {
+
         /// <summary>
         /// Transfers the relations from pawn1 to pawn2 
         /// </summary>
@@ -80,25 +81,29 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Transfers all transferable aspects from the original pawn to animal they turned into.
+        ///     Transfers all transferable aspects from pawn1 to pawn2
         /// </summary>
-        /// <param name="pawn1">The original.</param>
-        /// <param name="pawn2">The animal.</param>
+        /// <param name="pawn1">The source pawn.</param>
+        /// <param name="pawn2">The destination pawn.</param>
         public static void TransferAspects([NotNull] Pawn pawn1, [NotNull] Pawn pawn2)
         {
-            AspectTracker oTracker = pawn1.GetAspectTracker();
+            AspectTracker originalTracker = pawn1.GetAspectTracker();
             AspectTracker animalTracker = pawn2.GetAspectTracker();
-            if (oTracker == null) return;
+            if (originalTracker == null) return;
             if (animalTracker == null)
             {
-                Log.Warning($"animal {pawn2.Name},{pawn2.def.defName} does not have an aspect tracker");
+                Log.Warning($"pawn {pawn2.Name},{pawn2.def.defName} does not have an aspect tracker");
                 return;
             }
 
 
-            foreach (Aspect aspect in oTracker)
-            { 
-                if(animalTracker.Contains(aspect.def, aspect.StageIndex)) continue;
+            foreach (Aspect aspect in originalTracker)
+            {
+                if (animalTracker.Contains(aspect.def, aspect.StageIndex)) 
+                {
+                    aspect.PostTransfer(animalTracker.GetAspect(aspect.def));
+                    continue;
+                }
 
 
                 if (aspect.def.transferToAnimal)
@@ -106,9 +111,16 @@ namespace Pawnmorph
                     int stageIndex = aspect.StageIndex;
                     Aspect aAspect = animalTracker.GetAspect(aspect.def);
                     if (aAspect != null)
+                    {
                         aAspect.StageIndex = stageIndex; //set the stage but do not re add it 
+                        aspect.PostTransfer(aAspect);
+                    }
                     else
-                        animalTracker.Add(aspect.def, stageIndex); //add it if the animal does not have the aspect
+                    {
+                        var newAspect = aspect.def.CreateInstance();
+                        animalTracker.Add(newAspect, stageIndex); //add it if the animal does not have the aspect
+                        aspect.PostTransfer(newAspect);
+                    }
                 }
 
             }

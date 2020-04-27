@@ -308,6 +308,13 @@ namespace Pawnmorph
                 foreach (AspectDef affinityDef in addAf) Add(affinityDef);
             }
         }
+        /// <summary> Get the aspect in this tracker of the given type, if one exists. </summary>
+        [CanBeNull]
+        public T GetAspect<T>() where T : Aspect
+        {
+            return _aspects.FirstOrDefault(d => d is T) as T;
+        }
+
 
         private class AspectComparer : IComparer<Aspect>
         {

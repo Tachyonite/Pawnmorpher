@@ -81,5 +81,11 @@ namespace Pawnmorph.DebugUtils
         {
             GenExplosion.DoExplosion(UI.MouseCell(), Find.CurrentMap, 10, PMDamageDefOf.MutagenCloud_Large, null);
         }
+
+        [DebugAction("Pawnmorpher", "Open action menu", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void OpenActionMenu()
+        {
+            Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
+        }
     }
 }
