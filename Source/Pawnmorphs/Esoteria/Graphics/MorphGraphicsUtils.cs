@@ -27,16 +27,9 @@ namespace Pawnmorph.GraphicSys
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
 
-            if (pawn != null)
-            {
-                Aspects.ColorationAspect colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
-                if(colorationAspect != null) 
-                {
-                    Color? aspectColor = colorationAspect.ColorSet.hairColor;
-                    if (aspectColor.HasValue)
-                        return aspectColor;
-                }
-            }
+            Color? aspectColor = pawn?.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>()?.ColorSet?.hairColor;
+            if (aspectColor.HasValue)
+                return aspectColor;
 
             HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
 
@@ -82,16 +75,9 @@ namespace Pawnmorph.GraphicSys
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
 
-            if (pawn != null)
-            {
-                Aspects.ColorationAspect colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
-                if (colorationAspect != null)
-                {
-                    Color? aspectColor = colorationAspect.ColorSet.hairColorTwo;
-                    if (aspectColor.HasValue)
-                        return aspectColor;
-                }
-            }
+            Color? aspectColor = pawn?.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>()?.ColorSet?.hairColorTwo;
+            if (aspectColor.HasValue)
+                return aspectColor;
 
             if (def.ExplicitHybridRace == null)
             {
@@ -134,16 +120,9 @@ namespace Pawnmorph.GraphicSys
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
 
-            if(pawn != null)
-            {
-                Aspects.ColorationAspect colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
-                if (colorationAspect != null)
-                {
-                    Color? aspectColor = colorationAspect.ColorSet.skinColor;
-                    if (aspectColor.HasValue)
-                        return aspectColor;
-                }
-            }
+            Color? aspectColor = pawn?.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>()?.ColorSet?.skinColor;
+            if (aspectColor.HasValue)
+                return aspectColor;
 
             if (def.ExplicitHybridRace == null)
             {
@@ -185,16 +164,9 @@ namespace Pawnmorph.GraphicSys
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
 
-            if (pawn != null)
-            {
-                Aspects.ColorationAspect colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
-                if (colorationAspect != null)
-                {
-                    Color? aspectColor = colorationAspect.ColorSet.skinColorTwo;
-                    if (aspectColor.HasValue)
-                        return aspectColor;
-                }
-            }
+            Color? aspectColor = pawn?.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>()?.ColorSet?.skinColorTwo;
+            if (aspectColor.HasValue)
+                return aspectColor;
 
             if (def.ExplicitHybridRace == null)
             {
