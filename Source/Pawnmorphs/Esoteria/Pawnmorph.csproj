@@ -314,6 +314,7 @@
     <Compile Include="AspectDefOf.cs" />
     <Compile Include="AspectGiver.cs" />
     <Compile Include="AspectStage.cs" />
+    <Compile Include="Aspects\Coloration.cs" />
     <Compile Include="Aspects\MeatLover.cs" />
     <Compile Include="Aspects\PrimalWishGiver.cs" />
     <Compile Include="Aspects\RandomGiver.cs" />
@@ -329,6 +330,8 @@
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
+    <Compile Include="ColonistColorPicker.cs" />
+    <Compile Include="ColorGenerator_HSL.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompMutagenicRadius.cs" />
     <Compile Include="CompProperties_EtherExplosive.cs" />
@@ -493,6 +496,7 @@
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
+    <Compile Include="SimplePawnColorSet.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />

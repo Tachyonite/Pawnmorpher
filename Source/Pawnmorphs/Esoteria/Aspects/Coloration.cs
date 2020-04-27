@@ -196,6 +196,8 @@ namespace Pawnmorph.Aspects
                         return NaturalColors;
                     case PawnColorSlot.SkinSecond:
                         return NaturalColors;
+                    case PawnColorSlot.HairFirst:
+                    case PawnColorSlot.HairSecond:
                     default:
                         return null;
                 }
@@ -210,6 +212,7 @@ namespace Pawnmorph.Aspects
                         return albinismSecond;
                     case PawnColorSlot.HairFirst:
                         return albinismFirst;
+                    case PawnColorSlot.HairSecond:
                     default:
                         return null;
                 }
@@ -224,6 +227,7 @@ namespace Pawnmorph.Aspects
                         return melanismSecond;
                     case PawnColorSlot.HairFirst:
                         return melanismFirst;
+                    case PawnColorSlot.HairSecond:
                     default:
                         return null;
                 }
