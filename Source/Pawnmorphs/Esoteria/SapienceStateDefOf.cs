@@ -17,7 +17,9 @@ namespace Pawnmorph
 
         [NotNull]
 
-        public static SapienceStateDef FormerHuman; 
+        public static SapienceStateDef FormerHuman;
 
+        [NotNull]
+        public static SapienceStateDef Animalistic; 
     }
 }

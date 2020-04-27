@@ -39,4 +39,18 @@
         <displayPriorityInCategory>75</displayPriorityInCategory>
     </StatDef>
 
+    <StatDef>
+        <defName>SapienceLimit</defName>
+        <label>sapience limit</label>
+        <description>the maximum sapience this pawn can have</description>
+        <category>BasicsPawn</category>
+        <defaultBaseValue>1.2</defaultBaseValue>
+        <hideAtValue>1.2</hideAtValue>
+        <minValue>0</minValue>
+        <maxValue>1.2</maxValue>
+        <toStringStyle>FloatOne</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+    </StatDef>
+
+
 </Defs>

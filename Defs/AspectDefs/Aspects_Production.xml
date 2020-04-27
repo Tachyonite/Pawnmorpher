@@ -29,6 +29,9 @@
                         </hediffFilter>
                     </li>
                 </productionBoosts>
+                <statOffsets>
+                    <SapienceLimit>-0.05</SapienceLimit>
+                </statOffsets>
             </li>
             <li>
                 <label>productive bliss</label>
@@ -41,6 +44,9 @@
                         </hediffFilter>
                     </li>
                 </productionBoosts>
+                <statOffsets>
+                    <SapienceLimit>-0.5</SapienceLimit>
+                </statOffsets>
             </li>
         </stages>
     </Pawnmorph.AspectDef>

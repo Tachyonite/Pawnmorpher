@@ -317,6 +317,7 @@
     <Compile Include="Aspects\MeatLover.cs" />
     <Compile Include="Aspects\PrimalWishGiver.cs" />
     <Compile Include="Aspects\RandomGiver.cs" />
+    <Compile Include="Aspects\SapienceHit.cs" />
     <Compile Include="Aspects\SkillBasedGiver.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />

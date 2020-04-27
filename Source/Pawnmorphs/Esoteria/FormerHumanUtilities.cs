@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.Hediffs;
@@ -81,6 +83,15 @@ namespace Pawnmorph
 
             _sapienceThresholds[values.Length + 1] = 0;
 
+            StringBuilder builder = new StringBuilder();
+            for (var index = 0; index < _sapienceThresholds.Length; index++)
+            {
+                float sapienceThreshold = _sapienceThresholds[index];
+                builder.AppendLine($"{(SapienceLevel) index} threshold:{sapienceThreshold}"); 
+            }
+
+            DebugLogUtils.LogMsg(LogLevel.Messages, builder);
+            builder.Clear();
 
             MutationTraits = new[] //TODO mod extension on traits to specify which ones can carry over? 
             {
@@ -88,6 +99,12 @@ namespace Pawnmorph
                 PMTraitDefOf.MutationAffinity,
                 TraitDefOf.Nudist
             };
+
+            builder.AppendLine($"{nameof(MutationTraits)}:[{MutationTraits.Join(t => t.defName)}]");
+
+            DebugLogUtils.LogMsg(LogLevel.Messages, builder);
+            builder.Clear();
+
 
             _cachedThresholds = new List<VTuple<SapienceLevel, float>>();
             for (var index = 0; index < _sapienceThresholds.Length; index++)
