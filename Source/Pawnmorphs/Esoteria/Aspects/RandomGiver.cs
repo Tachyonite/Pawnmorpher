@@ -56,6 +56,33 @@ namespace Pawnmorph.Aspects
         }
 
         /// <summary>
+        ///     Tries to give a single aspect to the given pawn
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>the aspect if any was successfully given to the pawn</returns>
+        public Aspect GiveOneAspect(Pawn pawn)
+        {
+            float totalChance = entries.Sum(e => e.chance);
+            float chanceMult = 1f / totalChance;
+            float randValue = Rand.Value;
+
+            float chanceAccum = 0;
+            List<Aspect> outList = new List<Aspect>();
+            foreach (Entry entry in entries)
+            {
+                if (randValue < (chanceAccum + (entry.chance * chanceMult)))
+                {
+                    ApplyAspect(pawn, entry.aspect, entry.aspectStage, outList);
+                    break;
+                }
+                else
+                    chanceAccum += (entry.chance * chanceMult);
+            }
+
+            return outList.FirstOrDefault();
+        }
+
+        /// <summary>
         ///     simple class for storing individual entries in the giver
         /// </summary>
         public class Entry
