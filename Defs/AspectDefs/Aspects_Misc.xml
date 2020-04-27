@@ -4,6 +4,7 @@
 		<priority>0</priority>
 		<labelColor>(121,55,145)</labelColor>
 		<transferToAnimal>true</transferToAnimal>
+		<aspectType>Pawnmorph.Aspects.SapienceHit</aspectType>
 		<stages>
 			<li>
 				<label>Etherbroken</label>
