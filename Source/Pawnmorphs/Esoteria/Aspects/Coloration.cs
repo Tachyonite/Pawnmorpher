@@ -58,10 +58,6 @@ namespace Pawnmorph.Aspects
         /// <summary> True if color should apply at 100% regardless of current putation percentage, false otherwise </summary>
         public bool IsFullOverride { get { return this.def == ColorationAspectDefOfs.ColorationPlayerPicked; } }
 
-        /// <summary> Coloration needs to update when possible </summary>
-        public bool NeedsDelayedUpdate { get; private set; } = false;
-
-
         /// <inheritdoc />
         protected override void ExposeData()
         {
@@ -83,17 +79,6 @@ namespace Pawnmorph.Aspects
 
                 Log.Message(String.Format("{0} is removing {1}", this.def.defName, aspect.def.defName));
                 tracker.Remove(aspect); //this should be fine since the removal is delayed
-            }
-        }
-
-        /// <inheritdoc />
-        public override void PostTick()
-        {
-            base.PostTick();
-            if(NeedsDelayedUpdate && this.Pawn != null)
-            {
-                NeedsDelayedUpdate = false;
-                UpdatePawn();
             }
         }
 
@@ -141,7 +126,7 @@ namespace Pawnmorph.Aspects
             }
             else 
             {
-                this.NeedsDelayedUpdate = true;
+                Log.Warning("ColorationAspect trying to update colors but pawn is null");
             }
         }
 
@@ -153,12 +138,9 @@ namespace Pawnmorph.Aspects
         {
             if (this.Pawn != null && this.Pawn.RaceProps != null && !this.Pawn.RaceProps.Humanlike)
             {
-                Color? colorFirst = this.TryGetColorationAspectColor(PawnColorSlot.SkinFirst);
-                Color? colorSecond = this.TryGetColorationAspectColor(PawnColorSlot.SkinSecond);
-
-                if (colorFirst.HasValue || colorSecond.HasValue)
+                if (ColorSet.skinColor.HasValue || ColorSet.skinColorTwo.HasValue)
                 {
-                    graphics.nakedGraphic = graphics.nakedGraphic.GetColoredVersion(graphics.nakedGraphic.Shader, colorFirst.HasValue ? colorFirst.Value : graphics.nakedGraphic.color, colorSecond.HasValue ? colorSecond.Value : graphics.nakedGraphic.colorTwo);
+                    graphics.nakedGraphic = graphics.nakedGraphic.GetColoredVersion(graphics.nakedGraphic.Shader, ColorSet.skinColor.HasValue ? ColorSet.skinColor.Value : graphics.nakedGraphic.color, ColorSet.skinColorTwo.HasValue ? ColorSet.skinColorTwo.Value : graphics.nakedGraphic.colorTwo);
                 }
                 if (this.Pawn.IsColonist || this.Pawn.IsColonistAnimal())
                 {
@@ -174,10 +156,10 @@ namespace Pawnmorph.Aspects
         private void GenerateColorSet() 
         {
             ColorSet = new SimplePawnColorSet();
-            ColorSet.skinColor = TryGetColorationAspectColor(PawnColorSlot.SkinFirst);
-            ColorSet.skinColorTwo = TryGetColorationAspectColor(PawnColorSlot.SkinSecond);
-            ColorSet.hairColor = TryGetColorationAspectColor(PawnColorSlot.HairFirst);
-            ColorSet.hairColorTwo = TryGetColorationAspectColor(PawnColorSlot.HairSecond);
+            ColorSet.skinColor = TryGenerateColorationAspectColor(PawnColorSlot.SkinFirst);
+            ColorSet.skinColorTwo = TryGenerateColorationAspectColor(PawnColorSlot.SkinSecond);
+            ColorSet.hairColor = TryGenerateColorationAspectColor(PawnColorSlot.HairFirst);
+            ColorSet.hairColorTwo = TryGenerateColorationAspectColor(PawnColorSlot.HairSecond);
         }
 
         /// <summary>
@@ -185,7 +167,7 @@ namespace Pawnmorph.Aspects
         /// </summary>
         /// <param name="colorSlot">Color slot</param>
         /// <returns>Generated color, or null if base color should be used</returns>
-        private Color? TryGetColorationAspectColor(PawnColorSlot colorSlot)
+        private Color? TryGenerateColorationAspectColor(PawnColorSlot colorSlot)
         {
             var seed = Find.TickManager.TicksAbs;
             ColorGenerator colorGen = TryGetColorationAspectColorGenerator(colorSlot);

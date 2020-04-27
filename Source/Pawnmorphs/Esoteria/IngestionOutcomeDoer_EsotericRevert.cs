@@ -48,6 +48,7 @@ namespace Pawnmorph
                 GraphicsUpdaterComp graphicsComp = pawn.GetComp<GraphicsUpdaterComp>();
                 if (graphicsComp != null)
                     graphicsComp.IsDirty = true;
+                pawn.RefreshGraphics();
             }
         }
 

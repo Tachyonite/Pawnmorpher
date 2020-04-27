@@ -78,8 +78,10 @@ namespace Pawnmorph.GraphicSys
             var mTracker = pawn.GetMutationTracker();
             if (mTracker != null)
             {
-                UpdateSkinColor(mTracker);
-                UpdateHairColor(mTracker);
+                var colorationAspect = pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
+                bool force = colorationAspect != null;
+                UpdateSkinColor(mTracker, force);
+                UpdateHairColor(mTracker, force);
             }
             pawn?.RefreshGraphics();
             IsDirty = false; 
