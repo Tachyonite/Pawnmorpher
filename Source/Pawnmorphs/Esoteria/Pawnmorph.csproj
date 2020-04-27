@@ -330,7 +330,6 @@
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
-    <Compile Include="ColonistColorPicker.cs" />
     <Compile Include="ColorGenerator_HSL.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompMutagenicRadius.cs" />
@@ -341,6 +340,7 @@
     <Compile Include="CompTargetEffect_TfResurrect.cs" />
     <Compile Include="Comp_MutagenicFixWorstCondition.cs" />
     <Compile Include="Comp_MutaniteBed.cs" />
+    <Compile Include="Comp_PlayerPickedColoration.cs" />
     <Compile Include="Comp_SapientAnimal.cs" />
     <Compile Include="CustomBodyAddon.cs" />
     <Compile Include="Damage\MutagenicDamageExtension.cs" />
@@ -380,6 +380,7 @@
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Designations\RecruitSapientFormerHuman.cs" />
+    <Compile Include="Dialogs\ColonistColorPicker.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
     <Compile Include="FormerHumanStatus.cs" />
     <Compile Include="FormerHumans\FoodThoughtSettings.cs" />
@@ -449,6 +450,7 @@
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
+    <Compile Include="IngestionOutcomeDoer_AddRandomAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
