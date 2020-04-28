@@ -63,10 +63,11 @@ namespace Pawnmorph.DebugUtils
         {
             if (pawn == null) return;
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-            Tuple<TransformedPawn, TransformedStatus> tfPawn = gComp?.GetTransformedPawnContaining(pawn);
-            if (tfPawn?.Item1 == null || tfPawn.Item2 != TransformedStatus.Transformed) return;
-            MutagenDef mut = tfPawn.Item1.mutagenDef ?? MutagenDefOf.defaultMutagen;
-            mut.MutagenCached.TryRevert(tfPawn.Item1); 
+            (TransformedPawn pawn, TransformedStatus status)? tfPawn = gComp?.GetTransformedPawnContaining(pawn);
+            TransformedPawn transformedPawn = tfPawn?.pawn;
+            if (transformedPawn == null || tfPawn?.status != TransformedStatus.Transformed) return;
+            MutagenDef mut = transformedPawn.mutagenDef ?? MutagenDefOf.defaultMutagen;
+            mut.MutagenCached.TryRevert(transformedPawn); 
         }
 
 
