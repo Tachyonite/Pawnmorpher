@@ -111,9 +111,7 @@ namespace Pawnmorph
             methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)));
             methodsToPatch.AddRange(methods); 
 
-            //now pawns 
-            methodsToPatch.Add(typeof(Pawn).GetProperty(nameof(Pawn.IsColonist) ,instanceFlags).GetMethod); 
-
+         
             //jobs and toils 
             methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
 
@@ -131,7 +129,7 @@ namespace Pawnmorph
                 if(methodInfo == null) continue;
                 builder.AppendLine($"{methodInfo.Name}");
             }
-
+            Log.Message(builder.ToString());
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
         }
 

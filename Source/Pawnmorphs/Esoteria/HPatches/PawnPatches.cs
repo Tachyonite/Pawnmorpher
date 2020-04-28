@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.HPatches
@@ -35,6 +36,19 @@ namespace Pawnmorph.HPatches
                     }
                 }
             }
+        }
+
+        [HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter), HarmonyPrefix]
+        static bool FixIsColonist(ref bool __result, [NotNull] Pawn __instance)
+        {
+            var sTracker = __instance.GetSapienceTracker();
+            if (sTracker?.CurrentState != null)
+            {
+                __result = __instance.Faction == Faction.OfPlayer && sTracker.CurrentIntelligence == Intelligence.Humanlike;
+                return false;
+            }
+
+            return true; 
         }
 
         [HarmonyPatch(nameof(Pawn.WorkTypeIsDisabled)), HarmonyPostfix]
