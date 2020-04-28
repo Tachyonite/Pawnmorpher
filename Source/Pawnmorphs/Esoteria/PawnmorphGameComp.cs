@@ -199,13 +199,13 @@ namespace Pawnmorph
         /// <param name="pawn"> The pawn. </param>
         /// <returns> The TransformedPawn instance as well as the pawn's status to that instance. </returns>
         [CanBeNull]
-        public Tuple<TransformedPawn, TransformedStatus> GetTransformedPawnContaining(Pawn pawn)
+        public (TransformedPawn pawn, TransformedStatus status)? GetTransformedPawnContaining(Pawn pawn)
         {
             foreach (TransformedPawn transformedPawn in TransformedPawns)
             {
                 TransformedStatus? status = transformedPawn.GetStatus(pawn);
 
-                if (status != null) return new Tuple<TransformedPawn, TransformedStatus>(transformedPawn, status.Value);
+                if (status != null) return (transformedPawn, status.Value);
             }
 
             return null;

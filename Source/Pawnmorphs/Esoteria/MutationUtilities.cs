@@ -626,7 +626,7 @@ namespace Pawnmorph
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">mutationDef</exception>
         [NotNull]
-        public static IEnumerable<VTuple<BodyPartDef, MutationLayer>> GetAllDefMutationSites(
+        public static IEnumerable<(BodyPartDef bodyPart, MutationLayer layer)> GetAllDefMutationSites(
             [NotNull] this MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
@@ -636,7 +636,7 @@ namespace Pawnmorph
                 yield break;
             }
             foreach (BodyPartDef mutationDefPart in mutationDef.parts)
-                yield return new VTuple<BodyPartDef, MutationLayer>(mutationDefPart, mutationDef.RemoveComp.layer);
+                yield return (mutationDefPart, mutationDef.RemoveComp.layer);
         }
 
 
@@ -669,7 +669,7 @@ namespace Pawnmorph
         /// <param name="mutationDef">The mutation definition.</param>
         /// <param name="bDef">The b definition.</param>
         /// <returns></returns>
-        public static IEnumerable<VTuple<BodyPartRecord, MutationLayer>> GetAllMutationSites(
+        public static IEnumerable<(BodyPartRecord bodyPart, MutationLayer layer)> GetAllMutationSites(
             [NotNull] this MutationDef mutationDef, [NotNull] BodyDef bDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
@@ -685,7 +685,7 @@ namespace Pawnmorph
                 bodyPartRecords = bDef.AllParts.MakeSafe();
             foreach (BodyPartRecord bodyPartRecord in bodyPartRecords)
                 if (mutationDef.parts.MakeSafe().Contains(bodyPartRecord?.def))
-                    yield return new VTuple<BodyPartRecord, MutationLayer>(bodyPartRecord, mutationDef.RemoveComp.layer);
+                    yield return (bodyPartRecord, mutationDef.RemoveComp.layer);
         }
 
 

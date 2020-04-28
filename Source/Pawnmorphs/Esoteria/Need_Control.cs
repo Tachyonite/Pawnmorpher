@@ -144,11 +144,11 @@ namespace Pawnmorph
                 _seekerLevel = Mathf.Clamp(_seekerLevel, 0, mLevel);
                 CurLevel = Mathf.Clamp(CurLevel, 0, mLevel); //make sure the levels fall within the correct bounds 
                 threshPercents = threshPercents ?? new List<float>();
-                foreach (VTuple<SapienceLevel, float> sapienceLevelThreshold in FormerHumanUtilities.SapienceLevelThresholds)
+                foreach (var entry in FormerHumanUtilities.SapienceLevelThresholds)
                 {
-                    float thresh = sapienceLevelThreshold.Second / mLevel;
-                    if (thresh > 1) continue;
-                    threshPercents.Add(thresh);
+                    float threshold = entry.threshold / mLevel;
+                    if (threshold > 1) continue;
+                    threshPercents.Add(threshold);
                 }
             }
             base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip);
