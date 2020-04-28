@@ -50,10 +50,12 @@ namespace Pawnmorph
         /// </summary>
         public const string RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL = "RelatedSoldFormerHumanLabel";
 
-        [NotNull] private static readonly float[]
-            _sapienceThresholds; //these are the minimum sapience levels needed to fall withing a given enum level 
+        /// <summary>
+        /// these are the minimum sapience levels needed to fall withing a given enum level 
+        /// </summary>
+        [NotNull] private static readonly float[] _sapienceThresholds; 
 
-        [NotNull] private static readonly List<VTuple<SapienceLevel, float>> _cachedThresholds;
+        [NotNull] private static readonly List<(SapienceLevel sapienceLevel, float threshold)> _cachedThresholds;
 
         [NotNull] private static readonly List<MutationDef> _mScratchList = new List<MutationDef>();
 
@@ -100,17 +102,11 @@ namespace Pawnmorph
                 TraitDefOf.Nudist
             };
 
-            builder.AppendLine($"{nameof(MutationTraits)}:[{MutationTraits.Join(t => t.defName)}]");
-
-            DebugLogUtils.LogMsg(LogLevel.Messages, builder);
-            builder.Clear();
-
-
-            _cachedThresholds = new List<VTuple<SapienceLevel, float>>();
+            _cachedThresholds = new List<(SapienceLevel sapienceLevel, float threshold)>();
             for (var index = 0; index < _sapienceThresholds.Length; index++)
             {
                 float sapienceThreshold = _sapienceThresholds[index];
-                _cachedThresholds.Add(new VTuple<SapienceLevel, float>((SapienceLevel) index, sapienceThreshold));
+                _cachedThresholds.Add(((SapienceLevel) index, sapienceThreshold));
             }
 
 
@@ -133,7 +129,7 @@ namespace Pawnmorph
         ///     The sapience level thresholds.
         /// </value>
         [NotNull]
-        public static IEnumerable<VTuple<SapienceLevel, float>> SapienceLevelThresholds => _cachedThresholds;
+        public static IEnumerable<(SapienceLevel sapienceLevel, float threshold)> SapienceLevelThresholds => _cachedThresholds;
 
         /// <summary>
         ///     Gets all former humans on all maps

@@ -17,9 +17,6 @@ namespace Pawnmorph.Hediffs
     public class Comp_CheckRace : HediffCompBase<CompProperties_CheckRace>
     {
         private bool _checked; 
-        private readonly List<VTuple<MorphDef, float>> _scratchList = new List<VTuple<MorphDef, float>>();
-
-        
 
         /// <summary>
         /// called after the parent hediff is removed

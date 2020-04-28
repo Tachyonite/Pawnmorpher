@@ -137,10 +137,10 @@ namespace Pawnmorph
         [NotNull]
         IEnumerable<MutationDef> GetAllAssociatedMutations()
         {
-            var set = new HashSet<VTuple<BodyPartDef, MutationLayer>>();
+            var set = new HashSet<(BodyPartDef bodyPart, MutationLayer layer)>();
             AnimalClassBase curNode = this;
             List<MutationDef> tmpList = new List<MutationDef>();
-            List<VTuple<BodyPartDef, MutationLayer>> tmpSiteLst = new List<VTuple<BodyPartDef, MutationLayer>>();
+            var tmpSiteLst = new List<(BodyPartDef bodyPart, MutationLayer layer)>();
             while (curNode != null)
             {
                 tmpList.Clear();
@@ -163,9 +163,9 @@ namespace Pawnmorph
                     tmpSiteLst.Clear();
                     tmpSiteLst.AddRange(mutationDef.GetAllDefMutationSites());
                     bool shouldReject = true; 
-                    foreach (VTuple<BodyPartDef, MutationLayer> vTuple in tmpSiteLst)
+                    foreach (var entry in tmpSiteLst)
                     {
-                        if (!set.Contains(vTuple))
+                        if (!set.Contains(entry))
                         {
                             shouldReject = false; 
                             break;
