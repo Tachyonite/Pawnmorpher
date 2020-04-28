@@ -5,19 +5,6 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pawnmorph", "Esoteria\Pawnmorph.csproj", "{04338000-4A27-47AB-A654-9F4BEF21BBBD}"
 EndProject
-Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "RimWorldWin64", "..\..\..\..\RimWorldWin64.exe", "{22521300-29EC-4D28-B7F4-7A5883E94B05}"
-	ProjectSection(DebuggerProjectSystem) = preProject
-		PortSupplier = 00000000-0000-0000-0000-000000000000
-		Executable = E:\games\steam_games\deeper\steamapps\common\RimWorld\RimWorldWin64.exe
-		RemoteMachine = NICK-WIN-PC
-		StartingDirectory = E:\games\steam_games\deeper\steamapps\common\RimWorld
-		Environment = dnspy_unity_dbg2=--debugger-agent=transport=dt_socket,server=y,address=127.0.0.1:56000,suspend=y,no-hide-debugger	
-		LaunchingEngine = 00000000-0000-0000-0000-000000000000
-		UseLegacyDebugEngines = No
-		LaunchSQLEngine = No
-		AttachLaunchAction = No
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +21,6 @@ Global
 		{04338000-4A27-47AB-A654-9F4BEF21BBBD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04338000-4A27-47AB-A654-9F4BEF21BBBD}.Release|x64.ActiveCfg = Release|Any CPU
 		{04338000-4A27-47AB-A654-9F4BEF21BBBD}.Release|x64.Build.0 = Release|Any CPU
-		{22521300-29EC-4D28-B7F4-7A5883E94B05}.Debug|Any CPU.ActiveCfg = Release|x64
-		{22521300-29EC-4D28-B7F4-7A5883E94B05}.Debug|x64.ActiveCfg = Release|x64
-		{22521300-29EC-4D28-B7F4-7A5883E94B05}.Release|Any CPU.ActiveCfg = Release|x64
-		{22521300-29EC-4D28-B7F4-7A5883E94B05}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
