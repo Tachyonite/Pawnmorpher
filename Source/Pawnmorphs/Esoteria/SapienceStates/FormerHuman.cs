@@ -160,7 +160,7 @@ namespace Pawnmorph.SapienceStates
 
         private void RemoveSapientAnimalComponents()
         {
-            if (Pawn.drafter == null) return;
+            if (Pawn?.drafter == null) return;
 
             //remove the drafter component if the animal is now feral 
             Pawn.drafter.Drafted = false;
@@ -197,7 +197,7 @@ namespace Pawnmorph.SapienceStates
             var saComp = Pawn.GetComp<Comp_SapientAnimal>();
             if (saComp != null)
             {
-                Pawn.AllComps.Remove(saComp);
+                Pawn.AllComps?.Remove(saComp);
             }
         }
 
