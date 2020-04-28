@@ -431,6 +431,7 @@
     <Compile Include="HPatches\OptimizeApparelPatch.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
+    <Compile Include="HPatches\PawnGraphicSetPatch.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
     <Compile Include="HPatches\PawnPatches.cs" />
     <Compile Include="HPatches\PlantGrowingPatches.cs" />
