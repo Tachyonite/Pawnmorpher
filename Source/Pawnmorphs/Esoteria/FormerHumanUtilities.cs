@@ -48,10 +48,12 @@ namespace Pawnmorph
         /// </summary>
         public const string RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL = "RelatedSoldFormerHumanLabel";
 
-        [NotNull] private static readonly float[]
-            _sapienceThresholds; //these are the minimum sapience levels needed to fall withing a given enum level 
+        /// <summary>
+        /// these are the minimum sapience levels needed to fall withing a given enum level 
+        /// </summary>
+        [NotNull] private static readonly float[] _sapienceThresholds; 
 
-        [NotNull] private static readonly List<VTuple<SapienceLevel, float>> _cachedThresholds;
+        [NotNull] private static readonly List<(SapienceLevel sapienceLevel, float threshold)> _cachedThresholds;
 
         [NotNull] private static readonly List<MutationDef> _mScratchList = new List<MutationDef>();
 
@@ -89,11 +91,11 @@ namespace Pawnmorph
                 TraitDefOf.Nudist
             };
 
-            _cachedThresholds = new List<VTuple<SapienceLevel, float>>();
+            _cachedThresholds = new List<(SapienceLevel sapienceLevel, float threshold)>();
             for (var index = 0; index < _sapienceThresholds.Length; index++)
             {
                 float sapienceThreshold = _sapienceThresholds[index];
-                _cachedThresholds.Add(new VTuple<SapienceLevel, float>((SapienceLevel) index, sapienceThreshold));
+                _cachedThresholds.Add(((SapienceLevel) index, sapienceThreshold));
             }
 
 
@@ -116,7 +118,7 @@ namespace Pawnmorph
         ///     The sapience level thresholds.
         /// </value>
         [NotNull]
-        public static IEnumerable<VTuple<SapienceLevel, float>> SapienceLevelThresholds => _cachedThresholds;
+        public static IEnumerable<(SapienceLevel sapienceLevel, float threshold)> SapienceLevelThresholds => _cachedThresholds;
 
         /// <summary>
         ///     Gets all former humans on all maps
@@ -960,7 +962,7 @@ namespace Pawnmorph
             comp.MakePermanentlyFeral();
             //transfer relationships back if possible 
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-            Pawn oPawn = gComp.GetTransformedPawnContaining(pawn)?.Item1?.OriginalPawns.FirstOrDefault();
+            Pawn oPawn = gComp.GetTransformedPawnContaining(pawn)?.pawn?.OriginalPawns.FirstOrDefault();
             if (oPawn == pawn) oPawn = null;
 
             Pawn_RelationsTracker aRelations = pawn.relations;
@@ -970,7 +972,7 @@ namespace Pawnmorph
             pawn.health.RemoveHediff(fHediff);
 
             var loader = Find.World.GetComponent<PawnmorphGameComp>();
-            TransformedPawn inst = loader.GetTransformedPawnContaining(pawn)?.Item1;
+            TransformedPawn inst = loader.GetTransformedPawnContaining(pawn)?.pawn;
             var singleInst = inst as TransformedPawnSingle; //hacky, need to come up with a better solution 
             foreach (Pawn instOriginalPawn in inst?.OriginalPawns ?? Enumerable.Empty<Pawn>()
             ) //needed to handle merges correctly 

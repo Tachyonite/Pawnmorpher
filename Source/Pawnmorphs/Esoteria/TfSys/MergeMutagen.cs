@@ -243,13 +243,12 @@ namespace Pawnmorph.TfSys
                 throw new ArgumentNullException(nameof(transformedPawn)); 
             }
 
-            Tuple<TransformedPawn, TransformedStatus> status = GameComp.GetTransformedPawnContaining(transformedPawn);
+            var pawnStatus = GameComp.GetTransformedPawnContaining(transformedPawn);
 
-            if (status != null)
+            if (pawnStatus != null)
             {
-                if (status.Item2 != TransformedStatus.Transformed) return false;
-
-                if (status.Item1 is MergedPawns merged)
+                if (pawnStatus.Value.status != TransformedStatus.Transformed) return false;
+                if (pawnStatus.Value.pawn is MergedPawns merged)
                 {
                     if (merged.mutagenDef != def) return false;
 

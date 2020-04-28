@@ -677,7 +677,6 @@
     <Compile Include="Utilities\SkillMod.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
-    <Compile Include="Utilities\VTuple.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />

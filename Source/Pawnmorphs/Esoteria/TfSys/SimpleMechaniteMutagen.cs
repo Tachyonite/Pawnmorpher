@@ -38,11 +38,11 @@ namespace Pawnmorph.TfSys
         /// <returns></returns>
         public override bool TryRevert(Pawn transformedPawn)
         {
-            Tuple<TransformedPawn, TransformedStatus> status = GameComp.GetTransformedPawnContaining(transformedPawn);
-            if (status != null)
+            var pawnStatus = GameComp.GetTransformedPawnContaining(transformedPawn);
+            if (pawnStatus != null)
             {
-                if (status.Item2 != TransformedStatus.Transformed) return false;
-                if (status.Item1 is TransformedPawnSingle inst)
+                if (pawnStatus.Value.status != TransformedStatus.Transformed) return false;
+                if (pawnStatus.Value.pawn is TransformedPawnSingle inst)
                     if (TryRevertImpl(inst))
                     {
                         GameComp.RemoveInstance(inst);
@@ -54,7 +54,7 @@ namespace Pawnmorph.TfSys
                     }
                 else
                 {
-                    Log.Warning($"{nameof(SimpleMechaniteMutagen)} received \"{status.Item1?.GetType()?.Name ??"NULL"}\" but was expecting \"{nameof(TransformedPawnSingle)}\"");
+                    Log.Warning($"{nameof(SimpleMechaniteMutagen)} received \"{pawnStatus.Value.pawn?.GetType()?.Name ??"NULL"}\" but was expecting \"{nameof(TransformedPawnSingle)}\"");
                 }
                 return false;
             }

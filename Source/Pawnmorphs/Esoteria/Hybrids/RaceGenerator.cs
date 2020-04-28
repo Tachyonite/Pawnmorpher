@@ -252,7 +252,7 @@ namespace Pawnmorph.Hybrids
             return gen;
         }
 
-        static VTuple<Vector2, Vector2>? GetDebugBodySizes(MorphDef morph)
+        static (Vector2 body, Vector2 head)? GetDebugBodySizes(MorphDef morph)
         {
             
             var pkDef = DefDatabase<PawnKindDef>.AllDefs.FirstOrDefault(pk => pk.race == morph.race);//get the first pawnkindDef that uses the morph's race 
@@ -265,7 +265,7 @@ namespace Pawnmorph.Hybrids
             var lastStage = pkDef.lifeStages.Last();
 
             float cSize = Mathf.Lerp(1, lastStage.bodyGraphicData.drawSize.x,0.5f); //take the average of the animals draw size and a humans, which is a default of 1 
-            return new VTuple<Vector2, Vector2>(cSize * Vector2.one, cSize * Vector2.one); 
+            return (cSize * Vector2.one, cSize * Vector2.one); 
         }
 
 
@@ -274,21 +274,18 @@ namespace Pawnmorph.Hybrids
             List<AlienPartGenerator.BodyAddon> returnList = new List<AlienPartGenerator.BodyAddon>();
 
 #if TEST_BODY_SIZE
-            var tuple = GetDebugBodySizes(morph);
-            Vector2? bodySize = tuple?.First, headSize = tuple?.Second;
+            var bodySizes = GetDebugBodySizes(morph);
+            Vector2? bodySize = bodySizes?.body;
+            Vector2? headSize = bodySizes?.head;
 
-            if (tuple != null)
+            if (bodySizes != null)
             {
-                Log.Message($"{morph.defName} draw sizes are: bodySize={tuple.Value.First}, headSize={tuple.Value.Second}");
+                Log.Message($"{morph.defName} draw sizes are: bodySize={bodySizes.Value.body}, headSize={bodySizes.Value.head}");
             }
 #else
             Vector2? bodySize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
             Vector2? headSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
-
 #endif
-
-
-
 
             List<string> headParts = new List<string>();
             headParts.Add("Jaw");
