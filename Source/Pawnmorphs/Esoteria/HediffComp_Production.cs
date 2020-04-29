@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using AlienRace;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -160,6 +162,11 @@ namespace Pawnmorph
 
             Thing thing = ThingMaker.MakeThing(resource);
             thing.stackCount = thingCount;
+
+            Color? skinColor = Pawn.GetHighestInfluence()?.GetSkinColorOverride(Pawn); //dont want wool thats mostly human-skin colored
+
+            if (resource.thingCategories.Contains(PMThingCategoryDefOf.Textiles) && resource.CompDefFor<CompColorable>() != null && skinColor.HasValue)
+                thing.SetColor(skinColor.Value);
             if (thing.stackCount > 0)
                 GenPlace.TryPlaceThing(thing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
 
@@ -167,6 +174,8 @@ namespace Pawnmorph
             {
                 Thing rareThing = ThingMaker.MakeThing(rareResource);
                 rareThing.stackCount = rareThingCount;
+                if (rareResource.thingCategories.Contains(PMThingCategoryDefOf.Textiles) && resource.CompDefFor<CompColorable>() != null && skinColor.HasValue)
+                    thing.SetColor(skinColor.Value);
                 if (rareThing.stackCount > 0)
                     GenPlace.TryPlaceThing(rareThing, Pawn.PositionHeld, Pawn.Map, ThingPlaceMode.Near);
             }
