@@ -217,7 +217,7 @@ namespace Pawnmorph.GraphicSys
         /// <param name="pawn"></param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">gController</exception>
-        public static ColorChannel? GetSkinColor([NotNull] this IMorphGraphicsGenerator gGenerator, [NotNull] Pawn pawn)
+        public static ColorChannel? GetSkinColor([NotNull] this IMorphColorGenerator gGenerator, [NotNull] Pawn pawn)
         {
             if (gGenerator == null) throw new ArgumentNullException(nameof(gGenerator));
             return gGenerator.GetChannel(pawn,"skin"); 
@@ -230,7 +230,7 @@ namespace Pawnmorph.GraphicSys
         /// <param name="pawn"></param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">gController</exception>
-        public static ColorChannel? GetHairColor([NotNull] this IMorphGraphicsGenerator gGenerator, [NotNull] Pawn pawn)
+        public static ColorChannel? GetHairColor([NotNull] this IMorphColorGenerator gGenerator, [NotNull] Pawn pawn)
         {
             if (gGenerator == null) throw new ArgumentNullException(nameof(gGenerator));
             return gGenerator.GetChannel(pawn,"hair"); 

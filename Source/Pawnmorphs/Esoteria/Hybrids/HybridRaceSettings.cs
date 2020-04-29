@@ -31,10 +31,24 @@ namespace Pawnmorph.Hybrids
         /// the race restriction settings 
         /// </summary>
         public RaceRestrictionSettings restrictionSettings;
+        
         /// <summary>The graphics settings</summary>
+        [Obsolete("use " + nameof(ColorGenerator) + " instead")]
         public GraphicsSettings graphicsSettings;
         /// <summary>The trait settings</summary>
         public TraitSettings traitSettings;
+
+        private IMorphColorGenerator colorGenerator;
+
+
+        /// <summary>
+        /// Gets the color generator.
+        /// </summary>
+        /// <value>
+        /// The color generator.
+        /// </value>
+        public IMorphColorGenerator ColorGenerator => colorGenerator ?? (colorGenerator =  new GraphicsSettings());
+
 
         /// <summary>
         /// The explicit hybrid race
@@ -127,7 +141,7 @@ namespace Pawnmorph.Hybrids
         /// <summary>
         /// class representing the graphic setting of a morph hybrid race
         /// </summary>
-        public class GraphicsSettings : IMorphGraphicsGenerator
+        public class GraphicsSettings : IMorphColorGenerator
         {
             /// <summary>
             /// The skin color override.
@@ -186,7 +200,7 @@ namespace Pawnmorph.Hybrids
             /// <value>
             /// The available channels.
             /// </value>
-            IEnumerable<string> IMorphGraphicsGenerator.AvailableChannels { get; } = new[] {"skin", "hair"};
+            IEnumerable<string> IMorphColorGenerator.AvailableChannels { get; } = new[] {"skin", "hair"};
 
             /// <summary>
             /// Gets a generated color channel for a specific pawn.
@@ -194,7 +208,7 @@ namespace Pawnmorph.Hybrids
             /// <param name="pawn">The pawn.</param>
             /// <param name="channelID">The channel identifier.</param>
             /// <returns>the generated channel if possible, else null</returns>
-            ColorChannel? IMorphGraphicsGenerator.GetChannel(Pawn pawn, string channelID)
+            ColorChannel? IMorphColorGenerator.GetChannel(Pawn pawn, string channelID)
             {
                 bool isFemale = pawn.gender == Gender.Female;
 

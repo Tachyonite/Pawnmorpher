@@ -11,7 +11,7 @@ namespace Pawnmorph.GraphicSys
     /// <summary>
     /// interface for some controller object that gets new colors for a pawn from a specific morph 
     /// </summary>
-    public interface IMorphGraphicsGenerator
+    public interface IMorphColorGenerator
     {
         /// <summary>
         /// Gets all available channels in this .
