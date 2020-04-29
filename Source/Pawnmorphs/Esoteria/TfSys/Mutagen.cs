@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 //using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.TfSys
@@ -264,6 +265,23 @@ namespace Pawnmorph.TfSys
             }
 
             transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis); 
+        }
+
+
+        /// <summary>
+        /// Gets the sapience level for the given original and transformed pawn
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <returns></returns>
+        protected virtual float GetSapienceLevel([NotNull] Pawn original, [NotNull] Pawn transformedPawn)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            var sTracker = original.GetSapienceTracker();
+            if (sTracker?.CurrentState != null)
+                return Mathf.Max(sTracker.Sapience - Mathf.Max(def.transformedSapienceDrop.RandomInRange,0), 0); 
+            return Rand.Range(0.4f, 1);
         }
     }
 

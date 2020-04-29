@@ -9,9 +9,9 @@ using Verse;
 namespace Pawnmorph.TfSys
 {
     /// <summary>
-    /// struct representing the request to transform pawns 
+    /// class representing the request to transform pawns 
     /// </summary>
-    public struct TransformationRequest
+    public class TransformationRequest
     {
         /// <summary>
         /// Returns true if this instance is valid.
@@ -77,6 +77,11 @@ namespace Pawnmorph.TfSys
         public Hediff cause;
         /// <summary>The tale to record</summary>
         public TaleDef tale;
+
+        /// <summary>
+        /// if not null then this represents the sapience level the tf'd pawn will have
+        /// </summary>
+        public float? forcedSapienceLevel;
 
         /// <summary>
         /// if true, no notification will be sent about the transformation

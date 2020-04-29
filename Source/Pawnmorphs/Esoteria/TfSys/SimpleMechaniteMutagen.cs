@@ -134,7 +134,7 @@ namespace Pawnmorph.TfSys
             Pawn original = request.originals[0];
 
             if (request.addMutationToOriginal)
-                TryAddMutationsToPawn(original, request.cause, request.outputDef);  
+                TryAddMutationsToPawn(original, request.cause, request.outputDef);
 
             var reactionStatus = original.GetFormerHumanReactionStatus();
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
@@ -151,7 +151,7 @@ namespace Pawnmorph.TfSys
                 TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
 
 
-            var pRequest = FormerHumanUtilities.CreateSapientAnimalRequest(request.outputDef, original, faction, fixedGender:newGender); 
+            var pRequest = FormerHumanUtilities.CreateSapientAnimalRequest(request.outputDef, original, faction, fixedGender: newGender);
 
 
 
@@ -163,8 +163,7 @@ namespace Pawnmorph.TfSys
             animalToSpawn.needs.rest.CurLevel =
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
-
-            float sapienceLevel = Rand.Range(0.4f, 1);
+            float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn); 
             GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
             FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel); //use a normal distribution? 
@@ -173,7 +172,7 @@ namespace Pawnmorph.TfSys
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
-            var rFaction = request.factionResponsible ?? GetFactionResponsible(original); 
+            var rFaction = request.factionResponsible ?? GetFactionResponsible(original);
             var inst = new TransformedPawnSingle
             {
                 original = original,
@@ -196,9 +195,9 @@ namespace Pawnmorph.TfSys
             Faction oFaction = original.Faction;
             Map oMap = original.Map;
 
-            
+
             //apply any other post tf effects 
-            ApplyPostTfEffects(original, spawnedAnimal); 
+            ApplyPostTfEffects(original, spawnedAnimal);
 
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
@@ -206,7 +205,7 @@ namespace Pawnmorph.TfSys
             //notify the faction that their member has been transformed 
             oFaction?.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
-            if(!request.noLetter && reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
+            if (!request.noLetter && reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
                 SendLetter(request, original, spawnedAnimal);
 
             if (original.Spawned)
@@ -218,6 +217,8 @@ namespace Pawnmorph.TfSys
 
             return inst;
         }
+
+        
 
         private void TryAddMutationsToPawn([NotNull] Pawn original, [CanBeNull] Hediff requestCause,
                                            [NotNull] PawnKindDef requestOutputDef)
