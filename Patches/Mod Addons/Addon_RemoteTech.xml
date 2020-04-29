@@ -26,7 +26,7 @@ Rapidly dissipates when under an open sky.</description>
 							<altitudeLayer>MoteOverhead</altitudeLayer>
 							<mote Class="RemoteTech.MoteProperties_GasEffect">
 								<!-- game ticks between gas ticks -->
-								<GastickInterval>25</GastickInterval>
+								<GastickInterval>30</GastickInterval>
 								<!-- gas will attempt to multiply every x gas ticks -->
 								<SpreadInterval>2</SpreadInterval>
 								<!-- how much concentration a cloud passes to its neighbours. A value of 1 will equalize concentrations with adjacent clouds on each gas tick -->
@@ -51,8 +51,8 @@ Rapidly dissipates when under an open sky.</description>
 								<toxicSensitivityStatPower>.5</toxicSensitivityStatPower>
 								<hediffDef>MutagenicBuildup</hediffDef>
 								<hediffSeverityPerGastick>
-									<min>0.0128</min>
-									<max>0.1067</max>
+									<min>0.0050</min>
+									<max>0.0267</max>
 								</hediffSeverityPerGastick>
 								<immunizingApparelDefs>
 									<li>rxApparel_GasMask</li>
@@ -72,13 +72,17 @@ Rapidly dissipates when under an open sky.</description>
 							<graphicData Class="RemoteTech.GraphicData_Blinker">
 								<texPath>Things/Building/tfIED</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<blinkerOffset>(0, 0, 0)</blinkerOffset>
 								<shadowData>
 									<volume>(.75, 0.15, .75)</volume>
 								</shadowData>
 							</graphicData>
 							<description>A remotely triggered canister filled with mutagen gas. 
-Craft at the Explosives Workshop.
 Arm, then detonate from the Remote Explosives Console.</description>
+<researchPrerequisites>
+<li>rxRemoteDetonator</li>
+<li>MutagenExtraction</li>
+</researchPrerequisites>
 							<costList>
 								<Steel>60</Steel>
 								<Chemfuel>1</Chemfuel>
