@@ -17,6 +17,11 @@ namespace Pawnmorph.DefExtensions
 
     {
         /// <summary>
+        /// if true, the attached race will never be a former human 
+        /// </summary>
+        public bool neverFormerHuman; 
+
+        /// <summary>
         /// The backstory, uses a default if not set 
         /// </summary>
         public BackstoryDef backstory;

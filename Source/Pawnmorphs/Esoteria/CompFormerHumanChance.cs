@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -90,6 +91,7 @@ namespace Pawnmorph
         private bool CanBeFormerHuman()
         {
             if (!LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().enableWildFormers) return false;
+            if (parent.def.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == true) return false; 
             if (parent.Faction != null) return false;
             var pawn = (Pawn) parent;
             if (pawn.relations == null) return true;

@@ -14,10 +14,18 @@
                         </li>
                     </value>
                 </li>
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>/Defs/ThingDef[@Name="AnimalAndroidThingBase"]</xpath>
+                    <value>
+                        <li Class="Pawnmorph.FormerHumanSettings">
+                            <neverFormerHuman>true</neverFormerHuman>
+                        </li>
+                    </value>
+                </li>
             </operations>
         </match>
     </Operation>
-    
-    
+
+
 
 </Patch>
