@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -126,7 +127,7 @@ namespace Pawnmorph.Hybrids
         /// <summary>
         /// class representing the graphic setting of a morph hybrid race
         /// </summary>
-        public class GraphicsSettings
+        public class GraphicsSettings : IMorphGraphicsGenerator
         {
             /// <summary>
             /// The skin color override.
@@ -177,6 +178,49 @@ namespace Pawnmorph.Hybrids
             /// The custom head draw size.
             /// </summary>
             public Vector2? customHeadDrawSize;
+
+
+            /// <summary>
+            /// Gets all available channels in this .
+            /// </summary>
+            /// <value>
+            /// The available channels.
+            /// </value>
+            IEnumerable<string> IMorphGraphicsGenerator.AvailableChannels { get; } = new[] {"skin", "hair"};
+
+            /// <summary>
+            /// Gets a generated color channel for a specific pawn.
+            /// </summary>
+            /// <param name="pawn">The pawn.</param>
+            /// <param name="channelID">The channel identifier.</param>
+            /// <returns>the generated channel if possible, else null</returns>
+            ColorChannel? IMorphGraphicsGenerator.GetChannel(Pawn pawn, string channelID)
+            {
+                bool isFemale = pawn.gender == Gender.Female;
+
+
+                if (channelID == "skin")
+                {
+                    Color? skinOverride = isFemale ? femaleSkinColorOverride ?? skinColorOverride : skinColorOverride;
+
+                    if (skinOverride != null)
+                    {
+                        Color? skin2O = isFemale ? femaleSkinColorOverride ?? skinColorOverrideSecond : skinColorOverrideSecond;
+                        return new ColorChannel(skinOverride.Value, skin2O);
+                    }
+                }
+                else if (channelID == "hair")
+                {
+                    Color? hairO = isFemale ? femaleHairColorOverride ?? hairColorOverride : hairColorOverride;
+                    if (hairO != null)
+                        return new ColorChannel(hairO.Value,
+                                                isFemale
+                                                    ? femaleHairColorOverrideSecond ?? hairColorOverrideSecond
+                                                    : hairColorOverrideSecond);
+                }
+
+                return null; 
+            }
         }
 
         /// <summary>

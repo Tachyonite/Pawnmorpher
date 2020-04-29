@@ -208,5 +208,33 @@ namespace Pawnmorph.GraphicSys
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
             if (pawn.IsColonist) PortraitsCache.SetDirty(pawn);
         }
+
+
+        /// <summary>
+        /// Gets the color of the skin.
+        /// </summary>
+        /// <param name="gGenerator">The g controller.</param>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">gController</exception>
+        public static ColorChannel? GetSkinColor([NotNull] this IMorphGraphicsGenerator gGenerator, [NotNull] Pawn pawn)
+        {
+            if (gGenerator == null) throw new ArgumentNullException(nameof(gGenerator));
+            return gGenerator.GetChannel(pawn,"skin"); 
+        }
+
+        /// <summary>
+        /// Gets the color of the hair.
+        /// </summary>
+        /// <param name="gGenerator">The g controller.</param>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">gController</exception>
+        public static ColorChannel? GetHairColor([NotNull] this IMorphGraphicsGenerator gGenerator, [NotNull] Pawn pawn)
+        {
+            if (gGenerator == null) throw new ArgumentNullException(nameof(gGenerator));
+            return gGenerator.GetChannel(pawn,"hair"); 
+        }
+
     }
 }
