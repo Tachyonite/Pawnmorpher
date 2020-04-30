@@ -1,19 +1,11 @@
-**IMPORTANT: Please do not create a Pull Request without creating an issue first.**
+**IMPORTANT:** Please do not create a Pull Request without creating an issue first.
 
-*Any change needs to be discussed -- preferably on the Discord server -- before proceeding. Failure to do so may result in the rejection of the pull request.*
+_Any change needs to be discussed before proceeding. Failure to do so may result in the rejection of the pull request._
 
-Please provide enough information so that others can review your pull request.
+Please provide enough information so that others can review your pull request:
 
-Explain the **details** for making this change. What existing problem does the pull request solve?
-
-**Test plan (required)**
-
-Demonstrate the code is solid. Example: The exact commands you ran and their output, screenshots / videos if the pull request changes UI.
-
-**Code formatting**
-
-<!-- See the simple style guide. -->
+Explain the details for making this change. What existing problem or new feature does the pull request solve or add?
 
 **Closing issues**
 
-Put `closes #XXXX` in your comment to auto-close the issue that your PR fixes (if such).
+Put closes #XXXX in your comment to auto-close the issue that your PR fixes (if such).
