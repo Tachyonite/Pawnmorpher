@@ -75,6 +75,25 @@ namespace Pawnmorph.Utilities
             //}
         }
 
+        /// <summary>
+        /// Generate a color using the specified seed
+        /// </summary>
+        /// <param name="colorGen">Color generator</param>
+        /// <param name="seed">Seed</param>
+        /// <returns>Generated color</returns>
+        public static Color NewRandomizedColorUsingSeed(this ColorGenerator colorGen, int seed) 
+        {
+            try
+            {
+                Rand.PushState(seed);
+                return colorGen.NewRandomizedColor();
+            }
+            finally
+            {
+                Rand.PopState();
+            }
+        }
+
 
         /// <summary> Multiplayer save version of Rand.MTBEventOccurs  </summary>
         /// <param name="mtb"> The MTB. </param>

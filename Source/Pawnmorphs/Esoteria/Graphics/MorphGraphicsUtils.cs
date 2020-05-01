@@ -4,7 +4,7 @@
 using System;
 using AlienRace;
 using JetBrains.Annotations;
-using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -16,6 +16,7 @@ namespace Pawnmorph.GraphicSys
     /// </summary>
     public static class MorphGraphicsUtils
     {
+
         /// <summary>
         ///     Gets the hair color override.
         /// </summary>
@@ -31,32 +32,16 @@ namespace Pawnmorph.GraphicSys
             if (aspectColor.HasValue)
                 return aspectColor;
 
-            HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
-
-            if (def.ExplicitHybridRace == null)
+            if (def.ExplicitHybridRace == null) 
             {
-                Gender? gender = pawn?.gender;
-
-                if (gender == Gender.Female && gSettings?.femaleHairColorOverride != null)
-                    return gSettings.femaleHairColorOverride;
-
-                return gSettings?.hairColorOverride ?? GetSkinColorOverride(def, pawn);
+                return def.raceSettings?.ColorGenerator?.GetHairColor(pawn)?.First ?? GetSkinColorOverride(def, pawn);
             }
 
             var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
             ColorGenerator colorGenerator = hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhaircolorgen;
             Color? color;
-            if (colorGenerator != null)
-                try
-                {
-                    if (pawn != null)
-                        Rand.PushState(pawn.thingIDNumber);
-                    color = colorGenerator.NewRandomizedColor();
-                }
-                finally
-                {
-                    if (pawn != null) Rand.PopState();
-                }
+            if (pawn != null && colorGenerator != null)
+                color = colorGenerator.NewRandomizedColorUsingSeed(pawn.thingIDNumber);
             else
                 color = GetSkinColorOverride(def, pawn);
 
@@ -81,27 +66,14 @@ namespace Pawnmorph.GraphicSys
 
             if (def.ExplicitHybridRace == null)
             {
-                HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
-                if (pawn?.gender == Gender.Female && gSettings?.femaleHairColorOverrideSecond != null)
-                    return gSettings.femaleHairColorOverrideSecond;
-
-                return gSettings?.hairColorOverrideSecond ?? GetSkinColorSecondOverride(def, pawn);
+                return def.raceSettings?.ColorGenerator?.GetHairColor(pawn)?.Second ?? GetSkinColorOverride(def, pawn);
             }
 
             var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
             ColorGenerator colorGenerator = hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhairsecondcolorgen;
             Color? color;
             if (colorGenerator != null)
-                try
-                {
-                    if (pawn != null) Rand.PushState(pawn.thingIDNumber);
-
-                    color = colorGenerator.NewRandomizedColor();
-                }
-                finally
-                {
-                    if (pawn != null) Rand.PopState();
-                }
+                color = colorGenerator.NewRandomizedColorUsingSeed(pawn.thingIDNumber);
             else
                 color = GetSkinColorOverride(def, pawn);
 
@@ -126,27 +98,14 @@ namespace Pawnmorph.GraphicSys
 
             if (def.ExplicitHybridRace == null)
             {
-                HybridRaceSettings.GraphicsSettings raceGSettings = def.raceSettings?.graphicsSettings;
-                Gender? gender = pawn?.gender;
-                if (gender == Gender.Female && raceGSettings?.femaleSkinColorOverride != null)
-                    return raceGSettings.femaleSkinColorOverride;
-
-                return raceGSettings?.skinColorOverride;
+                return def.raceSettings?.ColorGenerator?.GetSkinColor(pawn)?.First;
             }
 
             var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
             ColorGenerator colorGenerator = hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskincolorgen;
             Color? color;
             if (colorGenerator != null)
-                try
-                {
-                    if (pawn != null) Rand.PushState(pawn.thingIDNumber);
-                    color = colorGenerator.NewRandomizedColor();
-                }
-                finally
-                {
-                    if (pawn != null) Rand.PopState();
-                }
+                color = colorGenerator.NewRandomizedColorUsingSeed(pawn.thingIDNumber);
             else
                 color = null;
 
@@ -170,12 +129,7 @@ namespace Pawnmorph.GraphicSys
 
             if (def.ExplicitHybridRace == null)
             {
-                HybridRaceSettings.GraphicsSettings gSettings = def.raceSettings?.graphicsSettings;
-
-                if (pawn?.gender == Gender.Female && gSettings?.femaleSkinColorOverrideSecond != null)
-                    return gSettings.femaleSkinColorOverrideSecond;
-
-                return gSettings?.skinColorOverrideSecond;
+                return def.raceSettings?.ColorGenerator?.GetSkinColor(pawn)?.Second;
             }
 
             var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
@@ -183,19 +137,13 @@ namespace Pawnmorph.GraphicSys
 
             Color? color;
             if (colorGenerator != null)
-                try
-                {
-                    if (pawn != null) Rand.PushState(pawn.thingIDNumber);
-                    color = colorGenerator.NewRandomizedColor();
-                }
-                finally
-                {
-                    if (pawn != null) Rand.PopState();
-                }
-            else color = null;
+                color = colorGenerator.NewRandomizedColorUsingSeed(pawn.thingIDNumber);
+            else
+                color = null;
 
             return color;
         }
+
 
         /// <summary>
         ///     refresh the graphics associated with this pawn, including the portraits if it's a colonist

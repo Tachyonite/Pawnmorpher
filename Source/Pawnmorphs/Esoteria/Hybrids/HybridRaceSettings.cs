@@ -47,7 +47,23 @@ namespace Pawnmorph.Hybrids
         /// <value>
         /// The color generator.
         /// </value>
-        public IMorphColorGenerator ColorGenerator => colorGenerator ?? (colorGenerator =  new GraphicsSettings());
+        public IMorphColorGenerator ColorGenerator 
+        {
+            get 
+            {
+                if (colorGenerator != null)
+                    return colorGenerator;
+#pragma warning disable 618
+                else if (graphicsSettings != null) //attempt fallback to obsolete graphicsSettings
+                    return graphicsSettings;
+#pragma warning restore 618
+                else
+                {
+                    colorGenerator = new GraphicsSettings();
+                    return colorGenerator;
+                }
+            }
+        }
 
 
         /// <summary>
@@ -211,7 +227,6 @@ namespace Pawnmorph.Hybrids
             ColorChannel? IMorphColorGenerator.GetChannel(Pawn pawn, string channelID)
             {
                 bool isFemale = pawn.gender == Gender.Female;
-
 
                 if (channelID == "skin")
                 {
