@@ -16,7 +16,7 @@
 	<ResearchProjectDef>
 		<defName>MutagenicPlantSowing</defName>
 		<label>Mutagenic Plants</label>
-		<description>By exposing plants to mutagenic mechanites it's possible to grow new and 'improved' variants of those plants</description>
+		<description>By exposing plants to mutagenic mechanites it's possible to grow new and 'improved' variants of them.</description>
 		<techLevel>Industrial</techLevel>
 		<tab>Pawnmorpher</tab>
 		<researchViewX>1</researchViewX>
@@ -43,7 +43,7 @@
 	<ResearchProjectDef>
 		<defName>AdvancedSerumSynthesis</defName>
 		<label>Targeted serums</label>
-		<description>Using some more advanced techniques, we can target two distinct types of mutation -- production and combat.  Production can be used to make pawns more useful, allowing them to produce milk and eggs.</description>
+		<description>Using some more advanced techniques, we can target two distinct types of mutation -- production and combat.  Production can be used to make pawns more useful, allowing them to produce milk, eggs and other items.</description>
 		<baseCost>1500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>
@@ -86,7 +86,7 @@
 	<ResearchProjectDef>
 		<defName>MutagenCentrifuging</defName>
 		<label>Mutagen centrifuging</label>
-		<description>Develop plans to construct a centrifuge to refine slurry and chaobulbs back to mutanite by a process that involves straining the mechanites from other matter via a morphsilk filter and centrifugal motion. This process will not be efficient and will use quite a bit of power, but if mutanite is otherwise unobtainable...this is one way.</description>
+		<description>Develop plans to construct a centrifuge to refine slurry and chaobulbs back to mutanite by a process involving the straining of mechanites through morphsilk. This process will not be efficient and will use quite a bit of power, but if mutanite is otherwise unobtainable...this is one way. It will also be possible to forgo safety protocols to speed up the process, though this may have unintended effects on anyone nearby.</description>
 		<baseCost>3000</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>
@@ -120,8 +120,7 @@
 	<ResearchProjectDef>
 		<defName>MutagenChambers</defName>
 		<label>Chambers</label>
-		<description>Unlocks a bath of mutagen which pawns can enter or be carried to. It transforms them into random animals in a much shorter time than usual, and only at the cost of a vial of mechanite slurry. However, we will need to collect
-			the	genetic information of the animal before we can turn someone into it. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to our database.</description>
+		<description>Unlocks a bath of mutagen which pawns can enter or be carried to. It transforms them into random animals in a much shorter time than usual, and only at the cost of a vial of mechanite slurry. However, in order to change someone into a given animal, the genetic structure of said animal will need to be sequenced. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to our database.</description>
 		<baseCost>1500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>

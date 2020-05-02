@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Pawnmorph.DefExtensions;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -22,6 +23,13 @@ namespace Pawnmorph
         {
             base.PostSpawnSetup(respawningAfterLoad);
             if (respawningAfterLoad) return;
+
+            if (parent.def.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == true)
+            {
+                Log.Error($"{nameof(CompAlwaysFormerHuman)} found on {parent.def.defName} which should never be a former human!");
+                triggered = true;
+                return; 
+            }
 
             if (!triggered)
             {
