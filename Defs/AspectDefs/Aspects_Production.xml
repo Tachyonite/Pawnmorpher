@@ -31,7 +31,7 @@
                     </li>
                 </productionBoosts>
                 <statOffsets>
-                    <SapienceLimit>-0.05</SapienceLimit>
+                    <SapienceLimit>-0.2</SapienceLimit>
                 </statOffsets>
             </li>
             <li>
@@ -46,7 +46,7 @@
                     </li>
                 </productionBoosts>
                 <statOffsets>
-                    <SapienceLimit>-0.5</SapienceLimit>
+                    <SapienceLimit>-0.7</SapienceLimit>
                 </statOffsets>
             </li>
         </stages>

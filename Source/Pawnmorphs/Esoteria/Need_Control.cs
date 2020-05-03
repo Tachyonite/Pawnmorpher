@@ -184,6 +184,14 @@ namespace Pawnmorph
             }
         }
 
+        void CalculateCachesIfNeeded()
+        {
+            if(_maxLevelCached == null)
+                _maxLevelCached = MaxLevel;
+            if(_limit == null)
+                _limit = Limit; 
+        }
+
         /// <summary>
         ///     Determines whether the control need is enabled for the pawn.
         /// </summary>
@@ -208,6 +216,7 @@ namespace Pawnmorph
             if (pawn.IsHashIntervalTick(TimeMetrics.TICKS_PER_REAL_SECOND)) //just every second or so 
             {
                 TrySubscribe();
+                CalculateCachesIfNeeded();
                 _seekerLevel = Mathf.Min(_seekerLevel, Limit); 
                 float instinctChange = GetInstinctChangePerTick(pawn) * TimeMetrics.TICKS_PER_REAL_SECOND;
                 if (Mathf.Abs(instinctChange) > EPSILON) AddInstinctChange(Mathf.CeilToInt(instinctChange));
@@ -236,14 +245,23 @@ namespace Pawnmorph
             _maxLevelCached = null;
             _limit = null; 
         }
-
-        float Limit
+        /// <summary>
+        /// Gets the upper limit of this pawns sapience
+        /// </summary>
+        /// <value>
+        /// The limit.
+        /// </value>
+        public float Limit
         {
             get
             {
                 if (_limit == null)
                 {
-                    _limit = pawn.GetStatValue(PMStatDefOf.SapienceLimit); 
+                    if (_maxLevelCached == null)
+                    {
+                        return pawn.GetStatValue(PMStatDefOf.SapienceLimit) * AVERAGE_MAX_SAPIENCE;
+                    }
+                    _limit = pawn.GetStatValue(PMStatDefOf.SapienceLimit) * (_maxLevelCached.Value) ; 
                 }
 
                 return _limit.Value; 
