@@ -7,29 +7,48 @@
 		<label>former human</label>
 		<stages>
 			<li>
-				<minSeverity>0</minSeverity>
-				<label>feral</label>
-
-			</li>
-			<li>
-				<minSeverity>0.01</minSeverity>
-				<label>feral</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
-			</li>
-			<li>
-				<minSeverity>0.64</minSeverity>
 				<label>sapient</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+				<label>mostly sapient</label>
+				<minSeverity>0.4</minSeverity>
+				<disallowedWork>Intellectual,Artistic</disallowedWork>
+				<statOffsets>
+					<TameAnimalChance>0.05</TameAnimalChance>
+					<TrainAnimalChance>0.05</TrainAnimalChance>
+					<ResearchSpeed>-0.25</ResearchSpeed>
+					<SapienceRecoverFactor>0.4</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li>
+				<label>conflicted</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.1</TameAnimalChance>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<ResearchSpeed>-0.5</ResearchSpeed>
+					<SapienceRecoverFactor>0.4</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li >
+				<label>mostly feral</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+					<SapienceRecoverFactor>0.4</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li>
+				<label>mostly feral</label>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+					<SapienceRecoverFactor>0.4</SapienceRecoverFactor>
+				</statOffsets>
 			</li>
 		</stages>
 	</HediffDef>
