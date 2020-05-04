@@ -75,6 +75,7 @@ namespace Pawnmorph.Hybrids
                 baseHungerRate = hHRate,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
+                wildness = animal.wildness/2,
                 meatColor = animal.meatColor,
                 meatMarketValue = animal.meatMarketValue,
                 manhunterOnDamageChance = animal.manhunterOnDamageChance,
@@ -83,6 +84,7 @@ namespace Pawnmorph.Hybrids
                 lifeStageAges = MakeLifeStages(human.lifeStageAges, animal.lifeStageAges),
                 soundMeleeHitPawn = animal.soundMeleeHitPawn,
                 soundMeleeHitBuilding = animal.soundMeleeHitBuilding,
+                trainability = GetTrainability(animal.trainability),
                 soundMeleeMiss = animal.soundMeleeMiss,
                 specialShadowData = human.specialShadowData,
                 soundCallIntervalRange = animal.soundCallIntervalRange,
@@ -95,6 +97,17 @@ namespace Pawnmorph.Hybrids
                 corpseDef = human.corpseDef,
                 packAnimal = animal.packAnimal
             };
+        }
+
+        private static TrainabilityDef GetTrainability(TrainabilityDef animalTrainability)
+        {
+            //hybrid trainability should be 1 above that of a humans 
+            if (animalTrainability == null) return TrainabilityDefOf.Intermediate;
+            if (animalTrainability == TrainabilityDefOf.None) return TrainabilityDefOf.Simple;
+            if (animalTrainability == TrainabilityDefOf.Simple) return TrainabilityDefOf.Intermediate;
+            if (animalTrainability == TrainabilityDefOf.Intermediate) return TrainabilityDefOf.Advanced;
+            if (animalTrainability == TrainabilityDefOf.Advanced) return TrainabilityDefOf.Advanced;
+            return animalTrainability; 
         }
 
         static (float bodySize, float hungerSize) GetFoodStats([NotNull] RaceProperties human, [NotNull] RaceProperties animal)

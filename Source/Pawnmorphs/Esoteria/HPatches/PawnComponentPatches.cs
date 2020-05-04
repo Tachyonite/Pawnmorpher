@@ -21,28 +21,8 @@ namespace Pawnmorph.HPatches
         {
             internal static void Postfix(Pawn pawn)
             {
-                if (pawn.RaceProps.Animal)
-                {
-                    var formerHumanStats = pawn.GetQuantizedSapienceLevel();
-                    
-                    switch (formerHumanStats)
-                    {
-                        case SapienceLevel.Sapient:
-                        case SapienceLevel.Conflicted:
-                        case SapienceLevel.MostlySapient:
-                        case SapienceLevel.MostlyFeral:
-                        case SapienceLevel.Feral: 
-                            AddSapientAnimalComponents(pawn);//ferals need to keep them so stuff doesn't break, like relationships 
-                            break;
-                        case SapienceLevel.PermanentlyFeral:
-                            RemoveSapientAnimalComponents(pawn); //actually removing the components seems to break stuff for some reason 
-                            break;
-                        case null:
-                            return;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                }
+                var sState = pawn.GetSapienceState(); 
+                sState?.AddOrRemoveDynamicComponents();
             }
 
 

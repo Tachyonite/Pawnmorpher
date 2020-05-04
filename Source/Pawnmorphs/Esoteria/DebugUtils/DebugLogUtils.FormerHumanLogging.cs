@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
@@ -45,6 +46,36 @@ namespace Pawnmorph.DebugUtils
             Log.Message(outStr); 
 
         }
+        
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void LogSapienceInfo()
+        {
+            StringBuilder builder = new StringBuilder(); 
+            foreach (Pawn pawn in PawnsFinder.AllMaps_SpawnedPawnsInFaction(Faction.OfPlayer))
+            {
+                var sapienceTracker = pawn.GetSapienceTracker();
+                Need_Control need = sapienceTracker?.SapienceNeed;
+                if(need == null || sapienceTracker.CurrentState == null) continue;
+
+                builder.AppendLine($"{pawn.Name}[{pawn.ThingID}]:");
+
+                float curLevel = need.CurLevel;
+                float curLevelPercent = need.CurLevelPercentage;
+                float limit = need.Limit;
+                var limitStat = pawn.GetStatValue(PMStatDefOf.SapienceLimit); 
+                float limitPercent = need.Limit / need.MaxLevel;
+                builder.AppendLine($"|\t{nameof(curLevel)}:{curLevel}");
+                builder.AppendLine($"|\t{nameof(curLevelPercent)}:{curLevelPercent}");
+                builder.AppendLine($"|\t{nameof(limitStat)}:{limitStat}");
+                builder.AppendLine($"|\t{nameof(limit)}:{limit}");
+                builder.AppendLine($"|\t{nameof(limitPercent)}:{limitPercent}");
+
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
 
         [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
         static void TestFormerHumanDoorPatch()

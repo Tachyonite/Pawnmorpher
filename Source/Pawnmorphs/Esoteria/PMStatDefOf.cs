@@ -42,6 +42,11 @@ namespace Pawnmorph
         public static StatDef MutagenSensitivity;
 
         /// <summary>
+        /// stat that controls the maximum a pawn's sapience can be 
+        /// </summary>
+        public static StatDef SapienceLimit; 
+
+        /// <summary>
         /// this stat is the %chance a pawn will get sick from dangerous foods 
         /// </summary>
         /// note, the check is applied after the initial check on the food itself, so the actual chance a pawn will get sick from

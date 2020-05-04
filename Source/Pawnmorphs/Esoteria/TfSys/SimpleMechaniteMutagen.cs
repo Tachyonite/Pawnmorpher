@@ -63,9 +63,7 @@ namespace Pawnmorph.TfSys
                 Log.Warning($"unable to find status for transformed pawn {transformedPawn.ThingID}");
             }
 
-            Hediff formerHuman =
-                transformedPawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == TfHediffDefOf.TransformedHuman);
-            if (formerHuman == null) return false;
+           
 
             PawnGenerationRequest request = TransformerUtility.GenerateRandomPawnFromAnimal(transformedPawn);
             
@@ -93,7 +91,7 @@ namespace Pawnmorph.TfSys
             }
 
 
-            AddReversionThought(spawned, formerHuman.CurStageIndex);
+            AddReversionThought(spawned);
 
 
 
@@ -111,7 +109,9 @@ namespace Pawnmorph.TfSys
         protected override bool CanRevertPawnImp(TransformedPawnSingle transformedPawn)
         {
             if (!transformedPawn.IsValid) return false;
-            return transformedPawn.animal.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman);
+            var tracker = transformedPawn.animal?.GetSapienceTracker();
+            if (tracker == null) return false;
+            return transformedPawn.animal.GetSapienceState()?.StateDef == def.transformedSapienceState && !tracker.IsPermanentlyFeral; 
         }
 
         /// <summary>Returns true if the specified request is valid.</summary>
@@ -134,7 +134,7 @@ namespace Pawnmorph.TfSys
             Pawn original = request.originals[0];
 
             if (request.addMutationToOriginal)
-                TryAddMutationsToPawn(original, request.cause, request.outputDef);  
+                TryAddMutationsToPawn(original, request.cause, request.outputDef);
 
             var reactionStatus = original.GetFormerHumanReactionStatus();
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
@@ -151,7 +151,7 @@ namespace Pawnmorph.TfSys
                 TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
 
 
-            var pRequest = FormerHumanUtilities.CreateSapientAnimalRequest(request.outputDef, original, faction, fixedGender:newGender); 
+            var pRequest = FormerHumanUtilities.CreateSapientAnimalRequest(request.outputDef, original, faction, fixedGender: newGender);
 
 
 
@@ -163,15 +163,16 @@ namespace Pawnmorph.TfSys
             animalToSpawn.needs.rest.CurLevel =
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
+            float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn); 
+            GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
-
-            FormerHumanUtilities.MakeAnimalSapient(original, animalToSpawn, Rand.Range(0.4f, 1)); //use a normal distribution? 
+            FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel); //use a normal distribution? 
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
-            var rFaction = request.factionResponsible ?? GetFactionResponsible(original); 
+            var rFaction = request.factionResponsible ?? GetFactionResponsible(original);
             var inst = new TransformedPawnSingle
             {
                 original = original,
@@ -194,9 +195,9 @@ namespace Pawnmorph.TfSys
             Faction oFaction = original.Faction;
             Map oMap = original.Map;
 
-            
+
             //apply any other post tf effects 
-            ApplyPostTfEffects(original, spawnedAnimal); 
+            ApplyPostTfEffects(original, spawnedAnimal);
 
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
@@ -204,7 +205,7 @@ namespace Pawnmorph.TfSys
             //notify the faction that their member has been transformed 
             oFaction?.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
 
-            if(!request.noLetter && reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
+            if (!request.noLetter && reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
                 SendLetter(request, original, spawnedAnimal);
 
             if (original.Spawned)
@@ -216,6 +217,8 @@ namespace Pawnmorph.TfSys
 
             return inst;
         }
+
+        
 
         private void TryAddMutationsToPawn([NotNull] Pawn original, [CanBeNull] Hediff requestCause,
                                            [NotNull] PawnKindDef requestOutputDef)
@@ -288,9 +291,7 @@ namespace Pawnmorph.TfSys
 
 
             Pawn animal = transformedPawn.animal;
-
-            Hediff tfHumanHediff = animal?.health?.hediffSet?.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            if (tfHumanHediff == null) return false;
+            if (animal == null) return false; 
             var rFaction = transformedPawn.FactionResponsible;
 
 
@@ -337,9 +338,7 @@ namespace Pawnmorph.TfSys
             var hSapienceTracker = humanoid.GetSapienceTracker();
             var aSapienceTracker = animal.GetSapienceTracker();
             if (hSapienceTracker == null || aSapienceTracker == null) return;
-
-            hSapienceTracker.SetSapience(aSapienceTracker.Sapience);
-            //TODO equalize sapience and set the 'sapience state' 
+            GiveRevertedPawnSapienceState(humanoid, aSapienceTracker.Sapience);
         }
 
         /// <summary>
@@ -367,11 +366,10 @@ namespace Pawnmorph.TfSys
         }
 
         /// <summary>
-        ///     add the correct reversion thought at the correct stage
+        /// add the correct reversion thought at the correct stage
         /// </summary>
-        /// <param name="spawned"></param>
-        /// <param name="curStageIndex"></param>
-        private void AddReversionThought(Pawn spawned, int curStageIndex)
+        /// <param name="spawned">The spawned.</param>
+        private void AddReversionThought(Pawn spawned)
         {
             TraitSet traits = spawned.story.traits;
             ThoughtDef thoughtDef;
@@ -387,8 +385,8 @@ namespace Pawnmorph.TfSys
 
             if (thoughtDef != null)
             {
-                curStageIndex = Mathf.Min(curStageIndex, thoughtDef.stages.Count - 1); //avoid index out of bounds issues 
-                Thought_Memory mem = ThoughtMaker.MakeThought(thoughtDef, curStageIndex);
+                //TODO fix this with special memory for animalistic pawns 
+                Thought_Memory mem = ThoughtMaker.MakeThought(thoughtDef, 0);
                 spawned.TryGainMemory(mem);
             }
         }

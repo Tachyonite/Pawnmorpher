@@ -23,10 +23,9 @@ namespace Pawnmorph.Thoughts
         {
             var sapientLevel = p.GetQuantizedSapienceLevel();
 
-            if (sapientLevel == null) return false;
+            if (sapientLevel == null || p.GetSapienceState()?.StateDef != SapienceStateDefOf.FormerHuman) return false;
 
             if (!def.IsValidFor(p)) return false;
-
 
             var stage = Mathf.Min(def.stages.Count - 1, (int) sapientLevel.Value);
             return ThoughtState.ActiveAtStage(stage); 

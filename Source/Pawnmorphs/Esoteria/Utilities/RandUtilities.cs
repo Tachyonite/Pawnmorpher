@@ -30,6 +30,17 @@ namespace Pawnmorph.Utilities
         }
 
 
+        /// <summary>
+        /// checks if an event, with the given mtb in days, has occured 
+        /// </summary>
+        /// <param name="days">The days.</param>
+        /// <param name="checkDuration">how often this check occurs in ticks</param>
+        /// <returns></returns>
+        public static bool MtbDaysEventOccured(float days, float checkDuration=60)
+        {
+            return Rand.MTBEventOccurs(days, 60000f, checkDuration);
+        }
+
 
         /// <summary>Gets the multiplayer safe seed.</summary>
         /// <value>The mp safe seed.</value>

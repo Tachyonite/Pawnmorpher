@@ -1,0 +1,16 @@
+<Defs>
+    <Pawnmorph.SapienceStateDef>
+        <defName>FormerHuman</defName>
+        <label>former huamn</label>
+        <forcedHediff>TransformedHuman</forcedHediff>
+        <stateType>Pawnmorph.SapienceStates.FormerHuman</stateType>
+        <canGoPermanentlyFeral>true</canGoPermanentlyFeral>
+    </Pawnmorph.SapienceStateDef>
+
+    <Pawnmorph.SapienceStateDef>
+        <defName>Animalistic</defName>
+        <label>animalistic</label>
+        <forcedHediff>Animalistic</forcedHediff>
+        <stateType>Pawnmorph.SapienceStates.Animalistic</stateType>
+    </Pawnmorph.SapienceStateDef>
+</Defs>

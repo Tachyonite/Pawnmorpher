@@ -72,8 +72,8 @@ namespace Pawnmorph
             //make sure it has the right comps 
             if (Pawn.drafter == null) yield break;
 
-            var formerHuman = Pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-            if (formerHuman?.CurStageIndex == 2)
+            var intelligence = Pawn.GetSapienceTracker()?.CurrentIntelligence ?? Intelligence.Animal;
+            if (intelligence >= Intelligence.ToolUser)
             {
                 var enumerator = (IEnumerable<Gizmo>) _getGizmoMethod.Invoke(Pawn.drafter, new object[]{}); 
                 if(enumerator != null)

@@ -4,26 +4,21 @@
 		<priority>0</priority>
 		<labelColor>(121,55,145)</labelColor>
 		<transferToAnimal>true</transferToAnimal>
+		<aspectType>Pawnmorph.Aspects.SapienceHit</aspectType>
 		<stages>
 			<li>
 				<label>Etherbroken</label>
 				<description>Constant production has caused [PAWN_nameDef] to become numb and submit to their fate.</description>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.20</offset>
-					</li>
-				</capMods>
+				<statOffsets>
+                    <SapienceLimit>-0.2</SapienceLimit>
+                </statOffsets>
 			</li>
 			<li>
 				<label>Etherbonded</label>
 				<description>Constant production has caused [PAWN_nameDef] to accept change, and for some reason will now enjoy producing.</description>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.05</offset>
-					</li>
-				</capMods>
+				<statOffsets>
+                    <SapienceLimit>-0.4</SapienceLimit>
+                </statOffsets>
 			</li>
 		</stages>
 	</Pawnmorph.AspectDef>

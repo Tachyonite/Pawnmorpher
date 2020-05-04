@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 //using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.TfSys
@@ -110,6 +111,48 @@ namespace Pawnmorph.TfSys
             }
 
             return false; 
+        }
+
+
+        /// <summary>
+        /// gives the transformed pawn the correct sapience state for this mutagen 
+        /// </summary>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <param name="initialLevel">The initial level.</param>
+        /// <exception cref="System.ArgumentNullException">transformedPawn</exception>
+        protected void GiveTransformedPawnSapienceState([NotNull] Pawn transformedPawn, float initialLevel)
+        {
+            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            var tracker = transformedPawn.GetSapienceTracker();
+            if (tracker == null)
+            {
+                Log.Error($"unable to give {transformedPawn.LabelShort}/{transformedPawn.Name} a sapience state because they have no sapience tracker!");
+                return;
+            }
+            var sapienceState = def.transformedSapienceState ?? SapienceStateDefOf.FormerHuman;
+            tracker.EnterState(sapienceState, initialLevel); 
+        }
+
+        /// <summary>
+        /// gives the reverted pawn the correct sapience state for this mutagen 
+        /// </summary>
+        /// <param name="revertedPawn">The reverted pawn.</param>
+        /// <param name="initialLevel">The initial level.</param>
+        /// <exception cref="System.ArgumentNullException">revertedPawn</exception>
+        protected void GiveRevertedPawnSapienceState([NotNull] Pawn revertedPawn, float initialLevel)
+        {
+            if (revertedPawn == null) throw new ArgumentNullException(nameof(revertedPawn));
+            var tracker = revertedPawn.GetSapienceTracker();
+            if (tracker == null)
+            {
+                Log.Error($"unable to give {revertedPawn.LabelShort}/{revertedPawn.Name} a sapience state because they have no sapience tracker!");
+                return;
+            }
+
+            var sapienceState = def.revertedSapienceState;
+            if (sapienceState == null) return;
+            tracker.EnterState(sapienceState, initialLevel); 
+
         }
 
 
@@ -222,6 +265,23 @@ namespace Pawnmorph.TfSys
             }
 
             transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis); 
+        }
+
+
+        /// <summary>
+        /// Gets the sapience level for the given original and transformed pawn
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <returns></returns>
+        protected virtual float GetSapienceLevel([NotNull] Pawn original, [NotNull] Pawn transformedPawn)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            var sTracker = original.GetSapienceTracker();
+            if (sTracker?.CurrentState != null)
+                return Mathf.Max(sTracker.Sapience - Mathf.Max(def.transformedSapienceDrop.RandomInRange,0), 0); 
+            return Rand.Range(0.4f, 1);
         }
     }
 

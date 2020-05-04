@@ -7,6 +7,7 @@
                 <!-- the first thought that can be assigned to the pawn will be picked -->
                 <thoughts>
                     <li>SapientAnimalAteKibble</li>
+                    <li>AnimalisticAteKibble</li>
                 </thoughts>
             </li>
         </value>
@@ -20,6 +21,7 @@
                 <!-- the first thought that can be assigned to the pawn will be picked -->
                 <thoughts>
                     <li>WargAteCorpse</li>
+                    <li>AnimalisticWargMorphAteCorpse</li>
                 </thoughts>
             </li>
         </value>
@@ -44,6 +46,7 @@
                 <!-- the first thought that can be assigned to the pawn will be picked -->
                 <thoughts>
                     <li>SapientAnimalAteRawFood</li>
+                    <li>AnimalisticPawnAteRawFood</li>
                 </thoughts>
             </li>
         </value>

@@ -20,7 +20,7 @@ namespace Pawnmorph.HPatches
             {
                 foreach (Toil toil in values) yield return toil;
 
-                if (!__instance.pawn.IsSapientOrFeralFormerHuman()) yield break;
+                if (!__instance.pawn.IsFormerHuman() || __instance.pawn?.needs?.mood == null ) yield break;
                 yield return Toils_General.Do(() =>
                 {
                     FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn,

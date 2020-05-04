@@ -20,7 +20,7 @@ namespace Pawnmorph.HPatches
 
             static void Postfix([NotNull] ref List<VerbProperties> ___cachedVerbProperties, [NotNull] Pawn ___pawn)
             {
-                if (___pawn.IsSapientOrFeralFormerHuman())
+                if (___pawn.IsFormerHuman())
 
                 {
                     ___cachedVerbProperties = ___cachedVerbProperties ?? new List<VerbProperties>(); 

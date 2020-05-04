@@ -20,6 +20,7 @@ namespace Pawnmorph
         /// Gets the net mutagenic buildup multiplier for this pawn.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
+        /// <param name="mutagenDef">The mutagen definition.</param>
         /// <returns></returns>
         public static float GetMutagenicBuildupMultiplier([NotNull] this Pawn pawn, MutagenDef mutagenDef = null)
         {

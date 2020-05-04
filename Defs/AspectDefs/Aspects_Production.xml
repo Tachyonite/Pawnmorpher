@@ -1,6 +1,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
     <Pawnmorph.AspectDef Abstract="true" Name="ProductionAspect">
         <labelColor>(245,232,49)</labelColor>
+        <aspectType>Pawnmorph.Aspects.SapienceHit</aspectType>
     </Pawnmorph.AspectDef>
 
     <Pawnmorph.AspectDef ParentName="ProductionAspect">
@@ -29,6 +30,9 @@
                         </hediffFilter>
                     </li>
                 </productionBoosts>
+                <statOffsets>
+                    <SapienceLimit>-0.2</SapienceLimit>
+                </statOffsets>
             </li>
             <li>
                 <label>productive bliss</label>
@@ -41,6 +45,9 @@
                         </hediffFilter>
                     </li>
                 </productionBoosts>
+                <statOffsets>
+                    <SapienceLimit>-0.7</SapienceLimit>
+                </statOffsets>
             </li>
         </stages>
     </Pawnmorph.AspectDef>

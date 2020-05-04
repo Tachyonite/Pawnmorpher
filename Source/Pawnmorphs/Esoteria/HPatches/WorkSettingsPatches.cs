@@ -16,7 +16,7 @@ namespace Pawnmorph.HPatches
             [HarmonyPostfix]
             static void InitializeForFormerHumans([NotNull] Pawn_WorkSettings __instance, [NotNull] Pawn ___pawn)
             {
-                if (___pawn.IsSapientOrFeralFormerHuman())
+                if (___pawn.IsFormerHuman() && ___pawn.workSettings != null)
                 {
 
                     FormerHumanUtilities.InitializeWorkSettingsFor(___pawn, __instance); 

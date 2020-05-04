@@ -16,7 +16,7 @@ namespace Pawnmorph.HPatches
             [HarmonyPrefix]
             static bool DisableForSapients([NotNull] Pawn p, ref ThoughtState __result)
             {
-                if (p.IsSapientOrFeralFormerHuman())
+                if (p.IsFormerHuman() && (p.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral) != SapienceLevel.PermanentlyFeral)
                 {
                     __result = false;
                     return false; 

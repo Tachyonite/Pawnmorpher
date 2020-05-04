@@ -1,103 +1,84 @@
-﻿// PawnPatches.cs created by Iron Wolf for Pawnmorph on 11/27/2019 1:16 PM
-// last updated 11/27/2019  1:16 PM
+﻿// PawnPatches.cs created by Iron Wolf for Pawnmorph on 02/19/2020 5:41 PM
+// last updated 04/26/2020  9:22 AM
 
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using HarmonyLib;
 using JetBrains.Annotations;
-using Pawnmorph.DefExtensions;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
-#pragma warning disable 01591
-#if true
 namespace Pawnmorph.HPatches
 {
-    public static class PawnPatches
+    [HarmonyPatch(typeof(Pawn))]
+    static class PawnPatches
     {
-        [HarmonyPatch(typeof(Pawn)),HarmonyPatch(nameof(Pawn.IsColonistPlayerControlled), MethodType.Getter)]
-        internal static class IsColonistPlayerControlledPatch
+        [HarmonyPatch(nameof(Pawn.CombinedDisabledWorkTags), MethodType.Getter), HarmonyPostfix]
+        static void FixCombinedDisabledWorkTags(ref WorkTags __result, [NotNull] Pawn __instance)
         {
-            [HarmonyPostfix]
-            static void MakeSapientAnimalsColonists(Pawn __instance, ref bool __result)
+            var hediffs = __instance.health?.hediffSet?.hediffs;       
+            if (hediffs == null) return;
+
+            foreach (Hediff hediff in hediffs)
             {
-                if (__instance.Faction?.IsPlayer != true) return;
-                if (!__instance.RaceProps.Animal) return;
-                if (__instance.MentalStateDef != null) return;
-                if (!__instance.Spawned) return;
-                if (__instance.HostFaction != null) return; 
-                
-                __result = __instance.IsSapientOrFeralFormerHuman(); 
-            }
-        }
-#if true
-        [HarmonyPatch(typeof(Pawn)), HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter)]
-        internal static class MakeFormerHumansColonists
-        {
-            [HarmonyPostfix]
-            static void MakeSapientAnimalsColonists([NotNull] Pawn __instance, ref bool __result)
-            {
-                if (!__result && __instance.Faction?.IsPlayer == true)
+                if (hediff is IWorkModifier wM)
                 {
-                    __result = __instance.IsColonistAnimal();
+                    __result |= ~wM.AllowedWorkTags;
+                }
+                else
+                {
+                    foreach (HediffStage hediffStage in hediff.def.stages.MakeSafe())
+                    {
+                        if (hediffStage is IWorkModifier sWM)
+                        {
+                            __result |= ~sWM.AllowedWorkTags; 
+                        }
+                    }
                 }
             }
         }
 
-#endif 
-
-        [HarmonyPatch(typeof(Pawn_NeedsTracker)), HarmonyPatch("ShouldHaveNeed")]
-        internal static class NeedsTracker_ShouldHaveNeedPatch
+        [HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter), HarmonyPrefix]
+        static bool FixIsColonist(ref bool __result, [NotNull] Pawn __instance)
         {
-            [HarmonyPostfix]
-            static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
+            var sTracker = __instance.GetSapienceTracker();
+            if (sTracker?.CurrentState != null)
             {
-                if (nd == PMNeedDefOf.SapientAnimalControl)
-                {
-                    __result = Need_Control.IsEnabledFor(___pawn); 
-                }
-
-
-                if (__result)
-                {
-                    __result = nd.IsValidFor(___pawn);
-                    return;
-                }
-                if (___pawn?.IsSapientOrFeralFormerHuman() != true) return;
-                if (nd?.defName == "SapientAnimalControl")
-                {
-                    __result = true;
-                    return; 
-                }
-                
-                var isColonist = ___pawn.Faction?.IsPlayer == true;
-                if (nd.defName == "Mood")
-                {
-                    __result = true; 
-                }else if (nd.defName == "Joy" && isColonist)
-                    __result = true; 
-
+                __result = __instance.Faction == Faction.OfPlayer && sTracker.CurrentIntelligence == Intelligence.Humanlike;
+                return false;
             }
+
+            return true; 
         }
 
-        [HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BodyAngle))]
-        static class PawnRenderAnglePatch
+        [HarmonyPatch(nameof(Pawn.WorkTypeIsDisabled)), HarmonyPostfix]
+        static void FixWorkTypeIsDisabled(ref bool __result, [NotNull] WorkTypeDef w, [NotNull] Pawn __instance)
         {
-            static bool Prefix(ref float __result, [NotNull] Pawn ___pawn)
-            {
-                if (___pawn.IsSapientFormerHuman() && ___pawn.GetPosture() == PawnPosture.LayingInBed)
-                {
-                    Building_Bed buildingBed = ___pawn.CurrentBed();
-                    Rot4 rotation = buildingBed.Rotation;
-                    rotation.AsInt += Rand.ValueSeeded(___pawn.thingIDNumber) > 0.5 ?  1 : 3;
-                    __result = rotation.AsAngle;
-                    return false; 
-                }
+            if (__result) return;
 
-                return true; 
-            }
+            List<Hediff> hediffs = __instance.health?.hediffSet?.hediffs;
+            if (hediffs == null) return;
+
+            foreach (Hediff hediff in hediffs)
+                if (hediff is IWorkModifier wM)
+                {
+                    if (wM.WorkTypeFilter == null) continue;
+                    if (!wM.WorkTypeFilter.PassesFilter(w))
+                    {
+                        __result = true;
+                        return;
+                    }
+                }
+                else
+                {
+                    foreach (HediffStage hediffStage in hediff.def.stages.MakeSafe())
+                        if (hediffStage is IWorkModifier sWM)
+                            if (sWM.WorkTypeFilter?.PassesFilter(w) == false)
+                            {
+                                __result = true;
+                                return;
+                            }
+                }
         }
     }
 }
-#endif
