@@ -1,12 +1,13 @@
 ﻿<Manifest>
 	<identifier>Pawnmorpher</identifier>
-	<version>1.8.1</version><dependencies>
-	<li>erdelf.humanoidalienraces</li>
-	<li>unlimitedhugs.hugslib</li>
+	<version>1.8.1</version>
+	<dependencies>
+		<li>erdelf.humanoidalienraces</li>
+		<li>unlimitedhugs.hugslib</li>
 	</dependencies>
 	<incompatibleWith>
-	<li>killface.facialstuff</li>
-	<li>changedresser.kv.rw</li>
-	<li>edb.preparecarefully</li>
+		<li>killface.facialstuff</li>
+		<li>changedresser.kv.rw</li>
+		<li>edb.preparecarefully</li>
 	</incompatibleWith>
 </Manifest>
