@@ -2,13 +2,12 @@
 	<identifier>Pawnmorpher</identifier>
 	<version>1.8.1</version>
 	<dependencies>
-		<li>Humanoid Alien Races 2.0</li>
-		<li>HugsLib</li>
+		<li>erdelf.humanoidalienraces</li>
+		<li>unlimitedhugs.hugslib</li>
 	</dependencies>
 	<incompatibleWith>
-		<li>FacialStuff1.0</li>
-		<li>Change Dresser</li>
-		<li>Prepare Carefully</li>
-		
+		<li>killface.facialstuff</li>
+		<li>changedresser.kv.rw</li>
+		<li>edb.preparecarefully</li>
 	</incompatibleWith>
 </Manifest>
