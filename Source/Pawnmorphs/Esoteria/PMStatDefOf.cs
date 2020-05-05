@@ -37,6 +37,11 @@ namespace Pawnmorph
 
 
         /// <summary>
+        ///     stat that determines how likely pawns will stop adapting to mutations
+        /// </summary>
+        public static StatDef MutationHaltChance;
+
+        /// <summary>
         ///     Multiplier on the impact of mutagenic buildup on this creature.
         /// </summary>
         public static StatDef MutagenSensitivity;

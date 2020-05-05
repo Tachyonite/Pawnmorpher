@@ -318,12 +318,14 @@
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
 				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
 			</li>
+			
 		</comps>
 		<stages>
 			<li>
 				<statOffsets>
 					<MutagenSensitivity>-1.5</MutagenSensitivity>
 					<TransformationSensitivity>-1.5</TransformationSensitivity>
+					<MutationHaltChance>1</MutationHaltChance>
 				</statOffsets>
 			</li>
 		</stages>
@@ -342,12 +344,16 @@
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.18</severityPerDay>
 			</li>
+			<li>
+				<compClass>Pawnmorph.Hediffs.Comp_RestartMutationProgression</compClass>
+			</li>
 		</comps>
 		<stages>
 			<li>
 				<statOffsets>
 					<MutagenSensitivity>2</MutagenSensitivity>
 					<TransformationSensitivity>0.2</TransformationSensitivity>
+					<MutationHaltChance>-1</MutationHaltChance>
 				</statOffsets>
 			</li>
 		</stages>

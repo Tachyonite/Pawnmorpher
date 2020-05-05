@@ -171,7 +171,7 @@ namespace Pawnmorph.Hediffs
             //is from the default value, normalized for the total range of the stat 
             sVal -= r / 2; //shift the range of the modified stat value from [0,r/2] to [-r/2,0]
             sVal *= -2 / r; //shift the range again to [0,1], where a default stat value is 0, and either min or max is 0 
-            sVal = Mathf.Max(sVal, 0); //make sure it doesn't go below zero, can happen if the default is not the center point of min and max 
+            sVal = Mathf.Max(sVal, 0); //make sure it doesn't go below zero, can happen if the default is not the center point of min and max
             return sVal;
         }
 
@@ -195,7 +195,9 @@ namespace Pawnmorph.Hediffs
         {
             if (parent.CurStage is MutationStage mStage)
             {
-                float stopChance = mStage.stopChance * GetChanceMult();
+                float stopChance = mStage.stopChance * GetChanceMult() * Pawn.GetStatValue(PMStatDefOf.MutationHaltChance);
+
+                if (stopChance < 0.01f) return; 
                 if (Rand.Value < stopChance) Halted = true;
             }
         }

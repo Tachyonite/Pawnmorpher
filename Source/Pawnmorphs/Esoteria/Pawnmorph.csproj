@@ -393,6 +393,7 @@
     <Compile Include="Hediffs\CompProps_ImmunizableMutation.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
+    <Compile Include="Hediffs\Comp_RestartMutationProgression.cs" />
     <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
     <Compile Include="Hediffs\FullTransformationStage.cs" />
     <Compile Include="Hediffs\FullTransformationStageBase.cs" />

@@ -43,6 +43,17 @@
         <displayPriorityInCategory>75</displayPriorityInCategory>
     </StatDef>
 
+    <StatDef ParentName="BaseMutagenic">
+        <defName>MutationHaltChance</defName>
+        <label>mutation halt chance</label>
+        <description>stat that determines how likely pawns will stop adapting to mutations</description>
+        <defaultBaseValue>0</defaultBaseValue>
+        <hideAtValue>0</hideAtValue>
+        <maxValue>2</maxValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+    </StatDef>
+
     <StatDef>
         <defName>MutagenSensitivity_Apparel</defName>
         <label>mutagen sensitivity (apparel)</label>
