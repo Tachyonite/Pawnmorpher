@@ -124,7 +124,7 @@ namespace Pawnmorph
         {
             RandUtilities.PushState();
 
-            MemoryThoughtHandler thoughts = Pawn.needs.mood.thoughts.memories;
+            MemoryThoughtHandler thoughts = Pawn.needs?.mood?.thoughts?.memories;
             EtherState etherState = Pawn.GetEtherState();
             HatchingTicker = 0;
             var thingCount = 0;
@@ -202,7 +202,7 @@ namespace Pawnmorph
                 }
             }
 
-            if (stageThought != null) thoughts.TryGainMemory(stageThought);
+            if (stageThought != null) thoughts?.TryGainMemory(stageThought);
 
             ThoughtDef addThought;
             switch (etherState)
@@ -219,7 +219,7 @@ namespace Pawnmorph
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            if (addThought != null) thoughts.TryGainMemory(addThought);
+            if (addThought != null) thoughts?.TryGainMemory(addThought);
 
             if (etherState == EtherState.None)
             {
