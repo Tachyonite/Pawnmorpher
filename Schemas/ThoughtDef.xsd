@@ -81,6 +81,7 @@
 			<xs:enumeration value="SapientMemoryBase" />
 			<xs:enumeration value="AnimalisticNakedThought" />
 			<xs:enumeration value="AnimalisticNakedThougthNudist" />
+			<xs:enumeration value="MergedPawnPersistentBase" />
 		</xs:restriction>
 	</xs:simpleType>
 

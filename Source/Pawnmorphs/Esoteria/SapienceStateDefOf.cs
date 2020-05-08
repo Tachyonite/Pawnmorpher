@@ -20,6 +20,9 @@ namespace Pawnmorph
         public static SapienceStateDef FormerHuman;
 
         [NotNull]
-        public static SapienceStateDef Animalistic; 
+        public static SapienceStateDef Animalistic;
+
+        [NotNull]
+        public static SapienceStateDef MergedPawn;
     }
 }

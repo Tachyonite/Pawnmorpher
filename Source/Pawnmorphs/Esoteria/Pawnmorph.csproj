@@ -509,11 +509,13 @@
     <Compile Include="SapienceStateDefOf.cs" />
     <Compile Include="SapienceStates\Animalistic.cs" />
     <Compile Include="SapienceStates\FormerHuman.cs" />
+    <Compile Include="SapienceStates\MergedPawn.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
     <Compile Include="SimplePawnColorSet.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
+    <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
@@ -674,6 +676,7 @@
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="Thoughts\Worker_MergedPawn.cs" />
     <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />
     <Compile Include="Thoughts\Worker_SapientNaked.cs" />
     <Compile Include="Thoughts\Worker_Sapience.cs" />

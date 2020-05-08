@@ -842,21 +842,8 @@ namespace Pawnmorph
                 Log.Error($"{animal.Name},{animal.def.defName} does not have a {nameof(SapienceTracker)} comp!");
                 return;
             }
-            
-            
 
-            PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
-            Faction ofPlayer = Faction.OfPlayer;
-
-            PawnKindDef kind = pawnKind;
-            Faction faction = ofPlayer;
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
-            float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
-            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
-                                                  fixedChronologicalAge: chronoAge,
-                                                  fixedBiologicalAge: convertedAge); //TODO wrap in a helper method 
-            Pawn lPawn = PawnGenerator.GeneratePawn(local);
-
+            Pawn lPawn = GenerateRandomHumanForm(animal);
 
             MorphDef morph = MorphUtilities.GetMorphOfAnimal(animal.def).FirstOrDefault();
 
@@ -875,15 +862,12 @@ namespace Pawnmorph
                 lPawn.CheckRace(false, false);
             }
 
-
-            lPawn.equipment
-                ?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
-            lPawn.apparel?.DestroyAll();
+            CleanupPawn(lPawn);
             sTracker.EnterState(SapienceStateDefOf.FormerHuman, sapienceLevel);
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
             TryAssignBackstoryToTransformedPawn(animal, lPawn);
-            TransferEverything(lPawn, animal, passionTransferMode:PawnTransferUtilities.SkillPassionTransferMode.Set);
+            TransferEverything(lPawn, animal, passionTransferMode: PawnTransferUtilities.SkillPassionTransferMode.Set);
             animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
             var inst = new TransformedPawnSingle
             {
@@ -938,6 +922,65 @@ namespace Pawnmorph
 
                 animal.training.Train(training, null, true);
             }
+        }
+
+        private static void CleanupPawn(Pawn lPawn)
+        {
+            lPawn.equipment
+                            ?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
+            lPawn.apparel?.DestroyAll();
+        }
+
+        /// <summary>
+        /// Generates the random human form of the given animal 
+        /// </summary>
+        /// <param name="animal">The animal.</param>
+        /// <returns></returns>
+        public static Pawn GenerateRandomHumanForm(Pawn animal)
+        {
+            PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
+
+            PawnKindDef kind = pawnKind;
+            Faction faction = Faction.OfPlayer;
+            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
+            float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
+            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
+                                                  fixedChronologicalAge: chronoAge,
+                                                  fixedBiologicalAge: convertedAge); 
+            Pawn lPawn = PawnGenerator.GeneratePawn(local);
+            return lPawn;
+        }
+
+        /// <summary>
+        /// Generates the random unmerged humans for the given merged animal 
+        /// </summary>
+        /// <param name="mergedAnimal">The animal.</param>
+        /// <returns></returns>
+        public static (Pawn p1, Pawn p2) GenerateRandomUnmergedHuman(Pawn mergedAnimal)
+        {
+            PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
+
+            PawnKindDef kind = pawnKind;
+            Faction faction = Faction.OfPlayer;
+            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(mergedAnimal, ThingDefOf.Human.race), 17);
+            float chronoAge = mergedAnimal.ageTracker.AgeChronologicalYears
+                            * convertedAge
+                            / mergedAnimal.ageTracker.AgeBiologicalYears;
+
+            float p1Age = Rand.Range(0.7f, 1.2f) * convertedAge;
+            float p2Age = 2 * convertedAge - p1Age;
+            float p1ChronoAge = Rand.Range(0.7f, 1.2f) * chronoAge;
+            float p2ChronoAge = 2 * chronoAge - p1ChronoAge;
+
+            var p1Request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
+                                                      fixedChronologicalAge: p1ChronoAge, fixedBiologicalAge: p1Age);
+            var p2Request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
+                                                      fixedChronologicalAge: p2ChronoAge, fixedBiologicalAge: p2Age);
+            Pawn p1 = PawnGenerator.GeneratePawn(p1Request);
+            Pawn p2 = PawnGenerator.GeneratePawn(p2Request);
+
+
+            return (p1, p2); 
         }
 
         /// <summary>

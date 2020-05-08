@@ -1199,7 +1199,15 @@
 		</lifeStages>
 	</PawnKindDef>
 
-	<ThingDef ParentName="ChaomorphBaseDerived">
+	<ThingDef ParentName="ChaomorphBaseDerived" Name="ChaomeldBase">
+		<comps>
+			<li>
+				<compClass>Pawnmorph.ThingComps.AlwaysMergedPawn</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="ChaomeldBase">
 		<defName>Chaomeld</defName>
 		<label>Chaomeld</label>
 		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arrangement. This type of chaomeld produces both eggs and milk, but at lower levels than a chaocow or chaodino.</description>
@@ -1210,9 +1218,6 @@
 			<MarketValue>3000</MarketValue>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
-				<hediff>2xMergedHuman</hediff>
-			</li>
 			<li Class="CompProperties_EggLayer">
 				<eggUnfertilizedDef>TFEgg</eggUnfertilizedDef>
 				<eggFertilizedDef>TFEgg</eggFertilizedDef>
@@ -1318,7 +1323,7 @@
 	</ThingDef>
 
 
-	<ThingDef ParentName="ChaomorphBaseDerived">
+	<ThingDef ParentName="ChaomeldBase">
 		<!-- ChaomeldDog was missing a thingDef, most values are taken from ChaomeldCow and will need tweaking -->
 		<defName>ChaomeldDog</defName>
 		<label>chaomeld</label>
@@ -1330,10 +1335,6 @@
 			<MarketValue>3000</MarketValue>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
-				<hediff>2xMergedHuman</hediff>
-			</li>
-
 			<li Class="CompProperties_Milkable">
 				<milkDef>TFMilk</milkDef>
 				<milkIntervalDays>1</milkIntervalDays>
@@ -1542,7 +1543,7 @@
 	</ManeuverDef>
 
 
-	<ThingDef ParentName="ChaomorphBaseDerived">
+	<ThingDef ParentName="ChaomeldBase">
 		<defName>ChaomeldDragon</defName>
 		<label>Chaomeld</label>
 		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement. Chaodragons produce mutagenic eggs very rapidly.</description>
@@ -1555,9 +1556,6 @@
 			<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
-				<hediff>2xMergedHuman</hediff>
-			</li>
 			<li Class="CompProperties_EggLayer">
 				<eggUnfertilizedDef>TFEgg</eggUnfertilizedDef>
 				<eggFertilizedDef>TFEgg</eggFertilizedDef>
@@ -1780,7 +1778,7 @@
 	</PawnKindDef>
 
 
-	<ThingDef ParentName="ChaomorphBaseDerived">
+	<ThingDef ParentName="ChaomeldBase">
 		<defName>ChaomeldCow</defName>
 		<label>Chaomeld</label>
 		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement.</description>
@@ -1791,9 +1789,6 @@
 			<MarketValue>3000</MarketValue>
 		</statBases>
 		<comps>
-			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
-				<hediff>2xMergedHuman</hediff>
-			</li>
 			<li Class="CompProperties_Milkable">
 				<milkDef>TFMilk</milkDef>
 				<milkIntervalDays>0.5</milkIntervalDays>
@@ -1991,7 +1986,7 @@
 		</lifeStages>
 	</PawnKindDef>
 
-	<ThingDef ParentName="ChaomorphBaseDerived">
+	<ThingDef ParentName="ChaomeldBase">
 		<defName>ChaofusionRhino</defName>
 		<label>Chaofusion</label>
 		<description>A towering fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement. This meld is gigantic and terrifyingly efficient in combat.</description>
@@ -2004,18 +1999,6 @@
 			<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.30</ArmorRating_Heat>
 		</statBases>
-		<comps>
-			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
-				<hediff>2xMergedHuman</hediff>
-			</li>
-			<!--
-			<li Class="CompProperties_Shearable">
-				<shearIntervalDays>2</shearIntervalDays>
-				<woolAmount>100</woolAmount>
-				<woolDef>WoolThrumbo</woolDef>
-			  </li>
-			  -->
-		</comps>
 		<tools>
 			<li>
 				<capacities>
