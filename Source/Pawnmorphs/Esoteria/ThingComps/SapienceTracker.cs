@@ -113,7 +113,7 @@ namespace Pawnmorph.ThingComps
         ///     <c>true</c> if this instance is a former human; otherwise, <c>false</c>.
         /// </value>
         [Obsolete("use " + nameof(CurrentIntelligence) + " or " + nameof(CurrentState) + " instead")]
-        public bool IsFormerHuman => _sapienceState?.StateDef == SapienceStateDefOf.FormerHuman;
+        public bool IsFormerHuman => _sapienceState?.IsFormerHuman == true;
 
 
         /// <summary>
@@ -122,7 +122,8 @@ namespace Pawnmorph.ThingComps
         /// <value>
         ///     <c>true</c> if this instance is permanently feral; otherwise, <c>false</c>.
         /// </value>
-        public bool IsPermanentlyFeral => _isFormerHuman && _sapienceLevel == SapienceLevel.PermanentlyFeral;
+        
+        public bool IsPermanentlyFeral => _sapienceState?.IsFormerHuman == true && _sapienceLevel == SapienceLevel.PermanentlyFeral;
 
         /// <summary>
         ///     Gets or sets the sapience level.
@@ -236,6 +237,14 @@ namespace Pawnmorph.ThingComps
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                //check to move old saves to the new sapience system 
+                if (_isFormerHuman && _sapienceState == null)
+                {
+                    _sapienceState = SapienceStateDefOf.FormerHuman.CreateState();
+                    _sapienceState.Init(this); 
+                }
+
+
                 _sapienceState?.Init(this); 
                 TrySubscribe();
             }
