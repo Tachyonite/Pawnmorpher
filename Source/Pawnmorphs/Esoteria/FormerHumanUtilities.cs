@@ -597,7 +597,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsFormerHuman([NotNull] this Pawn pawn)
         {
-            return pawn.GetSapienceState()?.StateDef == SapienceStateDefOf.FormerHuman;
+            return pawn.GetSapienceState()?.IsFormerHuman == true;
         }
 
         /// <summary>

@@ -14,6 +14,14 @@ namespace Pawnmorph.SapienceStates
     public class Animalistic : SapienceState
     {
         /// <summary>
+        /// Gets a value indicating whether this state makes the pawn count as a 'former human'.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this state makes the pawn count as a 'former human'; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsFormerHuman => false; 
+
+        /// <summary>
         ///     Gets the current intelligence.
         /// </summary>
         /// <value>

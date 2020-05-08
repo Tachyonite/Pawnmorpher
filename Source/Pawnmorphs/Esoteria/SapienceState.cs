@@ -21,7 +21,15 @@ namespace Pawnmorph
         /// <value>
         /// The pawn.
         /// </value>
-        public Pawn Pawn => Tracker?.Pawn; 
+        public Pawn Pawn => Tracker?.Pawn;
+
+        /// <summary>
+        /// Gets a value indicating whether this state makes the pawn count as a 'former human'.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this state makes the pawn count as a 'former human'; otherwise, <c>false</c>.
+        /// </value>
+        public abstract bool IsFormerHuman { get; }
 
         void IExposable.ExposeData()
         {

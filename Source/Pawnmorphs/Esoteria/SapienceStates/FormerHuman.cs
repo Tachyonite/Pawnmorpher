@@ -18,9 +18,15 @@ namespace Pawnmorph.SapienceStates
     /// <seealso cref="Pawnmorph.SapienceState" />
     public class FormerHuman : SapienceState
     {
-        private const float PERMANENTLY_FERAL_MTB = 3; 
+        private const float PERMANENTLY_FERAL_MTB = 3;
 
-
+        /// <summary>
+        /// Gets a value indicating whether this state makes the pawn count as a 'former human'.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this state makes the pawn count as a 'former human'; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsFormerHuman => true; 
 
         /// <summary>
         /// called after every tick 
