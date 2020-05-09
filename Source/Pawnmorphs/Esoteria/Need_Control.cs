@@ -129,7 +129,7 @@ namespace Pawnmorph
         ///     Adds the instinct change to this need
         /// </summary>
         /// <param name="instinctChange">The instinct change.</param>
-        public void AddInstinctChange(int instinctChange)
+        public void AddInstinctChange(float instinctChange)
         {
             _maxLevelCached = null;
             _seekerLevel += CalculateControlChange(pawn, instinctChange) / AVERAGE_MAX_SAPIENCE;
@@ -219,7 +219,7 @@ namespace Pawnmorph
                 CalculateCachesIfNeeded();
                 _seekerLevel = Mathf.Min(_seekerLevel, Limit); 
                 float instinctChange = GetInstinctChangePerTick(pawn) * TimeMetrics.TICKS_PER_REAL_SECOND;
-                if (Mathf.Abs(instinctChange) > EPSILON) AddInstinctChange(Mathf.CeilToInt(instinctChange));
+                if (Mathf.Abs(instinctChange) > EPSILON) AddInstinctChange(instinctChange);
                 //_maxLevelCached = null; 
                 SapienceLevel sLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
                 if (sLevel != _currentLevel)

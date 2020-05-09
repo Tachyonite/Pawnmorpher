@@ -71,7 +71,7 @@
 					<TameAnimalChance>0.05</TameAnimalChance>
 					<TrainAnimalChance>0.05</TrainAnimalChance>
 					<ResearchSpeed>-0.25</ResearchSpeed>
-					<SapienceRecoverFactor>0.4</SapienceRecoverFactor>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
 				</statOffsets>
 			</li>
 			<li>
@@ -81,7 +81,7 @@
 					<TameAnimalChance>0.1</TameAnimalChance>
 					<TrainAnimalChance>0.1</TrainAnimalChance>
 					<ResearchSpeed>-0.5</ResearchSpeed>
-					<SapienceRecoverFactor>0.4</SapienceRecoverFactor>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
@@ -92,7 +92,7 @@
 					<TameAnimalChance>0.2</TameAnimalChance>
 					<TrainAnimalChance>0.2</TrainAnimalChance>
 					<ResearchSpeed>-1</ResearchSpeed>
-					<SapienceRecoverFactor>0.4</SapienceRecoverFactor>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
@@ -103,7 +103,7 @@
 					<TameAnimalChance>0.2</TameAnimalChance>
 					<TrainAnimalChance>0.2</TrainAnimalChance>
 					<ResearchSpeed>-1</ResearchSpeed>
-					<SapienceRecoverFactor>0.4</SapienceRecoverFactor>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
 				</statOffsets>
 			</li>
 		</stages>
