@@ -55,8 +55,11 @@ namespace Pawnmorph
             if (originals == null) throw new ArgumentNullException(nameof(originals));
             if (mergedPawn == null) throw new ArgumentNullException(nameof(mergedPawn));
             TransferAspects(originals, mergedPawn);
-            TransferTraits(originals, mergedPawn); 
-            //TODO relationships 
+            TransferTraits(originals, mergedPawn);
+            PawnTransferUtilities.MergeSkills(originals, mergedPawn); 
+            //disabled for now, no way to undo this when the meld is reverted 
+            //PawnTransferUtilities.TransferRelations(originals, mergedPawn, r => r != PawnRelationDefOf.Bond); 
+
         }
 
 
