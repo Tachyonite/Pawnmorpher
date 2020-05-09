@@ -118,7 +118,7 @@ namespace Pawnmorph.TfSys
             meld.SetFaction(Faction.OfPlayer);
       
             ReactionsHelper.OnPawnsMerged(firstPawn, firstPawn.IsPrisoner, secondPawn, secondPawn.IsPrisoner, meld);
-
+            MergedPawnUtilities.TransferToMergedPawn(request.originals, meld); 
 
             TransformerUtility.CleanUpHumanPawnPostTf(firstPawn, null);
             TransformerUtility.CleanUpHumanPawnPostTf(secondPawn, null);

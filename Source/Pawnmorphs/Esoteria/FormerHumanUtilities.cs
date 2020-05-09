@@ -330,7 +330,7 @@ namespace Pawnmorph
         ///     The mutation traits.
         /// </value>
         [NotNull]
-        public static IEnumerable<TraitDef> MutationTraits { get; }
+        public static IReadOnlyList<TraitDef> MutationTraits { get; }
 
         /// <summary>
         ///     Creates the merged animal request.

@@ -55,6 +55,8 @@ namespace Pawnmorph.ThingComps
 
             CleanupPawn(p1);
             CleanupPawn(p2);
+            Pawn[] tmpArr = {p1, p2};
+            MergedPawnUtilities.TransferToMergedPawn(tmpArr, sTracker.Pawn);  
 
             var tfPawn = new MergedPawns()
             {
