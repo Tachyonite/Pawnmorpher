@@ -1199,7 +1199,7 @@
 		</lifeStages>
 	</PawnKindDef>
 
-	<ThingDef ParentName="ChaomorphBaseDerived" Name="ChaomeldBase">
+	<ThingDef Abstract="true" ParentName="ChaomorphBaseDerived" Name="ChaomeldBase">
 		<comps>
 			<li>
 				<compClass>Pawnmorph.ThingComps.AlwaysMergedPawn</compClass>
