@@ -24,32 +24,32 @@
         <stages>
             <li>
                 <!-- Sapient -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>sapient</label>
+                <description>I can think clearly, whatever.</description>
+                <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
                 <!-- Mostly Sapient -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>minor instinct</label>
+                <description>My head feels weird...like a strange voice in the back of my mind.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <!-- Conflicted -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>conflicted mind</label>
+                <description>I think I should just...get on all fours...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
                 <!-- Mostly Feral -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>hard...to...think</label>
+                <description>Should I...give in to the thoughts?</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <!-- Feral -->
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>feral</label>
+                <description>...food?</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
@@ -80,32 +80,32 @@
         <stages>
             <li>
                 <!-- Sapient -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>sapient</label>
+                <description>My human mind is as strong as ever!</description>
+                <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
                 <!-- Mostly Sapient -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>minor instinct</label>
+                <description>Why do I feel so strange...? Like my mind is melting...</description>
+                <baseMoodEffect>-8</baseMoodEffect>
             </li>
             <li>
                 <!-- Conflicted -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>conflicted mind</label>
+                <description>These sights and smells are overwhelming and horrid!</description>
+                <baseMoodEffect>-10</baseMoodEffect>
             </li>
             <li>
                 <!-- Mostly Feral -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>hard to think</label>
+                <description>No! I can't...give up now...but this instinct is strong!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
                 <!-- Feral -->
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>feral</label>
+                <description>...food?</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
@@ -136,32 +136,32 @@
         <stages>
             <li>
                 <!-- Sapient -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>sapient</label>
+                <description>My human mind is as strong as ever!</description>
+                <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
                 <!-- Mostly Sapient -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>minor instinct</label>
+                <description>Why do I feel so strange...? Like my mind is melting...</description>
+                <baseMoodEffect>-8</baseMoodEffect>
             </li>
             <li>
                 <!-- Conflicted -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>conflicted mind</label>
+                <description>These sights and smells are overwhelming and horrid!</description>
+                <baseMoodEffect>-10</baseMoodEffect>
             </li>
             <li>
                 <!-- Mostly Feral -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>hard to think</label>
+                <description>No! I can't...give up now...but this instinct is strong!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
                 <!-- Feral -->
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>feral</label>
+                <description>...food?</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
@@ -189,33 +189,33 @@
         <stages>
             <li>
                 <!-- Sapient -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>sapient</label>
+                <description>My human mind is as strong as ever...which is boring.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
             </li>
             <li>
                 <!-- Mostly Sapient -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>minor instinct</label>
+                <description>My senses feel keener, and these animal thoughts are electric!</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
                 <!-- Conflicted -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>healthy instinct</label>
+                <description>Everything is so rich...a new experience...I could get used to this...!</description>
+                <baseMoodEffect>15</baseMoodEffect>
             </li>
             <li>
                 <!-- Mostly Feral -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>loving instinct</label>
+                <description>Hard to keep my focus...but why should I?</description>
+                <baseMoodEffect>20</baseMoodEffect>
             </li>
             <li>
                 <!-- Feral -->
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>feral</label>
+                <description>...happy!</description>
+                <baseMoodEffect>50</baseMoodEffect>
             </li>
         </stages>
         <modExtensions>
