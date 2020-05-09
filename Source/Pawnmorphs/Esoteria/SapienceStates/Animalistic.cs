@@ -90,6 +90,17 @@ namespace Pawnmorph.SapienceStates
         {
             AddMostlyFeralComps();
             AddHumanlikeComps();
+
+            var onMap = Pawn.Map != null;
+            if (onMap)
+            {
+                Pawn.equipment?.DropAllEquipment(Pawn.GetCorrectPosition(), Pawn.Faction != Faction.OfPlayer);
+            }
+            else
+            {
+                Pawn.equipment?.DestroyAllEquipment(); 
+            }
+
         }
 
         private void InitHumanlikeComps()

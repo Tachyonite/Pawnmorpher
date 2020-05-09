@@ -46,6 +46,15 @@ namespace Pawnmorph.DebugUtils
             Log.Message(outStr); 
 
         }
+
+        [DebugOutput(category = FH_CATEGORY)]
+        static void PrintHumanlikeThinkTree()
+        {
+            ThinkTreeDef tree = DefDatabase<ThinkTreeDef>.GetNamed("Humanlike");
+            if (tree == null) return;
+            string outStr = TreeUtilities.PrettyPrintTree(tree.thinkRoot, GetChildren, GetNodeLabel);
+            Log.Message(outStr); 
+        }
         
         [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
         static void LogSapienceInfo()
@@ -153,7 +162,12 @@ namespace Pawnmorph.DebugUtils
 
         static IEnumerable<ThinkNode> GetChildren([NotNull] ThinkNode node)
         {
-            if (node is ThinkNode_SubtreesByTag) return Enumerable.Empty<ThinkNode>();
+            if (node is ThinkNode_SubtreesByTag sNode)
+            {
+                var allDefs = DefDatabase<ThinkTreeDef>.AllDefs.Where(d => d.insertTag == sNode.insertTag && d.thinkRoot != null);
+                return allDefs.Select(d => d.thinkRoot); 
+
+            }
             if (node is ThinkNode_Subtree) return Enumerable.Empty<ThinkNode>();
             return node.subNodes.MakeSafe(); 
         }
