@@ -12,22 +12,22 @@
 		<stages>
 			<li>
 				<label>changed</label>
-				<description>I can hardly believe my eyes...I'm a goddamn animal!</description>
+				<description>What on earth?! I can hear you...me...us? I need some space.</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 			<li>
 				<label>lingering instinct</label>
-				<description>Something's tugging at my mind...it's the animal.</description>
+				<description>You, stop thinking about it or we're both going to be in trouble.</description>
 				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 			<li>
-				<label>conflicted mind</label>
-				<description>I shouldn't give in but it's...getting cloudy in here.</description>
+				<label>conflicted minds</label>
+				<description>C'mon, stop acting like this...I can't think clearly.</description>
 				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 			<li>
 				<label>hard to think...</label>
-				<description>Gotta...stay...focused but all I want to do is eat and sleep!</description>
+				<description>You're...making this worse for both of us...we...I need to sleep.</description>
 			</li>
 			<li>
 				<label>feral animal</label>
@@ -59,22 +59,22 @@
 		<stages>
 			<li>
 				<label>changed</label>
-				<description>This is a little bit more extreme than I wanted, but ok.</description>
+				<description>Hey friend, I don't know how you feel about this but I think it's pretty cool.</description>
 				<baseMoodEffect>1</baseMoodEffect>
 			</li>
 			<li>
 				<label>lingering instinct</label>
-				<description>Hmm...I could get used to this, feeling like an animal.</description>
+				<description>Hmm...we could get used to this. What, you don't like that 'we'?</description>
 				<baseMoodEffect>2</baseMoodEffect>
 			</li>
 			<li>
-				<label>conflicted mind</label>
-				<description>The call of the wild is getting stronger...and I don't really mind it.</description>
+				<label>conflicted minds</label>
+				<description>Listen to the call of the wild...you'll feel better about this.</description>
 				<baseMoodEffect>4</baseMoodEffect>
 			</li>
 			<li>
 				<label>hard to think...</label>
-				<description>I should stay focused, but...I'm comfortable like this.</description>
+				<description>My other mind wants to stay focused...but I want to enjoy the instinct...just become 'I'.</description>
 				<baseMoodEffect>6</baseMoodEffect>
 			</li>
 			<li>
@@ -106,18 +106,18 @@
 		<stages>
 			<li>
 				<label>changed</label>
-				<description>This is not what I wanted at all, for the love of all that is good, please, someone turn me back!</description>
-				<baseMoodEffect>-20</baseMoodEffect>
+				<description>This is the worst thing I can imagine, welded to someone else in a freakish body!</description>
+				<baseMoodEffect>-30</baseMoodEffect>
 			</li>
 			<li>
 				<label>lingering instinct</label>
-				<description>I need to stay strong, but it's difficult when every sense is overwhelmed!</description>
-				<baseMoodEffect>-15</baseMoodEffect>
+				<description>Don't think about it! You're making me feel worse!</description>
+				<baseMoodEffect>-20</baseMoodEffect>
 			</li>
 			<li>
 				<label>conflicted mind</label>
-				<description>No, god, no...the animal in my mind is taking over...getting foggy in here...</description>
-				<baseMoodEffect>-10</baseMoodEffect>
+				<description>My other mind...wants to give in...but I can't!</description>
+				<baseMoodEffect>-15</baseMoodEffect>
 			</li>
 			<li>
 				<label>hard to think...</label>
@@ -140,22 +140,22 @@
 		<stages>
 			<li>
 				<label>primal wish fulfilled</label>
-				<description>I got exactly what I wanted. Now, when does the instinct kick in?</description>
+				<description>This is...amazing. Hey, second-head, want to be friends?</description>
 				<baseMoodEffect>10</baseMoodEffect>
 			</li>
 			<li>
 				<label>lingering instinct</label>
-				<description>Hmm, all these sights and smells from a different viewpoint is extremely interesting!</description>
+				<description>We're enjoying this feeling...or at least, I think second-head is.</description>
 				<baseMoodEffect>15</baseMoodEffect>
 			</li>
 			<li>
 				<label>conflicted mind</label>
-				<description>Wow, this uh...this instinct is getting strong. I think I'm still ok with it...</description>
+				<description>I'm confused, is it 'we' or 'I'? I could use either...</description>
 				<baseMoodEffect>10</baseMoodEffect>
 			</li>
 			<li>
 				<label>hard to think...</label>
-				<description>Might...just...give...in...</description>
+				<description>Might...just...give...in...sorry other-head.</description>
 				<baseMoodEffect>5</baseMoodEffect>
 			</li>
 			<li>
