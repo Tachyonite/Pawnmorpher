@@ -29,7 +29,9 @@ namespace Pawnmorph.Utilities
             IsHumanoidMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)});
             IsToolUserMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsToolUser), new []{typeof(Pawn)});
             _getRacePropsMethod = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod();
+            GetRacePropsMethod = _getRacePropsMethod; 
             _getAnimalMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.Animal)).GetGetMethod();
+            RimworldIsAnimalMethod = _getAnimalMethod; 
             _toolUserMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.ToolUser)).GetGetMethod();
             _getHumanlikeMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.Humanlike)).GetGetMethod();
             AllFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static;
@@ -174,6 +176,12 @@ namespace Pawnmorph.Utilities
             outList.AddRange(internalTypes); 
         }
 
+        /// <summary>
+        /// gets <see cref="RaceProperties.Animal"/> getter method
+        /// </summary>
+        [NotNull]
+        public static MethodInfo RimworldIsAnimalMethod { get; }
+
 
         [NotNull] private static readonly MethodInfo _getRacePropsMethod;
         [NotNull] private static readonly MethodInfo _getAnimalMethod;
@@ -205,6 +213,15 @@ namespace Pawnmorph.Utilities
         /// </value>
         [NotNull]
         public static MethodInfo IsToolUserMethod { get; }
+
+        /// <summary>
+        /// Gets the get race props method.
+        /// </summary>
+        /// <value>
+        /// The get race props method.
+        /// </value>
+        [NotNull]
+        public static MethodInfo GetRacePropsMethod { get; }
 
         /// <summary>
         /// substitutes all instances of RaceProps Humanlike, Animal, and Tooluser with their equivalent in FormerHumanUtilities

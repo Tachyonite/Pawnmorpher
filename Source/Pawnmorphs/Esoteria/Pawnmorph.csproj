@@ -352,6 +352,7 @@
     <Compile Include="Damage\Worker_MutagenicInjury.cs" />
     <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
+    <Compile Include="DebugUtils\DBG_TrainingWorkGiver.cs" />
     <Compile Include="DebugUtils\PMDebugActions.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />
@@ -449,6 +450,7 @@
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
+    <Compile Include="HPatches\WorkGiverPatches.cs" />
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="Hybrids\IPartTransformer.cs" />
     <Compile Include="IDescriptiveHediff.cs" />

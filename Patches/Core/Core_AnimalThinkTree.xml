@@ -77,14 +77,35 @@
         </value>
     </Operation>
 
-    <Operation Class="PatchOperationInsert">
-        <xpath>/Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalPawnKind" and subNodes/li/treeDef="MainWildManBehaviorCore"]</xpath>
-        <order>Prepend</order>
-        <value>
-            <li Class="ThinkNode_Subtree">
-                <treeDef>AnimalisticColonist</treeDef>
-                <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+    <Operation Class="PatchOperationSequence">
+        <operations>
+            <li Class="PatchOperationInsert">
+                <xpath>/Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalPawnKind" and subNodes/li/treeDef="MainWildManBehaviorCore"]</xpath>
+                <order>Prepend</order>
+                <value>
+                    <li Class="ThinkNode_Subtree">
+                        <treeDef>AnimalisticColonist</treeDef>
+                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                    </li>
+                </value>
             </li>
-        </value>
+            <!-- TODO, patch wildman core instead -->
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalPawnKind"]/subNodes/li/treeDef[text()="MainWildManBehaviorCore"]</xpath>
+                <value>
+                    <treeDef>MainWildManBehaviorCoreFixed</treeDef>
+                </value>
+            </li>
+        </operations>
     </Operation>
+
+
+    <!-- for debugging only, should be removed before release 
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/WorkGiverDef[defName="Train"]/giverClass[text()="WorkGiver_Train"]</xpath>
+        <value>
+            <giverClass> Pawnmorph.DebugUtils.DBG_TrainingWorkGiver</giverClass>
+        </value>
+    </Operation> -->
+
 </Patch>

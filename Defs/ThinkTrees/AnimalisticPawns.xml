@@ -100,6 +100,54 @@
     </ThinkTreeDef>
 
     <ThinkTreeDef>
+        <defName>MainWildManBehaviorCoreFixed</defName>
+        <thinkRoot Class="ThinkNode_Priority">
+            <subNodes>
+
+                <li Class="Pawnmorph.ThinkNodes.ConditionalAnimalisticColonist">
+                    <invert>true</invert>
+                    <subNodes>
+                        <!-- Leave the colony -->
+                        <li Class="ThinkNode_ConditionalWildManNeedsToReachOutside">
+                            <subNodes>
+                                <li Class="JobGiver_ReachOutside" />
+                            </subNodes>
+                        </li>
+                    </subNodes>
+                </li>
+
+                <!-- Drop random gear or apparel -->
+                <li Class="ThinkNode_ChancePerHour_Constant">
+                    <mtbHours>10</mtbHours>
+                    <subNodes>
+                        <li Class="JobGiver_DropRandomGearOrApparel" />
+                    </subNodes>
+                </li>
+
+                <!-- Satisfy needs -->
+                <li Class="ThinkNode_Tagger">
+                    <tagToGive>SatisfyingNeeds</tagToGive>
+                    <subNodes>
+                        <li Class="ThinkNode_PrioritySorter">
+                            <subNodes>
+                                <li Class="JobGiver_GetFood" />
+                                <li Class="JobGiver_GetRest" />
+                                <li Class="JobGiver_SatisfyChemicalNeed" />
+                                <li Class="ThinkNode_Priority_GetJoy">
+                                    <subNodes>
+                                        <li Class="JobGiver_GetJoy" />
+                                    </subNodes>
+                                </li>
+                            </subNodes>
+                        </li>
+                    </subNodes>
+                </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+
+    <ThinkTreeDef>
         <defName>AnimalisticColonistWonder</defName>
         <insertTag>Humanlike_PostMain</insertTag>
 

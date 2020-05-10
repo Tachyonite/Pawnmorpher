@@ -47,6 +47,32 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void LogAnimalisticTrainingInfo()
+        {
+            var animalisticPawns =
+                Find.CurrentMap.mapPawns.AllPawns.Where(p => p.GetSapienceState()?.StateDef == SapienceStateDefOf.Animalistic);
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (Pawn pawn in animalisticPawns)
+            {
+                var training = pawn.training; 
+                if(training == null) continue;
+
+                builder.AppendLine($"{pawn.Name}:");
+
+
+                builder.AppendLine($"{nameof(Pawn_TrainingTracker.NextTrainableToTrain)}: {training.NextTrainableToTrain()?.defName ?? "NULL"}"); 
+
+
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
         [DebugOutput(category = FH_CATEGORY)]
         static void PrintHumanlikeThinkTree()
         {
