@@ -73,6 +73,8 @@ namespace Pawnmorph.Hybrids
                 if (aspect != null) aTracker.Remove(aspect);
             }
 
+            TransformerUtility.ScaleInjuriesToNewRace(pawn, race); 
+
             //var pos = pawn.Position;
             Faction faction = pawn.Faction;
             Map map = pawn.Map;

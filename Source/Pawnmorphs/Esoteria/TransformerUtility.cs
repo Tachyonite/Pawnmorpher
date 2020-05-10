@@ -30,6 +30,34 @@ namespace Pawnmorph
         private static List<HediffDef> _allMorphTfs;
 
         /// <summary>
+        /// Scales all injuries on the current pawn to a new race with a different base health scale 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="newRace">The new race.</param>
+        /// <exception cref="ArgumentNullException">
+        /// pawn
+        /// or
+        /// newRace
+        /// </exception>
+        public static void ScaleInjuriesToNewRace([NotNull] Pawn pawn, [NotNull] ThingDef newRace)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (newRace == null) throw new ArgumentNullException(nameof(newRace));
+
+            var hediffs = pawn.health?.hediffSet?.hediffs;
+            if (hediffs == null) return;
+
+            var healthScaleAmount = Mathf.Min(1, newRace.race.baseHealthScale / pawn.RaceProps.baseHealthScale);
+
+            foreach (Hediff_Injury injury in hediffs.OfType<Hediff_Injury>())
+            {
+                injury.Severity = injury.Severity * healthScaleAmount; 
+            }
+
+        }
+
+
+        /// <summary>
         /// Gets all morph tf hediffs.
         /// </summary>
         /// <value>
