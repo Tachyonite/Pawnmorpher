@@ -49,11 +49,6 @@ namespace Pawnmorph.HPatches
                 if (nd == PMNeedDefOf.Mood || nd == PMNeedDefOf.Comfort || nd == PMNeedDefOf.Beauty)
                     __result = moodIsEnabled;
 
-                if (!__result)
-                {
-                    
-                }
-
 
                 if (__result) __result = nd.IsValidFor(___pawn);
             }
