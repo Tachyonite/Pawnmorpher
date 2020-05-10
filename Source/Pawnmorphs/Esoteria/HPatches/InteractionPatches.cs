@@ -31,7 +31,7 @@ namespace Pawnmorph.HPatches
             static void AddInteractionThoughts([NotNull] Pawn recipient, [NotNull] InteractionDef intDef, bool __result)
             {
                 if (!__result) return;
-                if (recipient.IsFormerHuman() && recipient.needs?.mood != null)
+                if ((recipient.IsFormerHuman() || recipient.GetSapienceState()?.StateDef == SapienceStateDefOf.Animalistic) && recipient.needs?.mood != null)
                 {
                     var memory = intDef.GetModExtension<InstinctEffector>()?.thought;  //hacky, should come up with a better solution eventually 
                     if (memory == null) return;
