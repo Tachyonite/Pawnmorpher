@@ -11,6 +11,14 @@ namespace Pawnmorph
     {
         public static NeedDef SapientAnimalControl;
 
+        public static NeedDef Beauty;
+
+        public static NeedDef Joy;
+
+        public static NeedDef Comfort;
+
+        public static NeedDef Mood; 
+
         static PMNeedDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(NeedDef));

@@ -42,11 +42,17 @@ namespace Pawnmorph.HPatches
 
                 bool isColonist = ___pawn.Faction?.IsPlayer == true;
 
-                if (nd.defName == "Joy" && isColonist)
-                    __result = MoodIsEnabled(___pawn);
+                bool moodIsEnabled = MoodIsEnabled(___pawn);
+                if (nd == PMNeedDefOf.Joy && isColonist)
+                    __result = moodIsEnabled;
 
-                if (nd.defName == "Mood")
-                    __result = MoodIsEnabled(___pawn);
+                if (nd == PMNeedDefOf.Mood || nd == PMNeedDefOf.Comfort || nd == PMNeedDefOf.Beauty)
+                    __result = moodIsEnabled;
+
+                if (!__result)
+                {
+                    
+                }
 
 
                 if (__result) __result = nd.IsValidFor(___pawn);
