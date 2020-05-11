@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using HarmonyLib;
+using Pawnmorph.DebugUtils;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -86,8 +87,6 @@ namespace Pawnmorph.Hediffs
                         });
                     }
 
-                    string outStr = _entries.Select(m => m.mutation.defName).Join(delimiter:",");
-                    Log.Message("for " + morph.defName + ": " + outStr);
                 }
                 
                 return _entries; 
