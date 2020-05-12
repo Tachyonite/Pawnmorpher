@@ -1,12 +1,12 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd"> 
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="WargPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>WargMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-  
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargMuzzle</defName>
 		<label>warg muzzle</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -15,7 +15,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_possessive] teeth are pointed to suit, and making it nearly impossible for [Pawn_pronoun] to talk outside of growls and barks, yet eating is easier.</description>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_possessive] teeth are pointed to suit; speaking is nearly impossible for [Pawn_pronoun] outside of growls and barks, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -56,7 +56,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit, making speaking a little more difficult, yet eating is easier. [PAWN_pronoun] has also developed a taste for raw meat, and is less likely to get sick from it</description>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_pronoun] teeth are pointed to suit; speaking is a little more difficult, but eating is easier. [PAWN_pronoun] has also developed a taste for raw meat, and is less likely to get sick from it.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>

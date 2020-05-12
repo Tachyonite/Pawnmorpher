@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherPart">
 		<defName>EtherPantherJaw</defName>
 		<label>pantherine muzzle</label>
-		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a panther. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a panther. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li>
