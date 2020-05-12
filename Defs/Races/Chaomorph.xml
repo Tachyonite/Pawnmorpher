@@ -758,7 +758,7 @@
 	<ThingDef ParentName="ChaomorphBaseDerived">
 		<defName>Chaoboar</defName>
 		<label>Chaoboar</label>
-		<description>A tusked mix of what seems to be elephantine and porcine features, chaoboars are the result of extreme mutagenic exposure. They have hands of a sort, with thick hoofnails at the end...but they show remarkable aptitude with them if sapient.</description>
+		<description>A tusked mix of what seems to be elephantine and porcine features, chaoboars are the result of extreme mutagenic exposure. They have hands of a sort, with thick hoofnails at the end, but they show remarkable aptitude with them if sapient.</description>
 		<statBases>
 			<MoveSpeed>10</MoveSpeed>
 			<ComfyTemperatureMin>-20</ComfyTemperatureMin>

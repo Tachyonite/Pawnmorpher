@@ -108,7 +108,7 @@
 			<li>
 				<label>ex-meld sold</label>
 				<labelSocial>sold my ex-meld</labelSocial>
-				<description>We're better off apart...with all that we know about each other.</description>
+				<description>We're better off apart, with all that we know about each other.</description>
 				<baseOpinionOffset>10</baseOpinionOffset>
 				<baseMoodEffect>3</baseMoodEffect>
 			</li>
@@ -130,7 +130,7 @@
 			</li>
 			<li>
 				<label>was melded and sapient</label>
-				<description>I'm glad to be human again, yet I have to say the experience was enlightening...I feel closer to my meldmate than ever!</description>
+				<description>I'm glad to be human again, yet I have to say the experience was enlightening. I feel closer to my meldmate than ever!</description>
 				<baseMoodEffect>8</baseMoodEffect>
 			</li>
 			<li>
@@ -157,12 +157,12 @@
 			</li>
 			<li>
 				<label>was a sapient animal</label>
-				<description>I was trapped in the body of a beast with another person right next to me! I knew what they were thinking and they knew everything about me...I'm almost traumatised!</description>
+				<description>I was trapped in the body of a beast with another person right next to me! I knew what they were thinking and they knew everything about me. I'm almost traumatised!</description>
 				<baseMoodEffect>15</baseMoodEffect>
 			</li>
 			<li>
 				<label>was a mad animal</label>
-				<description>I'm sorry! It was the other guy I swear!</description>
+				<description>I'm sorry! It was the other guy, I swear!</description>
 				<baseMoodEffect>-4</baseMoodEffect>
 			</li>
 		</stages>

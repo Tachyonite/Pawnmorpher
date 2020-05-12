@@ -20,7 +20,7 @@
 		<stages>
 			<li>
 				<label>rival merged</label>
-				<description>We did mad science on my rival...serves them right.</description>
+				<description>We did mad science on my rival. Serves them right.</description>
 				<baseMoodEffect>8</baseMoodEffect>
 			</li>
 		</stages>

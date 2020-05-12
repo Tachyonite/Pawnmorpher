@@ -1,10 +1,10 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
-    <!-- 
-        this file contains thoughts animalsitic pawns always have so long as they remain in this state 
-        these are equivalent to the FH_Persistent thoughts 
+    <!--
+        this file contains thoughts animalsitic pawns always have so long as they remain in this state
+        these are equivalent to the FH_Persistent thoughts
     -->
-    
-    
+
+
     <ThoughtDef Abstract="true" Name="AnimalisticPersistentThoughtBase">
         <workerClass>Pawnmorph.Thoughts.Worker_Sapience</workerClass>
         <modExtensions>
@@ -31,13 +31,13 @@
             <li>
                 <!-- Mostly Sapient -->
                 <label>minor instinct</label>
-                <description>My head feels weird...like a strange voice in the back of my mind.</description>
+                <description>My head feels weird...it's like a strange voice in the back of my mind.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <!-- Conflicted -->
                 <label>conflicted mind</label>
-                <description>I think I should just...get on all fours...</description>
+                <description>I think I should just...get on all fours.</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
@@ -66,8 +66,8 @@
         </modExtensions>
     </ThoughtDef>
 
-    <!-- 
-        this thought is for animalistic pawns with mutation affinity 
+    <!--
+        this thought is for animalistic pawns with mutation affinity
     -->
     <ThoughtDef ParentName="AnimalisticPersistentThoughtBase">
         <defName>MA_AnimalisticThoughtPersistant</defName>
@@ -93,7 +93,7 @@
             <li>
                 <!-- Conflicted -->
                 <label>conflicted mind</label>
-                <description>I think these mutations are...starting to get the better of my mind...</description>
+                <description>I think these mutations are...starting to get the better of my mind.</description>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
@@ -122,8 +122,8 @@
         </modExtensions>
     </ThoughtDef>
 
-    <!-- 
-        this thought is for animalistic pawns with body purist  
+    <!--
+        this thought is for animalistic pawns with body purist
     -->
     <ThoughtDef ParentName="AnimalisticPersistentThoughtBase">
         <defName>BP_AnimalisticThoughtPersistant</defName>
@@ -143,7 +143,7 @@
             <li>
                 <!-- Mostly Sapient -->
                 <label>minor instinct</label>
-                <description>Why do I feel so strange...? Like my mind is melting...</description>
+                <description>Why do I feel so strange? Like my mind is melting...</description>
                 <baseMoodEffect>-8</baseMoodEffect>
             </li>
             <li>
@@ -178,7 +178,7 @@
         </modExtensions>
     </ThoughtDef>
 
-    <!-- 
+    <!--
         this thought is for animalistic pawns with PrimalWish
     -->
     <ThoughtDef ParentName="AnimalisticPersistentThoughtBase">

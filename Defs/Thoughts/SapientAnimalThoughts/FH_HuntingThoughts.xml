@@ -1,7 +1,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
     <ThoughtDef>
-        <!-- 
-            remember to add a moodOffset or set <visible>true</visible> to all stages or they won't show up 
+        <!--
+            remember to add a moodOffset or set <visible>true</visible> to all stages or they won't show up
         -->
         <defName>SapientAnimalHuntingMemory</defName> <!-- this is for hunting out of necessity (like starving) not for the hunting mental break-->
         <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
@@ -20,7 +20,7 @@
             </li>
             <li>
                 <label>hunted</label>
-                <description>The taste is starting to grow on me...I think I could keep hunting...</description>
+                <description>The taste is starting to grow on me...I think I could keep hunting.</description>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
@@ -32,14 +32,14 @@
     </ThoughtDef>
 
     <ThoughtDef>
-        <!-- 
-            remember to add a moodOffset or set <visible>true</visible> to all stages or they won't show up 
+        <!--
+            remember to add a moodOffset or set <visible>true</visible> to all stages or they won't show up
         -->
-        
+
         <!-- this is for hunting out of necessity (like starving) not for the hunting mental break
-            but specifically for primal wish pawns 
+            but specifically for primal wish pawns
         -->
-        <defName>SapientAnimalHuntingMemoryPrimalWish</defName> 
+        <defName>SapientAnimalHuntingMemoryPrimalWish</defName>
         <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
         <durationDays>1</durationDays>
         <stages>
@@ -74,18 +74,18 @@
         <stages>
             <li>
                 <label>hunt catharsis</label>
-                <description>I feel better now...a little foggier I guess.</description>
+                <description>I feel better now...and a little foggier, I guess.</description>
                 <visible>true</visible>
                 <baseMoodEffect>20</baseMoodEffect>
             </li>
             <li>
                 <label>hunt catharsis</label>
-                <description>I know I shouldn't but...I feel so alive!</description>
+                <description>I know I shouldn't, but...I feel so alive!</description>
                 <baseMoodEffect>30</baseMoodEffect>
             </li>
             <li>
                 <label>hunt catharsis</label>
-                <description>Getting that out of my system...felt good. And fed.</description>
+                <description>Getting that out of my system...felt good. And I got fed.</description>
                 <baseMoodEffect>40</baseMoodEffect>
             </li>
             <li>
