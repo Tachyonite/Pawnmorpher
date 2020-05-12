@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelJaw</defName>
 		<label>sciurine muzzle</label>
-		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth.</description>
+		<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's, complete with oversized front teeth.</description>
 		<initialSeverity>0</initialSeverity>
 		<parts>
 			<li>Jaw</li>
@@ -15,7 +15,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
-				<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth, making speech much harder.</description>
+				<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's, complete with oversized front teeth. This makes speech much harder.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
