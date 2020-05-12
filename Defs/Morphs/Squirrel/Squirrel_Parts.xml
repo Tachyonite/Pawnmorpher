@@ -115,7 +115,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelTail</defName>
 		<label>sciurine tail</label>
-		<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_possessive]self and use it as a pillow while sleeping.</description>
+		<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_objective]self and use it as a pillow while sleeping.</description>
 		<parts>
 			<li>Tail</li>
 		</parts>

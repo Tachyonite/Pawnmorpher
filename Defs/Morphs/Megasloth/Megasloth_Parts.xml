@@ -182,7 +182,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothFoot</defName>
-		<description>[PAWN_nameDef]'s feet have grown long, curved claws that protrude in such a way that [PAWN_pronoun] now has to walk on the sides of their feet. As you can imagine, this makes getting anywhere somewhat difficult.</description>
+		<description>[PAWN_nameDef]'s feet have grown long, curved claws that protrude in such a way that [PAWN_pronoun] now has to walk on the sides of [PAWN_possessive] feet. As you can imagine, this makes getting anywhere somewhat difficult.</description>
 		<label>clawed foot</label>
 		<parts>
 			<li>Foot</li>

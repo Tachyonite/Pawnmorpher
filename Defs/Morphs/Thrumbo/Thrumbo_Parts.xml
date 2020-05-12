@@ -139,7 +139,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>dull</label>
-				<description>A sharp thrumbo horn decorates [PAWN_nameDef]'s head. It has grown dull and rough. While still a formidable weapon, it makes [PAWN_pronoun] look misshapen and sickly.</description>
+				<description>A sharp thrumbo horn decorates [PAWN_nameDef]'s head. It has grown dull and rough. While still a formidable weapon, it makes [PAWN_objective] look misshapen and sickly.</description>
 				<statOffsets>
 					<SocialImpact>-0.10</SocialImpact>
 				</statOffsets>
@@ -151,7 +151,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<label>shiny</label>
-				<description>A razor-sharp thrumbo horn decorates [PAWN_nameDef]'s head. It has also has taken on a pearly white sheen, charming those around [PAWN_pronoun] with its beauty.</description>
+				<description>A razor-sharp thrumbo horn decorates [PAWN_nameDef]'s head. It has also has taken on a pearly white sheen, charming those around [PAWN_objective] with its beauty.</description>
 				<statOffsets>
 					<SocialImpact>+0.10</SocialImpact>
 				</statOffsets>

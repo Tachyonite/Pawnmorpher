@@ -5,7 +5,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="FoxJawBase">
 		<label>vulpine muzzle</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+		<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 		<initialSeverity>0</initialSeverity>
 		<parts>
 			<li>Jaw</li>
@@ -14,7 +14,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
-				<description>[PAWN_nameDef]'s face has turned into a more bestial snout, like that of a feral fox. [PAWN_pronoun] teeth are pointed to suit; speaking is much more difficult, but eating is easier.</description>
+				<description>[PAWN_nameDef]'s face has turned into a more bestial snout, like that of a feral fox. [PAWN_possessive] teeth are pointed to suit; speaking is much more difficult, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -41,7 +41,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
-				<description>A charming snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit, making eating easier.</description>
+				<description>A charming snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit, making eating easier.</description>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -55,7 +55,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>paragon</label>
-				<description>A sculpted and charming snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_pronoun] teeth are pointed to suit, making eating easier, and the silver tongue is a good boost in social events.</description>
+				<description>A sculpted and charming snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit, making eating easier, and the silver tongue is a good boost in social events.</description>
 				<minSeverity>1.5</minSeverity>
 				<capMods>
 					<li>
@@ -128,7 +128,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
 		<defName>EtherFoxEye</defName>
 		<label>vulpine eye</label>
-		<description>Bright, foxy eyes are now [PAWN_nameDef]'s. [PAWN_pronoun] will see better, and charm people with their exotic appearance.</description>
+		<description>[PAWN_nameDef] has bright, foxy eyes. [PAWN_pronoun] will see better, and charm people with their exotic appearance.</description>
 		<parts>
 			<li>Eye</li>
 		</parts>

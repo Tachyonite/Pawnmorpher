@@ -6,13 +6,13 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="HuskyPart">
 		<defName>EtherHuskyMuzzle</defName>
 		<label>canine muzzle</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_pronoun] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+		<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_pronoun] teeth are pointed to suit; speaking is nearly impossible outside of barks and whines, but eating is easier.</description>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit; speaking is nearly impossible outside of barks and whines, but eating is easier.</description>
 				<minSeverity>-0.5</minSeverity>
 				<capMods>
 					<li>
@@ -54,7 +54,7 @@
 				</capMods>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>A cute snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_pronoun] teeth are pointed to suit, making eating easier. Oddly, this doesn't seem to impact [PAWN_possessive] abilty to speak.</description>
+				<description>A cute snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit, making eating easier. Oddly, this doesn't seem to impact [PAWN_possessive] abilty to speak.</description>
 				<minSeverity>1.5</minSeverity>
 				<capMods>
 					<li>

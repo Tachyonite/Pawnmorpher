@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="HorsePart">
 		<defName>EtherHorseSnout</defName>
 		<label>equine snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_pronoun] teeth are squared off; speaking is more difficult, but eating is easier.</description>
+		<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
