@@ -2,7 +2,7 @@
 	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphAlpacaTFPartial</defName>
 		<label>alpacamorph partial</label>
-		<description>This person has mechanites in their blood that are providing them with alpaca-esk mutations.</description>
+		<description>This person has mechanites in their blood that are providing them with alpaca-esque mutations.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>

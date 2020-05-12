@@ -2,7 +2,7 @@
 	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphIguanaTFPartial</defName>
 		<label>iguanamorph partial</label>
-		<description>This person has mechanites in their blood that are providing them with iguana-esk mutations.</description>
+		<description>This person has mechanites in their blood that are providing them with iguana-esque mutations.</description>
 		<stages>
 			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
