@@ -34,7 +34,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>fur dusting</labelOverride>
-				<description>Very fine fur -- too dense to be hair -- is sprouting over [PAWN_nameDef]'s limb.</description>
+				<description>Very fine fur — too dense to be hair — is sprouting over [PAWN_nameDef]'s limb.</description>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.04</ComfyTemperatureMin>
@@ -62,7 +62,7 @@
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-		</stages>	
+		</stages>
 		<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
 		<categories>
 			<li>Minor</li>

@@ -38,7 +38,7 @@
 			</li>
 		</comps>
 	</ThingDef>
-	
+
 	<!--Coloration Pills-->
 	<ThingDef ParentName="PM_PillBase">
 		<defName>ColorsPill</defName>
@@ -173,7 +173,7 @@
 	<ThingDef ParentName="PM_PillBase">
 		<defName>AspectReverterPills</defName>
 		<label>mutapill, X-aspect</label>
-		<description>A pill that removes all aspects from a mutated pawn, but does not remove any mutations. A cure-all for your etherbroken/bonded pawns -- but does not prevent getting them again. It's a good idea to follow this up with a dry mutapill if you want to avoid getting etherbroken/bonded again.\n\nCaution, also negates booster pills and resets production to a non-boosted state.</description>
+		<description>A pill that removes all aspects from a mutated pawn, but does not remove any mutations. A cure-all for your etherbroken/bonded pawns — but does not prevent getting them again. It's a good idea to follow this up with a dry mutapill if you want to avoid getting etherbroken/bonded again.\n\nCaution, also negates booster pills and resets production to a non-boosted state.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/pills-28</texPath>
 		</graphicData>
@@ -318,7 +318,7 @@
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
 				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
 			</li>
-			
+
 		</comps>
 		<stages>
 			<li>

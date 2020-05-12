@@ -43,7 +43,7 @@
 	<ResearchProjectDef>
 		<defName>AdvancedSerumSynthesis</defName>
 		<label>Targeted serums</label>
-		<description>Using some more advanced techniques, we can target two distinct types of mutation -- production and combat.  Production can be used to make pawns more useful, allowing them to produce milk, eggs and other items.</description>
+		<description>Using some more advanced techniques, we can target two distinct types of mutation — production and combat.  Production can be used to make pawns more useful, allowing them to produce milk, eggs and other items.</description>
 		<baseCost>1500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>
@@ -82,7 +82,7 @@
 			<li>AdvancedSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef>
 		<defName>MutagenCentrifuging</defName>
 		<label>Mutagen centrifuging</label>
@@ -224,7 +224,7 @@
 	<ResearchProjectDef>
 		<defName>Reversion</defName>
 		<label>Reversion</label>
-		<description>This is only possible because mechanites seem to store everything about the pawn prior to their transformation. With this, it'll be possible to turn former humans back into humans again -- ones made here, and ones we find elsewhere. However, it will not help permanent ferals.</description>
+		<description>This is only possible because mechanites seem to store everything about the pawn prior to their transformation. With this, it'll be possible to turn former humans back into humans again — ones made here, and ones we find elsewhere. However, it will not help permanent ferals.</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>

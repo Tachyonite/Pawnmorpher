@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
 
-    
+
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherBearPawHand</defName>
@@ -1279,7 +1279,7 @@
             </li>
             <li>
                 <label>Fox ears</label>
-                <description>Pointy and fluffy ears, these are great -- and I can hear everything!</description>
+                <description>Pointy and fluffy ears, these are great — and I can hear everything!</description>
                 <visible>true</visible>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
@@ -1399,7 +1399,7 @@
             </li>
             <li>
                 <label>Fox ears</label>
-                <description>Pointy and fluffy ears, these are great -- and I can hear everything!</description>
+                <description>Pointy and fluffy ears, these are great — and I can hear everything!</description>
                 <visible>true</visible>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
@@ -1471,7 +1471,7 @@
             </li>
             <li>
                 <label>Huge fox ears</label>
-                <description>Pointy and fluffy ears, these are great -- and I can hear everything!</description>
+                <description>Pointy and fluffy ears, these are great — and I can hear everything!</description>
                 <visible>true</visible>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
@@ -1579,7 +1579,7 @@
             </li>
         </stages>
     </ThoughtDef>
-   
+
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherHorseFace</defName>
@@ -3514,7 +3514,7 @@
             </li>
         </stages>
     </ThoughtDef>
-   
+
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherYorkshireTerrierJaw</defName>
