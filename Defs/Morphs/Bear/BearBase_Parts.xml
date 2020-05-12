@@ -58,7 +58,7 @@
 						<offset>0.80</offset>
 					</li>
 				</capMods>
-				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_pronoun] teeth are pointed to suit making eating is easier. Oddly this doesn't seem to impact [PAWN_possessive] ability to talk</description>
+				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_pronoun] teeth are pointed to suit, making eating easier. Oddly, this doesn't seem to impact [PAWN_possessive] ability to talk.</description>
 			</li>
 		</stages>
 		<comps>

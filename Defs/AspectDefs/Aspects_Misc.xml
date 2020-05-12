@@ -29,16 +29,16 @@
 		<stages>
 			<li>
 				<label>mutagen infused</label>
-				<description>will only produce rare resources</description>
+				<description>Will only produce rare resources.</description>
 			</li>
 			<li>
 				<label>mutagen neutralized</label>
-				<description>will never produce rare resources</description>
+				<description>Will never produce rare resources.</description>
 				<isBad>true</isBad>
 			</li>
 			<li>
 				<label>dry</label>
-				<description>[PAWN_nameDef] will never produce resources</description>
+				<description>[PAWN_nameDef] will never produce resources.</description>
 				<isBad>true</isBad>
 			</li>
 		</stages>

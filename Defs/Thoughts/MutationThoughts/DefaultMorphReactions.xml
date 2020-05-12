@@ -9,7 +9,7 @@
             </li>
             <li>
                 <label>changed</label>
-                <description>Wait a minute, those things weren't there before</description>
+                <description>Wait a minute, those things weren't there before.</description>
                 <visible>true</visible>
             </li>
             <li>
@@ -18,6 +18,6 @@
                 <visible>true</visible>
             </li>
         </stages>
-        
+
     </ThoughtDef>
 </Defs>

@@ -87,13 +87,13 @@
             </li>
             <li>
                 <label>Petrol ears</label>
-                <description>Heh. Boom! </description>
+                <description>Heh. Boom!</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>Petrol ears</label>
-                <description>What's wrong with my ears!</description>
+                <description>What's wrong with my ears?!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>

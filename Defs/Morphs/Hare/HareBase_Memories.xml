@@ -24,7 +24,7 @@
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>HareRevertedMemory</defName>
         <stages>
@@ -81,7 +81,7 @@
         <stages>
             <li>
                 <label>Rabbit ears</label>
-                <description>This has been one bad magic trick...sort of</description>
+                <description>This has been one bad magic trick.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>

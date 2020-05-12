@@ -15,7 +15,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
-				<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth, making speech much harder</description>
+				<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth, making speech much harder.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -56,7 +56,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth usefull for cracking nuts and cutting plants. Oddly this no longer impacts [PAWN_possessive] ability to speak</description>
+				<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's. The oversized front teeth are useful for cracking nuts and cutting plants. Oddly, this doesn't impact [PAWN_possessive] ability to speak.</description>
 				<label>paragon</label>
 				<capMods>
 					<li>

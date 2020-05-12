@@ -2,7 +2,7 @@
     <StatDef>
         <defName>SapientAnimalA</defName>
         <label>resolve</label>
-        <description>controls the degree to which a pawn resists changes in instinct</description>
+        <description>Controls the degree to which a pawn resists changes in instinct.</description>
         <!-- higher values mean the pawn is less affected by a raise in instincts  -->
         <category>BasicsPawn</category>
         <defaultBaseValue>1.0</defaultBaseValue>
@@ -16,7 +16,7 @@
     <StatDef>
         <defName>SapientAnimalResistance</defName>
         <label>instinct resistance</label>
-        <description>controls how much control a sapient animal has before going feral</description>
+        <description>Controls how much control a sapient animal has before going feral.</description>
         <category>BasicsPawn</category>
         <defaultBaseValue>1.0</defaultBaseValue>
         <hideAtValue>1.0</hideAtValue>
@@ -29,7 +29,7 @@
     <StatDef>
         <defName>SapienceRecoverFactor</defName>
         <label>sapience recover factor</label>
-        <description>controls how much sapience a pawn recovers over time</description>
+        <description>Controls how much sapience a pawn recovers over time.</description>
         <category>BasicsPawn</category>
         <defaultBaseValue>0.0</defaultBaseValue>
         <hideAtValue>0</hideAtValue>
@@ -42,7 +42,7 @@
     <StatDef>
         <defName>SapienceLimit</defName>
         <label>sapience limit</label>
-        <description>the maximum sapience this pawn can have</description>
+        <description>The maximum sapience this pawn can have.</description>
         <category>BasicsPawn</category>
         <defaultBaseValue>1</defaultBaseValue>
         <hideAtValue>1</hideAtValue>

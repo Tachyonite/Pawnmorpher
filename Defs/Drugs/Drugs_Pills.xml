@@ -257,7 +257,7 @@
 	<ThingDef ParentName="PM_PillBase">
 		<defName>MutagenAccelerator</defName>
 		<label>mutapill, accelerator</label>
-		<description>These pills will enhance any active mechanites in the body and greatly increasing the rate of mutation for five days, also increases the likelihood of a pawn fully transforming</description>
+		<description>These pills will enhance any active mechanites in the body and greatly increase the rate of mutation for five days. It also increases the likelihood of a pawn fully transforming.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/pills-27</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
