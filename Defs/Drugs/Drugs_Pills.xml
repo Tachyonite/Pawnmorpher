@@ -304,7 +304,7 @@
 
 	<HediffDef>
 		<defName>StabiliserHigh</defName>
-		<description>This pawn has been stabilised to further mutations. This lasts for five days, and cannot receive additional mutations in this timeframe.</description>
+		<description>This pawn has been stabilised against further mutations. This lasts for five days, and the pawn cannot receive additional mutations in this timeframe.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>mutagen stabilised</label>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
