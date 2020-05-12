@@ -19,7 +19,7 @@
             </li>
             <li>
               <label>morphed</label>
-                <description>These feathers and talons are so good, and laying eggs! If only I could just settle down in a nesting box...</description>
+                <description>These feathers and talons are so good, and laying eggs! If only I could just settle down in a nesting box.</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
@@ -30,7 +30,7 @@
         <stages>
             <li>
                 <label>reverted</label>
-                <description>I'm back to my normal, human self again! No more laying eggs. Or eating eggs please.</description>
+                <description>I'm back to my normal, human self again! No more laying eggs. Or eating eggs, please.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
@@ -40,7 +40,7 @@
             </li>
             <li>
                 <label>reverted</label>
-                <description>Hands and feet. And most important no more eggs. EVER.</description>
+                <description>Hands and feet. And most important, no more eggs. EVER.</description>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>

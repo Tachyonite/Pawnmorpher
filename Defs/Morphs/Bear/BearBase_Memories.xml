@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>morphed</label>
-                <description>I'm a...giant bear? What do I even do about this situation?</description>
+                <description>I'm a... giant bear? What do I even do about this situation?</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -24,7 +24,7 @@
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>BearRevertedMemory</defName>
         <stages>
@@ -40,7 +40,7 @@
             </li>
             <li>
                 <label>reverted</label>
-                <description>No more fur! Oh, skin, how I missed seeing you...</description>
+                <description>No more fur! Oh, skin, how I missed seeing you.</description>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
@@ -51,14 +51,14 @@
         </stages>
     </ThoughtDef>
 
-    
+
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherBearMuzzle</defName>
         <stages>
             <li>
                 <label>Bear face</label>
-                <description>Table manners are going to be hard like this...</description>
+                <description>Table manners are going to be hard like this.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -82,7 +82,7 @@
         <stages>
             <li>
                 <label>Bear ears</label>
-                <description>It's not the worst thing ever, I guess it's inbuilt earmuffs...</description>
+                <description>They're not the worst thing ever. It's like built-in earmuffs.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -106,19 +106,19 @@
         <stages>
             <li>
                 <label>Tiny tail</label>
-                <description>If I were going to get a tail, why wasn't it something cool at least?</description>
+                <description>If I had to get a tail, why wasn't it something cool at least?</description>
                 <visible>true</visible>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
                 <label>Tiny tail</label>
-                <description>As far as tails go, this is not that impressive...</description>
+                <description>As far as tails go, this is not that impressive.</description>
                 <visible>true</visible>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
                 <label>Tiny tail</label>
-                <description>At least I can hide this one...</description>
+                <description>At least I can hide it.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>

@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>morphed</label>
-                <description>I feel like digging in the trash, but...eugh..</description>
+                <description>I feel like digging in the trash, but... eugh.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -14,7 +14,7 @@
             </li>
             <li>
               <label>morphed</label>
-                <description>I don't want to be a smelly raccoon...!</description>
+                <description>I don't want to be a smelly raccoon!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
@@ -24,7 +24,7 @@
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>RaccoonRevertedMemory</defName>
         <stages>

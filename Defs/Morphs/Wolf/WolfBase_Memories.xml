@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>All this fur is making me so hot...I almost need to start panting.</description>
+                <description>This fur is making me so hot. I think I need to start panting.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -35,7 +35,7 @@
             </li>
             <li>
                 <label>reverted</label>
-                <description>Everything smells so dull now...</description>
+                <description>Everything smells so dull now.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -45,7 +45,7 @@
             </li>
             <li>
                 <label>reverted</label>
-                <description>I wanted more not less!</description>
+                <description>I wanted more, not less!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
@@ -69,7 +69,7 @@
             </li>
             <li>
                 <label>Wolf ears</label>
-                <description>I swear I can hear them talking about me... why is this happening to me.</description>
+                <description>I swear I can hear them talking about me. Why is this happening to me?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -81,7 +81,7 @@
         <stages>
             <li>
                 <label>Wolf tail</label>
-                <description>I hope making a tail-hole in my pants won't be too hard...</description>
+                <description>I hope making a tail-hole in my pants won't be too hard.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -117,7 +117,7 @@
             </li>
             <li>
                 <label>Wolf muzzle</label>
-                <description>I'm smelling things I wish I couldn't, I want my old face back...</description>
+                <description>I'm smelling things I wish I couldn't. I want my old face back.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>

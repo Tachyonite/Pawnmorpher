@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>morphed</label>
-                <description>Eugh...I smell like chemfuel. Not liking this so far.</description>
+                <description>Eugh... I smell like chemfuel. Not liking this so far.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -19,7 +19,7 @@
             </li>
             <li>
                 <label>morphed</label>
-                <description>Not bad...but it'd be fun to have four hooves on the ground...right?</description>
+                <description>Not bad... but it'd be fun to have four hooves on the ground... right?</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
@@ -57,7 +57,7 @@
         <stages>
             <li>
                 <label>Petrol snout</label>
-                <description>Perfect for one thing, eating grass...</description>
+                <description>Perfect for one thing, eating grass.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>

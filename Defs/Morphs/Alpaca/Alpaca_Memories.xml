@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>morphed</label>
-                <description>I'm...covered in wool and I really want to spit at people...</description>
+                <description>I'm covered in wool, and I really want to spit at people.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -19,12 +19,12 @@
             </li>
             <li>
                 <label>morphed</label>
-                <description>Wow...this wool is so fluffy, but imagine being on all four hooves like this.</description>
+                <description>Wow. This wool is so fluffy, imagine being on all four hooves like this!</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>AlpacaRevertedMemory</defName>
         <stages>
@@ -35,12 +35,12 @@
             </li>
             <li>
                 <label>reverted</label>
-                <description>Aw man, but I was really enjoying threatening to spit at people...</description>
+                <description>Aw man, but I was really enjoying threatening to spit at people.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
-                <description>No more wool! Oh, skin, how I missed seeing you...</description>
+                <description>No more wool! Oh, skin, how I missed seeing you.</description>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
@@ -58,7 +58,7 @@
         <stages>
             <li>
                 <label>Wooly snout</label>
-                <description>Ew, I feel like I need to spit...</description>
+                <description>Ew, I feel like I need to spit.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -70,7 +70,7 @@
             </li>
             <li>
                 <label>Wooly snout</label>
-                <description>My face...it's so ugly and drooly!</description>
+                <description>My face, it's so ugly and drooly!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -82,7 +82,7 @@
         <stages>
             <li>
                 <label>Wooly ears</label>
-                <description>They're annoyingly long and get in the way...</description>
+                <description>They're annoyingly long and get in the way.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -94,7 +94,7 @@
             </li>
             <li>
                 <label>Wooly ears</label>
-                <description>Eugh, I don't want these...</description>
+                <description>Eugh, I don't want these!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -106,13 +106,13 @@
         <stages>
             <li>
                 <label>Wooly tail</label>
-                <description>It's dangly and in the way...</description>
+                <description>It's dangly and in the way.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Wooly tail</label>
-                <description>I suppose it's part of the aesthetic, if not all that useful. But cool, a tail!</description>
+                <description>Cool, a tail! I suppose it's part of the aesthetic, if not all that useful.</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>

@@ -22,13 +22,13 @@
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>RatRevertedMemory</defName>
 		<stages>
             <li>
                 <label>reverted</label>
-                <description>Back to normal, those teeth were annoying.</description>
+                <description>Back to normal! Those teeth were annoying.</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
