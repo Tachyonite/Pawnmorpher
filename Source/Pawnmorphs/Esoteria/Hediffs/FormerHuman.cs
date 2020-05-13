@@ -1,6 +1,7 @@
 ﻿// FormerHuman.cs created by Iron Wolf for Pawnmorph on 11/27/2019 1:12 PM
 // last updated 11/27/2019  1:12 PM
 
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -141,6 +142,9 @@ namespace Pawnmorph.Hediffs
                 _subscribed = true;
                 _initialized = true;
                 controlNeed.SapienceLevelChanged += SapienceLevelChanged;
+                var sLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.Sapient;
+                var idx = Mathf.Min(def.stages.Count - 1, (int)sLevel);
+                SetStage(idx);
             }
         }
 
@@ -148,6 +152,7 @@ namespace Pawnmorph.Hediffs
         {
             SubscribeToEvents();
             SetLabel();
+           
         }
     }
 }
