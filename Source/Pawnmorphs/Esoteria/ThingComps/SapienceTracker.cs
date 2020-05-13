@@ -3,6 +3,7 @@
 
 using System;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
@@ -51,6 +52,20 @@ namespace Pawnmorph.ThingComps
         //pawn state or something? 
         private bool _isFormerHuman;
 
+
+        /// <summary>
+        /// Exits the current sapience state.
+        /// </summary>
+        public void ExitState()
+        {
+            if (_sapienceState == null)
+            {
+                DebugLogUtils.Warning($"trying to exit sapience state in {Pawn.Name} but they aren't in one");
+                return; 
+            }
+            _sapienceState.Exit();
+            _sapienceState = null; 
+        }
 
         private SapienceLevel _sapienceLevel;
 

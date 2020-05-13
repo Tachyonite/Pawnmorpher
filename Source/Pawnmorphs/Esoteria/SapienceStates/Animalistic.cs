@@ -2,6 +2,7 @@
 // last updated 04/25/2020  2:17 PM
 
 using System;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -52,6 +53,10 @@ namespace Pawnmorph.SapienceStates
         /// </summary>
         public override void Tick()
         {
+            if (_waiting && RandUtilities.MtbDaysEventOccured(MTB))
+            {
+                Tracker?.ExitState();
+            }
         }
 
         /// <summary>
@@ -59,7 +64,7 @@ namespace Pawnmorph.SapienceStates
         /// </summary>
         protected override void ExposeData()
         {
-            
+            Scribe_Values.Look(ref _waiting, "waiting"); 
         }
 
         /// <summary>
@@ -156,13 +161,57 @@ namespace Pawnmorph.SapienceStates
 
         }
 
+        private bool _subscribed; 
+
+        void InitEvents()
+        {
+            if (_subscribed) return;
+            var sN = Tracker.SapienceNeed;
+            if (sN == null) return;
+            sN.SapienceLevelChanged += SapienceLevelChanged; 
+        }
+
+        private bool _waiting;
+        private const float MTB = 1.5f;
+        private void SapienceLevelChanged(Need_Control sender, Pawn pawn, SapienceLevel sapiencelevel)
+        {
+            if (sapiencelevel == SapienceLevel.Sapient)
+            {
+                _waiting = true; 
+            }
+        }
+
+        /// <summary>
+        ///     called when a pawn enters this sapience state
+        /// </summary>
+        public override void Enter()
+        {
+            base.Enter();
+            InitEvents();
+        }
+
+        /// <summary>
+        /// called when the pawn exits this state 
+        /// </summary>
+        public override void Exit()
+        {
+            base.Exit();
+            if (_subscribed)
+            {
+                var sN = Tracker.SapienceNeed;
+                if (sN == null) return;
+                sN.SapienceLevelChanged -= SapienceLevelChanged;
+                _subscribed = true; 
+            }
+        }
+
         /// <summary>
         ///     Initializes this instance.
         /// </summary>
         /// this is always called before enter and after loading a pawn
         protected override void Init()
         {
-            
+            InitEvents();
         }
     }
 }
