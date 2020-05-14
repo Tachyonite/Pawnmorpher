@@ -15,9 +15,25 @@ namespace Pawnmorph.DebugUtils
 {
     static class PMDebugActions
     {
-        private const string FORMER_HUMAN_CATEGORY = "Former Humans";
+        private const string PM_CATEGORY = "Pawnmorpher";
 
-        [DebugAction(category = FORMER_HUMAN_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void TryExitSapienceState(Pawn pawn)
+        {
+            var sapienceT = pawn?.GetSapienceTracker();
+            if (sapienceT?.CurrentState == null) return;
+            var stateName = sapienceT.CurrentState.StateDef.defName; 
+            try
+            {
+                sapienceT.ExitState();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"caught {e.GetType().Name} while trying to exit sapience state {stateName}!\n{e.ToString().Indented("|\t")}");
+            }
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void RecruitFormerHuman(Pawn pawn)
         {
             var sapienceState = pawn?.GetSapienceState();
@@ -28,7 +44,7 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
-        [DebugAction(category = FORMER_HUMAN_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void ReduceSapience(Pawn pawn)
         {
             var sTracker = pawn?.GetComp<SapienceTracker>();
@@ -37,7 +53,7 @@ namespace Pawnmorph.DebugUtils
             sTracker.SetSapience(Mathf.Max(0, sTracker.Sapience -0.2f ));
         }
 
-        [DebugAction(category = FORMER_HUMAN_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void MakeAnimalSapientFormerHuman(Pawn pawn)
         {
             if (pawn == null) return;
@@ -47,7 +63,7 @@ namespace Pawnmorph.DebugUtils
             FormerHumanUtilities.MakeAnimalSapient(pawn); 
 
         }
-        [DebugAction(category = FORMER_HUMAN_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void MakeAnimalFormerHuman(Pawn pawn)
         {
             if (pawn == null) return;
@@ -58,7 +74,7 @@ namespace Pawnmorph.DebugUtils
 
         }
 
-        [DebugAction(category = FORMER_HUMAN_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void TryRevertTransformedPawn(Pawn pawn)
         {
             if (pawn == null) return;

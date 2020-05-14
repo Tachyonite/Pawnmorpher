@@ -188,6 +188,7 @@ namespace Pawnmorph.SapienceStates
         {
             base.Enter();
             InitEvents();
+
         }
 
         /// <summary>
@@ -212,6 +213,11 @@ namespace Pawnmorph.SapienceStates
         protected override void Init()
         {
             InitEvents();
+            var sN = Tracker.SapienceNeed;
+            if (sN != null)
+            {
+                _waiting = Tracker.SapienceLevel == SapienceLevel.Sapient;
+            }
         }
     }
 }

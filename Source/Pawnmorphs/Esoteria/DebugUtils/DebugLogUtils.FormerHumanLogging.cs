@@ -92,14 +92,15 @@ namespace Pawnmorph.DebugUtils
                 Need_Control need = sapienceTracker?.SapienceNeed;
                 if(need == null || sapienceTracker.CurrentState == null) continue;
 
-                builder.AppendLine($"{pawn.Name}[{pawn.ThingID}]:");
+                builder.AppendLine($"{pawn.Name}[{pawn.ThingID}]: in state {sapienceTracker.CurrentState.StateDef.defName}");
 
                 float curLevel = need.CurLevel;
                 float curLevelPercent = need.CurLevelPercentage;
                 float limit = need.Limit;
                 var limitStat = pawn.GetStatValue(PMStatDefOf.SapienceLimit); 
                 float limitPercent = need.Limit / need.MaxLevel;
-                builder.AppendLine($"|\t{nameof(curLevel)}:{curLevel}");
+
+                builder.AppendLine($"|\t{nameof(curLevel)}:{curLevel}={sapienceTracker.SapienceLevel}");
                 builder.AppendLine($"|\t{nameof(curLevelPercent)}:{curLevelPercent}");
                 builder.AppendLine($"|\t{nameof(limitStat)}:{limitStat}");
                 builder.AppendLine($"|\t{nameof(limit)}:{limit}");

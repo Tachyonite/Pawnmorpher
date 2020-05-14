@@ -66,7 +66,6 @@ namespace Pawnmorph.Thoughts
                 var fSapienceStatus = pawn.GetQuantizedSapienceLevel();
                 if (fSapienceStatus == null)
                 {
-                    Log.Warning($"Pawn {pawn.Name} is not a former human but has {def.defName}?");
                     return 0; 
                 }
 
