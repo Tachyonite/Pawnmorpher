@@ -1,11 +1,11 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/MutationDef.xsd">
 	<!--Morph-specific parts are located in the individual morph's files-->
-	
+
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherDigitigradeLeg</defName>
 		<label>digitigrade</label>
-		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
+		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does, however, put a spring in their step.</description>
 		<parts>
 			<li>Leg</li>
 		</parts>
@@ -68,7 +68,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherUnguligradeLeg</defName>
 		<label>unguligrade</label>
-		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does however, put a spring in their step.</description>
+		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does, however, put a spring in their step.</description>
 		<parts>
 			<li>Leg</li>
 		</parts>
