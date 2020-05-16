@@ -679,7 +679,7 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             var sapienceState = pawn.GetSapienceState();
-            if (sapienceState?.StateDef != SapienceStateDefOf.FormerHuman) return false;
+            if (sapienceState?.IsFormerHuman != true) return false;
             return sapienceState.CurrentIntelligence == Intelligence.Humanlike; 
         }
 
