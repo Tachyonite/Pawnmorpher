@@ -84,7 +84,7 @@ namespace Pawnmorph
         [NotNull]
         public AspectStage CurrentStage => Stages[StageIndex];
 
-        AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
+        AspectTracker Tracker => _tracker ?? (_tracker = Pawn?.GetAspectTracker());
 
 
         void IExposable.ExposeData()
