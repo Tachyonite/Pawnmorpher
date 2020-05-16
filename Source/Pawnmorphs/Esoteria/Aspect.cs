@@ -354,7 +354,7 @@ namespace Pawnmorph
 
         private void StageChanged(int lastStage)
         {
-            Tracker.Notify_AspectChanged(this); 
+            Tracker?.Notify_AspectChanged(this); 
             PostStageChanged(lastStage);
         }
 
