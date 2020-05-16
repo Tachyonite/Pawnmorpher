@@ -27,11 +27,11 @@
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</products>
 	</RecipeDef>
-	
+
 	<RecipeDef>
 		<defName>Make_SlurryFromChaobulbs</defName>
 		<label>make slurry from chaobulbs</label>
-		<description>Extract the active mechanites from chaobulb seedpods into slurry</description>
+		<description>Extract the active mechanites from chaobulb seedpods into slurry.</description>
 		<jobString>Refining slurry from chaobulbs.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
@@ -60,7 +60,7 @@
 		</recipeUsers>
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 	</RecipeDef>
-	
+
 	<RecipeDef>
 		<defName>Make_ComponentsFromSlurry</defName>
 		<label>fabricate components</label>
@@ -94,7 +94,7 @@
 		</skillRequirements>
 		<workSkill>Crafting</workSkill>
 	</RecipeDef>
-	
+
 	<RecipeDef>
 		<defName>Make_ResurrectorFromMutonite</defName>
 		<label>fabricate reincarnator mech serum</label>
@@ -136,7 +136,7 @@
 		</skillRequirements>
 		<workSkill>Crafting</workSkill>
 	</RecipeDef>
-	
+
 	<RecipeDef>
 		<defName>Make_HealerFromMutonite</defName>
 		<label>fabricate mutagenic healer mech serum</label>
@@ -178,7 +178,7 @@
 		</skillRequirements>
 		<workSkill>Crafting</workSkill>
 	</RecipeDef>
-	
+
 	<RecipeDef>
 		<defName>Make_GlitterMedsFromMutonite</defName>
 		<label>fabricate glitterworld medicine</label>
@@ -197,7 +197,7 @@
 				</filter>
 				<count>5</count>
 			</li>
-			
+
 			<li>
 				<filter>
 					<thingDefs>
@@ -221,11 +221,11 @@
 		</skillRequirements>
 		<workSkill>Crafting</workSkill>
 	</RecipeDef>
-	<!-- 
+	<!--
 	<RecipeDef>
 		<defName>Make_Morphskilk</defName>
 		<label>make morph skilk</label>
-		<description>Turn cloth into morphskilk using mechanite slurry</description>
+		<description>Turn cloth into morphskilk using mechanite slurry.</description>
 		<jobString>creating morph silk</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
@@ -270,7 +270,7 @@
 	<RecipeDef>
 		<defName>Make_MorphskilkChaobulbs</defName>
 		<label>make morph skilk</label>
-		<description>Turn cloth into morphskilk using chaobulbs</description>
+		<description>Turn cloth into morphskilk using chaobulbs.</description>
 		<jobString>creating morph silk</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>

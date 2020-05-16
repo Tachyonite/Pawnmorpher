@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelJaw</defName>
 		<label>sciurine muzzle</label>
-		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth.</description>
+		<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's, complete with oversized front teeth.</description>
 		<initialSeverity>0</initialSeverity>
 		<parts>
 			<li>Jaw</li>
@@ -15,7 +15,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
-				<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth, making speech much harder</description>
+				<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's, complete with oversized front teeth. This makes speech much harder.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -56,7 +56,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a squirrel's, complete with oversized front teeth usefull for cracking nuts and cutting plants. Oddly this no longer impacts [PAWN_possessive] ability to speak</description>
+				<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's. The oversized front teeth are useful for cracking nuts and cutting plants. Oddly, this doesn't impact [PAWN_possessive] ability to speak.</description>
 				<label>paragon</label>
 				<capMods>
 					<li>
@@ -115,7 +115,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelTail</defName>
 		<label>sciurine tail</label>
-		<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_possessive]self and use it as a pillow while sleeping.</description>
+		<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_objective]self and use it as a pillow while sleeping.</description>
 		<parts>
 			<li>Tail</li>
 		</parts>

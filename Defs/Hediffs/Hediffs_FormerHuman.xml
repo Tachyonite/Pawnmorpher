@@ -182,7 +182,7 @@
 
 	<HediffDef>
 		<defName>PermanentlyFeral</defName>
-		<description>[PAWN_defName] used to be a human, but the mechanites in [PAWN_possessive] system have forgotten his prior form -- [PAWN_pronoun] is now sealed in this form for the rest of [PAWN_possessive] life. Reversion serums will not work.</description>
+		<description>[PAWN_defName] used to be a human, but the mechanites in [PAWN_possessive] system have forgotten his prior form — [PAWN_pronoun] is now sealed in this form for the rest of [PAWN_possessive] life. Reversion serums will not work.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
 		<label>permanently feral</label>

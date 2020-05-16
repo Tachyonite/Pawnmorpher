@@ -4,7 +4,7 @@
         <aspectType>Pawnmorph.Aspects.MeatLover</aspectType>
         <labelColor>(191,25,61)</labelColor>
         <label>meat lover</label>
-        <description>[PAWN_nameDef] has developed a taste for raw meat, and is less likely to get sick from it</description>
+        <description>[PAWN_nameDef] has developed a taste for raw meat, and is less likely to get sick from it.</description>
         <removedByReverter>true</removedByReverter>
         <stages>
             <li>

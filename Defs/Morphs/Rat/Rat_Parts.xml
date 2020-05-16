@@ -56,7 +56,7 @@
 				</capMods>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>A cute, ratty snout graces [PAWN_nameDef]'s face, long teeth for chewing through anything. Many people find [PAWN_possessive] snout adorable</description>
+				<description>A cute, ratty snout graces [PAWN_nameDef]'s face, with long teeth for chewing through anything. Many people find [PAWN_possessive] snout adorable.</description>
 				<label>paragon</label>
 				<minSeverity>1.5</minSeverity>
 				<statOffsets>

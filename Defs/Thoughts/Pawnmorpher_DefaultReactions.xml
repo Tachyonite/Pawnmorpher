@@ -12,11 +12,11 @@
         <stages>
             <li>
                 <label>transformed wild pawn</label>
-                <description>I'm not sure whether this is better or worse for them, at least they're better equipped to survive...</description>
+                <description>I'm not sure whether this is better or worse for them, but at least they're better equipped to survive.</description>
             </li>
             <li>
                 <label>transformed colonist</label>
-                <description>A colonist was turned into an animal. That's not right...</description>
+                <description>A colonist was turned into an animal. That's not right.</description>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
             <li>
@@ -26,7 +26,7 @@
             </li>
             <li>
                 <label>transformed guest</label>
-                <description>Someone came to our colony and we betrayed that trust...</description>
+                <description>Someone came to our colony, and we betrayed that trust.</description>
 				<baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
@@ -47,13 +47,13 @@
             </li>
             <li>
 				<label>prisoner merged</label>
-				<description>We did mad science on a captive. It's wrong to make them a monster...</description>
+				<description>We did mad science on a captive. It's wrong to make them into a monster.</description>
 				<baseMoodEffect>-4</baseMoodEffect>
 
             </li>
             <li>
                 <label>guest merged</label>
-                <description>Someone came to our colony for hospitality, and now they're an abomination...</description>
+                <description>Someone came to our colony for hospitality, and now they're an abomination.</description>
                 <baseMoodEffect>-8</baseMoodEffect>
             </li>
         </stages>
@@ -65,12 +65,12 @@
         <stages>
             <li>
                 <label>wild pawn reverted</label>
-                <description>A wild person is human again, we did a good deed.</description>
+                <description>A wild person is human again. We did a good deed.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>colonist reverted</label>
-                <description>A colonist is human again, we did a good deed.</description>
+                <description>A colonist is human again. We did a good deed.</description>
                 <baseMoodEffect>5</baseMoodEffect>
             </li>
             <li>
@@ -80,7 +80,7 @@
             </li>
             <li>
                 <label>guest reverted</label>
-                <description>A guest is human again, hopefully they'll trust us again eventually.</description>
+                <description>A guest is human again. Hopefully they'll trust us again, eventually.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
         </stages>
@@ -101,7 +101,7 @@
             </li>
             <li>
                 <label>prisoner permanently feral</label>
-                <description>If you do something like that, did we really expect to turn them back?</description>
+                <description>Did we really expect to turn them back?</description>
                 <visible>true</visible>
             </li>
             <li>

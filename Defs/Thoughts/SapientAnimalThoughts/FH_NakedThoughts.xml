@@ -35,7 +35,7 @@
 			</li>
 			<li>
 				<label>naked</label>
-				<description>There's no other option right?</description>
+				<description>There's no other option, right?</description>
 				<baseMoodEffect>-2</baseMoodEffect>
 			</li>
 			<li>
@@ -69,7 +69,7 @@
 			</li>
 			<li>
 				<label>naked</label>
-				<description>It would help if I could put something on, even just to pretend..</description>
+				<description>It would help if I could put something on, even just to pretend...</description>
 				<baseMoodEffect>-4</baseMoodEffect>
 			</li>
 			<li>
@@ -79,12 +79,12 @@
 			</li>
 			<li>
 				<label>naked</label>
-				<description>There's no other option right?</description>
+				<description>There's no other option, right?</description>
 				<baseMoodEffect>-2</baseMoodEffect>
 			</li>
 			<li>
 				<label>naked</label>
-				<description>Cloths?</description>
+				<description>Clothes?</description>
 				<baseMoodEffect>0</baseMoodEffect>
 			</li>
 		</stages>
@@ -111,7 +111,7 @@
 			</li>
 			<li>
 				<label>naked</label>
-				<description>It would help if I could put something on, even just to pretend..</description>
+				<description>It would help if I could put something on, even just to pretend...</description>
 				<baseMoodEffect>-4</baseMoodEffect>
 			</li>
 			<li>
@@ -121,7 +121,7 @@
 			</li>
 			<li>
 				<label>naked</label>
-				<description>There's no other option right?</description>
+				<description>There's no other option, right?</description>
 				<baseMoodEffect>-2</baseMoodEffect>
 			</li>
 			<li>

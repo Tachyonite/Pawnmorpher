@@ -5,7 +5,7 @@
 		<degreeDatas>
 			<li>
 				<label>natural hunter</label>
-				<description>{PAWN_nameDef} is now a natural hunter</description> <!--could use some work -->
+				<description>{PAWN_nameDef} is now a natural hunter.</description> <!--could use some work -->
 				<skillGains>
 					<li>
 						<key>Shooting</key>

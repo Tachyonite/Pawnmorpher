@@ -14,7 +14,7 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
-				<description>[PAWN_nameDef]'s face has become a bestial, deerlike snout with a wide nose, picking up scents of predators. This has made talking very difficult</description>
+				<description>[PAWN_nameDef]'s face has become a bestial, deerlike snout with a wide nose that picks up the scents of predators. Unfortunately, talking is difficult.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -53,7 +53,7 @@
 				</capMods>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>A snout graces [PAWN_nameDef]'s face, deerlike with a wide nose, picking up scents of predators. [PAWN_possessive] nose is adept at finding the best fruits and veggies, improving [PAWN_possessive] foraging</description>
+				<description>A snout graces [PAWN_nameDef]'s face, deerlike with a wide nose that picks up the scents of predators. [PAWN_possessive] nose is adept at finding the best fruits and veggies, improving [PAWN_possessive] foraging.</description>
 				<minSeverity>1.5</minSeverity>
 				<capMods>
 					<li>

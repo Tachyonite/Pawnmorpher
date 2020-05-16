@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>Thessse ssscales are going to take sssome time to get ussssed to...they're kind of itchy.</description>
+                <description>Thessse ssscales are going to take sssome time to get ussssed to... they're kind of itchy.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -19,12 +19,12 @@
             </li>
             <li>
                 <label>changed</label>
-                <description>Yessss...but maybe we ssshould sssee just how ssssnakelike I can be...</description>
+                <description>Yessss... but maybe we ssshould sssee just how ssssnakelike I can be...</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>CobraRevertedMemory</defName>
         <stages>

@@ -2,7 +2,7 @@
 	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphLynxTFPartial</defName>
 		<label>lynxmorph partial</label>
-		<description>This person has mechanites in their blood that are providing them with lynx-esk mutations.</description>
+		<description>This person has mechanites in their blood that are providing them with lynx-esque mutations.</description>
 		<stages>
 			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>

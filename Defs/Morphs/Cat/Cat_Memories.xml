@@ -9,7 +9,7 @@
 			</li>
 			<li>
 				<label>morphed</label>
-				<description>Cat? I'm a kitty cat! And I dance dance dance, and I dance dance dance...</description>
+				<description>Cat? I'm a kitty cat! And I dance dance dance, and I dance dance dance.</description>
 				<baseMoodEffect>+3</baseMoodEffect>
 			</li>
 			<li>
@@ -19,7 +19,7 @@
 			</li>
 			<li>
 				<label>morphed</label>
-				<description>Wow, the world looks so sharp, these claws are sharp too! Imagine if I could look into all the small places on all fours!</description>
+				<description>Wow, the world looks so sharp, and these claws are sharp too! Imagine if I could look into all the small places on all fours!</description>
 				<baseMoodEffect>+1</baseMoodEffect>
 			</li>
 		</stages>
@@ -35,12 +35,12 @@
 			</li>
 			<li>
 				<label>reverted</label>
-				<description>Aw man, but I was really enjoying threatening to claw people...</description>
+				<description>Aw man, but I was really enjoying threatening to claw people.</description>
 				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 			<li>
 				<label>reverted</label>
-				<description>No more claws! Finally I'll stop accidentally stabbing myself...</description>
+				<description>No more claws! Finally, I'll stop accidentally stabbing myself.</description>
 				<baseMoodEffect>10</baseMoodEffect>
 			</li>
 			<li>

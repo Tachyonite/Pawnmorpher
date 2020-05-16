@@ -2,7 +2,7 @@
 	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphBearTFPartial</defName>
 		<label>bearmorph partial</label>
-		<description>This person has mechanites in their blood that are providing them with grizzly-esk mutations.</description>
+		<description>This person has mechanites in their blood that are providing them with grizzly-esque mutations.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>

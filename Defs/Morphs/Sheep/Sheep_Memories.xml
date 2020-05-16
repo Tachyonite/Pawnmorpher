@@ -4,7 +4,7 @@
 		<stages>
 			<li>
 				<label>changed</label>
-				<description>Ugh, that's a lot of hair. Where are the sheers... er, I mean razor.</description>
+				<description>Ugh, that's a lot of hair. Where's the shears — er, I mean, razor?</description>
 				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 			<li>
@@ -14,7 +14,7 @@
 			</li>
 			<li>
 				<label>changed</label>
-				<description>I'm sheading everywhere, this is so disgusting.</description>
+				<description>I'm shedding everywhere, this is disgusting.</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 			<li>
@@ -40,12 +40,12 @@
 			</li>
 			<li>
 				<label>reverted</label>
-				<description>Thank randy, I no longer smell like wet hair all the time.</description>
+				<description>Thank Randy, I no longer smell like wet hair all the time.</description>
 				<baseMoodEffect>10</baseMoodEffect>
 			</li>
 			<li>
 				<label>reverted</label>
-				<description>Aw, I wanted to be MORE sheepish, not less.</description>
+				<description>Aw, I wanted to be more sheepish, not less.</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>

@@ -5,7 +5,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="BearJawBase">
 		<label>ursine muzzle</label>
-		<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+		<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>bestial</label>
@@ -52,13 +52,13 @@
 				<label>paragon</label>
 				<minSeverity>1.5</minSeverity>
 				<capMods>
-		
+
 					<li>
 						<capacity>Eating</capacity>
 						<offset>0.80</offset>
 					</li>
 				</capMods>
-				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_pronoun] teeth are pointed to suit making eating is easier. Oddly this doesn't seem to impact [PAWN_possessive] ability to talk</description>
+				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit, making eating easier. Oddly, this doesn't seem to impact [PAWN_possessive] ability to talk.</description>
 			</li>
 		</stages>
 		<comps>
@@ -117,7 +117,7 @@
 			<li>Tail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-	
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
 		<defName>EtherBearPawHand</defName>
 		<label>huge paw</label>

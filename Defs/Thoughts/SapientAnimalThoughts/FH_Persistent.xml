@@ -12,7 +12,7 @@
 		<stages>
 			<li>
 				<label>changed</label>
-				<description>I can hardly believe my eyes...I'm a goddamn animal!</description>
+				<description>I can hardly believe my eyes. I'm a goddamn animal!</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 			<li>
@@ -27,7 +27,7 @@
 			</li>
 			<li>
 				<label>hard to think...</label>
-				<description>Gotta...stay...focused but all I want to do is eat and sleep!</description>
+				<description>Gotta...stay...focused. All I want to do is eat and sleep!</description>
 			</li>
 			<li>
 				<label>feral animal</label>
@@ -64,7 +64,7 @@
 			</li>
 			<li>
 				<label>lingering instinct</label>
-				<description>Hmm...I could get used to this, feeling like an animal.</description>
+				<description>Hmm...I could get used feeling like an animal.</description>
 				<baseMoodEffect>2</baseMoodEffect>
 			</li>
 			<li>
