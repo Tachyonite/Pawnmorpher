@@ -2,7 +2,10 @@
 // last updated 03/18/2020  1:42 PM
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Jobs;
 using Pawnmorph.Social;
 using Pawnmorph.TfSys;
@@ -31,6 +34,52 @@ namespace Pawnmorph.DebugUtils
             {
                 Log.Error($"caught {e.GetType().Name} while trying to exit sapience state {stateName}!\n{e.ToString().Indented("|\t")}");
             }
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void AddMutation(Pawn pawn)
+        {
+            if (pawn == null) return;
+
+            var menu = new Dialog_DebugOptionListLister(GetAddMutationOptions(pawn));
+            Find.WindowStack.Add(menu);
+        }
+
+
+        static IEnumerable<DebugMenuOption> GetAddMutationOptions([NotNull] Pawn pawn)
+        {
+
+            bool CanAddMutationToPawn(MutationDef mDef)
+            {
+                if (mDef.parts == null)
+                {
+                    return pawn.health.hediffSet.GetFirstHediffOfDef(mDef) == null; 
+                }
+
+                foreach (BodyPartDef bodyPartDef in mDef.parts)
+                {
+                    foreach (BodyPartRecord record in pawn.GetAllNonMissingParts().Where(p => p.def == bodyPartDef))
+                    {
+                        if (!pawn.health.hediffSet.HasHediff(mDef, record)) return true; 
+                    }
+                }
+
+                return false; 
+            }
+
+            void CreateMutationDialog(MutationDef mDef)
+            {
+                var nMenu = new DebugMenu_AddMutation(mDef, pawn);
+                Find.WindowStack.Add(nMenu); 
+            }
+
+
+            foreach (MutationDef mutation in MutationDef.AllMutations.Where(CanAddMutationToPawn))
+            {
+                var tMu = mutation;
+                yield return new DebugMenuOption(mutation.label, DebugMenuOptionMode.Action, () => CreateMutationDialog(tMu)); 
+            }
+
         }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]

@@ -95,6 +95,20 @@ namespace Pawnmorph
             }
         }
 
+
+        /// <summary>
+        /// Gets all non missing parts on this pawn
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        [NotNull]
+        public static IEnumerable<BodyPartRecord> GetAllNonMissingParts([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            return (pawn.health?.hediffSet?.GetAllNonMissingWithoutProsthetics()).MakeSafe();
+        }
+
         /// <summary>
         /// Gets all non missing parts of the given part defs 
         /// </summary>
