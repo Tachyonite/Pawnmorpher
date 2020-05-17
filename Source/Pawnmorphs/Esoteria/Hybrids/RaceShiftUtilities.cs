@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
@@ -22,6 +23,57 @@ namespace Pawnmorph.Hybrids
     /// </summary>
     public static class RaceShiftUtilities
     {
+        class CompPropComparer : IEqualityComparer<CompProperties>
+        {
+            /// <summary>Determines whether the specified objects are equal.</summary>
+            /// <param name="x">The first object of type <paramref name="T" /> to compare.</param>
+            /// <param name="y">The second object of type <paramref name="T" /> to compare.</param>
+            /// <returns>
+            /// <see langword="true" /> if the specified objects are equal; otherwise, <see langword="false" />.</returns>
+            public bool Equals(CompProperties x, CompProperties y)
+            {
+                if (ReferenceEquals(x, y)) return true;
+                if (x == null || y == null) return false;
+                
+                //check if one or the other implements IEquatable 
+                if (x is IEquatable<CompProperties> xP)
+                {
+                    return xP.Equals(y);
+                }
+
+                if (y is IEquatable<CompProperties> yP)
+                {
+                    return yP.Equals(x); 
+                }
+                
+                if (x.GetType() != y.GetType()) return false;
+                if (x.GetType() == typeof(CompProperties))
+                {
+                    return x.compClass == y.compClass; 
+                }
+
+                
+
+                //just return true here 
+                //need someway to check this by reflection
+                return true; 
+
+            }
+
+            /// <summary>Returns a hash code for the specified object.</summary>
+            /// <param name="obj">The <see cref="T:System.Object" /> for which a hash code is to be returned.</param>
+            /// <returns>A hash code for the specified object.</returns>
+            /// <exception cref="T:System.ArgumentNullException">The type of <paramref name="obj" /> is a reference type and <paramref name="obj" /> is <see langword="null" />.</exception>
+            public int GetHashCode(CompProperties obj)
+            {
+                return obj.GetHashCode(); 
+            }
+        }
+
+        [NotNull]
+
+        static readonly IEqualityComparer<CompProperties> _comparer = new CompPropComparer();
+
         /// <summary>
         /// The race change message identifier (used in the keyed translation file)
         /// </summary>
@@ -46,6 +98,79 @@ namespace Pawnmorph.Hybrids
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
             return RaceGenerator.IsMorphRace(pawn.def);
+
+        }
+
+        [NotNull]
+        private static readonly List<ThingComp> _rmCompCache = new List<ThingComp>();
+        [NotNull]
+        private static readonly List<CompProperties> _addCompCache = new List<CompProperties>(); 
+        static void SetCompField([NotNull] Pawn pawn)
+        {
+            var field = typeof(ThingWithComps).GetField("comps", BindingFlags.NonPublic | BindingFlags.Instance);
+            var comps = (List<ThingComp>) field.GetValue(pawn);
+            if (comps == null)
+            {
+                comps = new List<ThingComp>();
+                field.SetValue(pawn, comps); 
+            }
+        }
+
+        internal static void AddRemoveDynamicRaceComps([NotNull] Pawn pawn, [NotNull] ThingDef newRace)
+        {
+            SetCompField(pawn);
+            var props = newRace.comps; 
+            _addCompCache.Clear();
+            _rmCompCache.Clear();
+
+            foreach (ThingComp comp in pawn.AllComps)
+            {
+                if (props?.Any(p => _comparer.Equals(p, comp.props)) != true)
+                {
+                    _rmCompCache.Add(comp); 
+                }
+            }
+
+            foreach (CompProperties prop in props.MakeSafe())
+            {
+                if (!pawn.AllComps.Any(c => _comparer.Equals(c.props, prop)))
+                {
+                    _addCompCache.Add(prop); 
+                }
+            }
+
+
+            foreach (ThingComp thingComp in _rmCompCache)
+            {
+                var pmComp = thingComp as IPMThingComp;
+                pmComp?.PreRemove();
+                pawn.AllComps.Remove(thingComp); 
+                pmComp?.PostRemove();
+            }
+
+            _rmCompCache.Clear();
+
+            foreach (CompProperties newCompProp in _addCompCache)
+            {
+                try
+                {
+                    var newComp = (ThingComp) Activator.CreateInstance(newCompProp.compClass);
+                    newComp.parent = pawn;
+                    newComp.props = newCompProp;
+                    var nPMComp = newComp as IPMThingComp;
+
+                    pawn.AllComps.Add(newComp); 
+                    
+                    nPMComp?.Init();
+
+                    
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"caught {e.GetType().Name} while trying to add comp with props {newCompProp} to pawn {pawn.Name}!\n{e.ToString().Indented("|\t")}");
+                }
+            }
+
 
         }
 
@@ -115,7 +240,15 @@ namespace Pawnmorph.Hybrids
             else 
                 ValidateExplicitRaceChange(pawn, race, oldRace);
 
-            
+            var mTracker = pawn.GetComp<MorphTrackingComp>();
+            if (mTracker == null)
+            {
+                Warning($"changing the race of {pawn.Name} but they have no {nameof(MorphTrackingComp)}!");
+            }
+            else
+            {
+                mTracker.needsRaceCompCheck = true; 
+            }
 
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
             pawn.RefreshGraphics();

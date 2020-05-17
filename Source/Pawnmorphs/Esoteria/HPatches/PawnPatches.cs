@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -80,5 +81,22 @@ namespace Pawnmorph.HPatches
                             }
                 }
         }
+
+
+
+        //this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
+        [HarmonyPatch(nameof(Pawn.Tick)), HarmonyPostfix]
+        static void RunRaceCompCheck([NotNull] Pawn __instance)
+        {
+
+            var mTracker = __instance.GetComp<MorphTrackingComp>();
+            if (mTracker?.needsRaceCompCheck == true)
+            {
+                RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
+                mTracker.needsRaceCompCheck = false; 
+            }
+
+        }
+
     }
 }
