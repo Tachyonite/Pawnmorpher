@@ -288,16 +288,20 @@ namespace Pawnmorph.ThingComps
             Find.ColonistBar.MarkColonistsDirty();
         }
 
-        private void OnNoLongerSapient()
-        {
-        }
+     
+
+        private Intelligence? _lastIntelligenceLevel; 
 
         private void OnSapienceLevelChanges(SapienceLevel lastSapienceLevel)
         {
             if (lastSapienceLevel.IsColonistAnimal() && !_sapienceLevel.IsColonistAnimal())
                 OnNoLongerColonist();
-            else if (lastSapienceLevel <= SapienceLevel.MostlyFeral && _sapienceLevel > SapienceLevel.MostlyFeral)
-                OnNoLongerSapient();
+
+            if (_lastIntelligenceLevel != CurrentIntelligence)
+            {
+                _lastIntelligenceLevel = CurrentIntelligence;
+                PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn); 
+            }
 
         }
 
