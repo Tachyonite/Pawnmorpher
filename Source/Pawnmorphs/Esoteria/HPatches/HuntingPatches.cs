@@ -31,5 +31,19 @@ namespace Pawnmorph.HPatches
 
             
         }
+
+        [HarmonyPatch(typeof(Designator_Hunt), nameof(Designator_Hunt.CanDesignateThing))]
+        static class HuntingDesignatorPatch
+        {
+            static void Postfix(ref AcceptanceReport __result,  [NotNull] Thing t )
+            {
+                if (!__result.Accepted && Find.CurrentMap?.designationManager.DesignationOn(t, DesignationDefOf.Hunt) == null)
+                {
+                    var p = t as Pawn;
+                    if (p == null) return;
+                    if (p.IsFormerHuman() && p.Faction == null) __result = true; 
+                }
+            }
+        }
     }
 }
