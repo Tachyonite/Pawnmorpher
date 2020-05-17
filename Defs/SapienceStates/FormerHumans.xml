@@ -10,6 +10,7 @@
     <Pawnmorph.SapienceStateDef ParentName="FormerHumanSapienceBase">
         <defName>FormerHuman</defName>
         <stateType>Pawnmorph.SapienceStates.FormerHuman</stateType>
+        <forcedHediff>TransformedHuman</forcedHediff>
     </Pawnmorph.SapienceStateDef>
 
     <Pawnmorph.SapienceStateDef ParentName="FormerHumanSapienceBase">
