@@ -40,9 +40,7 @@ namespace Pawnmorph.DebugUtils
         static void AddMutation(Pawn pawn)
         {
             if (pawn == null) return;
-
-            var menu = new Dialog_DebugOptionListLister(GetAddMutationOptions(pawn));
-            Find.WindowStack.Add(menu);
+            Find.WindowStack.Add(new DebugMenu_AddMutations(pawn)); 
         }
 
 

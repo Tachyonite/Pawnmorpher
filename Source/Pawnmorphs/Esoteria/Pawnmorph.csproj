@@ -354,6 +354,7 @@
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DBG_TrainingWorkGiver.cs" />
     <Compile Include="DebugUtils\DebugMenu_AddMutation.cs" />
+    <Compile Include="DebugUtils\DebugMenu_AddMutations.cs" />
     <Compile Include="DebugUtils\PMDebugActions.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />
