@@ -133,6 +133,14 @@ namespace Pawnmorph.Hediffs
             Severity = (def.stages[index].minSeverity + def.stages[index + 1].minSeverity) / 2;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance should be removed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance should be removed; otherwise, <c>false</c>.
+        /// </value>
+        public override bool ShouldRemove => false; 
+
         private void SubscribeToEvents()
         {
             if (_subscribed) return;
