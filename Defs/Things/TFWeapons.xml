@@ -191,7 +191,7 @@
 		</tools>
 		<comps>
 			<li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
-				
+				<requiresTag>true</requiresTag>
 			</li>
 		</comps>
 	</ThingDef>
