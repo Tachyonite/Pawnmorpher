@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <SoundDef>
+    <defName>Slurry_Flywheels</defName>
+    <sustain>False</sustain>
+    <context>MapOnly</context>
+    <eventNames />
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <muteWhenPaused>True</muteWhenPaused>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Flywheels</clipPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>80</min>
+          <max>80</max>
+        </volumeRange>
+        <pitchRange>
+          <min>1</min>
+          <max>1.015</max>
+        </pitchRange>
+        <distRange>
+          <min>0</min>
+          <max>30</max>
+        </distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+</Defs>

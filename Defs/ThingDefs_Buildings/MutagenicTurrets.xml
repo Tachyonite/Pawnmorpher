@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--=============== mutagen turret ===============-->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Turret_MutagenicTurret</defName>
+    <label>slurry turret</label>
+    <description>An automatic turret which shoots mechanite slurry at anyone you whose trying to kill you. Requires a lot of said mechanite slurry to refill it's magazine after use. Medium-sized mutagenic explosion when damaged. Its dumb AI brain can't be directly controlled, so to prevent unintended mutations keep colonists out of its field of fire.</description>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/slurryturretbase</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(5,5.5)</drawSize>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>Things/Building/slurryturretico</uiIconPath>
+    <uiIconScale>0.90</uiIconScale>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <altitudeLayer>Building</altitudeLayer>
+    <stealable>false</stealable>
+    <rotatable>false</rotatable>
+    <size>(3,3)</size>
+    <thingCategories>
+      <li>BuildingsSecurity</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <WorkToBuild>1800</WorkToBuild>
+      <Mass>8</Mass>
+      <Beauty>-20</Beauty>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>5</explosiveRadius>
+        <explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>80</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until slurry depletion</fuelLabel>
+        <fuelGizmoLabel>Slurry</fuelGizmoLabel>
+        <fuelFilter>
+          <thingDefs>
+            <li>MechaniteSlurry</li>
+          </thingDefs>
+        </fuelFilter>
+        <fuelCapacity>120</fuelCapacity>
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.75</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <fuelMultiplier>2</fuelMultiplier>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <outOfFuelMessage>Cannot shoot: Needs slurry</outOfFuelMessage>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+    </comps>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>70</Steel>
+      <MechaniteSlurry>30</MechaniteSlurry>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+    <building>
+      <combatPower>45</combatPower>   <!-- same as a scavenger -->
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Gun_MutagenicTurret</turretGunDef>
+      <turretBurstCooldownTime>5</turretBurstCooldownTime>
+      <turretTopDrawSize>5</turretTopDrawSize>
+      <turretTopOffset>(0.1, 0.15)</turretTopOffset>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+    <designationHotKey>Misc2</designationHotKey>
+    <researchPrerequisites>
+      <li>MutagenicWeapons</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseBullet">
+        <defName>Slurry_Bullet</defName>
+        <label>Slurry Bullet</label>
+        <graphicData>
+            <texPath>Things/Projectiles/mutagenbulletprojectile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(0.5,0.5)</drawSize>
+        </graphicData>
+        <projectile>
+            <flyOverhead>false</flyOverhead>
+            <damageDef>MutagenicBulletDamage</damageDef>
+            <damageAmountBase>5</damageAmountBase>
+            <stoppingPower>5</stoppingPower>
+            <speed>9</speed>
+        </projectile>
+    </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>Gun_MutagenicTurret</defName>
+    <label>mutagenic turret gun</label>
+    <description>An automatic mutagen gun made to be mounted on a turret.</description>
+    <graphicData>
+      <texPath>Things/Building/slurryflywheelcannon</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.70</AccuracyTouch>
+      <AccuracyShort>0.64</AccuracyShort>
+      <AccuracyMedium>0.41</AccuracyMedium>
+      <AccuracyLong>0.22</AccuracyLong>
+      <RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Slurry_Bullet</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <range>28.9</range>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>2</burstShotCount>
+        <soundCast>Slurry_Flywheels</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+        <consumeFuelPerShot>1</consumeFuelPerShot>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!--=============== Mutanite Cannon ===============-->
+
+  <ThingDef ParentName="BuildingBase" Name="HeavyMutagenicTurret" Abstract="True"> 
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/mutanitecannonbase</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(5,5)</drawSize>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <stealable>false</stealable>
+    <rotatable>false</rotatable>
+    <size>(5,5)</size>
+    <statBases>
+      <MaxHitPoints>380</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <WorkToBuild>15000</WorkToBuild>
+      <Mass>100</Mass>
+      <Beauty>-20</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.5</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretTopDrawSize>10</turretTopDrawSize>
+      <!--<turretTopOffset>(0, 0.05)</turretTopOffset>-->
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+    <designationHotKey>Misc3</designationHotKey>    
+    <uiIconScale>0.95</uiIconScale>
+  </ThingDef>
+
+  <ThingDef ParentName="HeavyMutagenicTurret">
+    <defName>Turret_Mutagenic_Cannon</defName>
+    <label>mutanite cannon</label>
+    <description>The fastest way to turn a horde of raiders into animals or your money back. Problem is, it has a capacity of only 3 shots, it is incredibly bulky and consumes mutanite faster than a Hummer guzzles chemfuel. One more thing, if you see it leaking mutanite, run.</description>
+    <uiIconPath>Things/Building/mutanitecannonico</uiIconPath>
+    <statBases>
+      <ShootingAccuracyTurret>0.98</ShootingAccuracyTurret> <!-- like level 14 human shooter -->
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>100</costStuffCount>
+    <costList>
+      <Steel>100</Steel>
+      <Plasteel>30</Plasteel>
+      <Mutanite>9</Mutanite>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>15</explosiveRadius>
+        <explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>500</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until mutanite depletion</fuelLabel>
+        <fuelGizmoLabel>mutanite</fuelGizmoLabel>
+        <fuelFilter>
+          <thingDefs>
+            <li>Mutanite</li>
+          </thingDefs>
+        </fuelFilter>
+        <fuelCapacity>3</fuelCapacity>
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.75</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <fuelMultiplier>0.35</fuelMultiplier>
+        <factorByDifficulty>false</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <outOfFuelMessage>Cannot shoot: Needs mutanite</outOfFuelMessage>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+    </comps>
+    <building>
+      <turretGunDef>Gun_Mutanite_Cannon</turretGunDef>
+      <turretBurstCooldownTime>3.2</turretBurstCooldownTime>
+    </building>
+    <researchPrerequisites>
+      <li>MutagenicWeapons</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>Gun_Mutanite_Cannon</defName>
+    <label>mutanite cannon</label>
+    <description>A self-loading uranium slug cannon designed to attach to a turret.</description>
+    <graphicData>
+      <texPath>Things/Building/mutanitecannon</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(7,4)</drawSize>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.20</AccuracyTouch>
+      <AccuracyShort>0.30</AccuracyShort>
+      <AccuracyMedium>0.40</AccuracyMedium>
+      <AccuracyLong>0.95</AccuracyLong>
+      <RangedWeapon_Cooldown>4.0</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>40</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Bullet_MutagenicRocket</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <minRange>11.9</minRange>
+        <range>45.9</range>
+        <burstShotCount>1</burstShotCount>
+        <soundCast>Shot_TurretSniper</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>18</muzzleFlashScale>
+        <consumeFuelPerShot>1</consumeFuelPerShot>
+      </li>
+    </verbs>
+  </ThingDef>
+
+</Defs>
