@@ -56,7 +56,7 @@ namespace Pawnmorph
         void TrySubscribe()
         {
             if (_subscribed) return;
-            var tracker = pawn.GetAspectTracker();
+            var tracker = pawn?.GetAspectTracker();
             if (tracker == null) return;
             tracker.AspectAdded += OnAspectAdded;
             tracker.AspectRemoved += AspectRemoved;
@@ -276,6 +276,7 @@ namespace Pawnmorph
         {
             CurLevel = AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE;
             _seekerLevel = AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE;
+            TrySubscribe();
         }
 
         /// <summary>
