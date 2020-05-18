@@ -104,6 +104,9 @@ namespace Pawnmorph.ThingComps
                 Find.ColonistBar?.MarkColonistsDirty();
             }
 
+            //initialize work settings if they have it 
+            Pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
+
             //interrupts any jobs in case this changes their intelligence 
             Pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced);
         }
