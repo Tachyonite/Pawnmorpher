@@ -295,7 +295,6 @@ namespace Pawnmorph.TfSys
             var rFaction = transformedPawn.FactionResponsible;
 
 
-            Log.Message($"going to spawn {transformedPawn.original.Name} {transformedPawn.original.KindLabel}");
             var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
 
             if (spawned.Faction != animal.Faction && rFaction == null) //if the responsible faction is null (no one knows who did it) have the reverted pawn join that faction   
