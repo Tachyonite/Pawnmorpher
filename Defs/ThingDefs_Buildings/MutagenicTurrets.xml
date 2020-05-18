@@ -9,9 +9,9 @@
     <description>An automatic turret which shoots mechanite slurry at anyone you whose trying to kill you. Requires a lot of said mechanite slurry to refill it's magazine after use. Medium-sized mutagenic explosion when damaged. Its dumb AI brain can't be directly controlled, so to prevent unintended mutations keep colonists out of its field of fire.</description>
     <thingClass>Building_TurretGun</thingClass>
     <graphicData>
-      <texPath>Things/Building/mutagencannonbase</texPath>
+      <texPath>Things/Building/slurryturretbase</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(3,3)</drawSize>
+      <drawSize>(5,5.5)</drawSize>
       <damageData>
         <rect>(0.2,0.2,0.6,0.6)</rect>
       </damageData>
@@ -20,7 +20,7 @@
         <offset>(0,0,0)</offset>
       </shadowData>
     </graphicData>
-    <uiIconPath>Things/Building/mutagencannonico</uiIconPath>
+    <uiIconPath>Things/Building/slurryturretico</uiIconPath>
     <uiIconScale>0.90</uiIconScale>
     <minifiedDef>MinifiedThing</minifiedDef>
     <altitudeLayer>Building</altitudeLayer>
@@ -94,6 +94,8 @@
       <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Gun_MutagenicTurret</turretGunDef>
       <turretBurstCooldownTime>5</turretBurstCooldownTime>
+      <turretTopDrawSize>5</turretTopDrawSize>
+      <turretTopOffset>(0.1, 0.15)</turretTopOffset>
     </building>
     <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
@@ -111,14 +113,14 @@
         <graphicData>
             <texPath>Things/Projectiles/mutagenbulletprojectile</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(0.1,0.1)</drawSize>
+            <drawSize>(0.5,0.5)</drawSize>
         </graphicData>
         <projectile>
             <flyOverhead>false</flyOverhead>
             <damageDef>MutagenicBulletDamage</damageDef>
             <damageAmountBase>5</damageAmountBase>
             <stoppingPower>5</stoppingPower>
-            <speed>25</speed>
+            <speed>9</speed>
         </projectile>
     </ThingDef>
 
@@ -127,7 +129,7 @@
     <label>mutagenic turret gun</label>
     <description>An automatic mutagen gun made to be mounted on a turret.</description>
     <graphicData>
-      <texPath>Things/Building/mutagencannon</texPath>
+      <texPath>Things/Building/slurryflywheelcannon</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
@@ -148,7 +150,7 @@
         <range>28.9</range>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <burstShotCount>2</burstShotCount>
-        <soundCast>GunShotA</soundCast>
+        <soundCast>Slurry_Flywheels</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
         <consumeFuelPerShot>1</consumeFuelPerShot>
@@ -161,7 +163,7 @@
   <ThingDef ParentName="BuildingBase" Name="HeavyMutagenicTurret" Abstract="True"> 
     <thingClass>Building_TurretGun</thingClass>
     <graphicData>
-      <texPath>Things/Building/mutagencannonbase</texPath>
+      <texPath>Things/Building/mutanitecannonbase</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(5,5)</drawSize>
       <damageData>
@@ -193,8 +195,8 @@
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
-      <turretTopDrawSize>2.7</turretTopDrawSize>
-      <turretTopOffset>(0, 0.05)</turretTopOffset>
+      <turretTopDrawSize>10</turretTopDrawSize>
+      <!--<turretTopOffset>(0, 0.05)</turretTopOffset>-->
     </building>
     <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
@@ -249,8 +251,8 @@
         <autoRefuelPercent>0.75</autoRefuelPercent>
         <showFuelGizmo>true</showFuelGizmo>
         <minimumFueledThreshold>1</minimumFueledThreshold>
-        <fuelMultiplier>0.17</fuelMultiplier>
-        <factorByDifficulty>true</factorByDifficulty>
+        <fuelMultiplier>0.35</fuelMultiplier>
+        <factorByDifficulty>false</factorByDifficulty>
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <outOfFuelMessage>Cannot shoot: Needs mutanite</outOfFuelMessage>
         <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
@@ -270,9 +272,9 @@
     <label>mutanite cannon</label>
     <description>A self-loading uranium slug cannon designed to attach to a turret.</description>
     <graphicData>
-      <texPath>Things/Building/Mutanite_Cannon</texPath>
+      <texPath>Things/Building/mutanitecannon</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(2,2)</drawSize>
+      <drawSize>(7,4)</drawSize>
     </graphicData>
     <statBases>
       <AccuracyTouch>0.20</AccuracyTouch>
