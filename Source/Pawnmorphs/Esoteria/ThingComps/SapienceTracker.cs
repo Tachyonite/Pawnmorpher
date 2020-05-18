@@ -7,6 +7,7 @@ using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
+using Verse.AI;
 using FormerHuman = Pawnmorph.SapienceStates.FormerHuman;
 
 namespace Pawnmorph.ThingComps
@@ -98,9 +99,13 @@ namespace Pawnmorph.ThingComps
             sNeed?.SetSapience(initialLevel);
             _sapienceState.Enter();
 
-          
+            if (Pawn.Faction == Faction.OfPlayer)
+            {
+                Find.ColonistBar?.MarkColonistsDirty();
+            }
 
-
+            //interrupts any jobs in case this changes their intelligence 
+            Pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced);
         }
 
         /// <summary>
