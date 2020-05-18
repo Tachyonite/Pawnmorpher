@@ -145,8 +145,6 @@ namespace Pawnmorph.SapienceStates
                 Pawn.equipment?.DestroyAllEquipment(); 
             }
 
-            Pawn.equipment = null; 
-            Pawn.apparel = null;
         }
 
         private void AddMostlyFeralComps()
