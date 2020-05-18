@@ -1,9 +1,11 @@
 ﻿// MorphTrackingComp.cs modified by Iron Wolf for Pawnmorph on //2019 
 // last updated 09/09/2019  7:38 PM
 
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
@@ -99,6 +101,15 @@ namespace Pawnmorph
             }
         }
 
+        void RecalculateMorphCount()
+        {
+            var comp = parent.Map?.GetComponent<MorphTracker>();
+            if (comp != null)
+            {
+                RecalculateMorphCount(comp); 
+            }
+        }
+
         private void FisExplicitRaceGraphics()
         {
             //work around for the portraits of explicit hybrid races not updating correctly after load for some reason 
@@ -130,7 +141,37 @@ namespace Pawnmorph
                 aspectTracker.Add(aspect);
             }
 
-            aspect.StageIndex = tracker.GetGroupCount(group) - 1;
+
+            int stageIndex = tracker.GetGroupCount(@group) - 1 + GetFeralPawnInfluence(tracker, group);
+            aspect.StageIndex = stageIndex;
+        }
+
+        private int GetFeralPawnInfluence([NotNull] MorphTracker tracker, [NotNull] MorphGroupDef group)
+        {
+            var animals = tracker.map.mapPawns.SpawnedPawnsInFaction(Pawn.Faction);
+            int counter = 0;
+            foreach (Pawn animal in animals.MakeSafe())
+            {
+                if (group.AnimalRaces.Contains(animal.def)) counter++;
+            }
+
+            return counter; 
+        }
+
+        private const int TICK_PERIOD = 500;
+
+        /// <summary>
+        /// called every tick
+        /// </summary>
+        public override void CompTick()
+        {
+            base.CompTick();
+
+            if (parent.IsHashIntervalTick(TICK_PERIOD))
+            {
+                RecalculateMorphCount();
+            }
+
         }
 
         private void MorphCountChanged(MorphTracker sender, MorphDef morph)
