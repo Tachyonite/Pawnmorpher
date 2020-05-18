@@ -12,60 +12,68 @@ namespace Pawnmorph.Hediffs
     /// 
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
-    public class SyringeRifleTf : Hediff
+    public class SyringeRifleTf : MorphTf
     {
-        private int? _lastStage;
-
-        private Thing _weapon;
+        private PawnKindDef _chosenKind;
 
         /// <summary>
-        /// Posts the add.
+        /// Gets a value indicating whether this instance should be removed.
         /// </summary>
-        /// <param name="dinfo">The dinfo.</param>
-        public override void PostAdd(DamageInfo? dinfo)
-        {
-            base.PostAdd(dinfo);
-            _weapon = (dinfo?.Instigator as Pawn)?.equipment?.Primary; 
-        }
+        /// <value>
+        ///   <c>true</c> if this instance should be removed; otherwise, <c>false</c>.
+        /// </value>
+        public override bool ShouldRemove => MutationStatValue <= 0; 
 
         /// <summary>
-        /// Ticks this instance.
+        /// Initializes this instance with the given weapon
         /// </summary>
-        public override void Tick()
+        /// <param name="weapon">The weapon.</param>
+        public void Initialize(Thing weapon)
         {
-
-            base.Tick();
-            if (_lastStage != CurStageIndex)
+            _chosenKind = weapon?.TryGetComp<AnimalSelectorComp>()?.ChosenKind;
+            if (_chosenKind == null)
             {
-                _lastStage = CurStageIndex;
-                if (CurStageIndex == def.stages.Count - 1)
-                {
-                    DoTf(); 
-                }
+                _chosenKind = DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal).RandomElement();
             }
         }
+
+        /// <summary>
+        ///     Called when the stage changes.
+        /// </summary>
+        /// <param name="currentStage">The last stage.</param>
+        protected override void OnStageChanged(HediffStage currentStage)
+        {
+            base.OnStageChanged(currentStage);
+            if (currentStage == def.stages[def.stages.Count - 1]) DoTf();
+        }
+
 
         private void DoTf()
         {
-            PawnKindDef pawnKind = _weapon?.TryGetComp<AnimalSelectorComp>()?.ChosenKind;
-            if (pawnKind == null)
+            if (_chosenKind == null)
             {
-                pawnKind = DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal).RandomElement();
+                _chosenKind = DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal).RandomElement();
             }
-
-            var tfRequest = new TransformationRequest(pawnKind, pawn);
+            var tfRequest = new TransformationRequest(_chosenKind, pawn);
             MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest); 
 
         }
 
 
         /// <summary>
+        /// Gets the kind of the chosen.
+        /// </summary>
+        /// <value>
+        /// The kind of the chosen.
+        /// </value>
+        public PawnKindDef ChosenKind => _chosenKind; 
+
+        /// <summary>
         /// Exposes the data.
         /// </summary>
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref _lastStage, "lastStage");
-            Scribe_References.Look(ref _weapon, "weapon");
+            Scribe_Defs.Look(ref _chosenKind, "chosenKind");
             base.ExposeData();
         }
     }
