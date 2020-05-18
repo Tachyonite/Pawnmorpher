@@ -71,6 +71,16 @@ namespace Pawnmorph.Hediffs
             _allMutations = def.stages.OfType<TransformationStageBase>().SelectMany(s => s.GetEntries(pawn, this)).ToList();
         }
 
+        /// <summary>
+        /// Resets the mutation caches.
+        /// </summary>
+        public void ResetMutationCaches()
+        {
+            _allMutations = _allMutations ?? new List<MutationEntry>();
+            _allMutations.Clear();
+            _allMutations.AddRange(def.stages.OfType<TransformationStageBase>().SelectMany(s => s.GetEntries(pawn, this))); 
+        }
+
         /// <summary>Ticks this instance.</summary>
         public override void Tick()
         {

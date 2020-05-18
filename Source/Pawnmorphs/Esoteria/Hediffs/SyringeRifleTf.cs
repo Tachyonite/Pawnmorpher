@@ -35,6 +35,8 @@ namespace Pawnmorph.Hediffs
             {
                 _chosenKind = DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal).RandomElement();
             }
+
+            ResetMutationCaches();
         }
 
         /// <summary>

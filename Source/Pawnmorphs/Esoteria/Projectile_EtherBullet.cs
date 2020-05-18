@@ -41,8 +41,13 @@ namespace EtherGun
                         Hediff hediff = HediffMaker.MakeHediff(Def.HediffToAdd, hitPawn);
                         hitPawn.health?.AddHediff(hediff);
 
-                        var syringeHediff = hediff as SyringeRifleTf; 
-                        syringeHediff?.Initialize(launcher);
+                        //this should be an interface 
+                        var syringeHediff = hediff as SyringeRifleTf;
+
+                        //hacky, want to figure out a better way to find the weapon that will allow turrets as well 
+                        var weapon = (launcher as Pawn)?.equipment?.Primary; 
+                        
+                        syringeHediff?.Initialize(weapon);
 
                         IntermittentMagicSprayer.ThrowMagicPuffDown(hitPawn.Position.ToVector3(), Map);
                     }
