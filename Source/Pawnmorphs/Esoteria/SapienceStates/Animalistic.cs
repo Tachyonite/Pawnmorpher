@@ -132,7 +132,6 @@ namespace Pawnmorph.SapienceStates
                 Pawn.drafter = null; 
             }
 
-            Pawn.workSettings = null;
             IntVec3 pawnPosition = Pawn.Position;
             if (Pawn.Map != null)
             {
