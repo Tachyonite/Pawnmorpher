@@ -189,6 +189,11 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+		<comps>
+			<li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
+				
+			</li>
+		</comps>
 	</ThingDef>
 	
 	<ThingDef ParentName="BaseHumanMakeableGun">

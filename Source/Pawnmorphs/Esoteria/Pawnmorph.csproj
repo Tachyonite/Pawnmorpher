@@ -417,6 +417,7 @@
     <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
     <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
+    <Compile Include="Hediffs\SyringeRifleTf.cs" />
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
@@ -523,6 +524,7 @@
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
+    <Compile Include="ThingComps\AnimalSelectorComp.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
