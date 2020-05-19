@@ -95,7 +95,7 @@
       <turretGunDef>Gun_MutagenicTurret</turretGunDef>
       <turretBurstCooldownTime>5</turretBurstCooldownTime>
       <turretTopDrawSize>5</turretTopDrawSize>
-      <turretTopOffset>(0.1, 0.15)</turretTopOffset>
+      <!--<turretTopOffset>(0.3, 0.35)</turretTopOffset>-->
     </building>
     <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
