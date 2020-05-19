@@ -6,12 +6,12 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Turret_MutagenicTurret</defName>
     <label>slurry turret</label>
-    <description>An automatic turret which shoots mechanite slurry at anyone you whose trying to kill you. Requires a lot of said mechanite slurry to refill it's magazine after use. Medium-sized mutagenic explosion when damaged. Its dumb AI brain can't be directly controlled, so to prevent unintended mutations keep colonists out of its field of fire.</description>
+    <description>An automatic turret which launches balls of mechanite slurry at anyone you whose trying to kill you using flywheels and velocity-based PID. Requires a lot of said mechanite slurry to refill it's magazine after use. Medium-sized mutagenic explosion when damaged. Its dumb AI brain can't be directly controlled, so to prevent unintended mutations keep colonists out of its field of fire.</description>
     <thingClass>Building_TurretGun</thingClass>
     <graphicData>
       <texPath>Things/Building/slurryturretbase</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(5,5.5)</drawSize>
+      <drawSize>(3,3)</drawSize>
       <damageData>
         <rect>(0.2,0.2,0.6,0.6)</rect>
       </damageData>
