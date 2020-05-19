@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Hediffs;
+using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -20,27 +20,91 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     public class Need_Control : Need_Seeker
     {
+        /// <summary>
+        ///     delegate for the sapience level changed handle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="pawn"></param>
+        /// <param name="sapienceLevel"></param>
         public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel sapienceLevel);
 
+        private static HashSet<ThingDef> _enabledRaces;
+
         /// <summary>
-        /// Occurs when the sapience level changes .
+        ///     Occurs when the sapience level changes .
         /// </summary>
-        public event SapienceLevelChangedHandle SapienceLevelChanged; 
+        public event SapienceLevelChangedHandle SapienceLevelChanged;
+
+        private float _seekerLevel;
+
+        private SapienceLevel _currentLevel;
+
+        private float? _maxLevelCached = null;
 
 
         /// <summary>
-        /// Determines whether the control need is enabled for the pawn.
+        ///     Initializes a new instance of the <see cref="Need_Control" /> class.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///   <c>true</c> if control need is enabled for the given humanoid race; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool IsEnabledFor([NotNull] Pawn pawn)
+        public Need_Control(Pawn pawn) : base(pawn)
         {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            var fhLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
-            return fhLevel != SapienceLevel.PermanentlyFeral || EnabledRaces.Contains(pawn.def); 
+            TrySubscribe();
         }
+
+        private bool _subscribed;
+
+        void TrySubscribe()
+        {
+            if (_subscribed) return;
+            var tracker = pawn?.GetAspectTracker();
+            if (tracker == null) return;
+            tracker.AspectAdded += OnAspectAdded;
+            tracker.AspectRemoved += AspectRemoved;
+            _subscribed = true; 
+        }
+
+        private void OnAspectAdded(AspectTracker sender, Aspect _)
+        {
+            ResetCaches();   
+        }
+
+        private void AspectRemoved(AspectTracker sender, Aspect _)
+        {
+           ResetCaches();
+        }
+
+        /// <summary>
+        ///     Gets the maximum level.
+        /// </summary>
+        /// <value>
+        ///     The maximum level.
+        /// </value>
+        public override float MaxLevel
+        {
+            get
+            {
+                if (!pawn.IsLoadingOrSpawning()) //make sure we don't look for stats while the pawn is loading 
+                    return Mathf.Max(CalculateNetResistance(pawn) / AVERAGE_MAX_SAPIENCE, 0.01f);
+                return AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE;
+            }
+        }
+
+        /// <summary>
+        ///     Gets the current instant level.
+        /// </summary>
+        /// <value>
+        ///     The current instant level.
+        /// </value>
+        public override float CurInstantLevel => _seekerLevel;
+
+
+        /// <summary>
+        ///     Gets the seeker level.
+        /// </summary>
+        /// <value>
+        ///     The seeker level.
+        /// </value>
+        public float SeekerLevel => _seekerLevel;
 
         [NotNull]
         private static HashSet<ThingDef> EnabledRaces
@@ -61,66 +125,15 @@ namespace Pawnmorph
             }
         }
 
-        private static HashSet<ThingDef> _enabledRaces; 
-
-        private float _seekerLevel;
-
-        private SapienceLevel _currentLevel;
-
-        private float? _maxLevelCached = null;
-
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Need_Control" /> class.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        public Need_Control(Pawn pawn) : base(pawn)
-        {
-        }
-
-        /// <summary>
-        ///     Gets the maximum level.
-        /// </summary>
-        /// <value>
-        ///     The maximum level.
-        /// </value>
-        public override float MaxLevel
-        {
-            get
-            {
-                if(!pawn.IsLoadingOrSpawning()) //make sure we don't look for stats while the pawn is loading 
-                    return Mathf.Max(CalculateNetResistance(pawn) / AVERAGE_MAX_SAPIENCE, 0.01f);
-                return AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE; 
-            }
-        }
-
-        /// <summary>
-        ///     Gets the current instant level.
-        /// </summary>
-        /// <value>
-        ///     The current instant level.
-        /// </value>
-        public override float CurInstantLevel => _seekerLevel;
-
-        /// <summary>
-        /// Sets the sapience.
-        /// </summary>
-        /// <param name="sapience">The sapience.</param>
-        public void SetSapience(float sapience)
-        {
-            _seekerLevel = Mathf.Clamp(sapience, 0, MaxLevel);
-            CurLevel = _seekerLevel; 
-        }
-
         /// <summary>
         ///     Adds the instinct change to this need
         /// </summary>
         /// <param name="instinctChange">The instinct change.</param>
-        public void AddInstinctChange(int instinctChange)
+        public void AddInstinctChange(float instinctChange)
         {
-            _maxLevelCached = null; 
+            _maxLevelCached = null;
             _seekerLevel += CalculateControlChange(pawn, instinctChange) / AVERAGE_MAX_SAPIENCE;
-            _seekerLevel = Mathf.Clamp(_seekerLevel, 0, MaxLevel);
+            _seekerLevel = Mathf.Clamp(_seekerLevel, 0, Mathf.Min(MaxLevel, Limit));
         }
 
         /// <summary>
@@ -135,11 +148,10 @@ namespace Pawnmorph
                                        bool drawArrows = true,
                                        bool doTooltip = true)
         {
-            
             if (threshPercents == null || _maxLevelCached == null)
             {
                 _maxLevelCached = _maxLevelCached ?? MaxLevel;
-                
+
                 float mLevel = _maxLevelCached.Value;
                 _seekerLevel = Mathf.Clamp(_seekerLevel, 0, mLevel);
                 CurLevel = Mathf.Clamp(CurLevel, 0, mLevel); //make sure the levels fall within the correct bounds 
@@ -151,6 +163,7 @@ namespace Pawnmorph
                     threshPercents.Add(threshold);
                 }
             }
+
             base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip);
         }
 
@@ -167,8 +180,30 @@ namespace Pawnmorph
                     _seekerLevel = CurLevel;
                 _currentLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(_seekerLevel);
                 CurLevel = Mathf.Clamp(CurLevel, 0, MaxLevel);
-                OnSapienceLevelChanges();
+                //OnSapienceLevelChanges();
             }
+        }
+
+        void CalculateCachesIfNeeded()
+        {
+            if(_maxLevelCached == null)
+                _maxLevelCached = MaxLevel;
+            if(_limit == null)
+                _limit = Limit; 
+        }
+
+        /// <summary>
+        ///     Determines whether the control need is enabled for the pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///     <c>true</c> if control need is enabled for the given humanoid race; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsEnabledFor([NotNull] Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            SapienceLevel fhLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
+            return fhLevel != SapienceLevel.PermanentlyFeral || EnabledRaces.Contains(pawn.def);
         }
 
         /// <summary>
@@ -180,8 +215,11 @@ namespace Pawnmorph
             base.NeedInterval();
             if (pawn.IsHashIntervalTick(TimeMetrics.TICKS_PER_REAL_SECOND)) //just every second or so 
             {
+                TrySubscribe();
+                CalculateCachesIfNeeded();
+                _seekerLevel = Mathf.Min(_seekerLevel, Limit); 
                 float instinctChange = GetInstinctChangePerTick(pawn) * TimeMetrics.TICKS_PER_REAL_SECOND;
-                if (Mathf.Abs(instinctChange) > EPSILON) AddInstinctChange(Mathf.CeilToInt(instinctChange));
+                if (Mathf.Abs(instinctChange) > EPSILON) AddInstinctChange(instinctChange);
                 //_maxLevelCached = null; 
                 SapienceLevel sLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
                 if (sLevel != _currentLevel)
@@ -189,8 +227,6 @@ namespace Pawnmorph
                     _currentLevel = sLevel;
                     OnSapienceLevelChanges();
                 }
-
-                if (_currentLevel == SapienceLevel.Feral && Rand.MTBEventOccurs(4, 60000f, 30f)) TriggerPermanentlyFeralChange();
             }
         }
 
@@ -199,7 +235,37 @@ namespace Pawnmorph
         /// </summary>
         public void NotifyMaxLevelDirty()
         {
+            ResetCaches();
+        }
+
+        private float? _limit; 
+
+        private void ResetCaches()
+        {
             _maxLevelCached = null;
+            _limit = null; 
+        }
+        /// <summary>
+        /// Gets the upper limit of this pawns sapience
+        /// </summary>
+        /// <value>
+        /// The limit.
+        /// </value>
+        public float Limit
+        {
+            get
+            {
+                if (_limit == null)
+                {
+                    if (_maxLevelCached == null)
+                    {
+                        return pawn.GetStatValue(PMStatDefOf.SapienceLimit) * AVERAGE_MAX_SAPIENCE;
+                    }
+                    _limit = pawn.GetStatValue(PMStatDefOf.SapienceLimit) * (_maxLevelCached.Value) ; 
+                }
+
+                return _limit.Value; 
+            }
         }
 
 
@@ -209,63 +275,59 @@ namespace Pawnmorph
         public override void SetInitialLevel()
         {
             CurLevel = AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE;
-            _seekerLevel = AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE; 
-        }
-
-
-        private void OnSapienceLevelChanges()
-        {
-            var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman) as FormerHuman;
-            var fTracker = pawn.GetSapienceTracker();
-            if (fTracker == null) return;
-            fTracker.SapienceLevel = _currentLevel; 
-            if (fHediff == null) return;
-
-            switch (_currentLevel)
-            {
-                case SapienceLevel.Sapient:
-                case SapienceLevel.MostlySapient:
-                case SapienceLevel.Conflicted:
-                case SapienceLevel.MostlyFeral:
-                    fHediff.Severity = 1;
-                    break;
-                case SapienceLevel.Feral:
-                    fHediff.Severity = 0.5f;
-                    break;
-                case SapienceLevel.PermanentlyFeral:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            pawn.needs?.AddOrRemoveNeedsAsAppropriate();
-            PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
-           
-            SapienceLevelChanged?.Invoke(this, pawn, _currentLevel); 
-
-        }
-
-        private void TriggerPermanentlyFeralChange()
-        {
-            FormerHumanUtilities.MakePermanentlyFeral(pawn);
+            _seekerLevel = AVERAGE_RESISTANCE / AVERAGE_MAX_SAPIENCE;
+            TrySubscribe();
         }
 
         /// <summary>
-        /// Gets the seeker level.
-        /// </summary>
-        /// <value>
-        /// The seeker level.
-        /// </value>
-        public float SeekerLevel => _seekerLevel; 
-
-        /// <summary>
-        /// Sets the initial level.
+        ///     Sets the initial level.
         /// </summary>
         /// <param name="sapiencePercent">The sapience level.</param>
         public void SetInitialLevel(float sapiencePercent)
         {
             _seekerLevel = Mathf.Clamp(sapiencePercent, 0, 1) * MaxLevel;
-            CurLevel = _seekerLevel; 
+            CurLevel = _seekerLevel;
+        }
+
+        /// <summary>
+        ///     Sets the sapience.
+        /// </summary>
+        /// <param name="sapience">The sapience.</param>
+        public void SetSapience(float sapience)
+        {
+            _seekerLevel = Mathf.Clamp(sapience, 0, Mathf.Min(MaxLevel, Limit));
+            CurLevel = _seekerLevel;
+
+            SapienceLevel cLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
+            if (_currentLevel != cLevel)
+            {
+                _currentLevel = cLevel;
+                OnSapienceLevelChanges();
+            }
+        }
+
+
+        private void OnSapienceLevelChanges()
+        {
+            SapienceTracker fTracker = pawn.GetSapienceTracker();
+            if (fTracker == null)
+            {
+                Log.Error($"{pawn.Name} has the sapience need but not tracker!");
+                return;
+            }
+
+            fTracker.SapienceLevel = _currentLevel;
+
+            if (pawn.needs != null)
+                pawn.needs.AddOrRemoveNeedsAsAppropriate();
+            else
+                Log.Warning($"{pawn.Name} does not have needs!");
+
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
+
+            if (pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
+
+            SapienceLevelChanged?.Invoke(this, pawn, _currentLevel);
         }
     }
 }

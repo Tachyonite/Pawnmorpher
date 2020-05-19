@@ -8,6 +8,9 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<stackLimit>10</stackLimit>
+		<thingCategories>
+			<li>Items</li>
+		</thingCategories>
 		<statBases>
 			<MarketValue>1300</MarketValue>
 		</statBases>
@@ -34,7 +37,7 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="MechSerumBase">
 		<defName>MechSerumResurrectorTf</defName>
 		<label>transformative resurrector mech serum</label>
@@ -44,6 +47,9 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<stackLimit>10</stackLimit>
+		<thingCategories>
+			<li>Items</li>
+		</thingCategories>
 		<statBases>
 			<MarketValue>1700</MarketValue>
 		</statBases>
@@ -58,7 +64,7 @@
 				<fleshCorpsesOnly>true</fleshCorpsesOnly>
 				<nonDessicatedCorpsesOnly>true</nonDessicatedCorpsesOnly>
 			</li>
-			<li Class="Pawnmorph.CompProperties_TfResurrect"/>
+			<li Class="Pawnmorph.CompProperties_TfResurrect" />
 		</comps>
 		<thingSetMakerTags>
 			<li>RewardSpecial</li>

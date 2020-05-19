@@ -1,9 +1,14 @@
 ﻿// FormerHuman.cs modified by Iron Wolf for Pawnmorph on 02/17/2020 9:29 PM
 // last updated 02/17/2020  9:29 PM
 
+using System;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
+using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
+using Verse.AI;
+using FormerHuman = Pawnmorph.SapienceStates.FormerHuman;
 
 namespace Pawnmorph.ThingComps
 {
@@ -13,15 +18,107 @@ namespace Pawnmorph.ThingComps
     /// <seealso cref="Verse.ThingComp" />
     public class SapienceTracker : ThingComp
     {
+        private SapienceState _sapienceState;
+        private bool _subscribed;
+
+        void TrySubscribe()
+        {   
+            if (_subscribed) return; 
+            var sNeed = SapienceNeed;
+            if (sNeed != null)
+            {
+                _subscribed = true; 
+                sNeed.SapienceLevelChanged += SapienceLevelChanges; 
+            }
+        }
+
+        private void SapienceLevelChanges(Need_Control sender, Pawn pawn, SapienceLevel sapiencelevel)
+        {
+            if (pawn.Faction != Faction.OfPlayer) return;
+
+           
+                Find.ColonistBar.MarkColonistsDirty();
+            
+        }
+
+        /// <summary>
+        /// Gets the current sapience state that pawn is in 
+        /// </summary>
+        /// <value>
+        /// Gets the current sapience state that pawn is in 
+        /// </value>
+        public SapienceState CurrentState => _sapienceState; 
+
         //TODO make this more extendable some how 
         //pawn state or something? 
         private bool _isFormerHuman;
 
 
+        /// <summary>
+        /// Exits the current sapience state.
+        /// </summary>
+        public void ExitState()
+        {
+            if (_sapienceState == null)
+            {
+                DebugLogUtils.Warning($"trying to exit sapience state in {Pawn.Name} but they aren't in one");
+                return; 
+            }
+            _sapienceState.Exit();
+            _sapienceState = null; 
+        }
+
         private SapienceLevel _sapienceLevel;
 
+        /// <summary>
+        /// called every tick 
+        /// </summary>
+        public override void CompTick()
+        {
+            base.CompTick();
+            _sapienceState?.Tick();
+        }
 
 
+        /// <summary>
+        /// enter the given sapience state
+        /// </summary>
+        /// <param name="stateDef">The state definition.</param>
+        /// <param name="initialLevel">The initial level.</param>
+        public void EnterState([NotNull] SapienceStateDef stateDef, float initialLevel)
+        {
+            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
+
+            _sapienceState?.Exit();
+            _sapienceState = stateDef.CreateState();
+            _sapienceState.Init(this);
+
+            //need to refresh comps and needs for pawn here 
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
+            Pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+            var sNeed = SapienceNeed;
+            sNeed?.SetSapience(initialLevel);
+            _sapienceState.Enter();
+
+            if (Pawn.Faction == Faction.OfPlayer)
+            {
+                Find.ColonistBar?.MarkColonistsDirty();
+            }
+
+            //initialize work settings if they have it 
+            Pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
+
+            //interrupts any jobs in case this changes their intelligence 
+            Pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced);
+        }
+
+        /// <summary>
+        /// Gets the current intelligence of the attached pawn.
+        /// </summary>
+        /// <value>
+        /// The current intelligence.
+        /// </value>
+        public Intelligence CurrentIntelligence => _sapienceState?.CurrentIntelligence ?? Pawn.RaceProps.intelligence; 
 
 
         /// <summary>
@@ -39,7 +136,8 @@ namespace Pawnmorph.ThingComps
         /// <value>
         ///     <c>true</c> if this instance is a former human; otherwise, <c>false</c>.
         /// </value>
-        public bool IsFormerHuman => _isFormerHuman;
+        [Obsolete("use " + nameof(CurrentIntelligence) + " or " + nameof(CurrentState) + " instead")]
+        public bool IsFormerHuman => _sapienceState?.IsFormerHuman == true;
 
 
         /// <summary>
@@ -48,7 +146,8 @@ namespace Pawnmorph.ThingComps
         /// <value>
         ///     <c>true</c> if this instance is permanently feral; otherwise, <c>false</c>.
         /// </value>
-        public bool IsPermanentlyFeral => _isFormerHuman && _sapienceLevel == SapienceLevel.PermanentlyFeral;
+        
+        public bool IsPermanentlyFeral => _sapienceState?.IsFormerHuman == true && _sapienceLevel == SapienceLevel.PermanentlyFeral;
 
         /// <summary>
         ///     Gets or sets the sapience level.
@@ -80,7 +179,13 @@ namespace Pawnmorph.ThingComps
         /// </value>
         public float Sapience => SapienceNeed?.CurLevel ?? 0;
 
-        private Pawn Pawn => (Pawn) parent;
+        /// <summary>
+        /// Gets the pawn this comp is attached to 
+        /// </summary>
+        /// <value>
+        /// The pawn.
+        /// </value>
+        public Pawn Pawn => (Pawn) parent;
 
         /// <summary>
         ///     Initializes the specified props.
@@ -94,6 +199,9 @@ namespace Pawnmorph.ThingComps
                 Log.Error($"{nameof(SapienceTracker)} is attached to {parent.GetType().Name}! this comp can only be added to a pawn");
                 return;
             }
+
+            _sapienceState?.Init(this); 
+            TrySubscribe();
         }
 
 
@@ -101,6 +209,7 @@ namespace Pawnmorph.ThingComps
         ///     Makes the parent a former human.
         /// </summary>
         /// <returns></returns>
+        [Obsolete("use " + nameof(EnterState) + "instead")]
         public void MakeFormerHuman(float initialLevel) //TODO move most of FormerHumanUtilities.MakeAnimalSapient here 
         {
             if (_isFormerHuman)
@@ -119,11 +228,26 @@ namespace Pawnmorph.ThingComps
         /// </summary>
         public void MakePermanentlyFeral()
         {
-            if (!_isFormerHuman)
+            if (!_isFormerHuman || _sapienceState == null)
+            {
                 Log.Error($"trying to make a non former human \"{PMThingUtilities.GetDebugLabel(parent)}\" permanently feral");
+                return;
+            }
 
-            SapienceLevel = SapienceLevel.PermanentlyFeral;
-            //TODO move most of FormerHumanUtilities.MakePermanentlyFeral here 
+
+            //hacky 
+            //need a better solution 
+            try
+            {
+                var fhState = (FormerHuman) _sapienceState;
+                fhState.MakePermanentlyFeral();
+                SapienceLevel = SapienceLevel.PermanentlyFeral;
+
+            }
+            catch (InvalidCastException e)
+            {
+                    Log.Error($"tried to make {Pawn.Name} in state \"{_sapienceState.GetType().Name}\" permanently feral but this is only supported for {nameof(FormerHuman)}!\n{e.ToString().Indented("|\t")}");
+            }
         }
 
         /// <summary>
@@ -133,6 +257,23 @@ namespace Pawnmorph.ThingComps
         {
             Scribe_Values.Look(ref _isFormerHuman, "isFormerHuman");
             Scribe_Values.Look(ref _sapienceLevel, "sapience");
+            Scribe_Deep.Look(ref _sapienceState, nameof(CurrentState));
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                //check to move old saves to the new sapience system 
+                if (_isFormerHuman && _sapienceState == null)
+                {
+                    _sapienceState = SapienceStateDefOf.FormerHuman.CreateState();
+                    _sapienceState.Init(this); 
+                }
+
+
+                _sapienceState?.Init(this); 
+                TrySubscribe();
+            }
+
+
             base.PostExposeData();
         }
 
@@ -156,39 +297,23 @@ namespace Pawnmorph.ThingComps
             Find.ColonistBar.MarkColonistsDirty();
         }
 
-        private void OnNoLongerSapient()
-        {
-        }
+     
+
+        private Intelligence? _lastIntelligenceLevel; 
 
         private void OnSapienceLevelChanges(SapienceLevel lastSapienceLevel)
         {
             if (lastSapienceLevel.IsColonistAnimal() && !_sapienceLevel.IsColonistAnimal())
                 OnNoLongerColonist();
-            else if (lastSapienceLevel <= SapienceLevel.MostlyFeral && _sapienceLevel > SapienceLevel.MostlyFeral)
-                OnNoLongerSapient();
 
-
-            //try to send a message 
-            if (Pawn.Faction?.IsPlayer == true)
-                SendTransitionLetter();
-        }
-
-        private void SendTransitionLetter()
-        {
-            // the translation keys should be $SapienceLevel_TransitionLabel and $SapienceLevel_TransitionContent
-            string translationLabel = _sapienceLevel + "_Transition";
-            string letterLabelKey = translationLabel + "Label";
-            string letterContentKey = translationLabel + "Content";
-            TaggedString letterContent, letterLabel;
-
-
-            if (letterLabelKey.TryTranslate(out letterLabel) && letterContentKey.TryTranslate(out letterContent))
+            if (_lastIntelligenceLevel != CurrentIntelligence)
             {
-                letterLabel = letterLabel.AdjustedFor(Pawn);
-                letterContent = letterContent.AdjustedFor(Pawn);
-
-                Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, new LookTargets(Pawn));
+                _lastIntelligenceLevel = CurrentIntelligence;
+                PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn); 
             }
+
         }
+
+      
     }
 }

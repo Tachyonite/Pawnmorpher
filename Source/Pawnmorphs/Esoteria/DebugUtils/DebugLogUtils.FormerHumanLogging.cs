@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
@@ -45,6 +46,72 @@ namespace Pawnmorph.DebugUtils
             Log.Message(outStr); 
 
         }
+
+
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void LogAnimalisticTrainingInfo()
+        {
+            var animalisticPawns =
+                Find.CurrentMap.mapPawns.AllPawns.Where(p => p.GetSapienceState()?.StateDef == SapienceStateDefOf.Animalistic);
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (Pawn pawn in animalisticPawns)
+            {
+                var training = pawn.training; 
+                if(training == null) continue;
+
+                builder.AppendLine($"{pawn.Name}:");
+
+
+                builder.AppendLine($"{nameof(Pawn_TrainingTracker.NextTrainableToTrain)}: {training.NextTrainableToTrain()?.defName ?? "NULL"}"); 
+
+
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
+        [DebugOutput(category = FH_CATEGORY)]
+        static void PrintHumanlikeThinkTree()
+        {
+            ThinkTreeDef tree = DefDatabase<ThinkTreeDef>.GetNamed("Humanlike");
+            if (tree == null) return;
+            string outStr = TreeUtilities.PrettyPrintTree(tree.thinkRoot, GetChildren, GetNodeLabel);
+            Log.Message(outStr); 
+        }
+        
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void LogSapienceInfo()
+        {
+            StringBuilder builder = new StringBuilder(); 
+            foreach (Pawn pawn in PawnsFinder.AllMaps_SpawnedPawnsInFaction(Faction.OfPlayer))
+            {
+                var sapienceTracker = pawn.GetSapienceTracker();
+                Need_Control need = sapienceTracker?.SapienceNeed;
+                if(need == null || sapienceTracker.CurrentState == null) continue;
+
+                builder.AppendLine($"{pawn.Name}[{pawn.ThingID}]: in state {sapienceTracker.CurrentState.StateDef.defName}");
+
+                float curLevel = need.CurLevel;
+                float curLevelPercent = need.CurLevelPercentage;
+                float limit = need.Limit;
+                var limitStat = pawn.GetStatValue(PMStatDefOf.SapienceLimit); 
+                float limitPercent = need.Limit / need.MaxLevel;
+
+                builder.AppendLine($"|\t{nameof(curLevel)}:{curLevel}={sapienceTracker.SapienceLevel}");
+                builder.AppendLine($"|\t{nameof(curLevelPercent)}:{curLevelPercent}");
+                builder.AppendLine($"|\t{nameof(limitStat)}:{limitStat}");
+                builder.AppendLine($"|\t{nameof(limit)}:{limit}");
+                builder.AppendLine($"|\t{nameof(limitPercent)}:{limitPercent}");
+
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
 
         [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
         static void TestFormerHumanDoorPatch()
@@ -122,7 +189,12 @@ namespace Pawnmorph.DebugUtils
 
         static IEnumerable<ThinkNode> GetChildren([NotNull] ThinkNode node)
         {
-            if (node is ThinkNode_SubtreesByTag) return Enumerable.Empty<ThinkNode>();
+            if (node is ThinkNode_SubtreesByTag sNode)
+            {
+                var allDefs = DefDatabase<ThinkTreeDef>.AllDefs.Where(d => d.insertTag == sNode.insertTag && d.thinkRoot != null);
+                return allDefs.Select(d => d.thinkRoot); 
+
+            }
             if (node is ThinkNode_Subtree) return Enumerable.Empty<ThinkNode>();
             return node.subNodes.MakeSafe(); 
         }

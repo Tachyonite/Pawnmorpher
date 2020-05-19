@@ -5,7 +5,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="HareJawBase">
 		<label>leporine muzzle</label>
-		<description>[PAWN_nameDef]'s face has completely reshaped into that of one resembling a hare's, complete with twitchy pink button nose.</description>
+		<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose.</description>
 		<initialSeverity>0</initialSeverity>
 		<mutationMemory>EtherHareJaw</mutationMemory>
 		<parts>

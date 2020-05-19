@@ -12,6 +12,7 @@ using System.Text;
 using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.Hybrids;
@@ -104,10 +105,15 @@ namespace Pawnmorph
                                                        .Where(t => t.IsCompilerGenerated())
                                                        .SelectMany(t => t.GetMethods(instanceFlags).Where(m=> m.HasSignature(typeof(Pawn))));
 
+            methodsToPatch.AddRange(methods);
 
+            //map pawns 
+            methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)));
             methodsToPatch.AddRange(methods); 
 
-
+         
+            //jobs and toils 
+            methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
 
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
@@ -123,8 +129,8 @@ namespace Pawnmorph
                 if(methodInfo == null) continue;
                 builder.AppendLine($"{methodInfo.Name}");
             }
-
             Log.Message(builder.ToString());
+            DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
         }
 
 
@@ -335,7 +341,7 @@ namespace Pawnmorph
 
                     return false;
                 }
-            }else if (__instance.pawn.IsSapientOrFeralFormerHuman())
+            }else if (__instance.pawn.IsSapientFormerHuman())
             {
                 if (thing.def.ingestible == null) return true;
 

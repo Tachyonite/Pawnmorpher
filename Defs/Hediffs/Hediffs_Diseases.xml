@@ -23,7 +23,7 @@
     <HediffDef ParentName="MorphDiseaseBase">
         <defName>FoxFlu</defName>
         <label>fox fever</label>
-        <description>This pawn has contracted a mutagenic disease that seems to be making them feel much more...foxy.</description>
+        <description>This pawn has contracted a mutagenic disease that makes them feel much more...foxy.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
                 <label>minor</label>

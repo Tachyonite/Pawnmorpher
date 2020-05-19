@@ -35,9 +35,26 @@ namespace Pawnmorph
         public ThoughtDef revertedThoughtBad;
 
         /// <summary>
+        /// the sapience drop range when a pawn is transformed by this mutagen
+        /// </summary>
+        /// note, values returned by this range will be clamped to [0,1] 
+        public FloatRange transformedSapienceDrop = new FloatRange(-.1f,0.3f); 
+
+        /// <summary>
         /// the reversion thought for pawns with primal wish 
         /// </summary>
-        public ThoughtDef revertedPrimalWish; 
+        public ThoughtDef revertedPrimalWish;
+
+        /// <summary>
+        /// sapience state for when a pawn is transformed by this mutagen 
+        /// </summary>
+        /// default is FormerHuman
+        public SapienceStateDef transformedSapienceState;
+
+        /// <summary>
+        /// sapience state for when a pawn is reverted from being transformed by this mutagen 
+        /// </summary>
+        public SapienceStateDef revertedSapienceState; 
 
         [Unsaved] private Mutagen _mutagenCached;
         /// <summary>

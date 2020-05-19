@@ -68,14 +68,15 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// how fast the mutation types change 
         /// </summary>
-        public const int CYCLE_RATE = TimeMetrics.TICKS_PER_DAY * 2/3; 
+        public const int CYCLE_RATE = TimeMetrics.TICKS_PER_DAY * 2/3;
 
         /// <summary>
         /// Gets the entries for the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        public override IEnumerable<MutationEntry> GetEntries(Pawn pawn)
+        public override IEnumerable<MutationEntry> GetEntries(Pawn pawn, Hediff source)
         {
             if (_cache.TryGetValue(pawn, out List<MutationEntry> lst))
                 return lst;

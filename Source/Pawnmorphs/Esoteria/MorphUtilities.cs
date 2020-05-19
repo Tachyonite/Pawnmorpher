@@ -181,9 +181,10 @@ namespace Pawnmorph
 
             MorphDef setMorph = GetMorphForPawn(pawn, isBelowChimeraThreshold, hInfluence, out MorphDef curMorph);
 
-            if (curMorph != setMorph) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
+            if (curMorph != setMorph && setMorph != null) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
         }
 
+        [CanBeNull]
         private static MorphDef GetMorphForPawn(Pawn pawn, bool isBelowChimeraThreshold, AnimalClassBase hInfluence, out MorphDef curMorph)
         {
             MorphDef setMorph;
@@ -199,8 +200,7 @@ namespace Pawnmorph
                 else
                 {
                     setMorph = hInfluence as MorphDef;
-                    //if the highest influence isn't a morph just set it to a random morph in that class
-                    setMorph = setMorph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
+                    
                 }
             }
             finally

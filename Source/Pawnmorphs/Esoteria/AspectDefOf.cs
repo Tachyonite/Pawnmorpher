@@ -26,7 +26,10 @@ namespace Pawnmorph
         public static AspectDef RareMutant;
 
         [UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull] 
-        public static AspectDef PrimalWish; 
+        public static AspectDef PrimalWish;
+
+        [NotNull]
+        public static AspectDef SplitMind; 
 
         // ReSharper disable once NotNullMemberIsNotInitialized
         static AspectDefOf()

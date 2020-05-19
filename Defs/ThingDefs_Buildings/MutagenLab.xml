@@ -73,7 +73,6 @@
 		</modExtensions>
 		<researchPrerequisites>
 		  <li>MutagenCentrifuging</li>
-		  <li>NutrientPaste</li>
 		</researchPrerequisites>
 	</ThingDef>
 

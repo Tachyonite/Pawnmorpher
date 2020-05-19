@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="RaccoonPart">
 		<defName>EtherRaccoonJaw</defName>
 		<label>raccoon snout</label>
-		<description>A short, pointed and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. The keen nose picks up the smell of rubbish from miles away.</description>
+		<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -69,7 +69,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="RaccoonPart">
 		<defName>EtherRaccoonTail</defName>
 		<label>ringtail</label>
-		<description>The cutest ringtail of a raccoon has grown out from [PAWN_nameDef]'s spine, it twitches when it senses rubbish.</description>
+		<description>The ringtail of a raccoon has grown out from [PAWN_nameDef]'s spine. It twitches when it senses rubbish.</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>

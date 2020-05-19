@@ -62,7 +62,7 @@
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-		</stages>	
+		</stages>
 		<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
 		<categories>
 			<li>Minor</li>
@@ -180,7 +180,7 @@
 			</li>
 
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>scaled patchess</labelOverride>
+				<labelOverride>scaled patches</labelOverride>
 				<description>Small portions of this limb are covered with a tight-knit pattern of scales.</description>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>

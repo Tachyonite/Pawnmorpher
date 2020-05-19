@@ -1,7 +1,7 @@
 ﻿// FormerHuman.cs created by Iron Wolf for Pawnmorph on 11/27/2019 1:12 PM
 // last updated 11/27/2019  1:12 PM
 
-using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -13,6 +13,12 @@ namespace Pawnmorph.Hediffs
     public class FormerHuman : HediffWithComps
     {
         private int? _lastStage;
+
+        private bool _subscribed;
+
+        private bool _initialized;
+
+        private string _labelCached;
 
         /// <summary>
         ///     Gets the label in brackets.
@@ -30,63 +36,9 @@ namespace Pawnmorph.Hediffs
                     _labelCached = saLabel?.GetLabel() ?? "unknown";
                 }
 
-                return _labelCached; 
+                return _labelCached;
             }
         }
-
-        private bool _subscribed; 
-
-        void SubscribeToEvents()
-        {
-            if(_subscribed) return;
-            var controlNeed = pawn.needs?.TryGetNeed<Need_Control>();
-            if (controlNeed != null)
-            {
-                _subscribed = true;
-                _initialized = true; 
-                controlNeed.SapienceLevelChanged += SapienceLevelChanged;
-            }
-            
-        }
-
-        /// <summary>
-        /// called when the hediff is removed 
-        /// </summary>
-        public override void PostRemoved()
-        {
-            base.PostRemoved();
-            if (_subscribed)
-            {
-                var needControl = pawn?.needs?.TryGetNeed<Need_Control>();
-                if (needControl != null) needControl.SapienceLevelChanged -= SapienceLevelChanged; 
-            }
-        }
-
-        private void SapienceLevelChanged(Need_Control sender, Pawn pawn1, SapienceLevel sapiencelevel)
-        {
-            SetLabel(sapiencelevel);
-        }
-
-        private bool _initialized;
-
-        void TryInit()
-        {
-            SubscribeToEvents();
-            SetLabel(); 
-        }
-
-        void SetLabel(SapienceLevel level)
-        {
-            _labelCached = level.GetLabel();
-        }
-
-        void SetLabel()
-        {
-            _labelCached = pawn?.GetQuantizedSapienceLevel()?.GetLabel() ?? "unknown";
-            
-        }
-
-        private string _labelCached;
 
         /// <summary>Exposes the data.</summary>
         public override void ExposeData()
@@ -116,28 +68,99 @@ namespace Pawnmorph.Hediffs
             SetLabel();
         }
 
+        /// <summary>
+        ///     called when the hediff is removed
+        /// </summary>
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+            if (_subscribed)
+            {
+                var needControl = pawn?.needs?.TryGetNeed<Need_Control>();
+                if (needControl != null) needControl.SapienceLevelChanged -= SapienceLevelChanged;
+            }
+        }
+
 
         /// <summary>called after the pawn's tick method.</summary>
         public override void PostTick()
         {
             base.PostTick();
 
-            if (_lastStage != CurStageIndex) OnSapienceLevelChanged();
+            if (_lastStage != CurStageIndex) OnStageChanges();
 
             if (pawn.needs == null) return; //dead pawns don't have needs for some reason 
-            if(!_initialized) TryInit(); 
+            if (!_initialized) TryInit();
         }
 
-        private void OnSapienceLevelChanged()
+        private void OnStageChanges()
         {
-            _lastStage = CurStageIndex;
-            if (pawn != null)
-            //if the stage changed make sure we check dynamic components 
+            if (CurStage is IExecutableStage exStage) exStage.EnteredStage(this);
+        }
+
+        private void SapienceLevelChanged(Need_Control sender, Pawn pawn1, SapienceLevel sapiencelevel)
+        {
+            var idx = (int) sapiencelevel;
+            if (idx < def.stages.Count) SetStage(idx);
+
+            SetLabel(sapiencelevel);
+        }
+
+        private void SetLabel(SapienceLevel level)
+        {
+            _labelCached = level.GetLabel();
+        }
+
+        private void SetLabel()
+        {
+            _labelCached = pawn?.GetQuantizedSapienceLevel()?.GetLabel() ?? "unknown";
+        }
+
+        private void SetStage(int index)
+        {
+            if (index == 0)
             {
-                PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
-                //check needs to 
-                pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+                Severity = (def.stages[0].minSeverity + def.minSeverity) / 2;
+                return;
             }
+
+            if (index == def.stages.Count - 1)
+            {
+                Severity = (def.stages[def.stages.Count - 1].minSeverity + def.maxSeverity) / 2;
+                return;
+            }
+
+            Severity = (def.stages[index].minSeverity + def.stages[index + 1].minSeverity) / 2;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance should be removed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance should be removed; otherwise, <c>false</c>.
+        /// </value>
+        public override bool ShouldRemove => false; 
+
+        private void SubscribeToEvents()
+        {
+            if (_subscribed) return;
+            var controlNeed = pawn.needs?.TryGetNeed<Need_Control>();
+            if (controlNeed != null)
+            {
+                _subscribed = true;
+                _initialized = true;
+                controlNeed.SapienceLevelChanged += SapienceLevelChanged;
+                var sLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.Sapient;
+                var idx = Mathf.Min(def.stages.Count - 1, (int)sLevel);
+                SetStage(idx);
+            }
+        }
+
+        private void TryInit()
+        {
+            SubscribeToEvents();
+            SetLabel();
+           
         }
     }
 }

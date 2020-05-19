@@ -38,7 +38,7 @@
 			</li>
 		</comps>
 	</ThingDef>
-	
+
 	<!--Coloration Pills-->
 	<ThingDef ParentName="PM_PillBase">
 		<defName>ColorsPill</defName>
@@ -173,7 +173,7 @@
 	<ThingDef ParentName="PM_PillBase">
 		<defName>AspectReverterPills</defName>
 		<label>mutapill, X-aspect</label>
-		<description>A pill that removes all aspects from a mutated pawn, but does not remove any mutations. A cure-all for your etherbroken/bonded pawns -- but does not prevent getting them again. It's a good idea to follow this up with a dry mutapill if you want to avoid getting etherbroken/bonded again.\n\nCaution, also negates booster pills and resets production to a non-boosted state.</description>
+		<description>A pill that removes all aspects from a mutated pawn, but does not remove any mutations. A cure-all for your etherbroken/bonded pawns — but does not prevent getting them again. It's a good idea to follow this up with a dry mutapill if you want to avoid getting etherbroken/bonded again.\n\nCaution, also negates booster pills and resets production to a non-boosted state.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/pills-28</texPath>
 		</graphicData>
@@ -257,7 +257,7 @@
 	<ThingDef ParentName="PM_PillBase">
 		<defName>MutagenAccelerator</defName>
 		<label>mutapill, accelerator</label>
-		<description>These pills will enhance any active mechanites in the body and greatly increasing the rate of mutation for five days, also increases the likelihood of a pawn fully transforming</description>
+		<description>These pills will enhance any active mechanites in the body and greatly increase the rate of mutation for five days. It also increases the likelihood of a pawn fully transforming.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/pills-27</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -304,7 +304,7 @@
 
 	<HediffDef>
 		<defName>StabiliserHigh</defName>
-		<description>This pawn has been stabilised to further mutations. This lasts for five days, and cannot receive additional mutations in this timeframe.</description>
+		<description>This pawn has been stabilised against further mutations. This lasts for five days, and the pawn cannot receive additional mutations in this timeframe.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>mutagen stabilised</label>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
@@ -318,12 +318,14 @@
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
 				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
 			</li>
+
 		</comps>
 		<stages>
 			<li>
 				<statOffsets>
 					<MutagenSensitivity>-1.5</MutagenSensitivity>
 					<TransformationSensitivity>-1.5</TransformationSensitivity>
+					<MutationHaltChance>1</MutationHaltChance>
 				</statOffsets>
 			</li>
 		</stages>
@@ -342,12 +344,16 @@
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.18</severityPerDay>
 			</li>
+			<li>
+				<compClass>Pawnmorph.Hediffs.Comp_RestartMutationProgression</compClass>
+			</li>
 		</comps>
 		<stages>
 			<li>
 				<statOffsets>
 					<MutagenSensitivity>2</MutagenSensitivity>
 					<TransformationSensitivity>0.2</TransformationSensitivity>
+					<MutationHaltChance>-1</MutationHaltChance>
 				</statOffsets>
 			</li>
 		</stages>

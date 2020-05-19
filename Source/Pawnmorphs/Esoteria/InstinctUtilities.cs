@@ -33,7 +33,7 @@ namespace Pawnmorph
         /// <summary>
         /// a very small value 
         /// </summary>
-        public const float EPSILON = 0.001f; 
+        public const float EPSILON = 0.0001f; 
 
         [NotNull]
         private static readonly Dictionary<SapienceLevel, string> _labelDict;

@@ -18,7 +18,7 @@
             </li>
         </modExtensions>
       </MentalBreakDef>
-      <MentalStateDef Name="Tantrum" ParentName="BaseMentalState">
+      <MentalStateDef ParentName="BaseMentalState">
         <defName>HuntingBreak</defName>
         <stateClass>Pawnmorph.Mental.State_Hunting</stateClass>
         <workerClass>Pawnmorph.Mental.StateWorker_Hunt</workerClass>

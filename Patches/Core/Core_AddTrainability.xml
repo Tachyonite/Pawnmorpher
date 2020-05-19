@@ -1,0 +1,9 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Human"]/race</xpath>
+        <value>
+            <trainability>Advanced</trainability>
+            <wildness>0.60</wildness>
+        </value>
+    </Operation>
+</Patch>

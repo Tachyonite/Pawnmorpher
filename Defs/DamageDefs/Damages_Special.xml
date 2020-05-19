@@ -1,5 +1,5 @@
 <Defs>
-    <DamageDef Name="BluntBase">
+    <DamageDef>
         <defName>MutagenicStun</defName>
         <label>mutagenic stun</label>
         <workerClass>Pawnmorph.Damage.Worker_MutagenicBlunt</workerClass>

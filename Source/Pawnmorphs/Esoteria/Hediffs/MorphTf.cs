@@ -32,7 +32,13 @@ namespace Pawnmorph.Hediffs
 
         private float? _statCache;
 
-        float MutationStatValue
+        /// <summary>
+        /// Gets the mutation stat value.
+        /// </summary>
+        /// <value>
+        /// The mutation stat value.
+        /// </value>
+        protected float MutationStatValue
         {
             get
             {
@@ -62,7 +68,17 @@ namespace Pawnmorph.Hediffs
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
-            _allMutations = def.stages.OfType<TransformationStageBase>().SelectMany(s => s.GetEntries(pawn)).ToList();
+            _allMutations = def.stages.OfType<TransformationStageBase>().SelectMany(s => s.GetEntries(pawn, this)).ToList();
+        }
+
+        /// <summary>
+        /// Resets the mutation caches.
+        /// </summary>
+        public void ResetMutationCaches()
+        {
+            _allMutations = _allMutations ?? new List<MutationEntry>();
+            _allMutations.Clear();
+            _allMutations.AddRange(def.stages.OfType<TransformationStageBase>().SelectMany(s => s.GetEntries(pawn, this))); 
         }
 
         /// <summary>Ticks this instance.</summary>
@@ -106,7 +122,7 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         protected override IEnumerable<MutationEntry> GetAvailableMutations(HediffStage currentStage)
         {
-            if (currentStage is TransformationStageBase stage) return stage.GetEntries(pawn); 
+            if (currentStage is TransformationStageBase stage) return stage.GetEntries(pawn, this); 
             return Enumerable.Empty<MutationEntry>();
         }
 
@@ -119,7 +135,7 @@ namespace Pawnmorph.Hediffs
         {
             if (stage is TransformationStageBase tStage)
             {
-                return tStage.GetEntries(pawn).Any(); 
+                return tStage.GetEntries(pawn, this).Any(); 
             }
 
             return false; 

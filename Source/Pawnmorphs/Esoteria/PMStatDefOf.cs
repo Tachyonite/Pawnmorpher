@@ -37,9 +37,19 @@ namespace Pawnmorph
 
 
         /// <summary>
+        ///     stat that determines how likely pawns will stop adapting to mutations
+        /// </summary>
+        public static StatDef MutationHaltChance;
+
+        /// <summary>
         ///     Multiplier on the impact of mutagenic buildup on this creature.
         /// </summary>
         public static StatDef MutagenSensitivity;
+
+        /// <summary>
+        /// stat that controls the maximum a pawn's sapience can be 
+        /// </summary>
+        public static StatDef SapienceLimit; 
 
         /// <summary>
         /// this stat is the %chance a pawn will get sick from dangerous foods 

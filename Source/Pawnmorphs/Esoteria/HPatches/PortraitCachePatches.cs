@@ -37,7 +37,7 @@ namespace Pawnmorph.HPatches
                                bool supersample,
                                bool compensateForUIScale)
             {
-                if (pawn.IsSapientOrFeralFormerHuman())
+                if (pawn.IsFormerHuman())
                 {
                     float mult = GetZoomMultiplier(pawn);
                     cameraZoom *= mult;

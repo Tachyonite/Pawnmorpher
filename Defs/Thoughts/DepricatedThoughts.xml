@@ -14,7 +14,7 @@
 			</li>
 		</stages>
     </ThoughtDef>
-    
+
     <ThoughtDef>
 		<defName>ColonistMergedThought</defName>
 		<nullifyingTraits>
@@ -30,7 +30,7 @@
 			</li>
 		</stages>
     </ThoughtDef>
-    
+
     <ThoughtDef>
         <defName>ColonistPermFeralThought</defName>
         <durationDays>10</durationDays>

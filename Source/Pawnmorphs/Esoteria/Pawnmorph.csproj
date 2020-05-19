@@ -14,8 +14,8 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\1.1\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
@@ -318,7 +318,9 @@
     <Compile Include="Aspects\MeatLover.cs" />
     <Compile Include="Aspects\PrimalWishGiver.cs" />
     <Compile Include="Aspects\RandomGiver.cs" />
+    <Compile Include="Aspects\SapienceHit.cs" />
     <Compile Include="Aspects\SkillBasedGiver.cs" />
+    <Compile Include="Aspects\SplitMind.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
     <Compile Include="BackstoryDefOf.cs" />
@@ -350,6 +352,9 @@
     <Compile Include="Damage\Worker_MutagenicInjury.cs" />
     <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
+    <Compile Include="DebugUtils\DBG_TrainingWorkGiver.cs" />
+    <Compile Include="DebugUtils\DebugMenu_AddMutation.cs" />
+    <Compile Include="DebugUtils\DebugMenu_AddMutations.cs" />
     <Compile Include="DebugUtils\PMDebugActions.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />
@@ -366,7 +371,6 @@
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
     <Compile Include="DefExtensions\FormerHumanSettings.cs" />
-    <Compile Include="DefExtensions\HumanlikeRestriction.cs" />
     <Compile Include="DefExtensions\InstinctEffector.cs" />
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
@@ -377,6 +381,7 @@
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Designations\RecruitSapientFormerHuman.cs" />
@@ -392,6 +397,7 @@
     <Compile Include="Hediffs\CompProps_ImmunizableMutation.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
+    <Compile Include="Hediffs\Comp_RestartMutationProgression.cs" />
     <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
     <Compile Include="Hediffs\FullTransformationStage.cs" />
     <Compile Include="Hediffs\FullTransformationStageBase.cs" />
@@ -411,9 +417,12 @@
     <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
     <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
+    <Compile Include="Hediffs\SyringeRifleTf.cs" />
+    <Compile Include="Hediffs\SyringeTfStage.cs" />
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
+    <Compile Include="Hediffs\WorkSettingsStage.cs" />
     <Compile Include="HPatches\AIPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
@@ -425,14 +434,16 @@
     <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
     <Compile Include="HPatches\IngestJobPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
-    <Compile Include="HPatches\MapPawnsPatches.cs" />
+    <Compile Include="HPatches\JobGiver_GetJoyPatches.cs" />
     <Compile Include="HPatches\MentalBreakPatches.cs" />
     <Compile Include="HPatches\NativeVerbPatches.cs" />
     <Compile Include="HPatches\OptimizeApparelPatch.cs" />
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
+    <Compile Include="HPatches\PawnGraphicsSetPatches.cs" />
     <Compile Include="HPatches\PawnGraphicSetPatch.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
+    <Compile Include="HPatches\PawnCompPatches.cs" />
     <Compile Include="HPatches\PawnPatches.cs" />
     <Compile Include="HPatches\PlantGrowingPatches.cs" />
     <Compile Include="HPatches\PlantPatches.cs" />
@@ -443,6 +454,7 @@
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
+    <Compile Include="HPatches\WorkGiverPatches.cs" />
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="Hybrids\IPartTransformer.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
@@ -454,9 +466,12 @@
     <Compile Include="IngestionOutcomeDoer_AddRandomAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="IPMThingComp.cs" />
+    <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
+    <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
     <Compile Include="IPawnTransformer.cs" />
@@ -498,11 +513,19 @@
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
+    <Compile Include="SapienceState.cs" />
+    <Compile Include="SapienceStateDef.cs" />
+    <Compile Include="SapienceStateDefOf.cs" />
+    <Compile Include="SapienceStates\Animalistic.cs" />
+    <Compile Include="SapienceStates\FormerHuman.cs" />
+    <Compile Include="SapienceStates\MergedPawn.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
     <Compile Include="SimplePawnColorSet.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
+    <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
+    <Compile Include="ThingComps\AnimalSelectorComp.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
@@ -638,6 +661,7 @@
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
+    <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
     <Compile Include="ThinkNodes\ConditionalSapientAnimal.cs" />
     <Compile Include="ThoughtGroupDefExtension.cs" />
@@ -663,7 +687,10 @@
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="Thoughts\Worker_MergedPawn.cs" />
     <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />
+    <Compile Include="Thoughts\Worker_SapientNaked.cs" />
+    <Compile Include="Thoughts\Worker_Sapience.cs" />
     <Compile Include="Thoughts\Worker_SapientAnimalBondedMaster.cs" />
     <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
     <Compile Include="TransformerUtility.cs" />

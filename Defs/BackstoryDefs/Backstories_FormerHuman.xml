@@ -12,6 +12,8 @@
             <li>Cleaning</li>
             <li>Commoner</li>
             <li>Social</li>
+            <li>Intellectual</li>
+            <li>Animals</li>
         </workAllows>
         <bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -40,6 +42,7 @@
             <li>ManualSkilled</li>
             <li>Crafting</li>
             <li>Caring</li>
+            <li>Artistic</li>
         </workAllows>
     </AlienRace.BackstoryDef>
 
@@ -52,6 +55,7 @@
             <li>ManualSkilled</li>
             <li>Crafting</li>
             <li>Caring</li>
+            <li>Artistic</li>
         </workAllows>
     </AlienRace.BackstoryDef>
 </Defs>

@@ -100,7 +100,7 @@
 			<speed>15</speed>
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
-		<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+		<HediffToAdd>SyringeRifleHediff</HediffToAdd>
 		<raceBlackList>
 				<li>Mech_Centipede</li>
 				<li>Mech_Lancer</li>
@@ -189,6 +189,11 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+		<comps>
+			<li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
+				<requiresTag>true</requiresTag>
+			</li>
+		</comps>
 	</ThingDef>
 	
 	<ThingDef ParentName="BaseHumanMakeableGun">
