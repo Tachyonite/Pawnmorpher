@@ -30,8 +30,37 @@ namespace Pawnmorph
                 Log.Error($"human ThingDef is using {ThingDefOf.Human.race.body.defName} not {BodyDefOf.Human.defName}!\nmost likely cause is mod incompatibilities please check mod list");
             }
 
+            //get the associated races lookup 
+
+            foreach (MorphDef morph in AllMorphs)
+            {
+                //first check the race 
+                if (!_associatedAnimalsLookup.TryGetValue(morph.race, out var lst))
+                {
+                    lst = new List<MorphDef>();
+                    _associatedAnimalsLookup[morph.race] = lst; 
+                }
+
+                lst.Add(morph); 
+
+                //now the associated animals 
+                foreach (ThingDef aAnimal in morph.associatedAnimals.MakeSafe())
+                {
+                    if (!_associatedAnimalsLookup.TryGetValue(aAnimal, out lst))
+                    {
+                        lst = new List<MorphDef>();
+                        _associatedAnimalsLookup[aAnimal] = lst; 
+                    }
+
+                    lst.Add(morph); 
+                }
+            }
 
         }
+
+        [NotNull]
+        private static readonly Dictionary<ThingDef, List<MorphDef>> _associatedAnimalsLookup =
+            new Dictionary<ThingDef, List<MorphDef>>();
 
 
         /// <summary>
@@ -213,6 +242,7 @@ namespace Pawnmorph
 
         /// <summary>Gets all morphs.</summary>
         /// <value>All morphs.</value>
+        [NotNull]
         public static IEnumerable<MorphDef> AllMorphs => DefDatabase<MorphDef>.AllDefs; 
 
         

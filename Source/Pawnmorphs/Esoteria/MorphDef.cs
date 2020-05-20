@@ -31,6 +31,14 @@ namespace Pawnmorph
         public ThingDef race;
 
         /// <summary>
+        /// The associated animals
+        /// </summary>
+        /// these are a list of animals that are associated with this morph but who don't influence the hybrid race
+        /// transformation targets 
+        /// setting this is useful for getting mutations for animals that don't have morphs yet
+        public List<ThingDef> associatedAnimals = new List<ThingDef>();  
+
+        /// <summary>
         /// Gets the explicit hybrid race.
         /// </summary>
         /// <value>
