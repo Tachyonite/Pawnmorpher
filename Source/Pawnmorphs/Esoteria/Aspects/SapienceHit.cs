@@ -13,12 +13,24 @@ namespace Pawnmorph.Aspects
         protected override void PostAdd()
         {
             base.PostAdd();
+            TryAddState();
+
+        }
+
+        private void TryAddState()
+        {
             var sTracker = Pawn.GetSapienceTracker();
             if (sTracker != null && sTracker.CurrentState == null)
             {
-                sTracker.EnterState(SapienceStateDefOf.Animalistic, 1); 
+                sTracker.EnterState(SapienceStateDefOf.Animalistic, 1);
             }
+        }
 
+        /// <summary> Called after the base instance is initialize. </summary>
+        protected override void PostInit()
+        {
+            base.PostInit();
+            TryAddState();
         }
     }
 }
