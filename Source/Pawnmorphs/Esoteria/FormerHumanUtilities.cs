@@ -845,7 +845,7 @@ namespace Pawnmorph
 
             Pawn lPawn = GenerateRandomHumanForm(animal);
 
-            MorphDef morph = MorphUtilities.GetMorphOfAnimal(animal.def).FirstOrDefault();
+            MorphDef morph = MorphUtilities.TryGetBestMorphOfAnimal(animal.def);
 
             if (morph != null)
             {

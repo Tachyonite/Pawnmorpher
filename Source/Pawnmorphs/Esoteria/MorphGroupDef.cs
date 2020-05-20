@@ -39,6 +39,7 @@ namespace Pawnmorph
 
                     _associatedFeralRaces = animalRaces.MakeSafe()
                                                        .Concat(morphAnimals)
+                                                       .Concat(MorphsInGroup.SelectMany(m => m.associatedAnimals.MakeSafe()))
                                                        .Distinct()
                                                        .ToList();
                 }

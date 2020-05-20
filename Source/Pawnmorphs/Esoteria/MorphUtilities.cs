@@ -243,7 +243,38 @@ namespace Pawnmorph
         /// <summary>Gets all morphs.</summary>
         /// <value>All morphs.</value>
         [NotNull]
-        public static IEnumerable<MorphDef> AllMorphs => DefDatabase<MorphDef>.AllDefs; 
+        public static IEnumerable<MorphDef> AllMorphs => DefDatabase<MorphDef>.AllDefs;
+
+
+        /// <summary>
+        /// Tries the get best morph of the specified animal.
+        /// </summary>
+        /// tries to get the best morph def of the given animal, checking first for a morph who's
+        /// race is the given race then checks morph's associated animals 
+        /// <param name="race">The race.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">race</exception>
+        [CanBeNull]
+        public static MorphDef TryGetBestMorphOfAnimal([NotNull] ThingDef race)
+        {
+            if (race == null) throw new ArgumentNullException(nameof(race));
+
+            MorphDef mDef = null;
+            foreach (MorphDef allMorph in AllMorphs)
+            {
+                if (allMorph.race == race)
+                {
+                    mDef = allMorph; 
+                    break;
+                }
+            }
+
+            if (mDef == null) return mDef;
+
+            return _associatedAnimalsLookup.TryGetValue(race)?.FirstOrDefault(); 
+
+        }
+
 
         
         /// <summary> Gets all morphDefs associated with the given transformation. </summary>
