@@ -1,0 +1,168 @@
+<Defs>
+    <MorphDef>
+        <description>this is what shows up in the Pawn's bio</description>
+        
+        list of different 'categories' this morph falls into, like combat, production, etc. 
+        the categories defined in the base mod are listed below, you can also define your own by making 
+        new MorphCategoryDefs (only relavent fields are defName and label) 
+        
+        the categories defined in PMCore: 
+        Powerful,Combat,Production,Reptile,Social,Canid,Crafter,Chimera
+        
+        note: Canid and reptile should considered depricated 
+
+        <categories>
+            <li>Combat</li>
+        </categories>
+
+        the animal this morph is a hybrid of, this race is used to generate the hybrid race by (mostly) averaging 
+        the stats of the animal and human   
+        <race>AnimalRace</race>
+
+        this is the classification this morph falls into, this is used to determine what mutations this morph gets 
+        for example WolfMorph is under the 'Canid' class and so inherit all canid specific mutations as well as mutations specific 
+        to the WolfMorph 
+
+        if you define mutations that conflict with a more general mutation, for example define fur specific to your morph, the morph will keep 
+        the more specific mutation and ignore the general one 
+        <classification>AnimalClassDef</classification>
+        
+        optional field to define a 'Group' this morph falls into. 'Groups' are used when you want to give a morph bonuses/drawbacks based 
+        on how many morphs or animals the colony has of the same group. For example canine morphs are happier the more canine are around 
+        The only groups available in core are Canines, and HerbivoreHerding but you can define more morph groups yourself 
+        see MorphGroup.xml example
+        <group>MorphGroup</group>
+
+        this is where you specify the various settings for the hybrid race of this morph 
+        <raceSettings>
+
+        </raceSettings>
+
+        this is where you specify extra stuff when a pawn turns into a hybrid race or reverts back to human  
+        <transformSettings>
+            a list of additional stat modifiers you would like to add onto the morph other then those specified in 
+            `race`
+            <statModifiers>
+                <stat>mod</stat>
+            </statModifiers>
+
+            <thoughtSettings>
+                <replacerList>
+                    this is a list of thought substitutions for your hybrid 
+                    <li>
+                        <original>OriginalThought</original>
+                        <replacer>ReplacementThought</replacer>
+                    </li>
+                </replacerList>
+
+                optional field for thoughts for when this morph eats meat from the animal defined in `race`
+                <ateAnimalThought>
+                    if they eat the meat directly
+                    <thought>AteMeatDirectThought</thought>
+
+                    if they eat the meat directly and have the cannibal trait 
+                    <thoughtCannibal>AteMeatDirectAsCannibalThought</thoughtCannibal>
+
+                    if they eat the meat as an ingredient in a meal 
+                    <ingredientThought>AteMeatAsIngredientThought</ingredientThought>
+
+                    if they eat the meat as an ingredient in a meal and have the cannibal triat
+                    <ingredientThoughtCannibal>AteMeatAsIngredientCannibal</ingredientThoughtCannibal>
+                </ateAnimalThought>
+
+                optional field for thoughts for when this morph butchers the animal defined in `race`
+                <butcheredAnimalThought>
+                    if they are the one that butchered the corpse 
+                    <thought>ButcheredCorpse</thought>
+                    if someone else in the colony butchered the corpse 
+                    <knowThought>KnowButcheredCorpse</knowThought>
+                </butcheredAnimalThought>
+
+                optional field that if true will make this morph ignore the negitive thoughts for eating humanlikes 
+            <suppressHumanlikeCannibalThoughts>true</suppressHumanlikeCannibalThoughts>
+
+            optional field that if true makes this morph ignore the negative thoughts for eating raw food 
+            <canEatRaw>true</canEatRaw>
+
+            optional field that lists ThoughtDefs that this morph will never get 
+            <thoughtsBlackList>
+                <li>ThoughtDef</li>
+            </thoughtsBlackList>
+
+            optional field that specifies thoughts this morph will get when eating meat from other races 
+            <ateThoughtsSpecifics>
+                <li>
+                    if they eat the meat directly
+                    <thought>AteMeatDirectThought</thought>
+
+                    if they eat the meat directly and have the cannibal trait 
+                    <thoughtCannibal>AteMeatDirectAsCannibalThought</thoughtCannibal>
+
+                    if they eat the meat as an ingredient in a meal 
+                    <ingredientThought>AteMeatAsIngredientThought</ingredientThought>
+
+                    if they eat the meat as an ingredient in a meal and have the cannibal triat
+                    <ingredientThoughtCannibal>AteMeatAsIngredientCannibal</ingredientThoughtCannibal>
+
+                    a list of races this thought applies to 
+                    <raceList>
+                        <li>Race</li>
+                    </raceList>
+                </li>
+            </ateThoughtsSpecifics>
+
+            optional field that specifies thoughts this morph will get when butchering meat from other races 
+            <butcherThoughtsSpecifics>
+                <li>
+                    if they are the one that butchered the corpse 
+                    <thought>ButcheredCorpse</thought>
+                    if someone else in the colony butchered the corpse 
+                    <knowThought>KnowButcheredCorpse</knowThought>
+                    a list of races these thoughts apply to 
+                    <raceList>
+                        <li>Race</li>
+                    </raceList>
+                </li>
+            </butcherThoughtsSpecifics>
+            </thoughtSettings>
+            
+            <graphicsSettings>
+                <skinColorOverride>r,g,b</skinColorOverride>
+                <femaleSkinColorOverride>r,g,b</femaleSkinColorOverride>
+                <skinColorOverrideSecond>r,g,b</skinColorOverrideSecond>
+                <femaleSkinColorOverrideSecond>r,g,b</femaleSkinColorOverrideSecond>
+                <femaleHairColorOverride>r,g,b</femaleHairColorOverride>
+                <hairColorOverride>r,g,b</hairColorOverride>
+                <femaleHairColorOverrideSecond>r,g,b</femaleHairColorOverrideSecond>
+                <hairColorOverrideSecond>r,g,b</hairColorOverrideSecond>
+            </graphicsSettings>
+            
+
+            HAR's restriction settings that get applied to the hybrid race 
+            see HAR's wiki for more information
+            <restrictionSettings>
+                ...
+            </restrictionSettings>
+
+            if you want to make your own hybrid race from start use this field, this morph will then use 
+            the given race as it's hybrid and most other fields will be ignored  
+            <explicitHybridRace>ExplicitHybrid</explicitHybridRace>
+
+            if you use an explicit hybrid race and set this to true this will copy all HAR body addions from 
+            human onto the explicit race
+            <transferHumanBodyAddons>true/false</transferHumanBodyAddons>
+        </transformSettings>
+
+        a list of aspects that are added when a pawn turns into the hybrid race of this morph 
+        <addedAspects>
+            <li>AspectDef</li>
+        </addedAspects>
+
+        the hediff that is the default 'full transformation' hediff used in injectors 
+        <fullTransformation>FullTfHediff</fullTransformation>
+
+        the hediff that is the 'partial' hediff, ie should only add 1-2 mutations before being removed
+        <partialTransformation>PartialTfHediff</partialTransformation>
+
+    </MorphDef>
+</Defs>
