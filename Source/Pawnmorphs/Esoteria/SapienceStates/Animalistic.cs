@@ -2,6 +2,7 @@
 // last updated 04/25/2020  2:17 PM
 
 using System;
+using Pawnmorph.Aspects;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -20,7 +21,21 @@ namespace Pawnmorph.SapienceStates
         /// <value>
         ///   <c>true</c> if this state makes the pawn count as a 'former human'; otherwise, <c>false</c>.
         /// </value>
-        public override bool IsFormerHuman => false; 
+        public override bool IsFormerHuman => false;
+
+        private bool CanRemove
+        {
+            get
+            {
+                var asp = Pawn.GetAspectTracker()?.Aspects;
+                foreach (Aspect aspect in asp.MakeSafe())
+                {
+                    if (aspect is SapienceHit) return false;
+                }
+
+                return true; 
+            }
+        }
 
         /// <summary>
         ///     Gets the current intelligence.
@@ -55,6 +70,7 @@ namespace Pawnmorph.SapienceStates
         {
             if (_waiting && RandUtilities.MtbDaysEventOccured(MTB))
             {
+                if (!CanRemove) return; 
                 Tracker?.ExitState();
             }
         }
