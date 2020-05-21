@@ -27,6 +27,14 @@
         the more specific mutation and ignore the general one 
         <classification>AnimalClassDef</classification>
         
+
+        these are a list of animals that are associated with this morph but who don't influence the hybrid race
+        transformation targets 
+        setting this is useful for getting mutations for animals that don't have morphs yet
+        <associatedAnimals>
+            <li>RaceDef</li>
+        </associatedAnimals>
+
         optional field to define a 'Group' this morph falls into. 'Groups' are used when you want to give a morph bonuses/drawbacks based 
         on how many morphs or animals the colony has of the same group. For example canine morphs are happier the more canine are around 
         The only groups available in core are Canines, and HerbivoreHerding but you can define more morph groups yourself 
