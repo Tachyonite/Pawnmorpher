@@ -369,6 +369,12 @@ namespace Pawnmorph.Buildings
             StringBuilder builder = new StringBuilder(); 
             builder.AppendLine(base.GetInspectString());
             builder.Append(GetModeString(CurrentMode));
+
+            if (_producing)
+            {
+                builder.Append("\n"+ "CentrifugeRunningText".Translate((((float)_timeCounter) / GetTimeNeeded()).ToStringPercent()));
+            }
+
             return builder.ToString(); 
         }
 
@@ -421,6 +427,7 @@ namespace Pawnmorph.Buildings
             CurrentMode = NextMode(CurrentMode);
         }
 
+
         private bool TryStartProduction()
         {
             if (_hoppers.Count == 0) SearchForHoppers();
@@ -429,14 +436,12 @@ namespace Pawnmorph.Buildings
             float minAmount = GetRequiredMutaniteCount(CurrentMode);
             var curAmount = 0f;
             var canProduce = false;
-            StringBuilder builder = new StringBuilder();
             foreach (Thing thing in GetFeed())
             {
                 float concentration = thing.GetStatValue(PMStatDefOf.MutaniteConcentration);
                 float needed = minAmount - curAmount;
                 int take = Mathf.CeilToInt(needed / (concentration)); 
                 take = Mathf.Min(take, thing.stackCount);
-                builder.AppendLine($"found {thing.Label} take: {take}"); 
                 _rmCache.Add((thing, take));
                 curAmount += concentration * take;
                 
