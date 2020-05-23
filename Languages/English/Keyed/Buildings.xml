@@ -4,4 +4,6 @@
     <CentrifugeHighYield>High Yield</CentrifugeHighYield>
     <CentrifugeNormalYield>Normal Yield</CentrifugeNormalYield>
     <CentrifugeRunningText>{0} done</CentrifugeRunningText>
+    <MutaniteCentrifugeNotActive>inactive, need: {0} more {1}</MutaniteCentrifugeNotActive>
+    <MutaniteCentrifugeReadyToStart>ready to start</MutaniteCentrifugeReadyToStart>
 </LanguageData>

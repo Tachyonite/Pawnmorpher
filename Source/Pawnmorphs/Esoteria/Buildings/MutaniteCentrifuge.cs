@@ -53,7 +53,6 @@ namespace Pawnmorph.Buildings
         [NotNull] private readonly List<Building_Storage> _hoppers = new List<Building_Storage>();
 
         [NotNull] private readonly List<(Thing thing, int rmCount)> _rmCache = new List<(Thing thing, int rmCount)>();
-        private bool _running;
         private int _timeCounter;
 
 
@@ -132,7 +131,6 @@ namespace Pawnmorph.Buildings
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref _running, "running");
             Scribe_Values.Look(ref _timeCounter, "timeCounter");
             Scribe_Values.Look(ref _mode, nameof(CurrentMode));
             Scribe_Values.Look(ref _producing, "producing");
@@ -215,7 +213,7 @@ namespace Pawnmorph.Buildings
 
 
             //introduce a delay between starting and ending production 
-            if (this.IsHashIntervalTick(20))
+            if (this.IsHashIntervalTick(30))
             { 
                 _hoppers.Clear();
                 if (TryStartProduction())
@@ -360,6 +358,8 @@ namespace Pawnmorph.Buildings
             return r;
         }
 
+        private string _cachedInactiveString; 
+
         /// <summary>
         /// Gets the inspect string.
         /// </summary>
@@ -374,8 +374,42 @@ namespace Pawnmorph.Buildings
             {
                 builder.Append("\n"+ "CentrifugeRunningText".Translate((((float)_timeCounter) / GetTimeNeeded()).ToStringPercent()));
             }
-
+            else
+            {
+                builder.Append("\n" + GetInactiveString());
+            }
+                
             return builder.ToString(); 
+        }
+
+        private string GetInactiveString()
+        {
+            if (_cachedInactiveString != null) return _cachedInactiveString;
+            var needed = GetRequiredMutaniteCount(CurrentMode);
+            var total = GetTotalMutaniteFeed();
+            ThingDef repThing = null;
+            int mxCount = 0;
+            foreach (Thing thing in GetFeed())
+            {
+                if(thing.GetStatValue(PMStatDefOf.MutaniteConcentration) <= 0)continue;
+                if (mxCount < thing.stackCount)
+                {
+                    repThing = thing.def;
+                    mxCount = thing.stackCount; 
+                }
+            }
+
+            repThing = repThing ?? PMThingDefOf.MechaniteSlurry; 
+            needed -= total;
+            needed = Mathf.Max(0, needed);
+            if (needed <= 0)
+            {
+                _cachedInactiveString = "MutaniteCentrifugeReadyToStart".Translate();
+                return _cachedInactiveString; 
+            }
+            var nCount = Mathf.CeilToInt(needed / repThing.GetStatValueAbstract(PMStatDefOf.MutaniteConcentration));
+            _cachedInactiveString  =  "MutaniteCentrifugeNotActive".Translate(nCount, repThing.label);
+            return _cachedInactiveString; 
         }
 
         string GetModeString(RunningMode mode)
@@ -421,6 +455,17 @@ namespace Pawnmorph.Buildings
 
         }
 
+        float GetTotalMutaniteFeed()
+        {
+            float count = 0; 
+            foreach (Thing thing in GetFeed())
+            {
+                count += thing.GetStatValue(PMStatDefOf.MutaniteConcentration) * thing.stackCount; 
+            }
+
+            return count; 
+        }
+
 
         private void ToggleRunMode()
         {
@@ -431,6 +476,7 @@ namespace Pawnmorph.Buildings
         private bool TryStartProduction()
         {
             if (_hoppers.Count == 0) SearchForHoppers();
+            _cachedInactiveString = null; 
             _rmCache.Clear();
 
             float minAmount = GetRequiredMutaniteCount(CurrentMode);
