@@ -119,7 +119,9 @@ namespace Pawnmorph.Hybrids
 
             float f = Mathf.Pow(Math.Abs((gammaA - gammaH) / gammaH), 0.5f);
             //scale things back a bit if the animal has very different hunger characteristics then humans  
-            float a = 1 / (1f + f); 
+            float a = 1 / (1f + f);
+
+            a = Mathf.Clamp(a, 0, 1); 
 
             float hGamma = Mathf.Lerp(gammaA, gammaH, a);
             //body size is just an average of animal and human 
