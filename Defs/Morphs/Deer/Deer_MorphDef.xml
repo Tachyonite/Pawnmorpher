@@ -10,6 +10,12 @@
 			<li>Combat</li>
 			<li>Cervid</li>
 		</categories>
+		
+		<associatedAnimals>
+			<li>Elk</li>
+			<li>Ibex</li>
+		</associatedAnimals>
+
 		<fullTransformation>PawnmorphDeerTF</fullTransformation>
 		<partialTransformation>PawnmorphDeerTFPartial</partialTransformation>
 		<raceSettings>

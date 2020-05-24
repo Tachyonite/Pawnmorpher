@@ -233,11 +233,11 @@ namespace Pawnmorph.TfSys
                         goto applyMutations; //ugly, but it's the easiest solution
                     }
 
-            mDef = MorphUtilities.GetMorphOfAnimal(requestOutputDef.race).FirstOrDefault();
+            mDef = MorphUtilities.TryGetBestMorphOfAnimal(requestOutputDef.race);
 
             if (mDef == null)
             {
-                Log.Warning($"could not apply mutations to {original} with cause {requestCause?.def?.defName ?? "NULL"} and target {requestOutputDef.defName}");
+                DebugLogUtils.LogMsg(LogLevel.Messages, $"could not apply mutations to {original} with cause {requestCause?.def?.defName ?? "NULL"} and target {requestOutputDef.defName}");
                 return;
             }
 

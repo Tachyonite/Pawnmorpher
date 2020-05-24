@@ -99,7 +99,7 @@
 		<description>I didn't know thrumbos had ears, but [PAWN_nameDef] has put that question to rest. Yes, they do — white-furred, rounded and beautiful.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
-			<li>Tail</li>
+			<li>Ear</li>
 		</parts>
 		<stages>
 			<li>

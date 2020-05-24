@@ -1,0 +1,66 @@
+<Defs>
+    <Pawnmorph.MorphGroupDef>
+		<defName>Canines</defName>
+        <label>pack</label>
+        
+        this is the aspect that will be given to all morphs in this group when they turn into a hybrid race 
+		<aspectDef>CanidMind</aspectDef>
+	</Pawnmorph.MorphGroupDef>
+	
+    <Pawnmorph.AspectDef ParentName="MorphGroupAspectBase">
+        <defName>CanidMind</defName>
+        <label>pack minded</label>
+
+        <stages>
+            <li>
+                this stage is for when there is only one morph of that group on the map 
+                <modifier>alone</modifier>
+				<description>I'm the only one of my kind, I wish I had a proper pack.</description>
+            </li>
+            <li>
+                this stage is for when there are 2 of this group on the map 
+                <modifier>lonely</modifier>
+				<description>There's another like me, but we're still only a small pack.</description>
+            </li>
+            <li>
+                etc. 
+                <modifier>comfortable</modifier>
+				<description>There's lots of my kind, strength in numbers.</description>
+            </li>
+            <li>
+                <modifier>happy</modifier>
+				<description>There's plenty of people in my pack, this is great!</description>
+            </li>
+            there is no strict upper limit on the number of stages you can make, the number of morph required at 
+            once to reach that stage increments by 1 for each stage 
+            requredMorphs = index + 1
+        </stages>
+    </Pawnmorph.AspectDef>
+
+	<ThoughtDef ParentName="GroupThoughtHBase">
+		<defName>PackMinded</defName>
+		<hediff>CanidMind</hediff>
+		<stages>
+			<li>
+				<label>alone</label> 
+				<description>I'm the only one of my kind, I wish I had a proper pack.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>lonely</label>
+				<description>There's another like me, but we're still only a small pack.</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>comfortable</label>
+				<description>There's lots of my kind, strength in numbers.</description>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>happy</label>
+				<description>There's plenty of people in my pack, this is great!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

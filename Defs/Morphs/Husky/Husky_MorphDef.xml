@@ -10,6 +10,10 @@
 			<li>Combat</li>
 			<li>Canid</li>
 		</categories>
+		<associatedAnimals>
+			<li>YorkshireTerrier</li>
+			<li>LabradorRetriever</li>
+		</associatedAnimals>
 		<fullTransformation>PawnmorphHuskyTF</fullTransformation>
 		<partialTransformation>PawnmorphHuskyTFPartial</partialTransformation>
 		<raceSettings>

@@ -10,6 +10,9 @@
 			<li>Production</li>
 			<li>Bovid</li>
 		</categories>
+		<associatedAnimals>
+			<li>Goat</li>
+		</associatedAnimals>
 		<fullTransformation>PawnmorphSheepTF</fullTransformation>
 		<partialTransformation>PawnmorphSheepTFPartial</partialTransformation>
 		<raceSettings>
