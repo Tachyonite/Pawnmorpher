@@ -93,7 +93,8 @@
       <combatPower>45</combatPower>   <!-- same as a scavenger -->
       <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Gun_MutagenicTurret</turretGunDef>
-      <turretBurstCooldownTime>5</turretBurstCooldownTime>
+      <turretBurstCooldownTime>4</turretBurstCooldownTime>
+      <turretBurstWarmupTime>2</turretBurstWarmupTime>
       <turretTopDrawSize>5</turretTopDrawSize>
       <!--<turretTopOffset>(0.3, 0.35)</turretTopOffset>-->
     </building>
@@ -146,12 +147,12 @@
       <li>
         <verbClass>Verb_Shoot</verbClass>
         <defaultProjectile>Slurry_Bullet</defaultProjectile>
-        <warmupTime>0</warmupTime>
+        <warmupTime>1.5</warmupTime>
         <range>28.9</range>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <burstShotCount>2</burstShotCount>
+        <soundAiming>Slurry_Flywheels_Rev</soundAiming>
         <soundCast>Slurry_Flywheels</soundCast>
-        <soundCastTail>GunTail_Light</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
         <consumeFuelPerShot>1</consumeFuelPerShot>
       </li>

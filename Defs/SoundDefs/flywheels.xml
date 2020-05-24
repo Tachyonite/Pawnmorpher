@@ -29,4 +29,33 @@
       </li>
     </subSounds>
   </SoundDef>
+
+  <SoundDef>
+    <defName>Slurry_Flywheels_Rev</defName>
+    <sustain>true</sustain>
+    <context>MapOnly</context>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <muteWhenPaused>True</muteWhenPaused>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>FlywheelsRev</clipPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>80</min>
+          <max>80</max>
+        </volumeRange>
+        <pitchRange>
+          <min>1</min>
+          <max>1.015</max>
+        </pitchRange>
+        <distRange>
+          <min>0</min>
+          <max>30</max>
+        </distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
 </Defs>
