@@ -346,12 +346,6 @@ namespace Pawnmorph.Hediffs
         {
             if (base.TryMergeWith(other))
             {
-                var sCompOther = other.TryGetComp<HediffComp_Single>();
-                var sComp = SingleComp;
-                if (sComp != null && sCompOther != null)
-                {
-                    sComp.stacks = Mathf.Clamp(sComp.stacks + sCompOther.stacks, 0, sComp.Props.maxStacks); 
-                }
                 ResetMutationOrder();
                 return true; 
             }
