@@ -1,6 +1,7 @@
 ﻿// DebugLogUtils.MutationLogging.cs created by Iron Wolf for Pawnmorph on //2020 
 // last updated 03/01/2020  6:57 AM
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HarmonyLib;
@@ -40,6 +41,48 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void GetMissingSlotsPerMorph()
+        {
+            var allPossibleSites = DefDatabase<MutationDef>
+                                  .AllDefs.SelectMany(m => m.GetAllMutationSites(BodyDefOf.Human))
+                                  .Distinct()
+                                  .ToList();
+
+            List<MutationSite> scratchList = new List<MutationSite>();
+            List<MutationSite> missingScratch = new List<MutationSite>(); 
+            StringBuilder builder = new StringBuilder(); 
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                var allMorphSites = morphDef.AllAssociatedMutations.SelectMany(m => m.GetAllMutationSites(BodyDefOf.Human))
+                                            .Distinct(); 
+
+                scratchList.Clear();
+                scratchList.AddRange(allMorphSites);
+                missingScratch.Clear();
+                var missing = allPossibleSites.Where(m => !scratchList.Contains(m));
+                missingScratch.AddRange(missing);
+
+                if (missingScratch.Count == 0)
+                {
+                    builder.AppendLine($"{morphDef.defName} has all possible mutations"); 
+                }
+                else
+                {
+                    float maxInfluence = ((float) scratchList.Count) / MorphUtilities.GetMaxInfluenceOfRace(ThingDefOf.Human); 
+                    builder.AppendLine($"{morphDef.defName}: {nameof(maxInfluence)}={maxInfluence.ToStringByStyle(ToStringStyle.PercentOne)}");
+                    var grouping = missingScratch.GroupBy(g => g.Layer, g=> g.Record);
+                    foreach (var group in grouping)
+                    {
+                        builder.AppendLine($"-\t{group.Key}: [{group.Select(s => s.def).Distinct().Join(s => s?.defName ?? "NULL")}]"); 
+                    }
+                }
+            }
+            Log.Message(builder.ToString());
+
+        }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         static void LogMutationSensitivity()

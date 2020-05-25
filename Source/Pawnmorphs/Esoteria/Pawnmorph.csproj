@@ -496,6 +496,7 @@
     <Compile Include="MutationRuleDef.cs" />
     <Compile Include="MutationRules\Worker_MorphHediff.cs" />
     <Compile Include="MutationRuleUtilities.cs" />
+    <Compile Include="MutationSite.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PartAddress.cs" />
     <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />

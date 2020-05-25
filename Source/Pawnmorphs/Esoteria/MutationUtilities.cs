@@ -669,7 +669,7 @@ namespace Pawnmorph
         /// <param name="mutationDef">The mutation definition.</param>
         /// <param name="bDef">The b definition.</param>
         /// <returns></returns>
-        public static IEnumerable<(BodyPartRecord bodyPart, MutationLayer layer)> GetAllMutationSites(
+        public static IEnumerable<MutationSite> GetAllMutationSites(
             [NotNull] this MutationDef mutationDef, [NotNull] BodyDef bDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
@@ -685,7 +685,7 @@ namespace Pawnmorph
                 bodyPartRecords = bDef.AllParts.MakeSafe();
             foreach (BodyPartRecord bodyPartRecord in bodyPartRecords)
                 if (mutationDef.parts.MakeSafe().Contains(bodyPartRecord?.def))
-                    yield return (bodyPartRecord, mutationDef.RemoveComp.layer);
+                    yield return new MutationSite(bodyPartRecord, mutationDef.RemoveComp.layer);
         }
 
 
