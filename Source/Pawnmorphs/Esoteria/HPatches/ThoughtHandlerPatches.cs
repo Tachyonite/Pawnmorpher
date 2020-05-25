@@ -21,6 +21,17 @@ namespace Pawnmorph.HPatches
             private static bool TryGainMemoryPrefix([NotNull] ref Thought_Memory newThought, Pawn otherPawn,
                                                     [NotNull] MemoryThoughtHandler __instance)
             {
+                //need to handle got some lovin thought first 
+                if (newThought.def == ThoughtDefOf.GotSomeLovin && (__instance.pawn.IsFormerHuman()
+                                                                 || otherPawn?.IsFormerHuman() == true))
+                {
+                    var sub = (Thought_Memory) ThoughtMaker.MakeThought(PMThoughtDefOf.SapientAnimalGotSomeSnuggling);
+                    sub.moodPowerFactor = newThought.moodPowerFactor / 1.5f;
+                    newThought = sub;
+                    return true; 
+                }
+
+
                 newThought = newThought.GetSubstitute(__instance.pawn);
 
                 return true;
