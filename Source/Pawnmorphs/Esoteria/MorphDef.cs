@@ -326,7 +326,7 @@ namespace Pawnmorph
             if (ExplicitHybridRace != null)
             {
                 hybridRaceDef = ExplicitHybridRace;
-                Log.Warning($"MorphDef {defName} is using an explicit hybrid {ExplicitHybridRace.defName} for {race.defName}. This has not been tested yet");
+               
             }
 
             if (_allAssociatedMutations.NullOrEmpty())
