@@ -16,6 +16,7 @@
     <Pawnmorph.SapienceStateDef ParentName="FormerHumanSapienceBase">
         <defName>MergedPawn</defName>
         <stateType>Pawnmorph.SapienceStates.MergedPawn</stateType>
+        <forcedHediff>2xMergedHuman</forcedHediff>
     </Pawnmorph.SapienceStateDef>
     
     <Pawnmorph.SapienceStateDef>
