@@ -127,7 +127,7 @@ namespace Pawnmorph.GraphicSys
                 return false; // If they're the same color don't do anything.
             }
 
-            var col = Color.Lerp(baseColor, morphColor, lerpVal); // Blend the 2 by the normalized colors.
+            var col = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); // Blend the 2 by the normalized colors.
 
             GComp.skinColor = GComp.ColorChannels["skin"].first = col;
 
@@ -174,7 +174,7 @@ namespace Pawnmorph.GraphicSys
                 return false; //if they're the same color don't  do anything 
             }
 
-            var col = Color.Lerp(baseColor, morphColor, lerpVal); //blend the 2 by the normalized colors 
+            var col = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); //blend the 2 by the normalized colors 
 
             Pawn.story.hairColor = GComp.ColorChannels["hair"].first = col;
 

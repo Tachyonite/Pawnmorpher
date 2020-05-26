@@ -141,7 +141,7 @@ namespace Pawnmorph
 
         private static float CalculateMaxBodyInfluence(BodyDef bodyDef)
         {
-            var set = new HashSet<(BodyPartRecord bodyPart, MutationLayer layer)>();
+            var set = new HashSet<MutationSite>();
             var sites = MutationDef.AllMutations.SelectMany(m => m.GetAllMutationSites(bodyDef));
             set.AddRange(sites);
 

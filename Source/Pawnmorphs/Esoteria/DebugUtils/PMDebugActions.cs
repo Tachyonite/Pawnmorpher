@@ -84,7 +84,7 @@ namespace Pawnmorph.DebugUtils
         static void RecruitFormerHuman(Pawn pawn)
         {
             var sapienceState = pawn?.GetSapienceState();
-            if (sapienceState?.StateDef == SapienceStateDefOf.FormerHuman)
+            if (sapienceState?.IsFormerHuman == true)
             {
                 Worker_FormerHumanRecruitAttempt.DoRecruit(pawn.Map.mapPawns.FreeColonists.FirstOrDefault(), pawn, 1f);
                 DebugActionsUtility.DustPuffFrom(pawn);

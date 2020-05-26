@@ -31,6 +31,20 @@
             </li>
         </modExtensions>
     </ThoughtDef>
-	
+	<ThoughtDef>
+        <defName>SapientAnimalGotSomeSnuggling</defName>
+        <thoughtClass>Thought_MemorySocial</thoughtClass>
+        <durationDays>3</durationDays>
+        <stackLimit>10</stackLimit>
+        <stackedEffectMultiplier>0.75</stackedEffectMultiplier>
+        <stages>
+          <li>
+            <label>got some snugglin’</label>
+            <description>There's nothing like a good snuggle to lift the mood.</description>
+            <baseMoodEffect>8</baseMoodEffect>
+            <baseOpinionOffset>6</baseOpinionOffset>
+          </li>
+        </stages>
+      </ThoughtDef>
 
 </Defs>

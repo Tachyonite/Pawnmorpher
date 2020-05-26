@@ -19,6 +19,23 @@ namespace Pawnmorph.HPatches
             return p.RaceProps.Animal || p.GetIntelligence() == Intelligence.Animal;
         }
 
+        [HarmonyPatch(typeof(WorkGiver_InteractAnimal))]
+        static class InteractionPatches
+        {
+            [HarmonyPatch("CanInteractWithAnimal"), HarmonyPrefix]
+            static bool DontInteractSelfFix(ref bool __result, Pawn pawn, Pawn animal, bool forced)
+            {
+                if (pawn == animal)
+                {
+                    __result = false;
+                    return false; 
+                }
+
+                return true; 
+            }
+        }
+
+
         [HarmonyPatch(typeof(WorkGiver_Train))]
         private static class TrainPatches
         {

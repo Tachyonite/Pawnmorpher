@@ -107,75 +107,50 @@
 
 	<HediffDef>
 		<defName>2xMergedHuman</defName>
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
 		<description>[PAWN_defName] is a creature that should never have been, a fusion of two beings which mutated to become one animalistic monstrosity.</description>
 		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
 		<label>2x merged morph</label>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.002</severityPerDay>				<!-- UH OH, AFTER A LONG ENOUGH TIME THEY CAN LOSE THE ABILITY TO TURN BACK!! -->
-			</li>
-		</comps>
 		<stages>
 			<li>
-				<minSeverity>0</minSeverity>
-				<label>feral</label>
-
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_PermanentFeral">
-						<hediff>PermanentlyFeral</hediff>
-					</li>
-				</hediffGivers>
-			</li>
-			<li>
-				<minSeverity>0.01</minSeverity>
-				<label>feral</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>0.5</offset>
-					</li>
-				</capMods>
-			</li>
-			<li>
-				<minSeverity>0.80</minSeverity>
 				<label>sapient</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>1.5</offset>
-					</li>
-				</capMods>
-				<mentalStateGivers>
-					<li>
-						<mentalState>WanderConfused</mentalState>
-						<mtbDays>5</mtbDays>
-					</li>
-					<li>
-						<mentalState>Wander_Psychotic</mentalState>
-						<mtbDays>3</mtbDays>
-					</li>
-					<li>
-						<mentalState>Wander_Sad</mentalState>
-						<mtbDays>15</mtbDays>
-					</li>
-				</mentalStateGivers>
+			</li>
+			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+				<label>mostly sapient</label>
+				<minSeverity>0.4</minSeverity>
+				<disallowedWork>Intellectual,Artistic</disallowedWork>
+				<statOffsets>
+					<TameAnimalChance>0.05</TameAnimalChance>
+					<TrainAnimalChance>0.05</TrainAnimalChance>
+					<ResearchSpeed>-0.25</ResearchSpeed>
+				</statOffsets>
 			</li>
 			<li>
-				<minSeverity>0.99</minSeverity>
-				<label>driven mad</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>3</offset>
-					</li>
-				</capMods>
-				<mentalStateGivers>
-					<li>
-						<mentalState>ManhunterPermanent</mentalState>
-						<mtbDays>0.01</mtbDays>
-					</li>
-				</mentalStateGivers>
+				<label>conflicted</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.1</TameAnimalChance>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<ResearchSpeed>-0.5</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li >
+				<label>mostly feral</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<label>mostly feral</label>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
 			</li>
 		</stages>
 	</HediffDef>
