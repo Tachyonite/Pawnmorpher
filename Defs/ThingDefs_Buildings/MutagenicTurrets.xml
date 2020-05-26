@@ -93,8 +93,7 @@
       <combatPower>45</combatPower>   <!-- same as a scavenger -->
       <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Gun_MutagenicTurret</turretGunDef>
-      <turretBurstCooldownTime>4</turretBurstCooldownTime>
-      <turretBurstWarmupTime>2</turretBurstWarmupTime>
+      <turretBurstCooldownTime>3</turretBurstCooldownTime>
       <turretTopDrawSize>5</turretTopDrawSize>
       <!--<turretTopOffset>(0.3, 0.35)</turretTopOffset>-->
     </building>
