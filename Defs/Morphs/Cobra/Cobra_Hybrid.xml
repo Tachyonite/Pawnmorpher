@@ -578,7 +578,7 @@
                     </bodyAddons>
                 </alienPartGenerator>
             </generalSettings>
-            <graphicPaths></graphicPaths>
+            <graphicPaths Inherit="False" ></graphicPaths>
             <hairSettings></hairSettings>
             <thoughtSettings>
                 <cannotReceiveThoughts></cannotReceiveThoughts>
