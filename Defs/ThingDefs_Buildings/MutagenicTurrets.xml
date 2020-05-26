@@ -151,6 +151,7 @@
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <burstShotCount>2</burstShotCount>
         <soundCast>Slurry_Flywheels</soundCast>
+        <soundCastTail>Slurry_Flywheels_Tail</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
         <consumeFuelPerShot>1</consumeFuelPerShot>
       </li>
