@@ -101,6 +101,16 @@ namespace Pawnmorph.DebugUtils
         }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void IncreaseSapience(Pawn pawn)
+        {
+            var sTracker = pawn?.GetComp<SapienceTracker>();
+            if (sTracker == null) return;
+
+            sTracker.SetSapience(sTracker.Sapience + 0.2f);
+
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void MakeAnimalSapientFormerHuman(Pawn pawn)
         {
             if (pawn == null) return;
