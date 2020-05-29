@@ -3,7 +3,6 @@
 	<version>1.8.2</version>
 	<dependencies>
 		<li>erdelf.humanoidalienraces</li>
-		<li>unlimitedhugs.hugslib</li>
 	</dependencies>
 	<incompatibleWith>
 		<li>killface.facialstuff</li>
