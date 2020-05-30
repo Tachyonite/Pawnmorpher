@@ -85,7 +85,7 @@ namespace Pawnmorph.DebugUtils
 
         }
 
-        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         static void LogMutationsPerSlot()
         {
             List<MutationDef> allMutations = DefDatabase<MutationDef>.AllDefs.ToList();
