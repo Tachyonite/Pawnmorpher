@@ -127,6 +127,7 @@ namespace Pawnmorph
 
         private void RecalculateMorphCount(MorphTracker tracker)
         {
+            
             MorphDef myMorph = parent.def.GetMorphOfRace();
             AspectTracker aspectTracker = Pawn.GetAspectTracker();
             if (aspectTracker == null) return;
@@ -148,6 +149,7 @@ namespace Pawnmorph
 
         private int GetFeralPawnInfluence([NotNull] MorphTracker tracker, [NotNull] MorphGroupDef group)
         {
+            if (Pawn?.Faction == null) return 0; 
             var animals = tracker.map.mapPawns.SpawnedPawnsInFaction(Pawn.Faction);
             int counter = 0;
             foreach (Pawn animal in animals.MakeSafe())
