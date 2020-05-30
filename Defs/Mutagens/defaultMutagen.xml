@@ -42,6 +42,22 @@
 						<chance>0.05</chance>
 						<aspectStage>1</aspectStage>
 					</li>
+					<li>
+                        <aspect>ColorationNatural</aspect>
+                        <chance>0.0015</chance>
+                    </li>
+                    <li>
+                        <aspect>ColorationAlbinism</aspect>
+                        <chance>0.00075</chance>
+                    </li>
+                    <li>
+                        <aspect>ColorationMelanism</aspect>
+                        <chance>0.00075</chance>
+                    </li>
+                    <li>
+                        <aspect>ColorationUnnatural</aspect>
+                        <chance>0.0005</chance>
+                    </li>
 				</entries>
 			</li>
 		</aspectGivers>

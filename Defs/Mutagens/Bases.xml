@@ -36,22 +36,7 @@
                         <aspect>Afflicted</aspect>
                         <chance>0.02</chance>
                     </li>
-                    <li>
-                        <aspect>ColorationNatural</aspect>
-                        <chance>0.0015</chance>
-                    </li>
-                    <li>
-                        <aspect>ColorationAlbinism</aspect>
-                        <chance>0.00075</chance>
-                    </li>
-                    <li>
-                        <aspect>ColorationMelanism</aspect>
-                        <chance>0.00075</chance>
-                    </li>
-                    <li>
-                        <aspect>ColorationUnnatural</aspect>
-                        <chance>0.0005</chance>
-                    </li>
+                   
                 </entries>
             </li>
             <li Class="Pawnmorph.Aspects.SkillBasedGiver">
