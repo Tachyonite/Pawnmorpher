@@ -259,9 +259,17 @@ namespace Pawnmorph.TfSys
         /// <value>
         ///   <c>true</c> if this instance can be reverted; otherwise, <c>false</c>.
         /// </value>
-        public override bool CanRevert => animal.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman);
+        public override bool CanRevert
+        {
+            get
+            {
+                var tracker = animal.GetSapienceTracker();
+                if (tracker == null) return false;
+                return tracker.CurrentState?.StateDef == mutagenDef?.transformedSapienceState && !tracker.IsPermanentlyFeral;
+            }
+        }
 
-        
+
         /// <summary>Exposes the data.</summary>
         public override void ExposeData()
         {
@@ -316,7 +324,13 @@ namespace Pawnmorph.TfSys
         /// <value>
         ///     <c>true</c> if this instance can be reverted; otherwise, <c>false</c>.
         /// </value>
-        public override bool CanRevert => meld.health.hediffSet.HasHediff(TfHediffDefOf.TransformedHuman);
+        public override bool CanRevert {
+            get
+            {
+                var sTracker = meld?.GetSapienceTracker();
+                if (sTracker == null) return false;
+                return meld.GetSapienceState()?.StateDef == mutagenDef?.transformedSapienceState && !sTracker.IsPermanentlyFeral;
+            } }
 
         
 

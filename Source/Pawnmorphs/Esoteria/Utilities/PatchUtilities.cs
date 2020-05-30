@@ -24,12 +24,14 @@ namespace Pawnmorph.Utilities
         static PatchUtilities()
         { 
             System.Type fhUtilType = typeof(FormerHumanUtilities);
-            IsAnimalMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsAnimal));
+            IsAnimalMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsAnimal), new[] {typeof(Pawn)});
           
-            IsHumanoidMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsHumanlike));
-            IsToolUserMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsToolUser));
+            IsHumanoidMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)});
+            IsToolUserMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsToolUser), new []{typeof(Pawn)});
             _getRacePropsMethod = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod();
+            GetRacePropsMethod = _getRacePropsMethod; 
             _getAnimalMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.Animal)).GetGetMethod();
+            RimworldIsAnimalMethod = _getAnimalMethod; 
             _toolUserMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.ToolUser)).GetGetMethod();
             _getHumanlikeMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.Humanlike)).GetGetMethod();
             AllFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static;
@@ -131,6 +133,37 @@ namespace Pawnmorph.Utilities
             }
         }
 
+        /// <summary>
+        /// Determines whether this method has the given type signature 
+        /// </summary>
+        /// <param name="methodInfo">The method information.</param>
+        /// <param name="types">The types.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified method information has signature; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// methodInfo
+        /// or
+        /// types
+        /// </exception>
+        public static bool HasSignature([NotNull] this MethodInfo methodInfo, [NotNull] params Type[] types)
+        {
+            if (methodInfo == null) throw new ArgumentNullException(nameof(methodInfo));
+            if (types == null) throw new ArgumentNullException(nameof(types));
+            var parameters = methodInfo.GetParameters();
+            if (parameters.Length != types.Length)
+            {
+                return false; 
+            }
+
+            for(int i=0; i < parameters.Length; i++)
+            {
+                if (parameters[i].ParameterType != types[i]) return false; 
+            }
+
+            return true; 
+        }
+
         static void GetInternalTypes([NotNull] Type type, [NotNull] List<Type> outList)
         {
             var internalTypes = type.GetNestedTypes(AllFlags);
@@ -142,6 +175,12 @@ namespace Pawnmorph.Utilities
 
             outList.AddRange(internalTypes); 
         }
+
+        /// <summary>
+        /// gets <see cref="RaceProperties.Animal"/> getter method
+        /// </summary>
+        [NotNull]
+        public static MethodInfo RimworldIsAnimalMethod { get; }
 
 
         [NotNull] private static readonly MethodInfo _getRacePropsMethod;
@@ -174,6 +213,15 @@ namespace Pawnmorph.Utilities
         /// </value>
         [NotNull]
         public static MethodInfo IsToolUserMethod { get; }
+
+        /// <summary>
+        /// Gets the get race props method.
+        /// </summary>
+        /// <value>
+        /// The get race props method.
+        /// </value>
+        [NotNull]
+        public static MethodInfo GetRacePropsMethod { get; }
 
         /// <summary>
         /// substitutes all instances of RaceProps Humanlike, Animal, and Tooluser with their equivalent in FormerHumanUtilities

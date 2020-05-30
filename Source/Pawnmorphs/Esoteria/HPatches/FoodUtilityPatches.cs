@@ -1,6 +1,7 @@
 ﻿// FoodUtilityPatches.cs modified by Iron Wolf for Pawnmorph on 01/19/2020 4:33 PM
 // last updated 01/19/2020  4:33 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -39,10 +40,10 @@ namespace Pawnmorph.HPatches
         static class FixBestFoodSourceForFormerHumans
         {
             [NotNull]
-            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike));
+            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsToolUser));
 
             [NotNull] private static readonly MethodInfo _isHumanlike =
-                typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike)); 
+                typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)}); 
 
 
 
@@ -98,7 +99,7 @@ namespace Pawnmorph.HPatches
 
             private static bool ShouldUseOptimizedCode(Pawn eater)
             {
-                if (eater.IsFormerHuman()) return true; //always use custom code for former humans, they need preference tweaks 
+                if (eater?.GetSapienceState() != null) return true; //pawns with special sapience states like former human and anamlistic should use the optimized path
                 var shouldUseOptimizedPath = eater.IsHumanlike() && (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) != 0;
                 //shouldUseOptimizedPath |= eater.IsSapientFormerHuman();
                 return shouldUseOptimizedPath; 

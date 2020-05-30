@@ -10,7 +10,7 @@ namespace Pawnmorph
     /// <summary>
     /// enum that 
     /// </summary>
-    [Obsolete("use \"" + nameof(SapienceLevel) + "\" level and \"" + nameof(FormerHumanTracker) + "\" instead")]
+    [Obsolete("use \"" + nameof(SapienceLevel) + "\" level and \"" + nameof(SapienceTracker) + "\" instead")]
     public enum FormerHumanStatus
     {
         /// <summary>

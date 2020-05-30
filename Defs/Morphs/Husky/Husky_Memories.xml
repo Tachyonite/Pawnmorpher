@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>Honestly as far as things go, this is not that bad.</description>
+                <description>Honestly, this is not that bad.</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
@@ -14,38 +14,38 @@
             </li>
             <li>
                 <label>changed</label>
-                <description>I know I'm supposed to hate this but...I feel too excited to care much?</description>
+                <description>I know I'm supposed to hate this but... I feel too excited to care.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
-                <description>What's not to like? I guess it'd be fun to try the sled-pulling experience...</description>
+                <description>What's not to like? I guess it'd be fun to try the sled-pulling experience.</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>HuskyRevertedMemory</defName>
         <stages>
             <li>
                 <label>reverted</label>
-                <description>Phew...those ears were getting in the way.</description>
+                <description>Phew... I was having a bit too much fun.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
-                <description>Eugh, grass tastes gross again, no thank you!</description>
+                <description>I'm not as peppy as I used to be.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
-                <description>MY TEETH ARE NORMAL AGAIN! REJOICE!</description>
+                <description>I'm not a stinky dog anymore!</description>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
-                <description>No soft hugs for me...</description>
+                <description>No soft hugs for me.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>

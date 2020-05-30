@@ -20,7 +20,7 @@ namespace Pawnmorph.HPatches
             {
                 foreach (Toil toil in values) yield return toil;
 
-                if (!__instance.pawn.IsSapientOrFeralFormerHuman()) yield break;
+                if (!__instance.pawn.IsFormerHuman() || __instance.pawn?.needs?.mood == null ) yield break;
                 yield return Toils_General.Do(() =>
                 {
                     FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn,
@@ -30,6 +30,20 @@ namespace Pawnmorph.HPatches
             }
 
             
+        }
+
+        [HarmonyPatch(typeof(Designator_Hunt), nameof(Designator_Hunt.CanDesignateThing))]
+        static class HuntingDesignatorPatch
+        {
+            static void Postfix(ref AcceptanceReport __result,  [NotNull] Thing t )
+            {
+                if (!__result.Accepted && Find.CurrentMap?.designationManager.DesignationOn(t, DesignationDefOf.Hunt) == null)
+                {
+                    var p = t as Pawn;
+                    if (p == null) return;
+                    if (p.IsFormerHuman() && p.Faction == null) __result = true; 
+                }
+            }
         }
     }
 }

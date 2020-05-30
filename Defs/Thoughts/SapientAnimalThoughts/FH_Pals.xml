@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
-    
+
     <!--this thought is for when a former human is bonded to one or more regular animals  -->
     <ThoughtDef>
         <defName>FormerHumanAnimalPalsThought</defName>
@@ -7,12 +7,12 @@
         <stages>
             <li>
                 <label>animal pal</label>
-                <description>I never thought I'd share the perspective of my bonded animal...</description>
+                <description>I never thought I'd share the perspective of my bonded animal.</description>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
                 <label>animal pal</label>
-                <description>They're an animal like me, I'm glad they still recognise me for me...</description>
+                <description>They're an animal like me, but I'm glad they still recognise me for me...</description>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>

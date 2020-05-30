@@ -1,4 +1,5 @@
 ﻿using Pawnmorph;
+using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
 
@@ -32,14 +33,22 @@ namespace EtherGun
                 {
                     //This checks to see if the character has a heal differential, or hediff on them already.
                     Hediff etherOnPawn = hitPawn.health?.hediffSet?.GetFirstHediffOfDef(Def.HediffToAdd);
-                    var randomSeverity = 1f;
+
                     if (etherOnPawn == null)
                     {
                         //These three lines create a new health differential or Hediff,
                         //put them on the character, and increase its severity by a random amount.
                         Hediff hediff = HediffMaker.MakeHediff(Def.HediffToAdd, hitPawn);
-                        hediff.Severity = randomSeverity;
                         hitPawn.health?.AddHediff(hediff);
+
+                        //this should be an interface 
+                        var syringeHediff = hediff as SyringeRifleTf;
+
+                        //hacky, want to figure out a better way to find the weapon that will allow turrets as well 
+                        var weapon = (launcher as Pawn)?.equipment?.Primary; 
+                        
+                        syringeHediff?.Initialize(weapon);
+
                         IntermittentMagicSprayer.ThrowMagicPuffDown(hitPawn.Position.ToVector3(), Map);
                     }
                 }

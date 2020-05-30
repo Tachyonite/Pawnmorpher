@@ -86,14 +86,14 @@ namespace Pawnmorph.TfSys
             HediffDef hediffToAdd = HediffDef.Named(FORMER_HUMAN_HEDIFF); //make sure hediff is added before spawning meld 
 
             //make them count as former humans 
-            var tracker = meldToSpawn.GetFormerHumanTracker();
+            var tracker = meldToSpawn.GetSapienceTracker();
             if (tracker == null)
             {
                 Log.Error($"{meldToSpawn.def.defName} is a meld but does not have a former human tracker!");
             }
             else
             {
-                tracker.MakeFormerHuman(1);
+                GiveTransformedPawnSapienceState(meldToSpawn, 1); 
             }
 
 
@@ -118,7 +118,7 @@ namespace Pawnmorph.TfSys
             meld.SetFaction(Faction.OfPlayer);
       
             ReactionsHelper.OnPawnsMerged(firstPawn, firstPawn.IsPrisoner, secondPawn, secondPawn.IsPrisoner, meld);
-
+            MergedPawnUtilities.TransferToMergedPawn(request.originals, meld); 
 
             TransformerUtility.CleanUpHumanPawnPostTf(firstPawn, null);
             TransformerUtility.CleanUpHumanPawnPostTf(secondPawn, null);
@@ -243,15 +243,15 @@ namespace Pawnmorph.TfSys
                 throw new ArgumentNullException(nameof(transformedPawn)); 
             }
 
-            Tuple<TransformedPawn, TransformedStatus> status = GameComp.GetTransformedPawnContaining(transformedPawn);
-
-            if (status != null)
+            var pawnStatus = GameComp.GetTransformedPawnContaining(transformedPawn);
+            var sState = transformedPawn.GetSapienceState();
+            if (sState == null) return false; 
+            if (pawnStatus != null)
             {
-                if (status.Item2 != TransformedStatus.Transformed) return false;
-
-                if (status.Item1 is MergedPawns merged)
+                if (pawnStatus.Value.status != TransformedStatus.Transformed) return false;
+                if (pawnStatus.Value.pawn is MergedPawns merged)
                 {
-                    if (merged.mutagenDef != def) return false;
+                    if (sState.StateDef != def.transformedSapienceState) return false;
 
                     if (TryRevertImpl(merged))
                     {
@@ -263,10 +263,10 @@ namespace Pawnmorph.TfSys
                 return false;
             }
 
-            HediffDef formerDef = HediffDef.Named(FORMER_HUMAN_HEDIFF);
-            if (transformedPawn.health.hediffSet.HasHediff(formerDef))
+           
+            if (sState.StateDef == def.transformedSapienceState)
             {
-                Hediff formerHediff = transformedPawn.health.hediffSet.hediffs.First(h => h.def == formerDef);
+               
                 ThoughtDef thoughtDef = null; 
 
                 for (var i = 0; i < 2; i++)
@@ -285,7 +285,6 @@ namespace Pawnmorph.TfSys
                         IntermittentMagicSprayer.ThrowMagicPuffUp(spawnedPawn.Position.ToVector3(), spawnedPawn.MapHeld);
                     }
 
-                    thoughtDef = AddRandomThought(spawnedPawn, formerHediff.CurStageIndex); 
                     _scratchArray[i] = spawnedPawn;
                 }
                 PawnRelationDef relationDef;

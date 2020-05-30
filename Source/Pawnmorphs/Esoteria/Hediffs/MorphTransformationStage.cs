@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using HarmonyLib;
+using Pawnmorph.DebugUtils;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -52,8 +53,9 @@ namespace Pawnmorph.Hediffs
         /// Gets the entries for the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        public override IEnumerable<MutationEntry> GetEntries(Pawn pawn)
+        public override IEnumerable<MutationEntry> GetEntries(Pawn pawn, Hediff source)
         {
             return Entries; 
         }
@@ -86,8 +88,6 @@ namespace Pawnmorph.Hediffs
                         });
                     }
 
-                    string outStr = _entries.Select(m => m.mutation.defName).Join(delimiter:",");
-                    Log.Message("for " + morph.defName + ": " + outStr);
                 }
                 
                 return _entries; 

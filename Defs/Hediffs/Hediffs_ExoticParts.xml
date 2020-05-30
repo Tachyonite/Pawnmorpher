@@ -140,7 +140,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherIchoric</defName>
-		<description>[PAWN_nameDef] produces ambrosia, the food of the gods -- though this is very taxing on their own body.</description>
+		<description>[PAWN_nameDef] produces ambrosia, the food of the gods — though this is very taxing on their own body.</description>
 		<label>ichoric</label>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>

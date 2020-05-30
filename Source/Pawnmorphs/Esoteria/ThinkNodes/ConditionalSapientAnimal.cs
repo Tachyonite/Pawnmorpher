@@ -30,9 +30,10 @@ namespace Pawnmorph.ThinkNodes
         protected override bool Satisfied(Pawn pawn)
         {
             //if mustBeFullySapient is true, make sure we use IsSapientFormerHuman, other use SapientOrFeral 
-            bool cond =
-                mustBeFullySapient ? pawn.IsSapientFormerHuman() : pawn.IsSapientOrFeralFormerHuman();
-
+            if (!pawn.RaceProps.Animal) return false;
+            var sapienceLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
+            var cutoff = mustBeFullySapient ? SapienceLevel.MostlySapient : SapienceLevel.MostlyFeral;
+            bool cond = sapienceLevel <= cutoff;
             if (!cond) return false;
             if (mustBeColonist) return pawn.IsColonist;
             return true;

@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PigPart">
 		<defName>EtherPigSnout</defName>
 		<label>porcine snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, snorting and snuffling for roots and berries, oinking at things that [PAWN_pronoun] likes.</description>
+		<description>A snout graces [PAWN_nameDef]'s face, good for snorting, snuffling for roots and berries, and oinking at things that [PAWN_pronoun] likes.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>

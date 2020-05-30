@@ -8,9 +8,11 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using System.Text;
 using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.Hybrids;
@@ -80,10 +82,16 @@ namespace Pawnmorph
             }
         }
 
+        
+
+
         private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
         {
             var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public; 
             var instanceFlags = BindingFlags.Instance| BindingFlags.NonPublic | BindingFlags.Public;
+
+
+
 
             List<MethodInfo> methodsToPatch = new List<MethodInfo>(); 
             
@@ -92,6 +100,21 @@ namespace Pawnmorph
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod); 
 
+            //animal tabs 
+            var methods = typeof(MainTabWindow_Animals).GetNestedTypes(staticFlags | instanceFlags)//looking for delegates used by the animal tab 
+                                                       .Where(t => t.IsCompilerGenerated())
+                                                       .SelectMany(t => t.GetMethods(instanceFlags).Where(m=> m.HasSignature(typeof(Pawn))));
+
+            methodsToPatch.AddRange(methods);
+
+            //map pawns 
+            methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)));
+            methodsToPatch.AddRange(methods); 
+
+         
+            //jobs and toils 
+            methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
+
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
             {
@@ -99,7 +122,15 @@ namespace Pawnmorph
                 harmonyInstance.ILPatchCommonMethods(methodInfo); 
             }
 
-
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("Patched:");
+            foreach (MethodInfo methodInfo in methodsToPatch)
+            {
+                if(methodInfo == null) continue;
+                builder.AppendLine($"{methodInfo.Name}");
+            }
+            Log.Message(builder.ToString());
+            DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
         }
 
 
@@ -310,7 +341,7 @@ namespace Pawnmorph
 
                     return false;
                 }
-            }else if (__instance.pawn.IsSapientOrFeralFormerHuman())
+            }else if (__instance.pawn.IsSapientFormerHuman())
             {
                 if (thing.def.ingestible == null) return true;
 

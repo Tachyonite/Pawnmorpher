@@ -23,7 +23,16 @@ namespace Pawnmorph.Hediffs
 
         private List<BodyPartRecord> _checkList;
         private int _curIndex;
-        private int _curMutationIndex; 
+        private int _curMutationIndex;
+
+
+        /// <summary>
+        /// Gets a value indicating whether this transformation hediff blocks the race checking 
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this transformation hediff blocks the race checking; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool BlocksRaceCheck => AnyMutationsInStage(CurStage); 
 
         /// <summary>
         /// Creates a debug string for this hediff 
@@ -346,12 +355,6 @@ namespace Pawnmorph.Hediffs
         {
             if (base.TryMergeWith(other))
             {
-                var sCompOther = other.TryGetComp<HediffComp_Single>();
-                var sComp = SingleComp;
-                if (sComp != null && sCompOther != null)
-                {
-                    sComp.stacks = Mathf.Clamp(sComp.stacks + sCompOther.stacks, 0, sComp.Props.maxStacks); 
-                }
                 ResetMutationOrder();
                 return true; 
             }

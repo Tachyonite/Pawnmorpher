@@ -2,16 +2,16 @@
 	<Pawnmorph.Hediffs.MutationDef Abstract="True" ParentName="PawnmorphPart" Name="SheepPart">
 		<classInfluence>SheepMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-	
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherWoolySheep</defName>
 		<label>woolly</label>
 		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent sheepmorph that don't need no man.</description>
 		<maxSeverity>1</maxSeverity>
-		<initialSeverity>0.01</initialSeverity>	
+		<initialSeverity>0.01</initialSeverity>
 		<parts>
 			<li>Torso</li>
-		</parts>	
+		</parts>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ShavedMyself</thought>
@@ -74,11 +74,11 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-	
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherSheepSnout</defName>
 		<label>ovine snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_pronoun] teeth are squared off, and this makes speaking more difficult, yet eating is easier.</description>
+		<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -130,7 +130,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherSheepEar</defName>
 		<label>ovine</label>
@@ -144,7 +144,7 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-	
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherSheepTail</defName>
 		<label>sheep tail</label>

@@ -4,17 +4,17 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>My dentist is gonna hate this...</description>
+                <description>My dentist is gonna hate this.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
-                <description>Grass tastes so much better now for some reason...</description>
+                <description>Grass tastes so much better now for some reason.</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
-                <description>MY TEETH, they're so big...! Gross!</description>
+                <description>My teeth, they're so big! Gross!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
@@ -24,13 +24,13 @@
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>HareRevertedMemory</defName>
         <stages>
             <li>
                 <label>reverted</label>
-                <description>Phew...those ears were getting in the way.</description>
+                <description>Phew, those ears were getting in the way.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
@@ -45,7 +45,7 @@
             </li>
             <li>
                 <label>reverted</label>
-                <description>No soft hugs for me...</description>
+                <description>No soft hugs for me.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
@@ -57,13 +57,13 @@
         <stages>
             <li>
                 <label>Rabbit face</label>
-                <description>These whiskers and teeth are dumb...</description>
+                <description>These whiskers and teeth are dumb.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Rabbit face</label>
-                <description>Check out my cute little button nose I love it!</description>
+                <description>Check out my cute little button nose, I love it!</description>
                 <visible>true</visible>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
@@ -81,13 +81,13 @@
         <stages>
             <li>
                 <label>Rabbit ears</label>
-                <description>This has been one bad magic trick...sort of</description>
+                <description>This has been one bad magic trick.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Rabbit ears</label>
-                <description>I feel like a cutie...or like a belong in a playboy!</description>
+                <description>They're so cute, it's like I belong in a Playboy!</description>
                 <visible>true</visible>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
@@ -117,7 +117,7 @@
             </li>
             <li>
                 <label>Cotton tail</label>
-                <description>No, stop asking if i stole the carrots...</description>
+                <description>No, stop asking if I stole the carrots!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>

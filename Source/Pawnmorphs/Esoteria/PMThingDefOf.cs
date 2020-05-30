@@ -27,7 +27,8 @@ namespace Pawnmorph
         public static ThingDef Cow;
         public static ThingDef TFMilk;
         public static ThingDef TFEgg;
-        
 
+
+        public static ThingDef MechaniteSlurry;
     }
 }

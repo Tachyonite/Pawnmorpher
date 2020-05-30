@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>I'm a...cat? Wat.</description>
+                <description>I'm a... cat? What.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -19,18 +19,18 @@
             </li>
             <li>
                 <label>changed</label>
-                <description>I think I want to go out and hunt mice...</description>
+                <description>I think I want to go out and hunt mice.</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>LynxRevertedMemory</defName>
         <stages>
             <li>
                 <label>reverted</label>
-                <description>That fur was getting stuffy...and sheddy.</description>
+                <description>That fur was getting stuffy... and I shed too much.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>

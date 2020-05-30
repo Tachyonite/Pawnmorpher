@@ -4,7 +4,7 @@
 		<stages>
 			<li>
 				<label>changed</label>
-				<description>I feel like galloping across a steep.</description>
+				<description>I feel like galloping across a steppe.</description>
 				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 			<li>
@@ -45,7 +45,7 @@
 			</li>
 			<li>
 				<label>reverted</label>
-				<description>Aw, now I can't even gallop on two legs now...</description>
+				<description>Aw, I can't even gallop now.</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>

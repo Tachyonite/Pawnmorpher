@@ -22,7 +22,7 @@ namespace Pawnmorph
         private const float ALPHA = 50f / 10f; //converts intelligence to sapience
         private const float INSTINCT_MULTIPLIER = 1 / 15f; //scales change in instinct to change in sapience 
         private const int AVERAGE_INT = 3;
-        private const float AVERAGE_RESISTANCE_STAT = 0.5f;
+        private const float AVERAGE_RESISTANCE_STAT = 1f;
         /// <summary>
         ///     The average resistance of pawns
         /// </summary>
@@ -33,7 +33,7 @@ namespace Pawnmorph
         /// <summary>
         /// a very small value 
         /// </summary>
-        public const float EPSILON = 0.001f; 
+        public const float EPSILON = 0.0001f; 
 
         [NotNull]
         private static readonly Dictionary<SapienceLevel, string> _labelDict;
@@ -115,9 +115,9 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
-            int i = pawn.skills?.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0;
+            //int i = pawn.skills?.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0;
             float rs = pawn.GetStatValue(PMStatDefOf.SapientAnimalResistance);
-            return i * ALPHA + rs * BETA;
+            return AVERAGE_INT * ALPHA + rs * BETA;
         }
 
         /// <summary>

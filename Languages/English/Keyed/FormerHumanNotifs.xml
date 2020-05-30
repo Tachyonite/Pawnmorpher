@@ -19,6 +19,6 @@
         other sapience levels are supported as well, just use the form $SapienceLevel_TransitionContent/$SapienceLevel_TransitionLabel 
         ex: MostlyFeral_TransitionLabel/MostlyFeral_TransitionContent would show up for when a former human becomes 'mostly feral'
     -->
-    <Conflicted_TransitionLabel>[PAWN_nameDef] sapience has dropped significantly</Conflicted_TransitionLabel>
-    <Conflicted_TransitionContent>[PAWN_nameDef] sapience has dropped to the point they are no longer considered a full colonist</Conflicted_TransitionContent>
+    <FormerHumanConflicted_TransitionLabel>[PAWN_nameDef] sapience has dropped significantly</FormerHumanConflicted_TransitionLabel>
+    <FormerHumanConflicted_TransitionContent>[PAWN_nameDef] sapience has dropped to the point they are no longer considered a full colonist</FormerHumanConflicted_TransitionContent>
 </LanguageData>

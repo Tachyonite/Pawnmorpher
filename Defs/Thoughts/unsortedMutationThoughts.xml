@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
 
-    
+
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherBearPawHand</defName>
@@ -62,7 +62,7 @@
         <stages>
             <li>
                 <label>Bear face</label>
-                <description>I... want... fish... now!</description>
+                <description>I...want...fish...now!</description>
                 <visible>true</visible>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
@@ -86,7 +86,7 @@
         <stages>
             <li>
                 <label>Chemfuel sac</label>
-                <description>What is... am I... LEAKING!?</description>
+                <description>What is...am I...LEAKING!?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
@@ -171,7 +171,7 @@
             </li>
             <li>
                 <label>Ear holes</label>
-                <description>I suppose they're more streamlined now...?</description>
+                <description>I suppose they're more streamlined now?</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -429,7 +429,7 @@
         <stages>
             <li>
                 <label>Talons</label>
-                <description>They're so...animal, and I leave scratches on wooden floors...</description>
+                <description>They're so...animal, and I leave scratches on wooden floors.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -484,7 +484,7 @@
         <stages>
             <li>
                 <label>Tiny rodent face</label>
-                <description>It's hard to eat when my mout is so small!</description>
+                <description>It's hard to eat when my mouth is so small!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -496,7 +496,7 @@
             </li>
             <li>
                 <label>Tiny rodent face</label>
-                <description>My face is so tiny...!</description>
+                <description>My face is so tiny!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -532,7 +532,7 @@
         <stages>
             <li>
                 <label>Snake hood</label>
-                <description>It'sss hard to fit a T-Shirt over thissss hood now</description>
+                <description>It'sss hard to fit a T-shirt over thissss hood now.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -586,7 +586,7 @@
             </li>
             <li>
                 <label>Scales</label>
-                <description>Inbuilt armour isss alwayssss handy...</description>
+                <description>Built-in armor isss alwayssss handy...</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
@@ -754,7 +754,7 @@
             </li>
             <li>
                 <label>Cow face</label>
-                <description>Hehe... Moooooooooo...</description>
+                <description>Hehe...Moooooooooo...</description>
                 <visible>true</visible>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
@@ -766,7 +766,7 @@
             </li>
             <li>
                 <label>Cow face</label>
-                <description>MOOOoooooo... MOOOoooooo...</description>
+                <description>MOOOoooooo...MOOOoooooo...</description>
                 <visible>true</visible>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
@@ -839,7 +839,7 @@
             </li>
             <li>
                 <label>Horns</label>
-                <description>Maybe I can file them down... would they grow back?</description>
+                <description>Maybe I can file them down...would they grow back?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -894,7 +894,7 @@
             </li>
             <li>
                 <label>Deer face</label>
-                <description>I could really use some buckshot right now...</description>
+                <description>I could really use some buckshot right now.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
@@ -912,7 +912,7 @@
             </li>
             <li>
                 <label>Deer ears</label>
-                <description>I can hear predators so easily now....Uhm, I mean raiders!</description>
+                <description>I can hear predators so easily now...uh, I mean, raiders!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
@@ -930,19 +930,19 @@
         <stages>
             <li>
                 <label>Short tail</label>
-                <description>It'd be nice if it didn't flick up whenever people scared me...</description>
+                <description>It'd be nice if it didn't flick up whenever people scare me...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Short tail</label>
-                <description>Flick, flick, flick, flick...OH sorry!</description>
+                <description>Flick, flick, flick, flick...oh, sorry!</description>
                 <visible>true</visible>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>Short tail</label>
-                <description>At least I can hide this one...</description>
+                <description>At least I can hide it.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -954,7 +954,7 @@
         <stages>
             <li>
                 <label>Antlers</label>
-                <description>They would be fine if they weren't constantly getting stuck in door frames�.</description>
+                <description>They would be fine if they weren't constantly getting stuck in door frames.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -966,13 +966,13 @@
             </li>
             <li>
                 <label>Antlers</label>
-                <description>This is ridiculous! How am I supposed to even get on shirts now!</description>
+                <description>This is ridiculous! How am I supposed to even get on shirts now?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
             <li>
                 <label>Antlers</label>
-                <description>Closer to the forest, and closer to my dream</description>
+                <description>Closer to the forest, and closer to my dream.</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
@@ -997,7 +997,7 @@
             </li>
             <li>
                 <label>Camel face</label>
-                <description>I want to eat a bush right now... this is horrible!</description>
+                <description>I want to eat a bush right now...this is horrible!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1069,7 +1069,7 @@
             </li>
             <li>
                 <label>Elephant tail</label>
-                <description>It's just... hanging there...</description>
+                <description>It's just...hanging there...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1153,7 +1153,7 @@
         <stages>
             <li>
                 <label>Elk ears</label>
-                <description>At least they keep the flies off themselves...?</description>
+                <description>At least they keep the flies off themselves.</description>
                 <visible>true</visible>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
@@ -1177,7 +1177,7 @@
         <stages>
             <li>
                 <label>Elk tail</label>
-                <description>Is this stubby little thing... a tail?</description>
+                <description>Is this stubby little thing...a tail?</description>
                 <visible>true</visible>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
@@ -1189,7 +1189,7 @@
             </li>
             <li>
                 <label>Elk tail</label>
-                <description>At least I can hide it...</description>
+                <description>At least I can hide it.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -1231,7 +1231,7 @@
             </li>
             <li>
                 <label>Ear holes</label>
-                <description>I suppose they're more streamlined now...?</description>
+                <description>I suppose they're more streamlined now?</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -1261,7 +1261,7 @@
             </li>
             <li>
                 <label>Tailfeathers</label>
-                <description>I look like a damn bird, whyyyy?!</description>
+                <description>I look like a damn bird, why?!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1279,7 +1279,7 @@
             </li>
             <li>
                 <label>Fox ears</label>
-                <description>Pointy and fluffy ears, these are great -- and I can hear everything!</description>
+                <description>Pointy and fluffy ears, these are great — and I can hear everything!</description>
                 <visible>true</visible>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
@@ -1357,7 +1357,7 @@
             </li>
             <li>
                 <label>Fluffy tail</label>
-                <description>Sure it's cute...but it's ATTACHED TO ME!</description>
+                <description>Sure it's cute...but it's attached to me!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1399,7 +1399,7 @@
             </li>
             <li>
                 <label>Fox ears</label>
-                <description>Pointy and fluffy ears, these are great -- and I can hear everything!</description>
+                <description>Pointy and fluffy ears, these are great — and I can hear everything!</description>
                 <visible>true</visible>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
@@ -1429,7 +1429,7 @@
             </li>
             <li>
                 <label>Fluffy tail</label>
-                <description>Sure it's cute...but it's ATTACHED TO ME!</description>
+                <description>Sure it's cute...but it's attached to me!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1471,7 +1471,7 @@
             </li>
             <li>
                 <label>Huge fox ears</label>
-                <description>Pointy and fluffy ears, these are great -- and I can hear everything!</description>
+                <description>Pointy and fluffy ears, these are great — and I can hear everything!</description>
                 <visible>true</visible>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
@@ -1501,7 +1501,7 @@
             </li>
             <li>
                 <label>Fluffy tail</label>
-                <description>Sure it's cute...but it's ATTACHED TO ME!</description>
+                <description>Sure it's cute...but it's attached to me!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1549,7 +1549,7 @@
             </li>
             <li>
                 <label>Gazelle ears</label>
-                <description>I'm going to get skinned for these..</description>
+                <description>I'm going to get skinned for these...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1561,7 +1561,7 @@
         <stages>
             <li>
                 <label>Little tail</label>
-                <description>It's pretty fine, I guess, easy enough to hide.</description>
+                <description>It's fine, I guess, and easy enough to hide.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -1579,7 +1579,7 @@
             </li>
         </stages>
     </ThoughtDef>
-   
+
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherHorseFace</defName>
@@ -1622,7 +1622,7 @@
             </li>
             <li>
                 <label>Horse ear</label>
-                <description>But I don't even like horses, I don't want their ears!</description>
+                <description>But I don't even like horses! I don't want their ears!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -1670,7 +1670,7 @@
             </li>
             <li>
                 <label>Springy legs</label>
-                <description>This is wrong, my feet are wrong...they're covered in fur...this is WRONG!</description>
+                <description>This is wrong. My feet are wrong, they're covered in fur...this is WRONG!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
@@ -1688,7 +1688,7 @@
             </li>
             <li>
                 <label>Husky face</label>
-                <description>BARK BARK BARK</description>
+                <description>BARK BARK BARK.</description>
                 <visible>true</visible>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
@@ -1742,7 +1742,7 @@
             </li>
             <li>
                 <label>Curly fluff tail</label>
-                <description>I know I don't like it...but it's still wagging and it...kind of feels ok.</description>
+                <description>I know I don't like it...but it's still wagging and it kind of feels OK.</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -1862,7 +1862,7 @@
             </li>
             <li>
                 <label>Spikes</label>
-                <description>These damn things get caught in everything, and it hurts! </description>
+                <description>These damn things get caught in everything, and it hurts!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1922,7 +1922,7 @@
         <stages>
             <li>
                 <label>Scaly foot</label>
-                <description>...They're way too long.</description>
+                <description>They're way too long.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -1934,7 +1934,7 @@
             </li>
             <li>
                 <label>Scaly foot</label>
-                <description>Ew, ew, ew! Nope, these are going to have to come off</description>
+                <description>Ew, ew, ew! Nope, these are going to have to come off.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
@@ -2072,13 +2072,13 @@
             </li>
             <li>
                 <label>Bobcat tail</label>
-                <description>I wish it was longer... but hey, a tali's a tail!</description>
+                <description>I wish it was longer...but hey, a tail's a tail!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>Bobcat tail</label>
-                <description>It's so short and stubby... at least I can kind of hide it.</description>
+                <description>It's so short and stubby...at least I can kind of hide it.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -2090,7 +2090,7 @@
         <stages>
             <li>
                 <label>Sloth face</label>
-                <description>Sooooo.... slooooow.... can barely speak....</description>
+                <description>Sooooo...slooooow...can barely speak...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -2102,7 +2102,7 @@
             </li>
             <li>
                 <label>Sloth face</label>
-                <description>I can... EAT TREES?</description>
+                <description>I can...EAT TREES?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -2174,7 +2174,7 @@
             </li>
             <li>
                 <label>Giant claws</label>
-                <description>HOW AM I MEANT TO WIPE?!</description>
+                <description>How am I meant to wipe?!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
@@ -2240,13 +2240,13 @@
             </li>
             <li>
                 <label>Thick wool</label>
-                <description>It's like a giant, fluffy blanket... and it goes wherever I go!</description>
+                <description>It's like a giant, fluffy blanket...and it goes wherever I go!</description>
                 <visible>true</visible>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>Thick wool</label>
-                <description>This wool is thick, hot and itchy... I don't like it one bit!</description>
+                <description>This wool is thick, hot and itchy...I don't like it one bit!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -2282,13 +2282,13 @@
         <stages>
             <li>
                 <label>Monkey ears</label>
-                <description>My ears...They feel like they're larger...</description>
+                <description>My ears...they feel like they're larger.</description>
                 <visible>true</visible>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
                 <label>Monkey ears</label>
-                <description>Bigger ears! Awesome! </description>
+                <description>Bigger ears! Awesome!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
@@ -2306,19 +2306,19 @@
         <stages>
             <li>
                 <label>Monkey tail</label>
-                <description>Huh... I can pick things up with this tail. Neat.</description>
+                <description>Huh...I can pick things up with this tail. Neat.</description>
                 <visible>true</visible>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
                 <label>Monkey tail</label>
-                <description>It's like another hand, who needs bionics when you have this?</description>
+                <description>It's like another hand. Who needs bionics when you have this?</description>
                 <visible>true</visible>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>Monkey tail</label>
-                <description>I can feel it moving, I really don't like the sensation of being able to control it!</description>
+                <description>I can feel it moving, and I really don't like the sensation of being able to control it!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -2336,13 +2336,13 @@
             </li>
             <li>
                 <label>Hairy hands</label>
-                <description>I might get good wishes out these monkey paws! </description>
+                <description>I might get good wishes out these monkey paws!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>Hairy hands</label>
-                <description>My hands! They look weird and...old?</description>
+                <description>My hands! They look weird and old!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -2354,7 +2354,7 @@
         <stages>
             <li>
                 <label>Hairy feet</label>
-                <description>Why can i grab things with my feet?</description>
+                <description>Why can I grab things with my feet?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -2366,7 +2366,7 @@
             </li>
             <li>
                 <label>Hairy feet</label>
-                <description>Why do my shoes feel so big and feet so small?</description>
+                <description>Why do my shoes feel so big, and my feet so small?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -2384,13 +2384,13 @@
             </li>
             <li>
                 <label>Bovine face</label>
-                <description>I'm so fluffy and a nice shade of blue!</description>
+                <description>I'm so fluffy, and a nice shade of blue!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>Bovine face</label>
-                <description>I'm about to really cry if you guys keep asking me "Why so blue?"</description>
+                <description>If I hear "Why so blue?" one more time, I'm going to cry.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
@@ -2402,7 +2402,7 @@
         <stages>
             <li>
                 <label>Bovine ears</label>
-                <description>Blue floppy ears...cute</description>
+                <description>Blue floppy ears...cute!</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -2414,7 +2414,7 @@
             </li>
             <li>
                 <label>Bovine ears</label>
-                <description>Two words. Why Randy?</description>
+                <description>Two words. Why, Randy?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -2432,7 +2432,7 @@
             </li>
             <li>
                 <label>Bovine tail</label>
-                <description>It's a cute little tail. </description>
+                <description>It's a cute little tail.</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -2480,7 +2480,7 @@
             </li>
             <li>
                 <label>Earholes</label>
-                <description>I suppose they're more streamlined now...?</description>
+                <description>I suppose they're more streamlined now?</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -2666,7 +2666,7 @@
         <stages>
             <li>
                 <label>Ratty face</label>
-                <description>It's too sensitive for my liking, I'm almost overwhelmed with strong smells.</description>
+                <description>It's too sensitive for my liking. I'm almost overwhelmed with strong smells.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -2690,19 +2690,19 @@
         <stages>
             <li>
                 <label>Rat ears</label>
-                <description>They're upright at least..</description>
+                <description>They're upright at least.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Rat ears</label>
-                <description>Good for hearing possible enemies! </description>
+                <description>Good for hearing possible enemies!</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>Rat ears</label>
-                <description>I want these cut off or better..</description>
+                <description>I want these cut off.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -2840,7 +2840,7 @@
             </li>
             <li>
                 <label>Rhino tail</label>
-                <description>Well... it's a tail, I guess.</description>
+                <description>Well...it's a tail, I guess.</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -2901,7 +2901,7 @@
             </li>
             <li>
                 <label>Sheep ear</label>
-                <description>I look like belong in a cage...</description>
+                <description>I look like I belong in a cage...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -2919,13 +2919,13 @@
             </li>
             <li>
                 <label>Sheep tail</label>
-                <description>It's soooo Cute!</description>
+                <description>It's soooo cute!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>Sheep tail</label>
-                <description>This is too weird for me, but at least i can hide it from people</description>
+                <description>This is too weird for me, but at least I can hide it from people.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -3099,7 +3099,7 @@
             </li>
             <li>
                 <label>Squirrel face</label>
-                <description>I could live off nuts alone... just like in the wild!</description>
+                <description>I could live off nuts alone...just like in the wild!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
@@ -3136,13 +3136,13 @@
         <stages>
             <li>
                 <label>Squirrel tail</label>
-                <description>Come on, does is *have* to be this big?</description>
+                <description>Come on, does it *have* to be this big?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Squirrel tail</label>
-                <description>I just wanna use this thing as a blanket...!</description>
+                <description>I just wanna use this thing as a blanket!</description>
                 <visible>true</visible>
                 <baseMoodEffect>5</baseMoodEffect>
             </li>
@@ -3160,7 +3160,7 @@
         <stages>
             <li>
                 <label>Thrumbo face</label>
-                <description>A bit messy, I don't exactly like it</description>
+                <description>A bit messy, I don't exactly like it.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
@@ -3196,7 +3196,7 @@
             </li>
             <li>
                 <label>Thrumbo ear</label>
-                <description>They are stupid and I don't want to have them...</description>
+                <description>They're stupid, and I don't want to have them...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -3238,13 +3238,13 @@
             </li>
             <li>
                 <label>Razor horn</label>
-                <description>It's majestic... no wait, it's me that is majestic now.</description>
+                <description>It's majestic...no wait, it's me that is majestic now.</description>
                 <visible>true</visible>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
             <li>
                 <label>Razor horn</label>
-                <description>Maybe if I let them cut it off and sell it... maybe they could get some medicine that could undo this... please...</description>
+                <description>Maybe if I let them cut it off and sell it...maybe they could get some medicine that could undo this...please...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -3286,7 +3286,7 @@
             </li>
             <li>
                 <label>Ear holes</label>
-                <description>I suppose they're more streamlined now...?</description>
+                <description>I suppose they're more streamlined now?</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -3328,13 +3328,13 @@
         <stages>
             <li>
                 <label>Half-shell</label>
-                <description>Ugh, this thing is pretty awkward. Armoured, but heavy.</description>
+                <description>Ugh, this thing is pretty awkward. Armored, but heavy.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Half-shell</label>
-                <description>It's heavy, but a natural suit of armour, awesome!</description>
+                <description>It's heavy, but a natural suit of armor, awesome!</description>
                 <visible>true</visible>
                 <baseMoodEffect>6</baseMoodEffect>
             </li>
@@ -3382,7 +3382,7 @@
             </li>
             <li>
                 <label>Ear holes</label>
-                <description>I suppose they're more streamlined now...?</description>
+                <description>I suppose they're more streamlined now?</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
@@ -3424,7 +3424,7 @@
         <stages>
             <li>
                 <label>Warg face</label>
-                <description>These jaws are very strong... I REALLY hope I don't bite my tongue by accident.</description>
+                <description>These jaws are very strong...I REALLY hope I don't bite my tongue by accident.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
@@ -3460,7 +3460,7 @@
             </li>
             <li>
                 <label>Warg ears</label>
-                <description>Theses ears belong on a corpse eating warg... NOT ME.</description>
+                <description>Theses ears belong on a corpse eating warg...NOT ME.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -3484,7 +3484,7 @@
             </li>
             <li>
                 <label>Warg tail</label>
-                <description>It's bristly, stiff and has an unnatural amount of muscle in it... disgusting.</description>
+                <description>It's bristly, stiff and has an unnatural amount of muscle in it...disgusting.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
@@ -3508,13 +3508,13 @@
             </li>
             <li>
                 <label>Wolf muzzle</label>
-                <description>I'm smelling things I wish I couldn't, I want my old face back...</description>
+                <description>I'm smelling things I wish I couldn't. I want my old face back...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
-   
+
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherYorkshireTerrierJaw</defName>
@@ -3551,7 +3551,7 @@
             </li>
             <li>
                 <label>Yappy ears</label>
-                <description>They look cute and I can hear better than before, a win-win.</description>
+                <description>They look cute, and I can hear better than before. A win-win!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
@@ -3569,7 +3569,7 @@
         <stages>
             <li>
                 <label>Yappy tail</label>
-                <description>It serves no purpose... I'd rather not have it.</description>
+                <description>It serves no purpose...I'd rather not have it.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>

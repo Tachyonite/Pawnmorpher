@@ -15,7 +15,7 @@ namespace Pawnmorph
             DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDef)); 
         }
 
-       
+        public static ThoughtDef SapientAnimalGotSomeSnuggling; 
 
         public static ThoughtDef DefaultMorphTfMemory;
 

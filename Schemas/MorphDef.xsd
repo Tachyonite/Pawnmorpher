@@ -14,6 +14,7 @@
 							<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="race" type="AnimalRace" minOccurs="0" maxOccurs="1" />
 							<xs:element name="group" type="MorphGroups" minOccurs="0" maxOccurs="1" />
+							<xs:element name="associatedAnimals" type="ListOfStrings" minOccurs="0" maxOccurs="1" />
 							<xs:element name="categories" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>

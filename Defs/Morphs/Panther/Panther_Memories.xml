@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>I have this uncontrollable urge to pounce and hunt things...</description>
+                <description>I have this uncontrollable urge to pounce and hunt things.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -19,12 +19,12 @@
             </li>
             <li>
                 <label>changed</label>
-                <description>Meow. :P Now to go the rest of the way?</description>
+                <description>Meow! Now, to go the rest of the way?</description>
                 <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>PantherRevertedMemory</defName>
         <stages>

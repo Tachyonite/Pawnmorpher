@@ -17,7 +17,7 @@
 			</li>
 			<li>
 				<label>paw-hands</label> <!-- second stage is for the pawns that have the furry trait -->
-				<description>Sure they're not as flexible...but they're cute. That's...all that matters, right?</description>
+				<description>Sure they're not as flexible...but they're cute. That's all that matters, right?</description>
 				<baseMoodEffect>+3</baseMoodEffect>
 			</li>
 			<li>
@@ -33,7 +33,7 @@
 		<stages>
 			<li>
 				<label>hoof-hands</label>
-				<description>I can't do anything with hooves...!</description>
+				<description>I can't do anything with hooves!</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 			<li>

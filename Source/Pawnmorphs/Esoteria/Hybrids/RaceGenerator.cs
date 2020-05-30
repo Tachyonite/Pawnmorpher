@@ -75,6 +75,7 @@ namespace Pawnmorph.Hybrids
                 baseHungerRate = hHRate,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
+                wildness = animal.wildness/2,
                 meatColor = animal.meatColor,
                 meatMarketValue = animal.meatMarketValue,
                 manhunterOnDamageChance = animal.manhunterOnDamageChance,
@@ -83,6 +84,7 @@ namespace Pawnmorph.Hybrids
                 lifeStageAges = MakeLifeStages(human.lifeStageAges, animal.lifeStageAges),
                 soundMeleeHitPawn = animal.soundMeleeHitPawn,
                 soundMeleeHitBuilding = animal.soundMeleeHitBuilding,
+                trainability = GetTrainability(animal.trainability),
                 soundMeleeMiss = animal.soundMeleeMiss,
                 specialShadowData = human.specialShadowData,
                 soundCallIntervalRange = animal.soundCallIntervalRange,
@@ -97,6 +99,17 @@ namespace Pawnmorph.Hybrids
             };
         }
 
+        private static TrainabilityDef GetTrainability(TrainabilityDef animalTrainability)
+        {
+            //hybrid trainability should be 1 above that of a humans 
+            if (animalTrainability == null) return TrainabilityDefOf.Intermediate;
+            if (animalTrainability == TrainabilityDefOf.None) return TrainabilityDefOf.Simple;
+            if (animalTrainability == TrainabilityDefOf.Simple) return TrainabilityDefOf.Intermediate;
+            if (animalTrainability == TrainabilityDefOf.Intermediate) return TrainabilityDefOf.Advanced;
+            if (animalTrainability == TrainabilityDefOf.Advanced) return TrainabilityDefOf.Advanced;
+            return animalTrainability; 
+        }
+
         static (float bodySize, float hungerSize) GetFoodStats([NotNull] RaceProperties human, [NotNull] RaceProperties animal)
         {
             //'gamma' is a ratio describing how long it takes an animal to become hungry 
@@ -106,7 +119,9 @@ namespace Pawnmorph.Hybrids
 
             float f = Mathf.Pow(Math.Abs((gammaA - gammaH) / gammaH), 0.5f);
             //scale things back a bit if the animal has very different hunger characteristics then humans  
-            float a = 1 / (1f + f); 
+            float a = 1 / (1f + f);
+
+            a = Mathf.Clamp(a, 0, 1); 
 
             float hGamma = Mathf.Lerp(gammaA, gammaH, a);
             //body size is just an average of animal and human 
@@ -252,7 +267,7 @@ namespace Pawnmorph.Hybrids
             return gen;
         }
 
-        static VTuple<Vector2, Vector2>? GetDebugBodySizes(MorphDef morph)
+        static (Vector2 body, Vector2 head)? GetDebugBodySizes(MorphDef morph)
         {
             
             var pkDef = DefDatabase<PawnKindDef>.AllDefs.FirstOrDefault(pk => pk.race == morph.race);//get the first pawnkindDef that uses the morph's race 
@@ -265,7 +280,7 @@ namespace Pawnmorph.Hybrids
             var lastStage = pkDef.lifeStages.Last();
 
             float cSize = Mathf.Lerp(1, lastStage.bodyGraphicData.drawSize.x,0.5f); //take the average of the animals draw size and a humans, which is a default of 1 
-            return new VTuple<Vector2, Vector2>(cSize * Vector2.one, cSize * Vector2.one); 
+            return (cSize * Vector2.one, cSize * Vector2.one); 
         }
 
 
@@ -274,21 +289,18 @@ namespace Pawnmorph.Hybrids
             List<AlienPartGenerator.BodyAddon> returnList = new List<AlienPartGenerator.BodyAddon>();
 
 #if TEST_BODY_SIZE
-            var tuple = GetDebugBodySizes(morph);
-            Vector2? bodySize = tuple?.First, headSize = tuple?.Second;
+            var bodySizes = GetDebugBodySizes(morph);
+            Vector2? bodySize = bodySizes?.body;
+            Vector2? headSize = bodySizes?.head;
 
-            if (tuple != null)
+            if (bodySizes != null)
             {
-                Log.Message($"{morph.defName} draw sizes are: bodySize={tuple.Value.First}, headSize={tuple.Value.Second}");
+                Log.Message($"{morph.defName} draw sizes are: bodySize={bodySizes.Value.body}, headSize={bodySizes.Value.head}");
             }
 #else
             Vector2? bodySize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
             Vector2? headSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
-
 #endif
-
-
-
 
             List<string> headParts = new List<string>();
             headParts.Add("Jaw");

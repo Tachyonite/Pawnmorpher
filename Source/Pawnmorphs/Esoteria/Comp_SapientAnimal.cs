@@ -3,6 +3,7 @@
 
 using System;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using RimWorld;
 using UnityEngine;
@@ -110,7 +111,7 @@ namespace Pawnmorph
             var instinctEffect = state.def.GetModExtension<InstinctEffector>();
             if (instinctEffect == null)
             {
-                Log.Warning($"mental state {state.def.defName} has no {nameof(InstinctEffector)} but is allowed on sapient animals, is this intended?");
+                DebugLogUtils.Warning($"mental state {state.def.defName} has no {nameof(InstinctEffector)} but is allowed on sapient animals, is this intended?");
                 return;
             }
 

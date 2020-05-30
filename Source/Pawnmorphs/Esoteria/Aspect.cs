@@ -9,6 +9,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using System;
 
 namespace Pawnmorph
 {
@@ -83,7 +84,7 @@ namespace Pawnmorph
         [NotNull]
         public AspectStage CurrentStage => Stages[StageIndex];
 
-        AspectTracker Tracker => _tracker ?? (_tracker = Pawn.GetAspectTracker());
+        AspectTracker Tracker => _tracker ?? (_tracker = Pawn?.GetAspectTracker());
 
 
         void IExposable.ExposeData()
@@ -220,6 +221,12 @@ namespace Pawnmorph
         {
         }
 
+        /// <summary> Called after transfer to/from animal </summary>
+        /// <param name="newAspect">Aspect on destination pawn</param>
+        public virtual void PostTransfer(Aspect newAspect)
+        {
+        }
+
         /// <summary> Called when the pawn's race changes. </summary>
         public virtual void PostRaceChange(ThingDef oldRace)
         {
@@ -347,7 +354,7 @@ namespace Pawnmorph
 
         private void StageChanged(int lastStage)
         {
-            Tracker.Notify_AspectChanged(this); 
+            Tracker?.Notify_AspectChanged(this); 
             PostStageChanged(lastStage);
         }
 

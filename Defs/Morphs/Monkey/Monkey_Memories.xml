@@ -4,7 +4,7 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>I feel so...slow...and tired...</description>
+                <description>I don't look *that* different, right?</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
@@ -24,13 +24,13 @@
             </li>
         </stages>
     </ThoughtDef>
-	
+
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>MonkeyRevertedMemory</defName>
         <stages>
             <li>
                 <label>reverted</label>
-                <description>I need to shave, I think I'm still hairier than before...</description>
+                <description>I need to shave, I think I'm still hairier than before.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>

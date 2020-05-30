@@ -10,6 +10,7 @@
 		<mutagenType>Pawnmorph.TfSys.MergeMutagen</mutagenType>
 		<revertedThoughtGood>WasMergedRelieved</revertedThoughtGood>
 		<revertedThoughtBad>WasMerged</revertedThoughtBad>
+		<transformedSapienceState>MergedPawn</transformedSapienceState>
 		<damageProperties>
 			<apparelDamageOffset>100</apparelDamageOffset>
 			<spawnedBiproductMult>0.5</spawnedBiproductMult>

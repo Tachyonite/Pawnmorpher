@@ -77,8 +77,20 @@ namespace Pawnmorph
                 if (pawn?.Faction?.IsPlayer != true) return;
 
                 if (!pawn.RaceProps.Animal) return;
-                Hediff formerHuman = pawn.health.hediffSet.GetFirstHediffOfDef(TfHediffDefOf.TransformedHuman);
-                if (formerHuman?.CurStageIndex != 2 || pawn.drafter == null) return;
+                var sTracker = pawn.GetSapienceTracker();
+                if (sTracker == null) return;
+
+                switch (sTracker.CurrentIntelligence)
+                {
+                    case Intelligence.Animal:
+                        return;
+                    case Intelligence.ToolUser:
+                    case Intelligence.Humanlike:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
 
                 __result = true;
             }
@@ -90,7 +102,7 @@ namespace Pawnmorph
         {
 
             [NotNull]
-            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike));
+            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)});
 
             [NotNull] private static readonly MethodInfo _targetMethodSig =
                 typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod(); 

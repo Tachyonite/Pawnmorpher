@@ -71,7 +71,7 @@
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	
+
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">
 		<defName>EtherWing</defName>
@@ -87,7 +87,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<labelOverride>dextrous wings</labelOverride>
-				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers</description>
+				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers.</description>
 				<partEfficiencyOffset>-0.05</partEfficiencyOffset> <!-- still not quite as good as hands-->
 			</li>
 		</stages>
@@ -124,7 +124,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers</description>
+				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers.</description>
 				<partEfficiencyOffset>-0.05</partEfficiencyOffset> <!-- still not quite as good as hands-->
 			</li>
 		</stages>

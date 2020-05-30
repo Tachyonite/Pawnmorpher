@@ -1,0 +1,23 @@
+<Patch>	
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[@Name = "WoolBase"]/comps</xpath>
+		 <nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name = "WoolBase"]</xpath>
+			<value>			
+				<comps>
+				  <li>
+					<compClass>CompColorable</compClass>
+				  </li>
+				</comps>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name = "WoolBase"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>CompColorable</compClass>
+				</li>
+			</value>
+		</match>
+	</Operation>
+</Patch>

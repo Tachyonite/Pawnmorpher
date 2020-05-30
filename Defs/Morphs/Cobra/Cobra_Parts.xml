@@ -187,7 +187,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SnakePart">
 		<defName>EtherSnakeEye</defName>
 		<label>elapine eye</label>
-		<description>[PAWN_nameDef]'s eyes have turned a glaring yellow, and their pupils have become small vertical slits.</description>
+		<description>[PAWN_nameDef]'s eyes have turned a glaring yellow, and their pupils have become small, vertical slits.</description>
 		<parts>
 			<li>Eye</li>
 		</parts>

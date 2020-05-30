@@ -30,8 +30,37 @@ namespace Pawnmorph
                 Log.Error($"human ThingDef is using {ThingDefOf.Human.race.body.defName} not {BodyDefOf.Human.defName}!\nmost likely cause is mod incompatibilities please check mod list");
             }
 
+            //get the associated races lookup 
+
+            foreach (MorphDef morph in AllMorphs)
+            {
+                //first check the race 
+                if (!_associatedAnimalsLookup.TryGetValue(morph.race, out var lst))
+                {
+                    lst = new List<MorphDef>();
+                    _associatedAnimalsLookup[morph.race] = lst; 
+                }
+
+                lst.Add(morph); 
+
+                //now the associated animals 
+                foreach (ThingDef aAnimal in morph.associatedAnimals.MakeSafe())
+                {
+                    if (!_associatedAnimalsLookup.TryGetValue(aAnimal, out lst))
+                    {
+                        lst = new List<MorphDef>();
+                        _associatedAnimalsLookup[aAnimal] = lst; 
+                    }
+
+                    lst.Add(morph); 
+                }
+            }
 
         }
+
+        [NotNull]
+        private static readonly Dictionary<ThingDef, List<MorphDef>> _associatedAnimalsLookup =
+            new Dictionary<ThingDef, List<MorphDef>>();
 
 
         /// <summary>
@@ -112,10 +141,9 @@ namespace Pawnmorph
 
         private static float CalculateMaxBodyInfluence(BodyDef bodyDef)
         {
-            HashSet<VTuple<BodyPartRecord, MutationLayer>> set = new HashSet<VTuple<BodyPartRecord, MutationLayer>>();
-            IEnumerable<VTuple<BodyPartRecord, MutationLayer>> enumerable =
-                MutationDef.AllMutations.SelectMany(m => m.GetAllMutationSites(bodyDef));
-            set.AddRange(enumerable);
+            var set = new HashSet<MutationSite>();
+            var sites = MutationDef.AllMutations.SelectMany(m => m.GetAllMutationSites(bodyDef));
+            set.AddRange(sites);
 
             if (set.Count == 0)
             {
@@ -182,9 +210,10 @@ namespace Pawnmorph
 
             MorphDef setMorph = GetMorphForPawn(pawn, isBelowChimeraThreshold, hInfluence, out MorphDef curMorph);
 
-            if (curMorph != setMorph) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
+            if (curMorph != setMorph && setMorph != null) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
         }
 
+        [CanBeNull]
         private static MorphDef GetMorphForPawn(Pawn pawn, bool isBelowChimeraThreshold, AnimalClassBase hInfluence, out MorphDef curMorph)
         {
             MorphDef setMorph;
@@ -200,8 +229,7 @@ namespace Pawnmorph
                 else
                 {
                     setMorph = hInfluence as MorphDef;
-                    //if the highest influence isn't a morph just set it to a random morph in that class
-                    setMorph = setMorph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
+                    
                 }
             }
             finally
@@ -214,7 +242,39 @@ namespace Pawnmorph
 
         /// <summary>Gets all morphs.</summary>
         /// <value>All morphs.</value>
-        public static IEnumerable<MorphDef> AllMorphs => DefDatabase<MorphDef>.AllDefs; 
+        [NotNull]
+        public static IEnumerable<MorphDef> AllMorphs => DefDatabase<MorphDef>.AllDefs;
+
+
+        /// <summary>
+        /// Tries the get best morph of the specified animal.
+        /// </summary>
+        /// tries to get the best morph def of the given animal, checking first for a morph who's
+        /// race is the given race then checks morph's associated animals 
+        /// <param name="race">The race.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">race</exception>
+        [CanBeNull]
+        public static MorphDef TryGetBestMorphOfAnimal([NotNull] ThingDef race)
+        {
+            if (race == null) throw new ArgumentNullException(nameof(race));
+
+            MorphDef mDef = null;
+            foreach (MorphDef allMorph in AllMorphs)
+            {
+                if (allMorph.race == race)
+                {
+                    mDef = allMorph; 
+                    break;
+                }
+            }
+
+            if (mDef == null) return mDef;
+
+            return _associatedAnimalsLookup.TryGetValue(race)?.FirstOrDefault(); 
+
+        }
+
 
         
         /// <summary> Gets all morphDefs associated with the given transformation. </summary>

@@ -7,116 +7,162 @@
 		<label>former human</label>
 		<stages>
 			<li>
-				<minSeverity>0</minSeverity>
-				<label>feral</label>
-				
-			</li>
-			<li>
-				<minSeverity>0.01</minSeverity>
-				<label>feral</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
-			</li>
-			<li>
-				<minSeverity>0.64</minSeverity>
 				<label>sapient</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
 			</li>
-		</stages>		
+			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+				<label>mostly sapient</label>
+				<minSeverity>0.4</minSeverity>
+				<disallowedWork>Intellectual,Artistic</disallowedWork>
+				<statOffsets>
+					<TameAnimalChance>0.05</TameAnimalChance>
+					<TrainAnimalChance>0.05</TrainAnimalChance>
+					<ResearchSpeed>-0.25</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<label>conflicted</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.1</TameAnimalChance>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<ResearchSpeed>-0.5</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li >
+				<label>mostly feral</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<label>mostly feral</label>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+		</stages>
 	</HediffDef>
-	
+
+	<HediffDef>
+		<defName>Animalistic</defName>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
+		<description>TODO</description>
+		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
+		<maxSeverity>2</maxSeverity>
+		<label>animalistic</label>
+		<stages>
+			<li>
+				<label>sapient</label>
+			</li>
+			<li>
+				<label>mostly sapient</label>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.05</TameAnimalChance>
+					<TrainAnimalChance>0.05</TrainAnimalChance>
+					<ResearchSpeed>-0.25</ResearchSpeed>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li>
+				<label>conflicted</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.1</TameAnimalChance>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<ResearchSpeed>-0.5</ResearchSpeed>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+				<label>mostly feral</label>
+				<minSeverity>0.8</minSeverity>
+				<disallowedWork>Intellectual,ManualSkilled</disallowedWork>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+				<label>mostly feral</label>
+				<minSeverity>1</minSeverity>
+				<disallowedWork>Intellectual,ManualSkilled,Animals,Social</disallowedWork>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
 	<HediffDef>
 		<defName>2xMergedHuman</defName>
-		<hediffClass>HediffWithComps</hediffClass>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
 		<description>[PAWN_defName] is a creature that should never have been, a fusion of two beings which mutated to become one animalistic monstrosity.</description>
 		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
 		<label>2x merged morph</label>
-		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.002</severityPerDay>  <!-- UH OH, AFTER A LONG ENOUGH TIME THEY CAN LOSE THE ABILITY TO TURN BACK!! -->
-			</li>
-		</comps>
 		<stages>
 			<li>
-				<minSeverity>0</minSeverity>
-				<label>feral</label>
-				
-				<hediffGivers>
-					<li Class="Pawnmorph.HediffGiver_PermanentFeral">
-						<hediff>PermanentlyFeral</hediff>
-					</li>
-				</hediffGivers>
-			</li>
-			<li>
-				<minSeverity>0.01</minSeverity>
-				<label>feral</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>0.5</offset>
-					</li>
-				</capMods>
-			</li>
-			<li>
-				<minSeverity>0.80</minSeverity>
 				<label>sapient</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>1.5</offset>
-					</li>
-				</capMods>
-				<mentalStateGivers>
-					<li>
-						<mentalState>WanderConfused</mentalState>
-						<mtbDays>5</mtbDays>
-					</li>
-					<li>
-						<mentalState>Wander_Psychotic</mentalState>
-						<mtbDays>3</mtbDays>
-					</li>
-					<li>
-						<mentalState>Wander_Sad</mentalState>
-						<mtbDays>15</mtbDays>
-					</li>
-				</mentalStateGivers>
+			</li>
+			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+				<label>mostly sapient</label>
+				<minSeverity>0.4</minSeverity>
+				<disallowedWork>Intellectual,Artistic</disallowedWork>
+				<statOffsets>
+					<TameAnimalChance>0.05</TameAnimalChance>
+					<TrainAnimalChance>0.05</TrainAnimalChance>
+					<ResearchSpeed>-0.25</ResearchSpeed>
+				</statOffsets>
 			</li>
 			<li>
-				<minSeverity>0.99</minSeverity>
-				<label>driven mad</label>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>3</offset>
-					</li>
-				</capMods>
-				<mentalStateGivers>
-					<li>
-						<mentalState>ManhunterPermanent</mentalState>
-						<mtbDays>0.01</mtbDays>
-					</li>
-				</mentalStateGivers>
+				<label>conflicted</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.1</TameAnimalChance>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<ResearchSpeed>-0.5</ResearchSpeed>
+				</statOffsets>
 			</li>
-		</stages>		
+			<li >
+				<label>mostly feral</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<label>mostly feral</label>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+		</stages>
 	</HediffDef>
-	
+
 	<HediffDef>
 		<defName>PermanentlyFeral</defName>
-		<description>[PAWN_defName] used to be a human, but the mechanites in [PAWN_possessive] system have forgotten his prior form -- [PAWN_pronoun] is now sealed in this form for the rest of [PAWN_possessive] life. Reversion serums will not work.</description>
+		<description>[PAWN_defName] used to be a human, but the mechanites in [PAWN_possessive] system have forgotten his prior form — [PAWN_pronoun] is now sealed in this form for the rest of [PAWN_possessive] life. Reversion serums will not work.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
 		<label>permanently feral</label>
 	</HediffDef>
-	
+
 	<HediffDef>
 		<defName>WasAnimal</defName>
 		<description>[PAWN_defName] was turned into an animal, but [PAWN_pronoun] got better. However, [PAWN_pronoun] is not too happy about it.</description>
@@ -126,10 +172,10 @@
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
-				  <min>90000</min>
-				  <max>150000</max>
+					<min>90000</min>
+					<max>150000</max>
 				</disappearsAfterTicks>
-			  </li>
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -178,9 +224,9 @@
 					</li>
 				</capMods>
 			</li>
-		</stages>	
+		</stages>
 	</HediffDef>
-	
+
 	<HediffDef>
 		<defName>WasMergedRelieved</defName>
 		<description>[PAWN_defName] was joined with another person in a chaotic mash of flesh and flesh, but finds the insight valuable.</description>
@@ -190,10 +236,10 @@
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
-				  <min>90000</min>
-				  <max>150000</max>
+					<min>90000</min>
+					<max>150000</max>
 				</disappearsAfterTicks>
-			  </li>
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -248,22 +294,22 @@
 					</li>
 				</capMods>
 			</li>
-		</stages>	
+		</stages>
 	</HediffDef>
-	
+
 	<HediffDef>
 		<defName>WasMerged</defName>
-		 <description>[PAWN_defName] was joined with another person in a chaotic mash of flesh and flesh, and is scarred from the experience.</description>
+		<description>[PAWN_defName] was joined with another person in a chaotic mash of flesh and flesh, and is scarred from the experience.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
 		<label>was melded</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
-				  <min>90000</min>
-				  <max>150000</max>
+					<min>90000</min>
+					<max>150000</max>
 				</disappearsAfterTicks>
-			  </li>
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -301,7 +347,7 @@
 						<offset>0.5</offset>
 					</li>
 				</capMods>
-				
+
 			</li>
 			<li>
 				<minSeverity>0.99</minSeverity>
@@ -313,9 +359,9 @@
 					</li>
 				</capMods>
 			</li>
-		</stages>	
+		</stages>
 	</HediffDef>
-	
+
 	<HediffDef>
 		<defName>WasAnimalRelieved</defName>
 		<description>[PAWN_defName] was turned into an animal, but [PAWN_pronoun] got better. However, [PAWN_pronoun] takes it as a learning opportunity.</description>
@@ -325,10 +371,10 @@
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
-				  <min>90000</min>
-				  <max>150000</max>
+					<min>90000</min>
+					<max>150000</max>
 				</disappearsAfterTicks>
-			  </li>
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -365,6 +411,6 @@
 					</li>
 				</capMods>
 			</li>
-		</stages>	
+		</stages>
 	</HediffDef>
 </Defs>

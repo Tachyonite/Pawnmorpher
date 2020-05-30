@@ -10,18 +10,18 @@ using Verse.AI;
 
 namespace Pawnmorph.HPatches
 {
-    static class AIPatches
+    internal static class AIPatches
     {
         [HarmonyPatch(typeof(JobGiver_EatRandom), "TryGiveJob")]
-        static class EatRandomPatch
+        private static class EatRandomPatch
         {
             [HarmonyPrefix]
-            static bool Prefix([NotNull] Pawn pawn, ref Job __result)
+            private static bool Prefix([NotNull] Pawn pawn, ref Job __result)
             {
-                var qSapienceLevel = pawn.GetQuantizedSapienceLevel();
+                SapienceLevel? qSapienceLevel = pawn.GetQuantizedSapienceLevel();
                 if (qSapienceLevel != null)
                 {
-                    __result = null; 
+                    __result = null;
                     switch (qSapienceLevel.Value)
                     {
                         case SapienceLevel.Sapient:
@@ -38,9 +38,21 @@ namespace Pawnmorph.HPatches
                     }
                 }
 
-                return true; 
+                return true;
             }
-
         }
-}
+    }
+
+    [HarmonyPatch(typeof(GenAI))]
+    internal static class GenAIPatches
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(GenAI.MachinesLike))]
+        private static void FixMachinesLike(ref bool __result, Faction machineFaction, Pawn p)
+        {
+            if (__result)
+                if (p?.Faction == null && p.IsFormerHuman() && (p.HostFaction != machineFaction || p.IsPrisoner))
+                    __result = false;
+        }
+    }
 }

@@ -213,4 +213,22 @@
         <label>leopard</label>
         <parent>Feline</parent>
     </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Invertebrates</defName>
+        <label>invertebrates</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Insect</defName>
+        <label>insect</label>
+        <parent>Invertebrates</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Arachnid</defName>
+        <label>spiders</label>
+        <parent>Invertebrates</parent>
+    </Pawnmorph.AnimalClassDef>
 </Defs>

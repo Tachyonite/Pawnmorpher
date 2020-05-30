@@ -5,14 +5,14 @@
 
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="WolfJawBase">
 		<label>wolf muzzle</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking difficult, yet eating is easier.</description>
+		<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier.</description>
 		<mutationTale>GrewCanidMuzzle</mutationTale>
 		<mutationMemory>EtherWolfMuzzle</mutationMemory>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
-				<description>[PAWN_nameDef]'s face has turned into a bestial snout, like that of a great canine. [PAWN_pronoun] teeth are pointed to suit, and this makes speaking much more difficult, yet eating is easier. Many people find [PAWN_possessive] snout intimidating</description>
+				<description>[PAWN_nameDef]'s face has turned into a bestial snout, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is much more difficult, but eating is easier. Many people find [PAWN_possessive] snout intimidating.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -55,7 +55,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
-				<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit, this makes speaking difficult, and eating is easier. Animals seem to find [PAWN_possessive] intimidating and are less likely to disobey [PAWN_possessive]</description>
+				<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier. Animals seem to find [PAWN_possessive] intimidating and are less likely to disobey [PAWN_possessive].</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>

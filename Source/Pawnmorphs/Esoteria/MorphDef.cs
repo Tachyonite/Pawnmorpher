@@ -31,6 +31,14 @@ namespace Pawnmorph
         public ThingDef race;
 
         /// <summary>
+        /// The associated animals
+        /// </summary>
+        /// these are a list of animals that are associated with this morph but who don't influence the hybrid race
+        /// transformation targets 
+        /// setting this is useful for getting mutations for animals that don't have morphs yet
+        public List<ThingDef> associatedAnimals = new List<ThingDef>();  
+
+        /// <summary>
         /// Gets the explicit hybrid race.
         /// </summary>
         /// <value>
@@ -137,10 +145,10 @@ namespace Pawnmorph
         [NotNull]
         IEnumerable<MutationDef> GetAllAssociatedMutations()
         {
-            var set = new HashSet<VTuple<BodyPartDef, MutationLayer>>();
+            var set = new HashSet<(BodyPartDef bodyPart, MutationLayer layer)>();
             AnimalClassBase curNode = this;
             List<MutationDef> tmpList = new List<MutationDef>();
-            List<VTuple<BodyPartDef, MutationLayer>> tmpSiteLst = new List<VTuple<BodyPartDef, MutationLayer>>();
+            var tmpSiteLst = new List<(BodyPartDef bodyPart, MutationLayer layer)>();
             while (curNode != null)
             {
                 tmpList.Clear();
@@ -163,9 +171,9 @@ namespace Pawnmorph
                     tmpSiteLst.Clear();
                     tmpSiteLst.AddRange(mutationDef.GetAllDefMutationSites());
                     bool shouldReject = true; 
-                    foreach (VTuple<BodyPartDef, MutationLayer> vTuple in tmpSiteLst)
+                    foreach (var entry in tmpSiteLst)
                     {
-                        if (!set.Contains(vTuple))
+                        if (!set.Contains(entry))
                         {
                             shouldReject = false; 
                             break;
@@ -318,7 +326,7 @@ namespace Pawnmorph
             if (ExplicitHybridRace != null)
             {
                 hybridRaceDef = ExplicitHybridRace;
-                Log.Warning($"MorphDef {defName} is using an explicit hybrid {ExplicitHybridRace.defName} for {race.defName}. This has not been tested yet");
+               
             }
 
             if (_allAssociatedMutations.NullOrEmpty())

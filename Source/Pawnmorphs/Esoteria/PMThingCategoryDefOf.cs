@@ -11,5 +11,8 @@ namespace Pawnmorph
     public static class PMThingCategoryDefOf
     {
         public static ThingCategoryDef Injector;
+        
+        /// <summary> Not in base ThingCategoryDefOf </summary>
+        public static ThingCategoryDef Textiles;
     }
 }
