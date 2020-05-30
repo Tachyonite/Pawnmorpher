@@ -1,6 +1,7 @@
 ﻿// DescriptiveStage.cs modified by Iron Wolf for Pawnmorph on 12/14/2019 7:32 PM
 // last updated 12/14/2019  7:32 PM
 
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using RimWorld;
@@ -39,7 +40,22 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// memory to add when this stage is entered 
         /// </summary>
-        public ThoughtDef memory; 
+        public ThoughtDef memory;
+
+        /// <summary>
+        /// The skip aspects
+        /// </summary>
+        public List<AspectEntry> skipAspects;
+
+        /// <summary>
+        /// Gets the skip aspects.
+        /// </summary>
+        /// <value>
+        /// The skip aspects.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<AspectEntry> SkipAspects => ((IReadOnlyList<AspectEntry>) skipAspects) ?? Array.Empty<AspectEntry>();
+
 
         string IDescriptiveStage.DescriptionOverride => description;
         string IDescriptiveStage.LabelOverride => labelOverride;
@@ -59,6 +75,36 @@ namespace Pawnmorph.Hediffs
             if (memory != null)
             {
                 hediff.pawn.TryAddMutationThought(memory); 
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public class AspectEntry
+        {
+            /// <summary>
+            /// The aspect the pawn must have 
+            /// </summary>
+            public AspectDef aspect;
+            /// <summary>
+            /// The stage the aspect must be in to satisfy this entry, if null any stage will do 
+            /// </summary>
+            public int? stage;
+
+            /// <summary>
+            /// checks if the given pawn satisfies this entry 
+            /// </summary>
+            /// <param name="pawn">The pawn.</param>
+            /// <returns></returns>
+            /// <exception cref="ArgumentNullException">pawn</exception>
+            public bool Satisfied([NotNull] Pawn pawn)
+            {
+                if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+                var asTracker = pawn.GetAspectTracker();
+                var pAspect = asTracker?.GetAspect(this.aspect);
+                if (pAspect == null) return false;
+                return stage == null || stage == pAspect.StageIndex; 
             }
         }
     }
