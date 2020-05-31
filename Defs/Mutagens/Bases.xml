@@ -30,13 +30,14 @@
                     <li>
                         <!-- on average this would require 50 mutations to give  -->
                         <aspect>Paragon</aspect>
-                        <chance>0.02</chance>
+                        <chance>0.01</chance>
                     </li>
+                    <!--
                     <li>
                         <aspect>Afflicted</aspect>
                         <chance>0.02</chance>
                     </li>
-                   
+                    -->
                 </entries>
             </li>
             <li Class="Pawnmorph.Aspects.SkillBasedGiver">
