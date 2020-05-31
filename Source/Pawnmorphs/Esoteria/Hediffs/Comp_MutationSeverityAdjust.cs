@@ -222,6 +222,14 @@ namespace Pawnmorph.Hediffs
 
             return sevPerDay * Mathf.Max(StatAdjust, 0); //take the mutagen sensitivity stat into account 
         }
+
+        /// <summary>
+        /// Gets the change per day.
+        /// </summary>
+        /// <value>
+        /// The change per day.
+        /// </value>
+        public float ChangePerDay => SeverityChangePerDay();
     }
 
     /// <summary>

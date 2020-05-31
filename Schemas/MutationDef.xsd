@@ -70,6 +70,21 @@
             <xs:element name="label" minOccurs="0" type="xs:string" />
             <xs:element name="labelOverride" minOccurs="0" type="xs:string" />
             <xs:element name="description" minOccurs="0" type="xs:string" />
+            <xs:element name="skipAspects" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="aspect" minOccurs="1" maxOccurs="1" type="xs:string" />
+                                    <xs:element name="stage" minOccurs="0" maxOccurs="1" type="xs:positiveInteger" />
+                                </xs:all>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
             <xs:element name="partEfficiencyOffset" minOccurs="0" type="xs:float" />
             <xs:element name="hungerRateFactor" minOccurs="0" type="xs:float" />
             <xs:element name="stopChance" minOccurs="0" type="xs:float" />

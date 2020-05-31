@@ -17,7 +17,7 @@
                 <li Class="PatchOperationAddModExtension">
                     <xpath>/Defs/ThingDef[@Name="AnimalAndroidThingBase"]</xpath>
                     <value>
-                        <li Class="Pawnmorph.FormerHumanSettings">
+                        <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
                             <neverFormerHuman>true</neverFormerHuman>
                         </li>
                     </value>

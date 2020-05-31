@@ -10,6 +10,7 @@ using Pawnmorph.Jobs;
 using Pawnmorph.Social;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
+using Pawnmorph.User_Interface;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -160,6 +161,13 @@ namespace Pawnmorph.DebugUtils
         public static void OpenActionMenu()
         {
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
+        }
+
+        [DebugAction(category=PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void OpenPartPickerMenu(Pawn pawn)
+        {
+            if (pawn == null) return;
+            Find.WindowStack.Add(new Dialog_PartPicker(pawn));
         }
     }
 }

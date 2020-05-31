@@ -1,6 +1,7 @@
 ﻿// DebugLogUtils.MutationLogging.cs created by Iron Wolf for Pawnmorph on //2020 
 // last updated 03/01/2020  6:57 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,6 +83,26 @@ namespace Pawnmorph.DebugUtils
             }
             Log.Message(builder.ToString());
 
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void LogMutationsPerSlot()
+        {
+            List<MutationDef> allMutations = DefDatabase<MutationDef>.AllDefs.ToList();
+            List<BodyPartDef> allValidParts = allMutations.SelectMany(m => m.parts).Distinct().ToList();
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine("Mutations by body part:");
+            foreach (BodyPartDef part in allValidParts)
+            {
+                builder.AppendLine($"--{part}--");
+                foreach (MutationLayer layer in Enum.GetValues(typeof(MutationLayer)))
+                {
+                    List<MutationDef> mutationsOnLayer = allMutations.Where(m => m.parts.Contains(part) && m.RemoveComp.layer == layer).ToList();
+                    if (mutationsOnLayer.Count > 0) builder.AppendLine($"{layer} ({mutationsOnLayer.Count}): {string.Join(", ", mutationsOnLayer)}");
+                }
+            }
+            Log.Message(builder.ToString());
         }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
