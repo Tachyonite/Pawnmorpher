@@ -202,8 +202,7 @@ namespace Pawnmorph
         public static bool IsEnabledFor([NotNull] Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            SapienceLevel fhLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
-            return fhLevel != SapienceLevel.PermanentlyFeral || EnabledRaces.Contains(pawn.def);
+            return pawn.GetSapienceState() != null && EnabledRaces.Contains(pawn.def);
         }
 
         /// <summary>

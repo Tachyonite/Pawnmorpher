@@ -87,15 +87,17 @@ namespace Pawnmorph.ThingComps
         /// <param name="initialLevel">The initial level.</param>
         public void EnterState([NotNull] SapienceStateDef stateDef, float initialLevel)
         {
-            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
+            
 
             _sapienceState?.Exit();
             _sapienceState = stateDef.CreateState();
-            _sapienceState.Init(this);
+           
 
             //need to refresh comps and needs for pawn here 
-            PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
             Pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+            _sapienceState.Init(this);
+            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
             var sNeed = SapienceNeed;
             sNeed?.SetSapience(initialLevel);
             _sapienceState.Enter();
