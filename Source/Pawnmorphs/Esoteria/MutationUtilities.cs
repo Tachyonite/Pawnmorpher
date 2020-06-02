@@ -10,6 +10,7 @@ using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.DefExtensions;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
@@ -283,24 +284,25 @@ namespace Pawnmorph
             return isProsthetic; 
         }
 
+        
+
         /// <summary>
-        ///     Adds the mutation to the given pawn
+        /// Adds the mutation to the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="countToAdd">The count to add.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
+        /// <param name="force">if set to <c>true</c> the mutation will be added regardless if it is valid for the given pawn.</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        ///     pawn
-        ///     or
-        ///     mutation
-        /// </exception>
-        public static MutationResult AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, int countToAdd = int.MaxValue, AncillaryMutationEffects? ancillaryEffects = null)
+        /// <exception cref="ArgumentNullException">pawn
+        /// or
+        /// mutation</exception>
+        public static MutationResult AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, int countToAdd = int.MaxValue, AncillaryMutationEffects? ancillaryEffects = null, bool force=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
-            return AddMutation(pawn, mutation, mutation.parts, countToAdd,  ancillaryEffects);
+            return AddMutation(pawn, mutation, mutation.parts, countToAdd,  ancillaryEffects, force);
         }
 
         /// <summary>
@@ -322,22 +324,21 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Adds the mutation to the given pawn
+        /// Adds the mutation to the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="parts">The parts.</param>
         /// <param name="countToAdd">The count to add.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
+        /// <param name="force">if set to <c>true</c> the mutation will be added regardless if it is valid for the given pawn.</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        ///     pawn
-        ///     or
-        ///     mutation
-        /// </exception>
+        /// <exception cref="ArgumentNullException">pawn
+        /// or
+        /// mutation</exception>
         public static MutationResult AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation, [CanBeNull] List<BodyPartDef> parts,
                                        int countToAdd = int.MaxValue, 
-                                       AncillaryMutationEffects? ancillaryEffects = null)
+                                       AncillaryMutationEffects? ancillaryEffects = null, bool force=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
@@ -354,9 +355,10 @@ namespace Pawnmorph
                     }
 
                 if (addLst.Count == 0) return MutationResult.Empty;
-                return AddMutation(pawn, mutation, addLst, ancillaryEffects);
+                return AddMutation(pawn, mutation, addLst, ancillaryEffects, force);
             }
 
+            if(!force && !mutation.IsValidFor(pawn)) return MutationResult.Empty;
 
             var existingHediff = pawn.health.hediffSet.hediffs.FirstOrDefault(m => m.def == mutation && m.Part == null);
             if (existingHediff != null)
@@ -391,28 +393,29 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Adds the mutation to the given pawn
+        /// Adds the mutation to the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="records">The records to add mutations to</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
-        /// <exception cref="ArgumentNullException">
-        ///     pawn
-        ///     or
-        ///     mutation
-        ///     or
-        ///     records
-        /// </exception>
+        /// <param name="force">if set to <c>true</c> the mutation is added regardless if the mutation is valid for the given pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">pawn
+        /// or
+        /// mutation
+        /// or
+        /// records</exception>
         public static MutationResult AddMutation([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
                                        [NotNull] IEnumerable<BodyPartRecord> records, 
-                                       AncillaryMutationEffects? ancillaryEffects = null)
+                                       AncillaryMutationEffects? ancillaryEffects = null, bool force=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (records == null) throw new ArgumentNullException(nameof(records));
             HediffSet hSet = pawn.health?.hediffSet;
             if (hSet == null) return MutationResult.Empty; 
+            if(!force && !mutation.IsValidFor(pawn)) return MutationResult.Empty;
             List<Hediff_AddedMutation> lst = new List<Hediff_AddedMutation>();
             foreach (BodyPartRecord bodyPartRecord in records)
             {
@@ -422,7 +425,7 @@ namespace Pawnmorph
                     continue;
                 }
 
-                if(HasAnyBlockingMutations(pawn, mutation, bodyPartRecord)) continue;
+                if(!force && HasAnyBlockingMutations(pawn, mutation, bodyPartRecord)) continue;
 
                 var existingMutation = hSet.hediffs.FirstOrDefault(h => h.def == mutation && h.Part == bodyPartRecord);
                 if (existingMutation != null) //resume adaption for mutations that are already added instead of re adding them
@@ -907,7 +910,7 @@ namespace Pawnmorph
 
             mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
             if (!mutagen.CanInfect(pawn)) return false;
-            return true; 
+            return mutationDef.IsValidFor(pawn); 
         }
 
         /// <summary>
