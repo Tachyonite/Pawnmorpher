@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -118,6 +119,13 @@ namespace Pawnmorph
                     {
                         if (!DefDatabase<MutagenDef>.AllDefs.Any(m => m.CanTransform(race))) continue;
                         _enabledRaces.Add(race);
+                    }
+
+                    foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.Animal == true))
+                    {
+                        var fhSettings = thingDef.GetModExtension<FormerHumanSettings>(); 
+                        if(fhSettings?.neverFormerHuman == true) continue;
+                        _enabledRaces.Add(thingDef); 
                     }
                 }
 
