@@ -127,16 +127,29 @@ namespace Pawnmorph
 
             if (Pawn.IsHashIntervalTick(4400) && CanRaceCheckNow)
             {
-                RecalcIfNeeded();
-                if (TotalNormalizedInfluence < 0 || TotalNormalizedInfluence > 1)
-                {
-                    Log.Warning(nameof(TotalNormalizedInfluence) + $" is {TotalNormalizedInfluence}, recalculating mutation influences for {Pawn.Name}");
-                    RecalculateMutationInfluences();
-                }
-                Pawn.CheckRace(false); //check the race every so often, but not too often 
-                
+                CheckPawnRace();
+
             }
 
+        }
+
+        /// <summary>
+        /// Checks if the pawn's race should change .
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckPawnRace()
+        {
+            RecalcIfNeeded();
+            if (TotalNormalizedInfluence < 0 || TotalNormalizedInfluence > 1)
+            {
+                Log.Warning(nameof(TotalNormalizedInfluence) + $" is {TotalNormalizedInfluence}, recalculating mutation influences for {Pawn.Name}");
+                RecalculateMutationInfluences();
+            }
+
+            var oldRace = Pawn.def; 
+
+            Pawn.CheckRace(false); //check the race every so often, but not too often 
+            return oldRace != Pawn.def; 
         }
 
         private bool CanRaceCheckNow => !Pawn.health.hediffSet.hediffs.OfType<TransformationBase>().Any(t => t.BlocksRaceCheck); 

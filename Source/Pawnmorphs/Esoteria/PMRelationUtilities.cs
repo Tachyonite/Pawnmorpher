@@ -29,6 +29,8 @@ namespace Pawnmorph
                 throw new System.ArgumentNullException(nameof(pawn));
             }
 
+            if (pawn.relations == null) return false; 
+
             var allPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists.MakeSafe(); 
             foreach (Pawn cPawn in allPawns)
             {
