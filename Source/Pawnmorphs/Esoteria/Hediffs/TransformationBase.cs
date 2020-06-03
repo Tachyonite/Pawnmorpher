@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
@@ -414,12 +415,22 @@ namespace Pawnmorph.Hediffs
                 while (_curMutationIndex < lst.Count)
                 {
                     var mutation = lst[_curMutationIndex];
-                    if (Rand.Value < mutation.addChance)
+
+                    //check if the mutation can actually be added 
+                    if (!mutation.mutation.IsValidFor(pawn))
                     {
-                        MutationUtilities.AddMutation(pawn, mutation.mutation, part);
-                        var mutagen = def.GetMutagenDef();
-                        mutagen.TryApplyAspects(pawn);
-                        mutationsAdded++;
+                        _curMutationIndex++; 
+                        continue;
+                    }
+                    else if (Rand.Value < mutation.addChance)
+                    {
+                        var result = MutationUtilities.AddMutation(pawn, mutation.mutation, part);
+                        if(result) //make sure the mutation was actually added before doing this 
+                        {
+                            var mutagen = def.GetMutagenDef();
+                            mutagen.TryApplyAspects(pawn);
+                            mutationsAdded++;
+                        }
                     }else if (mutation.blocks)
                     {
                         return; //wait here until the blocking mutation is added 
