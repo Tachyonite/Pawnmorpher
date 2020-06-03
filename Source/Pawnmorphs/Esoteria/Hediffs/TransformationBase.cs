@@ -417,7 +417,7 @@ namespace Pawnmorph.Hediffs
                     var mutation = lst[_curMutationIndex];
 
                     //check if the mutation can actually be added 
-                    if (!mutation.mutation.IsValidFor(pawn))
+                    if (!mutation.mutation.CanApplyMutations(pawn, part))
                     {
                         _curMutationIndex++; 
                         continue;

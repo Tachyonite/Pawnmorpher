@@ -903,6 +903,7 @@ namespace Pawnmorph
         /// or
         /// pawn
         /// </exception>
+        [Pure]
         public static bool CanApplyMutations([NotNull] this MutationDef mutationDef, [NotNull] Pawn pawn, MutagenDef mutagen= null)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
@@ -910,7 +911,70 @@ namespace Pawnmorph
 
             mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
             if (!mutagen.CanInfect(pawn)) return false;
+           
             return mutationDef.IsValidFor(pawn); 
+        }
+
+
+        /// <summary>
+        /// Determines whether this instance can be applied to the specified pawn
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="addPart">The add part.</param>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can be applied to the specified pawn; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">mutationDef
+        /// or
+        /// pawn</exception>
+        [Pure]
+        public static bool CanApplyMutations([NotNull] this MutationDef mutationDef, [NotNull] Pawn pawn, BodyPartRecord addPart, MutagenDef mutagen = null)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
+            if (!mutagen.CanInfect(pawn)) return false;
+
+            var hediffs = (pawn.health?.hediffSet?.hediffs).MakeSafe();
+            foreach (Hediff_AddedMutation mutation in hediffs.OfType<Hediff_AddedMutation>())
+            {
+                if (mutation.Blocks(mutationDef, addPart)) return false; 
+            }
+
+            return mutationDef.IsValidFor(pawn);
+        }
+
+        /// <summary>
+        /// checks if this mutation blocks the addition of the other mutation at the given site 
+        /// </summary>
+        /// <param name="mutation">The mutation.</param>
+        /// <param name="otherMutation">The other mutation.</param>
+        /// <param name="addPart">The add part.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// mutation
+        /// or
+        /// otherMutation
+        /// or
+        /// addPart
+        /// </exception>
+        [Pure]
+        public static bool BlocksMutation([NotNull] this Hediff_AddedMutation mutation, [NotNull] MutationDef otherMutation,
+                                         [NotNull] BodyPartRecord addPart)
+        {
+            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+            if (otherMutation == null) throw new ArgumentNullException(nameof(otherMutation));
+            if (addPart == null) throw new ArgumentNullException(nameof(addPart));
+
+            foreach (MutationDef.BlockEntry blockEntry in mutation.Def.blockList.MakeSafe())
+            {
+                if (blockEntry.Blocks(mutation, otherMutation, addPart)) return true; 
+            }
+
+            return false;
         }
 
         /// <summary>
