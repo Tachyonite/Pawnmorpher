@@ -192,7 +192,7 @@ namespace Pawnmorph.TfSys
             if (request.tale != null) // If a tale was provided, push it to the tale recorder.
                 TaleRecorder.RecordTale(request.tale, original, animalToSpawn);
 
-            Faction oFaction = original.Faction;
+            Faction oFaction = original.FactionOrExtraHomeFaction;
             Map oMap = original.Map;
 
 
