@@ -2,6 +2,7 @@
 // last updated 04/26/2020  9:22 AM
 
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
@@ -96,6 +97,28 @@ namespace Pawnmorph.HPatches
                 mTracker.needsRaceCompCheck = false; 
             }
 
+        }
+
+        [HarmonyPatch(nameof(Pawn.GetGizmos))]
+        [HarmonyPostfix]
+        static IEnumerable<Gizmo> GetGizmosPatch(IEnumerable<Gizmo> __result, [NotNull]  Pawn __instance)
+        {
+            foreach (Gizmo gizmo in __result)
+            {
+                yield return gizmo; 
+            }
+
+            var peq = __instance.equipment?.Primary;
+            if (peq != null)
+            {
+                foreach (IEquipmentGizmo eqGizmo in peq.AllComps.OfType<IEquipmentGizmo>())
+                {
+                    foreach (Gizmo gizmo in eqGizmo.GetGizmos())
+                    {
+                        yield return gizmo; 
+                    }
+                }
+            }
         }
 
     }

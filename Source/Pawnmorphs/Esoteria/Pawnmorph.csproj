@@ -458,6 +458,7 @@
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="Hybrids\IPartTransformer.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
+    <Compile Include="IEquipmentGizmo.cs" />
     <Compile Include="IMentalStateRecoveryReceiver.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
