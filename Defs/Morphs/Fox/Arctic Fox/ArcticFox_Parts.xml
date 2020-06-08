@@ -11,4 +11,8 @@
 		<defName>EtherArcticFluffyTail</defName>
 		<classInfluence>ArcticFoxMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
+		<defName>EtherArcticFoxFur</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

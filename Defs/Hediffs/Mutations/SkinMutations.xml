@@ -69,6 +69,55 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef Name="PM_ArcticFurBase" ParentName="FurredLimb" Abstract="true">
+		<label>arctic fur</label>
+		<stages Inherit="false">
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>light hair</labelOverride>
+				<description>[PAWN_nameDef]'s skin seems to be slightly hairier than it was before.</description>
+				<minSeverity>0</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>fur dusting</labelOverride>
+				<description>Very fine fur — too dense to be hair — is sprouting over [PAWN_nameDef]'s limb.</description>
+				<minSeverity>0.2</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
+					<ComfyTemperatureMax>-0.02</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>thin fur</labelOverride>
+				<description>The fur on the skin here is quickly thickening as it spreads over [PAWN_nameDef]'s limb.</description>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.16</ComfyTemperatureMin>
+					<ComfyTemperatureMax>-0.03</ComfyTemperatureMax>
+
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>fur patches</labelOverride>
+				<description>There is not much bare skin left on [PAWN_nameDef]'s limb, much of it has been covered by patches of fur.</description>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+					<ComfyTemperatureMax>-0.06</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
+					<ComfyTemperatureMax>-0.12</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="ThickFurLimb">
 		<defName>EtherThickFurLimb</defName>
 		<label>thick fur</label>
@@ -135,6 +184,7 @@
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherScaledLimb</defName>
 		<label>scales</label>
@@ -307,35 +357,35 @@
 				<label>isolated</label>
 				<minSeverity>0</minSeverity>
 				<statOffsets>
-					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+					<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>bristles</label>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
-					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
+					<ComfyTemperatureMin>-0.04</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>patches</label>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
-					<ComfyTemperatureMin>-0.8</ComfyTemperatureMin>
+					<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>swathes</label>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
-					<ComfyTemperatureMin>-1</ComfyTemperatureMin>
+					<ComfyTemperatureMin>-0.16</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 			<li>
 				<label>covered</label>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
-					<ComfyTemperatureMin>-2</ComfyTemperatureMin>
+					<ComfyTemperatureMin>-.36</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
 		</stages>
