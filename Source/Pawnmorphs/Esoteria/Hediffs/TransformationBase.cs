@@ -301,7 +301,15 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         /// <param name="stage"></param>
         /// <returns></returns>
-        protected abstract bool AnyMutationsInStage(HediffStage stage); 
+        protected abstract bool AnyMutationsInStage(HediffStage stage);
+
+        /// <summary>
+        /// Gets a value indicating whether there are any mutations in the current stage.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if there are any mutations in the current stage; otherwise, <c>false</c>.
+        /// </value>
+        public bool AnyMutationsInCurrentStage => AnyMutationsInStage(CurStage); 
 
         private void AddMutations()
         {
