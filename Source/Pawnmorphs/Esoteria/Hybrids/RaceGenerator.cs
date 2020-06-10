@@ -501,7 +501,7 @@ namespace Pawnmorph.Hybrids
 
         static FoodTypeFlags GenerateFoodFlags(FoodTypeFlags animalFlags)
         {
-            animalFlags |= FoodTypeFlags.Meal; //make sure all hybrids can eat meals 
+            animalFlags |= FoodTypeFlags.Meal | FoodTypeFlags.Processed; //make sure all hybrids can eat meals and drugs
                                                //need to figure out a way to let them graze but not pick up plants 
             return animalFlags;
         }
