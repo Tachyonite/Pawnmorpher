@@ -54,6 +54,67 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	<InteractionDef>
+		<defName>PawnmorphBleat</defName>
+		<label>baa</label>
+		<workerClass>Pawnmorph.InteractionWorker_Bleat</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Bleat</symbol>
+		<initiatorThought>PawnmorphBleat</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+		<recipientThought>PawnmorphBleat</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] bleated at [RECIPIENT_nameDef] to [askedaboutme].</li>
+				<li>r_logentry->[INITIATOR_nameDef] baa'd at [RECIPIENT_nameDef] to [askedaboutme].</li>
+
+				<li>talkedabout(p=4)->bleated at</li>
+				<li>talkedabout->let out a sudden baa to</li>
+				<li>talkedabout->let out a sudden bleat to</li>
+				<li>talkedabout->tried to speak, but let a bleat slip out</li>
+				<li>talkedabout->loudly baa'd towards</li>
+				<li>talkedabout->snorted and bleated to</li>
+				<li>talkedabout->quietly baa'd at</li>
+
+				<li>askedabout->shearing [INITIATOR_objective]</li>
+				<li>askedabout->wool</li>
+				<li>askedabout->eating grass</li>
+				<li>askedabout->joining a flock</li>
+				<li>askedabout->ewes</li>
+				<li>askedabout->chewing cud</li>
+				<li>askedabout->rams</li>
+				<li>askedabout->horns</li>
+				<li>askedabout->fleece</li>
+				<li>askedabout->spinning wheels</li>
+
+				<li>askedaboutme->shear [INITIATOR_objective]</li>
+				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
+				<li>askedaboutme->change [INITIATOR_objective] back</li>
+				<li>askedaboutme->give [INITIATOR_objective] clippers</li>
+				<li>askedaboutme->give [INITIATOR_objective] a shave</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<ThoughtDef>
+		<defName>PawnmorphBleat</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>bleat</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
 
 	<InteractionDef>
 		<defName>PawnmorphBok</defName>
