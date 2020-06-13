@@ -1097,6 +1097,7 @@
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
 					<!-- REGULAR PAWN PIECES -->
+					<EtherSheepHorns>Parts/sheepface/sheephorns</EtherSheepHorns>
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
 					<EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns>
