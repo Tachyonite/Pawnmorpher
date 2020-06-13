@@ -1034,6 +1034,7 @@
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
 					<!-- REGULAR PAWN PIECES -->
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
+					<EtherSheepHorns>Parts/sheepface/sheephorns</EtherSheepHorns>
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
 					<EtherIguanaHorns>Parts/iguanaface/iguanahorns</EtherIguanaHorns>
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
