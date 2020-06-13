@@ -260,7 +260,10 @@ namespace Pawnmorph.ThingComps
             Scribe_Values.Look(ref _isFormerHuman, "isFormerHuman");
             Scribe_Values.Look(ref _sapienceLevel, "sapience");
             Scribe_Deep.Look(ref _sapienceState, nameof(CurrentState));
-
+            
+            //need to make sure the tracker is always non null 
+            if (_sapienceState != null) _sapienceState.Tracker = this; 
+            
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 //check to move old saves to the new sapience system 
