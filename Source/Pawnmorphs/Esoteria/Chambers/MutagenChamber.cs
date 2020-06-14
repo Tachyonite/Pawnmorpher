@@ -280,10 +280,15 @@ namespace Pawnmorph
         }
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
         {
+
+
             foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(myPawn))
             {
                 yield return floatMenuOption;
             }
+            if(!MutagenDefOf.MergeMutagen.CanTransform(myPawn))
+                yield break;
+            
             if (innerContainer.Count == 0)
             {
                 if (!myPawn.CanReach(this, PathEndMode.InteractionCell, Danger.Deadly))
