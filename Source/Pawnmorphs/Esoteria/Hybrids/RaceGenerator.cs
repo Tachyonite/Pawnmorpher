@@ -441,12 +441,13 @@ namespace Pawnmorph.Hybrids
         private static List<GraphicPaths> GenerateGraphicPaths(List<GraphicPaths> humanGraphicPaths, MorphDef morph)
         {
             GraphicPaths temp = new GraphicPaths();
+            var humanGPath = humanGraphicPaths.First(); 
             Vector2? customSize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
-            temp.customDrawSize = customSize ?? temp.customDrawSize;
-            temp.customPortraitDrawSize = customSize ?? temp.customPortraitDrawSize;
+            temp.customDrawSize = customSize ?? humanGPath.customDrawSize;
+            temp.customPortraitDrawSize = customSize ?? humanGPath.customPortraitDrawSize;
             Vector2? customHeadSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
-            temp.customHeadDrawSize = customHeadSize ?? temp.customHeadDrawSize;
-            temp.customPortraitHeadDrawSize = customHeadSize ?? temp.customPortraitHeadDrawSize;
+            temp.customHeadDrawSize = customHeadSize ?? humanGPath.customHeadDrawSize;
+            temp.customPortraitHeadDrawSize = customHeadSize ?? humanGPath.customPortraitHeadDrawSize;
             temp.headOffset = customSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
             temp.headOffsetDirectional = humanGraphicPaths.First().headOffsetDirectional; 
             List<GraphicPaths> returnList = new List<GraphicPaths>();
