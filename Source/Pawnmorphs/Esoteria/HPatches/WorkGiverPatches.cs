@@ -36,6 +36,17 @@ namespace Pawnmorph.HPatches
         }
 
 
+        [HarmonyPatch(typeof(WorkGiver_Slaughter))]
+        private static class SlaughterPatches
+        {
+            [HarmonyPatch("HasJobOnThing")]
+            [HarmonyPostfix]
+            private static void DontInteractSelfFix(ref bool _result, Pawn pawn, Thing t, bool forced = false)
+            {
+                if (_result) _result = pawn != t;
+            }
+        }
+
         [HarmonyPatch(typeof(WorkGiver_Train))]
         private static class TrainPatches
         {
