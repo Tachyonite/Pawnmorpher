@@ -57,7 +57,8 @@ namespace Pawnmorph.ThingComps
         /// <summary>
         /// Exits the current sapience state.
         /// </summary>
-        public void ExitState()
+        /// <param name="recalculateComps">if set to <c>true</c> dynamic components will be recalculated after exiting the state.</param>
+        public void ExitState(bool recalculateComps=true)
         {
             if (_sapienceState == null)
             {
@@ -65,7 +66,8 @@ namespace Pawnmorph.ThingComps
                 return; 
             }
             _sapienceState.Exit();
-            _sapienceState = null; 
+            _sapienceState = null;
+            if (recalculateComps) PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn); 
         }
 
         private SapienceLevel _sapienceLevel;
