@@ -41,9 +41,9 @@ namespace Pawnmorph.HPatches
         {
             [HarmonyPatch(nameof(WorkGiver_GatherAnimalBodyResources.HasJobOnThing))]
             [HarmonyPostfix]
-            private static void DontInteractSelfFix(ref bool _result, Pawn pawn, Thing t, bool forced = false)
+            private static void DontInteractSelfFix(ref bool __result, Pawn pawn, Thing t, bool forced)
             {
-                if (_result) _result = pawn != t;
+                if (__result) __result = pawn != t;
             }
 
         }
@@ -53,9 +53,9 @@ namespace Pawnmorph.HPatches
         {
             [HarmonyPatch("HasJobOnThing")]
             [HarmonyPostfix]
-            private static void DontInteractSelfFix(ref bool _result, Pawn pawn, Thing t, bool forced = false)
+            private static void DontInteractSelfFix(ref bool __result, Pawn pawn, Thing t, bool forced)
             {
-                if (_result) _result = pawn != t;
+                if (__result) __result = pawn != t;
             }
         }
 
