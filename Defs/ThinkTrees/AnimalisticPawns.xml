@@ -58,7 +58,7 @@
         <defName>AnimalisticColonistMain</defName>
         <insertTag>Humanlike_PreMain</insertTag>
         <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalAnimalisticColonist">
-            <subNodes >
+            <subNodes>
                 <!-- Nuzzle randoms -->
                 <li Class="ThinkNode_ChancePerHour_Nuzzle">
                     <subNodes>
@@ -173,6 +173,25 @@
                         </li>
                     </subNodes>
                 </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+    <ThinkTreeDef>
+        <defName>SapientAnimalFleeMap</defName>
+        <insertTag>Animal_PreWander</insertTag>
+        <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalFactionSapientAnimal">
+            <cutoff>MostlySapient</cutoff>
+            <subNodes>
+                <li Class="ThinkNode_Tagger">
+                    <tagToGive>Misc</tagToGive>
+                    <subNodes>
+                        <li Class="JobGiver_ExitMapBest">
+                            <defaultLocomotion>Walk</defaultLocomotion>
+                        </li>
+                    </subNodes>
+                </li>
+
             </subNodes>
         </thinkRoot>
     </ThinkTreeDef>
