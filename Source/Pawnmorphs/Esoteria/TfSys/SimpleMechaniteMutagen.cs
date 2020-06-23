@@ -197,7 +197,7 @@ namespace Pawnmorph.TfSys
 
 
             //apply any other post tf effects 
-            ApplyPostTfEffects(original, spawnedAnimal);
+            ApplyPostTfEffects(original, spawnedAnimal, request);
 
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
@@ -252,12 +252,12 @@ namespace Pawnmorph.TfSys
         /// </summary>
         /// <param name="original">The original.</param>
         /// <param name="transformedPawn">The transformed pawn.</param>
-        protected override void ApplyPostTfEffects(Pawn original, Pawn transformedPawn)
+        protected override void ApplyPostTfEffects(Pawn original, Pawn transformedPawn, TransformationRequest request)
         {
             //apply apparel damage 
             ApplyApparelDamage(original, transformedPawn.def);
             FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(transformedPawn, original);
-            base.ApplyPostTfEffects(original, transformedPawn);
+            base.ApplyPostTfEffects(original, transformedPawn, request);
            
 
         }

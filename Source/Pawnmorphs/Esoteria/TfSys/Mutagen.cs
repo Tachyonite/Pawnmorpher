@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 //using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -155,6 +156,33 @@ namespace Pawnmorph.TfSys
 
         }
 
+        bool IsFriendly(Pawn pawn)
+        {
+            return pawn.Faction == Faction.OfPlayer
+                || pawn.Faction?.RelationWith(Faction.OfPlayer)?.kind == FactionRelationKind.Ally;
+        }
+
+
+        /// <summary>
+        /// Gets the manhunter chance for the given request 
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">request</exception>
+        protected virtual float GetManhunterChance([NotNull] TransformationRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            bool isFriendly = request.originals.Any(IsFriendly);
+
+            var settings = request.manhunterSettingsOverride
+                        ?? request.outputDef.GetModExtension<FormerHumanSettings>()?.manhunterSettings
+                        ?? request.outputDef.race.GetModExtension<FormerHumanSettings>()?.manhunterSettings
+                        ?? ManhunterTfSettings.Default;
+            return settings.ManhunterChance(isFriendly); 
+        }
+
+
 
         /// <summary>
         /// Determines whether this instance can infect the specified race definition.
@@ -243,13 +271,17 @@ namespace Pawnmorph.TfSys
 
         /// <summary>
         /// Applies the post tf effects.
-        /// this should be called just before the original pawn is cleaned up 
+        /// this should be called just before the original pawn is cleaned up
         /// </summary>
         /// <param name="original">The original.</param>
         /// <param name="transformedPawn">The transformed pawn.</param>
-        protected virtual void ApplyPostTfEffects(Pawn original, Pawn transformedPawn)
+        /// <param name="request">The transformation request</param>
+        protected virtual void ApplyPostTfEffects([NotNull] Pawn original, [NotNull] Pawn transformedPawn, [NotNull] TransformationRequest request)
         {
-            List<Aspect> aspects = new List<Aspect>(); 
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+            List<Aspect> aspects = new List<Aspect>();
             foreach (AspectGiver aspectGiver in def.tfAspectGivers.MakeSafe())
             {
                 aspects.Clear();
@@ -259,12 +291,26 @@ namespace Pawnmorph.TfSys
                     {
                         var aDef = aspect;
                         var tracker = transformedPawn.GetAspectTracker();
-                        tracker?.Add(aDef, aspect.StageIndex); 
+                        tracker?.Add(aDef, aspect.StageIndex);
                     }
                 }
             }
 
-            transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis); 
+
+            float manhunterChance = GetManhunterChance(request);
+            if (manhunterChance > FormerHumanUtilities.MANHUNTER_EPSILON && Rand.Value < manhunterChance)
+            {
+                MentalStateDef stateDef = MentalStateDefOf.Manhunter;
+
+                transformedPawn.mindState?.mentalStateHandler?.TryStartMentalState(stateDef, forceWake: true);
+            }
+            else
+            {
+                //don't add tf paralysis on manhunter 
+                transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis);
+            }
+
+
         }
 
 
