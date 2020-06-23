@@ -61,6 +61,33 @@ namespace Pawnmorph
 
         [NotNull] private static readonly List<RulePackDef> _randomNameGenerators;
 
+        /// <summary>
+        ///     the base chance for a neutral or hostile pawn to go manhunter when transformed
+        /// </summary>
+        public static float BaseManhunterTfChance =>
+            LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().manhunterTfChance;
+
+        /// <summary>
+        ///     if manhunter transformation is enabled
+        /// </summary>
+        public static bool ManhunterTfEnabled => BaseManhunterTfChance > MANHUNTER_EPSILON;
+
+        /// <summary>
+        ///     the chance for a friendly pawn to go manhunter when transformed
+        /// </summary>
+        public static float BaseFriendlyManhunterTfChance => ManhunterTfEnabled
+                                                                 ? LoadedModManager
+                                                                  .GetMod<PawnmorpherMod>()
+                                                                  .GetSettings<PawnmorpherSettings>()
+                                                                  .friendlyManhunterTfChance
+                                                                 : 0;
+
+
+        /// <summary>
+        /// manhunter chances below this means that manhunter tf is disabled 
+        /// </summary>
+        public const float MANHUNTER_EPSILON = 0.01f; 
+
         static FormerHumanUtilities()
         {
             var values = new[]

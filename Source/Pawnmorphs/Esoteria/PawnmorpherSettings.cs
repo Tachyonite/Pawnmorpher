@@ -38,6 +38,16 @@ namespace Pawnmorph
         /// </summary>
         public int maxMutationThoughts=3;
 
+
+        /// <summary>
+        /// the chance an tf'd enemy or neutral pawn will go manhunter 
+        /// </summary>
+        public float manhunterTfChance = 0;
+        /// <summary>
+        /// The chance a friendly pawn will go manhunter when tf'd 
+        /// </summary>
+        public float friendlyManhunterTfChance = 0; 
+
         /// <summary>
         /// The current log level
         /// </summary>
@@ -56,6 +66,8 @@ namespace Pawnmorph
             Scribe_Values.Look(ref partialChance, "partialChance");
             Scribe_Values.Look(ref maxMutationThoughts, nameof(maxMutationThoughts), 1);
             Scribe_Values.Look(ref logLevel, nameof(logLevel), LogLevel.Warnings, true); 
+            Scribe_Values.Look(ref manhunterTfChance, nameof(manhunterTfChance));
+            Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
             base.ExposeData();
         }
     }

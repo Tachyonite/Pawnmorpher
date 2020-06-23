@@ -46,7 +46,20 @@ namespace Pawnmorph
             settings.partialChance = listingStandard.Slider(settings.partialChance, 0f, 100f);
             listingStandard.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
             settings.maxMutationThoughts = (int)listingStandard.Slider(settings.maxMutationThoughts, 1, 10);
-            
+
+            listingStandard
+               .Label($"{nameof(PawnmorpherSettings.manhunterTfChance).Translate()}: {settings.manhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}"); 
+            settings.manhunterTfChance = listingStandard.Slider(settings.manhunterTfChance, 0 ,1f);
+
+            if (settings.manhunterTfChance > FormerHumanUtilities.MANHUNTER_EPSILON)
+            {
+                listingStandard
+                   .Label($"{nameof(PawnmorpherSettings.friendlyManhunterTfChance).Translate()}: {settings.manhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
+                settings.friendlyManhunterTfChance = listingStandard.Slider(settings.friendlyManhunterTfChance, 0, 1f);
+
+            }
+
+
             if (Prefs.DevMode)
             {
                 listingStandard.Label($"logging level:{settings.logLevel}");
