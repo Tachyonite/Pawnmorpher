@@ -138,14 +138,8 @@ namespace Pawnmorph.TfSys
 
             var reactionStatus = original.GetFormerHumanReactionStatus();
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
-
             Faction faction;
-            if (request.forcedFaction != null) //forced faction should be the highest priority if set 
-                faction = request.forcedFaction;
-            else if (original.IsColonist)
-                faction = original.Faction;
-            else
-                faction = null;
+            faction = GetFaction(request, original);
 
             Gender newGender =
                 TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
@@ -158,12 +152,22 @@ namespace Pawnmorph.TfSys
             Pawn animalToSpawn = PawnGenerator.GeneratePawn(pRequest); //make the temp pawn 
 
 
+
+
             animalToSpawn.needs.food.CurLevel =
                 original.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
             animalToSpawn.needs.rest.CurLevel =
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
-            float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn); 
+            float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
+
+            if (request.forcedFaction == null && original.Faction != faction && original.Faction != animalToSpawn.Faction && FormerHumanUtilities.GetQuantizedSapienceLevel(sapienceLevel) <= SapienceLevel.MostlySapient)
+            {
+                //set the faction to the original's if mostly sapient or above 
+                animalToSpawn.SetFaction(original.Faction);
+            }
+
+            
             GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
             FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel); //use a normal distribution? 
@@ -218,7 +222,18 @@ namespace Pawnmorph.TfSys
             return inst;
         }
 
-        
+        private static Faction GetFaction(TransformationRequest request, Pawn original)
+        {
+            Faction faction;
+            if (request.forcedFaction != null) //forced faction should be the highest priority if set 
+                faction = request.forcedFaction;
+            else if (original.IsColonist)
+                faction = original.Faction;
+            else
+                faction = null;
+            return faction;
+        }
+
 
         private void TryAddMutationsToPawn([NotNull] Pawn original, [CanBeNull] Hediff requestCause,
                                            [NotNull] PawnKindDef requestOutputDef)
