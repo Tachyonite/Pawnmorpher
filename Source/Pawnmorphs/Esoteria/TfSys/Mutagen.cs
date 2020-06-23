@@ -325,9 +325,11 @@ namespace Pawnmorph.TfSys
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
             var sTracker = original.GetSapienceTracker();
-            if (sTracker?.CurrentState != null)
-                return Mathf.Max(sTracker.Sapience - Mathf.Max(def.transformedSapienceDrop.RandomInRange,0), 0); 
-            return Rand.Range(0.4f, 1);
+            float initialSapience;
+            if (sTracker?.CurrentState == null) initialSapience = 1;
+            else initialSapience = sTracker.Sapience;
+
+            return Mathf.Max(initialSapience - Mathf.Max(def.transformedSapienceDrop.RandomInRange, 0), 0); 
         }
     }
 
