@@ -33,6 +33,7 @@
 			<li Class="Pawnmorph.Damage.MutagenicDamageExtension">
 				<mutagenicBuildup>MutagenicBuildup_SmallExplosion</mutagenicBuildup>
 				<severityPerDamage>0.105</severityPerDamage>
+				<mutagen>ChaoticMutagen</mutagen>
 			</li>
 		</modExtensions>
 	</DamageDef>
@@ -56,6 +57,7 @@
 			<li Class="Pawnmorph.Damage.MutagenicDamageExtension">
 				<mutagenicBuildup>MutagenicBuildup_LargeExplosion</mutagenicBuildup>
 				<severityPerDamage>0.105</severityPerDamage>
+				<mutagen>ChaoticMutagen</mutagen>
 			</li>
 		</modExtensions>
 	</DamageDef>
