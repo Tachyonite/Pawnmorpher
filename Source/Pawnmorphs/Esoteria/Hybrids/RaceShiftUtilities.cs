@@ -235,9 +235,11 @@ namespace Pawnmorph.Hybrids
                 comp.NotifyPawnRaceChanged(pawn, oldMorph);
             }
 
-            if (race == ThingDefOf.Human)
-                ValidateReversion(pawn); 
-            else 
+            
+            //always revert to human settings first so the race change is consistent 
+            ValidateReversion(pawn); 
+
+            if(race != ThingDefOf.Human) 
                 ValidateExplicitRaceChange(pawn, race, oldRace);
 
             var mTracker = pawn.GetComp<MorphTrackingComp>();
