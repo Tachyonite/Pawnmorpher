@@ -45,8 +45,8 @@ namespace EtherGun
                         var syringeHediff = hediff as SyringeRifleTf;
 
                         //hacky, want to figure out a better way to find the weapon that will allow turrets as well 
-                        var weapon = (launcher as Pawn)?.equipment?.Primary; 
-                        
+                        Thing weapon = (launcher as Pawn)?.equipment?.Primary;
+                        weapon = weapon ?? (launcher as Building_TurretGun)?.gun;
                         syringeHediff?.Initialize(weapon);
 
                         IntermittentMagicSprayer.ThrowMagicPuffDown(hitPawn.Position.ToVector3(), Map);
