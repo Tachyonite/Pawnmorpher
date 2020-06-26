@@ -11,6 +11,9 @@
                 </statOffsets>
             </li>
         </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.TFTransferable" />
+        </modExtensions>
     </HediffDef>
 
     <RecipeDef ParentName="SurgeryInstallImplantBase">

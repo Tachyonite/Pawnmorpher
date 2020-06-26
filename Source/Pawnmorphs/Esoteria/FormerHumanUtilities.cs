@@ -1057,7 +1057,11 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferRelations(original, transformedPawn);
             PawnTransferUtilities.TransferAspects(original, transformedPawn);
             PawnTransferUtilities.TransferSkills(original, transformedPawn, transferMode, passionTransferMode);
-            PawnTransferUtilities.TransferTraits(original, transformedPawn, t => MutationTraits.Contains(t));
+            PawnTransferUtilities.TransferTraits(original, transformedPawn, t => t.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn) == true);
+            PawnTransferUtilities.TransferHediffs(original, transformedPawn,
+                                                  h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
+                                                    == true);
+
 
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
         }
