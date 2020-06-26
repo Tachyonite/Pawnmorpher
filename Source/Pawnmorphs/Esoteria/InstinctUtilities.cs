@@ -98,11 +98,8 @@ namespace Pawnmorph
         /// <returns></returns>
         public static float CalculateControlChange([NotNull] Pawn pawn, float instinctChange)
         {
-            var div =  pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
-            var sign = div < 0 ? -1 : 1;
-            div = Mathf.Max(Mathf.Abs(div), EPSILON) * sign; //prevent division by zero but preserve sign  
-
-            return -INSTINCT_MULTIPLIER * instinctChange / (div);
+            var stat =  pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
+            return -INSTINCT_MULTIPLIER * instinctChange * stat;
         }
 
         /// <summary>
