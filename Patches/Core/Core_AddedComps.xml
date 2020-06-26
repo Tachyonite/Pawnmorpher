@@ -15,10 +15,11 @@
 		</operations>
 	</Operation>
 
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
 		<value>
-			<li Class="Pawnmorph.MorphTrackingCompProperties"/>
+			<li Class="Pawnmorph.MorphTrackingCompProperties" />
 			<li>
 				<compClass>Pawnmorph.GraphicSys.InitialGraphicsComp</compClass>
 			</li>
@@ -27,7 +28,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>/Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
 		<value>
@@ -40,6 +41,13 @@
 			<li>
 				<compClass>Pawnmorph.ThingComps.SapienceTracker</compClass>
 			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/recipes</xpath>
+		<value>
+			<li>InstallInstinctLimiter</li>
 		</value>
 	</Operation>
 </Patch>

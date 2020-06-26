@@ -1,0 +1,65 @@
+<Defs>
+
+    <HediffDef ParentName="ImplantHediffBase">
+        <defName>SapienceLimiterHediff</defName>
+        <label>TODO</label>
+        <description>TODO</description>
+        <stages>
+            <li>
+                <statOffsets>
+                    <SapientAnimalA>-1</SapientAnimalA>
+                </statOffsets>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <RecipeDef ParentName="SurgeryInstallImplantBase">
+        <defName>InstallInstinctLimiter</defName>
+        <label>install instinct limiter</label>
+        <description>Install a instinct limiter.</description>
+        <descriptionHyperlinks>
+            <ThingDef>InstinctLimiter</ThingDef>
+        </descriptionHyperlinks>
+        <jobString>Installing joywire.</jobString>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>InstinctLimiter</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>InstinctLimiter</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <appliedOnFixedBodyParts>
+            <li>Brain</li>
+        </appliedOnFixedBodyParts>
+        <addsHediff>SapienceLimiterHediff</addsHediff>
+    </RecipeDef>
+
+    <ThingDef ParentName="BodyPartProstheticBase">
+        <defName>InstinctLimiter</defName>
+        <label>TODO</label>
+        <description>TODO</description>
+        <descriptionHyperlinks>
+            <RecipeDef>InstallInstinctLimiter</RecipeDef>
+        </descriptionHyperlinks>
+        <thingSetMakerTags>
+            <li>RewardStandardLowFreq</li>
+        </thingSetMakerTags>
+        <costList>
+            <!-- TODO -->
+            <Steel>20</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+        </costList>
+        <techHediffsTags>
+            <li>Advanced</li>
+        </techHediffsTags>
+    </ThingDef>
+
+</Defs>

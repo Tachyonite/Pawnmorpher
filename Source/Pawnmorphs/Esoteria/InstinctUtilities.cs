@@ -86,7 +86,7 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             float res = CalculateNetResistance(pawn);
-            float lambda = 1 / pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
+            float lambda = pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
 
             return res - instinct * lambda;
         }
