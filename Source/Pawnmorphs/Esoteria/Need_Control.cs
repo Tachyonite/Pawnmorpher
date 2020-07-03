@@ -139,8 +139,15 @@ namespace Pawnmorph
         /// <param name="instinctChange">The instinct change.</param>
         public void AddInstinctChange(float instinctChange)
         {
+            //hard coding in the limiter is hacky but is the best solution here 
+            bool hasInstinctLimiter = pawn?.health?.hediffSet?.HasHediff(TfHediffDefOf.SapienceLimiterHediff) == true;
+
             _maxLevelCached = null;
-            _seekerLevel += CalculateControlChange(pawn, instinctChange) / AVERAGE_MAX_SAPIENCE;
+
+            float deltaL = CalculateControlChange(pawn, instinctChange) / AVERAGE_MAX_SAPIENCE;
+            if (hasInstinctLimiter)
+                deltaL = Mathf.Max(0, deltaL);
+            _seekerLevel += deltaL;
             _seekerLevel = Mathf.Clamp(_seekerLevel, 0, Mathf.Min(MaxLevel, Limit));
         }
 
