@@ -152,6 +152,35 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        private bool? _canMutateCache;
+
+        /// <summary>
+        /// Gets a value indicating whether this instance can mutate the pawn.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance can mutate the pawn; otherwise, <c>false</c>.
+        /// </value>
+        protected bool CanMutatePawn
+        {
+            get
+            {
+                if (_canMutateCache == null)
+                {
+                    var mutagen = def.GetMutagenDef();
+                    _canMutateCache = mutagen.CanInfect(pawn); 
+                }
+
+                return _canMutateCache.Value; 
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether  this should be removed if the pawn is not mutable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this should be removed if the pawn is not mutable.; otherwise, <c>false</c>.
+        /// </value>
+        protected virtual bool RemoveIfNotMutable { get; } = true; 
 
         /// <summary>called after this hediff is added to the pawn</summary>
         /// <param name="dinfo">The dinfo.</param>
@@ -164,7 +193,7 @@ namespace Pawnmorph.Hediffs
             _curIndex = 0;
 
             var mutagen = def.GetMutagenDef();
-            if (!mutagen.CanInfect(pawn)) //if we somehow got a pawn that can't be mutated just remove the hediff
+            if (!mutagen.CanInfect(pawn) && RemoveIfNotMutable) //if we somehow got a pawn that can't be mutated just remove the hediff
                 forceRemove = true; 
 
 
@@ -286,7 +315,7 @@ namespace Pawnmorph.Hediffs
         protected virtual void TryGiveTransformations()
         {
             if (CurStage == null) return;
-
+            if (!CanMutatePawn) return; 
             RandUtilities.PushState();
 
             foreach (var tfGiver in CurStage.GetAllTransformers())

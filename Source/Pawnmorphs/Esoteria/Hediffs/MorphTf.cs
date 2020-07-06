@@ -55,7 +55,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// the expected number of mutations to happen in a single day 
         /// </summary>
-        public override float MeanMutationsPerDay => _meanPerDay; 
+        public override float MeanMutationsPerDay => CanMutatePawn ? _meanPerDay: 0; 
 
         private List<MutationEntry> _allMutations; 
 
