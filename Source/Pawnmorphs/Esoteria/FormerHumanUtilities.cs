@@ -474,6 +474,7 @@ namespace Pawnmorph
         [CanBeNull]
         public static SapienceTracker GetSapienceTracker([NotNull] this Pawn pawn)
         {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             var tComp = pawn.GetComp<SapienceTracker>();
             return tComp;
         }
