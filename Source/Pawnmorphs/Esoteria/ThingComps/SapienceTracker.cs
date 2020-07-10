@@ -122,7 +122,18 @@ namespace Pawnmorph.ThingComps
         /// <value>
         /// The current intelligence.
         /// </value>
-        public Intelligence CurrentIntelligence => _sapienceState?.CurrentIntelligence ?? Pawn.RaceProps.intelligence; 
+        public Intelligence CurrentIntelligence
+        {
+            get
+            {
+                //hacky fix to correct null reference exception during loading 
+                if (_sapienceState != null && _sapienceState.Tracker == null)
+                {
+                    _sapienceState.Tracker = this; 
+                }
+                return _sapienceState?.CurrentIntelligence ?? Pawn.RaceProps.intelligence;
+            }
+        }
 
 
         /// <summary>

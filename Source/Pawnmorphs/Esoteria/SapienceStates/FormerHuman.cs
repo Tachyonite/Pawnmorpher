@@ -98,6 +98,11 @@ namespace Pawnmorph.SapienceStates
             get
             {
 
+                if (Tracker == null)
+                {
+                    return Pawn?.RaceProps?.intelligence ?? Intelligence.Animal; 
+                }
+
                 switch (Tracker.SapienceLevel)
                 {
                     case SapienceLevel.Sapient:
