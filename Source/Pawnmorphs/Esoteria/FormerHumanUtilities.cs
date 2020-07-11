@@ -463,8 +463,21 @@ namespace Pawnmorph
             return pawn;
         }
 
-       
 
+        /// <summary>
+        /// checks if Tameness the can decay on the given pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool TamenessCanDecay([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var sapienceLv = pawn.GetQuantizedSapienceLevel();
+            if (sapienceLv == null || sapienceLv > SapienceLevel.MostlySapient)
+                return TrainableUtility.TamenessCanDecay(pawn.def);
+            return false;
+        }
 
         /// <summary>
         ///     Gets the former human tracker.

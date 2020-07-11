@@ -1,6 +1,10 @@
 ﻿// PawnPatches.cs created by Iron Wolf for Pawnmorph on 11/27/2019 1:16 PM
 // last updated 11/27/2019  1:16 PM
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
@@ -24,6 +28,61 @@ namespace Pawnmorph.HPatches
             //Log.Message($"mood is enabled for {pawn.LabelShort}: {val}");
 
             return val;
+        }
+        private static FieldInfo DefField { get; } = typeof(Thing).GetField(nameof(Thing.def));
+        private static FieldInfo PawnField { get; } = typeof(Pawn_TrainingTracker).GetField("pawn");
+
+        private static MethodInfo CanDecayMethod { get; } =
+            typeof(TrainableUtility).GetMethod(nameof(TrainableUtility.TamenessCanDecay));
+
+        private static MethodInfo CanDecayReplacementMethod { get; } =
+            typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.TamenessCanDecay));
+
+
+        //patch to disable tameness decay for sapient and mostly sapient former humans 
+        [HarmonyPatch(typeof(Pawn_TrainingTracker))]
+        internal static class TrainingTrackerPatches
+        {
+            
+            [HarmonyPatch(nameof(Pawn_TrainingTracker.TrainingTrackerTickRare))]
+            [HarmonyTranspiler]
+            private static IEnumerable<CodeInstruction> DisableDecayPatch(IEnumerable<CodeInstruction> instructions)
+            {
+                List<CodeInstruction> instructionArr = instructions.ToList();
+                //patch cannot happen on the last instruction 
+                for (var i = 0; i < instructionArr.Count - 3; i++)
+                {
+                    // looking for 
+                    /* IL_0136: ldarg.0      
+    IL_0137: ldfld        class Verse.Pawn RimWorld.Pawn_TrainingTracker::pawn
+    IL_013c: ldfld        class Verse.ThingDef Verse.Thing::def
+    IL_0141: call         bool RimWorld.TrainableUtility::TamenessCanDecay(class Verse.ThingDef)
+    IL_0146: brtrue.s     IL_0159
+                     *
+                     */
+
+
+                    CodeInstruction inst = instructionArr[i];
+                    if (inst?.opcode != OpCodes.Ldfld || inst.operand as FieldInfo != PawnField) continue;
+                    CodeInstruction inst1 = instructionArr[i + 1];
+                    if (inst1?.opcode == OpCodes.Ldfld && inst1.operand as FieldInfo == DefField)
+                    {
+                        CodeInstruction inst2 = instructionArr[i + 2];
+                        if (inst2?.opcode == OpCodes.Call && inst2.operand as MethodInfo == CanDecayMethod)
+                        {
+                            //do the patch 
+                            //replace the call to FormerHumanUtilities.TamenessCanDecay
+                            //and remove the unneeded instruction 
+                            inst1.opcode = OpCodes.Call;
+                            inst1.operand = CanDecayReplacementMethod;
+                            inst2.opcode = OpCodes.Nop;
+                            inst2.operand = null;
+                        }
+                    }
+                }
+
+                return instructionArr;
+            }
         }
 
 
