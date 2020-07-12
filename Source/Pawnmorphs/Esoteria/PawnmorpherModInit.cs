@@ -36,6 +36,9 @@ namespace Pawnmorph
                 GenerateImplicitRaces();
                 TransferPatchesToExplicitRaces();
                 CheckForObsoletedComponents();
+
+                CheckForModConflicts(); 
+
             }
            
             catch (Exception e)
@@ -44,6 +47,16 @@ namespace Pawnmorph
             }
         }
 
+        private static void CheckForModConflicts()
+        {
+            var androidsIsLoaded = LoadedModManager.RunningMods.Any(m => m.PackageId == "Atlas.AndroidTiers");
+
+            //TODO make this a pop up 
+            if (androidsIsLoaded)
+            {
+                Log.Error("Android Tiers + Pawnmorpher detected. Please disable the AT 'hide inactive surrogates' mod option if former humans don't appear in your colonist bar or menu.");
+            }
+        }
 
 
         private static void TransferPatchesToExplicitRaces()
