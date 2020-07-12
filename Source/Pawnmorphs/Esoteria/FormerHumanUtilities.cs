@@ -474,7 +474,7 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             var sapienceLv = pawn.GetQuantizedSapienceLevel();
-            if (sapienceLv == null || sapienceLv > SapienceLevel.MostlySapient)
+            if (sapienceLv == null || sapienceLv > SapienceLevel.Conflicted)
                 return TrainableUtility.TamenessCanDecay(pawn.def);
             return false;
         }
