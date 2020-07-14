@@ -288,7 +288,9 @@ namespace Pawnmorph
             _mutationList.Remove(mutation);
             MutationsCount -= 1;
 
-            InfluencesDirty = true; 
+            InfluencesDirty = true;
+
+            NotifyCompsRemoved(mutation);
         }
 
         /// <summary>
