@@ -80,12 +80,13 @@ Rapidly dissipates when under an open sky.</description>
 							<description>A remotely triggered canister filled with mutagen gas. 
 Arm, then detonate from the Remote Explosives Console.</description>
 <researchPrerequisites>
-<li>rxRemoteDetonator</li>
+<li>rxSleepingGas</li>
 <li>MutagenExtraction</li>
 </researchPrerequisites>
 							<costList>
 								<Steel>60</Steel>
-								<Chemfuel>1</Chemfuel>
+								<ComponentIndustrial>1</ComponentIndustrial>
+								<Chemfuel>5</Chemfuel>
 								<MechaniteSlurry>2</MechaniteSlurry>
 							</costList>
 							<comps>
