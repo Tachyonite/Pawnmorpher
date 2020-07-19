@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using RimWorld;
 using Verse;
+using Verse.Sound;
 
 namespace Pawnmorph.User_Interface
 {
@@ -11,13 +13,14 @@ namespace Pawnmorph.User_Interface
     {
         /// <summary>The pawn that we want to modify.</summary>
         private Pawn pawn;
-        private Pawn_HealthTracker startingHealth;
+        private Pawn_HealthTracker cachedHealth;
 
         // Reference variables
         private const string WINDOW_TITLE_LOC_STRING = "PartPickerMenuTitle";
         private const string DESCRIPTION_TITLE_LOC_STRING = "DescriptionPaneTitle";
         private const string DO_SYMMETRY_LOC_STRING = "DoSymmetry";
         private const string NO_MUTATIONS_LOC_STRING = "NoMutationsOnPart";
+        private const string EDIT_PARAMS_LOC_STRING = "EditParams";
         private const string TOGGLE_CLOTHES_LOC_STRING = "ToggleClothes";
         private const string ROTATE_LEFT_LOC_STRING = "RotLeft";
         private const string ROTATE_RIGHT_LOC_STRING = "RotRight";
@@ -25,6 +28,7 @@ namespace Pawnmorph.User_Interface
         private const string RESET_BUTTON_LOC_STRING = "ResetButtonText";
         private const string CANCEL_BUTTON_LOC_STRING = "CancelButtonText";
         private const float SPACER_SIZE = 5f;
+        private const float BUTTON_HORIZONTAL_PADDING = 6f;
         private static Vector2 PART_BUTTON_SIZE = new Vector2(15, 15);
         private static Vector2 PREVIEW_SIZE = new Vector2(120, 200);
         private static Vector2 TOGGLE_CLOTHES_BUTTON_SIZE = new Vector2(30, 30);
@@ -49,7 +53,7 @@ namespace Pawnmorph.User_Interface
         {
             get
             {
-                return new Vector2(500f, 500f);
+                return new Vector2(1000f, 500f);
             }
         }
 
@@ -61,16 +65,24 @@ namespace Pawnmorph.User_Interface
             resizeable = true;
             draggable = true;
         }
+
         public override void PreOpen()
         {
             base.PreOpen();
-            startingHealth = new Pawn_HealthTracker(pawn);
+            cachedHealth = pawn.health;
         }
 
-        public override void Close(bool doCloseSound = true)
+        public override void Close(bool doCloseSound = false)
         {
             if (!confirmed)
+            {
                 resetPawnHealth();
+                SoundDefOf.Click.PlayOneShotOnCamera(null);
+            }
+            else
+            {
+                SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera(null);
+            }
             base.Close(doCloseSound);
         }
 
@@ -84,8 +96,8 @@ namespace Pawnmorph.User_Interface
         {
             // Step 1 - Gather and set relevent information.
             float col1, col2, col3;
-            List<BodyPartDef> allValidParts = DefDatabase<MutationDef>.AllDefs.SelectMany(m => m.parts).Distinct().ToList();
-            List<BodyPartRecord> mutableParts = pawn.RaceProps.body.AllParts.Where(m => allValidParts.Contains(m.def)).ToList();
+            List<MutationDef> allMutations = DefDatabase<MutationDef>.AllDefs.ToList();
+            List<BodyPartRecord> mutableParts = pawn.RaceProps.body.AllParts.Where(m => DefDatabase<MutationDef>.AllDefs.SelectMany(n => n.parts).Distinct().Contains(m.def)).ToList();
             List<Hediff_AddedMutation> pawnMutations = pawn.health.hediffSet.hediffs.Where(m => m.def.GetType() == typeof(MutationDef)).Cast<Hediff_AddedMutation>().ToList();
 
             // Step 2 - Draw the title of the window.
@@ -98,14 +110,16 @@ namespace Pawnmorph.User_Interface
 
             // Step 3 - Determine vewing areas for body part list and description.
             float drawableWidth = (inRect.width - PREVIEW_SIZE.x - 2 * SPACER_SIZE) / 2;
-            float drawableHight = inRect.height - col1 - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y)) - 2 * SPACER_SIZE;
-            Rect partListOutRect = new Rect(inRect.x, col1, drawableWidth, drawableHight);
-            Rect partListViewRect = new Rect(partListOutRect.x, partListOutRect.y, partListScrollSize.x, partListScrollSize.y - col1);
-            Rect previewRect = new Rect(inRect.x + SPACER_SIZE + drawableWidth, col1, PREVIEW_SIZE.x, PREVIEW_SIZE.y);
-            Rect descriptionOutRect = new Rect(inRect.x + 2 * SPACER_SIZE + PREVIEW_SIZE.x, col1, drawableWidth, drawableHight);
+            float drawableHeight = inRect.height - titleHeight - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y)) - 2 * SPACER_SIZE;
+            Rect partListOutRect = new Rect(inRect.x, titleHeight, drawableWidth, drawableHeight);
+            Rect partListViewRect = new Rect(partListOutRect.x, partListOutRect.y, partListScrollSize.x, partListScrollSize.y - titleHeight);
+            Rect previewRect = new Rect(inRect.x + SPACER_SIZE + drawableWidth, titleHeight, PREVIEW_SIZE.x, PREVIEW_SIZE.y);
+            Rect descriptionOutRect = new Rect(inRect.x + 2 * SPACER_SIZE + PREVIEW_SIZE.x, titleHeight, drawableWidth, drawableHeight);
             Rect descriptiontViewRect = new Rect(descriptionOutRect.x, descriptionOutRect.y, descriptionOutRect.width - 16f, descriptionOutRect.height);
 
-            // Step 4 - Draw the body part list.
+            // Step 4 - Draw the body part list, selection buttons and edit buttons.
+            string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
+            float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
             Widgets.BeginScrollView(partListOutRect, ref partListScrollPos, partListViewRect);
             if (doSymmetry)
             {
@@ -113,26 +127,60 @@ namespace Pawnmorph.User_Interface
                 foreach (BodyPartDef part in uniqueMutablePartDefs)
                 {
                     List<Hediff_AddedMutation> mutationsOnPart = pawnMutations.Where(m => m.Part.def == part).ToList();
-                    string text = part.label.CapitalizeFirst();
+                    string text = part.LabelCap;
                     float textHeight = Text.CalcHeight(text, partListViewRect.width);
                     Widgets.Label(new Rect(0f, col1, partListViewRect.width, textHeight), text);
                     col1 += textHeight;
                     foreach (MutationLayer layer in Enum.GetValues(typeof(MutationLayer)))
                     {
-                        List<Hediff_AddedMutation> mutationsOnLayer = mutationsOnPart.Where(m => m.TryGetComp<Hediffs.RemoveFromPartComp>().Layer == layer).ToList();
-                        string buttonText = $"{layer.ToString()}: {(mutationsOnLayer.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutationsOnLayer.Select(m => m.LabelCap).Distinct()))}";
+                        List<Hediff_AddedMutation> mutationsOnLayer = mutationsOnPart.Where(m => m.TryGetComp<RemoveFromPartComp>().Layer == layer).ToList();
+                        string buttonText = $"{layer}: {(mutationsOnLayer.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutationsOnLayer.Select(m => m.LabelCap).Distinct()))}";
                         float buttonHeight = Text.CalcHeight(buttonText, partListViewRect.width);
-                        Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width, buttonHeight), buttonText);
+                        if (Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width - editButtonWidth, buttonHeight), buttonText))
+                        {
+                            Action action = delegate ()
+                            {
+                                Log.Error("You Pressed me!");
+                            };
+                            List<FloatMenuOption> options = new List<FloatMenuOption>();
+                            options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), action));
+                            foreach (MutationDef mutationForPartAndLayer in allMutations.Where(m => m.parts.Contains(part) && m.comps.Find(n => n.GetType() == typeof(RemoveFromPartCompProperties)).ChangeType<RemoveFromPartCompProperties>().layer == layer))
+                            {
+                                options.Add(new FloatMenuOption(mutationForPartAndLayer.LabelCap, action));
+                            }
+                            Find.WindowStack.Add(new FloatMenu(options));
+                        }
+                        if (Widgets.ButtonText(new Rect(partListViewRect.width - editButtonWidth, col1, editButtonWidth, buttonHeight), editButtonText))
+                        {
+
+                        }
                         col1 += buttonHeight;
                     }
-                    // Add spacer
                 }
             }
             else
             {
-                foreach (BodyPartRecord item in mutableParts)
+                foreach (BodyPartRecord part in mutableParts)
                 {
-                    // Show all parts
+                    string text = part.LabelCap;
+                    float textHeight = Text.CalcHeight(text, partListViewRect.width);
+                    Widgets.Label(new Rect(0f, col1, partListViewRect.width, textHeight), text);
+                    col1 += textHeight;
+                    foreach (MutationLayer layer in Enum.GetValues(typeof(MutationLayer)))
+                    {
+                        Hediff_AddedMutation mutationOnPartAndLayer = pawnMutations.Find(m => m.TryGetComp<Hediffs.RemoveFromPartComp>().Layer == layer && m.Part == part);
+                        string buttonText = $"{layer}: {(mutationOnPartAndLayer == null ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : mutationOnPartAndLayer.LabelCap)}";
+                        float buttonHeight = Text.CalcHeight(buttonText, partListViewRect.width);
+                        if (Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width - editButtonWidth, buttonHeight), buttonText))
+                        {
+
+                        }
+                        if (Widgets.ButtonText(new Rect(partListViewRect.width - editButtonWidth, col1, editButtonWidth, buttonHeight), editButtonText))
+                        {
+
+                        }
+                        col1 += buttonHeight;
+                    }
                 }
             }
             if (Event.current.type == EventType.Layout)
@@ -144,13 +192,30 @@ namespace Pawnmorph.User_Interface
 
             // Step 5 - Draw the preview area then rotation and clothes buttons then symmetry toggle.
             // Step 6 - Draw description box.
+
             // Step 7 - Draw the apply, reset and cancel buttons.
+            float buttonVertPos = titleHeight + drawableHeight + SPACER_SIZE;
+            float applyHorPos = inRect.width / 2 - APPLY_BUTTON_SIZE.x - RESET_BUTTON_SIZE.x / 2 - SPACER_SIZE;
+            float resetHorPos = inRect.width / 2 - RESET_BUTTON_SIZE.x / 2;
+            float cancelHorPos = inRect.width / 2 + RESET_BUTTON_SIZE.x / 2 + SPACER_SIZE;
+            if (Widgets.ButtonText(new Rect(applyHorPos, buttonVertPos, APPLY_BUTTON_SIZE.x, APPLY_BUTTON_SIZE.y), APPLY_BUTTON_LOC_STRING.Translate()))
+            {
+                OnAcceptKeyPressed();
+            }
+            if (Widgets.ButtonText(new Rect(resetHorPos, buttonVertPos, RESET_BUTTON_SIZE.x, RESET_BUTTON_SIZE.y), RESET_BUTTON_LOC_STRING.Translate()))
+            {
+                SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera(null);
+                resetPawnHealth();
+            }
+            if (Widgets.ButtonText(new Rect(cancelHorPos, buttonVertPos, CANCEL_BUTTON_SIZE.x, CANCEL_BUTTON_SIZE.y), CANCEL_BUTTON_LOC_STRING.Translate()))
+            {
+                OnCancelKeyPressed();
+            }
         }
 
         public void resetPawnHealth()
         {
-            pawn.health = startingHealth;
-            startingHealth = new Pawn_HealthTracker(pawn);
+            pawn.health = cachedHealth;
         }
     }
 }
