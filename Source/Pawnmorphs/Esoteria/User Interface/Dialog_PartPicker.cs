@@ -13,7 +13,7 @@ namespace Pawnmorph.User_Interface
     {
         /// <summary>The pawn that we want to modify.</summary>
         private Pawn pawn;
-        private Pawn_HealthTracker cachedHealth;
+        private List<Hediff> cachedHediffList;
 
         // Reference variables
         private const string WINDOW_TITLE_LOC_STRING = "PartPickerMenuTitle";
@@ -53,7 +53,7 @@ namespace Pawnmorph.User_Interface
         {
             get
             {
-                return new Vector2(1000f, 500f);
+                return new Vector2(750f, 840f);
             }
         }
 
@@ -69,7 +69,7 @@ namespace Pawnmorph.User_Interface
         public override void PreOpen()
         {
             base.PreOpen();
-            cachedHealth = pawn.health;
+            cachedHediffList = new List<Hediff>(pawn.health.hediffSet.hediffs);
         }
 
         public override void Close(bool doCloseSound = false)
@@ -133,28 +133,52 @@ namespace Pawnmorph.User_Interface
                     col1 += textHeight;
                     foreach (MutationLayer layer in Enum.GetValues(typeof(MutationLayer)))
                     {
-                        List<Hediff_AddedMutation> mutationsOnLayer = mutationsOnPart.Where(m => m.TryGetComp<RemoveFromPartComp>().Layer == layer).ToList();
-                        string buttonText = $"{layer}: {(mutationsOnLayer.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutationsOnLayer.Select(m => m.LabelCap).Distinct()))}";
-                        float buttonHeight = Text.CalcHeight(buttonText, partListViewRect.width);
-                        if (Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width - editButtonWidth, buttonHeight), buttonText))
+                        List<MutationDef> applicableMutations = allMutations.Where(m => m.parts.Contains(part) && m.comps.Find(n => n.GetType() == typeof(RemoveFromPartCompProperties)).ChangeType<RemoveFromPartCompProperties>().layer == layer).ToList();
+                        if (!applicableMutations.NullOrEmpty())
                         {
-                            Action action = delegate ()
+                            List<Hediff_AddedMutation> mutationsOnLayer = mutationsOnPart.Where(m => m.TryGetComp<RemoveFromPartComp>().Layer == layer).ToList();
+                            string buttonText = $"{layer}: {(mutationsOnLayer.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutationsOnLayer.Select(m => m.LabelCap).Distinct()))}";
+                            float buttonHeight = Text.CalcHeight(buttonText, partListViewRect.width);
+                            if (Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width - editButtonWidth, buttonHeight), buttonText))
                             {
-                                Log.Error("You Pressed me!");
-                            };
-                            List<FloatMenuOption> options = new List<FloatMenuOption>();
-                            options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), action));
-                            foreach (MutationDef mutationForPartAndLayer in allMutations.Where(m => m.parts.Contains(part) && m.comps.Find(n => n.GetType() == typeof(RemoveFromPartCompProperties)).ChangeType<RemoveFromPartCompProperties>().layer == layer))
-                            {
-                                options.Add(new FloatMenuOption(mutationForPartAndLayer.LabelCap, action));
+                                List<FloatMenuOption> options = new List<FloatMenuOption>();
+                                Action removeAction = delegate ()
+                                {
+                                    if (!mutationsOnLayer.NullOrEmpty())
+                                    {
+                                        foreach (Hediff_AddedMutation hediff in mutationsOnLayer)
+                                        {
+                                            pawn.health.RemoveHediff(hediff);
+                                        }
+                                    }
+                                };
+                                options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeAction));
+                                foreach (MutationDef mutationDef in applicableMutations)
+                                {
+                                    Action action = delegate ()
+                                    {
+                                        if (!mutationsOnLayer.NullOrEmpty())
+                                        {
+                                            foreach (Hediff_AddedMutation hediff in mutationsOnLayer)
+                                            {
+                                                pawn.health.RemoveHediff(hediff);
+                                            }
+                                        }
+                                        foreach (BodyPartRecord bpr in pawn.RaceProps.body.AllParts.Where(m => m.def == part))
+                                        {
+                                            MutationUtilities.AddMutation(pawn, mutationDef, bpr);
+                                        }
+                                    };
+                                    options.Add(new FloatMenuOption(mutationDef.LabelCap, action));
+                                }
+                                Find.WindowStack.Add(new FloatMenu(options));
                             }
-                            Find.WindowStack.Add(new FloatMenu(options));
+                            if (Widgets.ButtonText(new Rect(partListViewRect.width - editButtonWidth, col1, editButtonWidth, buttonHeight), editButtonText))
+                            {
+                                // Edit the paramaters of the relevant mutations, such as current stage, if it's halted, etc. (Check for full list of what can be modified later)
+                            }
+                            col1 += buttonHeight;
                         }
-                        if (Widgets.ButtonText(new Rect(partListViewRect.width - editButtonWidth, col1, editButtonWidth, buttonHeight), editButtonText))
-                        {
-
-                        }
-                        col1 += buttonHeight;
                     }
                 }
             }
@@ -168,18 +192,37 @@ namespace Pawnmorph.User_Interface
                     col1 += textHeight;
                     foreach (MutationLayer layer in Enum.GetValues(typeof(MutationLayer)))
                     {
-                        Hediff_AddedMutation mutationOnPartAndLayer = pawnMutations.Find(m => m.TryGetComp<Hediffs.RemoveFromPartComp>().Layer == layer && m.Part == part);
-                        string buttonText = $"{layer}: {(mutationOnPartAndLayer == null ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : mutationOnPartAndLayer.LabelCap)}";
-                        float buttonHeight = Text.CalcHeight(buttonText, partListViewRect.width);
-                        if (Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width - editButtonWidth, buttonHeight), buttonText))
+                        List<MutationDef> applicableMutations = allMutations.Where(m => m.parts.Contains(part.def) && m.comps.Find(n => n.GetType() == typeof(RemoveFromPartCompProperties)).ChangeType<RemoveFromPartCompProperties>().layer == layer).ToList();
+                        if (!applicableMutations.NullOrEmpty())
                         {
-
+                            Hediff_AddedMutation mutationOnPartAndLayer = pawnMutations.Find(m => m.TryGetComp<Hediffs.RemoveFromPartComp>().Layer == layer && m.Part == part);
+                            string buttonText = $"{layer}: {(mutationOnPartAndLayer == null ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : mutationOnPartAndLayer.LabelCap)}";
+                            float buttonHeight = Text.CalcHeight(buttonText, partListViewRect.width);
+                            if (Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width - editButtonWidth, buttonHeight), buttonText))
+                            {
+                                List<FloatMenuOption> options = new List<FloatMenuOption>();
+                                Action removeAction = delegate ()
+                                {
+                                    if (mutationOnPartAndLayer != null) pawn.health.RemoveHediff(mutationOnPartAndLayer);
+                                };
+                                options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeAction));
+                                foreach (MutationDef mutationDef in applicableMutations)
+                                {
+                                    Action action = delegate ()
+                                    {
+                                        if (mutationOnPartAndLayer != null) pawn.health.RemoveHediff(mutationOnPartAndLayer);
+                                        MutationUtilities.AddMutation(pawn, mutationDef, part);
+                                    };
+                                    options.Add(new FloatMenuOption(mutationDef.LabelCap, action));
+                                }
+                                Find.WindowStack.Add(new FloatMenu(options));
+                            }
+                            if (Widgets.ButtonText(new Rect(partListViewRect.width - editButtonWidth, col1, editButtonWidth, buttonHeight), editButtonText))
+                            {
+                                // Edit the paramaters of the mutation on the current part and layer, such as its current stage, if it's halted, etc. (Check for full list of what can be modified later)
+                            }
+                            col1 += buttonHeight;
                         }
-                        if (Widgets.ButtonText(new Rect(partListViewRect.width - editButtonWidth, col1, editButtonWidth, buttonHeight), editButtonText))
-                        {
-
-                        }
-                        col1 += buttonHeight;
                     }
                 }
             }
@@ -191,6 +234,13 @@ namespace Pawnmorph.User_Interface
             Widgets.EndScrollView();
 
             // Step 5 - Draw the preview area then rotation and clothes buttons then symmetry toggle.
+
+
+            string toggleText = DO_SYMMETRY_LOC_STRING.Translate();
+            float toggleTextHeight = Text.CalcHeight(toggleText, PREVIEW_SIZE.x);
+            Widgets.CheckboxLabeled(new Rect(inRect.x + SPACER_SIZE + drawableWidth, col2, PREVIEW_SIZE.x, toggleTextHeight), DO_SYMMETRY_LOC_STRING.Translate(), ref doSymmetry);
+            col2 += toggleTextHeight;
+
             // Step 6 - Draw description box.
 
             // Step 7 - Draw the apply, reset and cancel buttons.
@@ -215,7 +265,7 @@ namespace Pawnmorph.User_Interface
 
         public void resetPawnHealth()
         {
-            pawn.health = cachedHealth;
+            pawn.health.hediffSet.hediffs = new List<Hediff>(cachedHediffList);
         }
     }
 }
