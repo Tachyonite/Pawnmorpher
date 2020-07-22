@@ -76,7 +76,7 @@ namespace Pawnmorph.User_Interface
         {
             if (!confirmed)
             {
-                resetPawnHealth();
+                ResetPawnHealth();
                 SoundDefOf.Click.PlayOneShotOnCamera(null);
             }
             else
@@ -255,7 +255,7 @@ namespace Pawnmorph.User_Interface
             if (Widgets.ButtonText(new Rect(resetHorPos, buttonVertPos, RESET_BUTTON_SIZE.x, RESET_BUTTON_SIZE.y), RESET_BUTTON_LOC_STRING.Translate()))
             {
                 SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera(null);
-                resetPawnHealth();
+                ResetPawnHealth();
             }
             if (Widgets.ButtonText(new Rect(cancelHorPos, buttonVertPos, CANCEL_BUTTON_SIZE.x, CANCEL_BUTTON_SIZE.y), CANCEL_BUTTON_LOC_STRING.Translate()))
             {
@@ -263,7 +263,7 @@ namespace Pawnmorph.User_Interface
             }
         }
 
-        public void resetPawnHealth()
+        public void ResetPawnHealth()
         {
             pawn.health.hediffSet.hediffs = new List<Hediff>(cachedHediffList);
         }
