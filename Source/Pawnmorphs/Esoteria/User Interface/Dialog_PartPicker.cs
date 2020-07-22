@@ -32,8 +32,8 @@ namespace Pawnmorph.User_Interface
         private static Vector2 PART_BUTTON_SIZE = new Vector2(15, 15);
         private static Vector2 PREVIEW_SIZE = new Vector2(120, 200);
         private static Vector2 TOGGLE_CLOTHES_BUTTON_SIZE = new Vector2(30, 30);
-        private static Vector2 ROTATE_LEFT_BUTTON_SIZE = new Vector2(30, 30);
-        private static Vector2 ROTATE_RIGHT_BUTTON_SIZE = new Vector2(30, 30);
+        private static Vector2 ROTATE_CW_BUTTON_SIZE = new Vector2(30, 30);
+        private static Vector2 ROTATE_CCW_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 APPLY_BUTTON_SIZE = new Vector2(120f, 40f);
         private static Vector2 RESET_BUTTON_SIZE = new Vector2(120f, 40f);
         private static Vector2 CANCEL_BUTTON_SIZE = new Vector2(120f, 40f);
@@ -48,6 +48,7 @@ namespace Pawnmorph.User_Interface
         private bool confirmed = false;
         private bool toggleClothesEnabled = true;
         private bool doSymmetry = true;
+        private Rot4 previewRot = Rot4.South;
 
         public override Vector2 InitialSize
         {
@@ -234,8 +235,30 @@ namespace Pawnmorph.User_Interface
             Widgets.EndScrollView();
 
             // Step 5 - Draw the preview area then rotation and clothes buttons then symmetry toggle.
-
-
+            // Draw Preview - Damn this code is hard
+            float rotCWHorPos = previewRect.x + previewRect.width / 2 - TOGGLE_CLOTHES_BUTTON_SIZE.x / 2 - ROTATE_CW_BUTTON_SIZE.x - SPACER_SIZE;
+            float toggleClothingHorPos = previewRect.x + previewRect.width / 2 - TOGGLE_CLOTHES_BUTTON_SIZE.x / 2;
+            float rotCCWHorPos = previewRect.x + previewRect.width / 2 + TOGGLE_CLOTHES_BUTTON_SIZE.x / 2 + SPACER_SIZE;
+            col2 += SPACER_SIZE;
+            if (Widgets.ButtonImageFitted(new Rect(rotCWHorPos, col2, ROTATE_CW_BUTTON_SIZE.x, ROTATE_CW_BUTTON_SIZE.y), ButtonTexturesPM.rotCW))
+            {
+                previewRot.Rotate(RotationDirection.Clockwise);
+            }
+            if (Widgets.ButtonImageFitted(new Rect(toggleClothingHorPos, col2, TOGGLE_CLOTHES_BUTTON_SIZE.x, TOGGLE_CLOTHES_BUTTON_SIZE.y), ButtonTexturesPM.toggleClothes))
+            {
+                toggleClothesEnabled = !toggleClothesEnabled;
+            }
+            if (Widgets.ButtonImageFitted(new Rect(rotCCWHorPos, col2, ROTATE_CCW_BUTTON_SIZE.x, ROTATE_CCW_BUTTON_SIZE.y), ButtonTexturesPM.rotCCW))
+            {
+                previewRot.Rotate(RotationDirection.Counterclockwise);
+            }
+            col2 += Math.Max(TOGGLE_CLOTHES_BUTTON_SIZE.y, Math.Max(ROTATE_CW_BUTTON_SIZE.y, ROTATE_CCW_BUTTON_SIZE.y));
+            // Temporary debug code
+            Widgets.Label(new Rect(previewRect.x, col2, previewRect.width, 24f), $"Rotation: {previewRot.ToStringHuman()}");
+            col2 += 24f;
+            Widgets.Label(new Rect(previewRect.x, col2, previewRect.width, 24f), $"Clothing: {(toggleClothesEnabled ? "Enabled" : "Disabled")}");
+            col2 += 24f;
+            // End temporary debug code
             string toggleText = DO_SYMMETRY_LOC_STRING.Translate();
             float toggleTextHeight = Text.CalcHeight(toggleText, PREVIEW_SIZE.x);
             Widgets.CheckboxLabeled(new Rect(inRect.x + SPACER_SIZE + drawableWidth, col2, PREVIEW_SIZE.x, toggleTextHeight), DO_SYMMETRY_LOC_STRING.Translate(), ref doSymmetry);
