@@ -47,6 +47,7 @@
 	<Pawnmorph.AspectDef>
 		<defName>AnimalAffinity</defName>
 		<label>animal affinity</label>
+        <description>[PAWN_nameDef]'s new form has given [PAWN_objective] a greater apriciation for what [PAWN_pronoun] now sees as [PAWN_possessive] fellow animals. It doesn't hurt that [PAWN_pronoun] now speaks their (body) language, either.</description>
 		<stages>
 			<li>
 				<skillMods>
@@ -63,6 +64,7 @@
 	<Pawnmorph.AspectDef>
 		<defName>PlantAffinity</defName>
 		<label>plant affinity</label>
+		<description>Because [PAWN_nameDef]'s new form has brought [PAWN_objective] closer to nature (too close some might say), [PAWN_pronoun] now better understands how plants fit into the circle of life and is much more careful when tending them.</description>
 		<stages>
 			<li>
 				<skillMods>
