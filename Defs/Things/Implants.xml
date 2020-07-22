@@ -1,68 +1,65 @@
 <Defs>
-
-    <HediffDef ParentName="ImplantHediffBase">
-        <defName>SapienceLimiterHediff</defName>
-        <label>TODO</label>
-        <description>TODO</description>
-        <stages>
-            <li>
-                <statOffsets>
-                    <SapientAnimalA>-0.8</SapientAnimalA>
-                </statOffsets>
-            </li>
-        </stages>
-        <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.TFTransferable" />
-        </modExtensions>
-    </HediffDef>
-
-    <RecipeDef ParentName="SurgeryInstallImplantBase">
-        <defName>InstallInstinctLimiter</defName>
-        <label>install instinct limiter</label>
-        <description>Install a instinct limiter.</description>
-        <descriptionHyperlinks>
-            <ThingDef>InstinctLimiter</ThingDef>
-        </descriptionHyperlinks>
-        <jobString>Installing joywire.</jobString>
-        <ingredients>
-            <li>
-                <filter>
-                    <thingDefs>
-                        <li>InstinctLimiter</li>
-                    </thingDefs>
-                </filter>
-                <count>1</count>
-            </li>
-        </ingredients>
-        <fixedIngredientFilter>
-            <thingDefs>
-                <li>InstinctLimiter</li>
-            </thingDefs>
-        </fixedIngredientFilter>
-        <appliedOnFixedBodyParts>
-            <li>Brain</li>
-        </appliedOnFixedBodyParts>
-        <addsHediff>SapienceLimiterHediff</addsHediff>
-    </RecipeDef>
-
-    <ThingDef ParentName="BodyPartProstheticBase">
-        <defName>InstinctLimiter</defName>
-        <label>TODO</label>
-        <description>TODO</description>
-        <descriptionHyperlinks>
-            <RecipeDef>InstallInstinctLimiter</RecipeDef>
-        </descriptionHyperlinks>
-        <thingSetMakerTags>
-            <li>RewardStandardLowFreq</li>
-        </thingSetMakerTags>
-        <costList>
-            <!-- TODO -->
-            <Steel>20</Steel>
-            <ComponentIndustrial>4</ComponentIndustrial>
-        </costList>
-        <techHediffsTags>
-            <li>Advanced</li>
-        </techHediffsTags>
-    </ThingDef>
-
+	<HediffDef ParentName="ImplantHediffBase">
+		<defName>SapienceLimiterHediff</defName>
+		<label>neural inhibitor</label>
+		<description>An implanted neural inhibitor.</description>
+		<stages>
+			<li>
+				<statOffsets>
+					<SapientAnimalA>-0.8</SapientAnimalA>
+				</statOffsets>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.TFTransferable"/>
+		</modExtensions>
+		<spawnThingOnRemoved>InstinctLimiter</spawnThingOnRemoved>
+	</HediffDef>
+	<RecipeDef ParentName="SurgeryInstallImplantBase">
+		<defName>InstallInstinctLimiter</defName>
+		<label>install neural inhibitor</label>
+		<description>Install a neural inhibitor.</description>
+		<descriptionHyperlinks>
+			<ThingDef>InstinctLimiter</ThingDef>
+		</descriptionHyperlinks>
+		<jobString>Installing neural inhibitor.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>InstinctLimiter</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>InstinctLimiter</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<appliedOnFixedBodyParts>
+			<li>Brain</li>
+		</appliedOnFixedBodyParts>
+		<addsHediff>SapienceLimiterHediff</addsHediff>
+	</RecipeDef>
+	<ThingDef ParentName="BodyPartProstheticBase">
+		<defName>InstinctLimiter</defName>
+		<label>neural inhibitor</label>
+		<description>A powerful and rare implant that inhibits higher brain function, rendering the subject incapable of complex problem solving and leaving them with only basic survival instincts.</description>
+		<descriptionHyperlinks>
+			<RecipeDef>InstallInstinctLimiter</RecipeDef>
+		</descriptionHyperlinks>
+		<thingSetMakerTags>
+			<li>RewardStandardLowFreq</li>
+		</thingSetMakerTags>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>20</Plasteel>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+	</ThingDef>
 </Defs>
