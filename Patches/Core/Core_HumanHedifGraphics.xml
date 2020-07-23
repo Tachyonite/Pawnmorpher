@@ -9,6 +9,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerOffset>-0.27</layerOffset>
 				<drawForFemale>false</drawForFemale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboWolfspike>Parts/COMBINATIONS/Wolfspike/Wolfspike</EtherComboWolfspike>
@@ -109,6 +110,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerOffset>-0.27</layerOffset>
 				<drawForMale>false</drawForMale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboWolfspike>Parts/COMBINATIONS/Wolfspike/Wolfspike</EtherComboWolfspike>
@@ -211,6 +213,7 @@
 				<bodyPart>Ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
@@ -286,6 +289,7 @@
 				<bodyPart>Ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
@@ -359,6 +363,7 @@
 				<!-- Male Left Ear -->
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
+				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -439,6 +444,7 @@
 				<!-- Male Left Ear (Behind Head) -->
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
+				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south/>
 					<north/>
@@ -490,6 +496,7 @@
 				<!-- Male Right Ear -->
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
+				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -570,6 +577,7 @@
 				<!-- Male Right Ear (Behind Head) -->
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
+				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south/>
 					<north/>
@@ -621,6 +629,7 @@
 				<!-- Female Left Ear -->
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
+				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -704,6 +713,7 @@
 				<!-- Female Left Ear (Behind Head) -->
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
+				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south/>
 					<north/>
@@ -758,6 +768,7 @@
 				<!-- Female Right Ear -->
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
+				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -841,6 +852,7 @@
 				<!-- Female Right Ear (Behind Head) -->
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
+				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south/>
 					<north/>
@@ -898,6 +910,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherAlphabeaverTail>Parts/Alphabeaver/Alphabeaver_Tail</EtherAlphabeaverTail>
@@ -974,6 +987,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherSnakeTail>Parts/Cobra/Cobra_Tail</EtherSnakeTail>
 					<EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
@@ -1029,6 +1043,7 @@
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
@@ -1093,6 +1108,7 @@
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawForMale>false</drawForMale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
@@ -1160,6 +1176,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherSnakeHood>Parts/Cobra/Cobra_Hood</EtherSnakeHood>
 				</hediffGraphics>
@@ -1206,6 +1223,7 @@
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<drawForFemale>false</drawForFemale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherSnakeHood>Parts/Cobra/Cobra_Hood_Behind</EtherSnakeHood>
 					<EtherIguanaHorns>Parts/iguanaface/iguanahorns_Behind</EtherIguanaHorns>
@@ -1254,6 +1272,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherSnakeHood>Parts/Cobra/Cobra_Hood</EtherSnakeHood>
 				</hediffGraphics>
@@ -1303,6 +1322,7 @@
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<drawForMale>false</drawForMale>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherSnakeHood>Parts/Cobra/Cobra_Hood_Behind</EtherSnakeHood>
 				</hediffGraphics>
@@ -1350,6 +1370,7 @@
 				<bodyPart>Waist</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawnInBed>false</drawnInBed>
+				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherChemfuelUdder>Parts/boomalopeface/boomalopeudder</EtherChemfuelUdder>
 					<EtherUdder>Parts/cowface/cowudder</EtherUdder>
