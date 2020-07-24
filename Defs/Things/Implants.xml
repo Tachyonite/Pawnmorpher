@@ -46,7 +46,7 @@
 	<ThingDef ParentName="BodyPartProstheticBase">
 		<defName>SapientChip</defName>
 		<label>sapiostore mesh</label>
-		<description>A powerful and rare implant that acts as a mesh between mutagenic mechanites in a pawn's system and the brain. Provides a backup and restore point for intelligence, gradually restoring sapience and prevents further loss of sapience.\n\nTransfers between forms if reverted or changed.</description>
+		<description>A powerful and rare implant that acts as a mesh between mutagenic mechanites in a pawn's system and the brain. Provides a backup and restore point for intelligence, gradually restoring sapience and prevents further loss of sapience.Transfers between forms if reverted or changed.</description>
 		<descriptionHyperlinks>
 			<RecipeDef>InstallSapientChip</RecipeDef>
 		</descriptionHyperlinks>
@@ -56,7 +56,7 @@
 		<costList>
 			<Steel>50</Steel>
 			<Plasteel>20</Plasteel>
-			<Mutasilk>5</Mutasilk>
+			<Morphsilk>5</Morphsilk>
 			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techHediffsTags>
