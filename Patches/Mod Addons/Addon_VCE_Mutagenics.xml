@@ -81,7 +81,7 @@
 								</thingDefs>
 							</fixedIngredientFilter>
 							<products>
-								<VCE_InsectJellyPreserves>10</VCE_InsectJellyPreserves>
+								<Mutasalt>10</Mutasalt>
 							</products>
 							<researchPrerequisite>VCE_CondimentsResearch</researchPrerequisite>
 						</RecipeDef>
