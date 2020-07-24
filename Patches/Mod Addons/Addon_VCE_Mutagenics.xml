@@ -101,7 +101,7 @@
 								<li>TFMilk</li>
 							</items>	
 							<amount>
-								<li>50</li>
+								<li>25</li>
 							</amount>
 							<result>Mutacheese</result>	
 							<yield>1</yield>
@@ -133,7 +133,7 @@
 							<tradeability>Sellable</tradeability>
 							<stackLimit>10</stackLimit>
 							<statBases>
-								<MarketValue>800</MarketValue>
+								<MarketValue>500</MarketValue>
 								<Mass>1</Mass>
 								<Nutrition>0.9</Nutrition>
 							</statBases>
