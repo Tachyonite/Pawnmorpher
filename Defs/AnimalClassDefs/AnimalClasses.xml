@@ -22,24 +22,26 @@
 			<!-- Odd-toed ungulate (hoof) -->
 				<!-- Horse -->
 			<!-- Even-toed ungulate (cloven hoof) -->
-				<!-- Bovid -->
-					<!-- Cow -->
-					<!-- Gazelle -->
-					<!-- Muffalo -->
-				<!-- Ovid -->
-					<!-- Ibex -->
-					<!-- Sheep -->
-				<!-- Camelid -->
-					<!-- Alpaca -->
-					<!-- Dromedary -->
-				<!-- Cervid -->
-					<!-- Boomalope -->
-					<!-- Caribou -->
-					<!-- Deer -->
-					<!-- Elk -->
-				<!-- Suid (trotter foot) -->
-					<!-- Pig -->
-					<!-- WildBoar -->
+				<!-- Wool-covered ungulates -->
+					<!-- Ovid -->
+						<!-- Ibex -->
+						<!-- Sheep -->
+				<!-- Hide-covered ungulates -->
+					<!-- Bovid -->
+						<!-- Cow -->
+						<!-- Gazelle -->
+						<!-- Muffalo -->
+					<!-- Camelid -->
+						<!-- Alpaca -->
+						<!-- Dromedary -->
+					<!-- Cervid -->
+						<!-- Boomalope -->
+						<!-- Caribou -->
+						<!-- Deer -->
+						<!-- Elk -->
+					<!-- Suid (trotter foot) -->
+						<!-- Pig -->
+						<!-- WildBoar -->
 		<!-- Paw footed [Needs a better name] (paw feet) -->
 			<!-- Bear -->
 				<!-- Bear_Grizzly -->
@@ -138,15 +140,21 @@
     </Pawnmorph.AnimalClassDef>
 
     <Pawnmorph.AnimalClassDef>
+        <defName>WoollyUngulate</defName>
+        <label>woolly even-toed ungulate</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
         <defName>Ovid</defName>
         <label>ovid</label>
-        <parent>EvenToedUngulate</parent>
+        <parent>WoollyUngulate</parent>
     </Pawnmorph.AnimalClassDef>
 
     <Pawnmorph.AnimalClassDef>
         <defName>Camelid</defName>
         <label>camelid</label>
-        <parent>EvenToedUngulate</parent>
+        <parent>WoollyUngulate</parent>
     </Pawnmorph.AnimalClassDef>
 
     <Pawnmorph.AnimalClassDef>

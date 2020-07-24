@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherWoolySheep</defName>
-		<label>woolly</label>
-		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent sheepmorph that don't need no ram.</description>
+		<label>thick wool</label>
+		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly, different from the comparatively lighter wool that grows elsewhere. They can shave themselves, because they're a strong independent sheepmorph that don't need no ram.</description>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>
 		<parts>

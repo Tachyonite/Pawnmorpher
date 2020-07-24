@@ -186,17 +186,18 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="WoollyLimb">
 		<defName>EtherWoollyLimb</defName>
-		<label>thick wool</label>
-		<description>A heavy sweater of wool drapes across this limb, insulating a lot of heat.</description>
+		<label>wool</label>
+		<description>A sweater of wool drapes across this limb, insulating a lot of heat.</description>
 		<mutationMemory>EtherThickFurLimb</mutationMemory>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>
 			</li>
 		</comps>
-		<classInfluence>Ovid</classInfluence>
+		<classInfluence>WoollyUngulate</classInfluence>
 		<parts>
 			<li>Head</li>
+			<li>Neck</li>
 			<li>Arm</li>
 			<li>Leg</li>
 		</parts>
@@ -234,8 +235,8 @@
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>thickening wool</labelOverride>
-				<description>The wool covers [PAWN_nameDef]'s limb entirely. It's quite heavy and rather warm.</description>
+				<labelOverride>wool</labelOverride>
+				<description>The wool covers [PAWN_nameDef]'s limb entirely. It's rather warm.</description>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.3</ComfyTemperatureMin>
