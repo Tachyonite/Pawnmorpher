@@ -1,8 +1,8 @@
 <Defs>
 	<HediffDef ParentName="ImplantHediffBase">
-		<defName>SapienceLimiterHediff</defName>
-		<label>neural inhibitor</label>
-		<description>An implanted neural inhibitor.</description>
+		<defName>SapientChipHediff</defName>
+		<label></label>
+		<description>An implanted sapiostore mesh.</description>
 		<stages>
 			<li>
 				<statOffsets>
@@ -13,21 +13,21 @@
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.TFTransferable"/>
 		</modExtensions>
-		<spawnThingOnRemoved>InstinctLimiter</spawnThingOnRemoved>
+		<spawnThingOnRemoved>SapientChip</spawnThingOnRemoved>
 	</HediffDef>
 	<RecipeDef ParentName="SurgeryInstallImplantBase">
-		<defName>InstallInstinctLimiter</defName>
-		<label>install neural inhibitor</label>
-		<description>Install a neural inhibitor.</description>
+		<defName>InstallSapientChip</defName>
+		<label>install sapiostore chip</label>
+		<description>Install a sapiostore mesh.</description>
 		<descriptionHyperlinks>
-			<ThingDef>InstinctLimiter</ThingDef>
+			<ThingDef>SapientChip</ThingDef>
 		</descriptionHyperlinks>
-		<jobString>Installing neural inhibitor.</jobString>
+		<jobString>Installing sapiostore mesh.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>InstinctLimiter</li>
+						<li>SapientChip</li>
 					</thingDefs>
 				</filter>
 				<count>1</count>
@@ -35,20 +35,20 @@
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>InstinctLimiter</li>
+				<li>SapientChip</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<appliedOnFixedBodyParts>
 			<li>Brain</li>
 		</appliedOnFixedBodyParts>
-		<addsHediff>SapienceLimiterHediff</addsHediff>
+		<addsHediff>SapientChipHediff</addsHediff>
 	</RecipeDef>
 	<ThingDef ParentName="BodyPartProstheticBase">
-		<defName>InstinctLimiter</defName>
-		<label>neural inhibitor</label>
-		<description>A powerful and rare implant that inhibits higher brain function, rendering the subject incapable of complex problem solving and leaving them with only basic survival instincts.</description>
+		<defName>SapientChip</defName>
+		<label>sapiostore mesh</label>
+		<description>A powerful and rare implant that acts as a mesh between mutagenic mechanites in a pawn's system and the brain. Provides a backup and restore point for intelligence, gradually restoring sapience and prevents further loss of sapience.\n\nTransfers between forms if reverted or changed.</description>
 		<descriptionHyperlinks>
-			<RecipeDef>InstallInstinctLimiter</RecipeDef>
+			<RecipeDef>InstallSapientChip</RecipeDef>
 		</descriptionHyperlinks>
 		<thingSetMakerTags>
 			<li>RewardStandardLowFreq</li>
@@ -56,6 +56,7 @@
 		<costList>
 			<Steel>50</Steel>
 			<Plasteel>20</Plasteel>
+			<Mutasilk>5</Mutasilk>
 			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techHediffsTags>
