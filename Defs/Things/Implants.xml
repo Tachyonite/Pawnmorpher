@@ -1,6 +1,6 @@
 <Defs>
 	<HediffDef ParentName="ImplantHediffBase">
-		<defName>SapientChipHediff</defName>
+		<defName>SapienceLimiterHediff</defName>
 		<label></label>
 		<description>An implanted sapiostore mesh.</description>
 		<stages>
@@ -16,7 +16,7 @@
 		<spawnThingOnRemoved>SapientChip</spawnThingOnRemoved>
 	</HediffDef>
 	<RecipeDef ParentName="SurgeryInstallImplantBase">
-		<defName>InstallSapientChip</defName>
+		<defName>InstallInstinctLimiter</defName>
 		<label>install sapiostore chip</label>
 		<description>Install a sapiostore mesh.</description>
 		<descriptionHyperlinks>
@@ -41,14 +41,14 @@
 		<appliedOnFixedBodyParts>
 			<li>Brain</li>
 		</appliedOnFixedBodyParts>
-		<addsHediff>SapientChipHediff</addsHediff>
+		<addsHediff>SapienceLimiterHediff</addsHediff>
 	</RecipeDef>
 	<ThingDef ParentName="BodyPartProstheticBase">
 		<defName>SapientChip</defName>
 		<label>sapiostore mesh</label>
-		<description>A powerful and rare implant that acts as a mesh between mutagenic mechanites in a pawn's system and the brain. Provides a backup and restore point for intelligence, gradually restoring sapience and prevents further loss of sapience.Transfers between forms if reverted or changed.</description>
+		<description>A powerful and rare implant that acts as a mesh between mutagenic mechanites in a pawn's system and the brain. Provides a backup and restore point for intelligence, gradually restoring sapience and prevents further loss of sapience.\n\nTransfers between forms if reverted or changed.</description>
 		<descriptionHyperlinks>
-			<RecipeDef>InstallSapientChip</RecipeDef>
+			<RecipeDef>InstallInstinctLimiter</RecipeDef>
 		</descriptionHyperlinks>
 		<thingSetMakerTags>
 			<li>RewardStandardLowFreq</li>
