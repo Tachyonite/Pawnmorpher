@@ -26,6 +26,7 @@
 					<!-- Cow -->
 					<!-- Gazelle -->
 					<!-- Muffalo -->
+				<!-- Ovid -->
 					<!-- Ibex -->
 					<!-- Sheep -->
 				<!-- Camelid -->
@@ -133,6 +134,12 @@
     <Pawnmorph.AnimalClassDef>
         <defName>Bovid</defName>
         <label>bovid</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Ovid</defName>
+        <label>ovid</label>
         <parent>EvenToedUngulate</parent>
     </Pawnmorph.AnimalClassDef>
 
