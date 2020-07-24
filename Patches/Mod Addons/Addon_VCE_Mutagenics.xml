@@ -9,26 +9,24 @@
 					<xpath>Defs</xpath>
 					<value>
 						<ThingDef ParentName="RoughPlantBase">
-							<defName>PM_MutaniteSalt</defName>
+							<defName>Mutasalt</defName>
 							<label>mutanite salt</label>
 							<description>Mutanite that's been ground up into a fine powder, that can be sprinked over foods to give chaotic mutations to anyone who eats them...</description>
 							<graphicData>
-								<texPath>Things/Items/Condiments/VCE_InsectJellyPreserves</texPath>
+								<texPath>Things/Item/Resource/Mutasalt</texPath>
 								<graphicClass>Graphic_StackCount</graphicClass>
 							</graphicData>
 							<statBases>
 								<MarketValue>100</MarketValue>
-								<Nutrition>0</Nutrition>
+								<Nutrition>0.3</Nutrition>
 								<Flammability>1.3</Flammability>
 							</statBases>
-
 							<thingCategories>
 								<li>VCE_Condiments</li>
 							</thingCategories>
 							<ingestible>
 								<preferability>NeverForNutrition</preferability>
 								<specialThoughtAsIngredient>PM_ConsumedDigestibleFullRandomTF</specialThoughtAsIngredient>
-
 							</ingestible>
 						</ThingDef>
 					</value>
@@ -52,22 +50,60 @@
 						</ThoughtDef>
 					</value>
 				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<RecipeDef>
+							<defName>VCE_PM_MutaniteSalt</defName>
+							<label>grind mutanite into salt</label>
+							<description>Create a lot of green seasoning from lumps of mutanite. Added to meals after cooking for an extra kick.</description>
+							<jobString>Grinding mutanite into salt.</jobString>
+							<workSpeedStat>CookSpeed</workSpeedStat>
+							<effectWorking>Cook</effectWorking>
+							<soundWorking>Recipe_CookMeal</soundWorking>
+							<workAmount>200</workAmount>
+							<recipeUsers>
+								<li>VCE_CondimentPrepTable</li>	  
+							</recipeUsers>	
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Mutanite</li>
+										</thingDefs>
+									</filter>
+									<count>1</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Mutanite</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<VCE_InsectJellyPreserves>10</VCE_InsectJellyPreserves>
+							</products>
+							<researchPrerequisite>VCE_CondimentsResearch</researchPrerequisite>
+						</RecipeDef>
+					</value>
+				</li>
 
-				<!-- Cowmorph Milk -->
+
+				<!-- Mecha Milk -->
 				<li Class="PatchOperationAdd"> 
 					<success>Always</success>
 					<xpath>/Defs</xpath>
 					<value>
 						<ItemProcessor.CombinationDef>
-							<defName>PM_CowmorphMilkIntoCheese</defName>
+							<defName>VCE_CowmorphMilkIntoCheese</defName>
 							<building>VCE_CheesePress</building>
 							<items>
 								<li>TFMilk</li>
 							</items>	
 							<amount>
-								<li>20</li>
+								<li>50</li>
 							</amount>
-							<result>PM_CowmorphCheese</result>	
+							<result>VCE_PM_CowmorphCheese</result>	
 							<yield>1</yield>
 							<useQualityIncreasing>true</useQualityIncreasing>
 							<awfulQualityAgeDaysThreshold>10</awfulQualityAgeDaysThreshold>
@@ -76,7 +112,7 @@
 							<goodQualityAgeDaysThreshold>35</goodQualityAgeDaysThreshold>
 							<excellentQualityAgeDaysThreshold>40</excellentQualityAgeDaysThreshold>
 							<masterworkQualityAgeDaysThreshold>45</masterworkQualityAgeDaysThreshold>
-							<legendaryQualityAgeDaysThreshold>75</legendaryQualityAgeDaysThreshold>
+							<legendaryQualityAgeDaysThreshold>100</legendaryQualityAgeDaysThreshold>
 						</ItemProcessor.CombinationDef>
 					</value>
 				</li>
@@ -86,41 +122,37 @@
 					<success>Always</success>
 					<xpath>/Defs</xpath>
 					<value>
-
-
 						<ThingDef ParentName="MealBase">
-							<defName>PM_CowmorphCheese</defName>
+							<defName>Mutacheese</defName>
 							<label>cowmorph cheese</label>
-							<description>A green coloured cheese, with a slightly metallic taste to it. It's extraodinarily dense and crumbly, and highly 'moo-tagenetic'.</description>
+							<description>A mutagenic mechanite cheese created by pressing cowmorph milk. This isn't edible, but if consumed it will act as an organic equivalent of a cowmorph syringe.</description>
 							<graphicData>
-								<texPath>Things/Items/Cheese/VCE_BrownCheese</texPath>
+								<texPath>Things/Item/Resource/Mutacheese</texPath>
 								<graphicClass>Graphic_StackCount</graphicClass>
 							</graphicData>
 							<tradeability>Sellable</tradeability>
-							<stackLimit>75</stackLimit>
+							<stackLimit>10</stackLimit>
 							<statBases>
-								<MarketValue>300</MarketValue>
-								<Nutrition>0.1</Nutrition>
-
+								<MarketValue>800</MarketValue>
+								<Mass>1</Mass>
+								<Nutrition>0.9</Nutrition>
 							</statBases>
 							<thingCategories>
 								<li>VCE_Cheese</li>
 							</thingCategories>
 							<ingestible>
-								<preferability>MealLavish</preferability>
+								<foodType>Meal</foodType>
+								<preferability>NeverForNutrition</preferability>
+								<tasteThought>VCE_PM_AteCowmorphCheese</tasteThought>
+
 								<ingestEffect>EatMeat</ingestEffect>
 								<ingestSound>Meal_Eat</ingestSound>
-								<joy>0.10</joy>
+								<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+								<joy>0.03</joy>
 								<joyKind>Gluttonous</joyKind>
-								<maxNumToIngestAtOnce>10</maxNumToIngestAtOnce>
-								<preferability>NeverForNutrition</preferability>
-								<specialThoughtAsIngredient>PM_ConsumedDigestibleCowmorphCheeseTF</specialThoughtAsIngredient>
 							</ingestible>
 							<comps>
-								<li Class="CompProperties_Rottable">
-									<daysToRotStart>200</daysToRotStart>
-									<rotDestroys>true</rotDestroys>
-								</li>
+
 								<li>
 									<compClass>CompQuality</compClass>
 								</li>
@@ -131,25 +163,28 @@
 
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs</xpath>
+				<li Class="PatchOperationAdd"> 
+					<success>Always</success>
+					<xpath>/Defs</xpath>
 					<value>
 						<ThoughtDef>
+							<defName>VCE_PM_AteCowmorphCheese</defName>
 							<thoughtClass>VanillaCookingExpanded.Thought_Hediff</thoughtClass>
-							<defName>PM_ConsumedDigestibleCowmorphCheeseTF</defName>
 							<hediff>PawnmorphCowTF</hediff>
-							<durationDays>0.5</durationDays>
+							<validWhileDespawned>true</validWhileDespawned>
 							<stages>
 								<li>
-									<label>strange cheese</label>
-									<description>That cheese tasted like metal, and I'm feeling a sudden urge to moo...</description>
-									<baseMoodEffect>-1</baseMoodEffect>
+									<label>ate cowmorph cheese</label>
+									<description>That... was... huh... My whoooole body feels hooooot...</description>
+									<baseMoodEffect>-3</baseMoodEffect>
 								</li>
 							</stages>
-							
+
 						</ThoughtDef>
 					</value>
 				</li>
+				
+				
 				<li Class="PatchOperationAdd"> 
 					<success>Always</success>
 					<xpath>/Defs/ItemProcessor.ItemAcceptedDef[defName = "IP_CheesePressFirstItem"]/items</xpath>
