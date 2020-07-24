@@ -18,7 +18,7 @@
 							</graphicData>
 							<statBases>
 								<MarketValue>100</MarketValue>
-								<Nutrition>0.3</Nutrition>
+								<Nutrition>1</Nutrition>
 								<Flammability>1.3</Flammability>
 							</statBases>
 							<thingCategories>
@@ -103,7 +103,7 @@
 							<amount>
 								<li>50</li>
 							</amount>
-							<result>VCE_PM_CowmorphCheese</result>	
+							<result>Mutacheese</result>	
 							<yield>1</yield>
 							<useQualityIncreasing>true</useQualityIncreasing>
 							<awfulQualityAgeDaysThreshold>10</awfulQualityAgeDaysThreshold>
