@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
@@ -189,6 +190,26 @@ namespace Pawnmorph.DebugUtils
         {
             if (pawn == null) return;
             Find.WindowStack.Add(new Dialog_PartPicker(pawn));
+        }
+
+        // Really crappily written function to get a list of all morph tags and the morphs that belong to them - Pheonix's fault.
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        public static void ListMorphsByTags()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (MorphCategoryDef category in DefDatabase<MorphCategoryDef>.AllDefs.ToList())
+            {
+                builder.AppendLine($"{category.defName}:");
+                foreach (MorphDef morph in DefDatabase<MorphDef>.AllDefs.ToList())
+                {
+                    if (morph.categories.Contains(category))
+                    {
+                        builder.AppendLine($"    {morph.LabelCap}");
+                    }
+                }
+            }
+            Log.Message(builder.ToString());
+            Log.TryOpenLogWindow();
         }
     }
 }
