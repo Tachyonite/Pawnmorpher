@@ -1,0 +1,13 @@
+<LanguageData>
+	<PartPickerMenuTitle>Part Picker (Semi-Functional)</PartPickerMenuTitle>
+	<DoSymmetry>Sync L/R</DoSymmetry>
+	<NoMutationsOnPart>None</NoMutationsOnPart>
+	<EditParams>Edit...</EditParams>
+	<DescriptionPaneTitle>Details</DescriptionPaneTitle>
+	<ToggleClothes>Clothing Toggle</ToggleClothes>
+	<RotLeft>Rotate Pawn</RotLeft>
+	<RotRight>Rotate Pawn</RotRight>
+	<ApplyButtonText>Apply</ApplyButtonText>
+	<ResetButtonText>Reset</ResetButtonText>
+	<CancelButtonText>Cancel</CancelButtonText>
+</LanguageData>

@@ -198,10 +198,19 @@
           <li>CatMorph</li>
           <li>FoxMorph</li>
           <li>CowMorph</li>
+          <li>SheepMorph</li>
+          <li>BoomalopeMorph</li>
+          <li>DeerMorph</li>
+          <li>PigMorph</li>
+          <li>IguanaMorph</li>
+          <li>SnakeMorph</li>
+          <li>BearMorph</li>
           <li>HuskyMorph</li>
           <li>ChookMorph</li>
           <li>RatMorph</li>
           <li>MonkeyMorph</li>
+          <li>HareMorph</li>
+          <li>SquirrelMorph</li>
           <li>WolfMorph</li>
         </morphs>
         <hediffRange>0~10</hediffRange>

@@ -12,7 +12,7 @@ namespace Pawnmorph.ThingComps
     /// <summary>
     /// </summary>
     /// <seealso cref="Verse.ThingComp" />
-    public class AnimalSelectorComp : ThingComp
+    public class AnimalSelectorComp : ThingComp, IEquipmentGizmo
     {
         private PawnKindDef _chosenKind;
 
@@ -57,6 +57,8 @@ namespace Pawnmorph.ThingComps
 
 
         private Command_Action _cachedGizmo;
+
+        private Gizmo[] _cachedGizmoArr; 
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
@@ -121,6 +123,20 @@ namespace Pawnmorph.ThingComps
             _chosenKind = chosenKind;
             Gizmo.icon = _chosenKind.race.uiIcon;
             Gizmo.defaultLabel = _chosenKind.label; 
+        }
+
+        /// <summary>
+        /// Gets the gizmos.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Gizmo> GetGizmos()
+        {
+            if (_cachedGizmoArr == null)
+            {
+                _cachedGizmoArr = new[] {Gizmo};
+            }
+
+            return _cachedGizmoArr; 
         }
     }
 

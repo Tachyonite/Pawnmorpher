@@ -98,13 +98,17 @@ namespace Pawnmorph.SapienceStates
             get
             {
 
+                if (Tracker == null)
+                {
+                    return Pawn?.RaceProps?.intelligence ?? Intelligence.Animal; 
+                }
+
                 switch (Tracker.SapienceLevel)
                 {
                     case SapienceLevel.Sapient:
-                    case SapienceLevel.MostlySapient:
-                        return Intelligence.Humanlike;
+                    case SapienceLevel.MostlySapient:    
                     case SapienceLevel.Conflicted:
-                        return Intelligence.ToolUser; 
+                        return Intelligence.Humanlike;
                     case SapienceLevel.MostlyFeral:
                     case SapienceLevel.Feral:
                     case SapienceLevel.PermanentlyFeral:

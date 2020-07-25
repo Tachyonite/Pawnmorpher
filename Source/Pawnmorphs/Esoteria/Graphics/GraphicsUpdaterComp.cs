@@ -104,9 +104,9 @@ namespace Pawnmorph.GraphicSys
 
             var highestInfluence = Pawn.GetHighestInfluence();
             var curMorph = Pawn.def.GetMorphOfRace();
-            if (highestInfluence == null || (!force && highestInfluence == curMorph))
+            if (highestInfluence == null)
             {
-                if (GComp.skinColor == InitialGraphics.SkinColor)
+                if (GComp.skinColor == InitialGraphics.SkinColor && !force)
                 {
                     return false; // If there is not influence or if the highest influence is that of their current race do nothing.
                 }
@@ -152,9 +152,9 @@ namespace Pawnmorph.GraphicSys
             var highestInfluence = Pawn.GetHighestInfluence();
             var curMorph = Pawn.def.GetMorphOfRace();
 
-            if (highestInfluence == null || (!force && highestInfluence == curMorph))
+            if (highestInfluence == null)
             {
-                if (Pawn.story.hairColor == InitialGraphics.HairColor)
+                if (Pawn.story.hairColor == InitialGraphics.HairColor && !force)
                 {
                     return false; // If there is not influence or if the highest influence is that of their current race do nothing.
                 }

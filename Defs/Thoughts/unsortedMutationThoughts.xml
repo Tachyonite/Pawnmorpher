@@ -2885,6 +2885,31 @@
 
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
+        <defName>EtherSheepEye</defName>
+        <stages>
+            <li>
+                <label>Sheep eye</label>
+                <description>The pupils look so...animal.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Sheep eye</label>
+                <description>Nobody can sneak up on me now...!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Sheep eye</label>
+                <description>They make me look like a stupid sheep!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
         <defName>EtherSheepEar</defName>
         <stages>
             <li>

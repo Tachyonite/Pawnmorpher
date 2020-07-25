@@ -233,6 +233,27 @@ namespace Pawnmorph.Hediffs
             ///     if true, the mutation will be block from any part, not just on the same part this mutation is on
             /// </summary>
             public bool blockOnAnyPart;
+
+            /// <summary>
+            /// Checks if the given source mutation blocks the given otherMutation being added at the given part
+            /// </summary>
+            /// <param name="sourceMutation">The source mutation.</param>
+            /// <param name="otherMutation">The other mutation.</param>
+            /// <param name="addPart">The add part.</param>
+            /// <returns></returns>
+            public bool Blocks([NotNull] Hediff_AddedMutation sourceMutation, [NotNull] MutationDef otherMutation, [CanBeNull] BodyPartRecord addPart)
+            {
+                if (sourceMutation == null) throw new ArgumentNullException(nameof(sourceMutation));
+                if (otherMutation == null) throw new ArgumentNullException(nameof(otherMutation));
+
+                if (otherMutation != mutation)
+                {
+                    return false; 
+                }
+
+                return blockOnAnyPart || addPart == sourceMutation.Part; 
+
+            }
         }
 
         

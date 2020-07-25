@@ -1,7 +1,7 @@
 <Defs>
     <StatDef>
         <defName>SapientAnimalA</defName>
-        <label>resolve</label>
+        <label>sapience change</label>
         <description>Controls the degree to which a pawn resists changes in instinct.</description>
         <!-- higher values mean the pawn is less affected by a raise in instincts  -->
         <category>BasicsPawn</category>

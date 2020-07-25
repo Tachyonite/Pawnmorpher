@@ -280,10 +280,15 @@ namespace Pawnmorph
         }
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
         {
+
+
             foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(myPawn))
             {
                 yield return floatMenuOption;
             }
+            if(!MutagenDefOf.MergeMutagen.CanTransform(myPawn))
+                yield break;
+            
             if (innerContainer.Count == 0)
             {
                 if (!myPawn.CanReach(this, PathEndMode.InteractionCell, Danger.Deadly))
@@ -364,7 +369,10 @@ namespace Pawnmorph
                     request = new TransformationRequest(pawnTFKind, pawn)
                     {
                         forcedGender = TFGender.Switch,
-                        forcedGenderChance = 50
+                        forcedGenderChance = 50,
+                        manhunterSettingsOverride = ManhunterTfSettings.Never,
+                        factionResponsible = Faction,
+                        forcedFaction = Faction
                     };
 
                     mutagen = MutagenDefOf.defaultMutagen.MutagenCached;
@@ -374,7 +382,10 @@ namespace Pawnmorph
                     request = new TransformationRequest(pawnTFKind,   pawn, (Pawn) linkTo.innerContainer[0])
                     {
                         forcedGender = TFGender.Switch,
-                        forcedGenderChance = 50
+                        forcedGenderChance = 50,
+                        manhunterSettingsOverride = ManhunterTfSettings.Never,
+                        factionResponsible = Faction,
+                        forcedFaction = Faction
                     };
                     mutagen = MutagenDefOf.MergeMutagen.MutagenCached;
                     break;
@@ -386,6 +397,7 @@ namespace Pawnmorph
             }
 
             TransformedPawn pmInst = mutagen.Transform(request);
+           
             if (pmInst == null)
             {
                 Log.Error($"mutagenic chamber could not transform pawns {string.Join(",",request.originals.Select(p => p.Name.ToStringFull).ToArray())} using mutagen {mutagen.def.defName}");

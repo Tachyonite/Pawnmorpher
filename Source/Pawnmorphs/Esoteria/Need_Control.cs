@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -119,6 +120,13 @@ namespace Pawnmorph
                         if (!DefDatabase<MutagenDef>.AllDefs.Any(m => m.CanTransform(race))) continue;
                         _enabledRaces.Add(race);
                     }
+
+                    foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.Animal == true))
+                    {
+                        var fhSettings = thingDef.GetModExtension<FormerHumanSettings>(); 
+                        if(fhSettings?.neverFormerHuman == true) continue;
+                        _enabledRaces.Add(thingDef); 
+                    }
                 }
 
                 return _enabledRaces;
@@ -131,8 +139,15 @@ namespace Pawnmorph
         /// <param name="instinctChange">The instinct change.</param>
         public void AddInstinctChange(float instinctChange)
         {
+            //hard coding in the limiter is hacky but is the best solution here 
+            bool hasInstinctLimiter = pawn?.health?.hediffSet?.HasHediff(TfHediffDefOf.SapienceLimiterHediff) == true;
+
             _maxLevelCached = null;
-            _seekerLevel += CalculateControlChange(pawn, instinctChange) / AVERAGE_MAX_SAPIENCE;
+
+            float deltaL = CalculateControlChange(pawn, instinctChange) / AVERAGE_MAX_SAPIENCE;
+            if (hasInstinctLimiter)
+                deltaL = Mathf.Max(0, deltaL);
+            _seekerLevel += deltaL;
             _seekerLevel = Mathf.Clamp(_seekerLevel, 0, Mathf.Min(MaxLevel, Limit));
         }
 
@@ -202,8 +217,7 @@ namespace Pawnmorph
         public static bool IsEnabledFor([NotNull] Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            SapienceLevel fhLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral;
-            return fhLevel != SapienceLevel.PermanentlyFeral || EnabledRaces.Contains(pawn.def);
+            return pawn.GetSapienceState() != null && EnabledRaces.Contains(pawn.def);
         }
 
         /// <summary>

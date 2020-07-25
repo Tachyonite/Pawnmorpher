@@ -105,6 +105,7 @@
 		<defName>EtherThickHideLimb</defName>
 		<description>A very thick, rough and leathery skin now covers this limb, adding a substantial natural defense.</description>
 		<label>thick hide</label>
+		<classInfluence>ElephantMorph</classInfluence>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.33</severityPerDay>

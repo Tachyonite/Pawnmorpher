@@ -79,6 +79,11 @@ namespace Pawnmorph.TfSys
         public TaleDef tale;
 
         /// <summary>
+        /// override for the manhunter settings of the given animal 
+        /// </summary>
+        public ManhunterTfSettings? manhunterSettingsOverride; 
+
+        /// <summary>
         /// if not null then this represents the sapience level the tf'd pawn will have
         /// </summary>
         public float? forcedSapienceLevel;

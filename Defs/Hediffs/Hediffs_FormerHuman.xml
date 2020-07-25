@@ -9,10 +9,9 @@
 			<li>
 				<label>sapient</label>
 			</li>
-			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+			<li>
 				<label>mostly sapient</label>
 				<minSeverity>0.4</minSeverity>
-				<disallowedWork>Intellectual,Artistic</disallowedWork>
 				<statOffsets>
 					<TameAnimalChance>0.05</TameAnimalChance>
 					<TrainAnimalChance>0.05</TrainAnimalChance>
@@ -80,10 +79,9 @@
 					<SapienceRecoverFactor>1</SapienceRecoverFactor>
 				</statOffsets>
 			</li>
-			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+			<li >
 				<label>mostly feral</label>
 				<minSeverity>0.8</minSeverity>
-				<disallowedWork>Intellectual,ManualSkilled</disallowedWork>
 				<statOffsets>
 					<TameAnimalChance>0.2</TameAnimalChance>
 					<TrainAnimalChance>0.2</TrainAnimalChance>
@@ -91,10 +89,9 @@
 					<SapienceRecoverFactor>1</SapienceRecoverFactor>
 				</statOffsets>
 			</li>
-			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+			<li>
 				<label>mostly feral</label>
 				<minSeverity>1</minSeverity>
-				<disallowedWork>Intellectual,ManualSkilled,Animals,Social</disallowedWork>
 				<statOffsets>
 					<TameAnimalChance>0.2</TameAnimalChance>
 					<TrainAnimalChance>0.2</TrainAnimalChance>

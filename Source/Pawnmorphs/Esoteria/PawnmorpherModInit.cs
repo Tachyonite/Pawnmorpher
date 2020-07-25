@@ -28,10 +28,17 @@ namespace Pawnmorph
         {
             try
             {
+                GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static); 
+
+
+
                 NotifySettingsChanged();
                 GenerateImplicitRaces();
                 TransferPatchesToExplicitRaces();
                 CheckForObsoletedComponents();
+
+                CheckForModConflicts(); 
+
             }
            
             catch (Exception e)
@@ -40,6 +47,16 @@ namespace Pawnmorph
             }
         }
 
+        private static void CheckForModConflicts()
+        {
+            var androidsIsLoaded = LoadedModManager.RunningMods.Any(m => m.PackageId == "Atlas.AndroidTiers");
+
+            //TODO make this a pop up 
+            if (androidsIsLoaded)
+            {
+                Log.Error("Android Tiers + Pawnmorpher detected. Please disable the AT 'hide inactive surrogates' mod option if former humans don't appear in your colonist bar or menu.");
+            }
+        }
 
 
         private static void TransferPatchesToExplicitRaces()
@@ -210,9 +227,7 @@ namespace Pawnmorph
         {
             try
             {
-                var allLoadedThingDefs = DefDatabase<ThingDef>.AllDefs;
-                HashSet<ushort> takenHashes = new HashSet<ushort>(allLoadedThingDefs.Select(t => t.shortHash));  // Get the hashes already being used 
-
+                
                 List<ThingDef> genRaces = new List<ThingDef>();
 
                 foreach (ThingDef_AlienRace thingDefAlienRace in RaceGenerator.ImplicitRaces)
@@ -223,9 +238,13 @@ namespace Pawnmorph
                     DefGenerator.AddImpliedDef(thingDefAlienRace); 
                 }
 
+                object[] tmpArr = new object[2];
+
+                tmpArr[1] = typeof(ThingDef); 
                 foreach (ThingDef thingDef in genRaces)
                 {
-                    GiveHash(thingDef, takenHashes);
+                    tmpArr[0] = thingDef;
+                    GiveHashMethod.Invoke(null, tmpArr); 
                 }
             }
             catch (MissingMethodException e)
@@ -236,25 +255,9 @@ namespace Pawnmorph
             }
         }
 
-        static void GiveHash(ThingDef defToGiveHashTo, HashSet<ushort> takenHashes)
-        {
-            var num = (ushort)(GenText.StableStringHash(defToGiveHashTo.defName) % 65535);
 
-            var num2 = 0;
+        private static readonly MethodInfo GiveHashMethod; 
 
-            while (num == 0 || takenHashes.Contains(num))
-            {
-                num += 1;
-                num2++;
-                if (num2 > 5000) //cut off at 5000 tries 
-                {
-                    Log.Message("Short hashes are saturated. There are probably too many Defs.", false);
-                }
-            }
-
-            defToGiveHashTo.shortHash = num;
-            takenHashes.Add(num);
-        }
 
         /// <summary>called when the settings are changed</summary>
         public static void NotifySettingsChanged()

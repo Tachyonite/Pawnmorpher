@@ -68,6 +68,13 @@ namespace Pawnmorph.SapienceStates
         /// </summary>
         public override void Tick()
         {
+            if (_doPostInit)
+            {
+                //need to defer this to the first tick after being added so Tracker has a chance to update correctly 
+                _waiting = Tracker.SapienceLevel == SapienceLevel.Sapient;
+                _doPostInit = false; 
+            }
+
             if (_waiting && RandUtilities.MtbDaysEventOccured(MTB))
             {
                 if (!CanRemove) return; 
@@ -219,6 +226,8 @@ namespace Pawnmorph.SapienceStates
             }
         }
 
+        private bool _doPostInit; 
+
         /// <summary>
         ///     Initializes this instance.
         /// </summary>
@@ -226,11 +235,7 @@ namespace Pawnmorph.SapienceStates
         protected override void Init()
         {
             InitEvents();
-            var sN = Tracker.SapienceNeed;
-            if (sN != null)
-            {
-                _waiting = Tracker.SapienceLevel == SapienceLevel.Sapient;
-            }
+            _doPostInit = true;
         }
     }
 }

@@ -105,6 +105,86 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// tries to get the equivalent body part record in the other body def 
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <param name="otherDef">The other definition.</param>
+        /// <returns>the equivalent body part record in the other body def if it exists, null otherwise</returns>
+        /// <exception cref="ArgumentNullException">
+        /// record
+        /// or
+        /// otherDef
+        /// </exception>
+        [CanBeNull]
+        public static BodyPartRecord GetRecord([NotNull] BodyPartRecord record, [NotNull] BodyDef otherDef)
+        {
+            if (record == null) throw new ArgumentNullException(nameof(record));
+            if (otherDef == null) throw new ArgumentNullException(nameof(otherDef));
+            var pAddr = record.GetAddress();
+            return otherDef.GetRecordAt(pAddr); 
+        }
+
+        /// <summary>
+        /// Transfers the hediffs from pawn1 onto pawn2 
+        /// </summary>
+        /// <param name="pawn1">The pawn1.</param>
+        /// <param name="pawn2">The pawn2.</param>
+        /// <param name="selector">The selector.</param>
+        /// <param name="transferFunc">The transfer function.</param>
+        public static void TransferHediffs([NotNull] Pawn pawn1, [NotNull] Pawn pawn2,  [NotNull] Func<Hediff, bool> selector, [NotNull] Func<BodyPartRecord, BodyPartRecord> transferFunc)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+            if (transferFunc == null) throw new ArgumentNullException(nameof(transferFunc));
+
+            var health1 = pawn1.health;
+            var health2 = pawn2.health;
+
+            var tHediffs = health1?.hediffSet?.hediffs?.Where(selector);
+            foreach (Hediff hediff in tHediffs.MakeSafe())
+            {
+
+                BodyPartRecord otherRecord;
+                if (hediff.Part == null) otherRecord = null;
+                else
+                    otherRecord = transferFunc(hediff.Part); 
+
+                if(otherRecord == null && hediff.Part != null) continue;
+
+                if(health2.hediffSet.HasHediff(hediff.def, otherRecord)) continue;
+                
+                var newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
+                health2.AddHediff(newHediff); 
+
+
+            }
+
+
+        }
+
+        /// <summary>
+        /// Transfers the hediffs from pawn1 onto pawn2 
+        /// </summary>
+        /// <param name="pawn1">The pawn1.</param>
+        /// <param name="pawn2">The pawn2.</param>
+        /// <param name="selector">The selector.</param>
+        /// <exception cref="ArgumentNullException">
+        /// pawn1
+        /// or
+        /// pawn2
+        /// </exception>
+        public static void TransferHediffs([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, [NotNull] Func<Hediff, bool> selector)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            var otherDef = pawn2.RaceProps.body;
+
+            TransferHediffs(pawn1, pawn2, selector, r => GetRecord(r, otherDef)); 
+
+        }
+
+        /// <summary>
         ///     Transfers all transferable aspects from pawn1 to pawn2
         /// </summary>
         /// <param name="pawn1">The source pawn.</param>

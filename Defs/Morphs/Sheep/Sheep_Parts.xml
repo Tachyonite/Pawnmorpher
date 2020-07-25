@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherWoolySheep</defName>
-		<label>woolly</label>
-		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent sheepmorph that don't need no man.</description>
+		<label>thick wool</label>
+		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly, different from the comparatively lighter wool that grows elsewhere. They can shave themselves, because they're a strong independent sheepmorph that don't need no ram.</description>
 		<maxSeverity>1</maxSeverity>
 		<initialSeverity>0.01</initialSeverity>
 		<parts>
@@ -78,7 +78,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherSheepSnout</defName>
 		<label>ovine snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier.</description>
+		<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier. The urge to bleat is extraordinarily powerful.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -153,4 +153,53 @@
 			<li>Tail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
+		<defName>EtherSheepEye</defName>
+		<label>sheep eye</label>
+		<description>[PAWN_nameDef] has rectangular pupils set in yellow eyes that are pressed slightly further to the side of the head. This gives better peripepheral vision, but does make it slightly harder to aim.</description>
+		<parts>
+			<li>Eye</li>
+		</parts>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.2</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+				  <AimingDelayFactor>0.1</AimingDelayFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
+		<defName>EtherSheepHorns</defName>
+		<label>ram horns</label>
+		<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt.</description>
+		<parts>
+			<li>Skull</li>
+		</parts>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>rammed</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>15.0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	
 </Defs>

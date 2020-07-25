@@ -57,7 +57,8 @@ namespace Pawnmorph.ThingComps
         /// <summary>
         /// Exits the current sapience state.
         /// </summary>
-        public void ExitState()
+        /// <param name="recalculateComps">if set to <c>true</c> dynamic components will be recalculated after exiting the state.</param>
+        public void ExitState(bool recalculateComps=true)
         {
             if (_sapienceState == null)
             {
@@ -65,7 +66,8 @@ namespace Pawnmorph.ThingComps
                 return; 
             }
             _sapienceState.Exit();
-            _sapienceState = null; 
+            _sapienceState = null;
+            if (recalculateComps) PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn); 
         }
 
         private SapienceLevel _sapienceLevel;
@@ -87,15 +89,17 @@ namespace Pawnmorph.ThingComps
         /// <param name="initialLevel">The initial level.</param>
         public void EnterState([NotNull] SapienceStateDef stateDef, float initialLevel)
         {
-            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
+            
 
             _sapienceState?.Exit();
             _sapienceState = stateDef.CreateState();
-            _sapienceState.Init(this);
+           
 
             //need to refresh comps and needs for pawn here 
-            PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
             Pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+            _sapienceState.Init(this);
+            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
             var sNeed = SapienceNeed;
             sNeed?.SetSapience(initialLevel);
             _sapienceState.Enter();
@@ -118,7 +122,18 @@ namespace Pawnmorph.ThingComps
         /// <value>
         /// The current intelligence.
         /// </value>
-        public Intelligence CurrentIntelligence => _sapienceState?.CurrentIntelligence ?? Pawn.RaceProps.intelligence; 
+        public Intelligence CurrentIntelligence
+        {
+            get
+            {
+                //hacky fix to correct null reference exception during loading 
+                if (_sapienceState != null && _sapienceState.Tracker == null)
+                {
+                    _sapienceState.Tracker = this; 
+                }
+                return _sapienceState?.CurrentIntelligence ?? Pawn.RaceProps.intelligence;
+            }
+        }
 
 
         /// <summary>
@@ -258,7 +273,10 @@ namespace Pawnmorph.ThingComps
             Scribe_Values.Look(ref _isFormerHuman, "isFormerHuman");
             Scribe_Values.Look(ref _sapienceLevel, "sapience");
             Scribe_Deep.Look(ref _sapienceState, nameof(CurrentState));
-
+            
+            //need to make sure the tracker is always non null 
+            if (_sapienceState != null) _sapienceState.Tracker = this; 
+            
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 //check to move old saves to the new sapience system 

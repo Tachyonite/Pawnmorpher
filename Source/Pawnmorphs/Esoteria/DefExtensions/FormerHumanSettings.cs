@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.FormerHumans;
+using Pawnmorph.TfSys;
 using Verse;
 
 namespace Pawnmorph.DefExtensions
@@ -29,7 +30,14 @@ namespace Pawnmorph.DefExtensions
         /// <summary>
         /// The food thought settings
         /// </summary>
-        public FoodThoughtSettings foodThoughtSettings; 
+        public FoodThoughtSettings foodThoughtSettings;
+
+
+        /// <summary>
+        /// The manhunter settings
+        /// </summary>
+        public ManhunterTfSettings manhunterSettings = ManhunterTfSettings.Default;
+
 
     }
 }

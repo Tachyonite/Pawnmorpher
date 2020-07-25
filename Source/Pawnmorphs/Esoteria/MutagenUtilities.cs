@@ -86,6 +86,8 @@ namespace Pawnmorph
 
             MutagenDef mutagenSource = mutationDef.GetMutagenDef(); 
 
+
+
             return mutagenSource.CanInfect(pawn);
         }
 

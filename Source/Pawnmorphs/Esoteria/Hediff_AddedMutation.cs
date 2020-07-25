@@ -21,6 +21,35 @@ namespace Pawnmorph
         [NotNull]
         private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
 
+        private MutationDef _mDef;
+
+        /// <summary>
+        /// Gets the definition.
+        /// </summary>
+        /// <value>
+        /// The definition.
+        /// </value>
+        [NotNull]
+        public MutationDef Def
+        {
+            get
+            {
+                if (_mDef == null)
+                {
+                    try
+                    {
+                        _mDef = (MutationDef) def; 
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        Log.Error($"cannot convert {def.GetType().Name} to {nameof(MutationDef)}!\n{e}");
+                    }
+                }
+
+                return _mDef; 
+            }
+        }
+
         /// <summary>
         /// checks if this mutation blocks the addition of a new mutation at the given part
         /// </summary>

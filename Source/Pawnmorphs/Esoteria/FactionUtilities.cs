@@ -34,7 +34,7 @@ namespace Pawnmorph
             if (member == null) throw new ArgumentNullException(nameof(member));
             if (animal == null) throw new ArgumentNullException(nameof(animal));
             if (faction.IsPlayer) return;
-
+            if (!faction.CanChangeGoodwillFor(Faction.OfPlayer, TRANSFORMED_RELATIONSHIP_OFFSET)) return; 
             if (!wasWorldPawn
              && !PawnGenerator.IsBeingGenerated(member)
              && (Current.ProgramState == ProgramState.Playing && map != null)

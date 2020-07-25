@@ -21,7 +21,7 @@ namespace Pawnmorph.Aspects
 
         private void TryAddState()
         {
-            var sTracker = Pawn.GetSapienceTracker();
+            var sTracker = Pawn?.GetSapienceTracker();
             if (sTracker != null && sTracker.CurrentState == null && Pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 sTracker.EnterState(SapienceStateDefOf.Animalistic, 1);

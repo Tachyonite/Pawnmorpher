@@ -3,4 +3,8 @@
 		<defName>EtherArcticWolfJaw</defName>
 		<classInfluence>ArcticWolfMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
+		<defName>EtherArcticWolfFur</defName>
+		<classInfluence>ArcticWolfMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

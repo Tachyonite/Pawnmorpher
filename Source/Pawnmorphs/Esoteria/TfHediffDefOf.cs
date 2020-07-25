@@ -24,5 +24,8 @@ namespace Pawnmorph
         public static HediffDef TransformationParalysis;
 
         [NotNull] public static HediffDef FeralPillSapienceDrop;
+
+        [NotNull]
+        public static HediffDef SapienceLimiterHediff;
     }
 }

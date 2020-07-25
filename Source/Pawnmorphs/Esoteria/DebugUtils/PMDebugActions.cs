@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Jobs;
 using Pawnmorph.Social;
@@ -20,6 +21,26 @@ namespace Pawnmorph.DebugUtils
     static class PMDebugActions
     {
         private const string PM_CATEGORY = "Pawnmorpher";
+
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void TagAllAnimals()
+        {
+            var gComp = Find.World.GetComponent<PawnmorphGameComp>();
+
+
+            foreach (var kindDef in DefDatabase<PawnKindDef>.AllDefs)
+            {
+                var thingDef = kindDef.race; 
+                if(thingDef.race?.Animal != true) continue;
+
+                if(!thingDef.IsValidAnimal()) continue;
+                if(gComp.taggedAnimals.Contains(kindDef)) continue;
+                gComp.TagPawn(kindDef); 
+
+            }
+
+        }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void TryExitSapienceState(Pawn pawn)

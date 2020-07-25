@@ -2,6 +2,7 @@
 // last updated 04/26/2020  9:22 AM
 
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
@@ -52,37 +53,55 @@ namespace Pawnmorph.HPatches
             return true; 
         }
 
-        [HarmonyPatch(nameof(Pawn.WorkTypeIsDisabled)), HarmonyPostfix]
-        static void FixWorkTypeIsDisabled(ref bool __result, [NotNull] WorkTypeDef w, [NotNull] Pawn __instance)
-        {
-            if (__result) return;
+     
+        [NotNull]
+        private static readonly List<IWorkModifier> _scratchList = new List<IWorkModifier>(); 
 
-            List<Hediff> hediffs = __instance.health?.hediffSet?.hediffs;
+        [HarmonyPatch(nameof(Pawn.GetDisabledWorkTypes)), HarmonyPostfix]
+        static void FixGetAllDisabledWorkTypes(List<WorkTypeDef> __result, Pawn __instance, bool permanentOnly)
+        {
+            if (__result == null) return;
+
+            var hediffs = __instance?.health?.hediffSet?.hediffs;
             if (hediffs == null) return;
+            _scratchList.Clear();
 
             foreach (Hediff hediff in hediffs)
-                if (hediff is IWorkModifier wM)
+            {
+                if (hediff is IWorkModifier wmH)
                 {
-                    if (wM.WorkTypeFilter == null) continue;
-                    if (!wM.WorkTypeFilter.PassesFilter(w))
+                    _scratchList.Add(wmH); 
+                }
+
+                var stages = (hediff.def?.stages).MakeSafe().OfType<IWorkModifier>();
+                _scratchList.AddRange(stages); 
+            }
+
+
+
+            foreach (var workType in DefDatabase<WorkTypeDef>.AllDefs)
+            {
+                if(__result.Contains(workType)) continue;
+
+                foreach (IWorkModifier workModifier in _scratchList)
+                {
+                    if ((workModifier.AllowedWorkTags & workType.workTags) == 0)
                     {
-                        __result = true;
-                        return;
+                        __result.Add(workType);
+                        break;
+                    }
+
+                    if (workModifier.WorkTypeFilter?.PassesFilter(workType) == false)
+                    {
+                        __result.Add(workType);
+                        break;
                     }
                 }
-                else
-                {
-                    foreach (HediffStage hediffStage in hediff.def.stages.MakeSafe())
-                        if (hediffStage is IWorkModifier sWM)
-                            if (sWM.WorkTypeFilter?.PassesFilter(w) == false)
-                            {
-                                __result = true;
-                                return;
-                            }
-                }
+            }
+
+
+
         }
-
-
 
         //this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
         [HarmonyPatch(nameof(Pawn.Tick)), HarmonyPostfix]
@@ -96,6 +115,28 @@ namespace Pawnmorph.HPatches
                 mTracker.needsRaceCompCheck = false; 
             }
 
+        }
+
+        [HarmonyPatch(nameof(Pawn.GetGizmos))]
+        [HarmonyPostfix]
+        static IEnumerable<Gizmo> GetGizmosPatch(IEnumerable<Gizmo> __result, [NotNull]  Pawn __instance)
+        {
+            foreach (Gizmo gizmo in __result)
+            {
+                yield return gizmo; 
+            }
+
+            var peq = __instance.equipment?.Primary;
+            if (peq != null)
+            {
+                foreach (IEquipmentGizmo eqGizmo in peq.AllComps.OfType<IEquipmentGizmo>())
+                {
+                    foreach (Gizmo gizmo in eqGizmo.GetGizmos())
+                    {
+                        yield return gizmo; 
+                    }
+                }
+            }
         }
 
     }
