@@ -4,30 +4,21 @@
 			<li>Genetic Rim</li>
 		</mods>
 
-		<nomatch Class="PatchOperationSequence">
-			<Operation Class="PatchOperationAdd">
-				<xpath>/Defs</xpath>
-				<value>
-						<DesignationCategoryDef>
-							<defName>GR_GeneticsTab</defName>
-							<label>Genetics</label>
-							<description>Items added by Pawnmorpher.</description>
-							<order>450</order>
-							<specialDesignatorClasses>
-							  <li>Designator_Cancel</li>
-							  <li>Designator_Deconstruct</li>
-							</specialDesignatorClasses>
-						</DesignationCategoryDef>
-				</value>
-			</Operation>
+		<nomatch Class="PatchOperationAdd">
+			<success>Always</success>
+			<xpath>/Defs</xpath> 
+			<value>
+				  <DesignationCategoryDef>
+					<defName>GR_GeneticsTab</defName>
+					<label>Genetics</label>
+					<description>Items added by Pawnmorpher.</description>
+					<order>450</order>
+					<specialDesignatorClasses>
+					  <li>Designator_Cancel</li>
+					  <li>Designator_Deconstruct</li>
+					</specialDesignatorClasses>
+				  </DesignationCategoryDef>
+			</value>
 		</nomatch>
-		<match Class="PatchOperationSequence">
-			<Operation Class="PatchOperationReplace">
-				<xpath>/Defs/DesignationCategoryDef/[defName = "GR_GeneticsTab"]/description</xpath>
-				<value>
-					<description>Items added by Genetic Rim and Pawnmorpher.</description>
-				</value>
-			</Operation>
-		</match>
 	</Operation>
 </Patch>

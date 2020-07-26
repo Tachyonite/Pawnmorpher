@@ -37,7 +37,7 @@
     <label>mutagen tank</label>
     <description>Stores liquid slurry in quantities enough to supply a chamber. Can be filled via a network of mutagen conduits, supplied by either a mutagen hopper or a vent pump.</description>
     <graphicData>	
-      <texPath>Things/Building/MutagenStorage/MutagenStorage</texPath>
+      <texPath>Things/Building/MutagenTank/MutagenTank</texPath>
       <graphicClass>Graphic_Single</graphicClass>
 	  <drawSize>(2,2)</drawSize>
     </graphicData>
@@ -45,6 +45,7 @@
     <altitudeLayer>Building</altitudeLayer>
     <passability>Impassable</passability>
     <fillPercent>0.6</fillPercent>
+	<rotatable>false</rotatable>
     <statBases>
       <MaxHitPoints>70</MaxHitPoints>
       <WorkToBuild>100</WorkToBuild>
