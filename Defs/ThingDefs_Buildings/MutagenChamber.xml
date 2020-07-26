@@ -21,12 +21,13 @@
 		<description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not fit in here.</description>
 		<thingClass>Pawnmorph.Building_MutagenChamber</thingClass>
 		<graphicData>
-			<texPath>Things/Building/MutagenChamber/TFChamber</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(1,2)</drawSize>
+			<texPath>Things/Building/MutagenChamber/TFChamber_Glass</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(7,7)</drawSize>
 			<shadowData>
 				<volume>(0.83, 0.3, 1.7)</volume>
 			</shadowData>
+			<drawRotated>false</drawRotated>
 		</graphicData>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<researchPrerequisites>
@@ -48,7 +49,7 @@
 			<Mass>200</Mass>
 		</statBases>
 		<tickerType>Normal</tickerType>
-		<size>(1,2)</size>
+		<size>(2,2)</size>
 		<hasInteractionCell>true</hasInteractionCell>
 		<interactionCellOffset>(1,0,0)</interactionCellOffset>
 		<comps>
@@ -81,6 +82,16 @@
 					<li>Chaofox</li>
 					<li>Chaodino</li>
 				</defaultAnimals>
+			</li>
+			<li Class="Pawnmorph.ThingComps.DrawSecondChamberProperties">
+				<graphicData>
+					<texPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>(7,7)</drawSize>
+					<drawRotated>false</drawRotated>
+				</graphicData>
+				<offset>(0,0,0)</offset>
+				<altitudeLayer>LayingPawn</altitudeLayer>
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>

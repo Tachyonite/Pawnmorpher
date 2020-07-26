@@ -532,6 +532,7 @@
     <Compile Include="TfSys\ManhunterTfSettings.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
+    <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />

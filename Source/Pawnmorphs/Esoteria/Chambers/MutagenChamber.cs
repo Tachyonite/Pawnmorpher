@@ -34,8 +34,13 @@ namespace Pawnmorph
         private CompFlickable flickComp = null;
         public Building_MutagenChamber linkTo;
 
-        private ChamberState _state; 
-
+        private ChamberState _state;
+        public override void Draw()
+        {
+            
+            //TODO draw pawn
+            Comps_PostDraw();
+        }
 
         public Building_MutagenChamber()
         {
