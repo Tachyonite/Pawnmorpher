@@ -23,12 +23,13 @@
 		<graphicData>
 			<texPath>Things/Building/MutagenChamber/TFChamber_Glass</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(7,7)</drawSize>
+			<drawSize>(4,4)</drawSize>
 			<shadowData>
 				<volume>(0.83, 0.3, 1.7)</volume>
 			</shadowData>
 			<drawRotated>false</drawRotated>
 		</graphicData>
+		<rotatable>false</rotatable>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<researchPrerequisites>
 			<li>MutagenChambers</li>
@@ -51,7 +52,7 @@
 		<tickerType>Normal</tickerType>
 		<size>(2,2)</size>
 		<hasInteractionCell>true</hasInteractionCell>
-		<interactionCellOffset>(1,0,0)</interactionCellOffset>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<comps>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -87,10 +88,9 @@
 				<graphicData>
 					<texPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
-					<drawSize>(7,7)</drawSize>
+					<drawSize>(4,4)</drawSize>
 					<drawRotated>false</drawRotated>
 				</graphicData>
-				<offset>(0,0,0)</offset>
 				<altitudeLayer>LayingPawn</altitudeLayer>
 			</li>
 		</comps>
