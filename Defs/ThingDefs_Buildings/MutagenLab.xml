@@ -62,7 +62,7 @@
 		<rotatable>false</rotatable>
 		<canOverlapZones>false</canOverlapZones>
 		<tradeability>Sellable</tradeability>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<tradeTags>
 			<li>ExoticBuilding</li>
 		</tradeTags>
@@ -129,7 +129,7 @@
 		<tickerType>Never</tickerType>
 		<rotatable>false</rotatable>
 		<neverMultiSelect>true</neverMultiSelect>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<surfaceType>Item</surfaceType>
 		<placeWorkers>
 		  <li>PlaceWorker_NextToHopperAccepter</li>
@@ -176,7 +176,7 @@
 			<Flammability>1.0</Flammability>
 		</statBases>
 		<size>(5,2)</size>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<passability>PassThroughOnly</passability>
 		<pathCost>70</pathCost>
 		<hasInteractionCell>True</hasInteractionCell>

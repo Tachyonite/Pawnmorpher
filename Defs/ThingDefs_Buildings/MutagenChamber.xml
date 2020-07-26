@@ -84,7 +84,7 @@
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<building>
 			<isPlayerEjectable>false</isPlayerEjectable>
 		</building>
@@ -157,6 +157,7 @@
 					<li>Chaocow</li>
 					<li>Chaofox</li>
 					<li>Chaodino</li>
+					<li>Chaoboom</li>
 				</defaultAnimals>
 				<merges>
 					<li>ChaomeldDog</li>
@@ -166,7 +167,7 @@
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<costList>
 			<Steel>50</Steel>
 			<Mutanite>1</Mutanite>
@@ -234,6 +235,7 @@
 					<li>Chaocow</li>
 					<li>Chaofox</li>
 					<li>Chaodino</li>
+					<li>Chaoboom</li>
 				</defaultAnimals>
 				<merges>
 					<li>ChaofusionRhino</li>
@@ -241,7 +243,7 @@
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<costList>
 			<Steel>70</Steel>
 			<Plasteel>10</Plasteel>
@@ -324,11 +326,12 @@
 					<li>Chaocow</li>
 					<li>Chaofox</li>
 					<li>Chaodino</li>
+					<li>Chaoboom</li>
 				</defaultAnimals>
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<building>
 			<isPlayerEjectable>false</isPlayerEjectable>
 		</building>
