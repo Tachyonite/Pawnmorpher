@@ -113,7 +113,8 @@ namespace Pawnmorph.ThingComps
             Pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
 
             //interrupts any jobs in case this changes their intelligence 
-            Pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced);
+            if(Pawn.thinker != null)
+                Pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced);
         }
 
         /// <summary>
