@@ -90,8 +90,7 @@ namespace Pawnmorph.ThingComps
         /// </summary>
         public override void PostDraw()
         {
-            if (!(parent.Rotation == Rot4.South))
-                return;
+            
             Graphic.Draw(GenThing.TrueCenter(parent.Position, parent.Rotation, parent.def.size, Props.Altitude) + Offset,
                          parent.Rotation, parent);
         }

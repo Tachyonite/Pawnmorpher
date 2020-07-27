@@ -3,7 +3,7 @@
         <defName>PM_NewMutagenicChamber</defName>
         <label>mutagenic chamber</label>
         <description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not fit in here.</description>
-        <thingClass>Pawnmorph.Building_MutagenChamber</thingClass>
+        <thingClass>Pawnmorph.Chambers.MutaChamber</thingClass>
         <graphicData>
             <texPath>Things/Building/MutagenChamber/TFChamber_Glass</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -18,7 +18,7 @@
         <researchPrerequisites>
             <li>MutagenChambers</li>
         </researchPrerequisites>
-        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayer>Pawn</altitudeLayer>
         <passability>PassThroughOnly</passability>
         <pathCost>70</pathCost>
         <blockWind>true</blockWind>
@@ -75,6 +75,7 @@
                     <drawSize>(6,6)</drawSize>
                     <drawRotated>false</drawRotated>
                 </graphicData>
+                <offset>(0,0,0)</offset>
                 <altitudeLayer>LayingPawn</altitudeLayer>
             </li>
         </comps>
