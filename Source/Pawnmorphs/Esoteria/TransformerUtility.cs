@@ -514,7 +514,7 @@ namespace Pawnmorph
             originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
 
             //remove any jobs the pawn may be doing 
-            if (originalPawn.jobs != null && originalPawn.Map != null)
+            if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null)
             {
                 originalPawn.jobs.ClearQueuedJobs();
                 originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced); 
@@ -571,6 +571,8 @@ namespace Pawnmorph
                     caravan.AddPawnOrItem(equipment, false); 
                 }
             }
+
+
         }
 
         /// <summary> Get the "ether state" of the pawn (whether they have the ether broken or bonded hediff. </summary>
