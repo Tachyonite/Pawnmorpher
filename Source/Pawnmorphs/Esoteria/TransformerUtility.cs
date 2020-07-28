@@ -548,27 +548,34 @@ namespace Pawnmorph
             var caravan = originalPawn.GetCaravan();
             var apparelTracker = originalPawn.apparel;
             var equipmentTracker = originalPawn.equipment;
-
+            
             if (originalPawn.Spawned)
             {
-                apparelTracker.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
-                equipmentTracker.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
+                apparelTracker?.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
+                equipmentTracker?.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
             }
             else if (caravan != null)
             {
-                for (int i = apparelTracker.WornApparelCount - 1; i >= 0; i--)
+
+                if (apparelTracker != null)
                 {
-                    var apparel = apparelTracker.WornApparel[i];
-                    apparelTracker.Remove(apparel);
-                    caravan.AddPawnOrItem(apparel, false); 
+                    for (int i = apparelTracker.WornApparelCount - 1; i >= 0; i--)
+                    {
+                        var apparel = apparelTracker.WornApparel[i];
+                        apparelTracker.Remove(apparel);
+                        caravan.AddPawnOrItem(apparel, false); 
+                    }
                 }
 
 
-                for (int i = equipmentTracker.AllEquipmentListForReading.Count - 1; i >= 0; i--)
+                if (equipmentTracker != null)
                 {
-                    var equipment = equipmentTracker.AllEquipmentListForReading[i];
-                    equipmentTracker.Remove(equipment);
-                    caravan.AddPawnOrItem(equipment, false); 
+                    for (int i = equipmentTracker.AllEquipmentListForReading.Count - 1; i >= 0; i--)
+                    {
+                        var equipment = equipmentTracker.AllEquipmentListForReading[i];
+                        equipmentTracker.Remove(equipment);
+                        caravan.AddPawnOrItem(equipment, false); 
+                    }
                 }
             }
 
