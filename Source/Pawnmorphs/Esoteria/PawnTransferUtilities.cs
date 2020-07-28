@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -183,6 +184,55 @@ namespace Pawnmorph
             TransferHediffs(pawn1, pawn2, selector, r => GetRecord(r, otherDef)); 
 
         }
+
+        static bool DefaultThoughtSelector(Pawn pawn, Thought_Memory mem)
+        {
+            return mem.def.IsValidFor(pawn); 
+        }
+
+
+        /// <summary>
+        /// Transfers thoughts from pawn1 onto pawn2.
+        /// </summary>
+        /// <param name="pawn1">The pawn to transfer thoughts from.</param>
+        /// <param name="pawn2">The pawn to transfer thoughts onto.</param>
+        /// <param name="selector">The selector function. default just checks that the memory is valid for pawn2</param>
+        /// <exception cref="ArgumentNullException">
+        /// pawn1
+        /// or
+        /// pawn2
+        /// </exception>
+        public static void TransferThoughts([NotNull] Pawn pawn1, [NotNull] Pawn pawn2,
+                                            [CanBeNull] Func<Thought_Memory, bool> selector = null)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            selector = selector ?? (t => DefaultThoughtSelector(pawn2, t)); 
+            var thoughtHandler1 = pawn1.needs?.mood?.thoughts;
+            var thoughtHandler2 = pawn2.needs?.mood?.thoughts;
+
+            if (thoughtHandler2?.memories == null || thoughtHandler1?.memories == null) return;
+
+            foreach (Thought_Memory memory in thoughtHandler1.memories.Memories.MakeSafe())
+            {
+                if(!selector(memory)) continue;
+
+                var sameMemory = thoughtHandler2.memories.Memories.MakeSafe().FirstOrDefault(m => m.def == memory.def); 
+                if(sameMemory != null) continue;
+
+                Thought_Memory newMemory = ThoughtMaker.MakeThought(memory.def, memory.CurStageIndex);
+
+                
+                if(memory.otherPawn == null)
+                    thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
+
+                newMemory.age = memory.age;
+                newMemory.moodPowerFactor = memory.moodPowerFactor; 
+            }
+
+
+        }
+
 
         /// <summary>
         ///     Transfers all transferable aspects from pawn1 to pawn2
