@@ -39,6 +39,11 @@
       <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MultiplayerAPI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
       <Private>False</Private>
@@ -717,6 +722,7 @@
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
+    <Compile Include="PawnmorphMPCompat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />

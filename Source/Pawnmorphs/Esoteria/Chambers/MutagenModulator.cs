@@ -230,7 +230,7 @@ namespace Pawnmorph
 
         }
 
-        void SetMergeAction(List<PawnKindDef> mergeOptions)
+        internal void SetMergeAction(List<PawnKindDef> mergeOptions)
         {
             var firstChamber = GetLinkedChamber();
             var secondChamber = GetLinkedChamber(1);
@@ -251,7 +251,7 @@ namespace Pawnmorph
             random = false; 
         }
 
-        void SetAnimalAction(PawnKindDef def)
+        internal void SetAnimalAction(PawnKindDef def)
         {
             foreach (Building_MutagenChamber chamber in LinkedFacilities.OfType<Building_MutagenChamber>())
             {
