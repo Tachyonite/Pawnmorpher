@@ -607,7 +607,6 @@
     <Compile Include="PawnmorpherMod.cs" />
     <Compile Include="PawnmorpherModInit.cs" />
     <Compile Include="PawnMorphInstanceMerged.cs" />
-    <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PawnRelationWorker_ExMerged.cs" />
     <Compile Include="PawnRelationWorker_MergeMate.cs" />

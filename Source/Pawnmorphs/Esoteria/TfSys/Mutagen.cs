@@ -1,13 +1,9 @@
-﻿// Mutagen.cs created by Nick M(Iron Wolf) for Blue Moon (Pawnmorph) on 08/14/2019 2:45 PM
-// last updated 08/14/2019  2:45 PM
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
-//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -402,21 +398,16 @@ namespace Pawnmorph.TfSys
                 throw new ArgumentNullException(nameof(pawn));
             bool reverted;
 
-            //if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
-
             try
             {
                 reverted = CanRevertPawnImp((T) pawn);
             }
             catch (InvalidCastException e)
             {
-                //if (MP.IsInMultiplayer) Rand.PopState();
                 throw new
                     InvalidTransformedPawnInstance($"tfPawn instance of type {pawn.GetType().Name} can not be cast to {typeof(T).Name}",
                                                    e);
             }
-
-            //if (MP.IsInMultiplayer) Rand.PopState();
 
             return reverted; 
         }
@@ -433,19 +424,15 @@ namespace Pawnmorph.TfSys
             bool reverted;
             try
             {
-                //if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
-
                 reverted =
                     TryRevertImpl((T) transformedPawn); //this class will handle all casting for us, and error appropriately 
             }
             catch (InvalidCastException e)
             {
-                //if (MP.IsInMultiplayer) Rand.PopState();
                 throw new InvalidTransformedPawnInstance(
                                                          $"tfPawn instance of type {transformedPawn.GetType().Name} can not be cast to {typeof(T).Name}",
                                                          e);
             }
-            //if (MP.IsInMultiplayer) Rand.PopState();
 
             return reverted;
         }
