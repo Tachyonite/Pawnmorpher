@@ -1,6 +1,8 @@
 <Defs>
 
-<ThingDef ParentName="AnimalThingBase">
+
+  
+<ThingDef ParentName="AnimalThingBase" Abstract="true">
     <defName>EtherHellhound</defName>
     <label>hellhound</label>
     <description>Heavily-muscled wolf-like creatures with vicious unnatural claws and an absurdly powerful bite. They will only eat meat or corpses. If disturbed in the wild, they are very likely to attack.\n\nScientists say wargs are the descendants of weaponized military animals created for population suppression. The superstitious see them as the tools of an angry god.</description>
@@ -128,7 +130,7 @@
     </tradeTags>
   </ThingDef>
   
-  <PawnKindDef ParentName="AnimalKindBase">
+  <PawnKindDef ParentName="AnimalKindBase" Abstract="true">
     <defName>EtherHellhound</defName>
     <label>hellhound</label>
     <race>EtherHellhound</race>
