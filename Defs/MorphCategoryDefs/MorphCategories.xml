@@ -82,4 +82,9 @@
 	<Pawnmorph.MorphCategoryDef>
 		<defName>Reptile</defName>
 	</Pawnmorph.MorphCategoryDef>
+
+	<!-- special -->
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Combo</defName>
+	</Pawnmorph.MorphCategoryDef>
 </Defs>
