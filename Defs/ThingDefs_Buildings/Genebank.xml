@@ -45,6 +45,7 @@
     <altitudeLayer>Building</altitudeLayer>
     <passability>Impassable</passability>
     <fillPercent>0.6</fillPercent>
+	<rotatable>false</rotatable>
     <statBases>
       <MaxHitPoints>70</MaxHitPoints>
       <WorkToBuild>100</WorkToBuild>

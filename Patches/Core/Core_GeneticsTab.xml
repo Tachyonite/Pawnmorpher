@@ -3,7 +3,6 @@
 		<mods>
 			<li>Genetic Rim</li>
 		</mods>
-
 		<nomatch Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationAdd">

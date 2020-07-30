@@ -499,6 +499,8 @@
     <Compile Include="MutagenicBuildupUtilities.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
+    <Compile Include="MutationRules\Worker_Hellhound.cs" />
+    <Compile Include="MutationRules\Worker_RemoveConditionalHediffs.cs" />
     <Compile Include="MutationRules\Worker_MorphHediff.cs" />
     <Compile Include="MutationRuleUtilities.cs" />
     <Compile Include="MutationSite.cs" />

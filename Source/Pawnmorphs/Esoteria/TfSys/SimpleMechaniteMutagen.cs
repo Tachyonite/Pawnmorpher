@@ -334,6 +334,8 @@ namespace Pawnmorph.TfSys
             ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus);
             spawned.health.AddHediff(MorphTransformationDefOf.StabiliserHigh); //add stabilizer on reversion 
 
+
+            TransformerUtility.CleanUpHumanPawnPostTf(animal, null); 
             animal.Destroy();
             return true;
         }

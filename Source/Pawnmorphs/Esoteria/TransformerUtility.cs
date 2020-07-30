@@ -514,7 +514,7 @@ namespace Pawnmorph
             originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
 
             //remove any jobs the pawn may be doing 
-            if (originalPawn.jobs != null && originalPawn.Map != null)
+            if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null)
             {
                 originalPawn.jobs.ClearQueuedJobs();
                 originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced); 
@@ -548,29 +548,38 @@ namespace Pawnmorph
             var caravan = originalPawn.GetCaravan();
             var apparelTracker = originalPawn.apparel;
             var equipmentTracker = originalPawn.equipment;
-
+            
             if (originalPawn.Spawned)
             {
-                apparelTracker.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
-                equipmentTracker.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
+                apparelTracker?.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
+                equipmentTracker?.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
             }
             else if (caravan != null)
             {
-                for (int i = apparelTracker.WornApparelCount - 1; i >= 0; i--)
+
+                if (apparelTracker != null)
                 {
-                    var apparel = apparelTracker.WornApparel[i];
-                    apparelTracker.Remove(apparel);
-                    caravan.AddPawnOrItem(apparel, false); 
+                    for (int i = apparelTracker.WornApparelCount - 1; i >= 0; i--)
+                    {
+                        var apparel = apparelTracker.WornApparel[i];
+                        apparelTracker.Remove(apparel);
+                        caravan.AddPawnOrItem(apparel, false); 
+                    }
                 }
 
 
-                for (int i = equipmentTracker.AllEquipmentListForReading.Count - 1; i >= 0; i--)
+                if (equipmentTracker != null)
                 {
-                    var equipment = equipmentTracker.AllEquipmentListForReading[i];
-                    equipmentTracker.Remove(equipment);
-                    caravan.AddPawnOrItem(equipment, false); 
+                    for (int i = equipmentTracker.AllEquipmentListForReading.Count - 1; i >= 0; i--)
+                    {
+                        var equipment = equipmentTracker.AllEquipmentListForReading[i];
+                        equipmentTracker.Remove(equipment);
+                        caravan.AddPawnOrItem(equipment, false); 
+                    }
                 }
             }
+
+
         }
 
         /// <summary> Get the "ether state" of the pawn (whether they have the ether broken or bonded hediff. </summary>

@@ -7,7 +7,7 @@
         <graphicData>
             <texPath>Things/Building/MutagenChamber/TFChamber_Glass</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(6,6)</drawSize>
+            <drawSize>(7,7)</drawSize>
             <shadowData>
                 <volume>(0.83, 0.3, 1.7)</volume>
             </shadowData>
@@ -72,11 +72,22 @@
                 <graphicData>
                     <texPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
-                    <drawSize>(6,6)</drawSize>
+                    <drawSize>(7,7)</drawSize>
                     <drawRotated>false</drawRotated>
                 </graphicData>
                 <offset>(0,0,0)</offset>
                 <altitudeLayer>LayingPawn</altitudeLayer>
+            </li>
+            <li Class="Pawnmorph.ThingComps.DrawSecondChamberProperties">
+                <graphicData>
+                    <texPath>Things/Building/MutagenChamber/TFChamber_Glass_Front</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(7,7)</drawSize>
+                    <drawRotated>false</drawRotated>
+					<shaderType>Transparent</shaderType>
+                </graphicData>
+                <offset>(0,0,0)</offset>
+                <altitudeLayer>MoteOverhead</altitudeLayer>
             </li>
         </comps>
         <designationCategory>GR_GeneticsTab</designationCategory>

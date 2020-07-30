@@ -44,6 +44,20 @@ namespace Pawnmorph.DebugUtils
         }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void GetInfluenceDebugInfo(Pawn pawn)
+        {
+            var mutTracker = pawn?.GetMutationTracker();
+            if (mutTracker == null)
+            {
+                Log.Message("no mutation tracker");
+                return; 
+            }
+
+            Log.Message(AnimalClassUtilities.GenerateDebugInfo(mutTracker.AllMutations)); 
+
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void TryExitSapienceState(Pawn pawn)
         {
             var sapienceT = pawn?.GetSapienceTracker();
