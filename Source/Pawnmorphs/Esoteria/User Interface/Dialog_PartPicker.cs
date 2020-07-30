@@ -427,7 +427,7 @@ namespace Pawnmorph.User_Interface
                 camera.farClipPlane = Current.Camera.farClipPlane;
                 camera.targetTexture = null;
                 camera.forceIntoRenderTexture = false;
-                previewImage = new RenderTexture(200, 280, 24);
+                previewImage = new RenderTexture((int)PREVIEW_SIZE.x, (int)PREVIEW_SIZE.y, 24);
                 camera.targetTexture = previewImage;
             }
         }
