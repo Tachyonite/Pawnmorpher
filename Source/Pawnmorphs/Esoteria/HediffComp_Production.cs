@@ -122,8 +122,6 @@ namespace Pawnmorph
 
         private void Produce(int amount, float chance, ThingDef resource, ThingDef rareResource, ThoughtDef stageThought)
         {
-            RandUtilities.PushState();
-
             MemoryThoughtHandler thoughts = Pawn.needs?.mood?.thoughts?.memories;
             EtherState etherState = Pawn.GetEtherState();
             HatchingTicker = 0;
@@ -227,7 +225,6 @@ namespace Pawnmorph
                 bondChance += 0.2f;
             }
             totalProduced += rareThingCount + thingCount;
-            RandUtilities.PopState();
         }
 
         private void GiveEtherState(EtherState state)

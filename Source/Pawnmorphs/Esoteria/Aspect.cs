@@ -1,7 +1,4 @@
-﻿// Aspect.cs created by Iron Wolf for Pawnmorph on 09/23/2019 8:07 AM
-// last updated 09/23/2019  12:39 PM
-
-using System.Text;
+﻿using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -252,24 +249,16 @@ namespace Pawnmorph
 
         private void DoMentalStateChecks()
         {
-            RandUtilities.PushState();
-            try
+            var mentalStateHandler = Pawn.mindState.mentalStateHandler;
+            // ReSharper disable once PossibleNullReferenceException
+            foreach (MentalStateGiver giver in CurrentStage.mentalStateGivers)
             {
-                var mentalStateHandler = Pawn.mindState.mentalStateHandler; 
-                // ReSharper disable once PossibleNullReferenceException
-                foreach (MentalStateGiver giver in CurrentStage.mentalStateGivers)
+                if (Rand.MTBEventOccurs(giver.mtbDays, 60000f, 60))
                 {
-                    if (Rand.MTBEventOccurs(giver.mtbDays, 60000f, 60))
-                    {
-                        if (mentalStateHandler.TryStartMentalState(giver.mentalState,
-                                                                   MENTAL_BREAK_TRANSLATION_LABEL.Translate(Label)))
-                            return; //only give one mental state 
-                    }
+                    if (mentalStateHandler.TryStartMentalState(giver.mentalState,
+                                                                MENTAL_BREAK_TRANSLATION_LABEL.Translate(Label)))
+                        return; //only give one mental state
                 }
-            }
-            finally
-            {
-                RandUtilities.PopState(); //whatever happens we need to pop the rand state
             }
         }
 

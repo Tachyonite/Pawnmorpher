@@ -1,12 +1,8 @@
-﻿// Giver_MutationChaotic.cs modified by Iron Wolf for Pawnmorph on 08/08/2019 5:36 PM
-// last updated 08/08/2019  5:36 PM
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -92,11 +88,6 @@ namespace Pawnmorph.Hediffs
         {
             if (Mutations.Count == 0) { return;}
             
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PushState(RandUtilities.MPSafeSeed); 
-            //}
-
             var singleComp = cause.TryGetComp<HediffComp_Single>();
             float mult = singleComp?.stacks
                       ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
@@ -112,12 +103,6 @@ namespace Pawnmorph.Hediffs
 
                 TryApply(pawn, cause, mutagen);
             }
-
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PopState();
-            //}
-
         }
         /// <summary>
         /// Tries to apply this hediff giver 

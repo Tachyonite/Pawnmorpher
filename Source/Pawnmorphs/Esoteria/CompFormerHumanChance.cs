@@ -30,11 +30,6 @@ namespace Pawnmorph
         {
             base.PostSpawnSetup(respawningAfterLoad);
             if (respawningAfterLoad) return; 
-            RandUtilities.PushState();
-
-
-            RandUtilities.PopState();
-
         }
 
         /// <summary>

@@ -1,7 +1,4 @@
-﻿// FullTransformationStageBase.cs modified by Iron Wolf for Pawnmorph on 01/25/2020 12:05 PM
-// last updated 01/25/2020  12:05 PM
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
@@ -44,25 +41,17 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public bool TryTransform(Pawn pawn, Hediff cause)
         {
-            RandUtilities.PushState();
             bool changed = false;
-            try
-            {
-                float chance = changeChance < 0 // If changeChance wasn't overriden use the default from the settings.
-                                   ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
-                                   : changeChance;
+            float chance = changeChance < 0 // If changeChance wasn't overriden use the default from the settings.
+                                ? LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance
+                                : changeChance;
 
-                //apply the new stat 
-                chance *= pawn.GetStatValue(PMStatDefOf.TransformationSensitivity);
-                chance = Mathf.Clamp(chance, 0, 100);
+            //apply the new stat 
+            chance *= pawn.GetStatValue(PMStatDefOf.TransformationSensitivity);
+            chance = Mathf.Clamp(chance, 0, 100);
 
 
-                if (Rand.Range(0, 100) < chance) changed = TransformPawn(pawn, cause);
-            }
-            finally
-            {
-                RandUtilities.PopState();
-            }
+            if (Rand.Range(0, 100) < chance) changed = TransformPawn(pawn, cause);
 
             return changed;
         }

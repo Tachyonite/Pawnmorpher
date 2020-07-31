@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using Multiplayer.API;
 using Pawnmorph.Chambers;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.TfSys;
@@ -44,18 +43,7 @@ namespace Pawnmorph
 
         public Building_MutagenChamber()
         {
-
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PushState(RandUtilities.MPSafeSeed); 
-            //}
             pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
-
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PopState();
-            //}
-
 
             EnterMutagenChamber = DefDatabase<JobDef>.GetNamed("EnterMutagenChamber");
         }
@@ -205,12 +193,6 @@ namespace Pawnmorph
 
         public void PickRandom()
         {
-
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PushState(RandUtilities.MPSafeSeed);
-            //}
-
             var comp = def.GetCompProperties<ThingCompProperties_ModulatorOptions>();
             var defaultAnimals = comp.defaultAnimals;
 
@@ -218,24 +200,13 @@ namespace Pawnmorph
             if (taggedAnimals == null || taggedAnimals.Count == 0)
             {
                 pawnTFKind = defaultAnimals.RandElement();
-                goto End;
+                return;
             }
-            
-
-            
 
             var tmpLst = new List<PawnKindDef>(defaultAnimals);
             tmpLst.AddRange(taggedAnimals);
 
             pawnTFKind = tmpLst.RandElement();
-
-
-            End:
-            return; 
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PopState();
-            //}
         }
 
         void CheckState()
