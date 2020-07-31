@@ -89,6 +89,10 @@
                 <offset>(0,0,0)</offset>
                 <altitudeLayer>MoteOverhead</altitudeLayer>
             </li>
+			<li Class="Pawnmorph.ThingComps.DrawStoredPawnProperties">
+				<offset>(0,0,0.2)</offset>
+				<layer>LayingPawn</layer>
+			</li>
         </comps>
         <designationCategory>GR_GeneticsTab</designationCategory>
         <building>
