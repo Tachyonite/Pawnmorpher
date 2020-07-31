@@ -3,7 +3,9 @@
 
 using System;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Chambers
@@ -13,7 +15,23 @@ namespace Pawnmorph.Chambers
     /// </summary>
     public static class DatabaseUtilities
     {
-        
+
+        /// <summary>
+        /// The minimum amount of storage space a mutation requires 
+        /// </summary>
+        public static int MIN_MUTATION_STORAGE_SPACE = 1;
+
+        /// <summary>
+        /// multiplier for converting 'value' into storage space for mutations 
+        /// </summary>
+        public static float STORAGE_PER_VALUE_MUTATION = 1;
+
+        /// <summary>
+        /// multiplier for converting 'value' into storage space for species 
+        /// </summary>
+        public static float STORAGE_PER_VALUE_SPECIES = 1;
+
+
         /// <summary>
         /// Determines whether this instance is the def of an animal that can be added to the chamber database
         /// </summary>
@@ -39,5 +57,65 @@ namespace Pawnmorph.Chambers
         {
             return def.race.FleshType == DefDatabase<FleshTypeDef>.GetNamed("Chaomorph"); //all chaomorphs have the same flesh type of Chaomorph 
         }
+
+        /// <summary>
+        /// Gets the required storage.
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">mutationDef</exception>
+        public static int GetRequiredStorage([NotNull] this MutationDef mutationDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            return (int) Mathf.Max(MIN_MUTATION_STORAGE_SPACE, mutationDef.value * STORAGE_PER_VALUE_MUTATION); 
+        }
+
+        /// <summary>
+        /// Gets the required storage.
+        /// </summary>
+        /// <param name="pawnkindDef">The pawnkind definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">pawnkindDef</exception>
+        public static int GetRequiredStorage([NotNull] this PawnKindDef pawnkindDef)
+        {
+            if (pawnkindDef == null) throw new ArgumentNullException(nameof(pawnkindDef));
+            return (int) Mathf.Max(MIN_MUTATION_STORAGE_SPACE, pawnkindDef.race.BaseMarketValue * STORAGE_PER_VALUE_SPECIES); 
+        }
+
+        /// <summary>
+        /// Tries to add the specified mutation to the database, returning false on failure.
+        /// </summary>
+        /// <param name="db">The database.</param>
+        /// <param name="def">The definition.</param>
+        /// <returns></returns>
+        public static bool TryAddToDatabase([NotNull] this ChamberDatabase db, [NotNull] MutationDef def)
+        {
+            if (!db.CanAddToDatabase(def)) return false;
+            db.AddToDatabase(def);
+            return true; 
+        }
+
+        /// <summary>
+        /// Tries to add the specified pawnkind to the database, returning false on failure 
+        /// </summary>
+        /// <param name="db">The database.</param>
+        /// <param name="pawnKind">Kind of the pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// db
+        /// or
+        /// pawnKind
+        /// </exception>
+        public static bool TryAddToDatabase([NotNull] this ChamberDatabase db, [NotNull] PawnKindDef pawnKind)
+        {
+            if (db == null) throw new ArgumentNullException(nameof(db));
+            if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
+            if (!db.CanAddToDatabase(pawnKind)) return false;
+            db.AddToDatabase(pawnKind);
+            return true; 
+        }
+
     }
+
+
 }
