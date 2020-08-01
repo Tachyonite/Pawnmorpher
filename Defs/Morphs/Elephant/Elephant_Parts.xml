@@ -100,70 +100,7 @@
 			<li>Tail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
-		<defName>EtherThickHideLimb</defName>
-		<description>A very thick, rough and leathery skin now covers this limb, adding a substantial natural defense.</description>
-		<label>thick hide</label>
-		<classInfluence>ElephantMorph</classInfluence>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.33</severityPerDay>
-			</li>
-		</comps>
-		<parts>
-			<li>Torso</li>
-			<li>Head</li>
-			<li>Ear</li>
-			<li>Arm</li>
-			<li>Hand</li>
-			<li>Leg</li>
-			<li>Foot</li>
-			<li>Tail</li>
-		</parts>
-		<stages>
-			<li>
-				<label>spots</label>
-				<minSeverity>0</minSeverity>
-				<statOffsets>
-					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
-				</statOffsets>
-			</li>
-			<li>
-				<label>patches</label>
-				<minSeverity>0.2</minSeverity>
-				<statOffsets>
-					<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
-				</statOffsets>
-			</li>
-			<li>
-				<label>bristles</label>
-				<minSeverity>0.4</minSeverity>
-				<statOffsets>
-					<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.04</ArmorRating_Sharp>
-				</statOffsets>
-			</li>
-			<li>
-				<label>leathery</label>
-				<minSeverity>0.6</minSeverity>
-				<statOffsets>
-					<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-				</statOffsets>
-			</li>
-			<li>
-				<label>covered</label>
-				<minSeverity>0.8</minSeverity>
-				<statOffsets>
-					<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
-					<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
-				</statOffsets>
-			</li>
-		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
-
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
 		<defName>EtherElephantHand</defName>
 		<label>stump hand</label>
