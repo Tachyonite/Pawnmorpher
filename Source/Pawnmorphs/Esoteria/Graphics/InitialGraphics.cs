@@ -235,12 +235,11 @@ namespace Pawnmorph.GraphicSys
 
             var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
 
-            comp.skinColor = SkinColor;
+            comp.SetSkinColor(SkinColor, SkinColorSecond);
             comp.customDrawSize = CustomDrawSize;
             comp.customPortraitDrawSize = CustomPortraitDrawSize;
             comp.fixGenderPostSpawn = FixGenderPostSpawn;
-            comp.skinColorSecond = SkinColorSecond;
-            comp.hairColorSecond = HairColorSecond;
+            comp.SetHairColor(HairColor, HairColorSecond);
             comp.crownType = CrownType;
 
             Pawn_StoryTracker story = ((Pawn)parent).story;
@@ -258,10 +257,10 @@ namespace Pawnmorph.GraphicSys
             _customDrawSize = comp.customDrawSize;
             _customPortraitDrawSize = comp.customPortraitDrawSize;
             _fixedGenderPostSpawn = comp.fixGenderPostSpawn;
-            _skinColor = comp.skinColor;
-            _hairDef = Pawn.story.hairDef; 
-            _skinColorSecond = comp.skinColorSecond;
-            _hairColorSecond = comp.hairColorSecond;
+            _skinColor = comp.GetSkinColor() ?? Color.white; 
+            _hairDef = Pawn.story.hairDef;
+            _skinColorSecond = comp.GetSkinColor(false) ?? Color.white;
+            _hairColorSecond = comp.ColorChannels.TryGetValue("hair")?.second ?? Color.white; 
             _crownType = comp.crownType;
             _hairColor = Pawn.story.hairColor;
             _body = Pawn.story.bodyType; 
