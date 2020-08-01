@@ -39,6 +39,11 @@
       <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MultiplayerAPI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
       <Private>False</Private>
@@ -328,6 +333,7 @@
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
+    <Compile Include="Chambers\ChamberDatabase.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
@@ -611,7 +617,6 @@
     <Compile Include="PawnmorpherMod.cs" />
     <Compile Include="PawnmorpherModInit.cs" />
     <Compile Include="PawnMorphInstanceMerged.cs" />
-    <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PawnRelationWorker_ExMerged.cs" />
     <Compile Include="PawnRelationWorker_MergeMate.cs" />
@@ -722,6 +727,7 @@
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
+    <Compile Include="PawnmorphMPCompat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />

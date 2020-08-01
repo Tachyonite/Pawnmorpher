@@ -316,13 +316,10 @@ namespace Pawnmorph.Hediffs
         {
             if (CurStage == null) return;
             if (!CanMutatePawn) return; 
-            RandUtilities.PushState();
 
             foreach (var tfGiver in CurStage.GetAllTransformers())
                 if (tfGiver.TryTransform(pawn, this))
                     break; //try each one, one by one. break at first one that succeeds  
-
-            RandUtilities.PopState();
         }
 
         /// <summary>

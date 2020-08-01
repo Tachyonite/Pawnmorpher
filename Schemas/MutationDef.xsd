@@ -20,6 +20,7 @@
             <xs:element name="hediffClass" type="xs:string" minOccurs="0" />
             <xs:element name="defaultAddChance" type="xs:float" minOccurs="0"/>
             <xs:element name="defaultBlocks" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="value" type="xs:int" minOccurs="0" />
             <xs:element name="blockSites" type="ListOfStrings" minOccurs="0" />
             <xs:element name="blockEntries" minOccurs="0" >
                 <xs:complexType>
@@ -84,7 +85,6 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-
             <xs:element name="partEfficiencyOffset" minOccurs="0" type="xs:float" />
             <xs:element name="hungerRateFactor" minOccurs="0" type="xs:float" />
             <xs:element name="stopChance" minOccurs="0" type="xs:float" />

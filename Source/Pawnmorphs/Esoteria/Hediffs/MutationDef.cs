@@ -52,7 +52,13 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// list of body part defs that this mutations blocks other mutations from being added onto 
         /// </summary>
-        public List<BodyPartDef> blockSites = new List<BodyPartDef>(); 
+        public List<BodyPartDef> blockSites = new List<BodyPartDef>();
+
+
+        /// <summary>
+        /// The abstract 'value' of this mutation, can be negative or zero if the mutation is in general negative 
+        /// </summary>
+        public int value; 
 
         /// <summary>
         ///     the rule pack to use when generating mutation logs for this mutation

@@ -24,8 +24,6 @@ namespace Pawnmorph
         {
             if (pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Any(y => y == x.def))) return;
 
-            RandUtilities.PushState();
-
             if (Rand.RangeInclusive(0, 100) <= completeChance)
                 hediffDef = hediffDefsComplete.RandomElement();
             else
@@ -45,8 +43,6 @@ namespace Pawnmorph
             AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
             hediff.Severity = num;
             pawn.health.AddHediff(hediff);
-
-            RandUtilities.PopState();
         }
     }
 }
