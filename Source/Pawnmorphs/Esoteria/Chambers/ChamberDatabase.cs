@@ -29,6 +29,8 @@ namespace Pawnmorph.Chambers
         private List<PawnKindDef> _taggedSpecies = new List<PawnKindDef>();
 
 
+        private PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="ChamberDatabase" /> class.
         /// </summary>
@@ -43,7 +45,15 @@ namespace Pawnmorph.Chambers
         /// <value>
         ///     The free storage.
         /// </value>
-        public int FreeStorage => TotalStorage - UsedStorage;
+        public int FreeStorage
+        {
+            get
+            {
+
+                if (Settings.chamberDatabaseIgnoreStorageLimit) return int.MaxValue; 
+                return TotalStorage - UsedStorage;
+            }
+        }
 
         /// <summary>
         ///     Gets or sets the total storage available in the system

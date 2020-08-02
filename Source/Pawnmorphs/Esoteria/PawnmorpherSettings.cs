@@ -38,6 +38,11 @@ namespace Pawnmorph
         /// </summary>
         public int maxMutationThoughts=3;
 
+        /// <summary>
+        /// if true, the chamber database will ignore storage restrictions, used for debugging 
+        /// </summary>
+        public bool chamberDatabaseIgnoreStorageLimit; 
+
 
         /// <summary>
         /// the chance an tf'd enemy or neutral pawn will go manhunter 
@@ -68,6 +73,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref logLevel, nameof(logLevel), LogLevel.Warnings, true); 
             Scribe_Values.Look(ref manhunterTfChance, nameof(manhunterTfChance));
             Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
+            Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit)); 
             base.ExposeData();
         }
     }
