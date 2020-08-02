@@ -3,10 +3,11 @@
 	<DoSymmetry>Sync L/R</DoSymmetry>
 	<NoMutationsOnPart>None</NoMutationsOnPart>
 	<EditParams>Edit...</EditParams>
-	<DescriptionPaneTitle>Details</DescriptionPaneTitle>
-	<ToggleClothes>Clothing Toggle</ToggleClothes>
-	<RotLeft>Rotate Pawn</RotLeft>
-	<RotRight>Rotate Pawn</RotRight>
+	<ToggleClothes>Toggle clothes visibility</ToggleClothes>
+	<RotCW>Rotate clockwise</RotCW>
+	<RotCCW>Rotate counter clockwise</RotCCW>
+	<DifTitle>Difference</DifTitle>
+	<PartDescTitle>Part description(s)</PartDescTitle>
 	<ApplyButtonText>Apply</ApplyButtonText>
 	<ResetButtonText>Reset</ResetButtonText>
 	<CancelButtonText>Cancel</CancelButtonText>

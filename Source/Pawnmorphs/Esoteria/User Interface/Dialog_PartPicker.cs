@@ -19,18 +19,20 @@ namespace Pawnmorph.User_Interface
 
         // Reference variables
         private const string WINDOW_TITLE_LOC_STRING = "PartPickerMenuTitle";
-        private const string DESCRIPTION_TITLE_LOC_STRING = "DescriptionPaneTitle";
         private const string DO_SYMMETRY_LOC_STRING = "DoSymmetry";
         private const string NO_MUTATIONS_LOC_STRING = "NoMutationsOnPart";
         private const string EDIT_PARAMS_LOC_STRING = "EditParams";
         private const string TOGGLE_CLOTHES_LOC_STRING = "ToggleClothes";
-        private const string ROTATE_LEFT_LOC_STRING = "RotLeft";
-        private const string ROTATE_RIGHT_LOC_STRING = "RotRight";
+        private const string ROTATE_CW_LOC_STRING = "RotCW";
+        private const string ROTATE_CCW_LOC_STRING = "RotCCW";
+        private const string DIF_TITLE_LOC_STRING = "DifTitle";
+        private const string PART_DESCRIPTION_TITLE_LOC_STRING = "PartDescTitle";
         private const string APPLY_BUTTON_LOC_STRING = "ApplyButtonText";
         private const string RESET_BUTTON_LOC_STRING = "ResetButtonText";
         private const string CANCEL_BUTTON_LOC_STRING = "CancelButtonText";
-        private const float SPACER_SIZE = 5f;
+        private const float SPACER_SIZE = 17f;
         private const float BUTTON_HORIZONTAL_PADDING = 6f;
+        private const float MENU_SECTION_CONSTRICTION_SIZE = 4f;
         private static Vector2 PREVIEW_SIZE = new Vector2(200, 280);
         private static Vector2 TOGGLE_CLOTHES_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 ROTATE_CW_BUTTON_SIZE = new Vector2(30, 30);
@@ -45,8 +47,9 @@ namespace Pawnmorph.User_Interface
         private Vector2 descriptionScrollPos;
         private Vector2 descriptionScrollSize;
 
-        // Description builder
-        private StringBuilder description = new StringBuilder();
+        // Description builders
+        private StringBuilder difBuilder = new StringBuilder();
+        private StringBuilder partDescBuilder = new StringBuilder();
 
         // Toggles
         private bool confirmed = false;
@@ -115,7 +118,7 @@ namespace Pawnmorph.User_Interface
         public override void DoWindowContents(Rect inRect)
         {
             // Step 1 - Gather and set relevent information.
-            float col1, col2, col3;
+            float col1, col2;
 
             // Step 2 - Draw the title of the window.
             Text.Font = GameFont.Medium;
@@ -123,7 +126,7 @@ namespace Pawnmorph.User_Interface
             float titleHeight = Text.CalcHeight(title, inRect.width);
             Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width, Text.CalcHeight(title, inRect.width)), title);
             Text.Font = GameFont.Small;
-            col1 = col2 = col3 = titleHeight;
+            col1 = col2 = titleHeight;
 
             // Step 3 - Determine vewing areas for body part list and description.
             float drawableWidth = (inRect.width - PREVIEW_SIZE.x - 2 * SPACER_SIZE) / 2;
@@ -131,8 +134,6 @@ namespace Pawnmorph.User_Interface
             Rect partListOutRect = new Rect(inRect.x, titleHeight, drawableWidth, drawableHeight);
             Rect partListViewRect = new Rect(partListOutRect.x, partListOutRect.y, partListScrollSize.x, partListScrollSize.y);
             Rect previewRect = new Rect(inRect.x + SPACER_SIZE + drawableWidth, titleHeight, PREVIEW_SIZE.x, PREVIEW_SIZE.y);
-            Rect descriptionOutRect = new Rect(inRect.x + 2 * SPACER_SIZE + PREVIEW_SIZE.x + partListOutRect.width, titleHeight, drawableWidth, drawableHeight);
-            Rect descriptiontViewRect = new Rect(descriptionOutRect.x, descriptionOutRect.y, descriptionScrollSize.x, descriptionScrollSize.y);
 
             // Step 4 - Draw the body part list, selection buttons and edit buttons.
             DrawPartsList(partListOutRect, partListViewRect, ref col1, titleHeight);
@@ -140,32 +141,38 @@ namespace Pawnmorph.User_Interface
             // Step 5 - Draw the preview area then rotation and clothes buttons then symmetry toggle.
             if (recachePreview || previewImage == null)
             {
-                setPawnPreview();
+                SetPawnPreview();
             }
             GUI.DrawTexture(previewRect, previewImage);
             col2 += previewRect.height;
             float rotCWHorPos = previewRect.x + previewRect.width / 2 - TOGGLE_CLOTHES_BUTTON_SIZE.x / 2 - ROTATE_CW_BUTTON_SIZE.x - SPACER_SIZE;
             float toggleClothingHorPos = previewRect.x + previewRect.width / 2 - TOGGLE_CLOTHES_BUTTON_SIZE.x / 2;
             float rotCCWHorPos = previewRect.x + previewRect.width / 2 + TOGGLE_CLOTHES_BUTTON_SIZE.x / 2 + SPACER_SIZE;
+            Rect rotCWRect = new Rect(rotCWHorPos, col2, ROTATE_CW_BUTTON_SIZE.x, ROTATE_CW_BUTTON_SIZE.y);
+            Rect toggleClothesRect = new Rect(toggleClothingHorPos, col2, TOGGLE_CLOTHES_BUTTON_SIZE.x, TOGGLE_CLOTHES_BUTTON_SIZE.y);
+            Rect rotCCWRect = new Rect(rotCCWHorPos, col2, ROTATE_CCW_BUTTON_SIZE.x, ROTATE_CCW_BUTTON_SIZE.y);
             col2 += SPACER_SIZE;
-            if (Widgets.ButtonImageFitted(new Rect(rotCWHorPos, col2, ROTATE_CW_BUTTON_SIZE.x, ROTATE_CW_BUTTON_SIZE.y), ButtonTexturesPM.rotCW, Color.white, Color.blue))
+            if (Widgets.ButtonImageFitted(rotCWRect, ButtonTexturesPM.rotCW, Color.white, Color.blue))
             {
                 previewRot.Rotate(RotationDirection.Clockwise);
                 SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
                 recachePreview = true;
             }
-            if (Widgets.ButtonImageFitted(new Rect(toggleClothingHorPos, col2, TOGGLE_CLOTHES_BUTTON_SIZE.x, TOGGLE_CLOTHES_BUTTON_SIZE.y), ButtonTexturesPM.toggleClothes, Color.white, Color.blue))
+            TooltipHandler.TipRegionByKey(rotCWRect, ROTATE_CW_LOC_STRING);
+            if (Widgets.ButtonImageFitted(toggleClothesRect, ButtonTexturesPM.toggleClothes, Color.white, Color.blue))
             {
                 toggleClothesEnabled = !toggleClothesEnabled;
                 (toggleClothesEnabled ? SoundDefOf.Checkbox_TurnedOn : SoundDefOf.Checkbox_TurnedOff).PlayOneShotOnCamera();
                 recachePreview = true;
             }
-            if (Widgets.ButtonImageFitted(new Rect(rotCCWHorPos, col2, ROTATE_CCW_BUTTON_SIZE.x, ROTATE_CCW_BUTTON_SIZE.y), ButtonTexturesPM.rotCCW, Color.white, Color.blue))
+            TooltipHandler.TipRegionByKey(toggleClothesRect, TOGGLE_CLOTHES_LOC_STRING);
+            if (Widgets.ButtonImageFitted(rotCCWRect, ButtonTexturesPM.rotCCW, Color.white, Color.blue))
             {
                 previewRot.Rotate(RotationDirection.Counterclockwise);
                 SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
                 recachePreview = true;
             }
+            TooltipHandler.TipRegionByKey(rotCCWRect, ROTATE_CCW_LOC_STRING);
             col2 += Math.Max(TOGGLE_CLOTHES_BUTTON_SIZE.y, Math.Max(ROTATE_CW_BUTTON_SIZE.y, ROTATE_CCW_BUTTON_SIZE.y));
             string toggleText = DO_SYMMETRY_LOC_STRING.Translate();
             float toggleTextHeight = Text.CalcHeight(toggleText, PREVIEW_SIZE.x);
@@ -173,16 +180,7 @@ namespace Pawnmorph.User_Interface
             col2 += toggleTextHeight;
 
             // Step 6 - Draw description box.
-            Widgets.BeginScrollView(descriptionOutRect, ref descriptionScrollPos, descriptiontViewRect);
-            Widgets.Label(descriptionOutRect, description.ToString());
-            col3 += Text.CalcHeight(description.ToString(), descriptionOutRect.width);
-            if (Event.current.type == EventType.Layout)
-            {
-                descriptionScrollSize.x = descriptionOutRect.width - 16f;
-                descriptionScrollSize.y = col3;
-            }
-            Widgets.EndScrollView();
-            description.Clear();
+            DrawDescriptionBoxes(new Rect(inRect.x + 2 * SPACER_SIZE + PREVIEW_SIZE.x + partListOutRect.width, titleHeight, drawableWidth, drawableHeight));
 
             // Step 7 - Draw the apply, reset and cancel buttons.
             float buttonVertPos = titleHeight + drawableHeight + SPACER_SIZE;
@@ -248,7 +246,11 @@ namespace Pawnmorph.User_Interface
 
             foreach (MutationLayer layer in cachedMutationDefsByPart.Where(m => parts.Select(p => p.def).Contains(m.Key)).SelectMany(n => n.Value).Select(o => o.CompProps<RemoveFromPartCompProperties>().layer).Distinct())
             {
-                List<Hediff_AddedMutation> mutations = pawn.health.hediffSet.hediffs.Cast<Hediff_AddedMutation>().Where(m => parts.Contains(m.Part) && m.TryGetComp<RemoveFromPartComp>().Layer == layer).ToList();
+                List<Hediff_AddedMutation> mutations = pawn.health.hediffSet.hediffs
+                    .Where(m => m.def.GetType() == typeof(MutationDef))
+                    .Cast<Hediff_AddedMutation>()
+                    .Where(m => parts.Contains(m.Part) && m.TryGetComp<RemoveFromPartComp>().Layer == layer)
+                    .ToList();
                 string partButtonText = $"{layer}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.LabelCap).Distinct()))}";
                 string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
                 float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
@@ -289,16 +291,40 @@ namespace Pawnmorph.User_Interface
                 {
                     foreach (MutationDef mutation in mutations.Select(m => m.Def).Distinct().ToList())
                     {
-                        description.AppendLine($"{mutation.LabelCap}");
-                        description.AppendLine($"{mutation.description}");
-                        description.AppendLine();
+                        partDescBuilder.AppendLine($"{mutation.LabelCap}");
+                        partDescBuilder.AppendLine($"{mutation.description}");
+                        partDescBuilder.AppendLine();
                     }
                 }
                 curPos += partButtonRect.height;
             }
         }
 
-        public void setPawnPreview()
+        public void DrawDescriptionBoxes(Rect inRect)
+        {
+            float difCurY = 0f;
+            Rect difMenuSectionRect = new Rect(inRect.x, inRect.y, inRect.width, inRect.height / 2 - SPACER_SIZE);
+            Rect difOutRect = difMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
+            Rect difViewRect = new Rect(difOutRect.x, difOutRect.y, descriptionScrollSize.x, descriptionScrollSize.y);
+            Rect partDescMenuSectionRect = new Rect(inRect.x, inRect.height / 2 + SPACER_SIZE, inRect.width, inRect.height / 2 + SPACER_SIZE);
+            Rect partDescRect = partDescMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
+
+            Widgets.DrawMenuSection(difMenuSectionRect);
+            Widgets.BeginScrollView(difOutRect, ref descriptionScrollPos, difViewRect);
+            difCurY += Text.CalcHeight(partDescBuilder.ToString(), difOutRect.width);
+            if (Event.current.type == EventType.Layout)
+            {
+                descriptionScrollSize.x = difOutRect.width - 16f;
+                descriptionScrollSize.y = difCurY;
+            }
+            Widgets.EndScrollView();
+
+            Widgets.DrawMenuSection(partDescMenuSectionRect);
+            Widgets.Label(partDescRect, partDescBuilder.ToString());
+            partDescBuilder.Clear();
+        }
+
+        public void SetPawnPreview()
         {
             if (pawn != null)
             {
