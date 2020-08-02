@@ -6,8 +6,15 @@ using Verse;
 
 namespace Pawnmorph.Chambers
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Pawnmorph.Building_MutagenChamber" />
     public class MutaChamber : Building_MutagenChamber
     {
+        /// <summary>
+        /// Draws this instance.
+        /// </summary>
         public override void Draw()
         {
             

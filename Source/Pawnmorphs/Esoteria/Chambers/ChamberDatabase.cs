@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
@@ -146,6 +147,7 @@ namespace Pawnmorph.Chambers
             if (_usedStorageCache != null) _usedStorageCache += pawnKind.GetRequiredStorage();
         }
 
+
         /// <summary>
         ///     Determines whether this instance can add the specified mutation def to the database
         /// </summary>
@@ -172,6 +174,39 @@ namespace Pawnmorph.Chambers
         {
             if (kindDef == null) throw new ArgumentNullException(nameof(kindDef));
             return kindDef.GetRequiredStorage() < FreeStorage && kindDef.race.IsValidAnimal();
+        }
+
+
+        private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
+        private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
+        private const string ANIMAL_NOT_TAGGABLE = "AnimalNotTaggable";
+
+        /// <summary>
+        ///  Determines whether this instance can add the specified PawnkindDef to the database
+        /// </summary>
+        /// <param name="pawnKind">Kind of the pawn.</param>
+        /// <param name="reason">if the pawnkind cannot be added to the database, The reason why</param>
+        /// <returns>
+        ///   <c>true</c>  if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawnKind</exception>
+        public bool CanAddToDatabase([NotNull] PawnKindDef pawnKind, out string reason)
+        {
+            if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
+
+            if (pawnKind.GetRequiredStorage() < FreeStorage)
+            {
+                reason = NOT_ENOUGH_STORAGE_REASON.Translate(pawnKind); 
+            }else if (TaggedAnimals.Contains(pawnKind))
+            {
+                reason = ALREADY_TAGGED_REASON.Translate(pawnKind); 
+            }else if (DatabaseUtilities.IsChao(pawnKind.race))
+            {
+                reason = ANIMAL_NOT_TAGGABLE.Translate(pawnKind);
+            }
+            else reason = "";
+
+            return string.IsNullOrEmpty(reason); 
         }
 
         /// <summary>

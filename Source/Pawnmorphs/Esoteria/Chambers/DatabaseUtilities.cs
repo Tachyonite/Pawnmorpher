@@ -115,6 +115,31 @@ namespace Pawnmorph.Chambers
             return true; 
         }
 
+        /// <summary>
+        /// Tries to add the specified pawnkind to the database, returning false on failure and a translated reason why
+        /// </summary>
+        /// <param name="db">The database.</param>
+        /// <param name="pawnKind">Kind of the pawn.</param>
+        /// <param name="reason">The reason.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// db
+        /// or
+        /// pawnKind
+        /// </exception>
+        public static bool TryAddToDatabase([NotNull] this ChamberDatabase db, [NotNull] PawnKindDef pawnKind, out string reason)
+        {
+            if (db == null) throw new ArgumentNullException(nameof(db));
+            if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
+            if (!db.CanAddToDatabase(pawnKind, out reason))
+            {
+                return false; 
+            }
+
+            db.AddToDatabase(pawnKind);
+            return true; 
+        }
+
     }
 
 

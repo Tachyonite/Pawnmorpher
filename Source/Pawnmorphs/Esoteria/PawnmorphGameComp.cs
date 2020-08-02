@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
@@ -31,6 +32,7 @@ namespace Pawnmorph
             mergedpawnmorphs = new HashSet<PawnMorphInstanceMerged>(); //why are we using hashsets? 
 
         /// <summary>all tagged animals</summary>
+        [Obsolete("use " + nameof(ChamberDatabase) + "." + nameof(ChamberDatabase.TaggedAnimals) + " instead")]
         public HashSet<PawnKindDef> taggedAnimals = new HashSet<PawnKindDef>();
 
         private List<TransformedPawn> _transformedPawns = new List<TransformedPawn>();
@@ -220,6 +222,7 @@ namespace Pawnmorph
 
         /// <summary>add the given pawnkind to the mutagen chamber database</summary>
         /// <param name="pawnkind">The pawnkind.</param>
+        [Obsolete("use " +nameof(Chambers.ChamberDatabase) + "." + nameof(Chambers.ChamberDatabase.AddToDatabase) + " instead")]
         public void TagPawn(PawnKindDef pawnkind)
         {
             if (!taggedAnimals.Contains(pawnkind)) taggedAnimals.Add(pawnkind);
