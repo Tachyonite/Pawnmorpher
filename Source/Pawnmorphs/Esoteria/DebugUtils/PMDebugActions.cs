@@ -211,7 +211,7 @@ namespace Pawnmorph.DebugUtils
         public static void ListMorphsByTags()
         {
             StringBuilder builder = new StringBuilder();
-            foreach (MorphCategoryDef category in DefDatabase<MorphCategoryDef>.AllDefs.ToList())
+            foreach (MorphCategoryDef category in DefDatabase<MorphCategoryDef>.AllDefs)
             {
                 builder.AppendLine($"{category.defName}:");
                 foreach (MorphDef morph in DefDatabase<MorphDef>.AllDefs.ToList())
@@ -220,6 +220,25 @@ namespace Pawnmorph.DebugUtils
                     {
                         builder.AppendLine($"    {morph.LabelCap}");
                     }
+                }
+            }
+            Log.Message(builder.ToString());
+            Log.TryOpenLogWindow();
+        }
+
+        ///<summary>Lists all MutationDefs in the console, sorted by influence.</summary>
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        public static void ListMutationsByInfluence()
+        {
+            StringBuilder builder = new StringBuilder();
+            // Build a dictionary of all defs, sorted by influence.
+            Dictionary<AnimalClassBase, IEnumerable<MutationDef>> mutationDefsByInfluence = DefDatabase<AnimalClassBase>.AllDefs.Select(k => new {k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.classInfluence == k)}).ToDictionary(x => x.k, x => x.v);
+            foreach (KeyValuePair<AnimalClassBase, IEnumerable<MutationDef>> entry in mutationDefsByInfluence)
+            {
+                builder.AppendLine($"{entry.Key.defName}:");
+                foreach (MutationDef value in entry.Value)
+                {
+                    builder.AppendLine($"    {value.defName} - {value.description}");
                 }
             }
             Log.Message(builder.ToString());
