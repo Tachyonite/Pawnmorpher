@@ -22,6 +22,7 @@
 			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
 				<minSeverity>0.6</minSeverity>
+				<hungerRateFactor>3</hungerRateFactor>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -44,6 +45,7 @@
 			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<label>changing</label>
 				<minSeverity>0.65</minSeverity>
+				<hungerRateFactor>3</hungerRateFactor>
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>

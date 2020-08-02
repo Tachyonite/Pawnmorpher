@@ -6,6 +6,7 @@
 		<stages>
 			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
+				<hungerRateFactor>3</hungerRateFactor>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
 					<li>
