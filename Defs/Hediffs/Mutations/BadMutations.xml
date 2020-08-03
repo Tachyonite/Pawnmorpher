@@ -1,5 +1,13 @@
-<Defs>
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart" Name="BadChamberPartBase" Abstract="true">
+		<categories>
+			<li>PM_ChamberFailures</li>
+		</categories>
+		<isBad>true</isBad>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="BadChamberPartBase">
 		<defName>EtherTeemingMass</defName>
 		<description>A mass of sentient mechanites has lodged inside the flesh, warping it and causing pain. It grows worse if not removed.\n\nIt hungers.</description>
 		<label>teeming mass</label>
@@ -41,7 +49,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BadChamberPartBase">
 		<defName>EtherSlimeLimb</defName>
 		<description>The skin and muscle on this limb have softened into a gelatinous mess of mechanites. The bone is visible through the green-tinted and glowing translucent flesh.</description>
 		<label>gelatinous mechanites</label>
