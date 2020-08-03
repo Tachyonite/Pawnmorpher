@@ -187,13 +187,11 @@
 			<li>ITab_Bills</li>
 		</inspectorTabs>
 		<recipes>
-			<li>Make_SlurryFromMutonite</li>
 			<li>Make_ComponentsFromSlurry</li>
 			<li>Make_GenekitColorPicker</li>
 			<li>Make_ResurrectorFromMutonite</li>
 			<li>Make_HealerFromMutonite</li>
 			<li>Make_GlitterMedsFromMutonite</li>
-			<li>Make_SlurryFromChaobulbs</li>
 		</recipes>
 		<building>
 			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>

@@ -26,6 +26,11 @@
 		<products>
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</products>
+		<recipeUsers>
+			<li>DrugLab</li>
+			<li>MutagenLab</li>
+		</recipeUsers>
+		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 	</RecipeDef>
 	<RecipeDef>
 		<defName>Make_SlurryFromMutoniteBulk</defName>
@@ -54,6 +59,11 @@
 		<products>
 			<MechaniteSlurry>4</MechaniteSlurry>
 		</products>
+		<recipeUsers>
+			<li>DrugLab</li>
+			<li>MutagenLab</li>
+		</recipeUsers>
+		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 	</RecipeDef>
 	<RecipeDef>
 		<defName>Make_SlurryFromChaobulbs</defName>
@@ -84,6 +94,7 @@
 		</products>
 		<recipeUsers>
 			<li>DrugLab</li>
+			<li>MutagenLab</li>
 		</recipeUsers>
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 	</RecipeDef>
@@ -116,6 +127,7 @@
 		</products>
 		<recipeUsers>
 			<li>DrugLab</li>
+			<li>MutagenLab</li>
 		</recipeUsers>
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 	</RecipeDef>
