@@ -29,7 +29,12 @@
     <uiIconScale>1</uiIconScale>
 	<researchPrerequisites>
 		  <li>MutagenChambers</li>
-	</researchPrerequisites>
+  </researchPrerequisites>
+  <comps>
+    <li Class="Pawnmorph.ThingComps.DatabaseStorageProperties">
+      <storageAmount>8</storageAmount>
+    </li>
+  </comps>
   </ThingDef>
   
   <ThingDef ParentName="BuildingBase">

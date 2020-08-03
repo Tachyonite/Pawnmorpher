@@ -542,6 +542,7 @@
     <Compile Include="TfSys\ManhunterTfSettings.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
+    <Compile Include="ThingComps\DatabaseStorage.cs" />
     <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
     <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
     <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
