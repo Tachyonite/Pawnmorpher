@@ -454,10 +454,51 @@ namespace Pawnmorph.DebugUtils
             }
 
             var str = designation.Join(s => s.target.Label, "\n");
-            Log.Message(str); 
+            Log.Message(str);
 
 
 
+        }
+
+        /// <summary>Lists all tags and their associated morphs to the console.</summary>
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        public static void ListMorphsByTags()
+        {
+            StringBuilder builder = new StringBuilder();
+            Dictionary<MorphCategoryDef, IEnumerable<MorphDef>> mutationDefsByInfluence = 
+                DefDatabase<MorphCategoryDef>.AllDefs
+                .Select(k => new { k, v = DefDatabase<MorphDef>.AllDefs.Where(m => m.categories.Contains(k)) })
+                .ToDictionary(x => x.k, x => x.v);
+            foreach (KeyValuePair<MorphCategoryDef, IEnumerable<MorphDef>> entry in mutationDefsByInfluence)
+            {
+                builder.AppendLine($"{entry.Key.defName}:");
+                foreach (MorphDef value in entry.Value)
+                {
+                    builder.AppendLine($"    {value.LabelCap}");
+                }
+            }
+            Log.Message(builder.ToString());
+        }
+
+        ///<summary>Lists all MutationDefs in the console, sorted by influence.</summary>
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        public static void ListMutationsByInfluence()
+        {
+            StringBuilder builder = new StringBuilder();
+            // Build a dictionary of all defs, sorted by influence.
+            Dictionary<AnimalClassBase, IEnumerable<MutationDef>> mutationDefsByInfluence = 
+                DefDatabase<AnimalClassBase>.AllDefs
+                .Select(k => new { k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.classInfluence == k) })
+                .ToDictionary(x => x.k, x => x.v);
+            foreach (KeyValuePair<AnimalClassBase, IEnumerable<MutationDef>> entry in mutationDefsByInfluence)
+            {
+                builder.AppendLine($"{entry.Key.defName}:");
+                foreach (MutationDef value in entry.Value)
+                {
+                    builder.AppendLine($"    {value.defName} - {value.description}");
+                }
+            }
+            Log.Message(builder.ToString());
         }
     }
 }
