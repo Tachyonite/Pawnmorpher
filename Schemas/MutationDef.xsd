@@ -72,7 +72,7 @@
             <xs:element name="label" minOccurs="0" type="xs:string" />
             <xs:element name="labelOverride" minOccurs="0" type="xs:string" />
             <xs:element name="description" minOccurs="0" type="xs:string" />
-            <xs:element name="painOffset" type="xs:float" />
+            <xs:element name="painOffset" type="xs:float" minOccurs="0" />
             <xs:element name="skipAspects" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
