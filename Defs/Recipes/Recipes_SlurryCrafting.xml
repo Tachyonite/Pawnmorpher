@@ -1,9 +1,9 @@
 <Defs>
 	<RecipeDef>
 		<defName>Make_SlurryFromMutonite</defName>
-		<label>make slurry from mutonite</label>
-		<description>Break down a hunk of mutonite into a vial of slurry.</description>
-		<jobString>Refining slurry from mutonite.</jobString>
+		<label>make slurry from mutanite</label>
+		<description>Break down a hunk of mutanite into a vial of slurry.</description>
+		<jobString>Refining slurry from mutanite.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>2000</workAmount>
@@ -34,9 +34,9 @@
 	</RecipeDef>
 	<RecipeDef>
 		<defName>Make_SlurryFromMutoniteBulk</defName>
-		<label>make slurry from mutonite x4</label>
-		<description>Break down in bulk mutonite into 4 vials of slurry.</description>
-		<jobString>Refining 4 slurry from mutonite.</jobString>
+		<label>make slurry from mutanite x4</label>
+		<description>Break down in bulk mutanite into 4 vials of slurry.</description>
+		<jobString>Refining 4 slurry from mutanite.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>8000</workAmount>
@@ -168,7 +168,7 @@
 		<defName>Make_ResurrectorFromMutonite</defName>
 		<label>fabricate reincarnator mech serum</label>
 		<description>Reshape mechanites into a reincarnator serum from slurry. Caution, this may have unintended side-effects being made from mutagenic mechanites.</description>
-		<jobString>Refining slurry from mutonite.</jobString>
+		<jobString>Refining slurry from mutanite.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>2000</workAmount>
@@ -209,7 +209,7 @@
 		<defName>Make_HealerFromMutonite</defName>
 		<label>fabricate mutagenic healer mech serum</label>
 		<description>Reprogram a large quantity of mutagenic mechanites with healer protocols. Due to the sheer number of mechanites being reprogrammed, a few mechanites will fail to be neutralised and there is a high probability that the restored areas will be mutated as a result.</description>
-		<jobString>Refining slurry from mutonite.</jobString>
+		<jobString>Refining slurry from mutanite.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>2000</workAmount>
