@@ -46,7 +46,6 @@
       <graphicClass>Graphic_Single</graphicClass>
 	  <drawSize>(2,2)</drawSize>
     </graphicData>
-    <defaultPlacingRot>South</defaultPlacingRot>
     <altitudeLayer>Building</altitudeLayer>
     <passability>Impassable</passability>
     <fillPercent>0.6</fillPercent>
