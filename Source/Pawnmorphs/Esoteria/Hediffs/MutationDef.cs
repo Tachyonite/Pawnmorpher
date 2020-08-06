@@ -223,7 +223,20 @@ namespace Pawnmorph.Hediffs
                     //Log.Message($"{defName} has implicitly defined {nameof(mutationMemory)}, this should be assigned explicitly");
                 }
             }
+
+            if (parts != null)
+            {
+                //get rid of any duplicates 
+                _tmpPartLst.Clear();
+                _tmpPartLst.AddRange(parts.Distinct()); 
+                parts.Clear();
+                parts.AddRange(_tmpPartLst);
+
+            }
         }
+
+        [NotNull]
+        private static readonly List<BodyPartDef> _tmpPartLst = new List<BodyPartDef>(); 
 
         /// <summary>
         ///     simple class for a single 'block entry'
