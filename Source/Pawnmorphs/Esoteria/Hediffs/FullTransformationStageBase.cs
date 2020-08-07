@@ -68,7 +68,8 @@ namespace Pawnmorph.Hediffs
                 forcedGender = forceGender,
                 forcedGenderChance = forceGenderChance,
                 cause = cause,
-                tale = transformationTale
+                tale = transformationTale,
+                transformedTick = Find.TickManager?.TicksAbs
             };
 
             var inst = mutagen.MutagenCached.Transform(request);
