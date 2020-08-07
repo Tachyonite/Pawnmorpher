@@ -540,6 +540,7 @@
     <Compile Include="SimplePawnColorSet.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
+    <Compile Include="StockGenerators\GenomeGenerator.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
     <Compile Include="TfSys\ManhunterTfSettings.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
@@ -740,7 +741,7 @@
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
       <Version>7.2.1</Version>
-      <ExcludeAssets>runtime</ExcludeAssets>  
+      <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

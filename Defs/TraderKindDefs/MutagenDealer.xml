@@ -5,9 +5,29 @@
 		<orbital>false</orbital>
 		<commonality>1</commonality> <!--1 -->
 		<stockGenerators>
+	
+
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Silver</thingDef>
-				<countRange>
+				<countRange>		<li Class="Pawnmorph.StockGenerators.GenomeGenerator">
+				<!--
+				<mutationFilter>
+					<isBlackList>true</isBlackList>
+					<filterList>
+						<li>MutationDef</li>
+					</filterList>
+				</mutationFilter>
+				<categoryFilter>
+					Same as mutation filter but for whole categories 
+				</categoryFilter>
+				certain mutations like 'combo' and 'bad' mutations are considered 
+				'restricted' so they can only be given under special circumstances
+				change this to true to allow genomes for these mutations to be generated 
+				-->
+				<allowRestricted>false</allowRestricted>
+
+				<countRange>-1~5</countRange>
+			</li>
 					<min>800</min>
 					<max>3000</max>
 				</countRange>
@@ -170,20 +190,42 @@
 				</countRange>
 			</li>
 
-			<li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+			<li Class="StockGenerator_BuyTradeTag">
+				<tag>Art</tag>
+			</li>
 			<li Class="StockGenerator_BuyExpensiveSimple" />
 			<!-- weird organic gone and I don't know what replaced it 
 			<li Class="StockGenerator_BuyWeirdOrganic" />
 			-->
 		</stockGenerators>
 	</TraderKindDef>
-	
+
 	<TraderKindDef>
 		<defName>PawnmorpherTraderOrbital</defName>
 		<label>Morph trader</label>
 		<orbital>true</orbital>
 		<commonality>1</commonality>
 		<stockGenerators>
+			<li Class="Pawnmorph.StockGenerators.GenomeGenerator">
+				<!--
+				<mutationFilter>
+					<isBlackList>true</isBlackList>
+					<filterList>
+						<li>MutationDef</li>
+					</filterList>
+				</mutationFilter>
+				<categoryFilter>
+					Same as mutation filter but for whole categories 
+				</categoryFilter>
+				certain mutations like 'combo' and 'bad' mutations are considered 
+				'restricted' so they can only be given under special circumstances
+				change this to true to allow genomes for these mutations to be generated 
+				-->
+				<allowRestricted>false</allowRestricted>
+
+				<countRange>1~15</countRange>
+			</li>
+
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Silver</thingDef>
 				<countRange>
@@ -310,8 +352,10 @@
 					<max>20</max>
 				</countRange>
 			</li>
-						
-			<li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+
+			<li Class="StockGenerator_BuyTradeTag">
+				<tag>Art</tag>
+			</li>
 			<li Class="StockGenerator_BuyExpensiveSimple" />
 			<!--
 			<li Class="StockGenerator_BuyWeirdOrganic" />
