@@ -22,7 +22,7 @@ namespace Pawnmorph.Chambers
         private static IEnumerable<MutationDef> AllImplicitGenomeMutations =>
             DefDatabase<MutationDef>.AllDefs.Where(m => m.isTaggable && m.explicitGenomeDef == null);
 
-        private static List<ThingDef> _allImplicitGenomes = new List<ThingDef>();
+        private static List<ThingDef> _allImplicitGenomes; 
 
         [NotNull]
         private static MethodInfo GiveHashMethod { get; }
@@ -43,7 +43,10 @@ namespace Pawnmorph.Chambers
             GiveHashMethod.Invoke(null, _tmpArr); 
         }
 
-        public static void GenerateGenomes()
+        /// <summary>
+        /// Generates the genomes.
+        /// </summary>
+        internal static void GenerateGenomes()
         {
             if (_allImplicitGenomes != null)
             {
