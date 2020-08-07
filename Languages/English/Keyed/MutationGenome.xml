@@ -1,5 +1,5 @@
 <LanguageData>
-    <GenomeLabel>genome</GenomeLabel>
+    <GenomeLabel>{MUTATION} genome</GenomeLabel>
     <!-- TODO -->
     <GenomeDesc>genome that provied information for {MUTATION}</GenomeDesc>
 </LanguageData>

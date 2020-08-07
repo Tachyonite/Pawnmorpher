@@ -91,7 +91,7 @@ namespace Pawnmorph.Chambers
         }
 
         private const string GENOME_PREAMBLE = "PM_Genome_";
-        private const string LABEL_SUFFIX = "GenomeLabel";
+        private const string LABEL_TTAG = "GenomeLabel";
 
         [NotNull]
         static GraphicData GenerateGenomeGraphicData([NotNull] MutationDef mDef)
@@ -150,7 +150,7 @@ namespace Pawnmorph.Chambers
             var tDef = new ThingDef()
             {
                 defName = GENOME_PREAMBLE + mDef.defName + "_Implicit",
-                label = mDef.label + " " + LABEL_SUFFIX.Translate(),
+                label = LABEL_TTAG.Translate(mDef.Named("MUTATION")),
                 description = GENOME_DESC_TAG.Translate(mDef.Named("MUTATION")),
                 resourceReadoutPriority =  ResourceCountPriority.Middle,
                 category = ThingCategory.Item,
