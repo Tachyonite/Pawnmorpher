@@ -241,7 +241,26 @@ namespace Pawnmorph.Hediffs
         }
 
         [NotNull]
-        private static readonly List<BodyPartDef> _tmpPartLst = new List<BodyPartDef>(); 
+        private static readonly List<BodyPartDef> _tmpPartLst = new List<BodyPartDef>();
+
+        /// <summary>
+        /// The explicit genome definition
+        /// </summary>
+        public ThingDef explicitGenomeDef;
+
+        /// <summary>
+        /// The implicit genome definition
+        /// </summary>
+        internal ThingDef implicitGenomeDef;
+
+        /// <summary>
+        /// Gets the thing def for the genome item that gives this mutation.
+        /// </summary>
+        /// <value>
+        /// The genome definition that gives this mutation, can be null if none exist.
+        /// </value>
+        [CanBeNull]
+        public ThingDef GenomeDef => explicitGenomeDef ?? implicitGenomeDef; 
 
         /// <summary>
         ///     simple class for a single 'block entry'

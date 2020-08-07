@@ -337,6 +337,7 @@
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
+    <Compile Include="Chambers\GenomeGenerator.cs" />
     <Compile Include="Chambers\MutaChamber.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="ColorGenerator_HSL.cs" />
@@ -546,6 +547,7 @@
     <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
     <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
     <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
+    <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />

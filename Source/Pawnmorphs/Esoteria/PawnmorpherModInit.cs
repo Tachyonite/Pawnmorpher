@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using Verse;
@@ -37,7 +38,16 @@ namespace Pawnmorph
                 TransferPatchesToExplicitRaces();
                 CheckForObsoletedComponents();
 
-                CheckForModConflicts(); 
+                CheckForModConflicts();
+                try
+                {
+                    GenomeGenerator.GenerateGenomes();
+                }
+                catch (Exception e)
+                {
+                    
+                    throw new ModInitializationException($"while generating genomes caught exception {e.GetType().Name}",e);
+                }
 
             }
            
