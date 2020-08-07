@@ -67,7 +67,8 @@ namespace Pawnmorph.Chambers
 
             foreach (ThingDef allImplicitGenome in _allImplicitGenomes)
             {
-                GiveShortHash(allImplicitGenome); 
+                GiveShortHash(allImplicitGenome);
+                DefDatabase<ThingDef>.Add(allImplicitGenome); 
             }
 
 

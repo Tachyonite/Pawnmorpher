@@ -5,11 +5,7 @@
 		<orbital>false</orbital>
 		<commonality>1</commonality> <!--1 -->
 		<stockGenerators>
-	
-
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Silver</thingDef>
-				<countRange>		<li Class="Pawnmorph.StockGenerators.GenomeGenerator">
+			<li Class="Pawnmorph.StockGenerators.GenomeGenerator">
 				<!--
 				<mutationFilter>
 					<isBlackList>true</isBlackList>
@@ -28,6 +24,10 @@
 
 				<countRange>-1~5</countRange>
 			</li>
+
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Silver</thingDef>
+				<countRange>
 					<min>800</min>
 					<max>3000</max>
 				</countRange>
