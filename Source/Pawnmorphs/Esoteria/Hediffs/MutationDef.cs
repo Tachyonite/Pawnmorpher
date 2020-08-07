@@ -47,7 +47,12 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// if this mutation can be tagged and stored 
         /// </summary>
-        public bool isTaggable = true; 
+        public bool isTaggable = true;
+
+        /// <summary>
+        /// optional field that will act as an explicit description for the mutations 'genome' object
+        /// </summary>
+        public string customGenomeDescription;
 
         /// <summary>
         ///     list of other mutations this mutation blocks

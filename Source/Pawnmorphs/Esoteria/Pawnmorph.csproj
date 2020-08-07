@@ -337,7 +337,7 @@
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
-    <Compile Include="Chambers\GenomeGenerator.cs" />
+    <Compile Include="Chambers\GenomeDefGenerator.cs" />
     <Compile Include="Chambers\MutaChamber.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="ColorGenerator_HSL.cs" />

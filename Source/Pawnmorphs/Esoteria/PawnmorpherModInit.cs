@@ -41,7 +41,7 @@ namespace Pawnmorph
                 CheckForModConflicts();
                 try
                 {
-                    GenomeGenerator.GenerateGenomes();
+                    GenomeDefGenerator.GenerateGenomes();
                 }
                 catch (Exception e)
                 {

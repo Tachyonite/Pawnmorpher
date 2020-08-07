@@ -16,7 +16,7 @@ namespace Pawnmorph.Chambers
     /// <summary>
     /// static class for generating & storing all implicit genome items 
     /// </summary>
-    public static class GenomeGenerator
+    public static class GenomeDefGenerator
     {
         [NotNull]
         private static IEnumerable<MutationDef> AllImplicitGenomeMutations =>
@@ -27,7 +27,7 @@ namespace Pawnmorph.Chambers
         [NotNull]
         private static MethodInfo GiveHashMethod { get; }
 
-        static GenomeGenerator()
+        static GenomeDefGenerator()
         {
             GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
 
@@ -155,32 +155,37 @@ namespace Pawnmorph.Chambers
             {
                 defName = GENOME_PREAMBLE + mDef.defName + "_Implicit",
                 label = LABEL_TTAG.Translate(mDef.Named("MUTATION")),
-                description = GENOME_DESC_TAG.Translate(mDef.Named("MUTATION")),
-                resourceReadoutPriority =  ResourceCountPriority.Middle,
+                description = GetGenomeDesc(mDef),
+                resourceReadoutPriority = ResourceCountPriority.Middle,
                 category = ThingCategory.Item,
                 thingClass = typeof(ThingWithComps),
-                thingCategories = new List<ThingCategoryDef>() { PMThingCategoryDefOf.PM_MutationGenome},
-                graphicData  = GenerateGenomeGraphicData(mDef),
+                thingCategories = new List<ThingCategoryDef>() { PMThingCategoryDefOf.PM_MutationGenome },
+                graphicData = GenerateGenomeGraphicData(mDef),
                 useHitPoints = true,
                 selectable = true,
-                thingSetMakerTags = new List<string>() { GENOME_SET_MAKER_TAG},
+                thingSetMakerTags = new List<string>() { GENOME_SET_MAKER_TAG },
                 altitudeLayer = AltitudeLayer.Item,
                 tickerType = TickerType.Never,
                 rotatable = false,
                 pathCost = 15,
                 drawGUIOverlay = true,
                 modContentPack = mDef.modContentPack,
-                tradeTags = new List<string>() { GENOME_TRADER_TAGS},
+                tradeTags = new List<string>() { GENOME_TRADER_TAGS },
 
             };
 
-            SetGenomeStats(tDef, mDef); 
-            AddComps(tDef, mDef); 
+            SetGenomeStats(tDef, mDef);
+            AddComps(tDef, mDef);
 
-            return tDef; 
+            return tDef;
         }
 
-        
+        private static string GetGenomeDesc([NotNull] MutationDef mDef)
+        {
+            if (!string.IsNullOrEmpty(mDef.customGenomeDescription)) return mDef.customGenomeDescription; 
+            return GENOME_DESC_TAG.Translate(mDef.Named("MUTATION"));
+        }
+
 
     }
 }
