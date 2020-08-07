@@ -49,6 +49,7 @@
             <xs:element name="parts" minOccurs="0" type="ListOfStrings" />
             <xs:element name="categories" minOccurs="0" type="ListOfStrings" />
             <xs:element name="mutationTale" minOccurs="0" type="xs:string" />
+            <xs:element name="isTaggable" minOccurs="0" type="xs:boolean" />
             <xs:element name="classInfluence" minOccurs="0" type="xs:string" />
             <xs:element name="mutationMemory" minOccurs="0" type="xs:string" />
             <xs:element name="memoryIgnoresLimit" minOccurs="0" type="xs:boolean" />
