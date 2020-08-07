@@ -1,6 +1,8 @@
 ﻿// DatabaseStorageComp.cs created by Iron Wolf for Pawnmorph on 08/03/2020 4:57 PM
 // last updated 08/03/2020  4:57 PM
 
+using System.Diagnostics;
+using System.Text;
 using Pawnmorph.Chambers;
 using RimWorld;
 using Verse;
@@ -31,6 +33,23 @@ namespace Pawnmorph.ThingComps
             }
         }
 
+        private const string PROVIDE_MESSAGE_TAG = "PMStorageSpaceMessage";
+
+        /// <summary>
+        /// Comps the inspect string extra.
+        /// </summary>
+        /// <returns></returns>
+        public override string CompInspectStringExtra()
+        {
+            StringBuilder builder = new StringBuilder(); 
+            builder.AppendLine(base.CompInspectStringExtra());
+            var wComp = Find.World.GetComponent<ChamberDatabase>();
+            var provideStr = $"{Props.storageAmount} MB/{wComp.TotalStorage} MB";
+
+            builder.AppendLine(PROVIDE_MESSAGE_TAG.Translate());
+            builder.Append(provideStr);
+            return builder.ToString(); 
+        }
 
         /// <summary>
         ///     expose data.

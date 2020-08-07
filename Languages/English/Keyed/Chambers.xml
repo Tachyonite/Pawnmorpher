@@ -5,4 +5,5 @@
     <AnimalAddedToDatabase>{0} added to database</AnimalAddedToDatabase>
     <ChamberDatabaseIgnoresDataLimit>Chamber Database Ignores Data Limit</ChamberDatabaseIgnoresDataLimit>
     <ChamberDatabaseIgnoresDataLimitTooltip>if true, adding things to the chamber database will not require data storage, usefull for debugging</ChamberDatabaseIgnoresDataLimitTooltip>
+    <PMStorageSpaceMessage>Provides</PMStorageSpaceMessage>
 </LanguageData>
