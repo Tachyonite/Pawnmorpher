@@ -45,6 +45,11 @@ namespace Pawnmorph.Hediffs
         public bool defaultBlocks = false;
 
         /// <summary>
+        /// if this mutation can be tagged and stored 
+        /// </summary>
+        public bool isTaggable = true; 
+
+        /// <summary>
         ///     list of other mutations this mutation blocks
         /// </summary>
         public List<BlockEntry> blockList = new List<BlockEntry>();
