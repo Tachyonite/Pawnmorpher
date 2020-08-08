@@ -1,6 +1,7 @@
 ﻿// GenomeGenerator.cs created by Iron Wolf for Pawnmorph on 08/07/2020 1:50 PM
 // last updated 08/07/2020  1:50 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -60,6 +61,7 @@ namespace Pawnmorph.Chambers
 
             foreach (MutationDef mDef in AllImplicitGenomeMutations)
             {
+                if(IsDepricated(mDef)) continue;
                 var tDef = GenerateMutationGenome(mDef);
                 mDef.implicitGenomeDef = tDef; 
                 _allImplicitGenomes.Add(tDef);
@@ -92,6 +94,12 @@ namespace Pawnmorph.Chambers
 
                 return _allImplicitGenomes; 
             }
+        }
+
+        static bool IsDepricated([NotNull] MutationDef def)
+        {
+            if(string.Compare("depricated", def.label, StringComparison.InvariantCultureIgnoreCase) == 0)return true;
+            return string.Compare("obsolete", def.label, StringComparison.InvariantCultureIgnoreCase) == 0; 
         }
 
         private const string GENOME_PREAMBLE = "PM_Genome_";
