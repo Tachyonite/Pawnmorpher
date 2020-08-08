@@ -2,21 +2,27 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherWing</defName>
 		<label>wing</label>
-		<description>[PAWN_nameDef]'s entire arm has contorted and feathered into a wing, however it is not strong enough to allow them to fly. But that's like, the best bit dude!</description>
-		<classInfluence>Avian</classInfluence>
+		<description>An avian wing.</description>
 		<parts>
 			<li>Arm</li>
 		</parts>
+		<classInfluence>Avian</classInfluence>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>unfamiliar</label>
+				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.</description>
+				<partEfficiencyOffset>-0.85</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.</description>
 				<partEfficiencyOffset>-0.7</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<labelOverride>dextrous wings</labelOverride>
-				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers.</description>
+				<labelOverride>dextrous wing</labelOverride>
+				<description>[PAWN_nameDef]'s arm has contorted into a wing shape, but have suprisingly retained most of their strength and dexterity.</description>
 				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
-				<!-- still not quite as good as hands-->
 			</li>
 		</stages>
 		<comps>
