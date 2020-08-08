@@ -12,4 +12,6 @@
 	<ApplyButtonText>Apply</ApplyButtonText>
 	<ResetButtonText>Reset</ResetButtonText>
 	<CancelButtonText>Cancel</CancelButtonText>
+	<Skin>Skin</Skin>
+	<Core>Core</Core>
 </LanguageData>
