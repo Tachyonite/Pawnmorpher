@@ -1,10 +1,10 @@
 <Defs>
-	<HediffDef ParentName="NewPartialAspectedMorphParent">
-		<defName>PawnmorphIguanaTFPartial</defName>
-		<label>iguanamorph partial</label>
-		<description>This person has mechanites in their blood that are providing them with iguana-esque mutations.</description>
+    <HediffDef ParentName="NewPartialAspectedMorphParent">
+		<defName>PM_HellhoundTfPartial</defName>
+		<label>hellhoundmorph partial</label>
+		<description>This person has mechanites in their blood that are providing them with hellhound mutations.</description>
 		<stages>
-			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -21,7 +21,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<morph>IguanaMorph</morph>
+				<morph>PM_HellhoundMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>
