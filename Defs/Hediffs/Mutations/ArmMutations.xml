@@ -1,0 +1,41 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherWing</defName>
+		<label>wing</label>
+		<description>[PAWN_nameDef]'s entire arm has contorted and feathered into a wing, however it is not strong enough to allow them to fly. But that's like, the best bit dude!</description>
+		<classInfluence>Avian</classInfluence>
+		<parts>
+			<li>Arm</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>-0.7</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>dextrous wings</labelOverride>
+				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers.</description>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+				<!-- still not quite as good as hands-->
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
+				<mutationDependency>
+					<hediff>EtherWingTip</hediff>
+					<mtbDays>3</mtbDays>
+					<chance>5</chance>
+					<partsToAffect>
+						<li>Hand</li>
+					</partsToAffect>
+					<countToAffect>2</countToAffect>
+					<memory>WingTipMemory</memory>
+					<tale>HandsBecomeWingTips</tale>
+				</mutationDependency>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.20</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

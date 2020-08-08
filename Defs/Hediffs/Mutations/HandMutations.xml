@@ -321,4 +321,24 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherWingTip</defName>
+		<label>wingtip</label>
+		<description>[PAWN_nameDef]'s fingers have disappeared into a lump of bird-skinned flesh, with many feathers protruding from the nub.</description>
+		<classInfluence>Avian</classInfluence>
+		<parts>
+			<li>Hand</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers.</description>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+				<!-- still not quite as good as hands-->
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
