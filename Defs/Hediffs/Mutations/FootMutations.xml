@@ -85,7 +85,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.8</minSeverity>
 				<capMods>
 					<li>
@@ -135,7 +135,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.8</minSeverity>
 				<capMods>
 					<li>

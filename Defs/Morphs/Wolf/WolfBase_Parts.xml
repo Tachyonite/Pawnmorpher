@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="WolfPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>Wolf</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="WolfJawBase">
 		<label>wolf muzzle</label>
 		<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier.</description>
@@ -25,8 +24,9 @@
 				</capMods>
 				<statOffsets>
 					<SocialImpact>-0.1</SocialImpact>
-				</statOffsets>			</li>
-			<li>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -38,7 +38,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -98,7 +98,6 @@
 			<li>Major</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="WolfPart">
 		<defName>EtherWolfEar</defName>
 		<label>lupine</label>
@@ -106,7 +105,7 @@
 		<mutationTale>EarsChangedCanid</mutationTale>
 		<mutationMemory>EtherWolfEar</mutationMemory>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
@@ -117,7 +116,6 @@
 			<li>Major</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="WolfPart">
 		<defName>EtherWolfTail</defName>
 		<label>wolfish tail</label>
@@ -125,7 +123,7 @@
 		<mutationTale>GrewTail</mutationTale>
 		<mutationMemory>EtherWolfTail</mutationMemory>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

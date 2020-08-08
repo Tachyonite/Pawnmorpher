@@ -2,14 +2,13 @@
 	<Pawnmorph.Hediffs.MutationDef Name="LynxPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>LynxMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
 		<defName>EtherLynxJaw</defName>
 		<label>lynx snout</label>
 		<description>[PAWN_nameDef]'s face has grown into a rather regal face resembling a lynx's.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -21,7 +20,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
 				<minSeverity>1</minSeverity>
 				<capMods>
@@ -59,22 +58,28 @@
 			<li>Jaw</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
 		<defName>EtherLynxEar</defName>
 		<label>lynx-like</label>
 		<description>With a pointed tip and fluff of fur at the end, this ear has grown into what looks like a lynx's style of auditory apparatus.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
 		<parts>
 			<li>Ear</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
 		<defName>EtherLynxTail</defName>
 		<label>stubby feline tail</label>
 		<description>Unlike most felines, the tail of a lynx is short and stubby. [PAWN_nameDef] has one of them now.</description>
 		<mutationTale>GrewTail</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
 		<parts>
 			<li>Tail</li>
 		</parts>

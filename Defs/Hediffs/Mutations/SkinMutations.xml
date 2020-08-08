@@ -56,7 +56,7 @@
 					<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
@@ -106,7 +106,7 @@
 					<ComfyTemperatureMax>-0.06</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
@@ -374,7 +374,7 @@
 					<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
@@ -404,35 +404,35 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>isolated</label>
 				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>bristles</label>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.04</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>patches</label>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>swathes</label>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.16</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>covered</label>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
@@ -462,14 +462,14 @@
 			<li>Tail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>spots</label>
 				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>patches</label>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
@@ -477,7 +477,7 @@
 					<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>bristles</label>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
@@ -485,7 +485,7 @@
 					<ArmorRating_Sharp>0.04</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>leathery</label>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
@@ -493,7 +493,7 @@
 					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>covered</label>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>

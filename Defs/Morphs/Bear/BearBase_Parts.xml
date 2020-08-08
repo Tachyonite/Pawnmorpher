@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="BearPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>Bear</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="BearJawBase">
 		<label>ursine muzzle</label>
 		<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
@@ -22,7 +21,7 @@
 				</capMods>
 				<description>[PAWN_nameDef]'s face has become a ursine massive snout, with teeth pointed to suit. This makes speaking much more difficult, yet eating is easier.</description>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -34,7 +33,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
 				<minSeverity>1</minSeverity>
 				<capMods>
@@ -52,7 +51,6 @@
 				<label>paragon</label>
 				<minSeverity>1.5</minSeverity>
 				<capMods>
-
 					<li>
 						<capacity>Eating</capacity>
 						<offset>0.80</offset>
@@ -84,13 +82,12 @@
 			<li>Jaw</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
 		<defName>EtherBearEar</defName>
 		<label>ursine</label>
 		<description>Rounded, fuzzy ears sit atop [PAWN_nameDef]'s head. They're very slightly better at hearing than a human's ears.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
@@ -98,13 +95,12 @@
 			<li>Ear</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
 		<defName>EtherBearTail</defName>
 		<label>bear tail</label>
 		<description>A short tail, like that of a bear. Not much of a tail, really.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -117,13 +113,12 @@
 			<li>Tail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
 		<defName>EtherBearPawHand</defName>
 		<label>huge paw</label>
 		<description>Massive, clawed and deadly paws have replaced the finer thumbed hands of a human. While less useful for manipulation, they make [PAWN_nameDef] a beast in a fight.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
 			</li>
 		</stages>
