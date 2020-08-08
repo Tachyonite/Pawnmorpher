@@ -506,7 +506,7 @@ namespace Pawnmorph.DebugUtils
         public static void LogAllMutationLabelsAndDescriptions()
         {
             StringBuilder builder = new StringBuilder();
-            foreach (MutationDef mutation in DefDatabase<MutationDef>.AllDefs)
+            foreach (MutationDef mutation in DefDatabase<MutationDef>.AllDefs.Where(m => !m.parts.NullOrEmpty()).OrderBy(n => n.parts.First().defName))
             {
                 int i = 0;
                 builder.AppendLine($"Mutation: {mutation.defName}");
