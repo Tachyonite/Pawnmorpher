@@ -1,8 +1,5 @@
 ﻿<Defs>
-	<!-- 
-	tale_noun: fits in the "this tells the story of [tale_noun]"
-	-->
-	
+	<!-- tale_noun: fits in the "this tells the story of [tale_noun]" -->
 	<TaleDef Name="MutationTaleBase" Abstract="True">
 		<type>Volatile</type>
 		<baseInterest>16</baseInterest>
@@ -11,13 +8,13 @@
 		<rulePack>
 			<rulesStrings>
 				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
-				<li>circumstance_phrase->as people look on in horror</li> <!--these are supposed to be labled as 'circumstance_phrase' not 'circumstance_group' -->
+				<li>circumstance_phrase->as people look on in horror</li>
+				<!--these are supposed to be labled as 'circumstance_phrase' not 'circumstance_group' -->
 				<li>circumstance_phrase->as people laugh nearby</li>
 				<li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about it.</li>
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<!--                      Muzzles!                -->
 	<TaleDef Name="MuzzleTaleBase" Abstract="True" ParentName="MutationTaleBase">
 		<!--not entirely sure how these fit together to make the art description. might need to be gone over-->
@@ -32,13 +29,10 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
-
 	<TaleDef ParentName="MuzzleTaleBase">
 		<defName>GrewMuzzleMisc</defName>
 		<label>grew a muzzle</label>
 	</TaleDef>
-
 	<TaleDef ParentName="MuzzleTaleBase">
 		<defName>GrewCanidMuzzle</defName>
 		<label>grew a muzzle</label>
@@ -56,8 +50,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
-
 	<TaleDef ParentName="MuzzleTaleBase">
 		<defName>GrewFelineMuzzle</defName>
 		<label>grew a muzzle</label>
@@ -73,10 +65,7 @@
 				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows.</li>
 			</rulesStrings>
 		</rulePack>
-
 	</TaleDef>
-
-
 	<!--            Ears                -->
 	<TaleDef ParentName="MutationTaleBase" Abstract="True" Name="EarMutationBase">
 		<rulePack>
@@ -89,14 +78,11 @@
 				<li>desc_sentence->[PAWN_pronoun] new ears twitch.</li>
 			</rulesStrings>
 		</rulePack>
-
 	</TaleDef>
-
 	<TaleDef ParentName="EarMutationBase">
 		<defName>EarsChangedMisc</defName>
 		<label>ears changed</label>
 	</TaleDef>
-
 	<TaleDef ParentName="EarMutationBase">
 		<defName>EarsChangedCanid</defName>
 		<label>grew dog ears</label>
@@ -112,8 +98,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
-
 	<TaleDef ParentName="EarMutationBase">
 		<defName>EarsChangedFeline</defName>
 		<label>grew cat ears</label>
@@ -127,9 +111,7 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<!--        Hands       -->
-
 	<TaleDef Name="HandMutationBase" ParentName="MutationTaleBase" Abstract="True">
 		<rulePack>
 			<rulesStrings>
@@ -140,12 +122,10 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<TaleDef ParentName="HandMutationBase">
 		<defName>HandsChangedMisc</defName>
 		<label>hands changed</label>
 	</TaleDef>
-
 	<TaleDef ParentName="HandMutationBase">
 		<defName>HandsBecomePaws</defName>
 		<label>hands became paws</label>
@@ -160,7 +140,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<TaleDef ParentName="HandMutationBase">
 		<defName>HandsBecomeHooves</defName>
 		<label>hands became hooves</label>
@@ -174,10 +153,7 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
-
 	<!--	  Feet		  -->
-
 	<TaleDef ParentName="MutationTaleBase" Name="FootMutationBase" Abstract="true">
 		<rulePack>
 			<rulesStrings>
@@ -188,7 +164,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<TaleDef ParentName="FootMutationBase">
 		<defName>FootBecomesCanidPaw</defName>
 		<label>feet became paws</label>
@@ -202,7 +177,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<TaleDef ParentName="FootMutationBase">
 		<defName>FootBecomesFelinePaw</defName>
 		<label>feet became paws</label>
@@ -216,7 +190,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<TaleDef ParentName="FootMutationBase">
 		<defName>FootBecomesHooves</defName>
 		<label>feet became hooves</label>
@@ -224,6 +197,17 @@
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef] feet becoming hooves</li>
 				<li>image->[PAWN_nameFull]'s toes joining and hardening into a single hoof [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new hooves.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FootBecomesClovenHooves</defName>
+		<label>feet became hooves</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet becoming cloven hooves</li>
+				<li>image->[PAWN_nameFull]'s toes joining and hardening into a split hoof [circumstance_group]</li>
 				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new hooves.</li>
 			</rulesStrings>
 		</rulePack>
@@ -242,7 +226,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<!-- Tails -->
 	<TaleDef ParentName="MutationTaleBase" Name="GrowTailBase" Abstract="true">
 		<rulePack>
@@ -262,7 +245,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-	
 	<TaleDef ParentName="GrowTailBase">
 		<defName>GrewTail</defName>
 		<label>grew a tail</label>
@@ -279,9 +261,22 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<!--      MISC      -->
-
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>ArmBecomsWing</defName>
+		<label>arm becomes wing</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s arms changing</li>
+				<li>tale_noun->[PAWN_nameDef]'s twisting and contorting into wings</li>
+				<li>image->[PAWN_nameFull] flaps [PAWN_possessive] arms [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] tries to lift something [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to unfurl their wings.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to lift off the ground.</li>
+				<li>circumstance_group->while someone pats [PAWN_possessive] head</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
 	<TaleDef ParentName="MutationTaleBase">
 		<defName>LegBecameDigitgrade</defName>
 		<label>leg became digitgrade</label>
@@ -295,9 +290,7 @@
 				<li>desc_sentence->[PAWN_pronoun] seems remarkably comfortable with [PAWN_possessive] new legs.</li>
 			</rulesStrings>
 		</rulePack>
-
 	</TaleDef>
-
 	<TaleDef ParentName="MutationTaleBase">
 		<defName>LimbGrowsFur</defName>
 		<label>limb becomes furred</label>
@@ -314,7 +307,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<TaleDef ParentName="MutationTaleBase">
 		<defName>LimbGrowsHide</defName>
 		<label>limb grows hide</label>
@@ -330,5 +322,4 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 </Defs>

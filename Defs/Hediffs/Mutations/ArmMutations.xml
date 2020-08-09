@@ -7,6 +7,11 @@
 			<li>Arm</li>
 		</parts>
 		<classInfluence>Avian</classInfluence>
+		<mutationTale>ArmBecomsWing</mutationTale>
+		<mutationMemory>EtherWingMemory</mutationMemory>
+		<categories>
+			<li>Major</li>
+		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>unfamiliar</label>
