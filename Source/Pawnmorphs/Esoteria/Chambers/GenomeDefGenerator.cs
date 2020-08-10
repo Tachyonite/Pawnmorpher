@@ -20,8 +20,8 @@ namespace Pawnmorph.Chambers
     public static class GenomeDefGenerator
     {
         [NotNull]
-        private static IEnumerable<MutationDef> AllImplicitGenomeMutations =>
-            DefDatabase<MutationDef>.AllDefs.Where(m => m.isTaggable && m.explicitGenomeDef == null);
+        private static IEnumerable<MutationCategoryDef> AllImplicitGenomeMutations =>
+            DefDatabase<MutationCategoryDef>.AllDefs.Where(m => m.AllMutations.Any(mm => mm.isTaggable) && m.explicitGenomeDef == null);
 
         private static List<ThingDef> _allImplicitGenomes; 
 
@@ -59,9 +59,8 @@ namespace Pawnmorph.Chambers
             _allImplicitGenomes = new List<ThingDef>();
 
 
-            foreach (MutationDef mDef in AllImplicitGenomeMutations)
+            foreach (var mDef in AllImplicitGenomeMutations)
             {
-                if(IsDepricated(mDef)) continue;
                 var tDef = GenerateMutationGenome(mDef);
                 mDef.implicitGenomeDef = tDef; 
                 _allImplicitGenomes.Add(tDef);
@@ -106,7 +105,7 @@ namespace Pawnmorph.Chambers
         private const string LABEL_TTAG = "GenomeLabel";
 
         [NotNull]
-        static GraphicData GenerateGenomeGraphicData([NotNull] MutationDef mDef)
+        static GraphicData GenerateGenomeGraphicData([NotNull] MutationCategoryDef mDef)
         {
             return new GraphicData()
             {
@@ -123,14 +122,27 @@ namespace Pawnmorph.Chambers
         public const string GENOME_TRADER_TAGS = "Genome"; 
 
 
-        static float GetGenomeMarketValue([NotNull] MutationDef mDef)
+        static float GetGenomeMarketValue([NotNull] MutationCategoryDef mDef)
         {
-            return Mathf.Max(100, 100 + mDef.GetMarketValueFor()); //don't go below 100 silver for any mutations 
+            float averageMkValue = 0;
+            int counter = 0; 
+            foreach (MutationDef mutationDef in mDef.AllMutations.Where(m => m.isTaggable))
+            {
+                averageMkValue += mutationDef.GetMarketValueFor();
+                counter++;
+            }
+            
+
+
+            return Mathf.Max(100, 100 + averageMkValue / counter); //don't go below 100 silver for any mutations 
         }
 
 
-        static void SetGenomeStats([NotNull] ThingDef tDef, [NotNull] MutationDef mDef)
+        static void SetGenomeStats([NotNull] ThingDef tDef, [NotNull] MutationCategoryDef mDef)
         {
+
+
+
             tDef.SetStatBaseValue(StatDefOf.MaxHitPoints, 100); 
             tDef.SetStatBaseValue(StatDefOf.Flammability, 1);
             tDef.SetStatBaseValue(StatDefOf.MarketValue, GetGenomeMarketValue(mDef));
@@ -138,7 +150,7 @@ namespace Pawnmorph.Chambers
             tDef.SetStatBaseValue(StatDefOf.SellPriceFactor, 0.1f);
         }
 
-        static void AddComps([NotNull] ThingDef tDef, [NotNull] MutationDef mDef)
+        static void AddComps([NotNull] ThingDef tDef, [NotNull] MutationCategoryDef mDef)
         {
             var comps = new List<CompProperties>()
             {
@@ -155,7 +167,7 @@ namespace Pawnmorph.Chambers
         private const string GENOME_DESC_TAG = "GenomeDesc"; 
 
         [NotNull]
-        static ThingDef GenerateMutationGenome([NotNull] MutationDef mDef)
+        static ThingDef GenerateMutationGenome([NotNull] MutationCategoryDef mDef)
         {
 
 
@@ -188,7 +200,7 @@ namespace Pawnmorph.Chambers
             return tDef;
         }
 
-        private static string GetGenomeDesc([NotNull] MutationDef mDef)
+        private static string GetGenomeDesc([NotNull] MutationCategoryDef mDef)
         {
             if (!string.IsNullOrEmpty(mDef.customGenomeDescription)) return mDef.customGenomeDescription; 
             return GENOME_DESC_TAG.Translate(mDef.Named("MUTATION"));

@@ -1,27 +1,33 @@
 <Defs>
 	<Pawnmorph.MutationCategoryDef> <!-- meant for mutations like fur, scales, ect that do not alter the body shape greatly -->
 		<defName>Minor</defName> 
+		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef>
 		<defName>Major</defName>
+		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef>
 		<defName>Extreme</defName>
+		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef> 
 		<defName>Combat</defName>
+		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef>
 		<defName>Productive</defName>
+		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef>
 		<defName>Exotic</defName>
 		<restricted>true</restricted>
+		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef> <!-- category for all 'combo parts' -->
@@ -33,6 +39,7 @@
 	<Pawnmorph.MutationCategoryDef>
 		<defName>Powerful</defName>
 		<restricted>true</restricted>
+		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 	
 	<Pawnmorph.MutationCategoryDef>

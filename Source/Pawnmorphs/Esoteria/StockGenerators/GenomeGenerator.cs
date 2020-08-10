@@ -18,11 +18,6 @@ namespace Pawnmorph.StockGenerators
     /// <seealso cref="RimWorld.StockGenerator" />
     public class GenomeGenerator : StockGenerator
     {
-
-        /// <summary>
-        /// The mutation filter
-        /// </summary>
-        public Filter<MutationDef> mutationFilter;
         /// <summary>
         /// if this should generate genomes for 'restricted' mutations 
         /// </summary>
@@ -91,16 +86,9 @@ namespace Pawnmorph.StockGenerators
         {
             var mDef = props?.mutation; 
             if (mDef == null) return false;
-            if (mutationFilter?.PassesFilter(mDef) == false) return false;
-            if (categoryFilter != null)
-            {
-                foreach (MutationCategoryDef cat in mDef.categories.MakeSafe())
-                {
-                    if (!categoryFilter.PassesFilter(cat)) return false;
-                }
-            }
+            if (categoryFilter?.PassesFilter(mDef) == false) return false; 
 
-            return allowRestricted || !mDef.IsRestricted; 
+            return allowRestricted || !mDef.restricted; 
         }
 
         /// <summary>

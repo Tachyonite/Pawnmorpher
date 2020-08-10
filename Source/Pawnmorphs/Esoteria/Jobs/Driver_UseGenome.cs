@@ -2,6 +2,7 @@
 // last updated 08/07/2020  3:06 PM
 
 using System.Collections.Generic;
+using System.Linq;
 using Pawnmorph.Chambers;
 using Pawnmorph.ThingComps;
 using RimWorld;
@@ -82,7 +83,15 @@ namespace Pawnmorph.Jobs
             //can add to database must be called by giver before hand
 
             //TODO message 
-            wComp.AddToDatabase(mut); 
+
+            var mutationToAdd = mut.AllMutations.Where(m => wComp.CanAddToDatabase(m)).RandomElementWithFallback();
+            if (mutationToAdd == null)
+            {
+                Log.Error($"tried to use a genome with no addable mutations!");
+                return;
+            }
+
+            wComp.AddToDatabase(mutationToAdd); 
         }
     }
 }

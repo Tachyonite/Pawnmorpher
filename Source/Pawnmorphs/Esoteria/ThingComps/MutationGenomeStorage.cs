@@ -2,6 +2,7 @@
 // last updated 08/07/2020  1:43 PM
 
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
@@ -33,9 +34,18 @@ namespace Pawnmorph.ThingComps
         ///     The mutation.
         /// </value>
         [NotNull]
-        public MutationDef Mutation => Props.mutation;
+        public MutationCategoryDef Mutation => Props.mutation;
 
         private MutationGenomeStorageProps Props => (MutationGenomeStorageProps) props;
+
+        bool CanAddAny
+        {
+            get
+            {
+                var wComp = Find.World.GetComponent<ChamberDatabase>();
+                return Mutation.AllMutations.Where(m => m.isTaggable).Any(m => wComp.CanAddToDatabase(m)); 
+            }
+        }
 
         /// <summary>
         ///     gets float menu options for this comp .
@@ -63,7 +73,7 @@ namespace Pawnmorph.ThingComps
                     JobFailReason.Is("ReservedBy".Translate(pawn.LabelShort, pawn));
                 else
                     JobFailReason.Is("Reserved".Translate());
-            }else if (!wComp.CanAddToDatabase(Props.mutation))
+            }else if (!CanAddAny)
             {
                 JobFailReason.Is(CANNOT_STORE_MUTATION.Translate(Props.mutation.Named(MUTATION_NAME)));
             }
@@ -111,7 +121,7 @@ namespace Pawnmorph.ThingComps
         /// <summary>
         ///     The mutation this provides the genomes info about
         /// </summary>
-        public MutationDef mutation;
+        public MutationCategoryDef mutation;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="MutationGenomeStorageProps" /> class.
