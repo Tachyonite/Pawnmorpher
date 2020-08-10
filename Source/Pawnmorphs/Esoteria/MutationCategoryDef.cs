@@ -41,6 +41,9 @@ namespace Pawnmorph
 
         internal ThingDef implicitGenomeDef;
 
+        /// <summary>
+        /// Gets the explicit MutationCategoryDef if it exists, otherwise retrieves the implict MutationCategoryDef.
+        /// </summary>
         [CanBeNull]
         public ThingDef GenomeDef => explicitGenomeDef ?? implicitGenomeDef; 
 

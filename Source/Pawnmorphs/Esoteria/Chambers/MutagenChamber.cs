@@ -196,7 +196,7 @@ namespace Pawnmorph
             var comp = def.GetCompProperties<ThingCompProperties_ModulatorOptions>();
             var defaultAnimals = comp.defaultAnimals;
 
-            var taggedAnimals = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals;
+            var taggedAnimals = Find.World.GetComponent<ChamberDatabase>().TaggedAnimals;
             if (taggedAnimals == null || taggedAnimals.Count == 0)
             {
                 pawnTFKind = defaultAnimals.RandElement();

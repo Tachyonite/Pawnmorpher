@@ -267,7 +267,7 @@ namespace Pawnmorph
         {
             
 
-            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals;
+            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<ChamberDatabase>().TaggedAnimals;
             if (pks2 == null)
             {
                 return ModulatorOptions.defaultAnimals; //just return the list if there are no tagged, no need to create a separate list 

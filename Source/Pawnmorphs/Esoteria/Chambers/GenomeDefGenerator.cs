@@ -15,7 +15,7 @@ using Verse;
 namespace Pawnmorph.Chambers
 {
     /// <summary>
-    /// static class for generating & storing all implicit genome items 
+    /// static class for generating and storing all implicit genome items 
     /// </summary>
     public static class GenomeDefGenerator
     {
@@ -114,11 +114,10 @@ namespace Pawnmorph.Chambers
             };
         }
 
-        /// <summary>
-        /// The genome set maker tag
-        /// </summary>
+        /// <summary>The genome set maker tag</summary>
         public const string GENOME_SET_MAKER_TAG = "Genome";
 
+        /// <summary>The genome trader tags</summary>
         public const string GENOME_TRADER_TAGS = "Genome"; 
 
 
