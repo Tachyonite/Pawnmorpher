@@ -101,5 +101,21 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// gets all configuration errors with this instance .
+        /// </summary>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (string configError in base.ConfigErrors())
+            {
+                yield return configError;
+            }
+
+            if (genomeProvider && string.IsNullOrEmpty(label))
+            {
+                yield return "is genome provide but has no label!";
+            }
+        }
     }
 }

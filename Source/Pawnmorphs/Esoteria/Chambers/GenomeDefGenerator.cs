@@ -21,7 +21,7 @@ namespace Pawnmorph.Chambers
     {
         [NotNull]
         private static IEnumerable<MutationCategoryDef> AllImplicitGenomeMutations =>
-            DefDatabase<MutationCategoryDef>.AllDefs.Where(m => m.AllMutations.Any(mm => mm.isTaggable) && m.explicitGenomeDef == null);
+            DefDatabase<MutationCategoryDef>.AllDefs.Where(m => m.genomeProvider &&  m.AllMutations.Any(mm => mm.isTaggable) && m.explicitGenomeDef == null);
 
         private static List<ThingDef> _allImplicitGenomes; 
 
