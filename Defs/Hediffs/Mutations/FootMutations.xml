@@ -22,14 +22,7 @@
 				<minSeverity>0.5</minSeverity>
 				<labelOverride>padded</labelOverride>
 				<description>Claws and thick pads have developed on [PAWN_nameDef]'s toes. While this means [PAWN_possessive] shoes don't quite fit anymore, [PAWN_pronoun] can walk over brambles barefoot without much worry now.</description>
-				<partEfficiencyOffset>0.04</partEfficiencyOffset>
-				<stopChance>0.3</stopChance>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.7</minSeverity>
-				<labelOverride>footpaw</labelOverride>
-				<description>[PAWN_nameDef]'s foot resembles a cross between a normal foot and a animal's paw, complete with four toes and long, dark claw-nails.</description>
-				<partEfficiencyOffset>0.06</partEfficiencyOffset>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
 				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
@@ -39,7 +32,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<labelOverride>dextrous footpaw</labelOverride>
+				<labelOverride>footpaw</labelOverride>
 				<description>[PAWN_nameDef]'s foot resebles a mix of an animalistic paw and a normal foot, gaining the strengths of each while inheriting none of their weaknesses.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<statOffsets>
@@ -76,16 +69,13 @@
 				<minSeverity>0.5</minSeverity>
 				<labelOverride>hooflike</labelOverride>
 				<description>[PAWN_nameDef]'s toes have fuzed into two larger digits, each surrounded by a thick layer of a dark, bone-like substance.</description>
-				<partEfficiencyOffset>0.04</partEfficiencyOffset>
+				<partEfficiencyOffset>0.08</partEfficiencyOffset>
 				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<description>[PAWN_nameDef]'s foot has mutated into a veritable hoof, with a split down the middle.</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<statOffsets>
-					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
-				</statOffsets>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
@@ -126,16 +116,13 @@
 				<minSeverity>0.5</minSeverity>
 				<labelOverride>hooflike</labelOverride>
 				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
-				<partEfficiencyOffset>0.04</partEfficiencyOffset>
+				<partEfficiencyOffset>0.08</partEfficiencyOffset>
 				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<description>[PAWN_nameDef]'s foot has reshaped into a singular hoof.</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<statOffsets>
-					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
-				</statOffsets>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
@@ -161,38 +148,34 @@
 			<li>Foot</li>
 		</parts>
 		<classInfluence>Suid</classInfluence>
+		<mutationTale>FootBecomesTrotter</mutationTale>
+		<mutationMemory>EtherClovenHoofFoot</mutationMemory>
 		<categories>
 			<li>Major</li>
 		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>hard nails</labelOverride>
-				<description>[PAWN_nameDef]'s toenails have turned a shade darker, broadened and flattened out.</description>
-				<minSeverity>0.1</minSeverity>
+				<labelOverride>toe-nails</labelOverride>
+				<description>[PAWN_nameDef]'s toenails have darkened and grown around [PAWN_possessive] toes. While not uncomfortable, it is somewhat concerning.</description>
 				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>hooflike</labelOverride>
-				<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching to match.</description>
 				<minSeverity>0.5</minSeverity>
+				<labelOverride>hooflike</labelOverride>
+				<description>[PAWN_nameDef]'s toes are nothing more than black toenail-ecrusted bones, and [PAWN_possessive] index and pinky toes are pointing back at their heel.</description>
 				<stopChance>0.3</stopChance>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.02</offset>
-					</li>
-				</capMods>
+				<partEfficiencyOffset>0.04</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>trotter</labelOverride>
-				<description>[PAWN_nameDef]'s foot has lengthened and broadened into a full trotter, with the heel much longer than before.</description>
-				<minSeverity>0.8</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.05</offset>
-					</li>
-				</capMods>
+				<minSeverity>1.0</minSeverity>
+				<description>[PAWN_nameDef]'s foot has become a full-fledged pig-like trotter. It gives [PAWN_objective] the appearence of wearing high-heels at all times.</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>hoof-foot</labelOverride>
+				<description>While still resembling a pig-like trotter, certain humanoid elements have returned to this foot, giving them better balance and dexterity compared to a normal pig's foot.</description>
+				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
 		<comps>
@@ -241,7 +224,7 @@
 				</tools>
 			</li>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.20</severityPerDay>
+				<severityPerDay>0.15</severityPerDay>
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
