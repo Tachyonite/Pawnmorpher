@@ -27,7 +27,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
-				<description>[PAWN_nameDef]'s foot has been wholey replaced by an animalistic paw, severly hampering their chances of ever wearing shoes again.</description>
+				<description>[PAWN_nameDef]'s foot has been wholly replaced by an animalistic paw, severly hampering their chances of ever wearing shoes again.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
@@ -68,7 +68,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.5</minSeverity>
 				<labelOverride>hooflike</labelOverride>
-				<description>[PAWN_nameDef]'s toes have fuzed into two larger digits, each surrounded by a thick layer of a dark, bone-like substance.</description>
+				<description>[PAWN_nameDef]'s toes have fused into two larger digits, each surrounded by a thick layer of a dark, bone-like substance.</description>
 				<partEfficiencyOffset>0.08</partEfficiencyOffset>
 				<stopChance>0.3</stopChance>
 			</li>
@@ -162,7 +162,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.5</minSeverity>
 				<labelOverride>hooflike</labelOverride>
-				<description>[PAWN_nameDef]'s toes are nothing more than black toenail-ecrusted bones, and [PAWN_possessive] index and pinky toes are pointing back at their heel.</description>
+				<description>[PAWN_nameDef]'s toes are nothing more than black toenail-encrusted bones, and [PAWN_possessive] index and pinky toes are pointing back at their heel.</description>
 				<stopChance>0.3</stopChance>
 				<partEfficiencyOffset>0.04</partEfficiencyOffset>
 			</li>
