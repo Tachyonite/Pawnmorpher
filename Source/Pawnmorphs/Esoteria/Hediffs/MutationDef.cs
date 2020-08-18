@@ -45,6 +45,16 @@ namespace Pawnmorph.Hediffs
         public bool defaultBlocks = false;
 
         /// <summary>
+        /// if this mutation can be tagged and stored 
+        /// </summary>
+        public bool isTaggable = true;
+
+        /// <summary>
+        /// optional field that will act as an explicit description for the mutations 'genome' object
+        /// </summary>
+        public string customGenomeDescription;
+
+        /// <summary>
         ///     list of other mutations this mutation blocks
         /// </summary>
         public List<BlockEntry> blockList = new List<BlockEntry>();
@@ -223,7 +233,39 @@ namespace Pawnmorph.Hediffs
                     //Log.Message($"{defName} has implicitly defined {nameof(mutationMemory)}, this should be assigned explicitly");
                 }
             }
+
+            if (parts != null)
+            {
+                //get rid of any duplicates 
+                _tmpPartLst.Clear();
+                _tmpPartLst.AddRange(parts.Distinct()); 
+                parts.Clear();
+                parts.AddRange(_tmpPartLst);
+
+            }
         }
+
+        [NotNull]
+        private static readonly List<BodyPartDef> _tmpPartLst = new List<BodyPartDef>();
+
+        /// <summary>
+        /// The explicit genome definition
+        /// </summary>
+        public ThingDef explicitGenomeDef;
+
+        /// <summary>
+        /// The implicit genome definition
+        /// </summary>
+        internal ThingDef implicitGenomeDef;
+
+        /// <summary>
+        /// Gets the thing def for the genome item that gives this mutation.
+        /// </summary>
+        /// <value>
+        /// The genome definition that gives this mutation, can be null if none exist.
+        /// </value>
+        [CanBeNull]
+        public ThingDef GenomeDef => explicitGenomeDef ?? implicitGenomeDef; 
 
         /// <summary>
         ///     simple class for a single 'block entry'

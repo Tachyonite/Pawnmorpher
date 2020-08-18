@@ -15,6 +15,7 @@ using static Pawnmorph.DebugUtils.DebugLogUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 
@@ -160,6 +161,21 @@ namespace Pawnmorph
         }
         [NotNull]
         private static readonly List<BodyPartRecord> _recordCache = new List<BodyPartRecord>();
+
+
+        private const float MARKET_VALUE_PER_VALUE = 1;
+
+
+        /// <summary>
+        /// Gets the market value for this mutation.
+        /// </summary>
+        /// this can be negative for bad mutations
+        /// <param name="mDef">The m definition.</param>
+        /// <returns></returns>
+        public static float GetMarketValueFor([NotNull] this MutationDef mDef)
+        {
+            return mDef.value * MARKET_VALUE_PER_VALUE; 
+        }
 
         /// <summary>
         /// Adds all morph mutations.

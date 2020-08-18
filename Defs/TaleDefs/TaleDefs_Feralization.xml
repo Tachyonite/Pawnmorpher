@@ -1,13 +1,15 @@
 <Defs>
-	<TaleDef>
-		<defName>TransformationCanid</defName>
-		<label>canid transformation</label>
+	<TaleDef Name="FeralizationTaleBase" Abstract="True">
 		<taleClass>Tale_DoublePawn</taleClass>
 		<firstPawnSymbol>PAWN</firstPawnSymbol>
 		<secondPawnSymbol>ANIMAL</secondPawnSymbol>
 		<type>Volatile</type>
 		<baseInterest>5</baseInterest>
 		<ignoreChance>0.1</ignoreChance>
+	</TaleDef>
+	<TaleDef ParentName="FeralizationTaleBase">
+		<defName>TransformationCanid</defName>
+		<label>canid transformation</label>
 		<rulePack>
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef]'s transformation to [ANIMAL_nameFull]</li>
@@ -37,7 +39,7 @@
 				<li>desc_sentence->[PAWN_pronoun] is nearly unconscious, [PAWN_possessive] tongue lolling out, drool dripping.</li>
 				<li>desc_sentence->[PAWN_pronoun] is convulsing violently as [PAWN_objective] body shifts to completion.</li>
 				<li>desc_sentence->[PAWN_pronoun] looks terrified to start [PAWN_possessive] new life as a [ANIMAL_nameFull].</li>
-				<li>desc_sentence->[PAWN_pronoun] looks visibly aroused.</li> <!-- If vanilla rimworld can have this, why can't I?-->
+				<li>desc_sentence->[PAWN_pronoun] looks visibly aroused.</li>
 				<li>desc_sentence->[PAWN_nameDef]'s new tail is wagging, possibly involuntarily.</li>
 				<li>desc_sentence->[PAWN_nameDef]'s new ears are flicked back in fright.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems to be enjoying it.</li>
@@ -48,16 +50,9 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-	
-	<TaleDef>
+	<TaleDef ParentName="FeralizationTaleBase">
 		<defName>TransformationCow</defName>
 		<label>bovine transformation</label>
-		<taleClass>Tale_DoublePawn</taleClass>
-		<firstPawnSymbol>PAWN</firstPawnSymbol>
-		<secondPawnSymbol>ANIMAL</secondPawnSymbol>
-		<type>Volatile</type>
-		<baseInterest>5</baseInterest>
-		<ignoreChance>0.1</ignoreChance>
 		<rulePack>
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef]'s transformation to [ANIMAL_nameFull]</li>
@@ -87,7 +82,7 @@
 				<li>desc_sentence->[PAWN_pronoun] is nearly unconscious, [PAWN_possessive] tongue lolling out, drool dripping.</li>
 				<li>desc_sentence->[PAWN_pronoun] is convulsing violently as [PAWN_objective] body shifts to completion.</li>
 				<li>desc_sentence->[PAWN_pronoun] looks terrified to start [PAWN_possessive] new life as a [ANIMAL_nameFull].</li>
-				<li>desc_sentence->[PAWN_pronoun] looks visibly aroused.</li> <!-- If vanilla rimworld can have this, why can't I?-->
+				<li>desc_sentence->[PAWN_pronoun] looks visibly aroused.</li>
 				<li>desc_sentence->[PAWN_nameDef] is letting out a loud moo.</li>
 				<li>desc_sentence->[PAWN_nameDef]'s new ears are flicked back in fright.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems to be enjoying it.</li>
@@ -98,16 +93,9 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-	
-	<TaleDef>
+	<TaleDef ParentName="FeralizationTaleBase">
 		<defName>TransformationChicken</defName>
 		<label>chicken transformation</label>
-		<taleClass>Tale_DoublePawn</taleClass>
-		<firstPawnSymbol>PAWN</firstPawnSymbol>
-		<secondPawnSymbol>ANIMAL</secondPawnSymbol>
-		<type>Volatile</type>
-		<baseInterest>5</baseInterest>
-		<ignoreChance>0.1</ignoreChance>
 		<rulePack>
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef]'s transformation to [ANIMAL_nameFull]</li>
@@ -135,7 +123,7 @@
 				<li>desc_sentence->[PAWN_pronoun] is nearly unconscious, [PAWN_possessive] beak pressing out, aghast.</li>
 				<li>desc_sentence->[PAWN_pronoun] is convulsing violently as [PAWN_objective] body shifts to completion.</li>
 				<li>desc_sentence->[PAWN_pronoun] looks terrified to start [PAWN_possessive] new life as a [ANIMAL_nameFull].</li>
-				<li>desc_sentence->[PAWN_pronoun] looks visibly aroused.</li> <!-- If vanilla rimworld can have this, why can't I?-->
+				<li>desc_sentence->[PAWN_pronoun] looks visibly aroused.</li>
 				<li>desc_sentence->[PAWN_nameDef] is letting out a loud bok!</li>
 				<li>desc_sentence->[PAWN_nameDef]'s new wings are flapping.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems to be enjoying it.</li>
@@ -146,16 +134,9 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-	
-	<TaleDef>
+	<TaleDef ParentName="FeralizationTaleBase">
 		<defName>TransformationMisc</defName>
 		<label>transformation</label>
-		<taleClass>Tale_DoublePawn</taleClass>
-		<firstPawnSymbol>PAWN</firstPawnSymbol>
-		<secondPawnSymbol>ANIMAL</secondPawnSymbol>
-		<type>Volatile</type>
-		<baseInterest>5</baseInterest>
-		<ignoreChance>0.1</ignoreChance>
 		<rulePack>
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef]'s transformation to [ANIMAL_nameFull]</li>
@@ -180,7 +161,7 @@
 				<li>desc_sentence->[PAWN_possessive] face itself seems to be shifting to fit a more animal shape.</li>
 				<li>desc_sentence->[PAWN_pronoun] is convulsing violently as [PAWN_objective] body shifts to completion.</li>
 				<li>desc_sentence->[PAWN_pronoun] looks terrified to start [PAWN_possessive] new life as a [ANIMAL_nameFull].</li>
-				<li>desc_sentence->[PAWN_pronoun] looks visibly aroused.</li> <!-- If vanilla rimworld can have this, why can't I?-->
+				<li>desc_sentence->[PAWN_pronoun] looks visibly aroused.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems to be enjoying it.</li>
 				<li>desc_sentence->[PAWN_nameDef]'s clothes fall to the floor around [PAWN_objective].</li>
 				<li>desc_sentence->[PAWN_pronoun] looks inhuman, with very little left of [PAWN_possessive] human form.</li>

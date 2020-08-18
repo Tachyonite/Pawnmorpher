@@ -120,7 +120,7 @@ namespace Pawnmorph.TfSys
             TransformerUtility.CleanUpHumanPawnPostTf(firstPawn, null);
             TransformerUtility.CleanUpHumanPawnPostTf(secondPawn, null);
 
-            var inst = new MergedPawns
+            var inst = new MergedPawns(request.transformedTick)
             {
                 originals = request.originals.ToList(), //we want to make a copy here 
                 meld = meld,

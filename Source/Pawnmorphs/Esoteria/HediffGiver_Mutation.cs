@@ -200,7 +200,7 @@ namespace Pawnmorph
             ThoughtHandler thoughts = pawn.needs?.mood?.thoughts;
             if (thoughts == null) return;
 
-            if (!ThoughtUtility.CanGetThought(pawn, memory)) return;
+            if (!ThoughtUtility.CanGetThought_NewTemp(pawn, memory)) return;
 
             var counter = 0;
             int max = PMUtilities.GetSettings().maxMutationThoughts;

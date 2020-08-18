@@ -500,5 +500,53 @@ namespace Pawnmorph.DebugUtils
             }
             Log.Message(builder.ToString());
         }
+
+        /// <summary>Prints out all MutationDef's labels and descriptions (Including stages).</summary>
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        public static void LogAllMutationLabelsAndDescriptions()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (MutationDef mutation in DefDatabase<MutationDef>.AllDefs.Where(m => !m.parts.NullOrEmpty()).OrderBy(n => n.parts.First().defName))
+            {
+                int i = 0;
+                builder.AppendLine($"Mutation: {mutation.defName}");
+                builder.AppendLine($"Label: {mutation.label}");
+                builder.AppendLine($"Description: {mutation.description}");
+                if (!mutation.stages.NullOrEmpty())
+                {
+                    foreach (HediffStage stage in mutation.stages)
+                    {
+                        if (stage.label != null)
+                        {
+                            builder.AppendLine($"    Stage {i} Label: {stage.label}");
+                        }
+                        if (stage.GetType() == typeof(MutationStage))
+                        {
+                            MutationStage mutationStage = (MutationStage)stage;
+                            if (mutationStage.labelOverride != null)
+                            {
+                                builder.AppendLine($"    Stage {i} Override: {mutationStage.labelOverride}");
+                            }
+                            if (mutationStage.description != null)
+                            {
+                                builder.AppendLine($"    Stage {i} Description: {mutationStage.description}");
+                            }
+                        }
+                        else
+                        {
+                            builder.AppendLine($"    Stage {i} is not a MutationStage");
+                        }
+                        builder.AppendLine();
+                        i++;
+                    }
+                }
+                else
+                {
+                    builder.AppendLine("Mutation has no stages");
+                    builder.AppendLine();
+                }
+            }
+            Log.Message(builder.ToString());
+        }
     }
 }

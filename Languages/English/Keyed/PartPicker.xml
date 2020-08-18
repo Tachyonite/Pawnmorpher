@@ -1,8 +1,9 @@
 <LanguageData>
-	<PartPickerMenuTitle>Part Picker (Semi-Functional)</PartPickerMenuTitle>
+	<PartPickerMenuTitle>Mutation Configuration Menu</PartPickerMenuTitle>
+	<SkinSync>Sync Skin</SkinSync>
 	<DoSymmetry>Sync L/R</DoSymmetry>
 	<NoMutationsOnPart>None</NoMutationsOnPart>
-	<EditParams>Edit...</EditParams>
+	<EditParams>Details...</EditParams>
 	<ToggleClothes>Toggle clothes visibility</ToggleClothes>
 	<RotCW>Rotate clockwise</RotCW>
 	<RotCCW>Rotate counter clockwise</RotCCW>
@@ -11,4 +12,6 @@
 	<ApplyButtonText>Apply</ApplyButtonText>
 	<ResetButtonText>Reset</ResetButtonText>
 	<CancelButtonText>Cancel</CancelButtonText>
+	<Skin>Skin</Skin>
+	<Core>Core</Core>
 </LanguageData>

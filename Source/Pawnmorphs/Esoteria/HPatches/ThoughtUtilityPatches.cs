@@ -45,7 +45,7 @@ namespace Pawnmorph.HPatches
                             continue;
                         }
 
-                        if (ThoughtUtility.CanGetThought(pawn, tGroupThought))
+                        if (ThoughtUtility.CanGetThought_NewTemp(pawn, tGroupThought))
                         {
                             __result = true;
                             return;

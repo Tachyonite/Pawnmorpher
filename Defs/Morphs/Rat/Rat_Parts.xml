@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="RatPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>RatMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherRatSnout</defName>
 		<label>rodent snout</label>
@@ -29,7 +28,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -41,7 +40,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -90,7 +89,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherRatEar</defName>
 		<label>ratty</label>
@@ -99,12 +97,11 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherRatTail</defName>
 		<label>hairless tail</label>
@@ -113,7 +110,7 @@
 			<li>Tail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -123,7 +120,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherDextrousPawHand</defName>
 		<label>dextrous paw</label>
@@ -134,11 +130,11 @@
 			<li>Hand</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
 				<label>unfamiliar</label>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<label>adapted</label>
@@ -164,7 +160,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherRatFoot</defName>
 		<label>rodent</label>
@@ -173,7 +168,7 @@
 			<li>Foot</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="WargPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>WargMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargMuzzle</defName>
 		<label>warg muzzle</label>
@@ -27,7 +26,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -39,7 +38,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -99,7 +98,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargEar</defName>
 		<label>warglike</label>
@@ -109,12 +107,11 @@
 		</parts>
 		<mutationTale>EarsChangedCanid</mutationTale>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.25</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargTail</defName>
 		<label>tufted tail</label>
@@ -124,7 +121,7 @@
 		</parts>
 		<mutationTale>GrewTail</mutationTale>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<statOffsets>
 					<SocialImpact>+0.05</SocialImpact>
 				</statOffsets>

@@ -607,7 +607,7 @@ namespace Pawnmorph
         public static void TryGainMemory([NotNull] this Pawn pawn, Thought_Memory thought, Pawn otherPawn=null, bool respectTraits=true) //move extension methods elsewhere? 
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (respectTraits && !ThoughtUtility.CanGetThought(pawn, thought.def)) return; 
+            if (respectTraits && !ThoughtUtility.CanGetThought_NewTemp(pawn, thought.def)) return; 
 
 
             pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thought, otherPawn);

@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="HarePart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>Hare</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="HareJawBase">
 		<label>leporine muzzle</label>
 		<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose.</description>
@@ -16,7 +15,7 @@
 			<li>Major</li>
 		</categories>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>new</label>
 				<capMods>
 					<li>
@@ -29,7 +28,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -60,7 +59,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
 		<defName>EtherHareEar</defName>
 		<description>Long furry ears sit atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're suprisingly flexible.</description>
@@ -73,12 +71,11 @@
 			<li>Major</li>
 		</categories>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.5</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
 		<defName>EtherHareTail</defName>
 		<mutationMemory>EtherHareTail</mutationMemory>
@@ -92,20 +89,19 @@
 			<li>Major</li>
 		</categories>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<statOffsets>
 					<SocialImpact>+0.10</SocialImpact>
 				</statOffsets>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
 		<defName>EtherHareLeg</defName>
 		<label>spring-loaded leg</label>
 		<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

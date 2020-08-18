@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="AlpacaPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>AlpacaMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaSnout</defName>
 		<label>woolly snout</label>
@@ -10,7 +9,7 @@
 		<mutationTale>GrewAlpacaMuzzle</mutationTale>
 		<mutationMemory>EtherAlpacaSnout</mutationMemory>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -22,12 +21,13 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
-						<offset>-0.08</offset> <!-- I'm using 20% of the base reduction for the adapted across the board, might need balancing though-->
+						<offset>-0.08</offset>
+						<!-- I'm using 20% of the base reduction for the adapted across the board, might need balancing though-->
 					</li>
 					<li>
 						<capacity>Eating</capacity>
@@ -79,7 +79,6 @@
 			<li>Jaw</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaEar</defName>
 		<label>woolen</label>
@@ -87,7 +86,7 @@
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<mutationMemory>EtherAlpacaEar</mutationMemory>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
@@ -95,23 +94,25 @@
 			<li>Ear</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaTail</defName>
 		<label>woolly tail</label>
 		<description>A woolly tail, it feels like a cloud.</description>
 		<mutationTale>GrewTail</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
 		<parts>
 			<li>Tail</li>
 		</parts>
 		<mutationMemory>EtherAlpacaTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherWooly</defName>
 		<label>thick wool</label>
 		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent alpacamorph that don't need no man.</description>
-		<initialSeverity>0.01</initialSeverity>		
+		<initialSeverity>0.01</initialSeverity>
 		<mutationTale>StartsGrowingWool</mutationTale>
 		<mutationMemory>EtherWooly</mutationMemory>
 		<comps>
@@ -145,21 +146,21 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0</minSeverity>
 				<hungerRateFactor>1.0</hungerRateFactor>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.3</minSeverity>
 				<hungerRateFactor>1.3</hungerRateFactor>
 				<label>productive</label>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.6</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<label>very productive</label>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.9</minSeverity>
 				<hungerRateFactor>2.0</hungerRateFactor>
 				<label>productive bliss</label>

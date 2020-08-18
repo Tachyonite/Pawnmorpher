@@ -177,7 +177,10 @@ namespace Pawnmorph.TfSys
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
             var rFaction = request.factionResponsible ?? GetFactionResponsible(original);
-            var inst = new TransformedPawnSingle
+
+
+
+            var inst = new TransformedPawnSingle(request.transformedTick)
             {
                 original = original,
                 animal = spawnedAnimal,
