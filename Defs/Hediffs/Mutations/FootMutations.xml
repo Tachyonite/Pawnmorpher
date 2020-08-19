@@ -193,7 +193,7 @@
 		</parts>
 		<classInfluence>Avian</classInfluence>
 		<mutationTale>FeetBecomeTalons</mutationTale>
-		<mutationMemory>EtherClovenHoofFoot</mutationMemory>
+		<mutationMemory>AvianFootMemory</mutationMemory>
 		<categories>
 			<li>Major</li>
 		</categories>
@@ -216,10 +216,10 @@
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
 				<labelOverride>manipulative avian</labelOverride>
 				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<minSeverity>1.5</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>
