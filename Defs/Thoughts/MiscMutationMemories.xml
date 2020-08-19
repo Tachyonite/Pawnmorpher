@@ -124,6 +124,26 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>AvianFootMemory</defName>
+		<stages>
+			<li>
+				<label>Avian claw-feet</label>
+				<description>It's a bit wierd walking around on chicken-feet.</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>Avian claw-feet</label>
+				<description>I am suprised just how nimble these avian claws are, I haven't missed a step!</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Avian claw-feet</label>
+				<description>My feet look like a chickens. I wonder if I'm starting to taste like one too?</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherClovenHoofFoot</defName>

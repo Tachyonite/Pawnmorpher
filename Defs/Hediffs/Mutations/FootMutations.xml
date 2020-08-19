@@ -187,19 +187,39 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherAvianFoot</defName>
 		<label>avian</label>
-		<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
-		<classInfluence>Avian</classInfluence>
+		<description>An avian foot.</description>
 		<parts>
 			<li>Foot</li>
 		</parts>
+		<classInfluence>Avian</classInfluence>
+		<mutationTale>FeetBecomeTalons</mutationTale>
+		<mutationMemory>EtherClovenHoofFoot</mutationMemory>
+		<categories>
+			<li>Major</li>
+		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>unfamiliar</label>
+				<labelOverride>scaly</labelOverride>
+				<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>adapted</label>
+				<minSeverity>0.5</minSeverity>
+				<labelOverride>toe-feet</labelOverride>
+				<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
+				<stopChance>0.3</stopChance>
+				<partEfficiencyOffset>0.04</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.0</minSeverity>
+				<description>[PAWN_nameDef]'s foot has been replaced with an avian-looking claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<minSeverity>1</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>manipulative avian</labelOverride>
+				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<minSeverity>1.5</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>
