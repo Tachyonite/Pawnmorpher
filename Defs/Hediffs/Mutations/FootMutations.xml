@@ -2,7 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherPawFoot</defName>
 		<label>paw</label>
-		<description>A paw.</description>
+		<description>A paw foot.</description>
 		<parts>
 			<li>Foot</li>
 		</parts>
