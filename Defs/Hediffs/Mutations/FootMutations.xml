@@ -205,7 +205,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.5</minSeverity>
-				<labelOverride>toe-feet</labelOverride>
+				<labelOverride>toe-foot</labelOverride>
 				<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
 				<stopChance>0.3</stopChance>
 				<partEfficiencyOffset>0.04</partEfficiencyOffset>
