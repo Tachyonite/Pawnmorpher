@@ -30,7 +30,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<TaleDef ParentName="FootMutationBase">
 		<defName>GrewElephantFoot</defName>
 		<label>grew elephant foot</label>
@@ -44,7 +43,6 @@
 			</rulesStrings>
 		</rulePack>
 	</TaleDef>
-
 	<TaleDef ParentName="HandMutationBase">
 		<defName>HandsBecameElephantFeet</defName>
 		<label>hands became elephant feet</label>

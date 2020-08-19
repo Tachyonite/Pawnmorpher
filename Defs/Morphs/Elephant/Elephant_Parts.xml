@@ -181,29 +181,46 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
 		<defName>EtherElephantFoot</defName>
-		<label>elephant foot</label>
-		<description>Thunderous stomping follows [PAWN_nameDef] everywhere they go.</description>
+		<label>stumpy</label>
+		<description>An stump-like elphant foot.</description>
 		<parts>
 			<li>Foot</li>
 		</parts>
+		<mutationTale>GrewElephantFoot</mutationTale>
+		<mutationMemory>ElephantFootMemory</mutationMemory>
+		<categories>
+			<li>Major</li>
+		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-.05</offset>
-					</li>
-				</capMods>
+				<labelOverride>stump-toed</labelOverride>
+				<description>[PAWN_nameDef]'s toes have shrunk back into [PAWN_possessive] foot, the leftover toenails dappling the foot serving as the only reminder they were ever there.</description>
+				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-.01</offset>
-					</li>
-				</capMods>
+				<minSeverity>0.5</minSeverity>
+				<labelOverride>swollen</labelOverride>
+				<description>[PAWN_nameDef]'s foot has grown to be stubby and somewhat swollen-looking, with [PAWN_possessive] toes all but replaced by thick ivory-colored nails.</description>
+				<stopChance>0.3</stopChance>
+				<statOffsets>
+					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.0</minSeverity>
+				<description>The underlying bone and muscle structure of [PAWN_nameDef]'s foot has reshaped into something resembling a strong, if stubby, elephant-like foot.</description>
+				<statOffsets>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>elephant</labelOverride>
+				<description>The underlying bone and muscle structure of [PAWN_nameDef]'s foot has reshaped into something resembling a strong, if stubby, elephant-like foot.</description>
+				<statOffsets>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+				</statOffsets>
 			</li>
 		</stages>
 		<comps>
@@ -215,14 +232,14 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>5.0</power>
-						<cooldownTime>1.5</cooldownTime>
+						<power>16.9</power>
+						<cooldownTime>2</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</li>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
+				<severityPerDay>0.15</severityPerDay>
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
