@@ -33,6 +33,9 @@ namespace Pawnmorph
         /// </summary>
         public bool removedByReverter = true;
 
+        /// <summary>Whether or not this aspect can be added by the scenario editor.</summary>
+        public bool scenarioCanAdd = false;
+
         /// <summary>
         ///     the priority of this aspect
         ///     lower priorities come first
