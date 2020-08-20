@@ -26,6 +26,53 @@
 		</stages>
 	</Pawnmorph.AspectDef>
 	<Pawnmorph.AspectDef>
+		<defName>SapienceCapped</defName>
+		<label>Sapience limited</label>
+		<description>This pawn has had their sapience limited to a certain level.</description>
+		<priority>0</priority>
+		<labelColor>(121,55,145)</labelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<transferToAnimal>true</transferToAnimal>
+		<aspectType>Pawnmorph.Aspects.SapienceHit</aspectType>
+		<stages>
+			<li>
+				<label>Lizardbrain</label>
+				<description>The sapience of this pawn has been capped to feral levels.</description>
+				<statOffsets>
+					<SapienceLimit>-1</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Chookbrain</label>
+				<description>The sapience of this pawn has been capped to mostly feral levels.</description>
+				<statOffsets>
+					<SapienceLimit>-0.9</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Cowbrain</label>
+				<description>The sapience of this pawn has been capped to almost feral levels.</description>
+				<statOffsets>
+					<SapienceLimit>-0.7</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Dogbrain</label>
+				<description>The sapience of this pawn has been capped to conflicted levels.</description>
+				<statOffsets>
+					<SapienceLimit>-0.5</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Monkeybrain</label>
+				<description>The sapience of this pawn has been capped to mostly sapient levels.</description>
+				<statOffsets>
+					<SapienceLimit>-0.3</SapienceLimit>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
 		<defName>MutagenInfused</defName>
 		<label>modified production</label>
 		<description>This pawn has taken mutagen-infused medication that modified their mutation's biological outputs.</description>

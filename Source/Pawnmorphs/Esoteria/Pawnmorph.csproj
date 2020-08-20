@@ -539,6 +539,7 @@
     <Compile Include="SapienceStates\FormerHuman.cs" />
     <Compile Include="SapienceStates\MergedPawn.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
+    <Compile Include="ScenarioParts\ScenPart_ForcedSapience.cs" />
     <Compile Include="ScenarioParts\ScenPart_ForcedAspect.cs" />
     <Compile Include="SimplePawnColorSet.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
