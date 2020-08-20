@@ -11,7 +11,7 @@ namespace Pawnmorph
     {
         static PMTraitDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(TraitDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(PMTraitDefOf));
         }
 
         public static TraitDef MutationAffinity;

@@ -12,7 +12,7 @@ namespace Pawnmorph
     {
         static MutationsDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(MutationsDefOf));
         }
 
         public static HediffDef EtherEggLayer;

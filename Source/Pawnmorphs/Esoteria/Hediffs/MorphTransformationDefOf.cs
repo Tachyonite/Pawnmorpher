@@ -29,7 +29,7 @@ namespace Pawnmorph.Hediffs
 
         static MorphTransformationDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(MorphTransformationDefOf));
             
         }
     }

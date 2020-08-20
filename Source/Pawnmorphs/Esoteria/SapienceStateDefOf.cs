@@ -12,7 +12,7 @@ namespace Pawnmorph
     {
         static SapienceStateDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(SapienceStateDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(SapienceStateDefOf));
         }
 
         [NotNull]
