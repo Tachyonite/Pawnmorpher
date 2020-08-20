@@ -346,6 +346,7 @@ namespace Pawnmorph.DebugUtils
 
         private void ListPlayOptions()
         {
+            //TODO move these into the regular action menu 
             DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
             DebugAction("give random mutations", GetRandomMutationsOptions);
             DebugAction("recalculate all colonist mutation influence", AllRecalculateInfluence);

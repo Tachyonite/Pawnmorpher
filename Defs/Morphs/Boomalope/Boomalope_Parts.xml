@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="BoomalopePart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>BoomalopeMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
 		<defName>EtherBoomalopeSnout</defName>
 		<label>boomasnout</label>
@@ -11,7 +10,7 @@
 			<li>Jaw</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -23,7 +22,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -59,7 +58,6 @@
 		</comps>
 		<mutationMemory>EtherBoomalopeSnout</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
 		<defName>EtherBoomalopeEar</defName>
 		<label>boomalopic</label>
@@ -68,13 +66,12 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 		<mutationMemory>EtherBoomalopeEar</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
 		<defName>EtherChemfuelUdder</defName>
 		<label>chemical cyst</label>
@@ -114,21 +111,21 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0</minSeverity>
 				<hungerRateFactor>1.0</hungerRateFactor>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.3</minSeverity>
 				<hungerRateFactor>1.3</hungerRateFactor>
 				<label>productive</label>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.6</minSeverity>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<label>very productive</label>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.9</minSeverity>
 				<hungerRateFactor>2.0</hungerRateFactor>
 				<label>productive bliss</label>

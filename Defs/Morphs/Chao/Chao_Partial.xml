@@ -1,5 +1,5 @@
 <Defs>
-	<HediffDef ParentName="PartialMorphParent">
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
 		<defName>FullRandomTF</defName>
 		<label>chaomorph partial</label>
 		<description>This person has mechanites in their blood that are providing them with all sorts of mutations.</description>

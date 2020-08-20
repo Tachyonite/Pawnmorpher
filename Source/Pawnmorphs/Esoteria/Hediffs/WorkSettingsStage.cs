@@ -30,6 +30,9 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public Filter<WorkTypeDef> workFilter;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorkSettingsStage"/> class.
+        /// </summary>
         public WorkSettingsStage()
         {
             allowedWork = (WorkTags) ~0; //everything

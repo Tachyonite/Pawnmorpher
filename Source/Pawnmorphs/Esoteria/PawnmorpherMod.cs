@@ -37,6 +37,9 @@ namespace Pawnmorph
             listingStandard.CheckboxLabeled("enableMutagenDiseasesCheckboxLabel".Translate(), ref settings.enableMutagenDiseases, "enableMutagenDiseasesCheckboxTooltip".Translate());
             listingStandard.CheckboxLabeled("enableMutagenMeteorCheckboxLabel".Translate(), ref settings.enableMutagenMeteor, "enableMutagenMeteorCheckboxTooltip".Translate());
             listingStandard.CheckboxLabeled("enableWildFormersCheckboxLabel".Translate(), ref settings.enableWildFormers, "enableWildFormersCheckboxTooltip".Translate());
+            listingStandard.CheckboxLabeled("ChamberDatabaseIgnoresDataLimit".Translate(),
+                                            ref settings.chamberDatabaseIgnoreStorageLimit,
+                                            "ChamberDatabaseIgnoresDataLimitTooltip".Translate());
             listingStandard.GapLine();
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
             settings.transformChance = listingStandard.Slider(settings.transformChance, 0f, 100f);

@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -44,22 +45,26 @@ namespace Pawnmorph.ThingComps
             {
                 if (Props.requiresTag)
                 {
-                    PawnmorphGameComp comp = PMComp;
+                    var comp = PMComp;
 
-                    return Props.AllAnimals.Where(t => comp.taggedAnimals.Contains(t));
+                    return Props.AllAnimals.Where(t => comp.TaggedAnimals.Contains(t));
                 }
 
                 return Props.AllAnimals;
             }
         }
 
-        private PawnmorphGameComp PMComp => Find.World.GetComponent<PawnmorphGameComp>();
+        private ChamberDatabase PMComp => Find.World.GetComponent<ChamberDatabase>();
 
 
         private Command_Action _cachedGizmo;
 
-        private Gizmo[] _cachedGizmoArr; 
+        private Gizmo[] _cachedGizmoArr;
 
+        /// <summary>
+        /// Comps the get gizmos extra.
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach (Gizmo gizmo in base.CompGetGizmosExtra())

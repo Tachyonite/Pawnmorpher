@@ -1,12 +1,13 @@
-﻿using System;
+﻿using AlienRace;
+using Pawnmorph.Hediffs;
+using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
-using RimWorld;
-using AlienRace;
-using Pawnmorph.Hediffs;
 
 namespace Pawnmorph.User_Interface
 {
@@ -18,20 +19,22 @@ namespace Pawnmorph.User_Interface
 
         // Reference variables
         private const string WINDOW_TITLE_LOC_STRING = "PartPickerMenuTitle";
-        private const string DESCRIPTION_TITLE_LOC_STRING = "DescriptionPaneTitle";
         private const string DO_SYMMETRY_LOC_STRING = "DoSymmetry";
+        private const string SKIN_SYNC_LOC_STRING = "SkinSync";
         private const string NO_MUTATIONS_LOC_STRING = "NoMutationsOnPart";
         private const string EDIT_PARAMS_LOC_STRING = "EditParams";
         private const string TOGGLE_CLOTHES_LOC_STRING = "ToggleClothes";
-        private const string ROTATE_LEFT_LOC_STRING = "RotLeft";
-        private const string ROTATE_RIGHT_LOC_STRING = "RotRight";
+        private const string ROTATE_CW_LOC_STRING = "RotCW";
+        private const string ROTATE_CCW_LOC_STRING = "RotCCW";
+        private const string DIF_TITLE_LOC_STRING = "DifTitle";
+        private const string PART_DESCRIPTION_TITLE_LOC_STRING = "PartDescTitle";
         private const string APPLY_BUTTON_LOC_STRING = "ApplyButtonText";
         private const string RESET_BUTTON_LOC_STRING = "ResetButtonText";
         private const string CANCEL_BUTTON_LOC_STRING = "CancelButtonText";
-        private const float SPACER_SIZE = 5f;
+        private const float SPACER_SIZE = 17f;
         private const float BUTTON_HORIZONTAL_PADDING = 6f;
-        private static Vector2 PART_BUTTON_SIZE = new Vector2(15, 15);
-        private static Vector2 PREVIEW_SIZE = new Vector2(120, 200);
+        private const float MENU_SECTION_CONSTRICTION_SIZE = 4f;
+        private static Vector2 PREVIEW_SIZE = new Vector2(200, 280);
         private static Vector2 TOGGLE_CLOTHES_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 ROTATE_CW_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 ROTATE_CCW_BUTTON_SIZE = new Vector2(30, 30);
@@ -45,17 +48,26 @@ namespace Pawnmorph.User_Interface
         private Vector2 descriptionScrollPos;
         private Vector2 descriptionScrollSize;
 
+        // Description builders
+        private StringBuilder difBuilder = new StringBuilder();
+        private StringBuilder partDescBuilder = new StringBuilder();
+
         // Toggles
         private bool confirmed = false;
         private bool toggleClothesEnabled = true;
         private bool doSymmetry = true;
+        private bool skinSync = true;
         private Rot4 previewRot = Rot4.South;
 
         // Preview related variables
-        public bool forceRecachePreview = false;
+        public bool recachePreview = false;
         private GameObject gameObject;
         private Camera camera;
         private RenderTexture previewImage;
+
+        // Caching variables
+        private static Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPart;
+        private static List<BodyPartRecord> cachedMutableParts;
 
         public override Vector2 InitialSize
         {
@@ -72,6 +84,11 @@ namespace Pawnmorph.User_Interface
             doCloseX = true;
             resizeable = true;
             draggable = true;
+
+            cachedMutationDefsByPart = DefDatabase<MutationDef>.AllDefs.SelectMany(m => m.parts).Distinct().Select(
+                k => new {k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.parts.Contains(k)).ToList()}
+                ).ToDictionary(x => x.k, x => x.v);
+            cachedMutableParts = pawn.RaceProps.body.AllParts.Where(m => cachedMutationDefsByPart.ContainsKey(m.def)).ToList();
         }
 
         public override void PreOpen()
@@ -103,10 +120,7 @@ namespace Pawnmorph.User_Interface
         public override void DoWindowContents(Rect inRect)
         {
             // Step 1 - Gather and set relevent information.
-            float col1, col2, col3;
-            List<MutationDef> allMutations = DefDatabase<MutationDef>.AllDefs.ToList();
-            List<BodyPartRecord> mutableParts = pawn.RaceProps.body.AllParts.Where(m => DefDatabase<MutationDef>.AllDefs.SelectMany(n => n.parts).Distinct().Contains(m.def)).ToList();
-            List<Hediff_AddedMutation> pawnMutations = pawn.health.hediffSet.hediffs.Where(m => m.def.GetType() == typeof(MutationDef)).Cast<Hediff_AddedMutation>().ToList();
+            float col1, col2;
 
             // Step 2 - Draw the title of the window.
             Text.Font = GameFont.Medium;
@@ -114,173 +128,76 @@ namespace Pawnmorph.User_Interface
             float titleHeight = Text.CalcHeight(title, inRect.width);
             Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width, Text.CalcHeight(title, inRect.width)), title);
             Text.Font = GameFont.Small;
-            col1 = col2 = col3 = titleHeight;
+            col1 = col2 = titleHeight;
 
             // Step 3 - Determine vewing areas for body part list and description.
             float drawableWidth = (inRect.width - PREVIEW_SIZE.x - 2 * SPACER_SIZE) / 2;
             float drawableHeight = inRect.height - titleHeight - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y)) - 2 * SPACER_SIZE;
             Rect partListOutRect = new Rect(inRect.x, titleHeight, drawableWidth, drawableHeight);
-            Rect partListViewRect = new Rect(partListOutRect.x, partListOutRect.y, partListScrollSize.x, partListScrollSize.y - titleHeight);
+            Rect partListViewRect = new Rect(partListOutRect.x, partListOutRect.y, partListScrollSize.x, partListScrollSize.y);
             Rect previewRect = new Rect(inRect.x + SPACER_SIZE + drawableWidth, titleHeight, PREVIEW_SIZE.x, PREVIEW_SIZE.y);
-            Rect descriptionOutRect = new Rect(inRect.x + 2 * SPACER_SIZE + PREVIEW_SIZE.x, titleHeight, drawableWidth, drawableHeight);
-            Rect descriptiontViewRect = new Rect(descriptionOutRect.x, descriptionOutRect.y, descriptionOutRect.width - 16f, descriptionOutRect.height);
 
             // Step 4 - Draw the body part list, selection buttons and edit buttons.
-            string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
-            float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
-            Widgets.BeginScrollView(partListOutRect, ref partListScrollPos, partListViewRect);
-            if (doSymmetry)
-            {
-                List<BodyPartDef> uniqueMutablePartDefs = mutableParts.Select(m => m.def).Distinct().ToList();
-                foreach (BodyPartDef part in uniqueMutablePartDefs)
-                {
-                    List<Hediff_AddedMutation> mutationsOnPart = pawnMutations.Where(m => m.Part.def == part).ToList();
-                    string text = part.LabelCap;
-                    float textHeight = Text.CalcHeight(text, partListViewRect.width);
-                    Widgets.Label(new Rect(0f, col1, partListViewRect.width, textHeight), text);
-                    col1 += textHeight;
-                    foreach (MutationLayer layer in Enum.GetValues(typeof(MutationLayer)))
-                    {
-                        List<MutationDef> applicableMutations = allMutations.Where(m => m.parts.Contains(part) && m.comps.Find(n => n.GetType() == typeof(RemoveFromPartCompProperties)).ChangeType<RemoveFromPartCompProperties>().layer == layer).ToList();
-                        if (!applicableMutations.NullOrEmpty())
-                        {
-                            List<Hediff_AddedMutation> mutationsOnLayer = mutationsOnPart.Where(m => m.TryGetComp<RemoveFromPartComp>().Layer == layer).ToList();
-                            string buttonText = $"{layer}: {(mutationsOnLayer.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutationsOnLayer.Select(m => m.LabelCap).Distinct()))}";
-                            float buttonHeight = Text.CalcHeight(buttonText, partListViewRect.width);
-                            if (Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width - editButtonWidth, buttonHeight), buttonText))
-                            {
-                                List<FloatMenuOption> options = new List<FloatMenuOption>();
-                                Action removeAction = delegate ()
-                                {
-                                    if (!mutationsOnLayer.NullOrEmpty())
-                                    {
-                                        foreach (Hediff_AddedMutation hediff in mutationsOnLayer)
-                                        {
-                                            pawn.health.RemoveHediff(hediff);
-                                        }
-                                    }
-                                    forceRecachePreview = true;
-                                };
-                                options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeAction));
-                                foreach (MutationDef mutationDef in applicableMutations)
-                                {
-                                    Action action = delegate ()
-                                    {
-                                        if (!mutationsOnLayer.NullOrEmpty())
-                                        {
-                                            foreach (Hediff_AddedMutation hediff in mutationsOnLayer)
-                                            {
-                                                pawn.health.RemoveHediff(hediff);
-                                            }
-                                        }
-                                        foreach (BodyPartRecord bpr in pawn.RaceProps.body.AllParts.Where(m => m.def == part))
-                                        {
-                                            MutationUtilities.AddMutation(pawn, mutationDef, bpr);
-                                        }
-                                        forceRecachePreview = true;
-                                    };
-                                    options.Add(new FloatMenuOption(mutationDef.LabelCap, action));
-                                }
-                                Find.WindowStack.Add(new FloatMenu(options));
-                            }
-                            if (Widgets.ButtonText(new Rect(partListViewRect.width - editButtonWidth, col1, editButtonWidth, buttonHeight), editButtonText))
-                            {
-                                // Edit the paramaters of the relevant mutations, such as current stage, if it's halted, etc. (Check for full list of what can be modified later)
-                            }
-                            col1 += buttonHeight;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (BodyPartRecord part in mutableParts)
-                {
-                    string text = part.LabelCap;
-                    float textHeight = Text.CalcHeight(text, partListViewRect.width);
-                    Widgets.Label(new Rect(0f, col1, partListViewRect.width, textHeight), text);
-                    col1 += textHeight;
-                    foreach (MutationLayer layer in Enum.GetValues(typeof(MutationLayer)))
-                    {
-                        List<MutationDef> applicableMutations = allMutations.Where(m => m.parts.Contains(part.def) && m.comps.Find(n => n.GetType() == typeof(RemoveFromPartCompProperties)).ChangeType<RemoveFromPartCompProperties>().layer == layer).ToList();
-                        if (!applicableMutations.NullOrEmpty())
-                        {
-                            Hediff_AddedMutation mutationOnPartAndLayer = pawnMutations.Find(m => m.TryGetComp<Hediffs.RemoveFromPartComp>().Layer == layer && m.Part == part);
-                            string buttonText = $"{layer}: {(mutationOnPartAndLayer == null ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : mutationOnPartAndLayer.LabelCap)}";
-                            float buttonHeight = Text.CalcHeight(buttonText, partListViewRect.width);
-                            if (Widgets.ButtonText(new Rect(0f, col1, partListViewRect.width - editButtonWidth, buttonHeight), buttonText))
-                            {
-                                List<FloatMenuOption> options = new List<FloatMenuOption>();
-                                Action removeAction = delegate ()
-                                {
-                                    if (mutationOnPartAndLayer != null) pawn.health.RemoveHediff(mutationOnPartAndLayer);
-                                    forceRecachePreview = true;
-                                };
-                                options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeAction));
-                                foreach (MutationDef mutationDef in applicableMutations)
-                                {
-                                    Action action = delegate ()
-                                    {
-                                        if (mutationOnPartAndLayer != null) pawn.health.RemoveHediff(mutationOnPartAndLayer);
-                                        MutationUtilities.AddMutation(pawn, mutationDef, part);
-                                        forceRecachePreview = true;
-                                    };
-                                    options.Add(new FloatMenuOption(mutationDef.LabelCap, action));
-                                }
-                                Find.WindowStack.Add(new FloatMenu(options));
-                            }
-                            if (Widgets.ButtonText(new Rect(partListViewRect.width - editButtonWidth, col1, editButtonWidth, buttonHeight), editButtonText))
-                            {
-                                // Edit the paramaters of the mutation on the current part and layer, such as its current stage, if it's halted, etc. (Check for full list of what can be modified later)
-                            }
-                            col1 += buttonHeight;
-                        }
-                    }
-                }
-            }
-            if (Event.current.type == EventType.Layout)
-            {
-                partListScrollSize.x = partListOutRect.width - 16f;
-                partListScrollSize.y = col1;
-            }
-            Widgets.EndScrollView();
+            DrawPartsList(partListOutRect, partListViewRect, ref col1, titleHeight);
 
-            // Step 5 - Draw the preview area then rotation and clothes buttons then symmetry toggle.
-            if (forceRecachePreview || previewImage == null)
+            // Step 5 - Draw the preview area...
+            if (recachePreview || previewImage == null)
             {
-                setPawnPreview();
+                SetPawnPreview();
             }
             GUI.DrawTexture(previewRect, previewImage);
             col2 += previewRect.height;
+
+            // Then the preview Buttons...
             float rotCWHorPos = previewRect.x + previewRect.width / 2 - TOGGLE_CLOTHES_BUTTON_SIZE.x / 2 - ROTATE_CW_BUTTON_SIZE.x - SPACER_SIZE;
             float toggleClothingHorPos = previewRect.x + previewRect.width / 2 - TOGGLE_CLOTHES_BUTTON_SIZE.x / 2;
             float rotCCWHorPos = previewRect.x + previewRect.width / 2 + TOGGLE_CLOTHES_BUTTON_SIZE.x / 2 + SPACER_SIZE;
+            Rect rotCWRect = new Rect(rotCWHorPos, col2, ROTATE_CW_BUTTON_SIZE.x, ROTATE_CW_BUTTON_SIZE.y);
+            Rect toggleClothesRect = new Rect(toggleClothingHorPos, col2, TOGGLE_CLOTHES_BUTTON_SIZE.x, TOGGLE_CLOTHES_BUTTON_SIZE.y);
+            Rect rotCCWRect = new Rect(rotCCWHorPos, col2, ROTATE_CCW_BUTTON_SIZE.x, ROTATE_CCW_BUTTON_SIZE.y);
             col2 += SPACER_SIZE;
-            if (Widgets.ButtonImageFitted(new Rect(rotCWHorPos, col2, ROTATE_CW_BUTTON_SIZE.x, ROTATE_CW_BUTTON_SIZE.y), ButtonTexturesPM.rotCW, Color.white, Color.blue))
+            if (Widgets.ButtonImageFitted(rotCWRect, ButtonTexturesPM.rotCW, Color.white, GenUI.MouseoverColor))
             {
                 previewRot.Rotate(RotationDirection.Clockwise);
                 SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-                forceRecachePreview = true;
+                recachePreview = true;
             }
-            if (Widgets.ButtonImageFitted(new Rect(toggleClothingHorPos, col2, TOGGLE_CLOTHES_BUTTON_SIZE.x, TOGGLE_CLOTHES_BUTTON_SIZE.y), ButtonTexturesPM.toggleClothes, Color.white, Color.blue))
+            TooltipHandler.TipRegionByKey(rotCWRect, ROTATE_CW_LOC_STRING);
+            if (Widgets.ButtonImageFitted(toggleClothesRect, ButtonTexturesPM.toggleClothes, Color.white, GenUI.MouseoverColor))
             {
                 toggleClothesEnabled = !toggleClothesEnabled;
                 (toggleClothesEnabled ? SoundDefOf.Checkbox_TurnedOn : SoundDefOf.Checkbox_TurnedOff).PlayOneShotOnCamera();
-                forceRecachePreview = true;
+                recachePreview = true;
             }
-            if (Widgets.ButtonImageFitted(new Rect(rotCCWHorPos, col2, ROTATE_CCW_BUTTON_SIZE.x, ROTATE_CCW_BUTTON_SIZE.y), ButtonTexturesPM.rotCCW, Color.white, Color.blue))
+            TooltipHandler.TipRegionByKey(toggleClothesRect, TOGGLE_CLOTHES_LOC_STRING);
+            if (Widgets.ButtonImageFitted(rotCCWRect, ButtonTexturesPM.rotCCW, Color.white, GenUI.MouseoverColor))
             {
                 previewRot.Rotate(RotationDirection.Counterclockwise);
                 SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-                forceRecachePreview = true;
+                recachePreview = true;
             }
+            TooltipHandler.TipRegionByKey(rotCCWRect, ROTATE_CCW_LOC_STRING);
             col2 += Math.Max(TOGGLE_CLOTHES_BUTTON_SIZE.y, Math.Max(ROTATE_CW_BUTTON_SIZE.y, ROTATE_CCW_BUTTON_SIZE.y));
-            string toggleText = DO_SYMMETRY_LOC_STRING.Translate();
-            float toggleTextHeight = Text.CalcHeight(toggleText, PREVIEW_SIZE.x);
-            Widgets.CheckboxLabeled(new Rect(inRect.x + SPACER_SIZE + drawableWidth, col2, PREVIEW_SIZE.x, toggleTextHeight), DO_SYMMETRY_LOC_STRING.Translate(), ref doSymmetry);
-            col2 += toggleTextHeight;
+
+            // Then the crown and body type selectors...
+            // Head [Type] <-- box that shows selection list.
+            // Body [Type] (Need to include these in the reset function.)
+
+            // Then the Aspect selection list...
+            // Remember this needs scrolling, Brennen.
+
+            // Then finally the parts list toggles.
+            string skinSyncText = SKIN_SYNC_LOC_STRING.Translate();
+            Rect skinSyncRect = new Rect(inRect.x + SPACER_SIZE + drawableWidth, col2, PREVIEW_SIZE.x, Text.CalcHeight(skinSyncText, PREVIEW_SIZE.x));
+            Widgets.CheckboxLabeled(skinSyncRect, skinSyncText, ref skinSync);
+            col2 += skinSyncRect.height;
+
+            string symmetryToggleText = DO_SYMMETRY_LOC_STRING.Translate();
+            Rect symmetryToggleRect = new Rect(inRect.x + SPACER_SIZE + drawableWidth, col2, PREVIEW_SIZE.x, Text.CalcHeight(symmetryToggleText, PREVIEW_SIZE.x));
+            Widgets.CheckboxLabeled(symmetryToggleRect, symmetryToggleText, ref doSymmetry);
 
             // Step 6 - Draw description box.
+            DrawDescriptionBoxes(new Rect(inRect.x + 2 * SPACER_SIZE + PREVIEW_SIZE.x + partListOutRect.width, titleHeight, drawableWidth, drawableHeight));
 
             // Step 7 - Draw the apply, reset and cancel buttons.
             float buttonVertPos = titleHeight + drawableHeight + SPACER_SIZE;
@@ -295,7 +212,7 @@ namespace Pawnmorph.User_Interface
             {
                 SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera(null);
                 ResetPawnHealth();
-                forceRecachePreview = true;
+                recachePreview = true;
             }
             if (Widgets.ButtonText(new Rect(cancelHorPos, buttonVertPos, CANCEL_BUTTON_SIZE.x, CANCEL_BUTTON_SIZE.y), CANCEL_BUTTON_LOC_STRING.Translate()))
             {
@@ -308,11 +225,218 @@ namespace Pawnmorph.User_Interface
             pawn.health.hediffSet.hediffs = new List<Hediff>(cachedHediffList);
         }
 
-        public void setPawnPreview()
+        public void DrawPartsList(Rect outRect, Rect viewRect, ref float curPos, float initialPos)
+        {
+            List<Hediff_AddedMutation> pawnMutations = pawn.health.hediffSet.hediffs.Where(m => m.def.GetType() == typeof(MutationDef)).Cast<Hediff_AddedMutation>().ToList();
+            string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
+            float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
+
+            Widgets.BeginScrollView(outRect, ref partListScrollPos, viewRect);
+            if (skinSync)
+            {
+                List<BodyPartRecord> mutableCoreParts = cachedMutableParts.Where(m => DefDatabase<MutationDef>.AllDefs.Where(n => n.RemoveComp.layer == MutationLayer.Core).SelectMany(o => o.parts).Contains(m.def)).ToList();
+                DrawPartEntrySkinSyncMode(
+                    MutationLayer.Skin.ToString().Translate(),
+                    cachedMutableParts.Where(m => DefDatabase<MutationDef>.AllDefs.Where(n => n.RemoveComp.layer == MutationLayer.Skin).SelectMany(o => o.parts).Contains(m.def)).ToList(),
+                    ref curPos, viewRect, MutationLayer.Skin);
+                if (doSymmetry)
+                {
+                    foreach (BodyPartDef partDef in mutableCoreParts.Select(m => m.def).Distinct())
+                    {
+                        List<BodyPartRecord> mutablePartsOfDef = cachedMutableParts.Where(m => m.def == partDef).ToList();
+                        DrawPartEntrySkinSyncMode(mutablePartsOfDef.First().def.LabelCap.ToString(), mutablePartsOfDef, ref curPos, viewRect, MutationLayer.Core);
+                    }
+                }
+                else
+                {
+                    foreach (BodyPartRecord part in mutableCoreParts)
+                    {
+                        DrawPartEntrySkinSyncMode(part.LabelCap, new List<BodyPartRecord>() { part }, ref curPos, viewRect, MutationLayer.Core);
+                    }
+                }
+            }
+            else if (doSymmetry)
+            {
+                foreach (BodyPartDef part in cachedMutableParts.Select(m => m.def).Distinct())
+                {
+                    DrawPartEntry(cachedMutableParts.Where(m => m.def == part).ToList(), ref curPos, viewRect);
+                }
+            }
+            else
+            {
+                foreach (BodyPartRecord part in cachedMutableParts)
+                {
+                    DrawPartEntry(new List<BodyPartRecord>() {part}, ref curPos, viewRect);
+                }
+            }
+            if (Event.current.type == EventType.Layout)
+            {
+                partListScrollSize.x = outRect.width - 16f;
+                partListScrollSize.y = curPos - initialPos;
+            }
+            Widgets.EndScrollView();
+        }
+
+        private void DrawPartEntry(List<BodyPartRecord> parts, ref float curPos, Rect rect)
+        {
+            string labelText = doSymmetry ? parts.First().def.LabelCap.ToString() : parts.First().LabelCap.ToString();
+            Rect labelRect = new Rect(0f, curPos, rect.width, Text.CalcHeight(labelText, rect.width));
+            Widgets.Label(labelRect, labelText);
+            curPos += labelRect.height;
+
+            foreach (MutationLayer layer in cachedMutationDefsByPart.Where(m => parts.Select(p => p.def).Contains(m.Key)).SelectMany(n => n.Value).Select(o => o.CompProps<RemoveFromPartCompProperties>().layer).Distinct())
+            {
+                List<Hediff_AddedMutation> mutations = pawn.health.hediffSet.hediffs
+                    .Where(m => m.def.GetType() == typeof(MutationDef))
+                    .Cast<Hediff_AddedMutation>()
+                    .Where(m => parts.Contains(m.Part) && m.TryGetComp<RemoveFromPartComp>().Layer == layer)
+                    .ToList();
+                string partButtonText = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.LabelCap).Distinct()))}";
+                string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
+                float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
+                Rect partButtonRect = new Rect(rect.x, curPos, rect.width - editButtonWidth, Text.CalcHeight(partButtonText, rect.width - editButtonWidth - BUTTON_HORIZONTAL_PADDING));
+                Rect editButtonRect = new Rect(partButtonRect.width, curPos, editButtonWidth, partButtonRect.height);
+                Rect descriptionUpdateRect = new Rect(rect.x, curPos, rect.width, partButtonRect.height);
+                if (Widgets.ButtonText(partButtonRect, partButtonText))
+                {
+                    List<FloatMenuOption> options = new List<FloatMenuOption>();
+                    void removeMutations()
+                    {
+                        foreach (Hediff_AddedMutation mutation in mutations)
+                        {
+                            pawn.health.RemoveHediff(mutation);
+                        }
+                        recachePreview = true;
+                    }
+                    options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeMutations));
+                    foreach (MutationDef mutationDef in cachedMutationDefsByPart[parts.First().def].Where(m => m.CompProps<RemoveFromPartCompProperties>().layer == layer))
+                    {
+                        void addMutation()
+                        {
+                            removeMutations();
+                            foreach (BodyPartRecord part in parts)
+                            {
+                                MutationUtilities.AddMutation(pawn, mutationDef, part);
+                            }
+                        }
+                        options.Add(new FloatMenuOption(mutationDef.LabelCap, addMutation));
+                    }
+                    Find.WindowStack.Add(new FloatMenu(options));
+                }
+                if (Widgets.ButtonText(editButtonRect, editButtonText))
+                {
+                    // Pop open window to modify current stage, severity, halted status, etc.
+                }
+                if (Mouse.IsOver(descriptionUpdateRect))
+                {
+                    foreach (MutationDef mutation in mutations.Select(m => m.Def).Distinct().ToList())
+                    {
+                        partDescBuilder.AppendLine($"{mutation.LabelCap}");
+                        partDescBuilder.AppendLine($"{mutation.description}");
+                        partDescBuilder.AppendLine();
+                    }
+                }
+                curPos += partButtonRect.height;
+            }
+        }
+
+        private void DrawPartEntrySkinSyncMode(string label, List<BodyPartRecord> parts, ref float curPos, Rect rect, MutationLayer layer)
+        {
+            Rect labelRect = new Rect(rect.x, curPos, rect.width, Text.CalcHeight(label, rect.width));
+            Widgets.Label(labelRect, label);
+            curPos += labelRect.height;
+
+            List<Hediff_AddedMutation> mutations = pawn.health.hediffSet.hediffs
+                .Where(m => m.def.GetType() == typeof(MutationDef))
+                .Cast<Hediff_AddedMutation>()
+                .Where(m => parts.Contains(m.Part) && m.TryGetComp<RemoveFromPartComp>().Layer == layer)
+                .ToList();
+
+            string partButtonText = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.LabelCap).Distinct()))}";
+            string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
+
+            float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
+            float partButtonWidth = rect.width - editButtonWidth;
+            float partButtonHeight = Text.CalcHeight(partButtonText, partButtonWidth - BUTTON_HORIZONTAL_PADDING);
+
+            Rect partButtonRect = new Rect(rect.x, curPos, partButtonWidth, partButtonHeight);
+            Rect editButtonRect = new Rect(partButtonWidth, curPos, editButtonWidth, partButtonHeight);
+            Rect descUpdateRect = new Rect(rect.x, curPos, rect.width, partButtonHeight);
+
+            if (Widgets.ButtonText(partButtonRect, partButtonText))
+            {
+                List<FloatMenuOption> options = new List<FloatMenuOption>();
+                void removeMutations()
+                {
+                    foreach (Hediff_AddedMutation mutation in mutations)
+                    {
+                        pawn.health.RemoveHediff(mutation);
+                    }
+                    recachePreview = true;
+                }
+                options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeMutations));
+                foreach (MutationDef mutationDef in cachedMutationDefsByPart[parts.First().def].Where(m => m.CompProps<RemoveFromPartCompProperties>().layer == layer))
+                {
+                    void addMutation()
+                    {
+                        removeMutations();
+                        foreach (BodyPartRecord part in parts)
+                        {
+                            MutationUtilities.AddMutation(pawn, mutationDef, part);
+                        }
+                    }
+                    options.Add(new FloatMenuOption(mutationDef.LabelCap, addMutation));
+                }
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+
+            if (Widgets.ButtonText(editButtonRect, editButtonText))
+            {
+                // Pop open window to modify current stage, severity, halted status, etc.
+            }
+
+            if (Mouse.IsOver(descUpdateRect))
+            {
+                foreach (MutationDef mutation in mutations.Select(m => m.Def).Distinct().ToList())
+                {
+                    partDescBuilder.AppendLine($"{mutation.LabelCap}");
+                    partDescBuilder.AppendLine($"{mutation.description}");
+                    partDescBuilder.AppendLine();
+                }
+            }
+
+            curPos += partButtonHeight;
+        }
+
+        public void DrawDescriptionBoxes(Rect inRect)
+        {
+            float difCurY = 0f;
+            Rect difMenuSectionRect = new Rect(inRect.x, inRect.y, inRect.width, inRect.height / 2 - SPACER_SIZE);
+            Rect difOutRect = difMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
+            Rect difViewRect = new Rect(difOutRect.x, difOutRect.y, descriptionScrollSize.x, descriptionScrollSize.y);
+            Rect partDescMenuSectionRect = new Rect(inRect.x, inRect.height / 2 + SPACER_SIZE, inRect.width, inRect.height / 2 + SPACER_SIZE);
+            Rect partDescRect = partDescMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
+
+            Widgets.DrawMenuSection(difMenuSectionRect);
+            Widgets.BeginScrollView(difOutRect, ref descriptionScrollPos, difViewRect);
+            difCurY += Text.CalcHeight(partDescBuilder.ToString(), difOutRect.width);
+            if (Event.current.type == EventType.Layout)
+            {
+                descriptionScrollSize.x = difOutRect.width - 16f;
+                descriptionScrollSize.y = difCurY;
+            }
+            Widgets.EndScrollView();
+
+            Widgets.DrawMenuSection(partDescMenuSectionRect);
+            Widgets.Label(partDescRect, partDescBuilder.ToString());
+            partDescBuilder.Clear();
+        }
+
+        public void SetPawnPreview()
         {
             if (pawn != null)
             {
-                forceRecachePreview = false;
+                recachePreview = false;
                 pawn.Drawer.renderer.graphics.ResolveAllGraphics();
                 PortraitsCache.SetDirty(pawn);
                 RenderPawn();
@@ -413,7 +537,6 @@ namespace Pawnmorph.User_Interface
             }
         }
 
-
         internal void InitCamera()
         {
             if (gameObject == null)
@@ -438,7 +561,7 @@ namespace Pawnmorph.User_Interface
                 camera.farClipPlane = Current.Camera.farClipPlane;
                 camera.targetTexture = null;
                 camera.forceIntoRenderTexture = false;
-                previewImage = new RenderTexture(200, 280, 24);
+                previewImage = new RenderTexture((int)PREVIEW_SIZE.x, (int)PREVIEW_SIZE.y, 24);
                 camera.targetTexture = previewImage;
             }
         }

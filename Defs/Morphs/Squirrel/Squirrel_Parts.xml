@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="SquirrelPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>SquirrelMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelJaw</defName>
 		<label>sciurine muzzle</label>
@@ -27,7 +26,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>new</label>
 				<capMods>
 					<li>
@@ -40,7 +39,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -93,7 +92,6 @@
 			<li>Major</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelEar</defName>
 		<description>[PAWN_nameDef]'s ears have grown into small wedges, flicking about to listen for the beating of wings.</description>
@@ -102,7 +100,7 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
@@ -111,7 +109,6 @@
 			<li>Major</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelTail</defName>
 		<label>sciurine tail</label>
@@ -120,7 +117,7 @@
 			<li>Tail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

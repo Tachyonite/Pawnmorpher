@@ -1,5 +1,7 @@
 <Defs>
 
+
+  
 <ThingDef ParentName="AnimalThingBase">
     <defName>EtherHellhound</defName>
     <label>hellhound</label>
@@ -128,7 +130,7 @@
     </tradeTags>
   </ThingDef>
   
-  <PawnKindDef ParentName="AnimalKindBase">
+  <PawnKindDef ParentName="AnimalKindBase" >
     <defName>EtherHellhound</defName>
     <label>hellhound</label>
     <race>EtherHellhound</race>

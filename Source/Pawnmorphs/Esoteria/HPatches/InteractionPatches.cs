@@ -3,6 +3,7 @@
 
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using RimWorld;
 using Verse;
@@ -22,7 +23,18 @@ namespace Pawnmorph.HPatches
                 var ext = intDef.GetModExtension<InteractionGroupExtension>();
                 InteractionDef alt = ext?.TryGetAlternativeFor(___pawn, recipient);
                 if (alt != null)
+                {
+                    if (DebugLogUtils.ShouldLog(LogLevel.Messages))
+                    {
+
+                        var msg = $"substituting {alt.defName} for {intDef.defName} on {___pawn.Name} -> {recipient.Name}";
+                        Log.Message(msg); 
+
+                    }
+                    
+                    
                     intDef = alt;
+                }
 
                 return true; 
             }
@@ -35,6 +47,14 @@ namespace Pawnmorph.HPatches
                 {
                     var memory = intDef.GetModExtension<InstinctEffector>()?.thought;  //hacky, should come up with a better solution eventually 
                     if (memory == null) return;
+
+                    if (DebugLogUtils.ShouldLog(LogLevel.Messages))
+                    {
+                        var msg = $"giving {recipient.Name} memory {memory.defName}";
+                        Log.Message(msg); 
+                    }
+
+
                     //social thoughts to? 
                     recipient.TryGainMemory(memory);
                 }
