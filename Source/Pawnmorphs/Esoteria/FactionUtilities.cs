@@ -86,7 +86,7 @@ namespace Pawnmorph
         public static void Notify_LeaderTransformed([NotNull] this Faction faction, Pawn animal)
         {
             var leader = faction.leader;
-            faction.GenerateNewLeader();
+            faction.TryGenerateNewLeader();
             var newLeader = faction.leader;
             var letterLabel = LEADER_TRANSFORMED_LABEL.Translate( faction.Name.Named(FACTION_NAME), 
                                                             faction.def.leaderTitle.CapitalizeFirst().Named(LEADER_TITLE),

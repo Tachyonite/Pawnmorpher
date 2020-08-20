@@ -480,7 +480,7 @@ namespace Pawnmorph.User_Interface
             {
                 Mesh mesh2 = MeshPool.humanlikeHeadSet.MeshAt(previewRot);
                 Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
-                Material material = graphics.HeadMatAt(previewRot);
+                Material material = graphics.HeadMatAt_NewTemp(previewRot);
                 GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
 
                 Mesh hairMesh = graphics.HairMeshSet.MeshAt(previewRot);
@@ -509,7 +509,7 @@ namespace Pawnmorph.User_Interface
                 }
                 if (!isWearingHat)
                 {
-                    Material hairMat = graphics.HairMatAt(previewRot);
+                    Material hairMat = graphics.HairMatAt_NewTemp(previewRot);
                     GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
                 }
             }
