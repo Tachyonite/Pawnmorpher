@@ -35,7 +35,7 @@ namespace Pawnmorph
 
         static PMRulePackDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(RulePackDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(PMRulePackDefOf));
         }
     }
 }

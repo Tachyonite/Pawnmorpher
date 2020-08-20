@@ -11,7 +11,7 @@ namespace Pawnmorph
     {
         static TfRelationDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PawnRelationDef)); 
+            DefOfHelper.EnsureInitializedInCtor(typeof(TfRelationDefOf)); 
         }
 
         public static PawnRelationDef MergeMate;
