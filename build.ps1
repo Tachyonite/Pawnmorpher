@@ -52,7 +52,7 @@ if(!$?)
     exit 1 
 }
 
-Copy-Item -Path Defs, About, "1.1", "1.0" , Languages, Patches, Textures -Destination "$buildDir/Tmp" -Recurse
+Copy-Item -Path Defs, About, "1.2", "1.1", "1.0" , Languages, Patches, Textures -Destination "$buildDir/Tmp" -Recurse
 
 #Remove hugs lib dll if present 
 if(Test-Path "$buildDir/Tmp/1.1/Assemblies/HugsLib.dll")

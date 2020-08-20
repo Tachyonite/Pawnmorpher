@@ -2,6 +2,7 @@
 // last updated 09/13/2019  9:51 AM
 
 using System;
+using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
@@ -16,6 +17,108 @@ namespace Pawnmorph.GraphicSys
     /// </summary>
     public static class MorphGraphicsUtils
     {
+
+        /// <summary>
+        /// Sets the color of the skin.
+        /// </summary>
+        /// <param name="alienComp">The alien comp.</param>
+        /// <param name="first">The first.</param>
+        /// <param name="second">The second.</param>
+        /// <exception cref="ArgumentNullException">alienComp</exception>
+        public static void SetSkinColor([NotNull] this AlienPartGenerator.AlienComp alienComp, Color first, Color? second=null)
+        {
+            if (alienComp == null) throw new ArgumentNullException(nameof(alienComp));
+            alienComp.ColorChannels["skin"].first = first;
+            if (second != null) alienComp.ColorChannels["skin"].second = second.Value; 
+
+        }
+
+
+        public static Color? GetHairColor([NotNull] this AlienPartGenerator.AlienComp alienComp, bool first = true)
+        {
+            if (alienComp == null) throw new ArgumentNullException(nameof(alienComp));
+            AlienPartGenerator.ExposableValueTuple<Color, Color> tuple = alienComp.ColorChannels.TryGetValue("hair");
+            return first ? tuple?.first : tuple?.second;
+
+        }
+
+        /// <summary>
+        /// Gets the color of the skin.
+        /// </summary>
+        /// <param name="alienComp">The alien comp.</param>
+        /// <param name="first">if set to <c>true</c> [first].</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">alienComp</exception>
+        public static Color? GetSkinColor([NotNull] this AlienPartGenerator.AlienComp alienComp, bool first = true)
+        {
+            if (alienComp == null) throw new ArgumentNullException(nameof(alienComp));
+            AlienPartGenerator.ExposableValueTuple<Color, Color> tuple = alienComp.ColorChannels.TryGetValue("skin");
+            return first ? tuple?.first : tuple?.second; 
+        }
+
+        /// <summary>
+        /// Sets the color of the hair.
+        /// </summary>
+        /// <param name="alienComp">The alien comp.</param>
+        /// <param name="first">The first.</param>
+        /// <param name="second">The second.</param>
+        /// <exception cref="ArgumentNullException">alienComp</exception>
+        public static void SetHairColor([NotNull] this AlienPartGenerator.AlienComp alienComp, Color first, Color? second = null)
+        {
+            if (alienComp == null) throw new ArgumentNullException(nameof(alienComp));
+            var tuple = alienComp.ColorChannels["hair"];
+            tuple.first = first;
+            if (second != null) tuple.second = second.Value; 
+
+        }
+
+        /// <summary>
+        /// Generates the random color.
+        /// </summary>
+        /// <param name="generator">The generator.</param>
+        /// <param name="channelName">Name of the channel.</param>
+        /// <param name="first">if set to <c>true</c> [first].</param>
+        /// <param name="seed">The seed.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">generator</exception>
+        public static Color? GenerateRandomColor([NotNull] this AlienPartGenerator generator, string channelName, bool first=true, int? seed = null)
+        {
+            if (generator == null) throw new ArgumentNullException(nameof(generator));
+            var channel = generator.colorChannels?.FirstOrDefault(c => c.name == channelName);
+            var cGen = first ? channel?.first : channel?.second;
+            if (cGen == null) return null;
+
+
+            if (seed != null)
+            {
+                try
+                {
+                    Rand.PushState(seed.Value);
+                    return cGen.NewRandomizedColor(); 
+                }
+                finally
+                {
+                    Rand.PopState();
+                }
+            }
+
+            return cGen.NewRandomizedColor();
+
+        }
+
+        /// <summary>
+        /// Gets the part generator.
+        /// </summary>
+        /// <param name="alienRace">The alien race.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">alienRace</exception>
+        [CanBeNull]
+        public static AlienPartGenerator GetPartGenerator([NotNull] this ThingDef_AlienRace alienRace)
+        {
+            if (alienRace == null) throw new ArgumentNullException(nameof(alienRace));
+            return alienRace.alienRace?.generalSettings?.alienPartGenerator; 
+        }
+
         /// <summary>
         ///     Gets the hair color override.
         /// </summary>
@@ -44,21 +147,16 @@ namespace Pawnmorph.GraphicSys
             }
 
             var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
-            ColorGenerator colorGenerator = hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhaircolorgen;
-            Color? color;
-            if (colorGenerator != null)
-                try
-                {
-                    if (pawn != null)
-                        Rand.PushState(pawn.thingIDNumber);
-                    color = colorGenerator.NewRandomizedColor();
-                }
-                finally
-                {
-                    if (pawn != null) Rand.PopState();
-                }
-            else
-                color = GetSkinColorOverride(def, pawn);
+            var pGen = hRace.GetPartGenerator(); 
+
+            Color? color = null;
+
+            if (pGen != null)
+            {
+                color = pGen.GenerateRandomColor("hair", true, pawn?.thingIDNumber); 
+            }
+
+            color = color?? GetSkinColorOverride(def, pawn);
 
 
             return color;
@@ -89,21 +187,14 @@ namespace Pawnmorph.GraphicSys
             }
 
             var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
-            ColorGenerator colorGenerator = hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienhairsecondcolorgen;
-            Color? color;
-            if (colorGenerator != null)
-                try
-                {
-                    if (pawn != null) Rand.PushState(pawn.thingIDNumber);
+            var gen = hRace?.GetPartGenerator();
+            Color? color = gen?.GenerateRandomColor("hair", false, pawn?.thingIDNumber); 
 
-                    color = colorGenerator.NewRandomizedColor();
-                }
-                finally
-                {
-                    if (pawn != null) Rand.PopState();
-                }
-            else
-                color = GetSkinColorOverride(def, pawn);
+
+            
+
+
+            color = color ?? GetSkinColorOverride(def, pawn);
 
 
             return color;
@@ -135,22 +226,10 @@ namespace Pawnmorph.GraphicSys
             }
 
             var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
-            ColorGenerator colorGenerator = hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskincolorgen;
-            Color? color;
-            if (colorGenerator != null)
-                try
-                {
-                    if (pawn != null) Rand.PushState(pawn.thingIDNumber);
-                    color = colorGenerator.NewRandomizedColor();
-                }
-                finally
-                {
-                    if (pawn != null) Rand.PopState();
-                }
-            else
-                color = null;
+            var pGen = hRace?.GetPartGenerator();
 
-            return color;
+
+            return pGen?.GenerateRandomColor("skin", true, pawn?.thingIDNumber); 
         }
 
         /// <summary>
@@ -179,22 +258,10 @@ namespace Pawnmorph.GraphicSys
             }
 
             var hRace = def.ExplicitHybridRace as ThingDef_AlienRace;
-            ColorGenerator colorGenerator = hRace?.alienRace?.generalSettings?.alienPartGenerator?.alienskinsecondcolorgen;
+            
+            AlienPartGenerator generalSettingsAlienPartGenerator = hRace?.alienRace?.generalSettings?.alienPartGenerator;
 
-            Color? color;
-            if (colorGenerator != null)
-                try
-                {
-                    if (pawn != null) Rand.PushState(pawn.thingIDNumber);
-                    color = colorGenerator.NewRandomizedColor();
-                }
-                finally
-                {
-                    if (pawn != null) Rand.PopState();
-                }
-            else color = null;
-
-            return color;
+            return generalSettingsAlienPartGenerator?.GenerateRandomColor("skin", false, pawn?.thingIDNumber); 
         }
 
         /// <summary>

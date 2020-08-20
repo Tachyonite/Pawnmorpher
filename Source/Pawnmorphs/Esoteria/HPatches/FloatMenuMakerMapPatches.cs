@@ -96,7 +96,7 @@ namespace Pawnmorph
         }
    
 #endif
-        [HarmonyPatch(typeof(FloatMenuMakerMap), nameof(FloatMenuMakerMap.ChoicesAtFor))]
+        [HarmonyPatch(typeof(FloatMenuMakerMap), nameof(FloatMenuMakerMap.ChoicesAtFor), typeof(Vector3), typeof(Pawn))]
         static class AddHumanlikeOrdersToSA
         {
 
