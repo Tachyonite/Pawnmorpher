@@ -89,16 +89,31 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" Name="FoxEarBase" ParentName="FoxPart">
 		<defName>EtherFoxEar</defName>
-		<description>Big fuzzy triangles crown [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're very sensitive, so please don't shout.</description>
+		<description>A large and sensitive ear, normally belonging to a fox.</description>
 		<label>vulpine</label>
+		<initialSeverity>0</initialSeverity>
 		<parts>
 			<li>Ear</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pointed</labelOverride>
+				<minSeverity>0.1</minSeverity>
+				<description>[PAWN_nameDef]'s ears are growing longer, developing a point at the peak. They're a little more sensitive.</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>Big fuzzy triangles crown [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're very sensitive, so please don't shout.</description>
+				<minSeverity>1</minSeverity>
 				<partEfficiencyOffset>0.3</partEfficiencyOffset>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.8</severityPerDay>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" Name="FoxTailBase" ParentName="FoxPart">
 		<defName>EtherFluffyTail</defName>
