@@ -510,7 +510,7 @@ namespace Pawnmorph.Hybrids
         [NotNull]
         private static ThingDef_AlienRace GenerateImplicitRace([NotNull] ThingDef_AlienRace humanDef, [NotNull] MorphDef morph)
         {
-            var impliedRace =  new ThingDef_AlienRace
+            var impliedRace = new ThingDef_AlienRace
             {
                 defName = morph.defName + "Race_Implied", //most of these are guesses, should figure out what's safe to change and what isn't 
                 label = morph.label,
@@ -541,7 +541,8 @@ namespace Pawnmorph.Hybrids
                 stuffCategories = humanDef.stuffCategories?.ToList(),
                 designationCategory = humanDef.designationCategory,
                 tradeTags = humanDef.tradeTags?.ToList(),
-                tradeability = humanDef.tradeability
+                tradeability = humanDef.tradeability,
+                fillPercent = morph.raceSettings.coverPercent
             };
             impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(morph.race.tools.MakeSafe()));
             var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance); 
