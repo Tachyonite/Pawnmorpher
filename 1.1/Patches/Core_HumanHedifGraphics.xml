@@ -13,6 +13,7 @@
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboWolfspike>Parts/COMBINATIONS/Wolfspike/Wolfspike</EtherComboWolfspike>
+					<PM_HellhoundSnout>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</PM_HellhoundSnout>
 					<!-- REGULAR PAWN PIECES -->
 					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
 					<EtherAlphabeaverJaw>Parts/Alphabeaver/Alphabeaver_Jaw</EtherAlphabeaverJaw>
@@ -114,6 +115,7 @@
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboWolfspike>Parts/COMBINATIONS/Wolfspike/Wolfspike</EtherComboWolfspike>
+					<PM_HellhoundSnout>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</PM_HellhoundSnout>
 					<!-- REGULAR PAWN PIECES -->
 					<EtherAlpacaSnout>Parts/Alpaca/Alpaca_Jaw</EtherAlpacaSnout>
 					<EtherAlphabeaverJaw>Parts/Alphabeaver/Alphabeaver_Jaw</EtherAlphabeaverJaw>
@@ -410,6 +412,7 @@
 				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</EtherAlphabeaverEar>
 					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Left</EtherBoomratEar>
@@ -543,6 +546,9 @@
 				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
+					<!-- TODO 
+					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
+					-->
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</EtherAlphabeaverEar>
 					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Right</EtherBoomratEar>
@@ -679,6 +685,7 @@
 				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</EtherAlphabeaverEar>
 					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Left</EtherBoomratEar>
@@ -818,6 +825,9 @@
 				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
+					<!--  TODO 
+					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
+					-->
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</EtherAlphabeaverEar>
 					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Right</EtherBoomratEar>
@@ -912,6 +922,7 @@
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
+					<PM_HellhoundTail>Parts/COMBINATIONS/Hellhound/Hellhound_Tail</PM_HellhoundTail>
 					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherAlphabeaverTail>Parts/Alphabeaver/Alphabeaver_Tail</EtherAlphabeaverTail>
 					<EtherBearTail>Parts/bearface/beartail</EtherBearTail>
@@ -1047,6 +1058,7 @@
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
+					<PM_HellhoundHorns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</PM_HellhoundHorns>
 					<!-- REGULAR PAWN PIECES -->
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
 					<EtherSheepHorns>Parts/sheepface/sheephorns</EtherSheepHorns>
@@ -1112,6 +1124,7 @@
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
+					<PM_HellhoundHorns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</PM_HellhoundHorns>
 					<!-- REGULAR PAWN PIECES -->
 					<EtherSheepHorns>Parts/sheepface/sheephorns</EtherSheepHorns>
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
@@ -1227,6 +1240,53 @@
 				<hediffGraphics>
 					<EtherSnakeHood>Parts/Cobra/Cobra_Hood_Behind</EtherSnakeHood>
 					<EtherIguanaHorns>Parts/iguanaface/iguanahorns_Behind</EtherIguanaHorns>
+				</hediffGraphics>
+				<hiddenUnderApparelFor>
+					<li>UpperHead</li>
+					<li>FullHead</li>
+				</hiddenUnderApparelFor>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.01,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+						</crownTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0,0.94)</Male>
+							<Female>(0,0.94)</Female>
+							<Thin>(0,0.94)</Thin>
+							<Hulk>(0,0.94)</Hulk>
+							<Fat>(0,0.94)</Fat>
+						</bodyTypes>
+						<crownTypes>
+							<Average_Wide>(-0.015,0.005)</Average_Wide>
+							<Average_Pointy>(0,0.005)</Average_Pointy>
+							<Narrow_Normal>(0,-0.01)</Narrow_Normal>
+							<Narrow_Wide>(0,-0.01)</Narrow_Wide>
+							<Narrow_Pointy>(0,-0.01)</Narrow_Pointy>
+						</crownTypes>
+					</north>
+					<east/>
+				</offsets>
+			</li>
+			<li>
+				<!-- Hellhound spines -->
+				<path>Parts/None/None</path>
+				<bodyPart>Spine</bodyPart>
+				<inFrontOfBody>false</inFrontOfBody>
+				<drawForFemale>false</drawForFemale>
+				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+					<PM_HellhoundSpikes>Parts/COMBINATIONS/Hellhound/Hellhound_Spikes</PM_HellhoundSpikes>
 				</hediffGraphics>
 				<hiddenUnderApparelFor>
 					<li>UpperHead</li>

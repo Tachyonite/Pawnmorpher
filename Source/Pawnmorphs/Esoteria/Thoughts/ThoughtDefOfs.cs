@@ -13,7 +13,7 @@ namespace Pawnmorph.Thoughts
     {
         static ThoughtDefOfs()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDefOfs));
         }
 
         //transformed 
