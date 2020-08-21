@@ -111,6 +111,7 @@
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

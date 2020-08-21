@@ -76,6 +76,7 @@
 		<description>A cowlike tail. It swats at flies and hangs low at their legs.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

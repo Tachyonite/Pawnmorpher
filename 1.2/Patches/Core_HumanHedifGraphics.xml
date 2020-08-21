@@ -388,7 +388,7 @@
 			<li>
 				<!-- Tails -->
 				<path>Parts/None/None</path>
-				<bodyPart>Tail</bodyPart>
+				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerOffset>-0.28</layerOffset>
 				<layerInvert>false</layerInvert>
@@ -466,7 +466,7 @@
 			<li>
 				<!-- Body-extending tails -->
 				<path>Parts/None/None</path>
-				<bodyPart>Tail</bodyPart>
+				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerOffset>-0.29</layerOffset>
 				<layerInvert>false</layerInvert>

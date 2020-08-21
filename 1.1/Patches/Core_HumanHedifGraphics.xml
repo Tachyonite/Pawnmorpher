@@ -916,7 +916,7 @@
 			<li>
 				<!-- Normal Tails -->
 				<path>Parts/None/None</path>
-				<bodyPart>Tail</bodyPart>
+				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
@@ -994,7 +994,7 @@
 			<li>
 				<!-- Body Tails -->
 				<path>Parts/None/None</path>
-				<bodyPart>Tail</bodyPart>
+				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>

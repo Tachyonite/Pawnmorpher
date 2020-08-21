@@ -115,6 +115,7 @@
 		<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_objective]self and use it as a pillow while sleeping.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

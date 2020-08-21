@@ -65,6 +65,7 @@
 		<description>A big, muscular tail, capable of supporting [PAWN_nameDef]'s whole body on its own.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

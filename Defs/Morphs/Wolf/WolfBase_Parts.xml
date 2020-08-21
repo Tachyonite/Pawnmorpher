@@ -134,6 +134,7 @@
 		</stages>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<categories>
 			<li>Major</li>

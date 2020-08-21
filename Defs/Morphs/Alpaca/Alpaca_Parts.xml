@@ -105,6 +105,7 @@
 		</stages>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<mutationMemory>EtherAlpacaTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>

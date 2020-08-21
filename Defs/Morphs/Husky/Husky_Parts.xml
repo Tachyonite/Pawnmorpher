@@ -102,6 +102,7 @@
 		<description>A wonderfully fluffy husky tail curls over [PAWN_nameDef]'s back. Was that a small wag just then?</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

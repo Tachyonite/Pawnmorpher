@@ -76,6 +76,7 @@
 		<description>A donkeylike tail. It swats at flies occasionally.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

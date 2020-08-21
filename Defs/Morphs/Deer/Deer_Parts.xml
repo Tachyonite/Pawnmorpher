@@ -104,6 +104,7 @@
 		<description>A short tail juts out from [PAWN_nameDef]'s spine, flaring up whenever danger is sensed.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

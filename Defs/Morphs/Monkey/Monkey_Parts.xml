@@ -72,6 +72,7 @@
 		<description>A long dextrous tail extends from the base of [PAWN_nameDef]'s spine. It would help with climbing abiltiy, but nobody knows how to on the rim.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

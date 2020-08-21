@@ -118,6 +118,7 @@
 		<description>A thin tail with a tuft of fur at the end.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<mutationTale>GrewTail</mutationTale>
 		<stages>

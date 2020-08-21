@@ -83,6 +83,7 @@
 		<description>A small puff of fluff peaks out just above [PAWN_nameDef]'s rear. It's rather cute, actually.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<countToAffect>1</countToAffect>
 		<categories>
