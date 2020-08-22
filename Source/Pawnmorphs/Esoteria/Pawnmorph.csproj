@@ -725,6 +725,7 @@
     <Compile Include="TransformPawn.cs" />
     <Compile Include="User Interface\ButtonTexturesPM.cs" />
     <Compile Include="User Interface\Dialog_PartPicker.cs" />
+    <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
     <Compile Include="Utilities\HediffDefUtilities.cs" />
