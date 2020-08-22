@@ -5,11 +5,27 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherPart">
 		<defName>EtherPantherJaw</defName>
 		<label>pantherine muzzle</label>
-		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a panther. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+		<description>The sleek feline muzzle of a panther.</description>
 		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>new</label>
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a panther. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -23,6 +39,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
+				<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a panther. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with speaking.</description> 
 				<label>adapted</label>
 				<capMods>
 					<li>

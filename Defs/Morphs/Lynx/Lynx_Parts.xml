@@ -5,10 +5,27 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
 		<defName>EtherLynxJaw</defName>
 		<label>lynx snout</label>
-		<description>[PAWN_nameDef]'s face has grown into a rather regal face resembling a lynx's.</description>
+		<description>The rather regal face of a lynx.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>[PAWN_nameDef]'s face has grown into a rather regal face resembling a lynx's.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -23,6 +40,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
 				<minSeverity>1</minSeverity>
+				<description>[PAWN_nameDef]'s face has grown into a rather regal face resembling a lynx's. Adaptation has removed some of the difficulty with speaking.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>

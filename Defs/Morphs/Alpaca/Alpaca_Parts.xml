@@ -5,11 +5,28 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaSnout</defName>
 		<label>woolly snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting.</description>
+		<description>The soft and fuzzy snout of an alpaca.</description>
 		<mutationTale>GrewAlpacaMuzzle</mutationTale>
 		<mutationMemory>EtherAlpacaSnout</mutationMemory>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -23,6 +40,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adaptation has removed some of the difficulty with talking.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -35,6 +53,18 @@
 					</li>
 				</capMods>
 				<label>adapted</label>
+			</li>
+			
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<label>paragon</label>
+				<description>Further adaptation to this snout has allowed [PAWN_nameDef] to speak normally.</description>
+				<capMods>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
 			</li>
 		</stages>
 		<comps>
