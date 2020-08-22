@@ -42,6 +42,7 @@
 				</capMods>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
 				<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit; speaking is difficult outside of barks and whines, but eating is easier.</description>
 				<capMods>
 					<li>
