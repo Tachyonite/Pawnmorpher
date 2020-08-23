@@ -14,4 +14,6 @@
 	<formerChanceSliderLabel>Chance for animals to spawn as former humans</formerChanceSliderLabel>
 	<partialChanceSliderLabel>Chance for morph eggs/milk to trigger a complete transformation instead of a single mutation</partialChanceSliderLabel>
 	<maxMutationThoughtsSliderLabel>How many mutation related thoughts will show up at once</maxMutationThoughtsSliderLabel>
+	<friendlyManhunterTfChance>Chance for friendly pawns to go manhunter when transformed</friendlyManhunterTfChance>
+	<manhunterTfChance>Chacne for pawns to go manhunter when transformed</manhunterTfChance>
 </LanguageData>
