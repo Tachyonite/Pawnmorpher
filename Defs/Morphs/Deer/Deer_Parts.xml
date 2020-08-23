@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="DeerPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>DeerMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
 		<defName>EtherDeerSnout</defName>
 		<label>cervine snout</label>
@@ -26,7 +25,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -38,7 +37,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -86,7 +85,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
 		<defName>EtherDeerEar</defName>
 		<label>cervine</label>
@@ -95,12 +93,11 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
 		<defName>EtherShortTail</defName>
 		<label>short tail</label>
@@ -109,7 +106,7 @@
 			<li>Tail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -119,7 +116,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
 		<defName>EtherAntlers</defName>
 		<label>antlers</label>
@@ -149,20 +145,20 @@
 		</comps>
 		<initialSeverity>0.1</initialSeverity>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>fawn</label>
 				<statOffsets>
 					<SocialImpact>+0.02</SocialImpact>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.3</minSeverity>
 				<label>buck</label>
 				<statOffsets>
 					<SocialImpact>+0.07</SocialImpact>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.7</minSeverity>
 				<label>stag</label>
 				<statOffsets>

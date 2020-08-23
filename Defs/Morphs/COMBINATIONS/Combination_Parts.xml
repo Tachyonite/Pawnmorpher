@@ -11,7 +11,7 @@
 			<li>Jaw</li>
 		</blockSites>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -56,7 +56,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ComboPartBase">
 		<defName>EtherComboWolfSpike</defName>
 		<label>wolfspike</label>
@@ -69,7 +68,7 @@
 		</blockSites>
 		<classInfluence>Wolf</classInfluence>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>

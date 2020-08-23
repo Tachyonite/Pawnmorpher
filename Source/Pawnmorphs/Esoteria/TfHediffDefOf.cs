@@ -27,5 +27,7 @@ namespace Pawnmorph
 
         [NotNull]
         public static HediffDef SapienceLimiterHediff;
+
+        public static HediffDef LuciferiumHigh; 
     }
 }

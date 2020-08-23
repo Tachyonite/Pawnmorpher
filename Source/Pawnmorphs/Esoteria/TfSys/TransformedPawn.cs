@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.ThingComps;
 using Pawnmorph.Thoughts;
 using RimWorld;
 using Verse;
@@ -19,11 +20,49 @@ namespace Pawnmorph.TfSys
         /// <summary>The mutagen definition</summary>
         public MutagenDef mutagenDef;
 
+
+        private int? _transformedTick;
+
         /// <summary>
-        /// Gets the faction that turned this pawn into an animal.
+        ///     Initializes a new instance of the <see cref="TransformedPawn" /> class.
+        /// </summary>
+        protected TransformedPawn()
+        {
+            _transformedTick = null;
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="TransformedPawn" /> class.
+        /// </summary>
+        /// <param name="transformedTick">timestamp the pawns were transformed.</param>
+        protected TransformedPawn(int? transformedTick)
+        {
+            _transformedTick = transformedTick;
+        }
+
+        /// <summary>Exposes the data.</summary>
+        public virtual void ExposeData()
+        {
+            Scribe_Defs.Look(ref mutagenDef, nameof(mutagenDef));
+
+            Scribe_Values.Look(ref _transformedTick, nameof(TransformedTick));
+        }
+
+
+        /// <summary>
+        ///     Gets tick the pawns were transformed .
         /// </summary>
         /// <value>
-        /// The faction responsible.
+        ///     the tick the pawns were transformed. A null value indicates the pawn(s) were transformed an unknown amount of time
+        ///     in the past
+        /// </value>
+        public int? TransformedTick => _transformedTick;
+
+        /// <summary>
+        ///     Gets the faction that turned this pawn into an animal.
+        /// </summary>
+        /// <value>
+        ///     The faction responsible.
         /// </value>
         [CanBeNull]
         public abstract Faction FactionResponsible { get; }
@@ -57,17 +96,18 @@ namespace Pawnmorph.TfSys
         {
             get
             {
-                foreach (var originalPawn in OriginalPawns)
+                foreach (Pawn originalPawn in OriginalPawns)
                     if (originalPawn.DestroyedOrNull())
                         return false;
 
-                foreach (var transformedPawn in TransformedPawns)
+                foreach (Pawn transformedPawn in TransformedPawns)
                     if (transformedPawn.DestroyedOrNull())
                         return false;
 
                 return true;
             }
         }
+
 
         /// <summary>
         ///     Gets a value indicating whether this instance can be reverted.
@@ -91,14 +131,6 @@ namespace Pawnmorph.TfSys
         public IEnumerable<string> TransformedDebugString
         {
             get { return TransformedPawns.Select(p => p?.ThingID ?? "[Null]"); }
-        }
-
-        /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>A string that represents the current object.</returns>
-        public override string ToString()
-        {
-            return
-                $"[{string.Join(",", OriginalsDebugString.ToArray())}] => [{string.Join(",", TransformedDebugString.ToArray())}]";
         }
 
         /// <summary>Creates a new transformed pawn instance out of the given original pawn and transformed pawn.</summary>
@@ -130,8 +162,9 @@ namespace Pawnmorph.TfSys
                 meld = transformed
             };
         }
+
         /// <summary>Create a new TransformedPawn instance from the given original pawns and the transformed pawn</summary>
-        ///for backwards compatibility with old saves, should not be used with new code
+        /// for backwards compatibility with old saves, should not be used with new code
         /// <param name="original0">The original0.</param>
         /// <param name="original1">The original1.</param>
         /// <param name="meld">The meld.</param>
@@ -152,7 +185,7 @@ namespace Pawnmorph.TfSys
         [Obsolete]
         public static TransformedPawn Create(PawnMorphInstance inst)
         {
-            return new TransformedPawnSingle()
+            return new TransformedPawnSingle
             {
                 original = inst.origin,
                 animal = inst.replacement
@@ -166,7 +199,7 @@ namespace Pawnmorph.TfSys
         [Obsolete]
         public static TransformedPawn Create(PawnMorphInstanceMerged inst)
         {
-            return Create(inst.origin, inst.origin2, inst.replacement); 
+            return Create(inst.origin, inst.origin2, inst.replacement);
         }
 
         /// <summary>
@@ -179,17 +212,15 @@ namespace Pawnmorph.TfSys
             //checking thingID manually because SaveReference seems to make new pawns when loading sometimes 
             //this is hacky, but can't come up with a better solution
 
-            foreach (Pawn originalPawn in OriginalPawns) 
-            {
-                if (originalPawn == pawn || originalPawn?.ThingID == pawn?.ThingID) return TransformedStatus.Original;
-            }
+            foreach (Pawn originalPawn in OriginalPawns)
+                if (originalPawn == pawn || originalPawn?.ThingID == pawn?.ThingID)
+                    return TransformedStatus.Original;
 
             foreach (Pawn tfPawn in TransformedPawns)
-            {
-                if (tfPawn == pawn || tfPawn?.ThingID == pawn?.ThingID) return TransformedStatus.Transformed; 
-            }
+                if (tfPawn == pawn || tfPawn?.ThingID == pawn?.ThingID)
+                    return TransformedStatus.Transformed;
 
-            return null; 
+            return null;
         }
 
         /// <summary>generates a debug string</summary>
@@ -200,16 +231,16 @@ namespace Pawnmorph.TfSys
                 $"originals [{string.Join(",", OriginalsDebugString.ToArray())}]\ntransformed [{string.Join(",", TransformedDebugString.ToArray())}]";
         }
 
-        /// <summary>Exposes the data.</summary>
-        public virtual void ExposeData()
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
         {
-            Scribe_Defs.Look(ref mutagenDef, nameof(mutagenDef)); 
+            return
+                $"[{string.Join(",", OriginalsDebugString.ToArray())}] => [{string.Join(",", TransformedDebugString.ToArray())}]";
         }
     }
 
-    
-    
-    
+
     /// <summary>
     ///     transformed pawn instance for a single original-animal pair
     /// </summary>
@@ -218,26 +249,42 @@ namespace Pawnmorph.TfSys
     {
         /// <summary>The original pawn</summary>
         public Pawn original;
+
         /// <summary>The transformed pawn</summary>
         public Pawn animal;
 
         /// <summary>
-        /// The reaction status
+        ///     The reaction status
         /// </summary>
-        public FormerHumanReactionStatus reactionStatus; 
+        public FormerHumanReactionStatus reactionStatus;
 
         /// <summary>
-        /// The faction responsible for turning this pawn into an animal 
+        ///     The faction responsible for turning this pawn into an animal
         /// </summary>
         public Faction factionResponsible;
 
         /// <summary>
-        /// Gets the faction that turned this pawn into an animal.
+        ///     Initializes a new instance of the <see cref="TransformedPawnSingle" /> class.
+        /// </summary>
+        public TransformedPawnSingle()
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="TransformedPawnSingle" /> class.
+        /// </summary>
+        /// <param name="transformedTick">timestamp the pawns were transformed.</param>
+        public TransformedPawnSingle(int? transformedTick) : base(transformedTick)
+        {
+        }
+
+        /// <summary>
+        ///     Gets the faction that turned this pawn into an animal.
         /// </summary>
         /// <value>
-        /// The faction responsible.
+        ///     The faction responsible.
         /// </value>
-        public override Faction FactionResponsible => factionResponsible; 
+        public override Faction FactionResponsible => factionResponsible;
 
         /// <summary>Gets the original pawns.</summary>
         /// <value>The original pawns.</value>
@@ -254,16 +301,16 @@ namespace Pawnmorph.TfSys
         }
 
         /// <summary>
-        /// Gets a value indicating whether this instance can be reverted.
+        ///     Gets a value indicating whether this instance can be reverted.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance can be reverted; otherwise, <c>false</c>.
+        ///     <c>true</c> if this instance can be reverted; otherwise, <c>false</c>.
         /// </value>
         public override bool CanRevert
         {
             get
             {
-                var tracker = animal.GetSapienceTracker();
+                SapienceTracker tracker = animal.GetSapienceTracker();
                 if (tracker == null) return false;
                 return tracker.CurrentState?.StateDef == mutagenDef?.transformedSapienceState && !tracker.IsPermanentlyFeral;
             }
@@ -275,38 +322,53 @@ namespace Pawnmorph.TfSys
         {
             base.ExposeData();
             Scribe_Deep.Look(ref original, true, nameof(original));
-            Scribe_References.Look(ref animal, nameof(animal), false);
+            Scribe_References.Look(ref animal, nameof(animal));
             Scribe_References.Look(ref factionResponsible, nameof(factionResponsible));
-            Scribe_Values.Look(ref reactionStatus, nameof(reactionStatus)); 
+            Scribe_Values.Look(ref reactionStatus, nameof(reactionStatus));
         }
     }
 
-    
-
 
     /// <summary>
-    /// TransformedPawn instance for merged pawns
+    ///     TransformedPawn instance for merged pawns
     /// </summary>
     /// <seealso cref="Pawnmorph.TfSys.TransformedPawn" />
     public class MergedPawns : TransformedPawn
     {
         /// <summary>
-        /// The faction responsible for turning this pawn into an animal 
+        ///     The faction responsible for turning this pawn into an animal
         /// </summary>
         public Faction factionResponsible;
 
+        /// <summary>The original pawns</summary>
+        public List<Pawn> originals;
+
+        /// <summary>The resultant meld</summary>
+        public Pawn meld;
+
         /// <summary>
-        /// Gets the faction that turned this pawn into an animal.
+        ///     Initializes a new instance of the <see cref="MergedPawns" /> class.
+        /// </summary>
+        public MergedPawns()
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="MergedPawns" /> class.
+        /// </summary>
+        /// <param name="transformedTick">timestamp the pawns were transformed.</param>
+        public MergedPawns(int? transformedTick) : base(transformedTick)
+        {
+        }
+
+        /// <summary>
+        ///     Gets the faction that turned this pawn into an animal.
         /// </summary>
         /// <value>
-        /// The faction responsible.
+        ///     The faction responsible.
         /// </value>
         public override Faction FactionResponsible => factionResponsible;
 
-        /// <summary>The original pawns</summary>
-        public List<Pawn> originals;
-        /// <summary>The resultant meld</summary>
-        public Pawn meld;
         /// <summary>Gets the original pawns.</summary>
         /// <value>The original pawns.</value>
         public override IEnumerable<Pawn> OriginalPawns => originals ?? Enumerable.Empty<Pawn>();
@@ -324,23 +386,24 @@ namespace Pawnmorph.TfSys
         /// <value>
         ///     <c>true</c> if this instance can be reverted; otherwise, <c>false</c>.
         /// </value>
-        public override bool CanRevert {
+        public override bool CanRevert
+        {
             get
             {
-                var sTracker = meld?.GetSapienceTracker();
+                SapienceTracker sTracker = meld?.GetSapienceTracker();
                 if (sTracker == null) return false;
                 return meld.GetSapienceState()?.StateDef == mutagenDef?.transformedSapienceState && !sTracker.IsPermanentlyFeral;
-            } }
+            }
+        }
 
-        
 
         /// <summary>Exposes the data.</summary>
         public override void ExposeData()
         {
             base.ExposeData();
-           Scribe_Collections.Look(ref originals,  true, nameof(originals), LookMode.Deep);
-           Scribe_References.Look(ref meld, nameof(meld), true);
-           Scribe_References.Look(ref factionResponsible, nameof(factionResponsible)); 
+            Scribe_Collections.Look(ref originals, true, nameof(originals), LookMode.Deep);
+            Scribe_References.Look(ref meld, nameof(meld), true);
+            Scribe_References.Look(ref factionResponsible, nameof(factionResponsible));
         }
     }
 }

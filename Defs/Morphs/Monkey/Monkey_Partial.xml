@@ -1,5 +1,5 @@
 <Defs>
-	<HediffDef ParentName="NewPartialMorphParent">
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
 		<defName>PawnmorphMonkeyTFPartial</defName>
 		<label>monkeymorph partial</label>
 		<description>This person has mechanites in their blood that are providing them with monkey-esque mutations.</description>

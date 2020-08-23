@@ -177,7 +177,10 @@ namespace Pawnmorph.TfSys
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
             var rFaction = request.factionResponsible ?? GetFactionResponsible(original);
-            var inst = new TransformedPawnSingle
+
+
+
+            var inst = new TransformedPawnSingle(request.transformedTick)
             {
                 original = original,
                 animal = spawnedAnimal,
@@ -196,7 +199,7 @@ namespace Pawnmorph.TfSys
             if (request.tale != null) // If a tale was provided, push it to the tale recorder.
                 TaleRecorder.RecordTale(request.tale, original, animalToSpawn);
 
-            Faction oFaction = original.FactionOrExtraHomeFaction;
+            Faction oFaction = original.FactionOrExtraMiniOrHomeFaction;
             Map oMap = original.Map;
 
 
@@ -263,10 +266,11 @@ namespace Pawnmorph.TfSys
 
         /// <summary>
         /// Applies the post tf effects.
-        /// this should be called just before the original pawn is cleaned up 
+        /// this should be called just before the original pawn is cleaned up
         /// </summary>
         /// <param name="original">The original.</param>
         /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <param name="request">The transformation request</param>
         protected override void ApplyPostTfEffects(Pawn original, Pawn transformedPawn, TransformationRequest request)
         {
             //apply apparel damage 
@@ -334,6 +338,8 @@ namespace Pawnmorph.TfSys
             ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus);
             spawned.health.AddHediff(MorphTransformationDefOf.StabiliserHigh); //add stabilizer on reversion 
 
+
+            TransformerUtility.CleanUpHumanPawnPostTf(animal, null); 
             animal.Destroy();
             return true;
         }

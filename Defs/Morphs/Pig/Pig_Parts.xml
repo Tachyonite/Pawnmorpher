@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="PigPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>PigMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PigPart">
 		<defName>EtherPigSnout</defName>
 		<label>porcine snout</label>
@@ -11,7 +10,7 @@
 			<li>Jaw</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -23,7 +22,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
 				<minSeverity>1</minSeverity>
 				<capMods>
@@ -83,7 +82,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PigPart">
 		<defName>EtherPigEar</defName>
 		<label>porcine</label>
@@ -92,16 +90,19 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PigPart">
 		<defName>EtherCurlyTail</defName>
 		<label>curly tail</label>
 		<description>A pig's curly tail, it twitches when food is near.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
 		<parts>
 			<li>Tail</li>
 		</parts>

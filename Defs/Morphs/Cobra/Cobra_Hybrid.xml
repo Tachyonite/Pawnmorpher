@@ -536,10 +536,6 @@
                         <li>Narrow_Pointy</li>
                         <li>Narrow_Wide</li>
                     </aliencrowntypes>
-                    <alienskincolorgen Class="AlienRace.ColorGenerator_SkinColorMelanin">
-                        <minMelanin>0</minMelanin>
-                        <maxMelanin>1</maxMelanin>
-                    </alienskincolorgen>
                     <bodyAddons>
                         <li>
                             <!-- Body Tails -->

@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="CatPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>CatMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="CatPart">
 		<defName>EtherCatMuzzle</defName>
 		<label>feline muzzle</label>
@@ -26,7 +25,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -38,7 +37,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -87,7 +86,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="CatPart">
 		<defName>EtherCatEar</defName>
 		<label>feline</label>
@@ -96,12 +94,11 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="CatPart">
 		<defName>EtherCatTail</defName>
 		<label>cat tail</label>
@@ -110,7 +107,7 @@
 			<li>Tail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -120,7 +117,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherCatEye</defName>
 		<label>feline eye</label>
@@ -130,7 +126,7 @@
 		</parts>
 		<classInfluence>Feline</classInfluence>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<statOffsets>
 					<SocialImpact>+0.05</SocialImpact>
 				</statOffsets>

@@ -2,14 +2,13 @@
 	<Pawnmorph.Hediffs.MutationDef Name="PantherPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>PantherMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherPart">
 		<defName>EtherPantherJaw</defName>
 		<label>pantherine muzzle</label>
 		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a panther. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 		<initialSeverity>0</initialSeverity>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>new</label>
 				<capMods>
 					<li>
@@ -22,7 +21,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -62,15 +61,13 @@
 		<categories>
 			<li>Major</li>
 		</categories>
-
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherPart">
 		<defName>EtherPantherEar</defName>
 		<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
 		<label>pantherine</label>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
@@ -80,15 +77,13 @@
 		<categories>
 			<li>Major</li>
 		</categories>
-
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherPart">
 		<defName>EtherPantherTail</defName>
 		<label>pantherine tail</label>
 		<description>A long, sleek tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

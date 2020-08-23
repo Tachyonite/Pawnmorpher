@@ -46,6 +46,7 @@
             <xs:enumeration value="Powerful" />
             <xs:enumeration value="Rodent" />
             <xs:enumeration value="Reptile"/>
+            <xs:enumeration value="Combo" />
         </xs:restriction>
     </xs:simpleType>
 

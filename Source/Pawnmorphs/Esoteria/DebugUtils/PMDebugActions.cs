@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
@@ -27,6 +28,7 @@ namespace Pawnmorph.DebugUtils
         static void TagAllAnimals()
         {
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
+            var database = Find.World.GetComponent<ChamberDatabase>(); 
 
 
             foreach (var kindDef in DefDatabase<PawnKindDef>.AllDefs)
@@ -34,11 +36,25 @@ namespace Pawnmorph.DebugUtils
                 var thingDef = kindDef.race; 
                 if(thingDef.race?.Animal != true) continue;
 
-                if(!thingDef.IsValidAnimal()) continue;
-                if(gComp.taggedAnimals.Contains(kindDef)) continue;
-                gComp.TagPawn(kindDef); 
-
+                if (!database.TryAddToDatabase(kindDef))
+                {
+                    //TODO learning tip or message? 
+                }
             }
+
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void GetInfluenceDebugInfo(Pawn pawn)
+        {
+            var mutTracker = pawn?.GetMutationTracker();
+            if (mutTracker == null)
+            {
+                Log.Message("no mutation tracker");
+                return; 
+            }
+
+            Log.Message(AnimalClassUtilities.GenerateDebugInfo(mutTracker.AllMutations)); 
 
         }
 

@@ -26,21 +26,6 @@ namespace Pawnmorph.HPatches
             }
         }
 
-        [HarmonyPatch(nameof(RestUtility.IsValidBedFor))]
-        [HarmonyPostfix]
-        private static void IsValidBedForFix(ref bool __result, Thing bedThing, Pawn sleeper, Pawn traveler,
-                                             bool sleeperWillBePrisoner,
-                                             bool checkSocialProperness, bool allowMedBedEvenIfSetToNoCare,
-                                             bool ignoreOtherReservations)
-        {
-            if (!__result && sleeperWillBePrisoner && sleeper.GetIntelligence() == Intelligence.Animal)
-            {
-                if (!bedThing.Position.IsInPrisonCell(bedThing.Map)) return;
-
-                BuildingProperties building = bedThing.def.building;
-                __result = building?.bed_humanlike == false && sleeper.BodySize <= building.bed_maxBodySize;
-            }
-        }
     }
 
     [HarmonyPatch(typeof(Building_Bed))]

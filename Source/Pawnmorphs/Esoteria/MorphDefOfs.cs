@@ -13,7 +13,9 @@ namespace Pawnmorph
         public static MorphDef FoxMorph;
         public static MorphDef HuskyMorph;
         public static MorphDef CowMorph;
-        public static MorphDef BoomalopeMorph; 
+        public static MorphDef BoomalopeMorph;
+
+        public static MorphDef PM_HellhoundMorph; 
 
         public static MorphDef ChaocowMorph;
         public static MorphDef ChaoboomMorph;

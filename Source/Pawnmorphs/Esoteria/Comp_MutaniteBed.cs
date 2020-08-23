@@ -1,6 +1,7 @@
 ﻿// Comp_MutaniteBed.cs modified by Iron Wolf for Pawnmorph on 11/12/2019 5:36 PM
 // last updated 11/12/2019  5:37 PM
 
+using HugsLib;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -37,8 +38,8 @@ namespace Pawnmorph
             _parent = parent as Building_Bed;
             if (_parent != null)
             {
-                //TODO fix mutanite bed once hugs updates to 1.1 
-                //HugsLibController.Instance.DistributedTicker.RegisterTickability(TickLong,TICK_INTERVAL, parent);
+                
+                HugsLibController.Instance.DistributedTicker.RegisterTickability(TickLong,TICK_INTERVAL, parent);
             }
 
             var sevPerDayComp = MorphTransformationDefOf.MutagenicBuildup.CompProps<HediffCompProperties_Immunizable>();

@@ -2,12 +2,10 @@
 	<Pawnmorph.Hediffs.MutationDef Name="ThrumboPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>ThrumboMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurLimb">
 		<defName>ThrumboFur</defName>
 		<classInfluence>ThrumboMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboSnout</defName>
 		<label>thrumbo snout</label>
@@ -32,7 +30,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -44,7 +42,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -92,7 +90,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboEar</defName>
 		<label>thrumbic</label>
@@ -102,12 +99,11 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.05</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboTail</defName>
 		<label>thrumbo tail</label>
@@ -117,7 +113,7 @@
 			<li>Tail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -127,7 +123,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboHorn</defName>
 		<label>thrumbohorn</label>
@@ -144,9 +139,7 @@
 					<SocialImpact>-0.10</SocialImpact>
 				</statOffsets>
 			</li>
-			<li>
-				<!-- regular new/adapted stages for thrumbo horn? -->
-
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
@@ -156,9 +149,7 @@
 					<SocialImpact>+0.10</SocialImpact>
 				</statOffsets>
 			</li>
-
 		</stages>
-
 		<mutationTale>GrewThrumboHorn</mutationTale>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">

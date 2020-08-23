@@ -1,7 +1,4 @@
-﻿// HediffGiver_Mutation.cs modified by Iron Wolf for Pawnmorph on 08/07/2019 10:19 AM
-// last updated 08/07/2019  10:19 AM
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
@@ -61,10 +58,6 @@ namespace Pawnmorph
         /// <param name="cause"> The parent hediff where this HediffGiver is located in. </param>
         public override void OnIntervalPassed(Pawn pawn, [NotNull] Hediff cause)
         {
-            // Push a multiplay-safe randomization seed.
-            RandUtilities.PushState();
-
-
             var singleComp = cause.TryGetComp<HediffComp_Single>();
             float mult = singleComp?.stacks
                       ?? 1; //the more stacks of partial morphs the pawn has the faster the mutation rate should be 
@@ -107,9 +100,6 @@ namespace Pawnmorph
                     if (comp != null) ClearHediff(cause);
                 }
             }
-
-            // Pop the seed to restore balance to the universe (and the game).
-            RandUtilities.PopState();
         }
 
         private void DoMutationAddedEffects(Pawn pawn)
@@ -210,7 +200,7 @@ namespace Pawnmorph
             ThoughtHandler thoughts = pawn.needs?.mood?.thoughts;
             if (thoughts == null) return;
 
-            if (!ThoughtUtility.CanGetThought(pawn, memory)) return;
+            if (!ThoughtUtility.CanGetThought_NewTemp(pawn, memory)) return;
 
             var counter = 0;
             int max = PMUtilities.GetSettings().maxMutationThoughts;

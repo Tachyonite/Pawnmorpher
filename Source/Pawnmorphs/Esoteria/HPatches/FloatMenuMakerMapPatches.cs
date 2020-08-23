@@ -25,8 +25,7 @@ namespace Pawnmorph
             private static bool Prefix_AddHumanlikeOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
             {
                 if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
-                    foreach (LocalTargetInfo localTargetInfo3 in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn),
-                                                                                 true))
+                    foreach (LocalTargetInfo localTargetInfo3 in GenUI.TargetsAt_NewTemp(clickPos, TargetingParameters.ForRescue(pawn), true))
                     {
                         LocalTargetInfo localTargetInfo4 = localTargetInfo3;
                         var victim = (Pawn) localTargetInfo4.Thing;
@@ -97,7 +96,7 @@ namespace Pawnmorph
         }
    
 #endif
-        [HarmonyPatch(typeof(FloatMenuMakerMap), nameof(FloatMenuMakerMap.ChoicesAtFor))]
+        [HarmonyPatch(typeof(FloatMenuMakerMap), nameof(FloatMenuMakerMap.ChoicesAtFor), typeof(Vector3), typeof(Pawn))]
         static class AddHumanlikeOrdersToSA
         {
 

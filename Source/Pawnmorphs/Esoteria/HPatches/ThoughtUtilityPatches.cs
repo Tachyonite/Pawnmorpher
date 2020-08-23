@@ -13,7 +13,7 @@ namespace Pawnmorph.HPatches
     internal static class ThoughtUtilityPatches
     {
         [HarmonyPatch(typeof(ThoughtUtility))]
-        [HarmonyPatch(nameof(ThoughtUtility.CanGetThought))]
+        [HarmonyPatch(nameof(ThoughtUtility.CanGetThought_NewTemp))]
         private static class CanGetThoughtPatch
         {
             [HarmonyPostfix]
@@ -45,7 +45,7 @@ namespace Pawnmorph.HPatches
                             continue;
                         }
 
-                        if (ThoughtUtility.CanGetThought(pawn, tGroupThought))
+                        if (ThoughtUtility.CanGetThought_NewTemp(pawn, tGroupThought))
                         {
                             __result = true;
                             return;
