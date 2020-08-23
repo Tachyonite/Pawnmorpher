@@ -1221,6 +1221,7 @@ namespace Pawnmorph
             int mutationsToAdd = Mathf.CeilToInt(MorphUtilities.GetMaxInfluenceOfRace(lPawn.def)) + 10;
             _mScratchList.Clear();
             _mScratchList.AddRange(MutationUtilities.AllNonRestrictedMutations);
+            _mScratchList.RemoveAll(m => AnimalClassDefOf.Powerful.GetAllMutationIn().Contains(m)); // Chimeras should not recieve powerful mutations.
             List<BodyPartRecord> addList = new List<BodyPartRecord>();
             List<BodyPartRecord> addedList = new List<BodyPartRecord>(); 
             _brScratchList.Clear();
