@@ -5,12 +5,29 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ChookPart">
 		<defName>EtherBeak</defName>
 		<label>beak</label>
-		<description>A beak graces [PAWN_nameDef]'s face, like that of a chicken. They may bok and squawk about birdlike things.</description>
+		<description>The pointy beak of a chicken.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s teeth are merging into a keratinous beak, the nose and jaw pressing out and looking decidedly more avian.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A beak graces [PAWN_nameDef]'s face, like that of a chicken. They may bok and squawk about birdlike things. Eating is a little tricky when you have to peck.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -24,6 +41,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
+				<description>A beak graces [PAWN_nameDef]'s face, like that of a chicken. They may bok and squawk about birdlike things. Adaptation has made it less frustrating to talk and eat.</description>
 				<label>adapted</label>
 				<capMods>
 					<li>

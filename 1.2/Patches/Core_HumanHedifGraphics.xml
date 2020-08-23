@@ -126,7 +126,13 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
 					</EtherCatMuzzle>
-					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
+					<EtherBeak>
+						<path>Parts/chickenface/chickenface</path>
+						<severity>
+							<a0.5>Parts/chickenface/chickenface</a0.5>
+							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
+						</severity>
+					</EtherBeak>
 					<EtherChinchillaJaw>
 						<path>Parts/Chinchilla/Chinchilla_Jaw</path>
 						<severity>
@@ -962,7 +968,14 @@
 					<PM_HellhoundHorns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</PM_HellhoundHorns>
 					<!-- REGULAR PAWN PIECES -->
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
-					<EtherSheepHorns>Parts/sheepface/sheephorns</EtherSheepHorns>
+					<EtherSheepHorns>
+						<path>Parts/sheepface/sheephorns_c</path>
+						<severity>
+							<a1.0>Parts/sheepface/sheephorns_c</a1.0>
+							<a0.5>Parts/sheepface/sheephorns_b</a0.5>
+							<a0.0>Parts/sheepface/sheephorns_a</a0.0>
+						</severity>
+					</EtherSheepHorns>
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 				</hediffGraphics>
