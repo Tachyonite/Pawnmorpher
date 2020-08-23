@@ -115,12 +115,13 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="WolfPart">
 		<defName>EtherWolfEar</defName>
 		<label>lupine</label>
-		<description>Two pointed and furred ears crown [PAWN_nameDef]'s head, as they flick left and right, listening for the sounds of prey.</description>
+		<description>The fuzzy pointy ear of a wolf.</description>
 		<mutationTale>EarsChangedCanid</mutationTale>
 		<mutationMemory>EtherWolfEar</mutationMemory>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>0.2</partEfficiencyOffset>
+				<description>Two pointed and furred ears crown [PAWN_nameDef]'s head, as they flick left and right, listening for the sounds of prey.</description>
+				<partEfficiencyOffset>0.25</partEfficiencyOffset>
 			</li>
 		</stages>
 		<parts>

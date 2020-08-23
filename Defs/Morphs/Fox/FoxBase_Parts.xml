@@ -115,7 +115,7 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>pointed</labelOverride>
-				<minSeverity>0.1</minSeverity>
+				<minSeverity>0</minSeverity>
 				<description>[PAWN_nameDef]'s ears are growing longer, developing a point at the peak. They're a little more sensitive.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				

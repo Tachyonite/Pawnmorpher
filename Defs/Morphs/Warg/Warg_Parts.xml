@@ -119,13 +119,14 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargEar</defName>
 		<label>warglike</label>
-		<description>Thick-skinned ears with a tuft at the end have grown from [PAWN_nameDef]'s head. They scan the horizon independently for prey.</description>
+		<description>The rugged, pointed ear of a hungry warg.</description>
 		<parts>
 			<li>Ear</li>
 		</parts>
 		<mutationTale>EarsChangedCanid</mutationTale>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>Thick-skinned ears with a tuft at the end have grown from [PAWN_nameDef]'s head. They scan the horizon independently for prey.</description>
 				<partEfficiencyOffset>0.25</partEfficiencyOffset>
 			</li>
 		</stages>
