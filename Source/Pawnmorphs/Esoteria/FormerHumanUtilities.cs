@@ -938,8 +938,15 @@ namespace Pawnmorph
             if (animal.Faction == null && animal.GetCorrectMap() != null)
                 if (joinIfRelated)
                 {
-                    bool relatedToColonist = animal.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true;
-                    if (relatedToColonist) animal.SetFaction(Faction.OfPlayer);
+
+                    var relatedColonist = animal.relations?.PotentiallyRelatedPawns?.FirstOrDefault(p => p.IsColonist);
+                    if (relatedColonist != null)
+                    {
+                        DebugLogUtils.LogMsg(LogLevel.Messages, $"{animal.Name} is joining colony because they are related to {relatedColonist.Name}");
+
+                        animal.SetFaction(Faction.OfPlayer); 
+                    }
+
                 }
 
             animal.needs.AddOrRemoveNeedsAsAppropriate();
@@ -1075,8 +1082,9 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferHediffs(original, transformedPawn,
                                                   h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
                                                     == true);
+            PawnTransferUtilities.TransferThoughts(original, transformedPawn); 
 
-
+            
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
         }
 

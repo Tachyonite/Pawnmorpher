@@ -109,8 +109,8 @@ namespace Pawnmorph
                 }
             }
 
-            if (results == null || results.Count == 0)
-                yield return "no output effect set";
+            if ((results == null || results.Count == 0) && ruleWorker == null)
+                yield return "no output effect set while using default rule worker";
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace Pawnmorph
             /// </summary>
             /// <param name="pawn">The pawn.</param>
             /// <returns></returns>
-            public bool Satisfied([NotNull] Pawn pawn)
+            public virtual bool Satisfied([NotNull] Pawn pawn)
             {
                 hediffs = hediffs ?? new List<HediffDef>();
                 Hediff hediff;

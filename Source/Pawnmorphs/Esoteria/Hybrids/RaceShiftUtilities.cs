@@ -26,8 +26,8 @@ namespace Pawnmorph.Hybrids
         class CompPropComparer : IEqualityComparer<CompProperties>
         {
             /// <summary>Determines whether the specified objects are equal.</summary>
-            /// <param name="x">The first object of type <paramref name="T" /> to compare.</param>
-            /// <param name="y">The second object of type <paramref name="T" /> to compare.</param>
+            /// <param name="x">The first object of type <c>CompPropComparer</c> to compare.</param>
+            /// <param name="y">The second object of type <c>CompPropComparer</c> to compare.</param>
             /// <returns>
             /// <see langword="true" /> if the specified objects are equal; otherwise, <see langword="false" />.</returns>
             public bool Equals(CompProperties x, CompProperties y)
@@ -52,12 +52,9 @@ namespace Pawnmorph.Hybrids
                     return x.compClass == y.compClass; 
                 }
 
-                
-
                 //just return true here 
                 //need someway to check this by reflection
-                return true; 
-
+                return true;
             }
 
             /// <summary>Returns a hash code for the specified object.</summary>

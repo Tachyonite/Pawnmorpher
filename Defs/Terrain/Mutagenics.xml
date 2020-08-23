@@ -37,6 +37,12 @@
 		</graphicData>
 		<soundInteract>Metal_Drop</soundInteract>
 		<soundDrop>Metal_Drop</soundDrop>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(0,255,0,0)</glowColor>
+			</li>
+		</comps>
 		<statBases>
 			<MarketValue>50</MarketValue>
 			<Mass>0.5</Mass>

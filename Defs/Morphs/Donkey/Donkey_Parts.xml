@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Abstract="True" ParentName="PawnmorphPart" Name="DonkeyPart">
 		<classInfluence>DonkeyMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="DonkeyPart">
 		<defName>EtherDonkeySnout</defName>
 		<label>donkey snout</label>
@@ -11,7 +10,7 @@
 			<li>Jaw</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -23,7 +22,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -58,7 +57,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="DonkeyPart">
 		<defName>EtherDonkeyEar</defName>
 		<label>fuzzy equine</label>
@@ -67,12 +65,11 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="DonkeyPart">
 		<defName>EtherDonkeyTail</defName>
 		<label>donkey tail</label>
@@ -81,7 +78,7 @@
 			<li>Tail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

@@ -190,11 +190,8 @@ namespace Pawnmorph
         /// <returns></returns>
         public override IEnumerable<Thing> GenerateThings(int forTile, Faction forFaction = null)
         {
-            RandUtilities.PushState();
-
             var enumer = GenerateThingEnumer(forTile, forFaction).ToList();
 
-            RandUtilities.PopState();
             foreach (Pawn pawn in enumer.OfType<Pawn>())
             {
                 if (!pawn.IsFormerHuman()) continue;

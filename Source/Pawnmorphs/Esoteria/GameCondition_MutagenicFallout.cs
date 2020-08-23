@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
-//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -121,8 +120,6 @@ namespace Pawnmorph
 
             var thingList = c.GetThingList(map);
 
-            RandUtilities.PushState(); // MP compatibility check for rand usage.
-
             for (var index = thingList.Count - 1; index > 0; index--)
             {
                 Thing thing = thingList[index];
@@ -134,11 +131,8 @@ namespace Pawnmorph
                     SubstitutePlant(plant);
                 }
             }
-
-            RandUtilities.PopState();
         }
 
-        //[SyncMethod]
         private void SubstitutePlant([NotNull] Plant plant)
         {
 

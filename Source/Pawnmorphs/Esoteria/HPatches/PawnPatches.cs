@@ -108,6 +108,10 @@ namespace Pawnmorph.HPatches
         static void RunRaceCompCheck([NotNull] Pawn __instance)
         {
 
+            //only check every so often 
+            if (!__instance.IsHashIntervalTick(60)) return; 
+
+
             var mTracker = __instance.GetComp<MorphTrackingComp>();
             if (mTracker?.needsRaceCompCheck == true)
             {

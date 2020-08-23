@@ -1,5 +1,5 @@
 <Defs>
-    <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="FurredLimb">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="FurredLimb">
 		<defName>EtherFurredLimb</defName>
 		<description>Fur has covered the entirety of [PAWN_nameDef]'s limb, giving it a soft fine coat that helps retain warmth.</description>
 		<label>fur</label>
@@ -56,7 +56,7 @@
 					<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
@@ -68,7 +68,6 @@
 			<li>Minor</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name="PM_ArcticFurBase" ParentName="FurredLimb" Abstract="true">
 		<label>arctic fur</label>
 		<stages Inherit="false">
@@ -96,7 +95,6 @@
 				<statOffsets>
 					<ComfyTemperatureMin>-0.16</ComfyTemperatureMin>
 					<ComfyTemperatureMax>-0.03</ComfyTemperatureMax>
-
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
@@ -108,7 +106,7 @@
 					<ComfyTemperatureMax>-0.06</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
@@ -117,7 +115,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="ThickFurLimb">
 		<defName>EtherThickFurLimb</defName>
 		<label>thick fur</label>
@@ -183,7 +180,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="WoollyLimb">
 		<defName>EtherWoollyLimb</defName>
 		<label>wool</label>
@@ -245,8 +241,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherScaledLimb</defName>
 		<label>scales</label>
@@ -276,7 +270,6 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>tight skin</labelOverride>
 				<description>The skin on this limb is somewhat thicker and rather tight.</description>
-
 				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.02</ComfyTemperatureMax>
@@ -290,7 +283,6 @@
 					<ComfyTemperatureMax>0.05</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
-
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>scaled patches</labelOverride>
 				<description>Small portions of this limb are covered with a tight-knit pattern of scales.</description>
@@ -303,7 +295,6 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>scale clusters</labelOverride>
 				<description>Large portions of this limb are covered with a tight-knit pattern of scales, almost entirely covering the skin.</description>
-
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>0.1</ComfyTemperatureMax>
@@ -322,7 +313,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherHideLimb</defName>
 		<label>hide</label>
@@ -384,7 +374,7 @@
 					<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
 					<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
@@ -393,7 +383,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFeatheredLimb</defName>
 		<label>feathers</label>
@@ -415,35 +404,35 @@
 			</li>
 		</comps>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>isolated</label>
 				<minSeverity>0</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>bristles</label>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.04</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>patches</label>
 				<minSeverity>0.4</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>swathes</label>
 				<minSeverity>0.6</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMin>-0.16</ComfyTemperatureMin>
 				</statOffsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>covered</label>
 				<minSeverity>0.8</minSeverity>
 				<statOffsets>
@@ -452,5 +441,66 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
+		<defName>EtherThickHideLimb</defName>
+		<description>A very thick, rough and leathery skin now covers this limb, adding a substantial natural defense.</description>
+		<label>thick hide</label>
+		<classInfluence>ThickHide</classInfluence>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>spots</label>
+				<minSeverity>0</minSeverity>
+				<statOffsets>
+					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>patches</label>
+				<minSeverity>0.2</minSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>bristles</label>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.04</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>leathery</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>covered</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

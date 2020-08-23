@@ -39,6 +39,11 @@
       <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MultiplayerAPI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
       <Private>False</Private>
@@ -328,9 +333,12 @@
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
+    <Compile Include="Chambers\ChamberDatabase.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
+    <Compile Include="Chambers\GenomeDefGenerator.cs" />
+    <Compile Include="Chambers\MutaChamber.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="ColorGenerator_HSL.cs" />
     <Compile Include="CompEtherExplosive.cs" />
@@ -455,10 +463,12 @@
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\VerbTrackerPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
     <Compile Include="HPatches\WorkGiverPatches.cs" />
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="Hybrids\IPartTransformer.cs" />
+    <Compile Include="ICustomVerb.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IEquipmentGizmo.cs" />
     <Compile Include="IMentalStateRecoveryReceiver.cs" />
@@ -474,6 +484,7 @@
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
@@ -496,8 +507,11 @@
     <Compile Include="Mental\StateWorker_Hunt.cs" />
     <Compile Include="Mental\State_Hunting.cs" />
     <Compile Include="MutagenicBuildupUtilities.cs" />
+    <Compile Include="MutationCategoryDefOf.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
+    <Compile Include="MutationRules\Worker_Hellhound.cs" />
+    <Compile Include="MutationRules\Worker_RemoveConditionalHediffs.cs" />
     <Compile Include="MutationRules\Worker_MorphHediff.cs" />
     <Compile Include="MutationRuleUtilities.cs" />
     <Compile Include="MutationSite.cs" />
@@ -528,10 +542,16 @@
     <Compile Include="SimplePawnColorSet.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
+    <Compile Include="StockGenerators\GenomeGenerator.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
     <Compile Include="TfSys\ManhunterTfSettings.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
+    <Compile Include="ThingComps\DatabaseStorage.cs" />
+    <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
+    <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
+    <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
+    <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
@@ -605,7 +625,6 @@
     <Compile Include="PawnmorpherMod.cs" />
     <Compile Include="PawnmorpherModInit.cs" />
     <Compile Include="PawnMorphInstanceMerged.cs" />
-    <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PawnRelationWorker_ExMerged.cs" />
     <Compile Include="PawnRelationWorker_MergeMate.cs" />
@@ -713,14 +732,20 @@
     <Compile Include="Utilities\SkillMod.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
+    <Compile Include="Verbs\Tag.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
+    <Compile Include="PawnmorphMPCompat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
+      <Version>7.2.1</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

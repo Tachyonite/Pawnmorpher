@@ -14,5 +14,8 @@ namespace Pawnmorph
         
         /// <summary> Not in base ThingCategoryDefOf </summary>
         public static ThingCategoryDef Textiles;
+
+
+        public static ThingCategoryDef PM_MutationGenome; 
     }
 }

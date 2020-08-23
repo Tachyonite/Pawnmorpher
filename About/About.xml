@@ -72,11 +72,17 @@ Feel free to suggest the next to be added, or if there are other QOL things you 
 			<displayName>Humanoid Alien Races 2.0</displayName>
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
 		</li>
+		<li>
+			<packageId>UnlimitedHugs.HugsLib</packageId>
+			<displayName>HugsLib</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
+		</li>
 	</modDependencies>
 	<loadBefore>
 	</loadBefore>
 	<loadAfter>
 		<li>erdelf.HumanoidAlienRaces</li>
 		<li>PeteTimesSix.CompactHediffs</li>
+		<li>UnlimitedHugs.HugsLib</li>
 	</loadAfter>
 </ModMetaData>

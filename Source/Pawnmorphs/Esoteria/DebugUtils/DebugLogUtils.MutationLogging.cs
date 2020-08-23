@@ -42,6 +42,25 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void CheckForSeverityPerDay()
+        {
+            StringBuilder builder = new StringBuilder();
+
+
+
+            foreach (MutationDef mutation in MutationDef.AllMutations)
+            {
+                if (!mutation.HasComp(typeof(Comp_MutationSeverityAdjust)))
+                {
+                    builder.AppendLine($"{mutation.defName} does not have a {nameof(Comp_MutationSeverityAdjust)} comp!");
+                }
+            }
+
+            if (builder.Length == 0) Log.Message("All mutations have a severity per day comp");
+            else Log.Message(builder.ToString()); 
+        }
+
         
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         static void GetMissingSlotsPerMorph()

@@ -1,7 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-//using Multiplayer.API;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -25,38 +24,17 @@ namespace Pawnmorph
         /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PushState(RandUtilities.MPSafeSeed); 
-            //}
-
-            try
+            if (pawn.HasSapienceState())
             {
-                if (pawn.HasSapienceState())
-                {
-                    pawn.health.AddHediff(TfHediffDefOf.FeralPillSapienceDrop);
-                    return; 
-                }
-
-
-
-
-                foreach (Hediff hediff in pawn.health.hediffSet.hediffs) // Loop through all the hediffs on the pawn.
-                {
-                    if(hediff?.def == null) continue;
-
-                    if (TryForceTransformation(pawn, hediff)) return; 
-                    
-                }
-
-              
+                pawn.health.AddHediff(TfHediffDefOf.FeralPillSapienceDrop);
+                return; 
             }
-            finally
+
+            foreach (Hediff hediff in pawn.health.hediffSet.hediffs) // Loop through all the hediffs on the pawn.
             {
-                //if (MP.IsInMultiplayer)
-                //{
-                //    Rand.PopState();
-                //}
+                if(hediff?.def == null) continue;
+
+                if (TryForceTransformation(pawn, hediff)) return;
             }
         }
 

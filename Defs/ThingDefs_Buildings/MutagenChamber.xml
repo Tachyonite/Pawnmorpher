@@ -17,7 +17,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>MutagenicChamber</defName>
-		<label>mutagenic chamber</label>
+		<label>mutagenic chamber (depricated)</label>
 		<description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not fit in here.</description>
 		<thingClass>Pawnmorph.Building_MutagenChamber</thingClass>
 		<graphicData>
@@ -28,10 +28,9 @@
 				<volume>(0.83, 0.3, 1.7)</volume>
 			</shadowData>
 		</graphicData>
+		<rotatable>false</rotatable>
 		<minifiedDef>MinifiedThing</minifiedDef>
-		<researchPrerequisites>
-			<li>MutagenChambers</li>
-		</researchPrerequisites>
+
 		<altitudeLayer>Building</altitudeLayer>
 		<passability>PassThroughOnly</passability>
 		<pathCost>70</pathCost>
@@ -50,13 +49,13 @@
 		<tickerType>Normal</tickerType>
 		<size>(1,2)</size>
 		<hasInteractionCell>true</hasInteractionCell>
-		<interactionCellOffset>(1,0,0)</interactionCellOffset>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<comps>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>300</basePowerConsumption>
 			</li>
-			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Flickable" />
 			<li Class="CompProperties_Explosive">
 				<explosiveRadius>2.66</explosiveRadius>
 				<explosiveDamageType>Flame</explosiveDamageType>
@@ -83,18 +82,10 @@
 				</defaultAnimals>
 			</li>
 		</comps>
-		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>Production</designationCategory>
 		<building>
 			<isPlayerEjectable>false</isPlayerEjectable>
 		</building>
-		<costList>
-			<Steel>120</Steel>
-			<Mutanite>14</Mutanite>
-			<MechaniteSlurry>3</MechaniteSlurry>
-			<ComponentIndustrial>3</ComponentIndustrial>
-			<ComponentSpacer>1</ComponentSpacer>
-		</costList>
+
 		<placeWorkers>
 			<li>PlaceWorker_ShowFacilitiesConnections</li>
 		</placeWorkers>
@@ -146,7 +137,7 @@
 				<explosiveRadius>2.66</explosiveRadius>
 				<explosiveDamageType>Flame</explosiveDamageType>
 			</li>
-			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Flickable" />
 			<li Class="CompProperties_AffectedByFacilities">
 				<linkableFacilities>
 					<li>MutagenicChamber</li>
@@ -157,6 +148,7 @@
 					<li>Chaocow</li>
 					<li>Chaofox</li>
 					<li>Chaodino</li>
+					<li>Chaoboom</li>
 				</defaultAnimals>
 				<merges>
 					<li>ChaomeldDog</li>
@@ -166,7 +158,7 @@
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<costList>
 			<Steel>50</Steel>
 			<Mutanite>1</Mutanite>
@@ -223,7 +215,7 @@
 				<explosiveRadius>2.66</explosiveRadius>
 				<explosiveDamageType>Flame</explosiveDamageType>
 			</li>
-			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Flickable" />
 			<li Class="CompProperties_AffectedByFacilities">
 				<linkableFacilities>
 					<li>BigMutagenicChamber</li>
@@ -234,6 +226,7 @@
 					<li>Chaocow</li>
 					<li>Chaofox</li>
 					<li>Chaodino</li>
+					<li>Chaoboom</li>
 				</defaultAnimals>
 				<merges>
 					<li>ChaofusionRhino</li>
@@ -241,7 +234,7 @@
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<costList>
 			<Steel>70</Steel>
 			<Plasteel>10</Plasteel>
@@ -300,7 +293,7 @@
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>500</basePowerConsumption>
 			</li>
-			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Flickable" />
 			<li Class="CompProperties_Explosive">
 				<explosiveRadius>2.66</explosiveRadius>
 				<explosiveDamageType>Flame</explosiveDamageType>
@@ -324,11 +317,12 @@
 					<li>Chaocow</li>
 					<li>Chaofox</li>
 					<li>Chaodino</li>
+					<li>Chaoboom</li>
 				</defaultAnimals>
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>Production</designationCategory>
+		<designationCategory>GR_GeneticsTab</designationCategory>
 		<building>
 			<isPlayerEjectable>false</isPlayerEjectable>
 		</building>

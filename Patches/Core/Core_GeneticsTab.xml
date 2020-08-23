@@ -1,0 +1,36 @@
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Genetic Rim</li>
+		</mods>
+		<nomatch Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+						<DesignationCategoryDef>
+							<defName>GR_GeneticsTab</defName>
+							<label>Genetics</label>
+							<description>Items added by Pawnmorpher.</description>
+							<order>450</order>
+							<specialDesignatorClasses>
+								<li>Designator_Cancel</li>
+								<li>Designator_Deconstruct</li>
+							</specialDesignatorClasses>
+						</DesignationCategoryDef>
+					</value>
+				</li>
+			</operations>
+		</nomatch>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/DesignationCategoryDef/[defName = "GR_GeneticsTab"]/description</xpath>
+					<value>
+						<description>Items added by Genetic Rim and Pawnmorpher.</description>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

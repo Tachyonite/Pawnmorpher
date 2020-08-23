@@ -1,7 +1,4 @@
-﻿// MergeMutagen.cs created by Nick M(Iron Wolf) for Blue Moon (Pawnmorph) on 08/14/2019 3:15 PM
-// last updated 08/14/2019  3:15 PM
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Thoughts;
@@ -123,7 +120,7 @@ namespace Pawnmorph.TfSys
             TransformerUtility.CleanUpHumanPawnPostTf(firstPawn, null);
             TransformerUtility.CleanUpHumanPawnPostTf(secondPawn, null);
 
-            var inst = new MergedPawns
+            var inst = new MergedPawns(request.transformedTick)
             {
                 originals = request.originals.ToList(), //we want to make a copy here 
                 meld = meld,
@@ -138,8 +135,6 @@ namespace Pawnmorph.TfSys
 
         void CheckForBrainDamage(Pawn meld, Pawn human0, Pawn human1)
         {
-            RandUtilities.PushState();
-
             var brains = meld.health.hediffSet.GetNotMissingParts()
                              .Where(p => p.def.tags.Contains(BodyPartTagDefOf.ConsciousnessSource))
                              .ToList();
@@ -151,8 +146,6 @@ namespace Pawnmorph.TfSys
                 pawn.Kill(dInfo);
                 
             }
-
-            RandUtilities.PopState();
         }
 
 

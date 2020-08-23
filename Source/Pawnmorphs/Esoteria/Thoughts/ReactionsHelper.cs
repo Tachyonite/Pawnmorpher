@@ -187,7 +187,7 @@ namespace Pawnmorph.Thoughts
                     continue;
                 }
 
-                if (ThoughtUtility.CanGetThought(rPawn, thought))
+                if (ThoughtUtility.CanGetThought_NewTemp(rPawn, thought))
                     rPawn.TryGainMemory(thought);
             }
 
@@ -204,7 +204,7 @@ namespace Pawnmorph.Thoughts
                     continue;
                 }
 
-                if (ThoughtUtility.CanGetThought(rPawn, thought))
+                if (ThoughtUtility.CanGetThought_NewTemp(rPawn, thought))
                     rPawn.TryGainMemory(thought);
             }
         }
@@ -260,7 +260,7 @@ namespace Pawnmorph.Thoughts
                 }
 
                 if (def == null) continue;
-                if (ThoughtUtility.CanGetThought(reactor, def))
+                if (ThoughtUtility.CanGetThought_NewTemp(reactor, def))
                 {
                     var memory = ThoughtMaker.MakeThought(def, defaultStage);
                     reactor.TryGainMemory(memory);
@@ -289,7 +289,7 @@ namespace Pawnmorph.Thoughts
                         continue;
                     }
 
-                    if (ThoughtUtility.CanGetThought(pReactor, thought))
+                    if (ThoughtUtility.CanGetThought_NewTemp(pReactor, thought))
                         pReactor.TryGainMemory(thought);
                 }
             }

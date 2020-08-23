@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
@@ -86,6 +87,71 @@ namespace Pawnmorph
                                    .ToList(); //cache this so we only have to calculate this once 
             _mutationClassCache[animalClass] = mutations;
             return mutations; 
+        }
+        /// <summary>
+        /// Generates  debug information on how part influences are calculated.
+        /// </summary>
+        /// <param name="mutations">The mutations.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">mutations</exception>
+        public static string GenerateDebugInfo([NotNull] IEnumerable<Hediff_AddedMutation> mutations)
+        {
+            if (mutations == null) throw new ArgumentNullException(nameof(mutations));
+            var mutationList = mutations.ToList();
+            Dictionary<AnimalClassBase, float> endDict = new Dictionary<AnimalClassBase, float>();
+            StringBuilder builder = new StringBuilder(); 
+
+
+            //header 
+
+            builder.AppendLine("Mutations:");
+
+            foreach (Hediff_AddedMutation mutation in mutationList)
+            {
+                AnimalClassBase inf = mutation.Influence;
+                builder.AppendLine($"|\t{mutation.def.defName}:{inf.defName }");
+                var i = endDict.TryGetValue(inf);
+                i += 1;
+                endDict[inf] = i; 
+
+            }
+
+            builder.AppendLine("Initial Influences:");
+
+            //raw dict 
+            foreach (KeyValuePair<AnimalClassBase, float> kvp in endDict)
+            {
+                builder.AppendLine($"|\t{kvp.Key.defName}:{kvp.Value}");
+            }
+
+            CalculateAccumulatedInfluence(endDict);
+
+            builder.AppendLine("Accumulation Cache");
+            foreach (KeyValuePair<AnimalClassBase, float> kvp in _accumInfluenceCache)
+            {
+                builder.AppendLine($"|\t{kvp.Key.defName}:{kvp.Value}");
+            }
+
+            //trickle down 
+            CalculateTrickledInfluence(endDict);
+            builder.AppendLine("Trickle down cache");
+            foreach (KeyValuePair<AnimalClassBase, float> kvp in _trickleCache)
+            {
+                builder.AppendLine($"|\t{kvp.Key.defName}:{kvp.Value}");
+            }
+
+            foreach (AnimalClassBase animalClass in _pickedInfluencesCache) //now calculate the final values 
+                endDict[animalClass] = _trickleCache.TryGetValue(animalClass) + endDict.TryGetValue(animalClass);
+
+            builder.AppendLine($"End Amounts");
+
+
+            foreach (KeyValuePair<AnimalClassBase, float> kvp in endDict)
+            {
+                builder.AppendLine($"|\t{kvp.Key.defName}:{kvp.Value}");
+            }
+
+            return builder.ToString();
         }
 
         /// <summary>
@@ -195,7 +261,7 @@ namespace Pawnmorph
 
                 foreach (AnimalClassBase child in animalClass.Children)
                 {
-                    float cInf = initialDict.TryGetValue(child) + _accumInfluenceCache[child];
+                    float cInf = _accumInfluenceCache[child];
                     if (cInf > maxInfluence)
                     {
                         hChild = child;

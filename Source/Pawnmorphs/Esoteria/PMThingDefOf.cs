@@ -30,5 +30,6 @@ namespace Pawnmorph
 
 
         public static ThingDef MechaniteSlurry;
+        public static ThingDef MutagenLab;
     }
 }
