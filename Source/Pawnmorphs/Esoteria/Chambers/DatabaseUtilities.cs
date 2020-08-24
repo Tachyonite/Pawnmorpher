@@ -15,7 +15,8 @@ namespace Pawnmorph.Chambers
     /// </summary>
     public static class DatabaseUtilities
     {
-
+        private const string MUTATION_ADDED_MESSAGE = "MutationAddedToDatabase";
+        private const string ANIMAL_ADDED_TO_DATABASE_MESSAGE = "AnimalAddedToDatabase"; 
         /// <summary>
         /// The minimum amount of storage space a mutation requires 
         /// </summary>
@@ -87,31 +88,37 @@ namespace Pawnmorph.Chambers
         /// </summary>
         /// <param name="db">The database.</param>
         /// <param name="def">The definition.</param>
+        /// <param name="displayMessageIfAdded">if set to <c>true</c> [display message if added].</param>
         /// <returns></returns>
-        public static bool TryAddToDatabase([NotNull] this ChamberDatabase db, [NotNull] MutationDef def)
+        public static bool TryAddToDatabase([NotNull] this ChamberDatabase db, [NotNull] MutationDef def, bool displayMessageIfAdded=true)
         {
             if (!db.CanAddToDatabase(def)) return false;
             db.AddToDatabase(def);
+            if (displayMessageIfAdded)
+                Messages.Message(MUTATION_ADDED_MESSAGE.Translate(def.Named("Mutation")), MessageTypeDefOf.PositiveEvent); 
             return true; 
         }
 
         /// <summary>
-        /// Tries to add the specified pawnkind to the database, returning false on failure 
+        /// Tries to add the specified pawnkind to the database, returning false on failure
         /// </summary>
         /// <param name="db">The database.</param>
         /// <param name="pawnKind">Kind of the pawn.</param>
+        /// <param name="displayMessageIfAdded">if set to <c>true</c> [display message if added].</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        /// db
+        /// <exception cref="ArgumentNullException">db
         /// or
-        /// pawnKind
-        /// </exception>
-        public static bool TryAddToDatabase([NotNull] this ChamberDatabase db, [NotNull] PawnKindDef pawnKind)
+        /// pawnKind</exception>
+        public static bool TryAddToDatabase([NotNull] this ChamberDatabase db, [NotNull] PawnKindDef pawnKind, bool displayMessageIfAdded=true)
         {
             if (db == null) throw new ArgumentNullException(nameof(db));
             if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
             if (!db.CanAddToDatabase(pawnKind)) return false;
             db.AddToDatabase(pawnKind);
+            if (displayMessageIfAdded)
+            {
+                Messages.Message(ANIMAL_ADDED_TO_DATABASE_MESSAGE.Translate(pawnKind), MessageTypeDefOf.PositiveEvent);
+            }
             return true; 
         }
 
