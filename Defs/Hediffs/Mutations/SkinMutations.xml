@@ -184,19 +184,21 @@
 		<defName>EtherWoollyLimb</defName>
 		<label>wool</label>
 		<description>A sweater of wool drapes across this limb, insulating a lot of heat.</description>
-		<mutationMemory>EtherThickFurLimb</mutationMemory>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.33</severityPerDay>
-			</li>
-		</comps>
-		<classInfluence>WoollyUngulate</classInfluence>
 		<parts>
+			<li>Torso</li>
 			<li>Head</li>
-			<li>Neck</li>
+			<li>Ear</li>
 			<li>Arm</li>
+			<li>Hand</li>
 			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
 		</parts>
+		<categories>
+			<li>Minor</li>
+		</categories>
+		<classInfluence>WoollyUngulate</classInfluence>
+		<mutationMemory>EtherThickFurLimb</mutationMemory>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>thin hair</labelOverride>
@@ -240,6 +242,11 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherScaledLimb</defName>
@@ -257,7 +264,6 @@
 			<li>Tail</li>
 		</parts>
 		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
-		<countToAffect>2</countToAffect>
 		<categories>
 			<li>Minor</li>
 		</categories>
@@ -327,17 +333,11 @@
 			<li>Foot</li>
 			<li>Tail</li>
 		</parts>
-		<mutationLogRulePack>HideGrowthLogPack</mutationLogRulePack>
-		<countToAffect>2</countToAffect>
 		<categories>
 			<li>Minor</li>
 		</categories>
 		<classInfluence>Ungulate</classInfluence>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.33</severityPerDay>
-			</li>
-		</comps>
+		<mutationLogRulePack>HideGrowthLogPack</mutationLogRulePack>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>thick skin</labelOverride>
@@ -382,6 +382,11 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart">
 		<defName>EtherFeatheredLimb</defName>
