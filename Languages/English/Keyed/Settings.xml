@@ -5,7 +5,7 @@
 	<enableMutagenCheckboxLabel>Enable Mutagenic Ship Parts</enableMutagenCheckboxLabel>
 	<enableMutagenCheckboxTooltip>Toggles a new ship part type that mutates pawns in an expanding radius.</enableMutagenCheckboxTooltip>
 	<enableMutagenDiseasesCheckboxLabel>Enable Mutagenic Diseases</enableMutagenDiseasesCheckboxLabel>
-	<enableMutagenDiseasesCheckboxTooltip>Toggles mutagenic disease events that will morph pawns.</enableMutagenDiseasesCheckboxTooltip>
+	<enableMutagenDiseasesCheckboxTooltip>Toggles mutagenic disease events that will morph pawns. (requires restart)</enableMutagenDiseasesCheckboxTooltip>
 	<enableMutagenMeteorCheckboxLabel>Enable Mutagenic Meteorite Mutation Radius</enableMutagenMeteorCheckboxLabel>
 	<enableMutagenMeteorCheckboxTooltip>Toggles the ability of mutonite meteors to mutate nearby pawns.</enableMutagenMeteorCheckboxTooltip>
 	<enableWildFormersCheckboxLabel>Enable Wild Former Humans</enableWildFormersCheckboxLabel>
