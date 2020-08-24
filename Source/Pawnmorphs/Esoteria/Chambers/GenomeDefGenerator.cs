@@ -110,7 +110,7 @@ namespace Pawnmorph.Chambers
             return new GraphicData()
             {
                 graphicClass = typeof(Graphic_Single),
-                texPath = "Things/Item/Special/TechprintUltratech" //TODO replace with our own graphics 
+                texPath = "Things/Item/Genecard" 
             };
         }
 
