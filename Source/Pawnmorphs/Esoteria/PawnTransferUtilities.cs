@@ -381,10 +381,11 @@ namespace Pawnmorph
 
                 foreach (DirectPawnRelation pawnRelationDef in rel2
                                                               .DirectRelations.MakeSafe()
-                                                              .Where(d => predicate?.Invoke(d) != false)
+                                                              .Where(d => predicate?.Invoke(d) != false && d.otherPawn == pawn1)
                                                               .ToList())
                 {
                     if (pawnRelationDef.def.implied) continue;
+                    
                     rel2.RemoveDirectRelation(pawnRelationDef.def, pawn1);
                     rel2.AddDirectRelation(pawnRelationDef.def, pawn2);
                 }
