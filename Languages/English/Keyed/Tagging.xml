@@ -1,4 +1,5 @@
 <LanguageData>
     <PMTagGizmoLabel>Tag Animal</PMTagGizmoLabel>
     <PMTagGizmoDescription>tag an animal</PMTagGizmoDescription>
+    <CannotTagFormerHuman>Due to mechanite contamination, this animal cannot be tagged</CannotTagFormerHuman>
 </LanguageData>

@@ -25,6 +25,13 @@ namespace EtherGun
             {
                 Pawn hitPawn = pawn;
 
+                var fHStatus = hitPawn.GetQuantizedSapienceLevel();
+                if (fHStatus != null && fHStatus != SapienceLevel.PermanentlyFeral)
+                {
+                    Messages.Message("CannotTagFormerHuman".Translate(), MessageTypeDefOf.RejectInput);
+                    return;
+                }
+
                 if (!database.TryAddToDatabase(pawn.kindDef, out string reason))
                 {
                     Messages.Message(reason, MessageTypeDefOf.RejectInput);
