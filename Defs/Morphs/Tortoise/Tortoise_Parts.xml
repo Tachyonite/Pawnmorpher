@@ -77,6 +77,24 @@
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
+		<defName>EtherTortoiseShell</defName>
+		<label>!!!EtherTortoiseShell needs a label!!!</label>
+		<description>!!!EtherTortoiseShell needs a description!!!</description>
+		<parts>
+			<li>Torso</li>
+		</parts>
+		<stages>
+		<li Class="Pawnmorph.Hediffs.MutationStage">
+			<statOffsets>
+				<ComfyTemperatureMax>0.08</ComfyTemperatureMax>
+				<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+			</statOffsets>
+		</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

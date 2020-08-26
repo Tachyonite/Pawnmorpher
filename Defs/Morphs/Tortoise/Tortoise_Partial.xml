@@ -2,6 +2,7 @@
 	<HediffDef ParentName="NewPartialAspectedMorphParent">
 		<defName>PawnmorphTortoiseTFPartial</defName>
 		<label>tortoisemorph partial</label>
+		<description>needs a description!!!</description>
 		<stages>
 			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>

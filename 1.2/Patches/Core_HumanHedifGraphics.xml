@@ -1172,6 +1172,90 @@
 					</east>
 				</offsets>
 			</li>
+			<li>
+				<!-- Torsos -->
+				<path>Parts/None/None</path>
+				<bodyPart>Torso</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.279</layerOffset>
+				<layerInvert>false</layerInvert>
+				<shaderType>CutoutSkin</shaderType>
+				<drawnInBed>false</drawnInBed>
+				<hediffGraphics>
+					<EtherTortoiseShell>Parts/Tortoise/Tortoise_Shell</EtherTortoiseShell>
+				</hediffGraphics>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.42,0.22)</Male>
+							<Female>(-0.42,0.17)</Female>
+							<Thin>(-0.42,0.22)</Thin>
+							<Hulk>(-0.42,0.22)</Hulk>
+							<Fat>(-0.425,0.16)</Fat>
+						</bodyTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0,0.55)</Male>
+							<Female>(0,0.55)</Female>
+							<Thin>(0,0.55)</Thin>
+							<Hulk>(0,0.55)</Hulk>
+							<Fat>(0,0.55)</Fat>
+						</bodyTypes>
+					</north>
+					<east>
+						<bodyTypes>
+							<Male>(-0.42,0.22)</Male>
+							<Female>(-0.42,0.22)</Female>
+							<Thin>(-0.48,0.22)</Thin>
+							<Hulk>(-0.33,0.22)</Hulk>
+							<Fat>(-0.33,0.22)</Fat>
+						</bodyTypes>
+					</east>
+				</offsets>
+			</li>
+			<li>
+				<!-- Torsos Behind-->
+				<path>Parts/None/None</path>
+				<bodyPart>Torso</bodyPart>
+				<inFrontOfBody>false</inFrontOfBody>
+				<layerOffset>-0.279</layerOffset>
+				<layerInvert>false</layerInvert>
+				<shaderType>CutoutSkin</shaderType>
+				<drawnInBed>false</drawnInBed>
+				<hediffGraphics>
+					<EtherTortoiseShell>Parts/Tortoise/Tortoise_Shell_Behind</EtherTortoiseShell>
+				</hediffGraphics>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.42,0.34)</Male>
+							<Female>(-0.42,0.24)</Female>
+							<Thin>(-0.42,0.34)</Thin>
+							<Hulk>(-0.42,0.34)</Hulk>
+							<Fat>(-0.425,0.30)</Fat>
+						</bodyTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0,0.55)</Male>
+							<Female>(0,0.55)</Female>
+							<Thin>(0,0.55)</Thin>
+							<Hulk>(0,0.55)</Hulk>
+							<Fat>(0,0.55)</Fat>
+						</bodyTypes>
+					</north>
+					<east>
+						<bodyTypes>
+							<Male>(-0.42,0.22)</Male>
+							<Female>(-0.42,0.22)</Female>
+							<Thin>(-0.48,0.22)</Thin>
+							<Hulk>(-0.33,0.22)</Hulk>
+							<Fat>(-0.33,0.22)</Fat>
+						</bodyTypes>
+					</east>
+				</offsets>
+			</li>
 		</value>
 	</Operation>
 </Patch>

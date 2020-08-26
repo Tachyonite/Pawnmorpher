@@ -2,6 +2,7 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphTortoiseTF</defName>
 		<label>tortoisemorph</label>
+		<description>!!!TortoiseMorph needs a description!!!</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
