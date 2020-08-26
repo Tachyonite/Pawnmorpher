@@ -114,7 +114,8 @@ namespace Pawnmorph
          
             //jobs and toils 
             methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
-
+            methodsToPatch.Add(typeof(GatheringWorker_MarriageCeremony).GetMethod("IsGuest", instanceFlags));
+            
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
             {
