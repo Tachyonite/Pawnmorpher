@@ -25,6 +25,22 @@ namespace Pawnmorph.DebugUtils
 
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void TagAllMutations()
+        {
+            var cd = Find.World.GetComponent<ChamberDatabase>();
+
+            var mutations = DefDatabase<MutationCategoryDef>.AllDefs.Where(d => d.genomeProvider)
+                                                            .SelectMany(d => d.AllMutations)
+                                                            .Distinct();
+            foreach (MutationDef mutationDef in mutations)
+            {
+                if(cd.StoredMutations.Contains(mutationDef)) continue;
+                cd.AddToDatabase(mutationDef); 
+            }
+
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
         static void TagAllAnimals()
         {
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();

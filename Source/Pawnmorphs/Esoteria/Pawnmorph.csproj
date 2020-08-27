@@ -486,6 +486,7 @@
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
+    <Compile Include="MainTabWindow_ChamberDatabase.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
