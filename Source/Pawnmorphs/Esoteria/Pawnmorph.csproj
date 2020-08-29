@@ -333,6 +333,7 @@
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
+    <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
     <Compile Include="Chambers\ChamberDatabase.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />

@@ -37,11 +37,12 @@ namespace Pawnmorph
                 GenerateImplicitRaces();
                 TransferPatchesToExplicitRaces();
                 CheckForObsoletedComponents();
-
                 CheckForModConflicts();
                 try
                 {
                     GenomeDefGenerator.GenerateGenomes();
+                    SetupInjectors(); 
+
                 }
                 catch (Exception e)
                 {
@@ -55,6 +56,11 @@ namespace Pawnmorph
             {
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
             }
+        }
+
+        private static void SetupInjectors()
+        {
+            throw new NotImplementedException();
         }
 
         private static void CheckForModConflicts()
