@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>TortoiseMorph</defName>
 		<label>tortoisemorph</label>
-		<description>!!!TortoiseMorph needs a description!!!</description>
+		<description>Tortoisemorphs are defensive morphs characterised by their hard shell. While a shell does generally make them slower, conventional tortoises are slow due to energy conservation -- which is not necessarily an issue with morphs.</description>
 		<race>Tortoise</race>
 		<classification>Reptile</classification>
 		<categories>

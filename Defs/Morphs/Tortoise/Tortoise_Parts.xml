@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
 		<defName>EtherTortoiseJaw</defName>
-		<label>!!!EtherTortoiseJaw needs a label!!!</label>
-		<description>!!!EtherTortoiseJaw needs a description!!!</description>
+		<label>tortoise beak</label>
+		<description>The hard and rather dangerous beak of a tortoise.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -62,7 +62,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
 		<defName>EtherTortoiseEar</defName>
-		<label>!!!EtherTortoiseEar needs a label!!!</label>
+		<label>earhole</label>
 		<description>!!!EtherTortoiseEar needs a description!!!</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
@@ -83,16 +83,16 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
 		<defName>EtherTortoiseShell</defName>
-		<label>!!!EtherTortoiseShell needs a label!!!</label>
-		<description>!!!EtherTortoiseShell needs a description!!!</description>
+		<label>shell</label>
+		<description>An ibuilt suit of armour.</description>
 		<parts>
 			<li>Torso</li>
 		</parts>
 		<stages>
 		<li Class="Pawnmorph.Hediffs.MutationStage">
 			<statOffsets>
-				<ComfyTemperatureMax>0.08</ComfyTemperatureMax>
 				<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+				<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
 			</statOffsets>
 		</li>
 		</stages>
