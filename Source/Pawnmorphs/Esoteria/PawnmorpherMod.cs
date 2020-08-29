@@ -40,6 +40,9 @@ namespace Pawnmorph
             listingStandard.CheckboxLabeled("ChamberDatabaseIgnoresDataLimit".Translate(),
                                             ref settings.chamberDatabaseIgnoreStorageLimit,
                                             "ChamberDatabaseIgnoresDataLimitTooltip".Translate());
+            listingStandard.CheckboxLabeled("PMInjectorsRequireTagging".Translate(), ref settings.injectorsRequireTagging,
+                                            "PMInjectorsRequireTaggingTooltip".Translate()); 
+
             listingStandard.GapLine();
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
             settings.transformChance = listingStandard.Slider(settings.transformChance, 0f, 100f);

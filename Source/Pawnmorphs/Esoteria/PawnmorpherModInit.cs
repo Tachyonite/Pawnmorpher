@@ -41,7 +41,6 @@ namespace Pawnmorph
                 try
                 {
                     GenomeDefGenerator.GenerateGenomes();
-                    SetupInjectors(); 
 
                 }
                 catch (Exception e)

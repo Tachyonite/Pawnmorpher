@@ -44,7 +44,7 @@
 		<surfaceType>Item</surfaceType>
 		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
 		<inspectorTabs>
-			<li>ITab_Bills</li>
+			<li>Pawnmorph.ITabs.InjectorBills</li>
 		</inspectorTabs>
 		<recipes>
 			<li>Make_ComponentsFromSlurry</li>
