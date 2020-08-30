@@ -26,6 +26,13 @@ namespace Pawnmorph
         private List<TabRecord> _tabs;
 
         private Mode _curMode;
+        /// <summary>
+        /// Gets the size of the requested tab.
+        /// </summary>
+        /// <value>
+        /// The size of the requested tab.
+        /// </value>
+        public override Vector2 RequestedTabSize => new Vector2(1010f, 640f);
 
         private static readonly Texture2D PinTex = ContentFinder<Texture2D>.Get("UI/Icons/Pin");
         private ChamberDatabase _chamberDatabase;
@@ -80,10 +87,8 @@ namespace Pawnmorph
         {
             base.DoWindowContents(inRect);
             Rect sRect = inRect;
-            sRect.yMax += 45f;
-            Log.Message(Tabs.Count.ToString()); 
+            sRect.yMin += 45f;
             TabDrawer.DrawTabs(sRect, Tabs);
-            sRect.yMin += 17f; 
             switch (_curMode)
             {
                 case Mode.Animal:
@@ -95,9 +100,6 @@ namespace Pawnmorph
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            sRect.yMax += 10f;
-            sRect.yMin += 40f; 
 
         }
 
@@ -130,7 +132,7 @@ namespace Pawnmorph
 
         void DrawTable(Rect inRect)
         {
-            return;
+
             int messageLastHeight = 0;
             var viewRect = new Rect(0f, 0f, inRect.width / 2 - 10f, messageLastHeight);
             Widgets.BeginScrollView(inRect, ref _scrollPosition, viewRect);
