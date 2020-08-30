@@ -2,6 +2,8 @@
 // last updated 09/02/2019  8:44 AM
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using RimWorld;
@@ -32,6 +34,38 @@ namespace Pawnmorph.Chambers
         /// </summary>
         public static float STORAGE_PER_VALUE_SPECIES = 1;
 
+        [NotNull]
+        private static readonly 
+            Dictionary<MorphDef, List<PawnKindDef>> _pkCache = new Dictionary<MorphDef, List<PawnKindDef>>();
+
+        /// <summary>
+        /// Determines whether the specified morph is tagged.
+        /// </summary>
+        /// <param name="mDef">The m definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified morph is tagged; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsTagged([NotNull] this MorphDef mDef)
+        {
+            var cdB = Find.World.GetComponent<ChamberDatabase>();
+            //cache the list so we only have to do the lookup for pawnkinds once 
+            if (!_pkCache.TryGetValue(mDef, out List<PawnKindDef> lst))
+            {
+                lst = DefDatabase<PawnKindDef>.AllDefsListForReading
+                                              .Where(p => p.race == mDef.race || mDef.associatedAnimals?.Contains(p.race) == true)
+                                              .Distinct()
+                                              .ToList();
+                _pkCache[mDef] = lst; 
+
+            }
+
+            foreach (PawnKindDef pawnKindDef in lst)
+            {
+                if (cdB.TaggedAnimals.Contains(pawnKindDef)) return true; 
+            }
+
+            return false; 
+        }
 
         /// <summary>
         /// Determines whether this instance is the def of an animal that can be added to the chamber database

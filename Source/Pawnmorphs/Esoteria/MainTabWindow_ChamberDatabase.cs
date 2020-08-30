@@ -81,6 +81,7 @@ namespace Pawnmorph
             base.DoWindowContents(inRect);
             Rect sRect = inRect;
             sRect.yMax += 45f;
+            Log.Message(Tabs.Count.ToString()); 
             TabDrawer.DrawTabs(sRect, Tabs);
             sRect.yMin += 17f; 
             switch (_curMode)
@@ -94,6 +95,10 @@ namespace Pawnmorph
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            sRect.yMax += 10f;
+            sRect.yMin += 40f; 
+
         }
 
         struct RowEntry
@@ -125,6 +130,7 @@ namespace Pawnmorph
 
         void DrawTable(Rect inRect)
         {
+            return;
             int messageLastHeight = 0;
             var viewRect = new Rect(0f, 0f, inRect.width / 2 - 10f, messageLastHeight);
             Widgets.BeginScrollView(inRect, ref _scrollPosition, viewRect);

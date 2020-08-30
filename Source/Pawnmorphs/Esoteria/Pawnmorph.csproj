@@ -333,6 +333,7 @@
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
+    <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
     <Compile Include="Chambers\ChamberDatabase.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
@@ -481,6 +482,7 @@
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="InteractionWorker_Bleat.cs" />
     <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
@@ -529,6 +531,7 @@
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
+    <Compile Include="PMTexButton.cs" />
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
