@@ -193,9 +193,18 @@ namespace Pawnmorph
 
         void DrawRow(RowEntry entry, Rect inRect)
         {
+            Rect lRect = new Rect(inRect);
+            lRect.width /= 2;
+            Rect bRect = new Rect(inRect);
+            bRect.width /= 2;
+            bRect.x += lRect.width;
+            bRect.height = 10; //need to hardcode size of image?? 
             Widgets.Label(inRect, entry.label + " : " + entry.storageSpaceUsed + "/" + Database.TotalStorage);
+            if (Widgets.ButtonImage(bRect, PMTexButton.CloseXSmall, true))
+            {
+                RemoveFromDB(entry.def); 
+            } 
 
-            //TODO draw a button to delete the row entry from the database using RowEntry.def and refresh the gui 
         }
 
         private void DrawMutationsTab(Rect inRect)
