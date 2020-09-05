@@ -132,6 +132,21 @@ namespace Pawnmorph.Chambers
         }
 
         /// <summary>
+        /// Removes the given mutation def from database.
+        /// </summary>
+        /// <param name="mDef">The m definition.</param>
+        public void RemoveFromDatabase(MutationDef mDef)
+        {
+            if (!_storedMutations.Contains(mDef))
+                return;
+            _usedStorageCache = null;
+
+            _storedMutations.Remove(mDef); 
+        }
+
+
+
+        /// <summary>
         ///     Adds the pawnkind to the database directly.
         /// </summary>
         /// note: this function does
@@ -240,6 +255,18 @@ namespace Pawnmorph.Chambers
         internal void ClearCache()
         {
             _usedStorageCache = null;
+        }
+
+        /// <summary>
+        /// Removes the given pawnkind def from the database.
+        /// </summary>
+        /// <param name="pkDef">The pk definition.</param>
+        public void RemoveFromDatabase(PawnKindDef pkDef)
+        {
+            if (!_taggedSpecies.Contains(pkDef)) return;
+
+            _usedStorageCache = null;
+            _taggedSpecies.Remove(pkDef); 
         }
     }
 }

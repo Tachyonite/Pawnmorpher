@@ -108,15 +108,19 @@ namespace Pawnmorph
             public RowEntry(MutationDef mDef)
             {
                 label = mDef.label;
-                storageSpaceUsed = mDef.GetRequiredStorage(); 
+                storageSpaceUsed = mDef.GetRequiredStorage();
+                def = mDef;
             }
 
             public RowEntry(PawnKindDef pkDef)
             {
                 label = pkDef.label;
                 storageSpaceUsed = pkDef.GetRequiredStorage();
+                def = pkDef; 
             }
 
+
+            public Def def; 
             public string label;
             public int storageSpaceUsed; 
         }
@@ -129,6 +133,27 @@ namespace Pawnmorph
         [NotNull] readonly 
         private StringBuilder _builder = new StringBuilder();
 
+
+
+        void RemoveFromDB(Def def)
+        {
+            var db = Find.World.GetComponent<ChamberDatabase>();
+            //explicit type casts here are hacky but best way to reuse the gui code 
+            if (def is PawnKindDef pkDef)
+            {
+                db.RemoveFromDatabase(pkDef); 
+            }else if (def is MutationDef mDef)
+            {
+                db.RemoveFromDatabase(mDef); 
+            }
+            else
+            {
+                throw new NotImplementedException(nameof(RemoveFromDB) + " is not implemented for " + def.GetType().Name + "!"); 
+            }
+
+
+
+        }
 
         void DrawTable(Rect inRect)
         {
@@ -169,6 +194,8 @@ namespace Pawnmorph
         void DrawRow(RowEntry entry, Rect inRect)
         {
             Widgets.Label(inRect, entry.label + " : " + entry.storageSpaceUsed + "/" + Database.TotalStorage);
+
+            //TODO draw a button to delete the row entry from the database using RowEntry.def and refresh the gui 
         }
 
         private void DrawMutationsTab(Rect inRect)
