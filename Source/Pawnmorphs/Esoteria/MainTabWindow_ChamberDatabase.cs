@@ -133,13 +133,14 @@ namespace Pawnmorph
         void DrawTable(Rect inRect)
         {
             inRect.yMin += 10f;
-            inRect.yMax += 40f; 
+            inRect.yMax += 40f;
+            Rect mainView = inRect.ContractedBy(10f);
 
-            int messageLastHeight = 10;
-            var viewRect = new Rect(0f, 0f, inRect.width / 2 - 10f, messageLastHeight);
-            Rect rect2 = new Rect(inRect.x + inRect.width / 2f + 10f, inRect.y, inRect.width / 2f - 10f - 16f, inRect.height);
+            Rect outRect = new Rect(inRect.x, inRect.y, mainView.width, mainView.height - inRect.y - 10f);
 
-            Widgets.BeginScrollView(inRect, ref _scrollPosition, viewRect);
+            Rect viewRect = new Rect(mainView.x + mainView.width / 2f + 10f, mainView.y, mainView.width / 2f - 10f - 16f, mainView.height);
+            var viewWidth = viewRect.width / 3 - 10f;
+            Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
             try
             {
                 if (_rowEntries.Count == 0) return;
@@ -147,13 +148,16 @@ namespace Pawnmorph
                 for (var index = 0; index < _rowEntries.Count; index++)
                 {
                     RowEntry rowEntry = _rowEntries[index];
-                    var rect = rect2; //TODO fix this 
+                    var rect = viewRect; //TODO fix this 
                     rect.y += index * 30; //go down 1 row? 
                     DrawRow(rowEntry, rect);
                 }
 
                 //TODO scroll view stuff 
                 //use _rowEntries to get the needed information 
+                // Set the scroll view height
+              
+
             }
             finally
             {
