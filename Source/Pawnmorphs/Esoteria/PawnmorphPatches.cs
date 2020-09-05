@@ -29,10 +29,15 @@ namespace Pawnmorph
     internal static class PawnmorphPatches
     {
         private static readonly Type patchType = typeof(PawnmorphPatches);
-
+        [NotNull]
+        private static readonly MethodInfo _animalTabWorkerMethod; 
         static PawnmorphPatches()
-        {   
-           
+        {
+
+            _animalTabWorkerMethod =
+                typeof(PawnmorphPatches).GetMethod(nameof(AnimalTabWorkerMethod), BindingFlags.Static | BindingFlags.NonPublic); 
+
+
 
             var
                 harmonyInstance = new Harmony("com.pawnmorpher.mod"); //shouldn't this be different? 
@@ -82,8 +87,85 @@ namespace Pawnmorph
             }
         }
 
-        
 
+
+
+        /// <summary>
+        /// substitutes all instances of RaceProps Humanlike, Animal, and Tooluser with their equivalent in FormerHumanUtilities
+        /// </summary>
+        /// <param name="instructions">The code instructions.</param>
+        /// <exception cref="System.ArgumentNullException">codeInstructions</exception>
+        public static IEnumerable<CodeInstruction> SubstituteFormerHumanMethodsPatch([NotNull] IEnumerable<CodeInstruction> instructions)
+        {
+            if (instructions == null) throw new ArgumentNullException(nameof(instructions));
+            List<CodeInstruction> codeInstructions = instructions.ToList();
+            for (var i = 0; i < codeInstructions.Count - 1; i++)
+            {
+                int j = i + 1;
+                CodeInstruction opI = codeInstructions[i];
+                CodeInstruction opJ = codeInstructions[j];
+                if (opI == null || opJ == null) continue;
+                //the segment we're interested in always start with pawn.get_RaceProps() (ie pawn.RaceProps) 
+                if (opI.opcode == OpCodes.Callvirt && (MethodInfo)opI.operand == PatchUtilities.RimworldGetRaceMethod)
+                {
+                    //signatures we care about always have a second callVirt 
+                    if (opJ.opcode != OpCodes.Callvirt) continue;
+
+                    var jMethod = opJ.operand as MethodInfo;
+                    bool patched;
+                    //figure out which method, if any, we're going to be replacing 
+                    if (jMethod == PatchUtilities.RimworldGetAnimalMethod)
+                    {
+                        patched = true;
+                        opI.operand = _animalTabWorkerMethod;
+                    }
+                    else
+                    {
+                        patched = false;
+                    }
+
+                    if (patched)
+                    {
+                        //now clean up if we did any patching 
+
+                        opI.opcode = OpCodes.Call; //always uses call 
+
+                        //replace opJ with nop (no operation) so we don't fuck up the stack 
+                        opJ.opcode = OpCodes.Nop;
+                        opJ.operand = null;
+                    }
+                }
+            }
+
+            return codeInstructions;
+        }
+
+
+        static bool AnimalTabWorkerMethod(Pawn pawn)
+        {
+            return pawn.RaceProps.Animal || pawn.GetIntelligence() == Intelligence.Animal; 
+        }
+
+        static void DoAnimalPatches([NotNull] Harmony harmonyInstance)
+        {
+            var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
+            var instanceFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+
+
+            var tpMethod = typeof(PawnmorphPatches).GetMethod(nameof(PawnmorphPatches), staticFlags);
+            //animal tabs 
+            var methods = typeof(MainTabWindow_Animals).GetNestedTypes(staticFlags | instanceFlags)//looking for delegates used by the animal tab 
+                                                       .Where(t => t.IsCompilerGenerated())
+                                                       .SelectMany(t => t.GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Pawn))));
+
+            foreach (MethodInfo methodInfo in methods)
+            {
+                harmonyInstance.Patch(methodInfo, transpiler: new HarmonyMethod(tpMethod)); 
+            }
+
+
+
+        }
 
         private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
         {
@@ -100,15 +182,11 @@ namespace Pawnmorph
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod); 
 
-            //animal tabs 
-            var methods = typeof(MainTabWindow_Animals).GetNestedTypes(staticFlags | instanceFlags)//looking for delegates used by the animal tab 
-                                                       .Where(t => t.IsCompilerGenerated())
-                                                       .SelectMany(t => t.GetMethods(instanceFlags).Where(m=> m.HasSignature(typeof(Pawn))));
+     
 
-            methodsToPatch.AddRange(methods);
-
+   
             //map pawns 
-            methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)));
+            var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)));
             methodsToPatch.AddRange(methods); 
 
          
