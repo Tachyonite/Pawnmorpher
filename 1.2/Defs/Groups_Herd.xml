@@ -3,6 +3,8 @@
 		<defName>HerbivoreHerding</defName>
 		<label>herd</label>
 		<aspectDef>HerdMind</aspectDef>
+		<barrakThoughtReplacement>PM_HerdMindedBarrack</barrakThoughtReplacement>
+		<bedroomThoughtReplacement>PM_HerdMindedBedroom</bedroomThoughtReplacement>
 	</Pawnmorph.MorphGroupDef>
 	
     <Pawnmorph.AspectDef ParentName="MorphGroupAspectBase">

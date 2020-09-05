@@ -464,6 +464,7 @@
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\ToilsLayDownPatches.cs" />
     <Compile Include="HPatches\VerbTrackerPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
     <Compile Include="HPatches\WorkGiverPatches.cs" />

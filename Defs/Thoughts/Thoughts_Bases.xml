@@ -19,4 +19,13 @@
         </stages>
         -->
     </ThoughtDef>
+
+
+    <ThoughtDef Abstract="true" Name="SleptThoughtBase">
+        <durationDays>1</durationDays>
+        <stackLimit>1</stackLimit>
+        
+      </ThoughtDef>
+    
+  
 </Defs>

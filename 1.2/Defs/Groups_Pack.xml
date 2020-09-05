@@ -3,6 +3,8 @@
 		<defName>Canines</defName>
 		<label>pack</label>
 		<aspectDef>CanidMind</aspectDef>
+		<barrakThoughtReplacement>PM_PackMindedBarrack</barrakThoughtReplacement>
+		<bedroomThoughtReplacement>PM_PackMindedBedroom</bedroomThoughtReplacement>
 	</Pawnmorph.MorphGroupDef>
 	
     <Pawnmorph.AspectDef ParentName="MorphGroupAspectBase">
