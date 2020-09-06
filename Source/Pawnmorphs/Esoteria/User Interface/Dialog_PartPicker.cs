@@ -53,6 +53,7 @@ namespace Pawnmorph.User_Interface
         private StringBuilder partDescBuilder = new StringBuilder();
 
         // Toggles
+        private bool debugMode = false;
         private bool confirmed = false;
         private bool toggleClothesEnabled = true;
         private bool doSymmetry = true;
@@ -66,8 +67,14 @@ namespace Pawnmorph.User_Interface
         private RenderTexture previewImage;
 
         // Caching variables
-        private static Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPart;
+        private static Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef;
+        private static Dictionary<BodyPartDef, List<MutationLayer>> cachedMutationLayersByPartDef;
         private static List<BodyPartRecord> cachedMutableParts;
+        private static List<BodyPartRecord> cachedMutableCoreParts;
+        private static List<BodyPartRecord> cachedMutableSkinParts;
+        private List<Hediff_AddedMutation> pawnCurrentMutations;
+        private static string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
+        private static float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
 
         public override Vector2 InitialSize
         {
@@ -77,23 +84,31 @@ namespace Pawnmorph.User_Interface
             }
         }
 
-        public Dialog_PartPicker(Pawn pawn)
+        public Dialog_PartPicker(Pawn pawn, bool debugMode = false)
         {
+            // Copying passed in data for use elsewhere in the class.
             this.pawn = pawn;
+            this.debugMode = debugMode;
+
+            // Settting various flags for this window. Will remove most of these when I am done testing things.
             forcePause = true;
             doCloseX = true;
             resizeable = true;
             draggable = true;
 
-            cachedMutationDefsByPart = DefDatabase<MutationDef>.AllDefs.SelectMany(m => m.parts).Distinct().Select(
-                k => new {k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.parts.Contains(k)).ToList()}
-                ).ToDictionary(x => x.k, x => x.v);
-            cachedMutableParts = pawn.RaceProps.body.AllParts.Where(m => cachedMutationDefsByPart.ContainsKey(m.def)).ToList();
-        }
+            // Storing these here to (probably) save a few cycles while caching.
+            List<BodyPartRecord> allPawnParts = pawn.RaceProps.body.AllParts;
+            List<MutationDef> allMutationDefs = DefDatabase<MutationDef>.AllDefs.ToList();
 
-        public override void PreOpen()
-        {
-            base.PreOpen();
+            // Cache various information so we don't have to constantly look it up elsewhere. This does present the chance for a data desync, but unless the def database gets updated mid-game, I can't think of a case where this could occur atm.
+            cachedMutationDefsByPartDef = allMutationDefs.SelectMany(m => m.parts).Distinct().Select(k => new { k, v = allMutationDefs.Where(m => m.parts.Contains(k)).ToList()}).ToDictionary(x => x.k, x => x.v);
+            cachedMutationLayersByPartDef = cachedMutationDefsByPartDef.Keys.Select(k => new { k, v = cachedMutationDefsByPartDef[k].Select(n => n.RemoveComp.layer).Distinct().ToList()}).ToDictionary(x => x.k, x => x.v);
+            cachedMutableParts = allPawnParts.Where(m => allMutationDefs.SelectMany(n => n.parts).Distinct().Contains(m.def)).ToList();
+            cachedMutableCoreParts = allPawnParts.Where(m => allMutationDefs.Where(n => n.RemoveComp.layer == MutationLayer.Core).SelectMany(o => o.parts).Distinct().Contains(m.def)).ToList();
+            cachedMutableSkinParts = allPawnParts.Where(m => allMutationDefs.Where(n => n.RemoveComp.layer == MutationLayer.Skin).SelectMany(o => o.parts).Distinct().Contains(m.def)).ToList();
+
+            // Initial caching of the mutations currently affecting the pawn and their initial hediff list.
+            RecachePawnMutations();
             cachedHediffList = new List<Hediff>(pawn.health.hediffSet.hediffs);
         }
 
@@ -225,145 +240,78 @@ namespace Pawnmorph.User_Interface
             pawn.health.hediffSet.hediffs = new List<Hediff>(cachedHediffList);
         }
 
-        public void DrawPartsList(Rect outRect, Rect viewRect, ref float curPos, float initialPos)
+        private void RecachePawnMutations()
         {
-            List<Hediff_AddedMutation> pawnMutations = pawn.health.hediffSet.hediffs.Where(m => m.def.GetType() == typeof(MutationDef)).Cast<Hediff_AddedMutation>().ToList();
-            string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
-            float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
+            pawnCurrentMutations = pawn.health.hediffSet.hediffs.Where(m => m.def.GetType() == typeof(MutationDef)).Cast<Hediff_AddedMutation>().ToList();
+        }
 
+        private void DrawPartsList(Rect outRect, Rect viewRect, ref float curY, float initialPos)
+        {
             Widgets.BeginScrollView(outRect, ref partListScrollPos, viewRect);
             if (skinSync)
             {
-                List<BodyPartRecord> mutableCoreParts = cachedMutableParts.Where(m => DefDatabase<MutationDef>.AllDefs.Where(n => n.RemoveComp.layer == MutationLayer.Core).SelectMany(o => o.parts).Contains(m.def)).ToList();
-                DrawPartEntrySkinSyncMode(
-                    MutationLayer.Skin.ToString().Translate(),
-                    cachedMutableParts.Where(m => DefDatabase<MutationDef>.AllDefs.Where(n => n.RemoveComp.layer == MutationLayer.Skin).SelectMany(o => o.parts).Contains(m.def)).ToList(),
-                    ref curPos, viewRect, MutationLayer.Skin);
-                if (doSymmetry)
-                {
-                    foreach (BodyPartDef partDef in mutableCoreParts.Select(m => m.def).Distinct())
-                    {
-                        List<BodyPartRecord> mutablePartsOfDef = cachedMutableParts.Where(m => m.def == partDef).ToList();
-                        DrawPartEntrySkinSyncMode(mutablePartsOfDef.First().def.LabelCap.ToString(), mutablePartsOfDef, ref curPos, viewRect, MutationLayer.Core);
-                    }
-                }
-                else
-                {
-                    foreach (BodyPartRecord part in mutableCoreParts)
-                    {
-                        DrawPartEntrySkinSyncMode(part.LabelCap, new List<BodyPartRecord>() { part }, ref curPos, viewRect, MutationLayer.Core);
-                    }
-                }
+                DrawPartEntry(ref curY, viewRect, cachedMutableSkinParts, MutationLayer.Skin.ToString(), true);
             }
-            else if (doSymmetry)
+            if (doSymmetry)
             {
-                foreach (BodyPartDef part in cachedMutableParts.Select(m => m.def).Distinct())
+                foreach (BodyPartDef partDef in cachedMutableParts.Select(m => m.def).Distinct())
                 {
-                    DrawPartEntry(cachedMutableParts.Where(m => m.def == part).ToList(), ref curPos, viewRect);
+                    DrawPartEntry(ref curY, viewRect, (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m.def == partDef).ToList(), partDef.LabelCap);
                 }
             }
             else
             {
-                foreach (BodyPartRecord part in cachedMutableParts)
+                foreach(BodyPartRecord partRecord in cachedMutableParts)
                 {
-                    DrawPartEntry(new List<BodyPartRecord>() {part}, ref curPos, viewRect);
+                    DrawPartEntry(ref curY, viewRect, (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m == partRecord).ToList(), partRecord.LabelCap);
                 }
             }
             if (Event.current.type == EventType.Layout)
             {
                 partListScrollSize.x = outRect.width - 16f;
-                partListScrollSize.y = curPos - initialPos;
+                partListScrollSize.y = curY - initialPos;
             }
             Widgets.EndScrollView();
         }
 
-        private void DrawPartEntry(List<BodyPartRecord> parts, ref float curPos, Rect rect)
+        private void DrawPartEntry(ref float curY, Rect partListViewRect, List<BodyPartRecord> parts, string label, bool skinEntry = false)
         {
-            string labelText = doSymmetry ? parts.First().def.LabelCap.ToString() : parts.First().LabelCap.ToString();
-            Rect labelRect = new Rect(0f, curPos, rect.width, Text.CalcHeight(labelText, rect.width));
-            Widgets.Label(labelRect, labelText);
-            curPos += labelRect.height;
-
-            foreach (MutationLayer layer in cachedMutationDefsByPart.Where(m => parts.Select(p => p.def).Contains(m.Key)).SelectMany(n => n.Value).Select(o => o.CompProps<RemoveFromPartCompProperties>().layer).Distinct())
+            List<Hediff_AddedMutation> mutations;
+            string buttonLabel;
+            Widgets.ListSeparator(ref curY, partListViewRect.width, label);
+            if (!skinSync || cachedMutationLayersByPartDef[parts.FirstOrDefault().def].Count > 2)
             {
-                List<Hediff_AddedMutation> mutations = pawn.health.hediffSet.hediffs
-                    .Where(m => m.def.GetType() == typeof(MutationDef))
-                    .Cast<Hediff_AddedMutation>()
-                    .Where(m => parts.Contains(m.Part) && m.TryGetComp<RemoveFromPartComp>().Layer == layer)
-                    .ToList();
-                string partButtonText = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.LabelCap).Distinct()))}";
-                string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
-                float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
-                Rect partButtonRect = new Rect(rect.x, curPos, rect.width - editButtonWidth, Text.CalcHeight(partButtonText, rect.width - editButtonWidth - BUTTON_HORIZONTAL_PADDING));
-                Rect editButtonRect = new Rect(partButtonRect.width, curPos, editButtonWidth, partButtonRect.height);
-                Rect descriptionUpdateRect = new Rect(rect.x, curPos, rect.width, partButtonRect.height);
-                if (Widgets.ButtonText(partButtonRect, partButtonText))
+                foreach (MutationLayer layer in cachedMutationLayersByPartDef[parts.FirstOrDefault().def])
                 {
-                    List<FloatMenuOption> options = new List<FloatMenuOption>();
-                    void removeMutations()
-                    {
-                        foreach (Hediff_AddedMutation mutation in mutations)
-                        {
-                            pawn.health.RemoveHediff(mutation);
-                        }
-                        recachePreview = true;
-                    }
-                    options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeMutations));
-                    foreach (MutationDef mutationDef in cachedMutationDefsByPart[parts.First().def].Where(m => m.CompProps<RemoveFromPartCompProperties>().layer == layer))
-                    {
-                        void addMutation()
-                        {
-                            removeMutations();
-                            foreach (BodyPartRecord part in parts)
-                            {
-                                MutationUtilities.AddMutation(pawn, mutationDef, part);
-                            }
-                        }
-                        options.Add(new FloatMenuOption(mutationDef.LabelCap, addMutation));
-                    }
-                    Find.WindowStack.Add(new FloatMenu(options));
+                    mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == layer).ToList();
+                    buttonLabel = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.LabelCap).Distinct()))}";
+                    DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
                 }
-                if (Widgets.ButtonText(editButtonRect, editButtonText))
+            }
+            else
+            {
+                MutationLayer layer;
+                if (skinEntry)
                 {
-                    // Pop open window to modify current stage, severity, halted status, etc.
+                    mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == MutationLayer.Skin).ToList();
+                    layer = MutationLayer.Skin;
                 }
-                if (Mouse.IsOver(descriptionUpdateRect))
+                else
                 {
-                    foreach (MutationDef mutation in mutations.Select(m => m.Def).Distinct().ToList())
-                    {
-                        partDescBuilder.AppendLine($"{mutation.LabelCap}");
-                        partDescBuilder.AppendLine($"{mutation.description}");
-                        partDescBuilder.AppendLine();
-                    }
+                    mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == MutationLayer.Core).ToList();
+                    layer = MutationLayer.Core;
                 }
-                curPos += partButtonRect.height;
+                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.LabelCap).Distinct()))}";
+                DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
             }
         }
 
-        private void DrawPartEntrySkinSyncMode(string label, List<BodyPartRecord> parts, ref float curPos, Rect rect, MutationLayer layer)
+        private void DrawPartButtons(ref float curY, Rect partListViewRect, List<Hediff_AddedMutation> mutations, List<BodyPartRecord> parts, MutationLayer layer, string label)
         {
-            Rect labelRect = new Rect(rect.x, curPos, rect.width, Text.CalcHeight(label, rect.width));
-            Widgets.Label(labelRect, label);
-            curPos += labelRect.height;
-
-            List<Hediff_AddedMutation> mutations = pawn.health.hediffSet.hediffs
-                .Where(m => m.def.GetType() == typeof(MutationDef))
-                .Cast<Hediff_AddedMutation>()
-                .Where(m => parts.Contains(m.Part) && m.TryGetComp<RemoveFromPartComp>().Layer == layer)
-                .ToList();
-
-            string partButtonText = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.LabelCap).Distinct()))}";
-            string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
-
-            float editButtonWidth = Text.CalcSize(editButtonText).x + BUTTON_HORIZONTAL_PADDING;
-            float partButtonWidth = rect.width - editButtonWidth;
-            float partButtonHeight = Text.CalcHeight(partButtonText, partButtonWidth - BUTTON_HORIZONTAL_PADDING);
-
-            Rect partButtonRect = new Rect(rect.x, curPos, partButtonWidth, partButtonHeight);
-            Rect editButtonRect = new Rect(partButtonWidth, curPos, editButtonWidth, partButtonHeight);
-            Rect descUpdateRect = new Rect(rect.x, curPos, rect.width, partButtonHeight);
-
-            if (Widgets.ButtonText(partButtonRect, partButtonText))
+            Rect partButtonRect = new Rect(partListViewRect.x, curY, partListViewRect.width - editButtonWidth, Text.CalcHeight(label, partListViewRect.width - editButtonWidth - BUTTON_HORIZONTAL_PADDING));
+            Rect editButtonRect = new Rect(partButtonRect.width, curY, editButtonWidth, partButtonRect.height);
+            Rect descriptionUpdateRect = new Rect(partListViewRect.x, curY, partListViewRect.width, partButtonRect.height);
+            if (Widgets.ButtonText(partButtonRect, label))
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
                 void removeMutations()
@@ -373,9 +321,10 @@ namespace Pawnmorph.User_Interface
                         pawn.health.RemoveHediff(mutation);
                     }
                     recachePreview = true;
+                    RecachePawnMutations();
                 }
                 options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeMutations));
-                foreach (MutationDef mutationDef in cachedMutationDefsByPart[parts.First().def].Where(m => m.CompProps<RemoveFromPartCompProperties>().layer == layer))
+                foreach (MutationDef mutationDef in cachedMutationDefsByPartDef[parts.FirstOrDefault().def].Where(m => m.RemoveComp.layer == layer))
                 {
                     void addMutation()
                     {
@@ -384,18 +333,17 @@ namespace Pawnmorph.User_Interface
                         {
                             MutationUtilities.AddMutation(pawn, mutationDef, part);
                         }
+                        RecachePawnMutations();
                     }
                     options.Add(new FloatMenuOption(mutationDef.LabelCap, addMutation));
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
-
             if (Widgets.ButtonText(editButtonRect, editButtonText))
             {
-                // Pop open window to modify current stage, severity, halted status, etc.
+                Find.WindowStack.Add(new Dialog_EditMutation(mutations));
             }
-
-            if (Mouse.IsOver(descUpdateRect))
+            if (Mouse.IsOver(descriptionUpdateRect))
             {
                 foreach (MutationDef mutation in mutations.Select(m => m.Def).Distinct().ToList())
                 {
@@ -404,8 +352,7 @@ namespace Pawnmorph.User_Interface
                     partDescBuilder.AppendLine();
                 }
             }
-
-            curPos += partButtonHeight;
+            curY += partButtonRect.height;
         }
 
         public void DrawDescriptionBoxes(Rect inRect)

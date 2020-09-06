@@ -220,7 +220,7 @@ namespace Pawnmorph.DebugUtils
         public static void OpenPartPickerMenu(Pawn pawn)
         {
             if (pawn == null) return;
-            Find.WindowStack.Add(new Dialog_PartPicker(pawn));
+            Find.WindowStack.Add(new Dialog_PartPicker(pawn, true));
         }
     }
 }
