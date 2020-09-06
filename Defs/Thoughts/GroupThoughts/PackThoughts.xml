@@ -94,23 +94,23 @@
         <stages>
             <li>
                 <label>awful barrack</label>
-                <description>We had to sleep in an awful barrack, but the pack was there</description>
+                <description>We had to sleep in an awful barrack, but the pack was there.</description>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
             <li>
                 <label>dull barrack</label>
-                <description>We had to sleep in a dull barrack. but the rest of the back was there.</description>
+                <description>We had to sleep in a dull barrack. but the rest of the pack was there.</description>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
             <li>
                 <label>mediocre barrack</label>
-                <description>We slept in a mediocre barrack with my pack. Ok I guess.</description>
+                <description>We slept in a mediocre barrack with my pack. Okay, I guess.</description>
                 <baseMoodEffect>0</baseMoodEffect>
                 <visible>true</visible>
             </li>
             <li>
                 <label>decent barrack</label>
-                <description>We slept in a decent barrack with my pack. This feels nice</description>
+                <description>We slept in a decent barrack with my pack. This feels nice.</description>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>

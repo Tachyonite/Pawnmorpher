@@ -53,7 +53,7 @@
             <!-- mediocre -->
             <li>
                 <label>decent bedroom</label>
-                <description>I had to sleep on my own</description>
+                <description>I had to sleep on my own.</description>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
             <li>
@@ -68,17 +68,17 @@
             </li>
             <li>
                 <label>very impressive bedroom</label>
-                <description>I slept in a very impressive bedroom on my own. It was nice but I miss my herd.</description>
+                <description>I slept in a very impressive bedroom on my own. It's nice, but I miss my herd.</description>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>extremely impressive bedroom</label>
-                <description>I slept in an extremely impressive bedroom. It was great but I wish there were others here.</description>
+                <description>I slept in an extremely impressive bedroom. It's great, but I wish there were others here.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>unbelievably impressive bedroom</label>
-                <description>I slept in an unbelievably impressive bedroom. It was marvelous but I felt something was missing</description>
+                <description>I slept in an unbelievably impressive bedroom. It was marvelous, but I felt something was missing.</description>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
             <li>
@@ -95,23 +95,23 @@
         <stages>
             <li>
                 <label>awful barrack</label>
-                <description>We had to sleep in an awful barrack, but the herd was there</description>
+                <description>We had to sleep in an awful barrack, but the herd was there.</description>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
             <li>
                 <label>dull barrack</label>
-                <description>We had to sleep in a dull barrack. but the rest of the back was there.</description>
+                <description>We had to sleep in a dull barrack. but the rest of the herd was there.</description>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
             <li>
                 <label>mediocre barrack</label>
-                <description>We slept in a mediocre barrack with my herd. Ok I guess.</description>
+                <description>We slept in a mediocre barrack with my herd. Okay, I guess.</description>
                 <baseMoodEffect>0</baseMoodEffect>
                 <visible>true</visible>
             </li>
             <li>
                 <label>decent barrack</label>
-                <description>We slept in a decent barrack with my herd. This feels nice</description>
+                <description>We slept in a decent barrack with my herd. This feels nice.</description>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
