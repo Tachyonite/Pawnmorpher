@@ -17,6 +17,7 @@
 			<li>Leg</li>
 			<li>Foot</li>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
@@ -135,6 +136,7 @@
 			<li>Leg</li>
 			<li>Foot</li>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
@@ -193,6 +195,7 @@
 			<li>Leg</li>
 			<li>Foot</li>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<categories>
 			<li>Minor</li>
@@ -262,6 +265,7 @@
 			<li>Leg</li>
 			<li>Foot</li>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
 		<categories>
@@ -332,6 +336,7 @@
 			<li>Leg</li>
 			<li>Foot</li>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<categories>
 			<li>Minor</li>
@@ -402,6 +407,7 @@
 			<li>Leg</li>
 			<li>Foot</li>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
@@ -465,6 +471,7 @@
 			<li>Leg</li>
 			<li>Foot</li>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
