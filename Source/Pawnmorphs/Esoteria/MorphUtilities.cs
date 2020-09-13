@@ -206,6 +206,21 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Determines whether this instance is a chimera.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is a chimera; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsChimera([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            //TODO use a mod extension so this isn't hard coded  
+            //hacky 
+            return pawn.def.label.Contains("chao");
+        }
+
+        /// <summary>
         /// Checks the race of this pawn. If the pawn is mutated enough it's race is changed to one of the hybrids
         /// </summary>
         /// <param name="pawn">The pawn.</param>
