@@ -297,7 +297,7 @@ namespace Pawnmorph
             }
             
 
-            return isProsthetic; 
+            return isProsthetic && hediff is Hediff_AddedPart; 
         }
 
         
