@@ -94,7 +94,7 @@ namespace Pawnmorph.Hediffs
         public bool Halted
         {
             get => _halted;
-            private set
+            set
             {
                 if (_halted != value)
                 {
