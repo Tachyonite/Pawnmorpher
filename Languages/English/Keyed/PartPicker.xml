@@ -1,13 +1,15 @@
 <LanguageData>
 	<PartPickerMenuTitle>Mutation Configuration Menu</PartPickerMenuTitle>
-	<SkinSync>Sync Skin</SkinSync>
-	<DoSymmetry>Sync L/R</DoSymmetry>
 	<NoMutationsOnPart>None</NoMutationsOnPart>
 	<EditParams>Details...</EditParams>
 	<IsPaused>Progresion paused?</IsPaused>
 	<ToggleClothes>Toggle clothes visibility</ToggleClothes>
 	<RotCW>Rotate clockwise</RotCW>
 	<RotCCW>Rotate counter clockwise</RotCCW>
+	<CrownLabel>Crown</CrownLabel>
+	<BodyLabel>Body</BodyLabel>
+	<SkinSync>Sync Skin</SkinSync>
+	<DoSymmetry>Sync L/R</DoSymmetry>
 	<SummaryTitle>Summary</SummaryTitle>
 	<PartDescTitle>Mutation description(s)</PartDescTitle>
 	<ApplyButtonText>Apply</ApplyButtonText>

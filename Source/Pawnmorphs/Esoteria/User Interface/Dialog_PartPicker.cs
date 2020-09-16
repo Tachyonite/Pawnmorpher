@@ -2,6 +2,7 @@
 using Pawnmorph.Hediffs;
 using RimWorld;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,15 +16,20 @@ namespace Pawnmorph.User_Interface
     {
         // Constants
         private const string WINDOW_TITLE_LOC_STRING = "PartPickerMenuTitle";
-        private const string DO_SYMMETRY_LOC_STRING = "DoSymmetry";
-        private const string SKIN_SYNC_LOC_STRING = "SkinSync";
         private const string NO_MUTATIONS_LOC_STRING = "NoMutationsOnPart";
         private const string EDIT_PARAMS_LOC_STRING = "EditParams";
         private const string IS_PAUSED_LOC_STRING = "IsPaused";
         private const string TOGGLE_CLOTHES_LOC_STRING = "ToggleClothes";
         private const string ROTATE_CW_LOC_STRING = "RotCW";
         private const string ROTATE_CCW_LOC_STRING = "RotCCW";
+        private const string CROWN_LABEL_LOC_STRING = "CrownLabel";
+        private const string BODY_LABEL_LOC_STRING = "BodyLabel";
+        private const string DO_SYMMETRY_LOC_STRING = "DoSymmetry";
+        private const string SKIN_SYNC_LOC_STRING = "SkinSync";
         private const string SUMMARY_TITLE_LOC_STRING = "SummaryTitle";
+        private const string ADDED_MUTATION_LOC_STRING = "SummaryAddedMutation";
+        private const string HALTED_MUTATION_LOC_STRING = "SummaryHaltedMutation";
+        private const string REMOVED_MUTATION_LOC_STRING = "SummaryRemovedMutation";
         private const string PART_DESCRIPTION_TITLE_LOC_STRING = "PartDescTitle";
         private const string APPLY_BUTTON_LOC_STRING = "ApplyButtonText";
         private const string RESET_BUTTON_LOC_STRING = "ResetButtonText";
@@ -31,7 +37,7 @@ namespace Pawnmorph.User_Interface
         private const float SPACER_SIZE = 17f;
         private const float BUTTON_HORIZONTAL_PADDING = 6f;
         private const float MENU_SECTION_CONSTRICTION_SIZE = 4f;
-        private const float SLIDER_HEIGHT = 17f;
+        private const float SLIDER_HEIGHT = 13f;
         private static Vector2 PREVIEW_SIZE = new Vector2(200, 280);
         private static Vector2 TOGGLE_CLOTHES_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 ROTATE_CW_BUTTON_SIZE = new Vector2(30, 30);
@@ -72,15 +78,20 @@ namespace Pawnmorph.User_Interface
 
         // Caching variables
         private Pawn pawn;
-        private List<Hediff> cachedHediffList;
         private List<Hediff_AddedMutation> pawnCurrentMutations;
+        private static List<HediffInitialState> cachedInitialHediffs;
         private static Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef;
         private static Dictionary<BodyPartDef, List<MutationLayer>> cachedMutationLayersByPartDef;
         private static List<BodyPartRecord> cachedMutableParts;
         private static List<BodyPartRecord> cachedMutableCoreParts;
         private static List<BodyPartRecord> cachedMutableSkinParts;
+        private static BodyTypeDef initialBodyType;
+        private static string initialCrownType;
         private static string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
         private static float editButtonWidth = Text.CalcSize(editButtonText).x + 2 * BUTTON_HORIZONTAL_PADDING;
+
+        // Return data
+        private AddedMutations addedMutations = new AddedMutations();
 
         public override Vector2 InitialSize
         {
@@ -96,11 +107,8 @@ namespace Pawnmorph.User_Interface
             this.pawn = pawn;
             this.debugMode = debugMode;
 
-            // Settting various flags for this window. Will remove most of these when I am done testing things.
+            // Settting flags for this window. 
             forcePause = true;
-            doCloseX = false;
-            resizeable = false;
-            draggable = false;
 
             // Storing these here to (probably) save a few cycles while caching.
             List<BodyPartRecord> allPawnParts = pawn.RaceProps.body.AllParts;
@@ -114,8 +122,10 @@ namespace Pawnmorph.User_Interface
             cachedMutableSkinParts = allPawnParts.Where(m => allMutationDefs.Where(n => n.RemoveComp.layer == MutationLayer.Skin).SelectMany(o => o.parts).Distinct().Contains(m.def)).ToList();
 
             // Initial caching of the mutations currently affecting the pawn and their initial hediff list.
+            cachedInitialHediffs = pawn.health.hediffSet.hediffs.Select(h => new HediffInitialState(h, h.Severity, (h as Hediff_AddedMutation)?.ProgressionHalted ?? false)).ToList();
+            initialBodyType = pawn.story.bodyType;
+            initialCrownType = pawn.GetComp<AlienPartGenerator.AlienComp>().crownType;
             RecachePawnMutations();
-            cachedHediffList = new List<Hediff>(pawn.health.hediffSet.hediffs);
         }
 
         public override void Close(bool doCloseSound = false)
@@ -200,8 +210,44 @@ namespace Pawnmorph.User_Interface
             curY += Math.Max(TOGGLE_CLOTHES_BUTTON_SIZE.y, Math.Max(ROTATE_CW_BUTTON_SIZE.y, ROTATE_CCW_BUTTON_SIZE.y));
 
             // Then the crown and body type selectors...
-            // Head [Type] <-- box that shows selection list.
-            // Body [Type] (Need to include these in the reset function.)
+            Rect crownLabelRect = new Rect(previewRect.x, curY, previewRect.width / 3, Text.CalcHeight(CROWN_LABEL_LOC_STRING.Translate(), previewRect.width / 3));
+            Rect crownButtonRect = new Rect(previewRect.x + previewRect.width / 3, curY, previewRect.width * 2 / 3, Text.CalcHeight(pawn.GetComp<AlienPartGenerator.AlienComp>().crownType.Replace('_', ' '), previewRect.width * 2 / 3));
+            Widgets.Label(crownLabelRect, CROWN_LABEL_LOC_STRING.Translate());
+            if (Widgets.ButtonText(crownButtonRect, pawn.GetComp<AlienPartGenerator.AlienComp>().crownType.Replace('_', ' ')))
+            {
+                List<FloatMenuOption> options = new List<FloatMenuOption>();
+                ThingDef_AlienRace pawnDef = pawn.def as ThingDef_AlienRace;
+                foreach (string crownType in pawnDef.alienRace.generalSettings.alienPartGenerator.aliencrowntypes)
+                {
+                    void changeHeadType()
+                    {
+                        pawn.GetComp<AlienPartGenerator.AlienComp>().crownType = crownType;
+                        recachePreview = true;
+                    }
+                    options.Add(new FloatMenuOption(crownType.Replace('_', ' '), changeHeadType));
+                }
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+            curY += Math.Max(crownLabelRect.height, crownButtonRect.height);
+
+            Rect bodyLabelRect = new Rect(previewRect.x, curY, previewRect.width / 3, Text.CalcHeight(BODY_LABEL_LOC_STRING.Translate(), previewRect.width / 3));
+            Rect bodyButtonRect = new Rect(previewRect.x + previewRect.width / 3, curY, previewRect.width * 2 / 3, Text.CalcHeight(pawn.story.bodyType.defName, previewRect.width * 2 / 3));
+            Widgets.Label(bodyLabelRect, BODY_LABEL_LOC_STRING.Translate());
+            if (Widgets.ButtonText(bodyButtonRect, pawn.story.bodyType.defName))
+            {
+                List<FloatMenuOption> options = new List<FloatMenuOption>();
+                foreach (BodyTypeDef bodyType in DefDatabase<BodyTypeDef>.AllDefs)
+                {
+                    void changeBodyType()
+                    {
+                        pawn.story.bodyType = bodyType;
+                        recachePreview = true;
+                    }
+                    options.Add(new FloatMenuOption(bodyType.defName, changeBodyType));
+                }
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+            curY += Math.Max(bodyLabelRect.height, bodyButtonRect.height);
 
             // Then the parts list toggles...
             string skinSyncText = SKIN_SYNC_LOC_STRING.Translate();
@@ -242,8 +288,20 @@ namespace Pawnmorph.User_Interface
 
         public void Reset()
         {
-            pawn.health.hediffSet.hediffs = new List<Hediff>(cachedHediffList);
+            pawn.health.hediffSet.hediffs = new List<Hediff>(cachedInitialHediffs.Select(m => m.hediff).ToList());
+            addedMutations = new AddedMutations();
+            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+            {
+                hediff.Severity = cachedInitialHediffs.Where(m => m.hediff == hediff).FirstOrDefault().severity;
+                Comp_MutationSeverityAdjust comp = (hediff as Hediff_AddedMutation)?.TryGetComp<Comp_MutationSeverityAdjust>();
+                if (comp != null)
+                {
+                    comp.Halted = cachedInitialHediffs.Where(m => m.hediff == hediff).FirstOrDefault().isHalted;
+                }
+            }
             RecachePawnMutations();
+            pawn.story.bodyType = initialBodyType;
+            pawn.GetComp<AlienPartGenerator.AlienComp>().crownType = initialCrownType;
             recachePreview = true;
         }
 
@@ -326,6 +384,11 @@ namespace Pawnmorph.User_Interface
                 {
                     foreach (Hediff_AddedMutation mutation in mutations)
                     {
+                        addedMutations.RemoveByPartAndLayer(mutation.Part, layer);
+                        if (cachedInitialHediffs.Select(m => m.hediff).Contains(mutation))
+                        {
+                            addedMutations.AddData(mutation.Def, mutation.Part, mutation.Severity, mutation.ProgressionHalted, true);
+                        }
                         pawn.health.RemoveHediff(mutation);
                     }
                     recachePreview = true;
@@ -336,11 +399,17 @@ namespace Pawnmorph.User_Interface
                 {
                     void addMutation()
                     {
-                        removeMutations();
+                        foreach (Hediff_AddedMutation mutation in mutations)
+                        {
+                            pawn.health.RemoveHediff(mutation);
+                        }
                         foreach (BodyPartRecord part in parts)
                         {
+                            addedMutations.RemoveByPartAndLayer(part, layer);
+                            addedMutations.AddData(mutationDef, part, mutationDef.initialSeverity, false, false);
                             MutationUtilities.AddMutation(pawn, mutationDef, part);
                         }
+                        recachePreview = true;
                         RecachePawnMutations();
                     }
                     options.Add(new FloatMenuOption(mutationDef.LabelCap, addMutation));
@@ -372,7 +441,7 @@ namespace Pawnmorph.User_Interface
                         Widgets.ListSeparator(ref curY, partListViewRect.width, mutationDef.LabelCap);
                     }
 
-                    // Draw the various labels for the severity bar.
+                    // Draw the various labels for the severity bar (need to refine this later).
                     string stageLabelText = $"Stage {mutationsOfDef.FirstOrDefault().CurStageIndex}: {mutationsOfDef.FirstOrDefault().LabelCap}";
                     Rect severityLabelsRect = new Rect(partListViewRect.x, curY, partListViewRect.width, Text.CalcHeight(stageLabelText, partListViewRect.width));
                     Text.Anchor = TextAnchor.MiddleLeft;
@@ -382,31 +451,64 @@ namespace Pawnmorph.User_Interface
                     Text.Anchor = TextAnchor.UpperLeft;
                     curY += severityLabelsRect.height;
 
+                    // Draw the severity slider
                     float curSeverity = mutationsOfDef.Select(n => n.Severity).Average();
-                    float newSeverity = Widgets.HorizontalSlider(new Rect(partListViewRect.x, curY, partListViewRect.width, SLIDER_HEIGHT), curSeverity, mutationDef.minSeverity, mutationDef.maxSeverity, roundTo: 0.01f);
+                    float newSeverity = Widgets.HorizontalSlider(new Rect(partListViewRect.x, curY, partListViewRect.width, SLIDER_HEIGHT), curSeverity, mutationDef.minSeverity, mutationDef.maxSeverity);
                     if (curSeverity != newSeverity)
                     {
                         curSeverity = newSeverity;
-                        recachePreview = true;
                         foreach (Hediff_AddedMutation mutationOfDef in mutationsOfDef)
                         {
-                            mutationOfDef.Severity = curSeverity;
+                            MutationData relevantEntry = addedMutations.MutationsByPartAndLayer(mutationOfDef.Part, layer);
+                            if (relevantEntry != null)
+                            {
+                                relevantEntry.severity = newSeverity;
+                            }
+                            else
+                            {
+                                addedMutations.AddData(mutationOfDef.Def, mutationOfDef.Part, newSeverity, mutationOfDef.ProgressionHalted, false);
+                            }
+                            mutationOfDef.Severity = newSeverity;
                         }
+                        recachePreview = true;
                     }
                     curY += SLIDER_HEIGHT;
 
-                    float pauseLabelWidth = partListViewRect.width - IS_PAUSED_CHECKBOX_SIZE.x;
-                    Rect pauseLabelRect = new Rect(partListViewRect.x, curY, pauseLabelWidth, Text.CalcHeight(IS_PAUSED_LOC_STRING.Translate(), partListViewRect.width));
-                    Rect checkBoxRect = new Rect(partListViewRect.x + pauseLabelWidth, curY, IS_PAUSED_CHECKBOX_SIZE.x, IS_PAUSED_CHECKBOX_SIZE.y);
-                    MultiCheckboxState isPaused = !mutationsOfDef.Select(n => n.ProgressionHalted).Contains(true) ? MultiCheckboxState.Off : !mutationsOfDef.Select(n => n.ProgressionHalted).Contains(false) ? MultiCheckboxState.On : MultiCheckboxState.Partial;
-                    MultiCheckboxState initialState = isPaused;
-                    Widgets.Label(pauseLabelRect, IS_PAUSED_LOC_STRING.Translate());
-                    isPaused = Widgets.CheckboxMulti(checkBoxRect, isPaused);
-                    if (initialState != isPaused)
+                    // If the mutation has the ability to be paused, show the toggle for it.
+                    // This is a CheckboxMulti to handle edge cases, but likely could be replaced with a simple Checkbox.
+                    if (mutationDef.CompProps<CompProperties_MutationSeverityAdjust>() != null)
                     {
-                        mutationsOfDef.FirstOrDefault().SeverityAdjust.Halted = !mutationsOfDef.FirstOrDefault().SeverityAdjust.Halted;
+                        float pauseLabelWidth = partListViewRect.width - IS_PAUSED_CHECKBOX_SIZE.x;
+                        Rect pauseLabelRect = new Rect(partListViewRect.x, curY, pauseLabelWidth, Text.CalcHeight(IS_PAUSED_LOC_STRING.Translate(), partListViewRect.width));
+                        Rect checkBoxRect = new Rect(partListViewRect.x + pauseLabelWidth, curY, IS_PAUSED_CHECKBOX_SIZE.x, IS_PAUSED_CHECKBOX_SIZE.y);
+                        MultiCheckboxState initialState = !mutationsOfDef.Select(n => n.ProgressionHalted).Contains(true) ? MultiCheckboxState.Off : !mutationsOfDef.Select(n => n.ProgressionHalted).Contains(false) ? MultiCheckboxState.On : MultiCheckboxState.Partial;
+                        Widgets.Label(pauseLabelRect, IS_PAUSED_LOC_STRING.Translate());
+                        MultiCheckboxState newState = Widgets.CheckboxMulti(checkBoxRect, initialState);
+                        if (initialState != newState)
+                        {
+                            initialState = newState;
+                            mutationsOfDef.FirstOrDefault().SeverityAdjust.Halted = !mutationsOfDef.FirstOrDefault().SeverityAdjust.Halted;
+                            foreach (Hediff_AddedMutation mutationOfDef in mutationsOfDef)
+                            {
+                                MutationData relevantEntry = addedMutations.MutationsByPartAndLayer(mutationOfDef.Part, layer);
+                                if (cachedInitialHediffs.Select(m => m.hediff).Contains(mutationOfDef))
+                                {
+                                    bool initialHediffIsHalted = cachedInitialHediffs.Where(m => m.hediff == mutationOfDef).FirstOrDefault().isHalted;
+                                    if (newState == MultiCheckboxState.On == initialHediffIsHalted)
+                                    addedMutations.RemoveByPartAndLayer(mutationOfDef.Part, layer);
+                                }
+                                if (relevantEntry != null)
+                                {
+                                    relevantEntry.isHalted = newState == MultiCheckboxState.On;
+                                }
+                                else
+                                {
+                                    addedMutations.AddData(mutationOfDef.Def, mutationOfDef.Part, mutationOfDef.Severity, newState == MultiCheckboxState.On, false);
+                                }
+                            }
+                        }
+                        curY += Math.Max(pauseLabelRect.height, checkBoxRect.height);
                     }
-                    curY += Math.Max(pauseLabelRect.height, checkBoxRect.height);
                 }
             }
 
@@ -414,10 +516,12 @@ namespace Pawnmorph.User_Interface
             Rect descriptionUpdateRect = new Rect(partListViewRect.x, partButtonRect.y, partListViewRect.width, curY - partButtonRect.y);
             if (Mouse.IsOver(descriptionUpdateRect))
             {
-                foreach (MutationDef mutation in mutations.Select(m => m.Def).Distinct().ToList())
+                foreach (MutationDef mutation in mutations.Select(m => m.def).Distinct())
                 {
-                    partDescBuilder.AppendLine($"{mutation.LabelCap}");
-                    partDescBuilder.AppendLine($"{mutation.description}");
+                    Hediff_AddedMutation firstMutationOfDef = mutations.Where(m => m.def == mutation).FirstOrDefault();
+                    partDescBuilder.AppendLine(firstMutationOfDef.LabelCap);
+                    partDescBuilder.AppendLine(firstMutationOfDef.Description);
+                    partDescBuilder.AppendLine(firstMutationOfDef.TipStringExtra);
                     partDescBuilder.AppendLine();
                 }
             }
@@ -425,6 +529,20 @@ namespace Pawnmorph.User_Interface
 
         public void DrawDescriptionBoxes(Rect inRect)
         {
+            // Build the modification summary string.
+            foreach (MutationData entry in addedMutations.mutationData)
+            {
+                if (entry.removing)
+                {
+                    summaryBuilder.AppendLine($"Removing \"{entry.mutation.label}\" mutation from [PAWN_nameDef]'s {entry.part.Label}.");
+                }
+                else
+                {
+                    summaryBuilder.AppendLine($"Adding \"{entry.mutation.label}\" mutation to [PAWN_nameDef]'s {entry.part.Label} at a severity of {entry.severity.ToString("n2")}.{(entry.isHalted ? " It will not progess further." : "")}");
+                }
+                summaryBuilder.AppendLine();
+            }
+
             // Draw modification summary description.
             Rect summaryMenuSectionRect = new Rect(inRect.x, inRect.y, inRect.width, (inRect.height - SPACER_SIZE) / 2);
             Rect summaryOutRect = summaryMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
@@ -434,14 +552,19 @@ namespace Pawnmorph.User_Interface
             Widgets.BeginScrollView(summaryOutRect, ref summaryScrollPos, summaryViewRect);
             Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(SUMMARY_TITLE_LOC_STRING.Translate(), summaryViewRect.width)), SUMMARY_TITLE_LOC_STRING.Translate());
             summaryCurY += Text.CalcHeight(SUMMARY_TITLE_LOC_STRING.Translate(), summaryViewRect.width);
-            Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(summaryBuilder.ToString(), summaryViewRect.width)), summaryBuilder.ToString());
-            summaryCurY += Text.CalcHeight(summaryBuilder.ToString(), summaryViewRect.width);
+            GUI.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            Widgets.DrawLineHorizontal(summaryViewRect.x, summaryCurY, summaryOutRect.width);
+            summaryCurY += 1f;
+            GUI.color = Color.white;
+            Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(summaryBuilder.ToString().AdjustedFor(pawn), summaryViewRect.width)), summaryBuilder.ToString().AdjustedFor(pawn));
+            summaryCurY += Text.CalcHeight(summaryBuilder.ToString().AdjustedFor(pawn), summaryViewRect.width);
             if (Event.current.type == EventType.Layout)
             {
-                summaryScrollSize.x = summaryOutRect.width - 16f;
-                summaryScrollSize.y = summaryCurY - summaryOutRect.y;
+                summaryScrollSize.y = summaryCurY - summaryViewRect.y;
+                summaryScrollSize.x = summaryOutRect.width - (summaryScrollSize.y > summaryOutRect.height ? 16f : 0f);
             }
             Widgets.EndScrollView();
+            summaryBuilder.Clear();
 
             // Draw mutation description.
             Rect descMenuSectionRect = new Rect(inRect.x, (inRect.height + SPACER_SIZE) / 2 + inRect.y, inRect.width, (inRect.height - SPACER_SIZE) / 2);
@@ -452,12 +575,16 @@ namespace Pawnmorph.User_Interface
             Widgets.BeginScrollView(descOutRect, ref descScrollPos, descViewRect);
             Widgets.Label(new Rect(descViewRect.x, descCurY, descViewRect.width, Text.CalcHeight(PART_DESCRIPTION_TITLE_LOC_STRING.Translate(), descViewRect.width)), PART_DESCRIPTION_TITLE_LOC_STRING.Translate());
             descCurY += Text.CalcHeight(PART_DESCRIPTION_TITLE_LOC_STRING.Translate(), descViewRect.width);
+            GUI.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            Widgets.DrawLineHorizontal(descViewRect.x, descCurY, descOutRect.width);
+            descCurY += 1f;
+            GUI.color = Color.white;
             Widgets.Label(new Rect(descViewRect.x, descCurY, descViewRect.width, Text.CalcHeight(partDescBuilder.ToString(), descViewRect.width)), partDescBuilder.ToString());
             descCurY += Text.CalcHeight(partDescBuilder.ToString(), descViewRect.width);
             if (Event.current.type == EventType.Layout)
             {
-                descScrollSize.x = descOutRect.width - 16f;
-                descScrollSize.y = descCurY - descOutRect.y;
+                descScrollSize.y = descCurY - descViewRect.y;
+                descScrollSize.x = descOutRect.width - (descScrollSize.y > descOutRect.height ? 16f : 0f);
             }
             Widgets.EndScrollView();
             partDescBuilder.Clear();
@@ -595,6 +722,135 @@ namespace Pawnmorph.User_Interface
                 previewImage = new RenderTexture((int)PREVIEW_SIZE.x, (int)PREVIEW_SIZE.y, 24);
                 camera.targetTexture = previewImage;
             }
+        }
+    }
+
+    /// <summary>
+    /// A list of the mutations to add to a pawn, along with key data and accessors.
+    /// </summary>
+    public class AddedMutations : IEnumerable<MutationData>
+    {
+        /// <summary>
+        /// The list of mutations to be added to the pawn, as well as some key data associated with them.
+        /// </summary>
+        public List<MutationData> mutationData = new List<MutationData>();
+
+        /// <summary>
+        /// Returns a list of all body part records currently slated to be modified.
+        /// </summary>
+        public List<BodyPartRecord> Parts
+        {
+            get
+            {
+                return mutationData.Select(m => m.part).ToList();
+            }
+        }
+
+        public IEnumerator<MutationData> GetEnumerator()
+        {
+            return mutationData.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)mutationData).GetEnumerator();
+        }
+
+        /// <summary>
+        /// Adds a new entry to the list of mutations to give the pawn.
+        /// </summary>
+        /// <param name="mutation">The def of the mutation to add to the pawn.</param>
+        /// <param name="part">The body part record to apply the mutation to.</param>
+        /// <param name="severity">What severity the added mutation should be intialized with.</param>
+        /// <param name="isHalted">Whether or not the addded mutation will be able to progress.</param>
+        /// <param name="removing">Whether or not this entry is intended to remove the mutation.</param>
+        public void AddData(MutationDef mutation, BodyPartRecord part, float severity, bool isHalted, bool removing)
+        {
+            mutationData.Add(new MutationData(mutation, part, severity, isHalted, removing));
+        }
+
+        /// <summary>
+        /// Removes the first entry in the mutation data list whose part and layer matches the one provided.
+        /// </summary>
+        /// <param name="part">The body part record to filter out of the mutation data.</param>
+        /// <param name="layer">The mutation layer to filter out of the mutation data.</param>
+        public void RemoveByPartAndLayer(BodyPartRecord part, MutationLayer layer)
+        {
+            mutationData.Remove(mutationData.Where(m => m.part == part && m.mutation.RemoveComp.layer == layer).FirstOrDefault());
+            //mutationData = mutationData.Where(m => m.part != part && m.mutation.RemoveComp.layer != layer).ToList();
+        }
+
+        /// <summary>
+        /// Finds and returns the first entry whose part and layer matches the provided part and layer.
+        /// </summary>
+        /// <param name="part">The part to match.</param>
+        /// <param name="layer">The mutation layer to match.</param>
+        /// <returns>The first entry whose part and layer matches the provied part and layer.</returns>
+        public MutationData MutationsByPartAndLayer(BodyPartRecord part, MutationLayer layer)
+        {
+            return mutationData.Where(m => m.part == part).FirstOrDefault();
+        }
+    }
+
+    /// <summary>
+    /// The mutation to be added to a pawn, along with some key data.
+    /// </summary>
+    public class MutationData
+    {
+        /// <summary>
+        /// The def of the mutation to add to the pawn.
+        /// </summary>
+        public MutationDef mutation;
+
+        /// <summary>
+        /// The body part record to add the mutation to.
+        /// </summary>
+        public BodyPartRecord part;
+
+        /// <summary>
+        /// The severity the mutation should be initialized with.
+        /// </summary>
+        public float severity;
+
+        /// <summary>
+        /// Wether the mutation should be able to progress, or should be locked at it's current stage.
+        /// </summary>
+        public bool isHalted;
+
+        /// <summary>
+        /// Whether or not this entry is designated to instead remove mutations from the body part.
+        /// </summary>
+        public bool removing;
+
+        /// <summary>
+        /// Constructor for MutationData used to gather all relevant information.
+        /// </summary>
+        /// <param name="mutation">The def of the mutation to add to the pawn.</param>
+        /// <param name="part">The body part record to add the mutation to.</param>
+        /// <param name="severity">The severity the mutation should be initialized with.</param>
+        /// <param name="isHalted">Wether the mutation should be able to progress, or should be locked at it's current stage.</param>
+        /// <param name="removing">Whether or not this entry is designated to instead remove mutations from the body part.</param>
+        public MutationData(MutationDef mutation, BodyPartRecord part, float severity, bool isHalted, bool removing)
+        {
+            this.mutation = mutation;
+            this.part = part;
+            this.severity = severity;
+            this.isHalted = isHalted;
+            this.removing = removing;
+        }
+    }
+
+    public class HediffInitialState
+    {
+        public Hediff hediff;
+        public float severity;
+        public bool isHalted;
+
+        public HediffInitialState(Hediff hediff, float severity, bool isHalted)
+        {
+            this.hediff = hediff;
+            this.severity = severity;
+            this.isHalted = isHalted;
         }
     }
 }
