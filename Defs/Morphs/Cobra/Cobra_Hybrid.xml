@@ -425,9 +425,7 @@
                     <def>TailLeg</def>
                     <coverage>0.14</coverage>
                     <height>Bottom</height>
-                    <groups>
-                        <li>Legs</li>
-                    </groups>
+                    
                 </li>
             </parts>
         </corePart>
