@@ -11,6 +11,9 @@
 	<SkinSync>Sync Skin</SkinSync>
 	<DoSymmetry>Sync L/R</DoSymmetry>
 	<SummaryTitle>Summary</SummaryTitle>
+	<SummaryAddedMutation>Adding \"[MUTATION_NAME]\" mutation to [PAWN_nameDef]'s [MUTATION_PART] at a severity of [MUTATION_SEVERITY].</SummaryAddedMutation>
+	<SummaryHaltedMutation>It will not progess further.</SummaryHaltedMutation>
+	<SummaryRemovedMutation>Removing \"[MUTATION_NAME]\" mutation from [PAWN_nameDef]'s [MUTATION_PART].</SummaryRemovedMutation>
 	<PartDescTitle>Mutation description(s)</PartDescTitle>
 	<ApplyButtonText>Apply</ApplyButtonText>
 	<ResetButtonText>Reset</ResetButtonText>
