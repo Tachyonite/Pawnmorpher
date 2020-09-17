@@ -106,6 +106,44 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Transfers the quest relations from the original pawn onto the transfer pawn 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transferPawn">The transfer pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        /// original
+        /// or
+        /// transferPawn
+        /// </exception>
+        public static void TransferQuestRelations([NotNull] Pawn original, [NotNull] Pawn transferPawn)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
+
+            if (original.questTags != null)
+            {
+                transferPawn.questTags = transferPawn.questTags ?? new List<string>();
+                foreach (string originalQuestTag in original.questTags)
+                {
+                    transferPawn.questTags.Add(originalQuestTag); 
+                }
+                original.questTags.Clear();
+            }
+            
+            var qM = Find.QuestManager;
+            
+            
+            
+            foreach (Quest quest in qM.QuestsListForReading)
+            {
+                var qPs = quest.PartsListForReading;
+
+                foreach (QuestPart questPart in qPs) questPart?.ReplacePawnReferences(original, transferPawn);
+            }
+
+        }
+
+        /// <summary>
         /// tries to get the equivalent body part record in the other body def 
         /// </summary>
         /// <param name="record">The record.</param>

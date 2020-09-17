@@ -1083,9 +1083,10 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferHediffs(original, transformedPawn,
                                                   h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
                                                     == true);
-            PawnTransferUtilities.TransferThoughts(original, transformedPawn); 
+            PawnTransferUtilities.TransferThoughts(original, transformedPawn);
 
-            
+            PawnTransferUtilities.TransferQuestRelations(original, transformedPawn); 
+
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
         }
 
