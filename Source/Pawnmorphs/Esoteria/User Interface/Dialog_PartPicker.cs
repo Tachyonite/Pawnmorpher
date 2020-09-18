@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Chambers;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -396,7 +397,10 @@ namespace Pawnmorph.User_Interface
                     RecachePawnMutations();
                 }
                 options.Add(new FloatMenuOption(NO_MUTATIONS_LOC_STRING.Translate(), removeMutations));
-                foreach (MutationDef mutationDef in cachedMutationDefsByPartDef[parts.FirstOrDefault().def].Where(m => m.RemoveComp.layer == layer))
+
+
+                List<MutationDef> mutationDefs = cachedMutationDefsByPartDef[parts.FirstOrDefault().def];
+                foreach (MutationDef mutationDef in mutationDefs.Where(m => m.RemoveComp.layer == layer && (DebugSettings.godMode || m.IsTagged())))
                 {
                     void addMutation()
                     {

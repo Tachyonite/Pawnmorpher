@@ -181,6 +181,21 @@ namespace Pawnmorph.Chambers
             return true; 
         }
 
+
+        /// <summary>
+        /// Determines whether this instance is tagged.
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified mutation definition is tagged; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">mutationDef</exception>
+        public static bool IsTagged([NotNull] this MutationDef mutationDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            var db = Find.World.GetComponent<ChamberDatabase>();
+            return db?.StoredMutations.Contains(mutationDef) == true; 
+        }
     }
 
 
