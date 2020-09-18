@@ -372,6 +372,7 @@ namespace Pawnmorph.User_Interface
             }
         }
 
+
         private void DrawPartButtons(ref float curY, Rect partListViewRect, List<Hediff_AddedMutation> mutations, List<BodyPartRecord> parts, MutationLayer layer, string label)
         {
             // Draw the main mutation selection button. It should take up the whole width if there are no mutations, otherwise it will leave a space for the edit button.
@@ -527,21 +528,36 @@ namespace Pawnmorph.User_Interface
             }
         }
 
+        private const string REMOVING_MUTATION_DESC = "PPRemivingMutationDesc";
+        private const string ADDING_MUTATION_DESC = "PPAddingMutationDesc";
+        private const string HALTED_MUTATION_DESC = "PPNewMutationIsHalted";
+
         public void DrawDescriptionBoxes(Rect inRect)
         {
             // Build the modification summary string.
+            
+
             foreach (MutationData entry in addedMutations.mutationData)
             {
                 if (entry.removing)
                 {
-                    summaryBuilder.AppendLine($"Removing \"{entry.mutation.label}\" mutation from [PAWN_nameDef]'s {entry.part.Label}.");
+                    summaryBuilder.AppendLine(REMOVING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), pawn.Named("PAWN"), entry.part.Named("PART")));
                 }
                 else
                 {
-                    summaryBuilder.AppendLine($"Adding \"{entry.mutation.label}\" mutation to [PAWN_nameDef]'s {entry.part.Label} at a severity of {entry.severity.ToString("n2")}.{(entry.isHalted ? " It will not progess further." : "")}");
+                    string isHaltedTxt = (entry.isHalted ? HALTED_MUTATION_DESC.Translate().RawText : "");
+
+                    var addStr = ADDING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), entry.part.Named("PART"), pawn.Named("PAWN"),
+                                                                entry.severity.ToString("n2").Named("SEVERITY"))
+                               + "."
+                               + isHaltedTxt;
+
+                    summaryBuilder.AppendLine(addStr);
                 }
                 summaryBuilder.AppendLine();
             }
+
+            
 
             // Draw modification summary description.
             Rect summaryMenuSectionRect = new Rect(inRect.x, inRect.y, inRect.width, (inRect.height - SPACER_SIZE) / 2);
@@ -556,8 +572,9 @@ namespace Pawnmorph.User_Interface
             Widgets.DrawLineHorizontal(summaryViewRect.x, summaryCurY, summaryOutRect.width);
             summaryCurY += 1f;
             GUI.color = Color.white;
-            Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(summaryBuilder.ToString().AdjustedFor(pawn), summaryViewRect.width)), summaryBuilder.ToString().AdjustedFor(pawn));
-            summaryCurY += Text.CalcHeight(summaryBuilder.ToString().AdjustedFor(pawn), summaryViewRect.width);
+            string summaryText = summaryBuilder.ToString();
+            Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(summaryText, summaryViewRect.width)), summaryText);
+            summaryCurY += Text.CalcHeight(summaryText, summaryViewRect.width);
             if (Event.current.type == EventType.Layout)
             {
                 summaryScrollSize.y = summaryCurY - summaryViewRect.y;
