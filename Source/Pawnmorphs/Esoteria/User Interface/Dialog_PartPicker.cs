@@ -408,7 +408,7 @@ namespace Pawnmorph.User_Interface
                         {
                             addedMutations.RemoveByPartAndLayer(part, layer);
                             addedMutations.AddData(mutationDef, part, mutationDef.initialSeverity, false, false);
-                            MutationUtilities.AddMutation(pawn, mutationDef, part);
+                            MutationUtilities.AddMutation(pawn, mutationDef, part, ancillaryEffects:MutationUtilities.AncillaryMutationEffects.None); //don't give the green puffs
                         }
                         recachePreview = true;
                         RecachePawnMutations();
