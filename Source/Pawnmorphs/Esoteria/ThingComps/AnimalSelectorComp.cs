@@ -18,6 +18,28 @@ namespace Pawnmorph.ThingComps
         private PawnKindDef _chosenKind;
 
         /// <summary>
+        /// delegate for the Animal Chosen event 
+        /// </summary>
+        /// <param name="pawnKindDef">The pawn kind definition.</param>
+        public delegate void AnimalChosenHandler([CanBeNull] PawnKindDef pawnKindDef);
+        /// <summary>
+        /// Occurs when an animal is chosen.
+        /// </summary>
+        public event AnimalChosenHandler AnimalChosen; 
+
+
+        private bool _enabled = true; 
+        public bool Enabled
+        {
+            get
+            {
+                return _enabled; 
+                
+            }
+            set { _enabled = value; }
+        }
+
+        /// <summary>
         ///     Gets the props.
         /// </summary>
         /// <value>
@@ -120,6 +142,7 @@ namespace Pawnmorph.ThingComps
         {
             base.PostExposeData();
             Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
+            Scribe_Values.Look(ref _enabled, nameof(Enabled), true); 
         }
 
 
@@ -127,7 +150,8 @@ namespace Pawnmorph.ThingComps
         {
             _chosenKind = chosenKind;
             Gizmo.icon = _chosenKind.race.uiIcon;
-            Gizmo.defaultLabel = _chosenKind.label; 
+            Gizmo.defaultLabel = _chosenKind.label;
+            AnimalChosen?.Invoke(chosenKind); 
         }
 
         /// <summary>
@@ -136,6 +160,9 @@ namespace Pawnmorph.ThingComps
         /// <returns></returns>
         public IEnumerable<Gizmo> GetGizmos()
         {
+
+            if (!_enabled) return Enumerable.Empty<Gizmo>();
+            
             if (_cachedGizmoArr == null)
             {
                 _cachedGizmoArr = new[] {Gizmo};

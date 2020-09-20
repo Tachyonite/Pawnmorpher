@@ -2,6 +2,7 @@
 // last updated 08/25/2019  7:11 PM
 
 using System.Collections.Generic;
+using Pawnmorph.Chambers;
 using Verse;
 using Verse.AI;
 
@@ -28,11 +29,11 @@ namespace Pawnmorph
 
         /// <summary>Gets the mutagenic chamber</summary>
         /// <value>The drop pod.</value>
-        protected Building_MutagenChamber MutagenicChamber
+        protected MutaChamber MutagenicChamber
         {
             get
             {
-                return (Building_MutagenChamber)this.job.GetTarget(TargetIndex.B).Thing;
+                return (MutaChamber)this.job.GetTarget(TargetIndex.B).Thing;
             }
         }
         /// <summary>Tries the make pre toil reservations.</summary>

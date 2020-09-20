@@ -2,19 +2,37 @@
 using Pawnmorph.Hediffs;
 using RimWorld;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 
 namespace Pawnmorph.User_Interface
 {
-    class Dialog_PartPicker : Window
+    /// <summary>
+    /// part picker dialogue windo
+    /// </summary>
+    /// <seealso cref="Verse.Window" />
+    public partial class Dialog_PartPicker : Window
     {
+
+        /// <summary>
+        /// handler for the window closed event 
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="addedMutations">The added mutations.</param>
+        public delegate void WindowClosedHandle([NotNull] Dialog_PartPicker sender, [NotNull] IReadOnlyAddedMutations addedMutations);
+
+        /// <summary>
+        /// Occurs when the window is closed.
+        /// </summary>
+        public event WindowClosedHandle WindowClosed; 
+
         // Constants
         private const string WINDOW_TITLE_LOC_STRING = "PartPickerMenuTitle";
         private const string NO_MUTATIONS_LOC_STRING = "NoMutationsOnPart";
@@ -71,7 +89,10 @@ namespace Pawnmorph.User_Interface
         private Tuple<BodyPartRecord, MutationLayer> detailPart = new Tuple<BodyPartRecord, MutationLayer>(new BodyPartRecord(), MutationLayer.Core);
         private Rot4 previewRot = Rot4.South;
 
-        // Preview related variables
+        // Preview related variables        
+        /// <summary>
+        /// The recache preview
+        /// </summary>
         public bool recachePreview = false;
         private GameObject gameObject;
         private Camera camera;
@@ -94,6 +115,12 @@ namespace Pawnmorph.User_Interface
         // Return data
         private AddedMutations addedMutations = new AddedMutations();
 
+        /// <summary>
+        /// Gets the initial size.
+        /// </summary>
+        /// <value>
+        /// The initial size.
+        /// </value>
         public override Vector2 InitialSize
         {
             get
@@ -102,6 +129,11 @@ namespace Pawnmorph.User_Interface
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Dialog_PartPicker"/> class.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="debugMode">if set to <c>true</c> [debug mode].</param>
         public Dialog_PartPicker(Pawn pawn, bool debugMode = false)
         {
             // Copying passed in data for use elsewhere in the class.
@@ -129,6 +161,10 @@ namespace Pawnmorph.User_Interface
             RecachePawnMutations();
         }
 
+        /// <summary>
+        /// Closes the specified do close sound.
+        /// </summary>
+        /// <param name="doCloseSound">if set to <c>true</c> [do close sound].</param>
         public override void Close(bool doCloseSound = false)
         {
             if (!confirmed)
@@ -140,15 +176,25 @@ namespace Pawnmorph.User_Interface
             {
                 SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
             }
+
             base.Close(doCloseSound);
+
+            WindowClosed?.Invoke(this, addedMutations);
         }
 
+        /// <summary>
+        /// Called when [accept key pressed].
+        /// </summary>
         public override void OnAcceptKeyPressed()
         {
             confirmed = true;
             base.OnAcceptKeyPressed();
         }
 
+        /// <summary>
+        /// Does the window contents.
+        /// </summary>
+        /// <param name="inRect">The in rect.</param>
         public override void DoWindowContents(Rect inRect)
         {
             // Draw the window title.
@@ -287,6 +333,9 @@ namespace Pawnmorph.User_Interface
             }
         }
 
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
         public void Reset()
         {
             pawn.health.hediffSet.hediffs = new List<Hediff>(cachedInitialHediffs.Select(m => m.hediff).ToList());
@@ -536,6 +585,10 @@ namespace Pawnmorph.User_Interface
         private const string ADDING_MUTATION_DESC = "PPAddingMutationDesc";
         private const string HALTED_MUTATION_DESC = "PPNewMutationIsHalted";
 
+        /// <summary>
+        /// Draws the description boxes.
+        /// </summary>
+        /// <param name="inRect">The in rect.</param>
         public void DrawDescriptionBoxes(Rect inRect)
         {
             // Build the modification summary string.
@@ -611,6 +664,9 @@ namespace Pawnmorph.User_Interface
             partDescBuilder.Clear();
         }
 
+        /// <summary>
+        /// Sets the pawn preview.
+        /// </summary>
         public void SetPawnPreview()
         {
             if (pawn != null)
@@ -747,126 +803,28 @@ namespace Pawnmorph.User_Interface
     }
 
     /// <summary>
-    /// A list of the mutations to add to a pawn, along with key data and accessors.
+    /// stores information on the initial state of the hediff 
     /// </summary>
-    public class AddedMutations : IEnumerable<MutationData>
-    {
-        /// <summary>
-        /// The list of mutations to be added to the pawn, as well as some key data associated with them.
-        /// </summary>
-        public List<MutationData> mutationData = new List<MutationData>();
-
-        /// <summary>
-        /// Returns a list of all body part records currently slated to be modified.
-        /// </summary>
-        public List<BodyPartRecord> Parts
-        {
-            get
-            {
-                return mutationData.Select(m => m.part).ToList();
-            }
-        }
-
-        public IEnumerator<MutationData> GetEnumerator()
-        {
-            return mutationData.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)mutationData).GetEnumerator();
-        }
-
-        /// <summary>
-        /// Adds a new entry to the list of mutations to give the pawn.
-        /// </summary>
-        /// <param name="mutation">The def of the mutation to add to the pawn.</param>
-        /// <param name="part">The body part record to apply the mutation to.</param>
-        /// <param name="severity">What severity the added mutation should be intialized with.</param>
-        /// <param name="isHalted">Whether or not the addded mutation will be able to progress.</param>
-        /// <param name="removing">Whether or not this entry is intended to remove the mutation.</param>
-        public void AddData(MutationDef mutation, BodyPartRecord part, float severity, bool isHalted, bool removing)
-        {
-            mutationData.Add(new MutationData(mutation, part, severity, isHalted, removing));
-        }
-
-        /// <summary>
-        /// Removes the first entry in the mutation data list whose part and layer matches the one provided.
-        /// </summary>
-        /// <param name="part">The body part record to filter out of the mutation data.</param>
-        /// <param name="layer">The mutation layer to filter out of the mutation data.</param>
-        public void RemoveByPartAndLayer(BodyPartRecord part, MutationLayer layer)
-        {
-            mutationData.Remove(mutationData.Where(m => m.part == part && m.mutation.RemoveComp.layer == layer).FirstOrDefault());
-            //mutationData = mutationData.Where(m => m.part != part && m.mutation.RemoveComp.layer != layer).ToList();
-        }
-
-        /// <summary>
-        /// Finds and returns the first entry whose part and layer matches the provided part and layer.
-        /// </summary>
-        /// <param name="part">The part to match.</param>
-        /// <param name="layer">The mutation layer to match.</param>
-        /// <returns>The first entry whose part and layer matches the provied part and layer.</returns>
-        public MutationData MutationsByPartAndLayer(BodyPartRecord part, MutationLayer layer)
-        {
-            return mutationData.Where(m => m.part == part).FirstOrDefault();
-        }
-    }
-
-    /// <summary>
-    /// The mutation to be added to a pawn, along with some key data.
-    /// </summary>
-    public class MutationData
-    {
-        /// <summary>
-        /// The def of the mutation to add to the pawn.
-        /// </summary>
-        public MutationDef mutation;
-
-        /// <summary>
-        /// The body part record to add the mutation to.
-        /// </summary>
-        public BodyPartRecord part;
-
-        /// <summary>
-        /// The severity the mutation should be initialized with.
-        /// </summary>
-        public float severity;
-
-        /// <summary>
-        /// Wether the mutation should be able to progress, or should be locked at it's current stage.
-        /// </summary>
-        public bool isHalted;
-
-        /// <summary>
-        /// Whether or not this entry is designated to instead remove mutations from the body part.
-        /// </summary>
-        public bool removing;
-
-        /// <summary>
-        /// Constructor for MutationData used to gather all relevant information.
-        /// </summary>
-        /// <param name="mutation">The def of the mutation to add to the pawn.</param>
-        /// <param name="part">The body part record to add the mutation to.</param>
-        /// <param name="severity">The severity the mutation should be initialized with.</param>
-        /// <param name="isHalted">Wether the mutation should be able to progress, or should be locked at it's current stage.</param>
-        /// <param name="removing">Whether or not this entry is designated to instead remove mutations from the body part.</param>
-        public MutationData(MutationDef mutation, BodyPartRecord part, float severity, bool isHalted, bool removing)
-        {
-            this.mutation = mutation;
-            this.part = part;
-            this.severity = severity;
-            this.isHalted = isHalted;
-            this.removing = removing;
-        }
-    }
-
     public class HediffInitialState
     {
+        /// <summary>
+        /// The hediff
+        /// </summary>
         public Hediff hediff;
+        /// <summary>
+        /// The severity
+        /// </summary>
         public float severity;
+        /// <summary>
+        /// The is halted
+        /// </summary>
         public bool isHalted;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HediffInitialState"/> class.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <param name="severity">The severity.</param>
+        /// <param name="isHalted">if set to <c>true</c> [is halted].</param>
         public HediffInitialState(Hediff hediff, float severity, bool isHalted)
         {
             this.hediff = hediff;

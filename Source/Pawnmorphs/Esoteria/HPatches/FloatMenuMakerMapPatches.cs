@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -32,16 +33,16 @@ namespace Pawnmorph
                         MutagenDef mutagen = MutagenDefOf.MergeMutagen;
                         if (mutagen.CanTransform(victim)
                          && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true)
-                         && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
+                         && MutaChamber.FindMutaChamberFor(victim, pawn, true) != null)
                         {
                             string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
                             JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
                             Action action3 = delegate
                             {
-                                Building_MutagenChamber building_chamber =
-                                    Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn);
+                                var building_chamber =
+                                    MutaChamber.FindMutaChamberFor(victim, pawn);
                                 if (building_chamber == null)
-                                    building_chamber = Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true);
+                                    building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn, true);
                                 if (building_chamber == null)
                                 {
                                     Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim,
