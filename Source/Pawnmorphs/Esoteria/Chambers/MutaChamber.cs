@@ -1,12 +1,15 @@
 ﻿// MutaChamber.cs created by Iron Wolf for Pawnmorph on 07/26/2020 7:50 PM
 // last updated 07/26/2020  7:50 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.User_Interface;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -23,6 +26,15 @@ namespace Pawnmorph.Chambers
         private bool _initialized;
 
         private ChamberState _innerState = ChamberState.WaitingForPawn;
+
+        private ChamberUse _currentUse; 
+
+        enum ChamberUse
+        {
+            Mutation,
+            Merge,
+            Tf
+        }
 
 
         private CompFlickable _flickable;
@@ -84,8 +96,100 @@ namespace Pawnmorph.Chambers
 
         private void WindowClosed(Dialog_PartPicker sender, IReadOnlyAddedMutations addedmutations)
         {
-            sender.WindowClosed -= WindowClosed; 
+            sender.WindowClosed -= WindowClosed;
 
+            if (_innerState != ChamberState.Idle) return;
+
+            if (addedmutations?.Any() != true) return; 
+
+            //TODO get wait time based on number of mutations added/removed 
+            _timer = TF_ANIMAL_DURATION;
+            _currentUse = ChamberUse.Mutation;
+        }
+
+
+        /// <summary>
+        /// Ticks this instance.
+        /// </summary>
+        public override void Tick()
+        {
+            base.Tick();
+
+            if (_innerState != ChamberState.Active) return;
+            if (_timer <= 0)
+            {
+                EjectPawn();
+
+                _innerState = ChamberState.WaitingForPawn;
+                _timer = 0;
+                return; 
+            }
+
+            _timer -= 1; 
+        }
+
+        private void EjectPawn()
+        {
+            var pawn = innerContainer.First() as Pawn;
+            if (pawn == null)
+            {
+                Log.Error($"trying to eject empty muta chamber!");
+                return; 
+            }
+            switch (_currentUse)
+            {
+                case ChamberUse.Mutation:
+                    break;
+                case ChamberUse.Merge:
+                    //todo 
+                    break;
+                case ChamberUse.Tf:
+                    var animal = SelectorComp.ChosenKind;
+                    if (animal == null)
+                    {
+                        animal = GetRandomAnimal(); 
+                    }
+
+                    var tfRequest = new TransformationRequest(animal, pawn)
+                    {
+                        addMutationToOriginal = true,
+                        factionResponsible = Faction,
+                        forcedFaction = Faction,
+                        forcedGender = TFGender.Original,
+                        forcedSapienceLevel = 1,
+                        manhunterSettingsOverride = ManhunterTfSettings.Never
+                    };
+
+                    var tfPawn = MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest);
+                    var gComp = Find.World.GetComponent<PawnmorphGameComp>();
+                    gComp.AddTransformedPawn(tfPawn);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private static List<PawnKindDef> _randomAnimalCache;
+
+        [NotNull]
+        static List<PawnKindDef> RandomAnimalCache
+        {
+            get
+            {
+                if (_randomAnimalCache == null)
+                {
+                    _randomAnimalCache = DefDatabase<PawnKindDef>
+                                        .AllDefsListForReading.Where(p => p.race.IsValidAnimal())
+                                        .ToList();
+                }
+
+                return _randomAnimalCache; 
+            }
+        }
+
+        private PawnKindDef GetRandomAnimal()
+        {
+            return RandomAnimalCache.RandomElement();
         }
 
         [NotNull]
@@ -204,7 +308,7 @@ namespace Pawnmorph.Chambers
         {
             _timer = TF_ANIMAL_DURATION; //TODO make this dependent on the animal chosen 
             _innerState = ChamberState.Active;
-
+            _currentUse = ChamberUse.Tf;
             SelectorComp.Enabled = false;
         }
 
