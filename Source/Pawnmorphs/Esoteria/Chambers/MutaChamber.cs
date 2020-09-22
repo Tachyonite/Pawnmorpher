@@ -73,6 +73,10 @@ namespace Pawnmorph.Chambers
             }
         }
 
+        /// <summary>
+        /// Gets the gizmos.
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<Gizmo> GetGizmos()
         {
             if(_innerState != ChamberState.Idle) yield break;

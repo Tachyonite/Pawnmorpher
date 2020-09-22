@@ -61,12 +61,13 @@
                 <maxSimultaneous>2</maxSimultaneous>
                 <mustBePlacedAdjacent>true</mustBePlacedAdjacent>
             </li>
-            <li Class="Pawnmorph.Chambers.ThingCompProperties_ModulatorOptions">
-                <defaultAnimals>
+            <li Class="Pawnmorph.AnimalSelectorComp.AnimalSelectorCompProperties">
+                <requiresTag>true</requiresTag>
+                <alwaysAvailable>
                     <li>Chaocow</li>
                     <li>Chaofox</li>
                     <li>Chaodino</li>
-                </defaultAnimals>
+                </alwaysAvailable>
             </li>
             <li Class="Pawnmorph.ThingComps.DrawSecondChamberProperties">
                 <graphicData>
@@ -92,7 +93,7 @@
 			<li Class="Pawnmorph.ThingComps.DrawStoredPawnProperties">
 				<offset>(0,0,0.2)</offset>
 				<layer>LayingPawn</layer>
-			</li>
+            </li>
         </comps>
         <designationCategory>GR_GeneticsTab</designationCategory>
         <building>

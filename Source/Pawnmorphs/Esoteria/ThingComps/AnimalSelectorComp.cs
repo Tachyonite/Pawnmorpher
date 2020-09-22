@@ -17,6 +17,9 @@ namespace Pawnmorph.ThingComps
     {
         private PawnKindDef _chosenKind;
 
+
+        
+
         /// <summary>
         /// delegate for the Animal Chosen event 
         /// </summary>
@@ -69,7 +72,7 @@ namespace Pawnmorph.ThingComps
                 {
                     var comp = PMComp;
 
-                    return Props.AllAnimals.Where(t => comp.TaggedAnimals.Contains(t));
+                    return Props.AllAnimals.Where(t => comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true);
                 }
 
                 return Props.AllAnimals;
@@ -183,6 +186,10 @@ namespace Pawnmorph.ThingComps
         /// </summary>
         public bool requiresTag;
 
+        /// <summary>
+        /// list of animals always available for selection 
+        /// </summary>
+        public List<PawnKindDef> alwaysAvailable;
 
         /// <summary>
         ///     The race filter
