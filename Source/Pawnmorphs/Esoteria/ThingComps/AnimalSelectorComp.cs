@@ -97,7 +97,9 @@ namespace Pawnmorph.ThingComps
                 yield return gizmo; 
             }
 
-            yield return Gizmo; 
+
+            if(_enabled)
+                yield return Gizmo; 
         }
 
         Command_Action Gizmo

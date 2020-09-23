@@ -4,12 +4,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.User_Interface;
 using RimWorld;
-using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -21,25 +21,37 @@ namespace Pawnmorph.Chambers
     public class MutaChamber : Building_Casket
     {
         private const int TF_ANIMAL_DURATION = 2 * 60 * 60;
+        private const string PART_PICKER_GIZMO_LABEL = "PMPartPickerGizmo";
+
+        private static List<PawnKindDef> _randomAnimalCache;
         private int _timer = 0;
 
         private bool _initialized;
 
         private ChamberState _innerState = ChamberState.WaitingForPawn;
 
-        private ChamberUse _currentUse; 
+        private ChamberUse _currentUse;
 
-        enum ChamberUse
-        {
-            Mutation,
-            Merge,
-            Tf
-        }
+        private CompRefuelable _refuelable;
 
 
         private CompFlickable _flickable;
 
         private AnimalSelectorComp _aSelector;
+
+        private Gizmo _ppGizmo;
+
+        [NotNull]
+        private CompRefuelable Refuelable
+        {
+            get
+            {
+                if (_refuelable == null) _refuelable = GetComp<CompRefuelable>();
+                if (_refuelable == null) Log.ErrorOnce("unable to find refuelable comp on mutachamber!", thingIDNumber);
+
+                return _refuelable;
+            }
+        }
 
         private bool Occupied => innerContainer.Any;
 
@@ -53,147 +65,34 @@ namespace Pawnmorph.Chambers
             }
         }
 
-        private Gizmo _ppGizmo;
-        private const string PART_PICKER_GIZMO_LABEL = "PMPartPickerGizmo";
         [NotNull]
-        Gizmo PartPickerGizmo
+        private Gizmo PartPickerGizmo
         {
             get
             {
-                if(_ppGizmo == null)
-                {
-                    _ppGizmo = new Command_Action()
+                if (_ppGizmo == null)
+                    _ppGizmo = new Command_Action
                     {
                         action = OpenPartPicker,
-                        defaultLabel = PART_PICKER_GIZMO_LABEL.Translate(),//TODO add an icon 
-                    };
-                }
-
-                return _ppGizmo; 
-            }
-        }
-
-        /// <summary>
-        /// Gets the gizmos.
-        /// </summary>
-        /// <returns></returns>
-        public override IEnumerable<Gizmo> GetGizmos()
-        {
-            if(_innerState != ChamberState.Idle) yield break;
-            yield return _ppGizmo; 
-            //TODO handle merge gizmo 
-        }
-
-        private void OpenPartPicker()
-        {
-            var pawn = innerContainer.First() as Pawn;
-            if (pawn == null)
-            {
-                Log.Error("unable to find pawn to open part picker for");
-            }
-
-            var dialogue = new Dialog_PartPicker(pawn);
-
-            dialogue.WindowClosed += WindowClosed;
-            Find.WindowStack.Add(dialogue); 
-        }
-
-        private void WindowClosed(Dialog_PartPicker sender, IReadOnlyAddedMutations addedmutations)
-        {
-            sender.WindowClosed -= WindowClosed;
-
-            if (_innerState != ChamberState.Idle) return;
-
-            if (addedmutations?.Any() != true) return; 
-
-            //TODO get wait time based on number of mutations added/removed 
-            _timer = TF_ANIMAL_DURATION;
-            _currentUse = ChamberUse.Mutation;
-        }
-
-
-        /// <summary>
-        /// Ticks this instance.
-        /// </summary>
-        public override void Tick()
-        {
-            base.Tick();
-
-            if (_innerState != ChamberState.Active) return;
-            if (_timer <= 0)
-            {
-                EjectPawn();
-
-                _innerState = ChamberState.WaitingForPawn;
-                _timer = 0;
-                return; 
-            }
-
-            _timer -= 1; 
-        }
-
-        private void EjectPawn()
-        {
-            var pawn = innerContainer.First() as Pawn;
-            if (pawn == null)
-            {
-                Log.Error($"trying to eject empty muta chamber!");
-                return; 
-            }
-            switch (_currentUse)
-            {
-                case ChamberUse.Mutation:
-                    break;
-                case ChamberUse.Merge:
-                    //todo 
-                    break;
-                case ChamberUse.Tf:
-                    var animal = SelectorComp.ChosenKind;
-                    if (animal == null)
-                    {
-                        animal = GetRandomAnimal(); 
-                    }
-
-                    var tfRequest = new TransformationRequest(animal, pawn)
-                    {
-                        addMutationToOriginal = true,
-                        factionResponsible = Faction,
-                        forcedFaction = Faction,
-                        forcedGender = TFGender.Original,
-                        forcedSapienceLevel = 1,
-                        manhunterSettingsOverride = ManhunterTfSettings.Never
+                        defaultLabel = PART_PICKER_GIZMO_LABEL.Translate() //TODO add an icon 
                     };
 
-                    var tfPawn = MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest);
-                    var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-                    gComp.AddTransformedPawn(tfPawn);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                return _ppGizmo;
             }
         }
-
-        private static List<PawnKindDef> _randomAnimalCache;
 
         [NotNull]
-        static List<PawnKindDef> RandomAnimalCache
+        private static List<PawnKindDef> RandomAnimalCache
         {
             get
             {
                 if (_randomAnimalCache == null)
-                {
                     _randomAnimalCache = DefDatabase<PawnKindDef>
                                         .AllDefsListForReading.Where(p => p.race.IsValidAnimal())
                                         .ToList();
-                }
 
-                return _randomAnimalCache; 
+                return _randomAnimalCache;
             }
-        }
-
-        private PawnKindDef GetRandomAnimal()
-        {
-            return RandomAnimalCache.RandomElement();
         }
 
         [NotNull]
@@ -208,6 +107,48 @@ namespace Pawnmorph.Chambers
             }
         }
 
+        private PawnKindDef _targetAnimal;
+        private int _lastTotal = 0;
+
+        /// <summary>
+        /// Gets the inspect string.
+        /// </summary>
+        /// <returns></returns>
+        public override string GetInspectString()
+        {
+            base.GetInspectString();
+            StringBuilder stringBuilder = new StringBuilder();
+            string inspectString = base.GetInspectString();
+            stringBuilder.Append(_innerState.ToString()); 
+            stringBuilder.AppendLine(inspectString); 
+            
+            if (_innerState == ChamberState.Active)
+            {
+                var pDone = 1f - ((float) (_timer)) / _lastTotal;
+                var pawn = (Pawn) innerContainer.First() ; 
+                string insString = "MutagenChamberProgress".Translate() + ": " + pDone.ToStringPercent() + " "; 
+
+                switch (_currentUse)
+                {
+                    case ChamberUse.Mutation:
+                        insString += "PMChamberAddingMutations".Translate(); 
+                        break;
+                    case ChamberUse.Merge:
+                    case ChamberUse.Tf:
+                        insString += "PMChamberTransforming".Translate(pawn, _targetAnimal); 
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+
+                stringBuilder.AppendLine(insString);
+            }
+            
+
+            return stringBuilder.ToString().TrimEndNewlines();
+
+        }
 
         /// <summary>
         ///     Draws this instance.
@@ -220,7 +161,7 @@ namespace Pawnmorph.Chambers
         }
 
         /// <summary>
-        /// exposes data for serialization/deserialization
+        ///     exposes data for serialization/deserialization
         /// </summary>
         public override void ExposeData()
         {
@@ -228,8 +169,10 @@ namespace Pawnmorph.Chambers
 
             Scribe_Values.Look(ref _innerState, "state");
             Scribe_Values.Look(ref _timer, "timer", -1);
-        }
+            Scribe_Values.Look(ref _lastTotal, "lastTotal");
+            Scribe_Defs.Look(ref _targetAnimal, "targetAnimal"); 
 
+        }
 
         /// <summary>
         ///     Finds the Mutachamber casket for.
@@ -275,7 +218,50 @@ namespace Pawnmorph.Chambers
         }
 
         /// <summary>
-        /// setup after spawning in 
+        ///     Gets the float menu options.
+        /// </summary>
+        /// <param name="myPawn">My pawn.</param>
+        /// <returns></returns>
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
+        {
+            foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(myPawn)) yield return floatMenuOption;
+            if (!MutagenDefOf.MergeMutagen.CanTransform(myPawn))
+                yield break;
+
+            if (innerContainer.Count == 0)
+            {
+                if (!myPawn.CanReach(this, PathEndMode.InteractionCell, Danger.Deadly))
+                {
+                    yield return new FloatMenuOption("CannotUseNoPath".Translate(), null);
+                    yield break;
+                }
+
+                JobDef jobDef = PMJobDefOf.EnterMutagenChamber;
+                string jobStr = "EnterMutagenChamber".Translate();
+                Action jobAction = delegate
+                {
+                    var job = new Job(jobDef, this);
+                    myPawn.jobs.TryTakeOrderedJob(job);
+                };
+                yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction), myPawn, this);
+            }
+        }
+
+        /// <summary>
+        ///     Gets the gizmos.
+        /// </summary>
+        /// <returns></returns>
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
+
+            if (_innerState != ChamberState.Idle) yield break;
+            yield return PartPickerGizmo;
+            //TODO handle merge gizmo 
+        }
+
+        /// <summary>
+        ///     setup after spawning in
         /// </summary>
         /// <param name="map"></param>
         /// <param name="respawningAfterLoad"></param>
@@ -292,6 +278,29 @@ namespace Pawnmorph.Chambers
 
 
         /// <summary>
+        ///     Ticks this instance.
+        /// </summary>
+        public override void Tick()
+        {
+            base.Tick();
+
+            if (_innerState != ChamberState.Active) return;
+            if (_timer <= 0)
+            {
+                EjectPawn();
+
+                _innerState = ChamberState.WaitingForPawn;
+                _timer = 0;
+                return;
+            }
+
+            if (!Refuelable.HasFuel) return;
+            if (!Flickable.SwitchIsOn) return;
+            _timer -= 1;
+        }
+
+
+        /// <summary>
         ///     tries to accept a new thing into this chamber
         /// </summary>
         /// <param name="thing"></param>
@@ -302,6 +311,7 @@ namespace Pawnmorph.Chambers
             if (base.TryAcceptThing(thing, allowSpecialEffects))
             {
                 _innerState = ChamberState.Idle;
+                SelectorComp.Enabled = true; 
                 return true;
             }
 
@@ -311,9 +321,56 @@ namespace Pawnmorph.Chambers
         private void AnimalChosen(PawnKindDef pawnkinddef)
         {
             _timer = TF_ANIMAL_DURATION; //TODO make this dependent on the animal chosen 
+            _lastTotal = TF_ANIMAL_DURATION; 
             _innerState = ChamberState.Active;
             _currentUse = ChamberUse.Tf;
+            _targetAnimal = pawnkinddef; 
             SelectorComp.Enabled = false;
+        }
+
+        private void EjectPawn()
+        {
+            var pawn = innerContainer.First() as Pawn;
+            if (pawn == null)
+            {
+                Log.Error("trying to eject empty muta chamber!");
+                return;
+            }
+            EjectContents();
+            SelectorComp.Enabled = false; 
+            switch (_currentUse)
+            {
+                case ChamberUse.Mutation:
+                    break;
+                case ChamberUse.Merge:
+                    //todo 
+                    break;
+                case ChamberUse.Tf:
+                    PawnKindDef animal = SelectorComp.ChosenKind;
+                    if (animal == null) animal = GetRandomAnimal();
+
+                    var tfRequest = new TransformationRequest(animal, pawn)
+                    {
+                        addMutationToOriginal = true,
+                        factionResponsible = Faction,
+                        forcedFaction = Faction,
+                        forcedGender = TFGender.Original,
+                        forcedSapienceLevel = 1,
+                        manhunterSettingsOverride = ManhunterTfSettings.Never
+                    };
+
+                    TransformedPawn tfPawn = MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest);
+                    var gComp = Find.World.GetComponent<PawnmorphGameComp>();
+                    gComp.AddTransformedPawn(tfPawn);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private PawnKindDef GetRandomAnimal()
+        {
+            return RandomAnimalCache.RandomElement();
         }
 
         private void Initialize()
@@ -326,6 +383,49 @@ namespace Pawnmorph.Chambers
             }
 
             SelectorComp.AnimalChosen += AnimalChosen;
+        }
+
+        private void OpenPartPicker()
+        {
+            var pawn = innerContainer.First() as Pawn;
+            if (pawn == null) Log.Error("unable to find pawn to open part picker for");
+
+            var dialogue = new Dialog_PartPicker(pawn);
+
+            dialogue.WindowClosed += WindowClosed;
+            Find.WindowStack.Add(dialogue);
+        }
+
+        private void WindowClosed(Dialog_PartPicker sender, IReadOnlyAddedMutations addedmutations)
+        {
+            sender.WindowClosed -= WindowClosed;
+
+            if (_innerState != ChamberState.Idle)
+            {
+                Log.Message("state is not idle!");
+                
+                return;
+            }
+
+            if (addedmutations?.Any() != true)
+            {
+                
+                
+                return;
+            }
+
+            //TODO get wait time based on number of mutations added/removed 
+            _timer = TF_ANIMAL_DURATION;
+            _currentUse = ChamberUse.Mutation;
+            _innerState = ChamberState.Active;
+            _lastTotal = _timer; 
+        }
+
+        private enum ChamberUse
+        {
+            Mutation,
+            Merge,
+            Tf
         }
 
         private enum ChamberState
