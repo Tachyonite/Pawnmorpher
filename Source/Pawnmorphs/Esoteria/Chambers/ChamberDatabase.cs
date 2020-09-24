@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
@@ -206,6 +207,11 @@ namespace Pawnmorph.Chambers
         private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
         private const string ANIMAL_NOT_TAGGABLE = "AnimalNotTaggable";
 
+        private bool _migrated; 
+
+
+
+
         /// <summary>
         ///  Determines whether this instance can add the specified PawnkindDef to the database
         /// </summary>
@@ -244,11 +250,27 @@ namespace Pawnmorph.Chambers
             Scribe_Collections.Look(ref _storedMutations, nameof(StoredMutations), LookMode.Def);
             Scribe_Collections.Look(ref _taggedSpecies, nameof(TaggedAnimals), LookMode.Def);
             Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
-
+            Scribe_Values.Look(ref _migrated, "migrated"); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 _storedMutations = _storedMutations ?? new List<MutationDef>();
                 _taggedSpecies = _taggedSpecies ?? new List<PawnKindDef>();
+                if (!_migrated)
+                {
+                    _migrated = false;
+                     //move any tagged animals from the previous system into the new one 
+                    var oldWComp = Find.World.GetComponent<PawnmorphGameComp>();
+                    if (oldWComp == null) return; 
+#pragma warning disable 618
+                    foreach (PawnKindDef taggedAnimal in oldWComp.taggedAnimals.MakeSafe())
+#pragma warning restore 618
+                    {
+                        if(!_taggedSpecies.Contains(taggedAnimal)) _taggedSpecies.Add(taggedAnimal);
+                    }
+
+
+
+                }
             }
         }
 

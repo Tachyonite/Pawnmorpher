@@ -61,7 +61,7 @@
                 <maxSimultaneous>2</maxSimultaneous>
                 <mustBePlacedAdjacent>true</mustBePlacedAdjacent>
             </li>
-            <li Class="Pawnmorph.AnimalSelectorComp.AnimalSelectorCompProperties">
+            <li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
                 <requiresTag>true</requiresTag>
                 <alwaysAvailable>
                     <li>Chaocow</li>

@@ -24,5 +24,7 @@ namespace Pawnmorph
         [NotNull] public static JobDef RecruitSapientFormerHuman;
         [NotNull]
         public static JobDef PM_UseMutationGenome;
+
+        public static JobDef EnterMutagenChamber;
     }
 }
