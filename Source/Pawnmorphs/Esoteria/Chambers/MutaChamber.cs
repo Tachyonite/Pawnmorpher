@@ -74,7 +74,8 @@ namespace Pawnmorph.Chambers
                     _ppGizmo = new Command_Action
                     {
                         action = OpenPartPicker,
-                        defaultLabel = PART_PICKER_GIZMO_LABEL.Translate() //TODO add an icon 
+                        icon = PMTextures.PartPickerIcon,
+                        defaultLabel = PART_PICKER_GIZMO_LABEL.Translate() 
                     };
 
                 return _ppGizmo;

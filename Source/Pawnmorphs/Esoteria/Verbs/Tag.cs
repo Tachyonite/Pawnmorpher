@@ -152,7 +152,7 @@ namespace Pawnmorph.Verbs
         /// <returns></returns>
         public Texture2D GetUIIcon(Thing ownerThing)
         {
-            return null; //TODO 
+            return PMTextures.TagrifleIcon; 
         }
     }
 }

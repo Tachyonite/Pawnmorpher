@@ -111,7 +111,8 @@ namespace Pawnmorph.ThingComps
                     _cachedGizmo = new Command_Action()
                     {
                         action = GizmoAction,
-                        defaultLabel = "none"
+                        defaultLabel = "none",
+                        icon = PMTextures.AnimalSelectorIcon
                     };
                 }
 

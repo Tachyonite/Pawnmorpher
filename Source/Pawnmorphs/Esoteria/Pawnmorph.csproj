@@ -535,6 +535,7 @@
     <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMTexButton.cs" />
+    <Compile Include="PMTextures.cs" />
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
