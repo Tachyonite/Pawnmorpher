@@ -48,8 +48,9 @@
                 <explosiveDamageType>Flame</explosiveDamageType>
             </li>
             <li Class="CompProperties_Refuelable">
-                <fuelConsumptionRate>0</fuelConsumptionRate>
+                <fuelConsumptionRate>1.7</fuelConsumptionRate>
                 <fuelCapacity>1.0</fuelCapacity>
+                <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
                 <fuelFilter>
                     <thingDefs>
                         <li>MechaniteSlurry</li>

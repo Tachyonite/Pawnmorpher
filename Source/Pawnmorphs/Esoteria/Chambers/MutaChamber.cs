@@ -278,6 +278,7 @@ namespace Pawnmorph.Chambers
         }
 
 
+      
         /// <summary>
         ///     Ticks this instance.
         /// </summary>
@@ -295,8 +296,10 @@ namespace Pawnmorph.Chambers
                 return;
             }
 
+
             if (!Refuelable.HasFuel) return;
             if (!Flickable.SwitchIsOn) return;
+            Refuelable.Notify_UsedThisTick();
             _timer -= 1;
         }
 
