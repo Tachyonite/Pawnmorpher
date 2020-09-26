@@ -33,5 +33,13 @@ namespace Pawnmorph
         /// The tagrifle icon.
         /// </value>
         public static Texture2D TagrifleIcon { get; } = ContentFinder<Texture2D>.Get("UI/Commands/TagRifleIcon");
+
+        /// <summary>
+        /// Gets the merging icon.
+        /// </summary>
+        /// <value>
+        /// The merging icon.
+        /// </value>
+        public static Texture2D MergingIcon { get; } = ContentFinder<Texture2D>.Get("UI/Commands/Merge"); 
     }
 }
