@@ -10,6 +10,7 @@ using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.User_Interface;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -20,7 +21,8 @@ namespace Pawnmorph.Chambers
     /// <seealso cref="Building_Casket" />
     public class MutaChamber : Building_Casket
     {
-        private const int TF_ANIMAL_DURATION = 2 * 60 * 60;
+        private const float TF_ANIMAL_DURATION = 1.5f; //units are in days 
+        private const float MIN_TRANSFORMATION_TIME = 0.5f * 60000; //minimum transformation time in ticks
         private const string PART_PICKER_GIZMO_LABEL = "PMPartPickerGizmo";
 
         private static List<PawnKindDef> _randomAnimalCache;
@@ -324,12 +326,36 @@ namespace Pawnmorph.Chambers
 
         private void AnimalChosen(PawnKindDef pawnkinddef)
         {
-            _timer = TF_ANIMAL_DURATION; //TODO make this dependent on the animal chosen 
-            _lastTotal = TF_ANIMAL_DURATION; 
+            _timer = GetTransformationTime(pawnkinddef); //TODO make this dependent on the animal chosen 
+            _lastTotal = _timer; 
             _innerState = ChamberState.Active;
             _currentUse = ChamberUse.Tf;
             _targetAnimal = pawnkinddef; 
             SelectorComp.Enabled = false;
+        }
+
+
+        [DebugOutput(category = "Pawnmorpher")]
+        static void DBGGetAnimalTransformationTimes()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (PawnKindDef pawnKindDef in DefDatabase<PawnKindDef>.AllDefsListForReading)
+            {
+                var size = pawnKindDef.RaceProps.baseBodySize;
+
+                builder.AppendLine($"{pawnKindDef.defName},{size}");
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
+
+        private int GetTransformationTime(PawnKindDef pawnKindDef)
+        {
+            var baseTime = TF_ANIMAL_DURATION * 60000; //convert from days to ticks 
+            var szFactor = Mathf.Pow(pawnKindDef.RaceProps.baseBodySize, 1f/3); //want to reduce the time of extreme body size values 
+            var time = baseTime * szFactor;
+            return Mathf.RoundToInt(Mathf.Max(time, MIN_TRANSFORMATION_TIME)); 
         }
 
         private void EjectPawn()
@@ -419,7 +445,7 @@ namespace Pawnmorph.Chambers
             }
 
             //TODO get wait time based on number of mutations added/removed 
-            _timer = TF_ANIMAL_DURATION;
+            _timer = Mathf.RoundToInt(TF_ANIMAL_DURATION * 60000);
             _currentUse = ChamberUse.Mutation;
             _innerState = ChamberState.Active;
             _lastTotal = _timer; 
