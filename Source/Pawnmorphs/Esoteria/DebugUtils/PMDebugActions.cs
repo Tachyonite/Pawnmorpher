@@ -44,19 +44,25 @@ namespace Pawnmorph.DebugUtils
         static void TagAllAnimals()
         {
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-            var database = Find.World.GetComponent<ChamberDatabase>(); 
+            var database = Find.World.GetComponent<ChamberDatabase>();
 
-
+            StringBuilder sBuilder = new StringBuilder();
             foreach (var kindDef in DefDatabase<PawnKindDef>.AllDefs)
             {
                 var thingDef = kindDef.race; 
                 if(thingDef.race?.Animal != true) continue;
 
-                if (!database.TryAddToDatabase(kindDef))
+                if (!database.TryAddToDatabase(kindDef, out string reason))
                 {
-                    //TODO learning tip or message? 
+                    sBuilder.Append($"unable to store {kindDef.label} because {reason}");
+                }
+                else
+                {
+                    sBuilder.Append($"added {kindDef.label} to the database");
                 }
             }
+
+            Log.Message(sBuilder.ToString());
 
         }
 
