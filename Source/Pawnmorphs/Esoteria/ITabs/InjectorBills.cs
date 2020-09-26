@@ -102,13 +102,13 @@ namespace Pawnmorph.ITabs
             Func<List<FloatMenuOption>> recipeOptionsMaker = delegate
             {
                 List<FloatMenuOption> list = new List<FloatMenuOption>();
-                RecipeDef recipe = default(RecipeDef);
+                
                 for (int i = 0; i < SelTable.def.AllRecipes.Count; i++)
                 {
-                    RecipeDef recipeI = SelTable.def.AllRecipes[i];
-                    if (CanUseRecipe(recipeI))
+                    RecipeDef recipe = SelTable.def.AllRecipes[i];
+                    if (CanUseRecipe(recipe))
                     {
-                        recipe = recipe;
+                        var tempRecipe = recipe;
                         list.Add(new FloatMenuOption(recipe.LabelCap, delegate
                         {
                             if (!SelTable.Map.mapPawns.FreeColonists.Any((Pawn col) => recipe.PawnSatisfiesSkillRequirements(col)))

@@ -54,11 +54,11 @@ namespace Pawnmorph.DebugUtils
 
                 if (!database.TryAddToDatabase(kindDef, out string reason))
                 {
-                    sBuilder.Append($"unable to store {kindDef.label} because {reason}");
+                    sBuilder.AppendLine($"unable to store {kindDef.label} because {reason}");
                 }
                 else
                 {
-                    sBuilder.Append($"added {kindDef.label} to the database");
+                    sBuilder.AppendLine($"added {kindDef.label} to the database");
                 }
             }
 

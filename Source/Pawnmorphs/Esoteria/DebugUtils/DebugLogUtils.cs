@@ -10,6 +10,7 @@ using System.Text;
 using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -68,6 +69,20 @@ namespace Pawnmorph.DebugUtils
             string str = string.Join("\n\t", mutations.Select(m => m.defName).ToArray());
 
             Log.Message(string.IsNullOrEmpty(str) ? "no parts with missing description" : str);
+        }
+
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        static void CheckMorphTagStatus()
+        {
+
+            StringBuilder builder = new StringBuilder();
+            foreach (MorphDef morph in MorphDef.AllDefs)
+            {
+                builder.AppendLine($"{morph.defName} is tagged: {morph.IsTagged()}");
+            }
+
+            Log.Message(builder.ToString());
         }
 
 
