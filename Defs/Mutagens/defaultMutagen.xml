@@ -11,6 +11,7 @@
 		<revertedThoughtGood>WasMergedRelieved</revertedThoughtGood>
 		<revertedThoughtBad>WasMerged</revertedThoughtBad>
 		<transformedSapienceState>MergedPawn</transformedSapienceState>
+		<appliesTfParalysis>false</appliesTfParalysis>
 		<damageProperties>
 			<apparelDamageOffset>100</apparelDamageOffset>
 			<spawnedBiproductMult>0.5</spawnedBiproductMult>

@@ -115,7 +115,9 @@ namespace Pawnmorph.TfSys
             meld.SetFaction(Faction.OfPlayer);
       
             ReactionsHelper.OnPawnsMerged(firstPawn, firstPawn.IsPrisoner, secondPawn, secondPawn.IsPrisoner, meld);
-            MergedPawnUtilities.TransferToMergedPawn(request.originals, meld); 
+            MergedPawnUtilities.TransferToMergedPawn(request.originals, meld);
+            //apply any other post tf effects 
+            ApplyPostTfEffects(request.originals[0], meld, request);
 
             TransformerUtility.CleanUpHumanPawnPostTf(firstPawn, null);
             TransformerUtility.CleanUpHumanPawnPostTf(secondPawn, null);
@@ -222,6 +224,23 @@ namespace Pawnmorph.TfSys
             var thought = ThoughtMaker.MakeThought(thoughtDef, stageNum);
             memories.TryGainMemory(thought);
             return thoughtDef; 
+        }
+
+        /// <summary>
+        /// Applies the post tf effects.
+        /// this should be called just before the original pawn is cleaned up
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <param name="request">The transformation request</param>
+        protected override void ApplyPostTfEffects(Pawn original, Pawn transformedPawn, TransformationRequest request)
+        {
+            //apply apparel damage 
+            ApplyApparelDamage(original, transformedPawn.def);
+            FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(transformedPawn, original);
+            base.ApplyPostTfEffects(original, transformedPawn, request);
+
+
         }
 
         /// <summary>

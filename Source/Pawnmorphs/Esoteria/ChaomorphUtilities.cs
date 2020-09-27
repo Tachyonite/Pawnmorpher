@@ -24,7 +24,10 @@ namespace Pawnmorph
         private static readonly List<ThingDef>[] _randomChaomorphArrCache; 
 
         [NotNull] private static Dictionary<ThingDef, ChaomorphExtension> _cachedExtensions =
-            new Dictionary<ThingDef, ChaomorphExtension>(); 
+            new Dictionary<ThingDef, ChaomorphExtension>();
+
+        [NotNull] private static readonly
+            Dictionary<ThingDef, PawnKindDef> _pawnKindLookup = new Dictionary<ThingDef, PawnKindDef>();  
 
         [NotNull]
         private static readonly float[] _totals ; 
@@ -97,6 +100,26 @@ namespace Pawnmorph
                 var ext = thingDef.GetModExtension<ChaomorphExtension>(); 
                 if(ext == null) continue;
 
+
+                PawnKindDef pk; 
+                if (ext.pawnKindDef == null)
+                {
+                    pk = DefDatabase<PawnKindDef>.AllDefs.FirstOrDefault(p => p.race == thingDef);
+                    if (pk == null)
+                    {
+                        Log.Warning($"unable to find pawnkind def for {thingDef.defName}");
+                        continue;
+                    }
+
+                    ext.pawnKindDef = pk; 
+                }
+                else
+                {
+                    pk = ext.pawnKindDef; 
+                }
+
+                _pawnKindLookup[thingDef] = pk; 
+
                 if (thingDef.race == null)
                 {
                     Log.Error($"trying to add invalid chaomorph {thingDef.defName}! chaomorphs must have defined race properties!");
@@ -122,6 +145,7 @@ namespace Pawnmorph
 
                 _totals[i] = total; 
             }
+
         }
 
     }

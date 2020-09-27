@@ -22,7 +22,13 @@ namespace Pawnmorph.DefExtensions
         /// <summary>
         /// The selection weight, used to determine how 'rare' a chaomorph is, higher values are more common. negative values make them never show up under normal means 
         /// </summary>
-        public float selectionWeight; 
+        public float selectionWeight;
+
+        /// <summary>
+        /// The pawn kind definition
+        /// </summary>
+        [CanBeNull]
+        public PawnKindDef pawnKindDef; 
 
     }
 }

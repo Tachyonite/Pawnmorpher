@@ -1403,7 +1403,7 @@
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>ChaomeldDog</defName>
 		<label>chaomeld</label>
-		<race>Chaomeld</race>
+		<race>ChaomeldDog</race>
 		<combatPower>180</combatPower>
 		<ecoSystemWeight>1.1</ecoSystemWeight>
 		<labelMale>Chaomeld</labelMale>
@@ -1656,7 +1656,7 @@
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>ChaomeldDragon</defName>
 		<label>chaomeld</label>
-		<race>Chaomeld</race>
+		<race>ChaomeldDragon</race>
 		<combatPower>180</combatPower>
 		<ecoSystemWeight>1.1</ecoSystemWeight>
 		<labelMale>Chaomeld</labelMale>
@@ -1865,7 +1865,7 @@
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>ChaomeldCow</defName>
 		<label>chaomeld</label>
-		<race>Chaomeld</race>
+		<race>ChaomeldCow</race>
 		<combatPower>180</combatPower>
 		<ecoSystemWeight>1.1</ecoSystemWeight>
 		<labelMale>Chaomeld</labelMale>

@@ -582,11 +582,9 @@ namespace Pawnmorph
             var formerHumanExt = sapientAnimal.def.GetModExtension<FormerHumanSettings>();
             BackstoryDef backstoryDef = formerHumanExt?.backstory ?? BackstoryDefOf.FormerHumanNormal;
             Backstory bkStory = backstoryDef.backstory;
-            var builder = new StringBuilder();
-            builder.AppendLine($"for {sapientAnimal.Name}");
             foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefsListForReading)
                 if (bkStory.DisabledWorkTypes.Contains(workTypeDef))
-                    workSettings.SetPriority(workTypeDef, 0);
+                    workSettings.SetPriority(workTypeDef, 0); 
                 else
                     workSettings.SetPriority(workTypeDef, 3);
         }

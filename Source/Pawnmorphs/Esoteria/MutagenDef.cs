@@ -17,6 +17,11 @@ namespace Pawnmorph
     /// <seealso cref="Verse.Def" />
     public class MutagenDef : Def
     {
+        /// <summary>
+        /// if this mutagen def applies transformation paralysis 
+        /// </summary>
+        public bool appliesTfParalysis = true; 
+
         /// <summary>if this instance can infect animals</summary>
         public bool canInfectAnimals;
         /// <summary>

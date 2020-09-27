@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -300,7 +301,7 @@ namespace Pawnmorph.TfSys
 
                 transformedPawn.mindState?.mentalStateHandler?.TryStartMentalState(stateDef, forceWake: true);
             }
-            else
+            else if(def.appliesTfParalysis)
             {
                 //don't add tf paralysis on manhunter 
                 transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis);
@@ -378,7 +379,12 @@ namespace Pawnmorph.TfSys
                 return null;
             }
 
-            if (!CanTransform(request.originals)) return null; 
+            if (!CanTransform(request.originals))
+            {
+                DebugLogUtils.Warning($"unable to fulfill tf request using {def.defName}\n{request}");
+                
+                return null;
+            } 
 
             return TransformImpl(request); 
         }

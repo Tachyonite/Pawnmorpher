@@ -13,8 +13,7 @@
 				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
 				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
 				<li>r_logentry->[INITIATOR_nameDef] mooed at [RECIPIENT_nameDef] to [askedaboutme].</li>
-				<li>r_logentry->[INITIATOR_nameDef] offered milk to [RECIPIENT_nameDef].</li>
-
+				
 				<li>talkedabout(p=4)->mooed at</li>
 				<li>talkedabout->let out a sudden moo to</li>
 				<li>talkedabout->tried to speak, but fell to a moo</li>
@@ -23,13 +22,11 @@
 				<li>talkedabout->quietly mooed at</li>
 				<li>talkedabout->moaned like a cow at</li>
 
-				<li>askedabout->milking [INITIATOR_objective]</li>
 				<li>askedabout->milk</li>
 				<li>askedabout->eating grass</li>
 				<li>askedabout->chewing cud</li>
 				<li>askedabout->dairy farms</li>
 
-				<li>askedaboutme->milk [INITIATOR_objective]</li>
 				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
 				<li>askedaboutme->change [INITIATOR_objective] back</li>
 				<li>askedaboutme->give [INITIATOR_objective] hay</li>

@@ -1,12 +1,10 @@
 <Defs>
     <MainButtonDef>
         <defName>PM_ChamberDatabaseButton</defName>
-        <label>chamber database</label>
+        <label>Genebanks</label>
         <description>TODO</description>
         <tabWindowClass>Pawnmorph.MainTabWindow_ChamberDatabase</tabWindowClass>
-        <order>100</order>
+        <order>90</order>
         <validWithoutMap>true</validWithoutMap>
-        <minimized>True</minimized>
-        <iconPath>UI/Buttons/MainButtons/Factions</iconPath>
       </MainButtonDef>
 </Defs>

@@ -48,6 +48,34 @@ namespace Pawnmorph.Chambers
         private PawnKindDef _targetAnimal;
         private int _lastTotal = 0;
 
+
+        private Gizmo _debugFinishGizmo;
+
+
+        [NotNull]
+        Gizmo DebugFinishGizmo
+        {
+            get
+            {
+                if (_debugFinishGizmo == null)
+                {
+                    _debugFinishGizmo = new Command_Action()
+                    {
+                        defaultLabel = "Debug Finish Chamber",
+                        action = DebugFinishChamber
+                    };
+                }
+
+                return _debugFinishGizmo; 
+            }
+        }
+
+        private void DebugFinishChamber()
+        {
+            _timer = 0; 
+        }
+
+
         /// <summary>
         ///     Gets the current use.
         /// </summary>
@@ -268,6 +296,12 @@ namespace Pawnmorph.Chambers
         {
             foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
 
+            if (DebugSettings.godMode && _innerState == ChamberState.Active)
+            {
+                yield return DebugFinishGizmo; 
+            }
+
+
             if (_innerState != ChamberState.Idle) yield break;
             yield return PartPickerGizmo;
             yield return MergingGizmo;
@@ -339,7 +373,14 @@ namespace Pawnmorph.Chambers
             if (_innerState != ChamberState.Active) return;
             if (_timer <= 0)
             {
-                EjectPawn();
+                try
+                {
+                    EjectPawn();
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"unable to eject pawns from chamber!\ncaught exception {e.GetType().Name}\n{e}");
+                }//make sure an exception while ejecting a pawn doesn't put the chamber in a bad state 
                 _currentUse = ChamberUse.Tf;//this should be the default 
                 _innerState = ChamberState.WaitingForPawn;
                 _timer = 0;
@@ -410,9 +451,15 @@ namespace Pawnmorph.Chambers
             Log.Message(builder.ToString());
         }
 
+        [NotNull]
+        private readonly
+            static List<Pawn> _scratchList = new List<Pawn>();  
+
         private void EjectPawn()
         {
-            var pawn = innerContainer.First() as Pawn;
+            _scratchList.Clear();
+            _scratchList.AddRange(innerContainer.OfType<Pawn>());
+            var pawn = _scratchList[0] as Pawn;
             if (pawn == null)
             {
                 Log.Error("trying to eject empty muta chamber!");
@@ -422,13 +469,14 @@ namespace Pawnmorph.Chambers
             EjectContents();
             SelectorComp.Enabled = false;
             TransformationRequest tfRequest;
+            Mutagen mutagen = null;
             switch (_currentUse)
             {
                 case ChamberUse.Mutation:
                     tfRequest = null;
                     break;
                 case ChamberUse.Merge:
-                    var otherPawn = (Pawn) innerContainer[1];
+                    var otherPawn = (Pawn) _scratchList[1];
                     if (otherPawn == null)
                     {
                         Log.Error("merging but cannot find other pawn! aborting!");
@@ -444,6 +492,7 @@ namespace Pawnmorph.Chambers
                         forcedSapienceLevel = 1,
                         manhunterSettingsOverride = ManhunterTfSettings.Never
                     };
+                    mutagen = MutagenDefOf.MergeMutagen.MutagenCached; 
                     break;
                 case ChamberUse.Tf:
                     PawnKindDef animal = SelectorComp.ChosenKind;
@@ -458,7 +507,7 @@ namespace Pawnmorph.Chambers
                         forcedSapienceLevel = 1,
                         manhunterSettingsOverride = ManhunterTfSettings.Never
                     };
-
+                    mutagen = MutagenDefOf.defaultMutagen.MutagenCached; 
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -466,15 +515,30 @@ namespace Pawnmorph.Chambers
 
             if (tfRequest == null) return;
 
-            TransformedPawn tfPawn = MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest);
+            
+            TransformedPawn tfPawn = mutagen.Transform(tfRequest);
+
+            if (tfPawn == null)
+            {
+                Log.Error($"unable to transform pawn(s)! {_currentUse} {_innerState}");
+                return; 
+            }
+
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
             gComp.AddTransformedPawn(tfPawn);
+            foreach (Pawn oPawn in tfPawn.OriginalPawns)
+            {
+                if(oPawn.Spawned)
+                    oPawn.DeSpawn(); 
+            }
+            
         }
 
         private void EnterMergingIdle()
         {
             _innerState = ChamberState.WaitingForPawnMerging;
             _currentUse = ChamberUse.Merge;
+            SelectorComp.Enabled = false; 
         }
 
         private PawnKindDef GetRandomAnimal()

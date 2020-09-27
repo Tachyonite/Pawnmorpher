@@ -9,4 +9,5 @@
     <PMAnimalGenomeDescription>stores the genetic information of {ANIMAL}</PMAnimalGenomeDescription>
     <PMChamberAddingMutations>adding mutations</PMChamberAddingMutations>
     <PMChamberTransforming>transforming {0} into a {1}</PMChamberTransforming>
+    <PMMergeGizmo>Merge</PMMergeGizmo>
 </LanguageData>

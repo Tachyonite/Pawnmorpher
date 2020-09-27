@@ -34,7 +34,6 @@ namespace Pawnmorph
         /// </value>
         public override Vector2 RequestedTabSize => new Vector2(1010f, 640f);
 
-        private static readonly Texture2D PinTex = ContentFinder<Texture2D>.Get("UI/Icons/Pin");
         private ChamberDatabase _chamberDatabase;
 
         /// <summary>
