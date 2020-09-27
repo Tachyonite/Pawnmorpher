@@ -8,16 +8,14 @@
 			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
 				<backstory>FormerHumanChaomorph</backstory>
 			</li>
+			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+                <chaoType>Chaomorph</chaoType>
+                <selectionWeight>10</selectionWeight>
+            </li>
 		</modExtensions>
 		<tradeTags>
 			<li>Chaomorph</li>
         </tradeTags>
-        <modExtensions>
-            <li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
-                <chaoType>Chaomorph</chaoType>
-                <selectionWeight>10</selectionWeight>
-            </li>
-        </modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="AnimalThingBase" Name="ChaomorphBaseDerived" Abstract="true">
