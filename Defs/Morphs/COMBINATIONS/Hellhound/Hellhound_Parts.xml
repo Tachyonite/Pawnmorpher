@@ -56,7 +56,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>7.0</power>
+						<power>9.0</power>
 						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -118,6 +118,9 @@
 						<offset>0.50</offset>
 					</li>
 				</capMods>
+				<statOffsets>
+					<SocialImpact>-0.3</SocialImpact>
+				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
@@ -134,8 +137,7 @@
 					</li>
 				</capMods>
 				<statOffsets>
-					<TrainAnimalChance>0.1</TrainAnimalChance>
-					<TameAnimalChance>0.1</TameAnimalChance>
+					<SocialImpact>-0.1</SocialImpact>
 				</statOffsets>
 			</li>
 		</stages>
@@ -148,7 +150,7 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>10.0</power>
+						<power>15.0</power>
 						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -265,7 +267,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>7.0</power>
+						<power>8.0</power>
 						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>

@@ -8,6 +8,10 @@
 		<race>EtherHellhound</race>
 		<classification>Canid</classification>
 		<description>TODO</description>
+		<transformSettings>
+			<transformationMemory>PM_HellhoundTransformationMemory</transformationMemory>
+			<revertedMemory>PM_HellhoundRevertedMemory</revertedMemory>
+		</transformSettings>
 		<fullTransformation>PM_HellhoundTf</fullTransformation>
 		<partialTransformation>PM_HellhoundTfPartial</partialTransformation>
 	</Pawnmorph.MorphDef>
