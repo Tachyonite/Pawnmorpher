@@ -128,6 +128,16 @@
       <li>AnimalUncommon</li>
       <li>AnimalFighter</li>
     </tradeTags>
+    <comps>
+      <li>
+				<compClass>Pawnmorph.CompAlwaysFormerHuman</compClass>
+			</li>
+    </comps>
+    <modExtensions>
+      <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+				<backstory>FormerHumanChaomorph</backstory>
+			</li>
+    </modExtensions>
   </ThingDef>
   
   <PawnKindDef ParentName="AnimalKindBase" >
