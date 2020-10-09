@@ -25,7 +25,7 @@ namespace Pawnmorph
 
         static MorphDefOfs()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(MorphDefOfs)); 
+            DefOfHelper.EnsureInitializedInCtor(typeof(MorphDef)); 
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Pawnmorph
     {
         static PMThoughtDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMThoughtDefOf)); 
+            DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDef)); 
         }
 
         public static ThoughtDef SapientAnimalGotSomeSnuggling; 

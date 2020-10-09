@@ -17,7 +17,7 @@ namespace Pawnmorph
     {
         static AnimalClassDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(AnimalClassDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AnimalClassDef));
         }
 
         public static AnimalClassDef Animal;

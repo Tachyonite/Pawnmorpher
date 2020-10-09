@@ -12,7 +12,7 @@ namespace Pawnmorph
 
         static HairDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HairDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(HairDef));
         }
     }
 }

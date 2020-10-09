@@ -12,7 +12,7 @@ namespace Pawnmorph
     {
         static PMThingDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMThingDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(ThingDef));
         }
 
         public static ThingDef Plant_ChaoBulb;

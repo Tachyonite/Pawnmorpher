@@ -13,7 +13,7 @@ namespace Pawnmorph
     {
         static PMJobDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMJobDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(JobDef));
         }
 
         public static JobDef PMLayEgg;

@@ -11,7 +11,7 @@ namespace Pawnmorph
     {
         static PMIncidentDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMIncidentDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(IncidentDef));
         }
 
         public static IncidentDef MutagenicShipPartCrash;

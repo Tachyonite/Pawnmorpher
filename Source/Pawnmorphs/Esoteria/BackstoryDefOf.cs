@@ -17,7 +17,7 @@ namespace Pawnmorph
        
         static BackstoryDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(BackstoryDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(BackstoryDef));
         }
     }
 }

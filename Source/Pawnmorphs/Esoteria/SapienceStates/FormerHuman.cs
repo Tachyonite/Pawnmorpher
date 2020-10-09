@@ -240,7 +240,7 @@ namespace Pawnmorph.SapienceStates
             Pawn.drugs = Pawn.drugs ?? new Pawn_DrugPolicyTracker(Pawn);
             Pawn.guest = Pawn.guest ?? new Pawn_GuestTracker(Pawn);
             Pawn.outfits = Pawn.outfits ?? new Pawn_OutfitTracker(Pawn);
-            Pawn.guilt = Pawn.guilt ?? new Pawn_GuiltTracker(Pawn);
+            Pawn.guilt = Pawn.guilt ?? new Pawn_GuiltTracker();
             Pawn.foodRestriction = Pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(Pawn);
             Pawn.timetable = Pawn.timetable ?? new Pawn_TimetableTracker(Pawn);
             Comp_SapientAnimal nComp = Pawn.GetComp<Comp_SapientAnimal>();

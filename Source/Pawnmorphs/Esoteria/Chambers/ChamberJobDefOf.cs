@@ -14,7 +14,7 @@ namespace Pawnmorph.Chambers
     {
         static ChamberJobDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(ChamberJobDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(JobDef));
         }
 
         public static JobDef EnterMutagenChamber;
