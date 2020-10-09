@@ -18,7 +18,7 @@ namespace Pawnmorph
         // ReSharper disable once NotNullMemberIsNotInitialized
         static MutagenDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(MutagenDef)); 
+            DefOfHelper.EnsureInitializedInCtor(typeof(MutagenDefOf)); 
         }
     }
 }

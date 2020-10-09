@@ -21,7 +21,7 @@ namespace Pawnmorph
 
         static PMNeedDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(NeedDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(PMNeedDefOf));
         }
     }
 }
