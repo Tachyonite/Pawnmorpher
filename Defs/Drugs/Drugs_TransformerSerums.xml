@@ -189,6 +189,9 @@
 		<graphicData>
 			<texPath>Things/Item/Drug/SerumPowerful</texPath>
 		</graphicData>
+		<recipeMaker>
+			<researchPrerequisite>PowerfulSerumSynthesis</researchPrerequisite>
+		</recipeMaker>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
