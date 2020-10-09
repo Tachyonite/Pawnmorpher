@@ -14,7 +14,7 @@ namespace Pawnmorph
     {
         static BuildingDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(ThingDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(BuildingDefOf));
         }
 #pragma warning disable 1591
         public static ThingDef BigMutagenicChamber;

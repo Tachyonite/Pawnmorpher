@@ -17,7 +17,7 @@ namespace Pawnmorph.Hybrids
 
         static HThoughtDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDef)); 
+            DefOfHelper.EnsureInitializedInCtor(typeof(HThoughtDefOf)); 
         }
     }
 }

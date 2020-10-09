@@ -98,7 +98,7 @@ namespace Pawnmorph.HPatches
                 pawn.drugs = pawn.drugs ?? new Pawn_DrugPolicyTracker(pawn);
                 pawn.guest = pawn.guest ?? new Pawn_GuestTracker(pawn);
                 pawn.outfits = pawn.outfits ?? new Pawn_OutfitTracker(pawn); 
-                pawn.guilt = pawn.guilt ?? new Pawn_GuiltTracker(); 
+                pawn.guilt = pawn.guilt ?? new Pawn_GuiltTracker(pawn); 
                 pawn.foodRestriction = pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(pawn); 
                 pawn.timetable = pawn.timetable ?? new Pawn_TimetableTracker(pawn); 
                 Comp_SapientAnimal nComp = pawn.GetComp<Comp_SapientAnimal>();
