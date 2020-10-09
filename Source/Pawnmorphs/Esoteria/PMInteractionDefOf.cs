@@ -18,7 +18,7 @@ namespace Pawnmorph
 
         static PMInteractionDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMInteractionDefOf)); 
+            DefOfHelper.EnsureInitializedInCtor(typeof(InteractionDef)); 
         }
     }
 }

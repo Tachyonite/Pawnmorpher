@@ -14,7 +14,7 @@ namespace Pawnmorph
         // ReSharper disable once NotNullMemberIsNotInitialized
         static TfHediffDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(TfHediffDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
         }
 
        

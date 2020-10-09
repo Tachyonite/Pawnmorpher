@@ -84,7 +84,7 @@ namespace Pawnmorph
         // ReSharper disable once NotNullMemberIsNotInitialized
         static PMStatDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMStatDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(StatDef));
         }
     }
 }
