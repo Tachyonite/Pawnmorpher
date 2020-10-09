@@ -104,6 +104,11 @@ namespace Pawnmorph
             fuelComp = this.GetComp<CompRefuelable>();
             powerComp = this.GetComp<CompPowerTrader>();
             flickComp = this.GetComp<CompFlickable>();
+
+
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.MergingPawns, OpportunityType.Important);
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.PM_PartPicker, OpportunityType.Important);
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.Tagging, OpportunityType.Important);
         }
 
         public override void Tick()
@@ -332,6 +337,11 @@ namespace Pawnmorph
             _state = ChamberState.Idle;
             daysIn = 0; 
         }
+
+        
+
+        
+        
 
         private void TransformPawn(Pawn pawn)
         {

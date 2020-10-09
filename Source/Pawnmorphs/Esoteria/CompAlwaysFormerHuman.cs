@@ -63,7 +63,12 @@ namespace Pawnmorph
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
+
             if (respawningAfterLoad) return;
+
+            if(parent?.def?.IsChaomorph() == true)
+                LessonAutoActivator.TeachOpportunity(PMConceptDefOf.Chaomorphs, OpportunityType.GoodToKnow); 
+
         }
 
         /// <summary>

@@ -360,6 +360,10 @@ namespace Pawnmorph.Chambers
                 Initialize();
                 _initialized = true;
             }
+
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.MergingPawns, OpportunityType.Important);
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.PM_PartPicker, OpportunityType.Important);
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.Tagging, OpportunityType.Important);
         }
 
 

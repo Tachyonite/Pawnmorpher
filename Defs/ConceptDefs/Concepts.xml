@@ -3,7 +3,7 @@
 		<defName>SerumExtraction</defName>
 		<label>PM: Getting Started</label>
 		<priority>11</priority>
-		<needsOpportunity>false</needsOpportunity>
+		<needsOpportunity>true</needsOpportunity>
 		<helpText>Find, buy or loot two chookmorph eggs and five cowmorph milk, or find some chaobulbs. At a drug lab, you'll be able to create mutagenic slurry, which can then be made into specific mutagen types.</helpText>
 	</ConceptDef>
 	
@@ -11,7 +11,7 @@
 		<defName>MergingPawns</defName>
 		<label>PM: Merging Pawns</label>
 		<priority>11</priority>
-		<needsOpportunity>false</needsOpportunity>
+		<needsOpportunity>true</needsOpportunity>
 		<helpText>Once you have two chambers linked to a modulator, send two pawns inside them. On the modulator, select the newly unlocked option 'merge chambers' (which can still be picked if the two pawns are already mutating) and wait. This option won't show up if there aren't pawns in the chambers.</helpText>
 	</ConceptDef>
 	
@@ -27,7 +27,31 @@
 		<defName>Tagging</defName>
 		<label>PM: Tagging</label>
 		<priority>11</priority>
-		<needsOpportunity>false</needsOpportunity>
-		<helpText>If you want to make creatures in the mutagenic chamber, you'll need a tagging rifle, which can be made at a machining table. Equip it, then go and shoot animals with it to 'tag' them, thereby adding them to the database of creatures you can turn people into with the chambers. Note that if you have no tagged creatures, you will still be able to make chaomorphs in chambers by default.</helpText>
+		<needsOpportunity>true</needsOpportunity>
+		<helpText>In order to get started with creating Injectors and using Chambers, you'll need to acquire genomes. This can be done via the Tagging Rifle. With a drafted pawn and tagging rifle equipped, select the 'tag animal' widget, and then select the animal you wish to tag. You must have enough Genebank storage to log them. Tagging animals allows you to set them as the end result of a Chamber. You can also obtain genomes by buing Genecards from traders or from completing quests - these must be used at a Genebank to add them to your total storage.</helpText>
 	</ConceptDef>
+
+	<ConceptDef>
+		<defName>PM_Injectors</defName>
+		<label>PM: Injectors</label>
+		<needsOpportunity>true</needsOpportunity>
+		<priority>11</priority>
+		<helpText>To craft injectors, you will need to have the correct genome in your Genebank database. This can be done by collecting animal DNA with the Tagging Rifle's 'Tag' widget (NOT by shooting them with it). Once you have the genome, you will be able to create a bill for the animal at the Injector Workbench.</helpText>
+	</ConceptDef>
+
+	<ConceptDef>
+		<defName>PM_Genebanks</defName>
+		<label>PM: Genebanks</label>
+		<needsOpportunity>true</needsOpportunity>
+		<priority>11</priority>
+		<helpText>TODO</helpText>
+	</ConceptDef>
+	<ConceptDef>
+		<defName>PM_PartPicker</defName>
+		<label>PM: Pert Picker</label>
+		<needsOpportunity>true</needsOpportunity>
+		<priority>11</priority>
+		<helpText>TODO</helpText>
+	</ConceptDef>
+
 </Defs>

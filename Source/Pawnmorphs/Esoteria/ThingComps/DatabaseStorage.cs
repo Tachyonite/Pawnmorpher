@@ -69,6 +69,9 @@ namespace Pawnmorph.ThingComps
         {
             base.PostSpawnSetup(respawningAfterLoad);
 
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.PM_Genebanks, OpportunityType.Important); 
+
+
             if (!respawningAfterLoad && parent.Faction == Faction.OfPlayer)
             {
                 _added = true;
