@@ -34,7 +34,7 @@ namespace Pawnmorph
         // ReSharper disable once NotNullMemberIsNotInitialized
         static AspectDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(AspectDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AspectDefOf));
         }
     }
 }

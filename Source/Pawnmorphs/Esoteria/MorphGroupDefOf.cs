@@ -10,7 +10,7 @@ namespace Pawnmorph
     {
         static MorphGroupDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(MorphGroupDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(MorphGroupDefOf));
         }
 
         public static MorphGroupDef Humans;

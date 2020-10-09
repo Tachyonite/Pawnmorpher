@@ -17,7 +17,7 @@ namespace Pawnmorph
 
         static PMDesignationDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(DesignationDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(PMDesignationDefOf));
         }
     }
 }
