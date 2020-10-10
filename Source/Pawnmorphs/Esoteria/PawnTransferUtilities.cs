@@ -548,6 +548,7 @@ namespace Pawnmorph
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
 
             if (transformedPawn.story?.traits == null) return;
+            if (originalPawn.story?.traits?.allTraits == null) return; 
             List<TraitDef>
                 tTraits = originalPawn.story.traits.allTraits.Select(t => t.def)
                                       .Where(selector)
