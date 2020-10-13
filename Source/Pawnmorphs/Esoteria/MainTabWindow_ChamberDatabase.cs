@@ -17,8 +17,11 @@ namespace Pawnmorph
     ///     main tab window for the chamber database
     /// </summary>
     /// <seealso cref="RimWorld.MainTabWindow" />
-    public class MainTabWindow_ChamberDatabase : MainTabWindow
+    public partial class MainTabWindow_ChamberDatabase : MainTabWindow
     {
+
+
+
         private Vector2 _scrollPosition;
         private float _scrollViewHeight;
 
@@ -102,8 +105,8 @@ namespace Pawnmorph
 
         }
 
-        struct RowEntry
-        {
+        readonly struct RowEntry : IEquatable<RowEntry>
+        { 
             public RowEntry(MutationDef mDef)
             {
                 label = mDef.label;
@@ -119,9 +122,60 @@ namespace Pawnmorph
             }
 
 
-            public Def def; 
-            public string label;
-            public int storageSpaceUsed; 
+            public readonly Def def; 
+            public readonly string label;
+            public readonly int storageSpaceUsed;
+
+            /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            /// <param name="other">An object to compare with this object.</param>
+            /// <returns>
+            /// <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
+            public bool Equals(RowEntry other)
+            {
+                return Equals(def, other.def)
+                    && label == other.label
+                    && storageSpaceUsed == other.storageSpaceUsed;
+            }
+
+            /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+            /// <param name="obj">The object to compare with the current instance. </param>
+            /// <returns>
+            /// <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />. </returns>
+            public override bool Equals(object obj)
+            {
+                return obj is RowEntry other && Equals(other);
+            }
+
+            /// <summary>Returns the hash code for this instance.</summary>
+            /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    int hashCode = (def != null ? def.GetHashCode() : 0);
+                    hashCode = (hashCode * 397) ^ (label != null ? label.GetHashCode() : 0);
+                    hashCode = (hashCode * 397) ^ storageSpaceUsed;
+                    return hashCode;
+                }
+            }
+
+            /// <summary>Returns a value that indicates whether the values of two <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" /> objects are equal.</summary>
+            /// <param name="left">The first value to compare.</param>
+            /// <param name="right">The second value to compare.</param>
+            /// <returns>true if the <paramref name="left" /> and <paramref name="right" /> parameters have the same value; otherwise, false.</returns>
+            public static bool operator ==(RowEntry left, RowEntry right)
+            {
+                return left.Equals(right);
+            }
+
+            /// <summary>Returns a value that indicates whether two <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" /> objects have different values.</summary>
+            /// <param name="left">The first value to compare.</param>
+            /// <param name="right">The second value to compare.</param>
+            /// <returns>true if <paramref name="left" /> and <paramref name="right" /> are not equal; otherwise, false.</returns>
+            public static bool operator !=(RowEntry left, RowEntry right)
+            {
+                return !left.Equals(right);
+            }
         }
 
         [NotNull]
@@ -190,19 +244,46 @@ namespace Pawnmorph
 
         }
 
+        private const float DESCRIPTION_ROW_FRACT = 0.66f;
+        private const float TEXT_ROW_FRACT = 4f / 5f;
+        private const float BUTTON_FRACT = 1f - TEXT_ROW_FRACT; 
+        private const float DESC_ROW_T_FRACT = DESCRIPTION_ROW_FRACT * TEXT_ROW_FRACT;
+        private const float STORAGE_INFO_FRACT = (1 - DESCRIPTION_ROW_FRACT) * (TEXT_ROW_FRACT); 
         void DrawRow(RowEntry entry, Rect inRect)
         {
-            Rect lRect = new Rect(inRect);
-            lRect.width /= 2;
-            Rect bRect = new Rect(inRect);
-            bRect.width /= 2;
-            bRect.x += lRect.width;
-            bRect.height = 10; //need to hardcode size of image?? 
-            Widgets.Label(inRect, entry.label + " : " + entry.storageSpaceUsed + "/" + Database.TotalStorage);
-            if (Widgets.ButtonImage(bRect, PMTexButton.CloseXSmall, true))
+            float tW = inRect.width * 2f;
+            float wTxt = tW * DESC_ROW_T_FRACT;
+            float wST = tW * STORAGE_INFO_FRACT;
+            float wButton = BUTTON_FRACT * tW; 
+            float x0 = inRect.x;
+            float x1 = DESC_ROW_T_FRACT * tW + x0;
+            float x2 = TEXT_ROW_FRACT * tW + x0;
+
+
+            Rect txtRect = new Rect(inRect) {width = wTxt};
+            Rect stInfoRect = new Rect(inRect) {x = x1, width = wST};
+            Rect buttonRect = new Rect(inRect) {x = x2, width = wButton, height = 10}; 
+
+
+
+            //Rect lRect = new Rect(inRect);
+            //lRect.width /= 2;
+            //Rect bRect = new Rect(inRect);
+            //bRect.width /= 2;
+            //bRect.x += lRect.width;
+            //bRect.height = 10; //need to hardcode size of image?? 
+            //Widgets.Label(inRect, GetDescriptionStringFor(entry) + "/" + Database.TotalStorage);
+            //if (Widgets.ButtonImage(bRect, PMTexButton.CloseXSmall, true))
+            //{
+            //    RemoveFromDB(entry.def); 
+            //} 
+
+            Widgets.Label(txtRect, GetDescriptionStringFor(entry));
+            Widgets.Label(stInfoRect, Database.TotalStorage.ToString());
+            if (Widgets.ButtonImage(buttonRect, PMTexButton.CloseXSmall))
             {
                 RemoveFromDB(entry.def); 
-            } 
+            }
 
         }
 
