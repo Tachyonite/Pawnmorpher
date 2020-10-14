@@ -15,6 +15,7 @@ using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
+using UnityEngine.Windows.WebCam;
 using Verse;
 
 #pragma warning disable 1591
@@ -63,6 +64,14 @@ namespace Pawnmorph.DebugUtils
             }
 
             Log.Message(builder.ToString()); 
+
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        public static void LogDatabaseInfo()
+        {
+            var db = Find.World.GetComponent<ChamberDatabase>(); 
+            Log.Message($"total storage:{db.TotalStorage}, used storage:{db.UsedStorage}, free:{db.FreeStorage}");
 
         }
 

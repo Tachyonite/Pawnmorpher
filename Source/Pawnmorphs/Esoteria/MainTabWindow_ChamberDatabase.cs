@@ -289,7 +289,21 @@ namespace Pawnmorph
             Rect buttonRect = new Rect(inRect) {x = x2, width = wButton, height = 10};
 
             Widgets.Label(txtRect, GetDescriptionStringFor(entry));
-            Widgets.Label(stInfoRect, Database.TotalStorage.ToString());
+
+            string usageStr;
+            var totalStorage = Database.TotalStorage;
+            if (totalStorage <= 0)
+            {
+                usageStr = "NaN"; //should be an error message if total storage is 0 ? 
+            }
+            else
+            {
+                usageStr = (((float) entry.storageSpaceUsed) / totalStorage).ToStringPercent(); 
+            }
+            
+
+
+            Widgets.Label(stInfoRect, usageStr);
             if (Widgets.ButtonImage(buttonRect, PMTexButton.CloseXSmall))
             {
                 RemoveFromDB(entry.def); 
