@@ -105,6 +105,11 @@ namespace Pawnmorph.Chambers
             return (int) Mathf.Max(MIN_MUTATION_STORAGE_SPACE, mutationDef.value * STORAGE_PER_VALUE_MUTATION); 
         }
 
+        //slope of the linear fit curve for converting sqrt(value) to required storage space for pawnKinds 
+        private const float PK_SPACE_M = 0.616f;
+        //x intercept fo the linear fit curve for converting sqrt(value) to required storage for pawnKinds 
+        private const float PK_SPACE_B = -2.49f; 
+
         /// <summary>
         /// Gets the required storage.
         /// </summary>
@@ -114,7 +119,10 @@ namespace Pawnmorph.Chambers
         public static int GetRequiredStorage([NotNull] this PawnKindDef pawnkindDef)
         {
             if (pawnkindDef == null) throw new ArgumentNullException(nameof(pawnkindDef));
-            return (int) Mathf.Max(MIN_MUTATION_STORAGE_SPACE, pawnkindDef.race.BaseMarketValue * STORAGE_PER_VALUE_SPECIES); 
+
+            var l = Mathf.Sqrt(pawnkindDef.race.BaseMarketValue);
+            var sP = PK_SPACE_M * l + PK_SPACE_B; 
+            return (int) Mathf.Max(MIN_MUTATION_STORAGE_SPACE, Mathf.RoundToInt(sP)); 
         }
 
         /// <summary>

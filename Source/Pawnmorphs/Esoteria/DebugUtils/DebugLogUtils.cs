@@ -35,6 +35,37 @@ namespace Pawnmorph.DebugUtils
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
 
+        private const string STORAGE_SPACE_HEADER = "DefName,Storage Space Required, Value";
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        public static void LogStorageSpaceRequirementRange()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine(STORAGE_SPACE_HEADER);
+
+            foreach (MutationDef mutationDef in DefDatabase<MutationDef>.AllDefs.Where(d => !d.IsRestricted))
+            {
+                builder.AppendLine(mutationDef.defName + "," + mutationDef.GetRequiredStorage() + "," + mutationDef.value); 
+            }
+
+            Log.Message(builder.ToString());
+            builder.Clear();
+            builder.AppendLine(STORAGE_SPACE_HEADER);
+
+            foreach (PawnKindDef pawnKindDef in DefDatabase<PawnKindDef>.AllDefs.Where(d => d?.race?.IsValidAnimal() == true))
+            {
+                builder.AppendLine(pawnKindDef.defName
+                                 + ","
+                                 + pawnKindDef.GetRequiredStorage()
+                                 + ","
+                                 + pawnKindDef.race.BaseMarketValue);
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindMissingMorphDescriptions()
         {
