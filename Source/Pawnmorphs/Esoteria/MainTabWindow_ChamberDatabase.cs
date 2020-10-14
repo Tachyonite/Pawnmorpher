@@ -186,7 +186,7 @@ namespace Pawnmorph
         [NotNull] readonly 
         private StringBuilder _builder = new StringBuilder();
 
-
+         
 
         void RemoveFromDB(Def def)
         {
@@ -208,7 +208,7 @@ namespace Pawnmorph
 
         }
 
-        void DrawTable(Rect inRect)
+        void DrawTable(Rect inRect, RowHeader header)
         {
             inRect.yMin += 10f;
             inRect.yMax += 40f;
@@ -221,6 +221,11 @@ namespace Pawnmorph
             Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
             try
             {
+                //draw the header row
+                DrawRow(header, viewRect);
+                viewRect.y += 30;
+
+
                 if (_rowEntries.Count == 0) return;
 
                 for (var index = 0; index < _rowEntries.Count; index++)
@@ -248,7 +253,26 @@ namespace Pawnmorph
         private const float TEXT_ROW_FRACT = 4f / 5f;
         private const float BUTTON_FRACT = 1f - TEXT_ROW_FRACT; 
         private const float DESC_ROW_T_FRACT = DESCRIPTION_ROW_FRACT * TEXT_ROW_FRACT;
-        private const float STORAGE_INFO_FRACT = (1 - DESCRIPTION_ROW_FRACT) * (TEXT_ROW_FRACT); 
+        private const float STORAGE_INFO_FRACT = (1 - DESCRIPTION_ROW_FRACT) * (TEXT_ROW_FRACT);
+
+        void DrawRow(RowHeader header, Rect inRect)
+        {
+            float tW = inRect.width * 2f;
+            float wTxt = tW * DESC_ROW_T_FRACT;
+            float wST = tW * STORAGE_INFO_FRACT;
+            float wButton = BUTTON_FRACT * tW;
+            float x0 = inRect.x;
+            float x1 = DESC_ROW_T_FRACT * tW + x0;
+            float x2 = TEXT_ROW_FRACT * tW + x0;
+
+
+            Rect txtHRect = new Rect(inRect) { width = wTxt };
+            Rect stInfoHRect = new Rect(inRect) { x = x1, width = wST };
+            Rect buttonHRect = new Rect(inRect) { x = x2, width = wButton};
+            Widgets.Label(txtHRect, header.defHeader);
+            Widgets.Label(stInfoHRect, header.totalHeader);
+            Widgets.Label(buttonHRect, header.removeHeader);
+        }
         void DrawRow(RowEntry entry, Rect inRect)
         {
             float tW = inRect.width * 2f;
@@ -262,21 +286,7 @@ namespace Pawnmorph
 
             Rect txtRect = new Rect(inRect) {width = wTxt};
             Rect stInfoRect = new Rect(inRect) {x = x1, width = wST};
-            Rect buttonRect = new Rect(inRect) {x = x2, width = wButton, height = 10}; 
-
-
-
-            //Rect lRect = new Rect(inRect);
-            //lRect.width /= 2;
-            //Rect bRect = new Rect(inRect);
-            //bRect.width /= 2;
-            //bRect.x += lRect.width;
-            //bRect.height = 10; //need to hardcode size of image?? 
-            //Widgets.Label(inRect, GetDescriptionStringFor(entry) + "/" + Database.TotalStorage);
-            //if (Widgets.ButtonImage(bRect, PMTexButton.CloseXSmall, true))
-            //{
-            //    RemoveFromDB(entry.def); 
-            //} 
+            Rect buttonRect = new Rect(inRect) {x = x2, width = wButton, height = 10};
 
             Widgets.Label(txtRect, GetDescriptionStringFor(entry));
             Widgets.Label(stInfoRect, Database.TotalStorage.ToString());
@@ -295,7 +305,7 @@ namespace Pawnmorph
                 _rowEntries.Add(new RowEntry(mutation)); 
             }
 
-            DrawTable(inRect); 
+            DrawTable(inRect, _cachedHeaders[(int) Mode.Mutations]); 
 
         }
 
@@ -307,7 +317,7 @@ namespace Pawnmorph
                 _rowEntries.Add(new RowEntry(taggedAnimal));
             }
 
-            DrawTable(inRect);
+            DrawTable(inRect, _cachedHeaders[(int) Mode.Animal]);
         }
 
 
