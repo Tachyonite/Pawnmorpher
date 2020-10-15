@@ -441,12 +441,13 @@ namespace Pawnmorph.Hybrids
         private static List<GraphicPaths> GenerateGraphicPaths(List<GraphicPaths> humanGraphicPaths, MorphDef morph)
         {
             GraphicPaths temp = new GraphicPaths();
+            var humanGPath = humanGraphicPaths.First(); 
             Vector2? customSize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
-            temp.customDrawSize = customSize ?? temp.customDrawSize;
-            temp.customPortraitDrawSize = customSize ?? temp.customPortraitDrawSize;
+            temp.customDrawSize = customSize ?? humanGPath.customDrawSize;
+            temp.customPortraitDrawSize = customSize ?? humanGPath.customPortraitDrawSize;
             Vector2? customHeadSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
-            temp.customHeadDrawSize = customHeadSize ?? temp.customHeadDrawSize;
-            temp.customPortraitHeadDrawSize = customHeadSize ?? temp.customPortraitHeadDrawSize;
+            temp.customHeadDrawSize = customHeadSize ?? humanGPath.customHeadDrawSize;
+            temp.customPortraitHeadDrawSize = customHeadSize ?? humanGPath.customPortraitHeadDrawSize;
             temp.headOffset = customSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
             temp.headOffsetDirectional = humanGraphicPaths.First().headOffsetDirectional; 
             List<GraphicPaths> returnList = new List<GraphicPaths>();
@@ -501,7 +502,7 @@ namespace Pawnmorph.Hybrids
 
         static FoodTypeFlags GenerateFoodFlags(FoodTypeFlags animalFlags)
         {
-            animalFlags |= FoodTypeFlags.Meal; //make sure all hybrids can eat meals 
+            animalFlags |= FoodTypeFlags.Meal | FoodTypeFlags.Processed; //make sure all hybrids can eat meals and drugs
                                                //need to figure out a way to let them graze but not pick up plants 
             return animalFlags;
         }
@@ -509,7 +510,7 @@ namespace Pawnmorph.Hybrids
         [NotNull]
         private static ThingDef_AlienRace GenerateImplicitRace([NotNull] ThingDef_AlienRace humanDef, [NotNull] MorphDef morph)
         {
-            var impliedRace =  new ThingDef_AlienRace
+            var impliedRace = new ThingDef_AlienRace
             {
                 defName = morph.defName + "Race_Implied", //most of these are guesses, should figure out what's safe to change and what isn't 
                 label = morph.label,
@@ -540,7 +541,8 @@ namespace Pawnmorph.Hybrids
                 stuffCategories = humanDef.stuffCategories?.ToList(),
                 designationCategory = humanDef.designationCategory,
                 tradeTags = humanDef.tradeTags?.ToList(),
-                tradeability = humanDef.tradeability
+                tradeability = humanDef.tradeability,
+                fillPercent = morph.raceSettings.coverPercent
             };
             impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(morph.race.tools.MakeSafe()));
             var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance); 

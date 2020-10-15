@@ -57,8 +57,11 @@ namespace Pawnmorph.Hediffs
                 _chosenKind = DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal).RandomElement();
             }
             var tfRequest = new TransformationRequest(_chosenKind, pawn);
-            MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest); 
-
+            var res = MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest);
+            if (res != null)
+            {
+                Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(res); 
+            }
         }
 
 

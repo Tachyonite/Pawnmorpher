@@ -48,8 +48,9 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             var sRFactor = -pawn.GetStatValue(PMStatDefOf.SapienceRecoverFactor);
+
             var netFactor =  sRFactor;
-            return INSTINCT_PER_TICK_SCALAR *  netFactor * TimeMetrics.TICK_PERIOD; //TODO what else should influence recover rate? 
+            return INSTINCT_PER_TICK_SCALAR *  netFactor * TimeMetrics.TICK_PERIOD * pawn.GetStatValue(PMStatDefOf.SapientAnimalA); //TODO what else should influence recover rate? 
         }
 
         static InstinctUtilities()
@@ -85,7 +86,7 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             float res = CalculateNetResistance(pawn);
-            float lambda = 1 / pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
+            float lambda = pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
 
             return res - instinct * lambda;
         }
@@ -98,11 +99,8 @@ namespace Pawnmorph
         /// <returns></returns>
         public static float CalculateControlChange([NotNull] Pawn pawn, float instinctChange)
         {
-            var div =  pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
-            var sign = div < 0 ? -1 : 1;
-            div = Mathf.Max(Mathf.Abs(div), EPSILON) * sign; //prevent division by zero but preserve sign  
-
-            return -INSTINCT_MULTIPLIER * instinctChange / (div);
+            var stat =  pawn.GetStatValue(PMStatDefOf.SapientAnimalA);
+            return -INSTINCT_MULTIPLIER * instinctChange * stat;
         }
 
         /// <summary>

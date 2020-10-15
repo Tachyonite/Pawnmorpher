@@ -138,14 +138,8 @@ namespace Pawnmorph.TfSys
 
             var reactionStatus = original.GetFormerHumanReactionStatus();
             float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
-
             Faction faction;
-            if (request.forcedFaction != null) //forced faction should be the highest priority if set 
-                faction = request.forcedFaction;
-            else if (original.IsColonist)
-                faction = original.Faction;
-            else
-                faction = null;
+            faction = GetFaction(request, original);
 
             Gender newGender =
                 TransformerUtility.GetTransformedGender(original, request.forcedGender, request.forcedGenderChance);
@@ -158,12 +152,22 @@ namespace Pawnmorph.TfSys
             Pawn animalToSpawn = PawnGenerator.GeneratePawn(pRequest); //make the temp pawn 
 
 
+
+
             animalToSpawn.needs.food.CurLevel =
                 original.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
             animalToSpawn.needs.rest.CurLevel =
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
-            float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn); 
+            float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
+
+            if (request.forcedFaction == null && original.Faction != faction && original.Faction != animalToSpawn.Faction && FormerHumanUtilities.GetQuantizedSapienceLevel(sapienceLevel) <= SapienceLevel.MostlySapient)
+            {
+                //set the faction to the original's if mostly sapient or above 
+                animalToSpawn.SetFaction(original.Faction);
+            }
+
+            
             GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
             FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel); //use a normal distribution? 
@@ -173,7 +177,10 @@ namespace Pawnmorph.TfSys
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
 
             var rFaction = request.factionResponsible ?? GetFactionResponsible(original);
-            var inst = new TransformedPawnSingle
+
+
+
+            var inst = new TransformedPawnSingle(request.transformedTick)
             {
                 original = original,
                 animal = spawnedAnimal,
@@ -192,18 +199,18 @@ namespace Pawnmorph.TfSys
             if (request.tale != null) // If a tale was provided, push it to the tale recorder.
                 TaleRecorder.RecordTale(request.tale, original, animalToSpawn);
 
-            Faction oFaction = original.Faction;
+            Faction oFaction = original.FactionOrExtraMiniOrHomeFaction;
             Map oMap = original.Map;
 
 
             //apply any other post tf effects 
-            ApplyPostTfEffects(original, spawnedAnimal);
+            ApplyPostTfEffects(original, animalToSpawn, request);
 
             TransformerUtility
                .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 
             //notify the faction that their member has been transformed 
-            oFaction?.Notify_MemberTransformed(original, spawnedAnimal, oMap == null, oMap);
+            oFaction?.Notify_MemberTransformed(original, animalToSpawn, oMap == null, oMap);
 
             if (!request.noLetter && reactionStatus == FormerHumanReactionStatus.Colonist || reactionStatus == FormerHumanReactionStatus.Prisoner) //only send the letter for colonists and prisoners 
                 SendLetter(request, original, spawnedAnimal);
@@ -218,7 +225,18 @@ namespace Pawnmorph.TfSys
             return inst;
         }
 
-        
+        private static Faction GetFaction(TransformationRequest request, Pawn original)
+        {
+            Faction faction;
+            if (request.forcedFaction != null) //forced faction should be the highest priority if set 
+                faction = request.forcedFaction;
+            else if (original.IsColonist)
+                faction = original.Faction;
+            else
+                faction = null;
+            return faction;
+        }
+
 
         private void TryAddMutationsToPawn([NotNull] Pawn original, [CanBeNull] Hediff requestCause,
                                            [NotNull] PawnKindDef requestOutputDef)
@@ -248,16 +266,17 @@ namespace Pawnmorph.TfSys
 
         /// <summary>
         /// Applies the post tf effects.
-        /// this should be called just before the original pawn is cleaned up 
+        /// this should be called just before the original pawn is cleaned up
         /// </summary>
         /// <param name="original">The original.</param>
         /// <param name="transformedPawn">The transformed pawn.</param>
-        protected override void ApplyPostTfEffects(Pawn original, Pawn transformedPawn)
+        /// <param name="request">The transformation request</param>
+        protected override void ApplyPostTfEffects(Pawn original, Pawn transformedPawn, TransformationRequest request)
         {
             //apply apparel damage 
             ApplyApparelDamage(original, transformedPawn.def);
             FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(transformedPawn, original);
-            base.ApplyPostTfEffects(original, transformedPawn);
+            base.ApplyPostTfEffects(original, transformedPawn, request);
            
 
         }
@@ -319,6 +338,8 @@ namespace Pawnmorph.TfSys
             ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus);
             spawned.health.AddHediff(MorphTransformationDefOf.StabiliserHigh); //add stabilizer on reversion 
 
+
+            TransformerUtility.CleanUpHumanPawnPostTf(animal, null); 
             animal.Destroy();
             return true;
         }

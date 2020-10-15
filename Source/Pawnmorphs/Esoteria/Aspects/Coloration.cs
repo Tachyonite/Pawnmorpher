@@ -311,7 +311,7 @@ namespace Pawnmorph.Aspects
 
         static ColorationAspectDefOfs()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(AspectDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(ColorationAspectDefOfs));
         }
     }
 }

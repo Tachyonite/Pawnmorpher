@@ -45,6 +45,16 @@ namespace Pawnmorph.Hediffs
         public bool defaultBlocks = false;
 
         /// <summary>
+        /// if this mutation can be tagged and stored 
+        /// </summary>
+        public bool isTaggable = true;
+
+        /// <summary>
+        /// optional field that will act as an explicit description for the mutations 'genome' object
+        /// </summary>
+        public string customGenomeDescription;
+
+        /// <summary>
         ///     list of other mutations this mutation blocks
         /// </summary>
         public List<BlockEntry> blockList = new List<BlockEntry>();
@@ -52,7 +62,13 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// list of body part defs that this mutations blocks other mutations from being added onto 
         /// </summary>
-        public List<BodyPartDef> blockSites = new List<BodyPartDef>(); 
+        public List<BodyPartDef> blockSites = new List<BodyPartDef>();
+
+
+        /// <summary>
+        /// The abstract 'value' of this mutation, can be negative or zero if the mutation is in general negative 
+        /// </summary>
+        public int value; 
 
         /// <summary>
         ///     the rule pack to use when generating mutation logs for this mutation
@@ -217,7 +233,39 @@ namespace Pawnmorph.Hediffs
                     //Log.Message($"{defName} has implicitly defined {nameof(mutationMemory)}, this should be assigned explicitly");
                 }
             }
+
+            if (parts != null)
+            {
+                //get rid of any duplicates 
+                _tmpPartLst.Clear();
+                _tmpPartLst.AddRange(parts.Distinct()); 
+                parts.Clear();
+                parts.AddRange(_tmpPartLst);
+
+            }
         }
+
+        [NotNull]
+        private static readonly List<BodyPartDef> _tmpPartLst = new List<BodyPartDef>();
+
+        /// <summary>
+        /// The explicit genome definition
+        /// </summary>
+        public ThingDef explicitGenomeDef;
+
+        /// <summary>
+        /// The implicit genome definition
+        /// </summary>
+        internal ThingDef implicitGenomeDef;
+
+        /// <summary>
+        /// Gets the thing def for the genome item that gives this mutation.
+        /// </summary>
+        /// <value>
+        /// The genome definition that gives this mutation, can be null if none exist.
+        /// </value>
+        [CanBeNull]
+        public ThingDef GenomeDef => explicitGenomeDef ?? implicitGenomeDef; 
 
         /// <summary>
         ///     simple class for a single 'block entry'
@@ -233,6 +281,27 @@ namespace Pawnmorph.Hediffs
             ///     if true, the mutation will be block from any part, not just on the same part this mutation is on
             /// </summary>
             public bool blockOnAnyPart;
+
+            /// <summary>
+            /// Checks if the given source mutation blocks the given otherMutation being added at the given part
+            /// </summary>
+            /// <param name="sourceMutation">The source mutation.</param>
+            /// <param name="otherMutation">The other mutation.</param>
+            /// <param name="addPart">The add part.</param>
+            /// <returns></returns>
+            public bool Blocks([NotNull] Hediff_AddedMutation sourceMutation, [NotNull] MutationDef otherMutation, [CanBeNull] BodyPartRecord addPart)
+            {
+                if (sourceMutation == null) throw new ArgumentNullException(nameof(sourceMutation));
+                if (otherMutation == null) throw new ArgumentNullException(nameof(otherMutation));
+
+                if (otherMutation != mutation)
+                {
+                    return false; 
+                }
+
+                return blockOnAnyPart || addPart == sourceMutation.Part; 
+
+            }
         }
 
         

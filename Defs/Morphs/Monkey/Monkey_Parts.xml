@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="MonkeyPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>MonkeyMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyJaw</defName>
 		<label>monkey snout</label>
@@ -11,7 +10,7 @@
 			<li>Jaw</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -23,7 +22,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -54,7 +53,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyEar</defName>
 		<label>simian</label>
@@ -63,21 +61,21 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyTail</defName>
 		<label>monkey tail</label>
 		<description>A long dextrous tail extends from the base of [PAWN_nameDef]'s spine. It would help with climbing abiltiy, but nobody knows how to on the rim.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -87,7 +85,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyHand</defName>
 		<label>dextrous hand</label>
@@ -96,7 +93,7 @@
 			<li>Hand</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>
@@ -106,7 +103,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyFoot</defName>
 		<label>dextrous toes</label>
@@ -115,7 +111,7 @@
 			<li>Foot</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

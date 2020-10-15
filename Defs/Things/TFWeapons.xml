@@ -231,15 +231,26 @@
 		</recipeMaker>
 		<verbs>
 			<li>
-				<verbClass>Verb_Shoot</verbClass>
+				<verbClass>Pawnmorph.Verbs.Tag</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_TaggingGun</defaultProjectile>
 				<warmupTime>4</warmupTime>
 				<range>30</range>
+				<onlyManualCast>true</onlyManualCast>
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_BoltActionRifle</defaultProjectile>
+				<warmupTime>1.7</warmupTime>
+				<range>36.9</range>
+				<soundCast>Shot_BoltActionRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			  </li>
 		</verbs>
 		<tools>
 			<li>

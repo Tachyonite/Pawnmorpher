@@ -21,6 +21,35 @@ namespace Pawnmorph
         [NotNull]
         private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
 
+        private MutationDef _mDef;
+
+        /// <summary>
+        /// Gets the definition.
+        /// </summary>
+        /// <value>
+        /// The definition.
+        /// </value>
+        [NotNull]
+        public MutationDef Def
+        {
+            get
+            {
+                if (_mDef == null)
+                {
+                    try
+                    {
+                        _mDef = (MutationDef) def; 
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        Log.Error($"cannot convert {def.GetType().Name} to {nameof(MutationDef)}!\n{e}");
+                    }
+                }
+
+                return _mDef; 
+            }
+        }
+
         /// <summary>
         /// checks if this mutation blocks the addition of a new mutation at the given part
         /// </summary>
@@ -235,10 +264,39 @@ namespace Pawnmorph
         /// </summary>
         protected virtual void OnStageChanges()
         {
+            if (CurStage is MutationStage mStage)
+            {
+                //check for aspect skips 
+                if (mStage.SkipAspects.Any(e => e.Satisfied(pawn)))
+                {
+                    SkipStage();
+                    return; 
+                }
+
+            }
+
+
+
             if (CurStage is IExecutableStage exeStage)
             {
                 exeStage.EnteredStage(this); 
             }
+        }
+
+        private void SkipStage()
+        {
+            //make sure to skip in the correct direction 
+            float severityAdj = SeverityAdjust?.ChangePerDay ?? 0;
+
+            int nextIndex;
+            
+            if (severityAdj < 0) nextIndex = Mathf.Max(0, CurStageIndex - 1);
+            else nextIndex = Mathf.Min(def.stages.Count - 1, CurStageIndex + 1);
+
+            if (nextIndex == CurStageIndex) return; //don't skip as there's no stage to skip to 
+            HediffStage nextStage = def.stages[nextIndex];
+
+            Severity = nextStage.minSeverity;
         }
 
         private Comp_MutationSeverityAdjust _sevAdjComp;

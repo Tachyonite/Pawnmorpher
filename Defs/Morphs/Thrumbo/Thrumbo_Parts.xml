@@ -2,12 +2,10 @@
 	<Pawnmorph.Hediffs.MutationDef Name="ThrumboPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>ThrumboMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurLimb">
 		<defName>ThrumboFur</defName>
 		<classInfluence>ThrumboMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboSnout</defName>
 		<label>thrumbo snout</label>
@@ -32,7 +30,24 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -44,9 +59,10 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adaptation has removed most of the difficulty with speaking.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -60,6 +76,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>paragon</label>
+				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Further adaptation has brought out the wise thrumbo inside.</description>
 				<minSeverity>1.5</minSeverity>
 				<capMods>
 					<li>
@@ -92,7 +109,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboEar</defName>
 		<label>thrumbic</label>
@@ -102,12 +118,11 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.05</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboTail</defName>
 		<label>thrumbo tail</label>
@@ -115,9 +130,10 @@
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -127,7 +143,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
 		<defName>EtherThrumboHorn</defName>
 		<label>thrumbohorn</label>
@@ -144,9 +159,7 @@
 					<SocialImpact>-0.10</SocialImpact>
 				</statOffsets>
 			</li>
-			<li>
-				<!-- regular new/adapted stages for thrumbo horn? -->
-
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
@@ -156,9 +169,7 @@
 					<SocialImpact>+0.10</SocialImpact>
 				</statOffsets>
 			</li>
-
 		</stages>
-
 		<mutationTale>GrewThrumboHorn</mutationTale>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">

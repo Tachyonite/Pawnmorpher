@@ -346,22 +346,23 @@ namespace Pawnmorph.DebugUtils
 
         private void ListPlayOptions()
         {
-            DebugAction("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); });
-            DebugAction("give random mutations", GetRandomMutationsOptions);
-            DebugAction("recalculate all colonist mutation influence", AllRecalculateInfluence);
-            DebugAction("run race check on all pawn", RunRaceCheck);
-            DebugAction("get mutation info for all pawns", GetAllMutationInfo); 
-            DebugToolMapForPawns("force full transformation", ForceTransformation);
-            DebugToolMapForPawns("get initial graphics", ListPawnInitialGraphics);
-            DebugToolMapForPawns("Remove Aspect", DoRemoveAspectsOption);
-            DebugToolMapForPawns("Add Aspect", DoAddAspectToPawn); 
-            DebugToolMapForPawns("Add Backstory to Sapient Animal", DoAddBackstoryToPawn);
-            DebugToolMapForPawns("Try Random Hunt", TryStartRandomHunt); 
-            DebugToolMapForPawns("Make pawn permanently feral", MakePawnPermanentlyFeral);
-            DebugToolMapForPawns("Restart all mutation progression", ResetMutationProgression);
-            DebugToolMapForPawns("recalculate mutation influence", RecalculateInfluence); 
-            DebugToolMapForPawns("Run Race Check", RunRaceCheck);
-            DebugToolMapForPawns("get mutation info for pawn", GetMutationInfo); 
+            //TODO move these into the regular action menu 
+            DebugAction_NewTmp("shift race", () => { Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions())); }, false);
+            DebugAction_NewTmp("give random mutations", GetRandomMutationsOptions, false);
+            DebugAction_NewTmp("recalculate all colonist mutation influence", AllRecalculateInfluence, false);
+            DebugAction_NewTmp("run race check on all pawn", RunRaceCheck, false);
+            DebugAction_NewTmp("get mutation info for all pawns", GetAllMutationInfo, false);
+            DebugToolMapForPawns_NewTmp("force full transformation", ForceTransformation, false);
+            DebugToolMapForPawns_NewTmp("get initial graphics", ListPawnInitialGraphics, false);
+            DebugToolMapForPawns_NewTmp("Remove Aspect", DoRemoveAspectsOption, false);
+            DebugToolMapForPawns_NewTmp("Add Aspect", DoAddAspectToPawn, false);
+            DebugToolMapForPawns_NewTmp("Add Backstory to Sapient Animal", DoAddBackstoryToPawn, false);
+            DebugToolMapForPawns_NewTmp("Try Random Hunt", TryStartRandomHunt, false);
+            DebugToolMapForPawns_NewTmp("Make pawn permanently feral", MakePawnPermanentlyFeral, false);
+            DebugToolMapForPawns_NewTmp("Restart all mutation progression", ResetMutationProgression, false);
+            DebugToolMapForPawns_NewTmp("recalculate mutation influence", RecalculateInfluence, false);
+            DebugToolMapForPawns_NewTmp("Run Race Check", RunRaceCheck, false);
+            DebugToolMapForPawns_NewTmp("get mutation info for pawn", GetMutationInfo, false); 
         }
 
         private void MakePawnPermanentlyFeral(Pawn obj)

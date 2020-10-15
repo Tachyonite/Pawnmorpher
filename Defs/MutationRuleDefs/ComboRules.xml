@@ -52,4 +52,11 @@
             </li>
         </results>
     </Pawnmorph.MutationRuleDef>
+
+    <Pawnmorph.MutationRuleDef>
+        <defName>PM_HellhoundCombo</defName>
+        <priority>10</priority>
+        <mtth>0</mtth>
+        <ruleWorker>Pawnmorph.MutationRules.Worker_Hellhound</ruleWorker>
+    </Pawnmorph.MutationRuleDef>
 </Defs>

@@ -61,6 +61,33 @@ namespace Pawnmorph
 
         [NotNull] private static readonly List<RulePackDef> _randomNameGenerators;
 
+        /// <summary>
+        ///     the base chance for a neutral or hostile pawn to go manhunter when transformed
+        /// </summary>
+        public static float BaseManhunterTfChance =>
+            LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().manhunterTfChance;
+
+        /// <summary>
+        ///     if manhunter transformation is enabled
+        /// </summary>
+        public static bool ManhunterTfEnabled => BaseManhunterTfChance > MANHUNTER_EPSILON;
+
+        /// <summary>
+        ///     the chance for a friendly pawn to go manhunter when transformed
+        /// </summary>
+        public static float BaseFriendlyManhunterTfChance => ManhunterTfEnabled
+                                                                 ? LoadedModManager
+                                                                  .GetMod<PawnmorpherMod>()
+                                                                  .GetSettings<PawnmorpherSettings>()
+                                                                  .friendlyManhunterTfChance
+                                                                 : 0;
+
+
+        /// <summary>
+        /// manhunter chances below this means that manhunter tf is disabled 
+        /// </summary>
+        public const float MANHUNTER_EPSILON = 0.01f; 
+
         static FormerHumanUtilities()
         {
             var values = new[]
@@ -436,8 +463,21 @@ namespace Pawnmorph
             return pawn;
         }
 
-       
 
+        /// <summary>
+        /// checks if Tameness the can decay on the given pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool TamenessCanDecay([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            var sapienceLv = pawn.GetQuantizedSapienceLevel();
+            if (sapienceLv == null || sapienceLv > SapienceLevel.Conflicted)
+                return TrainableUtility.TamenessCanDecay(pawn.def);
+            return false;
+        }
 
         /// <summary>
         ///     Gets the former human tracker.
@@ -447,7 +487,9 @@ namespace Pawnmorph
         [CanBeNull]
         public static SapienceTracker GetSapienceTracker([NotNull] this Pawn pawn)
         {
-            var tComp = pawn.GetComp<SapienceTracker>();
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            var tComp = CompCacher<SapienceTracker>.GetCompCached(pawn); 
             return tComp;
         }
 
@@ -540,11 +582,9 @@ namespace Pawnmorph
             var formerHumanExt = sapientAnimal.def.GetModExtension<FormerHumanSettings>();
             BackstoryDef backstoryDef = formerHumanExt?.backstory ?? BackstoryDefOf.FormerHumanNormal;
             Backstory bkStory = backstoryDef.backstory;
-            var builder = new StringBuilder();
-            builder.AppendLine($"for {sapientAnimal.Name}");
             foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefsListForReading)
                 if (bkStory.DisabledWorkTypes.Contains(workTypeDef))
-                    workSettings.SetPriority(workTypeDef, 0);
+                    workSettings.SetPriority(workTypeDef, 0); 
                 else
                     workSettings.SetPriority(workTypeDef, 3);
         }
@@ -897,8 +937,15 @@ namespace Pawnmorph
             if (animal.Faction == null && animal.GetCorrectMap() != null)
                 if (joinIfRelated)
                 {
-                    bool relatedToColonist = animal.relations?.PotentiallyRelatedPawns?.Any(p => p.IsColonist) == true;
-                    if (relatedToColonist) animal.SetFaction(Faction.OfPlayer);
+
+                    var relatedColonist = animal.relations?.PotentiallyRelatedPawns?.FirstOrDefault(p => p.IsColonist);
+                    if (relatedColonist != null)
+                    {
+                        DebugLogUtils.LogMsg(LogLevel.Messages, $"{animal.Name} is joining colony because they are related to {relatedColonist.Name}");
+
+                        animal.SetFaction(Faction.OfPlayer); 
+                    }
+
                 }
 
             animal.needs.AddOrRemoveNeedsAsAppropriate();
@@ -1030,7 +1077,13 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferRelations(original, transformedPawn);
             PawnTransferUtilities.TransferAspects(original, transformedPawn);
             PawnTransferUtilities.TransferSkills(original, transformedPawn, transferMode, passionTransferMode);
-            PawnTransferUtilities.TransferTraits(original, transformedPawn, t => MutationTraits.Contains(t));
+            PawnTransferUtilities.TransferTraits(original, transformedPawn, t => t.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn) == true);
+            PawnTransferUtilities.TransferHediffs(original, transformedPawn,
+                                                  h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
+                                                    == true);
+            PawnTransferUtilities.TransferThoughts(original, transformedPawn);
+
+            PawnTransferUtilities.TransferQuestRelations(original, transformedPawn); 
 
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
         }
@@ -1167,6 +1220,7 @@ namespace Pawnmorph
             int mutationsToAdd = Mathf.CeilToInt(MorphUtilities.GetMaxInfluenceOfRace(lPawn.def)) + 10;
             _mScratchList.Clear();
             _mScratchList.AddRange(MutationUtilities.AllNonRestrictedMutations);
+            _mScratchList.RemoveAll(m => AnimalClassDefOf.Powerful.GetAllMutationIn().Contains(m)); // Chimeras should not recieve powerful mutations.
             List<BodyPartRecord> addList = new List<BodyPartRecord>();
             List<BodyPartRecord> addedList = new List<BodyPartRecord>(); 
             _brScratchList.Clear();

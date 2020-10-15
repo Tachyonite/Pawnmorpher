@@ -20,25 +20,28 @@ namespace EtherGun
         {
             base.Impact(hitThing);
             var pgc = Find.World.GetComponent<PawnmorphGameComp>();
+            var database = Find.World.GetComponent<ChamberDatabase>();
             if (hitThing != null && hitThing is Pawn pawn)
             {
                 Pawn hitPawn = pawn;
 
-                if (hitPawn.def.IsValidAnimal())
+                var fHStatus = hitPawn.GetQuantizedSapienceLevel();
+                if (fHStatus != null && fHStatus != SapienceLevel.PermanentlyFeral)
                 {
-                    if (pgc.taggedAnimals.Contains(hitPawn.kindDef))
-                    {
-                        Messages.Message("{0} already in genetic database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.RejectInput);
-                        return;
-                    }
+                    Messages.Message("CannotTagFormerHuman".Translate(), MessageTypeDefOf.RejectInput);
+                    return;
+                }
 
-                    pgc.TagPawn(hitPawn.kindDef);
-                    Messages.Message("{0} added to database".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.TaskCompletion);
-                }
-                else if (DatabaseUtilities.IsChao(hitPawn.def))
+                if (!database.TryAddToDatabase(pawn.kindDef, out string reason))
                 {
-                    Messages.Message("{0} is too genetically corrupted to be added".Formatted(hitPawn.kindDef.LabelCap), MessageTypeDefOf.RejectInput);
+                    Messages.Message(reason, MessageTypeDefOf.RejectInput);
                 }
+                else
+                {
+                    Messages.Message("AnimalAddedToDatabase".Formatted(hitPawn.kindDef.LabelCap),
+                                     MessageTypeDefOf.TaskCompletion); 
+                }
+
             }
         }
     }

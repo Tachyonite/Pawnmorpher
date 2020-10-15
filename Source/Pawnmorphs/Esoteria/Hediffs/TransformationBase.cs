@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
@@ -151,6 +152,35 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        private bool? _canMutateCache;
+
+        /// <summary>
+        /// Gets a value indicating whether this instance can mutate the pawn.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance can mutate the pawn; otherwise, <c>false</c>.
+        /// </value>
+        protected bool CanMutatePawn
+        {
+            get
+            {
+                if (_canMutateCache == null)
+                {
+                    var mutagen = def.GetMutagenDef();
+                    _canMutateCache = mutagen.CanInfect(pawn); 
+                }
+
+                return _canMutateCache.Value; 
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether  this should be removed if the pawn is not mutable.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this should be removed if the pawn is not mutable.; otherwise, <c>false</c>.
+        /// </value>
+        protected virtual bool RemoveIfNotMutable { get; } = true; 
 
         /// <summary>called after this hediff is added to the pawn</summary>
         /// <param name="dinfo">The dinfo.</param>
@@ -163,7 +193,7 @@ namespace Pawnmorph.Hediffs
             _curIndex = 0;
 
             var mutagen = def.GetMutagenDef();
-            if (!mutagen.CanInfect(pawn)) //if we somehow got a pawn that can't be mutated just remove the hediff
+            if (!mutagen.CanInfect(pawn) && RemoveIfNotMutable) //if we somehow got a pawn that can't be mutated just remove the hediff
                 forceRemove = true; 
 
 
@@ -285,14 +315,11 @@ namespace Pawnmorph.Hediffs
         protected virtual void TryGiveTransformations()
         {
             if (CurStage == null) return;
-
-            RandUtilities.PushState();
+            if (!CanMutatePawn) return; 
 
             foreach (var tfGiver in CurStage.GetAllTransformers())
                 if (tfGiver.TryTransform(pawn, this))
                     break; //try each one, one by one. break at first one that succeeds  
-
-            RandUtilities.PopState();
         }
 
         /// <summary>
@@ -300,7 +327,15 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         /// <param name="stage"></param>
         /// <returns></returns>
-        protected abstract bool AnyMutationsInStage(HediffStage stage); 
+        protected abstract bool AnyMutationsInStage(HediffStage stage);
+
+        /// <summary>
+        /// Gets a value indicating whether there are any mutations in the current stage.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if there are any mutations in the current stage; otherwise, <c>false</c>.
+        /// </value>
+        public bool AnyMutationsInCurrentStage => AnyMutationsInStage(CurStage); 
 
         private void AddMutations()
         {
@@ -414,12 +449,22 @@ namespace Pawnmorph.Hediffs
                 while (_curMutationIndex < lst.Count)
                 {
                     var mutation = lst[_curMutationIndex];
-                    if (Rand.Value < mutation.addChance)
+
+                    //check if the mutation can actually be added 
+                    if (!mutation.mutation.CanApplyMutations(pawn, part))
                     {
-                        MutationUtilities.AddMutation(pawn, mutation.mutation, part);
-                        var mutagen = def.GetMutagenDef();
-                        mutagen.TryApplyAspects(pawn);
-                        mutationsAdded++;
+                        _curMutationIndex++; 
+                        continue;
+                    }
+                    else if (Rand.Value < mutation.addChance)
+                    {
+                        var result = MutationUtilities.AddMutation(pawn, mutation.mutation, part);
+                        if(result) //make sure the mutation was actually added before doing this 
+                        {
+                            var mutagen = def.GetMutagenDef();
+                            mutagen.TryApplyAspects(pawn);
+                            mutationsAdded++;
+                        }
                     }else if (mutation.blocks)
                     {
                         return; //wait here until the blocking mutation is added 

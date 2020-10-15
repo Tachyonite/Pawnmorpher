@@ -16,7 +16,7 @@ namespace Pawnmorph.Hediffs
     public class SyringeTfStage : TransformationStageBase
     {
         [NotNull]
-        private static readonly Dictionary<PawnKindDef, List<MutationEntry>> _cachedEntries = new Dictionary<PawnKindDef, List<MutationEntry>>(); 
+        private static readonly Dictionary<PawnKindDef, List<MutationEntry>> _cachedEntries = new Dictionary<PawnKindDef, List<MutationEntry>>();
 
 
 
@@ -24,6 +24,7 @@ namespace Pawnmorph.Hediffs
         /// Gets the entries for the given pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
+        /// <param name="source"></param>
         /// <returns></returns>
         public override IEnumerable<MutationEntry> GetEntries(Pawn pawn, Hediff source)
         {

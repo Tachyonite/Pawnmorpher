@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using Multiplayer.API;
 using Pawnmorph.Chambers;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.TfSys;
@@ -34,23 +33,17 @@ namespace Pawnmorph
         private CompFlickable flickComp = null;
         public Building_MutagenChamber linkTo;
 
-        private ChamberState _state; 
-
+        private ChamberState _state;
+        public override void Draw()
+        {
+            
+            //TODO draw pawn
+            Comps_PostDraw();
+        }
 
         public Building_MutagenChamber()
         {
-
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PushState(RandUtilities.MPSafeSeed); 
-            //}
             pawnTFKind = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.race.baseBodySize <= 2.9f && x.race.race.intelligence == Intelligence.Animal && x.race.race.FleshType == FleshTypeDefOf.Normal).RandomElement();
-
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PopState();
-            //}
-
 
             EnterMutagenChamber = DefDatabase<JobDef>.GetNamed("EnterMutagenChamber");
         }
@@ -111,6 +104,11 @@ namespace Pawnmorph
             fuelComp = this.GetComp<CompRefuelable>();
             powerComp = this.GetComp<CompPowerTrader>();
             flickComp = this.GetComp<CompFlickable>();
+
+
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.MergingPawns, OpportunityType.Important);
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.PM_PartPicker, OpportunityType.Important);
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.Tagging, OpportunityType.Important);
         }
 
         public override void Tick()
@@ -200,37 +198,20 @@ namespace Pawnmorph
 
         public void PickRandom()
         {
-
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PushState(RandUtilities.MPSafeSeed);
-            //}
-
             var comp = def.GetCompProperties<ThingCompProperties_ModulatorOptions>();
             var defaultAnimals = comp.defaultAnimals;
 
-            var taggedAnimals = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals;
+            var taggedAnimals = Find.World.GetComponent<ChamberDatabase>().TaggedAnimals;
             if (taggedAnimals == null || taggedAnimals.Count == 0)
             {
                 pawnTFKind = defaultAnimals.RandElement();
-                goto End;
+                return;
             }
-            
-
-            
 
             var tmpLst = new List<PawnKindDef>(defaultAnimals);
             tmpLst.AddRange(taggedAnimals);
 
             pawnTFKind = tmpLst.RandElement();
-
-
-            End:
-            return; 
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PopState();
-            //}
         }
 
         void CheckState()
@@ -280,10 +261,15 @@ namespace Pawnmorph
         }
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
         {
+
+
             foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(myPawn))
             {
                 yield return floatMenuOption;
             }
+            if(!MutagenDefOf.MergeMutagen.CanTransform(myPawn))
+                yield break;
+            
             if (innerContainer.Count == 0)
             {
                 if (!myPawn.CanReach(this, PathEndMode.InteractionCell, Danger.Deadly))
@@ -352,6 +338,11 @@ namespace Pawnmorph
             daysIn = 0; 
         }
 
+        
+
+        
+        
+
         private void TransformPawn(Pawn pawn)
         {
             TransformationRequest request;
@@ -364,7 +355,10 @@ namespace Pawnmorph
                     request = new TransformationRequest(pawnTFKind, pawn)
                     {
                         forcedGender = TFGender.Switch,
-                        forcedGenderChance = 50
+                        forcedGenderChance = 50,
+                        manhunterSettingsOverride = ManhunterTfSettings.Never,
+                        factionResponsible = Faction,
+                        forcedFaction = Faction
                     };
 
                     mutagen = MutagenDefOf.defaultMutagen.MutagenCached;
@@ -374,7 +368,10 @@ namespace Pawnmorph
                     request = new TransformationRequest(pawnTFKind,   pawn, (Pawn) linkTo.innerContainer[0])
                     {
                         forcedGender = TFGender.Switch,
-                        forcedGenderChance = 50
+                        forcedGenderChance = 50,
+                        manhunterSettingsOverride = ManhunterTfSettings.Never,
+                        factionResponsible = Faction,
+                        forcedFaction = Faction
                     };
                     mutagen = MutagenDefOf.MergeMutagen.MutagenCached;
                     break;
@@ -386,6 +383,7 @@ namespace Pawnmorph
             }
 
             TransformedPawn pmInst = mutagen.Transform(request);
+           
             if (pmInst == null)
             {
                 Log.Error($"mutagenic chamber could not transform pawns {string.Join(",",request.originals.Select(p => p.Name.ToStringFull).ToArray())} using mutagen {mutagen.def.defName}");

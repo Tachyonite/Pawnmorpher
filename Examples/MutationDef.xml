@@ -22,6 +22,17 @@
                 memory that will be given to the pawn when the mutation enters this stage 
                 <memory>ThoughtDef</memory>
 
+                a list of of aspects that if the pawn has these, this stage will be skipped 
+                optional
+                <skipAspects>
+                    <li>
+                        the aspect to check for, Required
+                        <aspect>AspectDef</aspect>
+
+                        if listed, the pawn's aspect must be of the given stage to skip 
+                        <stage>index</stage>
+                    </li>
+                </skipAspects>
             </li>
         </stages>
 

@@ -6,9 +6,6 @@
 		<race>Rhinoceros</race>
 		<classification>ThickHide</classification>
 		<categories>
-			<li>Arid</li>
-			<li>Temperate</li>
-			<li>Tropical</li>
 			<li>Powerful</li>
 		</categories>
 		<fullTransformation>PawnmorphRhinocerosTF</fullTransformation>

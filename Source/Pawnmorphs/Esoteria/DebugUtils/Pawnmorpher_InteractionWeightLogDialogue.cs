@@ -55,7 +55,7 @@ namespace Pawnmorph.DebugUtils
             {
                 foreach (PMInteractionDef pmInteractionDef in _interactionDefs)
                 {
-                    DebugAction(pmInteractionDef.defName, () => ListInteractionWeights(pmInteractionDef)); 
+                    DebugAction_NewTmp(pmInteractionDef.defName, () => ListInteractionWeights(pmInteractionDef), false); 
                 }
             }
         }

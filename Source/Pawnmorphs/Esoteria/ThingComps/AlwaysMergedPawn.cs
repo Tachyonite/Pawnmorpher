@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.TfSys;
+using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
@@ -17,6 +18,37 @@ namespace Pawnmorph.ThingComps
     /// <seealso cref="Verse.ThingComp" />
     public class AlwaysMergedPawn : ThingComp
     {
+        private bool _triggered = false;
+
+
+        /// <summary>
+        /// called every tick 
+        /// </summary>
+        public override void CompTick()
+        {
+            base.CompTick();
+
+            if(_triggered) return;
+            _triggered = true; 
+            try
+            {
+                var pawn = (Pawn)parent;
+                var sTracker = pawn?.GetSapienceTracker();
+                if (sTracker == null)
+                {
+                    DebugLogUtils.Warning($"unable to get sapience tracker on pawn {pawn?.LabelShort ?? "NULL"}");
+                    return;
+                }
+
+                MakeMergedPawn(sTracker);
+
+            }
+            catch (InvalidCastException e)
+            {
+                Log.Error($"unable to case {parent.GetType().Name} to {nameof(Pawn)}!\n{e}");
+            }
+        }
+
         /// <summary>
         /// Posts the spawn setup.
         /// </summary>
@@ -27,25 +59,12 @@ namespace Pawnmorph.ThingComps
             base.PostSpawnSetup(respawningAfterLoad);
             if (respawningAfterLoad) return;
 
-            try
-            {
-                var pawn = (Pawn) parent;
-                var sTracker = pawn?.GetSapienceTracker();
-                if (sTracker == null)
-                {
-                    DebugLogUtils.Warning($"unable to get sapience tracker on pawn {pawn?.LabelShort ??"NULL"}");
-                    return;
-                }
-
-                MakeMergedPawn(sTracker); 
-
-            }
-            catch (InvalidCastException e)
-            {
-                Log.Error($"unable to case {parent.GetType().Name} to {nameof(Pawn)}!\n{e}");
-            }
+          
 
         }
+
+
+
 
         private void MakeMergedPawn([NotNull] SapienceTracker sTracker)
         {
@@ -70,6 +89,26 @@ namespace Pawnmorph.ThingComps
             //TODO figure out how relationships work for merged pawns 
 
             sTracker.EnterState(SapienceStateDefOf.MergedPawn, Rand.Range(0.2f, 1));
+
+            var mentalDef = sTracker.Pawn.MentalStateDef;
+            if (mentalDef == MentalStateDefOf.Manhunter || mentalDef == MentalStateDefOf.ManhunterPermanent)
+            {
+                return; 
+            }
+
+            if (sTracker.Pawn.IsRelatedToColonistPawn() && sTracker.Pawn.Faction != Faction.OfPlayer)
+            {
+                sTracker.Pawn.SetFaction(Faction.OfPlayer);
+            }
+
+        }
+        /// <summary>
+        /// called to save all data in this comp 
+        /// </summary>
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref _triggered, "triggered"); 
         }
 
         void CleanupPawn([NotNull] Pawn pawn)

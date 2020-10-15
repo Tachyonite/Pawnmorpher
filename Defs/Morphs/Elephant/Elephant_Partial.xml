@@ -1,11 +1,12 @@
 <Defs>
-	<HediffDef ParentName="NewPartialMorphParent">
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
 		<defName>PawnmorphElephantTFPartial</defName>
 		<label>elephantmorph partial</label>
 		<description>This person has mechanites in their blood that are providing them with elephant-esque mutations.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
+				<hungerRateFactor>3</hungerRateFactor>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
 					<li>

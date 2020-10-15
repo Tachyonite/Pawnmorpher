@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="FoxPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>Fox</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="FoxJawBase">
 		<label>vulpine muzzle</label>
 		<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
@@ -26,8 +25,25 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
 				<label>new</label>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -88,30 +104,44 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" Name="FoxEarBase" ParentName="FoxPart">
 		<defName>EtherFoxEar</defName>
-		<description>Big fuzzy triangles crown [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're very sensitive, so please don't shout.</description>
+		<description>A large and sensitive ear, normally belonging to a fox.</description>
 		<label>vulpine</label>
+		<initialSeverity>0</initialSeverity>
 		<parts>
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pointed</labelOverride>
+				<minSeverity>0</minSeverity>
+				<description>[PAWN_nameDef]'s ears are growing longer, developing a point at the peak. They're a little more sensitive.</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>Big fuzzy triangles crown [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're very sensitive, so please don't shout.</description>
+				<minSeverity>1</minSeverity>
 				<partEfficiencyOffset>0.3</partEfficiencyOffset>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.8</severityPerDay>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" Name="FoxTailBase" ParentName="FoxPart">
 		<defName>EtherFluffyTail</defName>
 		<label>fluffy tail</label>
 		<description>A wonderfully fluffy fox tail drapes from [PAWN_nameDef]'s spine. Was that a small wag just then?</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<statOffsets>
 					<SocialImpact>+0.30</SocialImpact>
 				</statOffsets>
@@ -124,7 +154,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="FoxPart">
 		<defName>EtherFoxEye</defName>
 		<label>vulpine eye</label>
@@ -133,7 +162,7 @@
 			<li>Eye</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<statOffsets>
 					<SocialImpact>+0.10</SocialImpact>
 				</statOffsets>

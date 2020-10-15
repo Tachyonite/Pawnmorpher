@@ -1,13 +1,14 @@
-<Defs>    
-
+<Defs>
 	<Pawnmorph.AspectDef Abstract="true" Name="ColorationAspect">
 		<aspectType>Pawnmorph.Aspects.ColorationAspect</aspectType>
 		<transferToAnimal>true</transferToAnimal>
-    </Pawnmorph.AspectDef>
-	
+	</Pawnmorph.AspectDef>
 	<Pawnmorph.AspectDef ParentName="ColorationAspect">
 		<defName>ColorationNatural</defName>
+		<label>Unusual colors (natural)</label>
+		<description>This pawn's coloration has shifted to those not typically seen in the base species.</description>
 		<labelColor>(200,200,145)</labelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
 		<conflictingAspects>
 			<li>ColorationAlbinism</li>
 			<li>ColorationMelanism</li>
@@ -17,13 +18,16 @@
 		<stages>
 			<li>
 				<label>Unusual colors (natural)</label>
-				<description>[PAWN_nameDef]'s coloration has shifted to those not typically seen in the base species.</description>			
+				<description>[PAWN_nameDef]'s coloration has shifted to those not typically seen in the base species.</description>
 			</li>
 		</stages>
 	</Pawnmorph.AspectDef>
 	<Pawnmorph.AspectDef ParentName="ColorationAspect">
-		<defName>ColorationAlbinism</defName>	
+		<defName>ColorationAlbinism</defName>
+		<label>Unusual colors (albinism)</label>
+		<description>This pawn has lost most of their pigmentation.</description>
 		<labelColor>(245,245,245)</labelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
 		<conflictingAspects>
 			<li>ColorationNatural</li>
 			<li>ColorationMelanism</li>
@@ -33,13 +37,16 @@
 		<stages>
 			<li>
 				<label>Unusual colors (albinism)</label>
-				<description>[PAWN_nameDef] has lost most of their pigmentation.</description>		
+				<description>[PAWN_nameDef] has lost most of their pigmentation.</description>
 			</li>
 		</stages>
 	</Pawnmorph.AspectDef>
 	<Pawnmorph.AspectDef ParentName="ColorationAspect">
 		<defName>ColorationMelanism</defName>
+		<label>Unusual colors (melanism)</label>
+		<description>This pawn has an excessive amount of melanin, leading to a dark coloration.</description>
 		<labelColor>(100,100,100)</labelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
 		<conflictingAspects>
 			<li>ColorationNatural</li>
 			<li>ColorationAlbinism</li>
@@ -55,7 +62,10 @@
 	</Pawnmorph.AspectDef>
 	<Pawnmorph.AspectDef ParentName="ColorationAspect">
 		<defName>ColorationUnnatural</defName>
+		<label>Unusual colors (unnatural)</label>
+		<description>This pawn's coloration has shifted to one not typically seen in nature (except in highly poisonous frogs).</description>
 		<labelColor>(0,255,145)</labelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
 		<conflictingAspects>
 			<li>ColorationNatural</li>
 			<li>ColorationAlbinism</li>
@@ -71,6 +81,8 @@
 	</Pawnmorph.AspectDef>
 	<Pawnmorph.AspectDef ParentName="ColorationAspect">
 		<defName>ColorationPlayerPicked</defName>
+		<label>Dermal repigmentation</label>
+		<description>This pawn's coloration has been artifically shifted to a personalised set.</description>
 		<labelColor>(120,255,205)</labelColor>
 		<removedByReverter>false</removedByReverter>
 		<stages>

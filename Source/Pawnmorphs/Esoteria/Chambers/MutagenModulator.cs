@@ -7,7 +7,6 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
-//using Multiplayer.API;
 using Pawnmorph.Chambers;
 using Pawnmorph.Utilities;
 #pragma warning disable 1591 //this is going to be re worked, disabling for now 
@@ -169,7 +168,6 @@ namespace Pawnmorph
             yield return commandAction;
         }
 
-        //[SyncMethod]
         private void GizmoListOptions()
         {
             List<Building_MutagenChamber> chambers = Chambers;
@@ -232,19 +230,13 @@ namespace Pawnmorph
 
         }
 
-        //[SyncMethod]
-        void SetMergeAction(List<PawnKindDef> mergeOptions)
+        internal void SetMergeAction(List<PawnKindDef> mergeOptions)
         {
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PushState(RandUtilities.MPSafeSeed); 
-            //}
-
             var firstChamber = GetLinkedChamber();
             var secondChamber = GetLinkedChamber(1);
             if (firstChamber == null || secondChamber == null)
             {
-                goto End;
+                return;
             }
             
             secondChamber.pawnTFKind = null;
@@ -257,18 +249,9 @@ namespace Pawnmorph
 
             merging = true;
             random = false; 
-
-            End:
-            return; 
-            //if (MP.IsInMultiplayer)
-            //{
-            //    Rand.PopState();
-            //}
-
         }
 
-        //[SyncMethod]
-        void SetAnimalAction(PawnKindDef def)
+        internal void SetAnimalAction(PawnKindDef def)
         {
             foreach (Building_MutagenChamber chamber in LinkedFacilities.OfType<Building_MutagenChamber>())
             {
@@ -284,7 +267,7 @@ namespace Pawnmorph
         {
             
 
-            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<PawnmorphGameComp>().taggedAnimals;
+            IEnumerable<PawnKindDef> pks2 = Find.World.GetComponent<ChamberDatabase>().TaggedAnimals;
             if (pks2 == null)
             {
                 return ModulatorOptions.defaultAnimals; //just return the list if there are no tagged, no need to create a separate list 

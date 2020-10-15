@@ -12,5 +12,8 @@
 			<li>Transhumanist</li>
 			<li>BodyPurist</li>
 		</conflictingTraits>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.TFTransferable" />
+		</modExtensions>
 	</TraitDef>
 </Defs>

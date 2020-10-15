@@ -1,10 +1,6 @@
-﻿// Giver_MutationClass.cs modified by Iron Wolf for Pawnmorph on 01/12/2020 1:47 PM
-// last updated 01/12/2020  1:47 PM
-
-using System;
+﻿using System;
 using System.Linq;
 using JetBrains.Annotations;
-//using Multiplayer.API;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -45,15 +41,11 @@ namespace Pawnmorph.Hediffs
         {
             if (!animalClass.GetAllMutationIn().Any()) return;
 
-            //if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
-
             if (Rand.MTBEventOccurs(mtbDays, mtbUnits, 60) && pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 MutagenDef mutagen = cause?.def?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
                 TryApply(pawn, cause, mutagen);
             }
-
-            //if (MP.IsInMultiplayer) Rand.PopState();
         }
 
 

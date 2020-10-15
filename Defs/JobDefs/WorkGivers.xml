@@ -3,7 +3,7 @@
         <defName>RecruitSapientFormerHuman</defName>
         <label>recruit former human</label>
         <giverClass>Pawnmorph.Work.Giver_RecruitSapientAnimal</giverClass>
-        <workType>Warden</workType>
+        <workType>Handling</workType>
         <verb>recruit</verb>
         <gerund>recruiting</gerund>
         <priorityInType>80</priorityInType>

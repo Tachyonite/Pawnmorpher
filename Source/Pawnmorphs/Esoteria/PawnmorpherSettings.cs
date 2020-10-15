@@ -33,10 +33,31 @@ namespace Pawnmorph
         public float formerChance = 2f;
         /// <summary>The partial chance</summary>
         public float partialChance = 5f;
+
+        /// <summary>
+        /// if The injectors require tagging the associated animal first
+        /// </summary>
+        public bool injectorsRequireTagging = true; 
+
         /// <summary>
         /// The maximum mutation thoughts that can be active at once 
         /// </summary>
         public int maxMutationThoughts=3;
+
+        /// <summary>
+        /// if true, the chamber database will ignore storage restrictions, used for debugging 
+        /// </summary>
+        public bool chamberDatabaseIgnoreStorageLimit; 
+
+
+        /// <summary>
+        /// the chance an tf'd enemy or neutral pawn will go manhunter 
+        /// </summary>
+        public float manhunterTfChance = 0;
+        /// <summary>
+        /// The chance a friendly pawn will go manhunter when tf'd 
+        /// </summary>
+        public float friendlyManhunterTfChance = 0; 
 
         /// <summary>
         /// The current log level
@@ -55,7 +76,11 @@ namespace Pawnmorph
             Scribe_Values.Look(ref formerChance, "formerChance");
             Scribe_Values.Look(ref partialChance, "partialChance");
             Scribe_Values.Look(ref maxMutationThoughts, nameof(maxMutationThoughts), 1);
+            Scribe_Values.Look(ref injectorsRequireTagging, nameof(injectorsRequireTagging)); 
             Scribe_Values.Look(ref logLevel, nameof(logLevel), LogLevel.Warnings, true); 
+            Scribe_Values.Look(ref manhunterTfChance, nameof(manhunterTfChance));
+            Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
+            Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit)); 
             base.ExposeData();
         }
     }

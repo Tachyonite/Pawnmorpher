@@ -27,15 +27,11 @@ namespace Pawnmorph
         /// <summary>Adds the severity.</summary>
         public void AddSeverity()
         {
-            RandUtilities.PushState();
-
             if (Rand.MTBEventOccurs(Props.mtbDays, 60000f, 60f) && !triggered && Pawn.health.hediffSet.HasHediff(Props.hediff))
             {
                 HealthUtility.AdjustSeverity(Pawn, Props.hediff, Props.severity);
                 triggered = true;
             }
-
-            RandUtilities.PopState();
         }
 
         private bool triggered = false;

@@ -140,6 +140,13 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="MorphDef"/> is restricted.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if restricted; otherwise, <c>false</c>.
+        /// </value>
+        public bool Restricted => categories?.Any(c => c.restricted) == true; 
 
 
         [NotNull]

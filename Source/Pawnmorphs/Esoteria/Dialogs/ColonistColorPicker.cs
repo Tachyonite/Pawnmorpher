@@ -171,24 +171,19 @@ namespace Pawnmorph.Dialogs
 
         private Color getOriginalColor(PawnColorSlot slot)
         {
-
-            var initialGraphicsComp = targetPawn.GetComp<InitialGraphicsComp>();
+            InitialGraphicsComp initialGraphicsComp = targetPawn.GetComp<InitialGraphicsComp>();
             switch (slot) 
             {
                 case PawnColorSlot.SkinFirst:
                     return initialGraphicsComp != null ? initialGraphicsComp.SkinColor : targetPawn.Drawer.renderer.graphics.nakedGraphic.Color;
-                    break;
                 case PawnColorSlot.SkinSecond:
                     return initialGraphicsComp != null ? initialGraphicsComp.SkinColorSecond : targetPawn.Drawer.renderer.graphics.nakedGraphic.ColorTwo;
-                    break;
                 case PawnColorSlot.HairFirst:
                     return initialGraphicsComp != null ? initialGraphicsComp.HairColor : targetPawn.story.hairColor;
-                    break;
                 case PawnColorSlot.HairSecond:
                     return initialGraphicsComp != null ? initialGraphicsComp.HairColorSecond : Color.white;
-                    break;
+                default: return Color.white;
             }
-            return Color.white;
         }
     }
 }

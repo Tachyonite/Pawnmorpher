@@ -2,6 +2,7 @@
 // last updated 01/13/2020  6:35 PM
 
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -18,6 +19,11 @@ namespace Pawnmorph
         /// The animal class or specific morph to pick the morph tf from 
         /// </summary>
         public AnimalClassBase animalClass;
+
+        /// <summary>
+        /// if this instance can pick restricted morphs
+        /// </summary>
+        public bool allowRestrictedMorphs; 
 
         /// <summary>
         /// The severity to add the hediff at 
@@ -41,7 +47,7 @@ namespace Pawnmorph
                 {
                     _tfDefs = new List<HediffDef>();
 
-                    foreach (MorphDef morphDef in animalClass.GetAllMorphsInClass())
+                    foreach (MorphDef morphDef in animalClass.GetAllMorphsInClass().Where(m => allowRestrictedMorphs || !m.Restricted))
                     {
                         if (morphDef.fullTransformation != null && (tfTypes & MorphTransformationTypes.Full) != 0)
                         {

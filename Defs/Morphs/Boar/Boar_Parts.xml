@@ -2,16 +2,15 @@
 	<Pawnmorph.Hediffs.MutationDef Name="BoarPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>BoarMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoarPart">
 		<defName>EtherBoarSnout</defName>
 		<label>tusked snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables.</description>
+		<description>The rugged, bristled snout of a feisty boar, complete with two dangerous tusks.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
 		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage" >
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
 				<description>[PAWN_nameDef]'s face has become a bestial boar snout, along with two pointy tusks perfect for rooting up vegetables.</description>
@@ -26,7 +25,24 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -38,8 +54,9 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables.  Adaptation has removed some of the difficulty with talking.</description>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -55,6 +72,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
+				<description>A snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables. Further adaptation has removed all of the difficulty with talking, and interestingly allows for a larger plant harvest.</description>
 				<capMods>
 					<li>
 						<capacity>Eating</capacity>
@@ -121,7 +139,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoarPart">
 		<defName>EtherBoarEar</defName>
 		<label>porcine</label>
@@ -130,18 +147,22 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoarPart">
 		<defName>EtherRoughCurlyTail</defName>
 		<label>hairy curled tail</label>
 		<description>A boar's curly tail, it twangs when a truffle is detected.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -6,8 +6,6 @@
 		<race>Elephant</race>
 		<classification>ThickHide</classification>
 		<categories>
-			<li>Temperate</li>
-			<li>Tropical</li>
 			<li>Powerful</li>
 		</categories>
 		<fullTransformation>PawnmorphElephantTF</fullTransformation>

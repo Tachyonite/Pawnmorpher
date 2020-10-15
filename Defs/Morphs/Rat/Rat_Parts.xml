@@ -2,11 +2,10 @@
 	<Pawnmorph.Hediffs.MutationDef Name="RatPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>RatMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherRatSnout</defName>
 		<label>rodent snout</label>
-		<description>A ratty snout graces [PAWN_nameDef]'s face, long teeth for chewing through anything.</description>
+		<description>The ragged and ratty snout of a rambunctious rodent.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -29,7 +28,24 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A ratty snout graces [PAWN_nameDef]'s face, long teeth for chewing through anything.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -37,13 +53,14 @@
 					</li>
 					<li>
 						<capacity>Eating</capacity>
-						<offset>0.40</offset>
+						<offset>0.60</offset>
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
+				<description>A ratty snout graces [PAWN_nameDef]'s face, long teeth for chewing through anything. Adaptation has lessened the difficulty with talking, and gives an even bigger ability to eat.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -51,7 +68,7 @@
 					</li>
 					<li>
 						<capacity>Eating</capacity>
-						<offset>0.40</offset>
+						<offset>0.80</offset>
 					</li>
 				</capMods>
 			</li>
@@ -65,7 +82,7 @@
 				<capMods>
 					<li>
 						<capacity>Eating</capacity>
-						<offset>0.40</offset>
+						<offset>0.80</offset>
 					</li>
 				</capMods>
 			</li>
@@ -90,7 +107,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherRatEar</defName>
 		<label>ratty</label>
@@ -99,21 +115,21 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherRatTail</defName>
 		<label>hairless tail</label>
 		<description>A ratty tail, hairless, long and snaking.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -123,7 +139,6 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherDextrousPawHand</defName>
 		<label>dextrous paw</label>
@@ -134,11 +149,11 @@
 			<li>Hand</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
 				<label>unfamiliar</label>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<label>adapted</label>
@@ -164,7 +179,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatPart">
 		<defName>EtherRatFoot</defName>
 		<label>rodent</label>
@@ -173,7 +187,7 @@
 			<li>Foot</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

@@ -2,14 +2,30 @@
 	<Pawnmorph.Hediffs.MutationDef Name="RaccoonPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>RaccoonMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RaccoonPart">
 		<defName>EtherRaccoonJaw</defName>
 		<label>raccoon snout</label>
-		<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away.</description>
+		<description>A snout with a nose always in a rubbish bin.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -21,8 +37,9 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
+				<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away. Adaptation has removed all of the difficulty with speaking.</description>
 				<minSeverity>1</minSeverity>
 				<capMods>
 					<li>
@@ -55,24 +72,31 @@
 			<li>Jaw</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RaccoonPart">
 		<defName>EtherRaccoonEar</defName>
 		<label>procyonine ear</label>
 		<description>A short and fuzzy round ear has replaced [PAWN_nameDef]'s normal ear.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
 		<parts>
 			<li>Ear</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="RaccoonPart">
 		<defName>EtherRaccoonTail</defName>
 		<label>ringtail</label>
 		<description>The ringtail of a raccoon has grown out from [PAWN_nameDef]'s spine. It twitches when it senses rubbish.</description>
 		<mutationTale>GrewTail</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

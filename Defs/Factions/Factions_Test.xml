@@ -169,6 +169,7 @@
 			<li>WargMorph</li>
 			<li>AlpacaMorph</li>
 			<li>WolfMorph</li>
+			<li>SheepMorph</li>
         </morphs>
         <hediffRange>0~10</hediffRange>
       </li>

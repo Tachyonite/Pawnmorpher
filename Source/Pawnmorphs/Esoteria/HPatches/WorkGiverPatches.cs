@@ -36,6 +36,29 @@ namespace Pawnmorph.HPatches
         }
 
 
+        [HarmonyPatch(typeof(WorkGiver_GatherAnimalBodyResources))]
+        static class GatherAnimalBodyResourcesPatches
+        {
+            [HarmonyPatch(nameof(WorkGiver_GatherAnimalBodyResources.HasJobOnThing))]
+            [HarmonyPostfix]
+            private static void DontInteractSelfFix(ref bool __result, Pawn pawn, Thing t, bool forced)
+            {
+                if (__result) __result = pawn != t;
+            }
+
+        }
+
+        [HarmonyPatch(typeof(WorkGiver_Slaughter))]
+        private static class SlaughterPatches
+        {
+            [HarmonyPatch("HasJobOnThing")]
+            [HarmonyPostfix]
+            private static void DontInteractSelfFix(ref bool __result, Pawn pawn, Thing t, bool forced)
+            {
+                if (__result) __result = pawn != t;
+            }
+        }
+
         [HarmonyPatch(typeof(WorkGiver_Train))]
         private static class TrainPatches
         {

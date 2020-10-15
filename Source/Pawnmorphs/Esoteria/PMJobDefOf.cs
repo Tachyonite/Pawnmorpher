@@ -13,7 +13,7 @@ namespace Pawnmorph
     {
         static PMJobDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(JobDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(PMJobDefOf));
         }
 
         public static JobDef PMLayEgg;
@@ -21,6 +21,10 @@ namespace Pawnmorph
         public static JobDef PMDrainChemcyst;
         public static JobDef PMShaveSelf;
         public static JobDef PMResurrect;
-        [NotNull] public static JobDef RecruitSapientFormerHuman; 
+        [NotNull] public static JobDef RecruitSapientFormerHuman;
+        [NotNull]
+        public static JobDef PM_UseMutationGenome;
+
+        public static JobDef EnterMutagenChamber;
     }
 }

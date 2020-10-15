@@ -63,6 +63,12 @@ namespace Pawnmorph.TfSys
             forcedFaction = default;
             factionResponsible = null; 
         }
+
+        /// <summary>
+        /// the tick this transformation is taking place, a null value indicates it happened some unknown amount of time in the past
+        /// </summary>
+        public int? transformedTick; 
+
         /// <summary>The pawns to be transformed</summary>
         public Pawn[] originals;
         /// <summary>The output pawn kind</summary>
@@ -77,6 +83,11 @@ namespace Pawnmorph.TfSys
         public Hediff cause;
         /// <summary>The tale to record</summary>
         public TaleDef tale;
+
+        /// <summary>
+        /// override for the manhunter settings of the given animal 
+        /// </summary>
+        public ManhunterTfSettings? manhunterSettingsOverride; 
 
         /// <summary>
         /// if not null then this represents the sapience level the tf'd pawn will have

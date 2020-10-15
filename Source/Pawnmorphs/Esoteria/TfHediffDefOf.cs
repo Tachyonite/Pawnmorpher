@@ -14,7 +14,7 @@ namespace Pawnmorph
         // ReSharper disable once NotNullMemberIsNotInitialized
         static TfHediffDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(TfHediffDefOf));
         }
 
        
@@ -24,5 +24,10 @@ namespace Pawnmorph
         public static HediffDef TransformationParalysis;
 
         [NotNull] public static HediffDef FeralPillSapienceDrop;
+
+        [NotNull]
+        public static HediffDef SapienceLimiterHediff;
+
+        public static HediffDef LuciferiumHigh; 
     }
 }

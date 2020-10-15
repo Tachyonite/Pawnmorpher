@@ -1,18 +1,21 @@
 <Defs>
-	<HediffDef>
-		<defName>TransformedHuman</defName>
-		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
-		<description>[PAWN_defName] used to be a human, but by whatever means has now been transformed into this current form. In this state, [PAWN_pronoun] can be reverted.</description>
+	<HediffDef Name="FormerHumanHediffParent" Abstract="true">
 		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
+		<isBad>false</isBad>
+	</HediffDef>
+
+	<HediffDef ParentName="FormerHumanHediffParent">
+		<defName>TransformedHuman</defName>
 		<label>former human</label>
+		<description>[PAWN_defName] used to be a human, but by whatever means has now been transformed into this current form. In this state, [PAWN_pronoun] can be reverted.</description>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
 		<stages>
 			<li>
 				<label>sapient</label>
 			</li>
-			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+			<li>
 				<label>mostly sapient</label>
 				<minSeverity>0.4</minSeverity>
-				<disallowedWork>Intellectual,Artistic</disallowedWork>
 				<statOffsets>
 					<TameAnimalChance>0.05</TameAnimalChance>
 					<TrainAnimalChance>0.05</TrainAnimalChance>
@@ -49,13 +52,12 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="FormerHumanHediffParent">
 		<defName>Animalistic</defName>
-		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
-		<description>TODO</description>
-		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
-		<maxSeverity>2</maxSeverity>
 		<label>animalistic</label>
+		<description>TODO</description>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
+		<maxSeverity>2</maxSeverity>
 		<stages>
 			<li>
 				<label>sapient</label>
@@ -80,10 +82,9 @@
 					<SapienceRecoverFactor>1</SapienceRecoverFactor>
 				</statOffsets>
 			</li>
-			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+			<li >
 				<label>mostly feral</label>
 				<minSeverity>0.8</minSeverity>
-				<disallowedWork>Intellectual,ManualSkilled</disallowedWork>
 				<statOffsets>
 					<TameAnimalChance>0.2</TameAnimalChance>
 					<TrainAnimalChance>0.2</TrainAnimalChance>
@@ -91,10 +92,9 @@
 					<SapienceRecoverFactor>1</SapienceRecoverFactor>
 				</statOffsets>
 			</li>
-			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+			<li>
 				<label>mostly feral</label>
 				<minSeverity>1</minSeverity>
-				<disallowedWork>Intellectual,ManualSkilled,Animals,Social</disallowedWork>
 				<statOffsets>
 					<TameAnimalChance>0.2</TameAnimalChance>
 					<TrainAnimalChance>0.2</TrainAnimalChance>
@@ -105,20 +105,18 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="FormerHumanHediffParent">
 		<defName>2xMergedHuman</defName>
-		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
-		<description>[PAWN_defName] is a creature that should never have been, a fusion of two beings which mutated to become one animalistic monstrosity.</description>
-		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
 		<label>2x merged morph</label>
+		<description>[PAWN_defName] is a creature that should never have been, a fusion of two beings which mutated to become one animalistic monstrosity.</description>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
 		<stages>
 			<li>
 				<label>sapient</label>
 			</li>
-			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+			<li>
 				<label>mostly sapient</label>
 				<minSeverity>0.4</minSeverity>
-				<disallowedWork>Intellectual,Artistic</disallowedWork>
 				<statOffsets>
 					<TameAnimalChance>0.05</TameAnimalChance>
 					<TrainAnimalChance>0.05</TrainAnimalChance>
@@ -157,18 +155,16 @@
 
 	<HediffDef>
 		<defName>PermanentlyFeral</defName>
+		<label>permanently feral</label>
 		<description>[PAWN_defName] used to be a human, but the mechanites in [PAWN_possessive] system have forgotten his prior form — [PAWN_pronoun] is now sealed in this form for the rest of [PAWN_possessive] life. Reversion serums will not work.</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
-		<label>permanently feral</label>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="FormerHumanHediffParent">
 		<defName>WasAnimal</defName>
+		<label>was animal</label>
 		<description>[PAWN_defName] was turned into an animal, but [PAWN_pronoun] got better. However, [PAWN_pronoun] is not too happy about it.</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
-		<label>was animal</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -227,12 +223,11 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="FormerHumanHediffParent">
 		<defName>WasMergedRelieved</defName>
+		<label>was melded</label>
 		<description>[PAWN_defName] was joined with another person in a chaotic mash of flesh and flesh, but finds the insight valuable.</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
-		<label>was melded</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -297,12 +292,11 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="FormerHumanHediffParent">
 		<defName>WasMerged</defName>
+		<label>was melded</label>
 		<description>[PAWN_defName] was joined with another person in a chaotic mash of flesh and flesh, and is scarred from the experience.</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
-		<label>was melded</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>
@@ -362,12 +356,11 @@
 		</stages>
 	</HediffDef>
 
-	<HediffDef>
+	<HediffDef ParentName="FormerHumanHediffParent">
 		<defName>WasAnimalRelieved</defName>
+		<label>was animal</label>
 		<description>[PAWN_defName] was turned into an animal, but [PAWN_pronoun] got better. However, [PAWN_pronoun] takes it as a learning opportunity.</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
-		<label>was animal</label>
 		<comps>
 			<li Class="HediffCompProperties_Disappears">
 				<disappearsAfterTicks>

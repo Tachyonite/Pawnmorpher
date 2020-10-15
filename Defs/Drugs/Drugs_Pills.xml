@@ -107,7 +107,9 @@
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_CompleteTF" />
+				<li Class="Pawnmorph.IngestionOutcomeDoer_CompleteTF">
+					<mustBeReeling>true</mustBeReeling>
+				</li>
 			</outcomeDoers>
 		</ingestible>
 		<recipeMaker>
@@ -142,7 +144,7 @@
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_AddAspect" >
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddAspect">
 					<aspectDef>MutagenInfused</aspectDef>
 					<stage>2</stage>
 					<!-- the dry aspect is the third stage -->
@@ -183,8 +185,7 @@
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_RemoveAspects" >
-				</li>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_RemoveAspects"></li>
 			</outcomeDoers>
 		</ingestible>
 		<recipeMaker>

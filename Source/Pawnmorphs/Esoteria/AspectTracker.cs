@@ -172,15 +172,39 @@ namespace Pawnmorph
             {
                 foreach (Aspect affinity in _rmCache) //remove the affinities here so we don't invalidate the enumerator below 
                 {
-                    _aspects.Remove(affinity);
-                    affinity.PostRemove();
-                    AspectRemoved?.Invoke(this, affinity);
+                    RemoveAspect(affinity);
                 }
 
                 _rmCache.Clear();
             }
 
-            foreach (Aspect affinity in _aspects) affinity.PostTick();
+            for (var index = _aspects.Count - 1; index >= 0; index--)
+            {
+                Aspect affinity = _aspects[index];
+                try
+                {
+                    affinity.PostTick();
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"caught {e.GetType().Name} while ticking {affinity.def.defName}\n{e}");
+                    _aspects.RemoveAt(index);
+                }
+            }
+        }
+
+        private void RemoveAspect([NotNull] Aspect affinity)
+        {
+            _aspects.Remove(affinity);
+            try
+            {
+                affinity.PostRemove();
+                AspectRemoved?.Invoke(this, affinity);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"caught {e.GetType().Name} while removing aspect {affinity.Label}/{affinity.def.defName}\n{e}");
+            }
         }
 
         /// <summary>

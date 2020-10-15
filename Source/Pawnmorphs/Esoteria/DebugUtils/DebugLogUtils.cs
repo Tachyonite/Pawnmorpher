@@ -10,10 +10,12 @@ using System.Text;
 using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
+using UnityEngine.Windows.WebCam;
 using Verse;
 
 #pragma warning disable 1591
@@ -33,6 +35,45 @@ namespace Pawnmorph.DebugUtils
 
         public const string MAIN_CATEGORY_NAME = "Pawnmorpher";
 
+
+        private const string STORAGE_SPACE_HEADER = "DefName,Storage Space Required, Value";
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        public static void LogStorageSpaceRequirementRange()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine(STORAGE_SPACE_HEADER);
+
+            foreach (MutationDef mutationDef in DefDatabase<MutationDef>.AllDefs.Where(d => !d.IsRestricted))
+            {
+                builder.AppendLine(mutationDef.defName + "," + mutationDef.GetRequiredStorage() + "," + mutationDef.value); 
+            }
+
+            Log.Message(builder.ToString());
+            builder.Clear();
+            builder.AppendLine(STORAGE_SPACE_HEADER);
+
+            foreach (PawnKindDef pawnKindDef in DefDatabase<PawnKindDef>.AllDefs.Where(d => d?.race?.IsValidAnimal() == true))
+            {
+                builder.AppendLine(pawnKindDef.defName
+                                 + ","
+                                 + pawnKindDef.GetRequiredStorage()
+                                 + ","
+                                 + pawnKindDef.race.BaseMarketValue);
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        public static void LogDatabaseInfo()
+        {
+            var db = Find.World.GetComponent<ChamberDatabase>(); 
+            Log.Message($"total storage:{db.TotalStorage}, used storage:{db.UsedStorage}, free:{db.FreeStorage}");
+
+        }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindMissingMorphDescriptions()
@@ -68,6 +109,20 @@ namespace Pawnmorph.DebugUtils
             string str = string.Join("\n\t", mutations.Select(m => m.defName).ToArray());
 
             Log.Message(string.IsNullOrEmpty(str) ? "no parts with missing description" : str);
+        }
+
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        static void CheckMorphTagStatus()
+        {
+
+            StringBuilder builder = new StringBuilder();
+            foreach (MorphDef morph in MorphDef.AllDefs)
+            {
+                builder.AppendLine($"{morph.defName} is tagged: {morph.IsTagged()}");
+            }
+
+            Log.Message(builder.ToString());
         }
 
 
@@ -454,10 +509,99 @@ namespace Pawnmorph.DebugUtils
             }
 
             var str = designation.Join(s => s.target.Label, "\n");
-            Log.Message(str); 
+            Log.Message(str);
 
 
 
+        }
+
+        /// <summary>Lists all tags and their associated morphs to the console.</summary>
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        public static void ListMorphsByTags()
+        {
+            StringBuilder builder = new StringBuilder();
+            Dictionary<MorphCategoryDef, IEnumerable<MorphDef>> mutationDefsByInfluence = 
+                DefDatabase<MorphCategoryDef>.AllDefs
+                .Select(k => new { k, v = DefDatabase<MorphDef>.AllDefs.Where(m => m.categories.Contains(k)) })
+                .ToDictionary(x => x.k, x => x.v);
+            foreach (KeyValuePair<MorphCategoryDef, IEnumerable<MorphDef>> entry in mutationDefsByInfluence)
+            {
+                builder.AppendLine($"{entry.Key.defName}:");
+                foreach (MorphDef value in entry.Value)
+                {
+                    builder.AppendLine($"    {value.LabelCap}");
+                }
+            }
+            Log.Message(builder.ToString());
+        }
+
+        ///<summary>Lists all MutationDefs in the console, sorted by influence.</summary>
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        public static void ListMutationsByInfluence()
+        {
+            StringBuilder builder = new StringBuilder();
+            // Build a dictionary of all defs, sorted by influence.
+            Dictionary<AnimalClassBase, IEnumerable<MutationDef>> mutationDefsByInfluence = 
+                DefDatabase<AnimalClassBase>.AllDefs
+                .Select(k => new { k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.classInfluence == k) })
+                .ToDictionary(x => x.k, x => x.v);
+            foreach (KeyValuePair<AnimalClassBase, IEnumerable<MutationDef>> entry in mutationDefsByInfluence)
+            {
+                builder.AppendLine($"{entry.Key.defName}:");
+                foreach (MutationDef value in entry.Value)
+                {
+                    builder.AppendLine($"    {value.defName} - {value.description}");
+                }
+            }
+            Log.Message(builder.ToString());
+        }
+
+        /// <summary>Prints out all MutationDef's labels and descriptions (Including stages).</summary>
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        public static void LogAllMutationLabelsAndDescriptions()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (MutationDef mutation in DefDatabase<MutationDef>.AllDefs.Where(m => !m.parts.NullOrEmpty()).OrderBy(n => n.parts.First().defName))
+            {
+                int i = 0;
+                builder.AppendLine($"Mutation: {mutation.defName}");
+                builder.AppendLine($"Label: {mutation.label}");
+                builder.AppendLine($"Description: {mutation.description}");
+                if (!mutation.stages.NullOrEmpty())
+                {
+                    foreach (HediffStage stage in mutation.stages)
+                    {
+                        if (stage.label != null)
+                        {
+                            builder.AppendLine($"    Stage {i} Label: {stage.label}");
+                        }
+                        if (stage.GetType() == typeof(MutationStage))
+                        {
+                            MutationStage mutationStage = (MutationStage)stage;
+                            if (mutationStage.labelOverride != null)
+                            {
+                                builder.AppendLine($"    Stage {i} Override: {mutationStage.labelOverride}");
+                            }
+                            if (mutationStage.description != null)
+                            {
+                                builder.AppendLine($"    Stage {i} Description: {mutationStage.description}");
+                            }
+                        }
+                        else
+                        {
+                            builder.AppendLine($"    Stage {i} is not a MutationStage");
+                        }
+                        builder.AppendLine();
+                        i++;
+                    }
+                }
+                else
+                {
+                    builder.AppendLine("Mutation has no stages");
+                    builder.AppendLine();
+                }
+            }
+            Log.Message(builder.ToString());
         }
     }
 }

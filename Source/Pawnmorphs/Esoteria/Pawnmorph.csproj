@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\1.1\Assemblies\</OutputPath>
+    <OutputPath>..\..\..\1.2\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,6 +37,11 @@
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MultiplayerAPI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AlienRace">
@@ -328,10 +333,17 @@
     <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
+    <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
+    <Compile Include="Chambers\ChamberDatabase.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
+    <Compile Include="Chambers\ChamberUse.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
+    <Compile Include="Chambers\GenomeDefGenerator.cs" />
+    <Compile Include="Chambers\MutaChamber.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
+    <Compile Include="ChaomorphType.cs" />
+    <Compile Include="ChaomorphUtilities.cs" />
     <Compile Include="ColorGenerator_HSL.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompMutagenicRadius.cs" />
@@ -368,6 +380,7 @@
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
     <Compile Include="DefExtensions\AspectGiverExtension.cs" />
     <Compile Include="DefExtensions\AspectRestriction.cs" />
+    <Compile Include="DefExtensions\ChaomorphExtension.cs" />
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
     <Compile Include="DefExtensions\FormerHumanSettings.cs" />
@@ -383,6 +396,7 @@
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
+    <Compile Include="DefExtensions\TFTransferable.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
     <Compile Include="Designations\RecruitSapientFormerHuman.cs" />
     <Compile Include="Dialogs\ColonistColorPicker.cs" />
@@ -414,6 +428,7 @@
     <Compile Include="Hediffs\MorphDisease.cs" />
     <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
+    <Compile Include="Hediffs\PersistentMorphTf.cs" />
     <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
     <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
@@ -424,6 +439,8 @@
     <Compile Include="Hediffs\TransformationStageBase.cs" />
     <Compile Include="Hediffs\WorkSettingsStage.cs" />
     <Compile Include="HPatches\AIPatches.cs" />
+    <Compile Include="HPatches\AnimalInteractionPatches.cs" />
+    <Compile Include="HPatches\ApparelUtilityPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DoorPatches.cs" />
@@ -453,11 +470,15 @@
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\ToilsLayDownPatches.cs" />
+    <Compile Include="HPatches\VerbTrackerPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
     <Compile Include="HPatches\WorkGiverPatches.cs" />
     <Compile Include="HPatches\WorkSettingsPatches.cs" />
     <Compile Include="Hybrids\IPartTransformer.cs" />
+    <Compile Include="ICustomVerb.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
+    <Compile Include="IEquipmentGizmo.cs" />
     <Compile Include="IMentalStateRecoveryReceiver.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
@@ -466,11 +487,16 @@
     <Compile Include="IngestionOutcomeDoer_AddRandomAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="InteractionWorker_Bleat.cs" />
     <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
+    <Compile Include="MainTabWindow_ChamberDatabase.cs" />
+    <Compile Include="MainTabWindow_ChamberDatabase.Interning.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
@@ -492,8 +518,11 @@
     <Compile Include="Mental\StateWorker_Hunt.cs" />
     <Compile Include="Mental\State_Hunting.cs" />
     <Compile Include="MutagenicBuildupUtilities.cs" />
+    <Compile Include="MutationCategoryDefOf.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
+    <Compile Include="MutationRules\Worker_Hellhound.cs" />
+    <Compile Include="MutationRules\Worker_RemoveConditionalHediffs.cs" />
     <Compile Include="MutationRules\Worker_MorphHediff.cs" />
     <Compile Include="MutationRuleUtilities.cs" />
     <Compile Include="MutationSite.cs" />
@@ -502,6 +531,7 @@
     <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
+    <Compile Include="PMConceptDefOf.cs" />
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
@@ -510,6 +540,8 @@
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
+    <Compile Include="PMTexButton.cs" />
+    <Compile Include="PMTextures.cs" />
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
@@ -521,12 +553,21 @@
     <Compile Include="SapienceStates\FormerHuman.cs" />
     <Compile Include="SapienceStates\MergedPawn.cs" />
     <Compile Include="SapientAnimalMentalBreaker.cs" />
+    <Compile Include="ScenarioParts\ScenPart_ForcedSapience.cs" />
+    <Compile Include="ScenarioParts\ScenPart_ForcedAspect.cs" />
     <Compile Include="SimplePawnColorSet.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
+    <Compile Include="StockGenerators\GenomeGenerator.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
+    <Compile Include="TfSys\ManhunterTfSettings.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
+    <Compile Include="ThingComps\DatabaseStorage.cs" />
+    <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
+    <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
+    <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
+    <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
@@ -600,7 +641,6 @@
     <Compile Include="PawnmorpherMod.cs" />
     <Compile Include="PawnmorpherModInit.cs" />
     <Compile Include="PawnMorphInstanceMerged.cs" />
-    <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="PawnmorphPatches.cs" />
     <Compile Include="PawnRelationWorker_ExMerged.cs" />
     <Compile Include="PawnRelationWorker_MergeMate.cs" />
@@ -663,6 +703,7 @@
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
+    <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
     <Compile Include="ThinkNodes\ConditionalSapientAnimal.cs" />
     <Compile Include="ThoughtGroupDefExtension.cs" />
@@ -696,6 +737,11 @@
     <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
+    <Compile Include="User Interface\AddedMutations.cs" />
+    <Compile Include="User Interface\ButtonTexturesPM.cs" />
+    <Compile Include="User Interface\Dialog_PartPicker.cs" />
+    <Compile Include="User Interface\MutationData.cs" />
+    <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
     <Compile Include="Utilities\HediffDefUtilities.cs" />
@@ -705,14 +751,20 @@
     <Compile Include="Utilities\SkillMod.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
+    <Compile Include="Verbs\Tag.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
+    <Compile Include="PawnmorphMPCompat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
+      <Version>7.2.1</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

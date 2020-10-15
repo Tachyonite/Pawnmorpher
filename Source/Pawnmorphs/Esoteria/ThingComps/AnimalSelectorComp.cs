@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -12,9 +13,34 @@ namespace Pawnmorph.ThingComps
     /// <summary>
     /// </summary>
     /// <seealso cref="Verse.ThingComp" />
-    public class AnimalSelectorComp : ThingComp
+    public class AnimalSelectorComp : ThingComp, IEquipmentGizmo
     {
         private PawnKindDef _chosenKind;
+
+
+        
+
+        /// <summary>
+        /// delegate for the Animal Chosen event 
+        /// </summary>
+        /// <param name="pawnKindDef">The pawn kind definition.</param>
+        public delegate void AnimalChosenHandler([CanBeNull] PawnKindDef pawnKindDef);
+        /// <summary>
+        /// Occurs when an animal is chosen.
+        /// </summary>
+        public event AnimalChosenHandler AnimalChosen; 
+
+
+        private bool _enabled = true; 
+        public bool Enabled
+        {
+            get
+            {
+                return _enabled; 
+                
+            }
+            set { _enabled = value; }
+        }
 
         /// <summary>
         ///     Gets the props.
@@ -44,20 +70,26 @@ namespace Pawnmorph.ThingComps
             {
                 if (Props.requiresTag)
                 {
-                    PawnmorphGameComp comp = PMComp;
+                    var comp = PMComp;
 
-                    return Props.AllAnimals.Where(t => comp.taggedAnimals.Contains(t));
+                    return Props.AllAnimals.Where(t => comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true);
                 }
 
                 return Props.AllAnimals;
             }
         }
 
-        private PawnmorphGameComp PMComp => Find.World.GetComponent<PawnmorphGameComp>();
+        private ChamberDatabase PMComp => Find.World.GetComponent<ChamberDatabase>();
 
 
         private Command_Action _cachedGizmo;
 
+        private Gizmo[] _cachedGizmoArr;
+
+        /// <summary>
+        /// Comps the get gizmos extra.
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach (Gizmo gizmo in base.CompGetGizmosExtra())
@@ -65,7 +97,9 @@ namespace Pawnmorph.ThingComps
                 yield return gizmo; 
             }
 
-            yield return Gizmo; 
+
+            if(_enabled)
+                yield return Gizmo; 
         }
 
         Command_Action Gizmo
@@ -77,7 +111,8 @@ namespace Pawnmorph.ThingComps
                     _cachedGizmo = new Command_Action()
                     {
                         action = GizmoAction,
-                        defaultLabel = "none"
+                        defaultLabel = "none",
+                        icon = PMTextures.AnimalSelectorIcon
                     };
                 }
 
@@ -113,6 +148,7 @@ namespace Pawnmorph.ThingComps
         {
             base.PostExposeData();
             Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
+            Scribe_Values.Look(ref _enabled, nameof(Enabled), true); 
         }
 
 
@@ -120,7 +156,25 @@ namespace Pawnmorph.ThingComps
         {
             _chosenKind = chosenKind;
             Gizmo.icon = _chosenKind.race.uiIcon;
-            Gizmo.defaultLabel = _chosenKind.label; 
+            Gizmo.defaultLabel = _chosenKind.label;
+            AnimalChosen?.Invoke(chosenKind); 
+        }
+
+        /// <summary>
+        /// Gets the gizmos.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Gizmo> GetGizmos()
+        {
+
+            if (!_enabled) return Enumerable.Empty<Gizmo>();
+            
+            if (_cachedGizmoArr == null)
+            {
+                _cachedGizmoArr = new[] {Gizmo};
+            }
+
+            return _cachedGizmoArr; 
         }
     }
 
@@ -135,6 +189,10 @@ namespace Pawnmorph.ThingComps
         /// </summary>
         public bool requiresTag;
 
+        /// <summary>
+        /// list of animals always available for selection 
+        /// </summary>
+        public List<PawnKindDef> alwaysAvailable;
 
         /// <summary>
         ///     The race filter

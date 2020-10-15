@@ -17,6 +17,86 @@
                     </li>
                 </value>
             </li>
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Squirrel"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>FormerHumanNormalSquirrel</backstory>
+                    </li>
+                </value>
+            </li>
+            <!-- from https://github.com/Keno-GH/Pawnmorpher-Useful-Animals -->
+
+            <!--Animals that have dexterous paws. They can hold tools, making them able of crafting. Snakes go here too, as they can hold tools with their
+            flexibles tails.-->
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="GuineaPig"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>FormerHumanCrafter</backstory>
+                    </li>
+                </value>
+            </li>
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Chinchilla"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>FormerHumanCrafter</backstory>
+                    </li>
+                </value>
+            </li>
+            <!--Animals that can mine naturally.-->
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Megaspider"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>PM_FormerHumanMiner</backstory>
+                    </li>
+                </value>
+            </li>
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Spelopede"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>PM_FormerHumanMiner</backstory>
+                    </li>
+                </value>
+            </li>
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Megascarab"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>PM_FormerHumanMiner</backstory>
+                    </li>
+                </value>
+            </li>
+            <!--Animals that are big enough to fell trees. They will also be able to harvest smaller things, but there is no easy workaround this issue-->
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Thrumbo"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>PM_FormerHumanPlantWorker</backstory>
+                    </li>
+                </value>
+            </li>
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Elephant"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>PM_FormerHumanPlantWorker</backstory>
+                    </li>
+                </value>
+            </li>
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Rhinoceros"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>PM_FormerHumanPlantWorker</backstory>
+                    </li>
+                </value>
+            </li>
+
         </operations>
     </Operation>
+
 </Patch>

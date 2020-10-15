@@ -21,6 +21,17 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     public static class MorphUtilities
     {
+        [NotNull] private static readonly List<ThoughtDef> _allMorphSleepingThoughts;
+
+        /// <summary>
+        /// Gets all morph group sleeping thoughts.
+        /// </summary>
+        /// <value>
+        /// All morph sleeping thoughts.
+        /// </value>
+        [NotNull]
+        public static IReadOnlyList<ThoughtDef> AllMorphSleepingThoughts => _allMorphSleepingThoughts; 
+
         static MorphUtilities()
         {
             //check for mod incompatibilities here 
@@ -29,6 +40,15 @@ namespace Pawnmorph
             {
                 Log.Error($"human ThingDef is using {ThingDefOf.Human.race.body.defName} not {BodyDefOf.Human.defName}!\nmost likely cause is mod incompatibilities please check mod list");
             }
+
+            IEnumerable<ThoughtDef> MorphGroupThoughtSelectorFunc(MorphGroupDef group)
+            {
+                if (group?.barrakThoughtReplacement != null) yield return group.barrakThoughtReplacement;
+                if (group?.bedroomThoughtReplacement != null) yield return group.bedroomThoughtReplacement; 
+            }
+
+            //get all sleeping thoughts for morph groups 
+            _allMorphSleepingThoughts = DefDatabase<MorphGroupDef>.AllDefs.SelectMany(MorphGroupThoughtSelectorFunc).ToList(); 
 
             //get the associated races lookup 
 
@@ -183,6 +203,21 @@ namespace Pawnmorph
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
             return morph.categories?.Contains(MorphCategoryDefOf.Chimera) == true; 
+        }
+
+        /// <summary>
+        /// Determines whether this instance is a chimera.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is a chimera; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsChimera([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            //TODO use a mod extension so this isn't hard coded  
+            //hacky 
+            return pawn.def.label.Contains("chao");
         }
 
         /// <summary>

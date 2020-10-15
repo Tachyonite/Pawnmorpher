@@ -37,6 +37,12 @@ namespace Pawnmorph
             listingStandard.CheckboxLabeled("enableMutagenDiseasesCheckboxLabel".Translate(), ref settings.enableMutagenDiseases, "enableMutagenDiseasesCheckboxTooltip".Translate());
             listingStandard.CheckboxLabeled("enableMutagenMeteorCheckboxLabel".Translate(), ref settings.enableMutagenMeteor, "enableMutagenMeteorCheckboxTooltip".Translate());
             listingStandard.CheckboxLabeled("enableWildFormersCheckboxLabel".Translate(), ref settings.enableWildFormers, "enableWildFormersCheckboxTooltip".Translate());
+            listingStandard.CheckboxLabeled("ChamberDatabaseIgnoresDataLimit".Translate(),
+                                            ref settings.chamberDatabaseIgnoreStorageLimit,
+                                            "ChamberDatabaseIgnoresDataLimitTooltip".Translate());
+            listingStandard.CheckboxLabeled("PMInjectorsRequireTagging".Translate(), ref settings.injectorsRequireTagging,
+                                            "PMInjectorsRequireTaggingTooltip".Translate()); 
+
             listingStandard.GapLine();
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
             settings.transformChance = listingStandard.Slider(settings.transformChance, 0f, 100f);
@@ -46,7 +52,20 @@ namespace Pawnmorph
             settings.partialChance = listingStandard.Slider(settings.partialChance, 0f, 100f);
             listingStandard.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
             settings.maxMutationThoughts = (int)listingStandard.Slider(settings.maxMutationThoughts, 1, 10);
-            
+
+            listingStandard
+               .Label($"{nameof(PawnmorpherSettings.manhunterTfChance).Translate()}: {settings.manhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}"); 
+            settings.manhunterTfChance = listingStandard.Slider(settings.manhunterTfChance, 0 ,1f);
+
+            if (settings.manhunterTfChance > FormerHumanUtilities.MANHUNTER_EPSILON)
+            {
+                listingStandard
+                   .Label($"{nameof(PawnmorpherSettings.friendlyManhunterTfChance).Translate()}: {settings.manhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
+                settings.friendlyManhunterTfChance = listingStandard.Slider(settings.friendlyManhunterTfChance, 0, 1f);
+
+            }
+
+
             if (Prefs.DevMode)
             {
                 listingStandard.Label($"logging level:{settings.logLevel}");

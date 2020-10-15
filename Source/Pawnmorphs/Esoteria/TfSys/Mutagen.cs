@@ -1,12 +1,10 @@
-﻿// Mutagen.cs created by Nick M(Iron Wolf) for Blue Moon (Pawnmorph) on 08/14/2019 2:45 PM
-// last updated 08/14/2019  2:45 PM
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
-//using Multiplayer.API;
+using Pawnmorph.DebugUtils;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -155,6 +153,33 @@ namespace Pawnmorph.TfSys
 
         }
 
+        bool IsFriendly(Pawn pawn)
+        {
+            return pawn.Faction == Faction.OfPlayer
+                || pawn.Faction?.RelationWith(Faction.OfPlayer)?.kind == FactionRelationKind.Ally;
+        }
+
+
+        /// <summary>
+        /// Gets the manhunter chance for the given request 
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">request</exception>
+        protected virtual float GetManhunterChance([NotNull] TransformationRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            bool isFriendly = request.originals.Any(IsFriendly);
+
+            var settings = request.manhunterSettingsOverride
+                        ?? request.outputDef.GetModExtension<FormerHumanSettings>()?.manhunterSettings
+                        ?? request.outputDef.race.GetModExtension<FormerHumanSettings>()?.manhunterSettings
+                        ?? ManhunterTfSettings.Default;
+            return settings.ManhunterChance(isFriendly); 
+        }
+
+
 
         /// <summary>
         /// Determines whether this instance can infect the specified race definition.
@@ -243,13 +268,17 @@ namespace Pawnmorph.TfSys
 
         /// <summary>
         /// Applies the post tf effects.
-        /// this should be called just before the original pawn is cleaned up 
+        /// this should be called just before the original pawn is cleaned up
         /// </summary>
         /// <param name="original">The original.</param>
         /// <param name="transformedPawn">The transformed pawn.</param>
-        protected virtual void ApplyPostTfEffects(Pawn original, Pawn transformedPawn)
+        /// <param name="request">The transformation request</param>
+        protected virtual void ApplyPostTfEffects([NotNull] Pawn original, [NotNull] Pawn transformedPawn, [NotNull] TransformationRequest request)
         {
-            List<Aspect> aspects = new List<Aspect>(); 
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+            List<Aspect> aspects = new List<Aspect>();
             foreach (AspectGiver aspectGiver in def.tfAspectGivers.MakeSafe())
             {
                 aspects.Clear();
@@ -259,12 +288,26 @@ namespace Pawnmorph.TfSys
                     {
                         var aDef = aspect;
                         var tracker = transformedPawn.GetAspectTracker();
-                        tracker?.Add(aDef, aspect.StageIndex); 
+                        tracker?.Add(aDef, aspect.StageIndex);
                     }
                 }
             }
 
-            transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis); 
+
+            float manhunterChance = GetManhunterChance(request);
+            if (manhunterChance > FormerHumanUtilities.MANHUNTER_EPSILON && Rand.Value < manhunterChance)
+            {
+                MentalStateDef stateDef = MentalStateDefOf.Manhunter;
+
+                transformedPawn.mindState?.mentalStateHandler?.TryStartMentalState(stateDef, forceWake: true);
+            }
+            else if(def.appliesTfParalysis)
+            {
+                //don't add tf paralysis on manhunter 
+                transformedPawn.health.AddHediff(TfHediffDefOf.TransformationParalysis);
+            }
+
+
         }
 
 
@@ -279,9 +322,11 @@ namespace Pawnmorph.TfSys
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
             var sTracker = original.GetSapienceTracker();
-            if (sTracker?.CurrentState != null)
-                return Mathf.Max(sTracker.Sapience - Mathf.Max(def.transformedSapienceDrop.RandomInRange,0), 0); 
-            return Rand.Range(0.4f, 1);
+            float initialSapience;
+            if (sTracker?.CurrentState == null) initialSapience = 1;
+            else initialSapience = sTracker.Sapience;
+
+            return Mathf.Max(initialSapience - Mathf.Max(def.transformedSapienceDrop.RandomInRange, 0), 0); 
         }
     }
 
@@ -334,7 +379,12 @@ namespace Pawnmorph.TfSys
                 return null;
             }
 
-            if (!CanTransform(request.originals)) return null; 
+            if (!CanTransform(request.originals))
+            {
+                DebugLogUtils.Warning($"unable to fulfill tf request using {def.defName}\n{request}");
+                
+                return null;
+            } 
 
             return TransformImpl(request); 
         }
@@ -354,21 +404,16 @@ namespace Pawnmorph.TfSys
                 throw new ArgumentNullException(nameof(pawn));
             bool reverted;
 
-            //if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
-
             try
             {
                 reverted = CanRevertPawnImp((T) pawn);
             }
             catch (InvalidCastException e)
             {
-                //if (MP.IsInMultiplayer) Rand.PopState();
                 throw new
                     InvalidTransformedPawnInstance($"tfPawn instance of type {pawn.GetType().Name} can not be cast to {typeof(T).Name}",
                                                    e);
             }
-
-            //if (MP.IsInMultiplayer) Rand.PopState();
 
             return reverted; 
         }
@@ -385,19 +430,15 @@ namespace Pawnmorph.TfSys
             bool reverted;
             try
             {
-                //if (MP.IsInMultiplayer) Rand.PushState(RandUtilities.MPSafeSeed);
-
                 reverted =
                     TryRevertImpl((T) transformedPawn); //this class will handle all casting for us, and error appropriately 
             }
             catch (InvalidCastException e)
             {
-                //if (MP.IsInMultiplayer) Rand.PopState();
                 throw new InvalidTransformedPawnInstance(
                                                          $"tfPawn instance of type {transformedPawn.GetType().Name} can not be cast to {typeof(T).Name}",
                                                          e);
             }
-            //if (MP.IsInMultiplayer) Rand.PopState();
 
             return reverted;
         }

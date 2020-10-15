@@ -34,7 +34,7 @@ namespace Pawnmorph
             if (member == null) throw new ArgumentNullException(nameof(member));
             if (animal == null) throw new ArgumentNullException(nameof(animal));
             if (faction.IsPlayer) return;
-
+            if (!faction.CanChangeGoodwillFor(Faction.OfPlayer, TRANSFORMED_RELATIONSHIP_OFFSET)) return; 
             if (!wasWorldPawn
              && !PawnGenerator.IsBeingGenerated(member)
              && (Current.ProgramState == ProgramState.Playing && map != null)
@@ -86,7 +86,7 @@ namespace Pawnmorph
         public static void Notify_LeaderTransformed([NotNull] this Faction faction, Pawn animal)
         {
             var leader = faction.leader;
-            faction.GenerateNewLeader();
+            faction.TryGenerateNewLeader();
             var newLeader = faction.leader;
             var letterLabel = LEADER_TRANSFORMED_LABEL.Translate( faction.Name.Named(FACTION_NAME), 
                                                             faction.def.leaderTitle.CapitalizeFirst().Named(LEADER_TITLE),

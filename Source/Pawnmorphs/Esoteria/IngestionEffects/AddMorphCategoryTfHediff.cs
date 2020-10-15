@@ -46,7 +46,9 @@ namespace Pawnmorph.IngestionEffects
                     else
                     {
                         _allHediffs =
-                            morphCategory.AllMorphsInCategories.Select(m => fullTf
+                            morphCategory.AllMorphsInCategories
+                                         .Where(m => !m.Restricted)
+                                         .Select(m => fullTf
                                                                                 ? m.fullTransformation
                                                                                 : m.partialTransformation)
                                          .ToList();

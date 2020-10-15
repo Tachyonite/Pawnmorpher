@@ -33,7 +33,12 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The morph or class to pick from 
         /// </summary>
-        public AnimalClassBase morph; 
+        public AnimalClassBase morph;
+
+        /// <summary>
+        /// if true, this stage can give restricted mutations 
+        /// </summary>
+        public bool allowRestricted; 
 
         [Unsaved,NotNull] private readonly Dictionary<Thing, List<MutationEntry>> _cache = new Dictionary<Thing, List<MutationEntry>>();
 
@@ -97,6 +102,8 @@ namespace Pawnmorph.Hediffs
                var rMorph = AllMorphs.RandomElement();
                foreach (MutationDef rMorphAllAssociatedMutation in rMorph.AllAssociatedMutations) //get all mutations from the randomly picked morph 
                {
+                    if(!allowRestricted && rMorphAllAssociatedMutation.IsRestricted) continue;
+
                    var mEntry = new MutationEntry
                    {
                        addChance = rMorphAllAssociatedMutation.defaultAddChance,

@@ -4,12 +4,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Jobs;
 using Pawnmorph.Social;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
+using Pawnmorph.User_Interface;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -19,6 +22,63 @@ namespace Pawnmorph.DebugUtils
     static class PMDebugActions
     {
         private const string PM_CATEGORY = "Pawnmorpher";
+
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void TagAllMutations()
+        {
+            var cd = Find.World.GetComponent<ChamberDatabase>();
+
+            var mutations = DefDatabase<MutationCategoryDef>.AllDefs.Where(d => d.genomeProvider)
+                                                            .SelectMany(d => d.AllMutations)
+                                                            .Distinct();
+            foreach (MutationDef mutationDef in mutations)
+            {
+                if(cd.StoredMutations.Contains(mutationDef)) continue;
+                cd.AddToDatabase(mutationDef); 
+            }
+
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void TagAllAnimals()
+        {
+            var gComp = Find.World.GetComponent<PawnmorphGameComp>();
+            var database = Find.World.GetComponent<ChamberDatabase>();
+
+            StringBuilder sBuilder = new StringBuilder();
+            foreach (var kindDef in DefDatabase<PawnKindDef>.AllDefs)
+            {
+                var thingDef = kindDef.race; 
+                if(thingDef.race?.Animal != true) continue;
+
+                if (!database.TryAddToDatabase(kindDef, out string reason))
+                {
+                    sBuilder.AppendLine($"unable to store {kindDef.label} because {reason}");
+                }
+                else
+                {
+                    sBuilder.AppendLine($"added {kindDef.label} to the database");
+                }
+            }
+
+            Log.Message(sBuilder.ToString());
+
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void GetInfluenceDebugInfo(Pawn pawn)
+        {
+            var mutTracker = pawn?.GetMutationTracker();
+            if (mutTracker == null)
+            {
+                Log.Message("no mutation tracker");
+                return; 
+            }
+
+            Log.Message(AnimalClassUtilities.GenerateDebugInfo(mutTracker.AllMutations)); 
+
+        }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void TryExitSapienceState(Pawn pawn)
@@ -160,6 +220,13 @@ namespace Pawnmorph.DebugUtils
         public static void OpenActionMenu()
         {
             Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
+        }
+
+        [DebugAction(category=PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void OpenPartPickerMenu(Pawn pawn)
+        {
+            if (pawn == null) return;
+            Find.WindowStack.Add(new Dialog_PartPicker(pawn, true));
         }
     }
 }

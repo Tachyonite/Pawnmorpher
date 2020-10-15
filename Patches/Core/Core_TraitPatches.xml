@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TraitDef[defName="BodyPurist" or defName="Nudist" or defName="Transhumanist"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.TFTransferable" />
+        </value>
+    </Operation>
+</Patch>

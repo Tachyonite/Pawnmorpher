@@ -2,7 +2,7 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphSheepTF</defName>
 		<label>sheepmorph</label>
-		<description>This person has mechanites in their blood that are slowly mutating them into a huskymorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more sheepish.</description>
+		<description>This person has mechanites in their blood that are slowly mutating them into a sheepmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more sheepish.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>

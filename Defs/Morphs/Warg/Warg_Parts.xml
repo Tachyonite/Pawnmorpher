@@ -2,11 +2,10 @@
 	<Pawnmorph.Hediffs.MutationDef Name="WargPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>WargMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargMuzzle</defName>
 		<label>warg muzzle</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+		<description>The fearsome, toothy muzzle of a warg.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -27,7 +26,24 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -39,9 +55,10 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_possessive] teeth are pointed to suit, so eating is easier. Adaptation has reduced the difficulty with talking.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -99,32 +116,32 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargEar</defName>
 		<label>warglike</label>
-		<description>Thick-skinned ears with a tuft at the end have grown from [PAWN_nameDef]'s head. They scan the horizon independently for prey.</description>
+		<description>The rugged, pointed ear of a hungry warg.</description>
 		<parts>
 			<li>Ear</li>
 		</parts>
 		<mutationTale>EarsChangedCanid</mutationTale>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>Thick-skinned ears with a tuft at the end have grown from [PAWN_nameDef]'s head. They scan the horizon independently for prey.</description>
 				<partEfficiencyOffset>0.25</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="WargPart">
 		<defName>EtherWargTail</defName>
 		<label>tufted tail</label>
 		<description>A thin tail with a tuft of fur at the end.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<mutationTale>GrewTail</mutationTale>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<statOffsets>
 					<SocialImpact>+0.05</SocialImpact>
 				</statOffsets>

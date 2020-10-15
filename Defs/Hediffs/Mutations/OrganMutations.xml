@@ -1,0 +1,67 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherStrongHeart</defName>
+		<label>strong heart</label>
+		<description>This heart is built for a larger body, and pumps a lot of blood. It also tires people out.</description>
+		<parts>
+			<li>Heart</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A painful spasm of a growing heart is burning in [PAWN_nameDef]'s chest.</description>
+				<labelOverride>swelling</labelOverride>
+				<minSeverity>0.04</minSeverity>
+				<painOffset>0.5</painOffset>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>[PAWN_nameDef]'s heart has grown in size and the surrounding chest cavity has expanded to make room. [PAWN_pronoun] will need to rest more often, however.</description>
+				<minSeverity>0.8</minSeverity>
+				<restFallFactorOffset>0.3</restFallFactorOffset>
+				<partEfficiencyOffset>0.3</partEfficiencyOffset>
+			</li>
+		</stages>
+		<classInfluence>Powerful</classInfluence>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>1</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherBellowingLung</defName>
+		<label>bellowing lung</label>
+		<description>A large, powerful lung for intensive breathing. Causes</description>
+		<parts>
+			<li>Lung</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A painful spasm of growing lungs is burning in [PAWN_nameDef]'s chest.</description>
+				<labelOverride>swelling</labelOverride>
+				<minSeverity>0.04</minSeverity>
+				<painOffset>0.2</painOffset>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>[PAWN_nameDef]'s lungs have grown in size and the surrounding chest cavity has expanded to make room. The larger size leads to hyperventilation, causing slight dizziness.</description>
+				<minSeverity>0.8</minSeverity>
+				<partEfficiencyOffset>0.15</partEfficiencyOffset>
+			</li>
+		</stages>
+		<classInfluence>Powerful</classInfluence>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>1</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

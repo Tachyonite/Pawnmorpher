@@ -30,26 +30,6 @@ namespace Pawnmorph
         {
             base.PostSpawnSetup(respawningAfterLoad);
             if (respawningAfterLoad) return; 
-            RandUtilities.PushState();
-
-            if (!triggered)
-            {
-                triggered = true;
-                if (CanBeFormerHuman() && Rand.RangeInclusive(0, 100) <= Props.Chance)
-                {
-                    float sL = Rand.Value;
-                    FormerHumanUtilities.MakeAnimalSapient((Pawn) parent, sL, false);
-                    FormerHumanUtilities.NotifyRelatedPawnsFormerHuman((Pawn)parent,
-                                                                       FormerHumanUtilities.RELATED_WILD_FORMER_HUMAN_LETTER,
-                                                                       FormerHumanUtilities
-                                                                          .RELATED_WILD_FORMER_HUMAN_LETTER_LABEL);
-                    _isRelatedToColonist = Pawn.IsRelatedToColonistPawn(); 
-                }
-            }
-
-
-            RandUtilities.PopState();
-
         }
 
         /// <summary>
@@ -58,22 +38,25 @@ namespace Pawnmorph
         public override void CompTick()
         {
             base.CompTick();
-            //wait approximately a second before having the former human join the colony 
-            if (triggered && _isRelatedToColonist && !_finishedCheck && parent.IsHashIntervalTick(60))
+
+
+            if (!triggered)
             {
-                _finishedCheck = true;
-                if (parent.Faction != null) return; //only wild former humans can automatically join 
-                if (Pawn.MentalStateDef == MentalStateDefOf.Manhunter
-                 || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent)
-                    return;
-                //have the former human join only if it's not part of a manhunter pack 
-                if (Pawn.IsFormerHuman())
+                triggered = true;
+                if (CanBeFormerHuman() && Rand.RangeInclusive(0, 100) <= Props.Chance)
                 {
-
-                    Pawn.SetFaction(Faction.OfPlayer);
+                    float sL = Rand.Value;
+                    FormerHumanUtilities.MakeAnimalSapient((Pawn)parent, sL);
+                    FormerHumanUtilities.NotifyRelatedPawnsFormerHuman((Pawn)parent,
+                                                                       FormerHumanUtilities.RELATED_WILD_FORMER_HUMAN_LETTER,
+                                                                       FormerHumanUtilities
+                                                                          .RELATED_WILD_FORMER_HUMAN_LETTER_LABEL);
+                    _isRelatedToColonist = Pawn.IsRelatedToColonistPawn();
                 }
-
             }
+
+
+          
         }
 
         /// <summary>
@@ -103,6 +86,10 @@ namespace Pawnmorph
             //convert to human years 
             var hAge = age * (ThingDefOf.Human.race.lifeExpectancy) / pawn.RaceProps.lifeExpectancy;
 
+            //don't let manhunters be former humans 
+            if (Pawn.MentalStateDef == MentalStateDefOf.Manhunter
+             || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent)
+                return false;
 
 
             return hAge > 20; //make sure their older then 20 human years 

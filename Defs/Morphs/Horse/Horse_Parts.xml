@@ -2,16 +2,32 @@
 	<Pawnmorph.Hediffs.MutationDef Abstract="True" ParentName="PawnmorphPart" Name="HorsePart">
 		<classInfluence>HorseMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="HorsePart">
 		<defName>EtherHorseSnout</defName>
 		<label>equine snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier.</description>
+		<description>Why the long face?</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -23,9 +39,10 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a horse. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with speaking.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -58,7 +75,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="HorsePart">
 		<defName>EtherHorseEar</defName>
 		<label>equine</label>
@@ -67,21 +83,21 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="HorsePart">
 		<defName>EtherHorseTail</defName>
 		<label>horse tail</label>
 		<description>A horselike tail. It swats at flies occasionally.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

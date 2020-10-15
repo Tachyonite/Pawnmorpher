@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
@@ -26,8 +27,8 @@ namespace Pawnmorph.Hybrids
         class CompPropComparer : IEqualityComparer<CompProperties>
         {
             /// <summary>Determines whether the specified objects are equal.</summary>
-            /// <param name="x">The first object of type <paramref name="T" /> to compare.</param>
-            /// <param name="y">The second object of type <paramref name="T" /> to compare.</param>
+            /// <param name="x">The first object of type <c>CompPropComparer</c> to compare.</param>
+            /// <param name="y">The second object of type <c>CompPropComparer</c> to compare.</param>
             /// <returns>
             /// <see langword="true" /> if the specified objects are equal; otherwise, <see langword="false" />.</returns>
             public bool Equals(CompProperties x, CompProperties y)
@@ -52,12 +53,9 @@ namespace Pawnmorph.Hybrids
                     return x.compClass == y.compClass; 
                 }
 
-                
-
                 //just return true here 
                 //need someway to check this by reflection
-                return true; 
-
+                return true;
             }
 
             /// <summary>Returns a hash code for the specified object.</summary>
@@ -235,9 +233,19 @@ namespace Pawnmorph.Hybrids
                 comp.NotifyPawnRaceChanged(pawn, oldMorph);
             }
 
-            if (race == ThingDefOf.Human)
-                ValidateReversion(pawn); 
-            else 
+            
+            //always revert to human settings first so the race change is consistent 
+            ValidateReversion(pawn);
+
+            //check if the body def changed and handle any apparel changes 
+            if (oldRace.race.body != race.race.body)
+            {
+
+                ValidateApparelForChangedPawn(pawn, oldRace); 
+            }
+
+
+            if(race != ThingDefOf.Human) 
                 ValidateExplicitRaceChange(pawn, race, oldRace);
 
             var mTracker = pawn.GetComp<MorphTrackingComp>();
@@ -262,6 +270,34 @@ namespace Pawnmorph.Hybrids
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
                 raceChangeEventReceiver.OnRaceChange(oldRace);
+            }
+        }
+
+        [NotNull]
+        private readonly static List<Apparel> _apparelCache = new List<Apparel>(); 
+
+        private static void ValidateApparelForChangedPawn([NotNull] Pawn pawn, [NotNull] ThingDef oldRace)
+        {
+            Pawn_ApparelTracker apparel = pawn.apparel;
+            if (apparel == null) return;
+            
+            _apparelCache.Clear();
+            _apparelCache.AddRange(apparel.WornApparel.MakeSafe());
+
+
+            foreach (Apparel ap in _apparelCache) //use a copy so we can remove them safely while iterating 
+            {
+                if (!ApparelUtility.HasPartsToWear(pawn, ap.def))
+                {
+                    if (DebugLogUtils.ShouldLog(LogLevel.Messages))
+                        Log.Message($"removing {ap.Label}");
+
+                    if (apparel.TryDrop(ap))
+                    {
+                        
+                        apparel.Remove(ap); 
+                    }
+                }
             }
         }
 
@@ -605,9 +641,9 @@ namespace Pawnmorph.Hybrids
         private static void HandleGraphicsChanges(Pawn pawn, MorphDef morph)
         {
             var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            comp.skinColor = comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.skinColor;
-            comp.skinColorSecond = comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.skinColorSecond;
-            comp.hairColorSecond = comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.hairColorSecond;
+            comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.GetSkinColor() ?? Color.white;
+            comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.GetSkinColor(false) ?? Color.white;
+            comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.GetHairColor(false) ?? Color.white; 
             pawn.story.hairColor = comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.hairColor;
         }
 

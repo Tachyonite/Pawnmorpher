@@ -425,9 +425,7 @@
                     <def>TailLeg</def>
                     <coverage>0.14</coverage>
                     <height>Bottom</height>
-                    <groups>
-                        <li>Legs</li>
-                    </groups>
+                    
                 </li>
             </parts>
         </corePart>
@@ -536,10 +534,6 @@
                         <li>Narrow_Pointy</li>
                         <li>Narrow_Wide</li>
                     </aliencrowntypes>
-                    <alienskincolorgen Class="AlienRace.ColorGenerator_SkinColorMelanin">
-                        <minMelanin>0</minMelanin>
-                        <maxMelanin>1</maxMelanin>
-                    </alienskincolorgen>
                     <bodyAddons>
                         <li>
                             <!-- Body Tails -->

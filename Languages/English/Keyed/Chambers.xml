@@ -1,0 +1,13 @@
+<LanguageData>
+    <NotEnoughStorageSpaceToTagPK>there is not enough storage to tag {0}</NotEnoughStorageSpaceToTagPK>
+    <AlreadyTaggedAnimal>{0} already in genetic database</AlreadyTaggedAnimal>
+    <AnimalNotTaggable>{0} is too genetically corrupted to be added</AnimalNotTaggable>
+    <AnimalAddedToDatabase>{0} added to database</AnimalAddedToDatabase>
+    <ChamberDatabaseIgnoresDataLimit>Chamber Database Ignores Data Limit</ChamberDatabaseIgnoresDataLimit>
+    <ChamberDatabaseIgnoresDataLimitTooltip>if true, adding things to the chamber database will not require data storage, usefull for debugging</ChamberDatabaseIgnoresDataLimitTooltip>
+    <PMStorageSpaceMessage>Provides</PMStorageSpaceMessage>
+    <PMAnimalGenomeDescription>stores the genetic information of {ANIMAL}</PMAnimalGenomeDescription>
+    <PMChamberAddingMutations>adding mutations</PMChamberAddingMutations>
+    <PMChamberTransforming>transforming {0} into a {1}</PMChamberTransforming>
+    <PMMergeGizmo>Merge</PMMergeGizmo>
+</LanguageData>

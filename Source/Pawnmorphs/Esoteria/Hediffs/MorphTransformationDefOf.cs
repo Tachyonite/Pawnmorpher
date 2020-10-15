@@ -15,7 +15,13 @@ namespace Pawnmorph.Hediffs
     [DefOf]
     public static class MorphTransformationDefOf
     {
+        /// <summary>
+        /// random partial mutations 
+        /// </summary>
         public static HediffDef FullRandomTF;
+        /// <summary>
+        /// full chaomorph mutation 
+        /// </summary>
         public static HediffDef FullRandomTFAnyOutcome; 
 
 
@@ -29,7 +35,7 @@ namespace Pawnmorph.Hediffs
 
         static MorphTransformationDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(MorphTransformationDefOf));
             
         }
     }

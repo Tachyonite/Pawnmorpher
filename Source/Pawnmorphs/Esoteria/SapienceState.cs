@@ -83,7 +83,7 @@ namespace Pawnmorph
         /// <value>
         ///     The tracker.
         /// </value>
-        public SapienceTracker Tracker { get; private set; }
+        public SapienceTracker Tracker { get; internal set; }
 
 
         /// <summary>

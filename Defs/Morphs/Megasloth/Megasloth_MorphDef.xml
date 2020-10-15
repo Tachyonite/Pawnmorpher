@@ -6,9 +6,6 @@
 		<race>Megasloth</race>
 		<classification>ThickFur</classification>
 		<categories>
-			<li>Arid</li>
-			<li>Cold</li>
-			<li>Temperate</li>
 			<li>Powerful</li>
 		</categories>
 		<fullTransformation>PawnmorphMegaslothTF</fullTransformation>

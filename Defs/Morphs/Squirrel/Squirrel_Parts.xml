@@ -2,11 +2,10 @@
 	<Pawnmorph.Hediffs.MutationDef Name="SquirrelPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>SquirrelMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelJaw</defName>
 		<label>sciurine muzzle</label>
-		<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's, complete with oversized front teeth.</description>
+		<description>The chittery, chewing mouth of a squirrel.</description>
 		<initialSeverity>0</initialSeverity>
 		<parts>
 			<li>Jaw</li>
@@ -27,8 +26,24 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
-				<label>new</label>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's, complete with oversized front teeth.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -40,9 +55,10 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
+				<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a squirrel's, complete with oversized front teeth. Adaptation has removed most of the difficulty with speaking.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -93,7 +109,6 @@
 			<li>Major</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelEar</defName>
 		<description>[PAWN_nameDef]'s ears have grown into small wedges, flicking about to listen for the beating of wings.</description>
@@ -102,7 +117,7 @@
 			<li>Ear</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
@@ -111,16 +126,16 @@
 			<li>Major</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="SquirrelPart">
 		<defName>EtherSquirrelTail</defName>
 		<label>sciurine tail</label>
 		<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_objective]self and use it as a pillow while sleeping.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>

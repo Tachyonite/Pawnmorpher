@@ -2,7 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name="IguanaPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>IguanaMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaSnout</defName>
 		<label>iguana snout</label>
@@ -12,7 +11,7 @@
 			<li>Jaw</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>new</label>
 				<capMods>
 					<li>
@@ -25,7 +24,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
@@ -59,7 +58,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaHorns</defName>
 		<description>A series of spines drapes down [PAWN_nameDef]'s back.</description>
@@ -67,19 +65,26 @@
 		<parts>
 			<li>Skull</li>
 		</parts>
-		<!--Needs Stats-->
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<!--Needs Stats-->
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaTail</defName>
 		<label>iguana tail</label>
 		<description>A spiney green tail.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
-		<!--Needs stats-->
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<!--Needs Stats-->
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaHand</defName>
 		<label>dextrous claws</label>
@@ -88,7 +93,7 @@
 			<li>Hand</li>
 		</parts>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>unfamiliar</label>
 				<capMods>
 					<li>
@@ -97,7 +102,7 @@
 					</li>
 				</capMods>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 			</li>
@@ -122,7 +127,6 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaFoot</defName>
 		<label>reptilian foot</label>
@@ -131,8 +135,9 @@
 			<li>Foot</li>
 		</parts>
 		<stages>
-			<li />
-			<li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
 				<capMods>
