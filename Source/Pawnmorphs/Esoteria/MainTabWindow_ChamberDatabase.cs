@@ -221,18 +221,23 @@ namespace Pawnmorph
             Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
             try
             {
+                const float rowHeight = 30;
+                const float lineWidth = 5;
+                const float buffer = 5; 
                 //draw the header row
                 DrawRow(header, viewRect);
-                viewRect.y += 30;
+                viewRect.y += (rowHeight + lineWidth + buffer )/2f;
 
+                Widgets.DrawLine(new Vector2(viewRect.x, viewRect.y),new Vector2(viewRect.x + mainView.width, viewRect.y), Color.black,  lineWidth);
 
+                viewRect.y += (rowHeight + lineWidth) / 2f; 
                 if (_rowEntries.Count == 0) return;
 
                 for (var index = 0; index < _rowEntries.Count; index++)
                 {
                     RowEntry rowEntry = _rowEntries[index];
                     var rect = viewRect; //TODO fix this 
-                    rect.y += index * 30; //go down 1 row? 
+                    rect.y += index * rowHeight; //go down 1 row? 
                     DrawRow(rowEntry, rect);
                 }
 
@@ -314,7 +319,7 @@ namespace Pawnmorph
             const float buttonShrinkFactor = 0.071f;
 
             var bW = bRect.width * buttonShrinkFactor;
-            var dX = bRect.width * (1 - buttonShrinkFactor) / 2;
+            var dX = bRect.width * (1 - buttonShrinkFactor) / 4;
             var bRectReal = new Rect(bRect)
             {
                 width = bW,
