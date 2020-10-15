@@ -85,7 +85,13 @@
 		<building>
 			<isPlayerEjectable>false</isPlayerEjectable>
 		</building>
-
+		<costList>
+			<Steel>120</Steel>
+			<Mutanite>14</Mutanite>
+			<MechaniteSlurry>3</MechaniteSlurry>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
 		<placeWorkers>
 			<li>PlaceWorker_ShowFacilitiesConnections</li>
 		</placeWorkers>
@@ -97,7 +103,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>MutagenicModulator</defName>
 		<label>mutagenic modulator</label>
-		<description>Don't want people to come out of the chamber as random or chaotic animals? This modulator allows you to control the outcome...and even perform some very, very strange techniques. Place directly next to a chamber. WARNING: Deconstructing this while a pawn is inside will eject them and waste any fuel inserted!</description>
+		<description>Depricated</description>
 		<graphicData>
 			<texPath>Things/Building/MutagenChamber/Monitor</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -158,7 +164,6 @@
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>GR_GeneticsTab</designationCategory>
 		<costList>
 			<Steel>50</Steel>
 			<Mutanite>1</Mutanite>
@@ -233,8 +238,8 @@
 				</merges>
 			</li>
 		</comps>
+
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>GR_GeneticsTab</designationCategory>
 		<costList>
 			<Steel>70</Steel>
 			<Plasteel>10</Plasteel>
@@ -252,8 +257,8 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>BigMutagenicChamber</defName>
-		<label>mutagenic chamber 2x2</label>
-		<description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. This is a larger variant, for making Very Big Things.</description>
+		<label>mutagenic chamber 2x2 (depricated)</label>
+		<description>Depricated</description>
 		<thingClass>Pawnmorph.Building_MutagenChamber</thingClass>
 		<graphicData>
 			<texPath>Things/Building/MutagenChamber/TFChamberBig</texPath>
@@ -322,7 +327,6 @@
 			</li>
 		</comps>
 		<defaultPlacingRot>South</defaultPlacingRot>
-		<designationCategory>GR_GeneticsTab</designationCategory>
 		<building>
 			<isPlayerEjectable>false</isPlayerEjectable>
 		</building>

@@ -135,6 +135,7 @@
 			<li>PowerfulSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
+	<!-- TODO depricate old research  -->
 	<ResearchProjectDef>
 		<defName>AdvancedMutagenChambers</defName>
 		<label>Advanced chambers</label>

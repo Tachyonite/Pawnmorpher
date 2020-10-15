@@ -58,10 +58,6 @@
                 </fuelFilter>
                 <initialFuelPercent>0</initialFuelPercent>
             </li>
-            <li Class="CompProperties_Facility">
-                <maxSimultaneous>2</maxSimultaneous>
-                <mustBePlacedAdjacent>true</mustBePlacedAdjacent>
-            </li>
             <li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
                 <requiresTag>true</requiresTag>
                 <alwaysAvailable>
@@ -109,9 +105,6 @@
             <ComponentIndustrial>3</ComponentIndustrial>
             <ComponentSpacer>1</ComponentSpacer>
         </costList>
-        <placeWorkers>
-            <li>PlaceWorker_ShowFacilitiesConnections</li>
-        </placeWorkers>
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
         <designationHotKey>Misc2</designationHotKey>
         <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
