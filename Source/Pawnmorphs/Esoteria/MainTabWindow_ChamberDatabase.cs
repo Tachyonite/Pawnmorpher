@@ -250,7 +250,7 @@ namespace Pawnmorph
         }
 
         private const float DESCRIPTION_ROW_FRACT = 0.66f;
-        private const float TEXT_ROW_FRACT = 4f / 5f;
+        private const float TEXT_ROW_FRACT = 6f/7f;
         private const float BUTTON_FRACT = 1f - TEXT_ROW_FRACT; 
         private const float DESC_ROW_T_FRACT = DESCRIPTION_ROW_FRACT * TEXT_ROW_FRACT;
         private const float STORAGE_INFO_FRACT = (1 - DESCRIPTION_ROW_FRACT) * (TEXT_ROW_FRACT);
@@ -278,7 +278,7 @@ namespace Pawnmorph
             float tW = inRect.width * 2f;
             float wTxt = tW * DESC_ROW_T_FRACT;
             float wST = tW * STORAGE_INFO_FRACT;
-            float wButton = BUTTON_FRACT * tW; 
+            float wButton = 0.1f * BUTTON_FRACT * tW; 
             float x0 = inRect.x;
             float x1 = DESC_ROW_T_FRACT * tW + x0;
             float x2 = TEXT_ROW_FRACT * tW + x0;
