@@ -250,7 +250,7 @@ namespace Pawnmorph
         }
 
         private const float DESCRIPTION_ROW_FRACT = 0.66f;
-        private const float TEXT_ROW_FRACT = 6f/7f;
+        private const float TEXT_ROW_FRACT = 5f/7f;
         private const float BUTTON_FRACT = 1f - TEXT_ROW_FRACT; 
         private const float DESC_ROW_T_FRACT = DESCRIPTION_ROW_FRACT * TEXT_ROW_FRACT;
         private const float STORAGE_INFO_FRACT = (1 - DESCRIPTION_ROW_FRACT) * (TEXT_ROW_FRACT);
@@ -275,10 +275,11 @@ namespace Pawnmorph
         }
         void DrawRow(RowEntry entry, Rect inRect)
         {
+
             float tW = inRect.width * 2f;
             float wTxt = tW * DESC_ROW_T_FRACT;
             float wST = tW * STORAGE_INFO_FRACT;
-            float wButton = 0.1f * BUTTON_FRACT * tW; 
+            float wButton =  BUTTON_FRACT * tW; 
             float x0 = inRect.x;
             float x1 = DESC_ROW_T_FRACT * tW + x0;
             float x2 = TEXT_ROW_FRACT * tW + x0;
@@ -304,9 +305,25 @@ namespace Pawnmorph
 
 
             Widgets.Label(stInfoRect, usageStr);
-            if (Widgets.ButtonImage(buttonRect, PMTexButton.CloseXSmall))
+            DrawButton(buttonRect, entry.def); 
+
+        }
+
+        void DrawButton(Rect bRect, Def removeDef)
+        {
+            const float buttonShrinkFactor = 0.071f;
+
+            var bW = bRect.width * buttonShrinkFactor;
+            var dX = bRect.width * (1 - buttonShrinkFactor) / 2;
+            var bRectReal = new Rect(bRect)
             {
-                RemoveFromDB(entry.def); 
+                width = bW,
+                x = bRect.x + dX
+            };
+
+            if (Widgets.ButtonImage(bRectReal, PMTexButton.CloseXSmall))
+            {
+                RemoveFromDB(removeDef); 
             }
 
         }
