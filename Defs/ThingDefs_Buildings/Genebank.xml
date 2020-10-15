@@ -28,7 +28,7 @@
     <designationCategory>GR_GeneticsTab</designationCategory>
     <uiIconScale>1</uiIconScale>
 	<researchPrerequisites>
-		  <li>MutagenChambers</li>
+		  <li>Injectors</li>
   </researchPrerequisites>
   <comps>
     <li Class="Pawnmorph.ThingComps.DatabaseStorageProperties">
