@@ -47,6 +47,29 @@ namespace Pawnmorph.TfSys
         /// Initializes a new instance of the <see cref="TransformationRequest"/> struct.
         /// </summary>
         /// <param name="outputDef">The output definition.</param>
+        /// <param name="original">The original.</param>
+        /// <param name="maxSeverity">the maximum severity of the former human hediff</param>
+        public TransformationRequest(PawnKindDef outputDef, Pawn original, SapienceLevel maxSeverity)
+        {
+
+            originals = new[] { original };
+            this.outputDef = outputDef;
+            forcedGender = TFGender.Original;
+            forcedGenderChance = 50;
+            cause = null;
+            tale = null;
+            this.maxSeverity = maxSeverity.GetMidLevel();
+            addMutationToOriginal = true;
+            noLetter = false;
+            minSeverity = 0;
+            forcedFaction = default;
+            factionResponsible = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransformationRequest"/> struct.
+        /// </summary>
+        /// <param name="outputDef">The output definition.</param>
         /// <param name="originals">The originals.</param>
         public TransformationRequest(PawnKindDef outputDef, params Pawn[] originals)
         {

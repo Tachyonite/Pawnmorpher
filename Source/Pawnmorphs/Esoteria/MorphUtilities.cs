@@ -23,6 +23,10 @@ namespace Pawnmorph
     {
         [NotNull] private static readonly List<ThoughtDef> _allMorphSleepingThoughts;
 
+
+   
+
+     
         /// <summary>
         /// Gets all morph group sleeping thoughts.
         /// </summary>
@@ -190,6 +194,10 @@ namespace Pawnmorph
             }
         }
 
+
+
+    
+
         /// <summary>
         /// Determines whether this instance is a chimera.
         /// </summary>
@@ -290,7 +298,7 @@ namespace Pawnmorph
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">race</exception>
         [CanBeNull]
-        public static MorphDef TryGetBestMorphOfAnimal([NotNull] ThingDef race)
+        public static MorphDef TryGetBestMorphOfAnimal([NotNull] this ThingDef race)
         {
             if (race == null) throw new ArgumentNullException(nameof(race));
 
