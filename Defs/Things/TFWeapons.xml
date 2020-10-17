@@ -224,7 +224,7 @@
 			<Gun_BoltActionRifle>1</Gun_BoltActionRifle>
 		</costList>
 		<recipeMaker>
-		<researchPrerequisite>MutagenChambers</researchPrerequisite>
+		<researchPrerequisite>Injectors</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
