@@ -5,4 +5,7 @@
     <PMGenebankRemoveColumnHeader>remove from database</PMGenebankRemoveColumnHeader>
     <PMGeneBankAnimalDefHeader>animal</PMGeneBankAnimalDefHeader>
     <PMGenebankMutationDefInfoColumnHeader>mutation</PMGenebankMutationDefInfoColumnHeader>
+    <PMGenebankHeader>Genebank Storage</PMGenebankHeader>
+    <PMGenebankAvailableHeader>Available Storage</PMGenebankAvailableHeader>
+    <PMGenebankTotalHeader>Total Storage</PMGenebankTotalHeader>
 </LanguageData>
