@@ -104,7 +104,7 @@
 	<ResearchProjectDef>
 		<defName>Injectors</defName>
 		<label>Injectors</label>
-		<description>Isolating the actual genomes of the mechanites involved allows us to create distinct strains of mutagens for specific animals. However, in order to isolate the genome a given animal, the genetic structure of said animal will need to be sequenced from live specimens and stored in a database to cross-reference it. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to a morphsilk tape-based genebank. </description>
+		<description>Isolating the actual genomes of the mechanites involved allows us to create distinct strains of mutagens for specific animals. However, in order to isolate the genome a given animal, the genetic structure of said animal will need to be sequenced from live specimens and stored in a database to cross-reference it. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to a morphsilk tape-based genebank.</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>

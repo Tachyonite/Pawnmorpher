@@ -19,7 +19,24 @@ namespace Pawnmorph
     /// <seealso cref="RimWorld.MainTabWindow" />
     public partial class MainTabWindow_ChamberDatabase : MainTabWindow
     {
+        private const float DESCRIPTION_ROW_FRACT = 0.66f;
+        private const float TEXT_ROW_FRACT = 5f / 7f;
+        private const float BUTTON_FRACT = 1f - TEXT_ROW_FRACT;
+        private const float DESC_ROW_T_FRACT = DESCRIPTION_ROW_FRACT * TEXT_ROW_FRACT;
+        private const float STORAGE_INFO_FRACT = (1 - DESCRIPTION_ROW_FRACT) * TEXT_ROW_FRACT;
 
+
+        //header constants 
+        private const float HEADER_LABEL_FRACT = 0.66f;
+        private const float HEADER_SPACE_FRACT = 1f - 0.66f;
+        private const float HEADER_HEIGHT = 45*2f; 
+        
+        [NotNull] readonly
+            private List<RowEntry> _rowEntries = new List<RowEntry>();
+
+
+        [NotNull] readonly
+            private StringBuilder _builder = new StringBuilder();
 
 
         private Vector2 _scrollPosition;
@@ -29,24 +46,16 @@ namespace Pawnmorph
         private List<TabRecord> _tabs;
 
         private Mode _curMode;
-        /// <summary>
-        /// Gets the size of the requested tab.
-        /// </summary>
-        /// <value>
-        /// The size of the requested tab.
-        /// </value>
-        public override Vector2 RequestedTabSize => new Vector2(1010f, 640f);
 
         private ChamberDatabase _chamberDatabase;
 
         /// <summary>
-        /// called just before the tab is opened 
+        ///     Gets the size of the requested tab.
         /// </summary>
-        public override void PreOpen()
-        {
-            base.PostOpen();
-            _rowEntries.Clear();
-        }
+        /// <value>
+        ///     The size of the requested tab.
+        /// </value>
+        public override Vector2 RequestedTabSize => new Vector2(1010f, 640f);
 
         [NotNull]
         private List<TabRecord> Tabs
@@ -82,14 +91,21 @@ namespace Pawnmorph
 
 
         /// <summary>
-        /// Does the window contents.
+        ///     Does the window contents.
         /// </summary>
         /// <param name="inRect">The in rect.</param>
         public override void DoWindowContents(Rect inRect)
         {
             base.DoWindowContents(inRect);
             Rect sRect = inRect;
+
+
+            const float headerScaleFactor = 1.0f; 
             sRect.yMin += 45f;
+            var headerRect = new Rect(sRect) {height = HEADER_HEIGHT * headerScaleFactor}; 
+            DrawHeader(headerRect);
+            sRect.y += HEADER_HEIGHT; 
+
             TabDrawer.DrawTabs(sRect, Tabs);
             switch (_curMode)
             {
@@ -102,11 +118,203 @@ namespace Pawnmorph
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
         }
 
-        readonly struct RowEntry : IEquatable<RowEntry>
-        { 
+        private const string HEADER_LABEL = "PMGenebankHeader";
+        private const string AVAILABLE_HEADER_LABEL = "PMGenebankAvailableHeader";
+        private const string TOTAL_HEADER_LABEL = "PMGenebankTotalHeader";
+
+        private void DrawHeader(Rect sRect)
+        {
+            var h = sRect.height / 2f; 
+
+            Rect labelRect = new Rect(sRect) {width = sRect.width * HEADER_LABEL_FRACT, height = h};
+            var availableRect = new Rect(sRect)
+            {
+                width = sRect.width *0.5f * HEADER_SPACE_FRACT,
+                x = sRect.x += labelRect.width,
+                height = h
+            };
+            var totalRect = new Rect(sRect)
+            {
+                width = sRect.width * 0.5f * HEADER_SPACE_FRACT,
+                x = availableRect.x + availableRect.width,
+                height = h
+
+            };
+
+            //draw the labels 
+            Widgets.Label(availableRect, AVAILABLE_HEADER_LABEL.Translate());
+            Widgets.Label(totalRect, TOTAL_HEADER_LABEL.Translate());
+
+            availableRect.y += h;
+            labelRect.y += h/2f;
+            totalRect.y += h; 
+
+            var db = Database;
+            Widgets.Label(labelRect, HEADER_LABEL.Translate());
+            Widgets.Label(availableRect, db.FreeStorage.ToString());
+            Widgets.Label(totalRect, db.TotalStorage.ToString());
+        }
+
+        /// <summary>
+        ///     called just before the tab is opened
+        /// </summary>
+        public override void PreOpen()
+        {
+            base.PostOpen();
+            _rowEntries.Clear();
+        }
+
+        private void DrawAnimalsTab(Rect inRect)
+        {
+            _rowEntries.Clear();
+            foreach (PawnKindDef taggedAnimal in Database.TaggedAnimals) _rowEntries.Add(new RowEntry(taggedAnimal));
+
+            DrawTable(inRect, _cachedHeaders[(int) Mode.Animal]);
+        }
+
+        private void DrawButton(Rect bRect, Def removeDef)
+        {
+            const float buttonShrinkFactor = 0.071f;
+
+            float bW = bRect.width * buttonShrinkFactor;
+            float dX = bRect.width * (1 - buttonShrinkFactor) / 4;
+            var bRectReal = new Rect(bRect)
+            {
+                width = bW,
+                x = bRect.x + dX
+            };
+
+            if (Widgets.ButtonImage(bRectReal, PMTexButton.CloseXSmall)) RemoveFromDB(removeDef);
+        }
+
+        private void DrawMutationsTab(Rect inRect)
+        {
+            _rowEntries.Clear(); //TODO fix this 
+            foreach (MutationDef mutation in Database.StoredMutations) _rowEntries.Add(new RowEntry(mutation));
+
+            DrawTable(inRect, _cachedHeaders[(int) Mode.Mutations]);
+        }
+
+        private void DrawRow(RowHeader header, Rect inRect)
+        {
+            float tW = inRect.width * 2f;
+            float wTxt = tW * DESC_ROW_T_FRACT;
+            float wST = tW * STORAGE_INFO_FRACT;
+            float wButton = BUTTON_FRACT * tW;
+            float x0 = inRect.x;
+            float x1 = DESC_ROW_T_FRACT * tW + x0;
+            float x2 = TEXT_ROW_FRACT * tW + x0;
+
+
+            var txtHRect = new Rect(inRect) {width = wTxt};
+            var stInfoHRect = new Rect(inRect) {x = x1, width = wST};
+            var buttonHRect = new Rect(inRect) {x = x2, width = wButton};
+            Widgets.Label(txtHRect, header.defHeader);
+            Widgets.Label(stInfoHRect, header.totalHeader);
+            Widgets.Label(buttonHRect, header.removeHeader);
+        }
+
+        private void DrawRow(RowEntry entry, Rect inRect)
+        {
+            float tW = inRect.width * 2f;
+            float wTxt = tW * DESC_ROW_T_FRACT;
+            float wST = tW * STORAGE_INFO_FRACT;
+            float wButton = BUTTON_FRACT * tW;
+            float x0 = inRect.x;
+            float x1 = DESC_ROW_T_FRACT * tW + x0;
+            float x2 = TEXT_ROW_FRACT * tW + x0;
+
+
+            var txtRect = new Rect(inRect) {width = wTxt};
+            var stInfoRect = new Rect(inRect) {x = x1, width = wST};
+            var buttonRect = new Rect(inRect) {x = x2, width = wButton, height = 10};
+
+            Widgets.Label(txtRect, GetDescriptionStringFor(entry));
+
+            string usageStr;
+            int totalStorage = Database.TotalStorage;
+            if (totalStorage <= 0)
+                usageStr = "NaN"; //should be an error message if total storage is 0 ? 
+            else
+                usageStr = ((float) entry.storageSpaceUsed / totalStorage).ToStringPercent();
+
+
+            Widgets.Label(stInfoRect, usageStr);
+            DrawButton(buttonRect, entry.def);
+        }
+
+        private void DrawTable(Rect inRect, RowHeader header)
+        {
+            inRect.yMin += 10f;
+            inRect.yMax += 40f;
+            Rect mainView = inRect.ContractedBy(10f);
+
+            var outRect = new Rect(inRect.x, inRect.y, mainView.width, mainView.height - inRect.y - 10f);
+
+            var viewRect = new Rect(mainView.x + mainView.width / 2f + 10f, mainView.y, mainView.width / 2f - 10f - 16f,
+                                    mainView.height);
+            float viewWidth = viewRect.width / 3 - 10f;
+            Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
+            try
+            {
+                const float rowHeight = 30;
+                const float lineWidth = 5;
+                const float buffer = 5;
+                //draw the header row
+                DrawRow(header, viewRect);
+                viewRect.y += (rowHeight + lineWidth + buffer) / 2f;
+
+                Widgets.DrawLine(new Vector2(viewRect.x, viewRect.y), new Vector2(viewRect.x + mainView.width, viewRect.y),
+                                 Color.black, lineWidth);
+
+                viewRect.y += (rowHeight + lineWidth) / 2f;
+                if (_rowEntries.Count == 0) return;
+
+                for (var index = 0; index < _rowEntries.Count; index++)
+                {
+                    RowEntry rowEntry = _rowEntries[index];
+                    Rect rect = viewRect; //TODO fix this 
+                    rect.y += index * rowHeight; //go down 1 row? 
+                    DrawRow(rowEntry, rect);
+                }
+
+                //TODO scroll view stuff 
+                //use _rowEntries to get the needed information 
+                // Set the scroll view height
+            }
+            finally
+            {
+                Widgets.EndScrollView();
+            }
+        }
+
+
+        private void RemoveFromDB(Def def)
+        {
+            var db = Find.World.GetComponent<ChamberDatabase>();
+            //explicit type casts here are hacky but best way to reuse the gui code 
+            if (def is PawnKindDef pkDef)
+                db.RemoveFromDatabase(pkDef);
+            else if (def is MutationDef mDef)
+                db.RemoveFromDatabase(mDef);
+            else
+                throw new NotImplementedException(nameof(RemoveFromDB) + " is not implemented for " + def.GetType().Name + "!");
+        }
+
+
+        private void SetMode(Mode mode)
+        {
+            _curMode = mode;
+        }
+
+        private readonly struct RowEntry : IEquatable<RowEntry>
+        {
+            public readonly Def def;
+            public readonly string label;
+            public readonly int storageSpaceUsed;
+
             public RowEntry(MutationDef mDef)
             {
                 label = mDef.label;
@@ -118,18 +326,15 @@ namespace Pawnmorph
             {
                 label = pkDef.label;
                 storageSpaceUsed = pkDef.GetRequiredStorage();
-                def = pkDef; 
+                def = pkDef;
             }
-
-
-            public readonly Def def; 
-            public readonly string label;
-            public readonly int storageSpaceUsed;
 
             /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
             /// <param name="other">An object to compare with this object.</param>
             /// <returns>
-            /// <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
+            ///     <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise,
+            ///     <see langword="false" />.
+            /// </returns>
             public bool Equals(RowEntry other)
             {
                 return Equals(def, other.def)
@@ -140,7 +345,9 @@ namespace Pawnmorph
             /// <summary>Indicates whether this instance and a specified object are equal.</summary>
             /// <param name="obj">The object to compare with the current instance. </param>
             /// <returns>
-            /// <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />. </returns>
+            ///     <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same
+            ///     value; otherwise, <see langword="false" />.
+            /// </returns>
             public override bool Equals(object obj)
             {
                 return obj is RowEntry other && Equals(other);
@@ -152,23 +359,32 @@ namespace Pawnmorph
             {
                 unchecked
                 {
-                    int hashCode = (def != null ? def.GetHashCode() : 0);
+                    int hashCode = def != null ? def.GetHashCode() : 0;
                     hashCode = (hashCode * 397) ^ (label != null ? label.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ storageSpaceUsed;
                     return hashCode;
                 }
             }
 
-            /// <summary>Returns a value that indicates whether the values of two <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" /> objects are equal.</summary>
+            /// <summary>
+            ///     Returns a value that indicates whether the values of two
+            ///     <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" /> objects are equal.
+            /// </summary>
             /// <param name="left">The first value to compare.</param>
             /// <param name="right">The second value to compare.</param>
-            /// <returns>true if the <paramref name="left" /> and <paramref name="right" /> parameters have the same value; otherwise, false.</returns>
+            /// <returns>
+            ///     true if the <paramref name="left" /> and <paramref name="right" /> parameters have the same value; otherwise,
+            ///     false.
+            /// </returns>
             public static bool operator ==(RowEntry left, RowEntry right)
             {
                 return left.Equals(right);
             }
 
-            /// <summary>Returns a value that indicates whether two <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" /> objects have different values.</summary>
+            /// <summary>
+            ///     Returns a value that indicates whether two <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" />
+            ///     objects have different values.
+            /// </summary>
             /// <param name="left">The first value to compare.</param>
             /// <param name="right">The second value to compare.</param>
             /// <returns>true if <paramref name="left" /> and <paramref name="right" /> are not equal; otherwise, false.</returns>
@@ -176,190 +392,6 @@ namespace Pawnmorph
             {
                 return !left.Equals(right);
             }
-        }
-
-        [NotNull]
-        readonly 
-        private List<RowEntry> _rowEntries = new List<RowEntry>(); 
-
-
-        [NotNull] readonly 
-        private StringBuilder _builder = new StringBuilder();
-
-         
-
-        void RemoveFromDB(Def def)
-        {
-            var db = Find.World.GetComponent<ChamberDatabase>();
-            //explicit type casts here are hacky but best way to reuse the gui code 
-            if (def is PawnKindDef pkDef)
-            {
-                db.RemoveFromDatabase(pkDef); 
-            }else if (def is MutationDef mDef)
-            {
-                db.RemoveFromDatabase(mDef); 
-            }
-            else
-            {
-                throw new NotImplementedException(nameof(RemoveFromDB) + " is not implemented for " + def.GetType().Name + "!"); 
-            }
-
-
-
-        }
-
-        void DrawTable(Rect inRect, RowHeader header)
-        {
-            inRect.yMin += 10f;
-            inRect.yMax += 40f;
-            Rect mainView = inRect.ContractedBy(10f);
-
-            Rect outRect = new Rect(inRect.x, inRect.y, mainView.width, mainView.height - inRect.y - 10f);
-
-            Rect viewRect = new Rect(mainView.x + mainView.width / 2f + 10f, mainView.y, mainView.width / 2f - 10f - 16f, mainView.height);
-            var viewWidth = viewRect.width / 3 - 10f;
-            Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
-            try
-            {
-                const float rowHeight = 30;
-                const float lineWidth = 5;
-                const float buffer = 5; 
-                //draw the header row
-                DrawRow(header, viewRect);
-                viewRect.y += (rowHeight + lineWidth + buffer )/2f;
-
-                Widgets.DrawLine(new Vector2(viewRect.x, viewRect.y),new Vector2(viewRect.x + mainView.width, viewRect.y), Color.black,  lineWidth);
-
-                viewRect.y += (rowHeight + lineWidth) / 2f; 
-                if (_rowEntries.Count == 0) return;
-
-                for (var index = 0; index < _rowEntries.Count; index++)
-                {
-                    RowEntry rowEntry = _rowEntries[index];
-                    var rect = viewRect; //TODO fix this 
-                    rect.y += index * rowHeight; //go down 1 row? 
-                    DrawRow(rowEntry, rect);
-                }
-
-                //TODO scroll view stuff 
-                //use _rowEntries to get the needed information 
-                // Set the scroll view height
-              
-
-            }
-            finally
-            {
-                Widgets.EndScrollView();
-            }
-
-        }
-
-        private const float DESCRIPTION_ROW_FRACT = 0.66f;
-        private const float TEXT_ROW_FRACT = 5f/7f;
-        private const float BUTTON_FRACT = 1f - TEXT_ROW_FRACT; 
-        private const float DESC_ROW_T_FRACT = DESCRIPTION_ROW_FRACT * TEXT_ROW_FRACT;
-        private const float STORAGE_INFO_FRACT = (1 - DESCRIPTION_ROW_FRACT) * (TEXT_ROW_FRACT);
-
-        void DrawRow(RowHeader header, Rect inRect)
-        {
-            float tW = inRect.width * 2f;
-            float wTxt = tW * DESC_ROW_T_FRACT;
-            float wST = tW * STORAGE_INFO_FRACT;
-            float wButton = BUTTON_FRACT * tW;
-            float x0 = inRect.x;
-            float x1 = DESC_ROW_T_FRACT * tW + x0;
-            float x2 = TEXT_ROW_FRACT * tW + x0;
-
-
-            Rect txtHRect = new Rect(inRect) { width = wTxt };
-            Rect stInfoHRect = new Rect(inRect) { x = x1, width = wST };
-            Rect buttonHRect = new Rect(inRect) { x = x2, width = wButton};
-            Widgets.Label(txtHRect, header.defHeader);
-            Widgets.Label(stInfoHRect, header.totalHeader);
-            Widgets.Label(buttonHRect, header.removeHeader);
-        }
-        void DrawRow(RowEntry entry, Rect inRect)
-        {
-
-            float tW = inRect.width * 2f;
-            float wTxt = tW * DESC_ROW_T_FRACT;
-            float wST = tW * STORAGE_INFO_FRACT;
-            float wButton =  BUTTON_FRACT * tW; 
-            float x0 = inRect.x;
-            float x1 = DESC_ROW_T_FRACT * tW + x0;
-            float x2 = TEXT_ROW_FRACT * tW + x0;
-
-
-            Rect txtRect = new Rect(inRect) {width = wTxt};
-            Rect stInfoRect = new Rect(inRect) {x = x1, width = wST};
-            Rect buttonRect = new Rect(inRect) {x = x2, width = wButton, height = 10};
-
-            Widgets.Label(txtRect, GetDescriptionStringFor(entry));
-
-            string usageStr;
-            var totalStorage = Database.TotalStorage;
-            if (totalStorage <= 0)
-            {
-                usageStr = "NaN"; //should be an error message if total storage is 0 ? 
-            }
-            else
-            {
-                usageStr = (((float) entry.storageSpaceUsed) / totalStorage).ToStringPercent(); 
-            }
-            
-
-
-            Widgets.Label(stInfoRect, usageStr);
-            DrawButton(buttonRect, entry.def); 
-
-        }
-
-        void DrawButton(Rect bRect, Def removeDef)
-        {
-            const float buttonShrinkFactor = 0.071f;
-
-            var bW = bRect.width * buttonShrinkFactor;
-            var dX = bRect.width * (1 - buttonShrinkFactor) / 4;
-            var bRectReal = new Rect(bRect)
-            {
-                width = bW,
-                x = bRect.x + dX
-            };
-
-            if (Widgets.ButtonImage(bRectReal, PMTexButton.CloseXSmall))
-            {
-                RemoveFromDB(removeDef); 
-            }
-
-        }
-
-        private void DrawMutationsTab(Rect inRect)
-        {
-            _rowEntries.Clear(); //TODO fix this 
-            foreach (MutationDef mutation in Database.StoredMutations)
-            {
-                _rowEntries.Add(new RowEntry(mutation)); 
-            }
-
-            DrawTable(inRect, _cachedHeaders[(int) Mode.Mutations]); 
-
-        }
-
-        private void DrawAnimalsTab(Rect inRect)
-        {
-            _rowEntries.Clear();
-            foreach (PawnKindDef taggedAnimal in Database.TaggedAnimals)
-            {
-                _rowEntries.Add(new RowEntry(taggedAnimal));
-            }
-
-            DrawTable(inRect, _cachedHeaders[(int) Mode.Animal]);
-        }
-
-
-        private void SetMode(Mode mode)
-        {
-            _curMode = mode;
         }
 
         private enum Mode
