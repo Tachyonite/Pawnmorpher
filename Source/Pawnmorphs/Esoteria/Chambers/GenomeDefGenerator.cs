@@ -289,10 +289,6 @@ namespace Pawnmorph.Chambers
 
         private static float GetGenomeMarketValue([NotNull] PawnKindDef pkDef)
         {
-            float averageMkValue = 0;
-            var counter = 0;
-
-
             return Mathf.Max(100, 100 + pkDef.race.BaseMarketValue); //don't go below 100 silver for any pawnKindDef  
         }
 

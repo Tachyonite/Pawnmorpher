@@ -19,7 +19,10 @@ namespace Pawnmorph
     /// <seealso cref="RimWorld.MainTabWindow" />
     public partial class MainTabWindow_ChamberDatabase : MainTabWindow
     {
-        private const float DESCRIPTION_ROW_FRACT = 0.66f;
+        private const string STORAGE_SUFFIX = "MB"; 
+        
+        
+        private const float DESCRIPTION_ROW_FRACT = 0.60f;
         private const float TEXT_ROW_FRACT = 5f / 7f;
         private const float BUTTON_FRACT = 1f - TEXT_ROW_FRACT;
         private const float DESC_ROW_T_FRACT = DESCRIPTION_ROW_FRACT * TEXT_ROW_FRACT;
@@ -27,20 +30,16 @@ namespace Pawnmorph
 
 
         //header constants 
-        private const float HEADER_LABEL_FRACT = 0.66f;
-        private const float HEADER_SPACE_FRACT = 1f - 0.66f;
-        private const float HEADER_HEIGHT = 45*2f; 
+        private const float HEADER_LABEL_FRACT = 0.5f;
+        private const float HEADER_SPACE_FRACT = 1f - HEADER_LABEL_FRACT;
+        private const float HEADER_HEIGHT = 60*2f; 
         
         [NotNull] readonly
             private List<RowEntry> _rowEntries = new List<RowEntry>();
 
 
-        [NotNull] readonly
-            private StringBuilder _builder = new StringBuilder();
-
 
         private Vector2 _scrollPosition;
-        private float _scrollViewHeight;
 
 
         private List<TabRecord> _tabs;
@@ -55,7 +54,7 @@ namespace Pawnmorph
         /// <value>
         ///     The size of the requested tab.
         /// </value>
-        public override Vector2 RequestedTabSize => new Vector2(1010f, 640f);
+        public override Vector2 RequestedTabSize => new Vector2(1010f, 740f);
 
         [NotNull]
         private List<TabRecord> Tabs
@@ -102,8 +101,20 @@ namespace Pawnmorph
 
             const float headerScaleFactor = 1.0f; 
             sRect.yMin += 45f;
-            var headerRect = new Rect(sRect) {height = HEADER_HEIGHT * headerScaleFactor}; 
-            DrawHeader(headerRect);
+            var headerRect = new Rect(sRect) {height = HEADER_HEIGHT * headerScaleFactor};
+
+
+            var iFont = Text.Font;
+            try
+            {
+                Text.Font = GameFont.Medium;
+                DrawHeader(headerRect);
+            }
+            finally
+            {
+                Text.Font = iFont; 
+            }
+            
             sRect.y += HEADER_HEIGHT; 
 
             TabDrawer.DrawTabs(sRect, Tabs);
@@ -153,8 +164,8 @@ namespace Pawnmorph
 
             var db = Database;
             Widgets.Label(labelRect, HEADER_LABEL.Translate());
-            Widgets.Label(availableRect, db.FreeStorage.ToString());
-            Widgets.Label(totalRect, db.TotalStorage.ToString());
+            Widgets.Label(availableRect, db.FreeStorage.ToString() + STORAGE_SUFFIX);
+            Widgets.Label(totalRect, db.TotalStorage.ToString() + STORAGE_SUFFIX);
         }
 
         /// <summary>
@@ -227,22 +238,31 @@ namespace Pawnmorph
             float x2 = TEXT_ROW_FRACT * tW + x0;
 
 
-            var txtRect = new Rect(inRect) {width = wTxt};
-            var stInfoRect = new Rect(inRect) {x = x1, width = wST};
-            var buttonRect = new Rect(inRect) {x = x2, width = wButton, height = 10};
+            var txtRect = new Rect(inRect) { width = wTxt };
+            var stInfoRect = new Rect(inRect) { x = x1, width = wST };
+            var buttonRect = new Rect(inRect) { x = x2, width = wButton, height = 10 };
 
-            Widgets.Label(txtRect, GetDescriptionStringFor(entry));
+            Widgets.Label(txtRect, entry.label);
+            DrawUsageColumn(entry, stInfoRect);
+            DrawButton(buttonRect, entry.def);
+        }
+
+        private void DrawUsageColumn(RowEntry entry, Rect inRect)
+        {
+            float w = inRect.width / 2f; 
+            Rect cRect = new Rect(inRect) {width = w};
+
+            Widgets.Label(cRect, entry.storageSpaceUsed + STORAGE_SUFFIX);
 
             string usageStr;
             int totalStorage = Database.TotalStorage;
             if (totalStorage <= 0)
                 usageStr = "NaN"; //should be an error message if total storage is 0 ? 
             else
-                usageStr = ((float) entry.storageSpaceUsed / totalStorage).ToStringPercent();
+                usageStr = ((float)entry.storageSpaceUsed / totalStorage).ToStringPercent();
 
-
-            Widgets.Label(stInfoRect, usageStr);
-            DrawButton(buttonRect, entry.def);
+            cRect.x += w; 
+            Widgets.Label(cRect,  "[" + usageStr + "]");
         }
 
         private void DrawTable(Rect inRect, RowHeader header)
@@ -263,7 +283,20 @@ namespace Pawnmorph
                 const float lineWidth = 5;
                 const float buffer = 5;
                 //draw the header row
-                DrawRow(header, viewRect);
+
+
+                var font = Text.Font;
+                try
+                {
+                    Text.Font = GameFont.Small;
+                    DrawRow(header, viewRect);
+                }
+                finally
+                {
+                    Text.Font = font; 
+                }                
+                
+                
                 viewRect.y += (rowHeight + lineWidth + buffer) / 2f;
 
                 Widgets.DrawLine(new Vector2(viewRect.x, viewRect.y), new Vector2(viewRect.x + mainView.width, viewRect.y),

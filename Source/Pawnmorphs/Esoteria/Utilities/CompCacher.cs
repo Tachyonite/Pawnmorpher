@@ -27,7 +27,7 @@ namespace Pawnmorph.Utilities
         static MethodInfo GetClearMethod(Type compType)
         {
             _scratchArr[0] = compType;
-            var flgs = BindingFlags.Static | BindingFlags.Public; 
+            //var flgs = BindingFlags.Static | BindingFlags.Public; 
             return CompCacherGenType.MakeGenericType(_scratchArr).GetMethod(nameof(CompCacher<ThingComp>.ClearCache),   Type.EmptyTypes); 
         }
         

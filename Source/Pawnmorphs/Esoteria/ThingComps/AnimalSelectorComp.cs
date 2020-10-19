@@ -31,15 +31,17 @@ namespace Pawnmorph.ThingComps
         public event AnimalChosenHandler AnimalChosen; 
 
 
-        private bool _enabled = true; 
+        private bool _enabled = true;
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="AnimalSelectorComp"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool Enabled
         {
-            get
-            {
-                return _enabled; 
-                
-            }
-            set { _enabled = value; }
+            get => _enabled;
+            set => _enabled = value;
         }
 
         /// <summary>

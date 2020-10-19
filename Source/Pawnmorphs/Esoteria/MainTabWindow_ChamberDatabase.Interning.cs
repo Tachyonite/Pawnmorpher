@@ -55,7 +55,7 @@ namespace Pawnmorph
                 
             }
 
-            _internDict[rEntry] = rEntry.label + " : " + rEntry.storageSpaceUsed; //only calculate this once 
+            _internDict[rEntry] = rEntry.label + " : " + rEntry.storageSpaceUsed + STORAGE_SUFFIX; //only calculate this once 
             return _internDict[rEntry]; 
         }
 
