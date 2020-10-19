@@ -33,12 +33,35 @@ namespace Pawnmorph.Thoughts
             
             if (!mutTracker.AllMutations.Any()) return false;
             
-            var animalInfluence = mutTracker.TotalNormalizedInfluence;
+            var animalInfluence = Mathf.FloorToInt(mutTracker.TotalNormalizedInfluence * 100);
+            //var animalInfluence = mutTracker.TotalNormalizedInfluence;
 
-            var num = Mathf.FloorToInt(animalInfluence * def.stages.Count);
+            //var totalMutatableParts = MutationUtilities.; TODO: find a way to make better calculations with this
+
+            var stage = 0;
+
+            if(animalInfluence < 17){ 
+                stage = 0;
+            } else if(animalInfluence < 34) {
+                stage = 1;
+            } else if(animalInfluence < 50) {
+                stage = 2;
+            } else if(animalInfluence < 64) {
+                stage = 3;
+            } else if(animalInfluence < 84) {
+                stage = 4;
+            } else {
+                stage = 5;
+            }
+
+            return ThoughtState.ActiveAtStage(stage); 
+
+            /*var num = Mathf.FloorToInt(animalInfluence * def.stages.Count);
             num = Mathf.Clamp(num, 0, def.stages.Count - 1); 
-            
+
             return ThoughtState.ActiveAtStage(num); 
+            */
+            
             
         }
     }
