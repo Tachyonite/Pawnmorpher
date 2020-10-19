@@ -13,14 +13,14 @@
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
 				<hediffGraphics>
-					<EtherComboWolfspike>
+					<EtherComboWolfSpike>
 						<path>Parts/COMBINATIONS/Wolfspike/Wolfspike</path>
 						<severity>
 							<a0.5>Parts/COMBINATIONS/Wolfspike/Wolfspike</a0.5>
 							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
-					</EtherComboWolfspike>
+					</EtherComboWolfSpike>
 					<PM_HellhoundSnout>
 						<path>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</path>
 						<severity>
@@ -37,14 +37,6 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
 						</severity>
 					</EtherAlpacaSnout>
-					<EtherAlphabeaverJaw>
-						<path>Parts/Alphabeaver/Alphabeaver_Jaw</path>
-						<severity>
-							<a0.5>Parts/Alphabeaver/Alphabeaver_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherAlphabeaverJaw>
 					<EtherArcticWolfJaw>
 						<path>Parts/wolfface/wolfface</path>
 						<severity>
@@ -85,31 +77,6 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
 						</severity>
 					</EtherBoomalopeSnout>
-					<EtherBoomratJaw>
-						<path>Parts/Boomrat/Boomrat_Jaw</path>
-						<severity>
-							<a0.5>Parts/Boomrat/Boomrat_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherBoomratJaw>
-					<EtherCapybaraJaw>
-						<path>Parts/Capybara/Capybara_Jaw</path>
-						<severity>
-							<a0.5>Parts/Capybara/Capybara_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialSnout</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
-						</severity>
-					</EtherCapybaraJaw>
-					<EtherCaribouJaw>
-						<path>Parts/Caribou/Caribou_Jaw</path>
-						<severity>
-							<a0.5>Parts/Caribou/Caribou_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialSnout</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
-						</severity>
-					</EtherCaribouJaw>
-					<EtherCassowaryJaw>Parts/Cassowary/Cassowary_Jaw</EtherCassowaryJaw>
 					<EtherRaccoonJaw>
 						<path>Parts/Raccoon/Raccoon_Jaw</path>
 						<severity>
@@ -133,14 +100,6 @@
 							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
 						</severity>
 					</EtherBeak>
-					<EtherChinchillaJaw>
-						<path>Parts/Chinchilla/Chinchilla_Jaw</path>
-						<severity>
-							<a0.5>Parts/Chinchilla/Chinchilla_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherChinchillaJaw>
 					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
 					<EtherCougarJaw>
 						<path>Parts/Cougar/Cougar_Jaw</path>
@@ -174,23 +133,7 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
 						</severity>
 					</EtherDeerSnout>
-					<EtherDromedaryJaw>
-						<path>Parts/Dromedary/Dromedary_Jaw</path>
-						<severity>
-							<a0.5>Parts/Dromedary/Dromedary_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialSnoutOvine</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
-						</severity>
-					</EtherDromedaryJaw>
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
-					<EtherElkJaw>
-						<path>Parts/Elk/Elk_Jaw</path>
-						<severity>
-							<a0.5>Parts/Elk/Elk_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherElkJaw>
 					<EtherFoxMuzzle>
 						<path>Parts/FoxUpdated/RedFox_Jaw</path>
 						<severity>
@@ -215,14 +158,6 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
 					</EtherArcticFoxMuzzle>
-					<EtherGazelleJaw>
-						<path>Parts/Gazelle/Gazelle_Jaw</path>
-						<severity>
-							<a0.5>Parts/Gazelle/Gazelle_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialSnout</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
-						</severity>
-					</EtherGazelleJaw>
 					<EtherHareJaw>
 						<path>Parts/Hare/Hare_Jaw</path>
 						<severity>
@@ -255,23 +190,7 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
 					</EtherHuskyMuzzle>
-					<EtherIbexJaw>
-						<path>Parts/Ibex/Ibex_Jaw</path>
-						<severity>
-							<a0.5>Parts/Ibex/Ibex_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialSnoutOvine</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
-						</severity>
-					</EtherIbexJaw>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
-					<EtherLabradorRetrieverJaw>
-						<path>Parts/LabradorRetriever/LabradorRetriever_Jaw</path>
-						<severity>
-							<a0.5>Parts/LabradorRetriever/LabradorRetriever_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherLabradorRetrieverJaw>
 					<EtherLynxJaw>
 						<path>Parts/Lynx/Lynx_Jaw</path>
 						<severity>
@@ -282,7 +201,6 @@
 					</EtherLynxJaw>
 					<EtherMegaslothSnout>Parts/megaslothface/megaslothface</EtherMegaslothSnout>
 					<EtherMonkeyJaw>Parts/monkeyface/monkeyface</EtherMonkeyJaw>
-					<EtherOstrichJaw>Parts/Ostrich/Ostrich_Jaw</EtherOstrichJaw>
 					<EtherPantherJaw>
 						<path>Parts/Panther/Panther_Jaw</path>
 						<severity>
@@ -340,7 +258,6 @@
 						</severity>
 					</EtherThrumboSnout>
 					<EtherTortoiseJaw>Parts/Tortoise/Tortoise_Jaw</EtherTortoiseJaw>
-					<EtherTurkeyJaw>Parts/Turkey/Turkey_Jaw</EtherTurkeyJaw>
 					<EtherWargMuzzle>
 						<path>Parts/wargface/wargface</path>
 						<severity>
@@ -357,22 +274,6 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
 					</EtherWolfMuzzle>
-					<EtherArcticWolfMuzzle>
-						<path>Parts/wolfface/wolfface</path>
-						<severity>
-							<a0.5>Parts/wolfface/wolfface</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherArcticWolfMuzzle>
-					<EtherYorkshireTerrierJaw>
-						<path>Parts/YorkshireTerrier/YorkshireTerrier_Jaw</path>
-						<severity>
-							<a0.5>Parts/YorkshireTerrier/YorkshireTerrier_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherYorkshireTerrierJaw>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -461,16 +362,6 @@
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
-					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</EtherAlphabeaverEar>
-					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Left</EtherBoomratEar>
-					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left</EtherCapybaraEar>
-					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Left</EtherCaribouEar>
-					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Left</EtherCassowaryEar>
-					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left</EtherChinchillaEar>
-					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
-					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left</EtherDromedaryEar>
-					<EtherElkEar>Parts/Elk/Elk_Ear_Left</EtherElkEar>
-					<EtherEmuEar>Parts/Emu/Emu_Ear_Left</EtherEmuEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left</EtherDonkeyEar>
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Left</path>
@@ -493,19 +384,11 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
-					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
-					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left</EtherIbexEar>
-					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
-					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
-					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
-					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
-					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left</EtherTurkeyEar>
-					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Left</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -546,17 +429,7 @@
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left_Behind</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
-					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left_Behind</EtherAlphabeaverEar>
-					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Left_Behind</EtherBoomratEar>
-					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left_Behind</EtherCapybaraEar>
-					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Left_Behind</EtherCaribouEar>
-					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Left_Behind</EtherCassowaryEar>
-					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</EtherChinchillaEar>
-					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left_Behind</EtherCougarEar>
-					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left_Behind</EtherDromedaryEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left_Behind</EtherDonkeyEar>
-					<EtherElkEar>Parts/Elk/Elk_Ear_Left_Behind</EtherElkEar>
-					<EtherEmuEar>Parts/Emu/Emu_Ear_Left_Behind</EtherEmuEar>
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Left_Behind</path>
 						<severity>
@@ -578,20 +451,12 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
-					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left_Behind</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
-					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left_Behind</EtherIbexEar>
-					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
-					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left_Behind</EtherLynxEar>
-					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Left_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
-					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
-					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Left_Behind</EtherTurkeyEar>
-					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Left_Behind</EtherYorkshireTerrierEar>
-				</hediffGraphics>
+					</hediffGraphics>
 				<offsets>
 					<south/>
 					<north/>
@@ -616,17 +481,7 @@
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
-					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</EtherAlphabeaverEar>
-					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Right</EtherBoomratEar>
-					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right</EtherCapybaraEar>
-					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Right</EtherCaribouEar>
-					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Right</EtherCassowaryEar>
-					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right</EtherChinchillaEar>
-					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
-					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right</EtherDromedaryEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right</EtherDonkeyEar>
-					<EtherElkEar>Parts/Elk/Elk_Ear_Right</EtherElkEar>
-					<EtherEmuEar>Parts/Emu/Emu_Ear_Right</EtherEmuEar>
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Right</path>
 						<severity>
@@ -648,19 +503,11 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
-					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
-					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right</EtherIbexEar>
-					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
-					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right</EtherLynxEar>
-					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
-					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right</EtherTortoiseEar>
-					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right</EtherTurkeyEar>
-					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Right</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -701,17 +548,7 @@
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right_Behind</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
-					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right_Behind</EtherAlphabeaverEar>
-					<EtherBoomratEar>Parts/Boomrat/Boomrat_Ear_Right_Behind</EtherBoomratEar>
-					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right_Behind</EtherCapybaraEar>
-					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Right_Behind</EtherCaribouEar>
-					<EtherCassowaryEar>Parts/Cassowary/Cassowary_Ear_Right_Behind</EtherCassowaryEar>
-					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</EtherChinchillaEar>
-					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right_Behind</EtherCougarEar>
-					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right_Behind</EtherDromedaryEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right_Behind</EtherDonkeyEar>
-					<EtherElkEar>Parts/Elk/Elk_Ear_Right_Behind</EtherElkEar>
-					<EtherEmuEar>Parts/Emu/Emu_Ear_Right_Behind</EtherEmuEar>
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Right_Behind</path>
 						<severity>
@@ -733,19 +570,11 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
-					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right_Behind</EtherGazelleEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
-					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right_Behind</EtherIbexEar>
-					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
-					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right_Behind</EtherLynxEar>
-					<EtherOstrichEar>Parts/Ostrich/Ostrich_Ear_Right_Behind</EtherOstrichEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
-					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
-					<EtherTurkeyEar>Parts/Turkey/Turkey_Ear_Right_Behind</EtherTurkeyEar>
-					<EtherYorkshireTerrierEar>Parts/YorkshireTerrier/YorkshireTerrier_Ear_Right_Behind</EtherYorkshireTerrierEar>
 				</hediffGraphics>
 				<offsets>
 					<south/>
@@ -773,37 +602,22 @@
 				<hediffGraphics>
 					<PM_HellhoundTail>Parts/COMBINATIONS/Hellhound/Hellhound_Tail</PM_HellhoundTail>
 					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
-					<EtherAlphabeaverTail>Parts/Alphabeaver/Alphabeaver_Tail</EtherAlphabeaverTail>
 					<EtherBearTail>Parts/bearface/beartail</EtherBearTail>
-					<EtherBoomratTail>Parts/Boomrat/Boomrat_Tail</EtherBoomratTail>
 					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
-					<EtherCapybaraTail>Parts/Capybara/Capybara_Tail</EtherCapybaraTail>
-					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
-					<EtherCassowaryTail>Parts/Cassowary/Cassowary_Tail</EtherCassowaryTail>
 					<EtherCatTail>Parts/catface/cattail</EtherCatTail>
-					<EtherChinchillaTail>Parts/Chinchilla/Chinchilla_Tail</EtherChinchillaTail>
 					<EtherCougarTail>Parts/Cougar/Cougar_Tail</EtherCougarTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
 					<EtherShortTail>Parts/deerface/deertail</EtherShortTail>
-					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
 					<EtherDonkeyTail>Parts/Donkey/Donkey_Tail</EtherDonkeyTail>
 					<EtherElephantTail>Parts/elephantface/elephanttail</EtherElephantTail>
-					<EtherElkTail>Parts/Elk/Elk_Tail</EtherElkTail>
-					<EtherEmuTail>Parts/Emu/Emu_Tail</EtherEmuTail>
 					<EtherFluffyTail>Parts/FoxUpdated/RedFox_Tail</EtherFluffyTail>
 					<EtherArcticFluffyTail>Parts/FoxArctic/ArcticFox_Tail</EtherArcticFluffyTail>
 					<EtherFennecFluffyTail>Parts/FoxFennec/FennecFox_Tail</EtherFennecFluffyTail>
-					<EtherGazelleTail>Parts/Gazelle/Gazelle_Tail</EtherGazelleTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
 					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>
 					<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
 					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
-					<EtherIbexTail>Parts/Ibex/Ibex_Tail</EtherIbexTail>
-					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
-					<EtherLynxTail>Parts/Lynx/Lynx_Tail</EtherLynxTail>
-					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
-					<EtherOstrichTail>Parts/Ostrich/Ostrich_Tail</EtherOstrichTail>
 					<EtherPantherTail>Parts/Panther/Panther_Tail</EtherPantherTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherRaccoonTail>Parts/Raccoon/Raccoon_Tail</EtherRaccoonTail>
@@ -813,10 +627,8 @@
 					<EtherSquirrelTail>Parts/Squirrel/Squirrel_Tail</EtherSquirrelTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
 					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
-					<EtherTurkeyTail>Parts/Turkey/Turkey_Tail</EtherTurkeyTail>
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
-					<EtherYorkshireTerrierTail>Parts/YorkshireTerrier/YorkshireTerrier_Tail</EtherYorkshireTerrierTail>
 				</hediffGraphics>
 				<offsets>
 					<south/>
