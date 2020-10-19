@@ -226,12 +226,15 @@ namespace Pawnmorph
                 if (parameters.Length != 1) return false;
                 return parameters[0].ParameterType == typeof(TransferableOneWay) || parameters[0].ParameterType == typeof(Pawn);
             }
-            
-            var allInnerTypes = cUIType.GetNestedTypes(flg).Where(IsCompilerGenerated);
+
+            IEnumerable<Type> allInnerTypes = cUIType.GetNestedTypes(flg).Where(IsCompilerGenerated);
             //add in the delegates from LordToil_PrepareCaravan_GatherAnimals
+#pragma warning disable 612
             allInnerTypes = allInnerTypes.Concat(typeof(LordToil_PrepareCaravan_GatherAnimals)
+#pragma warning restore 612
                                                 .GetNestedTypes(flg)
-                                                .Where(IsCompilerGenerated)); 
+                                                .Where(IsCompilerGenerated));
+
             var allMethods = allInnerTypes.SelectMany(t => t.GetMethods(flg).Where(CorrectSignature));
             var tsMethodInfo = typeof(PawnmorphPatches).GetMethod(nameof(CaravanDelegatePatch), flg); 
             foreach (MethodInfo methodInfo in allMethods)

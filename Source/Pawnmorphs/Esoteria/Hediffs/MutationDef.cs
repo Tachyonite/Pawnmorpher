@@ -256,6 +256,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The implicit genome definition
         /// </summary>
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         internal ThingDef implicitGenomeDef;
 
         /// <summary>

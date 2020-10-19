@@ -59,6 +59,9 @@ namespace Pawnmorph.ITabs
 
         [TweakValue("PMInterface", 0f, 32f)]
         private static float PasteSize = 24f;
+        /// <summary>
+        /// Fills the tab.
+        /// </summary>
         protected override void FillTab()
         {
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDefOf.BillsTab, KnowledgeAmount.FrameDisplayed);

@@ -118,8 +118,6 @@ namespace Pawnmorph.Chambers
         /// <b>not</b>
         /// check if there is enough space to add the mutation or if it is restricted, use
         /// <see cref="CanAddToDatabase(Pawnmorph.Hediffs.MutationDef)" />
-        /// or
-        /// <see cref="DatabaseUtilities.TryAddToDatabase(ChamberDatabase, Pawnmorph.Hediffs.MutationDef)" />
         /// to check
         /// <param name="mutationDef">The mutation definition.</param>
         /// <exception cref="ArgumentNullException">mutationDef</exception>
@@ -154,8 +152,6 @@ namespace Pawnmorph.Chambers
         /// <b>not</b>
         /// check if the database can store the given pawnKind, use
         /// <see cref="CanAddToDatabase(PawnKindDef)" />
-        /// or
-        /// <see cref="DatabaseUtilities.TryAddToDatabase(ChamberDatabase, PawnKindDef)" />
         /// to safely add to the database
         /// <param name="pawnKind">Kind of the pawn.</param>
         /// <exception cref="ArgumentNullException">pawnKind</exception>

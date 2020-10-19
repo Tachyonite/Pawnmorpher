@@ -201,11 +201,12 @@ namespace Pawnmorph.Chambers
         }
 
         /// <summary>
-        ///     Finds the Mutachamber casket for.
+        /// Finds the Mutachamber casket for.
         /// </summary>
         /// <param name="p">The p.</param>
         /// <param name="traveler">The traveler.</param>
         /// <param name="ignoreOtherReservations">if set to <c>true</c> [ignore other reservations].</param>
+        /// <param name="use">The use.</param>
         /// <returns></returns>
         public static MutaChamber FindMutaChamberFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false, ChamberUse? use = null)
         {

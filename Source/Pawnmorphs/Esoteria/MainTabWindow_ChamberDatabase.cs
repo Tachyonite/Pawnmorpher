@@ -40,7 +40,6 @@ namespace Pawnmorph
 
 
         private Vector2 _scrollPosition;
-        private float _scrollViewHeight;
 
 
         private List<TabRecord> _tabs;
