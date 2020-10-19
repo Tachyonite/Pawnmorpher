@@ -2,7 +2,6 @@
 	<Pawnmorph.MorphGroupDef>
 		<defName>Canines</defName>
 		<label>pack</label>
-		<hediff>CanidMind</hediff>
 		<aspectDef>CanidMind</aspectDef>
 	</Pawnmorph.MorphGroupDef>
 	
@@ -31,7 +30,6 @@
 
 	<ThoughtDef ParentName="GroupThoughtHBase">
 		<defName>PackMinded</defName>
-		<hediff>CanidMind</hediff>
 		<stages>
 			<li>
 				<label>alone</label> 
