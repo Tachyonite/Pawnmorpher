@@ -2,4 +2,8 @@
     <PMTagGizmoLabel>Tag Animal</PMTagGizmoLabel>
     <PMTagGizmoDescription>tag an animal</PMTagGizmoDescription>
     <CannotTagFormerHuman>Due to mechanite contamination, this animal cannot be tagged</CannotTagFormerHuman>
+    <PMMutationTagged>{num} mutations gathered from {animal}</PMMutationTagged>
+    <PMNothingTaggable>{animal} has nothing worth recording</PMNothingTaggable>
+    <PMMutationNotEnoughSpace>{animal} has mutations that can be recorded but not enough space to store them</PMMutationNotEnoughSpace>
+    <PMAnimalAddedToDatabase>{animal} added to the genebank database</PMAnimalAddedToDatabase>
 </LanguageData>

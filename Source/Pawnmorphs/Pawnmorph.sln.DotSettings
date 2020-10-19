@@ -556,6 +556,7 @@ last updated $CURRENT_MONTH$/$CURRENT_DAY$/$CURRENT_YEAR$  $CURRENT_TIME$</s:Str
 	
 	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=struct/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=taggable/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	

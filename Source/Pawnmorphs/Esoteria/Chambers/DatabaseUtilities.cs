@@ -15,8 +15,26 @@ namespace Pawnmorph.Chambers
     /// <summary>
     /// static class for various chamber database utility functions 
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class DatabaseUtilities
     {
+
+        [NotNull] private static readonly Dictionary<PawnKindDef, IReadOnlyList<MutationDef>> _taggableMutationsLookup =
+            new Dictionary<PawnKindDef, IReadOnlyList<MutationDef>>(); 
+        
+        static DatabaseUtilities()
+        {
+            bool ConnectedToMorph(PawnKindDef pkDef)
+            {
+                return DefDatabase<MorphDef>.AllDefs.Any(m => m.AllAssociatedMutations.Any()
+                                                           && (pkDef.race == m.race
+                                                            || m.associatedAnimals?.Contains(pkDef.race) == true));
+            }
+
+            _pawnKindsWithMutations =
+                DefDatabase<PawnKindDef>.AllDefs.Where(pk => pk.RaceProps.Animal && ConnectedToMorph(pk)).ToList();
+        }
+
         private const string MUTATION_ADDED_MESSAGE = "MutationAddedToDatabase";
         private const string ANIMAL_ADDED_TO_DATABASE_MESSAGE = "AnimalAddedToDatabase"; 
         /// <summary>
@@ -37,6 +55,70 @@ namespace Pawnmorph.Chambers
         [NotNull]
         private static readonly 
             Dictionary<MorphDef, List<PawnKindDef>> _pkCache = new Dictionary<MorphDef, List<PawnKindDef>>();
+
+        [NotNull]
+
+        private static readonly List<PawnKindDef> _pawnKindsWithMutations;
+
+
+        /// <summary>
+        /// .returns an enumerable collection of all mutations that can be stored in the database 
+        /// </summary>
+        /// <param name="mutationDefs">The mutation defs.</param>
+        /// <returns></returns>
+        [Pure, NotNull]
+        public static IEnumerable<MutationDef> Taggable([NotNull] this IEnumerable<MutationDef> mutationDefs)
+        {
+            return mutationDefs.Where(m => !m.IsRestricted); 
+        }
+
+        /// <summary>
+        /// Gets all mutations that can be squired from the given animal.
+        /// </summary>
+        /// <param name="pkDef">The pk definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">pkDef</exception>
+        [NotNull]
+        public static IReadOnlyList<MutationDef> GetAllMutationsFrom([NotNull] this PawnKindDef pkDef)
+        {
+            if (pkDef == null) throw new ArgumentNullException(nameof(pkDef));
+            if (!pkDef.RaceProps.Animal) return Array.Empty<MutationDef>();
+
+
+            if (_taggableMutationsLookup.TryGetValue(pkDef, out var lst))
+            {
+                return lst; 
+            }
+
+            List<MutationDef> tmpList = new List<MutationDef>();
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                if (morphDef.race == pkDef.race || morphDef.associatedAnimals?.Contains(pkDef.race) == true)
+                {
+                    foreach (MutationDef mDef in morphDef.AllAssociatedMutations)
+                    {
+                        if (!tmpList.Contains(mDef))
+                            tmpList.Add(mDef); 
+                    }
+                }
+            }
+
+            _taggableMutationsLookup[pkDef] = tmpList;
+            return tmpList; 
+
+        }
+
+
+
+        /// <summary>
+        /// Gets all pawnkinds that mutations can be extracted from.
+        /// </summary>
+        /// <value>
+        /// gets all .
+        /// </value>
+        [NotNull]
+        public static IReadOnlyList<PawnKindDef> PawnkindsWithMutations => _pawnKindsWithMutations;
+
 
         /// <summary>
         /// Determines whether the specified morph is tagged.
