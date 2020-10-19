@@ -2,7 +2,6 @@
 	<Pawnmorph.MorphGroupDef>
 		<defName>HerbivoreHerding</defName>
 		<label>herd</label>
-		<hediff>HerdMind</hediff>
 		<aspectDef>HerdMind</aspectDef>
 	</Pawnmorph.MorphGroupDef>
 	
@@ -31,7 +30,6 @@
   
 	<ThoughtDef ParentName="GroupThoughtHBase">
 		<defName>HerdMinded</defName>
-		<hediff>HerdMind</hediff>
 		<stages>
 			<li>
 				<label>alone</label> 

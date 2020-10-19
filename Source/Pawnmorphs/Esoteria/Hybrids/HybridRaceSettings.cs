@@ -113,7 +113,7 @@ namespace Pawnmorph.Hybrids
             ///if true then the AteRawFood thought will be suppressed 
             public bool canEatRaw;
             /// <summary>a list of thoughtDefs that this hybrid race cannot get </summary>
-            public List<string> thoughtsBlackList;
+            public List<ThoughtDef> thoughtsBlackList;
             /// <summary>
             /// a list of thoughts when the pawn eats specific things 
             /// </summary>
@@ -239,7 +239,7 @@ namespace Pawnmorph.Hybrids
                 {
                     thought = thoughtSettings.ateAnimalThought.thought,
                     ingredientThought = thoughtSettings.ateAnimalThought.ingredientThought,
-                    raceList = new List<string> { animalRace.defName }
+                    raceList = new List<ThingDef> { animalRace}
                 });
 
             }
@@ -250,14 +250,14 @@ namespace Pawnmorph.Hybrids
                 {
                     thought = thoughtSettings.butcheredAnimalThought.thought,
                     knowThought = thoughtSettings.butcheredAnimalThought.knowThought,
-                    raceList = new List<string> { animalRace.defName }
+                    raceList = new List<ThingDef> { animalRace }
                 });
             }
 
-            List<string> blackList;
+            List<ThoughtDef> blackList;
             if (thoughtSettings.thoughtsBlackList != null)
             {
-                blackList = new List<string>(thoughtSettings.thoughtsBlackList);
+                blackList = new List<ThoughtDef>(thoughtSettings.thoughtsBlackList);
             }
             else
             {
@@ -266,18 +266,18 @@ namespace Pawnmorph.Hybrids
 
             if (thoughtSettings.suppressHumanlikeCannibalThoughts) //add in the default cannibal thoughts to the black list 
             {
-                blackList = blackList ?? new List<string>();
+                blackList = blackList ?? new List<ThoughtDef>();
 
-                blackList.Add("AteHumanlikeMeatDirect");
-                blackList.Add("AteHumanlikeMeatAsIngredient");
-                blackList.Add("ButcheredHumanlikeCorpse");
-                blackList.Add("KnowButcheredHumanlikeCorpse");
+                blackList.Add( ThoughtDefOf.AteHumanlikeMeatDirect);
+                blackList.Add(ThoughtDefOf.AteHumanlikeMeatAsIngredient);
+                blackList.Add(ThoughtDefOf.ButcheredHumanlikeCorpse);
+                blackList.Add(ThoughtDefOf.KnowButcheredHumanlikeCorpse);
             }
 
             if (thoughtSettings.canEatRaw)
             {
-                blackList = blackList ?? new List<string>();
-                blackList.Add("AteRawFood");
+                blackList = blackList ?? new List<ThoughtDef>();
+                blackList.Add(ThoughtDefOf.AteRawFood);
             }
 
             return new ThoughtSettings

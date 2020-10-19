@@ -350,13 +350,13 @@ namespace Pawnmorph
 
                 if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
                 {
-                    foodThoughts.Add(ThoughtDef.Named(cannibalThought.thought));
+                    foodThoughts.Add(cannibalThought.thought);
                     return;
                 }
 
                 ThingDef comp = foodSource.TryGetComp<CompIngredients>()
                                          ?.ingredients?.FirstOrDefault(def => def == morphDef.race.race.meatDef);
-                if (comp != null && !cannibal) foodThoughts.Add(ThoughtDef.Named(cannibalThought.ingredientThought));
+                if (comp != null && !cannibal) foodThoughts.Add(cannibalThought.ingredientThought);
             }
             else
             {

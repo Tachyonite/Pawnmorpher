@@ -116,9 +116,8 @@ namespace Pawnmorph
             {
                 if(bodyAddon.hediffGraphics == null || bodyAddon.hediffGraphics.Count == 0) continue;
                 bool found = false; 
-                foreach (var hediffDefName in bodyAddon.hediffGraphics.Select(h=> h.hediff))
+                foreach (var hDef in bodyAddon.hediffGraphics.Select(h=> h.hediff))
                 {
-                    var hDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediffDefName); 
                     if(hDef == null) continue;
                     if (hDef is MutationDef) //make sure we only grab addons that are mutations 
                     {

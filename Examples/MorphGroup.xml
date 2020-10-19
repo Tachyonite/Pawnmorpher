@@ -39,7 +39,6 @@
 
 	<ThoughtDef ParentName="GroupThoughtHBase">
 		<defName>PackMinded</defName>
-		<hediff>CanidMind</hediff>
 		<stages>
 			<li>
 				<label>alone</label> 
