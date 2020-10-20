@@ -45,7 +45,7 @@ namespace Pawnmorph.Chambers
         /// <summary>
         /// multiplier for converting 'value' into storage space for mutations 
         /// </summary>
-        public static float STORAGE_PER_VALUE_MUTATION = 1;
+        public static float STORAGE_PER_VALUE_MUTATION = 0.1f;
 
         /// <summary>
         /// multiplier for converting 'value' into storage space for species 
@@ -184,7 +184,8 @@ namespace Pawnmorph.Chambers
         public static int GetRequiredStorage([NotNull] this MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            return (int) Mathf.Max(MIN_MUTATION_STORAGE_SPACE, mutationDef.value * STORAGE_PER_VALUE_MUTATION); 
+            float spvM = mutationDef.value * STORAGE_PER_VALUE_MUTATION;
+            return Mathf.Max(MIN_MUTATION_STORAGE_SPACE, Mathf.RoundToInt(spvM)); 
         }
 
         //slope of the linear fit curve for converting sqrt(value) to required storage space for pawnKinds 
