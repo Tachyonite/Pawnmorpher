@@ -26,5 +26,6 @@ namespace Pawnmorph
         public static JobDef PM_UseMutationGenome;
 
         public static JobDef EnterMutagenChamber;
+        [NotNull] public static JobDef PM_TransformPrisoner; 
     }
 }

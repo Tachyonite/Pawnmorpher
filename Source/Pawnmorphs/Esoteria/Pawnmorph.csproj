@@ -493,6 +493,7 @@
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_TransformPrisoner.cs" />
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
     <Compile Include="MainTabWindow_ChamberDatabase.cs" />
@@ -538,6 +539,7 @@
     <Compile Include="PMInteractionDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />
     <Compile Include="PMPlantUtilities.cs" />
+    <Compile Include="PMPrisonerInteractionModeDefOf.cs" />
     <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMTexButton.cs" />
@@ -757,6 +759,7 @@
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
     <Compile Include="PawnmorphMPCompat.cs" />
+    <Compile Include="Work\Giver_TransformPrisoner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
