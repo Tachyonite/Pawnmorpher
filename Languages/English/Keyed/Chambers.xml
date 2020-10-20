@@ -10,4 +10,5 @@
     <PMChamberAddingMutations>adding mutations</PMChamberAddingMutations>
     <PMChamberTransforming>transforming {0} into a {1}</PMChamberTransforming>
     <PMMergeGizmo>Merge</PMMergeGizmo>
+    <PMCannotTransformPrisoner>Cannot transform {0}</PMCannotTransformPrisoner>
 </LanguageData>
