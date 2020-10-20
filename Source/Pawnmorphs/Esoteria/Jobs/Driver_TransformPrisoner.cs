@@ -47,41 +47,17 @@ namespace Pawnmorph.Jobs
             this.FailOnAggroMentalState(TargetIndex.A);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOn(() => !Prisoner.IsPrisonerOfColony || !Prisoner.guest.PrisonerIsSecure).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
             yield return Toils_Haul.StartCarryThing(TargetIndex.A);
-            Toil carryToCell = Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
+            Toil carryToCell = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
             yield return carryToCell;
-            yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.B, carryToCell, storageMode: false);
-            Toil setReleased = new Toil();
-
-            void PlaceInChamber()
+            Toil toil = Toils_General.Wait(500, TargetIndex.B);
+            toil.FailOnCannotTouch(TargetIndex.B, PathEndMode.InteractionCell);
+            toil.WithProgressBarToilDelay(TargetIndex.B);
+            yield return toil;
+            Toil toil2 = new Toil
             {
-                try
-                {
-                    var chamber = setReleased.actor?.CurJob?.GetTarget(TargetIndex.C).Thing as MutaChamber;
-                
-                    Pawn tfPawn = setReleased.actor?.jobs?.curJob?.targetA.Thing as Pawn;
-                    if (chamber == null)
-                    {
-                        Log.Error($"unable to find chamber for {tfPawn.Name}");
-                        return;
-                    }
-
-                    tfPawn?.guest?.ClearLastRecruiterData();
-
-                    if (!chamber.TryAcceptThing(tfPawn))
-                    {
-                        Log.Error($"unable to place {tfPawn.Name} in chamber {chamber.ThingID}!");
-                        return;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error($"while placing pawn into chamber caught {e.GetType().Name}!\n{e}");
-                    throw;
-                }
-            }
-
-            setReleased.initAction = PlaceInChamber;
-            yield return setReleased;
+                initAction = delegate { Chamber.TryAcceptThing(Prisoner); }, defaultCompleteMode = ToilCompleteMode.Instant
+            };
+            yield return toil2;
         }
 
        
