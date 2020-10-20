@@ -52,6 +52,26 @@ namespace Pawnmorph.Chambers
         private Gizmo _debugFinishGizmo;
 
 
+        private CompPowerTrader _power;
+
+        bool HasPower
+        {
+            get { return PowerComp.PowerOn; }
+        }
+
+        CompPowerTrader  PowerComp
+        {
+            get
+            {
+                if (_power == null)
+                {
+                    _power = GetComp<CompPowerTrader>();
+                }
+
+                return _power; 
+            }
+        }
+
         [NotNull]
         Gizmo DebugFinishGizmo
         {
@@ -116,6 +136,16 @@ namespace Pawnmorph.Chambers
                 return _flickable;
             }
         }
+
+        private bool HasFuel => Refuelable.HasFuel; 
+
+        /// <summary>
+        /// Gets a value indicating whether this instance can accept pawns.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance can accept pawns; otherwise, <c>false</c>.
+        /// </value>
+        public bool CanAcceptPawns => WaitingForPawn && HasPower && HasFuel; 
 
         [NotNull]
         private Gizmo PartPickerGizmo
@@ -219,7 +249,7 @@ namespace Pawnmorph.Chambers
                 {
                     int result;
                     var mutaChamber = (MutaChamber) x;
-                    if (mutaChamber.WaitingForPawn && mutaChamber.Flickable.SwitchIsOn && (use == null || use == mutaChamber.CurrentUse))
+                    if (mutaChamber.CanAcceptPawns && mutaChamber.Flickable.SwitchIsOn && (use == null || use == mutaChamber.CurrentUse))
                     {
                         Pawn p2 = traveler;
                         LocalTargetInfo target = x;
