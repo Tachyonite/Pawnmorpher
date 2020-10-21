@@ -180,7 +180,7 @@ namespace Pawnmorph.Work
         [CanBeNull]
         MutaChamber FindValidChamberFor([NotNull] Pawn worker, [NotNull] Pawn prisoner)
         {
-            var chamber = MutaChamber.FindMutaChamberFor(prisoner, worker, use: ChamberUse.Tf);
+            var chamber = MutaChamber.FindMutaChamberFor(prisoner, worker);
             return chamber; 
         }
 
