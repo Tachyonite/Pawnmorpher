@@ -21,6 +21,8 @@ namespace Pawnmorph.Chambers
     /// <seealso cref="Building_Casket" />
     public class MutaChamber : Building_Casket
     {
+        private const int REFUEL_CHECK_TIMER = 100; 
+        
         private const float TF_ANIMAL_DURATION = 1.5f; //units are in days 
         private const float MIN_TRANSFORMATION_TIME = 0.5f * 60000; //minimum transformation time in ticks
         private const string PART_PICKER_GIZMO_LABEL = "PMPartPickerGizmo";
@@ -230,6 +232,32 @@ namespace Pawnmorph.Chambers
             Scribe_Defs.Look(ref _targetAnimal, "targetAnimal");
         }
 
+        [CanBeNull]
+        CompRefuelable FindMutagenTankComp()
+        {
+            var room = Position.GetRoom(Map);
+
+            var tanks = room?.ContainedThings(PMThingDefOf.PM_MutagenTank)
+                            ?.Select(c => c.TryGetComp<CompRefuelable>())
+                             .Where(c => c != null);
+
+
+            return tanks?.FirstOrDefault(c => c.HasFuel); 
+
+        }
+
+        void TryRefillFromTank()
+        {
+            var tank = FindMutagenTankComp();
+            if (tank == null) return;
+
+            var refuelAmount = Mathf.Min(Refuelable.TargetFuelLevel - Refuelable.Fuel, tank.Fuel);
+            Refuelable.Refuel(refuelAmount); 
+            tank.ConsumeFuel(refuelAmount);
+        }
+    
+
+
         /// <summary>
         /// Finds the Mutachamber casket for.
         /// </summary>
@@ -397,6 +425,7 @@ namespace Pawnmorph.Chambers
             LessonAutoActivator.TeachOpportunity(PMConceptDefOf.Tagging, OpportunityType.Important);
         }
 
+        private bool _hasFuelLast; 
 
         /// <summary>
         ///     Ticks this instance.
@@ -423,7 +452,22 @@ namespace Pawnmorph.Chambers
             }
 
 
-            if (!Refuelable.HasFuel) return;
+            if (!Refuelable.HasFuel)
+            {
+                if (_hasFuelLast)
+                {
+                    TryRefillFromTank();
+                }else if (this.IsHashIntervalTick(REFUEL_CHECK_TIMER))
+                {
+                    TryRefillFromTank();
+                }
+                _hasFuelLast = false;
+                return;
+            }
+            else
+            {
+                _hasFuelLast = true; 
+            }
             if (!Flickable.SwitchIsOn) return;
             Refuelable.Notify_UsedThisTick();
             _timer -= 1;
