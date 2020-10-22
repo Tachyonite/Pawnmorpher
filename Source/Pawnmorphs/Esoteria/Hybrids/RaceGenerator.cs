@@ -210,7 +210,7 @@ namespace Pawnmorph.Hybrids
 
 
                 CreateImplicitMeshes(builder, race);
-
+                race.ResolveReferences();
                 yield return race;
             }
 
