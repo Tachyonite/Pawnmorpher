@@ -44,14 +44,14 @@
 		<label>PM: Genebanks</label>
 		<needsOpportunity>true</needsOpportunity>
 		<priority>11</priority>
-		<helpText>TODO</helpText>
+		<helpText>Genebanks store genome information on morphsilk tape-reels. When you tag a creature, you gain its genome, as well as some mutations if that animal has a morph variant. You need enough genebanks to store genomes or else anything you tag won't be stored. You can view and remove genomes in the Genebanks tab at the bottom of the screen.</helpText>
 	</ConceptDef>
 	<ConceptDef>
 		<defName>PM_PartPicker</defName>
-		<label>PM: Pert Picker</label>
+		<label>PM: Mutation Configuration Menu</label>
 		<needsOpportunity>true</needsOpportunity>
 		<priority>11</priority>
-		<helpText>TODO</helpText>
+		<helpText>The MCM is the most powerful tool for customising your morphs how you want them. Any mutations you have stored in genebanks can be used in the MCM to apply them to pawns with a specific severity. You can also change the body type and head shape of the pawn and view them from any angle. Confirm your choices and wait for the chamber to apply all mutations to the pawn.</helpText>
 	</ConceptDef>
 
 </Defs>
