@@ -55,7 +55,7 @@
 	<HediffDef ParentName="FormerHumanHediffParent">
 		<defName>Animalistic</defName>
 		<label>animalistic</label>
-		<description>TODO</description>
+		<description>Due to certain mutations or having spent time as an animal, this pawn is struggling to maintain their sapience</description>
 		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
 		<maxSeverity>2</maxSeverity>
 		<stages>

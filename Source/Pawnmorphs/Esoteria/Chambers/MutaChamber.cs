@@ -30,12 +30,15 @@ namespace Pawnmorph.Chambers
 
         private static List<PawnKindDef> _randomAnimalCache;
         private int _timer = 0;
-
+        int _curMutationIndex = -1; 
         private bool _initialized;
 
         private ChamberState _innerState = ChamberState.WaitingForPawn;
 
         private ChamberUse _currentUse;
+
+
+        
 
         private CompRefuelable _refuelable;
 
@@ -53,6 +56,17 @@ namespace Pawnmorph.Chambers
 
         private Gizmo _debugFinishGizmo;
 
+
+        
+
+        /// <summary>
+        /// Ejects the contents.
+        /// </summary>
+        public override void EjectContents()
+        {
+            base.EjectContents();
+            ResetChamber();
+        }
 
         private CompPowerTrader _power;
 
@@ -225,11 +239,13 @@ namespace Pawnmorph.Chambers
         public override void ExposeData()
         {
             base.ExposeData();
-
+            Scribe_Values.Look(ref _currentUse, "currentUse"); 
             Scribe_Values.Look(ref _innerState, "state");
             Scribe_Values.Look(ref _timer, "timer", -1);
             Scribe_Values.Look(ref _lastTotal, "lastTotal");
             Scribe_Defs.Look(ref _targetAnimal, "targetAnimal");
+            Scribe_Deep.Look(ref _addedMutationData, "addedMutationData"); 
+            Scribe_Values.Look(ref _curMutationIndex, "curMutationIndex");
         }
 
         [CanBeNull]
@@ -366,6 +382,8 @@ namespace Pawnmorph.Chambers
             yield return MergingGizmo;
         }
 
+        private float PercentDone => 1f - ((float) _timer) / _lastTotal; 
+
         /// <summary>
         ///     Gets the inspect string.
         /// </summary>
@@ -380,29 +398,34 @@ namespace Pawnmorph.Chambers
 
             if (_innerState == ChamberState.Active)
             {
-                float pDone = 1f - (float) _timer / _lastTotal;
-                var pawn = (Pawn) innerContainer.First();
+                float pDone = 1f - (float)_timer / _lastTotal;
                 string insString = "MutagenChamberProgress".Translate() + ": " + pDone.ToStringPercent() + " ";
-
-                switch (_currentUse)
-                {
-                    case ChamberUse.Mutation:
-                        insString += "PMChamberAddingMutations".Translate();
-                        break;
-                    case ChamberUse.Merge:
-                    case ChamberUse.Tf:
-                        insString += "PMChamberTransforming".Translate(pawn, _targetAnimal);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
+                insString = GetPawnInspectionString(insString);
 
                 stringBuilder.AppendLine(insString);
             }
 
 
             return stringBuilder.ToString().TrimEndNewlines();
+        }
+
+        private string GetPawnInspectionString(string insString)
+        {
+            var pawn = (Pawn)innerContainer.First();
+            switch (_currentUse)
+            {
+                case ChamberUse.Mutation:
+                    insString += "PMChamberAddingMutations".Translate();
+                    break;
+                case ChamberUse.Merge:
+                case ChamberUse.Tf:
+                    insString += "PMChamberTransforming".Translate(pawn, _targetAnimal);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return insString;
         }
 
         /// <summary>
@@ -471,6 +494,46 @@ namespace Pawnmorph.Chambers
             if (!Flickable.SwitchIsOn) return;
             Refuelable.Notify_UsedThisTick();
             _timer -= 1;
+            if (_currentUse == ChamberUse.Mutation)
+            {
+                CheckMutationProgress();
+            }
+        }
+
+        void FinalizeMutations()
+        {
+            if (_addedMutationData == null) return;
+            var pawn = innerContainer?.FirstOrDefault() as Pawn;
+            if (pawn == null) return;
+
+
+            for (int i = _curMutationIndex + 1; i < _addedMutationData.Count; i++)
+            {
+                var mut = _addedMutationData[i];
+                ApplyMutationData(pawn, mut); 
+            }
+        }
+
+        private void CheckMutationProgress()
+        {
+            if (_addedMutationData == null) return;
+            var pawn = innerContainer?.FirstOrDefault() as Pawn;
+            if (pawn == null) return; 
+            
+            var mx = _addedMutationData.Count;
+            var idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
+            if (idx != _curMutationIndex)
+            {
+                _curMutationIndex = idx;
+                var mutationData = _addedMutationData[_curMutationIndex];
+                ApplyMutationData(pawn, mutationData); 
+
+            }
+        }
+
+        private void ApplyMutationData([NotNull] Pawn pawn, [NotNull] IReadOnlyMutationData mutationData)
+        {
+            mutationData.ApplyMutationData(pawn, MutationUtilities.AncillaryMutationEffects.HistoryOnly);
         }
 
 
@@ -507,7 +570,7 @@ namespace Pawnmorph.Chambers
 
         private void AnimalChosen(PawnKindDef pawnkinddef)
         {
-            _timer = GetTransformationTime(pawnkinddef); //TODO make this dependent on the animal chosen 
+            _timer = GetTransformationTime(pawnkinddef);
             _lastTotal = _timer;
             _innerState = ChamberState.Active;
             _currentUse = ChamberUse.Tf;
@@ -545,17 +608,16 @@ namespace Pawnmorph.Chambers
                 return;
             }
 
-            EjectContents();
-            SelectorComp.Enabled = false;
             TransformationRequest tfRequest;
             Mutagen mutagen = null;
             switch (_currentUse)
             {
                 case ChamberUse.Mutation:
                     tfRequest = null;
+                    FinalizeMutations();
                     break;
                 case ChamberUse.Merge:
-                    var otherPawn = (Pawn) _scratchList[1];
+                    var otherPawn = (Pawn)_scratchList[1];
                     if (otherPawn == null)
                     {
                         Log.Error("merging but cannot find other pawn! aborting!");
@@ -571,7 +633,7 @@ namespace Pawnmorph.Chambers
                         forcedSapienceLevel = 1,
                         manhunterSettingsOverride = ManhunterTfSettings.Never
                     };
-                    mutagen = MutagenDefOf.MergeMutagen.MutagenCached; 
+                    mutagen = MutagenDefOf.MergeMutagen.MutagenCached;
                     break;
                 case ChamberUse.Tf:
                     PawnKindDef animal = SelectorComp.ChosenKind;
@@ -586,31 +648,41 @@ namespace Pawnmorph.Chambers
                         forcedSapienceLevel = 1,
                         manhunterSettingsOverride = ManhunterTfSettings.Never
                     };
-                    mutagen = MutagenDefOf.defaultMutagen.MutagenCached; 
+                    mutagen = MutagenDefOf.defaultMutagen.MutagenCached;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            EjectContents();
 
             if (tfRequest == null) return;
 
-            
+
             TransformedPawn tfPawn = mutagen.Transform(tfRequest);
 
             if (tfPawn == null)
             {
                 Log.Error($"unable to transform pawn(s)! {_currentUse} {_innerState}");
-                return; 
+                return;
             }
 
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
             gComp.AddTransformedPawn(tfPawn);
             foreach (Pawn oPawn in tfPawn.OriginalPawns)
             {
-                if(oPawn.Spawned)
-                    oPawn.DeSpawn(); 
+                if (oPawn.Spawned)
+                    oPawn.DeSpawn();
             }
-            
+
+        }
+
+        private void ResetChamber()
+        {
+            SelectorComp.Enabled = false;
+            _innerState = ChamberState.WaitingForPawn;
+            _currentUse = ChamberUse.Tf;
+            _addedMutationData = null;
+            _curMutationIndex = -1; 
         }
 
         private void EnterMergingIdle()
@@ -682,6 +754,9 @@ namespace Pawnmorph.Chambers
             SelectorComp.Enabled = false;
         }
 
+
+        private IReadOnlyAddedMutations _addedMutationData;
+
         private void WindowClosed(Dialog_PartPicker sender, IReadOnlyAddedMutations addedmutations)
         {
             sender.WindowClosed -= WindowClosed;
@@ -694,12 +769,27 @@ namespace Pawnmorph.Chambers
             }
 
             if (addedmutations?.Any() != true) return;
-
+            
             //TODO get wait time based on number of mutations added/removed 
+            _addedMutationData = new AddedMutations(addedmutations);
             _timer = Mathf.RoundToInt(TF_ANIMAL_DURATION * 60000);
             _currentUse = ChamberUse.Mutation;
             _innerState = ChamberState.Active;
             _lastTotal = _timer;
+            sender.Reset();
+
+            //remove any mutations left over 
+            var pawn = innerContainer.FirstOrDefault() as Pawn;
+            if (pawn == null) return; 
+            foreach (IReadOnlyMutationData mData in _addedMutationData.Where(m => !m.Removing))
+            {
+                var hediff =
+                    pawn.health?.hediffSet?.hediffs?.FirstOrDefault(h => h.def == mData.Mutation && h.Part == mData.Part) as
+                        Hediff_AddedMutation; 
+                hediff?.MarkForRemoval();
+            }
+
+            SelectorComp.Enabled = false; 
         }
 
         private enum ChamberState

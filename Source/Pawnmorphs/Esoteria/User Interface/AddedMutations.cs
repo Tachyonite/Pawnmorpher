@@ -1,10 +1,13 @@
 ﻿// AddedMutations.cs created by Iron Wolf for Pawnmorph on //2020 
 // last updated 09/20/2020  9:51 AM
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.User_Interface
@@ -12,7 +15,7 @@ namespace Pawnmorph.User_Interface
     /// <summary>
     /// interface for a readonly reference to added mutations 
     /// </summary>
-    public interface IReadOnlyAddedMutations : IEnumerable<IReadOnlyMutationData>
+    public interface IReadOnlyAddedMutations : IReadOnlyList<IReadOnlyMutationData>, IExposable
     {
 
         /// <summary>
@@ -37,6 +40,24 @@ namespace Pawnmorph.User_Interface
     /// </summary>
     public class AddedMutations : IEnumerable<MutationData>, IReadOnlyAddedMutations
     {
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddedMutations"/> class.
+        /// </summary>
+        public AddedMutations() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddedMutations"/> class.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        public AddedMutations([NotNull] IReadOnlyAddedMutations other)
+        {
+            foreach (IReadOnlyMutationData mData in other)
+            {
+                Add(mData);
+            }
+        }
 
         IReadOnlyMutationData IReadOnlyAddedMutations.MutationsByPartAndLayer(BodyPartRecord part, MutationLayer layer)
         {
@@ -98,6 +119,15 @@ namespace Pawnmorph.User_Interface
         }
 
         /// <summary>
+        /// Adds the specified m data.
+        /// </summary>
+        /// <param name="mData">The m data.</param>
+        public void Add([NotNull] IReadOnlyMutationData mData)
+        {
+            mutationData.Add(new MutationData(mData));
+        }
+
+        /// <summary>
         /// Removes the first entry in the mutation data list whose part and layer matches the one provided.
         /// </summary>
         /// <param name="part">The body part record to filter out of the mutation data.</param>
@@ -117,6 +147,33 @@ namespace Pawnmorph.User_Interface
         public MutationData MutationsByPartAndLayer(BodyPartRecord part, MutationLayer layer)
         {
             return mutationData.Where(m => m.part == part).FirstOrDefault();
+        }
+
+
+        /// <summary>
+        /// Exposes the data.
+        /// </summary>
+        public void ExposeData()
+        {
+            Scribe_Collections.Look(ref mutationData, nameof(mutationData), LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+                mutationData = mutationData ?? new List<MutationData>(); 
+        }
+
+        /// <summary>Gets the number of elements in the collection.</summary>
+        /// <returns>The number of elements in the collection. </returns>
+        public int Count => mutationData?.Count ?? 0;
+
+        /// <summary>Gets the element at the specified index in the read-only list.</summary>
+        /// <param name="index">The zero-based index of the element to get. </param>
+        /// <returns>The element at the specified index in the read-only list.</returns>
+        public IReadOnlyMutationData this[int index] {
+            get
+            {
+                if (mutationData == null) throw new InvalidOperationException();
+                return mutationData[index]; 
+            }
+
         }
     }
 }

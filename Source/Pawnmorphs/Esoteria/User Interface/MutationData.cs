@@ -1,6 +1,7 @@
 ﻿// MutationData.cs created by Iron Wolf for Pawnmorph on //2020 
 // last updated 09/20/2020  9:54 AM
 
+using System;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Verse;
@@ -10,7 +11,7 @@ namespace Pawnmorph.User_Interface
     /// <summary>
     /// interface for a readonly variant of mutation data 
     /// </summary>
-    public interface IReadOnlyMutationData
+    public interface IReadOnlyMutationData : IExposable
     {
         /// <summary>
         /// Gets the mutation.
@@ -107,6 +108,32 @@ namespace Pawnmorph.User_Interface
             this.severity = severity;
             this.isHalted = isHalted;
             this.removing = removing;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MutationData"/> class.
+        /// </summary>
+        /// <param name="mData">The m data.</param>
+        public MutationData([NotNull] IReadOnlyMutationData mData)
+        {
+            if (mData == null) throw new ArgumentNullException(nameof(mData));
+            mutation = mData.Mutation;
+            part = mData.Part;
+            severity = mData.Severity;
+            isHalted = mData.IsHalted;
+            removing = mData.Removing; 
+        }
+
+        /// <summary>
+        /// Exposes the data.
+        /// </summary>
+        public void ExposeData()
+        {
+            Scribe_Defs.Look(ref mutation, nameof(mutation));
+            Scribe_BodyParts.Look(ref part, nameof(part));
+            Scribe_Values.Look(ref severity, nameof(severity));
+            Scribe_Values.Look(ref isHalted, nameof(isHalted));
+            Scribe_Values.Look(ref removing, nameof(removing)); 
         }
     }
 }

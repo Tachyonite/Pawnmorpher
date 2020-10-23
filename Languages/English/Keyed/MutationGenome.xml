@@ -2,7 +2,7 @@
     <GenomeLabel>{MUTATION} genome</GenomeLabel>
     <!-- TODO -->
     <GenomeDesc>genome that provied information for {MUTATION}</GenomeDesc>
-    <PMApplyGenome>TODO</PMApplyGenome>
+    <PMApplyGenome>Use {0} genome</PMApplyGenome>
     <PMNoMutationBenchAvailable>No mutation bench available</PMNoMutationBenchAvailable>
 
     <PMNoStorageAvailableForGenome>Cannot store {MUTATION} in the chamber database</PMNoStorageAvailableForGenome>
