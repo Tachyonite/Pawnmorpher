@@ -338,16 +338,13 @@ namespace Pawnmorph.User_Interface
         /// </summary>
         public void Reset()
         {
-            pawn.health.hediffSet.hediffs = new List<Hediff>(cachedInitialHediffs.Select(m => m.hediff).ToList());
+            pawn.health.hediffSet.hediffs = new List<Hediff>(cachedInitialHediffs.Select(m => m.hediff));
             addedMutations = new AddedMutations();
             foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
             {
-                hediff.Severity = cachedInitialHediffs.Where(m => m.hediff == hediff).FirstOrDefault().severity;
-                Comp_MutationSeverityAdjust comp = (hediff as Hediff_AddedMutation)?.TryGetComp<Comp_MutationSeverityAdjust>();
-                if (comp != null)
-                {
-                    comp.Halted = cachedInitialHediffs.Where(m => m.hediff == hediff).FirstOrDefault().isHalted;
-                }
+                hediff.Severity = cachedInitialHediffs.FirstOrDefault(m => m.hediff == hediff).severity;
+                var comp = (hediff as Hediff_AddedMutation)?.TryGetComp<Comp_MutationSeverityAdjust>();
+                if (comp != null) comp.Halted = cachedInitialHediffs.FirstOrDefault(m => m.hediff == hediff).isHalted;
             }
             RecachePawnMutations();
             pawn.story.bodyType = initialBodyType;

@@ -44,14 +44,14 @@
 		<label>PM: Genebanks</label>
 		<needsOpportunity>true</needsOpportunity>
 		<priority>11</priority>
-		<helpText>Genebanks store genome information on morphsilk tape-reels. When you tag a creature, you gain its genome, as well as some mutations if that animal has a morph variant. You need enough genebanks to store genomes or else anything you tag won't be stored. You can view and remove genomes in the Genebanks tab at the bottom of the screen.</helpText>
+		<helpText>Genebanks are needed to store tagged animals and mutations for use in the Mutagenic chambers. Each Genebank building supplies a fixed amount of storage that is distributed across the whole system so long as it is installed. Genebanks can be safely removed or moved so long as you have at least one bank’s worth of free space, otherwise you will lose some tagged information.</helpText>
 	</ConceptDef>
 	<ConceptDef>
 		<defName>PM_PartPicker</defName>
 		<label>PM: Mutation Configuration Menu</label>
 		<needsOpportunity>true</needsOpportunity>
 		<priority>11</priority>
-		<helpText>The MCM is the most powerful tool for customising your morphs how you want them. Any mutations you have stored in genebanks can be used in the MCM to apply them to pawns with a specific severity. You can also change the body type and head shape of the pawn and view them from any angle. Confirm your choices and wait for the chamber to apply all mutations to the pawn.</helpText>
+		<helpText>You can use a muta chamber to specify exactly what mutations you want a pawn to have. In order to use a mutation in the part picker it must be first analyzed by either tagging the related animal or by using a genome acquired rarely from traders or as quest rewards. Once you select the mutations you want the pawn to have and hit ‘Accept’ the muta chamber will slowly add them over time, consuming slurry and power</helpText>
 	</ConceptDef>
 
 </Defs>

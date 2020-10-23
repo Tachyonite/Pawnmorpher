@@ -5,7 +5,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
 		<defName>PM_HellhoundEar</defName>
 		<label>hellhound ear</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef]'s ears have become long and pointed, like that of a great canine</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
@@ -21,7 +21,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
 		<defName>PM_HellhoundHeadspike</defName>
 		<label>hellhound headspike</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef] has grown a large sharp spike on their skull</description>
 		<parts>
 			<li>Head</li>
 		</parts>
@@ -39,7 +39,7 @@
 			<li>Skull</li>
 		</parts>
 		<label>hellhound horns</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef] has grown a pair of large horns from their skull</description>
 		<categories>
 			<li>Major</li>
 		</categories>
@@ -67,7 +67,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
 		<defName>PM_HellhoundSnout</defName>
 		<label>hellhound muzzle</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -164,7 +164,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
 		<defName>PM_HellhoundSpikes</defName>
 		<label>hellhound spikes</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef] has grown a series of sharp spikes from their spine</description>
 		<categories>
 			<li>Major</li>
 		</categories>
@@ -179,7 +179,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
 		<defName>PM_HellhoundTail</defName>
 		<label>hellhound tail</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef] has grown a long muscular tail with a spaded tip</description>
 		<categories>
 			<li>Major</li>
 		</categories>
