@@ -3,7 +3,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.TfSys;
+using Pawnmorph.ThingComps;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -30,6 +32,9 @@ namespace Pawnmorph.Jobs
 
 
         CompProperties_TfResurrect ThingProps => Item.def.GetCompProperties<CompProperties_TfResurrect>();
+
+
+        private ResurrectorTargetComp TargetSettings => Item.TryGetComp<ResurrectorTargetComp>(); 
 
         /// <summary>
         /// Tries the make pre toil reservations.
@@ -81,37 +86,57 @@ namespace Pawnmorph.Jobs
             ResurrectionUtility.Resurrect(innerPawn); //make sure pawn is alive again 
 
             var mutagen = MutagenDefOf.defaultMutagen;
-            PawnKindDef animalKind = ThingProps.Animals.RandomElement();
-            float maxSeverity = ThingProps.makePermanentlyFeral ? 0.01f : 1f; 
-            TransformationRequest request = new TransformationRequest(animalKind, innerPawn, maxSeverity)
-            {
-                cause = null,
-                forcedGender = ThingProps.genderTf,
-                tale = ThingProps.taleDef,
-            };
-
+            PawnKindDef animalKind;
+            TransformationRequest request;
+            request =  MakeRequest(innerPawn);
+            animalKind = request.outputDef; 
             var tfPawn = mutagen.MutagenCached.Transform(request);
-            
+
             if (tfPawn != null)
             {
                 var comp = Find.World.GetComponent<PawnmorphGameComp>();
-                var oFirst = tfPawn.TransformedPawns.First(); 
+                var oFirst = tfPawn.TransformedPawns.First();
                 comp.AddTransformedPawn(tfPawn);
                 var messageContent =
                     RESURRECTION_MESSAGE_LABEL.Translate(innerPawn.Named("original"), oFirst.Named("animal"),
                                                          animalKind.Named(nameof(animalKind)))
                                               .CapitalizeFirst();
-                Messages.Message(messageContent, oFirst, MessageTypeDefOf.PositiveEvent, true); 
+                Messages.Message(messageContent, oFirst, MessageTypeDefOf.PositiveEvent, true);
             }
             else
             {
                 Log.Warning($"resurrected pawn {pawn.Name} who cannot be transformed normally! is this intended?");
             }
-            
 
-            
+
+
             //Messages.Message("MessagePawnResurrected".Translate(innerPawn).CapitalizeFirst(), innerPawn, MessageTypeDefOf.PositiveEvent, true);
             this.Item.SplitOff(1).Destroy(DestroyMode.Vanish);
+        }
+
+        private TransformationRequest MakeRequest(Pawn innerPawn)
+        {
+            var animalKind = GetAnimalFor(innerPawn); 
+            var request = new TransformationRequest(animalKind, innerPawn, TargetSettings?.ForcedSapienceLevel ?? SapienceLevel.Sapient)
+            {
+                cause = null,
+                forcedGender = ThingProps.genderTf,
+                tale = ThingProps.taleDef,
+            };
+            return request;
+        }
+
+        private PawnKindDef GetAnimalFor([NotNull] Pawn innerPawn)
+        {
+            var target = TargetSettings;
+            if (target == null)
+            {
+                Log.Warning($"{Item.def.defName} does not have a {nameof(ResurrectorTargetComp)}!");
+                return DefDatabase<PawnKindDef>.AllDefs.Where(pk => pk.RaceProps.Animal).RandomElement(); 
+            }
+
+            return target.GetValidAnimalFor(innerPawn);
+
         }
     }
 }

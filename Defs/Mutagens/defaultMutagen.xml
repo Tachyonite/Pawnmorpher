@@ -11,6 +11,7 @@
 		<revertedThoughtGood>WasMergedRelieved</revertedThoughtGood>
 		<revertedThoughtBad>WasMerged</revertedThoughtBad>
 		<transformedSapienceState>MergedPawn</transformedSapienceState>
+		<appliesTfParalysis>false</appliesTfParalysis>
 		<damageProperties>
 			<apparelDamageOffset>100</apparelDamageOffset>
 			<spawnedBiproductMult>0.5</spawnedBiproductMult>
@@ -35,12 +36,12 @@
 					<li>
 						<!-- on average this would require 20 mutations to give  -->
 						<aspect>MutagenInfused</aspect>
-						<chance>0.05</chance>
+						<chance>0.15</chance>
 						<aspectStage>0</aspectStage>
 					</li>
 					<li>
 						<aspect>MutagenInfused</aspect> <!-- this is the nueutralized varient -->
-						<chance>0.05</chance>
+						<chance>0.15</chance>
 						<aspectStage>1</aspectStage>
 					</li>
 					<li>

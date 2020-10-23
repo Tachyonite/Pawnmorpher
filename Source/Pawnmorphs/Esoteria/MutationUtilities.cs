@@ -297,7 +297,7 @@ namespace Pawnmorph
             }
             
 
-            return isProsthetic; 
+            return isProsthetic && hediff is Hediff_AddedPart; 
         }
 
         
@@ -883,26 +883,12 @@ namespace Pawnmorph
         {
             List<AlienPartGenerator.BodyAddon> bodyAddons =
                 ((ThingDef_AlienRace) ThingDefOf.Human).alienRace.generalSettings.alienPartGenerator.bodyAddons;
-            IEnumerable<string> hediffDefNames =
+            var hediffDefs =
                 bodyAddons.SelectMany(add => add.hediffGraphics ?? Enumerable.Empty<AlienPartGenerator.BodyAddonHediffGraphic>())
                           .Select(h => h.hediff);
 
-            StringBuilder builder = new StringBuilder(); 
-            foreach (string hediffDef in hediffDefNames)
-            {
-                var hDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediffDef);
-                if (hDef == null)
-                {
-                    builder.AppendLine($"there are graphics for {hediffDef} but there is no hediff with that defName!");
-                    continue;
-                }
-                yield return hDef;
-            }
+            return hediffDefs; 
 
-            if (builder.Length > 0)
-            {
-                Warning(builder); 
-            }
         }
 
         /// <summary>

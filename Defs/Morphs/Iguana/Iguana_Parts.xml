@@ -77,6 +77,7 @@
 		<description>A spiney green tail.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

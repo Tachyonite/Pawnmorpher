@@ -5,11 +5,12 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="HuskyPart">
 		<defName>EtherHuskyMuzzle</defName>
 		<label>canine muzzle</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+		<description>The wolf-like muzzle of a husky.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
 		<stages>
+			
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit; speaking is nearly impossible outside of barks and whines, but eating is easier.</description>
 				<minSeverity>-0.5</minSeverity>
@@ -26,6 +27,23 @@
 				<label>bestial</label>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit; speaking is difficult outside of barks and whines, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -40,6 +58,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit, making eating easier. Adaptation has removed some of the difficulty with speaking.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -102,6 +121,7 @@
 		<description>A wonderfully fluffy husky tail curls over [PAWN_nameDef]'s back. Was that a small wag just then?</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

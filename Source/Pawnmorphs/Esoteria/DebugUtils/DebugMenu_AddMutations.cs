@@ -33,7 +33,7 @@ namespace Pawnmorph.DebugUtils
                 foreach (MutationDef mutationDef in group)
                 {
                     var mDef = mutationDef;
-                    DebugAction(mDef.defName, () => AddMutationAction(mDef)); 
+                    DebugAction_NewTmp(mDef.defName, () => AddMutationAction(mDef), false); 
                 }
             }
         }

@@ -27,7 +27,6 @@ namespace Pawnmorph.Jobs
 
         private ThingWithComps Genome => (ThingWithComps) job.GetTarget(GENOME_INDEX).Thing;
 
-        private MutationGenomeStorage GenomeComp => Genome.GetComp<MutationGenomeStorage>();
 
 
 
@@ -78,12 +77,21 @@ namespace Pawnmorph.Jobs
         private void ApplyGenome()
         {
             var wComp = Find.World.GetComponent<ChamberDatabase>();
-            var mut = GenomeComp.Mutation;
+            var mut = Genome.GetComp<MutationGenomeStorage>()?.Mutation;
             //just add to database, if not possible there is no recovery possible at this stage 
             //can add to database must be called by giver before hand
 
             //TODO message 
 
+            if (mut == null)
+            {
+                var aGenome = Genome.GetComp<AnimalGenomeStorageComp>();
+                if (aGenome == null) return; 
+
+                wComp.AddToDatabase(aGenome.Animal);
+                return;
+            }
+            
             var mutationToAdd = mut.AllMutations.Where(m => wComp.CanAddToDatabase(m)).RandomElementWithFallback();
             if (mutationToAdd == null)
             {

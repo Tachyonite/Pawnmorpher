@@ -81,5 +81,24 @@ namespace Pawnmorph
         /// all production boosts an aspect gives in this stage 
         /// </summary>
         [CanBeNull] public List<ProductionBoost> productionBoosts;
+
+        [Unsaved(false)] private string cachedLabelCap;
+
+        /// <summary>Gets the capitalized version of the stage's label.</summary>
+        public string LabelCap
+        {
+            get
+            {
+                if (label.NullOrEmpty())
+                {
+                    return null;
+                }
+                if (cachedLabelCap.NullOrEmpty())
+                {
+                    cachedLabelCap = label.CapitalizeFirst();
+                }
+                return cachedLabelCap;
+            }
+        }
     }
 }

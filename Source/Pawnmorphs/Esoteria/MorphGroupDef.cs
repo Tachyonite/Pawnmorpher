@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -20,6 +21,16 @@ namespace Pawnmorph
         [Unsaved] private List<MorphDef> _associatedMorphs;
 
         [Unsaved] private List<ThingDef> _associatedFeralRaces;
+
+
+        /// <summary>
+        /// The barrak thought replacement
+        /// </summary>
+        [CanBeNull] public ThoughtDef barrakThoughtReplacement;
+        /// <summary>
+        /// The bedroom thought replacement
+        /// </summary>
+        [CanBeNull] public ThoughtDef bedroomThoughtReplacement; 
 
         /// <summary>
         /// Gets the animal races in this morph group

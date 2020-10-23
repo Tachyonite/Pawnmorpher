@@ -5,7 +5,7 @@
 	<enableMutagenCheckboxLabel>Enable Mutagenic Ship Parts</enableMutagenCheckboxLabel>
 	<enableMutagenCheckboxTooltip>Toggles a new ship part type that mutates pawns in an expanding radius.</enableMutagenCheckboxTooltip>
 	<enableMutagenDiseasesCheckboxLabel>Enable Mutagenic Diseases</enableMutagenDiseasesCheckboxLabel>
-	<enableMutagenDiseasesCheckboxTooltip>Toggles mutagenic disease events that will morph pawns.</enableMutagenDiseasesCheckboxTooltip>
+	<enableMutagenDiseasesCheckboxTooltip>Toggles mutagenic disease events that will morph pawns. (requires restart)</enableMutagenDiseasesCheckboxTooltip>
 	<enableMutagenMeteorCheckboxLabel>Enable Mutagenic Meteorite Mutation Radius</enableMutagenMeteorCheckboxLabel>
 	<enableMutagenMeteorCheckboxTooltip>Toggles the ability of mutonite meteors to mutate nearby pawns.</enableMutagenMeteorCheckboxTooltip>
 	<enableWildFormersCheckboxLabel>Enable Wild Former Humans</enableWildFormersCheckboxLabel>
@@ -14,4 +14,8 @@
 	<formerChanceSliderLabel>Chance for animals to spawn as former humans</formerChanceSliderLabel>
 	<partialChanceSliderLabel>Chance for morph eggs/milk to trigger a complete transformation instead of a single mutation</partialChanceSliderLabel>
 	<maxMutationThoughtsSliderLabel>How many mutation related thoughts will show up at once</maxMutationThoughtsSliderLabel>
+	<friendlyManhunterTfChance>Chance for friendly pawns to go manhunter when transformed</friendlyManhunterTfChance>
+	<manhunterTfChance>Chacne for pawns to go manhunter when transformed</manhunterTfChance>
+	<PMInjectorsRequireTagging>Injectors Require Tagging</PMInjectorsRequireTagging>
+	<PMInjectorsRequireTaggingTooltip>If tagging animals is requires to make injectors</PMInjectorsRequireTaggingTooltip>
 </LanguageData>

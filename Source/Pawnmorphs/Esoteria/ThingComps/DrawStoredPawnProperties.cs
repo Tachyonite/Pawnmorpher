@@ -5,7 +5,12 @@ using RimWorld;
 
 namespace Pawnmorph.ThingComps
 {
-    class DrawStoredPawnProperties : CompProperties
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Verse.CompProperties" />
+    public class DrawStoredPawnProperties : CompProperties
     {
         /// <summary>Offset to draw pawn at.</summary>
         public Vector3 offset;
@@ -13,6 +18,9 @@ namespace Pawnmorph.ThingComps
         /// <summary>The altitude layer to draw the pawn at.</summary>
         public AltitudeLayer layer;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DrawStoredPawnProperties"/> class.
+        /// </summary>
         public DrawStoredPawnProperties()
         {
             compClass = typeof(DrawStoredPawnComp);
@@ -22,6 +30,11 @@ namespace Pawnmorph.ThingComps
         /// <value>The altitude as a float.</value>
         public float Altitude => layer.AltitudeFor();
 
+        /// <summary>
+        /// gathers all configuration errors in this instance.
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
         public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
         {
             if (!parentDef.thingClass.IsSubclassOf(typeof(Building_Casket)) && parentDef.thingClass != typeof(Building_Casket))

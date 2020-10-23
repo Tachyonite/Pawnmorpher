@@ -25,22 +25,44 @@ namespace Pawnmorph.DebugUtils
 
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void TagAllMutations()
+        {
+            var cd = Find.World.GetComponent<ChamberDatabase>();
+
+            var mutations = DefDatabase<MutationCategoryDef>.AllDefs.Where(d => d.genomeProvider)
+                                                            .SelectMany(d => d.AllMutations)
+                                                            .Distinct();
+            foreach (MutationDef mutationDef in mutations)
+            {
+                if(cd.StoredMutations.Contains(mutationDef)) continue;
+                cd.AddToDatabase(mutationDef); 
+            }
+
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
         static void TagAllAnimals()
         {
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
-            var database = Find.World.GetComponent<ChamberDatabase>(); 
+            var database = Find.World.GetComponent<ChamberDatabase>();
 
-
+            StringBuilder sBuilder = new StringBuilder();
             foreach (var kindDef in DefDatabase<PawnKindDef>.AllDefs)
             {
                 var thingDef = kindDef.race; 
                 if(thingDef.race?.Animal != true) continue;
 
-                if (!database.TryAddToDatabase(kindDef))
+                if (!database.TryAddToDatabase(kindDef, out string reason))
                 {
-                    //TODO learning tip or message? 
+                    sBuilder.AppendLine($"unable to store {kindDef.label} because {reason}");
+                }
+                else
+                {
+                    sBuilder.AppendLine($"added {kindDef.label} to the database");
                 }
             }
+
+            Log.Message(sBuilder.ToString());
 
         }
 
@@ -204,7 +226,7 @@ namespace Pawnmorph.DebugUtils
         public static void OpenPartPickerMenu(Pawn pawn)
         {
             if (pawn == null) return;
-            Find.WindowStack.Add(new Dialog_PartPicker(pawn));
+            Find.WindowStack.Add(new Dialog_PartPicker(pawn, true));
         }
     }
 }

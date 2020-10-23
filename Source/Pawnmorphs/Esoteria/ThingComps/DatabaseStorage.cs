@@ -42,7 +42,6 @@ namespace Pawnmorph.ThingComps
         public override string CompInspectStringExtra()
         {
             StringBuilder builder = new StringBuilder(); 
-            builder.AppendLine(base.CompInspectStringExtra());
             var wComp = Find.World.GetComponent<ChamberDatabase>();
             var provideStr = $"{Props.storageAmount} MB/{wComp.TotalStorage} MB";
 
@@ -68,6 +67,9 @@ namespace Pawnmorph.ThingComps
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
+
+            LessonAutoActivator.TeachOpportunity(PMConceptDefOf.PM_Genebanks, OpportunityType.Important); 
+
 
             if (!respawningAfterLoad && parent.Faction == Faction.OfPlayer)
             {

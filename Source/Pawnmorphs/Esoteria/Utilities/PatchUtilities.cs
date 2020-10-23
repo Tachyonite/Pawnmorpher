@@ -183,6 +183,22 @@ namespace Pawnmorph.Utilities
         public static MethodInfo RimworldIsAnimalMethod { get; }
 
 
+        /// <summary>
+        /// Gets Rimworld's Animal getter method.
+        /// </summary>
+        /// <value>
+        /// The rimworld get animal method.
+        /// </value>
+        public static MethodInfo RimworldGetAnimalMethod => _getAnimalMethod;
+
+        /// <summary>
+        /// Gets the rimworld get race method.
+        /// </summary>
+        /// <value>
+        /// The rimworld get race method.
+        /// </value>
+        public static MethodInfo RimworldGetRaceMethod => _getRacePropsMethod;
+
         [NotNull] private static readonly MethodInfo _getRacePropsMethod;
         [NotNull] private static readonly MethodInfo _getAnimalMethod;
         [NotNull] private static readonly MethodInfo _toolUserMethod;

@@ -16,7 +16,7 @@ namespace Pawnmorph
 {
 
     
-
+    [Obsolete]
     public class Building_MutagenModulator : Building
     {
 

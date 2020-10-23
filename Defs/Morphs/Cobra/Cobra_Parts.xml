@@ -108,6 +108,7 @@
 		<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 			<li>TailLeg</li>
 		</parts>
 		<stages>

@@ -6,4 +6,9 @@
     <ChamberDatabaseIgnoresDataLimit>Chamber Database Ignores Data Limit</ChamberDatabaseIgnoresDataLimit>
     <ChamberDatabaseIgnoresDataLimitTooltip>if true, adding things to the chamber database will not require data storage, usefull for debugging</ChamberDatabaseIgnoresDataLimitTooltip>
     <PMStorageSpaceMessage>Provides</PMStorageSpaceMessage>
+    <PMAnimalGenomeDescription>stores the genetic information of {ANIMAL}</PMAnimalGenomeDescription>
+    <PMChamberAddingMutations>adding mutations</PMChamberAddingMutations>
+    <PMChamberTransforming>transforming {0} into a {1}</PMChamberTransforming>
+    <PMMergeGizmo>Merge</PMMergeGizmo>
+    <PMCannotTransformPrisoner>Cannot transform {0}</PMCannotTransformPrisoner>
 </LanguageData>

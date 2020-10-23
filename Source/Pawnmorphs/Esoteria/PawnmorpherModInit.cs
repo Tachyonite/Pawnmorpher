@@ -37,11 +37,11 @@ namespace Pawnmorph
                 GenerateImplicitRaces();
                 TransferPatchesToExplicitRaces();
                 CheckForObsoletedComponents();
-
                 CheckForModConflicts();
                 try
                 {
                     GenomeDefGenerator.GenerateGenomes();
+
                 }
                 catch (Exception e)
                 {
@@ -55,6 +55,11 @@ namespace Pawnmorph
             {
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
             }
+        }
+
+        private static void SetupInjectors()
+        {
+            throw new NotImplementedException();
         }
 
         private static void CheckForModConflicts()
@@ -111,9 +116,8 @@ namespace Pawnmorph
             {
                 if(bodyAddon.hediffGraphics == null || bodyAddon.hediffGraphics.Count == 0) continue;
                 bool found = false; 
-                foreach (var hediffDefName in bodyAddon.hediffGraphics.Select(h=> h.hediff))
+                foreach (var hDef in bodyAddon.hediffGraphics.Select(h=> h.hediff))
                 {
-                    var hDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediffDefName); 
                     if(hDef == null) continue;
                     if (hDef is MutationDef) //make sure we only grab addons that are mutations 
                     {

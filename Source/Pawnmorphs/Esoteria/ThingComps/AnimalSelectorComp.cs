@@ -17,6 +17,33 @@ namespace Pawnmorph.ThingComps
     {
         private PawnKindDef _chosenKind;
 
+
+        
+
+        /// <summary>
+        /// delegate for the Animal Chosen event 
+        /// </summary>
+        /// <param name="pawnKindDef">The pawn kind definition.</param>
+        public delegate void AnimalChosenHandler([CanBeNull] PawnKindDef pawnKindDef);
+        /// <summary>
+        /// Occurs when an animal is chosen.
+        /// </summary>
+        public event AnimalChosenHandler AnimalChosen; 
+
+
+        private bool _enabled = true;
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="AnimalSelectorComp"/> is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+        /// </value>
+        public bool Enabled
+        {
+            get => _enabled;
+            set => _enabled = value;
+        }
+
         /// <summary>
         ///     Gets the props.
         /// </summary>
@@ -47,7 +74,7 @@ namespace Pawnmorph.ThingComps
                 {
                     var comp = PMComp;
 
-                    return Props.AllAnimals.Where(t => comp.TaggedAnimals.Contains(t));
+                    return Props.AllAnimals.Where(t => comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true);
                 }
 
                 return Props.AllAnimals;
@@ -72,7 +99,9 @@ namespace Pawnmorph.ThingComps
                 yield return gizmo; 
             }
 
-            yield return Gizmo; 
+
+            if(_enabled)
+                yield return Gizmo; 
         }
 
         Command_Action Gizmo
@@ -84,7 +113,8 @@ namespace Pawnmorph.ThingComps
                     _cachedGizmo = new Command_Action()
                     {
                         action = GizmoAction,
-                        defaultLabel = "none"
+                        defaultLabel = "none",
+                        icon = PMTextures.AnimalSelectorIcon
                     };
                 }
 
@@ -120,6 +150,7 @@ namespace Pawnmorph.ThingComps
         {
             base.PostExposeData();
             Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
+            Scribe_Values.Look(ref _enabled, nameof(Enabled), true); 
         }
 
 
@@ -127,7 +158,8 @@ namespace Pawnmorph.ThingComps
         {
             _chosenKind = chosenKind;
             Gizmo.icon = _chosenKind.race.uiIcon;
-            Gizmo.defaultLabel = _chosenKind.label; 
+            Gizmo.defaultLabel = _chosenKind.label;
+            AnimalChosen?.Invoke(chosenKind); 
         }
 
         /// <summary>
@@ -136,6 +168,9 @@ namespace Pawnmorph.ThingComps
         /// <returns></returns>
         public IEnumerable<Gizmo> GetGizmos()
         {
+
+            if (!_enabled) return Enumerable.Empty<Gizmo>();
+            
             if (_cachedGizmoArr == null)
             {
                 _cachedGizmoArr = new[] {Gizmo};
@@ -156,6 +191,10 @@ namespace Pawnmorph.ThingComps
         /// </summary>
         public bool requiresTag;
 
+        /// <summary>
+        /// list of animals always available for selection 
+        /// </summary>
+        public List<PawnKindDef> alwaysAvailable;
 
         /// <summary>
         ///     The race filter

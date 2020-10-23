@@ -5,12 +5,29 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PigPart">
 		<defName>EtherPigSnout</defName>
 		<label>porcine snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, good for snorting, snuffling for roots and berries, and oinking at things that [PAWN_pronoun] likes.</description>
+		<description>The porcine snuffly snout of a pig.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, good for snorting, snuffling for roots and berries, and oinking at things that [PAWN_pronoun] likes.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -24,6 +41,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, good for snorting, snuffling for roots and berries, and oinking at things that [PAWN_pronoun] likes. Adaptation has removed some of the difficulty with speaking.</description>
 				<minSeverity>1</minSeverity>
 				<capMods>
 					<li>
@@ -105,6 +123,7 @@
 		</stages>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

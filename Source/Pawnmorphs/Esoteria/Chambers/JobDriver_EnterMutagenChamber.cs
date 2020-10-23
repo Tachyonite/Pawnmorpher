@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using Pawnmorph.Chambers;
 using Verse;
 using Verse.AI;
 
@@ -40,7 +41,7 @@ namespace Pawnmorph
             enter.initAction = delegate
             {
                 Pawn actor = enter.actor;
-                Building_MutagenChamber pod = (Building_MutagenChamber)actor.CurJob.targetA.Thing;
+                var pod = (MutaChamber)actor.CurJob.targetA.Thing;
                 Action action = delegate
                 {
                     actor.DeSpawn();

@@ -25,7 +25,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/DesignationCategoryDef/[defName = "GR_GeneticsTab"]/description</xpath>
+					<xpath>/Defs/DesignationCategoryDef[defName = "GR_GeneticsTab"]/description</xpath>
 					<value>
 						<description>Items added by Genetic Rim and Pawnmorpher.</description>
 					</value>

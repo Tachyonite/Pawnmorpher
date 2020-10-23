@@ -76,12 +76,29 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherSheepSnout</defName>
 		<label>ovine snout</label>
-		<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier. The urge to bleat is extraordinarily powerful.</description>
+		<description>A very sheepy snout.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier. The urge to bleat is extraordinarily powerful.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -95,6 +112,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with speaking.</description>
 				<minSeverity>1</minSeverity>
 				<capMods>
 					<li>
@@ -151,6 +169,7 @@
 		</stages>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
@@ -177,9 +196,22 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
 		<defName>EtherSheepHorns</defName>
 		<label>ram horns</label>
-		<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt.</description>
+		<description>The curled horns of a ram. They start small, but will eventually grow quite large. Horn growth does not require the constant work of mutagenic mechanites.</description>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>small horns</labelOverride>
+				<minSeverity>0</minSeverity>
+				<description>Small horns top [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>curled horns</labelOverride>
+				<minSeverity>0.5</minSeverity>
+				<description>Curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have grown larger, but still have plenty of growing to do.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have reached their full size.</description>
+				<minSeverity>1</minSeverity>
 			</li>
 		</stages>
 		<parts>
@@ -199,6 +231,9 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.025</severityPerDay>
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>

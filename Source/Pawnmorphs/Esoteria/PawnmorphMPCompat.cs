@@ -48,10 +48,12 @@ namespace PawnMorpher
 
         static void SyncMethods()
         {
+#pragma warning disable 612
             var syncMethods = new MethodInfo[] {
                 // Gizmos
                 AccessTools.Method(typeof(Building_MutagenModulator), nameof(Building_MutagenModulator.SetMergeAction)),
                 AccessTools.Method(typeof(Building_MutagenModulator), nameof(Building_MutagenModulator.SetAnimalAction)),
+#pragma warning restore 612
             };
 
             foreach(var method in syncMethods) {

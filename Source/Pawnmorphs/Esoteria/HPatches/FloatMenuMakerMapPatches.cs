@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -31,34 +32,64 @@ namespace Pawnmorph
                         var victim = (Pawn) localTargetInfo4.Thing;
                         MutagenDef mutagen = MutagenDefOf.MergeMutagen;
                         if (mutagen.CanTransform(victim)
-                         && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true)
-                         && Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true) != null)
+                         && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true))
                         {
-                            string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
-                            JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
-                            Action action3 = delegate
+                            if (MutaChamber.FindMutaChamberFor(victim, pawn, true, ChamberUse.Tf) != null)
                             {
-                                Building_MutagenChamber building_chamber =
-                                    Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn);
-                                if (building_chamber == null)
-                                    building_chamber = Building_MutagenChamber.FindCryptosleepCasketFor(victim, pawn, true);
-                                if (building_chamber == null)
+                                string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
+                                JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
+                                Action action3 = delegate
                                 {
-                                    Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim,
-                                                     MessageTypeDefOf.RejectInput, false);
-                                    return;
-                                }
+                                    var building_chamber =
+                                        MutaChamber.FindMutaChamberFor(victim, pawn);
+                                    if (building_chamber == null)
+                                        building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn, true);
+                                    if (building_chamber == null)
+                                    {
+                                        Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim,
+                                                         MessageTypeDefOf.RejectInput, false);
+                                        return;
+                                    }
 
-                                var job = new Job(jDef, victim, building_chamber);
-                                job.count = 1;
-                                pawn.jobs.TryTakeOrderedJob(job);
-                            };
-                            string label = text4;
-                            Action action2 = action3;
-                            Pawn revalidateClickTarget = victim;
-                            opts.Add(FloatMenuUtility
-                                        .DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget),
-                                                                 pawn, victim));
+                                    var job = new Job(jDef, victim, building_chamber);
+                                    job.count = 1;
+                                    pawn.jobs.TryTakeOrderedJob(job);
+                                };
+                                string label = text4;
+                                Action action2 = action3;
+                                Pawn revalidateClickTarget = victim;
+                                opts.Add(FloatMenuUtility
+                                            .DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget),
+                                                                     pawn, victim));
+                            }
+                            if (MutaChamber.FindMutaChamberFor(victim, pawn, true, ChamberUse.Merge) != null)
+                            {
+                                string text4 = "PMCarryToChamberMerge".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
+                                JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
+                                Action action3 = delegate
+                                {
+                                    var building_chamber =
+                                        MutaChamber.FindMutaChamberFor(victim, pawn);
+                                    if (building_chamber == null)
+                                        building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn, true);
+                                    if (building_chamber == null)
+                                    {
+                                        Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim,
+                                                         MessageTypeDefOf.RejectInput, false);
+                                        return;
+                                    }
+
+                                    var job = new Job(jDef, victim, building_chamber);
+                                    job.count = 1;
+                                    pawn.jobs.TryTakeOrderedJob(job);
+                                };
+                                string label = text4;
+                                Action action2 = action3;
+                                Pawn revalidateClickTarget = victim;
+                                opts.Add(FloatMenuUtility
+                                            .DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget),
+                                                                     pawn, victim));
+                            }
                         }
                     }
 

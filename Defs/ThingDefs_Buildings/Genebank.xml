@@ -28,7 +28,7 @@
     <designationCategory>GR_GeneticsTab</designationCategory>
     <uiIconScale>1</uiIconScale>
 	<researchPrerequisites>
-		  <li>MutagenChambers</li>
+		  <li>Injectors</li>
   </researchPrerequisites>
   <comps>
     <li Class="Pawnmorph.ThingComps.DatabaseStorageProperties">
@@ -66,7 +66,20 @@
     <uiIconScale>1</uiIconScale>
 	<researchPrerequisites>
 		  <li>MutagenChambers</li>
-	</researchPrerequisites>
+  </researchPrerequisites>
+    <comps>
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>1.7</fuelConsumptionRate>
+        <fuelCapacity>10.0</fuelCapacity>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelFilter>
+          <thingDefs>
+            <li>MechaniteSlurry</li>
+          </thingDefs>
+        </fuelFilter>
+        <initialFuelPercent>0</initialFuelPercent>
+      </li>
+    </comps>
   </ThingDef>
 
 

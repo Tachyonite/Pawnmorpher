@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
@@ -234,7 +235,15 @@ namespace Pawnmorph.Hybrids
 
             
             //always revert to human settings first so the race change is consistent 
-            ValidateReversion(pawn); 
+            ValidateReversion(pawn);
+
+            //check if the body def changed and handle any apparel changes 
+            if (oldRace.race.body != race.race.body)
+            {
+
+                ValidateApparelForChangedPawn(pawn, oldRace); 
+            }
+
 
             if(race != ThingDefOf.Human) 
                 ValidateExplicitRaceChange(pawn, race, oldRace);
@@ -261,6 +270,34 @@ namespace Pawnmorph.Hybrids
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
                 raceChangeEventReceiver.OnRaceChange(oldRace);
+            }
+        }
+
+        [NotNull]
+        private readonly static List<Apparel> _apparelCache = new List<Apparel>(); 
+
+        private static void ValidateApparelForChangedPawn([NotNull] Pawn pawn, [NotNull] ThingDef oldRace)
+        {
+            Pawn_ApparelTracker apparel = pawn.apparel;
+            if (apparel == null) return;
+            
+            _apparelCache.Clear();
+            _apparelCache.AddRange(apparel.WornApparel.MakeSafe());
+
+
+            foreach (Apparel ap in _apparelCache) //use a copy so we can remove them safely while iterating 
+            {
+                if (!ApparelUtility.HasPartsToWear(pawn, ap.def))
+                {
+                    if (DebugLogUtils.ShouldLog(LogLevel.Messages))
+                        Log.Message($"removing {ap.Label}");
+
+                    if (apparel.TryDrop(ap))
+                    {
+                        
+                        apparel.Remove(ap); 
+                    }
+                }
             }
         }
 
@@ -394,7 +431,7 @@ namespace Pawnmorph.Hybrids
             var traitsToAdd = allAlienTraits;
             foreach (AlienTraitEntry alienTraitEntry in traitsToAdd)
             {
-                var def = TraitDef.Named(alienTraitEntry.defName);
+                var def = alienTraitEntry.defName;
                 if (traitSet.HasTrait(def)) continue; //don't add traits that are already added 
 
                 var add = (Rand.RangeInclusive(0, 100) <= alienTraitEntry.chance);

@@ -114,10 +114,9 @@
 			<li>
 				<label>sapient</label>
 			</li>
-			<li Class="Pawnmorph.Hediffs.WorkSettingsStage">
+			<li>
 				<label>mostly sapient</label>
 				<minSeverity>0.4</minSeverity>
-				<disallowedWork>Intellectual,Artistic</disallowedWork>
 				<statOffsets>
 					<TameAnimalChance>0.05</TameAnimalChance>
 					<TrainAnimalChance>0.05</TrainAnimalChance>

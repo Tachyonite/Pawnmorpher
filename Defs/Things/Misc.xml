@@ -20,6 +20,9 @@
             <DeteriorationRate>2</DeteriorationRate>
             <MutagenSensitivity_Stuff>0.1</MutagenSensitivity_Stuff>
         </statBases>
+		<burnableByRecipe>true</burnableByRecipe>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<minRewardCount>30</minRewardCount>
         <stuffProps>
             <color>(0.74,1,0.5)</color>
             <statFactors>

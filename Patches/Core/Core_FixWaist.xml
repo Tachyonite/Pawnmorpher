@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/BodyPartDef[defName="Waist"]/label</xpath>
+        <value>
+            <label>waist</label>
+        </value>
+    </Operation>
+</Patch>

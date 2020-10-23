@@ -39,7 +39,8 @@
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Tail" and layerOffset=-0.29]/hediffGraphics</xpath>
+					<!-- TODO figure out a way to make this more general -->
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Tail" and layerOffset=-0.28]/hediffGraphics</xpath>
 					<value>
 						<EtherLeopardTail>Parts/Leopard/Leopard_Tail</EtherLeopardTail>
 					</value>

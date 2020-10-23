@@ -4,7 +4,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="BearJawBase">
 		<label>ursine muzzle</label>
-		<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+		<description>The ferocious muzzle of a bear.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>bestial</label>
@@ -22,6 +22,23 @@
 				<description>[PAWN_nameDef]'s face has become a ursine massive snout, with teeth pointed to suit. This makes speaking much more difficult, yet eating is easier.</description>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.10</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -35,6 +52,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
+				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
 				<minSeverity>1</minSeverity>
 				<capMods>
 					<li>
@@ -111,6 +129,7 @@
 		</stages>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">

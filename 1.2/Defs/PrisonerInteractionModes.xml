@@ -1,0 +1,6 @@
+<Defs>
+    <PrisonerInteractionModeDef>
+        <defName>PM_Transform</defName>
+        <label>transform</label>
+    </PrisonerInteractionModeDef>
+</Defs>

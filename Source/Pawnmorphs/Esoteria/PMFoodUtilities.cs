@@ -93,6 +93,8 @@ namespace Pawnmorph
             bool ignoreReservations = false,
             FoodPreferability minPrefOverride = FoodPreferability.Undefined)
         {
+            if (getter == null) throw new ArgumentNullException(nameof(getter));
+            if (eater == null) throw new ArgumentNullException(nameof(eater));
             foodDef = null;
             HungerCategory foodCurCategory = eater.needs.food.CurCategory;
             bool getterCanManipulate = getter.IsToolUser() && getter.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
@@ -537,7 +539,7 @@ namespace Pawnmorph
         }
 
         private static Thing SpawnedFoodSearchInnerScan(
-            Pawn eater,
+            [NotNull] Pawn eater,
             IntVec3 root,
             List<Thing> searchSet,
             PathEndMode peMode,
@@ -545,6 +547,7 @@ namespace Pawnmorph
             float maxDistance = 9999f,
             Predicate<Thing> validator = null)
         {
+            if (eater == null) throw new ArgumentNullException(nameof(eater));
             if (searchSet == null)
                 return null;
             Pawn pawn = traverseParams.pawn ?? eater;
@@ -555,14 +558,25 @@ namespace Pawnmorph
             for (var index = 0; index < searchSet.Count; ++index)
             {
                 Thing search = searchSet[index];
+                if(search == null) continue; 
                 ++num2;
                 var lengthManhattan = (float) (root - search.Position).LengthManhattan;
                 if (lengthManhattan <= (double) maxDistance)
                 {
-                    float num4 = FoodUtility.FoodOptimality(eater, search, FoodUtility.GetFinalIngestibleDef(search),
+                    ThingDef finalIngestibleDef = FoodUtility.GetFinalIngestibleDef(search);
+                    if (finalIngestibleDef == null)
+                    {
+                        Log.Error($"unable to find final ingestible def of {search.ThingID}!");
+                        continue;
+                    }else if (finalIngestibleDef.ingestible == null)
+                    {
+                        Log.Error($"food source {finalIngestibleDef.defName} does not have any ingestible properties!");
+                        continue;
+                    }
+                    float num4 = FoodUtility.FoodOptimality(eater, search, finalIngestibleDef,
                                                             lengthManhattan);
                     if (num4 >= (double) num3
-                     && pawn.Map.reachability.CanReach(root, (LocalTargetInfo) search, peMode, traverseParams)
+                     && pawn.Map.reachability.CanReach(root, search, peMode, traverseParams)
                      && search.Spawned
                      && (validator == null || validator(search)))
                     {

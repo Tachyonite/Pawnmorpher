@@ -1,0 +1,55 @@
+<Defs>
+
+    <ThingDef ParentName="AnimalThingBase" Name="ChaomorphBase" Abstract="True">
+		<race>
+			<fleshType>Chaomorph</fleshType>
+		</race>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+				<backstory>FormerHumanChaomorph</backstory>
+			</li>
+			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+                <chaoType>Chaomorph</chaoType>
+                <selectionWeight>10</selectionWeight>
+            </li>
+		</modExtensions>
+		<tradeTags>
+			<li>Chaomorph</li>
+        </tradeTags>
+	</ThingDef>
+
+	<ThingDef ParentName="AnimalThingBase" Name="ChaomorphBaseDerived" Abstract="true">
+		<race>
+			<fleshType>Chaomorph</fleshType>
+			<useMeatFrom>Chaocow</useMeatFrom>
+		</race>
+	</ThingDef>
+
+    <ThingDef Abstract="true" ParentName="ChaomorphBaseDerived" Name="ChaomeldBase">
+		<comps>
+			<li>
+				<compClass>Pawnmorph.ThingComps.AlwaysMergedPawn</compClass>
+			</li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+                <chaoType>Merge</chaoType>
+                <selectionWeight>10</selectionWeight>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+	<ThingDef Abstract="true" ParentName="ChaomorphBaseDerived" Name="PMChaoMergeBase">
+		<comps>
+			<li>
+				<compClass>Pawnmorph.ThingComps.AlwaysMergedPawn</compClass>
+			</li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+                <chaoType>Merge</chaoType>
+                <selectionWeight>1</selectionWeight>
+            </li>
+        </modExtensions>
+	</ThingDef>
+</Defs>

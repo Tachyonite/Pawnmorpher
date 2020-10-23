@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
@@ -117,8 +118,6 @@ namespace Pawnmorph.Chambers
         /// <b>not</b>
         /// check if there is enough space to add the mutation or if it is restricted, use
         /// <see cref="CanAddToDatabase(Pawnmorph.Hediffs.MutationDef)" />
-        /// or
-        /// <see cref="DatabaseUtilities.TryAddToDatabase(ChamberDatabase, Pawnmorph.Hediffs.MutationDef)" />
         /// to check
         /// <param name="mutationDef">The mutation definition.</param>
         /// <exception cref="ArgumentNullException">mutationDef</exception>
@@ -132,14 +131,27 @@ namespace Pawnmorph.Chambers
         }
 
         /// <summary>
+        /// Removes the given mutation def from database.
+        /// </summary>
+        /// <param name="mDef">The m definition.</param>
+        public void RemoveFromDatabase(MutationDef mDef)
+        {
+            if (!_storedMutations.Contains(mDef))
+                return;
+            _usedStorageCache = null;
+
+            _storedMutations.Remove(mDef); 
+        }
+
+
+
+        /// <summary>
         ///     Adds the pawnkind to the database directly.
         /// </summary>
         /// note: this function does
         /// <b>not</b>
         /// check if the database can store the given pawnKind, use
         /// <see cref="CanAddToDatabase(PawnKindDef)" />
-        /// or
-        /// <see cref="DatabaseUtilities.TryAddToDatabase(ChamberDatabase, PawnKindDef)" />
         /// to safely add to the database
         /// <param name="pawnKind">Kind of the pawn.</param>
         /// <exception cref="ArgumentNullException">pawnKind</exception>
@@ -169,7 +181,7 @@ namespace Pawnmorph.Chambers
         public bool CanAddToDatabase([NotNull] MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            return mutationDef.GetRequiredStorage() < FreeStorage && !mutationDef.IsRestricted;
+            return mutationDef.GetRequiredStorage() > FreeStorage && !mutationDef.IsRestricted;
         }
 
         /// <summary>
@@ -183,13 +195,18 @@ namespace Pawnmorph.Chambers
         public bool CanAddToDatabase([NotNull] PawnKindDef kindDef)
         {
             if (kindDef == null) throw new ArgumentNullException(nameof(kindDef));
-            return kindDef.GetRequiredStorage() < FreeStorage && kindDef.race.IsValidAnimal();
+            return kindDef.GetRequiredStorage() > FreeStorage && kindDef.race.IsValidAnimal();
         }
 
 
         private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
         private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
         private const string ANIMAL_NOT_TAGGABLE = "AnimalNotTaggable";
+
+        private bool _migrated; 
+
+
+
 
         /// <summary>
         ///  Determines whether this instance can add the specified PawnkindDef to the database
@@ -204,7 +221,7 @@ namespace Pawnmorph.Chambers
         {
             if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
 
-            if (pawnKind.GetRequiredStorage() < FreeStorage)
+            if (pawnKind.GetRequiredStorage() > FreeStorage)
             {
                 reason = NOT_ENOUGH_STORAGE_REASON.Translate(pawnKind); 
             }else if (TaggedAnimals.Contains(pawnKind))
@@ -229,17 +246,45 @@ namespace Pawnmorph.Chambers
             Scribe_Collections.Look(ref _storedMutations, nameof(StoredMutations), LookMode.Def);
             Scribe_Collections.Look(ref _taggedSpecies, nameof(TaggedAnimals), LookMode.Def);
             Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
-
+            Scribe_Values.Look(ref _migrated, "migrated"); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 _storedMutations = _storedMutations ?? new List<MutationDef>();
                 _taggedSpecies = _taggedSpecies ?? new List<PawnKindDef>();
+                if (!_migrated)
+                {
+                    _migrated = false;
+                     //move any tagged animals from the previous system into the new one 
+                    var oldWComp = Find.World.GetComponent<PawnmorphGameComp>();
+                    if (oldWComp == null) return; 
+#pragma warning disable 618
+                    foreach (PawnKindDef taggedAnimal in oldWComp.taggedAnimals.MakeSafe())
+#pragma warning restore 618
+                    {
+                        if(!_taggedSpecies.Contains(taggedAnimal)) _taggedSpecies.Add(taggedAnimal);
+                    }
+
+
+
+                }
             }
         }
 
         internal void ClearCache()
         {
             _usedStorageCache = null;
+        }
+
+        /// <summary>
+        /// Removes the given pawnkind def from the database.
+        /// </summary>
+        /// <param name="pkDef">The pk definition.</param>
+        public void RemoveFromDatabase(PawnKindDef pkDef)
+        {
+            if (!_taggedSpecies.Contains(pkDef)) return;
+
+            _usedStorageCache = null;
+            _taggedSpecies.Remove(pkDef); 
         }
     }
 }

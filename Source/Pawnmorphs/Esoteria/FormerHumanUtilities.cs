@@ -86,7 +86,7 @@ namespace Pawnmorph
         /// <summary>
         /// manhunter chances below this means that manhunter tf is disabled 
         /// </summary>
-        public const float MANHUNTER_EPSILON = 0.01f; 
+        public const float MANHUNTER_EPSILON = 0.01f;
 
         static FormerHumanUtilities()
         {
@@ -99,7 +99,7 @@ namespace Pawnmorph
 
             float delta = 1f / (values.Length + 1);
             float counter = 1;
-            _sapienceThresholds = new float[values.Length + 2];
+            _sapienceThresholds = new float[Enum.GetValues(typeof(SapienceLevel)).Length];
 
             foreach (SapienceLevel sapienceLevel in values
             ) //split up the level thresholds evenly between 1,0 starting at sapient 
@@ -112,15 +112,7 @@ namespace Pawnmorph
 
             _sapienceThresholds[values.Length + 1] = 0;
 
-            StringBuilder builder = new StringBuilder();
-            for (var index = 0; index < _sapienceThresholds.Length; index++)
-            {
-                float sapienceThreshold = _sapienceThresholds[index];
-                builder.AppendLine($"{(SapienceLevel) index} threshold:{sapienceThreshold}"); 
-            }
-
-            DebugLogUtils.LogMsg(LogLevel.Messages, builder);
-            builder.Clear();
+            
 
             MutationTraits = new[] //TODO mod extension on traits to specify which ones can carry over? 
             {
@@ -128,6 +120,8 @@ namespace Pawnmorph
                 PMTraitDefOf.MutationAffinity,
                 TraitDefOf.Nudist
             };
+
+            
 
             _cachedThresholds = new List<(SapienceLevel sapienceLevel, float threshold)>();
             for (var index = 0; index < _sapienceThresholds.Length; index++)
@@ -144,6 +138,9 @@ namespace Pawnmorph
                 if (!factionDef.humanlikeFaction || factionDef.hidden || factionDef.pawnNameMaker == null) continue;
                 _randomNameGenerators.Add(factionDef.pawnNameMaker);
             }
+            
+            
+
 
             Giver_RecruitSapientAnimal.ResetStaticData();
 
@@ -488,7 +485,8 @@ namespace Pawnmorph
         public static SapienceTracker GetSapienceTracker([NotNull] this Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            var tComp = pawn.GetComp<SapienceTracker>();
+
+            var tComp = CompCacher<SapienceTracker>.GetCompCached(pawn); 
             return tComp;
         }
 
@@ -537,6 +535,39 @@ namespace Pawnmorph
 
 
         /// <summary>
+        /// Gets the threshold.
+        /// </summary>
+        /// <param name="sapienceLevel">The sapience level.</param>
+        /// <returns></returns>
+        public static float GetThreshold(this SapienceLevel sapienceLevel)
+        {
+            if (sapienceLevel == SapienceLevel.PermanentlyFeral || sapienceLevel == SapienceLevel.Feral) return 0;
+            return _sapienceThresholds[(int) sapienceLevel]; 
+        }
+
+        /// <summary>
+        /// Gets the mid level.
+        /// </summary>
+        /// <param name="sapienceLevel">The sapience level.</param>
+        /// <returns></returns>
+        public static float GetMidLevel(this SapienceLevel sapienceLevel)
+        {
+            return (GetThreshold(sapienceLevel) + GetUpperThreshold(sapienceLevel)) / 2; 
+        }
+
+        /// <summary>
+        /// Gets the upper threshold.
+        /// </summary>
+        /// <param name="sapienceLevel">The sapience level.</param>
+        /// <returns></returns>
+        public static float GetUpperThreshold(this SapienceLevel sapienceLevel)
+        {
+            if (sapienceLevel == SapienceLevel.Sapient) return 1;
+            return _sapienceThresholds[((int) sapienceLevel) - 1]; 
+        }
+
+
+        /// <summary>
         ///     Gets the sapient animal comp.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
@@ -581,11 +612,9 @@ namespace Pawnmorph
             var formerHumanExt = sapientAnimal.def.GetModExtension<FormerHumanSettings>();
             BackstoryDef backstoryDef = formerHumanExt?.backstory ?? BackstoryDefOf.FormerHumanNormal;
             Backstory bkStory = backstoryDef.backstory;
-            var builder = new StringBuilder();
-            builder.AppendLine($"for {sapientAnimal.Name}");
             foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefsListForReading)
                 if (bkStory.DisabledWorkTypes.Contains(workTypeDef))
-                    workSettings.SetPriority(workTypeDef, 0);
+                    workSettings.SetPriority(workTypeDef, 0); 
                 else
                     workSettings.SetPriority(workTypeDef, 3);
         }
@@ -1082,9 +1111,10 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferHediffs(original, transformedPawn,
                                                   h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
                                                     == true);
-            PawnTransferUtilities.TransferThoughts(original, transformedPawn); 
+            PawnTransferUtilities.TransferThoughts(original, transformedPawn);
 
-            
+            PawnTransferUtilities.TransferQuestRelations(original, transformedPawn); 
+
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
         }
 
@@ -1220,6 +1250,7 @@ namespace Pawnmorph
             int mutationsToAdd = Mathf.CeilToInt(MorphUtilities.GetMaxInfluenceOfRace(lPawn.def)) + 10;
             _mScratchList.Clear();
             _mScratchList.AddRange(MutationUtilities.AllNonRestrictedMutations);
+            _mScratchList.RemoveAll(m => AnimalClassDefOf.Powerful.GetAllMutationIn().Contains(m)); // Chimeras should not recieve powerful mutations.
             List<BodyPartRecord> addList = new List<BodyPartRecord>();
             List<BodyPartRecord> addedList = new List<BodyPartRecord>(); 
             _brScratchList.Clear();

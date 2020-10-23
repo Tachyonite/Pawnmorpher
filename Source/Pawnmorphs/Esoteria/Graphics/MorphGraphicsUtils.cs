@@ -33,7 +33,12 @@ namespace Pawnmorph.GraphicSys
 
         }
 
-
+        /// <summary>
+        /// Gets the color of the hair.
+        /// </summary>
+        /// <param name="alienComp">The alien comp.</param>
+        /// <param name="first">if set to <c>true</c> [first].</param>
+        /// <exception cref="ArgumentNullException">alienComp</exception>
         public static Color? GetHairColor([NotNull] this AlienPartGenerator.AlienComp alienComp, bool first = true)
         {
             if (alienComp == null) throw new ArgumentNullException(nameof(alienComp));

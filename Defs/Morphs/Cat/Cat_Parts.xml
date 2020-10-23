@@ -5,7 +5,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="CatPart">
 		<defName>EtherCatMuzzle</defName>
 		<label>feline muzzle</label>
-		<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a feline. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+		<description>The neat and tidy bewhiskered muzzle of a cat.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -26,6 +26,23 @@
 				</capMods>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a feline. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -39,6 +56,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
+				<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a feline. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with speaking.</description>
 				<label>adapted</label>
 				<capMods>
 					<li>
@@ -105,6 +123,7 @@
 		<description>A long, catlike tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

@@ -13,6 +13,11 @@ namespace Pawnmorph
     {
         [Unsaved] private List<MorphDef> _allMorphs;
 
+        /// <summary>
+        /// if morphs in this category should be considered 'restricted'
+        /// </summary>
+        public bool restricted;
+
         /// <summary>Gets all morphs in this category.</summary>
         /// <value>All morphs in categories.</value>
         [NotNull]

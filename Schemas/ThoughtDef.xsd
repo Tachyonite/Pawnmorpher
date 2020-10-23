@@ -16,6 +16,7 @@
 							<xs:element name="showBubble" type="xs:boolean" minOccurs="0"/>
 							<xs:element name="icon" type="xs:string" minOccurs="0"/>
 							<xs:element name="validWhileDespawned" type="xs:boolean" minOccurs="0"/>
+							<xs:element name="stackLimit" type="xs:positiveInteger" minOccurs="0" />
 							<xs:element name="requiredTraits" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
@@ -82,6 +83,7 @@
 			<xs:enumeration value="AnimalisticNakedThought" />
 			<xs:enumeration value="AnimalisticNakedThougthNudist" />
 			<xs:enumeration value="MergedPawnPersistentBase" />
+			<xs:enumeration value="SleptThoughtBase" />
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -93,5 +95,6 @@
 			<xs:element name="visible" type="xs:boolean" default="true" minOccurs="0" maxOccurs="1" />
 			<xs:element name="baseMoodEffect" type="xs:float" minOccurs="0" maxOccurs="1" />
 		</xs:all>
+		<xs:attribute name="IsNull" type="xs:boolean" use="optional" />
 	</xs:complexType>
 </xs:schema>
