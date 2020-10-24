@@ -1,0 +1,582 @@
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AnimalCollabProj</li>
+			<li>ZWAnimals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Hediff Graphics -->
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
+					<value>
+						<EtherLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherLeopardJaw>
+						<EtherSnowLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherSnowLeopardJaw>
+					</value>
+				</li>
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="left ear" and inFrontOfBody="true"]/hediffGraphics</xpath>
+					<value>
+						<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Left</EtherLeopardEar>
+					</value>
+				</li>
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="left ear" and inFrontOfBody="false"]/hediffGraphics</xpath>
+					<value>
+						<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Left_Behind</EtherLeopardEar>
+					</value>
+				</li>
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="right ear" and inFrontOfBody="true"]/hediffGraphics</xpath>
+					<value>
+						<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Right</EtherLeopardEar>
+					</value>
+				</li>
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="right ear" and inFrontOfBody="false"]/hediffGraphics</xpath>
+					<value>
+						<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Right_Behind</EtherLeopardEar>
+					</value>
+				</li>
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<!-- TODO figure out a way to make this more general -->
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[(bodyPart="Tail" or bodyPart="tail") and layerOffset=-0.28]/hediffGraphics</xpath>
+					<value>
+						<EtherLeopardTail>Parts/Leopard/Leopard_Tail</EtherLeopardTail>
+					</value>
+				</li>
+				<!-- Defs -->
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<!-- Thoughts -->
+						<ThoughtDef>
+							<defName>LeopardTransformationMemory</defName>
+							<thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+							<durationDays>1</durationDays>
+							<stages>
+								<li>
+									<label>changed</label>
+									<description>I feel like I should be out hunting...</description>
+									<baseMoodEffect>-3</baseMoodEffect>
+								</li>
+								<li>
+									<label>changed</label>
+									<description>Rrowwl! I feel so sleek and powerful.</description>
+									<baseMoodEffect>+3</baseMoodEffect>
+								</li>
+								<li>
+									<label>changed</label>
+									<description>I'm a big stupid cat! I don't wanna be a big stupid cat!</description>
+									<baseMoodEffect>-5</baseMoodEffect>
+								</li>
+								<li>
+									<label>changed</label>
+									<description>Now how about giving me the full experience?</description>
+									<baseMoodEffect>+1</baseMoodEffect>
+								</li>
+							</stages>
+						</ThoughtDef>
+
+						<ThoughtDef>
+							<defName>LeopardRevertedMemory</defName>
+							<thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+							<durationDays>1</durationDays>
+							<stages>
+								<li>
+									<label>reverted</label>
+									<description>It's good to be back to normal.</description>
+									<baseMoodEffect>3</baseMoodEffect>
+								</li>
+								<li>
+									<label>reverted</label>
+									<description>Dammit, I wanted to be a big cat!</description>
+									<baseMoodEffect>-3</baseMoodEffect>
+								</li>
+								<li>
+									<label>reverted</label>
+									<description>Finally, I'm back to my normal self...</description>
+									<baseMoodEffect>10</baseMoodEffect>
+								</li>
+								<li>
+									<label>reverted</label>
+									<description>Dammit, I wanted to be a big cat!</description>
+									<baseMoodEffect>-3</baseMoodEffect>
+								</li>
+							</stages>
+						</ThoughtDef>
+
+						<ThoughtDef ParentName="OutlookMemoryBase">
+							<durationDays>1</durationDays>
+							<defName>SnowLeopardMorphTranformationMemory</defName>
+							<stages>
+								<li>
+									<label>Became snepmorph</label>
+									<description>I feel like I should be jumping around in the snow.</description>
+									<visible>True</visible>
+									<baseMoodEffect>0</baseMoodEffect>
+								</li>
+								<li>
+									<label>Became snepmorph</label>
+									<description>I've got a built-in winter coat, with a cool design to boot!</description>
+									<visible>True</visible>
+									<baseMoodEffect>5</baseMoodEffect>
+								</li>
+								<li>
+									<label>Became snepmorph</label>
+									<description>Ughhh... why am I so clumsy now?</description>
+									<visible>True</visible>
+									<baseMoodEffect>-5</baseMoodEffect>
+								</li>
+							</stages>
+						</ThoughtDef>
+
+						<!-- Morph Defs -->
+						<Pawnmorph.MorphDef Abstract="true" ParentName="SensitiveFoodMorph" Name="LeopardMorphBase">
+							<description>A suprisingly docile morph, Leopardmorphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instincts are sharp and their claws yet sharper.</description>
+							<classification>Leopard</classification>
+							<transformSettings>
+								<transformationMemory>LeopardTransformationMemory</transformationMemory>
+								<revertedMemory>LeopardRevertedMemory</revertedMemory>
+							</transformSettings>
+						</Pawnmorph.MorphDef>
+
+						<Pawnmorph.MorphDef ParentName="LeopardMorphBase">
+							<defName>LeopardMorph</defName>
+							<label>leopardmorph</label>
+							<race />
+							<categories>
+								<li>Temperate</li>
+								<li>Combat</li>
+								<li>Feline</li>
+							</categories>
+							<fullTransformation>PawnmorphLeopardTF</fullTransformation>
+							<partialTransformation>PawnmorphLeopardTFPartial</partialTransformation>
+							<raceSettings>
+								<graphicsSettings>
+									<skinColorOverride>(215,147,96)</skinColorOverride>
+								</graphicsSettings>
+							</raceSettings>
+						</Pawnmorph.MorphDef>
+
+						<Pawnmorph.MorphDef ParentName="LeopardMorphBase">
+							<defName>SnowLeopardMorph</defName>
+							<label>snepmorph</label>
+							<race />
+							<categories>
+								<li>Temperate</li>
+								<li>Combat</li>
+								<li>Feline</li>
+							</categories>
+							<fullTransformation>PawnmorphSnowLeopardTF</fullTransformation>
+							<partialTransformation>PawnmorphSnowLeopardTFPartial</partialTransformation>
+							<raceSettings>
+								<graphicsSettings>
+									<skinColorOverride>(204,204,204)</skinColorOverride>
+								</graphicsSettings>
+							</raceSettings>
+							<transformSettings>
+								<transformationMemory>SnowLeopardMorphTranformationMemory</transformationMemory>
+								<revertedMemory>LeopardRevertedMemory</revertedMemory>
+							</transformSettings>
+						</Pawnmorph.MorphDef>
+
+						<!-- Full TF -->
+						<HediffDef ParentName="NewAspectedMorphParent">
+							<defName>PawnmorphLeopardTF</defName>
+							<label>leopardmorph</label>
+							<description>This person has mechanites in their blood that are slowly mutating them into a leopardmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more feline than human.</description>
+							<stages>
+								<li Class="Pawnmorph.Hediffs.FullTransformationStage">
+									<label>reeling</label>
+									<hungerRateFactor>1.6</hungerRateFactor>
+									<painOffset>0.05</painOffset>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+									<pawnkinds />
+									<transformationTale>TransformationMisc</transformationTale>
+								</li>
+								<li Class="Pawnmorph.Hediffs.TransformationStage">
+									<label>transforming</label>
+									<minSeverity>0.6</minSeverity>
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+									<letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this.</letterText>
+									<letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
+								</li>
+								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+									<label>changing</label>
+									<minSeverity>0.65</minSeverity>
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<morph>LeopardMorph</morph>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+								</li>
+							</stages>
+						</HediffDef>
+
+						<HediffDef ParentName="NewAspectedMorphParent">
+							<defName>PawnmorphSnowLeopardTF</defName>
+							<label>snepmorph</label>
+							<description>This person has mechanites in their blood that are slowly mutating them into a snowy variety of leopardmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more feline than human.</description>
+							<stages>
+								<li Class="Pawnmorph.Hediffs.FullTransformationStage">
+									<label>reeling</label>
+									<hungerRateFactor>1.6</hungerRateFactor>
+									<painOffset>0.05</painOffset>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+									<pawnkinds />
+									<transformationTale>TransformationMisc</transformationTale>
+								</li>
+								<li Class="Pawnmorph.Hediffs.TransformationStage">
+									<label>transforming</label>
+									<minSeverity>0.6</minSeverity>
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+									<letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+									<letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
+								</li>
+								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+									<label>changing</label>
+									<minSeverity>0.65</minSeverity>
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<morph>SnowLeopardMorph</morph>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+								</li>
+							</stages>
+						</HediffDef>
+
+						<!-- Partial TF -->
+						<HediffDef ParentName="NewPartialAspectedMorphParent">
+							<defName>PawnmorphLeopardTFPartial</defName>
+							<label>leopardmorph partial</label>
+							<description>This person has mechanites in their blood that are providing them with leopard-esk mutations.</description>
+							<stages>
+								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<morph>LeopardMorph</morph>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+								</li>
+							</stages>
+						</HediffDef>
+
+						<HediffDef ParentName="NewPartialAspectedMorphParent">
+							<defName>PawnmorphSnowLeopardTFPartial</defName>
+							<label>snepmorph partial</label>
+							<description>This person has mechanites in their blood that are providing them with snow leopard-esk mutations.</description>
+							<stages>
+								<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+									<painOffset>0.1</painOffset>
+									<vomitMtbDays>1</vomitMtbDays>
+									<morph>SnowLeopardMorph</morph>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Sight</capacity>
+											<offset>-0.05</offset>
+										</li>
+										<li>
+											<capacity>Manipulation</capacity>
+											<offset>-0.05</offset>
+										</li>
+									</capMods>
+								</li>
+							</stages>
+						</HediffDef>
+
+						<!-- Morph Parts -->
+						<Pawnmorph.Hediffs.MutationDef Name="LeopardPart" ParentName="PawnmorphPart" Abstract="True">
+							<classInfluence>Leopard</classInfluence>
+						</Pawnmorph.Hediffs.MutationDef>
+
+						<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="LeopardJawBase">
+							<label>pardine muzzle</label>
+							<description>A sleek muzzle graces [PAWN_nameDef]'s face, like that of a leopard. [PAWN_possessive] teeth are pointed to suit, and this makes speaking more difficult, yet eating is easier.</description>
+							<parts>
+								<li>Jaw</li>
+							</parts>
+							<stages>
+								<li>
+									<capMods>
+										<li>
+											<capacity>Talking</capacity>
+											<offset>-0.50</offset>
+										</li>
+										<li>
+											<capacity>Eating</capacity>
+											<offset>0.50</offset>
+										</li>
+									</capMods>
+								</li>
+								<li>
+									<minSeverity>1</minSeverity>
+									<label>adapted</label>
+									<capMods>
+										<li>
+											<capacity>Talking</capacity>
+											<offset>-0.10</offset>
+										</li>
+										<li>
+											<capacity>Eating</capacity>
+											<offset>0.50</offset>
+										</li>
+									</capMods>
+								</li>
+							</stages>
+							<comps>
+								<li Class="HediffCompProperties_VerbGiver">
+									<tools>
+										<li>
+											<label>teeth</label>
+											<labelUsedInLogging>False</labelUsedInLogging>
+											<capacities>
+												<li>Bite</li>
+											</capacities>
+											<power>13</power>
+											<cooldownTime>1.4</cooldownTime>
+											<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+										</li>
+									</tools>
+								</li>
+								<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+									<severityPerDay>0.25</severityPerDay>
+								</li>
+							</comps>
+						</Pawnmorph.Hediffs.MutationDef>
+
+						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardJawBase">
+							<defName>EtherLeopardJaw</defName>
+							<classInfluence>LeopardMorph</classInfluence>
+						</Pawnmorph.Hediffs.MutationDef>
+
+						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardJawBase">
+							<defName>EtherSnowLeopardJaw</defName>
+							<classInfluence>SnowLeopardMorph</classInfluence>
+						</Pawnmorph.Hediffs.MutationDef>
+
+						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardPart">
+							<defName>EtherLeopardEar</defName>
+							<label>pardine</label>
+							<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
+							<parts>
+								<li>Ear</li>
+							</parts>
+							<stages>
+								<li>
+									<partEfficiencyOffset>0.1</partEfficiencyOffset>
+								</li>
+							</stages>
+						</Pawnmorph.Hediffs.MutationDef>
+
+						<Pawnmorph.Hediffs.MutationDef ParentName="LeopardPart">
+							<defName>EtherLeopardTail</defName>
+							<label>leopard tail</label>
+							<description>A long, spotted tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+							<parts>
+								<li>Tail</li>
+							</parts>
+							<stages>
+								<li>
+									<capMods>
+										<li>
+											<capacity>Moving</capacity>
+											<offset>0.1</offset>
+										</li>
+									</capMods>
+								</li>
+							</stages>
+						</Pawnmorph.Hediffs.MutationDef>
+
+						<!-- Injector -->
+						<ThingDef ParentName="InjectorBase">
+							<defName>LeopardTransformer</defName>
+							<label>mutasyringe, leopard</label>
+							<description>A mutagenic injector filled with mechanites and leopard DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+							<ingestible>
+								<outcomeDoers>
+									<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+										<hediffDefs>
+											<li>PawnmorphLeopardTF</li>
+										</hediffDefs>
+										<severity>1.00</severity>
+									</li>
+								</outcomeDoers>
+							</ingestible>
+						</ThingDef>
+
+						<ThingDef ParentName="InjectorBase">
+							<defName>SnowLeopardTransformer</defName>
+							<label>mutasyringe, snow leopard</label>
+							<description>A mutagenic injector filled with mechanites and snow leopard DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+							<ingestible>
+								<outcomeDoers>
+									<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+										<hediffDefs>
+											<li>PawnmorphSnowLeopardTF</li>
+										</hediffDefs>
+										<severity>1.00</severity>
+									</li>
+								</outcomeDoers>
+							</ingestible>
+						</ThingDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AnimalCollabProj</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Update the MorphDef race -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="LeopardMorph"]/race</xpath>
+					<value>
+						<race>ACPAmurLeopard</race>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
+					<value>
+						<race>ACPSnowLeopard</race>
+					</value>
+				</li>
+
+				<!-- Add the animal to the TF's possible feral animal list -->
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/HediffDef[defName="PawnmorphLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
+					<value>
+						<li>ACPAmurLeopard</li>
+					</value>
+				</li>
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/HediffDef[defName="PawnmorphSnowLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
+					<value>
+						<li>ACPSnowLeopard</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ZWAnimals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Update the MorphDef race -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="LeopardMorph"]/race</xpath>
+					<value>
+						<race>Leopard</race>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
+					<value>
+						<race>SnowLeopard</race>
+					</value>
+				</li>
+
+				<!-- Add the animal to the TF's possible feral animal list -->
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/HediffDef[defName="PawnmorphLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
+					<value>
+						<li>Leopard</li>
+					</value>
+				</li>
+				<li Class="Pawnmorph.PatchOperations.DebugAdd">
+					<xpath>Defs/HediffDef[defName="PawnmorphSnowLeopardTF"]/stages/li[label="reeling"]/pawnkinds</xpath>
+					<value>
+						<li>SnowLeopard</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

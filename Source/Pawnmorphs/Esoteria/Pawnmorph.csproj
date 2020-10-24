@@ -529,6 +529,7 @@
     <Compile Include="MutationSite.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PartAddress.cs" />
+    <Compile Include="PatchOperations\DebugAdd.cs" />
     <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
