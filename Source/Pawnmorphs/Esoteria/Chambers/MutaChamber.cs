@@ -770,9 +770,9 @@ namespace Pawnmorph.Chambers
 
             if (addedmutations?.Any() != true) return;
             
-            //TODO get wait time based on number of mutations added/removed 
+            
             _addedMutationData = new AddedMutations(addedmutations);
-            _timer = Mathf.RoundToInt(TF_ANIMAL_DURATION * 60000);
+            _timer = GetMutationDuration(addedmutations);
             _currentUse = ChamberUse.Mutation;
             _innerState = ChamberState.Active;
             _lastTotal = _timer;
@@ -790,6 +790,25 @@ namespace Pawnmorph.Chambers
             }
 
             SelectorComp.Enabled = false; 
+        }
+
+        private int GetMutationDuration(IReadOnlyAddedMutations addedMutations)
+        {
+            const float averageValue = 10;
+            const float averageMaxPossible = 30;
+            float maxTime = 60000 * TF_ANIMAL_DURATION;
+            float minTime = 60000 * TF_ANIMAL_DURATION / 10; 
+            float tValue = 0;
+
+            foreach (IReadOnlyMutationData mutation in addedMutations)
+            {
+                tValue += mutation.Mutation.value; 
+            }
+
+            tValue /= (averageValue * averageMaxPossible);
+
+            var t = Mathf.Clamp(tValue * maxTime, minTime, maxTime);
+            return Mathf.RoundToInt(t);
         }
 
         private enum ChamberState
