@@ -72,10 +72,10 @@ namespace Pawnmorph.Chambers
 
         bool HasPower
         {
-            get { return PowerComp.PowerOn; }
+            get { return PowerCompTrader.PowerOn; }
         }
 
-        CompPowerTrader  PowerComp
+        CompPowerTrader  PowerCompTrader
         {
             get
             {

@@ -48,11 +48,15 @@ namespace Pawnmorph.Utilities
         /// This method is used to add some CIL instructions after certain fragment in original code.
         /// It should be used inside foreach loop, and return true if particular iteration is the desired one.
         /// </summary>
-        /// <param name="opCodes"></param>
-        /// <param name="operands"></param>
-        /// <param name="instr"></param>
-        /// <param name="step"></param>
-        /// <returns></returns>
+        /// <param name="opCodes">The op codes.</param>
+        /// <param name="operands">The operands.</param>
+        /// <param name="instr">The instr.</param>
+        /// <param name="step">The step.</param>
+        /// <param name="fragmentName">Name of the fragment.</param>
+        /// <param name="perfectMatch">if set to <c>true</c> [perfect match].</param>
+        /// <returns>
+        ///   <c>true</c> if the specified op codes is fragment; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsFragment(OpCode[] opCodes, String[] operands, CodeInstruction instr, ref int step, string fragmentName, bool perfectMatch = true)
         {
             if (opCodes.Length != operands.Length)
@@ -87,13 +91,12 @@ namespace Pawnmorph.Utilities
 
         //taken from PrisonLabor
         /// <summary>
-        /// This method is used to find particular label that is assigned to last instruction's operand 
+        /// This method is used to find particular label that is assigned to last instruction's operand
         /// </summary>
-        /// 
-        /// <param name="opCodes"></param>
-        /// <param name="operands"></param>
-        /// <param name="instr"></param>
-        /// <param name="step"></param>
+        /// <param name="opCodes">The op codes.</param>
+        /// <param name="operands">The operands.</param>
+        /// <param name="instr">The instr.</param>
+        /// <param name="perfectMatch">if set to <c>true</c> [perfect match].</param>
         /// <returns></returns>
         public static object FindOperandAfter(OpCode[] opCodes, String[] operands, IEnumerable<CodeInstruction> instr, bool perfectMatch = true)
         {

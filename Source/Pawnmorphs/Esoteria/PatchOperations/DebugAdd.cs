@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph.PatchOperations
@@ -20,8 +21,10 @@ namespace Pawnmorph.PatchOperations
             Prepend
         }
 
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         private XmlContainer value;
-
+        
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         private Order order;
 
         /// <summary>
