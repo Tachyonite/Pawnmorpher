@@ -1,0 +1,19 @@
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Leeani Playable Race</li>
+        </mods>
+        <match Class="PatchOperationAddModExtension">
+            <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Leeani"]</xpath>
+            <value>
+                <li Class="Pawnmorph.RaceMutationSettingsExtension">
+                    <mutationRetrievers>
+                        <li Class="Pawnmorph.Hediffs.MutationRetrievers.AnimalClassRetriever">
+                            <animalClass>FoxMorph</animalClass>
+                        </li>
+                    </mutationRetrievers>
+                </li>
+            </value>
+        </match>
+    </Operation>
+</Patch>

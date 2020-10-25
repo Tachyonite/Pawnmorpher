@@ -301,7 +301,28 @@ namespace Pawnmorph
             return isProsthetic && hediff is Hediff_AddedPart; 
         }
 
-        
+        /// <summary>
+        /// Gets the mutations for the given race and preGenerated pawn
+        /// </summary>
+        /// <param name="retrievers">The retrievers.</param>
+        /// <param name="race">The race.</param>
+        /// <param name="preGeneratedPawn">The pre generated pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// retrievers
+        /// or
+        /// race
+        /// </exception>
+        [NotNull]
+        public static IEnumerable<MutationDef> GetMutationsFor([NotNull] this IEnumerable<IRaceMutationRetriever> retrievers,
+                                                               [NotNull] ThingDef race, [CanBeNull] Pawn preGeneratedPawn)
+        {
+            if (retrievers == null) throw new ArgumentNullException(nameof(retrievers));
+            if (race == null) throw new ArgumentNullException(nameof(race));
+
+            return retrievers.SelectMany(r => r.GetMutationsFor(race, preGeneratedPawn)).Distinct();
+        }
+
 
         /// <summary>
         /// Adds the mutation to the given pawn
