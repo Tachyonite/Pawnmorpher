@@ -1,6 +1,7 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="ThrumboPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>ThrumboMorph</classInfluence>
+		<value>20</value>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurLimb">
 		<defName>ThrumboFur</defName>
@@ -147,6 +148,7 @@
 		<defName>EtherThrumboHorn</defName>
 		<label>thrumbohorn</label>
 		<description>A razor-sharp thrumbo horn decorates [PAWN_nameDef]'s head.</description>
+		<value>30</value>
 		<parts>
 			<li>Skull</li>
 		</parts>
@@ -159,8 +161,7 @@
 					<SocialImpact>-0.10</SocialImpact>
 				</statOffsets>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage"></li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<label>shiny</label>

@@ -1,0 +1,201 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="ThrumboPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>ThrumboMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurLimb">
+		<defName>ThrumboFur</defName>
+		<classInfluence>ThrumboMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+		<defName>EtherThrumboSnout</defName>
+		<label>thrumbo snout</label>
+		<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<mutationTale>GrewThrumboMuzzle</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze, though talking is much harder.</description>
+				<label>bestial</label>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.40</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adaptation has removed most of the difficulty with speaking.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.04</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>paragon</label>
+				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Further adaptation has brought out the wise thrumbo inside.</description>
+				<minSeverity>1.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<SocialImpact>+0.10</SocialImpact>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>15.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+		<defName>EtherThrumboEar</defName>
+		<label>thrumbic</label>
+		<description>I didn't know thrumbos had ears, but [PAWN_nameDef] has put that question to rest. Yes, they do — white-furred, rounded and beautiful.</description>
+		<mutationTale>EarsChangedMisc</mutationTale>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+		<defName>EtherThrumboTail</defName>
+		<label>thrumbo tail</label>
+		<description>A fluffy thrumbo tail, coated in supple, sleek fur.</description>
+		<mutationTale>GrewTail</mutationTale>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.01</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+		<defName>EtherThrumboHorn</defName>
+		<label>thrumbohorn</label>
+		<description>A razor-sharp thrumbo horn decorates [PAWN_nameDef]'s head.</description>
+		<parts>
+			<li>Skull</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-0.5</minSeverity>
+				<label>dull</label>
+				<description>A sharp thrumbo horn decorates [PAWN_nameDef]'s head. It has grown dull and rough. While still a formidable weapon, it makes [PAWN_objective] look misshapen and sickly.</description>
+				<statOffsets>
+					<SocialImpact>-0.10</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage"></li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<label>shiny</label>
+				<description>A razor-sharp thrumbo horn decorates [PAWN_nameDef]'s head. It has also has taken on a pearly white sheen, charming those around [PAWN_objective] with its beauty.</description>
+				<statOffsets>
+					<SocialImpact>+0.10</SocialImpact>
+				</statOffsets>
+			</li>
+		</stages>
+		<mutationTale>GrewThrumboHorn</mutationTale>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>point</label>
+						<capacities>
+							<li>Scratch</li>
+							<li>Stab</li>
+						</capacities>
+						<power>28</power>
+						<cooldownTime>2.6</cooldownTime>
+					</li>
+					<li>
+						<label>base</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>2</cooldownTime>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<spawnThingOnRemoved>ThrumboHorn</spawnThingOnRemoved>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
