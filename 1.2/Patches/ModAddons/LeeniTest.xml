@@ -8,6 +8,9 @@
             <value>
                 <li Class="Pawnmorph.RaceMutationSettingsExtension">
                     <mutationRetrievers>
+                        <!-- set this to true to disable mutations on this race  
+                        <immuneToAll>true</immuneToAll>
+                        -->
                         <!-- this node lets you add all mutations from a specific morph onto the race -->
                         <li Class="Pawnmorph.Hediffs.MutationRetrievers.AnimalClassRetriever">
                             <animalClass>FoxMorph</animalClass>
