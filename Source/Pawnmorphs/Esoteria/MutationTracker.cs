@@ -22,6 +22,15 @@ namespace Pawnmorph
 
         [NotNull] private readonly Dictionary<AnimalClassBase, float> _influenceDict = new Dictionary<AnimalClassBase, float>();
 
+        /// <summary>
+        /// Gets or sets a value indicating whether debug messages are enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if debug messages are enabled; otherwise, <c>false</c>.
+        /// </value>
+        public bool DebugMessagesEnabled { get; set; }
+
+
         /// <summary>Returns an enumerator that iterates through a collection.</summary>
         /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator()

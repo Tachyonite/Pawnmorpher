@@ -38,10 +38,30 @@ namespace Pawnmorph.DebugUtils
                 }
 
                 Log.Message(builder.ToString());
-                builder.Clear(); 
+                builder.Clear();
+            }
 
+
+        }
+
+        [DebugOutput(category = ALIEN_DEBUG_HEADER)]
+        static void CheckInfectibilityOfRaces()
+        {
+            var mutagen = MutagenDefOf.defaultMutagen;
+            foreach (ThingDef_AlienRace alien in DefDatabase<ThingDef>.AllDefsListForReading.OfType<ThingDef_AlienRace>())
+            {
+                var str = mutagen.MutagenCached.CanInfectDebug(alien);
+                if (str.Length == 0)
+                {
+                    Log.Message($"{alien.defName} can be mutated");
+                }
+                else
+                {
+                    Log.Message(str); 
+                }
             }
         }
+
 
         struct StatData
         {

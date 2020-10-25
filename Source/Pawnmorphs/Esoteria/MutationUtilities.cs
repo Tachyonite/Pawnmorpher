@@ -604,10 +604,27 @@ namespace Pawnmorph
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (record == null) throw new ArgumentNullException(nameof(record));
-            HediffSet hSet = pawn.health?.hediffSet;
-            if (hSet == null) return MutationResult.Empty;
 
-            if (record.IsMissingAtAllIn(pawn)) return MutationResult.Empty;
+            var debugLog = pawn.GetMutationTracker()?.DebugMessagesEnabled == true; 
+            HediffSet hSet = pawn.health?.hediffSet;
+            if (hSet == null)
+            {
+                if (debugLog)
+                {
+                    Log.Message($"{pawn.Label} has no hediffSet!");
+                }
+                return MutationResult.Empty;
+            }
+
+            if (record.IsMissingAtAllIn(pawn))
+            {
+                if (debugLog)
+                {
+                    Log.Message($"{pawn.Label} is missing all parts of {record.Label}");
+                }
+                
+                return MutationResult.Empty;
+            }
 
 
            
@@ -616,11 +633,21 @@ namespace Pawnmorph
             if (existingMutation != null)
             {
                 existingMutation.ResumeAdjustment();
+                if (debugLog)
+                {
+                    Log.Message($"{pawn.Label} already has {mutation.defName}");
+
+                }
                 return MutationResult.Empty;
             }
 
             if (HasAnyBlockingMutations(pawn, mutation, record))
             {
+                if (debugLog)
+                {
+                    Log.Message($"{pawn.Label} has blocking mutations!");
+
+                }
                 return MutationResult.Empty;
             }
 
