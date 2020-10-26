@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/FactionDef[defName="Empire"]/permanentEnemyToEveryoneExcept</xpath>
+        <value>
+            <li>PawnmorpherPlayerColony</li>
+        </value>
+    </Operation>
+</Patch>
