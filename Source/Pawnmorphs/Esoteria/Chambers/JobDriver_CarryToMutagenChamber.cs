@@ -79,6 +79,8 @@ namespace Pawnmorph
             {
                 initAction = delegate ()
                 {
+                    Takee?.apparel?.DropAll(Takee.Position, false);
+                    Takee?.equipment?.DropAllEquipment(Takee.Position, false);
                     this.MutagenicChamber.TryAcceptThing(this.Takee, true);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant

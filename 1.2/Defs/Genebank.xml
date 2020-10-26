@@ -32,7 +32,7 @@
     </researchPrerequisites>
     <comps>
       <li Class="Pawnmorph.ThingComps.DatabaseStorageProperties">
-        <storageAmount>16</storageAmount>
+        <storageAmount>64</storageAmount>
       </li>
     </comps>
   </ThingDef>

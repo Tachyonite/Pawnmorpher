@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.User_Interface;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -57,7 +59,9 @@ namespace Pawnmorph.Chambers
         private Gizmo _debugFinishGizmo;
 
 
-        
+        [NotNull]
+        private IReadOnlyList<MutationDef> AnimalMutations => _targetAnimal?.GetAllMutationsFrom() ?? Array.Empty<MutationDef>();
+
 
         /// <summary>
         /// Ejects the contents.
@@ -494,10 +498,44 @@ namespace Pawnmorph.Chambers
             if (!Flickable.SwitchIsOn) return;
             Refuelable.Notify_UsedThisTick();
             _timer -= 1;
-            if (_currentUse == ChamberUse.Mutation)
+            switch (_currentUse)
             {
-                CheckMutationProgress();
+                case ChamberUse.Mutation:
+                    CheckMutationProgress();
+                    break;
+                case ChamberUse.Tf:
+                    CheckTfMutationProgress(); 
+                    break;
+                case ChamberUse.Merge: default:
+                    break;
             }
+
+
+        }
+
+        private void CheckTfMutationProgress()
+        {
+            if (AnimalMutations.Count == 0) return;
+
+            var mx = AnimalMutations.Count;
+            var idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
+            if (idx != _curMutationIndex)
+            {
+                _curMutationIndex = idx; 
+                var pawn = innerContainer?.FirstOrDefault() as Pawn;
+                if (pawn == null) return;
+                var mut = AnimalMutations[idx];
+                var muts =  MutationUtilities.AddMutation(pawn, mut, ancillaryEffects: MutationUtilities.AncillaryMutationEffects.None);
+                foreach (Hediff_AddedMutation hediffAddedMutation in muts)
+                {
+                    var adjComp = hediffAddedMutation.SeverityAdjust; 
+                    if(adjComp != null)
+                    {
+                        hediffAddedMutation.Severity = adjComp.NaturalSeverityLimit; 
+                    }
+                }
+            }
+
         }
 
         void FinalizeMutations()
@@ -517,17 +555,17 @@ namespace Pawnmorph.Chambers
         private void CheckMutationProgress()
         {
             if (_addedMutationData == null) return;
-            var pawn = innerContainer?.FirstOrDefault() as Pawn;
-            if (pawn == null) return; 
-            
-            var mx = _addedMutationData.Count;
-            var idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
+
+            int mx = _addedMutationData.Count;
+            int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
             if (idx != _curMutationIndex)
             {
-                _curMutationIndex = idx;
-                var mutationData = _addedMutationData[_curMutationIndex];
-                ApplyMutationData(pawn, mutationData); 
+                var pawn = innerContainer?.FirstOrDefault() as Pawn;
+                if (pawn == null) return;
 
+                _curMutationIndex = idx;
+                IReadOnlyMutationData mutationData = _addedMutationData[_curMutationIndex];
+                ApplyMutationData(pawn, mutationData);
             }
         }
 
@@ -547,6 +585,7 @@ namespace Pawnmorph.Chambers
         {
             if (base.TryAcceptThing(thing, allowSpecialEffects))
             {
+
                 // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (_innerState)
                 {
@@ -575,9 +614,13 @@ namespace Pawnmorph.Chambers
             _innerState = ChamberState.Active;
             _currentUse = ChamberUse.Tf;
             _targetAnimal = pawnkinddef;
+
+             
+
             SelectorComp.Enabled = false;
         }
 
+      
 
         [DebugOutput(category = "Pawnmorpher")]
         private static void DBGGetAnimalTransformationTimes()

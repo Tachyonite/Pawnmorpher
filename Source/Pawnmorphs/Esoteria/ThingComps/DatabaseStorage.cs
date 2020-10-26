@@ -43,7 +43,7 @@ namespace Pawnmorph.ThingComps
         {
             StringBuilder builder = new StringBuilder(); 
             var wComp = Find.World.GetComponent<ChamberDatabase>();
-            var provideStr = $"{Props.storageAmount} MB/{wComp.TotalStorage} MB";
+            var provideStr = $"{DatabaseUtilities.GetStorageString(Props.storageAmount)}/{DatabaseUtilities.GetStorageString(wComp.TotalStorage)}";
 
             builder.AppendLine(PROVIDE_MESSAGE_TAG.Translate());
             builder.Append(provideStr);
