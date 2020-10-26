@@ -177,6 +177,22 @@ namespace Pawnmorph.Chambers
             }
         }
 
+        private FillableBarDrawer _fillableDrawer;
+
+        [CanBeNull]
+        FillableBarDrawer FillableDrawer
+        {
+            get
+            {
+                if (_fillableDrawer == null)
+                {
+                    _fillableDrawer = GetComp<FillableBarDrawer>();
+                }
+
+                return _fillableDrawer; 
+            }
+        }
+
         private bool HasFuel => Refuelable.HasFuel; 
 
         /// <summary>
@@ -252,9 +268,10 @@ namespace Pawnmorph.Chambers
         /// </summary>
         public override void Draw()
         {
-            //TODO draw pawn
-
-            Comps_PostDraw();
+            
+            FillableDrawer?.PreDraw();
+            base.Draw();
+            
         }
 
         /// <summary>
@@ -615,9 +632,14 @@ namespace Pawnmorph.Chambers
         /// <returns></returns>
         public override bool TryAcceptThing(Thing thing, bool allowSpecialEffects = true)
         {
+
+
             if (base.TryAcceptThing(thing, allowSpecialEffects))
             {
-
+                if (innerContainer.Count == 1)
+                {
+                    FillableDrawer?.Trigger();
+                }
                 // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (_innerState)
                 {
@@ -704,6 +726,7 @@ namespace Pawnmorph.Chambers
 
         private void EjectPawn()
         {
+            
             _scratchList.Clear();
             _scratchList.AddRange(innerContainer.OfType<Pawn>());
             var pawn = _scratchList[0] as Pawn;
@@ -784,6 +807,7 @@ namespace Pawnmorph.Chambers
 
         private void ResetChamber()
         {
+            FillableDrawer?.Clear();
             SelectorComp.Enabled = false;
             _innerState = ChamberState.WaitingForPawn;
             _currentUse = ChamberUse.Tf;

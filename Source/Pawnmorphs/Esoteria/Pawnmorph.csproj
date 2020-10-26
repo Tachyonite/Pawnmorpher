@@ -575,6 +575,7 @@
     <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
     <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
     <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
+    <Compile Include="ThingComps\FillabeBarDrawerProps.cs" />
     <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
