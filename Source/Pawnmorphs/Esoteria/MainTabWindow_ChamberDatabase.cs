@@ -164,9 +164,11 @@ namespace Pawnmorph
 
             var db = Database;
             Widgets.Label(labelRect, HEADER_LABEL.Translate());
-            Widgets.Label(availableRect, db.FreeStorage.ToString() + STORAGE_SUFFIX);
-            Widgets.Label(totalRect, db.TotalStorage.ToString() + STORAGE_SUFFIX);
+            Widgets.Label(availableRect, DatabaseUtilities.GetStorageString(db.FreeStorage));
+            Widgets.Label(totalRect, DatabaseUtilities.GetStorageString(db.TotalStorage));
         }
+
+      
 
         /// <summary>
         ///     called just before the tab is opened

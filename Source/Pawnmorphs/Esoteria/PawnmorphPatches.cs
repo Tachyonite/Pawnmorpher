@@ -15,6 +15,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
+using Pawnmorph.HPatches;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
@@ -75,6 +76,14 @@ namespace Pawnmorph
 
             }
 
+            try
+            {
+                ITabPatches.DoPrisonerPatch(harmonyInstance); 
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching prisoner tab!\n{e}");
+            }
 
             try
             {

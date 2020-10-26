@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
@@ -93,6 +94,43 @@ namespace Pawnmorph.TfSys
 
             return !HasAnyImmunizingHediffs(pawn); 
         }
+
+
+        internal string CanInfectDebug([NotNull] ThingDef race)
+        {
+            var sBuilder = new StringBuilder();
+            CanInfectDebug(race, sBuilder);
+            return sBuilder.ToString(); 
+        }
+
+        /// <summary>
+        /// used to generate a debug message for whether a race can be infected by this mutagen 
+        /// </summary>
+        /// <param name="race">The race.</param>
+        /// <param name="builder">The builder.</param>
+        protected virtual void CanInfectDebug([NotNull] ThingDef race, [NotNull] StringBuilder builder)
+        {
+            if (!def.canInfectAnimals && race.race.Animal)
+            {
+                builder.AppendLine($"{race.defName} is an animal and {def.defName} cannot infect animals");
+                return ;
+            }
+
+            if (!def.canInfectMechanoids && race.race.FleshType != FleshTypeDefOf.Normal)
+            {
+
+                builder.AppendLine($"{race.defName} has a custom flesh type");
+                return;
+            }
+            var ext = race.GetModExtension<RaceMutationSettingsExtension>();
+            if (ext != null&& ext.immuneToAll)
+            {
+                builder.AppendLine($"{race.defName} is immune to all mutations");
+                return;
+            }
+
+        }
+
 
         /// <summary>
         /// Determines whether the given pawn has any immunizing hediffs 

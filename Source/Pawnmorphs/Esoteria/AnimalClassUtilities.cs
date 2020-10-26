@@ -88,6 +88,30 @@ namespace Pawnmorph
             _mutationClassCache[animalClass] = mutations;
             return mutations; 
         }
+
+        /// <summary>
+        /// Gets all mutation in this class 
+        /// </summary>
+        /// <param name="animalClass">The animal class.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">animalClass</exception>
+        [NotNull]
+        public static IEnumerable<MutationDef> GetAllMutationIn([NotNull] this AnimalClassBase animalClass)
+        {
+            if (animalClass == null) throw new ArgumentNullException(nameof(animalClass));
+            if (animalClass is AnimalClassDef aClass)
+            {
+                return GetAllMutationIn(aClass); 
+            }
+
+            if (animalClass is MorphDef morph)
+            {
+                return morph.AllAssociatedMutations; 
+            }
+
+            throw new NotImplementedException($"{animalClass.GetType().Name}");
+        }
+
         /// <summary>
         /// Generates  debug information on how part influences are calculated.
         /// </summary>

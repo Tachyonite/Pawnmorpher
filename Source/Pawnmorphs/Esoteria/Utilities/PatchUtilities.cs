@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -20,9 +21,12 @@ namespace Pawnmorph.Utilities
     /// </summary>
     public static class PatchUtilities
     {
+        // For logging purposes, it stores whenever each fragment was completed
+        private static Dictionary<string, bool> fragments;
 
         static PatchUtilities()
-        { 
+        {
+            fragments = new Dictionary<string, bool>();
             System.Type fhUtilType = typeof(FormerHumanUtilities);
             IsAnimalMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsAnimal), new[] {typeof(Pawn)});
           
@@ -36,6 +40,99 @@ namespace Pawnmorph.Utilities
             _getHumanlikeMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.Humanlike)).GetGetMethod();
             AllFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static;
             CommonTranspiler = typeof(PatchUtilities).GetMethod(nameof(SubstituteFormerHumanMethodsPatch)); 
+        }
+
+
+        //taken from PrisonLabor
+        /// <summary>
+        /// This method is used to add some CIL instructions after certain fragment in original code.
+        /// It should be used inside foreach loop, and return true if particular iteration is the desired one.
+        /// </summary>
+        /// <param name="opCodes">The op codes.</param>
+        /// <param name="operands">The operands.</param>
+        /// <param name="instr">The instr.</param>
+        /// <param name="step">The step.</param>
+        /// <param name="fragmentName">Name of the fragment.</param>
+        /// <param name="perfectMatch">if set to <c>true</c> [perfect match].</param>
+        /// <returns>
+        ///   <c>true</c> if the specified op codes is fragment; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFragment(OpCode[] opCodes, String[] operands, CodeInstruction instr, ref int step, string fragmentName, bool perfectMatch = true)
+        {
+            if (opCodes.Length != operands.Length)
+            {
+                Log.Error("PrisonLaborException: IsFragment() arguments does not match requirments. Trace:" + new StackTrace());
+                return false;
+            }
+
+            if (!fragments.ContainsKey(fragmentName))
+                fragments.Add(fragmentName, false);
+            if (step < 0 || step >= opCodes.Length)
+            {
+                return false;
+            }
+
+            var finalStep = opCodes.Length;
+
+
+            if (InstructionMatching(instr, opCodes[step], operands[step], perfectMatch))
+                step++;
+            else
+                step = 0;
+
+            if (step == finalStep)
+            {
+                step++;
+                fragments[fragmentName] = true;
+                return true;
+            }
+            return false;
+        }
+
+        //taken from PrisonLabor
+        /// <summary>
+        /// This method is used to find particular label that is assigned to last instruction's operand
+        /// </summary>
+        /// <param name="opCodes">The op codes.</param>
+        /// <param name="operands">The operands.</param>
+        /// <param name="instr">The instr.</param>
+        /// <param name="perfectMatch">if set to <c>true</c> [perfect match].</param>
+        /// <returns></returns>
+        public static object FindOperandAfter(OpCode[] opCodes, String[] operands, IEnumerable<CodeInstruction> instr, bool perfectMatch = true)
+        {
+            if (opCodes.Length != operands.Length)
+            {
+                Log.Error("Pawnmorpher: FindOperandAfter() arguments does not match requirments. Trace:" + new StackTrace());
+                return null;
+            }
+
+            var finalStep = opCodes.Length;
+
+            int step = 0;
+            foreach (var ci in instr)
+            {
+                if (InstructionMatching(ci, opCodes[step], operands[step], perfectMatch))
+                    step++;
+                else
+                    step = 0;
+
+                if (step == finalStep)
+                    return ci.operand;
+            }
+
+            Log.Error("Pawnmorpher: FindOperandAfter() didn't find any lines. Trace:" + new StackTrace());
+            return null;
+        }
+
+        private static bool InstructionMatching(CodeInstruction instr, OpCode opCode, string operand, bool perfectMatch)
+        {
+            bool matchingOpCodes = instr.opcode == opCode;
+            bool noOperands = instr.operand == null || string.IsNullOrEmpty(operand);
+            bool matchingOperands;
+            if (perfectMatch) matchingOperands = instr.operand != null && instr.operand.ToString() == operand;
+            else matchingOperands = instr.operand != null && instr.operand.ToString().Contains(operand);
+
+            return matchingOpCodes && (noOperands || matchingOperands);
         }
 
         /// <summary>

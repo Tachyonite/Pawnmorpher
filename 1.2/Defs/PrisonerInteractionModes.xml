@@ -2,5 +2,6 @@
     <PrisonerInteractionModeDef>
         <defName>PM_Transform</defName>
         <label>transform</label>
+        <listOrder>35</listOrder>
     </PrisonerInteractionModeDef>
 </Defs>
