@@ -59,6 +59,9 @@ namespace Pawnmorph.Chambers
         private Gizmo _debugFinishGizmo;
 
 
+        private ColorInt Clear { get; } = new ColorInt(0,0,0,0);
+        private ColorInt GlowColor { get; } = new ColorInt(0,255,0,255); 
+
         [NotNull]
         private IReadOnlyList<MutationDef> AnimalMutations => _targetAnimal?.GetAllMutationsFrom() ?? Array.Empty<MutationDef>();
 
@@ -89,6 +92,23 @@ namespace Pawnmorph.Chambers
                 }
 
                 return _power; 
+            }
+        }
+
+
+        private CompGlower _glower;
+
+        [CanBeNull]
+        CompGlower Glower
+        {
+            get
+            {
+                if (_glower == null)
+                {
+                    _glower = GetComp<CompGlower>();
+                }
+
+                return _glower; 
             }
         }
 
@@ -250,6 +270,18 @@ namespace Pawnmorph.Chambers
             Scribe_Defs.Look(ref _targetAnimal, "targetAnimal");
             Scribe_Deep.Look(ref _addedMutationData, "addedMutationData"); 
             Scribe_Values.Look(ref _curMutationIndex, "curMutationIndex");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (PowerCompTrader != null)
+                {
+                    PowerCompTrader.PowerOn = _innerState == ChamberState.Active; 
+                }
+
+                if (Glower != null)
+                {
+                    Glower.Props.glowColor =_innerState == ChamberState.Active ? GlowColor : Clear;
+                }
+            }
         }
 
         [CanBeNull]
@@ -595,6 +627,7 @@ namespace Pawnmorph.Chambers
                         break;
                     case ChamberState.WaitingForPawnMerging:
                         _innerState = ChamberState.Active;
+                        SetActive(); 
                         StartMerging();
                         break;
                     default:
@@ -607,6 +640,35 @@ namespace Pawnmorph.Chambers
             return false;
         }
 
+        private void SetActive()
+        {
+            PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
+            Glower?.UpdateLit(Map);
+
+            PowerCompTrader.PowerOn = true; 
+            if (Glower != null)
+            {
+                Glower.Props.glowColor = GlowColor;
+                Glower.UpdateLit(Map);
+                Log.Message($"{ThingID} {Glower.Glows}|{PowerCompTrader.PowerOn}");
+            }
+        }
+
+        void SetInactive()
+        {
+            PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
+            Glower?.UpdateLit(Map); 
+
+
+            PowerCompTrader.PowerOn = false; 
+            if (Glower != null)
+            {
+                Glower.Props.glowColor = Clear;
+                Glower.UpdateLit(Map);
+                Log.Message($"{ThingID} {Glower.Glows}|{PowerCompTrader.PowerOn}");
+            }
+        }
+
         private void AnimalChosen(PawnKindDef pawnkinddef)
         {
             _timer = GetTransformationTime(pawnkinddef);
@@ -615,7 +677,7 @@ namespace Pawnmorph.Chambers
             _currentUse = ChamberUse.Tf;
             _targetAnimal = pawnkinddef;
 
-             
+            SetActive();
 
             SelectorComp.Enabled = false;
         }
@@ -653,6 +715,7 @@ namespace Pawnmorph.Chambers
 
             TransformationRequest tfRequest;
             Mutagen mutagen = null;
+            SetInactive();
             switch (_currentUse)
             {
                 case ChamberUse.Mutation:
@@ -752,6 +815,10 @@ namespace Pawnmorph.Chambers
 
         private void Initialize()
         {
+           if(_innerState == ChamberState.Active) SetActive();
+           else SetInactive();
+
+
             SelectorComp.Enabled = Occupied && _innerState == ChamberState.Idle;
             if (_innerState == ChamberState.Active && _timer == -1)
             {
@@ -818,6 +885,7 @@ namespace Pawnmorph.Chambers
             _timer = GetMutationDuration(addedmutations);
             _currentUse = ChamberUse.Mutation;
             _innerState = ChamberState.Active;
+            SetActive();
             _lastTotal = _timer;
             sender.Reset();
 

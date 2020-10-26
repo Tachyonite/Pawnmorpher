@@ -58,6 +58,10 @@
                 </fuelFilter>
                 <initialFuelPercent>0</initialFuelPercent>
             </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>4</glowRadius>
+                <glowColor>(0, 255, 0,0)</glowColor>
+            </li>
             <li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
                 <requiresTag>true</requiresTag>
                 <alwaysAvailable>
