@@ -86,7 +86,8 @@ namespace Pawnmorph.Utilities
         {
             if (_compCache.TryGetValue(pawn, out T comp)) return comp;
             var c  = pawn.GetComp<T>();
-            _compCache[pawn] = c;
+            if(c != null) //don't cache misses 
+                _compCache[pawn] = c;
             return c; 
         } 
 
