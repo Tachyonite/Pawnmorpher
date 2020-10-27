@@ -527,6 +527,7 @@ namespace Pawnmorph.Chambers
                 return;
             }
 
+            if (!PowerCompTrader?.PowerOn == false) return; 
 
             if (!Refuelable.HasFuel)
             {
