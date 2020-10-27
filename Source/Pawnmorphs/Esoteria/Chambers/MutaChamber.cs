@@ -637,6 +637,19 @@ namespace Pawnmorph.Chambers
 
             if (base.TryAcceptThing(thing, allowSpecialEffects))
             {
+                var p = thing as Pawn;
+                if (p == null)
+                {
+                    Log.Error($"{ThingID} accepted non pawn {p.ThingID}/{p.GetType().Name}! this should never happen");
+                    return true;
+                }
+
+                var food = p.needs?.food;
+                if (food != null)
+                {
+                    food.CurLevel = food.MaxLevel; 
+                }
+
                 if (innerContainer.Count == 1)
                 {
                     FillableDrawer?.Trigger();
