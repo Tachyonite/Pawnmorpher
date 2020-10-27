@@ -1,7 +1,6 @@
 <Defs>
 	<HediffDef Name="ObsoletePart" ParentName="PawnmorphPart" Abstract="true">
 		<hediffClass>Pawnmorph.Hediffs.ObsoletePart</hediffClass>
-		<isTaggable>false</isTaggable>
 	</HediffDef>
 
 	<!--These hediffs are currently unused but had a purpose in pervious versions of the mod and old saves may still contain them-->

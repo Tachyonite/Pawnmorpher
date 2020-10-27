@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/AspectDef.xsd">
+	<Pawnmorph.AspectDef>
+		<defName>PantherAspect</defName>
+		<label>instictive predator</label>
+		<description>The blood of a panther runs through this pawn's veins. Their senses are keener, their body more agile, and their claws sharper. They are the perfect predator.</description>
+		<stages>
+			<li>
+				<label>instictive predator</label>
+				<description>The blood of a panther runs through [PAWN_nameDef]'s veins. [PAWN_possessive] senses are keener, [PAWN_possessive] body more agile, and [PAWN_possessive] claws sharper. [PAWN_pronoun] is the perfect predator.</description>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.05</offset>
+					</li>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>0.05</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<MeleeDodgeChance>20</MeleeDodgeChance>
+					<HuntingStealth>0.15</HuntingStealth>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+</Defs>

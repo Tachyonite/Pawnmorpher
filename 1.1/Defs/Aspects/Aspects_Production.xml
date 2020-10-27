@@ -1,0 +1,55 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
+	<Pawnmorph.AspectDef Abstract="true" Name="ProductionAspect">
+		<labelColor>(245,232,49)</labelColor>
+		<aspectType>Pawnmorph.Aspects.SapienceHit</aspectType>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef ParentName="ProductionAspect">
+		<defName>Productive</defName>
+		<label>increased production</label>
+		<description>This pawn's biochemistry has been modified such that their mutations output rate has been increased. This has caused them to become increasingly hungry, so be sure to keep them fed.</description>
+		<stages>
+			<li>
+				<label>productive</label>
+				<description>[PAWN_nameDef]'s productive mutations output rate has been increased. This has caused them to become increasingly hungry, so be sure to keep them fed.</description>
+				<productionBoosts>
+					<li>
+						<productionBoost>0.301</productionBoost>
+						<hediffFilter>
+							<isBlackList>true</isBlackList>
+						</hediffFilter>
+					</li>
+				</productionBoosts>
+			</li>
+			<li>
+				<label>very productive</label>
+				<description>[PAWN_nameDef]'s production output and caloric intake have been further increased. Take care, as their body may not be able to handle further productive increases.</description>
+				<productionBoosts>
+					<li>
+						<productionBoost>0.601</productionBoost>
+						<hediffFilter>
+							<isBlackList>true</isBlackList>
+						</hediffFilter>
+					</li>
+				</productionBoosts>
+				<statOffsets>
+					<SapienceLimit>-0.2</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>productive bliss</label>
+				<description>[PAWN_nameDef]'s productive mutations have achieved maximum productive output. The constant production has left their body and mind weakened, and they may occasionally fall into a catatonic state as a result.</description>
+				<productionBoosts>
+					<li>
+						<productionBoost>0.901</productionBoost>
+						<hediffFilter>
+							<isBlackList>true</isBlackList>
+						</hediffFilter>
+					</li>
+				</productionBoosts>
+				<statOffsets>
+					<SapienceLimit>-0.7</SapienceLimit>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+</Defs>

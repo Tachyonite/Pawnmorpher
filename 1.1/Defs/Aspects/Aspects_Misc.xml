@@ -1,0 +1,187 @@
+<Defs>
+	<Pawnmorph.AspectDef>
+		<defName>EtherState</defName>
+		<label>Etherbonded/broken</label>
+		<description>This pawn has produced constantly, leaving them numb or happily broken.</description>
+		<priority>0</priority>
+		<labelColor>(121,55,145)</labelColor>
+		<transferToAnimal>true</transferToAnimal>
+		<aspectType>Pawnmorph.Aspects.SapienceHit</aspectType>
+		<stages>
+			<li>
+				<label>Etherbroken</label>
+				<description>Constant production has caused [PAWN_nameDef] to become numb and submit to their fate.</description>
+				<statOffsets>
+					<SapienceLimit>-0.2</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Etherbonded</label>
+				<description>Constant production has caused [PAWN_nameDef] to accept change, and for some reason will now enjoy producing.</description>
+				<statOffsets>
+					<SapienceLimit>-0.4</SapienceLimit>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
+		<defName>SapienceCapped</defName>
+		<label>Sapience limited</label>
+		<description>This pawn has had their sapience limited to a certain level.</description>
+		<priority>0</priority>
+		<labelColor>(121,55,145)</labelColor>
+		<transferToAnimal>true</transferToAnimal>
+		<aspectType>Pawnmorph.Aspects.SapienceHit</aspectType>
+		<stages>
+			<li>
+				<label>Lizardbrain</label>
+				<description>The sapience of this pawn has been capped to feral levels.</description>
+				<statOffsets>
+					<SapienceLimit>-1</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Chookbrain</label>
+				<description>The sapience of this pawn has been capped to mostly feral levels.</description>
+				<statOffsets>
+					<SapienceLimit>-0.9</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Cowbrain</label>
+				<description>The sapience of this pawn has been capped to almost feral levels.</description>
+				<statOffsets>
+					<SapienceLimit>-0.7</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Dogbrain</label>
+				<description>The sapience of this pawn has been capped to conflicted levels.</description>
+				<statOffsets>
+					<SapienceLimit>-0.5</SapienceLimit>
+				</statOffsets>
+			</li>
+			<li>
+				<label>Monkeybrain</label>
+				<description>The sapience of this pawn has been capped to mostly sapient levels.</description>
+				<statOffsets>
+					<SapienceLimit>-0.3</SapienceLimit>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
+		<defName>MutagenInfused</defName>
+		<label>modified production</label>
+		<description>This pawn has taken mutagen-infused medication that modified their mutation's biological outputs.</description>
+		<transferToAnimal>true</transferToAnimal>
+		<stages>
+			<li>
+				<label>mutagen infused</label>
+				<description>Will only produce rare resources.</description>
+			</li>
+			<li>
+				<label>mutagen neutralized</label>
+				<description>Will never produce rare resources.</description>
+				<isBad>true</isBad>
+			</li>
+			<li>
+				<label>dry</label>
+				<description>[PAWN_nameDef] will never produce resources.</description>
+				<isBad>true</isBad>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
+		<defName>AnimalAffinity</defName>
+		<label>animal affinity</label>
+		<description>This pawn has a greater apriciation for animals.</description>
+		<stages>
+			<li>
+				<label>animal affinity</label>
+				<description>[PAWN_nameDef]'s new form has given [PAWN_objective] a greater apriciation for what [PAWN_pronoun] now sees as [PAWN_possessive] fellow animals. It doesn't hurt that [PAWN_pronoun] now speaks their (body) language, either.</description>
+				<skillMods>
+					<li>
+						<skillDef>Animals</skillDef>
+						<addedXp>1500</addedXp>
+						<passionOffset>2</passionOffset>
+					</li>
+				</skillMods>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
+		<defName>PlantAffinity</defName>
+		<label>plant affinity</label>
+		<description>This pawn cares deeply for plants.</description>
+		<stages>
+			<li>
+				<label>plant affinity</label>
+				<description>Because [PAWN_nameDef]'s new form has brought [PAWN_objective] closer to nature (too close some might say), [PAWN_pronoun] now better understands how plants fit into the circle of life and is much more careful when tending them.</description>
+				<skillMods>
+					<li>
+						<skillDef>Plants</skillDef>
+						<addedXp>1500</addedXp>
+						<passionOffset>2</passionOffset>
+					</li>
+				</skillMods>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
+		<defName>RareMutant</defName>
+		<label>rare mutatant</label>
+		<description>TODO</description>
+		<stages>
+			<li>
+				<label>rare mutatant</label>
+				<description>TODO</description>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
+		<defName>Paragon</defName>
+		<label>paragon</label>
+		<description>This pawn adapts quickly to new mutations, and can sometimes get better, more powerful mutations than normal morphs.</description>
+		<removedByReverter>true</removedByReverter>
+		<stages>
+			<li>
+				<label>paragon</label>
+				<description>[PAWN_nameDef] adapts quickly to new mutations, and can sometimes get better, more powerful mutations than normal morphs.</description>
+				<statOffsets>
+					<MutationAdaptability>1</MutationAdaptability>
+				</statOffsets>
+				<messageText>Some of [PAWN_nameDef]'s mutations seem to be adapting faster and becoming more powerful.</messageText>
+			</li>
+		</stages>
+		<conflictingAspects>
+			<li>Afflicted</li>
+		</conflictingAspects>
+		<conflictingTraits>
+			<li>BodyPurist</li>
+		</conflictingTraits>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
+		<defName>Afflicted</defName>
+		<label>afflicted</label>
+		<description>this pawn not only never adapts to new mutations, their mutations sometimes degrade into worse versions.</description>
+		<removedByReverter>true</removedByReverter>
+		<stages>
+			<li>
+				<label>afflicted</label>
+				<description>[PAWN_nameDef] not only never adapts to new mutations, their mutations sometimes degrade into worse versions.</description>
+				<statOffsets>
+					<MutationAdaptability>-1.5</MutationAdaptability>
+				</statOffsets>
+				<isBad>true</isBad>
+				<messageText>Some of [PAWN_nameDef]'s mutations seem to be degrading into worse forms.</messageText>
+			</li>
+		</stages>
+		<conflictingAspects>
+			<li>Paragon</li>
+		</conflictingAspects>
+		<conflictingTraits>
+			<li>MutationAffinity</li>
+		</conflictingTraits>
+	</Pawnmorph.AspectDef>
+</Defs>

@@ -782,15 +782,13 @@
 						</severity>
 					</EtherArcticFoxEar>
 					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/RedFox_Ear_Left</path>
+						<path>Parts/FoxFennec/FennecFox_Ear_Left</path>
 						<severity>
-							<a1.0>Parts/FoxFennec/RedFox_Ear_Left</a1.0>
+							<a1.0>Parts/FoxFennec/FennecFox_Ear_Left</a1.0>
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left</EtherDonkeyEar>
-					<EtherArcticFoxEar>Parts/FoxArctic/ArcticFox_Ear_Left</EtherArcticFoxEar>
-					<EtherFennecFoxEar>Parts/FoxFennec/FennecFox_Ear_Left</EtherFennecFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
@@ -839,9 +837,9 @@
 						</severity>
 					</EtherArcticFoxEar>
 					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/RedFox_Ear_Left_Behind</path>
+						<path>Parts/FoxFennec/FennecFox_Ear_Left_Behind</path>
 						<severity>
-							<a1.0>Parts/FoxFennec/RedFox_Ear_Left_Behind</a1.0>
+							<a1.0>Parts/FoxFennec/FennecFox_Ear_Left_Behind</a1.0>
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
@@ -925,9 +923,9 @@
 						</severity>
 					</EtherArcticFoxEar>
 					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/RedFox_Ear_Right</path>
+						<path>Parts/FoxFennec/FennecFox_Ear_Right</path>
 						<severity>
-							<a1.0>Parts/FoxFennec/RedFox_Ear_Right</a1.0>
+							<a1.0>Parts/FoxFennec/FennecFox_Ear_Right</a1.0>
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
@@ -979,9 +977,9 @@
 						</severity>
 					</EtherArcticFoxEar>
 					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/RedFox_Ear_Right_Behind</path>
+						<path>Parts/FoxFennec/FennecFox_Ear_Right_Behind</path>
 						<severity>
-							<a1.0>Parts/FoxFennec/RedFox_Ear_Right_Behind</a1.0>
+							<a1.0>Parts/FoxFennec/FennecFox_Ear_Right_Behind</a1.0>
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
@@ -1066,9 +1064,9 @@
 						</severity>
 					</EtherArcticFoxEar>
 					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/RedFox_Ear_Left</path>
+						<path>Parts/FoxFennec/FennecFox_Ear_Right_Behind</path>
 						<severity>
-							<a1.0>Parts/FoxFennec/RedFox_Ear_Left</a1.0>
+							<a1.0>Parts/FoxFennec/FennecFox_Ear_Right_Behind</a1.0>
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
@@ -1123,9 +1121,9 @@
 						</severity>
 					</EtherArcticFoxEar>
 					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/RedFox_Ear_Left_Behind</path>
+						<path>Parts/FoxFennec/FennecFox_Ear_Left_Behind</path>
 						<severity>
-							<a1.0>Parts/FoxFennec/RedFox_Ear_Left_Behind</a1.0>
+							<a1.0>Parts/FoxFennec/FennecFox_Ear_Left_Behind</a1.0>
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
@@ -1212,9 +1210,9 @@
 						</severity>
 					</EtherArcticFoxEar>
 					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/RedFox_Ear_Right</path>
+						<path>Parts/FoxFennec/FennecFox_Ear_Right</path>
 						<severity>
-							<a1.0>Parts/FoxFennec/RedFox_Ear_Right</a1.0>
+							<a1.0>Parts/FoxFennec/FennecFox_Ear_Right</a1.0>
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
@@ -1269,9 +1267,9 @@
 						</severity>
 					</EtherArcticFoxEar>
 					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/RedFox_Ear_Right_Behind</path>
+						<path>Parts/FoxFennec/FennecFox_Ear_Right_Behind</path>
 						<severity>
-							<a1.0>Parts/FoxFennec/RedFox_Ear_Right_Behind</a1.0>
+							<a1.0>Parts/FoxFennec/FennecFox_Ear_Right_Behind</a1.0>
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
@@ -1415,7 +1413,6 @@
 					<PM_HellhoundHorns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</PM_HellhoundHorns>
 					<!-- REGULAR PAWN PIECES -->
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
-					<EtherSheepHorns>Parts/sheepface/sheephorns</EtherSheepHorns>
 					<EtherSheepHorns>
 						<path>Parts/sheepface/sheephorns_c</path>
 						<severity>

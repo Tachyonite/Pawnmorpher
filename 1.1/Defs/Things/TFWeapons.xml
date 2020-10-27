@@ -1,0 +1,405 @@
+<Defs>
+
+
+	<ThingDef ParentName="BaseGas">
+		<defName>Gas_Mutagen</defName>
+		<label>mutagen cloud</label>
+		<graphicData>
+			<texPath>Things/Gas/Puff</texPath>
+			<drawSize>2.2</drawSize>
+			<color>(0.0,1.0,0.0,0.5)</color>
+		</graphicData>
+		<gas>
+			<expireSeconds>
+				<min>29</min>
+				<max>31</max>
+			</expireSeconds>
+			<blockTurretTracking>true</blockTurretTracking>
+			<accuracyPenalty>0.7</accuracyPenalty>
+			<rotationSpeed>10</rotationSpeed>
+		</gas>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>Mutarifle</defName>
+		<label>mutarifle</label>
+		<description>A rifle that fires balls of jellied mutanite, which mutate on contact.</description>
+		<graphicData>
+			<texPath>Things/Item/mutarifle_1</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<MarketValue>650</MarketValue>
+			<WorkToMake>8000</WorkToMake>
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.45</AccuracyMedium>
+			<AccuracyLong>0.35</AccuracyLong>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<costList>
+			<Mutanite>5</Mutanite>
+			<Steel>50</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>XM_MutagenicBullet</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>25.9</range>
+				<soundCast>Shot_Autopistol</soundCast>
+				<burstShotCount>3</burstShotCount>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+
+	<ThingDef Class="EtherGun.ThingDef_EtherBullet" ParentName="BaseBullet">
+		<defName>Bullet_EtherGun</defName>
+		<thingClass>EtherGun.Projectile_EtherBullet</thingClass>
+		<label>Ether bullet</label>
+		<graphicData>
+			<texPath>Things/Projectiles/GelCapsule</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<stoppingPower>10</stoppingPower>
+			<speed>15</speed>
+		</projectile>
+		<AddHediffChance>0.7</AddHediffChance>
+		<HediffToAdd>SyringeRifleHediff</HediffToAdd>
+		<raceBlackList>
+			<li>Mech_Centipede</li>
+			<li>Mech_Lancer</li>
+			<li>Mech_Scyther</li>
+		</raceBlackList>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_TaggingGun</defName>
+		<thingClass>EtherGun.Projectile_TaggingBullet</thingClass>
+		<label>genetic tagger</label>
+		<graphicData>
+			<texPath>Things/Projectiles/GelCapsule</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<stoppingPower>10</stoppingPower>
+			<speed>15</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>TST_Gun_EtherGun</defName>
+		<label>Mutagun</label>
+		<description>Forged from mutanite and charged with mutagenic syringes, the Mutagun can force a person hit by it to begin to mutate.</description>
+		<graphicData>
+			<texPath>Things/Item/TFGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<MarketValue>650</MarketValue>
+			<WorkToMake>8000</WorkToMake>
+			<Mass>3</Mass>
+			<AccuracyTouch>80</AccuracyTouch>
+			<AccuracyShort>70</AccuracyShort>
+			<AccuracyMedium>60</AccuracyMedium>
+			<AccuracyLong>50</AccuracyLong>
+			<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
+		</statBases>
+		<weaponTags>
+			<li>PawnmorpherGun</li>
+		</weaponTags>
+		<costList>
+			<Mutanite>5</Mutanite>
+			<Steel>50</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_EtherGun</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<range>30</range>
+				<soundCast>Shot_ChargeRifle</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
+				<requiresTag>true</requiresTag>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>TST_Gun_TaggingGun</defName>
+		<label>Tagging rifle</label>
+		<description>Use this rifle to add animals to your genetic database. Not to be used as an actual weapon, but can still trigger manhunter as, well, it does kinda hurt to be shot by it.</description>
+		<graphicData>
+			<texPath>Things/Item/TaggingRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<weaponTags>
+			<li>TaggingGun</li>
+		</weaponTags>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<MarketValue>650</MarketValue>
+			<WorkToMake>8000</WorkToMake>
+			<Mass>3</Mass>
+			<AccuracyTouch>80</AccuracyTouch>
+			<AccuracyShort>70</AccuracyShort>
+			<AccuracyMedium>60</AccuracyMedium>
+			<AccuracyLong>50</AccuracyLong>
+			<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Mutanite>1</Mutanite>
+			<Steel>25</Steel>
+			<Gun_BoltActionRifle>1</Gun_BoltActionRifle>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>Injectors</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_BoltActionRifle</defaultProjectile>
+				<warmupTime>1.7</warmupTime>
+				<range>36.9</range>
+				<soundCast>Shot_BoltActionRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseMakeableGrenade">
+		<defName>Weapon_GrenadeTF</defName>
+		<label>mutagenic grenades</label>
+		<description>A highly presurized canister filled with DNA and mechanites that aerosolizes when thrown. The resulting mist can mutate any organics caught in it.</description>
+		<recipeMaker>
+			<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+		</recipeMaker>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Item/MutagenGrenadeBelt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Grenade</soundInteract>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<Mass>1</Mass>
+			<RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+			<WorkToMake>12000</WorkToMake>
+		</statBases>
+		<weaponTags>
+			<li>PawnmorpherGun</li>
+		</weaponTags>
+		<costList>
+			<Steel>20</Steel>
+			<MechaniteSlurry>5</MechaniteSlurry>
+		</costList>
+		<thingCategories>
+			<li>Grenades</li>
+		</thingCategories>
+		<verbs>
+			<li>
+				<label>throw mutagenic grenade</label>
+				<verbClass>Verb_LaunchProjectile</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeTF</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="EtherGun.CompProperties_EtherExplosive">
+				<explosiveRadius>2.66</explosiveRadius>
+				<explosiveDamageType>MutagenCloud</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+				<AddHediffChance>0.7</AddHediffChance>
+				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+				<raceBlackList>
+					<li>Mech_Centipede</li>
+					<li>Mech_Lancer</li>
+					<li>Mech_Scyther</li>
+				</raceBlackList>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="EtherGun.ThingDef_EtherBullet" ParentName="BaseGrenadeProjectile">
+		<defName>Proj_GrenadeTF</defName>
+		<label>mutagenic grenade</label>
+		<graphicData>
+			<texPath>Things/Projectiles/MutagenGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<explosionRadius>3.5</explosionRadius>
+			<damageDef>MutagenCloud</damageDef>
+			<explosionDelay>100</explosionDelay>
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+		</projectile>
+		<AddHediffChance>0.7</AddHediffChance>
+		<raceBlackList>
+			<li>Mech_Centipede</li>
+			<li>Mech_Lancer</li>
+			<li>Mech_Scyther</li>
+		</raceBlackList>
+	</ThingDef>
+
+	<ThingDef ParentName="MakeableShellBase">
+		<defName>Shell_TF</defName>
+		<label>mutagenic shell</label>
+		<description>A shell filled with a chaotic mix of DNA and mechanites that aerosolizes on impact. The mist can mutate any organics caught in it. Can be fired from mortars or installed as a trap. Bursts when damaged.</description>
+		<graphicData>
+			<texPath>Things/Item/Resource/TFShell</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.9</explosiveRadius>
+				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<wickTicks>
+					<min>30</min>
+					<max>60</max>
+				</wickTicks>
+			</li>
+		</comps>
+		<weaponTags>
+			<li>TF_Shell</li>
+		</weaponTags>
+		<projectileWhenLoaded>Bullet_Shell_TF</projectileWhenLoaded>
+		<recipeMaker>
+			<researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>20</Steel>
+			<MechaniteSlurry>2</MechaniteSlurry>
+		</costList>
+	</ThingDef>
+
+	<ThingDef Class="EtherGun.ThingDef_EtherBullet" ParentName="BaseBullet">
+		<defName>Bullet_Shell_TF</defName>
+		<label>mutagenic shell</label>
+		<graphicData>
+			<texPath>Things/Projectiles/ShellMutagenic</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<projectile>
+			<damageDef>MutagenCloud_Large</damageDef>
+			<speed>41</speed>
+			<explosionRadius>5.5</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+		</projectile>
+		<AddHediffChance>0.7</AddHediffChance>
+		<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
+	</ThingDef>
+</Defs>

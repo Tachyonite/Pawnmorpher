@@ -1,6 +1,7 @@
 <Defs>
-	<Pawnmorph.MutationCategoryDef> <!-- meant for mutations like fur, scales, ect that do not alter the body shape greatly -->
-		<defName>Minor</defName> 
+	<Pawnmorph.MutationCategoryDef>
+		<!-- meant for mutations like fur, scales, ect that do not alter the body shape greatly -->
+		<defName>Minor</defName>
 		<label>minor</label>
 		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
@@ -17,7 +18,7 @@
 		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 
-	<Pawnmorph.MutationCategoryDef> 
+	<Pawnmorph.MutationCategoryDef>
 		<defName>Combat</defName>
 		<label>combat</label>
 		<genomeProvider>true</genomeProvider>
@@ -36,7 +37,8 @@
 		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 
-	<Pawnmorph.MutationCategoryDef> <!-- category for all 'combo parts' -->
+	<Pawnmorph.MutationCategoryDef>
+		<!-- category for all 'combo parts' -->
 		<defName>Combo</defName>
 		<!-- make sure pawns don't spawn with it -->
 		<restricted>true</restricted>
@@ -48,7 +50,7 @@
 		<restricted>true</restricted>
 		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
-	
+
 	<Pawnmorph.MutationCategoryDef>
 		<defName>PM_ChamberFailures</defName>
 		<restricted>true</restricted>

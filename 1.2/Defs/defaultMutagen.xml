@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
 		<defName>defaultMutagen</defName>
@@ -45,21 +45,21 @@
 						<aspectStage>1</aspectStage>
 					</li>
 					<li>
-                        <aspect>ColorationNatural</aspect>
-                        <chance>0.0015</chance>
-                    </li>
-                    <li>
-                        <aspect>ColorationAlbinism</aspect>
-                        <chance>0.00075</chance>
-                    </li>
-                    <li>
-                        <aspect>ColorationMelanism</aspect>
-                        <chance>0.00075</chance>
-                    </li>
-                    <li>
-                        <aspect>ColorationUnnatural</aspect>
-                        <chance>0.0005</chance>
-                    </li>
+						<aspect>ColorationNatural</aspect>
+						<chance>0.0015</chance>
+					</li>
+					<li>
+						<aspect>ColorationAlbinism</aspect>
+						<chance>0.00075</chance>
+					</li>
+					<li>
+						<aspect>ColorationMelanism</aspect>
+						<chance>0.00075</chance>
+					</li>
+					<li>
+						<aspect>ColorationUnnatural</aspect>
+						<chance>0.0005</chance>
+					</li>
 				</entries>
 			</li>
 		</aspectGivers>
