@@ -11,4 +11,8 @@
     <PMChamberTransforming>transforming {0} into a {1}</PMChamberTransforming>
     <PMMergeGizmo>Merge</PMMergeGizmo>
     <PMCannotTransformPrisoner>Cannot transform {0}</PMCannotTransformPrisoner>
+    <PMWaitingForPawn>waiting for pawn</PMWaitingForPawn>
+    <PMWaitingForPawnMerging>waiting for pawn</PMWaitingForPawnMerging>
+    <PMIdle>idle</PMIdle>
+    <PMActive>active</PMActive>
 </LanguageData>

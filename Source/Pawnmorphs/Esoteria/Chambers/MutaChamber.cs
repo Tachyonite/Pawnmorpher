@@ -446,7 +446,7 @@ namespace Pawnmorph.Chambers
             base.GetInspectString();
             var stringBuilder = new StringBuilder();
             string inspectString = base.GetInspectString();
-            stringBuilder.Append(_innerState.ToString());
+            stringBuilder.Append(("PM" + _innerState).Translate() + " ");
             stringBuilder.AppendLine(inspectString);
 
             if (_innerState == ChamberState.Active)
