@@ -30,16 +30,16 @@ namespace Pawnmorph.Buildings
 
 		public override void Draw()
         {
-            const float upFactor = 0.10f; 
+            const float upFactor = 0.05f; 
 			base.Draw();
 			CompRefuelable comp = GetComp<CompRefuelable>();
 			GenDraw.FillableBarRequest r = default(GenDraw.FillableBarRequest);
-            r.center = (DrawPos + (new Vector3(0, 0, 1) * upFactor)); //Rimworld uses the XZ plane not XY 
+            r.center = DrawPos + Vector3.up * 0.1f + new Vector3(0.005f,0,upFactor);
 			r.size = BarSize;
 			r.fillPercent = comp.FuelPercentOfMax;
 			r.filledMat = BatteryBarFilledMat;
 			r.unfilledMat = BatteryBarUnfilledMat;
-			r.margin = 0.02f;
+			r.margin = 0.05f;
 			Rot4 rotation = base.Rotation;
 			rotation.Rotate(RotationDirection.Clockwise);
 			r.rotation = rotation;

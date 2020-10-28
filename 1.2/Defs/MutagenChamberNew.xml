@@ -49,7 +49,7 @@
             </li>
             <li Class="CompProperties_Refuelable">
                 <fuelConsumptionRate>1.7</fuelConsumptionRate>
-                <fuelCapacity>1.0</fuelCapacity>
+                <fuelCapacity>1</fuelCapacity>
                 <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
                 <fuelFilter>
                     <thingDefs>
@@ -73,10 +73,10 @@
                 </alwaysAvailable>
             </li>
             <li Class="Pawnmorph.ThingComps.FillableBarDrawerProps">
-                <barSize>(2.2, 2.2)</barSize>
-                <period>2.5</period>
+                <barSize>(2.3, 2.3)</barSize>
+                <period>10.0</period>
                 <barOffset>(0,-0.5,0)</barOffset>
-                <barColor>75,200,75,50</barColor>
+                <barColor>50,200,50,70</barColor>
             </li>
             <li Class="Pawnmorph.ThingComps.DrawSecondChamberProperties">
                 <graphicData>
@@ -101,7 +101,7 @@
             </li>
 
 			<li Class="Pawnmorph.ThingComps.DrawStoredPawnProperties">
-				<offset>(0,0,0.2)</offset>
+				<offset>(0,0,0.25)</offset>
 				<layer>LayingPawn</layer>
             </li>
         </comps>

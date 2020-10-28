@@ -510,6 +510,24 @@ namespace Pawnmorph.Chambers
         {
             base.Tick();
 
+            if (!Refuelable.HasFuel)
+            {
+                if (_hasFuelLast)
+                {
+                    TryRefillFromTank();
+                }
+                else if (this.IsHashIntervalTick(REFUEL_CHECK_TIMER))
+                {
+                    TryRefillFromTank();
+                }
+                _hasFuelLast = false;
+                return;
+            }
+            else
+            {
+                _hasFuelLast = true;
+            }
+
             if (_innerState != ChamberState.Active) return;
             if (_timer <= 0)
             {
@@ -529,22 +547,7 @@ namespace Pawnmorph.Chambers
 
             if (!PowerCompTrader?.PowerOn == false) return; 
 
-            if (!Refuelable.HasFuel)
-            {
-                if (_hasFuelLast)
-                {
-                    TryRefillFromTank();
-                }else if (this.IsHashIntervalTick(REFUEL_CHECK_TIMER))
-                {
-                    TryRefillFromTank();
-                }
-                _hasFuelLast = false;
-                return;
-            }
-            else
-            {
-                _hasFuelLast = true; 
-            }
+            
             if (!Flickable.SwitchIsOn) return;
             Refuelable.Notify_UsedThisTick();
             _timer -= 1;
