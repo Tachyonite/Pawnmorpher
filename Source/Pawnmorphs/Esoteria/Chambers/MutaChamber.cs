@@ -653,10 +653,6 @@ namespace Pawnmorph.Chambers
                     food.CurLevel = food.MaxLevel; 
                 }
 
-                if (innerContainer.Count == 1)
-                {
-                    FillableDrawer?.Trigger();
-                }
                 // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (_innerState)
                 {
@@ -681,6 +677,7 @@ namespace Pawnmorph.Chambers
 
         private void SetActive()
         {
+            FillableDrawer?.Trigger();
             PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
             Glower?.UpdateLit(Map);
 
