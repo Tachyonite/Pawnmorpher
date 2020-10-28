@@ -249,6 +249,33 @@ namespace Pawnmorph
             
         }
 
+        /// <summary>
+        /// Sets to race default.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static void SetToRaceDefault([NotNull] Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+
+            RemoveAllMutations(pawn);
+            var ext = pawn.def.GetModExtension<RaceMutationSettingsExtension>();
+            if (ext != null && ext.mutationRetrievers?.Count > 0)
+            {
+
+                foreach (Hediff_AddedMutation mutation in ext.mutationRetrievers.ApplyMutationRetrievers(pawn))
+                {
+                    var adjComp = mutation.SeverityAdjust;
+                    if (adjComp != null)
+                    {
+                        mutation.Severity = adjComp.NaturalSeverityLimit; 
+                    }
+                }
+
+            }
+
+        }
+
         /// <summary> Removes all mutations from a pawn (used post reversion). </summary>
         /// <param name="pawn">The pawn.</param>
         public static void RemoveAllMutations(Pawn pawn)

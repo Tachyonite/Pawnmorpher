@@ -343,6 +343,30 @@ namespace Pawnmorph
             return AddMutation(pawn, mutation, mutation.parts, countToAdd,  ancillaryEffects, force);
         }
 
+
+        /// <summary>
+        /// Applies the mutation retrievers.
+        /// </summary>
+        /// <param name="retrievers">The retrievers.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="effects">The effects.</param>
+        /// <returns></returns>
+        public static MutationResult ApplyMutationRetrievers([NotNull] this IEnumerable<IRaceMutationRetriever> retrievers,
+                                                             [NotNull] Pawn pawn, AncillaryMutationEffects? effects = null)
+        {
+            var mutations = retrievers.GetMutationsFor(pawn.def, pawn);
+
+            List<Hediff_AddedMutation> mutationsAdded = new List<Hediff_AddedMutation>();
+
+            foreach (MutationDef mutationDef in mutations)
+            {
+                mutationsAdded.AddRange(AddMutation(pawn, mutationDef, ancillaryEffects:effects));
+            }
+
+            return new MutationResult(mutationsAdded); 
+
+        }
+
         /// <summary>
         /// Applies the mutation data.
         /// </summary>

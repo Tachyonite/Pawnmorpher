@@ -41,7 +41,7 @@ namespace Pawnmorph
             else 
             {
                 //revert mutations
-                TransformerUtility.RemoveAllMutations(pawn);
+                TransformerUtility.SetToRaceDefault(pawn);
                 AspectTracker aT = pawn.GetAspectTracker();
                 if (aT != null) RemoveAspects(aT);
 
