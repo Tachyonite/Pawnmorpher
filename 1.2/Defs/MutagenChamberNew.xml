@@ -74,7 +74,7 @@
             </li>
             <li Class="Pawnmorph.ThingComps.FillableBarDrawerProps">
                 <barSize>(2.2, 2.2)</barSize>
-                <period>0.7</period>
+                <period>2.5</period>
                 <barOffset>(0,-0.5,0)</barOffset>
                 <barColor>75,200,75,50</barColor>
             </li>

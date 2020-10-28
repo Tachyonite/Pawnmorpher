@@ -29,11 +29,12 @@ namespace Pawnmorph.Buildings
 		private static readonly Material BatteryBarUnfilledMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.3f, 0.3f, 0.3f));
 
 		public override void Draw()
-		{
+        {
+            const float upFactor = 0.10f; 
 			base.Draw();
 			CompRefuelable comp = GetComp<CompRefuelable>();
 			GenDraw.FillableBarRequest r = default(GenDraw.FillableBarRequest);
-			r.center = (DrawPos + Vector3.up * 0.1f) + new Vector3(0,1f,0);
+            r.center = (DrawPos + (new Vector3(0, 0, 1) * upFactor)); //Rimworld uses the XZ plane not XY 
 			r.size = BarSize;
 			r.fillPercent = comp.FuelPercentOfMax;
 			r.filledMat = BatteryBarFilledMat;
