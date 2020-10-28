@@ -545,7 +545,7 @@ namespace Pawnmorph.Chambers
                 return;
             }
 
-            if (!PowerCompTrader?.PowerOn == false) return; 
+            if (PowerCompTrader?.PowerOn == false) return; 
 
             
             if (!Flickable.SwitchIsOn) return;
