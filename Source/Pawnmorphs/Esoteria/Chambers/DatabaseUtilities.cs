@@ -295,6 +295,8 @@ namespace Pawnmorph.Chambers
                 return false; 
             }
 
+
+
             db.AddToDatabase(pawnKind);
             return true; 
         }

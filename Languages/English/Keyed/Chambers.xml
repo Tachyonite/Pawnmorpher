@@ -15,4 +15,5 @@
     <PMWaitingForPawnMerging>waiting for pawn</PMWaitingForPawnMerging>
     <PMIdle>Idle.</PMIdle>
     <PMActive>Active.</PMActive>
+    <PMDatabaseWithoutPower>Genebanks have lost power, cannot record new data</PMDatabaseWithoutPower>
 </LanguageData>

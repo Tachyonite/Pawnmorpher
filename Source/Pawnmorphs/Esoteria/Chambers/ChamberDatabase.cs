@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
+using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using RimWorld.Planet;
 using UnityEngine;
@@ -181,7 +182,12 @@ namespace Pawnmorph.Chambers
         public bool CanAddToDatabase([NotNull] MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            return mutationDef.GetRequiredStorage() > FreeStorage && !mutationDef.IsRestricted;
+            if (mutationDef.GetRequiredStorage() <= FreeStorage) return false;
+            else if (!CanTag)
+            {
+                return false; 
+            }
+            return !mutationDef.IsRestricted;
         }
 
         /// <summary>
@@ -203,9 +209,13 @@ namespace Pawnmorph.Chambers
         private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
         private const string ANIMAL_NOT_TAGGABLE = "AnimalNotTaggable";
 
-        private bool _migrated; 
+        private bool _migrated;
 
 
+        /// <summary>
+        /// translation string for not enough free power
+        /// </summary>
+        public const string NOT_ENOUGH_POWER = "PMDatabaseWithoutPower";
 
 
         /// <summary>
@@ -224,7 +234,11 @@ namespace Pawnmorph.Chambers
             if (pawnKind.GetRequiredStorage() > FreeStorage)
             {
                 reason = NOT_ENOUGH_STORAGE_REASON.Translate(pawnKind); 
-            }else if (TaggedAnimals.Contains(pawnKind))
+            }else if (!CanTag)
+            {
+                reason = NOT_ENOUGH_POWER.Translate();
+            }
+            else if (TaggedAnimals.Contains(pawnKind))
             {
                 reason = ALREADY_TAGGED_REASON.Translate(pawnKind); 
             }else if (DatabaseUtilities.IsChao(pawnKind.race))
@@ -285,6 +299,36 @@ namespace Pawnmorph.Chambers
 
             _usedStorageCache = null;
             _taggedSpecies.Remove(pkDef); 
+        }
+
+
+        private int _inactiveAmount;
+
+
+        /// <summary>
+        /// Gets a value indicating whether this instance can tag.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance can tag; otherwise, <c>false</c>.
+        /// </value>
+        public bool CanTag => FreeStorage - _inactiveAmount > 0; 
+
+        /// <summary>
+        /// Notifies that the given amount of storage capacity has lost power and is no longer available .
+        /// </summary>
+        /// <param name="storageAmount">The storage amount.</param>
+        public void NotifyLostPower(int storageAmount)
+        {
+            _inactiveAmount += storageAmount;
+        }
+
+        /// <summary>
+        /// Notifies the given amount of storage capacity has power restored 
+        /// </summary>
+        /// <param name="storageAmount">The storage amount.</param>
+        public void NotifyPowerOn(int storageAmount)
+        {
+            _inactiveAmount = Mathf.Max(_inactiveAmount - storageAmount, 0); 
         }
     }
 }

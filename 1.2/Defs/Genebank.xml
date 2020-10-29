@@ -34,6 +34,10 @@
       <li Class="Pawnmorph.ThingComps.DatabaseStorageProperties">
         <storageAmount>64</storageAmount>
       </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>10</basePowerConsumption>
+      </li>
     </comps>
   </ThingDef>
 

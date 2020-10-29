@@ -42,9 +42,10 @@ namespace EtherGun
         }
 
         private const int MIN_MUTATIONS_TAGGED = 1;
-        private const int MAX_MUTATIONS_TAGGED = 5; 
+        private const int MAX_MUTATIONS_TAGGED = 5;
         private static void TryTagAnimal([NotNull] ChamberDatabase database, [NotNull] Pawn pawn)
         {
+          
             if (database.TaggedAnimals.Contains(pawn.kindDef))
             {
                 if (pawn.kindDef.GetAllMutationsFrom().Taggable().Any(m =>!m.IsTagged()))
@@ -78,6 +79,12 @@ namespace EtherGun
         {
             var mutations = pawn.kindDef.GetAllMutationsFrom().Taggable().Where(m => !m.IsTagged());
             var max = Rand.Range(MIN_MUTATIONS_TAGGED, MAX_MUTATIONS_TAGGED);
+
+            if (database.FreeStorage > 0 && !database.CanTag)
+            {
+                Messages.Message(ChamberDatabase.NOT_ENOUGH_POWER.Translate(), MessageTypeDefOf.RejectInput);
+                return;
+            }
 
             _scratchList.Clear();
             foreach (MutationDef mutationDef in mutations)
