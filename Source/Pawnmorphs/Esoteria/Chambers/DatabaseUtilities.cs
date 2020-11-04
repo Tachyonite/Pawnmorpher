@@ -35,6 +35,33 @@ namespace Pawnmorph.Chambers
                 DefDatabase<PawnKindDef>.AllDefs.Where(pk => pk.RaceProps.Animal && ConnectedToMorph(pk)).ToList();
         }
 
+        [NotNull]
+        private static readonly string[] Suffixes = new[]
+        {
+            "KB",
+            "MB",
+            "GB",
+            "TB"
+        };
+
+        /// <summary>
+        /// Gets the storage string.
+        /// </summary>
+        /// <param name="storageAmount">The storage amount.</param>
+        /// <returns></returns>
+        public static string GetStorageString(float storageAmount)
+        {
+            int idx = 0;
+            while (storageAmount > 1000f && idx < Suffixes.Length)
+            {
+                idx++;
+                storageAmount /= 1000f;
+            }
+
+            return storageAmount.ToString() + Suffixes[idx];
+        }
+
+
         private const string MUTATION_ADDED_MESSAGE = "MutationAddedToDatabase";
         private const string ANIMAL_ADDED_TO_DATABASE_MESSAGE = "AnimalAddedToDatabase"; 
         /// <summary>
@@ -267,6 +294,8 @@ namespace Pawnmorph.Chambers
             {
                 return false; 
             }
+
+
 
             db.AddToDatabase(pawnKind);
             return true; 

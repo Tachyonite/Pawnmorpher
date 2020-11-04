@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
+		<defName>defaultMutagen</defName>
+	</Pawnmorph.MutagenDef>
+
+	<Pawnmorph.MutagenDef>
+		<defName>MergeMutagen</defName>
+		<label>merge mutagen</label>
+		<mutagenType>Pawnmorph.TfSys.MergeMutagen</mutagenType>
+		<revertedThoughtGood>WasMergedRelieved</revertedThoughtGood>
+		<revertedThoughtBad>WasMerged</revertedThoughtBad>
+		<transformedSapienceState>MergedPawn</transformedSapienceState>
+		<damageProperties>
+			<apparelDamageOffset>100</apparelDamageOffset>
+			<spawnedBiproductMult>0.5</spawnedBiproductMult>
+			<apparelDamageMultiplier>1.5</apparelDamageMultiplier>
+		</damageProperties>
+	</Pawnmorph.MutagenDef>
+
+
+	<Pawnmorph.MutagenDef ParentName="AspectGivingMutagenBase">
+		<defName>AspectGivingMutagen</defName>
+	</Pawnmorph.MutagenDef>
+
+	<!-- 
+		this mutagen is going to be used for the chaomorph mutation and mutagenic buildup from the fallout event 
+	-->
+	<Pawnmorph.MutagenDef ParentName="AspectGivingMutagenBase">
+		<defName>ChaoticMutagen</defName>
+		<transformedSapienceDrop>0.4~0.9</transformedSapienceDrop>
+		<aspectGivers>
+			<li Class="Pawnmorph.Aspects.RandomGiver">
+				<entries>
+					<li>
+						<!-- on average this would require 20 mutations to give  -->
+						<aspect>MutagenInfused</aspect>
+						<chance>0.15</chance>
+						<aspectStage>0</aspectStage>
+					</li>
+					<li>
+						<aspect>MutagenInfused</aspect> <!-- this is the nueutralized varient -->
+						<chance>0.15</chance>
+						<aspectStage>1</aspectStage>
+					</li>
+					<li>
+						<aspect>ColorationNatural</aspect>
+						<chance>0.0015</chance>
+					</li>
+					<li>
+						<aspect>ColorationAlbinism</aspect>
+						<chance>0.00075</chance>
+					</li>
+					<li>
+						<aspect>ColorationMelanism</aspect>
+						<chance>0.00075</chance>
+					</li>
+					<li>
+						<aspect>ColorationUnnatural</aspect>
+						<chance>0.0005</chance>
+					</li>
+				</entries>
+			</li>
+		</aspectGivers>
+		<damageProperties>
+			<!-- when a pawn turns into a chaomorph they should always destroy their clothing  -->
+			<apparelDamageOffset>100</apparelDamageOffset>
+		</damageProperties>
+	</Pawnmorph.MutagenDef>
+
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
+		<defName>HealerMutagen</defName>
+		<!-- TODO aspects that can be added by the healer mecha serum -->
+	</Pawnmorph.MutagenDef>
+</Defs>

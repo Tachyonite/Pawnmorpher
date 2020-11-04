@@ -4,11 +4,16 @@
     <AnimalNotTaggable>{0} is too genetically corrupted to be added</AnimalNotTaggable>
     <AnimalAddedToDatabase>{0} added to database</AnimalAddedToDatabase>
     <ChamberDatabaseIgnoresDataLimit>Chamber Database Ignores Data Limit</ChamberDatabaseIgnoresDataLimit>
-    <ChamberDatabaseIgnoresDataLimitTooltip>if true, adding things to the chamber database will not require data storage, usefull for debugging</ChamberDatabaseIgnoresDataLimitTooltip>
+    <ChamberDatabaseIgnoresDataLimitTooltip>if true, adding things to the chamber database will not require data storage, useful for debugging</ChamberDatabaseIgnoresDataLimitTooltip>
     <PMStorageSpaceMessage>Provides</PMStorageSpaceMessage>
     <PMAnimalGenomeDescription>stores the genetic information of {ANIMAL}</PMAnimalGenomeDescription>
     <PMChamberAddingMutations>adding mutations</PMChamberAddingMutations>
-    <PMChamberTransforming>transforming {0} into a {1}</PMChamberTransforming>
+    <PMChamberTransforming> - Transforming {0} into {1}</PMChamberTransforming>
     <PMMergeGizmo>Merge</PMMergeGizmo>
     <PMCannotTransformPrisoner>Cannot transform {0}</PMCannotTransformPrisoner>
+    <PMWaitingForPawn>waiting for pawn</PMWaitingForPawn>
+    <PMWaitingForPawnMerging>waiting for pawn</PMWaitingForPawnMerging>
+    <PMIdle>Idle.</PMIdle>
+    <PMActive>Active.</PMActive>
+    <PMDatabaseWithoutPower>Genebanks have lost power, cannot record new data</PMDatabaseWithoutPower>
 </LanguageData>

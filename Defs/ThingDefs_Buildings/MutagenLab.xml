@@ -159,12 +159,8 @@
 		</graphicData>
 		<castEdgeShadows>true</castEdgeShadows>
 		<staticSunShadowHeight>0.20</staticSunShadowHeight>
-		<costStuffCount>50</costStuffCount>
-		<stuffCategories>
-			<li>Metallic</li>
-		</stuffCategories>
 		<costList>
-			<Steel>100</Steel>
+			<Steel>150</Steel>
 			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<altitudeLayer>Building</altitudeLayer>

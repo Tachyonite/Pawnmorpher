@@ -1,0 +1,15 @@
+<Defs>
+    <JobDef>
+        <defName>PMResurrect</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_ResurrectTf</driverClass>
+        <reportString>resurrecting TargetA.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+
+    <JobDef>
+        <defName>RecruitSapientFormerHuman</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_RecruitSapientFormerHuman</driverClass>
+        <reportString>recruiting TargetA</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+</Defs>

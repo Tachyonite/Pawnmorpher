@@ -331,6 +331,7 @@
     <Compile Include="BackstoryDefOf.cs" />
     <Compile Include="BodyUtilities.cs" />
     <Compile Include="BuildingDefOf.cs" />
+    <Compile Include="Buildings\MutagenTank.cs" />
     <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
@@ -365,6 +366,7 @@
     <Compile Include="Damage\Worker_MutagenicStab.cs" />
     <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
     <Compile Include="DebugUtils\DBG_TrainingWorkGiver.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.Aliens.cs" />
     <Compile Include="DebugUtils\DebugMenu_AddMutation.cs" />
     <Compile Include="DebugUtils\DebugMenu_AddMutations.cs" />
     <Compile Include="DebugUtils\PMDebugActions.cs" />
@@ -418,10 +420,13 @@
     <Compile Include="Hediffs\Giver_MutationClass.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\IInitializable.cs" />
+    <Compile Include="Hediffs\IRaceMutationRetriever.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
     <Compile Include="Hediffs\MorphTransformationStage.cs" />
     <Compile Include="Hediffs\MutationDef.cs" />
     <Compile Include="Hediffs\MutationEntry.cs" />
+    <Compile Include="Hediffs\MutationRetrievers\Morph.cs" />
+    <Compile Include="Hediffs\MutationRetrievers\Mutations.cs" />
     <Compile Include="Hediffs\MutationStage.cs" />
     <Compile Include="Hediffs\Giver_MutationCategoryGiver.cs" />
     <Compile Include="Hediffs\IDescriptiveStage.cs" />
@@ -451,6 +456,7 @@
     <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
     <Compile Include="HPatches\IngestJobPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
+    <Compile Include="HPatches\ITabPatches.cs" />
     <Compile Include="HPatches\JobGiver_GetJoyPatches.cs" />
     <Compile Include="HPatches\MentalBreakPatches.cs" />
     <Compile Include="HPatches\NativeVerbPatches.cs" />
@@ -529,6 +535,7 @@
     <Compile Include="MutationSite.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PartAddress.cs" />
+    <Compile Include="PatchOperations\DebugAdd.cs" />
     <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
@@ -569,6 +576,7 @@
     <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
     <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
     <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
+    <Compile Include="ThingComps\FillabeBarDrawerProps.cs" />
     <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />

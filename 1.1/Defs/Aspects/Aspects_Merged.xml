@@ -1,0 +1,14 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
+	<Pawnmorph.AspectDef>
+		<defName>SplitMind</defName>
+		<label>split mind</label>
+		<description>TODO</description>
+		<aspectType>Pawnmorph.Aspects.SplitMind</aspectType>
+		<stages>
+			<li>
+				<label>split mind</label>
+				<description>TODO</description>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+</Defs>

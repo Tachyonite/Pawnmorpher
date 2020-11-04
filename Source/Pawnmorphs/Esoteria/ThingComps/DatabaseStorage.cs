@@ -18,6 +18,22 @@ namespace Pawnmorph.ThingComps
         private bool _added;
         private DatabaseStorageProperties Props => (DatabaseStorageProperties) props;
 
+        private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
+
+        public override void Notify_SignalReceived(Signal signal)
+        {
+            if (signal.tag == CompPowerTrader.PowerTurnedOnSignal)
+            {
+                Database.NotifyPowerOn(Props.storageAmount); 
+            }else if (signal.tag == CompPowerTrader.PowerTurnedOffSignal)
+            {
+                Database.NotifyLostPower(Props.storageAmount); 
+            }
+
+
+            base.Notify_SignalReceived(signal);
+        }
+
         /// <summary>
         ///     called after this thing is destroyed
         /// </summary>
@@ -43,7 +59,7 @@ namespace Pawnmorph.ThingComps
         {
             StringBuilder builder = new StringBuilder(); 
             var wComp = Find.World.GetComponent<ChamberDatabase>();
-            var provideStr = $"{Props.storageAmount} MB/{wComp.TotalStorage} MB";
+            var provideStr = $"{DatabaseUtilities.GetStorageString(Props.storageAmount)}/{DatabaseUtilities.GetStorageString(wComp.TotalStorage)}";
 
             builder.AppendLine(PROVIDE_MESSAGE_TAG.Translate());
             builder.Append(provideStr);

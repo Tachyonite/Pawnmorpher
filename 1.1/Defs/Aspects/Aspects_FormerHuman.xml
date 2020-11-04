@@ -1,0 +1,26 @@
+<Defs>
+	<Pawnmorph.AspectDef>
+		<defName>PrimalWish</defName>
+		<label>primal wish</label>
+		<description>This pawn desires a simple life. So simple, some might comment, that it is suited more for an animal than a human. Indeed, this pawn does envy animals, and would rather be one than human.</description>
+		<transferToAnimal>true</transferToAnimal>
+		<stages>
+			<li>
+				<label>primal wish</label>
+				<description>[PAWN_nameDef] desires a simple life. So simple, some might comment, that it is suited more for an animal than a human. Indeed, [PAWN_nameDef] does envy animals, and would rather be one than human.</description>
+				<messageText>Upon becoming a morph, [PAWN_nameDef] has gained a 'primal wish'. [PAWN_pronoun] might want to go even further with their mutations...</messageText>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef>
+		<defName>Beastmaster</defName>
+		<label>beastmaster</label>
+		<description>This pawn likes the company of animals who were once people, and feels more at ease being around them.</description>
+		<stages>
+			<li>
+				<label>beastmaster</label>
+				<description>[PAWN_nameDef] likes the company of animals who were once people, and feels more at ease being around them.</description>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+</Defs>

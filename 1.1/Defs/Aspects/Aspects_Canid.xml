@@ -1,0 +1,26 @@
+<Defs>
+	<Pawnmorph.AspectDef Abstract="true" Name="CanidAspect">
+		<labelColor>(240,239,235)</labelColor>
+	</Pawnmorph.AspectDef>
+	<Pawnmorph.AspectDef ParentName="CanidAspect">
+		<defName>NaturalHunter</defName>
+		<label>natural hunter</label>
+		<description>This pawn's mind is now instinctively attuned to the methods of hunting.</description>
+		<stages>
+			<li>
+				<label>natural hunter</label>
+				<description>[PAWN_nameDef]'s mind is now instinctively attuned to the methods of hunting.</description>
+				<skillMods>
+					<li>
+						<skillDef>Animals</skillDef>
+						<addedXp>500</addedXp>
+						<passionOffset>1</passionOffset>
+					</li>
+				</skillMods>
+				<statOffsets>
+					<HuntingStealth>0.3</HuntingStealth>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+</Defs>

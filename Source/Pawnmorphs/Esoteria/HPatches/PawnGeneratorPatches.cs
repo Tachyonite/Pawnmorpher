@@ -2,10 +2,13 @@
 // last updated 11/02/2019  10:07 AM
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
 using HarmonyLib;
+using JetBrains.Annotations;
 using Pawnmorph.Factions;
+using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
 using Verse.Noise;
@@ -19,6 +22,24 @@ namespace Pawnmorph.HPatches
     public static class PawnGeneratorPatches
     {
 
+        static void HandleAlienRaceExtensions([NotNull] Pawn pawn, [NotNull] RaceMutationSettingsExtension ext)
+        {
+            var retrievers = ext.mutationRetrievers;
+            if (retrievers == null || retrievers.Count == 0 || pawn.def == null) return;
+
+            foreach (MutationDef mutationDef in retrievers.GetMutationsFor(pawn.def, pawn))
+            {
+                var mutations = MutationUtilities.AddMutation(pawn, mutationDef, ancillaryEffects:MutationUtilities.AncillaryMutationEffects.None);
+
+
+                foreach (Hediff_AddedMutation mutationAdded in mutations)
+                {
+                    var adjComp = mutationAdded.SeverityAdjust;
+                    if (adjComp != null) mutationAdded.Severity = adjComp.NaturalSeverityLimit; 
+                }
+            }
+        }
+
         [HarmonyPatch(typeof(PawnGenerator))]
         [HarmonyPatch("GenerateInitialHediffs")] //might want to patch PawnGroupKindWorker_Normal,Trader instead 
         [HarmonyPatch(new Type[]
@@ -29,7 +50,15 @@ namespace Pawnmorph.HPatches
         {
             public static void Postfix(Pawn pawn, PawnGenerationRequest request)
             {
-                
+
+                var raceExt = pawn?.def?.GetModExtension<RaceMutationSettingsExtension>();
+                if (raceExt?.immuneToAll == true) return;
+                if (raceExt != null)
+                {
+                    HandleAlienRaceExtensions(pawn, raceExt);
+                }
+
+
                 var backstories = pawn.story?.AllBackstories ?? Enumerable.Empty<Backstory>();
                 var extensions = backstories.Select(b => DefDatabase<BackstoryDef>.GetNamedSilentFail(b.identifier))
                                                .Where(bd => bd != null)

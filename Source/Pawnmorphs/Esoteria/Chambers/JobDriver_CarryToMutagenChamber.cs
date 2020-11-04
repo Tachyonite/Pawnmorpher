@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using Pawnmorph.Chambers;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -69,6 +70,17 @@ namespace Pawnmorph
             this.FailOnAggroMentalState(TargetIndex.A);
             this.FailOn(() => !this.MutagenicChamber.Accepts(this.Takee));
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell).FailOnDestroyedNullOrForbidden(TargetIndex.A).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOn(() => this.MutagenicChamber.GetDirectlyHeldThings().Count > 0).FailOn(() => !this.Takee.Downed).FailOn(() => !this.pawn.CanReach(this.Takee, PathEndMode.OnCell, Danger.Deadly, false, TraverseMode.ByPawn)).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
+            yield return Toils_General.Wait(60).WithProgressBarToilDelay(TargetIndex.A);
+            Toil toil2 = new Toil();
+            toil2.initAction = delegate
+            {
+                Thing thing = job.targetA.Thing;
+                base.Map.designationManager.DesignationOn(thing, DesignationDefOf.Strip)?.Delete();
+                (thing as IStrippable)?.Strip();
+                pawn.records.Increment(RecordDefOf.BodiesStripped);
+            };
+            toil2.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return toil2;
             yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, false, false);
             yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
             Toil prepare = Toils_General.Wait(500, TargetIndex.None);
@@ -79,6 +91,7 @@ namespace Pawnmorph
             {
                 initAction = delegate ()
                 {
+                    Takee?.Strip();
                     this.MutagenicChamber.TryAcceptThing(this.Takee, true);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant

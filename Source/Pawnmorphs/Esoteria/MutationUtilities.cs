@@ -13,6 +13,7 @@ using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 using Pawnmorph.Hediffs;
+using Pawnmorph.User_Interface;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -300,7 +301,28 @@ namespace Pawnmorph
             return isProsthetic && hediff is Hediff_AddedPart; 
         }
 
-        
+        /// <summary>
+        /// Gets the mutations for the given race and preGenerated pawn
+        /// </summary>
+        /// <param name="retrievers">The retrievers.</param>
+        /// <param name="race">The race.</param>
+        /// <param name="preGeneratedPawn">The pre generated pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// retrievers
+        /// or
+        /// race
+        /// </exception>
+        [NotNull]
+        public static IEnumerable<MutationDef> GetMutationsFor([NotNull] this IEnumerable<IRaceMutationRetriever> retrievers,
+                                                               [NotNull] ThingDef race, [CanBeNull] Pawn preGeneratedPawn)
+        {
+            if (retrievers == null) throw new ArgumentNullException(nameof(retrievers));
+            if (race == null) throw new ArgumentNullException(nameof(race));
+
+            return retrievers.SelectMany(r => r.GetMutationsFor(race, preGeneratedPawn)).Distinct();
+        }
+
 
         /// <summary>
         /// Adds the mutation to the given pawn
@@ -319,6 +341,74 @@ namespace Pawnmorph
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             return AddMutation(pawn, mutation, mutation.parts, countToAdd,  ancillaryEffects, force);
+        }
+
+
+        /// <summary>
+        /// Applies the mutation retrievers.
+        /// </summary>
+        /// <param name="retrievers">The retrievers.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="effects">The effects.</param>
+        /// <returns></returns>
+        public static MutationResult ApplyMutationRetrievers([NotNull] this IEnumerable<IRaceMutationRetriever> retrievers,
+                                                             [NotNull] Pawn pawn, AncillaryMutationEffects? effects = null)
+        {
+            var mutations = retrievers.GetMutationsFor(pawn.def, pawn);
+
+            List<Hediff_AddedMutation> mutationsAdded = new List<Hediff_AddedMutation>();
+
+            foreach (MutationDef mutationDef in mutations)
+            {
+                mutationsAdded.AddRange(AddMutation(pawn, mutationDef, ancillaryEffects:effects));
+            }
+
+            return new MutationResult(mutationsAdded); 
+
+        }
+
+        /// <summary>
+        /// Applies the mutation data.
+        /// </summary>
+        /// <param name="mData">The m data.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="ancillaryEffects">The ancillary effects.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// mData
+        /// or
+        /// pawn
+        /// </exception>
+        public static MutationResult ApplyMutationData([NotNull] this IReadOnlyMutationData mData, [NotNull] Pawn pawn, AncillaryMutationEffects? ancillaryEffects = null)
+        {
+            
+            if (mData == null) throw new ArgumentNullException(nameof(mData));
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (mData.Removing)
+            {
+
+                var mutation = pawn.health?.hediffSet?.hediffs.Where(h => h.def == mData.Mutation && h.Part == mData.Part)
+                                   .OfType<Hediff_AddedMutation>();
+                foreach (Hediff_AddedMutation hediffAddedMutation in mutation.MakeSafe())
+                {
+                    hediffAddedMutation.MarkForRemoval();
+                }
+
+                return MutationResult.Empty;
+            }
+            
+            var mutations = AddMutation(pawn, mData.Mutation, mData.Part, ancillaryEffects);
+
+            foreach (Hediff_AddedMutation mutation in mutations)
+            {
+                mutation.Severity = mData.Severity;
+                if (mutation.SeverityAdjust != null)
+                {
+                    mutation.SeverityAdjust.Halted = mData.IsHalted; 
+                }
+            }
+
+            return mutations; 
         }
 
         /// <summary>
@@ -538,10 +628,27 @@ namespace Pawnmorph
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (record == null) throw new ArgumentNullException(nameof(record));
-            HediffSet hSet = pawn.health?.hediffSet;
-            if (hSet == null) return MutationResult.Empty;
 
-            if (record.IsMissingAtAllIn(pawn)) return MutationResult.Empty;
+            var debugLog = pawn.GetMutationTracker()?.DebugMessagesEnabled == true; 
+            HediffSet hSet = pawn.health?.hediffSet;
+            if (hSet == null)
+            {
+                if (debugLog)
+                {
+                    Log.Message($"{pawn.Label} has no hediffSet!");
+                }
+                return MutationResult.Empty;
+            }
+
+            if (record.IsMissingAtAllIn(pawn))
+            {
+                if (debugLog)
+                {
+                    Log.Message($"{pawn.Label} is missing all parts of {record.Label}");
+                }
+                
+                return MutationResult.Empty;
+            }
 
 
            
@@ -550,11 +657,21 @@ namespace Pawnmorph
             if (existingMutation != null)
             {
                 existingMutation.ResumeAdjustment();
+                if (debugLog)
+                {
+                    Log.Message($"{pawn.Label} already has {mutation.defName}");
+
+                }
                 return MutationResult.Empty;
             }
 
             if (HasAnyBlockingMutations(pawn, mutation, record))
             {
+                if (debugLog)
+                {
+                    Log.Message($"{pawn.Label} has blocking mutations!");
+
+                }
                 return MutationResult.Empty;
             }
 
@@ -997,11 +1114,14 @@ namespace Pawnmorph
             return false; 
         }
 
+        //TODO change this to enum flag 
         /// <summary>
         ///     simple struct to contain all options for addition actions to be taken when adding a mutation
         /// </summary>
         public readonly struct AncillaryMutationEffects
         {
+            
+
             /// <summary>
             /// Initializes a new instance of the <see cref="AncillaryMutationEffects" /> struct.
             /// </summary>
@@ -1036,6 +1156,25 @@ namespace Pawnmorph
             ///     The none.
             /// </value>
             public static AncillaryMutationEffects None { get; } = new AncillaryMutationEffects(false, false, false, false,false);
+
+            /// <summary>
+            /// Gets the no smoke instance
+            /// </summary>
+            /// <value>
+            /// The no smoke.
+            /// </value>
+            public static AncillaryMutationEffects NoSmoke { get; } =
+                new AncillaryMutationEffects(true, true, true, false, false);
+
+
+            /// <summary>
+            /// Gets the history only.
+            /// </summary>
+            /// <value>
+            /// The history only.
+            /// </value>
+            public static AncillaryMutationEffects HistoryOnly { get; } =
+                new AncillaryMutationEffects(true, false, true, false, false); 
 
             /// <summary>
             ///     Gets a value indicating whether the  tale should be added.

@@ -55,7 +55,12 @@ namespace Pawnmorph.Jobs
             yield return toil;
             Toil toil2 = new Toil
             {
-                initAction = delegate { Chamber.TryAcceptThing(Prisoner); }, defaultCompleteMode = ToilCompleteMode.Instant
+                initAction = delegate
+                {
+                    Prisoner?.Strip();
+                    
+                    Chamber.TryAcceptThing(Prisoner);
+                }, defaultCompleteMode = ToilCompleteMode.Instant
             };
             yield return toil2;
         }

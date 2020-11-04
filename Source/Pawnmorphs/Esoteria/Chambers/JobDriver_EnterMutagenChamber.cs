@@ -44,6 +44,8 @@ namespace Pawnmorph
                 var pod = (MutaChamber)actor.CurJob.targetA.Thing;
                 Action action = delegate
                 {
+                    actor?.Strip();
+
                     actor.DeSpawn();
                     pod.TryAcceptThing(actor);
                 };

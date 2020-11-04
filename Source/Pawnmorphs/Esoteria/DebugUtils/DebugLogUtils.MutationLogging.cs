@@ -142,5 +142,16 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        private static void LogMutationValue()
+        {
+            var builder = new StringBuilder();
+            foreach (MutationDef mutation in DefDatabase<MutationDef>.AllDefs)
+                builder.AppendLine($"{mutation.defName},{mutation.value}");
+
+            Log.Message(builder.ToString());
+        }
+
     }
 }

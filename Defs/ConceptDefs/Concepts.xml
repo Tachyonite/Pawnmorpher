@@ -44,14 +44,14 @@
 		<label>PM: Genebanks</label>
 		<needsOpportunity>true</needsOpportunity>
 		<priority>11</priority>
-		<helpText>TODO</helpText>
+		<helpText>Genebanks are needed to store tagged animals and mutations for use in the Mutagenic chambers. Each Genebank building supplies a fixed amount of storage that is distributed across the whole system so long as it is installed. Genebanks can be safely removed or moved so long as you have at least one bank’s worth of free space, otherwise you will lose some tagged information.</helpText>
 	</ConceptDef>
 	<ConceptDef>
 		<defName>PM_PartPicker</defName>
-		<label>PM: Pert Picker</label>
+		<label>PM: Mutation Configuration Menu</label>
 		<needsOpportunity>true</needsOpportunity>
 		<priority>11</priority>
-		<helpText>TODO</helpText>
+		<helpText>You can use a muta chamber to specify exactly what mutations you want a pawn to have. In order to use a mutation in the part picker it must be first analyzed by either tagging the related animal or by using a genome acquired rarely from traders or as quest rewards. Once you select the mutations you want the pawn to have and hit ‘Accept’ the muta chamber will slowly add them over time, consuming slurry and power</helpText>
 	</ConceptDef>
 
 </Defs>

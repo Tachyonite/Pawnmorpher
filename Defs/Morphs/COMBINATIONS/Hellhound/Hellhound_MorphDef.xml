@@ -7,7 +7,7 @@
 		<label>hellhoundmorph</label>
 		<race>EtherHellhound</race>
 		<classification>Canid</classification>
-		<description>TODO</description>
+		<description>A large, heavily mutated canid morph resembling a warg morph but significantly larger and usually with additional mutations.</description>
 		<transformSettings>
 			<transformationMemory>PM_HellhoundTransformationMemory</transformationMemory>
 			<revertedMemory>PM_HellhoundRevertedMemory</revertedMemory>

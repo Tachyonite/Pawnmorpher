@@ -164,9 +164,11 @@ namespace Pawnmorph
 
             var db = Database;
             Widgets.Label(labelRect, HEADER_LABEL.Translate());
-            Widgets.Label(availableRect, db.FreeStorage.ToString() + STORAGE_SUFFIX);
-            Widgets.Label(totalRect, db.TotalStorage.ToString() + STORAGE_SUFFIX);
+            Widgets.Label(availableRect, DatabaseUtilities.GetStorageString(db.FreeStorage));
+            Widgets.Label(totalRect, DatabaseUtilities.GetStorageString(db.TotalStorage));
         }
+
+      
 
         /// <summary>
         ///     called just before the tab is opened
@@ -272,17 +274,24 @@ namespace Pawnmorph
             Rect mainView = inRect.ContractedBy(10f);
 
             var outRect = new Rect(inRect.x, inRect.y, mainView.width, mainView.height - inRect.y - 10f);
+            const float rowHeight = 30;
+            const float lineWidth = 5;
+            const float buffer = 5;
+            //draw the header row
+            var viewRectHeight = (rowHeight + lineWidth + buffer) / 2f;
+            viewRectHeight += (rowHeight + lineWidth) / 2f;
+            viewRectHeight += _rowEntries.Count * rowHeight;
+
+
+            viewRectHeight = Mathf.Max(viewRectHeight, mainView.height); 
 
             var viewRect = new Rect(mainView.x + mainView.width / 2f + 10f, mainView.y, mainView.width / 2f - 10f - 16f,
-                                    mainView.height);
+                                   viewRectHeight);
             float viewWidth = viewRect.width / 3 - 10f;
             Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
             try
             {
-                const float rowHeight = 30;
-                const float lineWidth = 5;
-                const float buffer = 5;
-                //draw the header row
+                
 
 
                 var font = Text.Font;

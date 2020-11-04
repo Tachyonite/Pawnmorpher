@@ -1,0 +1,91 @@
+<Defs>
+	<!-- ======= Biome ======= -->
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Arid</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Cold</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Temperate</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Tropical</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<!-- === Domestication === -->
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Farm</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Pet</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<!-- ======= Role ======== -->
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Combat</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Crafter</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Production</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Social</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<!-- ======= Genus ======= -->
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Avian</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Bovid</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Canid</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Cervid</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Chimera</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Feline</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Powerful</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Rodent</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Reptile</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<!-- special -->
+	<Pawnmorph.MorphCategoryDef Abstract="true" Name="MorphRestrictedCategory"></Pawnmorph.MorphCategoryDef>
+	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
+		<defName>Combo</defName>
+	</Pawnmorph.MorphCategoryDef>
+</Defs>
