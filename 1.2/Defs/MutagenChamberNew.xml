@@ -47,7 +47,7 @@
                 <explosiveRadius>2.66</explosiveRadius>
                 <explosiveDamageType>Flame</explosiveDamageType>
             </li>
-            <li Class="CompProperties_Refuelable">
+            <li Class=" Pawnmorph.ThingComps.SlurryFueledProps">
                 <fuelConsumptionRate>1.7</fuelConsumptionRate>
                 <fuelCapacity>1</fuelCapacity>
                 <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
