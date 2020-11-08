@@ -495,6 +495,7 @@
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="InteractionWorker_Bleat.cs" />
     <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
@@ -580,6 +581,7 @@
     <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
+    <Compile Include="ThingComps\SlurryFueled.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />

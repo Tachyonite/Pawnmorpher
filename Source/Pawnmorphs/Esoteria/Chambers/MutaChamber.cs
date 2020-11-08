@@ -301,30 +301,8 @@ namespace Pawnmorph.Chambers
             }
         }
 
-        [CanBeNull]
-        CompRefuelable FindMutagenTankComp()
-        {
-            var room = Position.GetRoom(Map);
 
-            var tanks = room?.ContainedThings(PMThingDefOf.PM_MutagenTank)
-                            ?.Select(c => c.TryGetComp<CompRefuelable>())
-                             .Where(c => c != null);
-
-
-            return tanks?.FirstOrDefault(c => c.HasFuel); 
-
-        }
-
-        void TryRefillFromTank()
-        {
-            var tank = FindMutagenTankComp();
-            if (tank == null) return;
-
-            var refuelAmount = Mathf.Min(Refuelable.TargetFuelLevel - Refuelable.Fuel, tank.Fuel);
-            Refuelable.Refuel(refuelAmount); 
-            tank.ConsumeFuel(refuelAmount);
-        }
-    
+     
 
 
         /// <summary>
@@ -501,7 +479,6 @@ namespace Pawnmorph.Chambers
             LessonAutoActivator.TeachOpportunity(PMConceptDefOf.Tagging, OpportunityType.Important);
         }
 
-        private bool _hasFuelLast; 
 
         /// <summary>
         ///     Ticks this instance.
@@ -512,22 +489,10 @@ namespace Pawnmorph.Chambers
 
             if (!Refuelable.HasFuel)
             {
-                if (_hasFuelLast)
-                {
-                    TryRefillFromTank();
-                }
-                else if (this.IsHashIntervalTick(REFUEL_CHECK_TIMER))
-                {
-                    TryRefillFromTank();
-                }
-                _hasFuelLast = false;
+              
                 return;
             }
-            else
-            {
-                _hasFuelLast = true;
-            }
-
+            
             if (_innerState != ChamberState.Active) return;
             if (_timer <= 0)
             {
