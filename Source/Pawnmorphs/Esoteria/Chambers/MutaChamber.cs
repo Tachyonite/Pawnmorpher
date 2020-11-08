@@ -274,6 +274,13 @@ namespace Pawnmorph.Chambers
             
         }
 
+        int GetMutasilkAmountFrom(Apparel apparel)
+        {
+            var matAmount = apparel.def.costList?.Select(s => s.count).Sum() ?? 10;
+            var amt = Mathf.RoundToInt(matAmount * (((float) apparel.HitPoints)) * 0.05f);
+            return Mathf.Min(amt, 75); 
+        }
+
         /// <summary>
         ///     exposes data for serialization/deserialization
         /// </summary>
@@ -725,6 +732,7 @@ namespace Pawnmorph.Chambers
                     FinalizeMutations();
                     break;
                 case ChamberUse.Merge:
+                    
                     var otherPawn = (Pawn)_scratchList[1];
                     if (otherPawn == null)
                     {
@@ -732,6 +740,9 @@ namespace Pawnmorph.Chambers
                         tfRequest = null;
                         break;
                     }
+                    SpawnSilkFor(pawn.apparel);
+                    SpawnSilkFor(otherPawn.apparel); 
+
 
                     tfRequest = new TransformationRequest(_targetAnimal, pawn, otherPawn)
                     {
@@ -744,6 +755,7 @@ namespace Pawnmorph.Chambers
                     mutagen = MutagenDefOf.MergeMutagen.MutagenCached;
                     break;
                 case ChamberUse.Tf:
+                    SpawnSilkFor(pawn.apparel); 
                     PawnKindDef animal = SelectorComp.ChosenKind;
                     if (animal == null) animal = GetRandomAnimal();
 
@@ -782,6 +794,24 @@ namespace Pawnmorph.Chambers
                     oPawn.DeSpawn();
             }
 
+        }
+
+        private void SpawnSilkFor([CanBeNull] Pawn_ApparelTracker apparel)
+        {
+            if (apparel == null) return;
+
+
+            int count = 0;
+            foreach (Apparel app in apparel.WornApparel)
+            {
+                if(app == null) continue;
+                count += GetMutasilkAmountFrom(app); 
+            }
+
+            var silk = ThingMaker.MakeThing(PMThingDefOf.Morphsilk);
+            silk.stackCount = count;
+            GenPlace.TryPlaceThing(silk, Position, Map, ThingPlaceMode.Near);
+            apparel.DestroyAll();
         }
 
         private void ResetChamber()
