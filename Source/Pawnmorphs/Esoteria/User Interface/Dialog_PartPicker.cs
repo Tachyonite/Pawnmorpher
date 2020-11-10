@@ -492,38 +492,8 @@ namespace Pawnmorph.User_Interface
                         Widgets.ListSeparator(ref curY, partListViewRect.width, mutationDef.LabelCap);
                     }
 
-                    // Draw the various labels for the severity bar (need to refine this later).
-                    string stageLabelText = $"Stage {mutationsOfDef.FirstOrDefault().CurStageIndex}: {mutationsOfDef.FirstOrDefault().LabelCap}";
-                    Rect severityLabelsRect = new Rect(partListViewRect.x, curY, partListViewRect.width, Text.CalcHeight(stageLabelText, partListViewRect.width));
-                    Text.Anchor = TextAnchor.MiddleLeft;
-                    Widgets.Label(severityLabelsRect, stageLabelText);
-                    Text.Anchor = TextAnchor.MiddleRight;
-                    Widgets.Label(severityLabelsRect, mutationsOfDef.FirstOrDefault().Severity.ToString("n2"));
-                    Text.Anchor = TextAnchor.UpperLeft;
-                    curY += severityLabelsRect.height;
-
-                    // Draw the severity slider
-                    float curSeverity = mutationsOfDef.Select(n => n.Severity).Average();
-                    float newSeverity = Widgets.HorizontalSlider(new Rect(partListViewRect.x, curY, partListViewRect.width, SLIDER_HEIGHT), curSeverity, mutationDef.minSeverity, mutationDef.maxSeverity);
-                    if (curSeverity != newSeverity)
-                    {
-                        curSeverity = newSeverity;
-                        foreach (Hediff_AddedMutation mutationOfDef in mutationsOfDef)
-                        {
-                            MutationData relevantEntry = addedMutations.MutationsByPartAndLayer(mutationOfDef.Part, layer);
-                            if (relevantEntry != null)
-                            {
-                                relevantEntry.severity = newSeverity;
-                            }
-                            else
-                            {
-                                addedMutations.AddData(mutationOfDef.Def, mutationOfDef.Part, newSeverity, mutationOfDef.ProgressionHalted, false);
-                            }
-                            mutationOfDef.Severity = newSeverity;
-                        }
-                        recachePreview = true;
-                    }
-                    curY += SLIDER_HEIGHT;
+                    if(mutationDef.HasComp(typeof(Comp_MutationSeverityAdjust)))
+                        DrawSeverityBar(ref curY, ref partListViewRect, layer, mutationDef, mutationsOfDef);
 
                     // If the mutation has the ability to be paused, show the toggle for it.
                     // This is a CheckboxMulti to handle edge cases, but likely could be replaced with a simple Checkbox.
@@ -546,7 +516,7 @@ namespace Pawnmorph.User_Interface
                                 {
                                     bool initialHediffIsHalted = cachedInitialHediffs.Where(m => m.hediff == mutationOfDef).FirstOrDefault().isHalted;
                                     if (newState == MultiCheckboxState.On == initialHediffIsHalted)
-                                    addedMutations.RemoveByPartAndLayer(mutationOfDef.Part, layer);
+                                        addedMutations.RemoveByPartAndLayer(mutationOfDef.Part, layer);
                                 }
                                 if (relevantEntry != null)
                                 {
@@ -576,6 +546,42 @@ namespace Pawnmorph.User_Interface
                     partDescBuilder.AppendLine();
                 }
             }
+        }
+
+        private void DrawSeverityBar(ref float curY, ref Rect partListViewRect, MutationLayer layer, MutationDef mutationDef, List<Hediff_AddedMutation> mutationsOfDef)
+        {
+            // Draw the various labels for the severity bar (need to refine this later).
+            string stageLabelText = $"Stage {mutationsOfDef.FirstOrDefault().CurStageIndex}: {mutationsOfDef.FirstOrDefault().LabelCap}";
+            Rect severityLabelsRect = new Rect(partListViewRect.x, curY, partListViewRect.width, Text.CalcHeight(stageLabelText, partListViewRect.width));
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(severityLabelsRect, stageLabelText);
+            Text.Anchor = TextAnchor.MiddleRight;
+            Widgets.Label(severityLabelsRect, mutationsOfDef.FirstOrDefault().Severity.ToString("n2"));
+            Text.Anchor = TextAnchor.UpperLeft;
+            curY += severityLabelsRect.height;
+
+            // Draw the severity slider
+            float curSeverity = mutationsOfDef.Select(n => n.Severity).Average();
+            float newSeverity = Widgets.HorizontalSlider(new Rect(partListViewRect.x, curY, partListViewRect.width, SLIDER_HEIGHT), curSeverity, mutationDef.minSeverity, mutationDef.maxSeverity);
+            if (curSeverity != newSeverity)
+            {
+                curSeverity = newSeverity;
+                foreach (Hediff_AddedMutation mutationOfDef in mutationsOfDef)
+                {
+                    MutationData relevantEntry = addedMutations.MutationsByPartAndLayer(mutationOfDef.Part, layer);
+                    if (relevantEntry != null)
+                    {
+                        relevantEntry.severity = newSeverity;
+                    }
+                    else
+                    {
+                        addedMutations.AddData(mutationOfDef.Def, mutationOfDef.Part, newSeverity, mutationOfDef.ProgressionHalted, false);
+                    }
+                    mutationOfDef.Severity = newSeverity;
+                }
+                recachePreview = true;
+            }
+            curY += SLIDER_HEIGHT;
         }
 
         private const string REMOVING_MUTATION_DESC = "PPRemivingMutationDesc";
