@@ -1,8 +1,13 @@
 <Patch>
-    <Operation Class="PatchOperationAdd">
-        <xpath>/Defs/FactionDef[defName="Empire"]/permanentEnemyToEveryoneExcept</xpath>
-        <value>
-            <li>PawnmorpherPlayerColony</li>
-        </value>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Ludeon.RimWorld.Royalty</li>
+        </mods>
+        <match Class="PatchOperationAdd">
+            <xpath>/Defs/FactionDef[defName="Empire"]/permanentEnemyToEveryoneExcept</xpath>
+            <value>
+                <li>PawnmorpherPlayerColony</li>
+            </value>
+        </match>
     </Operation>
 </Patch>
