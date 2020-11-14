@@ -3,7 +3,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>PM_Genebank</defName>
     <label>genebank</label>
-    <description>A morphsilk tape-reel storage device that's optimised for storing genetic information. Can store 8 Mutabytes of information.</description>
+    <description>A morphsilk tape-reel storage device that's optimised for storing genetic information. Can store 64 kMutabytes of information.</description>
     <graphicData>
       <texPath>Things/Building/GeneticStorage/GeneticStorage</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
