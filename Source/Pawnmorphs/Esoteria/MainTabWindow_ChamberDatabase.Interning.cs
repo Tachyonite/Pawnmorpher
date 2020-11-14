@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Verse;
 
 namespace Pawnmorph
@@ -55,7 +56,7 @@ namespace Pawnmorph
                 
             }
 
-            _internDict[rEntry] = rEntry.label + " : " + rEntry.storageSpaceUsed + STORAGE_SUFFIX; //only calculate this once 
+            _internDict[rEntry] = rEntry.label + " : " + DatabaseUtilities.GetStorageString(rEntry.storageSpaceUsed); //only calculate this once 
             return _internDict[rEntry]; 
         }
 
