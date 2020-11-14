@@ -1,4 +1,24 @@
 <Defs>
+	<ResearchProjectDef Name="PMResearch" Abstract="True">
+		<tab>Pawnmorpher</tab>
+		<techLevel>Industrial</techLevel>
+		<baseCost>500</baseCost>
+	</ResearchProjectDef>
+
+
+	<ResearchProjectDef Name="PMSpaceResearch" ParentName="PMResearch" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<baseCost>1000</baseCost>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef Name="PMSpaceResearchExpensive" ParentName="PMSpaceResearch" Abstract="True">
+		<baseCost>2000</baseCost>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
 	<ResearchProjectDef>
 		<defName>MutagenExtraction</defName>
 		<label>Mutagen extraction</label>
@@ -115,6 +135,14 @@
 			<li>AdvancedSerumSynthesis</li>
 			<li>Stabilisation</li>
 		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="PMSpaceResearch">
+		<defName>PM_MutationScanner</defName>
+		<label>Mutation Scanner</label>
+		<description>TODO</description>
+		<researchViewX>3</researchViewX>
+		<researchViewY>2.5</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>

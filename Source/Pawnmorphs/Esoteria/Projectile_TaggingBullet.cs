@@ -45,19 +45,10 @@ namespace EtherGun
         private const int MAX_MUTATIONS_TAGGED = 5;
         private static void TryTagAnimal([NotNull] ChamberDatabase database, [NotNull] Pawn pawn)
         {
-          
             if (database.TaggedAnimals.Contains(pawn.kindDef))
             {
-                if (pawn.kindDef.GetAllMutationsFrom().Taggable().Any(m =>!m.IsTagged()))
-                {
-                    TryTagMutations(database, pawn);
-                    return;
-                }
-                else
-                {
-                    Messages.Message("PMNothingTaggable".Translate(pawn.kindDef.Named("animal")), MessageTypeDefOf.NeutralEvent);
-                    return;
-                }
+                Messages.Message("PMNothingTaggable".Translate(pawn.kindDef.Named("animal")), MessageTypeDefOf.NeutralEvent);
+                return;
             }
 
 

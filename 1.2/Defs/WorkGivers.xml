@@ -12,4 +12,17 @@
         </requiredCapacities>
         <equivalenceGroup>ReleasePrisoner</equivalenceGroup>
     </WorkGiverDef>
+    <WorkGiverDef>
+        <defName>PM_OperateMutationSequencer</defName>
+        <label>operate mutation sequencer scanner</label>
+        <giverClass>Pawnmorph.Work.Giver_WorkAtSequencer</giverClass>
+        <workType>Research</workType>
+        <priorityInType>50</priorityInType>
+        <verb>sequencing</verb>
+        <gerund>sequencing at</gerund>
+        <scannerDef>PM_MutationScanner</scannerDef>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+    </WorkGiverDef>
 </Defs>
