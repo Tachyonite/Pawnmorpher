@@ -26,7 +26,7 @@ namespace Pawnmorph
         {
             mutagenDef = mutagenDef ?? MutagenDefOf.defaultMutagen;
             if (!mutagenDef.CanInfect(pawn)) return 0; 
-            return (pawn.GetStatValue(StatDefOf.ToxicSensitivity) + pawn.GetStatValue(PMStatDefOf.MutagenSensitivity))/2; 
+            return (pawn.GetStatValue(StatDefOf.ToxicSensitivity)*pawn.GetStatValue(PMStatDefOf.MutagenSensitivity)); 
         }
 
 
