@@ -18,6 +18,26 @@ namespace Pawnmorph.HPatches
 {
     public static class PawnCompPatches
     {
+        [NotNull]
+        readonly 
+        private static Dictionary<NeedDef, SapientAnimalNeed> _needLookup = new Dictionary<NeedDef, SapientAnimalNeed>();
+
+
+        [CanBeNull]
+        static SapientAnimalNeed GetSapientAnimalNeed([NotNull] NeedDef need)
+        {
+            if (_needLookup.TryGetValue(need, out var ext))
+            {
+                return ext; 
+            }
+
+            ext = need.GetModExtension<SapientAnimalNeed>();
+            _needLookup[need] = ext;
+            return ext; 
+        }
+
+
+
         private static bool MoodIsEnabled([NotNull] Pawn pawn)
         {
             bool val;
@@ -78,9 +98,14 @@ namespace Pawnmorph.HPatches
                 if (nd == PMNeedDefOf.Joy && isColonist)
                     __result = moodIsEnabled;
 
-                if (nd == PMNeedDefOf.Mood || nd == PMNeedDefOf.Comfort || nd == PMNeedDefOf.Beauty)
-                    __result = moodIsEnabled;
-
+                if (moodIsEnabled)
+                {
+                    var defExt = GetSapientAnimalNeed(nd);
+                    if (defExt != null)
+                    {
+                        __result = !defExt.mustBeColonist || ___pawn.IsColonist;
+                    }
+                }
 
                 if (__result) __result = nd.IsValidFor(___pawn);
             }
