@@ -4,10 +4,9 @@
         <label>Mutation Sequencer</label>
         <description>TODO</description>
         <graphicData>
-            <texPath>Things/Building/Misc/GroundPenetratingScanner</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
+            <texPath>Things/Building/GenomeSequencer/GenomeSequencer</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
             <drawSize>2.65</drawSize>
-            <drawRotated>false</drawRotated>
             <drawOffset>(0,0,-0.05)</drawOffset>
             <shadowData>
                 <volume>(1.6875, 0.375, 2.125)</volume>
