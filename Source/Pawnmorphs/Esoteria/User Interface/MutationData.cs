@@ -113,6 +113,14 @@ namespace Pawnmorph.User_Interface
         /// <summary>
         /// Initializes a new instance of the <see cref="MutationData"/> class.
         /// </summary>
+        public MutationData()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MutationData"/> class.
+        /// </summary>
         /// <param name="mData">The m data.</param>
         public MutationData([NotNull] IReadOnlyMutationData mData)
         {
