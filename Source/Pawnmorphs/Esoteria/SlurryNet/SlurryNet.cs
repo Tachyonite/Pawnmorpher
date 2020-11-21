@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using JetBrains.Annotations;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Random = UnityEngine.Random;
@@ -33,7 +34,7 @@ namespace Pawnmorph.SlurryNet
 
 
         [NotNull] readonly
-            private List<ISlurryNetTrader> _consumerCache = new List<ISlurryNetTrader>();
+            private LinkedList<ISlurryNetTrader> _consumerCache = new LinkedList<ISlurryNetTrader>();
 
         [NotNull] readonly
             private List<ISlurryNetTrader> _producerCache = new List<ISlurryNetTrader>();
@@ -175,6 +176,11 @@ namespace Pawnmorph.SlurryNet
                 Log.Warning("Tried to draw slurry than is available");
         }
 
+        /// <summary>
+        /// Registers the specified comp.
+        /// </summary>
+        /// <param name="comp">The comp.</param>
+        /// <exception cref="ArgumentNullException">comp</exception>
         public virtual void Register([NotNull] SlurryNetComp comp)
         {
             if (comp == null) throw new ArgumentNullException(nameof(comp));
@@ -190,6 +196,68 @@ namespace Pawnmorph.SlurryNet
 #if DEBUG
             _drawer.SetDirty();
 #endif
+        }
+
+
+        /// <summary>
+        /// Updates the net.
+        /// </summary>
+        /// <param name="deltaT">the number of ticks that have elapsed since this was previously called</param>
+        public virtual void Update(int deltaT)
+        {
+            float mult = GetPerTickMultiplier(deltaT); 
+            FillTraderCaches();
+            UpdateTickStats(_consumerCache, _producerCache);
+
+            float effProd = Production / mult;
+            float effCons = Consumption / mult;
+
+            //need to stop a little before zero 
+            float available = effProd + Mathf.Max(Stored - 0.5f, 0);
+
+            foreach (ISlurryNetTrader slurryNetTrader in _consumerCache)
+            {
+                if(available <= 0) break;
+                var given = Mathf.Min(available, slurryNetTrader.SlurryUsed / mult);
+                if (slurryNetTrader.TryReceiveSlurry(given))
+                {
+                    available -= given; 
+                }
+            }
+
+            if(available > 0)
+            {
+                Store(available);
+            }
+        }
+
+        private void Store(float available)
+        {
+            float cap = 0;
+            foreach (ISlurryNetStorage slurryNetStorage in StorageComps)
+            {
+                cap += slurryNetStorage.Capacity;
+            }
+
+            var amount = Mathf.Min(available, cap);
+            if (amount <= float.Epsilon) return;
+
+            foreach (ISlurryNetStorage slurryNetStorage in StorageComps)
+            {
+                var a = amount * slurryNetStorage.Capacity / cap;
+                slurryNetStorage.Storage += a; 
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the per tick multiplier.
+        /// </summary>
+        /// <param name="ticks">The ticks.</param>
+        /// <returns></returns>
+        protected float GetPerTickMultiplier(int ticks)
+        {
+            return ((float) GenDate.TicksPerDay) / ticks;
         }
 
         /// <summary>
@@ -228,7 +296,18 @@ namespace Pawnmorph.SlurryNet
                 if (trader.SlurryUsed < 0)
                     _producerCache.Add(trader);
                 else if (trader.SlurryUsed > 0)
-                    _consumerCache.Add(trader);
+                {
+                    var n = _consumerCache.First; //sort the consumers while we add them to the cache, useful later 
+                    while (n != null && n.Value.SlurryUsed < trader.SlurryUsed)
+                    {
+                        n = n.Next; 
+                    }
+
+                    if (n == null)
+                        _consumerCache.AddLast(trader);
+                    else
+                        _consumerCache.AddBefore(n, trader); 
+                }
         }
 
 

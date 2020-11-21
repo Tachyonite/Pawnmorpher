@@ -44,6 +44,14 @@ namespace Pawnmorph.SlurryNet
         /// The slurry used.
         /// </value>
         float SlurryUsed { get; }
+
+
+        /// <summary>
+        /// Tries to receive some amount of slurry.
+        /// </summary>
+        /// <param name="slurryReceived">The slurry received.</param>
+        /// <returns></returns>
+        bool TryReceiveSlurry(float slurryReceived);
     }
 
 
