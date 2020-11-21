@@ -568,6 +568,9 @@
     <Compile Include="ScenarioParts\ScenPart_ForcedSapience.cs" />
     <Compile Include="ScenarioParts\ScenPart_ForcedAspect.cs" />
     <Compile Include="SimplePawnColorSet.cs" />
+    <Compile Include="SlurryNet\SlurryNet.cs" />
+    <Compile Include="SlurryNet\SlurryNetComp.cs" />
+    <Compile Include="SlurryNet\SlurryNetUtilities.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerators\GenomeGenerator.cs" />
