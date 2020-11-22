@@ -49,6 +49,16 @@ namespace Pawnmorph.SlurryNet
             foreach (SlurryNetComp slurryNetComp in connectors) Register(slurryNetComp);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SlurryNet"/> class.
+        /// </summary>
+        /// <param name="map">The map.</param>
+        /// <param name="netComp">The net comp.</param>
+        public SlurryNet([NotNull] Map map, [NotNull] SlurryNetComp netComp) :this(map, new []{netComp})
+        {
+
+        } 
+
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="SlurryNet" /> class.
@@ -315,5 +325,17 @@ namespace Pawnmorph.SlurryNet
         public Color _color = Random.ColorHSV(0, 1, 1, 1, 1, 1, 1, 1);
         [NotNull] public CellBoolDrawer _drawer;
 #endif
+
+        /// <summary>
+        /// Determines whether this instance contains the cell.
+        /// </summary>
+        /// <param name="cell">The cell.</param>
+        /// <returns>
+        ///   <c>true</c> if [contains] [the specified cell]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool Contains(IntVec3 cell)
+        {
+            return _disjointSet[cell];
+        }
     }
 }
