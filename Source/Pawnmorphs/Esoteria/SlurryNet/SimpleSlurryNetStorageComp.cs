@@ -30,6 +30,14 @@ namespace Pawnmorph.SlurryNet
             }
         }
 
+        /// <summary>
+        /// Gets the parent.
+        /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
+        public Thing Parent => parent; 
+
 
         /// <summary>
         /// Gets or sets the network.
@@ -65,7 +73,7 @@ namespace Pawnmorph.SlurryNet
             get { return RefuelableComp.Fuel; }
             set
             {
-                var delta = RefuelableComp.Fuel - value;
+                var delta = value - RefuelableComp.Fuel; 
                 if (delta < 0)
                 {
                     RefuelableComp.ConsumeFuel(-delta);

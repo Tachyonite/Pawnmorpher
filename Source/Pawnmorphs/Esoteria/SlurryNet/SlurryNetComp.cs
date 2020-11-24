@@ -51,12 +51,44 @@ namespace Pawnmorph.SlurryNet
     }
 
     /// <summary>
+    /// simple implementation of SlurryNetComp for transmitters 
+    /// </summary>
+    /// <seealso cref="Pawnmorph.SlurryNet.SlurryNetComp" />
+    public class SlurryNetTransmitter : SlurryNetComp
+    {
+        /// <summary>
+        ///     Gets or sets the network.
+        /// </summary>
+        /// <value>
+        ///     The network.
+        /// </value>
+        public override SlurryNet Network { get; set; }
+
+        /// <summary>
+        ///     Gets a value indicating whether this instance can transmit slurry.
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if this instance transmits slurry; otherwise, <c>false</c>.
+        /// </value>
+        public override bool TransmitsNow => true; 
+    }
+
+    /// <summary>
     ///     interface for all slurry net traders
     /// </summary>
     public interface ISlurryNetTrader
     {
         /// <summary>
-        ///     Gets the slurry used.
+        /// Gets the parent.
+        /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
+        [NotNull]
+        Thing Parent { get; }
+
+        /// <summary>
+        ///     Gets the slurry used in units of slurry per day 
         /// </summary>
         /// gets the amount of slurry used by this trader. positive values are used while negative values are production
         /// <value>
@@ -69,8 +101,8 @@ namespace Pawnmorph.SlurryNet
         ///     Tries to receive some amount of slurry.
         /// </summary>
         /// <param name="slurryReceived">The slurry received.</param>
-        /// <returns></returns>
-        bool TryReceiveSlurry(float slurryReceived);
+        /// <returns>the amount of slurry used</returns>
+        float TryReceiveSlurry(float slurryReceived);
     }
 
 
@@ -79,6 +111,15 @@ namespace Pawnmorph.SlurryNet
     /// </summary>
     public interface ISlurryNetStorage
     {
+        /// <summary>
+        /// Gets the parent.
+        /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
+        [NotNull]
+        Thing Parent { get; }
+
         /// <summary>
         ///     Gets the capacity.
         /// </summary>

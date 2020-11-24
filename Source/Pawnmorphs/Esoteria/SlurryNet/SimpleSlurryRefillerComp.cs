@@ -32,6 +32,14 @@ namespace Pawnmorph.SlurryNet
         }
 
         /// <summary>
+        /// Gets the parent.
+        /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
+        public Thing Parent => parent; 
+
+        /// <summary>
         /// Gets or sets the network.
         /// </summary>
         /// <value>
@@ -45,7 +53,20 @@ namespace Pawnmorph.SlurryNet
         /// <value>
         ///   <c>true</c> if this instance transmits slurry; otherwise, <c>false</c>.
         /// </value>
-        public override bool TransmitsNow => true; 
+        public override bool TransmitsNow => true;
+
+
+        float SlurryDrawPerDay
+        {
+            get
+            {
+                var tg =  GenDate.TicksPerDay
+                     * 0.3f
+                     * ((RefuelableComp.TargetFuelLevel - RefuelableComp.Fuel + 1) / RefuelableComp.TargetFuelLevel);
+                return Mathf.Max(tg, 0); 
+            }
+        }
+
 
         /// <summary>
         /// Gets the slurry used.
@@ -59,7 +80,7 @@ namespace Pawnmorph.SlurryNet
             {
                 if (RefuelableComp.IsFull) return 0;
 
-                return Mathf.Min(0.1f, RefuelableComp.TargetFuelLevel - RefuelableComp.Fuel);
+                return SlurryDrawPerDay;
             }
 
         }
@@ -69,12 +90,12 @@ namespace Pawnmorph.SlurryNet
         /// </summary>
         /// <param name="slurryReceived">The slurry received.</param>
         /// <returns></returns>
-        public bool TryReceiveSlurry(float slurryReceived)
+        public float TryReceiveSlurry(float slurryReceived)
         {
-            var delta = RefuelableComp.TargetFuelLevel - RefuelableComp.Fuel;
-            var a = Mathf.Min(delta, slurryReceived);
-            RefuelableComp.Refuel(a);
-            return true; 
+
+            var used = Mathf.Min(RefuelableComp.TargetFuelLevel - RefuelableComp.Fuel, slurryReceived); 
+            RefuelableComp.Refuel(used);
+            return used;
         }
     }
 }

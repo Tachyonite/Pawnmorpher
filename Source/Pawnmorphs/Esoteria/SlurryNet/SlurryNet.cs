@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
@@ -22,6 +23,15 @@ namespace Pawnmorph.SlurryNet
     /// </summary>
     public class SlurryNet
     {
+
+        [DebugOutput(category = "Pawnmorpher-SlurryNet")]
+        static void ToggleNetDebugging()
+        {
+            slurryNetDebugging = !slurryNetDebugging;
+        }
+
+        static internal bool slurryNetDebugging; 
+        
         [NotNull] readonly
             private BoolGrid _disjointSet;
 
@@ -166,6 +176,14 @@ namespace Pawnmorph.SlurryNet
             float chunkSize = amount / numChunks;
             var iteration = 0;
 
+            StringBuilder builder;
+            if (slurryNetDebugging)
+            {
+                builder = new StringBuilder();
+            }
+            else
+                builder = null; 
+
             while (amount > 0
                 && iteration < numChunks
                 && // worst case; all chunks come from same storage
@@ -173,14 +191,27 @@ namespace Pawnmorph.SlurryNet
             {
                 foreach (ISlurryNetStorage storage in StorageComps.Where(s => s.Storage > 0))
                 {
+                    
                     float chunk = Mathf.Min(chunkSize, storage.Storage, amount);
-
+                    if (builder != null)
+                    {
+                        builder.AppendLine($"trying to draw chunk {chunk}");
+                    }
                     if (!(chunk >= Mathf.Epsilon)) continue;
+
+                    if (builder != null)
+                    {
+                        builder.AppendLine($"drawing {chunk} from {storage.Parent.Label}");
+                    }
+
                     amount -= chunk;
+                    storage.Storage -= chunk; 
                 }
 
                 iteration++;
             }
+
+            if(builder != null) {  Log.Message(builder.ToString());}
 
             if (amount > Mathf.Epsilon)
                 Log.Warning("Tried to draw slurry than is available");
@@ -222,23 +253,56 @@ namespace Pawnmorph.SlurryNet
             float effProd = Production / mult;
             float effCons = Consumption / mult;
 
+            StringBuilder builder;
+            if (slurryNetDebugging)
+            {
+                builder = new StringBuilder(); 
+            }
+            else
+            {
+                builder = null; 
+            }
+
+
             //need to stop a little before zero 
             float available = effProd + Mathf.Max(Stored - 0.5f, 0);
-
+            float drawn = 0; 
             foreach (ISlurryNetTrader slurryNetTrader in _consumerCache)
             {
                 if(available <= 0) break;
                 var given = Mathf.Min(available, slurryNetTrader.SlurryUsed / mult);
-                if (slurryNetTrader.TryReceiveSlurry(given))
+                var used = slurryNetTrader.TryReceiveSlurry(given); 
+                if (used > 0)
                 {
-                    available -= given; 
+                    available -= used;
+                    drawn += used; 
+                    if (slurryNetDebugging)
+                    {
+                        builder?.AppendLine($"giving {slurryNetTrader.Parent.Label} {given} slurry");
+                    }
                 }
             }
 
-            if(available > 0)
+          
+            if(builder != null)
             {
-                Store(available);
+                builder.AppendLine($"storing {available} slurry");
             }
+
+            var storage = effProd - drawn; 
+            if(storage > 0)
+            {
+                Store(storage);
+            }else if (storage < 0)
+            {
+                Draw(-storage); 
+            }
+
+            if (builder != null)
+            {
+                Log.Message(builder.ToString());
+            }
+
         }
 
         private void Store(float available)

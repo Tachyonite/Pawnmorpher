@@ -67,4 +67,64 @@
         <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
     </ThingDef>
 
+    <ThingDef ParentName="BuildingBase">
+        <defName>PM_SlurryPipe</defName>
+        <label>slurry pipe</label>
+        <description>A pipe that transmits slurry gas.</description>
+        <thingClass>Building</thingClass>
+        <category>Building</category>
+        <graphicData>
+            <texPath>Things/Building/Linked/PowerConduit_Atlas</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <linkType>Transmitter</linkType>
+            <linkFlags>
+                <li>PowerConduit</li>
+            </linkFlags>
+            <damageData>
+                <rect>(0,0.35,1,0.3)</rect>
+            </damageData>
+        </graphicData>
+        <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
+        <uiIconScale>1</uiIconScale>
+        <building>
+            <ai_chillDestination>false</ai_chillDestination>
+            <isInert>true</isInert>
+            <isEdifice>false</isEdifice>
+            <blueprintGraphicData>
+                <texPath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</texPath>
+            </blueprintGraphicData>
+        </building>
+        <altitudeLayer>FloorEmplacement</altitudeLayer>
+        <passability>Standable</passability>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <statBases>
+            <MaxHitPoints>80</MaxHitPoints>
+            <WorkToBuild>35</WorkToBuild>
+            <Flammability>0.7</Flammability>
+            <Beauty>-2</Beauty>
+        </statBases>
+        <placingDraggableDimensions>1</placingDraggableDimensions>
+        <costList>
+            <Steel>1</Steel>
+        </costList>
+        <comps>
+            <li>
+                <compClass>Pawnmorph.SlurryNet.SlurryNetTransmitter</compClass>
+            </li>
+        </comps>
+        <researchPrerequisites>
+            <li>MutagenChambers</li>
+        </researchPrerequisites>
+        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <rotatable>false</rotatable>
+        <selectable>true</selectable>
+        <neverMultiSelect>true</neverMultiSelect>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+        <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <constructEffect>ConstructMetal</constructEffect>
+        <clearBuildingArea>false</clearBuildingArea>
+        <designationHotKey>Misc1</designationHotKey>
+
+    </ThingDef>
 </Defs>

@@ -111,6 +111,7 @@ namespace Pawnmorph.SlurryNet
         {
             base.MapComponentUpdate();
 
+
             DebugDrawNets();
         }
 
@@ -133,6 +134,7 @@ namespace Pawnmorph.SlurryNet
 
             List<SlurryNet> neighbors = comp.GetAdjacentSlurryComps()
                                             .Select(n => n.Network)
+                                            .Where(n => n != null) 
                                             .Distinct()
                                             .ToList();
 
@@ -221,6 +223,7 @@ namespace Pawnmorph.SlurryNet
         [Conditional("DEBUG")]
         private void DebugDrawNets()
         {
+            if (!SlurryNet.slurryNetDebugging) return; 
             foreach (SlurryNet slurryNet in Nets) slurryNet.DebugOnGUI();
         }
 

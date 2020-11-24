@@ -47,7 +47,7 @@
                 <explosiveRadius>2.66</explosiveRadius>
                 <explosiveDamageType>Flame</explosiveDamageType>
             </li>
-            <li Class=" Pawnmorph.ThingComps.SlurryFueledProps">
+            <li Class="CompProperties_Refuelable">
                 <fuelConsumptionRate>1.7</fuelConsumptionRate>
                 <fuelCapacity>1</fuelCapacity>
                 <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
@@ -57,6 +57,9 @@
                     </thingDefs>
                 </fuelFilter>
                 <initialFuelPercent>0</initialFuelPercent>
+            </li>
+            <li>
+                <compClass>Pawnmorph.SlurryNet.SimpleSlurryRefillerComp</compClass>
             </li>
             <li Class="CompProperties_Glower">
                 <glowRadius>4</glowRadius>

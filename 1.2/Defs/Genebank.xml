@@ -84,6 +84,9 @@
         </fuelFilter>
         <initialFuelPercent>0</initialFuelPercent>
       </li>
+      <li>
+        <compClass>Pawnmorph.SlurryNet.SimpleSlurryNetStorageComp</compClass>
+      </li>
     </comps>
   </ThingDef>
 

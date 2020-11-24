@@ -80,10 +80,12 @@ namespace Pawnmorph.SlurryNet
 
             foreach (IntVec3 intVec3 in comp.parent.CellsAdjacent8WayAndInside())
             {
+                if(comp.parent.Map == null) continue;
                 var l = intVec3.GetThingList(comp.parent.Map); 
                 if(l == null) continue;
                 foreach (Thing thing in l)
                 {
+                    if(thing == comp.parent) continue;
                     var c = thing?.TryGetComp<SlurryNetComp>();
                     if(c == null) continue;
                     yield return c; 
