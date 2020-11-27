@@ -567,6 +567,7 @@
     <Compile Include="SlurryNet\SimpleSlurryRefillerComp.cs" />
     <Compile Include="SlurryNet\SlurryNet.cs" />
     <Compile Include="SlurryNet\SlurryNetComp.cs" />
+    <Compile Include="SlurryNet\SlurryNetDrawer.cs" />
     <Compile Include="SlurryNet\SlurryNetManager.cs" />
     <Compile Include="SlurryNet\SlurryNetUtilities.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
