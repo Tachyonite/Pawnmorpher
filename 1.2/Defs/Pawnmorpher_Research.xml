@@ -138,9 +138,9 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="PMSpaceResearch">
-		<defName>PM_MutationScanner</defName>
-		<label>Mutation Scanner</label>
-		<description>TODO</description>
+		<defName>PM_MutationSequencer</defName>
+		<label>Mutation sequencer</label>
+		<description>Decrypts information stored in animal genomes into usable mutations. Must be manned, but over time it will unlock and store mutations in genebanks, depending on the stored animals in your databases.</description>
 		<researchViewX>3</researchViewX>
 		<researchViewY>2.5</researchViewY>
 	</ResearchProjectDef>

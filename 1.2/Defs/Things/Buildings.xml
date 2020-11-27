@@ -2,7 +2,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>PM_MutationScanner</defName>
         <label>Mutation Sequencer</label>
-        <description>TODO</description>
+        <description>Accesses your genebanks and sequences the animal genomes you've stored. Over time, will unlock mutations to be used in chambers, if manned.</description>
         <graphicData>
             <texPath>Things/Building/GenomeSequencer/GenomeSequencer</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
@@ -62,7 +62,7 @@
         </placeWorkers>
         <defaultPlacingRot>South</defaultPlacingRot> <!-- to match long range mineral scanner -->
         <researchPrerequisites>
-            <li>PM_MutationScanner</li>
+            <li>PM_MutationSequencer</li>
         </researchPrerequisites>
         <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
     </ThingDef>

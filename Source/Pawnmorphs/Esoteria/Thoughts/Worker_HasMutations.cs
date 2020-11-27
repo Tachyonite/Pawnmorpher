@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.Hybrids;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -32,36 +33,17 @@ namespace Pawnmorph.Thoughts
             if (mutTracker == null) return false;
             
             if (!mutTracker.AllMutations.Any()) return false;
-            
-            var animalInfluence = Mathf.FloorToInt(mutTracker.TotalNormalizedInfluence * 100);
-            //var animalInfluence = mutTracker.TotalNormalizedInfluence;
 
-            //var totalMutatableParts = MutationUtilities.; TODO: find a way to make better calculations with this
+            var morph = p.def.GetMorphOfRace();
+            var influence = morph == null
+                                ? MorphUtilities.GetMaxInfluenceOfRace(p.def)
+                                : morph.GetMaxInfluenceForBody(p.RaceProps.body);
 
-            var stage = 0;
+            var nInfluence = mutTracker.TotalInfluence / influence;
+            var idx = Mathf.Clamp(nInfluence * def.stages.Count, 0, def.stages.Count - 1);
 
-            if(animalInfluence < 17){ 
-                stage = 0;
-            } else if(animalInfluence < 34) {
-                stage = 1;
-            } else if(animalInfluence < 50) {
-                stage = 2;
-            } else if(animalInfluence < 64) {
-                stage = 3;
-            } else if(animalInfluence < 84) {
-                stage = 4;
-            } else {
-                stage = 5;
-            }
+            return ThoughtState.ActiveAtStage(Mathf.FloorToInt(idx));  
 
-            return ThoughtState.ActiveAtStage(stage); 
-
-            /*var num = Mathf.FloorToInt(animalInfluence * def.stages.Count);
-            num = Mathf.Clamp(num, 0, def.stages.Count - 1); 
-
-            return ThoughtState.ActiveAtStage(num); 
-            */
-            
             
         }
     }
