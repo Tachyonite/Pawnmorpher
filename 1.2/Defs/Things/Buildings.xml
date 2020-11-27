@@ -74,7 +74,7 @@
         <thingClass>Building</thingClass>
         <category>Building</category>
         <graphicData>
-            <texPath>Things/Building/Linked/PowerConduit_Atlas</texPath>
+            <texPath>Things/Building/MutagenPipe_Atlas</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <linkType>Transmitter</linkType>
             <linkFlags>
@@ -91,7 +91,7 @@
             <isInert>true</isInert>
             <isEdifice>false</isEdifice>
             <blueprintGraphicData>
-                <texPath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</texPath>
+                <texPath>Things/Building/MutagenPipe_Atlas</texPath>
             </blueprintGraphicData>
         </building>
         <altitudeLayer>FloorEmplacement</altitudeLayer>

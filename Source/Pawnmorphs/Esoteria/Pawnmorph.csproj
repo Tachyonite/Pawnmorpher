@@ -34,11 +34,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MultiplayerAPI">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
