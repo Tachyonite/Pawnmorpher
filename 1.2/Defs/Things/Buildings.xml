@@ -111,6 +111,10 @@
             <li>
                 <compClass>Pawnmorph.SlurryNet.SlurryNetTransmitter</compClass>
             </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1</glowRadius>
+                <glowColor>(0, 255, 0,0)</glowColor>
+            </li>
         </comps>
         <researchPrerequisites>
             <li>MutagenChambers</li>
