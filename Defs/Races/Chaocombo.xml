@@ -80,7 +80,7 @@
       <body>QuadrupedAnimalWithPawsAndTail</body>
       <predator>true</predator>
       <maxPreyBodySize>2.3</maxPreyBodySize>
-      <petness>0.5</petness>
+      <petness>0.0</petness>
       <baseBodySize>1.7</baseBodySize>
       <baseHungerRate>0.25</baseHungerRate>
       <baseHealthScale>1.4</baseHealthScale>
