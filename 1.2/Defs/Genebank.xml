@@ -70,7 +70,7 @@
     <designationCategory>GR_GeneticsTab</designationCategory>
     <uiIconScale>1</uiIconScale>
     <researchPrerequisites>
-      <li>MutagenChambers</li>
+      <li>PM_MutagenStorage</li>
     </researchPrerequisites>
     <comps>
       <li Class="CompProperties_Refuelable">
