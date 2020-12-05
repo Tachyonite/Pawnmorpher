@@ -37,7 +37,7 @@
             </li>
         </comps>
         <altitudeLayer>Building</altitudeLayer>
-        <canBeUsedUnderRoof>false</canBeUsedUnderRoof>
+        <canBeUsedUnderRoof>true</canBeUsedUnderRoof>
         <statBases>
             <MaxHitPoints>200</MaxHitPoints>
             <WorkToBuild>12000</WorkToBuild>
