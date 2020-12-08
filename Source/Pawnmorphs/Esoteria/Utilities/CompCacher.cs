@@ -33,15 +33,37 @@ namespace Pawnmorph.Utilities
         
         static GenCompCacher()
         {
-            CompTypes = AppDomain.CurrentDomain.GetAssemblies()
-                                 .SelectMany(a => a.GetTypes())
-                                 .Where(t => typeof(ThingComp).IsAssignableFrom(t) && !t.IsAbstract)
-                                 .ToList();
+
+            CompTypes = new List<Type>();
+
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                try
+                {
+                    LoadTypesFrom(assembly, CompTypes); 
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"Pawnmorpher: {nameof(GenCompCacher)} caught exception {e.GetType().Name} while loading types from {assembly.FullName}!\n{e}");
+                }
+            }
+
             _scratchArr = new Type[1];
             _pawnTypeScratchArr = new[] {typeof(Pawn)};
         }
 
-        
+        private static void LoadTypesFrom([NotNull] Assembly assembly, [NotNull] List<Type> compTypes)
+        {
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (typeof(ThingComp).IsAssignableFrom(type) && !type.IsAbstract)
+                {
+                    compTypes.Add(type);
+                }
+            }
+        }
+
+
         public static void ClearAllCompCaches()
         {
 

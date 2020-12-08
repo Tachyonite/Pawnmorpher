@@ -274,6 +274,13 @@ namespace Pawnmorph.Chambers
             
         }
 
+        int GetMutasilkAmountFrom(Apparel apparel)
+        {
+            var matAmount = apparel.def.costList?.Select(s => s.count).Sum() ?? 10;
+            var amt = Mathf.RoundToInt(matAmount * (((float) apparel.HitPoints)) * 0.05f);
+            return Mathf.Min(amt, 75); 
+        }
+
         /// <summary>
         ///     exposes data for serialization/deserialization
         /// </summary>
@@ -301,30 +308,8 @@ namespace Pawnmorph.Chambers
             }
         }
 
-        [CanBeNull]
-        CompRefuelable FindMutagenTankComp()
-        {
-            var room = Position.GetRoom(Map);
 
-            var tanks = room?.ContainedThings(PMThingDefOf.PM_MutagenTank)
-                            ?.Select(c => c.TryGetComp<CompRefuelable>())
-                             .Where(c => c != null);
-
-
-            return tanks?.FirstOrDefault(c => c.HasFuel); 
-
-        }
-
-        void TryRefillFromTank()
-        {
-            var tank = FindMutagenTankComp();
-            if (tank == null) return;
-
-            var refuelAmount = Mathf.Min(Refuelable.TargetFuelLevel - Refuelable.Fuel, tank.Fuel);
-            Refuelable.Refuel(refuelAmount); 
-            tank.ConsumeFuel(refuelAmount);
-        }
-    
+     
 
 
         /// <summary>
@@ -501,7 +486,6 @@ namespace Pawnmorph.Chambers
             LessonAutoActivator.TeachOpportunity(PMConceptDefOf.Tagging, OpportunityType.Important);
         }
 
-        private bool _hasFuelLast; 
 
         /// <summary>
         ///     Ticks this instance.
@@ -512,22 +496,10 @@ namespace Pawnmorph.Chambers
 
             if (!Refuelable.HasFuel)
             {
-                if (_hasFuelLast)
-                {
-                    TryRefillFromTank();
-                }
-                else if (this.IsHashIntervalTick(REFUEL_CHECK_TIMER))
-                {
-                    TryRefillFromTank();
-                }
-                _hasFuelLast = false;
+              
                 return;
             }
-            else
-            {
-                _hasFuelLast = true;
-            }
-
+            
             if (_innerState != ChamberState.Active) return;
             if (_timer <= 0)
             {
@@ -760,6 +732,7 @@ namespace Pawnmorph.Chambers
                     FinalizeMutations();
                     break;
                 case ChamberUse.Merge:
+                    
                     var otherPawn = (Pawn)_scratchList[1];
                     if (otherPawn == null)
                     {
@@ -767,6 +740,9 @@ namespace Pawnmorph.Chambers
                         tfRequest = null;
                         break;
                     }
+                    SpawnSilkFor(pawn.apparel);
+                    SpawnSilkFor(otherPawn.apparel); 
+
 
                     tfRequest = new TransformationRequest(_targetAnimal, pawn, otherPawn)
                     {
@@ -779,6 +755,7 @@ namespace Pawnmorph.Chambers
                     mutagen = MutagenDefOf.MergeMutagen.MutagenCached;
                     break;
                 case ChamberUse.Tf:
+                    SpawnSilkFor(pawn.apparel); 
                     PawnKindDef animal = SelectorComp.ChosenKind;
                     if (animal == null) animal = GetRandomAnimal();
 
@@ -817,6 +794,24 @@ namespace Pawnmorph.Chambers
                     oPawn.DeSpawn();
             }
 
+        }
+
+        private void SpawnSilkFor([CanBeNull] Pawn_ApparelTracker apparel)
+        {
+            if (apparel == null) return;
+
+
+            int count = 0;
+            foreach (Apparel app in apparel.WornApparel)
+            {
+                if(app == null) continue;
+                count += GetMutasilkAmountFrom(app); 
+            }
+
+            var silk = ThingMaker.MakeThing(PMThingDefOf.Morphsilk);
+            silk.stackCount = count;
+            GenPlace.TryPlaceThing(silk, Position, Map, ThingPlaceMode.Near);
+            apparel.DestroyAll();
         }
 
         private void ResetChamber()

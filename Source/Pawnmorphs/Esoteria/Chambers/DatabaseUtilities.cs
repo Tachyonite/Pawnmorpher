@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -188,6 +189,11 @@ namespace Pawnmorph.Chambers
         {
             if (inst == null) throw new ArgumentNullException(nameof(inst));
             if (inst.race?.Animal != true) return false; //use != because inst.race?.Animal can be true,false or null
+
+            var ext = inst.GetModExtension<FormerHumanSettings>();
+            if (ext?.neverFormerHuman == true) return false; 
+
+
             return !IsChao(inst); 
         }
         /// <summary>

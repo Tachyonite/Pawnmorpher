@@ -18,6 +18,26 @@ namespace Pawnmorph.HPatches
 {
     public static class PawnCompPatches
     {
+        [NotNull]
+        readonly 
+        private static Dictionary<NeedDef, SapientAnimalNeed> _needLookup = new Dictionary<NeedDef, SapientAnimalNeed>();
+
+
+        [CanBeNull]
+        static SapientAnimalNeed GetSapientAnimalNeed([NotNull] NeedDef need)
+        {
+            if (_needLookup.TryGetValue(need, out var ext))
+            {
+                return ext; 
+            }
+
+            ext = need.GetModExtension<SapientAnimalNeed>();
+            _needLookup[need] = ext;
+            return ext; 
+        }
+
+
+
         private static bool MoodIsEnabled([NotNull] Pawn pawn)
         {
             bool val;
@@ -44,45 +64,16 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(typeof(Pawn_TrainingTracker))]
         internal static class TrainingTrackerPatches
         {
-            
-            [HarmonyPatch(nameof(Pawn_TrainingTracker.TrainingTrackerTickRare))]
-            [HarmonyTranspiler]
-            private static IEnumerable<CodeInstruction> DisableDecayPatch(IEnumerable<CodeInstruction> instructions)
+            [HarmonyPatch(nameof(Pawn_TrainingTracker.TrainingTrackerTickRare)), HarmonyPrefix]
+            static bool DisableForSapientAnimalsPrefix([NotNull] Pawn ___pawn, ref int ___countDecayFrom)
             {
-                List<CodeInstruction> instructionArr = instructions.ToList();
-                //patch cannot happen on the last instruction 
-                for (var i = 0; i < instructionArr.Count - 3; i++)
+                if (___pawn.GetIntelligence() == Intelligence.Humanlike)
                 {
-                    // looking for 
-                    /* IL_0136: ldarg.0      
-    IL_0137: ldfld        class Verse.Pawn RimWorld.Pawn_TrainingTracker::pawn
-    IL_013c: ldfld        class Verse.ThingDef Verse.Thing::def
-    IL_0141: call         bool RimWorld.TrainableUtility::TamenessCanDecay(class Verse.ThingDef)
-    IL_0146: brtrue.s     IL_0159
-                     *
-                     */
-
-
-                    CodeInstruction inst = instructionArr[i];
-                    if (inst?.opcode != OpCodes.Ldfld || inst.operand as FieldInfo != PawnField) continue;
-                    CodeInstruction inst1 = instructionArr[i + 1];
-                    if (inst1?.opcode == OpCodes.Ldfld && inst1.operand as FieldInfo == DefField)
-                    {
-                        CodeInstruction inst2 = instructionArr[i + 2];
-                        if (inst2?.opcode == OpCodes.Call && inst2.operand as MethodInfo == CanDecayMethod)
-                        {
-                            //do the patch 
-                            //replace the call to FormerHumanUtilities.TamenessCanDecay
-                            //and remove the unneeded instruction 
-                            inst1.opcode = OpCodes.Call;
-                            inst1.operand = CanDecayReplacementMethod;
-                            inst2.opcode = OpCodes.Nop;
-                            inst2.operand = null;
-                        }
-                    }
+                    ___countDecayFrom += 250;
+                    return false; 
                 }
 
-                return instructionArr;
+                return true; 
             }
         }
 
@@ -107,9 +98,14 @@ namespace Pawnmorph.HPatches
                 if (nd == PMNeedDefOf.Joy && isColonist)
                     __result = moodIsEnabled;
 
-                if (nd == PMNeedDefOf.Mood || nd == PMNeedDefOf.Comfort || nd == PMNeedDefOf.Beauty)
-                    __result = moodIsEnabled;
-
+                if (moodIsEnabled)
+                {
+                    var defExt = GetSapientAnimalNeed(nd);
+                    if (defExt != null)
+                    {
+                        __result = !defExt.mustBeColonist || ___pawn.IsColonist;
+                    }
+                }
 
                 if (__result) __result = nd.IsValidFor(___pawn);
             }

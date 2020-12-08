@@ -1791,8 +1791,8 @@
 		<comps>
 			<li Class="CompProperties_Milkable">
 				<milkDef>TFMilk</milkDef>
-				<milkIntervalDays>0.5</milkIntervalDays>
-				<milkAmount>15</milkAmount>
+				<milkIntervalDays>1</milkIntervalDays>
+				<milkAmount>30</milkAmount>
 				<milkFemaleOnly>false</milkFemaleOnly>
 			</li>
 		</comps>

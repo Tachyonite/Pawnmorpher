@@ -19,7 +19,6 @@ namespace Pawnmorph
     /// <seealso cref="RimWorld.MainTabWindow" />
     public partial class MainTabWindow_ChamberDatabase : MainTabWindow
     {
-        private const string STORAGE_SUFFIX = "MB"; 
         
         
         private const float DESCRIPTION_ROW_FRACT = 0.60f;
@@ -254,7 +253,7 @@ namespace Pawnmorph
             float w = inRect.width / 2f; 
             Rect cRect = new Rect(inRect) {width = w};
 
-            Widgets.Label(cRect, entry.storageSpaceUsed + STORAGE_SUFFIX);
+            Widgets.Label(cRect, DatabaseUtilities.GetStorageString(entry.storageSpaceUsed));
 
             string usageStr;
             int totalStorage = Database.TotalStorage;

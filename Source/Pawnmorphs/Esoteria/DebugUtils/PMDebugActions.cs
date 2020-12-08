@@ -104,6 +104,31 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.Playing)]
+        static void TagAnimal()
+        {
+            
+            var db = Find.World.GetComponent<ChamberDatabase>();
+            var options = GetTaggableAnimalActions(db).ToList();
+            if (options.Count == 0) return; 
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetTaggableAnimalActions(db)));
+
+        }
+
+        static IEnumerable<DebugMenuOption> GetTaggableAnimalActions([NotNull] ChamberDatabase db)
+        {
+            foreach (PawnKindDef pawnKindDef in DefDatabase<PawnKindDef>.AllDefs)
+            {
+                if(!pawnKindDef.race.IsValidAnimal() || db.TaggedAnimals.Contains(pawnKindDef)) continue;
+                var tmpPk = pawnKindDef;
+                yield return new DebugMenuOption(pawnKindDef.label,DebugMenuOptionMode.Action,
+                                                 () => db.AddToDatabase(tmpPk));
+            }   
+        }
+
+        
+
+
         static IEnumerable<DebugMenuOption> GetAddMutationOptions([NotNull] Pawn pawn)
         {
 

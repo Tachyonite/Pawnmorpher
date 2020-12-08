@@ -34,11 +34,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MultiplayerAPI">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
@@ -397,6 +392,7 @@
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
+    <Compile Include="DefExtensions\SapientAnimalNeed.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TFTransferable.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
@@ -474,6 +470,7 @@
     <Compile Include="HPatches\ProductionCompPatches.cs" />
     <Compile Include="HPatches\RelationshipPatches.cs" />
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
+    <Compile Include="HPatches\ThingOwnerUtilityPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="HPatches\ToilsLayDownPatches.cs" />
@@ -495,6 +492,7 @@
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="InteractionWorker_Bleat.cs" />
     <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
@@ -565,6 +563,13 @@
     <Compile Include="ScenarioParts\ScenPart_ForcedSapience.cs" />
     <Compile Include="ScenarioParts\ScenPart_ForcedAspect.cs" />
     <Compile Include="SimplePawnColorSet.cs" />
+    <Compile Include="SlurryNet\SimpleSlurryNetStorageComp.cs" />
+    <Compile Include="SlurryNet\SimpleSlurryRefillerComp.cs" />
+    <Compile Include="SlurryNet\SlurryNet.cs" />
+    <Compile Include="SlurryNet\SlurryNetComp.cs" />
+    <Compile Include="SlurryNet\SlurryNetDrawer.cs" />
+    <Compile Include="SlurryNet\SlurryNetManager.cs" />
+    <Compile Include="SlurryNet\SlurryNetUtilities.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerators\GenomeGenerator.cs" />
@@ -578,8 +583,11 @@
     <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
     <Compile Include="ThingComps\FillabeBarDrawerProps.cs" />
     <Compile Include="ThingComps\MutationGenomeStorage.cs" />
+    <Compile Include="ThingComps\MutationSequencerComp.cs" />
+    <Compile Include="ThingComps\MutationSequencerProps.cs" />
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
+    <Compile Include="ThingComps\SlurryFueled.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
@@ -768,6 +776,7 @@
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
     <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
+    <Compile Include="Work\Giver_WorkAtSequencer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />

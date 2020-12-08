@@ -33,7 +33,7 @@
 	<ThingDef ParentName="TFItemBase">
 		<defName>TFMilk</defName>
 		<label>cowmorph milk</label>
-		<description>Milk from a cowmorph. Smells odd, but not off. I'd be careful of drinking this.</description>
+		<description>Milk from a cowmorph. Smells odd, but not off. Saturated with mutagenic mechanites. Drinking this will confer bovine mutations.</description>
 		<graphicData>
 			<texPath>Things/Item/Resource/Milk</texPath>
 		</graphicData>
@@ -134,7 +134,7 @@
 	<ThingDef ParentName="TFItemBase">
 		<defName>TFEgg</defName>
 		<label>chookmorph egg</label>
-		<description>An odd egg laid by a chookmorph. It can hatch, but can also be eaten if you were wanting to do that...</description>
+		<description>A strange egg usually laid by a chookmorph. It's basically a normal egg, but saturated with mutagenic mechanites. Eating them will transfer chicken-based mutations to the imbiber.</description>
 		<graphicData>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<texPath>Things/Item/Resource/TFEgg</texPath>

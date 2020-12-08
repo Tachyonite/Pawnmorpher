@@ -58,6 +58,9 @@
                 </fuelFilter>
                 <initialFuelPercent>0</initialFuelPercent>
             </li>
+            <li>
+                <compClass>Pawnmorph.SlurryNet.SimpleSlurryRefillerComp</compClass>
+            </li>
             <li Class="CompProperties_Glower">
                 <glowRadius>4</glowRadius>
                 <glowColor>(0, 255, 0,0)</glowColor>

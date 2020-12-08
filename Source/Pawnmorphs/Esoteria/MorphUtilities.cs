@@ -88,6 +88,43 @@ namespace Pawnmorph
 
 
         /// <summary>
+        /// Gets the maximum influence for the given body def.
+        /// </summary>
+        /// <param name="morph">The morph.</param>
+        /// <param name="bodyDef">The body definition.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// morph
+        /// or
+        /// bodyDef
+        /// </exception>
+        public static float GetMaxInfluenceForBody([NotNull] this MorphDef morph, [NotNull] BodyDef bodyDef)
+        {
+            if (morph == null) throw new ArgumentNullException(nameof(morph));
+            if (bodyDef == null) throw new ArgumentNullException(nameof(bodyDef));
+
+            if (!_maxInfluenceLookup.TryGetValue(morph, out var sDic))
+            {
+                sDic = new Dictionary<BodyDef, float>();
+                _maxInfluenceLookup[morph] = sDic; 
+            }
+
+            if (sDic.TryGetValue(bodyDef, out float max)) return max;
+
+            max = morph.AllAssociatedMutations
+                       .SelectMany(s => s.GetAllMutationSites(bodyDef)).Count();
+            sDic[bodyDef] = max;
+
+            return max; 
+
+        }
+
+        private readonly
+            static
+            Dictionary<MorphDef, Dictionary<BodyDef, float>> _maxInfluenceLookup =
+                new Dictionary<MorphDef, Dictionary<BodyDef, float>>();
+
+        /// <summary>
         ///     scalar used to make it easier for pawns to become hybrids
         /// </summary>
         [Obsolete] public const float HUMAN_CHANGE_FACTOR = 0.65f;

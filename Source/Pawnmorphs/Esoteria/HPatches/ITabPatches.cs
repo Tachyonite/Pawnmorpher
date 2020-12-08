@@ -20,7 +20,7 @@ namespace Pawnmorph.HPatches
         internal static void DoPrisonerPatch(Harmony harInstance)
         {
             //if prison labor is loaded don't patch the visitor tab, they already handle it
-            if (LoadedModManager.RunningMods.Any(m => m.PackageId == "vius.prisonlabor")) return;
+            if (LoadedModManager.RunningMods.Any(m => m.PackageId == "avius.prisonlabor")) return;
 
             var flg = BindingFlags.NonPublic | BindingFlags.Static;
             var fillMethod = typeof(ITab_Pawn_Visitor).GetMethod("FillTab", BindingFlags.NonPublic | BindingFlags.Instance);

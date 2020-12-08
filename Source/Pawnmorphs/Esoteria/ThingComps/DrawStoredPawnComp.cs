@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 using RimWorld;
@@ -17,7 +18,7 @@ namespace Pawnmorph.ThingComps
             Building_Casket chamber = (Building_Casket)parent;
             if (chamber.HasAnyContents)
             {
-                foreach(Pawn pawn in chamber.GetDirectlyHeldThings())
+                foreach(Pawn pawn in chamber.GetDirectlyHeldThings().OfType<Pawn>())
                 {
                     if (pawn != null)
                     {

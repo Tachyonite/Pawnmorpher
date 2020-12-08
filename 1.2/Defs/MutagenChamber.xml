@@ -114,9 +114,6 @@
 		</graphicData>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<thingClass>Pawnmorph.Building_MutagenModulator</thingClass>
-		<researchPrerequisites>
-			<li>ChamberModulator</li>
-		</researchPrerequisites>
 		<altitudeLayer>Building</altitudeLayer>
 		<passability>PassThroughOnly</passability>
 		<pathCost>70</pathCost>
@@ -194,9 +191,6 @@
 		</thingCategories>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<thingClass>Pawnmorph.Building_MutagenModulator</thingClass>
-		<researchPrerequisites>
-			<li>AdvancedMutagenChambers</li>
-		</researchPrerequisites>
 		<altitudeLayer>Building</altitudeLayer>
 		<passability>PassThroughOnly</passability>
 		<pathCost>70</pathCost>
@@ -273,9 +267,6 @@
 			<li>BuildingsProduction</li>
 		</thingCategories>
 		<minifiedDef>MinifiedThing</minifiedDef>
-		<researchPrerequisites>
-			<li>AdvancedMutagenChambers</li>
-		</researchPrerequisites>
 		<altitudeLayer>Building</altitudeLayer>
 		<rotatable>false</rotatable>
 		<passability>PassThroughOnly</passability>

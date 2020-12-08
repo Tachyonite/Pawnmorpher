@@ -91,7 +91,6 @@ namespace Pawnmorph
             {
                 initAction = delegate ()
                 {
-                    Takee?.Strip();
                     this.MutagenicChamber.TryAcceptThing(this.Takee, true);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
