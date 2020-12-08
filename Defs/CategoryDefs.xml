@@ -27,5 +27,6 @@
 		<defName>PM_MutationGenome</defName>
 		<label>genomes</label>
 		<parent>Items</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
 	</ThingCategoryDef>
 </Defs>
