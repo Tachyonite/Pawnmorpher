@@ -34,11 +34,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dependencies\0Harmony.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MultiplayerAPI">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
@@ -568,6 +563,13 @@
     <Compile Include="ScenarioParts\ScenPart_ForcedSapience.cs" />
     <Compile Include="ScenarioParts\ScenPart_ForcedAspect.cs" />
     <Compile Include="SimplePawnColorSet.cs" />
+    <Compile Include="SlurryNet\SimpleSlurryNetStorageComp.cs" />
+    <Compile Include="SlurryNet\SimpleSlurryRefillerComp.cs" />
+    <Compile Include="SlurryNet\SlurryNet.cs" />
+    <Compile Include="SlurryNet\SlurryNetComp.cs" />
+    <Compile Include="SlurryNet\SlurryNetDrawer.cs" />
+    <Compile Include="SlurryNet\SlurryNetManager.cs" />
+    <Compile Include="SlurryNet\SlurryNetUtilities.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StockGenerators\GenomeGenerator.cs" />

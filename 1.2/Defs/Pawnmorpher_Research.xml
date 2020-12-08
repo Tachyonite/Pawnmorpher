@@ -114,11 +114,23 @@
 		<researchViewY>2.5</researchViewY>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<prerequisites>
-			<li>AdvancedSerumSynthesis</li>
+			<li>PM_MutagenStorage</li>
 		</prerequisites>
 		<requiredResearchFacilities>
 			<li>MultiAnalyzer</li>
 		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="PMSpaceResearch">
+		<defName>PM_MutagenStorage</defName>
+		<label>Mutagen Storage</label>
+		<description>Develop methods of large scale mutagenic slurry production, storage and transfer</description>
+		<basecost>500</basecost>
+		<researchViewX>3.5</researchViewX>
+		<researchViewY>2.5</researchViewY>
+		<prerequisites>
+			<li>MutagenExtraction</li>
+		</prerequisites>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>

@@ -27,6 +27,28 @@ namespace Pawnmorph.Utilities
             return enumerable ?? Enumerable.Empty<T>();
         }
 
+
+        /// <summary>
+        /// Adds the range to this linked list at the end of the list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ll">The ll.</param>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <exception cref="ArgumentNullException">
+        /// ll
+        /// or
+        /// enumerable
+        /// </exception>
+        public static void AddRange<T>([NotNull] this LinkedList<T> ll, [NotNull] IEnumerable<T> enumerable)
+        {
+            if (ll == null) throw new ArgumentNullException(nameof(ll));
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            foreach (T i in enumerable)
+            {
+                ll.AddLast(i); 
+            }
+        }
+
         /// <summary>
         /// Adds the element to the list with the given key, or creates a new list if the key is not in the dictionary already 
         /// </summary>

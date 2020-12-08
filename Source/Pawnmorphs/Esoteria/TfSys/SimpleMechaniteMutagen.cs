@@ -161,11 +161,7 @@ namespace Pawnmorph.TfSys
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
             float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
 
-            if (request.forcedFaction == null && original.Faction != faction && original.Faction != animalToSpawn.Faction && FormerHumanUtilities.GetQuantizedSapienceLevel(sapienceLevel) <= SapienceLevel.MostlySapient)
-            {
-                //set the faction to the original's if mostly sapient or above 
-                animalToSpawn.SetFaction(original.Faction);
-            }
+           
 
             
             GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
