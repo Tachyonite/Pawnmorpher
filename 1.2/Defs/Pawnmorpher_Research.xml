@@ -125,7 +125,7 @@
 		<defName>PM_MutagenStorage</defName>
 		<label>Mutagen Storage</label>
 		<description>Develop methods of large scale mutagenic slurry production, storage and transfer</description>
-		<basecost>500</basecost>
+		<baseCost>500</baseCost>
 		<researchViewX>3.5</researchViewX>
 		<researchViewY>2.5</researchViewY>
 		<prerequisites>
