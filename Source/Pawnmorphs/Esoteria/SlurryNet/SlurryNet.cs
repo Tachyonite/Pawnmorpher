@@ -355,8 +355,10 @@ namespace Pawnmorph.SlurryNet
         [Conditional("DEBUG")]
         internal void DebugOnGUI()
         {
+#if DEBUG
             _drawer.CellBoolDrawerUpdate();
             _drawer.MarkForDraw();
+#endif
         }
 
 
