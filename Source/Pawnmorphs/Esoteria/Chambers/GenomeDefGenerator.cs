@@ -109,7 +109,8 @@ namespace Pawnmorph.Chambers
             }
 
             _allImplicitGenomes = new List<ThingDef>();
-
+            var catDef = PMThingCategoryDefOf.PM_MutationGenome;
+            catDef.childThingDefs = catDef?.childThingDefs ?? new List<ThingDef>();
 
             foreach (MutationCategoryDef mDef in AllImplicitGenomeMutations)
             {
@@ -130,6 +131,7 @@ namespace Pawnmorph.Chambers
             {
                 GiveShortHash(allImplicitGenome);
                 DefDatabase<ThingDef>.Add(allImplicitGenome);
+                catDef.childThingDefs.Add(allImplicitGenome); 
             }
 
             if (DebugLogUtils.ShouldLog(LogLevel.Messages))
@@ -190,6 +192,7 @@ namespace Pawnmorph.Chambers
                 resourceReadoutPriority = ResourceCountPriority.Middle,
                 category = ThingCategory.Item,
                 thingClass = typeof(ThingWithComps),
+                alwaysHaulable = true,
                 thingCategories = new List<ThingCategoryDef> {PMThingCategoryDefOf.PM_MutationGenome},
                 graphicData = GenerateGenomeGraphicData(mDef),
                 useHitPoints = true,
@@ -225,7 +228,7 @@ namespace Pawnmorph.Chambers
             return new GraphicData
             {
                 graphicClass = typeof(Graphic_Single),
-                texPath = "Things/Item/Gencard"
+                texPath = "Things/Item/Genecard"
             };
         }
 
@@ -239,6 +242,7 @@ namespace Pawnmorph.Chambers
                 description = GetGenomeDesc(mDef),
                 resourceReadoutPriority = ResourceCountPriority.Middle,
                 category = ThingCategory.Item,
+                alwaysHaulable = true,
                 thingClass = typeof(ThingWithComps),
                 thingCategories = new List<ThingCategoryDef> {PMThingCategoryDefOf.PM_MutationGenome},
                 graphicData = GenerateGenomeGraphicData(mDef),

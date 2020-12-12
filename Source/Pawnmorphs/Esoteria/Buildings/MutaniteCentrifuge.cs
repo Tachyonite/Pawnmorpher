@@ -295,16 +295,7 @@ namespace Pawnmorph.Buildings
             return r;
         }
 
-        [NotNull]
-        private IEnumerable<Building> GetHoppers()
-        {
-            for (var i = 0; i < AdjCellsCardinalInBounds.Count; i++)
-            {
-                Building edifice = AdjCellsCardinalInBounds[i].GetEdifice(Map);
-                if (edifice != null && edifice.def == PMThingDefOf.MutagenHopper) yield return edifice;
-            }
-        }
-
+     
         private string GetInactiveString()
         {
             if (_cachedInactiveString != null) return _cachedInactiveString;
@@ -403,12 +394,6 @@ namespace Pawnmorph.Buildings
             EndProduction();
         }
 
-        private void SearchForHoppers()
-        {
-            _hoppers.Clear();
-            _hoppers.AddRange(GetHoppers().OfType<Building_Storage>());
-        }
-
         private void SetRunningMode(RunningMode value)
         {
             _mode = value;
@@ -485,38 +470,7 @@ namespace Pawnmorph.Buildings
         }
 
 
-        private bool TryStartProduction()
-        {
-            if (_hoppers.Count == 0) SearchForHoppers();
-            _cachedInactiveString = null;
-            _rmCache.Clear();
-
-            float minAmount = GetRequiredMutaniteCount(CurrentMode);
-            var curAmount = 0f;
-            var canProduce = false;
-            foreach (Thing thing in GetFeed())
-            {
-                float concentration = thing.GetStatValue(PMStatDefOf.MutaniteConcentration);
-                float needed = minAmount - curAmount;
-                int take = Mathf.CeilToInt(needed / concentration);
-                take = Mathf.Min(take, thing.stackCount);
-                _rmCache.Add((thing, take));
-                curAmount += concentration * take;
-
-                if (minAmount - curAmount < EPSILON)
-                {
-                    canProduce = true;
-                    break;
-                }
-            }
-
-            if (canProduce)
-                foreach ((Thing thing, int rmCount) in _rmCache)
-                    thing.SplitOff(rmCount);
-            _rmCache.Clear();
-
-            return canProduce;
-        }
+    
 
         private void UpdateGlower()
         {

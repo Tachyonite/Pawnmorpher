@@ -347,4 +347,67 @@
 		<designationHotKey>Misc2</designationHotKey>
 		<constructionSkillPrerequisite>10</constructionSkillPrerequisite>
 	</ThingDef>
+	<ThingDef ParentName="BuildingBase">
+		<defName>MutagenHopper</defName>
+		<label>mutagen hopper</label>
+		<description>Holds resources for use by machines like nutrient paste dispensers.</description>
+		<thingClass>Building_Storage</thingClass>
+		<graphicData>
+			<texPath>Things/Building/MutaniteHopper</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.9,1.9)</drawSize>
+			<damageData>
+				<rect>(0.05,0.1,0.9,0.9)</rect>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+			</damageData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<fillPercent>0.5</fillPercent>
+		<pathCost>70</pathCost>
+		<canOverlapZones>false</canOverlapZones>
+		<building>
+			<fixedStorageSettings>
+				<priority>Important</priority>
+				<filter>
+					<categories>
+						<li>RawMutagen</li>
+					</categories>
+				</filter>
+			</fixedStorageSettings>
+			<defaultStorageSettings>
+				<priority>Important</priority>
+				<filter>
+					<categories>
+						<li>RawMutagen</li>
+					</categories>
+				</filter>
+			</defaultStorageSettings>
+		</building>
+		<inspectorTabs>
+			<li>ITab_Storage</li>
+		</inspectorTabs>
+		<castEdgeShadows>true</castEdgeShadows>
+		<statBases>
+			<WorkToBuild>300</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>0.5</Flammability>
+		</statBases>
+		<costList>
+			<Steel>15</Steel>
+		</costList>
+		<tickerType>Never</tickerType>
+		<rotatable>false</rotatable>
+		<neverMultiSelect>true</neverMultiSelect>
+		<designationCategory>GR_GeneticsTab</designationCategory>
+		<surfaceType>Item</surfaceType>
+		<placeWorkers>
+			<li>PlaceWorker_NextToHopperAccepter</li>
+		</placeWorkers>
+		<constructEffect>ConstructMetal</constructEffect>
+		<researchPrerequisites>
+			<li>MutagenCentrifuging</li>
+		</researchPrerequisites>
+	</ThingDef>
 </Defs>

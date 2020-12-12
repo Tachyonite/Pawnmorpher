@@ -125,7 +125,7 @@
 		<defName>PM_MutagenStorage</defName>
 		<label>Mutagen Storage</label>
 		<description>Develop methods of large scale mutagenic slurry production, storage and transfer</description>
-		<basecost>500</basecost>
+		<baseCost>500</baseCost>
 		<researchViewX>3.5</researchViewX>
 		<researchViewY>2.5</researchViewY>
 		<prerequisites>
@@ -155,6 +155,9 @@
 		<description>Decrypts information stored in animal genomes into usable mutations. Must be manned, but over time it will unlock and store mutations in genebanks, depending on the stored animals in your databases.</description>
 		<researchViewX>3</researchViewX>
 		<researchViewY>2.5</researchViewY>
+		<prerequisites>
+			<li>Injectors</li>
+		</prerequisites>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>

@@ -32,7 +32,26 @@ namespace Pawnmorph.ThingComps
         /// <value>
         ///     <c>true</c> if this instance can use now; otherwise, <c>false</c>.
         /// </value>
-        public new bool CanUseNow => base.CanUseNow && _chosenAnimalToScan != null && DB.CanTag;
+        public new bool CanUseNow
+        {
+            get
+            {
+                if (parent?.Spawned != true)
+                {
+                    return false;
+                }
+                if (powerComp != null && !powerComp.PowerOn)
+                {
+                    return false;
+                }
+                
+                if (forbiddable != null && forbiddable.Forbidden)
+                {
+                    return false;
+                }
+                return parent.Faction == Faction.OfPlayer && _chosenAnimalToScan != null && DB.CanTag;
+            }
+        }
 
         private MutationSequencerProps SequencerProps => (MutationSequencerProps) props;
 
@@ -57,7 +76,7 @@ namespace Pawnmorph.ThingComps
                     _cachedGizmo = new Command_Action
                     {
                         action = GizmoAction,
-                        defaultLabel = "none",
+                        defaultLabel = _chosenAnimalToScan?.label ?? "none",
                         icon = PMTextures.AnimalSelectorIcon
                     };
 
