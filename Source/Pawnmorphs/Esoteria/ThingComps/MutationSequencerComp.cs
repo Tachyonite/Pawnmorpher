@@ -27,6 +27,27 @@ namespace Pawnmorph.ThingComps
 
 
         /// <summary>
+        /// Useds the specified worker.
+        /// </summary>
+        /// <param name="worker">The worker.</param>
+        public new void Used(Pawn worker)
+        {
+            if (!this.CanUseNow)
+                Log.Error("Used while CanUseNow is false.", false);
+            this.lastScanTick = (float)Find.TickManager.TicksGame;
+            this.lastUserSpeed = 1f;
+            if (this.Props.scanSpeedStat != null)
+                this.lastUserSpeed = worker.GetStatValue(this.Props.scanSpeedStat, true);
+            this.daysWorkingSinceLastFinding += this.lastUserSpeed / 60000f;
+            if (!this.TickDoesFind(this.lastUserSpeed))
+                return;
+            this.DoFind(worker);
+            this.daysWorkingSinceLastFinding = 0.0f;
+        }
+
+
+
+        /// <summary>
         ///     Gets a value indicating whether this instance can use now.
         /// </summary>
         /// <value>
@@ -153,6 +174,8 @@ namespace Pawnmorph.ThingComps
             }
 
             MutationDef mutation = _scratchList.RandomElement();
+
+            DB.AddToDatabase(mutation); 
 
             TaggedString msg = MUTATION_GATHERED_LABEL.Translate(mutation.Named("mutation"),
                                                                  _chosenAnimalToScan.Named("animal")
