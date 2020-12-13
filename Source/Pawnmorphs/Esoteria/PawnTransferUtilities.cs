@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -258,7 +259,18 @@ namespace Pawnmorph
                 var sameMemory = thoughtHandler2.memories.Memories.MakeSafe().FirstOrDefault(m => m.def == memory.def); 
                 if(sameMemory != null) continue;
 
-                Thought_Memory newMemory = ThoughtMaker.MakeThought(memory.def, memory.CurStageIndex);
+                var worker = memory.def?.modExtensions?.OfType<IThoughtTransferWorker>().FirstOrDefault();
+
+                Thought_Memory newMemory;
+                if (worker != null)
+                {
+                    if (!worker.ShouldTransfer(pawn1, pawn2, memory)) continue;
+                    newMemory = worker.CreateNewThought(pawn1, pawn2, memory);
+                }
+                else
+                {
+                    newMemory = ThoughtMaker.MakeThought(memory.def, memory.CurStageIndex);
+                }
 
                 
                 if(memory.otherPawn == null)

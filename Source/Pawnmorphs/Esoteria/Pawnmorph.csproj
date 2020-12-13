@@ -381,6 +381,7 @@
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
     <Compile Include="DefExtensions\FormerHumanSettings.cs" />
+    <Compile Include="DefExtensions\HarmonizerTransferWorker.cs" />
     <Compile Include="DefExtensions\InstinctEffector.cs" />
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
@@ -731,6 +732,7 @@
     <Compile Include="Thoughts\FormerHumanPalsWorker.cs" />
     <Compile Include="Thoughts\FormerHumanSituationalWorkerBase.cs" />
     <Compile Include="Thoughts\IFoodThoughtModifier.cs" />
+    <Compile Include="Thoughts\IThoughtTransferWorker.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
