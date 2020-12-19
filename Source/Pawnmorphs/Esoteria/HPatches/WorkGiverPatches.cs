@@ -62,6 +62,15 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(typeof(WorkGiver_Train))]
         private static class TrainPatches
         {
+            [HarmonyPatch("JobOnThing"), HarmonyPostfix]
+            static void FixInteractionOnSelf(Pawn pawn, Thing t, bool forced, ref bool __result)
+            {
+                if (__result)
+                {
+                    __result = pawn != t; 
+                }
+            }
+
             [HarmonyPatch("JobOnThing")]
             [HarmonyTranspiler]
             private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
