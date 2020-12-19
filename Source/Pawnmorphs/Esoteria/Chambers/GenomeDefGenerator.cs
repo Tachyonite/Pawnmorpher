@@ -5,12 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.ThingComps;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -129,9 +131,17 @@ namespace Pawnmorph.Chambers
 
             foreach (ThingDef allImplicitGenome in _allImplicitGenomes)
             {
-                GiveShortHash(allImplicitGenome);
-                DefDatabase<ThingDef>.Add(allImplicitGenome);
-                catDef.childThingDefs.Add(allImplicitGenome); 
+                try
+                {
+                    Init(allImplicitGenome); 
+                    DefDatabase<ThingDef>.Add(allImplicitGenome);
+                    catDef.childThingDefs.Add(allImplicitGenome);
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"could not initialize genome {allImplicitGenome.defName ?? "NO DEF NAME"}\n{e}");
+                }
+
             }
 
             if (DebugLogUtils.ShouldLog(LogLevel.Messages))
@@ -141,6 +151,29 @@ namespace Pawnmorph.Chambers
                 builder.AppendLine(_allImplicitGenomes.Join(t => t.defName, "\n"));
                 Log.Message(builder.ToString());
             }
+
+            ResourceCounter.ResetDefs();
+        }
+
+
+
+        private static void Init(ThingDef allImplicitGenome)
+        {
+            GiveShortHash(allImplicitGenome);
+            allImplicitGenome.ResolveReferences();
+            _configErrorCache.Clear();
+            _configErrorCache.AddRange(allImplicitGenome.ConfigErrors().MakeSafe());
+            if (_configErrorCache.Count > 0)
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.AppendLine($"errors in {allImplicitGenome.defName}!");
+                foreach (string error in _configErrorCache)
+                {
+                    builder.AppendLine(error); 
+                }
+                Log.Error(builder.ToString());
+            }
+
         }
 
         private static void AddComps([NotNull] ThingDef tDef, [NotNull] MutationCategoryDef mDef)
@@ -182,35 +215,52 @@ namespace Pawnmorph.Chambers
         }
 
         [NotNull]
+        private static readonly List<string> _configErrorCache = new List<string>(); 
+
+        [NotNull]
         private static ThingDef GenerateAnimalGenome([NotNull] PawnKindDef mDef)
         {
-            var tDef = new ThingDef
-            {
-                defName = GENOME_PREAMBLE + mDef.defName + "_Implicit",
-                label = LABEL_TTAG.Translate(mDef.Named("MUTATION")),
-                description = GetGenomeDesc(mDef),
-                resourceReadoutPriority = ResourceCountPriority.Middle,
-                category = ThingCategory.Item,
-                thingClass = typeof(ThingWithComps),
-                alwaysHaulable = true,
-                thingCategories = new List<ThingCategoryDef> {PMThingCategoryDefOf.PM_MutationGenome},
-                graphicData = GenerateGenomeGraphicData(mDef),
-                useHitPoints = true,
-                selectable = true,
-                thingSetMakerTags = new List<string> {GENOME_SET_MAKER_TAG},
-                altitudeLayer = AltitudeLayer.Item,
-                tickerType = TickerType.Never,
-                rotatable = false,
-                pathCost = 15,
-                drawGUIOverlay = true,
-                modContentPack = mDef.modContentPack,
-                tradeTags = new List<string> {GENOME_TRADER_TAGS}
-            };
+
+            string desc = GetGenomeDesc(mDef);
+            string label = LABEL_TTAG.Translate(mDef.Named("MUTATION"));
+            GraphicData gData = GenerateGenomeGraphicData(mDef);
+            ThingDef tDef = GenerateNewDef(mDef, desc, label, gData);
 
             SetGenomeStats(tDef, mDef);
             AddComps(tDef, mDef);
 
+
+
+
             return tDef;
+        }
+
+        private static ThingDef GenerateNewDef(Def mDef, string desc, string label, GraphicData gData)
+        {
+            return new ThingDef
+            {
+                defName = GENOME_PREAMBLE + mDef.defName + "_Implicit",
+                label = label,
+                description = desc,
+                resourceReadoutPriority = ResourceCountPriority.Middle,
+                category = ThingCategory.Item,
+                thingClass = typeof(ThingWithComps),
+                alwaysHaulable = true,
+                thingCategories = new List<ThingCategoryDef> { PMThingCategoryDefOf.PM_MutationGenome },
+                graphicData = gData,
+                useHitPoints = true,
+                selectable = true,
+                thingSetMakerTags = new List<string> { GENOME_SET_MAKER_TAG },
+                altitudeLayer = AltitudeLayer.Item,
+                tickerType = TickerType.Never,
+                rotatable = false,
+                pathCost = DefGenerator.StandardItemPathCost,
+                drawGUIOverlay = true,
+
+                modContentPack = mDef.modContentPack,
+                tradeTags = new List<string> { GENOME_TRADER_TAGS },
+
+            };
         }
 
         [NotNull]
@@ -235,28 +285,10 @@ namespace Pawnmorph.Chambers
         [NotNull]
         private static ThingDef GenerateMutationGenome([NotNull] MutationCategoryDef mDef)
         {
-            var tDef = new ThingDef
-            {
-                defName = GENOME_PREAMBLE + mDef.defName + "_Implicit",
-                label = LABEL_TTAG.Translate(mDef.Named("MUTATION")),
-                description = GetGenomeDesc(mDef),
-                resourceReadoutPriority = ResourceCountPriority.Middle,
-                category = ThingCategory.Item,
-                alwaysHaulable = true,
-                thingClass = typeof(ThingWithComps),
-                thingCategories = new List<ThingCategoryDef> {PMThingCategoryDefOf.PM_MutationGenome},
-                graphicData = GenerateGenomeGraphicData(mDef),
-                useHitPoints = true,
-                selectable = true,
-                thingSetMakerTags = new List<string> {GENOME_SET_MAKER_TAG},
-                altitudeLayer = AltitudeLayer.Item,
-                tickerType = TickerType.Never,
-                rotatable = false,
-                pathCost = 15,
-                drawGUIOverlay = true,
-                modContentPack = mDef.modContentPack,
-                tradeTags = new List<string> {GENOME_TRADER_TAGS}
-            };
+            string desc = GetGenomeDesc(mDef);
+            string label = LABEL_TTAG.Translate(mDef.Named("MUTATION"));
+            GraphicData gData = GenerateGenomeGraphicData(mDef);
+            ThingDef tDef = GenerateNewDef(mDef, desc, label, gData);
 
             SetGenomeStats(tDef, mDef);
             AddComps(tDef, mDef);
