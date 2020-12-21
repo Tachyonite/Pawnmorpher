@@ -389,6 +389,8 @@
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -456,7 +458,9 @@
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
-					</hediffGraphics>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left_Behind</EtherLynxEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left_Behind</EtherCougarEar>
+				</hediffGraphics>
 				<offsets>
 					<south/>
 					<north/>
@@ -508,6 +512,8 @@
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right</EtherLynxEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -575,6 +581,8 @@
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
+					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right_Behind</EtherLynxEar>
+					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right_Behind</EtherCougarEar>
 				</hediffGraphics>
 				<offsets>
 					<south/>
@@ -606,6 +614,7 @@
 					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
 					<EtherCatTail>Parts/catface/cattail</EtherCatTail>
 					<EtherCougarTail>Parts/Cougar/Cougar_Tail</EtherCougarTail>
+					<EtherLynxTail>Parts/Lynx/Lynx_Tail</EtherLynxTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
 					<EtherShortTail>Parts/deerface/deertail</EtherShortTail>
@@ -618,8 +627,6 @@
 					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>
 					<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
 					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
-					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
-					<EtherLynxTail>Parts/Lynx/Lynx_Tail</EtherLynxTail>
 					<EtherPantherTail>Parts/Panther/Panther_Tail</EtherPantherTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherRaccoonTail>Parts/Raccoon/Raccoon_Tail</EtherRaccoonTail>
@@ -627,6 +634,7 @@
 					<EtherRhinocerosTail>Parts/Rhinoceros/Rhinoceros_Tail</EtherRhinocerosTail>
 					<EtherSheepTail>Parts/sheepface/sheeptail</EtherSheepTail>
 					<EtherSquirrelTail>Parts/Squirrel/Squirrel_Tail</EtherSquirrelTail>
+					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
 					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
