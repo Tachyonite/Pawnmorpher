@@ -260,6 +260,8 @@ namespace Pawnmorph.SapienceStates
                 nComp.Initialize(new CompProperties());//just pass in empty props 
             }
 
+
+            Pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
         }
 
 
