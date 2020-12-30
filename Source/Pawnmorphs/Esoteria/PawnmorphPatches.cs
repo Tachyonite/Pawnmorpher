@@ -78,6 +78,16 @@ namespace Pawnmorph
 
             try
             {
+                DoAnimalPatches(harmonyInstance); 
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching animal tab worker\n{e}");
+            }
+
+
+            try
+            {
                 ITabPatches.DoPrisonerPatch(harmonyInstance); 
             }
             catch (Exception e)
@@ -161,7 +171,7 @@ namespace Pawnmorph
             var instanceFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
 
 
-            var tpMethod = typeof(PawnmorphPatches).GetMethod(nameof(PawnmorphPatches), staticFlags);
+            var tpMethod = typeof(PawnmorphPatches).GetMethod(nameof(SubstituteFormerHumanMethodsPatch), staticFlags);
             //animal tabs 
             var methods = typeof(MainTabWindow_Animals).GetNestedTypes(staticFlags | instanceFlags)//looking for delegates used by the animal tab 
                                                        .Where(t => t.IsCompilerGenerated())
