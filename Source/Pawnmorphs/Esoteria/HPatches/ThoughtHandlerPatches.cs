@@ -45,6 +45,7 @@ namespace Pawnmorph.HPatches
             internal static bool TryCreateThoughtPrefix([NotNull] ref ThoughtDef def,
                                                         [NotNull] SituationalThoughtHandler __instance)
             {
+                
                 var tGroup = def.GetModExtension<ThoughtGroupDefExtension>();
                 if (tGroup == null) return true; //quit early if there is no def extension 
 
@@ -52,6 +53,26 @@ namespace Pawnmorph.HPatches
                 if (nDef == def) return true;
                 def = nDef;
                 return !Traverse.Create(__instance).Field("tmpCachedThoughts").GetValue<HashSet<ThoughtDef>>().Contains(def);
+            }
+        }
+
+        [HarmonyPatch(typeof(ThoughtWorker_PsychologicallyNude))]
+        static class NudePatches
+        {
+            [HarmonyPatch("CurrentStateInternal"), HarmonyPostfix]
+            static void DisableForSapientHumanoids(Pawn p, ref ThoughtState __result)
+            {
+                if (__result.Active && p?.HasSapienceState() == true) __result = false;
+            }
+        }
+
+        [HarmonyPatch(typeof(ThoughtWorker_NudistNude))]
+        static class NudistPatches
+        {
+            [HarmonyPatch("CurrentStateInternal"), HarmonyPostfix]
+            static void DisableForSapientHumanoids(Pawn p, ref ThoughtState __result)
+            {
+                if (__result.Active && p?.HasSapienceState() == true) __result = false;
             }
         }
     }
