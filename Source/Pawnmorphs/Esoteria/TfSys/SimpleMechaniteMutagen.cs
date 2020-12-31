@@ -257,7 +257,7 @@ namespace Pawnmorph.TfSys
 
 
             applyMutations:
-            MutationUtilities.AddAllMorphMutations(original, mDef);
+            MutationUtilities.AddAllMorphMutations(original, mDef).SetAllToNaturalMax();
         }
 
         /// <summary>

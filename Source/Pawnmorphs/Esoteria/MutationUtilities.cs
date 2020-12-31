@@ -178,6 +178,23 @@ namespace Pawnmorph
             return mDef.value * MARKET_VALUE_PER_VALUE; 
         }
 
+
+        /// <summary>
+        /// Sets all mutations to their natural maximum.
+        /// </summary>
+        /// <param name="mutations">The mutations.</param>
+        /// <exception cref="ArgumentNullException">mutations</exception>
+        public static void SetAllToNaturalMax([NotNull] this IEnumerable<Hediff_AddedMutation> mutations)
+        {
+            if (mutations == null) throw new ArgumentNullException(nameof(mutations));
+            foreach (Hediff_AddedMutation hediffAddedMutation in mutations)
+            {
+                var adjComp = hediffAddedMutation.TryGetComp<Comp_MutationSeverityAdjust>();
+                if(adjComp == null) continue;
+                hediffAddedMutation.Severity = adjComp.NaturalSeverityLimit;
+            }
+        }
+
         /// <summary>
         /// Adds all morph mutations.
         /// </summary>
@@ -187,13 +204,15 @@ namespace Pawnmorph
         /// <exception cref="ArgumentNullException">pawn
         /// or
         /// morph</exception>
-        public static void AddAllMorphMutations([NotNull] Pawn pawn, [NotNull] MorphDef morph, AncillaryMutationEffects? ancillaryEffects = null)
+        public static MutationResult AddAllMorphMutations([NotNull] Pawn pawn, [NotNull] MorphDef morph, AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (morph == null) throw new ArgumentNullException(nameof(morph));
             var hediffSet = pawn.health.hediffSet; 
             _recordCache.Clear();
             _recordCache.AddRange(hediffSet.GetNotMissingParts());
+            List<Hediff_AddedMutation> lst = null; 
+
             foreach (MutationDef mutation in morph.AllAssociatedMutations)
             {
                 if (mutation.parts != null)
@@ -202,17 +221,29 @@ namespace Pawnmorph
                     foreach (BodyPartRecord bodyPartRecord in _recordCache.Where(r => r.def == mutationPart))
                     {
                         if (hediffSet.HasHediff(mutation, bodyPartRecord)) continue;
-                        AddMutation(pawn, mutation, bodyPartRecord, ancillaryEffects:ancillaryEffects);
+                        var res = AddMutation(pawn, mutation, bodyPartRecord, ancillaryEffects:ancillaryEffects);
+                        if (res)
+                        {
+                            lst = lst ?? new List<Hediff_AddedMutation>(); 
+                            lst.AddDistinctRange(res);
+                        }
                     }
                 }
                 else
                 {
                     if (!hediffSet.HasHediff(mutation))
                     {
-                        AddMutation(pawn, mutation, ancillaryEffects:ancillaryEffects); 
+                        var res = AddMutation(pawn, mutation, ancillaryEffects:ancillaryEffects);
+                        if (res)
+                        {
+                            lst = lst ?? new List<Hediff_AddedMutation>();
+                            lst.AddDistinctRange(res); 
+                        }
                     }
                 }
             }
+
+            return lst == null ? MutationResult.Empty : new MutationResult(lst); 
         }
 
 

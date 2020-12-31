@@ -50,6 +50,24 @@ namespace Pawnmorph.Utilities
         }
 
         /// <summary>
+        /// Adds the distinct range to the given range 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="lst">The LST.</param>
+        /// <param name="range">The range.</param>
+        public static void AddDistinctRange<T>([NotNull] this List<T> lst, [NotNull] IEnumerable<T> range)
+        {
+            if (lst == null) throw new ArgumentNullException(nameof(lst));
+            if (range == null) throw new ArgumentNullException(nameof(range));
+
+            foreach (T val in range)
+            {
+                if(lst.Contains(val)) continue;
+                lst.Add(val); 
+            }
+        }
+
+        /// <summary>
         /// Adds the element to the list with the given key, or creates a new list if the key is not in the dictionary already 
         /// </summary>
         /// <typeparam name="TKey">The type of the key.</typeparam>
