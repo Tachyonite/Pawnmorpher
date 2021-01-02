@@ -97,6 +97,15 @@ namespace Pawnmorph
 
             try
             {
+                PatchMods(harmonyInstance);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"PM: caught error {e.GetType()} while patching mods! \n{e}");
+            }
+
+            try
+            {
 
                 harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
             }
@@ -106,7 +115,13 @@ namespace Pawnmorph
             }
         }
 
-
+        private static void PatchMods([NotNull] Harmony harmonyInstance)
+        {
+            if (LoadedModManager.RunningMods.Any(m => m.PackageId == "roolo.giddyupcore"))
+            {
+                GiddyUpPatch.PatchGiddyUp(harmonyInstance); 
+            }
+        }
 
 
         /// <summary>
