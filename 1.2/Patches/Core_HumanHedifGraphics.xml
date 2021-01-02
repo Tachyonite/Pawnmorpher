@@ -4,6 +4,7 @@
 		<value>
 			<li>
 				<!-- Muzzles -->
+				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -300,6 +301,8 @@
 			<li>
 				<!-- Old Ears -->
 				<path>Parts/None/None</path>
+				<debug>false</debug>
+
 				<bodyPart>Ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerOffset>-0.26</layerOffset>
@@ -354,6 +357,8 @@
 			</li>
 			<li>
 				<!-- Left Ear -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -422,6 +427,8 @@
 			</li>
 			<li>
 				<!-- Left Ear (Behind Head) -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -473,6 +480,7 @@
 			</li>
 			<li>
 				<!-- Right Ear -->
+				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -541,6 +549,8 @@
 			</li>
 			<li>
 				<!-- Right Ear (Behind Head) -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -592,6 +602,8 @@
 			</li>
 			<li>
 				<!-- Tails -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -655,6 +667,8 @@
 			</li>
 			<li>
 				<!-- Body-extending tails -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -689,6 +703,8 @@
 			</li>
 			<li>
 				<!-- Headspikes -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -730,6 +746,8 @@
 			</li>
 			<li>
 				<!-- Skullspikes -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -771,6 +789,8 @@
 			</li>
 			<li>
 				<!-- Horns -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -825,6 +845,8 @@
 			</li>
 			<li>
 				<!-- Cobra Hood (Foreground) -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -862,6 +884,8 @@
 			</li>
 			<li>
 				<!-- Cobra Hood (Background) -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -897,6 +921,8 @@
 			</li>
 			<li>
 				<!-- Udders -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Waist</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -931,6 +957,8 @@
 			</li>
 			<li>
 				<!-- Wings -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Arm</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -955,6 +983,8 @@
 			</li>
 			<li>
 				<!-- Spines -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -988,6 +1018,8 @@
 			</li>
 			<li>
 				<!-- Torsos -->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1030,6 +1062,8 @@
 			</li>
 			<li>
 				<!-- Torsos Behind-->
+				<debug>false</debug>
+
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
