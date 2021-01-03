@@ -15,9 +15,16 @@ namespace Pawnmorph.HPatches
         static void SuspendPawnsFix(IThingHolder holder, ref bool __result)
         {
             if (__result) return;
-            if (holder is MutaChamber || holder?.ParentHolder is MutaChamber)
+
+            while(holder != null)
             {
-                __result = true; 
+                if (holder is MutaChamber)
+                {
+                    __result = true;
+                    return; 
+                }
+
+                holder = holder.ParentHolder; 
             }
         }
     }
