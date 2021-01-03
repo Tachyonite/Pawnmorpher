@@ -9,10 +9,10 @@
         <comps>
             <li Class="HediffCompProperties_TendDuration">
                 <baseTendDurationHours>12</baseTendDurationHours>
-                <severityPerDayTended>-0.0773</severityPerDayTended>
+                <severityPerDayTended>-0.373</severityPerDayTended>
             </li>
             <li Class="Pawnmorph.Hediffs.CompProps_ImmunizableMutation">
-                <severityPerDayNotImmune>0.3088</severityPerDayNotImmune>
+                <severityPerDayNotImmune>0.3288</severityPerDayNotImmune>
                 <immunityPerDaySick>0.2708</immunityPerDaySick>
                 <severityPerDayImmune>-0.2947</severityPerDayImmune>
                 <immunityPerDayNotSick>-0.06</immunityPerDayNotSick>
