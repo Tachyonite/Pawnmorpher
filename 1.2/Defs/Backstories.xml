@@ -1,0 +1,13 @@
+<Defs>
+    <AlienRace.BackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_SheepChef</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDescription>TODO</baseDescription>
+        <workAllows>
+            <li>Cooking</li>
+            <li>ManualSkilled</li>
+        </workAllows>
+    </AlienRace.BackstoryDef>
+
+</Defs>

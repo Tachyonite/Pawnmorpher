@@ -894,15 +894,14 @@ namespace Pawnmorph
 
 
         /// <summary>
-        ///     Makes the animal sapient.
+        /// Makes the animal sapient.
         /// </summary>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
-        /// <param name="joinIfRelated">
-        ///     if set to <c>true</c> and the resulting pawn is related to a colonist have the animal join
-        ///     the colony.
-        /// </param>
-        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true)
+        /// <param name="joinIfRelated">if set to <c>true</c> and the resulting pawn is related to a colonist have the animal join
+        /// the colony.</param>
+        /// <param name="backstoryOverride">The backstory override.</param>
+        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true, BackstoryDef backstoryOverride= null)
         {
             if (animal.IsFormerHuman())
             {
@@ -943,7 +942,7 @@ namespace Pawnmorph
             sTracker.EnterState(SapienceStateDefOf.FormerHuman, sapienceLevel);
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
-            TryAssignBackstoryToTransformedPawn(animal, lPawn);
+            TryAssignBackstoryToTransformedPawn(animal, lPawn, backstoryOverride);
             TransferEverything(lPawn, animal, passionTransferMode: PawnTransferUtilities.SkillPassionTransferMode.Set);
             animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
             var inst = new TransformedPawnSingle
