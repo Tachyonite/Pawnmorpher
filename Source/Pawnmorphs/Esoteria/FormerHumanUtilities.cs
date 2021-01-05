@@ -834,17 +834,21 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Initializes the transformed pawn with the given original pawn and sapience level 
+        /// Initializes the transformed pawn with the given original pawn and sapience level
         /// </summary>
         /// <param name="original">The original.</param>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <param name="backstoryOverride">The backstory override.</param>
+        /// <exception cref="ArgumentNullException">
         /// original
         /// or
         /// animal
         /// </exception>
-        public static void InitializeTransformedPawn([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel)
+        /// <exception cref="System.ArgumentNullException">original
+        /// or
+        /// animal</exception>
+        public static void InitializeTransformedPawn([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel, BackstoryDef backstoryOverride=null)
         {
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (animal == null) throw new ArgumentNullException(nameof(animal));
@@ -864,7 +868,7 @@ namespace Pawnmorph
 
             animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
 
-            TryAssignBackstoryToTransformedPawn(animal, original);
+            TryAssignBackstoryToTransformedPawn(animal, original, backstoryOverride);
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
             if (nC == null)
@@ -1123,12 +1127,13 @@ namespace Pawnmorph
 
 
         /// <summary>
-        ///     Tries the assign the correct backstory to transformed pawn.
+        /// Tries the assign the correct backstory to transformed pawn.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="backstoryOverride">The backstory override.</param>
         /// <exception cref="ArgumentNullException">pawn</exception>
-        public static void TryAssignBackstoryToTransformedPawn([NotNull] Pawn pawn, [CanBeNull] Pawn originalPawn)
+        public static void TryAssignBackstoryToTransformedPawn([NotNull] Pawn pawn, [CanBeNull] Pawn originalPawn, BackstoryDef backstoryOverride=null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (!pawn.IsFormerHuman()) return;
@@ -1139,7 +1144,12 @@ namespace Pawnmorph
             else if (pawn.Name == null) pawn.Name = new NameSingle(pawn.LabelShort);
 
 
-            BackstoryDef backstoryDef;
+            BackstoryDef backstoryDef = backstoryOverride;
+            if (backstoryDef != null)
+            {
+                pawn.story.adulthood = backstoryDef.backstory;
+                return; 
+            }
 
             var ext = pawn.def.GetModExtension<FormerHumanSettings>();
 

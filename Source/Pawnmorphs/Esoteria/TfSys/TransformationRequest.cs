@@ -2,6 +2,7 @@
 // last updated 08/18/2019  8:55 AM
 
 using System.Collections.Generic;
+using AlienRace;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -106,6 +107,11 @@ namespace Pawnmorph.TfSys
         public Hediff cause;
         /// <summary>The tale to record</summary>
         public TaleDef tale;
+
+        /// <summary>
+        /// optional backstory override
+        /// </summary>
+        public BackstoryDef backstoryOverride; 
 
         /// <summary>
         /// override for the manhunter settings of the given animal 
