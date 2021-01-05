@@ -922,7 +922,10 @@ namespace Pawnmorph
                 if (morph.IsChimera())
                     AddRandomMutationToPawn(lPawn);
                 else
-                    MutationUtilities.AddAllMorphMutations(lPawn, morph, MutationUtilities.AncillaryMutationEffects.None);
+                {
+                    MutationUtilities.AddAllMorphMutations(lPawn, morph, MutationUtilities.AncillaryMutationEffects.None).SetAllToNaturalMax();
+
+                }
             }
 
             MutationTracker mTracker = lPawn.GetMutationTracker();

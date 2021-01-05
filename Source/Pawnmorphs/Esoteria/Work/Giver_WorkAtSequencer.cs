@@ -16,6 +16,18 @@ namespace Pawnmorph.Work
     public class Giver_WorkAtSequencer : WorkGiver_OperateScanner
     {
         /// <summary>
+        /// Jobs the on thing.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="t">The t.</param>
+        /// <param name="forced">if set to <c>true</c> [forced].</param>
+        /// <returns></returns>
+        public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
+        {
+            return JobMaker.MakeJob(PMJobDefOf.PM_OperateSequencer, (LocalTargetInfo)t, 1500, true);
+        }
+
+        /// <summary>
         /// determines if he pawn should skip this giver.
         /// </summary>
         /// <param name="pawn">The pawn.</param>

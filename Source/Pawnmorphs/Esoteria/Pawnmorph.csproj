@@ -381,6 +381,7 @@
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
     <Compile Include="DefExtensions\FormerHumanSettings.cs" />
+    <Compile Include="DefExtensions\HarmonizerTransferWorker.cs" />
     <Compile Include="DefExtensions\InstinctEffector.cs" />
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
@@ -448,6 +449,7 @@
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
+    <Compile Include="HPatches\GiddyUpPatch.cs" />
     <Compile Include="HPatches\HuntingPatches.cs" />
     <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
     <Compile Include="HPatches\IngestJobPatches.cs" />
@@ -499,6 +501,7 @@
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
     <Compile Include="Jobs\Driver_TransformPrisoner.cs" />
     <Compile Include="Jobs\Driver_UseGenome.cs" />
+    <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
     <Compile Include="MainTabWindow_ChamberDatabase.cs" />
     <Compile Include="MainTabWindow_ChamberDatabase.Interning.cs" />
@@ -731,6 +734,7 @@
     <Compile Include="Thoughts\FormerHumanPalsWorker.cs" />
     <Compile Include="Thoughts\FormerHumanSituationalWorkerBase.cs" />
     <Compile Include="Thoughts\IFoodThoughtModifier.cs" />
+    <Compile Include="Thoughts\IThoughtTransferWorker.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />

@@ -59,9 +59,12 @@ namespace Pawnmorph.HPatches
             }
         }
 
+
+
         [HarmonyPatch(typeof(WorkGiver_Train))]
         private static class TrainPatches
         {
+            
             [HarmonyPatch("JobOnThing")]
             [HarmonyTranspiler]
             private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

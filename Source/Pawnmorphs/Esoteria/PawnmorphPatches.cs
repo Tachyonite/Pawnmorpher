@@ -78,11 +78,30 @@ namespace Pawnmorph
 
             try
             {
+                DoAnimalPatches(harmonyInstance); 
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching animal tab worker\n{e}");
+            }
+
+
+            try
+            {
                 ITabPatches.DoPrisonerPatch(harmonyInstance); 
             }
             catch (Exception e)
             {
                 Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching prisoner tab!\n{e}");
+            }
+
+            try
+            {
+                PatchMods(harmonyInstance);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"PM: caught error {e.GetType()} while patching mods! \n{e}");
             }
 
             try
@@ -96,7 +115,13 @@ namespace Pawnmorph
             }
         }
 
-
+        private static void PatchMods([NotNull] Harmony harmonyInstance)
+        {
+            if (LoadedModManager.RunningMods.Any(m => m.PackageId == "roolo.giddyupcore"))
+            {
+                GiddyUpPatch.PatchGiddyUp(harmonyInstance); 
+            }
+        }
 
 
         /// <summary>
@@ -161,7 +186,7 @@ namespace Pawnmorph
             var instanceFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
 
 
-            var tpMethod = typeof(PawnmorphPatches).GetMethod(nameof(PawnmorphPatches), staticFlags);
+            var tpMethod = typeof(PawnmorphPatches).GetMethod(nameof(SubstituteFormerHumanMethodsPatch), staticFlags);
             //animal tabs 
             var methods = typeof(MainTabWindow_Animals).GetNestedTypes(staticFlags | instanceFlags)//looking for delegates used by the animal tab 
                                                        .Where(t => t.IsCompilerGenerated())
@@ -203,10 +228,18 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
             methodsToPatch.Add(typeof(GatheringWorker_MarriageCeremony).GetMethod("IsGuest", instanceFlags));
             
+            //down/death thoughts 
+            methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
+
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
             {
-                if(methodInfo == null) continue;
+                if (methodInfo == null)
+                {
+                    Log.Warning($"encountered null in {nameof(MassPatchFormerHumanChecks)}!");
+                    
+                    continue;
+                }
                 harmonyInstance.ILPatchCommonMethods(methodInfo); 
             }
 

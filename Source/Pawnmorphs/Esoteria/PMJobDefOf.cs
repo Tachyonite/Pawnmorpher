@@ -21,6 +21,8 @@ namespace Pawnmorph
         public static JobDef PMDrainChemcyst;
         public static JobDef PMShaveSelf;
         public static JobDef PMResurrect;
+        public static JobDef PM_OperateSequencer; 
+
         [NotNull] public static JobDef RecruitSapientFormerHuman;
         [NotNull]
         public static JobDef PM_UseMutationGenome;
