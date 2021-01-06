@@ -903,7 +903,7 @@ namespace Pawnmorph
         /// <param name="backstoryOverride">The backstory override.</param>
         /// <param name="fixedFirstName">First name of the fixed.</param>
         /// <param name="fixedLastName">Last name of the fixed.</param>
-        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true, BackstoryDef backstoryOverride= null, string fixedFirstName=null, string fixedLastName=null)
+        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true, BackstoryDef backstoryOverride= null, string fixedFirstName=null, string fixedLastName=null, Gender? fixedOriginalGender = null)
         {
             if (animal.IsFormerHuman())
             {
@@ -1022,8 +1022,9 @@ namespace Pawnmorph
         /// <param name="animal">The animal.</param>
         /// <param name="fixedFirstName">First name of the fixed.</param>
         /// <param name="fixedLastName">Last name of the fixed.</param>
+        /// <param name="fixedOriginalGender">The fixed original gender.</param>
         /// <returns></returns>
-        public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName=null, string fixedLastName = null)
+        public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName=null, string fixedLastName = null, Gender? fixedOriginalGender=null)
         {
             PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
 
@@ -1033,7 +1034,7 @@ namespace Pawnmorph
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                                                   fixedChronologicalAge: chronoAge,
-                                                  fixedBiologicalAge: convertedAge, fixedBirthName:fixedFirstName, fixedLastName:fixedLastName); 
+                                                  fixedBiologicalAge: convertedAge, fixedBirthName:fixedFirstName, fixedLastName:fixedLastName, fixedGender:fixedOriginalGender); 
             Pawn lPawn = PawnGenerator.GeneratePawn(local);
             return lPawn;
         }

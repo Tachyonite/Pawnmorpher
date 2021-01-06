@@ -1,7 +1,11 @@
 ﻿// SheepChef.cs created by Iron Wolf for Pawnmorph on 01/05/2021 4:30 PM
 // last updated 01/05/2021  4:30 PM
 
+using System.Linq;
+using HarmonyLib;
+using JetBrains.Annotations;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.IncidentWorkers
@@ -44,16 +48,10 @@ namespace Pawnmorph.IncidentWorkers
             Pawn pawn = PawnGenerator.GeneratePawn(kind);
             GenSpawn.Spawn(pawn, loc, map, Rot4.Random);
             pawn.SetFaction(Faction.OfPlayer);
-            bool useFirst = Rand.Bool;
-            string firstName, lastName;
-            firstName = lastName = null;
-            if (useFirst)
-                firstName = "Gorden";
-            else
-                lastName = "Ramsey";
+            var oPawn = GenerateGordon(pawn);
 
-            FormerHumanUtilities.MakeAnimalSapient(pawn, backstoryOverride: PMBackstoryDefOf.PM_SheepChef,
-                                                   fixedLastName: lastName, fixedFirstName: firstName);
+
+            FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn);  
             
 
             
@@ -65,7 +63,78 @@ namespace Pawnmorph.IncidentWorkers
             var wComp = Find.World.GetComponent<PawnmorphGameComp>();
             wComp.sheepChefEventFired = true;
 
+
+            var pm = TfSys.TransformedPawn.Create(oPawn, pawn); 
+            Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(pm);
+
             return true;
+        }
+
+        private static TraitDef[] _forcedTraitDef = null; 
+
+        [NotNull]
+        private static TraitDef[] ForcedTraits {
+            get
+            {
+                if (_forcedTraitDef == null)
+                {
+                    _forcedTraitDef = new[] {TraitDefOf.Abrasive, TraitDef.Named("Gourmand")};
+                }
+
+                return _forcedTraitDef; 
+            }  } 
+
+        [NotNull]
+        Pawn GenerateGordon(Pawn animal)
+        {
+            PawnKindDef kind = PawnKindDefOf.Colonist; //TODO get these randomly ;
+            Faction faction = Faction.OfPlayer;
+            bool useFirst = Rand.Bool;
+            string firstName, lastName;
+            firstName = lastName = null;
+            if (useFirst)
+                firstName = "Gordon";
+            else
+                lastName = "Ramsey";
+
+  
+
+            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
+            float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
+            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
+                                                  fixedChronologicalAge: chronoAge,
+                                                  fixedBiologicalAge: convertedAge, fixedBirthName: firstName,
+                                                  fixedLastName: lastName, fixedGender: Gender.Male, forcedTraits: ForcedTraits) {ForcedTraits = ForcedTraits, ValidatorPreGear = GordenValidator};
+            
+            
+            Pawn lPawn = PawnGenerator.GeneratePawn(local);
+
+           
+          
+
+
+            if (!BackstoryDatabase.TryGetWithIdentifier("chef", out Backstory back))
+            {
+            }
+            else
+            {
+                lPawn.story.adulthood = back; 
+            }
+
+            AssignMutations(lPawn); 
+            return lPawn; 
+        }
+
+        private bool GordenValidator(Pawn obj)
+        {
+            TraitSet storyTraits = obj?.story?.traits;
+            return storyTraits?.HasTrait(TraitDefOf.Abrasive) == true && storyTraits.HasTrait(TraitDef.Named("Gourmand")) ;
+        }
+
+        private void AssignMutations(Pawn gordon)
+        {
+            
+            MutationUtilities.AddAllMorphMutations(gordon, MorphDefOfs.SheepMorph, MutationUtilities.AncillaryMutationEffects.None).SetAllToNaturalMax();
         }
     }
 }
