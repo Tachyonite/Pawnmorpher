@@ -901,7 +901,9 @@ namespace Pawnmorph
         /// <param name="joinIfRelated">if set to <c>true</c> and the resulting pawn is related to a colonist have the animal join
         /// the colony.</param>
         /// <param name="backstoryOverride">The backstory override.</param>
-        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true, BackstoryDef backstoryOverride= null)
+        /// <param name="fixedFirstName">First name of the fixed.</param>
+        /// <param name="fixedLastName">Last name of the fixed.</param>
+        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true, BackstoryDef backstoryOverride= null, string fixedFirstName=null, string fixedLastName=null)
         {
             if (animal.IsFormerHuman())
             {
@@ -916,7 +918,7 @@ namespace Pawnmorph
                 return;
             }
 
-            Pawn lPawn = GenerateRandomHumanForm(animal);
+            Pawn lPawn = GenerateRandomHumanForm(animal, fixedFirstName, fixedLastName); 
 
             MorphDef morph = MorphUtilities.TryGetBestMorphOfAnimal(animal.def);
 
@@ -1015,11 +1017,13 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Generates the random human form of the given animal 
+        /// Generates the random human form of the given animal
         /// </summary>
         /// <param name="animal">The animal.</param>
+        /// <param name="fixedFirstName">First name of the fixed.</param>
+        /// <param name="fixedLastName">Last name of the fixed.</param>
         /// <returns></returns>
-        public static Pawn GenerateRandomHumanForm(Pawn animal)
+        public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName=null, string fixedLastName = null)
         {
             PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
 
@@ -1029,7 +1033,7 @@ namespace Pawnmorph
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                                                   fixedChronologicalAge: chronoAge,
-                                                  fixedBiologicalAge: convertedAge); 
+                                                  fixedBiologicalAge: convertedAge, fixedBirthName:fixedFirstName, fixedLastName:fixedLastName); 
             Pawn lPawn = PawnGenerator.GeneratePawn(local);
             return lPawn;
         }

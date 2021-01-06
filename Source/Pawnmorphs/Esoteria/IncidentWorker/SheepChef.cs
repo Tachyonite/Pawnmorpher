@@ -44,7 +44,19 @@ namespace Pawnmorph.IncidentWorkers
             Pawn pawn = PawnGenerator.GeneratePawn(kind);
             GenSpawn.Spawn(pawn, loc, map, Rot4.Random);
             pawn.SetFaction(Faction.OfPlayer);
-            FormerHumanUtilities.MakeAnimalSapient(pawn, backstoryOverride: PMBackstoryDefOf.PM_SheepChef);
+            bool useFirst = Rand.Bool;
+            string firstName, lastName;
+            firstName = lastName = null;
+            if (useFirst)
+                firstName = "Gorden";
+            else
+                lastName = "Ramsey";
+
+            FormerHumanUtilities.MakeAnimalSapient(pawn, backstoryOverride: PMBackstoryDefOf.PM_SheepChef,
+                                                   fixedLastName: lastName, fixedFirstName: firstName);
+            
+
+            
 
 
             SendStandardLetter("PMSheepChefLetterLabel".Translate(kind.label).CapitalizeFirst(),
