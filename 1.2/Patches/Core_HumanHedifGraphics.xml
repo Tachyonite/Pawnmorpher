@@ -394,7 +394,6 @@
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Left</EtherSheepEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
-					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -477,7 +476,6 @@
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Left_Behind</EtherSheepEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
-					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
 					</hediffGraphics>
 				<offsets>
 					<south/>
@@ -626,7 +624,6 @@
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Right_Behind</EtherSheepEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
-					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
 				</hediffGraphics>
 				<offsets>
 					<south/>
