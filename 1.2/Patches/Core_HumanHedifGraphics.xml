@@ -308,10 +308,6 @@
 				<layerOffset>-0.26</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
-					<EtherHuskyEar>Parts/huskyface/huskyears</EtherHuskyEar>
-					<EtherMonkeyEar>Parts/monkeyface/monkeyear</EtherMonkeyEar>
-					<EtherPigEar>Parts/pigface/pigears</EtherPigEar>
 					<EtherRatEar>Parts/ratface/ratears</EtherRatEar>
 					<EtherSheepEar>Parts/sheepface/sheepears</EtherSheepEar>
 					<EtherThrumboEar>Parts/thrumboface/thrumboears</EtherThrumboEar>
@@ -390,7 +386,11 @@
 						</severity>
 					</EtherFennecFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
+					<EtherHorseEar>Parts/Horse/Horse_Ear_Left</EtherHorseEar>
+					<EtherHuskyEar>Parts/Husky/Husky_Ear_Left</EtherHuskyEar>
+					<EtherMonkeyEar>Parts/Monkey/Monkey_Ear_Left</EtherMonkeyEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
+					<EtherPigEar>Parts/Pig/Pig_Ear_Left</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
@@ -466,7 +466,11 @@
 						</severity>
 					</EtherFennecFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
+					<EtherHorseEar>Parts/Horse/Horse_Ear_Left_Behind</EtherHorseEar>
+					<EtherHuskyEar>Parts/Husky/Husky_Ear_Left_Behind</EtherHuskyEar>
+					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
+					<EtherPigEar>Parts/Pig/Pig_Ear_Left_Behind</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
@@ -526,7 +530,11 @@
 						</severity>
 					</EtherFennecFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
+					<EtherHorseEar>Parts/Horse/Horse_Ear_Right</EtherHorseEar>
+					<EtherHuskyEar>Parts/Husky/Husky_Ear_Right</EtherHuskyEar>
+					<EtherMonkeyEar>Parts/Monkey/Monkey_Ear_Right</EtherMonkeyEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
+					<EtherPigEar>Parts/Pig/Pig_Ear_Right</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
@@ -602,7 +610,11 @@
 						</severity>
 					</EtherFennecFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
+					<EtherHorseEar>Parts/Horse/Horse_Ear_Right_Behind</EtherHorseEar>
+					<EtherHuskyEar>Parts/Husky/Husky_Ear_Right_Behind</EtherHuskyEar>
+					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
+					<EtherPigEar>Parts/Pig/Pig_Ear_Right_Behind</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
