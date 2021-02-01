@@ -308,13 +308,6 @@
 				<layerOffset>-0.26</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
-					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
-					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
-					<EtherCatEar>Parts/catface/catears</EtherCatEar>
-					<EtherCowEar>Parts/cowface/cowears</EtherCowEar>
-					<EtherDeerEar>Parts/deerface/deerears</EtherDeerEar>
-					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
 					<EtherHorseEar>Parts/horseface/horseears</EtherHorseEar>
 					<EtherHuskyEar>Parts/huskyface/huskyears</EtherHuskyEar>
 					<EtherMonkeyEar>Parts/monkeyface/monkeyear</EtherMonkeyEar>
@@ -367,7 +360,14 @@
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
+					<EtherBearEar>Parts/Bear/Bear_Ear_Left</EtherBearEar>
+					<EtherBoarEar>Parts/Boar/Boar_Ear_Left</EtherBoarEar>
+					<EtherBoomalopeEar>Parts/Boomalope/Boomalope_Ear_Left</EtherBoomalopeEar>
+					<EtherCatEar>Parts/Cat/Cat_Ear_Left</EtherCatEar>
+					<EtherCowEar>Parts/Cow/Cow_Ear_Left</EtherCowEar>
+					<EtherDeerEar>Parts/Deer/Deer_Ear_Left</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left</EtherDonkeyEar>
+					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Left</EtherElephantEar>
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Left</path>
 						<severity>
@@ -436,7 +436,14 @@
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left_Behind</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
+					<EtherBearEar>Parts/Bear/Bear_Ear_Left_Behind</EtherBearEar>
+					<EtherBoarEar>Parts/Boar/Boar_Ear_Left_Behind</EtherBoarEar>
+					<EtherBoomalopeEar>Parts/Boomalope/Boomalope_Ear_Left_Behind</EtherBoomalopeEar>
+					<EtherCatEar>Parts/Cat/Cat_Ear_Left_Behind</EtherCatEar>
+					<EtherCowEar>Parts/Cow/Cow_Ear_Left_Behind</EtherCowEar>
+					<EtherDeerEar>Parts/Deer/Deer_Ear_Left_Behind</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left_Behind</EtherDonkeyEar>
+					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Left_Behind</EtherElephantEar>
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Left_Behind</path>
 						<severity>
@@ -489,7 +496,14 @@
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
+					<EtherBearEar>Parts/Bear/Bear_Ear_Right</EtherBearEar>
+					<EtherBoarEar>Parts/Boar/Boar_Ear_Right</EtherBoarEar>
+					<EtherBoomalopeEar>Parts/Boomalope/Boomalope_Ear_Right</EtherBoomalopeEar>
+					<EtherCatEar>Parts/Cat/Cat_Ear_Right</EtherCatEar>
+					<EtherCowEar>Parts/Cow/Cow_Ear_Right</EtherCowEar>
+					<EtherDeerEar>Parts/Deer/Deer_Ear_Right</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right</EtherDonkeyEar>
+					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Right</EtherElephantEar>
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Right</path>
 						<severity>
@@ -558,7 +572,14 @@
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right_Behind</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
+					<EtherBearEar>Parts/Bear/Bear_Ear_Right_Behind</EtherBearEar>
+					<EtherBoarEar>Parts/Boar/Boar_Ear_Right_Behind</EtherBoarEar>
+					<EtherBoomalopeEar>Parts/Boomalope/Boomalope_Ear_Right_Behind</EtherBoomalopeEar>
+					<EtherCatEar>Parts/Cat/Cat_Ear_Right_Behind</EtherCatEar>
+					<EtherCowEar>Parts/Cow/Cow_Ear_Right_Behind</EtherCowEar>
+					<EtherDeerEar>Parts/Deer/Deer_Ear_Right_Behind</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right_Behind</EtherDonkeyEar>
+					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Right_Behind</EtherElephantEar>
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Right_Behind</path>
 						<severity>
