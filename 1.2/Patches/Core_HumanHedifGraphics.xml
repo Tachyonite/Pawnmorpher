@@ -308,7 +308,6 @@
 				<layerOffset>-0.26</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<EtherRatEar>Parts/ratface/ratears</EtherRatEar>
 					<EtherSheepEar>Parts/sheepface/sheepears</EtherSheepEar>
 					<EtherThrumboEar>Parts/thrumboface/thrumboears</EtherThrumboEar>
 					<EtherWargEar>Parts/wargface/wargears</EtherWargEar>
@@ -392,6 +391,7 @@
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Left</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
+					<EtherRatEar>Parts/Rat/Rat_Ear_Left</EtherRatEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
 				</hediffGraphics>
@@ -472,6 +472,7 @@
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Left_Behind</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
+					<EtherRatEar>Parts/Rat/Rat_Ear_Left_Behind</EtherRatEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left_Behind</EtherTortoiseEar>
 					</hediffGraphics>
@@ -536,6 +537,7 @@
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Right</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
+					<EtherRatEar>Parts/Rat/Rat_Ear_Right</EtherRatEar>
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</EtherRhinocerosEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
 				</hediffGraphics>
@@ -616,6 +618,7 @@
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Right_Behind</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
+					<EtherRatEar>Parts/Rat/Rat_Ear_Right_Behind</EtherRatEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Right_Behind</EtherTortoiseEar>
 				</hediffGraphics>
