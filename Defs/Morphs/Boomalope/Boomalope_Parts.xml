@@ -79,12 +79,13 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
 		<defName>EtherBoomalopeEar</defName>
 		<label>boomalopic</label>
-		<description>Do boomalopes have ears? It seems so, as two ears belonging to one site at the sides of [PAWN_nameDef]'s head.</description>
+		<description>A boomalope's small but apparently present ear.</description>
 		<parts>
 			<li>Ear</li>
 		</parts>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>Do boomalopes have ears? It seems so, seeing as [PAWN_nameDef] seems to have grown one.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 		</stages>
