@@ -308,9 +308,6 @@
 				<layerOffset>-0.26</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<EtherThrumboEar>Parts/thrumboface/thrumboears</EtherThrumboEar>
-					<EtherWargEar>Parts/wargface/wargears</EtherWargEar>
-					<EtherWolfEar>Parts/wolfface/wolfear</EtherWolfEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -394,6 +391,9 @@
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Left</EtherSheepEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
+					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left</EtherThrumboEar>
+					<EtherWargEar>Parts/Warg/Warg_Ear_Left</EtherWargEar>
+					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left</EtherWolfEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -476,6 +476,9 @@
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Left_Behind</EtherSheepEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
+					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</EtherThrumboEar>
+					<EtherWargEar>Parts/Warg/Warg_Ear_Left_Behind</EtherWargEar>
+					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left_Behind</EtherWolfEar>
 					</hediffGraphics>
 				<offsets>
 					<south/>
@@ -542,6 +545,9 @@
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Right</EtherSheepEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
+					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right</EtherThrumboEar>
+					<EtherWargEar>Parts/Warg/Warg_Ear_Right</EtherWargEar>
+					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right</EtherWolfEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -624,6 +630,9 @@
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Right_Behind</EtherSheepEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
+					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right_Behind</EtherThrumboEar>
+					<EtherWargEar>Parts/Warg/Warg_Ear_Right_Behind</EtherWargEar>
+					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right_Behind</EtherWolfEar>
 				</hediffGraphics>
 				<offsets>
 					<south/>
