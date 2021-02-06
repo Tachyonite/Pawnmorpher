@@ -43,6 +43,20 @@ namespace Pawnmorph.DebugUtils
 
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void GetMutationValues()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (MutationDef mutationDef in DefDatabase<MutationDef>.AllDefs)
+            {
+                builder.AppendLine(mutationDef.defName + "," + mutationDef.priceOffset); 
+            }
+
+            Log.Message(builder.ToString()); 
+
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         static void CheckForSeverityPerDay()
         {
             StringBuilder builder = new StringBuilder();
