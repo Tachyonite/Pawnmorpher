@@ -125,6 +125,70 @@ namespace Pawnmorph.DebugUtils
             }
 
             Log.Message(builder.ToString());
+
+            builder.Clear();
+
+            builder.AppendLine("Mutation,part efficiency, pain offset, pain factor");
+            foreach (MutationDef allMutation in MutationDef.AllMutations)
+            {
+                if(allMutation.stages == null) continue;
+                List<string> lst = new List<string>(); 
+
+                for (var index = 0; index < allMutation.stages.Count; index++)
+                {
+                    
+                    HediffStage allMutationStage = allMutation.stages[index];
+                    if(allMutationStage == null) continue;
+                    lst.Add(allMutation.defName + index);
+                    lst.Add(allMutationStage.partEfficiencyOffset.ToString());
+                    lst.Add(allMutationStage.painOffset.ToString());
+                    lst.Add(allMutationStage.painFactor.ToString());
+                    builder.AppendLine(lst.Join());
+                    lst.Clear();
+
+                }
+
+            }
+
+            Log.Message(builder.ToString());
+
+            List<PawnCapacityDef> caps = MutationDef.AllMutations.SelectMany(m => m.stages.MakeSafe())
+                                                    .SelectMany(st => st.capMods.MakeSafe().Select(s => s.capacity))
+                                                    .Where(c => c != null)
+                                                    .Distinct()
+                                                    .ToList();
+
+            builder.Clear();
+            List<string> tmpLst = new List<string>();
+            tmpLst.Add("Mutation"); 
+            tmpLst.AddRange(caps.Select(c => c.defName));
+
+            builder.AppendLine(tmpLst.Join()); 
+            tmpLst.Clear();
+
+
+            foreach (MutationDef mut in MutationDef.AllMutations)
+            {
+                if(mut.stages == null) continue;
+                for(int index =0 ; index < mut.stages.Count ; index++)
+                {
+                    var stage = mut.stages[index]; 
+                    if(stage?.capMods == null) continue;
+                    tmpLst.Clear();
+                    tmpLst.Add(mut.defName + index);
+                    foreach (PawnCapacityDef pawnCapacityDef in caps)
+                    {
+                        var capMod = stage.capMods.FirstOrDefault(c => c.capacity == pawnCapacityDef);
+                        var val = capMod?.offset ?? 0;
+                        tmpLst.Add(val.ToString()); 
+                    }
+
+                    builder.AppendLine(tmpLst.Join());
+                }
+            }
+
+            Log.Message(builder.ToString()); 
+
         }
 
 
