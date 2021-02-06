@@ -8,7 +8,9 @@ using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.DebugUtils
@@ -41,20 +43,94 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString()); 
         }
 
-
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        static void GetMutationValues()
+        static void GetStatsPerMutation()
         {
-            StringBuilder builder = new StringBuilder();
+            var allStages = MutationDef.AllMutations.SelectMany(m => m.stages.MakeSafe());
+            List<StatDef> offsets = new List<StatDef>();
+            List<StatDef> factors = new List<StatDef>();
 
-            foreach (MutationDef mutationDef in DefDatabase<MutationDef>.AllDefs)
+            foreach (HediffStage hediffStage in allStages)
             {
-                builder.AppendLine(mutationDef.defName + "," + mutationDef.priceOffset); 
+                if (hediffStage == null) continue;
+                foreach (StatModifier statModifier in hediffStage.statOffsets.MakeSafe())
+                {
+                    if (!offsets.Contains(statModifier.stat)) offsets.Add(statModifier.stat);
+
+                }
+
+                foreach (StatModifier statModifier in hediffStage.statFactors.MakeSafe())
+                {
+                    if (!factors.Contains(statModifier.stat)) factors.Add(statModifier.stat);
+                }
             }
 
-            Log.Message(builder.ToString()); 
+            StringBuilder builder = new StringBuilder();
 
+            builder.AppendLine("Mutations," + offsets.Join());
+
+            foreach (MutationDef allMutation in MutationDef.AllMutations)
+            {
+                if (allMutation.stages == null) continue;
+                for (int i = 0; i < allMutation.stages.Count; i++)
+                {
+                    var stage = allMutation.stages[i];
+                    if (stage?.statOffsets == null) continue;
+
+                    string eStr = allMutation.defName + i;
+
+                    List<string> entry = new List<string>() { eStr };
+
+                    foreach (StatDef statDef in offsets)
+                    {
+                        var stat = stage.statOffsets.FirstOrDefault(f => f.stat == statDef);
+
+                        var val = stat?.value ?? 0;
+
+                        entry.Add(val.ToString());
+                    }
+
+                    builder.AppendLine(entry.Join());
+                }
+            }
+
+            Log.Message(builder.ToString());
+
+            builder.Clear();
+            builder.AppendLine("Mutations," + factors.Join());
+
+            foreach (MutationDef allMutation in MutationDef.AllMutations)
+            {
+                if (allMutation.stages == null) continue;
+                for (int i = 0; i < allMutation.stages.Count; i++)
+                {
+                    var stage = allMutation.stages[i];
+                    if (stage?.statFactors== null) continue;
+
+                    string eStr = allMutation.defName + i;
+
+                    List<string> entry = new List<string>() { eStr };
+
+                    foreach (StatDef statDef in factors)
+                    {
+                        var stat = stage.statFactors.FirstOrDefault(f => f.stat == statDef);
+
+                        var val = stat?.value ?? 0;
+
+                        entry.Add(val.ToString());
+                    }
+
+                    builder.AppendLine(entry.Join());
+                }
+            }
+
+            Log.Message(builder.ToString());
         }
+
+
+
+
+
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         static void CheckForSeverityPerDay()
