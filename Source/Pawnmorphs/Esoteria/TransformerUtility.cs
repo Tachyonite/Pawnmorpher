@@ -511,7 +511,16 @@ namespace Pawnmorph
         public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause)
         {
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
-            HandleApparelAndEquipment(originalPawn); 
+            
+            
+            Caravan caravan = originalPawn.GetCaravan();
+            caravan?.RemovePawn(originalPawn);
+            caravan?.Notify_PawnRemoved(originalPawn);
+
+
+
+
+            HandleApparelAndEquipment(originalPawn, caravan); 
             if (cause != null)
                 originalPawn
                    .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
@@ -533,9 +542,7 @@ namespace Pawnmorph
                 HandlePrisoner(originalPawn);
 
 
-            Caravan caravan = originalPawn.GetCaravan();
-            caravan?.RemovePawn(originalPawn);
-            caravan?.Notify_PawnRemoved(originalPawn);
+         
 
             // Make sure any current lords know they can't use this pawn anymore.
             originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
@@ -570,9 +577,8 @@ namespace Pawnmorph
             DebugLogUtils.Assert(!pawn.guest.IsPrisoner, $"{pawn.Name} is being cleaned up but is still a prisoner");
         }
 
-        private static void HandleApparelAndEquipment(Pawn originalPawn)
+        private static void HandleApparelAndEquipment(Pawn originalPawn, Caravan caravan)
         {
-            var caravan = originalPawn.GetCaravan();
             var apparelTracker = originalPawn.apparel;
             var equipmentTracker = originalPawn.equipment;
             
@@ -584,13 +590,20 @@ namespace Pawnmorph
             else if (caravan != null)
             {
 
+
+
                 if (apparelTracker != null)
                 {
                     for (int i = apparelTracker.WornApparelCount - 1; i >= 0; i--)
                     {
                         var apparel = apparelTracker.WornApparel[i];
                         apparelTracker.Remove(apparel);
-                        caravan.AddPawnOrItem(apparel, false); 
+                        if (apparel == null) continue;
+
+                        if (caravan.PawnsListForReading.Count > 0)
+                            caravan.AddPawnOrItem(apparel, false);
+                        else
+                            apparel.Destroy(); 
                     }
                 }
 
@@ -601,10 +614,15 @@ namespace Pawnmorph
                     {
                         var equipment = equipmentTracker.AllEquipmentListForReading[i];
                         equipmentTracker.Remove(equipment);
-                        caravan.AddPawnOrItem(equipment, false); 
+                        if(equipment == null) continue;
+                        if(caravan.PawnsListForReading.Count > 0)
+                            caravan.AddPawnOrItem(equipment, false); 
+                        else 
+                            equipment.Destroy();
                     }
                 }
             }
+            
 
 
         }
