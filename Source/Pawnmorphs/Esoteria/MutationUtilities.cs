@@ -51,7 +51,9 @@ namespace Pawnmorph
         /// </value>
         [NotNull]
         public static IReadOnlyList<MutationDef> AllNonRestrictedMutations { get; }
-
+        /// <summary>
+        /// Initializes the <see cref="MutationUtilities"/> class.
+        /// </summary>
         static MutationUtilities()
         {
             StatDef stat = PMStatDefOf.MutationAdaptability;
@@ -176,6 +178,35 @@ namespace Pawnmorph
         public static float GetMarketValueFor([NotNull] this MutationDef mDef)
         {
             return mDef.value * MARKET_VALUE_PER_VALUE; 
+        }
+
+        /// <summary>
+        /// Adjusts the mutagenic buildup.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="amount">The amount.</param>
+        /// <param name="buildupDef">The buildup definition.</param>
+        public static void AdjustMutagenicBuildup([NotNull] Pawn pawn, float amount, HediffDef buildupDef = null)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            buildupDef = buildupDef ?? Hediffs.MorphTransformationDefOf.MutagenicBuildup;
+
+            var hediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(buildupDef);
+            if (hediff == null)
+            {
+                hediff = HediffMaker.MakeHediff(buildupDef, pawn);
+                hediff.Severity = amount; 
+            }
+            else
+            {
+                hediff.Severity += amount; 
+                var comp = hediff.TryGetComp<Comp_MutagenicInfecter>();
+                comp?.ResetIfStopped();
+                
+            }
+
+
+
         }
 
 

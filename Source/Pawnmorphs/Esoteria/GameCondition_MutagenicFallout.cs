@@ -67,7 +67,8 @@ namespace Pawnmorph
                     {
                         float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D)); //should be ok
                         num *= num2;                                                //what's the magic number? 
-                        HealthUtility.AdjustSeverity(pawn, Hediffs.MorphTransformationDefOf.MutagenicBuildup, num);
+                        MutationUtilities.AdjustMutagenicBuildup(pawn, num); 
+                   
                     }
                 }
             }

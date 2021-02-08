@@ -32,7 +32,7 @@ namespace Pawnmorph.Hediffs
         public static HediffDef MutagenicBuildup;
         public static HediffDef MutagenicBuildup_Weapon;
 
-
+        public static HediffDef PM_MutagenicInfection; 
         static MorphTransformationDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(MorphTransformationDefOf));
