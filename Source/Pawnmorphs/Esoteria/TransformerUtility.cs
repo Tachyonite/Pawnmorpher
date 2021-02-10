@@ -505,10 +505,14 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Cleans up all references to the original human pawn after creating the animal pawn. <br />
-        ///     This does not call Pawn.DeSpawn.
+        /// Cleans up all references to the original human pawn after creating the animal pawn. <br />
+        /// This does not call Pawn.DeSpawn.
         /// </summary>
-        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause)
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="cause">The cause.</param>
+        /// <param name="removeMentalStates">if set to <c>true</c> [remove mental states].</param>
+        /// <exception cref="ArgumentNullException">originalPawn</exception>
+        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause, bool removeMentalStates=true)
         {
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
             
@@ -517,6 +521,12 @@ namespace Pawnmorph
             caravan?.RemovePawn(originalPawn);
             caravan?.Notify_PawnRemoved(originalPawn);
 
+
+
+            if (originalPawn.InMentalState)
+            {
+                originalPawn?.mindState?.mentalStateHandler?.Reset();
+            }
 
 
 
