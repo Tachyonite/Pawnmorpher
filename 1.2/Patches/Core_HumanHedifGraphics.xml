@@ -299,47 +299,6 @@
 				</offsets>
 			</li>
 			<li>
-				<!-- Old Ears -->
-				<path>Parts/None/None</path>
-				<debug>false</debug>
-
-				<bodyPart>Ear</bodyPart>
-				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.26</layerOffset>
-				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics>
-				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.94)</Male>
-							<Female>(0,0.94)</Female>
-							<Thin>(0,0.94)</Thin>
-							<Hulk>(0,0.94)</Hulk>
-							<Fat>(0,0.94)</Fat>
-						</bodyTypes>
-					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
-			</li>
-			<li>
 				<!-- Left Ear -->
 				<debug>false</debug>
 
