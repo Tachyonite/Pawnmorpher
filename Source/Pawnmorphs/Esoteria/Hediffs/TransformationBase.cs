@@ -461,11 +461,10 @@ namespace Pawnmorph.Hediffs
                         var result = MutationUtilities.AddMutation(pawn, mutation.mutation, part);
                         if(result) //make sure the mutation was actually added before doing this 
                         {
-                            var mutagen = def.GetMutagenDef();
-                            mutagen.TryApplyAspects(pawn);
-                            mutationsAdded++;
+                            mutationsAdded = NewMethod(mutationsAdded);
                         }
-                    }else if (mutation.blocks)
+                    }
+                    else if (mutation.blocks)
                     {
                         return; //wait here until the blocking mutation is added 
                     }
@@ -491,6 +490,14 @@ namespace Pawnmorph.Hediffs
             {
                 OnMutationsAdded(mutationsAdded); 
             }
+        }
+
+        private int NewMethod(int mutationsAdded)
+        {
+            var mutagen = def.GetMutagenDef();
+            mutagen.TryApplyAspects(pawn);
+            mutationsAdded++;
+            return mutationsAdded;
         }
 
         /// <summary>

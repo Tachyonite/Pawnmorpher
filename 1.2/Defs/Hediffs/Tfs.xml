@@ -1,0 +1,12 @@
+<Defs>
+    <HediffDef ParentName="PM_RandomTfBase">
+        <defName>PM_ExperimentalInjector</defName>
+        <label>experimental injector</label>
+        <description>TODO</description>
+        <comps>
+            <li>
+                <compClass>Pawnmorph.Hediffs.Comp_MutationTagger</compClass>
+            </li>
+        </comps>
+    </HediffDef>
+</Defs>
