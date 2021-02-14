@@ -2,6 +2,9 @@
 // last updated 09/18/2019  2:36 PM
 
 using System.Linq;
+using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -27,10 +30,53 @@ namespace Pawnmorph.Thoughts
             var tracker = otherPawn.GetMutationTracker();
             if (tracker == null) return false;
             if (tracker.MutationsCount == 0) return false;  
+
+
+            //check for aliens that naturally spawn with parts 
+
+            var raceExt = p.TryGetRaceMutationSettings();
+            if (raceExt != null)
+            {
+
+                return CalculateAlienBP(p, tracker, raceExt); 
+
+
+
+            }
+
+
+
+
             int n = Mathf.FloorToInt(tracker.TotalNormalizedInfluence * def.stages.Count);
             n = Mathf.Clamp(n, 0, def.stages.Count - 1); 
             
             return ThoughtState.ActiveAtStage(n);
+        }
+
+        private ThoughtState CalculateAlienBP([NotNull] Pawn pawn, [NotNull] MutationTracker tracker, [NotNull] RaceMutationSettingsExtension raceExt)
+        {
+            var inf = tracker.TotalInfluence;
+            foreach (Hediff_AddedMutation mutation in tracker.AllMutations)
+            {
+                bool isNatural=false; 
+                foreach (IRaceMutationRetriever retriever in raceExt.mutationRetrievers)
+                {
+                    if (retriever.CanGenerate(mutation.Def))
+                    {
+                        isNatural = true; break;
+                    }
+                }
+
+                if (isNatural)
+                {
+                    inf -= 1; 
+                }
+            }
+
+            var nInf = Mathf.Max(inf, 0) / MorphUtilities.GetMaxInfluenceOfRace(pawn.def);
+            int n = Mathf.FloorToInt(nInf * def.stages.Count);
+            n = Mathf.Clamp(n, 0, def.stages.Count - 1);
+            return ThoughtState.ActiveAtStage(n); 
         }
     }
 }

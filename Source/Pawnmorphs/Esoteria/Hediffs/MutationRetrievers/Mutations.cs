@@ -38,5 +38,17 @@ namespace Pawnmorph.Hediffs.MutationRetrievers
         {
             return mutations; 
         }
+
+        /// <summary>
+        /// Determines whether this instance can generate the specified mutation.
+        /// </summary>
+        /// <param name="mDef">The m definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance with the specified m definition can generate ; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanGenerate(MutationDef mDef)
+        {
+            return mutations?.Contains(mDef) == true; 
+        }
     }
 }
