@@ -18,6 +18,32 @@
             </li>
         </value>
     </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes</xpath>
+        <order>Prepend</order>
+        <value>
+            <!-- do lovin -->
+            <li Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
+                <mustBeColonist>true</mustBeColonist>
+                <subNodes>
+                    <li Class="ThinkNode_ConditionalLyingDown">
+                        <subNodes>
+                            <li Class="ThinkNode_ChancePerHour_Lovin">
+                                <subNodes>
+                                    <li Class="ThinkNode_Tagger">
+                                        <tagToGive>SatisfyingNeeds</tagToGive>
+                                        <subNodes>
+                                            <li Class="JobGiver_DoLovin" />
+                                        </subNodes>
+                                    </li>
+                                </subNodes>
+                            </li>
+                        </subNodes>
+                    </li>
+                </subNodes>
+            </li>
+        </value>
+    </Operation>
     <Operation Class="PatchOperationInsert">
         <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalHasFaction"][1]</xpath>
         <order>Append</order>

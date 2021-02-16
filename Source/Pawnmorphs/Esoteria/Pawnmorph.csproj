@@ -446,6 +446,7 @@
     <Compile Include="HPatches\AnimalInteractionPatches.cs" />
     <Compile Include="HPatches\ApparelUtilityPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
+    <Compile Include="HPatches\DebugPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DoorPatches.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />

@@ -113,6 +113,16 @@ namespace Pawnmorph
             {
                 Log.Error($"Pawnmorpher cannot preform harmony patches! caught {e.GetType().Name}\n{e}"); 
             }
+
+            try
+            {
+                DebugPatches.DoDebugPatches(harmonyInstance); 
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher cannot preform debugging patches! caught {e.GetType().Name}\n{e}");
+            }
+
         }
 
         private static void PatchMods([NotNull] Harmony harmonyInstance)
