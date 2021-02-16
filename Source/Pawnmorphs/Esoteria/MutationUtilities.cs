@@ -200,8 +200,7 @@ namespace Pawnmorph
             else
             {
                 hediff.Severity += amount; 
-                var comp = hediff.TryGetComp<Comp_MutagenicInfecter>();
-                comp?.ResetIfStopped();
+                //TODO chance to infect a wound 
                 
             }
 

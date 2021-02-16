@@ -6,11 +6,6 @@
         <lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
         <maxSeverity>1</maxSeverity>
         <label>mutagenic buildup</label>
-        <comps>
-            <li Class="Pawnmorph.Hediffs.CompProps_MutagenicInfecter">
-                <infectionChance>0.4</infectionChance>
-            </li>
-        </comps>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.MutagenExtension">
                 <mutagen>ChaoticMutagen</mutagen>
