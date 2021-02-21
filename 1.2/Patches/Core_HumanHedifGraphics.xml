@@ -395,6 +395,7 @@
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 					<EtherTortoiseEar>Parts/Tortoise/Tortoise_Ear_Left</EtherTortoiseEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
+					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</EtherRhinocerosEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
 				</hediffGraphics>
 				<offsets>
