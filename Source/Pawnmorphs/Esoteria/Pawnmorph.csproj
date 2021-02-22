@@ -544,6 +544,7 @@
     <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
+    <Compile Include="PlaceWorkers\ShowMutationRadius.cs" />
     <Compile Include="PMBackstoryDefOf.cs" />
     <Compile Include="PMConceptDefOf.cs" />
     <Compile Include="PMDamageDefOf.cs" />

@@ -37,14 +37,32 @@ namespace Pawnmorph
         {
             Scribe_Values.Look(ref plantHarmAge, "plantHarmAge", 0, false);
             Scribe_Values.Look(ref ticksToPlantHarm, "ticksToPlantHarm", 0, false);
+            Scribe_Values.Look(ref _radius, nameof(Radius), 0); 
         }
 
         [NotNull]
         private readonly List<Pawn> _pawnsCache = new List<Pawn>();
 
+        private float _radius;
+
+
+
 
         //set this constant to increase/decrease the radius growth rate for debugging 
-        private const float EVAL_MULTIPLIER =1; 
+        private const float EVAL_MULTIPLIER =1;
+
+
+        /// <summary>
+        /// Gets the radius.
+        /// </summary>
+        /// <value>
+        /// The radius.
+        /// </value>
+        public float Radius
+        {
+            get => _radius;
+            private set => _radius = value;
+        }
 
         /// <summary>
         /// called every tick after it's parent updates 
@@ -62,8 +80,8 @@ namespace Pawnmorph
                 if (ticksToPlantHarm <= 0)
                 {
                     float x = plantHarmAge / 60000f;
-                    float num = PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x * EVAL_MULTIPLIER);
-                    float num2 = Mathf.PI * num * num;
+                    Radius = PropsPlantHarmRadius.radiusPerDayCurve.Evaluate(x * EVAL_MULTIPLIER);
+                    float num2 = Mathf.PI * Radius * Radius;
                     float num3 = num2 * PropsPlantHarmRadius.harmFrequencyPerArea;
                     float num4 = 60f / num3;
                     int num5;
@@ -81,7 +99,7 @@ namespace Pawnmorph
 
                     for (int i = 0; i < num5; i++)
                     {
-                        MutateInRadius(num, PropsPlantHarmRadius.hediff);
+                        MutateInRadius(Radius, PropsPlantHarmRadius.hediff);
                     }
                 }
             }
