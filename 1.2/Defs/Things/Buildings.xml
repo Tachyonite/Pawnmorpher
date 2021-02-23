@@ -183,6 +183,9 @@
         <thingSetMakerTags>
             <li>RewardStandardHighFreq</li>
         </thingSetMakerTags>
+        <placeWorkers>
+            <li>Pawnmorph.PlaceWorkers.Centrifuge</li>
+        </placeWorkers>
         <tickerType>Normal</tickerType>
         <size>(3, 3)</size>
         <fillPercent>1.0</fillPercent>
