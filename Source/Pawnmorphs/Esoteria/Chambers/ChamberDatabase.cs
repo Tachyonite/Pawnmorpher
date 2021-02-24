@@ -250,6 +250,42 @@ namespace Pawnmorph.Chambers
             return string.IsNullOrEmpty(reason); 
         }
 
+        private const string NOT_TAGGABLE = "PMMutationNotTaggable";
+        private const string RESTRICTED_MUTATION = "PMMutationRestricted";
+        /// <summary>
+        /// Determines whether this instance with the specified mutation definition can be added to the database  
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="reason">The reason.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance with the specified mutation definition  [can add to database]  otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanAddToDatabase([NotNull] MutationDef mutationDef, out string reason)
+        {
+
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            if (mutationDef.GetRequiredStorage() <= FreeStorage)
+            {
+                reason = NOT_ENOUGH_STORAGE_REASON.Translate(mutationDef);
+
+                return false;
+            }
+            else if (!CanTag)
+            {
+                reason = NOT_TAGGABLE.Translate(mutationDef);
+                return false;
+            }
+
+            if (mutationDef.IsRestricted)
+            {
+                reason = RESTRICTED_MUTATION.Translate(mutationDef);
+                return false; 
+            }
+
+            reason = "";
+            return true; 
+        }
+
         /// <summary>
         ///     Exposes the data.
         /// </summary>

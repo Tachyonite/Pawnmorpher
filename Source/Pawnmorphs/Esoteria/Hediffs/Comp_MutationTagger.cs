@@ -4,6 +4,7 @@
 using System;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -20,7 +21,7 @@ namespace Pawnmorph.Hediffs
         
         [CanBeNull] private SimpleCurve Curve => (props as CompProps_MutationTagger)?.tagChancePerValue; 
 
-        bool IsTagged(MutationDef mDef)
+        bool CanTag(MutationDef mDef)
         {
             var curve = Curve;
             float chance; 
@@ -61,8 +62,16 @@ namespace Pawnmorph.Hediffs
                 var mutationDef = (MutationDef) mutation.def;
 
 
-                if(IsTagged(mutationDef))
+                if (CanTag(mutationDef))
+                {
+                    if (!DB.CanAddToDatabase(mutationDef, out string reason))
+                    {
+                        Messages.Message(reason, MessageTypeDefOf.RejectInput);
+                        return; 
+                    }
+                    
                     DB.TryAddToDatabase(mutationDef);
+                }
             }
             catch (InvalidCastException e)
             {
