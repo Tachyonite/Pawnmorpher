@@ -2,6 +2,7 @@
 // last updated 02/12/2021  7:12 AM
 
 using System;
+using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Verse;
 
@@ -16,11 +17,12 @@ namespace Pawnmorph.Hediffs
     {
         private ChamberDatabase _db;
 
-        private CompProps_MutationTagger Props => (CompProps_MutationTagger) props;
+        
+        [CanBeNull] private SimpleCurve Curve => (props as CompProps_MutationTagger)?.tagChancePerValue; 
 
         bool IsTagged(MutationDef mDef)
         {
-            var curve = Props?.tagChancePerValue;
+            var curve = Curve;
             float chance; 
             if (curve != null)
             {
