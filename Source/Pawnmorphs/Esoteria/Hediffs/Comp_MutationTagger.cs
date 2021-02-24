@@ -38,17 +38,10 @@ namespace Pawnmorph.Hediffs
         }
 
 
-        ChamberDatabase DB
+        private ChamberDatabase DB
         {
             get
-            {
-                if (_db == null)
-                {
-                    _db = Find.World.GetComponent<ChamberDatabase>();
-                }
-
-                return _db; 
-            }
+                => Find.World.GetComponent<ChamberDatabase>();
         }
 
 

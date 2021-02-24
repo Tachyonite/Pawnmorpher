@@ -21,6 +21,15 @@ namespace Pawnmorph.Chambers
     /// <seealso cref="RimWorld.Planet.WorldComponent" />
     public class ChamberDatabase : WorldComponent
     {
+        /// <summary>
+        /// Finalizes the initialize.
+        /// </summary>
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            _usedStorageCache = null; 
+        }
+
         private int? _usedStorageCache;
 
 
@@ -182,7 +191,7 @@ namespace Pawnmorph.Chambers
         public bool CanAddToDatabase([NotNull] MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (mutationDef.GetRequiredStorage() <= FreeStorage) return false;
+            if (mutationDef.GetRequiredStorage() > FreeStorage) return false;
             else if (!CanTag)
             {
                 return false; 
@@ -264,8 +273,10 @@ namespace Pawnmorph.Chambers
         {
 
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (mutationDef.GetRequiredStorage() <= FreeStorage)
+            
+            if ( FreeStorage < mutationDef.GetRequiredStorage())
             {
+
                 reason = NOT_ENOUGH_STORAGE_REASON.Translate(mutationDef);
 
                 return false;
