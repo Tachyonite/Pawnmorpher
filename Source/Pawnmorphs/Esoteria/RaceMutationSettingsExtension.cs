@@ -1,11 +1,13 @@
 ﻿// RaceMutagenExtension.cs created by Nick M(Iron Wolf) for Blue Moon (Pawnmorph) on 08/13/2019 4:10 PM
 // last updated 08/13/2019  4:10 PM
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -62,4 +64,52 @@ namespace Pawnmorph
             }
         }
     }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class RaceMutationSettingsCacher
+    {
+        private static Dictionary<ThingDef, RaceMutationSettingsExtension> _cache =
+            new Dictionary<ThingDef, RaceMutationSettingsExtension>();
+
+
+        /// <summary>
+        /// Tries to get the race mutation settings.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        [CanBeNull]
+        public static RaceMutationSettingsExtension TryGetRaceMutationSettings([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            return pawn.def.TryGetRaceMutationSettings(); 
+        }
+
+        /// <summary>
+        /// Tries the get race mutation settings.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">raceDef</exception>
+        [CanBeNull]
+        public static RaceMutationSettingsExtension TryGetRaceMutationSettings([NotNull] this ThingDef raceDef)
+        {
+            if (raceDef == null) throw new ArgumentNullException(nameof(raceDef));
+
+            if (_cache.TryGetValue(raceDef, out var ext))
+            {
+                return ext; 
+            }
+
+            ext = raceDef.GetModExtension<RaceMutationSettingsExtension>();
+            _cache[raceDef] = ext;
+            return ext; 
+        }
+
+
+    }
+
 }

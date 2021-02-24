@@ -51,7 +51,7 @@ namespace Pawnmorph.HPatches
             public static void Postfix(Pawn pawn, PawnGenerationRequest request)
             {
 
-                var raceExt = pawn?.def?.GetModExtension<RaceMutationSettingsExtension>();
+                var raceExt = pawn?.def?.TryGetRaceMutationSettings();
                 if (raceExt?.immuneToAll == true) return;
                 if (raceExt != null)
                 {

@@ -160,6 +160,9 @@ namespace Pawnmorph
             IntVec3 pos = originalPlant.Position;
             Map map = originalPlant.Map;
 
+            //TODO have a special interaction with the anima tree, ignore it for now 
+            if (plantDef == ThingDefOf.Plant_TreeAnima) return; 
+
             if (plantDef != null) //spawn a new plant 
             {
                 var newPlant = (Plant) GenSpawn.Spawn(plantDef, pos, map);

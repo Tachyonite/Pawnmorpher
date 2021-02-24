@@ -134,6 +134,7 @@ namespace Pawnmorph.HPatches
                 if (___pawn.IsSapientFormerHuman() && ___pawn.GetPosture() == PawnPosture.LayingInBed)
                 {
                     Building_Bed buildingBed = ___pawn.CurrentBed();
+                    if (buildingBed == null) return true; 
                     Rot4 rotation = buildingBed.Rotation;
                     rotation.AsInt += Rand.ValueSeeded(___pawn.thingIDNumber) > 0.5 ? 1 : 3;
                     __result = rotation.AsAngle;

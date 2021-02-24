@@ -20,6 +20,12 @@ namespace Pawnmorph.Buildings
     /// <seealso cref="Verse.Building" />
     public class MutaniteCentrifuge : Building
     {
+
+        static MutaniteCentrifuge()
+        {
+            _buffer = new RWRaycastHit[20]; 
+        }
+
         /// <summary>
         ///     the running mode of the centrifuge
         /// </summary>
@@ -45,9 +51,12 @@ namespace Pawnmorph.Buildings
 
         private const float EPSILON = 0.0001f;
 
-        private const int DANGER_RADIUS = 4;
+        /// <summary>
+        /// The danger radius
+        /// </summary>
+        public const int DANGER_RADIUS = 5;
 
-        private const float MUTAGENIC_BUILDUP_RATE = 0.002f;
+        private const float MUTAGENIC_BUILDUP_RATE = 0.02f;
 
         [NotNull] private readonly List<Building_Storage> _hoppers = new List<Building_Storage>();
 
@@ -251,8 +260,43 @@ namespace Pawnmorph.Buildings
             {
                 if (!(thing is Pawn pawn)) continue;
                 if (!mutagen.CanInfect(pawn)) return;
-                MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, pawn, MUTAGENIC_BUILDUP_RATE);
+
+                TryMutatePawn(pawn);
             }
+        }
+
+        [NotNull] private static readonly RWRaycastHit[] _buffer;
+
+        private void TryMutatePawn(Pawn pawn)
+        {
+
+            var hits = RWRaycast.RaycastAllNoAlloc(Map, Position, pawn.Position, _buffer, RaycastTargets.Impassible);
+
+            
+            if (hits == 0)
+            {
+                MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, pawn, MUTAGENIC_BUILDUP_RATE);
+                return; 
+            }
+
+            int tHits = 0;
+
+            for (int i = 0; i < hits; i++)
+            {
+                if (_buffer[i].hitThing != this) tHits++; 
+            }
+
+            var p0 = Position.ToIntVec2.ToVector3(); //need to get rid of y which may be different but shouldn't be taken into account 
+            var p1 = pawn.Position.ToIntVec2.ToVector3();
+            var dist = (p0 - p1).magnitude + tHits * 1.5f; 
+
+            float rate = MUTAGENIC_BUILDUP_RATE / (Mathf.Pow(2, dist));
+
+
+            if (rate <= EPSILON) return; 
+
+            MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, pawn, MUTAGENIC_BUILDUP_RATE);
+
         }
 
         private void EndProduction()

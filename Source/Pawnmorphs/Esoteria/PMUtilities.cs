@@ -12,6 +12,14 @@ namespace Pawnmorph
     public static class PMUtilities
     {
 
+        /// <summary>
+        /// Gets a value indicating whether mutagenic diseases are enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [mutagenic diseases enabled]; otherwise, <c>false</c>.
+        /// </value>
+        public static bool MutagenicDiseasesEnabled => GetSettings()?.enableMutagenDiseases == true; 
+
         /// <summary>Gets the mod settings.</summary>
         /// <returns></returns>
         [NotNull]

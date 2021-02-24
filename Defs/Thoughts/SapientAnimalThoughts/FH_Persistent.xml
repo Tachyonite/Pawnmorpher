@@ -141,17 +141,17 @@
 			<li>
 				<label>primal wish fulfilled</label>
 				<description>I got exactly what I wanted. Now, when does the instinct kick in?</description>
-				<baseMoodEffect>10</baseMoodEffect>
+				<baseMoodEffect>5</baseMoodEffect>
 			</li>
 			<li>
 				<label>lingering instinct</label>
 				<description>Hmm, all these sights and smells from a different viewpoint is extremely interesting!</description>
-				<baseMoodEffect>15</baseMoodEffect>
+				<baseMoodEffect>10</baseMoodEffect>
 			</li>
 			<li>
 				<label>conflicted mind</label>
 				<description>Wow, this uh...this instinct is getting strong. I think I'm still ok with it...</description>
-				<baseMoodEffect>10</baseMoodEffect>
+				<baseMoodEffect>15</baseMoodEffect>
 			</li>
 			<li>
 				<label>hard to think...</label>
