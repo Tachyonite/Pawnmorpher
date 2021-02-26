@@ -596,6 +596,12 @@ namespace Pawnmorph.Chambers
 
         private void ApplyMutationData([NotNull] Pawn pawn, [NotNull] IReadOnlyMutationData mutationData)
         {
+            if (mutationData.Part != null)
+            {
+                if (mutationData.Part.IsMissingAtAllIn(pawn)) return; 
+            }
+
+
             mutationData.ApplyMutationData(pawn, MutationUtilities.AncillaryMutationEffects.HistoryOnly);
         }
 
