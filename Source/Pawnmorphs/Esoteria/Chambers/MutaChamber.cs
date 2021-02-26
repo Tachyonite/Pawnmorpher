@@ -581,7 +581,9 @@ namespace Pawnmorph.Chambers
         {
             if (_addedMutationData == null) return;
 
+            
             int mx = _addedMutationData.Count;
+            if (mx == 0) return; 
             int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
             if (idx != _curMutationIndex)
             {
