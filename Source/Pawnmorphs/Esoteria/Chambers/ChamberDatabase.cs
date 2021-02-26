@@ -192,10 +192,9 @@ namespace Pawnmorph.Chambers
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
             if (mutationDef.GetRequiredStorage() > FreeStorage) return false;
-            else if (!CanTag)
-            {
-                return false; 
-            }
+            if (!CanTag)
+                return false;
+            if (_storedMutations.Contains(mutationDef)) return false;
             return !mutationDef.IsRestricted;
         }
 
