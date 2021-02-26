@@ -1,5 +1,5 @@
 <LanguageData>
-    <NotEnoughStorageSpaceToTagPK>there is not enough storage to tag {0} {1}/{2}</NotEnoughStorageSpaceToTagPK>
+    <NotEnoughStorageSpaceToTagPK>there is not enough storage to tag {0}</NotEnoughStorageSpaceToTagPK>
     <AlreadyTaggedAnimal>{0} already in genetic database</AlreadyTaggedAnimal>
     <AnimalNotTaggable>{0} is too genetically corrupted to be added</AnimalNotTaggable>
     <AnimalAddedToDatabase>{0} added to database</AnimalAddedToDatabase>
