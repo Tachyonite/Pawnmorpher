@@ -163,7 +163,10 @@ namespace Pawnmorph
 
             var db = Database;
             Widgets.Label(labelRect, HEADER_LABEL.Translate());
-            Widgets.Label(availableRect, DatabaseUtilities.GetStorageString(db.FreeStorage));
+            float fS = db.FreeStorage;
+            float tS = db.TotalStorage;
+            float pct = fS == 0 ? 0 : fS / tS; 
+            Widgets.Label(availableRect, DatabaseUtilities.GetStorageString(fS) + $"({pct.ToStringPercent()})" );
             Widgets.Label(totalRect, DatabaseUtilities.GetStorageString(db.TotalStorage));
         }
 
