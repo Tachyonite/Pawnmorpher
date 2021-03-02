@@ -213,7 +213,7 @@ namespace Pawnmorph
             foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs)
             {
                 IEnumerable<HediffGiver> obsoleteGivers =
-                    hediffDef.GetAllHediffGivers().Where(g => g.GetType().HasAttribute<ObsoleteAttribute>());
+                    hediffDef.GetAllHediffGivers().Where(g => g?.GetType().HasAttribute<ObsoleteAttribute>() == true);
                 var builder = new StringBuilder();
 
                 builder.AppendLine($"in {hediffDef.defName}");
@@ -221,7 +221,7 @@ namespace Pawnmorph
                     builder.AppendLine($"obsolete hediff giver: {obsoleteGiver.GetType().Name}".Indented());
                 IEnumerable<HediffGiver> giversGivingBadHediffs = hediffDef
                                                                  .GetAllHediffGivers() //find hediff giver that are giving obsolete hediffs 
-                                                                 .Where(g => g.hediff?.GetType().HasAttribute<ObsoleteAttribute>()
+                                                                 .Where(g => g?.hediff?.GetType().HasAttribute<ObsoleteAttribute>()
                                                                           ?? false);
 
                 foreach (HediffGiver giversGivingBadHediff in giversGivingBadHediffs)

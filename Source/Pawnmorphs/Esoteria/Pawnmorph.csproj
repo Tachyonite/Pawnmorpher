@@ -438,6 +438,7 @@
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
     <Compile Include="Hediffs\SyringeRifleTf.cs" />
     <Compile Include="Hediffs\SyringeTfStage.cs" />
+    <Compile Include="Hediffs\TaggingInjector.cs" />
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />

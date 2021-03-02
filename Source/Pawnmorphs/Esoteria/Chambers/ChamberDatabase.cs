@@ -21,6 +21,15 @@ namespace Pawnmorph.Chambers
     /// <seealso cref="RimWorld.Planet.WorldComponent" />
     public class ChamberDatabase : WorldComponent
     {
+        /// <summary>
+        /// Finalizes the initialize.
+        /// </summary>
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            _usedStorageCache = null; 
+        }
+
         private int? _usedStorageCache;
 
 
@@ -182,11 +191,10 @@ namespace Pawnmorph.Chambers
         public bool CanAddToDatabase([NotNull] MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (mutationDef.GetRequiredStorage() <= FreeStorage) return false;
-            else if (!CanTag)
-            {
-                return false; 
-            }
+            if (mutationDef.GetRequiredStorage() > FreeStorage) return false;
+            if (!CanTag)
+                return false;
+            if (_storedMutations.Contains(mutationDef)) return false;
             return !mutationDef.IsRestricted;
         }
 
@@ -248,6 +256,44 @@ namespace Pawnmorph.Chambers
             else reason = "";
 
             return string.IsNullOrEmpty(reason); 
+        }
+
+        private const string NOT_TAGGABLE = "PMMutationNotTaggable";
+        private const string RESTRICTED_MUTATION = "PMMutationRestricted";
+        /// <summary>
+        /// Determines whether this instance with the specified mutation definition can be added to the database  
+        /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="reason">The reason.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance with the specified mutation definition  [can add to database]  otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanAddToDatabase([NotNull] MutationDef mutationDef, out string reason)
+        {
+
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            
+            if ( FreeStorage < mutationDef.GetRequiredStorage())
+            {
+
+                reason = NOT_ENOUGH_STORAGE_REASON.Translate(mutationDef);
+
+                return false;
+            }
+            else if (!CanTag)
+            {
+                reason = NOT_TAGGABLE.Translate(mutationDef);
+                return false;
+            }
+
+            if (mutationDef.IsRestricted)
+            {
+                reason = RESTRICTED_MUTATION.Translate(mutationDef);
+                return false; 
+            }
+
+            reason = "";
+            return true; 
         }
 
         /// <summary>

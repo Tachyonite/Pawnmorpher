@@ -6,4 +6,7 @@
     <PMNothingTaggable>{animal} has nothing worth recording</PMNothingTaggable>
     <PMMutationNotEnoughSpace>{animal} has mutations that can be recorded but not enough space to store them</PMMutationNotEnoughSpace>
     <PMAnimalAddedToDatabase>{animal} added to the genebank database</PMAnimalAddedToDatabase>
+    <PMMutationNotTaggable>{0} not taggable</PMMutationNotTaggable>
+    <PMMutationRestricted>{0} is restricted</PMMutationRestricted>
+    <MutationAddedToDatabase>{Mutation} added to the genebank</MutationAddedToDatabase>
 </LanguageData>

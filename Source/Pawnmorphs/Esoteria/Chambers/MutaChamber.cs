@@ -581,7 +581,9 @@ namespace Pawnmorph.Chambers
         {
             if (_addedMutationData == null) return;
 
+            
             int mx = _addedMutationData.Count;
+            if (mx == 0) return; 
             int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
             if (idx != _curMutationIndex)
             {
@@ -596,6 +598,12 @@ namespace Pawnmorph.Chambers
 
         private void ApplyMutationData([NotNull] Pawn pawn, [NotNull] IReadOnlyMutationData mutationData)
         {
+            if (mutationData.Part != null)
+            {
+                if (mutationData.Part.IsMissingAtAllIn(pawn)) return; 
+            }
+
+
             mutationData.ApplyMutationData(pawn, MutationUtilities.AncillaryMutationEffects.HistoryOnly);
         }
 
