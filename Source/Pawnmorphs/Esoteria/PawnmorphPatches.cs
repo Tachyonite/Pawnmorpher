@@ -241,6 +241,11 @@ namespace Pawnmorph
             //down/death thoughts 
             methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
 
+
+            //socialization 
+            methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[]{typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool)}));
+
+
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
             {
