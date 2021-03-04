@@ -406,6 +406,7 @@ namespace Pawnmorph
             {
                 AteThought cannibalThought = morphDef.raceSettings?.thoughtSettings?.ateAnimalThought;
                 if (cannibalThought == null) return;
+                if (ingester?.story?.traits == null) return; 
                 bool cannibal = ingester.story.traits.HasTrait(TraitDefOf.Cannibal);
 
                 if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
