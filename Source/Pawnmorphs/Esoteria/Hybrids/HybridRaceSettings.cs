@@ -53,7 +53,33 @@ namespace Pawnmorph.Hybrids
         /// <summary>
         /// a list of mutations that will be added to a pawn when they become a hybrid if they do not have them already 
         /// </summary>
-        public List<MutationDef> requiredMutations = new List<MutationDef>(); 
+        public List<MutationDef> requiredMutations = new List<MutationDef>();
+
+        /// <summary>
+        /// if true the required mutations will be added to the pawn when they become a hybrid, otherwise not having the required part will
+        /// prevent the pawn from becoming a hybrid 
+        /// </summary>
+        public bool forceRequiredMutations;
+
+
+        /// <summary>
+        /// checks if the given pawn can become a hybrid with these settings.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public bool PawnCanBecomeHybrid([NotNull] Pawn pawn)
+        {
+            if (requiredMutations == null || requiredMutations.Count == 0 || forceRequiredMutations) return true; 
+            var mTracker = pawn.GetMutationTracker();
+            if (mTracker == null) return false;
+            foreach (MutationDef requiredMutation in requiredMutations)
+            {
+                if (!mTracker.HasMutation(requiredMutation)) return false; 
+            }
+
+            return true; 
+        }
+
 
         /// <summary>
         /// Gets the transformer.
