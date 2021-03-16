@@ -2,10 +2,10 @@
     <ThingDef ParentName="SerumBase">
         <defName>PM_ExperimentalInjector</defName>
         <label>experimental injector</label>
-        <description>TODO</description>
+        <description>A slightly more stable alternative to raw mechanite slurry, the experimental injector is used to give random mutations to pawns in a slightly less risky fashion. As an added feature, each injector comes equipped with a temporary genebank uplink microchip that logs and stores any and all mutations gained while under the effect of this serum.</description>
         <graphicData>
-            <graphicClass>Graphic_StackCount</graphicClass>
-            <texPath>Things/Item/Drug/Slurry</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <texPath>Things/Item/Drug/Experimental</texPath>
         </graphicData>
         <statBases>
             <WorkToMake>200</WorkToMake>

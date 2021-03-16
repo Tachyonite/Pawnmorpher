@@ -405,5 +405,23 @@ namespace Pawnmorph
                 RecalculateMutationInfluences();
             }
         }
+
+        /// <summary>
+        /// Determines whether this instance has the specified mutation.
+        /// </summary>
+        /// <param name="requiredMutation">The required mutation.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified required mutation has mutation; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public bool HasMutation([NotNull] MutationDef requiredMutation)
+        {
+            foreach (Hediff_AddedMutation mutation in _mutationList)
+            {
+                if (mutation.def == requiredMutation) return true; 
+            }
+
+            return false; 
+        }
     }
 }

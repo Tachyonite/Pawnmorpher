@@ -241,6 +241,11 @@ namespace Pawnmorph
             //down/death thoughts 
             methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
 
+
+            //socialization 
+            methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[]{typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool)}));
+
+
             //now patch them 
             foreach (MethodInfo methodInfo in methodsToPatch)
             {
@@ -401,6 +406,7 @@ namespace Pawnmorph
             {
                 AteThought cannibalThought = morphDef.raceSettings?.thoughtSettings?.ateAnimalThought;
                 if (cannibalThought == null) return;
+                if (ingester?.story?.traits == null) return; 
                 bool cannibal = ingester.story.traits.HasTrait(TraitDefOf.Cannibal);
 
                 if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
