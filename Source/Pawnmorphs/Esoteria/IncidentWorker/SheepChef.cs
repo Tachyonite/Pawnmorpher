@@ -51,9 +51,12 @@ namespace Pawnmorph.IncidentWorkers
             var oPawn = GenerateGordon(pawn);
 
 
-            FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn);  
-            
+            FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn);
 
+            if (pawn.story != null)
+            {
+                pawn.story.adulthood = PMBackstoryDefOf.PM_SheepChef.backstory; 
+            }
             
 
 
