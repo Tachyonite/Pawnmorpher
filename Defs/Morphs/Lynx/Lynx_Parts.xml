@@ -82,7 +82,8 @@
 		<description>With a pointed tip and fluff of fur at the end, this ear has grown into what looks like a lynx's style of auditory apparatus.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+			<li>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
 		<parts>
