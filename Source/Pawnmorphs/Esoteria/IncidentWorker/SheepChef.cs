@@ -58,7 +58,12 @@ namespace Pawnmorph.IncidentWorkers
                 pawn.story.adulthood = PMBackstoryDefOf.PM_SheepChef.backstory; 
             }
             
-
+            if(pawn.skills != null)
+            {
+                var record = pawn.skills.GetSkill(SkillDefOf.Cooking);
+                record.passion = Passion.Major;
+                record.Level = Mathf.Max(5, record.Level); 
+            }
 
             SendStandardLetter("PMSheepChefLetterLabel".Translate(kind.label).CapitalizeFirst(),
                                "PMSheepChefLetter".Translate(kind.label), LetterDefOf.PositiveEvent, parms,
