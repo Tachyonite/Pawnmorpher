@@ -68,6 +68,11 @@
 		<parts>
 			<li>Ear</li>
 		</parts>
+		<stages>
+			<li>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
