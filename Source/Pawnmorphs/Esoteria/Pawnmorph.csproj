@@ -547,6 +547,7 @@
     <Compile Include="PawnTransferUtilities.cs" />
     <Compile Include="PlaceWorkers\Centrifuge.cs" />
     <Compile Include="PlaceWorkers\ShowMutationRadius.cs" />
+    <Compile Include="Plants\SpecialHarvestFailPlant.cs" />
     <Compile Include="PMBackstoryDefOf.cs" />
     <Compile Include="PMConceptDefOf.cs" />
     <Compile Include="PMDamageDefOf.cs" />
