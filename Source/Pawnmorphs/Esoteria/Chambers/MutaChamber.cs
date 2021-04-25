@@ -584,7 +584,7 @@ namespace Pawnmorph.Chambers
             
             int mx = _addedMutationData.Count;
             if (mx == 0) return; 
-            int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
+            int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx - 1));
             if (idx != _curMutationIndex)
             {
                 var pawn = innerContainer?.FirstOrDefault() as Pawn;
