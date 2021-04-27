@@ -776,7 +776,7 @@ namespace Pawnmorph.Chambers
                         forcedSapienceLevel = 1,
                         manhunterSettingsOverride = ManhunterTfSettings.Never
                     };
-                    mutagen = MutagenDefOf.defaultMutagen.MutagenCached;
+                    mutagen = MutagenDefOf.PM_ChamberMutagen.MutagenCached;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -790,7 +790,7 @@ namespace Pawnmorph.Chambers
 
             if (tfPawn == null)
             {
-                Log.Error($"unable to transform pawn(s)! {_currentUse} {_innerState}");
+                Log.Error($"unable to transform pawn(s) with {mutagen.def.defName}! {_currentUse} {_innerState}");
                 return;
             }
 
