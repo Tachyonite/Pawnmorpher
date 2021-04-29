@@ -61,7 +61,12 @@ namespace Pawnmorph
         public static ThoughtDef FHDefaultCannibalThought_Ingredient;
 
         public static ThoughtDef FHDefaultCannibalGoodThought_Direct;
-        public static ThoughtDef FHDefaultCannibalGoodThought_Ingredient; 
+        public static ThoughtDef FHDefaultCannibalGoodThought_Ingredient;
 
+
+        public static ThoughtDef PM_WitnessedAllyTf;
+        public static ThoughtDef PM_WitnessedNonAllyTf;
+        public static ThoughtDef PM_WitnessedRivalTf;
+        public static ThoughtDef PM_WitnessedFriendTf; 
     }
 }

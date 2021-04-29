@@ -2,6 +2,9 @@
 // last updated 09/15/2019  7:38 PM
 
 using JetBrains.Annotations;
+using RimWorld;
+using RimWorld.Planet;
+using UnityEngine.UIElements;
 using Verse;
 
 namespace Pawnmorph
@@ -42,5 +45,94 @@ namespace Pawnmorph
             if (pawn.health == null || pawn.mindState?.inspirationHandler == null || pawn.needs == null) return true;
             return false; 
         }
+
+        /// <summary>
+        /// checks if this pawn can witness things about the other pawn.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="victim">The victim.</param>
+        /// <returns></returns>
+        public static bool Witnessed([NotNull] this Pawn p, [NotNull] Pawn victim)
+        {
+            if (!p.Awake() || !p.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+            {
+                return false;
+            }
+            if (victim.IsCaravanMember())
+            {
+                return victim.GetCaravan() == p.GetCaravan();
+            }
+            if (!victim.Spawned || !p.Spawned)
+            {
+                return false;
+            }
+            if (!p.Position.InHorDistOf(victim.Position, 12f))
+            {
+                return false;
+            }
+            if (!GenSight.LineOfSight(victim.Position, p.Position, victim.Map))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// checks if this pawn can witness things about the other pawn.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="victimLocation">The victim location.</param>
+        /// <returns></returns>
+        public static bool Witnessed([NotNull] this Pawn p, IntVec3 victimLocation)
+        {
+            if (!p.Awake() || !p.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+            {
+                return false;
+            }
+            
+            if (!p.Position.InHorDistOf(victimLocation, 12f))
+            {
+                return false;
+            }
+            if (!GenSight.LineOfSight(victimLocation, p.Position, p.Map))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Gets the rival status of the other pawn relative to this pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="otherPawn">The other pawn.</param>
+        /// <returns></returns>
+        public static RivalStatus GetRivalStatus([NotNull] this Pawn pawn, [NotNull] Pawn otherPawn)
+        {
+            if (pawn.relations == null || otherPawn.relations == null) return RivalStatus.None;
+            var lv = pawn.relations.OpinionOf(otherPawn);
+            if (lv > 20) return RivalStatus.Friend;
+            if (lv < -20) return RivalStatus.Rival;
+            return RivalStatus.None; 
+        }
+    }
+
+    /// <summary>
+    /// enum representing the rival status of a pawn
+    /// </summary>
+    public enum RivalStatus
+    {
+        /// <summary>
+        /// The none
+        /// </summary>
+        None,
+        /// <summary>
+        /// The rival
+        /// </summary>
+        Rival,
+        /// <summary>
+        /// The friend
+        /// </summary>
+        Friend
     }
 }
