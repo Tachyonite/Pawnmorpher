@@ -689,6 +689,8 @@ namespace Pawnmorph
         /// <param name="map">The map.</param>
         public static void HandleTFWitnesses([NotNull] Pawn originalPawn, [NotNull] Pawn transformedPawn, IntVec3 location, [NotNull] Map map)
         {
+            return; //TODO re enable once all thoughts have been filled out
+
             foreach (Pawn pObserver in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive.MakeSafe())
             {
                 if(pObserver == transformedPawn || pObserver == null || pObserver == originalPawn || pObserver.Map != map) continue;
