@@ -543,7 +543,7 @@ namespace Pawnmorph
         {
             if (!allowSociallyImproper)
             {
-                bool animalsCare = !getter.RaceProps.Animal;
+                bool animalsCare = !getter.IsAnimal();
                 if (!t.IsSociallyProper(getter) && !t.IsSociallyProper(eater, eater.IsPrisonerOfColony, animalsCare))
                     return false;
             }
