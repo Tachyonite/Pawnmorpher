@@ -10,6 +10,8 @@
 	<enableMutagenMeteorCheckboxTooltip>Toggles the ability of mutonite meteors to mutate nearby pawns.</enableMutagenMeteorCheckboxTooltip>
 	<enableWildFormersCheckboxLabel>Enable Wild Former Humans</enableWildFormersCheckboxLabel>
 	<enableWildFormersCheckboxTooltip>Toggles animals spawning onto the map as former humans, allowing them to be reverted.</enableWildFormersCheckboxTooltip>
+	<PMHazardousChaobulbs>Enable Hazardous Chaobulbs</PMHazardousChaobulbs>
+	<PMHazardousChaobulbsTooltip>if failed chaobulb harvests can give mutagenic buildup</PMHazardousChaobulbsTooltip>
 	<transformChanceSliderLabel>Chance for mutagens to fully transform pawns</transformChanceSliderLabel>
 	<formerChanceSliderLabel>Chance for animals to spawn as former humans</formerChanceSliderLabel>
 	<partialChanceSliderLabel>Chance for morph eggs/milk to trigger a complete transformation instead of a single mutation</partialChanceSliderLabel>

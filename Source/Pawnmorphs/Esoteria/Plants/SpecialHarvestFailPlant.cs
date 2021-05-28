@@ -38,7 +38,7 @@ namespace Pawnmorph.Plants
                       && !Blighted
                              && Rand.Value > harvester.GetStatValue(StatDefOf.PlantHarvestYield) ;
 
-            if(failed)
+            if(failed && PMUtilities.HazardousChaobulb)
             {
                 MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, harvester, 0.1f);
                 return 0; 

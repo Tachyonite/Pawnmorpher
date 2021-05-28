@@ -4,7 +4,6 @@
 using JetBrains.Annotations;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine.UIElements;
 using Verse;
 
 namespace Pawnmorph
@@ -21,7 +20,15 @@ namespace Pawnmorph
         /// <value>
         ///   <c>true</c> if [mutagenic diseases enabled]; otherwise, <c>false</c>.
         /// </value>
-        public static bool MutagenicDiseasesEnabled => GetSettings()?.enableMutagenDiseases == true; 
+        public static bool MutagenicDiseasesEnabled => GetSettings()?.enableMutagenDiseases == true;
+
+        /// <summary>
+        /// Gets a value indicating whether hazardous chaobulb is enabled or not.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if hazardous chaobulb; otherwise, <c>false</c>.
+        /// </value>
+        public static bool HazardousChaobulb => GetSettings()?.hazardousChaobulbs == true; 
 
         /// <summary>Gets the mod settings.</summary>
         /// <returns></returns>
