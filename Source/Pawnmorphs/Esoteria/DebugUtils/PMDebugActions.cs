@@ -13,6 +13,7 @@ using Pawnmorph.Social;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.User_Interface;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -34,11 +35,36 @@ namespace Pawnmorph.DebugUtils
                                                             .Distinct();
             foreach (MutationDef mutationDef in mutations)
             {
-                if(cd.StoredMutations.Contains(mutationDef)) continue;
-                cd.AddToDatabase(mutationDef); 
+                if (cd.StoredMutations.Contains(mutationDef)) continue;
+                cd.AddToDatabase(mutationDef);
             }
 
         }
+
+        [DebugAction(category = PM_CATEGORY,actionType = DebugActionType.Action)]
+        static void GiveBuildupToAllPawns()
+        {
+            var map = Find.CurrentMap;
+            StringBuilder builder = new StringBuilder(); 
+            foreach (Pawn pawn in PawnsFinder.AllMaps_SpawnedPawnsInFaction(Faction.OfPlayer).MakeSafe())
+            {
+                if(pawn == null) continue;
+                builder.AppendLine(TryGiveMutagenBuildupToPawn(pawn)); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
+        static string TryGiveMutagenBuildupToPawn(Pawn pawn)
+        {
+            var buildup = MutagenicBuildupUtilities.AdjustMutagenicBuildup(null, pawn, 0.1f);
+            if (buildup > 0)
+            {
+                return $"gave {buildup} buildup to {pawn.Name}";
+            }
+            else return $"could not give buildup to {pawn.Name}";
+        }
+
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
         static void TagAllAnimals()
