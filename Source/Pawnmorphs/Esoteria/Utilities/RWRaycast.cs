@@ -181,6 +181,13 @@ namespace Pawnmorph.Utilities
         
         public Pawn hitPawn;
 
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="RWRaycastHit"/> to <see cref="System.Boolean"/>.
+        /// </summary>
+        /// <param name="hit">The hit.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
         public static explicit operator bool(RWRaycastHit hit)
         {
             return hit.hitThing != null;

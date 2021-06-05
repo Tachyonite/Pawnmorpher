@@ -20,6 +20,10 @@ namespace Pawnmorph.ThingComps
 
         private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
+        /// <summary>
+        /// Notifies the signal received.
+        /// </summary>
+        /// <param name="signal">The signal.</param>
         public override void Notify_SignalReceived(Signal signal)
         {
             if (signal.tag == CompPowerTrader.PowerTurnedOnSignal)
