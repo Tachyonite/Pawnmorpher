@@ -327,6 +327,9 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
 
+            //transfer hediffs from the former human back onto the original pawn
+            FormerHumanUtilities.TransferHediffs(animal, spawned);
+
             SetHumanoidSapience(spawned, animal); 
 
             FixBondRelationship(spawned, animal);

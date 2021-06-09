@@ -1129,6 +1129,18 @@ namespace Pawnmorph
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
         }
 
+        /// <summary>
+        /// Transfers the hediffs from the original pawn onto the transformed pawn by checking for the TFTransferable 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        public static void TransferHediffs(Pawn original, Pawn transformedPawn)
+        {
+            PawnTransferUtilities.TransferHediffs(original, transformedPawn,
+                                                  h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
+                                                    == true); 
+        }
+
 
         /// <summary>
         /// Tries the assign the correct backstory to transformed pawn.
