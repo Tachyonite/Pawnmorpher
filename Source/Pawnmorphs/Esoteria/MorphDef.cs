@@ -152,15 +152,20 @@ namespace Pawnmorph
         [NotNull]
         IEnumerable<MutationDef> GetAllAssociatedMutations()
         {
+            var restrictionSet = new HashSet<MutationDef>(); 
+
             var set = new HashSet<(BodyPartDef bodyPart, MutationLayer layer)>();
             AnimalClassBase curNode = this;
             List<MutationDef> tmpList = new List<MutationDef>();
             var tmpSiteLst = new List<(BodyPartDef bodyPart, MutationLayer layer)>();
             while (curNode != null)
             {
+                restrictionSet.AddRange(curNode.MutationExclusionList); 
+
                 tmpList.Clear();
                 foreach (MutationDef mutation in MutationDef.AllMutations) //grab all mutations that give the current influence directly 
                 {
+                    if(restrictionSet.Contains(mutation)) continue;
                     if (curNode != this && mutation.IsRestricted && !allowAllRestrictedParts)
                     {
                         continue; //do not allow restricted parts for higher up in the hierarchy to show up unless allowAllRestrictedParts is set to true
