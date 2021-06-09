@@ -28,6 +28,12 @@
         <classification>AnimalClassDef</classification>
         
 
+        if you want to sepcifically exclude mutation from a morph that it would otherwise have list the here 
+        ex: add fur here if this morphs is a mammals but shouldn't have fur        <mutationExclusionList>
+            <li>MutationDef1</li>
+            <li>MutationDef2</li>
+        </mutationExclusionList>
+
         these are a list of animals that are associated with this morph but who don't influence the hybrid race
         transformation targets 
         setting this is useful for getting mutations for animals that don't have morphs yet
