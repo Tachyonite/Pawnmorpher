@@ -70,7 +70,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>PM_SlurryPipe</defName>
         <label>slurry pipe</label>
-        <description>A pipe that transmits slurry gas.</description>
+        <description>A pipe that transmits slurry.</description>
         <thingClass>Building</thingClass>
         <category>Building</category>
         <graphicData>
@@ -135,7 +135,7 @@
         <defName>MutaniteCentrifuge</defName>
         <label>mutanite centrifuge</label>
         <thingClass>Pawnmorph.Buildings.MutaniteCentrifuge</thingClass>
-        <description>When mutagenic slurry is piped in, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a morphsilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy.</description>
+        <description>When mutagenic slurry is piped in, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a morphsilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy.\n\nSetup: Connect the centrifuge to a mutagen tank using slurry pipes. Warning: turning on 'high power mode' causes mutagenic effects in a radius around it.</description>
         <graphicData>
             <texPath>Things/Building/MutaniteCentrifuge</texPath>
             <graphicClass>Graphic_Single</graphicClass>
