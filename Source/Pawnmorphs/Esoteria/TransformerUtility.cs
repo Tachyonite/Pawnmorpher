@@ -679,5 +679,80 @@ namespace Pawnmorph
 
             pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thoughtDef, otherPawn); 
         }
+
+        /// <summary>
+        /// Handles the tf witnesses.
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <param name="location">The location.</param>
+        /// <param name="map">The map.</param>
+        public static void HandleTFWitnesses([NotNull] Pawn originalPawn, [NotNull] Pawn transformedPawn, IntVec3 location, [NotNull] Map map)
+        {
+            return; //TODO re enable once all thoughts have been filled out
+
+            foreach (Pawn pObserver in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive.MakeSafe())
+            {
+                if(pObserver == transformedPawn || pObserver == null || pObserver == originalPawn || pObserver.Map != map) continue;
+                if(pObserver.needs?.mood?.thoughts?.memories == null) continue;
+                if(!pObserver.Witnessed(location)) continue;
+
+
+                ThoughtDef tfThought = GetWitnessedTfThought(pObserver, originalPawn); 
+                if(tfThought == null) continue;
+
+                pObserver.needs.mood.thoughts.memories.TryGainMemory(tfThought); 
+
+            }
+        }
+
+
+        enum TFWitnessType
+        {
+            Ally,NonAlly, Friend, Rival
+        }
+
+        [CanBeNull]
+        private static ThoughtDef GetWitnessedTfThought(Pawn pObserver, Pawn originalPawn)
+        {
+            TFWitnessType wType;
+
+            var rivalStatus = pObserver.GetRivalStatus(originalPawn);
+            switch (rivalStatus)
+            {
+                case RivalStatus.None:
+                    wType = originalPawn.Faction == pObserver.Faction ? TFWitnessType.Ally : TFWitnessType.NonAlly;
+                    break;
+                case RivalStatus.Rival:
+                    wType = TFWitnessType.Rival;
+                    break;
+                case RivalStatus.Friend:
+                    wType = TFWitnessType.Friend;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            ThoughtDef tDef; 
+            switch (wType)
+            {
+                case TFWitnessType.Ally:
+                    tDef = PMThoughtDefOf.PM_WitnessedAllyTf;
+                    break;
+                case TFWitnessType.NonAlly:
+                    tDef = PMThoughtDefOf.PM_WitnessedNonAllyTf; 
+                    break;
+                case TFWitnessType.Friend:
+                    tDef = PMThoughtDefOf.PM_WitnessedFriendTf; 
+                    break;
+                case TFWitnessType.Rival:
+                    tDef = PMThoughtDefOf.PM_WitnessedRivalTf;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return tDef; 
+        }
     }
 }

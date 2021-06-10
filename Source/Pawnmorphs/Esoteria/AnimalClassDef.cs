@@ -166,8 +166,32 @@ namespace Pawnmorph
     /// interface for both MorphDefs and AnimalClassDef
     /// </summary>
     /// this should generally not be implemented outside of these 2 defs 
-    public abstract class AnimalClassBase : Def 
+    public abstract class AnimalClassBase : Def
     {
+
+        /// <summary>
+        /// a list of mutations to specifically exclude from the heirarchy 
+        /// </summary>
+        protected List<MutationDef> mutationExclusionList;
+
+
+        /// <summary>
+        /// Gets the mutation exclusion list.
+        /// </summary>
+        /// <value>
+        /// The mutation exclusion list.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<MutationDef> MutationExclusionList
+        {
+            get
+            {
+                if (mutationExclusionList == null) return Array.Empty<MutationDef>();
+                return mutationExclusionList; 
+            }
+        }
+
+
         /// <summary>
         /// Gets the parent class.
         /// </summary>

@@ -23,6 +23,17 @@
 				<maxTreeSearchDepth>1</maxTreeSearchDepth>
 			</li>
 		</comps>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphPart" Abstract="True" ParentName="PawnmorphPartNoRmComp">

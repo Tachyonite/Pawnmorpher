@@ -762,7 +762,10 @@ namespace Pawnmorph.User_Interface
                     }
                 }
             }
-            HarmonyPatches.DrawAddons(false, vector3, pawn, quaternion, previewRot, false);
+            ThingDef_AlienRace def = pawn.def as ThingDef_AlienRace;
+            Vector2 hOffset = def != null ? def.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage).headOffset : Vector2.zero;
+
+            HarmonyPatches.DrawAddons(false, vector3, hOffset, pawn, quaternion, previewRot, false);
             if (toggleClothesEnabled)
             {
                 if (pawn.apparel != null)

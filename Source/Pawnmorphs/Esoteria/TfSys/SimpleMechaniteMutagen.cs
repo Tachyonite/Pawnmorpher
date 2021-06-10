@@ -171,6 +171,9 @@ namespace Pawnmorph.TfSys
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
+            Map correctMap = original.GetCorrectMap();
+            if(correctMap != null)
+                TransformerUtility.HandleTFWitnesses(original, spawnedAnimal, original.GetCorrectPosition(), correctMap);
 
             var rFaction = request.factionResponsible ?? GetFactionResponsible(original);
 
@@ -323,6 +326,9 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffDown(spawned.Position.ToVector3(), spawned.MapHeld);
                 IntermittentMagicSprayer.ThrowMagicPuffUp(spawned.Position.ToVector3(), spawned.MapHeld);
             }
+
+            //transfer hediffs from the former human back onto the original pawn
+            FormerHumanUtilities.TransferHediffs(animal, spawned);
 
             SetHumanoidSapience(spawned, animal); 
 

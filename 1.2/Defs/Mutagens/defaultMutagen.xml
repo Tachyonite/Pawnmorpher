@@ -3,6 +3,12 @@
 	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
 		<defName>defaultMutagen</defName>
 	</Pawnmorph.MutagenDef>
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
+		<defName>PM_ChamberMutagen</defName>
+		<canInfectAnimals>true</canInfectAnimals>
+		<canInfectMechanoids>true</canInfectMechanoids>
+		<immunizingHediffs Inherit="false" />
+	</Pawnmorph.MutagenDef>
 
 	<Pawnmorph.MutagenDef>
 		<defName>MergeMutagen</defName>

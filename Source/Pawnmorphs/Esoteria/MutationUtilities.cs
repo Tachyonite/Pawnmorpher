@@ -186,26 +186,10 @@ namespace Pawnmorph
         /// <param name="pawn">The pawn.</param>
         /// <param name="amount">The amount.</param>
         /// <param name="buildupDef">The buildup definition.</param>
+        [Obsolete("Use " + nameof(MutagenicBuildupUtilities.AdjustMutagenicBuildup) + " instead")]
         public static void AdjustMutagenicBuildup([NotNull] Pawn pawn, float amount, HediffDef buildupDef = null)
         {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            buildupDef = buildupDef ?? Hediffs.MorphTransformationDefOf.MutagenicBuildup;
-
-            var hediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(buildupDef);
-            if (hediff == null)
-            {
-                hediff = HediffMaker.MakeHediff(buildupDef, pawn);
-                hediff.Severity = amount; 
-            }
-            else
-            {
-                hediff.Severity += amount; 
-                //TODO chance to infect a wound 
-                
-            }
-
-
-
+            MutagenicBuildupUtilities.AdjustMutagenicBuildup(null, pawn, amount); 
         }
 
 
