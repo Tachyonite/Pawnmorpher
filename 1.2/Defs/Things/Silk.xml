@@ -2,7 +2,7 @@
     <ThingDef ParentName="ResourceBase">
         <defName>PM_Hazsilk</defName>
         <label>hazsilk</label>
-        <description>morph silk that has been further processed, now clothing made form it will offer basic protection from mutagen hazards</description>
+        <description>By doping morphsilk with a stabiliser, the mechanites active in the fibres have been reconfigured to reduce mutagen sensitivity.</description>
         <graphicData>
             <texPath>Things/Item/Resource/Hazsilk</texPath>
             <graphicClass>Graphic_StackCount</graphicClass>
@@ -18,7 +18,7 @@
             <Mass>0.026</Mass>
             <Flammability>0.9</Flammability>
             <DeteriorationRate>2</DeteriorationRate>
-            <MutagenSensitivity_Stuff>-0.15</MutagenSensitivity_Stuff>
+            <MutagenSensitivity_Stuff>-0.35</MutagenSensitivity_Stuff>
         </statBases>
         <burnableByRecipe>true</burnableByRecipe>
         <healthAffectsPrice>false</healthAffectsPrice>
