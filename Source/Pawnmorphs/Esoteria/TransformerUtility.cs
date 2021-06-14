@@ -253,12 +253,14 @@ namespace Pawnmorph
         /// Sets to race default.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
+        /// <param name="forceRemoveMutations">if set to <c>true</c> [force remove mutations].</param>
         /// <exception cref="ArgumentNullException">pawn</exception>
-        public static void SetToRaceDefault([NotNull] Pawn pawn)
+        public static void SetToRaceDefault([NotNull] Pawn pawn, bool forceRemoveMutations=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
-            RemoveAllMutations(pawn);
+            if(forceRemoveMutations)
+                RemoveAllMutations(pawn);
             var ext = pawn.def.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null && ext.mutationRetrievers?.Count > 0)
             {

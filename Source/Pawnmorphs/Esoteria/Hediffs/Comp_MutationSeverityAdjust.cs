@@ -127,6 +127,14 @@ namespace Pawnmorph.Hediffs
         private int _curStageIndex = -1;
 
         /// <summary>
+        /// Gets a value indicating whether the parent hediff should be removed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [comp should remove]; otherwise, <c>false</c>.
+        /// </value>
+        public override bool CompShouldRemove => SeverityChangePerDay() < 0 && parent.CurStageIndex == 0; 
+
+        /// <summary>
         ///     called every tick
         /// </summary>
         /// <param name="severityAdjustment">The severity adjustment.</param>
@@ -209,6 +217,13 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         protected override float SeverityChangePerDay()
         {
+            if (_checkForReversionHediff || Pawn.IsHashIntervalTick(25))
+            {
+                var hasReversionHediff = Pawn.health?.hediffSet?.HasHediff(MorphTransformationDefOf.PM_Reverting) == true;
+                if (hasReversionHediff) return -1; 
+
+            }
+
             if (Halted) return 0;
             float statValue = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
             float maxSeverity = Mathf.Max(statValue + 1, 1);
@@ -230,6 +245,16 @@ namespace Pawnmorph.Hediffs
         /// The change per day.
         /// </value>
         public float ChangePerDay => SeverityChangePerDay();
+
+        private bool _checkForReversionHediff;
+
+        /// <summary>
+        /// Recalcs the adjust speed.
+        /// </summary>
+        public void RecalcAdjustSpeed()
+        {
+            _checkForReversionHediff = true; 
+        }
     }
 
     /// <summary>
