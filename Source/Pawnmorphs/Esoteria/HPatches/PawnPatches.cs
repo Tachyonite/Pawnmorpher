@@ -40,6 +40,20 @@ namespace Pawnmorph.HPatches
             }
         }
 
+
+        [HarmonyPatch("CheckForDisturbedSleep"), HarmonyPrefix]
+        static bool FixDisturbedSleep(Pawn source, Pawn __instance)
+        {
+            var morph = __instance.def.GetMorphOfRace(); 
+            if(morph != null )
+            {
+                var sourceMorph = source.def.GetMorphOfRace();
+                if (morph.@group == sourceMorph?.@group) return false; 
+            }
+
+            return true; 
+        }
+
         [HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter), HarmonyPrefix]
         static bool FixIsColonist(ref bool __result, [NotNull] Pawn __instance)
         {

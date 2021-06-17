@@ -2,7 +2,6 @@
     <InteractionDef Name="FH_TrainAttemptBase" Abstract="true">
         <symbol>Things/Mote/SpeechSymbols/TrainAttempt</symbol>
         <initiatorXpGainSkill>Animals</initiatorXpGainSkill>
-        <workerClass>Pawnmorph.Social.Worker_FormerHuman</workerClass>
         <initiatorXpGainAmount>70</initiatorXpGainAmount>
     </InteractionDef>
 

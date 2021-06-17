@@ -73,4 +73,43 @@
             <li>MutagenCentrifuging</li>
         </researchPrerequisites>
     </ThingDef>
+
+    <ThingDef ParentName="MutagenicShipPartBase">
+        <defName>CrashedMutagenicShipPart</defName>
+        <label>ship part (mutagenic)</label>
+        <description>A mysterious crashed piece of a spaceship. It may contain any manner of deadly defenders and exotic materials. This one seems to have mutagenic effects.</description>
+        <graphicData>
+            <texPath>Things/Building/MutationShipPart</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(6,3)</drawSize>
+            <shadowData>
+                <volume>(5.5, 1.0, 2.45)</volume>
+            </shadowData>
+        </graphicData>
+        <killedLeavings>
+            <MechaniteSlurry>5</MechaniteSlurry>
+            <ReversionSyringe>2</ReversionSyringe>
+        </killedLeavings>
+        <comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>12</glowRadius>
+                <glowColor>(217,80,80,0)</glowColor>
+            </li>
+            <li Class="Pawnmorph.CompProperties_MutagenicRadius">
+
+                <radiusPerDayCurve>
+                    <points>
+                        <li>0,10</li>
+                        <li>1,20</li>
+                        <li>3,30</li>
+                        <li>5,35</li>
+                        <li>10,50</li>
+                        <li>15,100</li>
+                    </points>
+                </radiusPerDayCurve>
+                <hediff>FullRandomTFAnyOutcome</hediff>
+                <harmFrequencyPerArea>1</harmFrequencyPerArea>
+            </li>
+        </comps>
+    </ThingDef>
 </Defs>

@@ -28,5 +28,14 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         [NotNull]
         IEnumerable<MutationDef> GetMutationsFor([NotNull] ThingDef race, [CanBeNull] Pawn preGeneratedPawn);
+
+        /// <summary>
+        /// Determines whether this instance can generate the specified mutation.
+        /// </summary>
+        /// <param name="mDef">The m definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance with the specified m definition can generate ; otherwise, <c>false</c>.
+        /// </returns>
+        bool CanGenerate([NotNull] MutationDef mDef); 
     }
 }

@@ -1,0 +1,148 @@
+<Defs>
+    <ThoughtDef ParentName="OutlookMemoryBase" Name="PM_WitnessedTfBase" Abstract="true">
+        <icon>Things/Mote/ThoughtSymbol/Skull</icon>
+        <showBubble>true</showBubble>
+        <durationDays>2</durationDays>
+        <stackLimit>5</stackLimit>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_WitnessedTfBase">
+        <durationDays>1</durationDays>
+        <defName>PM_WitnessedAllyTf</defName>
+        <stages>
+            <li>
+                <!-- normal pawns -->
+                <label>witnessed ally transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- mutation affinity -->
+                <label>witnessed ally transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- body purist -->
+                <label>witnessed ally transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- primal wish -->
+                <label>witnessed ally transformation</label>
+                <description>god I wish that was me.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_WitnessedTfBase">
+        <durationDays>1</durationDays>
+        <defName>PM_WitnessedNonAllyTf</defName>
+        <stages>
+            <li>
+                <!-- normal pawns -->
+                <label>witnessed outsider transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- mutation affinity -->
+                <label>witnessed outsider transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- body purist -->
+                <label>witnessed outsider transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- primal wish -->
+                <label>witnessed outsider transformation</label>
+                <description>god I wish that was me.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_WitnessedTfBase">
+        <durationDays>1</durationDays>
+        <defName>PM_WitnessedRivalTf</defName>
+        <stages>
+            <li>
+                <!-- normal pawns -->
+                <label>witnessed rival transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- mutation affinity -->
+                <label>witnessed rival transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- body purist -->
+                <label>witnessed rival transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- primal wish -->
+                <label>witnessed rival transformation</label>
+                <description>god I wish that was me.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="PM_WitnessedTfBase">
+        <durationDays>1</durationDays>
+        <defName>PM_WitnessedFriendTf</defName>
+        <stages>
+            <li>
+                <!-- normal pawns -->
+                <label>witnessed friend transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- mutation affinity -->
+                <label>witnessed friend transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- body purist -->
+                <label>witnessed friend transformation</label>
+                <description>TODO</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- primal wish -->
+                <label>witnessed friend transformation</label>
+                <description>god I wish that was me.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

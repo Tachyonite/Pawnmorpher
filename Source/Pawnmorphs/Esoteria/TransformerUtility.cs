@@ -253,12 +253,14 @@ namespace Pawnmorph
         /// Sets to race default.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
+        /// <param name="forceRemoveMutations">if set to <c>true</c> [force remove mutations].</param>
         /// <exception cref="ArgumentNullException">pawn</exception>
-        public static void SetToRaceDefault([NotNull] Pawn pawn)
+        public static void SetToRaceDefault([NotNull] Pawn pawn, bool forceRemoveMutations=false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
-            RemoveAllMutations(pawn);
+            if(forceRemoveMutations)
+                RemoveAllMutations(pawn);
             var ext = pawn.def.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null && ext.mutationRetrievers?.Count > 0)
             {
@@ -505,13 +507,32 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Cleans up all references to the original human pawn after creating the animal pawn. <br />
-        ///     This does not call Pawn.DeSpawn.
+        /// Cleans up all references to the original human pawn after creating the animal pawn. <br />
+        /// This does not call Pawn.DeSpawn.
         /// </summary>
-        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause)
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="cause">The cause.</param>
+        /// <param name="removeMentalStates">if set to <c>true</c> [remove mental states].</param>
+        /// <exception cref="ArgumentNullException">originalPawn</exception>
+        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause, bool removeMentalStates=true)
         {
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
-            HandleApparelAndEquipment(originalPawn); 
+            
+            
+            Caravan caravan = originalPawn.GetCaravan();
+            caravan?.RemovePawn(originalPawn);
+            caravan?.Notify_PawnRemoved(originalPawn);
+
+
+
+            if (originalPawn.InMentalState)
+            {
+                originalPawn?.mindState?.mentalStateHandler?.Reset();
+            }
+
+
+
+            HandleApparelAndEquipment(originalPawn, caravan); 
             if (cause != null)
                 originalPawn
                    .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
@@ -533,9 +554,7 @@ namespace Pawnmorph
                 HandlePrisoner(originalPawn);
 
 
-            Caravan caravan = originalPawn.GetCaravan();
-            caravan?.RemovePawn(originalPawn);
-            caravan?.Notify_PawnRemoved(originalPawn);
+         
 
             // Make sure any current lords know they can't use this pawn anymore.
             originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
@@ -570,9 +589,8 @@ namespace Pawnmorph
             DebugLogUtils.Assert(!pawn.guest.IsPrisoner, $"{pawn.Name} is being cleaned up but is still a prisoner");
         }
 
-        private static void HandleApparelAndEquipment(Pawn originalPawn)
+        private static void HandleApparelAndEquipment(Pawn originalPawn, Caravan caravan)
         {
-            var caravan = originalPawn.GetCaravan();
             var apparelTracker = originalPawn.apparel;
             var equipmentTracker = originalPawn.equipment;
             
@@ -584,13 +602,20 @@ namespace Pawnmorph
             else if (caravan != null)
             {
 
+
+
                 if (apparelTracker != null)
                 {
                     for (int i = apparelTracker.WornApparelCount - 1; i >= 0; i--)
                     {
                         var apparel = apparelTracker.WornApparel[i];
                         apparelTracker.Remove(apparel);
-                        caravan.AddPawnOrItem(apparel, false); 
+                        if (apparel == null) continue;
+
+                        if (caravan.PawnsListForReading.Count > 0)
+                            caravan.AddPawnOrItem(apparel, false);
+                        else
+                            apparel.Destroy(); 
                     }
                 }
 
@@ -601,10 +626,15 @@ namespace Pawnmorph
                     {
                         var equipment = equipmentTracker.AllEquipmentListForReading[i];
                         equipmentTracker.Remove(equipment);
-                        caravan.AddPawnOrItem(equipment, false); 
+                        if(equipment == null) continue;
+                        if(caravan.PawnsListForReading.Count > 0)
+                            caravan.AddPawnOrItem(equipment, false); 
+                        else 
+                            equipment.Destroy();
                     }
                 }
             }
+            
 
 
         }
@@ -650,6 +680,81 @@ namespace Pawnmorph
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
             pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thoughtDef, otherPawn); 
+        }
+
+        /// <summary>
+        /// Handles the tf witnesses.
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        /// <param name="location">The location.</param>
+        /// <param name="map">The map.</param>
+        public static void HandleTFWitnesses([NotNull] Pawn originalPawn, [NotNull] Pawn transformedPawn, IntVec3 location, [NotNull] Map map)
+        {
+            return; //TODO re enable once all thoughts have been filled out
+
+            foreach (Pawn pObserver in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive.MakeSafe())
+            {
+                if(pObserver == transformedPawn || pObserver == null || pObserver == originalPawn || pObserver.Map != map) continue;
+                if(pObserver.needs?.mood?.thoughts?.memories == null) continue;
+                if(!pObserver.Witnessed(location)) continue;
+
+
+                ThoughtDef tfThought = GetWitnessedTfThought(pObserver, originalPawn); 
+                if(tfThought == null) continue;
+
+                pObserver.needs.mood.thoughts.memories.TryGainMemory(tfThought); 
+
+            }
+        }
+
+
+        enum TFWitnessType
+        {
+            Ally,NonAlly, Friend, Rival
+        }
+
+        [CanBeNull]
+        private static ThoughtDef GetWitnessedTfThought(Pawn pObserver, Pawn originalPawn)
+        {
+            TFWitnessType wType;
+
+            var rivalStatus = pObserver.GetRivalStatus(originalPawn);
+            switch (rivalStatus)
+            {
+                case RivalStatus.None:
+                    wType = originalPawn.Faction == pObserver.Faction ? TFWitnessType.Ally : TFWitnessType.NonAlly;
+                    break;
+                case RivalStatus.Rival:
+                    wType = TFWitnessType.Rival;
+                    break;
+                case RivalStatus.Friend:
+                    wType = TFWitnessType.Friend;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            ThoughtDef tDef; 
+            switch (wType)
+            {
+                case TFWitnessType.Ally:
+                    tDef = PMThoughtDefOf.PM_WitnessedAllyTf;
+                    break;
+                case TFWitnessType.NonAlly:
+                    tDef = PMThoughtDefOf.PM_WitnessedNonAllyTf; 
+                    break;
+                case TFWitnessType.Friend:
+                    tDef = PMThoughtDefOf.PM_WitnessedFriendTf; 
+                    break;
+                case TFWitnessType.Rival:
+                    tDef = PMThoughtDefOf.PM_WitnessedRivalTf;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return tDef; 
         }
     }
 }

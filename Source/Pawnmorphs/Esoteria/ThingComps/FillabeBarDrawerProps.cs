@@ -92,7 +92,9 @@ namespace Pawnmorph.ThingComps
             GenDraw.DrawFillableBar(req);
         }
 
-
+        /// <summary>
+        /// Comps the tick.
+        /// </summary>
         public override void CompTick()
         {
             base.CompTick();

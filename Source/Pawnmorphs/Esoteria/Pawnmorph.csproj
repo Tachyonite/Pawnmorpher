@@ -409,6 +409,7 @@
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
     <Compile Include="Hediffs\CompProps_ImmunizableMutation.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
+    <Compile Include="Hediffs\Comp_MutagenicInfecter.cs" />
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
     <Compile Include="Hediffs\Comp_RestartMutationProgression.cs" />
     <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
@@ -429,6 +430,7 @@
     <Compile Include="Hediffs\IDescriptiveStage.cs" />
     <Compile Include="Hediffs\MorphDisease.cs" />
     <Compile Include="Hediffs\FormerHuman.cs" />
+    <Compile Include="Hediffs\Comp_MutationTagger.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
     <Compile Include="Hediffs\PersistentMorphTf.cs" />
     <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
@@ -436,6 +438,7 @@
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
     <Compile Include="Hediffs\SyringeRifleTf.cs" />
     <Compile Include="Hediffs\SyringeTfStage.cs" />
+    <Compile Include="Hediffs\TaggingInjector.cs" />
     <Compile Include="Hediffs\TransformationBase.cs" />
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
@@ -444,6 +447,7 @@
     <Compile Include="HPatches\AnimalInteractionPatches.cs" />
     <Compile Include="HPatches\ApparelUtilityPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
+    <Compile Include="HPatches\DebugPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DoorPatches.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
@@ -487,6 +491,7 @@
     <Compile Include="IMentalStateRecoveryReceiver.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
+    <Compile Include="IncidentWorker\SheepChef.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_AddRandomAspect.cs" />
@@ -540,12 +545,17 @@
     <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
+    <Compile Include="PlaceWorkers\Centrifuge.cs" />
+    <Compile Include="PlaceWorkers\ShowMutationRadius.cs" />
+    <Compile Include="Plants\SpecialHarvestFailPlant.cs" />
+    <Compile Include="PMBackstoryDefOf.cs" />
     <Compile Include="PMConceptDefOf.cs" />
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />
+    <Compile Include="PMPawnKindDefOf.cs" />
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMPrisonerInteractionModeDefOf.cs" />
     <Compile Include="PMRelationUtilities.cs" />
@@ -771,6 +781,7 @@
     <Compile Include="Utilities\LinqUtils.cs" />
     <Compile Include="Utilities\PatchUtilities.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
+    <Compile Include="Utilities\RWRaycast.cs" />
     <Compile Include="Utilities\SkillMod.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />

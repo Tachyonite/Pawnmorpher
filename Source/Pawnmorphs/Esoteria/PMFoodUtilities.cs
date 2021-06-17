@@ -168,19 +168,24 @@ namespace Pawnmorph
                 return true;
             }
 
+            bool isDesperatePlantEater = IsDesperateHumanoidPlantEater(eater, foodCurCategory); 
+
             ThingRequest thingRequest;
             if (!CanEatPlants(eater, allowPlant, foodCurCategory))
                 thingRequest = ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree);
             else
                 thingRequest = ThingRequest.ForGroup(ThingRequestGroup.FoodSource);
-            Thing bestThing;
+            Thing bestThing = null;
             if (getter.IsHumanlike())
             {
                 //TODO split up search for hungry humanlike into 2 phases 
                 //whole map search for good food 
                 //small search for good plants 
+
+                
+
                 bestThing = SpawnedFoodSearchInnerScan(eater, getter.Position,
-                                                       getter.Map.listerThings.ThingsMatching(thingRequest),
+                                                       getter.Map.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree)),
                                                        PathEndMode.ClosestTouch, TraverseParms.For(getter), 9999f, FoodValidator);
 
                
@@ -218,7 +223,9 @@ namespace Pawnmorph
                 if (foodDef == null && bestThing != null)
                     foodDef = FoodUtility.GetFinalIngestibleDef(bestThing);
             }
-            else
+            
+            
+            if(!getter.IsHumanlike() || (bestThing == null && isDesperatePlantEater))
             {
                 int maxRegionsToScan =
                     GetMaxRegionsToScan(getter, forceScanWholeMap, foodCurCategory); //this is where the lag comes from 
@@ -481,6 +488,12 @@ namespace Pawnmorph
             return pawn;
         }
 
+
+        static bool IsDesperateHumanoidPlantEater(Pawn eater, HungerCategory cat)
+        {
+            return eater.IsHumanlike() && cat >= HungerCategory.UrgentlyHungry && (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree) ) != 0;
+        }
+
         private static bool CanEatPlants(Pawn eater, bool allowPlant, HungerCategory category)
         {
             bool retval;
@@ -530,7 +543,7 @@ namespace Pawnmorph
         {
             if (!allowSociallyImproper)
             {
-                bool animalsCare = !getter.RaceProps.Animal;
+                bool animalsCare = !getter.IsAnimal();
                 if (!t.IsSociallyProper(getter) && !t.IsSociallyProper(eater, eater.IsPrisonerOfColony, animalsCare))
                     return false;
             }

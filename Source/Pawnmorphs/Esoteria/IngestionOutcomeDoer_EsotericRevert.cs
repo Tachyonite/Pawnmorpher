@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
+using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -41,7 +44,7 @@ namespace Pawnmorph
             else 
             {
                 //revert mutations
-                TransformerUtility.SetToRaceDefault(pawn);
+                RemoveMutations(pawn);
                 AspectTracker aT = pawn.GetAspectTracker();
                 if (aT != null) RemoveAspects(aT);
 
@@ -50,6 +53,41 @@ namespace Pawnmorph
                     graphicsComp.IsDirty = true;
                 pawn.RefreshGraphics();
             }
+        }
+
+        [NotNull]
+        private static readonly List<Hediff_AddedMutation> _cache = new List<Hediff_AddedMutation>(); 
+
+        private void RemoveMutations(Pawn pawn)
+        {
+            var hediffs = pawn.health?.hediffSet;
+            if (hediffs == null) return;
+            _cache.Clear();
+            //remove the instant mutations 
+            foreach (Hediff_AddedMutation mutation in hediffs.hediffs.MakeSafe().OfType<Hediff_AddedMutation>())
+            {
+                if (mutation.Def.removeInstantly)
+                    mutation.MarkForRemoval();
+                else
+                    _cache.Add(mutation); 
+            }
+
+            //add reversion hediff 
+            var hDiff = HediffMaker.MakeHediff(MorphTransformationDefOf.PM_Reverting, pawn);
+            hediffs.AddDirect(hDiff);
+
+
+            foreach (Hediff_AddedMutation hediffAddedMutation in _cache)
+            {
+                var comp = hediffAddedMutation.SeverityAdjust;
+                if (comp != null)
+                {
+                    comp.RecalcAdjustSpeed(); 
+                }else
+                    hediffAddedMutation.MarkForRemoval();
+            }
+            _cache.Clear();
+
         }
 
         private void RemoveAspects(AspectTracker tracker)

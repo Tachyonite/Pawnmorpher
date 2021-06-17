@@ -37,6 +37,11 @@ namespace Pawnmorph
 
         private List<TransformedPawn> _transformedPawns = new List<TransformedPawn>();
 
+
+        //hacky, will find a better solution later 
+        internal bool sheepChefEventFired; 
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PawnmorphGameComp"/> class.
         /// </summary>
@@ -119,6 +124,8 @@ namespace Pawnmorph
             taggedAnimals = taggedAnimals ?? new HashSet<PawnKindDef>();
             mergedpawnmorphs = mergedpawnmorphs ?? new HashSet<PawnMorphInstanceMerged>();
             pawnmorphs = pawnmorphs ?? new HashSet<PawnMorphInstance>();
+
+            Scribe_Values.Look(ref sheepChefEventFired, nameof(sheepChefEventFired)); 
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

@@ -834,17 +834,21 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Initializes the transformed pawn with the given original pawn and sapience level 
+        /// Initializes the transformed pawn with the given original pawn and sapience level
         /// </summary>
         /// <param name="original">The original.</param>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <param name="backstoryOverride">The backstory override.</param>
+        /// <exception cref="ArgumentNullException">
         /// original
         /// or
         /// animal
         /// </exception>
-        public static void InitializeTransformedPawn([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel)
+        /// <exception cref="System.ArgumentNullException">original
+        /// or
+        /// animal</exception>
+        public static void InitializeTransformedPawn([NotNull] Pawn original, [NotNull] Pawn animal, float sapienceLevel, BackstoryDef backstoryOverride=null)
         {
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (animal == null) throw new ArgumentNullException(nameof(animal));
@@ -864,7 +868,7 @@ namespace Pawnmorph
 
             animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
 
-            TryAssignBackstoryToTransformedPawn(animal, original);
+            TryAssignBackstoryToTransformedPawn(animal, original, backstoryOverride);
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
             if (nC == null)
@@ -890,15 +894,16 @@ namespace Pawnmorph
 
 
         /// <summary>
-        ///     Makes the animal sapient.
+        /// Makes the animal sapient.
         /// </summary>
         /// <param name="animal">The animal.</param>
         /// <param name="sapienceLevel">The sapience level.</param>
-        /// <param name="joinIfRelated">
-        ///     if set to <c>true</c> and the resulting pawn is related to a colonist have the animal join
-        ///     the colony.
-        /// </param>
-        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true)
+        /// <param name="joinIfRelated">if set to <c>true</c> and the resulting pawn is related to a colonist have the animal join
+        /// the colony.</param>
+        /// <param name="backstoryOverride">The backstory override.</param>
+        /// <param name="fixedFirstName">First name of the fixed.</param>
+        /// <param name="fixedLastName">Last name of the fixed.</param>
+        public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true, BackstoryDef backstoryOverride= null, string fixedFirstName=null, string fixedLastName=null, Gender? fixedOriginalGender = null)
         {
             if (animal.IsFormerHuman())
             {
@@ -913,7 +918,7 @@ namespace Pawnmorph
                 return;
             }
 
-            Pawn lPawn = GenerateRandomHumanForm(animal);
+            Pawn lPawn = GenerateRandomHumanForm(animal, fixedFirstName, fixedLastName); 
 
             MorphDef morph = MorphUtilities.TryGetBestMorphOfAnimal(animal.def);
 
@@ -939,7 +944,7 @@ namespace Pawnmorph
             sTracker.EnterState(SapienceStateDefOf.FormerHuman, sapienceLevel);
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
-            TryAssignBackstoryToTransformedPawn(animal, lPawn);
+            TryAssignBackstoryToTransformedPawn(animal, lPawn, backstoryOverride);
             TransferEverything(lPawn, animal, passionTransferMode: PawnTransferUtilities.SkillPassionTransferMode.Set);
             animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
             var inst = new TransformedPawnSingle
@@ -1012,11 +1017,14 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// Generates the random human form of the given animal 
+        /// Generates the random human form of the given animal
         /// </summary>
         /// <param name="animal">The animal.</param>
+        /// <param name="fixedFirstName">First name of the fixed.</param>
+        /// <param name="fixedLastName">Last name of the fixed.</param>
+        /// <param name="fixedOriginalGender">The fixed original gender.</param>
         /// <returns></returns>
-        public static Pawn GenerateRandomHumanForm(Pawn animal)
+        public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName=null, string fixedLastName = null, Gender? fixedOriginalGender=null)
         {
             PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
 
@@ -1026,7 +1034,7 @@ namespace Pawnmorph
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                                                   fixedChronologicalAge: chronoAge,
-                                                  fixedBiologicalAge: convertedAge); 
+                                                  fixedBiologicalAge: convertedAge, fixedBirthName:fixedFirstName, fixedLastName:fixedLastName, fixedGender:fixedOriginalGender); 
             Pawn lPawn = PawnGenerator.GeneratePawn(local);
             return lPawn;
         }
@@ -1121,14 +1129,27 @@ namespace Pawnmorph
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
         }
 
+        /// <summary>
+        /// Transfers the hediffs from the original pawn onto the transformed pawn by checking for the TFTransferable 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transformedPawn">The transformed pawn.</param>
+        public static void TransferHediffs(Pawn original, Pawn transformedPawn)
+        {
+            PawnTransferUtilities.TransferHediffs(original, transformedPawn,
+                                                  h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
+                                                    == true); 
+        }
+
 
         /// <summary>
-        ///     Tries the assign the correct backstory to transformed pawn.
+        /// Tries the assign the correct backstory to transformed pawn.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="backstoryOverride">The backstory override.</param>
         /// <exception cref="ArgumentNullException">pawn</exception>
-        public static void TryAssignBackstoryToTransformedPawn([NotNull] Pawn pawn, [CanBeNull] Pawn originalPawn)
+        public static void TryAssignBackstoryToTransformedPawn([NotNull] Pawn pawn, [CanBeNull] Pawn originalPawn, BackstoryDef backstoryOverride=null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (!pawn.IsFormerHuman()) return;
@@ -1139,7 +1160,12 @@ namespace Pawnmorph
             else if (pawn.Name == null) pawn.Name = new NameSingle(pawn.LabelShort);
 
 
-            BackstoryDef backstoryDef;
+            BackstoryDef backstoryDef = backstoryOverride;
+            if (backstoryDef != null)
+            {
+                pawn.story.adulthood = backstoryDef.backstory;
+                return; 
+            }
 
             var ext = pawn.def.GetModExtension<FormerHumanSettings>();
 

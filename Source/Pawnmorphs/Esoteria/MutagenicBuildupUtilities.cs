@@ -36,13 +36,13 @@ namespace Pawnmorph
         /// <param name="source">The source.</param>
         /// <param name="pawn">The pawn.</param>
         /// <param name="adjustValue">The adjust value.</param>
-        public static void AdjustMutagenicBuildup([NotNull] Def source, [NotNull] Pawn pawn, float adjustValue)
+        public static float AdjustMutagenicBuildup([CanBeNull] Def source, [NotNull] Pawn pawn, float adjustValue)
         {
-            var settings = source.GetModExtension<MutagenicBuildupSourceSettings>();
+            var settings = source?.GetModExtension<MutagenicBuildupSourceSettings>();
             float max = settings?.maxBuildup ?? 1;
             var hediffDef = settings?.mutagenicBuildupDef ?? MorphTransformationDefOf.MutagenicBuildup;
             var mutagen = settings?.mutagenDef ?? MutagenDefOf.defaultMutagen;
-            if (!mutagen.CanInfect(pawn)) return; 
+            if (!mutagen.CanInfect(pawn)) return 0; 
             adjustValue *= pawn.GetMutagenicBuildupMultiplier(mutagen);  
 
             var fHediff = pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
@@ -53,10 +53,11 @@ namespace Pawnmorph
                 pawn.health.AddHediff(fHediff); 
             }
 
-            if (fHediff.Severity > max) return; 
-
-            fHediff.Severity = Mathf.Min(fHediff.Severity + adjustValue, max); 
-
+            if (fHediff.Severity > max) return 0;
+            float sev = fHediff.Severity;
+            float finalSev = Mathf.Min(fHediff.Severity + adjustValue, max);
+            fHediff.Severity = finalSev;
+            return finalSev - sev; 
         }
     }
 }

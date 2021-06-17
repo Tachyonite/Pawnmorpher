@@ -80,6 +80,11 @@ namespace Pawnmorph.Hediffs
         [CanBeNull] public TaleDef mutationTale;
 
         /// <summary>
+        /// if this mutation should be removed instantly by a reverter
+        /// </summary>
+        public bool removeInstantly; 
+        
+        /// <summary>
         ///     The class this part gives influence for
         /// </summary>
         /// only should be set if morphInfluence is not set!

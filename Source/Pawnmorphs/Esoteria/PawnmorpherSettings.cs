@@ -35,6 +35,11 @@ namespace Pawnmorph
         public float partialChance = 5f;
 
         /// <summary>
+        /// if true failed chaobulb harvests can give mutagenic buildup
+        /// </summary>
+        public bool hazardousChaobulbs = true; 
+
+        /// <summary>
         /// if The injectors require tagging the associated animal first
         /// </summary>
         public bool injectorsRequireTagging = true; 
@@ -80,7 +85,8 @@ namespace Pawnmorph
             Scribe_Values.Look(ref logLevel, nameof(logLevel), LogLevel.Warnings, true); 
             Scribe_Values.Look(ref manhunterTfChance, nameof(manhunterTfChance));
             Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
-            Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit)); 
+            Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
+            Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true); 
             base.ExposeData();
         }
     }

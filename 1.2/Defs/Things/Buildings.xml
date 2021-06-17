@@ -70,7 +70,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>PM_SlurryPipe</defName>
         <label>slurry pipe</label>
-        <description>A pipe that transmits slurry gas.</description>
+        <description>A pipe that transmits slurry.</description>
         <thingClass>Building</thingClass>
         <category>Building</category>
         <graphicData>
@@ -135,7 +135,7 @@
         <defName>MutaniteCentrifuge</defName>
         <label>mutanite centrifuge</label>
         <thingClass>Pawnmorph.Buildings.MutaniteCentrifuge</thingClass>
-        <description>When mutagenic slurry is piped in, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a morphsilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy.</description>
+        <description>When mutagenic slurry is piped in, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a morphsilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy.\n\nSetup: Connect the centrifuge to a mutagen tank using slurry pipes. Warning: turning on 'high power mode' causes mutagenic effects in a radius around it.</description>
         <graphicData>
             <texPath>Things/Building/MutaniteCentrifuge</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -183,6 +183,9 @@
         <thingSetMakerTags>
             <li>RewardStandardHighFreq</li>
         </thingSetMakerTags>
+        <placeWorkers>
+            <li>Pawnmorph.PlaceWorkers.Centrifuge</li>
+        </placeWorkers>
         <tickerType>Normal</tickerType>
         <size>(3, 3)</size>
         <fillPercent>1.0</fillPercent>
@@ -204,5 +207,47 @@
         <researchPrerequisites>
             <li>MutagenCentrifuging</li>
         </researchPrerequisites>
+    </ThingDef>
+
+    <ThingDef ParentName="MutagenicShipPartBase">
+        <defName>CrashedMutagenicShipPart</defName>
+        <label>ship part (mutagenic)</label>
+        <description>A mysterious crashed piece of a spaceship. It may contain any manner of deadly defenders and exotic materials. This one seems to have mutagenic effects.</description>
+        <graphicData>
+            <texPath>Things/Building/MutationShipPart</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(6,3)</drawSize>
+            <shadowData>
+                <volume>(5.5, 1.0, 2.45)</volume>
+            </shadowData>
+        </graphicData>
+        <killedLeavings>
+            <MechaniteSlurry>5</MechaniteSlurry>
+            <ReversionSyringe>2</ReversionSyringe>
+        </killedLeavings>
+        <placeWorkers>
+            <li>Pawnmorph.PlaceWorkers.ShowMutationRadius</li>
+        </placeWorkers>
+        <comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>12</glowRadius>
+                <glowColor>(217,80,80,0)</glowColor>
+            </li>
+            <li Class="Pawnmorph.CompProperties_MutagenicRadius">
+
+                <radiusPerDayCurve>
+                    <points>
+                        <li>0,10</li>
+                        <li>1,20</li>
+                        <li>3,30</li>
+                        <li>5,35</li>
+                        <li>10,50</li>
+                        <li>15,100</li>
+                    </points>
+                </radiusPerDayCurve>
+                <hediff>FullRandomTFAnyOutcome</hediff>
+                <harmFrequencyPerArea>1</harmFrequencyPerArea>
+            </li>
+        </comps>
     </ThingDef>
 </Defs>

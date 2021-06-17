@@ -45,6 +45,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref brokenChance, "brokenChance");
             Scribe_Values.Look(ref bondChance, "bondChance");
             Scribe_Values.Look(ref totalProduced, "totalProduced");
+            Scribe_Values.Look(ref _canProduceNow, nameof(CanProduceNow)); 
             base.CompExposeData();
         }
 
@@ -66,6 +67,7 @@ namespace Pawnmorph
             else if (Pawn.Map != null)
             {
                 if (!CanProduce) return;//it's here so we don't check for the aspect every tick 
+                _canProduceNow = true; 
                 if (Props.JobGiver != null && !Pawn.Downed)
                 {
                     GiveJob();
@@ -92,6 +94,13 @@ namespace Pawnmorph
             }
         }
 
+        private bool _canProduceNow;
+
+        /// <summary>
+        /// if this instance can produce a product now 
+        /// </summary>
+        public bool CanProduceNow => _canProduceNow;
+
         private void GiveJob()
         {
             HatchingTicker = 0;
@@ -116,6 +125,7 @@ namespace Pawnmorph
             ThingDef resource = curStage?.Resource ?? Props.Resource;
             ThingDef rareResource = curStage?.RareResource ?? Props.RareResource;
             ThoughtDef thought = curStage?.thought;
+            _canProduceNow = false; 
             Produce(amount, chance, resource, rareResource, thought);
         }
 

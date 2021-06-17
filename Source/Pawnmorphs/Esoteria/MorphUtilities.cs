@@ -289,7 +289,7 @@ namespace Pawnmorph
             var isBelowChimeraThreshold = morphInfluence < CHIMERA_THRESHOLD && morphInfluenceCount > 1;
 
             MorphDef setMorph = GetMorphForPawn(pawn, isBelowChimeraThreshold, hInfluence, out MorphDef curMorph);
-
+            if (setMorph?.raceSettings?.PawnCanBecomeHybrid(pawn) == false) return; 
             if (curMorph != setMorph && setMorph != null) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
         }
 

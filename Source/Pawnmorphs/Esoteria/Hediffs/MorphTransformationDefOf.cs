@@ -28,11 +28,14 @@ namespace Pawnmorph.Hediffs
 
         public static HediffDef StabiliserHigh;  //should move this somewhere else 
 
+        //hediff added by the reverter 
+        public static HediffDef PM_Reverting; 
+
         //special def 
         public static HediffDef MutagenicBuildup;
         public static HediffDef MutagenicBuildup_Weapon;
 
-
+        public static HediffDef PM_MutagenicInfection; 
         static MorphTransformationDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(MorphTransformationDefOf));

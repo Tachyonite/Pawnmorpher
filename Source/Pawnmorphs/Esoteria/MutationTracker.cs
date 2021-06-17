@@ -341,6 +341,26 @@ namespace Pawnmorph
                 if (!(parentAllComp is IMutationEventReceiver receiver)) continue;
                 receiver.MutationAdded(mutation, this);
             }
+
+            //notify hediffs & comps 
+            var hediffs = Pawn.health?.hediffSet?.hediffs;
+            if (hediffs != null)
+            {
+                foreach (Hediff hediff in hediffs)
+                {
+                    if (hediff is IMutationEventReceiver receiver)
+                    {
+                        receiver.MutationAdded(mutation, this); 
+                    }
+                    else if(hediff is HediffWithComps hComps)
+                    {
+                        foreach (IMutationEventReceiver eventReceiver in hComps.comps.MakeSafe().OfType<IMutationEventReceiver>())
+                        {
+                            eventReceiver.MutationAdded(mutation, this); 
+                        }
+                    }
+                }
+            }
         }
 
         private void NotifyCompsRemoved(Hediff_AddedMutation mutation)
@@ -351,6 +371,27 @@ namespace Pawnmorph
                 if (!(parentAllComp is IMutationEventReceiver receiver)) continue;
                 receiver.MutationRemoved(mutation, this);
             }
+
+            var hediffs = Pawn.health?.hediffSet?.hediffs;
+            if (hediffs != null)
+            {
+                foreach (Hediff hediff in hediffs)
+                {
+                    if (hediff is IMutationEventReceiver receiver)
+                    {
+                        receiver.MutationRemoved(mutation, this);
+                    }
+                    else if (hediff is HediffWithComps hComps)
+                    {
+                        foreach (IMutationEventReceiver eventReceiver in hComps.comps.MakeSafe().OfType<IMutationEventReceiver>())
+                        {
+                            eventReceiver.MutationRemoved(mutation, this);
+                        }
+                    }
+                }
+            }
+
+
         }
 
         /// <summary>
@@ -363,6 +404,24 @@ namespace Pawnmorph
             {
                 RecalculateMutationInfluences();
             }
+        }
+
+        /// <summary>
+        /// Determines whether this instance has the specified mutation.
+        /// </summary>
+        /// <param name="requiredMutation">The required mutation.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified required mutation has mutation; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public bool HasMutation([NotNull] MutationDef requiredMutation)
+        {
+            foreach (Hediff_AddedMutation mutation in _mutationList)
+            {
+                if (mutation.def == requiredMutation) return true; 
+            }
+
+            return false; 
         }
     }
 }

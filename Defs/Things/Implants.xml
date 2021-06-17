@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="ImplantHediffBase">
 		<defName>SapienceLimiterHediff</defName>
-		<label></label>
+		<label>sapiostore mesh</label>
 		<description>An implanted sapiostore mesh.</description>
 		<stages>
 			<li>
@@ -17,7 +17,7 @@
 	</HediffDef>
 	<RecipeDef ParentName="SurgeryInstallImplantBase">
 		<defName>InstallInstinctLimiter</defName>
-		<label>install sapiostore chip</label>
+		<label>install sapiostore mesh</label>
 		<description>Install a sapiostore mesh.</description>
 		<descriptionHyperlinks>
 			<ThingDef>SapientChip</ThingDef>
