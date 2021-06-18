@@ -49,10 +49,11 @@ namespace Pawnmorph.IncidentWorkers
             GenSpawn.Spawn(pawn, loc, map, Rot4.Random);
             pawn.SetFaction(Faction.OfPlayer);
             var oPawn = GenerateGordon(pawn);
-
+            
 
             FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn);
 
+            pawn.Name = oPawn.Name ?? pawn.Name; 
             if (pawn.story != null)
             {
                 pawn.story.adulthood = PMBackstoryDefOf.PM_SheepChef.backstory; 
