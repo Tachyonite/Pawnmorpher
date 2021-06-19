@@ -2,8 +2,8 @@
     <HediffDef ParentName="InfectionBase">
         <defName>PM_MutagenicInfection</defName>
         <label>mutagenic infection</label>
-        <labelNoun>TODO</labelNoun>
-        <description>TODO</description>
+        <labelNoun>mutagenic infection</labelNoun>
+        <description>Mutagenic mechanites have infected this wound, causing mutations unless treated.</description>
         <makesSickThought>true</makesSickThought>
         <tendable>true</tendable>
         <hediffClass>Pawnmorph.Hediffs.MorphDisease</hediffClass>

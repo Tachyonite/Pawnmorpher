@@ -135,7 +135,7 @@
 	</Pawnmorph.AspectDef>
 	<Pawnmorph.AspectDef>
 		<defName>RareMutant</defName>
-		<label>rare mutatant</label>
+		<label>rare mutant</label>
 		<description>TODO</description>
 		<stages>
 			<li>
