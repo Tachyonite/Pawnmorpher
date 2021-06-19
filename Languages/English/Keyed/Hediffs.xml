@@ -21,10 +21,10 @@
 	<RaceChangeMessage>{0} is no longer considered human!</RaceChangeMessage>
 	<HumanAgainMessage>{0} is human again!</HumanAgainMessage>
 	<TransformationStageWarningLabel>{0} is at risk of fully changing very soon.</TransformationStageWarningLabel>
-	<TransformationStageWarningContent>{0} is at risk of transforming into an animal soon. You can use stabilizer to prevent this</TransformationStageWarningContent>
-	<CarryToChamber>Carry {1_label} to mutagen chamber</CarryToChamber>
-	<PMCarryToChamberMerge>Carry {1_label} to mutagen chamber for merging</PMCarryToChamberMerge>
-	<CannotCarryToChamber>Cannot carry to mutagen chamber</CannotCarryToChamber>
+	<TransformationStageWarningContent>{0} is at risk of transforming into an animal soon. You can use stabilizer to prevent this.</TransformationStageWarningContent>
+	<CarryToChamber>Carry {1_label} to mutagen chamber.</CarryToChamber>
+	<PMCarryToChamberMerge>Carry {1_label} to mutagen chamber for merging.</PMCarryToChamberMerge>
+	<CannotCarryToChamber>Cannot carry to mutagen chamber.</CannotCarryToChamber>
 	<PawnmorphTooltipShe>She</PawnmorphTooltipShe>
 	<PawnmorphTooltipHe>He</PawnmorphTooltipHe>
 	<PawnmorphTooltipHer>Her</PawnmorphTooltipHer>
