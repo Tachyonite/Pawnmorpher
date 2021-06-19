@@ -13,28 +13,28 @@
             <li>
                 <!-- normal pawns -->
                 <label>witnessed ally transformation</label>
-                <description>TODO</description>
+                <description>It's still them, but the change is slightly offputting.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <!-- mutation affinity -->
                 <label>witnessed ally transformation</label>
-                <description>TODO</description>
+                <description>Yes, another one to join us...</description>
                 <visible>true</visible>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <!-- body purist -->
                 <label>witnessed ally transformation</label>
-                <description>TODO</description>
+                <description>That was horrific to watch, we're doing these insane experiments on our own people!</description>
                 <visible>true</visible>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
                 <!-- primal wish -->
                 <label>witnessed ally transformation</label>
-                <description>god I wish that was me.</description>
+                <description>God I wish that were me.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -47,28 +47,28 @@
             <li>
                 <!-- normal pawns -->
                 <label>witnessed outsider transformation</label>
-                <description>TODO</description>
+                <description>That was disturbing to watch.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <!-- mutation affinity -->
                 <label>witnessed outsider transformation</label>
-                <description>TODO</description>
+                <description>I'm glad outsiders are so open to becoming animals.</description>
                 <visible>true</visible>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <!-- body purist -->
                 <label>witnessed outsider transformation</label>
-                <description>TODO</description>
+                <description>That was horrific to watch, doing insane experiments on people!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <!-- primal wish -->
                 <label>witnessed outsider transformation</label>
-                <description>god I wish that was me.</description>
+                <description>God I wish that were me!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
@@ -82,30 +82,30 @@
             <li>
                 <!-- normal pawns -->
                 <label>witnessed rival transformation</label>
-                <description>TODO</description>
+                <description>As bad as it sounds, it was theraputic to see it.</description>
                 <visible>true</visible>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <!-- mutation affinity -->
                 <label>witnessed rival transformation</label>
-                <description>TODO</description>
+                <description>People I don't like shouldn't get to experience it.</description>
                 <visible>true</visible>
-                <baseMoodEffect>3</baseMoodEffect>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <!-- body purist -->
                 <label>witnessed rival transformation</label>
-                <description>TODO</description>
+                <description>However horrific it is to watch, I feel like they deserve it.</description>
                 <visible>true</visible>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <!-- primal wish -->
                 <label>witnessed rival transformation</label>
-                <description>god I wish that was me.</description>
+                <description>Why do they get all the fun?!</description>
                 <visible>true</visible>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>-8</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -118,30 +118,30 @@
             <li>
                 <!-- normal pawns -->
                 <label>witnessed friend transformation</label>
-                <description>TODO</description>
+                <description>My friend, subjected to that horrible change...</description>
                 <visible>true</visible>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <!-- mutation affinity -->
                 <label>witnessed friend transformation</label>
-                <description>TODO</description>
+                <description>Good for them, I hope they enjoy themselves!</description>
                 <visible>true</visible>
-                <baseMoodEffect>3</baseMoodEffect>
+                <baseMoodEffect>8</baseMoodEffect>
             </li>
             <li>
                 <!-- body purist -->
                 <label>witnessed friend transformation</label>
-                <description>TODO</description>
+                <description>That was absolutely horrific! A person I've known for so long becoming something they're not!</description>
                 <visible>true</visible>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>-10</baseMoodEffect>
             </li>
             <li>
                 <!-- primal wish -->
                 <label>witnessed friend transformation</label>
-                <description>god I wish that was me.</description>
+                <description>Good for them! Me next?</description>
                 <visible>true</visible>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
