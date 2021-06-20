@@ -118,7 +118,7 @@
             </li>
             <li>
                 <label>Wooly tail</label>
-                <description>I think I can cut it it off, right?</description>
+                <description>I think I can cut it off, right?</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>

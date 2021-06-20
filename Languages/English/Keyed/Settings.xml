@@ -5,13 +5,13 @@
 	<enableMutagenCheckboxLabel>Enable Mutagenic Ship Parts</enableMutagenCheckboxLabel>
 	<enableMutagenCheckboxTooltip>Toggles a new ship part type that mutates pawns in an expanding radius.</enableMutagenCheckboxTooltip>
 	<enableMutagenDiseasesCheckboxLabel>Enable Mutagenic Diseases</enableMutagenDiseasesCheckboxLabel>
-	<enableMutagenDiseasesCheckboxTooltip>Toggles mutagenic disease events that will morph pawns. (requires restart)</enableMutagenDiseasesCheckboxTooltip>
+	<enableMutagenDiseasesCheckboxTooltip>Toggles mutagenic disease events that will morph pawns (requires restart).</enableMutagenDiseasesCheckboxTooltip>
 	<enableMutagenMeteorCheckboxLabel>Enable Mutagenic Meteorite Mutation Radius</enableMutagenMeteorCheckboxLabel>
 	<enableMutagenMeteorCheckboxTooltip>Toggles the ability of mutonite meteors to mutate nearby pawns.</enableMutagenMeteorCheckboxTooltip>
 	<enableWildFormersCheckboxLabel>Enable Wild Former Humans</enableWildFormersCheckboxLabel>
 	<enableWildFormersCheckboxTooltip>Toggles animals spawning onto the map as former humans, allowing them to be reverted.</enableWildFormersCheckboxTooltip>
 	<PMHazardousChaobulbs>Enable Hazardous Chaobulbs</PMHazardousChaobulbs>
-	<PMHazardousChaobulbsTooltip>if failed chaobulb harvests can give mutagenic buildup</PMHazardousChaobulbsTooltip>
+	<PMHazardousChaobulbsTooltip>If failed, chaobulb harvests can give mutagenic buildup.</PMHazardousChaobulbsTooltip>
 	<transformChanceSliderLabel>Chance for mutagens to fully transform pawns</transformChanceSliderLabel>
 	<formerChanceSliderLabel>Chance for animals to spawn as former humans</formerChanceSliderLabel>
 	<partialChanceSliderLabel>Chance for morph eggs/milk to trigger a complete transformation instead of a single mutation</partialChanceSliderLabel>
@@ -19,5 +19,5 @@
 	<friendlyManhunterTfChance>Chance for friendly pawns to go manhunter when transformed</friendlyManhunterTfChance>
 	<manhunterTfChance>Chance for pawns to go manhunter when transformed</manhunterTfChance>
 	<PMInjectorsRequireTagging>Injectors Require Tagging</PMInjectorsRequireTagging>
-	<PMInjectorsRequireTaggingTooltip>If tagging animals is requires to make injectors</PMInjectorsRequireTaggingTooltip>
+	<PMInjectorsRequireTaggingTooltip>If true, tagging animals is required to make injectors.</PMInjectorsRequireTaggingTooltip>
 </LanguageData>
