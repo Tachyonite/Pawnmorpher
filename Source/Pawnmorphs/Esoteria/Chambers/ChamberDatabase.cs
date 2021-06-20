@@ -216,6 +216,7 @@ namespace Pawnmorph.Chambers
         private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
         private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
         private const string ANIMAL_NOT_TAGGABLE = "AnimalNotTaggable";
+        private const string NOT_VALID_ANIMAL = "NotValidAnimal";
 
         private bool _migrated;
 
@@ -241,17 +242,21 @@ namespace Pawnmorph.Chambers
 
             if (pawnKind.GetRequiredStorage() > FreeStorage)
             {
-                reason = NOT_ENOUGH_STORAGE_REASON.Translate(pawnKind); 
-            }else if (!CanTag)
+                reason = NOT_ENOUGH_STORAGE_REASON.Translate(pawnKind);
+            } else if (!CanTag)
             {
                 reason = NOT_ENOUGH_POWER.Translate();
             }
             else if (TaggedAnimals.Contains(pawnKind))
             {
-                reason = ALREADY_TAGGED_REASON.Translate(pawnKind); 
-            }else if (DatabaseUtilities.IsChao(pawnKind.race))
+                reason = ALREADY_TAGGED_REASON.Translate(pawnKind);
+            } else if (DatabaseUtilities.IsChao(pawnKind.race))
             {
                 reason = ANIMAL_NOT_TAGGABLE.Translate(pawnKind);
+            }
+            else if (!pawnKind.race.IsValidAnimal())
+            {
+                reason = NOT_VALID_ANIMAL.Translate(pawnKind);
             }
             else reason = "";
 
