@@ -13,14 +13,14 @@
 				<label>Etherbroken</label>
 				<description>Constant production has caused [PAWN_nameDef] to become numb and submit to their fate.</description>
 				<statOffsets>
-					<SapienceLimit>-0.2</SapienceLimit>
+					<SapienceLimit>-0.4</SapienceLimit>
 				</statOffsets>
 			</li>
 			<li>
 				<label>Etherbonded</label>
 				<description>Constant production has caused [PAWN_nameDef] to accept change, and for some reason will now enjoy producing.</description>
 				<statOffsets>
-					<SapienceLimit>-0.4</SapienceLimit>
+					<SapienceLimit>-0.2</SapienceLimit>
 				</statOffsets>
 			</li>
 		</stages>
@@ -170,7 +170,7 @@
 	<Pawnmorph.AspectDef>
 		<defName>Afflicted</defName>
 		<label>afflicted</label>
-		<description>this pawn not only never adapts to new mutations, their mutations sometimes degrade into worse versions.</description>
+		<description>This pawn not only never adapts to new mutations, their mutations sometimes degrade into worse versions.</description>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<removedByReverter>true</removedByReverter>
 		<stages>
