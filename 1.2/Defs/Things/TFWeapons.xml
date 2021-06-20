@@ -36,15 +36,15 @@
 	<ThingDef ParentName="BaseWeaponNeolithic">
 		<defName>Mutabow</defName>
         <label>mutabow</label>
-        <description>This is a Lelo test.</description>
+        <description>A bow that fires arrows with mutanite arrowhead, mutating the victim.</description>
         <graphicData>
             <texPath>Things/Item/MutagenBow</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <soundInteract>Bow_Small</soundInteract>
         <statBases>
-            <MarketValue>650</MarketValue>
-            <WorkToMake>4000</WorkToMake>
+            <MarketValue>95</MarketValue>
+            <WorkToMake>2600</WorkToMake>
             <Mass>0.8</Mass>
             <AccuracyTouch>0.75</AccuracyTouch>
 			<AccuracyShort>0.65</AccuracyShort>
@@ -64,7 +64,7 @@
 			</skillRequirements>
         </recipeMaker>
         <costList>
-            <Mutanite>5</Mutanite>
+            <Mutanite>1</Mutanite>
             <WoodLog>30</WoodLog>
         </costList>
         <verbs>
