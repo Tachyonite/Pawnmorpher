@@ -1,12 +1,12 @@
 <LanguageData>
     <PMTagGizmoLabel>Tag Animal</PMTagGizmoLabel>
-    <PMTagGizmoDescription>tag an animal</PMTagGizmoDescription>
-    <CannotTagFormerHuman>Due to mechanite contamination, this animal cannot be tagged</CannotTagFormerHuman>
-    <PMMutationTagged>mutation "{mutation}" sequenced from {animal}</PMMutationTagged>
-    <PMNothingTaggable>{animal} has nothing worth recording</PMNothingTaggable>
-    <PMMutationNotEnoughSpace>{animal} has mutations that can be recorded but not enough space to store them</PMMutationNotEnoughSpace>
-    <PMAnimalAddedToDatabase>{animal} added to the genebank database</PMAnimalAddedToDatabase>
-    <PMMutationNotTaggable>{0} not taggable</PMMutationNotTaggable>
-    <PMMutationRestricted>{0} is restricted</PMMutationRestricted>
-    <MutationAddedToDatabase>{Mutation} added to the genebank</MutationAddedToDatabase>
+    <PMTagGizmoDescription>Tag an animal</PMTagGizmoDescription>
+    <CannotTagFormerHuman>Due to mechanite contamination, this animal cannot be tagged.</CannotTagFormerHuman>
+    <PMMutationTagged>Mutation "{mutation}" sequenced from {animal}.</PMMutationTagged>
+    <PMNothingTaggable>{animal} has nothing worth recording.</PMNothingTaggable>
+    <PMMutationNotEnoughSpace>{animal} has mutations that can be recorded, but there is not enough space to store them.</PMMutationNotEnoughSpace>
+    <PMAnimalAddedToDatabase>{animal} added to the genebank database.</PMAnimalAddedToDatabase>
+    <PMMutationNotTaggable>{0} not taggable.</PMMutationNotTaggable>
+    <PMMutationRestricted>{0} is restricted.</PMMutationRestricted>
+    <MutationAddedToDatabase>{Mutation} added to the genebank.</MutationAddedToDatabase>
 </LanguageData>

@@ -13,14 +13,14 @@
     -->
 
     <!--uses "memberLabel" and "species"  -->
-    <GoodwillChangedReason_PawnTransformed>{memberLabel} turned into a {species}</GoodwillChangedReason_PawnTransformed>
+    <GoodwillChangedReason_PawnTransformed>{memberLabel} turned into a {species}.</GoodwillChangedReason_PawnTransformed>
 
     <!--factionName,species,leaderTitle -->
-    <FactionLeaderTransformedLabel>the {leaderTitle} of {factionName} turned into a {species}</FactionLeaderTransformedLabel>
+    <FactionLeaderTransformedLabel>The {leaderTitle} of {factionName} turned into a {species}.</FactionLeaderTransformedLabel>
 
     <!--memberName(the name of the oldLeader),species,factionName,leaderTitle,oldLeader,animal,newLeader -->
     <FactionLeaderTransformedContent>{memberName}, former {leaderTitle} of the {factionName}, was turned into a {species} and can no longer lead. They've been replaced by {newLeader}.</FactionLeaderTransformedContent>
 
     <!--memberLabel,species-->
-    <GoodwillChangedReason_PawnReverted>{memberLabel} is no longer a {species}</GoodwillChangedReason_PawnReverted>
+    <GoodwillChangedReason_PawnReverted>{memberLabel} is no longer a {species}.</GoodwillChangedReason_PawnReverted>
 </LanguageData>

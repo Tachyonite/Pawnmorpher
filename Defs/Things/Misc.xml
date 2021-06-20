@@ -2,7 +2,7 @@
     <ThingDef ParentName="ResourceBase">
         <defName>Morphsilk</defName>
         <label>morphsilk</label>
-        <description>scraps of fabric that has been impregnated with mutagenic nanites, despite its improved flexibility and durability compared to regular fabric, it’s not recommended to make clothing out of this.</description>
+        <description>Scraps of fabric that have been impregnated with mutagenic nanites. Despite its improved flexibility and durability compared to regular fabric, it’s not recommended to make clothing out of this.</description>
         <graphicData>
             <texPath>Things/Item/Resource/Morphsilk</texPath>
             <graphicClass>Graphic_StackCount</graphicClass>

@@ -1,6 +1,5 @@
 <Defs>
 	
-	
 	<ThingDef ParentName="BaseGas">
 		<defName>Gas_Mutagen</defName>
 		<label>mutagen cloud</label>
@@ -18,6 +17,77 @@
 			<accuracyPenalty>0.7</accuracyPenalty>
 			<rotationSpeed>10</rotationSpeed>
 		</gas>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseProjectileNeolithic">
+		<defName>MutagenicArrow</defName>
+		<label>mutagenic arrow</label>
+		<graphicData>
+			<texPath>Things/Projectiles/MutagenArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>MutagenicArrowDamage</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>44</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseWeaponNeolithic">
+		<defName>Mutabow</defName>
+        <label>mutabow</label>
+        <description>This is a Lelo test.</description>
+        <graphicData>
+            <texPath>Things/Item/MutagenBow</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Bow_Small</soundInteract>
+        <statBases>
+            <MarketValue>650</MarketValue>
+            <WorkToMake>4000</WorkToMake>
+            <Mass>0.8</Mass>
+            <AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.45</AccuracyMedium>
+			<AccuracyLong>0.25</AccuracyLong>
+            <RangedWeapon_Cooldown>1.65</RangedWeapon_Cooldown>
+        </statBases>
+		<weaponTags>
+            <li>NeolithicRangedBasic</li>
+        </weaponTags>
+        <recipeMaker>
+            <recipeUsers>
+				<li>CraftingSpot</li>
+			</recipeUsers>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+        </recipeMaker>
+        <costList>
+            <Mutanite>5</Mutanite>
+            <WoodLog>30</WoodLog>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>MutagenicArrow</defaultProjectile>
+                <warmupTime>1.35</warmupTime>
+                <range>22.9</range>
+                <soundCast>Bow_Small</soundCast>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+				<label>limb</label>
+				<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+				</capacities>
+			<power>9</power>
+			<cooldownTime>2</cooldownTime>
+			</li>
+        </tools>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseHumanMakeableGun">
