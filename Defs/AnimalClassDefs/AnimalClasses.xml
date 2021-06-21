@@ -13,11 +13,16 @@
 			<!-- Iguana -->
 			<!-- Tortoise -->
 		<!-- Avian (feathers) -->
-			<!-- Cassowary -->
-			<!-- Emu -->
-			<!-- Ostrich -->
-			<!-- Turkey -->
-			<!-- Chicken -->
+            <!-- Ratite -->
+			    <!-- Cassowary -->
+			    <!-- Emu -->
+			    <!-- Ostrich -->
+            <!-- Galliform -->
+			    <!-- Turkey -->
+			    <!-- Chicken -->
+            <!-- Anseriform -->
+			    <!-- Duck -->
+			    <!-- Goose -->
 		<!-- Ungulate (unguligrade & hide) -->
 			<!-- Odd-toed ungulate (hoof) -->
 				<!-- Horse -->
@@ -113,6 +118,24 @@
         <defName>Avian</defName>
         <label>avian</label>
         <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Ratite</defName>
+        <label>ratite</label>
+        <parent>Avian</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Galliform</defName>
+        <label>galliform</label>
+        <parent>Avian</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Anseriform</defName>
+        <label>anseriform</label>
+        <parent>Avian</parent>
     </Pawnmorph.AnimalClassDef>
 
     <Pawnmorph.AnimalClassDef>

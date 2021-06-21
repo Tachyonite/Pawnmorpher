@@ -4,7 +4,7 @@
 		<label>chookmorph</label>
 		<description>A human who now shares many features with chickens due to exposure to mechanite mutagens. Usually found covered in feathers, and arms more resembling wings. For odd reasons, both genders are capable of producing eggs.</description>
 		<race>Chicken</race>
-		<classification>Avian</classification>
+		<classification>Galliform</classification>
 		<categories>
 			<li>Farm</li>
 			<li>Production</li>

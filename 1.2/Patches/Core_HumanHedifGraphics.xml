@@ -101,6 +101,48 @@
 							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
 						</severity>
 					</EtherBeak>
+					<EtherTurkeyBeak>
+						<path>Parts/Turkey/Turkey_Jaw</path>
+						<severity>
+							<a0.5>Parts/Turkey/Turkey_Jaw</a0.5>
+							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
+						</severity>
+					</EtherTurkeyBeak>
+					<EtherEmuBeak>
+						<path>Parts/Emu/Emu_Jaw</path>
+						<severity>
+							<a0.5>Parts/Emu/Emu_Jaw</a0.5>
+							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
+						</severity>
+					</EtherEmuBeak>
+					<EtherOstrichBeak>
+						<path>Parts/Ostrich/Ostrich_Jaw</path>
+						<severity>
+							<a0.5>Parts/Ostrich/Ostrich_Jaw</a0.5>
+							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
+						</severity>
+					</EtherOstrichBeak>
+					<EtherCassowaryBeak>
+						<path>Parts/Cassowary/Cassowary_Jaw</path>
+						<severity>
+							<a0.5>Parts/Cassowary/Cassowary_Jaw</a0.5>
+							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
+						</severity>
+					</EtherCassowaryBeak>
+					<EtherDuckBeak>
+						<path>Parts/Duck/Duck_Jaw</path>
+						<severity>
+							<a0.5>Parts/Duck/Duck_Jaw</a0.5>
+							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
+						</severity>
+					</EtherDuckBeak>
+					<EtherGooseBeak>
+						<path>Parts/Goose/Goose_Jaw</path>
+						<severity>
+							<a0.5>Parts/Goose/Goose_Jaw</a0.5>
+							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
+						</severity>
+					</EtherGooseBeak>
 					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
 					<EtherCougarJaw>
 						<path>Parts/Cougar/Cougar_Jaw</path>
@@ -275,6 +317,43 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
 					</EtherWolfMuzzle>
+				</hediffGraphics>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.42,0.56)</Male>
+							<Female>(-0.42,0.56)</Female>
+							<Thin>(-0.42,0.56)</Thin>
+							<Hulk>(-0.42,0.56)</Hulk>
+							<Fat>(-0.42,0.56)</Fat>
+						</bodyTypes>
+					</south>
+					<north/>
+					<east>
+						<bodyTypes>
+							<Male>(-0.46,0.56)</Male>
+							<Female>(-0.52,0.56)</Female>
+							<Thin>(-0.51,0.56)</Thin>
+							<Hulk>(-0.52,0.56)</Hulk>
+							<Fat>(-0.51,0.56)</Fat>
+						</bodyTypes>
+					</east>
+				</offsets>
+			</li>
+			<li>
+				<!-- Bird jaw ornament -->
+				<debug>false</debug>
+
+				<path>Parts/None/None</path>
+				<bodyPart>Jaw</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<layerOffset>-0.26</layerOffset>
+				<shaderType>CutoutSkin</shaderType>
+				<hiddenUnderApparelFor>
+					<li>FullHead</li>
+				</hiddenUnderApparelFor>
+				<hediffGraphics>
+					<EtherCassowaryBeak>Parts/Cassowary/Cassowary_Ornament</EtherCassowaryBeak>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -635,6 +714,12 @@
 					<EtherCougarTail>Parts/Cougar/Cougar_Tail</EtherCougarTail>
 					<EtherLynxTail>Parts/Lynx/Lynx_Tail</EtherLynxTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
+					<EtherTurkeyTailfeathers>Parts/Turkey/Turkey_Tail</EtherTurkeyTailfeathers>
+					<EtherEmuTailfeathers>Parts/Emu/Emu_Tail</EtherEmuTailfeathers>
+					<EtherOstrichTailfeathers>Parts/Ostrich/Ostrich_Tail</EtherOstrichTailfeathers>
+					<EtherCassowaryTailfeathers>Parts/Cassowary/Cassowary_Tail</EtherCassowaryTailfeathers>
+					<EtherGooseTailfeathers>Parts/Goose/Goose_Tail</EtherGooseTailfeathers>
+					<EtherDuckTailfeathers>Parts/Duck/Duck_Tail</EtherDuckTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
 					<EtherShortTail>Parts/deerface/deertail</EtherShortTail>
 					<EtherDonkeyTail>Parts/Donkey/Donkey_Tail</EtherDonkeyTail>
@@ -660,7 +745,57 @@
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 				</hediffGraphics>
 				<offsets>
-					<south/>
+					<south>
+						<bodyTypes>
+							<Male>(-0.42,0.2)</Male>
+							<Female>(-0.42,0.16)</Female>
+							<Thin>(-0.42,0.2)</Thin>
+							<Fat>(-0.42,0.16)</Fat>
+						</bodyTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0,0.2)</Male>
+							<Female>(0,0.16)</Female>
+							<Thin>(0,0.2)</Thin>
+							<Fat>(0,0.16)</Fat>
+						</bodyTypes>
+					</north>
+					<east>
+						<bodyTypes>
+							<Male>(-0.22,-0.04)</Male>
+							<Female>(-0.11,-0.06)</Female>
+							<Thin>(-0.2,-0.04)</Thin>
+							<Hulk>(-0.02,-0.23)</Hulk>
+							<Fat>(0.04,0)</Fat>
+						</bodyTypes>
+					</east>
+				</offsets>
+			</li>
+			<li>
+				<!-- Behind-body tails -->
+				<debug>false</debug>
+
+				<path>Parts/None/None</path>
+				<bodyPart>tail</bodyPart>
+				<inFrontOfBody>false</inFrontOfBody>
+				<layerOffset>-0.25</layerOffset>
+				<layerInvert>false</layerInvert>
+				<drawnInBed>false</drawnInBed>
+				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+					<EtherTurkeyTailfeathers>Parts/Turkey/Turkey_Tail_Behind</EtherTurkeyTailfeathers>
+				</hediffGraphics>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(-0.42,0.04)</Male>
+							<Female>(-0.42,0.0)</Female>
+							<Thin>(-0.42,0.04)</Thin>
+							<Fat>(-0.42,0.0)</Fat>
+							<Hulk>(-0.42,-0.2)</Hulk>
+						</bodyTypes>
+					</south>
 					<north>
 						<bodyTypes>
 							<Male>(0,0.2)</Male>
