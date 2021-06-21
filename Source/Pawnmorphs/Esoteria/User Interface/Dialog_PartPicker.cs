@@ -103,10 +103,14 @@ namespace Pawnmorph.User_Interface
         private List<Hediff_AddedMutation> pawnCurrentMutations;
         private static List<HediffInitialState> cachedInitialHediffs;
         private static Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef;
-        private static Dictionary<BodyPartDef, List<MutationLayer>> cachedMutationLayersByPartDef;
-        private static List<BodyPartRecord> cachedMutableParts;
-        private static List<BodyPartRecord> cachedMutableCoreParts;
-        private static List<BodyPartRecord> cachedMutableSkinParts;
+        [NotNull]
+        private static readonly Dictionary<BodyPartDef, List<MutationLayer>> cachedMutationLayersByPartDef = new Dictionary<BodyPartDef, List<MutationLayer>>();
+        [NotNull]
+        private static readonly List<BodyPartRecord> cachedMutableParts = new List<BodyPartRecord>();
+        [NotNull]
+        private static readonly List<BodyPartRecord> cachedMutableCoreParts = new List<BodyPartRecord>();
+        [NotNull]
+        private static readonly List<BodyPartRecord> cachedMutableSkinParts = new List<BodyPartRecord>(); 
         private static BodyTypeDef initialBodyType;
         private static string initialCrownType;
         private static string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
@@ -129,6 +133,85 @@ namespace Pawnmorph.User_Interface
             }
         }
 
+        static void SetMutationPartDefsCache()
+        {
+            cachedMutationLayersByPartDef.Clear();
+            foreach (MutationDef allMutation in MutationDef.AllMutations)
+            {
+                var layer = allMutation.RemoveComp?.layer;
+                if(layer == null) continue;
+                if(allMutation.parts == null || allMutation.parts.Count == 0) continue;
+                foreach (BodyPartDef part in allMutation.parts)
+                {
+                    if (!cachedMutationLayersByPartDef.TryGetValue(part, out var lst))
+                    {
+                        lst = new List<MutationLayer>();
+                        cachedMutationLayersByPartDef[part] = lst; 
+                    }
+                    if(lst.Contains(layer.Value)) continue;
+                    lst.Add(layer.Value); 
+                }
+            }
+        }
+
+        static Dialog_PartPicker()
+        {
+            SetMutationPartDefsCache();
+
+          
+
+        }
+
+        void SetCaches()
+        {
+            cachedMutableParts.Clear();
+            cachedMutableCoreParts.Clear();
+            cachedMutableSkinParts.Clear();
+
+            foreach (BodyPartRecord record in pawn.RaceProps.body.AllParts)
+            {
+
+
+                foreach (MutationDef mutation in MutationDef.AllMutations)
+                {
+                    if(mutation.parts == null) continue;
+                    var layer = mutation.RemoveComp?.layer; 
+                    foreach (BodyPartDef mutationPart in mutation.parts)
+                    {
+                        if (mutationPart == record.def)
+                        {
+                            if(!cachedMutableParts.Contains(record))
+                                cachedMutableParts.Add(record);
+
+                            switch (layer)
+                            {
+                                case MutationLayer.Core:
+                                    if(!cachedMutableCoreParts.Contains(record)) cachedMutableCoreParts.Add(record);
+                                    break;
+                                case MutationLayer.Skin:
+                                    if (!cachedMutableSkinParts.Contains(record)) cachedMutableSkinParts.Add(record); 
+                                    break;
+                                case null:
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                            
+                            break;
+
+                            
+                        } 
+                    }
+                }
+
+
+            }
+
+
+
+        }
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Dialog_PartPicker"/> class.
         /// </summary>
@@ -143,17 +226,9 @@ namespace Pawnmorph.User_Interface
             // Settting flags for this window. 
             forcePause = true;
 
-            // Storing these here to (probably) save a few cycles while caching.
-            List<BodyPartRecord> allPawnParts = pawn.RaceProps.body.AllParts;
-            List<MutationDef> allMutationDefs = DefDatabase<MutationDef>.AllDefs.ToList();
-
-            // Cache various information so we don't have to constantly look it up elsewhere. This does present the chance for a data desync, but unless the def database gets updated mid-game, I can't think of a case where this could occur atm.
-            cachedMutationDefsByPartDef = allMutationDefs.SelectMany(m => m.parts).Distinct().Select(k => new { k, v = allMutationDefs.Where(m => m.parts.Contains(k)).ToList()}).ToDictionary(x => x.k, x => x.v);
-            cachedMutationLayersByPartDef = cachedMutationDefsByPartDef.Keys.Select(k => new { k, v = cachedMutationDefsByPartDef[k].Select(n => n.RemoveComp.layer).Distinct().ToList()}).ToDictionary(x => x.k, x => x.v);
-            cachedMutableParts = allPawnParts.Where(m => allMutationDefs.SelectMany(n => n.parts).Distinct().Contains(m.def)).ToList();
-            cachedMutableCoreParts = allPawnParts.Where(m => allMutationDefs.Where(n => n.RemoveComp.layer == MutationLayer.Core).SelectMany(o => o.parts).Distinct().Contains(m.def)).ToList();
-            cachedMutableSkinParts = allPawnParts.Where(m => allMutationDefs.Where(n => n.RemoveComp.layer == MutationLayer.Skin).SelectMany(o => o.parts).Distinct().Contains(m.def)).ToList();
-
+         
+            SetCaches();
+        
             // Initial caching of the mutations currently affecting the pawn and their initial hediff list.
             cachedInitialHediffs = pawn.health.hediffSet.hediffs.Select(h => new HediffInitialState(h, h.Severity, (h as Hediff_AddedMutation)?.ProgressionHalted ?? false)).ToList();
             initialBodyType = pawn.story.bodyType;
