@@ -31,7 +31,7 @@ namespace Pawnmorph.TfSys
         /// <summary>
         /// minimal value of mood so the formula determining the sapiance only considers mood.
         /// </summary>
-        private const float minimalMoodLowerSapience = 0.8f;
+        private const float minimalMoodLowerSapience = 0.85f;
 
         //do this here so all the derived code doesn't have to         
         /// <summary>Gets the game comp.</summary>
@@ -379,8 +379,12 @@ namespace Pawnmorph.TfSys
             else initialSapience = sTracker.Sapience;
 
             float mood = original.needs.mood.CurInstantLevel;
-            float averageGaussian = mood > minimalMoodLowerSapience ? (1 - Mathf.Pow(mood, 2)):influenceMutagen * def.transformedSapienceDropMean + influenceMood * (1-mood);
-            return Mathf.Min(initialSapience - Mathf.Clamp(GaussianRandom.generateNormalRandom(averageGaussian, def.transformedSapienceDropStd), 0.1f, 1f), 0);
+            float averageGaussian = 0;
+            if (mood < minimalMoodLowerSapience)
+                averageGaussian = influenceMutagen * def.transformedSapienceDropMean + influenceMood * (1 - mood);
+            else //Mood having a higher impact when exceding the threshold.
+                averageGaussian = (1 - mood) / (1 - minimalMoodLowerSapience) * (influenceMutagen * def.transformedSapienceDropMean + influenceMood * (1 - mood));
+            return Mathf.Max(initialSapience - Mathf.Clamp(GaussianRandom.generateNormalRandom(averageGaussian, def.transformedSapienceDropStd), 0f, 0.9f), 0);
         }
     }
 
