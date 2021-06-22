@@ -18,6 +18,20 @@ namespace Pawnmorph.TfSys
     /// </summary>
     public abstract class Mutagen
     {
+        /// <summary>
+        /// the influence of mood on the sapience level drop.
+        /// </summary>
+        private const float influenceMood = 0.4f;
+
+        /// <summary>
+        /// the influence of mutagen on the sapience level drop.
+        /// </summary>
+        private const float influenceMutagen = 0.6f;
+
+        /// <summary>
+        /// minimal value of mood so the formula determining the sapiance only considers mood.
+        /// </summary>
+        private const float minimalMoodLowerSapience = 0.8f;
 
         //do this here so all the derived code doesn't have to         
         /// <summary>Gets the game comp.</summary>
@@ -364,7 +378,9 @@ namespace Pawnmorph.TfSys
             if (sTracker?.CurrentState == null) initialSapience = 1;
             else initialSapience = sTracker.Sapience;
 
-            return Mathf.Max(initialSapience - Mathf.Max(def.transformedSapienceDrop.RandomInRange, 0), 0); 
+            float mood = original.needs.mood.CurInstantLevel;
+            float averageGaussian = mood > minimalMoodLowerSapience ? (1 - Mathf.Pow(mood, 2)):influenceMutagen * def.transformedSapienceDropMean + influenceMood * (1-mood);
+            return Mathf.Min(initialSapience - Mathf.Clamp(GaussianRandom.generateNormalRandom(averageGaussian, def.transformedSapienceDropStd), 0.1f, 1f), 0);
         }
     }
 

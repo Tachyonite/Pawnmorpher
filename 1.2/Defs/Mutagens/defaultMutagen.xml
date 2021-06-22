@@ -35,7 +35,8 @@
 	-->
 	<Pawnmorph.MutagenDef ParentName="AspectGivingMutagenBase">
 		<defName>ChaoticMutagen</defName>
-		<transformedSapienceDrop>0.4~0.9</transformedSapienceDrop>
+		<transformedSapienceDropMean>0.5</transformedSapienceDropMean>
+		<transformedSapienceDropStd>0.05</transformedSapienceDropStd>
 		<aspectGivers>
 			<li Class="Pawnmorph.Aspects.RandomGiver">
 				<entries>
