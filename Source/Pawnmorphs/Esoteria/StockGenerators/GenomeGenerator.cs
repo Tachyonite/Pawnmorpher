@@ -38,10 +38,10 @@ namespace Pawnmorph.StockGenerators
                 if (_mutationPool == null)
                 {
                     _mutationPool = new List<ThingDef>(); 
-                    foreach (MutationDef mDef in DefDatabase<MutationDef>.AllDefs)
+                    foreach (var mDef in DefDatabase<MutationCategoryDef>.AllDefs)
                     {
                         if(mDef.GenomeDef == null) continue;
-                        if (CheckComp(mDef.GenomeDef.GetCompProperties<MutationGenomeStorageProps>()))
+                        if (categoryFilter?.PassesFilter(mDef) != false)
                         {
                             _mutationPool.Add(mDef.GenomeDef); 
                         }

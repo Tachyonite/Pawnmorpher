@@ -44,6 +44,26 @@ namespace Pawnmorph.DebugUtils
         }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void CheckGenomes()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (MutationCategoryDef mCat in DefDatabase<MutationCategoryDef>.AllDefs)
+            {
+                if (mCat.GenomeDef != null)
+                {
+                    builder.AppendLine($"{mCat.defName}:{mCat.GenomeDef.defName}");
+                }
+            }
+
+            if (builder.Length == 0)
+            {
+                Log.Message("no genome defs");
+            }
+            else
+                Log.Message(builder.ToString()); 
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         static void GetStatsPerMutation()
         {
             var allStages = MutationDef.AllMutations.SelectMany(m => m.stages.MakeSafe());
