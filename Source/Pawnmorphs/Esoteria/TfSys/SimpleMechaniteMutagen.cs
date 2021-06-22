@@ -161,12 +161,9 @@ namespace Pawnmorph.TfSys
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
             float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
 
-           
-
-            
             GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
-            FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel); //use a normal distribution? 
+            FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel);
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
 
