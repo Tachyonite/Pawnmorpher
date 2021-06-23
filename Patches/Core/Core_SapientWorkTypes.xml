@@ -25,6 +25,14 @@
                     </li>
                 </value>
             </li>
+            <li Class="PatchOperationAddModExtension">
+                <xpath>/Defs/ThingDef[defName="Alphabeaver"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                        <backstory>FormerHumanConstructor</backstory>
+                    </li>
+                </value>
+            </li>
             <!-- from https://github.com/Keno-GH/Pawnmorpher-Useful-Animals -->
 
             <!--Animals that have dexterous paws. They can hold tools, making them able of crafting. Snakes go here too, as they can hold tools with their

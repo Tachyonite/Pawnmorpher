@@ -87,6 +87,17 @@
             <li>Artistic</li>
         </workAllows>
     </AlienRace.BackstoryDef>
+    <AlienRace.BackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanConstructor</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDescription>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDescription>
+        <workAllows>
+            <li>ManualSkilled</li>
+            <li>Crafting</li>
+        </workAllows>
+    </AlienRace.BackstoryDef>
+
     <!-- from https://github.com/Keno-GH/Pawnmorpher-Useful-Animals -->
 
     <!--Animals strong enough to fall a tree-->

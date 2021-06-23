@@ -40,10 +40,16 @@ namespace Pawnmorph
         public ThoughtDef revertedThoughtBad;
 
         /// <summary>
-        /// the sapience drop range when a pawn is transformed by this mutagen
+        /// the average sapience drop when a pawn is transformed by this mutagen
         /// </summary>
         /// note, values returned by this range will be clamped to [0,1] 
-        public FloatRange transformedSapienceDrop = new FloatRange(-.1f,0.3f); 
+        public float transformedSapienceDropMean = 0.5f;
+
+        /// <summary>
+        /// the standard deviation of the sapience drop when a pawn is transformed by this mutagen
+        /// </summary>
+        /// note, values returned by this range will be clamped to [0,1] 
+        public float transformedSapienceDropStd = 0.05f;
 
         /// <summary>
         /// the reversion thought for pawns with primal wish 
