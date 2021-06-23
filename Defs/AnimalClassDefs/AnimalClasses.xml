@@ -27,9 +27,12 @@
 			<!-- Odd-toed ungulate (hoof) -->
 				<!-- Horse -->
 			<!-- Even-toed ungulate (cloven hoof) -->
+			    <!-- Fur-covered ungulates -->
+					<!-- Caprid -->
+						<!-- Ibex -->
+						<!-- Goat -->
 				<!-- Wool-covered ungulates -->
 					<!-- Ovid -->
-						<!-- Ibex -->
 						<!-- Sheep -->
 				<!-- Hide-covered ungulates -->
 					<!-- Bovid -->
@@ -169,9 +172,21 @@
     </Pawnmorph.AnimalClassDef>
 	
     <Pawnmorph.AnimalClassDef>
+        <defName>FurryUngulate</defName>
+        <label>furry even-toed ungulate</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
         <defName>Ovid</defName>
         <label>ovid</label>
         <parent>WoollyUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
+        <defName>Caprid</defName>
+        <label>caprid</label>
+        <parent>FurryUngulate</parent>
     </Pawnmorph.AnimalClassDef>
 
     <Pawnmorph.AnimalClassDef>
