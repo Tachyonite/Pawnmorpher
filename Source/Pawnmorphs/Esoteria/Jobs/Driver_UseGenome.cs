@@ -99,7 +99,8 @@ namespace Pawnmorph.Jobs
                 return;
             }
 
-            wComp.AddToDatabase(mutationToAdd); 
+            wComp.AddToDatabase(mutationToAdd);
+            Genome.Destroy();
         }
     }
 }
