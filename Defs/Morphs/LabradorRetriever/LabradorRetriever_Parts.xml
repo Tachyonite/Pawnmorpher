@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="LabradorRetrieverPart">
 		<defName>EtherLabradorRetrieverJaw</defName>
-		<label>!!!EtherLabradorRetrieverJaw needs a label!!!</label>
-		<description>!!!EtherLabradorRetrieverJaw needs a description!!!</description>
+		<label>labrador snout</label>
+		<description>The forever smiling snout of a labrador.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -62,8 +62,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="LabradorRetrieverPart">
 		<defName>EtherLabradorRetrieverEar</defName>
-		<label>!!!EtherLabradorRetrieverEar needs a label!!!</label>
-		<description>!!!EtherLabradorRetrieverEar needs a description!!!</description>
+		<label>labrador ear</label>
+		<description>A floppy canine ear that wobbles all over the place.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
@@ -72,11 +72,12 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="LabradorRetrieverPart">
 		<defName>EtherLabradorRetrieverTail</defName>
-		<label>!!!EtherLabradorRetrieverTail needs a label!!!</label>
-		<description>!!!EtherLabradorRetrieverTail needs a description!!!</description>
+		<label>labrador tail</label>
+		<description>The briskly wagging, excitable tail of a labrador retriever.</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

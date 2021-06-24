@@ -325,6 +325,14 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
 					</EtherWargMuzzle>
+					<EtherLabradorRetrieverJaw>
+						<path>Parts/LabradorRetriever/LabradorRetriever</path>
+						<severity>
+							<a0.5>Parts/LabradorRetriever/LabradorRetriever_Jaw</a0.5>
+							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
+							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
+						</severity>
+					</EtherLabradorRetrieverJaw>			
 					<EtherWolfMuzzle>
 						<path>Parts/wolfface/wolfface</path>
 						<severity>
@@ -452,6 +460,7 @@
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left</EtherWolfEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -541,6 +550,8 @@
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left_Behind</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left_Behind</EtherWolfEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
+																												 
 				</hediffGraphics>
 				<offsets>
 					<south/>
@@ -614,6 +625,8 @@
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right</EtherWolfEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
+																										   
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -703,6 +716,8 @@
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right_Behind</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right_Behind</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right_Behind</EtherWolfEar>
+					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
+																												  
 				</hediffGraphics>
 				<offsets>
 					<south/>
@@ -769,6 +784,8 @@
 					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
+					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
+																										
 				</hediffGraphics>
 				<offsets>
 					<south>

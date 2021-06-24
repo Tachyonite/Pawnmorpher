@@ -1,7 +1,7 @@
 <Defs>
 	<HediffDef ParentName="NewPartialMorphParent">
 		<defName>PawnmorphLabradorRetrieverTFPartial</defName>
-		<label>labradorretrievermorph partial</label>
+		<label>labmorph partial</label>
 		<stages>
 			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>

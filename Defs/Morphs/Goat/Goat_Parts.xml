@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
 		<defName>EtherGoatSnout</defName>
 		<label>caprine snout</label>
-		<description>A very goat snout.</description>
+		<description>A very goatlike snout.</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
