@@ -78,6 +78,9 @@ namespace Pawnmorph.Jobs
         {
             var wComp = Find.World.GetComponent<ChamberDatabase>();
             var mut = Genome.GetComp<MutationGenomeStorage>()?.Mutation;
+
+            bool consumedOnUse = true; 
+
             //just add to database, if not possible there is no recovery possible at this stage 
             //can add to database must be called by giver before hand
 
@@ -86,10 +89,14 @@ namespace Pawnmorph.Jobs
             if (mut == null)
             {
                 var aGenome = Genome.GetComp<AnimalGenomeStorageComp>();
-                if (aGenome == null) return; 
-
+                if (aGenome == null) return;
+                consumedOnUse = aGenome.ConsumedOnUse;
                 wComp.AddToDatabase(aGenome.Animal);
                 return;
+            }
+            else
+            {
+                consumedOnUse = mut.genomeConsumedOnUse; 
             }
             
             var mutationToAdd = mut.AllMutations.Where(m => wComp.CanAddToDatabase(m)).RandomElementWithFallback();
@@ -100,7 +107,8 @@ namespace Pawnmorph.Jobs
             }
 
             wComp.AddToDatabase(mutationToAdd);
-            Genome.Destroy();
+            if(consumedOnUse)
+                Genome.Destroy();
         }
     }
 }

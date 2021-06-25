@@ -39,6 +39,12 @@ namespace Pawnmorph
         /// </summary>
         public ThingDef explicitGenomeDef;
 
+
+        /// <summary>
+        /// if the associated genome is consumed on use 
+        /// </summary>
+        public bool genomeConsumedOnUse = true; 
+
         internal ThingDef implicitGenomeDef;
 
         /// <summary>
