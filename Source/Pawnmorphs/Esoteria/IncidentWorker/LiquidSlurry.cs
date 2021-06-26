@@ -13,17 +13,22 @@ namespace Pawnmorph.IncidentWorkers
 {
     class LiquidSlurry : Filth
     {
-        public const int DANGER_RADIUS = 5;
-        private const float MUTAGENIC_BUILDUP_RATE = 0.02f;
+        public const float DANGER_RADIUS = 2f;
+        private const float MUTAGENIC_BUILDUP_RATE = 0.015f;
         private const float EPSILON = 0.0001f;
 
         [NotNull] private static readonly RWRaycastHit[] _buffer;
 
         public override void TickRare()
         {
-            if(this.IsHashIntervalTick(20)) 
-                DoMutagenicBuildup();
+            DoMutagenicBuildup();
         }
+
+        public override void Tick()
+        {
+            base.Tick();
+        }
+
 
         static LiquidSlurry()
         {

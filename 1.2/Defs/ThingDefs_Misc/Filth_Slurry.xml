@@ -2,12 +2,12 @@
 <Defs>
 
   <ThingDef ParentName="BaseFilth">
-    <defName>Filth_Slurry</defName>
+    <defName>PM_Filth_Slurry</defName>
     <label>slurry puddle</label>
     <description>A puddle of mutagenic slurry.</description>
-    <thingClass>LiquidSlurry</thingClass>
+    <thingClass>Pawnmorph.IncidentWorkers.LiquidSlurry</thingClass>
     <useHitPoints>true</useHitPoints>
-    <tickerType>Normal</tickerType>
+    <tickerType>Rare</tickerType>
     <statBases>
       <Beauty>-10</Beauty>
       <Cleanliness>-15</Cleanliness>
@@ -15,7 +15,7 @@
       <Flammability>0.0</Flammability>
     </statBases>
     <graphicData>
-      <texPath>Things/Filth/LiquidSlurry</texPath>
+      <texPath>Things/Filth/PM_LiquidSlurry</texPath>
     </graphicData>
     <filth>
       <disappearsInDays>35~40</disappearsInDays>

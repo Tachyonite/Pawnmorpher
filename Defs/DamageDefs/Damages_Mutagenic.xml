@@ -15,6 +15,30 @@
 	</DamageDef>
 
 	<DamageDef>
+		<defName>MutagenCloud_Tiny</defName>
+		<label>mutagen cloud</label>
+		<workerClass>Pawnmorph.Damage.Worker_MutagenicInjury</workerClass>
+		<canInterruptJobs>true</canInterruptJobs>
+		<makesBlood>false</makesBlood>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<externalViolence>true</externalViolence>
+		<defaultDamage>3</defaultDamage>
+		<explosionCellMote>Mote_BlastExtinguisher</explosionCellMote>
+		<explosionColorEdge>(0, 1, 0, 0.05)</explosionColorEdge>
+		<harmsHealth>false</harmsHealth>
+		<soundExplosion>Explosion_Smoke</soundExplosion>
+		<combatLogRules>Damage_Smoke</combatLogRules>
+		<modExtensions>
+			<li Class="Pawnmorph.Damage.MutagenicDamageExtension">
+				<mutagenicBuildup>MutagenicBuildup_SmallExplosion</mutagenicBuildup>
+				<severityPerDamage>0.105</severityPerDamage>
+				<mutagen>ChaoticMutagen</mutagen>
+			</li>
+		</modExtensions>
+	</DamageDef>
+
+	<DamageDef>
 		<defName>MutagenCloud</defName>
 		<label>mutagen cloud</label>
 		<workerClass>Pawnmorph.Damage.Worker_MutagenicInjury</workerClass>

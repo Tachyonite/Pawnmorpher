@@ -63,7 +63,7 @@ namespace Pawnmorph.IncidentWorkers
             Map map = culpritPipe.Map;
             float explosionRadius = 3f;
 
-            GenExplosion.DoExplosion(culpritPipe.Position, map, explosionRadius, PMDamageDefOf.MutagenCloud, null);
+            GenExplosion.DoExplosion(culpritPipe.Position, map, explosionRadius, PMDamageDefOf.MutagenCloud, null,-1,-1,null,null,null,null,PMThingDefOf.PM_Filth_Slurry,0.5f,1);
             Find.LetterStack.ReceiveLetter("LetterLabelMutagenicLeak".Translate(), "LetterTextMutagenicLeak".Translate(), LetterDefOf.NegativeEvent, new TargetInfo(culpritPipe.Position, map));
 
             //To Complete.
