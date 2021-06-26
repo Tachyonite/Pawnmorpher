@@ -2,6 +2,7 @@
 // last updated 06/25/2021  5:26 PM
 
 using System;
+using System.Runtime.Remoting.Messaging;
 
 namespace Pawnmorph.Chambers
 {
@@ -10,6 +11,14 @@ namespace Pawnmorph.Chambers
     /// </summary>
     public readonly struct ChamberTfInitiationReport : IEquatable<ChamberTfInitiationReport>
     {
+        /// <summary>
+        /// Gets the true.
+        /// </summary>
+        /// <value>
+        /// The true.
+        /// </value>
+        public static ChamberTfInitiationReport True => new ChamberTfInitiationReport(true, ""); 
+
         /// <summary>
         ///     if the chamber transformation can be initiated
         /// </summary>
