@@ -105,12 +105,12 @@
         <tradeTags>
             <li>AnimalExotic</li>
         </tradeTags>
-        <modExtension>
+        <modExtensions>
             <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
                 <transformedThought>PM_CThrumboTfThought</transformedThought>
                 <backstory>PM_ChaothrumboBackstory</backstory>
             </li>
-        </modExtension>
+        </modExtensions>
     </ThingDef>
 
     <PawnKindDef ParentName="AnimalKindBase">
