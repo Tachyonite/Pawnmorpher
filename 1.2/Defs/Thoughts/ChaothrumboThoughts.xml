@@ -8,6 +8,7 @@
 
     <ThoughtDef ParentName="ChaothrumboAmbientThought">
         <defName>PM_CThrumboAmbient</defName>
+        <thoughtClass>Pawnmorph.Thoughts.Memory_FactionObservation</thoughtClass>
         <stages>
             <li>
                 <label>witnessed chaothrumbo(neutral)</label>
