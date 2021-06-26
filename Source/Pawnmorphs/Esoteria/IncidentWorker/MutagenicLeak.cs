@@ -41,7 +41,7 @@ namespace Pawnmorph.IncidentWorkers
             if (!leakableNetworks.Any())
                 return false;
 
-            int netIndex = UnityEngine.Random.Range(0, leakableNetworks.Count);
+            int netIndex = Rand.Range(0, leakableNetworks.Count);
 
             DoLeak(leakableNetworks[netIndex]);
             return true;
@@ -76,7 +76,7 @@ namespace Pawnmorph.IncidentWorkers
         public static void DoLeak(SlurryNet.SlurryNet culpritNetwork)
         {
             List<SlurryNetComp> connectors = culpritNetwork.Connectors.ToList();
-            int pipeIndex = UnityEngine.Random.Range(0, connectors.Count);
+            int pipeIndex = Rand.Range(0, connectors.Count);
 
             Building culpritPipe = (Building)connectors[pipeIndex].parent;
             Map map = culpritPipe.Map;
