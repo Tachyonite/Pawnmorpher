@@ -3,9 +3,12 @@
 
         <defName>PM_ChaoThrumboGenome</defName>
         <thingClass>ThingWithComps</thingClass>
-        <label>TODO</label>
-        <description>TODO</description>
-
+        <label>Unstable genome</label>
+        <description>A strange and corrupted genome.</description>
+		<graphicData>
+            <graphicClass>Graphic_Single</graphicClass>
+            <texPath>Things/Item/GenecardCorrupted</texPath>
+        </graphicData>
         <thingCategories>
             <li>Artifacts</li>
         </thingCategories>
