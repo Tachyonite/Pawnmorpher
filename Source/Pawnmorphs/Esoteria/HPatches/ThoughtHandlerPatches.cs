@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Thoughts;
 using RimWorld;
 using Verse;
 
@@ -21,6 +22,12 @@ namespace Pawnmorph.HPatches
             private static bool TryGainMemoryPrefix([NotNull] ref Thought_Memory newThought, Pawn otherPawn,
                                                     [NotNull] MemoryThoughtHandler __instance)
             {
+                //handle new observation thoughts 
+                if (newThought is Memory_FactionObservation facMem)
+                {
+                    if (facMem.ObservedThing == __instance.pawn) return false; 
+                }
+
                 //need to handle got some lovin thought first 
                 if (newThought.def == ThoughtDefOf.GotSomeLovin && (__instance.pawn.IsFormerHuman()
                                                                  || otherPawn?.IsFormerHuman() == true))

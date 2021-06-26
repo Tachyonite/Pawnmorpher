@@ -12,4 +12,12 @@
         </workAllows>
     </AlienRace.BackstoryDef>
 
+    <AlienRace.BackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_ChaothrumboBackstory</defName>
+        <title>chaothrumbo</title>
+        <titleShort>chaothrumbo</titleShort>
+        <baseDescription>TODO</baseDescription>
+
+    </AlienRace.BackstoryDef>
+
 </Defs>

@@ -6,6 +6,7 @@ using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.TfSys;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.DefExtensions
@@ -38,6 +39,9 @@ namespace Pawnmorph.DefExtensions
         /// </summary>
         public ManhunterTfSettings manhunterSettings = ManhunterTfSettings.Default;
 
-
+        /// <summary>
+        /// if non null this thought will be given when a pawn transforms into this pawn 
+        /// </summary>
+        public ThoughtDef transformedThought; 
     }
 }

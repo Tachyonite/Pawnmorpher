@@ -330,6 +330,15 @@ namespace Pawnmorph.TfSys
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
             if (request == null) throw new ArgumentNullException(nameof(request));
+            var fhSettings = transformedPawn.def.GetModExtension<FormerHumanSettings>();
+            if (fhSettings != null)
+            {
+                if (fhSettings.transformedThought != null)
+                {
+                    transformedPawn.TryGainMemory(fhSettings.transformedThought); 
+                }
+            }
+
             List<Aspect> aspects = new List<Aspect>();
             foreach (AspectGiver aspectGiver in def.tfAspectGivers.MakeSafe())
             {

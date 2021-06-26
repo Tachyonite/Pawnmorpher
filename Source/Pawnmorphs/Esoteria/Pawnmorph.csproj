@@ -604,6 +604,7 @@
     <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\MutationSequencerComp.cs" />
     <Compile Include="ThingComps\MutationSequencerProps.cs" />
+    <Compile Include="ThingComps\ObserveThoughtComp.cs" />
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\SlurryFueled.cs" />
@@ -740,6 +741,7 @@
     <Compile Include="TfSys\TransformedPawn.cs" />
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
+    <Compile Include="Things\Chaothrumbo.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
@@ -751,6 +753,7 @@
     <Compile Include="Thoughts\FormerHumanSituationalWorkerBase.cs" />
     <Compile Include="Thoughts\IFoodThoughtModifier.cs" />
     <Compile Include="Thoughts\IThoughtTransferWorker.cs" />
+    <Compile Include="Thoughts\Memory_FactionObservation.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
