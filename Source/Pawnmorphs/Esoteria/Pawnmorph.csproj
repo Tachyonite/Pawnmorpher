@@ -491,8 +491,10 @@
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IEquipmentGizmo.cs" />
     <Compile Include="IMentalStateRecoveryReceiver.cs" />
+    <Compile Include="IncidentWorker\LiquidSlurry.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
+    <Compile Include="IncidentWorker\MutagenicLeak.cs" />
     <Compile Include="IncidentWorker\SheepChef.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
