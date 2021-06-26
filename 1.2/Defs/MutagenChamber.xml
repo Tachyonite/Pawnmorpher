@@ -17,10 +17,9 @@
 
 	<JobDef>
 		<defName>PM_CarrySpecialToMutagenChamber</defName>
-		<driverClass>Pawnmorph.Work.Giver_DeliverSpecialThingsToChambers</driverClass>
+		<driverClass>Pawnmorph.Jobs.Driver_DeliverThingToChamber</driverClass>
 		<reportString>carrying TargetA to mutagen chamber.</reportString>
 		<casualInterruptible>false</casualInterruptible>
-		<taleOnCompletion>PutIntoCryptosleep</taleOnCompletion>
 	</JobDef>
 
 	<ThingDef ParentName="BuildingBase">

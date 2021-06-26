@@ -35,12 +35,12 @@ namespace Pawnmorph.Jobs
             LocalTargetInfo target = DeliveredThing;
             Job job = this.job;
             bool result;
-            if (pawn.Reserve(target, job, 1, -1, null, errorOnFailed))
+            if (pawn.Reserve(target, job, 1, 1, null, errorOnFailed))
             {
                 pawn = this.pawn;
                 target = MutagenicChamber;
                 job = this.job;
-                result = pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
+                result = pawn.Reserve(target, job, 1, 1, null, errorOnFailed);
             }
             else
             {
@@ -56,12 +56,10 @@ namespace Pawnmorph.Jobs
         {
             this.FailOnDestroyedOrNull(TargetIndex.A);
             this.FailOnDestroyedOrNull(TargetIndex.B);
-            this.FailOnAggroMentalState(TargetIndex.A);
             //this.FailOn(() => !this.MutagenicChamber.Accepts(this.Takee));
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell)
                                    .FailOnDestroyedNullOrForbidden(TargetIndex.A)
                                    .FailOnDespawnedNullOrForbidden(TargetIndex.B)
-                                   .FailOn(() => MutagenicChamber.GetDirectlyHeldThings().Count > 0)
                                    .FailOn(() => !pawn.CanReach(DeliveredThing, PathEndMode.OnCell, Danger.Deadly))
                                    .FailOnSomeonePhysicallyInteracting(TargetIndex.A);
             yield return Toils_General.Wait(60).WithProgressBarToilDelay(TargetIndex.A);

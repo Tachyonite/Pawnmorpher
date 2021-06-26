@@ -20,7 +20,6 @@ namespace Pawnmorph
         public static ThingDef Morphsilk;
         public static ThingDef CrashedMutagenicShipPartIncoming;
         public static ThingDef Mutanite;
-        public static ThingDef MutagenicChamber; 
 
 
         public static ThingDef EggChickenUnfertilized;
@@ -38,5 +37,6 @@ namespace Pawnmorph
         public static ThingDef PM_MutagenTank;
 
         public static ThingDef PM_Filth_Slurry;
+        public static ThingDef PM_NewMutagenicChamber;
     }
 }

@@ -24,11 +24,9 @@ namespace Pawnmorph.Chambers.AnimalTfControllers
         /// <returns></returns>
         public override ChamberTfInitiationReport CanInitiateTransformation(Pawn pawn, PawnKindDef targetAnimal, MutaChamber chamber)
         {
-            var hasThing =  GenClosest.ClosestThingReachable(chamber.Position, chamber.Map,
-                                             ThingRequest.ForDef(PMThingDefOf.PM_ChaoThrumboGenome), PathEndMode.ClosestTouch,
-                                             TraverseParms.For(TraverseMode.ByPawn, Danger.Some))
-                != null;
 
+            var hasThing = chamber.Map.listerThings.ThingsOfDef(PMThingDefOf.PM_ChaoThrumboGenome)?.Count > 0; 
+            
 
             if (!hasThing)
             {

@@ -5,5 +5,5 @@
     <PMApplyGenome>Use {0} genome.</PMApplyGenome>
     <PMNoMutationBenchAvailable>No mutation bench available.</PMNoMutationBenchAvailable>
 
-    <PMNoStorageAvailableForGenome>Cannot store {MUTATION} in the chamber database.</PMNoStorageAvailableForGenome>
+    <PMNoStorageAvailableForGenome>Not enough space for {0} in the chamber database.</PMNoStorageAvailableForGenome>
 </LanguageData>

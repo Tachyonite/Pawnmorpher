@@ -62,6 +62,12 @@
             <graphicClass>Graphic_Single</graphicClass>
             <texPath>Things/Item/GenecardCorrupted</texPath>
         </graphicData>
-        <comps Inherit="false"></comps>
+        <comps Inherit="false">
+            <li Class="Pawnmorph.Chambers.AnimalGenomeStorageCompProps">
+                <consumedOnUse>false</consumedOnUse>
+                <animal>PM_Chaothrumbo</animal>
+            </li>
+
+        </comps>
     </ThingDef>
 </Defs>

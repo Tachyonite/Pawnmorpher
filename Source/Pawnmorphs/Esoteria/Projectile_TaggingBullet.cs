@@ -51,10 +51,15 @@ namespace EtherGun
                 return;
             }
 
+            if (!pawn.def.IsTaggable())
+            {
+                Messages.Message(ChamberDatabase.ANIMAL_NOT_TAGGABLE.Translate(pawn.def), MessageTypeDefOf.RejectInput);
 
-            if (!database.TryAddToDatabase(pawn.kindDef, out string reason))
+            }
+            else if ( !database.TryAddToDatabase(pawn.kindDef, out string reason))
             {
                 Messages.Message(reason, MessageTypeDefOf.RejectInput);
+
             }
             else
             {

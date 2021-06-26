@@ -1,8 +1,8 @@
 <LanguageData>
-    <NotEnoughStorageSpaceToTagPK>There is not enough storage to tag {0}.</NotEnoughStorageSpaceToTagPK>
+    <NotEnoughStorageSpaceToTagPK>There is not enough storage to tag {0}. Require {1} but only have {2}</NotEnoughStorageSpaceToTagPK>
     <AlreadyTaggedAnimal>{0} is already in genetic database.</AlreadyTaggedAnimal>
     <AnimalNotTaggable>{0} is too genetically corrupted to be added.</AnimalNotTaggable>
-	<NotValidAnimal>{0} is not considered to be an animal.</NotValidAnimal>
+    <NotValidAnimal>{0} is not a valid animal.</NotValidAnimal>
     <AnimalAddedToDatabase>{0} added to database.</AnimalAddedToDatabase>
     <ChamberDatabaseIgnoresDataLimit>Chamber Database Ignores Data Limit.</ChamberDatabaseIgnoresDataLimit>
     <ChamberDatabaseIgnoresDataLimitTooltip>If true, adding things to the chamber database will not require data storage, useful for debugging.</ChamberDatabaseIgnoresDataLimitTooltip>

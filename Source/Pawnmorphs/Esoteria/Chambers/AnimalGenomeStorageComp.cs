@@ -52,6 +52,7 @@ namespace Pawnmorph.Chambers
             JobFailReason.Clear();
 
             var wComp = Find.World.GetComponent<ChamberDatabase>();
+
             if (selPawn.WorkTypeIsDisabled(WorkTypeDefOf.Research) || selPawn.WorkTagIsDisabled(WorkTags.Intellectual))
             {
                 JobFailReason.Is("WillNever".Translate("Research".TranslateSimple().UncapitalizeFirst()));
@@ -69,9 +70,9 @@ namespace Pawnmorph.Chambers
                 else
                     JobFailReason.Is("Reserved".Translate());
             }
-            else if (!CanAdd)
+            else if (!wComp.CanAddToDatabase(Props.animal, out string reason))
             {
-                JobFailReason.Is(CANNOT_STORE_ANIMAL.Translate(Props.animal.Named("ANIMAL")));
+                JobFailReason.Is(reason);
             }
 
             HaulAIUtility.PawnCanAutomaticallyHaul(selPawn, parent, true);

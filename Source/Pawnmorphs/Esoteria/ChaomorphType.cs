@@ -15,6 +15,10 @@ namespace Pawnmorph
         /// <summary>
         /// result of merging 2 pawns 
         /// </summary>
-        Merge
+        Merge,
+        /// <summary>
+        /// special category for use with exotic choamorphs that should be handled separately 
+        /// </summary>
+        Special
     }
 }

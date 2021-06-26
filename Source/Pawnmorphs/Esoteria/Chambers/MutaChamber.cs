@@ -28,6 +28,8 @@ namespace Pawnmorph.Chambers
         private const float MIN_TRANSFORMATION_TIME = 0.5f * 60000; //minimum transformation time in ticks
         private const string PART_PICKER_GIZMO_LABEL = "PMPartPickerGizmo";
         private const string MERGING_GIZMO_LABEL = "PMMergeGizmo";
+        private const string DEBUG_FORCE_COMPLETION_GIZMO = "PMDebugForceChamberCompletion"; 
+
 
         private static List<PawnKindDef> _randomAnimalCache;
 
@@ -388,6 +390,9 @@ namespace Pawnmorph.Chambers
             }
         }
 
+
+        
+
         /// <summary>
         ///     Gets the gizmos.
         /// </summary>
@@ -396,7 +401,7 @@ namespace Pawnmorph.Chambers
         {
             foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
 
-            if (DebugSettings.godMode && _innerState == ChamberState.Active) yield return DebugFinishGizmo;
+            if (DebugSettings.godMode && (_innerState == ChamberState.Active || _innerState == ChamberState.WaitingForSpecialThing)) yield return DebugFinishGizmo;
 
 
             if (_innerState != ChamberState.Idle) yield break;
@@ -513,7 +518,8 @@ namespace Pawnmorph.Chambers
             }
             if (deliveredThing.def != _specialThing)
                 Log.Error($"Chamber expected {_specialThing?.defName} but got {deliveredThing.Label}");
-            
+
+            _innerState = ChamberState.Active;
             SetActive();
             deliveredThing.Destroy();
 
@@ -582,6 +588,7 @@ namespace Pawnmorph.Chambers
         private void AnimalChosen(PawnKindDef pawnkinddef)
         {
             _lastTfRequest = pawnkinddef;
+            _currentUse = ChamberUse.Tf;
 
             var controller = GetCurrentTfController();
             if (controller != null)
@@ -599,18 +606,19 @@ namespace Pawnmorph.Chambers
                 _timer = start.duration;
                 _targetAnimal = start.pawnkindDef;
                 _specialThing = start.specialResource;
-
+                
 
                 if (_specialThing != null)
                 {
                     _innerState = ChamberState.WaitingForSpecialThing;
-
                 }
                 else
                 {
+                    _innerState = ChamberState.Active; 
                     SetActive();
                 }
 
+                SelectorComp.Enabled = false;
                 return; 
             }
 
@@ -697,6 +705,7 @@ namespace Pawnmorph.Chambers
 
         private void DebugFinishChamber()
         {
+            _innerState = ChamberState.Active; 
             _timer = 0;
         }
 
