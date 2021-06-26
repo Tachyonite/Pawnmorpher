@@ -3,6 +3,7 @@
 
 using System;
 using JetBrains.Annotations;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Chambers
@@ -49,16 +50,16 @@ namespace Pawnmorph.Chambers
     /// simple struct wrapping output of an initialized transformation 
     /// </summary>
     /// POD that contains the pawnkinddef and duration of an animal tf 
-    /// <seealso cref="System.IEquatable{Pawnmorph.Chambers.ChamberAnimalTfInitStruct}" />
+    /// <seealso cref="ChamberAnimalTfInitStruct" />
     public readonly struct ChamberAnimalTfInitStruct : IEquatable<ChamberAnimalTfInitStruct>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ChamberAnimalTfInitStruct" /> struct.
         /// </summary>
         /// <param name="pawnKindDef">The pawn kind definition.</param>
-        /// <param name="duration">The duration.</param>
+        /// <param name="duration">The duration of the tf in days.</param>
         /// <param name="specialResource">The special resource needed to start the transformation</param>
-        public ChamberAnimalTfInitStruct([NotNull] PawnKindDef pawnKindDef, int duration, ThingDef specialResource=null)
+        public ChamberAnimalTfInitStruct([NotNull] PawnKindDef pawnKindDef, float duration, ThingDef specialResource=null)
         {
             pawnkindDef = pawnKindDef;
             this.duration = duration;
@@ -78,7 +79,7 @@ namespace Pawnmorph.Chambers
         /// <summary>
         /// The duration 
         /// </summary>
-        public readonly int duration;
+        public readonly float duration;
 
         /// <summary>Returns the fully qualified type name of this instance.</summary>
         /// <returns>The fully qualified type name.</returns>
@@ -116,7 +117,7 @@ namespace Pawnmorph.Chambers
             {
                 int hashCode = (specialResource != null ? specialResource.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (pawnkindDef != null ? pawnkindDef.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ duration;
+                hashCode = (hashCode * 397) ^ Mathf.RoundToInt(duration);
                 return hashCode;
             }
         }

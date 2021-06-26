@@ -602,8 +602,8 @@ namespace Pawnmorph.Chambers
                 }
 
                 var start = controller.InitiateTransformation(pawn, pawnkinddef, this);
-                _lastTotal = start.duration;
-                _timer = start.duration;
+                _lastTotal = GetTransformationTime(start.duration);
+                _timer = _lastTotal;
                 _targetAnimal = start.pawnkindDef;
                 _specialThing = start.specialResource;
                 
@@ -774,7 +774,7 @@ namespace Pawnmorph.Chambers
             }
 
             EjectContents();
-
+            
             if (tfRequest == null) return;
 
 
@@ -791,6 +791,18 @@ namespace Pawnmorph.Chambers
             foreach (Pawn oPawn in tfPawn.OriginalPawns)
                 if (oPawn.Spawned)
                     oPawn.DeSpawn();
+
+
+            if (_currentUse == ChamberUse.Tf)
+            {
+                var oPawn = tfPawn.OriginalPawns.FirstOrDefault();
+                if (oPawn == null) return; 
+                var controller = _lastTfRequest?.GetModExtension<ChamberAnimalTfController>();
+                if (controller != null)
+                {
+                    controller.OnPawnEjects(oPawn, tfPawn.TransformedPawns.FirstOrDefault(), this); 
+                }
+            }
         }
 
         private void EnterMergingIdle()
@@ -869,6 +881,12 @@ namespace Pawnmorph.Chambers
                 Mathf.Pow(pawnKindDef.RaceProps.baseBodySize, 1f / 3); //want to reduce the time of extreme body size values 
             float time = baseTime * szFactor;
             return Mathf.RoundToInt(Mathf.Max(time, MIN_TRANSFORMATION_TIME));
+        }
+
+
+        int GetTransformationTime(float days)
+        {
+            return Mathf.RoundToInt(days * 60000); 
         }
 
         private void Initialize()

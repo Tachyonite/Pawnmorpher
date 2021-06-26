@@ -46,7 +46,7 @@ namespace Pawnmorph.Chambers.AnimalTfControllers
         /// <returns>struct containing the pawnkindDef the pawn will turn into and the duration of the transformation</returns>
         public override ChamberAnimalTfInitStruct InitiateTransformation(Pawn pawn, PawnKindDef targetAnimal, MutaChamber chamber)
         {
-            return new ChamberAnimalTfInitStruct(targetAnimal, 1000, PMThingDefOf.PM_ChaoThrumboGenome); 
+            return new ChamberAnimalTfInitStruct(targetAnimal, 2, PMThingDefOf.PM_ChaoThrumboGenome); 
         }
 
         /// <summary>

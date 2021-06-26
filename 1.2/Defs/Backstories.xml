@@ -17,7 +17,9 @@
         <title>chaothrumbo</title>
         <titleShort>chaothrumbo</titleShort>
         <baseDescription>TODO</baseDescription>
-
+        <workAllows>
+            <li>PlantWork</li>
+        </workAllows>
     </AlienRace.BackstoryDef>
 
 </Defs>
