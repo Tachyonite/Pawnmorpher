@@ -49,4 +49,19 @@
             </li>
         </comps>
     </ThingDef>
+    <ThingDef ParentName="ArtifactBase">
+        <defName>PM_ChaoThrumboGenome</defName>
+        <label>Unstable genome</label>
+        <description>A strange and corrupted genome.</description>
+        <stackLimit>1</stackLimit>
+        <tradeNeverStack>true</tradeNeverStack>
+        <statBases>
+            <MarketValue>1700</MarketValue>
+        </statBases>
+        <graphicData>
+            <graphicClass>Graphic_Single</graphicClass>
+            <texPath>Things/Item/GenecardCorrupted</texPath>
+        </graphicData>
+        <comps Inherit="false"></comps>
+    </ThingDef>
 </Defs>

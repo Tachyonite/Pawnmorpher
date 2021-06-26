@@ -190,11 +190,9 @@ namespace Pawnmorph.Hybrids
             }
 
 
-            var builder = new StringBuilder();
             // ReSharper disable once PossibleNullReferenceException
             foreach (MorphDef morphDef in morphs)
             {
-                builder.AppendLine($"generating implied race for {morphDef.defName}");
                 ThingDef_AlienRace race = GenerateImplicitRace(human, morphDef);
                 _raceLookupTable[race] = morphDef;
 
@@ -205,27 +203,24 @@ namespace Pawnmorph.Hybrids
                 else
                 {
                     _raceLookupTable[morphDef.ExplicitHybridRace] = morphDef;
-                    builder.AppendLine($"\t\t{morphDef.defName} has explicit hybrid race {morphDef.ExplicitHybridRace.defName}, {race.defName} will not be used but still generated");
                 }
                 
 
 
-                CreateImplicitMeshes(builder, race);
+                CreateImplicitMeshes(race);
                 race.ResolveReferences();
                 yield return race;
             }
 
-            Log.Message(builder.ToString());
         }
 
-        private static void CreateImplicitMeshes(StringBuilder builder, ThingDef_AlienRace race)
+        private static void CreateImplicitMeshes(ThingDef_AlienRace race)
         {
             try
             {
                 //generate any meshes the implied race might need 
                 if (race.alienRace?.graphicPaths != null)
                 {
-                    builder.AppendLine($"Generating mesh pools for {race.defName}");
                     race.alienRace.generalSettings?.alienPartGenerator?.GenerateMeshsAndMeshPools();
                 }
             }
