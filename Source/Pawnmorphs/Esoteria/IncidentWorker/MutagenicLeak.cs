@@ -32,7 +32,6 @@ namespace Pawnmorph.IncidentWorkers
                 return false;
 
             int netIndex = Random.Range(0, leakableNetworks.Count);
-            Log.Message($"{netIndex}");
 
             DoLeak(leakableNetworks[netIndex]);
             return true;
@@ -57,7 +56,6 @@ namespace Pawnmorph.IncidentWorkers
         {
             List<SlurryNetComp> connectors = culpritNetwork.Connectors.ToList();
             int pipeIndex = Random.Range(0, connectors.Count);
-            Log.Message($"{pipeIndex}");
 
             Building culpritPipe = (Building)connectors[pipeIndex].parent;
             Map map = culpritPipe.Map;
