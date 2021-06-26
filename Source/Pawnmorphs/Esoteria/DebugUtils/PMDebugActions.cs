@@ -265,6 +265,14 @@ namespace Pawnmorph.DebugUtils
         static void ExplosionMutagenic()
         {
             GenExplosion.DoExplosion(UI.MouseCell(), Find.CurrentMap, 10, PMDamageDefOf.MutagenCloud_Large, null);
+            
+        }
+
+        [DebugAction("General", "Explosion (mutagenic large dirty)", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        static void ExplosionMutagenicDirty()
+        {
+            GenExplosion.DoExplosion(UI.MouseCell(), Find.CurrentMap, 10, PMDamageDefOf.MutagenCloud_Large, null, postExplosionSpawnThingDef: PMThingDefOf.PM_Filth_Slurry, postExplosionSpawnChance: 0.35f, postExplosionSpawnThingCount: 2);
+            
         }
 
         [DebugAction("Pawnmorpher", "Open action menu", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]

@@ -59,7 +59,7 @@ namespace Pawnmorph.Chambers.AnimalTfControllers
         /// <param name="chamber">The chamber.</param>
         public override void OnPawnEjects(Pawn original, Pawn transformedPawn, MutaChamber chamber)
         {
-            GenExplosion.DoExplosion(chamber.Position, chamber.Map, 7, PMDamageDefOf.MutagenCloud_Large, null);
+            GenExplosion.DoExplosion(chamber.Position, chamber.Map, 7, PMDamageDefOf.MutagenCloud_Large, null, postExplosionSpawnThingDef:PMThingDefOf.PM_Filth_Slurry, postExplosionSpawnChance:0.35f, postExplosionSpawnThingCount:2);
             chamber.TakeDamage(new DamageInfo(DamageDefOf.Bomb, chamber.HitPoints * 0.7f, 1));
         }
     }
