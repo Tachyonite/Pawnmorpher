@@ -120,9 +120,10 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="HarePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherRatiteLeg</defName>
 		<label>strong avian</label>
+		<classInfluence>Ratite</classInfluence>
 		<description>[PAWN_nameDef]'s legs have reshaped into very large avian legs. They are incredibly powerful, but look strange on a humanoid.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
