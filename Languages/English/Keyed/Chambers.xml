@@ -17,4 +17,5 @@
     <PMIdle>Idle.</PMIdle>
     <PMActive>Active.</PMActive>
     <PMDatabaseWithoutPower>Genebanks have lost power, cannot record new data.</PMDatabaseWithoutPower>
+    <PMWaitingForSpecialThing>Waiting for {0}</PMWaitingForSpecialThing>
 </LanguageData>

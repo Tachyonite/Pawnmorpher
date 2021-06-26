@@ -25,6 +25,20 @@
             <li>Manipulation</li>
         </requiredCapacities>
     </WorkGiverDef>
+    <WorkGiverDef>
+        <defName>PM_DeliverSpecialThingsToWaitingChamber</defName>
+        <label>delivering resources to muta chamber</label>
+        <giverClass>WorkGiver_Refuel</giverClass>
+        <workType>Hauling</workType>
+        <verb>refuel</verb>
+        <gerund>refueling</gerund>
+        <priorityInType>140</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+        <prioritizeSustains>true</prioritizeSustains>
+    </WorkGiverDef>
+
     <JobDef>
         <defName>PM_OperateSequencer</defName>
         <driverClass>Pawnmorph.Jobs.Driver_UseMutationScanner</driverClass>

@@ -19,8 +19,10 @@ namespace Pawnmorph
         public static ThingDef Plant_GnarledTree;
         public static ThingDef Morphsilk;
         public static ThingDef CrashedMutagenicShipPartIncoming;
-        public static ThingDef Mutanite; 
-        
+        public static ThingDef Mutanite;
+        public static ThingDef MutagenicChamber; 
+
+
         public static ThingDef EggChickenUnfertilized;
         public static ThingDef Chicken;
         public static ThingDef Cow;
@@ -31,6 +33,8 @@ namespace Pawnmorph
         public static ThingDef MechaniteSlurry;
         public static ThingDef MutagenLab;
 
+
+        public static ThingDef PM_ChaoThrumboGenome;
         public static ThingDef PM_MutagenTank;
     }
 }

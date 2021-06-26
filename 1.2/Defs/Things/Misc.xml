@@ -1,0 +1,14 @@
+<Defs>
+    <ThingDef>
+
+        <defName>PM_ChaoThrumboGenome</defName>
+        <thingClass>ThingWithComps</thingClass>
+        <label>TODO</label>
+        <description>TODO</description>
+
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+    </ThingDef>
+
+</Defs>

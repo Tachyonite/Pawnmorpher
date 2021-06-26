@@ -330,9 +330,11 @@
     <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
+    <Compile Include="Chambers\ChamberAnimalTfController.cs" />
     <Compile Include="Chambers\ChamberDatabase.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
+    <Compile Include="Chambers\ChamberTfInitiationReport.cs" />
     <Compile Include="Chambers\ChamberUse.cs" />
     <Compile Include="Chambers\DatabaseUtilities.cs" />
     <Compile Include="Chambers\GenomeDefGenerator.cs" />
@@ -502,6 +504,7 @@
     <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
+    <Compile Include="Jobs\Driver_DeliverThingToChamber.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
     <Compile Include="Jobs\Driver_TransformPrisoner.cs" />
@@ -788,6 +791,7 @@
     <Compile Include="Utilities\TreeUtilities.cs" />
     <Compile Include="Verbs\Tag.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
+    <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
     <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
     <Compile Include="PawnmorphMPCompat.cs" />
