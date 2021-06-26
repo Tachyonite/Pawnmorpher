@@ -27,6 +27,8 @@ namespace Pawnmorph
         public bool enableWildFormers = true;
         /// <summary>if mutagenic fallout is enabled</summary>
         public bool enableFallout = DEFAULT_FALLOUT_SETTING;
+        /// <summary>if slurry pipe leak is enabled</summary>
+        public bool enableMutagenLeak = true;
         /// <summary>the chance for a transforming pawn to turn into an animal</summary>
         public float transformChance = 50f;
         /// <summary>the chance for new animals to be former humans</summary>
@@ -72,7 +74,8 @@ namespace Pawnmorph
         /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref enableFallout, nameof(enableFallout), DEFAULT_FALLOUT_SETTING); 
+            Scribe_Values.Look(ref enableFallout, nameof(enableFallout), DEFAULT_FALLOUT_SETTING);
+            Scribe_Values.Look(ref enableMutagenLeak, "enableMutagenLeak", true);
             Scribe_Values.Look(ref enableMutagenShipPart, "enableMutagenShipPart", true);
             Scribe_Values.Look(ref enableMutagenDiseases, "enableMutagenDiseases", true);
             Scribe_Values.Look(ref enableMutagenMeteor, "enableMutagenMeteor", true);

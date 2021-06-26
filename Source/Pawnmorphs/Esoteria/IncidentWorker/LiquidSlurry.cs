@@ -11,6 +11,9 @@ using Verse;
 
 namespace Pawnmorph.IncidentWorkers
 {
+    /// <summary>
+    /// Class for the slurry puddles that can spawn with specific mutagenic explosions.
+    /// </summary>
     class LiquidSlurry : Filth
     {
         public const float DANGER_RADIUS = 2f;
@@ -28,7 +31,6 @@ namespace Pawnmorph.IncidentWorkers
         {
             base.Tick();
         }
-
 
         static LiquidSlurry()
         {
