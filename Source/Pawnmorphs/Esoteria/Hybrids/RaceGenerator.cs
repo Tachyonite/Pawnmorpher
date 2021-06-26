@@ -89,6 +89,7 @@ namespace Pawnmorph.Hybrids
                 specialShadowData = human.specialShadowData,
                 soundCallIntervalRange = animal.soundCallIntervalRange,
                 ageGenerationCurve = human.ageGenerationCurve,
+                willNeverEat = animal.willNeverEat.MakeSafe().Concat(human.willNeverEat.MakeSafe()).ToList(),
                 hediffGiverSets = human.hediffGiverSets.ToList(),
                 meatDef = animal.meatDef,
                 meatLabel = animal.meatLabel,
