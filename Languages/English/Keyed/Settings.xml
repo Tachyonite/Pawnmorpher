@@ -2,6 +2,8 @@
 	<PawnmorpherModName>Pawnmorpher</PawnmorpherModName>
 	<enableFalloutCheckboxLabel>Enable Mutagenic Fallout (Work In Progress)</enableFalloutCheckboxLabel>
 	<enableFalloutCheckboxTooltip>Toggles a special fallout event that can spawn and mutate exposed pawns.</enableFalloutCheckboxTooltip>
+	<enableMutagenLeakCheckboxLabel>Enable Mutagenic Leaks</enableMutagenLeakCheckboxLabel>
+	<enableMutagenLeakCheckboxTooltip>Toggles a special event where slurry pipes can explode and leak slurry.</enableMutagenLeakCheckboxTooltip>
 	<enableMutagenCheckboxLabel>Enable Mutagenic Ship Parts</enableMutagenCheckboxLabel>
 	<enableMutagenCheckboxTooltip>Toggles a new ship part type that mutates pawns in an expanding radius.</enableMutagenCheckboxTooltip>
 	<enableMutagenDiseasesCheckboxLabel>Enable Mutagenic Diseases</enableMutagenDiseasesCheckboxLabel>

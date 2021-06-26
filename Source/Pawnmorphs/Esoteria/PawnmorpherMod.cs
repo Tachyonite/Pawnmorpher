@@ -33,6 +33,7 @@ namespace Pawnmorph
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
             listingStandard.CheckboxLabeled("enableFalloutCheckboxLabel".Translate(), ref settings.enableFallout, "enableFalloutCheckboxTooltip".Translate());
+            listingStandard.CheckboxLabeled("enableMutagenLeakCheckboxLabel".Translate(), ref settings.enableMutagenLeak, "enableMutagenLeakCheckboxTooltip".Translate());
             listingStandard.CheckboxLabeled("enableMutagenCheckboxLabel".Translate(), ref settings.enableMutagenShipPart, "enableMutagenCheckboxTooltip".Translate());
             listingStandard.CheckboxLabeled("enableMutagenDiseasesCheckboxLabel".Translate(), ref settings.enableMutagenDiseases, "enableMutagenDiseasesCheckboxTooltip".Translate());
             listingStandard.CheckboxLabeled("enableMutagenMeteorCheckboxLabel".Translate(), ref settings.enableMutagenMeteor, "enableMutagenMeteorCheckboxTooltip".Translate());
