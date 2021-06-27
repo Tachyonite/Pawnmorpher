@@ -3,7 +3,7 @@
 		<defName>EmumorphGeneral</defName>
 		<title>paleo enthusiast</title>
 		<titleShort>emumorph</titleShort>
-		<baseDescription>When [PAWN_nameDef] agreed to genetic modification that would make them more like a dinosaur, this isn't what [PAWN_pronounDef] had in mind.</baseDescription>
+		<baseDescription>When [PAWN_nameDef] agreed to genetic modification that would make them more like a dinosaur, this isn't what [PAWN_pronoun] had in mind.</baseDescription>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
