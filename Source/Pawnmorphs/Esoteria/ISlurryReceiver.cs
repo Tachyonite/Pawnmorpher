@@ -3,6 +3,9 @@
 
 namespace Pawnmorph
 {
+    /// <summary>
+    /// interface for something that receives slurry from a slurry net 
+    /// </summary>
     public interface ISlurryReceiver
     {
         

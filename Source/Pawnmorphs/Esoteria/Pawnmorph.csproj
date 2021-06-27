@@ -604,7 +604,6 @@
     <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\MutationSequencerComp.cs" />
     <Compile Include="ThingComps\MutationSequencerProps.cs" />
-    <Compile Include="ThingComps\ObserveThoughtComp.cs" />
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\SlurryFueled.cs" />

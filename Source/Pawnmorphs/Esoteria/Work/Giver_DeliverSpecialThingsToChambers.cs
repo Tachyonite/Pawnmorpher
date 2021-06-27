@@ -23,6 +23,12 @@ namespace Pawnmorph.Work
         /// The potential work thing request.
         /// </value>
         public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForDef(PMThingDefOf.PM_NewMutagenicChamber);
+        /// <summary>
+        /// Gets the path end mode.
+        /// </summary>
+        /// <value>
+        /// The path end mode.
+        /// </value>
         public override PathEndMode PathEndMode => PathEndMode.ClosestTouch;
 
         /// <summary>
@@ -83,7 +89,7 @@ namespace Pawnmorph.Work
                 var thing = FindBestThingFor(chamber.SpecialThingNeeded, pawn);
                 if (thing == null) return null;
                 var job = JobMaker.MakeJob(PMJobDefOf.PM_CarrySpecialToMutagenChamber, thing, chamber);
-                if(job.count != null)
+                if(job?.count != null)
                     job.count = 1; 
                 return job; 
             }

@@ -903,6 +903,7 @@ namespace Pawnmorph
         /// <param name="backstoryOverride">The backstory override.</param>
         /// <param name="fixedFirstName">First name of the fixed.</param>
         /// <param name="fixedLastName">Last name of the fixed.</param>
+        /// <param name="fixedOriginalGender">The fixed original gender.</param>
         public static void MakeAnimalSapient([NotNull] Pawn animal, float sapienceLevel = 1, bool joinIfRelated = true, BackstoryDef backstoryOverride= null, string fixedFirstName=null, string fixedLastName=null, Gender? fixedOriginalGender = null)
         {
             if (animal.IsFormerHuman())
