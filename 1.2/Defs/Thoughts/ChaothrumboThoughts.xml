@@ -36,19 +36,19 @@
         <defName>PM_CThrumboTfThought</defName>
         <stages>
             <li>
-                <label>TODO Normal</label>
+                <label>transformed</label>
                 <description>I...I'm a massive, unnatural creature...this is going to take some time to get used to.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
-                <label>TODO Mutatioin Affinity</label>
+                <label>transformed</label>
                 <description>I'm a massive, hulking mountain of flesh and fur and horns...I feel so powerful!</description>
                 <visible>true</visible>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label></label>
+                <label>transformed</label>
                 <description>I'm a massive, hulking pile of flesh and fur and horns...this is horrific...I want to be my old self again, please!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-20</baseMoodEffect>
