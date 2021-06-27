@@ -102,7 +102,9 @@ namespace Pawnmorph.User_Interface
         private Pawn pawn;
         private List<Hediff_AddedMutation> pawnCurrentMutations;
         private static List<HediffInitialState> cachedInitialHediffs;
-        private static Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef;
+
+        [NotNull] private static readonly Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef =
+            new Dictionary<BodyPartDef, List<MutationDef>>();
         [NotNull]
         private static readonly Dictionary<BodyPartDef, List<MutationLayer>> cachedMutationLayersByPartDef = new Dictionary<BodyPartDef, List<MutationLayer>>();
         [NotNull]
@@ -167,7 +169,7 @@ namespace Pawnmorph.User_Interface
             cachedMutableParts.Clear();
             cachedMutableCoreParts.Clear();
             cachedMutableSkinParts.Clear();
-
+            cachedMutationDefsByPartDef.Clear();
             foreach (BodyPartRecord record in pawn.RaceProps.body.AllParts)
             {
 
@@ -207,6 +209,23 @@ namespace Pawnmorph.User_Interface
 
             }
 
+
+            foreach (MutationDef mutation in MutationDef.AllMutations)
+            {
+                if(mutation.parts == null || mutation.parts.Count == 0) continue;
+
+                foreach (BodyPartDef mutationPart in mutation.parts)
+                {
+
+                    if (!cachedMutationDefsByPartDef.TryGetValue(mutationPart, out var lst))
+                    {
+                        lst = new List<MutationDef>();
+                        cachedMutationDefsByPartDef[mutationPart] = lst; 
+                    }
+                    if(!lst.Contains(mutation))
+                        lst.Add(mutation);
+                }
+            }
 
 
         }
