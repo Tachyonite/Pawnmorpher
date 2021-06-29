@@ -102,7 +102,9 @@ namespace Pawnmorph.User_Interface
         private Pawn pawn;
         private List<Hediff_AddedMutation> pawnCurrentMutations;
         private static List<HediffInitialState> cachedInitialHediffs;
-        private static Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef;
+
+        [NotNull] private static readonly Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef =
+            new Dictionary<BodyPartDef, List<MutationDef>>();
         [NotNull]
         private static readonly Dictionary<BodyPartDef, List<MutationLayer>> cachedMutationLayersByPartDef = new Dictionary<BodyPartDef, List<MutationLayer>>();
         [NotNull]
@@ -167,7 +169,7 @@ namespace Pawnmorph.User_Interface
             cachedMutableParts.Clear();
             cachedMutableCoreParts.Clear();
             cachedMutableSkinParts.Clear();
-
+            cachedMutationDefsByPartDef.Clear();
             foreach (BodyPartRecord record in pawn.RaceProps.body.AllParts)
             {
 
@@ -207,6 +209,23 @@ namespace Pawnmorph.User_Interface
 
             }
 
+
+            foreach (MutationDef mutation in MutationDef.AllMutations)
+            {
+                if(mutation.parts == null || mutation.parts.Count == 0) continue;
+
+                foreach (BodyPartDef mutationPart in mutation.parts)
+                {
+
+                    if (!cachedMutationDefsByPartDef.TryGetValue(mutationPart, out var lst))
+                    {
+                        lst = new List<MutationDef>();
+                        cachedMutationDefsByPartDef[mutationPart] = lst; 
+                    }
+                    if(!lst.Contains(mutation))
+                        lst.Add(mutation);
+                }
+            }
 
 
         }
@@ -472,7 +491,7 @@ namespace Pawnmorph.User_Interface
                 foreach (MutationLayer layer in cachedMutationLayersByPartDef[parts.FirstOrDefault().def])
                 {
                     mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == layer).ToList();
-                    buttonLabel = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.Def.LabelCap).Distinct()))}";
+                    buttonLabel = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({m.Def.classInfluence.label.CapitalizeFirst()})").Distinct()))}";
                     DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
                 }
             }
@@ -489,7 +508,7 @@ namespace Pawnmorph.User_Interface
                     mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == MutationLayer.Core).ToList();
                     layer = MutationLayer.Core;
                 }
-                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.Def.LabelCap).Distinct()))}";
+                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({m.Def.classInfluence.label.CapitalizeFirst()})").Distinct()))}";
                 DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
             }
         }
@@ -538,7 +557,7 @@ namespace Pawnmorph.User_Interface
                         recachePreview = true;
                         RecachePawnMutations();
                     }
-                    options.Add(new FloatMenuOption(mutationDef.LabelCap, addMutation));
+                    options.Add(new FloatMenuOption($"{mutationDef.LabelCap} ({mutationDef.classInfluence.label.CapitalizeFirst()})", addMutation));
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
@@ -676,15 +695,14 @@ namespace Pawnmorph.User_Interface
             {
                 if (entry.removing)
                 {
-                    summaryBuilder.AppendLine(REMOVING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), pawn.Named("PAWN"), entry.part.Named("PART")));
+                    summaryBuilder.AppendLine(REMOVING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), pawn.Named("PAWN"), entry.part.Label.Named("PART")));
                 }
                 else
                 {
                     string isHaltedTxt = (entry.isHalted ? HALTED_MUTATION_DESC.Translate().RawText : "");
 
-                    var addStr = ADDING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), entry.part.Named("PART"), pawn.Named("PAWN"),
+                    var addStr = ADDING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), entry.part.Label.Named("PART"), pawn.Named("PAWN"),
                                                                 entry.severity.ToString("n2").Named("SEVERITY"))
-                               + "."
                                + isHaltedTxt;
 
                     summaryBuilder.AppendLine(addStr);
@@ -692,27 +710,28 @@ namespace Pawnmorph.User_Interface
                 summaryBuilder.AppendLine();
             }
 
-            
-
             // Draw modification summary description.
             Rect summaryMenuSectionRect = new Rect(inRect.x, inRect.y, inRect.width, (inRect.height - SPACER_SIZE) / 2);
-            Rect summaryOutRect = summaryMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
+            Widgets.DrawMenuSection(summaryMenuSectionRect);
+
+            Rect summaryMenuTitleRect = summaryMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
+            float titleHeight = Text.CalcHeight(SUMMARY_TITLE_LOC_STRING.Translate(), summaryMenuTitleRect.width);
+            Widgets.Label(new Rect(summaryMenuTitleRect.x, summaryMenuTitleRect.y, summaryMenuTitleRect.width, titleHeight), SUMMARY_TITLE_LOC_STRING.Translate());
+            GUI.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            Widgets.DrawLineHorizontal(summaryMenuTitleRect.x, titleHeight + summaryMenuTitleRect.y, summaryMenuTitleRect.width);
+            titleHeight += 1f;
+            GUI.color = Color.white;
+
+            Rect summaryOutRect = new Rect(summaryMenuSectionRect.x, summaryMenuSectionRect.y + titleHeight, summaryMenuSectionRect.width, summaryMenuSectionRect.height - titleHeight).ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
             Rect summaryViewRect = new Rect(summaryOutRect.x, summaryOutRect.y, summaryScrollSize.x, summaryScrollSize.y);
             float summaryCurY = summaryOutRect.y;
-            Widgets.DrawMenuSection(summaryMenuSectionRect);
             Widgets.BeginScrollView(summaryOutRect, ref summaryScrollPos, summaryViewRect);
-            Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(SUMMARY_TITLE_LOC_STRING.Translate(), summaryViewRect.width)), SUMMARY_TITLE_LOC_STRING.Translate());
-            summaryCurY += Text.CalcHeight(SUMMARY_TITLE_LOC_STRING.Translate(), summaryViewRect.width);
-            GUI.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-            Widgets.DrawLineHorizontal(summaryViewRect.x, summaryCurY, summaryOutRect.width);
-            summaryCurY += 1f;
-            GUI.color = Color.white;
             string summaryText = summaryBuilder.ToString();
             Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(summaryText, summaryViewRect.width)), summaryText);
             summaryCurY += Text.CalcHeight(summaryText, summaryViewRect.width);
             if (Event.current.type == EventType.Layout)
             {
-                summaryScrollSize.y = summaryCurY - summaryViewRect.y;
+                summaryScrollSize.y = summaryCurY - summaryViewRect.y - titleHeight;
                 summaryScrollSize.x = summaryOutRect.width - (summaryScrollSize.y > summaryOutRect.height ? 16f : 0f);
             }
             Widgets.EndScrollView();

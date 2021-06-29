@@ -16,7 +16,7 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.IMutationEventReceiver" />
     public class Comp_MutationTagger : HediffComp, IMutationEventReceiver
     {
-        private ChamberDatabase _db;
+       
 
         
         [CanBeNull] private SimpleCurve Curve => (props as CompProps_MutationTagger)?.tagChancePerValue; 
@@ -38,11 +38,7 @@ namespace Pawnmorph.Hediffs
         }
 
 
-        private ChamberDatabase DB
-        {
-            get
-                => Find.World.GetComponent<ChamberDatabase>();
-        }
+        private ChamberDatabase DB => Find.World.GetComponent<ChamberDatabase>();
 
 
         /// <summary>called when a mutation is added</summary>

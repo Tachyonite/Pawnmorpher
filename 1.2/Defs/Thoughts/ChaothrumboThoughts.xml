@@ -11,20 +11,20 @@
         <thoughtClass>Pawnmorph.Thoughts.Memory_FactionObservation</thoughtClass>
         <stages>
             <li>
-                <label>witnessed chaothrumbo(neutral)</label>
-                <description>TODO</description>
+                <label>saw neutral chaothrumbo</label>
+                <description>It's a little terrifying, but it's not coming after us.</description>
                 <visible>true</visible>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
             <li>
-                <label>witnessed chaothrumbo(ally)</label>
-                <description>TODO</description>
+                <label>saw allied chaothrumbo</label>
+                <description>It's on our side, we're practically unstoppable.</description>
                 <visible>true</visible>
                 <baseMoodEffect>5</baseMoodEffect>
             </li>
             <li>
-                <label>witnessed chaothrumbo(enemy)</label>
-                <description>TODO</description>
+                <label>saw enemy chaothrumbo</label>
+                <description>Oh gods, it's huge! How in the hell do we stop that thing?!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
@@ -36,28 +36,28 @@
         <defName>PM_CThrumboTfThought</defName>
         <stages>
             <li>
-                <label>TODO Normal</label>
-                <description>TODO</description>
+                <label>transformed</label>
+                <description>I...I'm a massive, unnatural creature...this is going to take some time to get used to.</description>
                 <visible>true</visible>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
-                <label>TODO Mutatioin Affinity</label>
-                <description>TODO</description>
+                <label>transformed</label>
+                <description>I'm a massive, hulking mountain of flesh and fur and horns...I feel so powerful!</description>
                 <visible>true</visible>
-                <baseMoodEffect>5</baseMoodEffect>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label>TODO Body Purist</label>
-                <description>TODO</description>
+                <label>transformed</label>
+                <description>I'm a massive, hulking pile of flesh and fur and horns...this is horrific...I want to be my old self again, please!</description>
                 <visible>true</visible>
-                <baseMoodEffect>-10</baseMoodEffect>
+                <baseMoodEffect>-20</baseMoodEffect>
             </li>
             <li>
-                <label>TODO Primal Wish</label>
-                <description>TODO</description>
+                <label>Bow before me!</label>
+                <description>I'm a massive, hulking titan of flesh and fur and horns...this is the best thing that's ever happened to me!</description>
                 <visible>true</visible>
-                <baseMoodEffect>15</baseMoodEffect>
+                <baseMoodEffect>30</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
