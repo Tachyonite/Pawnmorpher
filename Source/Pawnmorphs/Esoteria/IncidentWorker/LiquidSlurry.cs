@@ -16,40 +16,36 @@ namespace Pawnmorph.IncidentWorkers
     /// </summary>
     class LiquidSlurry : Filth
     {
-        public const float DANGER_RADIUS = 2f;
+        private const float DANGER_RADIUS = 2f;
         private const float MUTAGENIC_BUILDUP_RATE = 0.015f;
         private const float EPSILON = 0.0001f;
+        private const float MTTH_PLANT_MUTATE = 250;
+        private static readonly float _p;
 
         [NotNull] private static readonly RWRaycastHit[] _buffer;
 
-        public override void TickRare()
-        {
-            DoMutagenicBuildup();
-        }
-
-        public override void Tick()
-        {
-            base.Tick();
-        }
-
         static LiquidSlurry()
         {
+            _p = RandUtilities.GetUniformProbability(MTTH_PLANT_MUTATE, 4.16f); //one long tick is ~4.16 seconds
             _buffer = new RWRaycastHit[20];
         }
 
-        private void DoMutagenicBuildup()
+        public override void TickRare()
         {
-            IEnumerable<Thing> things = GenRadial.RadialDistinctThingsAround(Position, Map, DANGER_RADIUS, true).MakeSafe();
+            IEnumerable<Thing> things = GenRadial.RadialDistinctThingsAround(Position, Map, DANGER_RADIUS, true);
             MutagenDef mutagen = MutagenDefOf.defaultMutagen;
+
             foreach (Thing thing in things)
             {
-                if (!(thing is Pawn pawn)) continue;
-                if (!mutagen.CanInfect(pawn)) return;
-
-                TryMutatePawn(pawn);
+                if (thing is Pawn pawn && mutagen.CanInfect(pawn))
+                    TryMutatePawn(pawn);
+                else if (thing is Plant plant)
+                {
+                    if (Rand.Value >= _p) continue;
+                        PMPlantUtilities.TryMutatePlant(plant);
+                }
             }
         }
-
         private void TryMutatePawn(Pawn pawn)
         {
 

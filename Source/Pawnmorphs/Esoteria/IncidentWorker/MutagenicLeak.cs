@@ -14,6 +14,10 @@ namespace Pawnmorph.IncidentWorkers
     /// <seealso cref="RimWorld.IncidentWorker" />
     class MutagenicLeak : IncidentWorker
     {
+        private const float SLURRY_PERCENTAGE_TO_REMOVE = 0.25f;
+        private const float MAX_EXPLOSION_RADIUS = 5f;
+        private const float UNITS_SLURRY_ONE_RADIUS_INCREASE = 20f;
+
         /// <summary>
         ///     Determines whether this instance with the specified parms [can fire now sub].
         /// </summary>
@@ -81,16 +85,13 @@ namespace Pawnmorph.IncidentWorkers
             Building culpritPipe = (Building)connectors[pipeIndex].parent;
             Map map = culpritPipe.Map;
 
-            float slurryPercentageToRemove = 0.25f;
             float sluryAmount = culpritNetwork.Stored;
-            float maxExplosionRadius = 5f;
-            float unitsSlurryOneRadiusIncrease = 20;
-            float explosionRadius = Mathf.Min(sluryAmount / unitsSlurryOneRadiusIncrease, maxExplosionRadius); //An increase of one per 10 slurry stored.
+            float explosionRadius = Mathf.Min(sluryAmount / UNITS_SLURRY_ONE_RADIUS_INCREASE, MAX_EXPLOSION_RADIUS); //An increase of one per 10 slurry stored.
 
             string text = "LetterTextMutagenicLeak".Translate();
             StringBuilder stringBuilder = new StringBuilder(text);
 
-            if (explosionRadius >= 0.9*maxExplosionRadius) //Hello Zap or Iron! Feel free to change the value/relation. And to remove this message, unless you want to do archeology in one year!
+            if (explosionRadius >= 0.9* MAX_EXPLOSION_RADIUS) //Hello Zap or Iron! Feel free to change the value/relation. And to remove this message, unless you want to do archeology in one year!
             {
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine();
@@ -98,7 +99,7 @@ namespace Pawnmorph.IncidentWorkers
             }
 
             foreach (ISlurryNetStorage storage in culpritNetwork.StorageComps)
-                storage.Storage = (1- slurryPercentageToRemove) * storage.Storage;
+                storage.Storage = (1- SLURRY_PERCENTAGE_TO_REMOVE) * storage.Storage;
 
             GenExplosion.DoExplosion(culpritPipe.Position, map, explosionRadius, PMDamageDefOf.MutagenCloud, null,-1,-1,null,null,null,null,PMThingDefOf.PM_Filth_Slurry,0.5f,1);
             Find.LetterStack.ReceiveLetter("LetterLabelMutagenicLeak".Translate(), stringBuilder.ToString(), LetterDefOf.NegativeEvent, new TargetInfo(culpritPipe.Position, map));
