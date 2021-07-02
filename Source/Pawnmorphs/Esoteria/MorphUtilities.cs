@@ -130,7 +130,7 @@ namespace Pawnmorph
         [Obsolete] public const float HUMAN_CHANGE_FACTOR = 0.65f;
 
         /// <summary>the percent influence needed for a single morph to be selected to turn the pawn into, rather then a chimera</summary>
-        public const float CHIMERA_THRESHOLD = 0.4f;
+        public const float CHIMERA_THRESHOLD = 0.35f;
 
         /// <summary>
         ///     the percent human influence below which a pawn is 'no longer considered human'

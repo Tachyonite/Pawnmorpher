@@ -75,6 +75,8 @@
             <trainability>Advanced</trainability>
             <gestationPeriodDays>20000</gestationPeriodDays>
             <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
+            <fleshType>Chaomorph</fleshType>
+            <useMeatFrom>Chaocow</useMeatFrom>
             <wildness>0.585</wildness>
             <lifeExpectancy>220</lifeExpectancy>
             <willNeverEat>

@@ -1205,6 +1205,10 @@
 				<compClass>Pawnmorph.ThingComps.AlwaysMergedPawn</compClass>
 			</li>
 		</comps>
+		<race>
+			<fleshType>Chaomorph</fleshType>
+			<useMeatFrom>Chaocow</useMeatFrom>
+		</race>
 	</ThingDef>
 
 	<ThingDef ParentName="ChaomeldBase">
