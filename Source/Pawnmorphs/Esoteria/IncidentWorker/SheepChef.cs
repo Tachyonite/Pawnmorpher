@@ -112,14 +112,16 @@ namespace Pawnmorph.IncidentWorkers
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                                                   fixedChronologicalAge: chronoAge,
-                                                  fixedBiologicalAge: convertedAge, fixedBirthName: firstName,
+                                                  fixedBiologicalAge: convertedAge, fixedBirthName:firstName,
                                                   fixedLastName: lastName, fixedGender: Gender.Male, forcedTraits: ForcedTraits) {ForcedTraits = ForcedTraits, ValidatorPreGear = GordenValidator};
             
+
+
             
             Pawn lPawn = PawnGenerator.GeneratePawn(local);
 
-           
-          
+            var name = lPawn.Name as NameTriple;
+            lPawn.Name = new NameTriple(firstName, name?.Nick ?? firstName, lastName); 
 
 
             if (!BackstoryDatabase.TryGetWithIdentifier("chef", out Backstory back))
