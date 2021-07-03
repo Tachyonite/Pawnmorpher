@@ -100,7 +100,7 @@ namespace Pawnmorph.IncidentWorkers
             Faction faction = Faction.OfPlayer;
             bool useFirst = Rand.Bool;
             string firstName, lastName;
-            firstName = lastName = null;
+            firstName = lastName = "";
             if (useFirst)
                 firstName = "Gordon";
             else
