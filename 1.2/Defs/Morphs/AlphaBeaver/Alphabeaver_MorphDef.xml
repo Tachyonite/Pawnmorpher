@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>AlphabeaverMorph</defName>
 		<label>alphabeavermorph</label>
@@ -7,7 +7,7 @@
 		<classification>Rodent</classification>
 		<categories>
 			<li>Cold</li>
-			<li>Crafting</li>
+			<li>Crafter</li>
 			<li>Rodent</li>
 		</categories>
 		<fullTransformation>PawnmorphAlphabeaverTF</fullTransformation>
