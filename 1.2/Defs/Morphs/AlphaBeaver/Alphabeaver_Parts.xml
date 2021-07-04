@@ -1,0 +1,192 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="AlphabeaverPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>AlphabeaverMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlphabeaverPart">
+		<defName>EtherAlphabeaverJaw</defName>
+		<label>beaver snout</label>
+		<description>This jaw is the furred face of an alphabeaver, equipped with large rodentlike teeth. Perfect for chewing through wood.</description>
+		<mutationTale>GrewMuzzleMisc</mutationTale>
+		<mutationMemory>EtherAlphabeaverJaw</mutationMemory>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			<minSeverity>-1</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.40</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+				<label>bestial</label>
+				<!-- add description  -->
+			</li>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>adapted</label>
+				<minSeverity>1</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.04</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<PlantWorkSpeed>0.1</PlantWorkSpeed>
+					<ConstructionSpeed>0.05</ConstructionSpeed>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.40</offset>
+						</li>
+					</capMods>
+					<label>paragon</label>
+					<statOffsets>
+						<PlantWorkSpeed>0.3</PlantWorkSpeed>
+						<ConstructionSpeed>0.1</ConstructionSpeed>
+					</statOffsets>
+					<!-- add description  -->
+				</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlphabeaverPart">
+		<defName>EtherWebbedPawHand</defName>
+		<label>webbed paw</label>
+		<description>A dextrous, webbed paw that's good for grabbing things in wet conditions, reducing the likelihood of ruining a construction project.</description>
+		<initialSeverity>0</initialSeverity>
+		<classInfluence>Rodent</classInfluence>
+		<parts>
+			<li>Hand</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
+				<label>unfamiliar</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+				<label>adapted</label>
+				<statOffsets>
+					<ConstructSuccessChance>0.3</ConstructSuccessChance>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>1.0</power>
+						<cooldownTime>1</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlphabeaverPart">
+		<defName>EtherWebbedPawFoot</defName>
+		<label>webbed foot</label>
+		<description>This foot has a thick webbing between the toes for better swimming ability (except there's no stat for this, so it's just a boost for moving in general).</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.03</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlphabeaverPart">
+		<defName>EtherAlphabeaverEar</defName>
+		<label>beaver ear</label>
+		<description>The fuzzy, waterproof ear of a beaver.</description>
+		<mutationTale>EarsChangedMisc</mutationTale>
+		<mutationMemory>EtherAlphabeaverEar</mutationMemory>
+		<parts>
+			<li>Ear</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="AlphabeaverPart">
+		<defName>EtherAlphabeaverTail</defName>
+		<label>beaver tail</label>
+		<description>A perfect rudder in most scenarios, this tail can be used to speed up construction by inventive means known only to the user of one. Also really useful for smoothing floors.</description>
+		<mutationTale>GrewTail</mutationTale>
+		<mutationMemory>EtherAlphabeaverTail</mutationMemory>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<statOffsets>
+					<ConstructionSpeed>0.2</ConstructionSpeed>
+					<SmoothingSpeed>0.5</SmoothingSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+		
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
