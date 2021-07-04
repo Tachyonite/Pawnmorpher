@@ -100,7 +100,7 @@ namespace Pawnmorph.Mental
         /// Gets the begin letter text.
         /// </summary>
         /// <returns></returns>
-        public override string GetBeginLetterText()
+        public override TaggedString GetBeginLetterText()
         {
             return def.beginLetter.Formatted(pawn.LabelShort,  pawn.Named("PAWN"), _prey.LabelShort.Named("prey")).AdjustedFor(this.pawn, "PAWN").CapitalizeFirst();
         }

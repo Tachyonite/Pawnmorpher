@@ -215,7 +215,7 @@ namespace Pawnmorph.Hediffs
         ///     get the change in severity per day
         /// </summary>
         /// <returns></returns>
-        protected override float SeverityChangePerDay()
+        public override float SeverityChangePerDay()
         {
             if (_checkForReversionHediff || Pawn.IsHashIntervalTick(25))
             {
