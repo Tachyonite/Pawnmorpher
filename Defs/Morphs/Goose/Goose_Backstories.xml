@@ -8,8 +8,8 @@
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
 		<spawnCategories>
-			<li>Offworld</li>
-			<li>Outlander</li>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
 		</spawnCategories>
 		<modExtensions>
 			<li Class="Pawnmorph.MorphPawnKindExtension">
