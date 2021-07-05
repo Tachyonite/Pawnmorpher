@@ -1,0 +1,43 @@
+<Defs>
+    <DamageDef>
+        <defName>MutagenicStun</defName>
+        <label>mutagenic stun</label>
+        <workerClass>Pawnmorph.Damage.Worker_MutagenicBlunt</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been beaten to death.</deathMessage>
+        <hediff>Crush</hediff>
+        <hediffSkin>Bruise</hediffSkin>
+        <hediffSolid>Crack</hediffSolid>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <impactSoundType>Blunt</impactSoundType>
+        <armorCategory>Blunt</armorCategory>
+        <overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
+        <buildingDamageFactor>1.5</buildingDamageFactor>
+        <bluntStunDuration>2.0</bluntStunDuration>
+        <bluntInnerHitChance>0.4</bluntInnerHitChance>
+        <bluntInnerHitDamageFractionToConvert>0.1~0.2</bluntInnerHitDamageFractionToConvert>
+        <bluntInnerHitDamageFractionToAdd>0.2~0.35</bluntInnerHitDamageFractionToAdd>
+        <bluntStunChancePerDamagePctOfCorePartToHeadCurve>
+            <points>
+                <li>(0.04, 0.40)</li>
+                <li>(0.5, 1)</li>
+            </points>
+        </bluntStunChancePerDamagePctOfCorePartToHeadCurve>
+        <bluntStunChancePerDamagePctOfCorePartToBodyCurve>
+            <points>
+                <li>(0.01,0.05)</li>
+                <li>(0.1,0.3)</li>
+                <li>(0.2,0.4)</li>
+                <li>(0.4, 0.7)</li>
+                <li>(0.6, 1)</li>
+            </points>
+        </bluntStunChancePerDamagePctOfCorePartToBodyCurve>
+        <modExtensions>
+            <li Class="Pawnmorph.Damage.MutagenicDamageExtension">
+                <severityPerDamage>0.025</severityPerDamage>
+                <reduceValue>0.4</reduceValue>
+                <mutagenicBuildup>MutagenicBuildup_Weapon</mutagenicBuildup>
+            </li>
+        </modExtensions>
+    </DamageDef>
+</Defs>

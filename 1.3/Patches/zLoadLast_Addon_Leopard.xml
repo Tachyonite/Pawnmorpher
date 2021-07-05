@@ -39,7 +39,9 @@
 					</value>
 				</li>
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">
-					<!-- TODO figure out a way to make this more general -->
+					<!-- TODO figure out a way to make this more general
+						layer offset field being removed breaks this patch, need to fix 
+					-->
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[(bodyPart="Tail" or bodyPart="tail") and layerOffset=-0.28]/hediffGraphics</xpath>
 					<value>
 						<EtherLeopardTail>Parts/Leopard/Leopard_Tail</EtherLeopardTail>

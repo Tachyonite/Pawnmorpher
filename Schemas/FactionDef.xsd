@@ -37,11 +37,13 @@
             <xs:element name="basicMemberKind" type="xs:string" minOccurs="0"/>
             <xs:element name="startingResearchTags" type="ListOfStrings" minOccurs="0"/>
             <xs:element name="recipePrerequisiteTags" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="naturalEnemy" type="xs:boolean" minOccurs="0" />
             <xs:element name="rescueesCanJoin" type="xs:boolean" minOccurs="0"/>
             <xs:element name="pawnSingular" type="xs:string" minOccurs="0"/>
             <xs:element name="pawnsPlural" type="xs:string" minOccurs="0" />
             <xs:element name="leaderTitle" type="xs:string" minOccurs="0"/>
             <xs:element name="forageabilityFactor" type="xs:float" minOccurs="0"/>
+            <xs:element name="hostileToFactionlessHumanlikes" type="xs:boolean" minOccurs="0" />
             <xs:element name="maxPawnCostPerTotalPointsCurve" type="SimpleCurve" minOccurs="0"/>
             <xs:element name="requiredCountAtGameStart" type="xs:int" minOccurs="0"/>
             <xs:element name="maxCountAtGameStart" type="xs:int" minOccurs="0" />
@@ -49,16 +51,13 @@
             <xs:element name="settlementGenerationWeight" type="xs:float" minOccurs="0"/>
             <xs:element name="pawnNameMaker" type="xs:string" minOccurs="0"/>
             <xs:element name="techLevel" type="TechLevel" minOccurs="0"/>
-            <xs:element name="backstoryCategories" type="ListOfStrings" minOccurs="0"/>
-            <xs:element name="hairTags" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="backstoryCategories" type="ListOfStrings" minOccurs="0" />
             <xs:element name="apparelStuffFilter" type="ThingFilter" minOccurs="0"/>
             <xs:element name="caravanTraderKinds" type="ListOfStrings" minOccurs="0"/>
             <xs:element name="visitorTraderKinds" type="ListOfStrings" minOccurs="0"/>
             <xs:element name="baseTraderKinds" type="ListOfStrings" minOccurs="0"/>
-            <xs:element name="geneticVariance" type="xs:float" minOccurs="0"/>
-            <xs:element name="startingGoodwill" type="IntRange" minOccurs="0"/>
-            <xs:element name="mustStartOneEnemy" type="xs:boolean" minOccurs="0"/>
-            <xs:element name="naturalColonyGoodwill" type="IntRange" minOccurs="0"/>
+            <xs:element name="geneticVariance" type="xs:float" minOccurs="0" />
+            <xs:element name="mustStartOneEnemy" type="xs:boolean" minOccurs="0" />
             <xs:element name="goodwillDailyGain" type="xs:float" minOccurs="0"/>
             <xs:element name="goodwillDailyFall" type="xs:float" minOccurs="0"/>
             <xs:element name="permanentEnemy" type="xs:boolean" minOccurs="0"/>
