@@ -325,7 +325,6 @@
     <Compile Include="AspectUtils.cs" />
     <Compile Include="BackstoryDefOf.cs" />
     <Compile Include="BodyUtilities.cs" />
-    <Compile Include="BuildingDefOf.cs" />
     <Compile Include="Buildings\MutagenTank.cs" />
     <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
@@ -716,8 +715,6 @@
     <Compile Include="HediffComp_Single.cs" />
     <Compile Include="HediffComp_TerrainBasedMorph.cs" />
     <Compile Include="InteractionWorker_Moo.cs" />
-    <Compile Include="Chambers\MutagenChamber.cs" />
-    <Compile Include="Chambers\MutagenModulator.cs" />
     <Compile Include="CompProperties_MutagenicRadius.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />
     <Compile Include="PawnmorphHediffGiverUtility.cs" />

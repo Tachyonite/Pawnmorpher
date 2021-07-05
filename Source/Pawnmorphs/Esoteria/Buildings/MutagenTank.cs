@@ -38,7 +38,7 @@ namespace Pawnmorph.Buildings
 			CompRefuelable comp = GetComp<CompRefuelable>();
             GenDraw.FillableBarRequest r = new GenDraw.FillableBarRequest
             {
-                center = DrawPos + Vector3.up * 0.1f + new Vector3(0.005f, 0, upFactor),
+                center = DrawPos + Vector3.up * 0.1f + new Vector3(0.015f, 0, upFactor),
                 size = BarSize,
                 fillPercent = comp.FuelPercentOfMax,
                 filledMat = BatteryBarFilledMat,
