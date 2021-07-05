@@ -319,7 +319,6 @@ namespace Pawnmorph.Hybrids
                     linkVariantIndexWithPrevious = addon.linkVariantIndexWithPrevious,
                     angle = addon.angle,
                     inFrontOfBody = addon.inFrontOfBody,
-                    layerOffset = addon.layerOffset,
                     layerInvert = addon.layerInvert,
                     drawnOnGround = addon.drawnOnGround,
                     drawnInBed = addon.drawnInBed,

@@ -859,7 +859,7 @@ namespace Pawnmorph.User_Interface
             ThingDef_AlienRace def = pawn.def as ThingDef_AlienRace;
             Vector2 hOffset = def != null ? def.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage).headOffset : Vector2.zero;
 
-            HarmonyPatches.DrawAddons(false, vector3, hOffset, pawn, quaternion, previewRot, false);
+            HarmonyPatches.DrawAddons( PawnRenderFlags.Clothes,  vector3, hOffset, pawn, quaternion, previewRot);
             if (toggleClothesEnabled)
             {
                 if (pawn.apparel != null)

@@ -191,7 +191,7 @@ namespace Pawnmorph
                 layerInvert = addon.layerInvert,
                 variantCount = addon.variantCount,
                 hediffGraphics = addon.hediffGraphics.MakeSafe().ToList(),
-                layerOffset = addon.layerOffset,
+                
                 hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
             };
 
