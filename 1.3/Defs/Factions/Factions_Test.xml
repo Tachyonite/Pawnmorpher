@@ -199,6 +199,8 @@
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
     <invNutrition>1</invNutrition>
     <invFoodDef>Pemmican</invFoodDef>
+    <initialWillRange>0~1</initialWillRange>
+    <initialResistanceRange>10~17</initialResistanceRange>
     <modExtensions>
       <li Class="Pawnmorph.MorphPawnKindExtension">
         <morphs>
@@ -219,8 +221,6 @@
         </morphs>
         <hediffRange>0~10</hediffRange>
       </li>
-      <initialWillRange>0~1</initialWillRange>
-      <initialResistanceRange>10~17</initialResistanceRange>
     </modExtensions>
   </PawnKindDef>
 
