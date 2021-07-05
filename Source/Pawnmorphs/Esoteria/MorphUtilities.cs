@@ -11,6 +11,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using HarmonyLib;
+using Pawnmorph.DefExtensions;
 
 namespace Pawnmorph
 {
@@ -257,12 +258,10 @@ namespace Pawnmorph
         /// <returns>
         ///   <c>true</c> if the specified pawn is a chimera; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsChimera([NotNull] this Pawn pawn)
+        public static bool IsChaomorph([NotNull] this Pawn pawn)
         {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            //TODO use a mod extension so this isn't hard coded  
-            //hacky 
-            return pawn.def.label.Contains("chao");
+           if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+           return pawn.def?.GetModExtension<ChaomorphExtension>() != null; 
         }
 
         /// <summary>
@@ -498,7 +497,7 @@ namespace Pawnmorph
             var morph = hInfluence as MorphDef;
             //if the highest influence isn't a morph pick a random morph from the animal class
             morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
-            if (morph.categories.Contains(MorphCategoryDefOf.Canid)) //TODO use the classes of these not the categories 
+            if (morph.categories.Contains(MorphCategoryDefOf.Canid)) //TODO Generalize this or just pick randomly, 
                 return MorphDefOfs.ChaofoxMorph;
             if (morph.categories.Contains(MorphCategoryDefOf.Reptile))
                 return MorphDefOfs.ChaodinoMorph;

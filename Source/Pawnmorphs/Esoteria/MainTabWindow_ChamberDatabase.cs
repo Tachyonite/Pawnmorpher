@@ -206,7 +206,7 @@ namespace Pawnmorph
 
         private void DrawMutationsTab(Rect inRect)
         {
-            _rowEntries.Clear(); //TODO fix this 
+            _rowEntries.Clear();
             foreach (MutationDef mutation in Database.StoredMutations) _rowEntries.Add(new RowEntry(mutation));
 
             DrawTable(inRect, _cachedHeaders[(int) Mode.Mutations]);
@@ -319,12 +319,11 @@ namespace Pawnmorph
                 for (var index = 0; index < _rowEntries.Count; index++)
                 {
                     RowEntry rowEntry = _rowEntries[index];
-                    Rect rect = viewRect; //TODO fix this 
+                    Rect rect = viewRect; 
                     rect.y += index * rowHeight; //go down 1 row? 
                     DrawRow(rowEntry, rect);
                 }
 
-                //TODO scroll view stuff 
                 //use _rowEntries to get the needed information 
                 // Set the scroll view height
             }

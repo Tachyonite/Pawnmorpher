@@ -345,8 +345,6 @@ namespace Pawnmorph
             {
                 _allAssociatedMutations = GetAllAssociatedMutations().Distinct().ToList(); 
             }
-
-            //TODO patch explicit race based on hybrid race settings? 
         }
 
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>

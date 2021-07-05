@@ -1159,7 +1159,7 @@ namespace Pawnmorph
             return false; 
         }
 
-        //TODO change this to enum flag 
+        //TODO change this to enum flag or def or something, hardcoded struct is bad 
         /// <summary>
         ///     simple struct to contain all options for addition actions to be taken when adding a mutation
         /// </summary>

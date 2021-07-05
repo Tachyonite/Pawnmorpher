@@ -294,7 +294,7 @@ namespace Pawnmorph
 
         private static void PatchCaravanUI([NotNull] Harmony harmInstance)
         {
-            //TODO make patch utilities for mass patching delegates 
+           
             var cUIType = typeof(CaravanUIUtility);
             var flg = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance;
 

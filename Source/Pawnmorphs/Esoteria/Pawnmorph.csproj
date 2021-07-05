@@ -672,7 +672,6 @@
     <Compile Include="MutationCategoryDef.cs" />
     <Compile Include="MutationLogEntry.cs" />
     <Compile Include="MutationsDefOf.cs" />
-    <Compile Include="MutationHediffExtension.cs" />
     <Compile Include="MutationOutlook.cs" />
     <Compile Include="MutationTracker.cs" />
     <Compile Include="MutationUtilities.cs" />
@@ -796,7 +795,6 @@
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
-    <Compile Include="Work\Giver_TendToSapientAnimal.cs" />
     <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
     <Compile Include="Work\Giver_WorkAtSequencer.cs" />

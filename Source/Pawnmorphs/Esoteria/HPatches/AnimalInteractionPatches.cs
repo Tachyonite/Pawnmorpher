@@ -45,7 +45,7 @@ namespace Pawnmorph.HPatches
                 if (mutInfused?.StageIndex != 0) return;
 
                 HediffDef hediffToAdd = null; 
-                if (nuzzler.IsChimera())
+                if (nuzzler.IsChaomorph())
                 {
                     hediffToAdd = MorphTransformationDefOf.FullRandomTF; 
                 }

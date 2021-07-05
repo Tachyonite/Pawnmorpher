@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
@@ -46,8 +47,7 @@ namespace Pawnmorph.Jobs
             {
                 if (job.targetQueueA.Count > 0)
                 {
-            
-                    Log.Message("checking production now");
+                    DebugLogUtils.LogMsg(LogLevel.Messages, "checking production now");
 
                     if(tComps.Count > 0 && Rand.Range(0, 1f) < 0.4f) 
                         tComps.RandomElement().ProduceNow();
@@ -60,7 +60,7 @@ namespace Pawnmorph.Jobs
             }
 
             yield return new Toil() {initAction = OnEndToil};
-            //TODO trigger production 
+            
         }
 
         void ProduceStuff()
