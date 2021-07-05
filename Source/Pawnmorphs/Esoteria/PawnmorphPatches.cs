@@ -368,7 +368,7 @@ namespace Pawnmorph
         
         [NotNull] private static FoodModifierComparer ModComparer { get; } = new FoodModifierComparer();
 
-        public static void ThoughtsFromIngestingPostfix(Pawn ingester, Thing foodSource, ref List<ThoughtDef> __result)
+        public static void ThoughtsFromIngestingPostfix(Pawn ingester, Thing foodSource, ref List<FoodUtility.ThoughtFromIngesting> __result)
         {
             ApplyMorphFoodThoughts(ingester, foodSource, __result);
 
@@ -400,8 +400,10 @@ namespace Pawnmorph
 
         }
 
-        private static void ApplyMorphFoodThoughts(Pawn ingester, Thing foodSource, List<ThoughtDef> foodThoughts)
+        private static void ApplyMorphFoodThoughts(Pawn ingester, Thing foodSource, List<FoodUtility.ThoughtFromIngesting> foodThoughts)
         {
+            var meatSource = FoodUtility.GetMeatSourceCategory(foodSource.def); 
+            //TODO figure out precept 
             if (RaceGenerator.TryGetMorphOfRace(ingester.def, out MorphDef morphDef))
             {
                 AteThought cannibalThought = morphDef.raceSettings?.thoughtSettings?.ateAnimalThought;
@@ -411,13 +413,18 @@ namespace Pawnmorph
 
                 if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
                 {
-                    foodThoughts.Add(cannibalThought.thought);
+                    TryAddIngestThought(ingester, cannibalThought.thought, null, foodThoughts, foodSource.def, meatSource); 
                     return;
                 }
 
                 ThingDef comp = foodSource.TryGetComp<CompIngredients>()
                                          ?.ingredients?.FirstOrDefault(def => def == morphDef.race.race.meatDef);
-                if (comp != null && !cannibal) foodThoughts.Add(cannibalThought.ingredientThought);
+                if (comp != null && !cannibal)
+                {
+
+                    TryAddIngestThought(ingester, cannibalThought.ingredientThought, null, foodThoughts, foodSource.def, meatSource);
+
+                }
             }
             else
             {
@@ -425,7 +432,32 @@ namespace Pawnmorph
                 if (fHStatus == null || fHStatus == SapienceLevel.PermanentlyFeral) return;
 
                 ThoughtDef thought = GetCannibalThought(ingester, foodSource);
-                if (thought != null) foodThoughts.Add(thought);
+                if (thought != null)
+                {
+                    TryAddIngestThought(ingester, thought, null, foodThoughts, foodSource.def, meatSource);
+
+                }
+            }
+
+        }
+
+        private static void TryAddIngestThought(Pawn ingester, ThoughtDef def, Precept fromPrecept, List<FoodUtility.ThoughtFromIngesting> ingestThoughts, ThingDef foodDef, MeatSourceCategory meatSourceCategory)
+        {
+            FoodUtility.ThoughtFromIngesting thoughtFromIngesting = new FoodUtility.ThoughtFromIngesting
+            {
+                thought = def, fromPrecept = fromPrecept
+            };
+            FoodUtility.ThoughtFromIngesting item = thoughtFromIngesting;
+            if (ingester?.story?.traits != null)
+            {
+                if (!ingester.story.traits.IsThoughtFromIngestionDisallowed(def, foodDef, meatSourceCategory))
+                {
+                    ingestThoughts.Add(item);
+                }
+            }
+            else
+            {
+                ingestThoughts.Add(item);
             }
         }
 
