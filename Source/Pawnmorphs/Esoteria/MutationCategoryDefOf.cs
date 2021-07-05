@@ -13,7 +13,7 @@ namespace Pawnmorph
     {
         static MutationCategoryDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(MutationCategoryDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(MutationCategoryDefOf));
         }
 
         /// <summary>

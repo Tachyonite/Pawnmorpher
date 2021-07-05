@@ -7,7 +7,6 @@
 			<verbClass>Verb_MeleeApplyHediff</verbClass>
 			<bodypartTagTarget>SightSource</bodypartTagTarget>
 			<minIntelligence>ToolUser</minIntelligence>
-			<impactMote>Mote_SandInEyes</impactMote>
 			<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
 		</verb>
 		<logEntryDef>SpitInEyes</logEntryDef>

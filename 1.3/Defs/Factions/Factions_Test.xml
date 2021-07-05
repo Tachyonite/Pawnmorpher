@@ -45,10 +45,7 @@
     <baseTraderKinds>
       <li>Base_Outlander_Standard</li>
     </baseTraderKinds>
-    <allowedArrivalTemperatureRange>
-      <min>-40</min>
-      <max>45</max>
-    </allowedArrivalTemperatureRange>
+    <allowedArrivalTemperatureRange>-40~45</allowedArrivalTemperatureRange>
     <maxPawnCostPerTotalPointsCurve>
       <points>
         <li>(0,35)</li>
@@ -222,6 +219,8 @@
         </morphs>
         <hediffRange>0~10</hediffRange>
       </li>
+      <initialWillRange>0~1</initialWillRange>
+      <initialResistanceRange>10~17</initialResistanceRange>
     </modExtensions>
   </PawnKindDef>
 
