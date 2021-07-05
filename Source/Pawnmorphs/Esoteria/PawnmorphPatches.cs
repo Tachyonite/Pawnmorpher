@@ -219,6 +219,8 @@ namespace Pawnmorph
 
 
         }
+        const BindingFlags INSTANCE_FLAGS = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+        const BindingFlags STATIC_FLAGS = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
 
         private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
         {
@@ -250,9 +252,12 @@ namespace Pawnmorph
             //down/death thoughts 
             methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
 
+            AddJobGiverMethods(methodsToPatch); 
+
 
             //socialization 
             methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[]{typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool)}));
+
 
 
             //now patch them 
@@ -276,6 +281,14 @@ namespace Pawnmorph
             }
             Log.Message(builder.ToString());
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
+        }
+
+        private static void AddJobGiverMethods( [NotNull] List<MethodInfo> methodsToPatch)
+        {
+
+            var method =
+                typeof(WorkGiver_ReleaseAnimalsToWild).GetMethod(nameof(WorkGiver_Scanner.HasJobOnThing), INSTANCE_FLAGS);
+            methodsToPatch.Add(method); 
         }
 
 
