@@ -8,7 +8,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.27</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
@@ -371,7 +370,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.26</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
@@ -408,7 +406,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.26</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left</PM_HellhoundEar>
@@ -573,7 +570,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.26</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
@@ -740,7 +736,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.28</layerOffset>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
@@ -822,7 +817,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
-				<layerOffset>-0.25</layerOffset>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
@@ -865,7 +859,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.29</layerOffset>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
@@ -901,7 +894,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.26</layerOffset>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -944,7 +936,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.26</layerOffset>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -987,7 +978,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.265</layerOffset>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
@@ -1051,7 +1041,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.26</layerOffset>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
@@ -1127,7 +1116,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Waist</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.29</layerOffset>
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -1163,7 +1151,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Arm</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.26</layerOffset>
 				<drawnInBed>false</drawnInBed>
 				<hediffGraphics>
 					<EtherWing>Parts/chickenface/chickenwings</EtherWing>
@@ -1189,7 +1176,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.279</layerOffset>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -1224,7 +1210,6 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
-				<layerOffset>-0.27</layerOffset>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<drawnInBed>false</drawnInBed>
