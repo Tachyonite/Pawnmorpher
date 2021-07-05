@@ -65,7 +65,6 @@ namespace Pawnmorph.HPatches
             }
         }
 
-        [HarmonyPatch]
         public static class PlantHarvestTPatch
         {
             public static MethodInfo match = typeof(Plant).GetMethod("YieldNow");
@@ -80,6 +79,8 @@ namespace Pawnmorph.HPatches
                 try
                 {
                     Type iteratorType = mainType.GetNestedTypes(bindingFlags).First(t => t.FullName.Contains("c__DisplayClass"));
+                    
+                    
                     //Log.Message("TargetMethod: Iterator Type Resolved");
                     //Type anonStoreyType = iteratorType.GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First(t => t.FullName.Contains("b__1"));
                     //Log.Message("TargetMethod: AnonStorey Type Resolved");
@@ -100,7 +101,7 @@ namespace Pawnmorph.HPatches
                     if (i.operand == match)
                     {
                         //Log.Message("Instruction insertion complete!");
-                        yield return new CodeInstruction(OpCodes.Ldloc_0);
+                        yield return new CodeInstruction(OpCodes.Ldloc_0); //TODO transpiler no longer works, need to fix 
                         yield return new CodeInstruction(OpCodes.Call, replaceWith);
                     }
                     else
