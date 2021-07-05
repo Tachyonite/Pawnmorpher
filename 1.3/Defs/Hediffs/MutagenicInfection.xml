@@ -1,0 +1,109 @@
+<Defs>
+    <HediffDef ParentName="InfectionBase">
+        <defName>PM_MutagenicInfection</defName>
+        <label>mutagenic infection</label>
+        <labelNoun>mutagenic infection</labelNoun>
+        <description>Mutagenic mechanites have infected this wound, causing mutations unless treated.</description>
+        <makesSickThought>true</makesSickThought>
+        <tendable>true</tendable>
+        <hediffClass>Pawnmorph.Hediffs.MorphDisease</hediffClass>
+        <makesAlert>true</makesAlert>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <maxSeverity>1.001</maxSeverity>
+        <comps>
+            <li Class="HediffCompProperties_TendDuration">
+                <baseTendDurationHours>12</baseTendDurationHours>
+                <severityPerDayTended>-0.53</severityPerDayTended>
+            </li>
+            <li Class="Pawnmorph.Hediffs.CompProps_ImmunizableMutation">
+                <severityPerDayNotImmune>0.84</severityPerDayNotImmune>
+                <immunityPerDaySick>0.6441</immunityPerDaySick>
+                <severityPerDayImmune>-0.70</severityPerDayImmune>
+                <immunityPerDayNotSick>-0.40</immunityPerDayNotSick>
+            </li>
+        </comps>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+                <label>minor</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>1</meanMutationsPerDay>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+                <minSeverity>0.566</minSeverity>
+                <label>major</label>
+                <vomitMtbDays>1.5</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>3</meanMutationsPerDay>
+                <addChance>1</addChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+                <minSeverity>0.843</minSeverity>
+                <label>extreme</label>
+                <lifeThreatening>true</lifeThreatening>
+                <vomitMtbDays>0.75</vomitMtbDays>
+                <painOffset>0.05</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.2</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.2</offset>
+                    </li>
+
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>6</meanMutationsPerDay>
+                <addChance>1</addChance>
+                <letterText>[PAWN_nameDef] is at risk of transforming into an animal soon. You can use stabilizer to prevent this</letterText>
+                <letterLabel>[PAWN_nameDef] is at risk of fully changing very soon.</letterLabel>
+            </li>
+            <li Class="Pawnmorph.Hediffs.FullTransformationStage">
+                <minSeverity>0.999</minSeverity>
+                <label>full</label>
+                <forceGender>Switch</forceGender>
+                <forceGenderChance>25</forceGenderChance>
+                <pawnkinds>
+                    <li>Chaocow</li>
+                    <li>Chaofox</li>
+                    <li>Chaodino</li>
+                </pawnkinds>
+                <transformationTale>TransformationMisc</transformationTale>
+                <changeChance>100</changeChance>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>

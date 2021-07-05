@@ -1,0 +1,15 @@
+<Defs>
+    <HediffDef Name="MutagenicBuildupBase" Abstract="true">
+        <hediffClass>Pawnmorph.Hediffs.MutagenicBuildup</hediffClass>
+        <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
+        <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
+        <maxSeverity>1</maxSeverity>
+        <label>mutagenic buildup</label>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutagenExtension">
+                <mutagen>ChaoticMutagen</mutagen>
+            </li>
+        </modExtensions>
+    </HediffDef>
+</Defs>

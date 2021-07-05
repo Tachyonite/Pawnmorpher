@@ -1,0 +1,266 @@
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>PM_MutationScanner</defName>
+        <label>Mutation Sequencer</label>
+        <description>Accesses your genebanks and sequences the animal genomes you've stored. Over time, will unlock mutations to be used in chambers, if manned.</description>
+        <graphicData>
+            <texPath>Things/Building/GenomeSequencer/GenomeSequencer</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <drawSize>2.65</drawSize>
+            <drawOffset>(0,0,-0.05)</drawOffset>
+            <shadowData>
+                <volume>(1.6875, 0.375, 2.125)</volume>
+                <offset>(0,0,-0.12)</offset>
+            </shadowData>
+        </graphicData>
+        <costList>
+            <Steel>150</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+            <ComponentSpacer>1</ComponentSpacer>
+        </costList>
+        <building>
+            <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+        </building>
+        <comps>
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <basePowerConsumption>700</basePowerConsumption>
+            </li>
+            <li Class="CompProperties_Breakdownable" />
+            <li Class="CompProperties_Flickable" />
+            <li Class="Pawnmorph.ThingComps.MutationSequencerProps">
+                <scanSpeedStat>ResearchSpeed</scanSpeedStat>
+                <scanFindMtbDays>3</scanFindMtbDays>
+                <scanFindGuaranteedDays>6</scanFindGuaranteedDays>
+                <soundWorking>ScannerGroundPenetrating_Ambience</soundWorking>
+            </li>
+        </comps>
+        <altitudeLayer>Building</altitudeLayer>
+        <canBeUsedUnderRoof>true</canBeUsedUnderRoof>
+        <statBases>
+            <MaxHitPoints>200</MaxHitPoints>
+            <WorkToBuild>12000</WorkToBuild>
+            <Flammability>0.5</Flammability>
+            <Beauty>-8</Beauty>
+        </statBases>
+        <hasInteractionCell>true</hasInteractionCell>
+        <interactionCellOffset>(0,0,2)</interactionCellOffset>
+        <interactionCellIcon>DiningChair</interactionCellIcon>
+        <interactionCellIconReverse>true</interactionCellIconReverse>
+        <fillPercent>0.40</fillPercent>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <passability>PassThroughOnly</passability>
+        <pathCost>50</pathCost>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <rotatable>true</rotatable>
+        <canOverlapZones>false</canOverlapZones>
+        <size>(3,3)</size>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <placeWorkers>
+            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+        </placeWorkers>
+        <defaultPlacingRot>South</defaultPlacingRot> <!-- to match long range mineral scanner -->
+        <researchPrerequisites>
+            <li>PM_MutationSequencer</li>
+        </researchPrerequisites>
+        <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    </ThingDef>
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>PM_SlurryPipe</defName>
+        <label>slurry pipe</label>
+        <description>A pipe that transmits slurry.</description>
+        <thingClass>Building</thingClass>
+        <category>Building</category>
+		<tickerType>Normal</tickerType>
+        <graphicData>
+            <texPath>Things/Building/MutagenPipe_Atlas</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <linkType>Transmitter</linkType>
+            <linkFlags>
+                <li>PowerConduit</li>
+            </linkFlags>
+            <damageData>
+                <rect>(0,0.35,1,0.3)</rect>
+            </damageData>
+        </graphicData>
+        <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
+        <uiIconScale>1</uiIconScale>
+        <building>
+            <ai_chillDestination>false</ai_chillDestination>
+            <isInert>true</isInert>
+            <isEdifice>false</isEdifice>
+            <blueprintGraphicData>
+                <texPath>Things/Building/MutagenPipe_Atlas</texPath>
+            </blueprintGraphicData>
+        </building>
+        <altitudeLayer>FloorEmplacement</altitudeLayer>
+        <passability>Standable</passability>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <statBases>
+            <MaxHitPoints>80</MaxHitPoints>
+            <WorkToBuild>35</WorkToBuild>
+            <Flammability>0.7</Flammability>
+            <Beauty>-2</Beauty>
+        </statBases>
+        <placingDraggableDimensions>1</placingDraggableDimensions>
+        <costList>
+            <Steel>1</Steel>
+        </costList>
+        <comps>
+            <li>
+                <compClass>Pawnmorph.SlurryNet.SlurryNetTransmitter</compClass>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1</glowRadius>
+                <glowColor>(0, 255, 0,0)</glowColor>
+            </li>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosiveDamageType>MutagenCloud_Tiny</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<preExplosionSpawnThingDef>PM_Filth_Slurry</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<wickTicks>
+					<min>30</min>
+					<max>60</max>
+				</wickTicks>
+			</li>
+        </comps>
+        <researchPrerequisites>
+            <li>PM_MutagenStorage</li>
+        </researchPrerequisites>
+        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <rotatable>false</rotatable>
+        <selectable>true</selectable>
+        <neverMultiSelect>true</neverMultiSelect>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+        <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <constructEffect>ConstructMetal</constructEffect>
+        <clearBuildingArea>false</clearBuildingArea>
+        <designationHotKey>Misc1</designationHotKey>
+
+    </ThingDef>
+    <ThingDef ParentName="BuildingBase">
+        <defName>MutaniteCentrifuge</defName>
+        <label>mutanite centrifuge</label>
+        <thingClass>Pawnmorph.Buildings.MutaniteCentrifuge</thingClass>
+        <description>When mutagenic slurry is piped in, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a morphsilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy.\n\nSetup: Connect the centrifuge to a mutagen tank using slurry pipes. Warning: turning on 'high power mode' causes mutagenic effects in a radius around it.</description>
+        <graphicData>
+            <texPath>Things/Building/MutaniteCentrifuge</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(4, 4)</drawSize>
+            <shadowData>
+                <volume>(1.4, 0.4, 1.4)</volume>
+                <offset>(0,0,-0.1)</offset>
+            </shadowData>
+        </graphicData>
+        <costList>
+            <Steel>500</Steel>
+            <Plasteel>50</Plasteel>
+            <Morphsilk>20</Morphsilk>
+            <ComponentIndustrial>8</ComponentIndustrial>
+            <ComponentSpacer>1</ComponentSpacer>
+        </costList>
+        <comps>
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <basePowerConsumption>1500</basePowerConsumption>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1</glowRadius>
+                <glowColor>(0, 255, 0,0)</glowColor>
+            </li>
+            <li Class="CompProperties_Breakdownable" />
+            <li Class="CompProperties_Flickable" />
+            <li Class="CompProperties_Explosive">
+                <explosiveRadius>8</explosiveRadius>
+                <explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+            </li>
+            <li Class="Pawnmorph.SlurryNet.SlurryNetDrawerProps">
+                <slurryDrawPerDay>30</slurryDrawPerDay>
+            </li>
+        </comps>
+        <altitudeLayer>Building</altitudeLayer>
+        <statBases>
+            <MarketValue>1500</MarketValue>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Flammability>1.0</Flammability>
+            <Beauty>-10</Beauty>
+            <Mass>35</Mass>
+            <WorkToBuild>8000</WorkToBuild>
+        </statBases>
+        <thingSetMakerTags>
+            <li>RewardStandardHighFreq</li>
+        </thingSetMakerTags>
+        <placeWorkers>
+            <li>Pawnmorph.PlaceWorkers.Centrifuge</li>
+        </placeWorkers>
+        <tickerType>Normal</tickerType>
+        <size>(3, 3)</size>
+        <fillPercent>1.0</fillPercent>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+        <passability>Impassable</passability>
+        <rotatable>false</rotatable>
+        <canOverlapZones>false</canOverlapZones>
+        <tradeability>Sellable</tradeability>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <tradeTags>
+            <li>ExoticBuilding</li>
+        </tradeTags>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutagenicBuildupSourceSettings">
+                <maxBuildup>0.5</maxBuildup>
+            </li>
+        </modExtensions>
+        <researchPrerequisites>
+            <li>MutagenCentrifuging</li>
+        </researchPrerequisites>
+    </ThingDef>
+
+    <ThingDef ParentName="MutagenicShipPartBase">
+        <defName>CrashedMutagenicShipPart</defName>
+        <label>ship part (mutagenic)</label>
+        <description>A mysterious crashed piece of a spaceship. It may contain any manner of deadly defenders and exotic materials. This one seems to have mutagenic effects.</description>
+        <graphicData>
+            <texPath>Things/Building/MutationShipPart</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(6,3)</drawSize>
+            <shadowData>
+                <volume>(5.5, 1.0, 2.45)</volume>
+            </shadowData>
+        </graphicData>
+        <killedLeavings>
+            <MechaniteSlurry>5</MechaniteSlurry>
+            <ReversionSyringe>2</ReversionSyringe>
+        </killedLeavings>
+        <placeWorkers>
+            <li>Pawnmorph.PlaceWorkers.ShowMutationRadius</li>
+        </placeWorkers>
+        <comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>12</glowRadius>
+                <glowColor>(217,80,80,0)</glowColor>
+            </li>
+            <li Class="Pawnmorph.CompProperties_MutagenicRadius">
+
+                <radiusPerDayCurve>
+                    <points>
+                        <li>0,10</li>
+                        <li>1,20</li>
+                        <li>3,30</li>
+                        <li>5,35</li>
+                        <li>10,50</li>
+                        <li>15,100</li>
+                    </points>
+                </radiusPerDayCurve>
+                <hediff>FullRandomTFAnyOutcome</hediff>
+                <harmFrequencyPerArea>1</harmFrequencyPerArea>
+            </li>
+        </comps>
+    </ThingDef>
+</Defs>

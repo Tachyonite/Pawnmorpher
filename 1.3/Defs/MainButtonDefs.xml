@@ -1,0 +1,10 @@
+<Defs>
+    <MainButtonDef>
+        <defName>PM_ChamberDatabaseButton</defName>
+        <label>Genebanks</label>
+        <description>Catalogs your stored mutations and animal genomes over your arrays of genebanks.</description>
+        <tabWindowClass>Pawnmorph.MainTabWindow_ChamberDatabase</tabWindowClass>
+        <order>90</order>
+        <validWithoutMap>true</validWithoutMap>
+      </MainButtonDef>
+</Defs>

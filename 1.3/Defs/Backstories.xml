@@ -1,0 +1,25 @@
+<Defs>
+    <AlienRace.BackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_SheepChef</defName>
+        <title>former celebrity chef</title>
+        <titleShort>celebrity chef</titleShort>
+        <baseDescription>[PAWN_nameDef] used to own his own 5-star restaurant until he a fateful event in which he yelled at an apprentice chef over lamb sauce.
+		In response, the apprentice slipped some ovine mutagen into the dish he was served, leading to the sudden transformation of chef into ram. [PAWN_nameDef] was then shoved into a cryptosleep pod and set adrift into the galaxy.
+		Eventually, he landed on a distant rimworld, and sought to begin his new life.</baseDescription>
+        <workAllows>
+            <li>Cooking</li>
+            <li>ManualSkilled</li>
+        </workAllows>
+    </AlienRace.BackstoryDef>
+
+    <AlienRace.BackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_ChaothrumboBackstory</defName>
+        <title>chaothrumbo</title>
+        <titleShort>chaothrumbo</titleShort>
+        <baseDescription>TODO</baseDescription>
+        <workAllows>
+            <li>PlantWork</li>
+        </workAllows>
+    </AlienRace.BackstoryDef>
+
+</Defs>
