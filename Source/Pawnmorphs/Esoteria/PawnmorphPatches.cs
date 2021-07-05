@@ -78,6 +78,15 @@ namespace Pawnmorph
 
             try
             {
+                PawnObserverPatches.PreformPatches(harmonyInstance); 
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher: unable to patch pawn observer:\n{e}");
+            }
+
+            try
+            {
                 DoAnimalPatches(harmonyInstance); 
             }
             catch (Exception e)
