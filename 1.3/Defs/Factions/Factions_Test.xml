@@ -139,10 +139,9 @@
           </countRange>
         </li>
       </subOptionsChooseOne>
-      <initialWillRange>0~1</initialWillRange>
-      <initialResistanceRange>10~17</initialResistanceRange>
     </inventoryOptions>
-
+    <initialWillRange>0~1</initialWillRange>
+    <initialResistanceRange>10~17</initialResistanceRange>
     <modExtensions>
       <li Class="Pawnmorph.MorphPawnKindExtension">
         <morphs>
