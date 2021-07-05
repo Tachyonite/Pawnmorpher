@@ -43,7 +43,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>PM_MutagenTank</defName>
-	<thingClass>Pawnmorph.Buildings.MutagenTank</thingClass>
+    <thingClass>Pawnmorph.Buildings.MutagenTank</thingClass>
+    <drawerType>MapMeshAndRealTime</drawerType>
     <label>mutagen tank</label>
     <description>Stores liquid slurry in quantities enough to supply a chamber. Can be filled via a network of mutagen conduits, supplied by either a mutagen hopper or a vent pump.</description>
     <graphicData>

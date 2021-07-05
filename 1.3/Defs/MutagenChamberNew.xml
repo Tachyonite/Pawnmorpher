@@ -4,6 +4,7 @@
         <label>mutagenic chamber</label>
         <description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not fit in here.</description>
         <thingClass>Pawnmorph.Chambers.MutaChamber</thingClass>
+        <drawerType>MapMeshAndRealTime</drawerType>
         <graphicData>
             <texPath>Things/Building/MutagenChamber/TFChamber_Glass</texPath>
             <graphicClass>Graphic_Single</graphicClass>
