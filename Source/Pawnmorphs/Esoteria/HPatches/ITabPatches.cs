@@ -98,7 +98,6 @@ namespace Pawnmorph.HPatches
                 "UnityEngine.Rect (7)",
                 "UnityEngine.Rect (7)",
             };
-            int step3 = 0;
             var rect = PatchUtilities.FindOperandAfter(opCodes3, operands3, instr);
             #endregion
 

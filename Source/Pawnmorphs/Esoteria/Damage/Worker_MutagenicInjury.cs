@@ -63,7 +63,7 @@ namespace Pawnmorph.Damage
             HediffDef hDef = dInfo.Def.GetModExtension<MutagenicDamageExtension>()?.mutagenicBuildup
                           ?? MorphTransformationDefOf.MutagenicBuildup_Weapon;
             if(pawn != null)
-                MutationUtilities.AdjustMutagenicBuildup(pawn, extraSeverity, hDef); 
+                MutagenicBuildupUtilities.AdjustMutagenicBuildup(dInfo.Def, pawn, extraSeverity ); 
             
         }
 

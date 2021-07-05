@@ -386,7 +386,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref shouldRemove, nameof(shouldRemove));
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
-                Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.", false);
+                Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.");
                 pawn.health.hediffSet.hediffs.Remove(this);
                 return;
             }

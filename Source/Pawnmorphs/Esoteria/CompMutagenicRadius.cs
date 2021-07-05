@@ -144,7 +144,7 @@ namespace Pawnmorph
                         baseMRate = A / (Mathf.Pow(rHat, DISTANCE_POW)); 
                     }
 
-                    MutatePawn(pawn, baseMRate); 
+                    MutatePawn(parent.def, pawn, baseMRate); 
                 }
             }
           
@@ -169,7 +169,7 @@ namespace Pawnmorph
 
         private const float BASE_BUILDUP_RATE = 0.007984825f; 
 
-        private static void MutatePawn(Pawn pawn, float baseBuildupRate)
+        private static void MutatePawn([CanBeNull] Def source, Pawn pawn, float baseBuildupRate)
         {
             if (pawn != null && MutagenDefOf.defaultMutagen.CanInfect(pawn))
             {
@@ -181,7 +181,7 @@ namespace Pawnmorph
                     {
                         float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D)); //should be ok
                         num *= num2; //what's the magic number? 
-                        MutationUtilities.AdjustMutagenicBuildup(pawn, num); 
+                        MutagenicBuildupUtilities.AdjustMutagenicBuildup(source, pawn, num); 
 
                     }
                 }

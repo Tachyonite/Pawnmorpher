@@ -135,8 +135,8 @@ namespace Pawnmorph
             _randomNameGenerators = new List<RulePackDef>();
             foreach (FactionDef factionDef in DefDatabase<FactionDef>.AllDefs)
             {
-                if (!factionDef.humanlikeFaction || factionDef.hidden || factionDef.pawnNameMaker == null) continue;
-                _randomNameGenerators.Add(factionDef.pawnNameMaker);
+                if (!factionDef.humanlikeFaction || factionDef.hidden || factionDef.factionNameMaker == null) continue;
+                _randomNameGenerators.Add(factionDef.factionNameMaker);
             }
             
             

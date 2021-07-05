@@ -94,7 +94,7 @@ namespace Pawnmorph
         /// <param name="inRect">The in rect.</param>
         public override void DoWindowContents(Rect inRect)
         {
-            base.DoWindowContents(inRect);
+            //base.DoWindowContents(inRect);
             Rect sRect = inRect;
 
 

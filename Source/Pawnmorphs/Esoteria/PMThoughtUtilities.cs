@@ -28,7 +28,7 @@ namespace Pawnmorph
             IEnumerable<ThoughtGroupDefExtension> tGroups = def.modExtensions.MakeSafe().OfType<ThoughtGroupDefExtension>();
 
             foreach (ThoughtDef thoughtDef in tGroups.SelectMany(g => g.thoughts))
-                if (ThoughtUtility.CanGetThought_NewTemp(pawn, thoughtDef)) //take the first one that matches 
+                if (ThoughtUtility.CanGetThought(pawn, thoughtDef)) //take the first one that matches 
                     return thoughtDef;
             //no matches found 
             return def;
@@ -50,7 +50,7 @@ namespace Pawnmorph
                 tGroups = memory.def.modExtensions.MakeSafe().OfType<ThoughtGroupDefExtension>();
 
             foreach (ThoughtDef thoughtDef in tGroups.SelectMany(g => g.thoughts))
-                if (ThoughtUtility.CanGetThought_NewTemp(pawn, thoughtDef))
+                if (ThoughtUtility.CanGetThought(pawn, thoughtDef))
                 {
                     int forcedStage = Mathf.Min(memory.CurStageIndex, thoughtDef.stages.Count - 1);
 

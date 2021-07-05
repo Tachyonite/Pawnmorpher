@@ -89,7 +89,7 @@ namespace Pawnmorph
 
             float sevOffset = GetSeverityOffset(curOccupant);
             if (sevOffset < EPSILON) return;
-            MutationUtilities.AdjustMutagenicBuildup(curOccupant, sevOffset); 
+            MutagenicBuildupUtilities.AdjustMutagenicBuildup(parent?.def,curOccupant, sevOffset); 
             
         }
     }

@@ -104,8 +104,7 @@ namespace Pawnmorph.Hybrids
         {
             //hybrid trainability should be 1 above that of a humans 
             if (animalTrainability == null) return TrainabilityDefOf.Intermediate;
-            if (animalTrainability == TrainabilityDefOf.None) return TrainabilityDefOf.Simple;
-            if (animalTrainability == TrainabilityDefOf.Simple) return TrainabilityDefOf.Intermediate;
+            if (animalTrainability == TrainabilityDefOf.None) return TrainabilityDefOf.Intermediate;
             if (animalTrainability == TrainabilityDefOf.Intermediate) return TrainabilityDefOf.Advanced;
             if (animalTrainability == TrainabilityDefOf.Advanced) return TrainabilityDefOf.Advanced;
             return animalTrainability; 

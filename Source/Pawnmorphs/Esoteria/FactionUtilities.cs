@@ -44,7 +44,7 @@ namespace Pawnmorph
                 var reason = GOODWILL_LABEL.Translate(member.LabelShort.Named(MEMBER_LABEL)
                                                       , animal.def.LabelCap.Named(ANIMAL_SPECIES)
                                                       ); // the first arg will be the former pawn, the second the animal 
-                faction.TryAffectGoodwillWith(Faction.OfPlayer, TRANSFORMED_RELATIONSHIP_OFFSET, reason: reason); 
+                faction.TryAffectGoodwillWith(Faction.OfPlayer, TRANSFORMED_RELATIONSHIP_OFFSET, reason: null); //TODO put in a history event def for transformed and put in for reason  
             }
 
             if (member == faction.leader)
@@ -77,7 +77,7 @@ namespace Pawnmorph
 
             var reason = MEMBER_REVERTED.Translate(member.LabelShort.Named(MEMBER_LABEL),
                                                    animal.def.LabelCap.Named(ANIMAL_SPECIES));
-            faction.TryAffectGoodwillWith(Faction.OfPlayer, -TRANSFORMED_RELATIONSHIP_OFFSET, reason: reason); 
+            faction.TryAffectGoodwillWith(Faction.OfPlayer, -TRANSFORMED_RELATIONSHIP_OFFSET, reason: null); //TODO create a history event def for reversion and put in Reason  
         }
 
         //TODO handle merged reactions (going to be harder because of the different possibilities)

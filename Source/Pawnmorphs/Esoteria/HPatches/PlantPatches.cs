@@ -89,7 +89,7 @@ namespace Pawnmorph.HPatches
                 {
                     var names = mainType.GetNestedTypes(bindingFlags).Select(t => t.FullName).Join(","); 
 
-                    throw new InvalidOperationException($"unable to find type with \"c__DisplayClass\" among \"{names}\""); 
+                    throw new InvalidOperationException($"unable to find type with \"c__DisplayClass\" among \"{names}\"", iO); 
                 }
 
             }
