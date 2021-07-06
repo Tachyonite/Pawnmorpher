@@ -13,7 +13,7 @@ namespace Pawnmorph.DebugUtils
     {
         public static bool ShouldLog(LogLevel logLevel)
         {
-            if (!Prefs.DevMode && logLevel != LogLevel.Error) return false;    
+            //if (!Prefs.DevMode && logLevel != LogLevel.Error) return false;    
             
             var cLevel = PMUtilities.GetSettings().logLevel;
             return logLevel <= cLevel;
@@ -56,13 +56,13 @@ namespace Pawnmorph.DebugUtils
             LogMsg(logLevel, msg);
         }
 
-        [DebuggerHidden]
+        [DebuggerHidden, Conditional("DEBUG")]
         public static void Pedantic(string message)
         {
             LogMsg(LogLevel.Pedantic, message);
         }
 
-        [DebuggerHidden]
+        [DebuggerHidden, Conditional("DEBUG")]
         public static void Pedantic(object message)
         {
             LogMsg(LogLevel.Pedantic, message);

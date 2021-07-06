@@ -7,8 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
-using HugsLib.Utils;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Plants;
 using RimWorld;
@@ -65,32 +65,41 @@ namespace Pawnmorph.HPatches
             }
         }
 
+        [HarmonyPatch]
         public static class PlantHarvestTPatch
         {
             public static MethodInfo match = typeof(Plant).GetMethod("YieldNow");
             public static MethodInfo replaceWith = typeof(PlantHarvestTPatch).GetMethod("YieldNowPatch");
-            public static MethodInfo TargetMethod()
+            //Note, this is being called implicitly by harmony with reflection, 
+            public static MethodBase TargetMethod()
             {
                 Type mainType = typeof(JobDriver_PlantWork);
-                //Log.Message("TargetMethod: Main Type Found");
 
 
                 BindingFlags bindingFlags = BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
                 try
                 {
                     Type iteratorType = mainType.GetNestedTypes(bindingFlags).First(t => t.FullName.Contains("c__DisplayClass"));
-                    
-                    
-                    //Log.Message("TargetMethod: Iterator Type Resolved");
-                    //Type anonStoreyType = iteratorType.GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First(t => t.FullName.Contains("b__1"));
-                    //Log.Message("TargetMethod: AnonStorey Type Resolved");
-                    return iteratorType.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).First(m => m.ReturnType == typeof(void));
+
+                 
+
+                 
+                    var method = iteratorType?.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                                              .First(m => m.ReturnType == typeof(void));
+
+
+                    return method;
                 }
                 catch (InvalidOperationException iO)
                 {
-                    var names = mainType.GetNestedTypes(bindingFlags).Select(t => t.FullName).Join(","); 
+                    var names = string.Join(",",mainType.GetNestedTypes(bindingFlags).Select(t => t.FullName));
 
-                    throw new InvalidOperationException($"unable to find type with \"c__DisplayClass\" among \"{names}\"", iO); 
+                    throw new InvalidOperationException($"unable to find type with \"c__DisplayClass\" among \"{names}\"", iO);
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"unable to preform plant patch! caught {e}");
+                    throw;
                 }
 
             }
@@ -98,10 +107,10 @@ namespace Pawnmorph.HPatches
             {
                 foreach (CodeInstruction i in instr)
                 {
-                    if (i.operand == match)
+                    if ((i.operand as MethodInfo) == match)
                     {
-                        //Log.Message("Instruction insertion complete!");
-                        yield return new CodeInstruction(OpCodes.Ldloc_0); //TODO transpiler no longer works, need to fix 
+                        Log.Message("Instruction insertion complete!");
+                        yield return new CodeInstruction(OpCodes.Ldloc_0);
                         yield return new CodeInstruction(OpCodes.Call, replaceWith);
                     }
                     else
