@@ -7,7 +7,7 @@
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
-				<defaultOffset>Head</defaultOffset>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
@@ -342,34 +342,13 @@
 						</severity>
 					</EtherWolfMuzzle>
 				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north/>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Bird jaw ornament -->
 				<debug>false</debug>
-				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
@@ -378,34 +357,13 @@
 				<hediffGraphics>
 					<EtherCassowaryBeak>Parts/Cassowary/Cassowary_Ornament</EtherCassowaryBeak>
 				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north/>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Left Ear -->
 				<debug>false</debug>
-				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -460,42 +418,13 @@
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left</EtherWolfEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
 				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.94)</Male>
-							<Female>(0,0.94)</Female>
-							<Thin>(0,0.94)</Thin>
-							<Hulk>(0,0.94)</Hulk>
-							<Fat>(0,0.94)</Fat>
-						</bodyTypes>
-					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Left Ear (Behind Head) -->
 				<debug>false</debug>
-				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -549,28 +478,14 @@
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left_Behind</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left_Behind</EtherWolfEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
-																												 
 				</hediffGraphics>
-				<offsets>
-					<south/>
-					<north/>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Right Ear -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<defaultOffset>Head</defaultOffset>
 				<bodyPart>right ear</bodyPart>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -624,44 +539,14 @@
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right</EtherWolfEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
-																										   
 				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.94)</Male>
-							<Female>(0,0.94)</Female>
-							<Thin>(0,0.94)</Thin>
-							<Hulk>(0,0.94)</Hulk>
-							<Fat>(0,0.94)</Fat>
-						</bodyTypes>
-					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Right Ear (Behind Head) -->
 				<debug>false</debug>
-				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -715,26 +600,11 @@
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right_Behind</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right_Behind</EtherWolfEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
-																												  
 				</hediffGraphics>
-				<offsets>
-					<south/>
-					<north/>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Tails -->
 				<debug>false</debug>
-				<defaultOffset>Tail</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -782,32 +652,31 @@
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
-																										
 				</hediffGraphics>
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.42,0.2)</Male>
-							<Female>(-0.42,0.16)</Female>
-							<Thin>(-0.42,0.2)</Thin>
-							<Fat>(-0.42,0.16)</Fat>
+							<Male>(0,-0.02)</Male>
+							<Female>(0,-0.06)</Female>
+							<Thin>(0,-0.02)</Thin>
+							<Fat>(0,-0.06)</Fat>
 						</bodyTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.2)</Male>
-							<Female>(0,0.16)</Female>
-							<Thin>(0,0.2)</Thin>
-							<Fat>(0,0.16)</Fat>
+							<Male>(0,-0.35)</Male>
+							<Female>(0,-0.39)</Female>
+							<Thin>(0,-0.35)</Thin>
+							<Fat>(0,-0.39)</Fat>
 						</bodyTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.22,-0.04)</Male>
-							<Female>(-0.11,-0.06)</Female>
-							<Thin>(-0.2,-0.04)</Thin>
-							<Hulk>(-0.02,-0.23)</Hulk>
-							<Fat>(0.04,0)</Fat>
+							<Male>(0.2,-0.26)</Male>
+							<Female>(0.31,-0.28)</Female>
+							<Thin>(0.22,-0.26)</Thin>
+							<Hulk>(0.4,-0.45)</Hulk>
+							<Fat>(0.46,-0.22)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -815,7 +684,6 @@
 			<li>
 				<!-- Behind-body tails -->
 				<debug>false</debug>
-				<defaultOffset>Tail</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -828,28 +696,28 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.42,0.04)</Male>
-							<Female>(-0.42,0.0)</Female>
-							<Thin>(-0.42,0.04)</Thin>
-							<Fat>(-0.42,0.0)</Fat>
-							<Hulk>(-0.42,-0.2)</Hulk>
+							<Male>(0,-0.18)</Male>
+							<Female>(0,-0.22)</Female>
+							<Thin>(0,-0.18)</Thin>
+							<Fat>(0,-0.22)</Fat>
+							<Hulk>(0,-0.42)</Hulk>
 						</bodyTypes>
 					</south>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.2)</Male>
-							<Female>(0,0.16)</Female>
-							<Thin>(0,0.2)</Thin>
-							<Fat>(0,0.16)</Fat>
+							<Male>(0,-0.35)</Male>
+							<Female>(0,-0.39)</Female>
+							<Thin>(0,-0.35)</Thin>
+							<Fat>(0,-0.39)</Fat>
 						</bodyTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.22,-0.04)</Male>
-							<Female>(-0.11,-0.06)</Female>
-							<Thin>(-0.2,-0.04)</Thin>
-							<Hulk>(-0.02,-0.23)</Hulk>
-							<Fat>(0.04,0)</Fat>
+							<Male>(0.2,-0.26)</Male>
+							<Female>(0.31,-0.28)</Female>
+							<Thin>(0.22,-0.26)</Thin>
+							<Hulk>(0.4,-0.45)</Hulk>
+							<Fat>(0.46,-0.22)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -857,7 +725,6 @@
 			<li>
 				<!-- Body-extending tails -->
 				<debug>false</debug>
-				<defaultOffset>Tail</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -872,19 +739,19 @@
 					<south/>
 					<north>
 						<bodyTypes>
-							<Male>(0,0.2)</Male>
-							<Female>(0,0.16)</Female>
-							<Thin>(0,0.2)</Thin>
-							<Fat>(0,0.16)</Fat>
+							<Male>(0,-0.35)</Male>
+							<Female>(0,-0.39)</Female>
+							<Thin>(0,-0.35)</Thin>
+							<Fat>(0,-0.39)</Fat>
 						</bodyTypes>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.2,-0.02)</Male>
-							<Female>(-0.24,-0.09)</Female>
-							<Thin>(-0.25,-0.02)</Thin>
-							<Hulk>(-0.06,-0.23)</Hulk>
-							<Fat>(0.02,-0.05)</Fat>
+							<Male>(0.22,-0.24)</Male>
+							<Female>(0.18,-0.31)</Female>
+							<Thin>(0.17,-0.24)</Thin>
+							<Hulk>(0.36,-0.45)</Hulk>
+							<Fat>(0.44,-0.27)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -892,96 +759,35 @@
 			<li>
 				<!-- Headspikes -->
 				<debug>false</debug>
-
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
-				<defaultOffset>Head</defaultOffset>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<PM_HellhoundHeadspike>Parts/COMBINATIONS/Hellhound/Hellhound_Headspikes</PM_HellhoundHeadspike>
 				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.94)</Male>
-							<Female>(0,0.94)</Female>
-							<Thin>(0,0.94)</Thin>
-							<Hulk>(0,0.94)</Hulk>
-							<Fat>(0,0.94)</Fat>
-						</bodyTypes>
-					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Skullspikes -->
 				<debug>false</debug>
-
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
-				<defaultOffset>Head</defaultOffset>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<EtherIguanaHorns>Parts/Iguana/Iguana_Spines</EtherIguanaHorns>
 				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.94)</Male>
-							<Female>(0,0.94)</Female>
-							<Thin>(0,0.94)</Thin>
-							<Hulk>(0,0.94)</Hulk>
-							<Fat>(0,0.94)</Fat>
-						</bodyTypes>
-					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Horns -->
 				<debug>false</debug>
-
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
-				<defaultOffset>Head</defaultOffset>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -1009,42 +815,13 @@
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.94)</Male>
-							<Female>(0,0.94)</Female>
-							<Thin>(0,0.94)</Thin>
-							<Hulk>(0,0.94)</Hulk>
-							<Fat>(0,0.94)</Fat>
-						</bodyTypes>
-					</north>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Cobra Hood (Foreground) -->
 				<debug>false</debug>
-				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
@@ -1055,34 +832,13 @@
 				<hediffGraphics>
 					<EtherSnakeHood>Parts/Cobra/Cobra_Hood</EtherSnakeHood>
 				</hediffGraphics>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north/>
-					<east>
-						<bodyTypes>
-							<Male>(-0.46,0.56)</Male>
-							<Female>(-0.52,0.56)</Female>
-							<Thin>(-0.51,0.56)</Thin>
-							<Hulk>(-0.52,0.56)</Hulk>
-							<Fat>(-0.51,0.56)</Fat>
-						</bodyTypes>
-					</east>
-				</offsets>
 			</li>
 			<li>
 				<!-- Cobra Hood (Background) -->
 				<debug>false</debug>
-				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
+				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -1092,32 +848,10 @@
 					<li>UpperHead</li>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
-				<offsets>
-					<south>
-						<bodyTypes>
-							<Male>(-0.42,0.56)</Male>
-							<Female>(-0.42,0.56)</Female>
-							<Thin>(-0.42,0.56)</Thin>
-							<Hulk>(-0.42,0.56)</Hulk>
-							<Fat>(-0.42,0.56)</Fat>
-						</bodyTypes>
-					</south>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.94)</Male>
-							<Female>(0,0.94)</Female>
-							<Thin>(0,0.94)</Thin>
-							<Hulk>(0,0.94)</Hulk>
-							<Fat>(0,0.94)</Fat>
-						</bodyTypes>
-					</north>
-					<east/>
-				</offsets>
 			</li>
 			<li>
 				<!-- Udders -->
 				<debug>false</debug>
-				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Waist</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1130,21 +864,18 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.42,0.22)</Male>
-							<Female>(-0.42,0.17)</Female>
-							<Thin>(-0.42,0.22)</Thin>
-							<Hulk>(-0.42,0.01)</Hulk>
-							<Fat>(-0.425,0.16)</Fat>
+							<Female>(0,-0.05)</Female>
+							<Hulk>(0,-0.21)</Hulk>
+							<Fat>(-0.005,-0.06)</Fat>
 						</bodyTypes>
 					</south>
 					<north/>
 					<east>
 						<bodyTypes>
-							<Male>(-0.42,0.22)</Male>
-							<Female>(-0.39,0.16)</Female>
-							<Thin>(-0.37,0.22)</Thin>
-							<Hulk>(-0.42,0.01)</Hulk>
-							<Fat>(-0.67,0.13)</Fat>
+							<Female>(0.03,-0.06)</Female>
+							<Thin>(0.05,0)</Thin>
+							<Hulk>(0,-0.21)</Hulk>
+							<Fat>(-0.25,-0.09)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -1152,7 +883,6 @@
 			<li>
 				<!-- Wings -->
 				<debug>false</debug>
-				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Arm</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1165,11 +895,11 @@
 					<south/>
 					<east>
 						<bodyTypes>
-							<Male>(-0.24,0.2)</Male>
-							<Female>(-0.24,0.2)</Female>
-							<Thin>(-0.24,0.2)</Thin>
-							<Hulk>(-0.24,0.2)</Hulk>
-							<Fat>(-0.24,0.2)</Fat>
+							<Male>(0.18,-0.02)</Male>
+							<Female>(0.18,-0.02)</Female>
+							<Thin>(0.18,-0.02)</Thin>
+							<Hulk>(0.18,-0.02)</Hulk>
+							<Fat>(0.18,-0.02)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -1177,7 +907,6 @@
 			<li>
 				<!-- Spines -->
 				<debug>false</debug>
-				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1188,22 +917,12 @@
 				</hediffGraphics>
 				<offsets>
 					<south/>
-					<north>
-						<bodyTypes>
-							<Male>(0,0.55)</Male>
-							<Female>(0,0.55)</Female>
-							<Thin>(0,0.55)</Thin>
-							<Hulk>(0,0.55)</Hulk>
-							<Fat>(0,0.55)</Fat>
-						</bodyTypes>
-					</north>
+					<north/>
 					<east>
 						<bodyTypes>
-							<Male>(-0.42,0.22)</Male>
-							<Female>(-0.42,0.22)</Female>
-							<Thin>(-0.48,0.22)</Thin>
-							<Hulk>(-0.33,0.22)</Hulk>
-							<Fat>(-0.33,0.22)</Fat>
+							<Thin>(-0.06,0)</Thin>
+							<Hulk>(0.09,0)</Hulk>
+							<Fat>(0.09,0)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -1211,7 +930,6 @@
 			<li>
 				<!-- Torsos -->
 				<debug>false</debug>
-				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1224,21 +942,13 @@
 				<offsets>
 					<south/>
 					<north>
-						<bodyTypes>
-							<Male>(0,0.55)</Male>
-							<Female>(0,0.55)</Female>
-							<Thin>(0,0.55)</Thin>
-							<Hulk>(0,0.55)</Hulk>
-							<Fat>(0,0.55)</Fat>
-						</bodyTypes>
+						<bodyTypes/>
 					</north>
 					<east>
 						<bodyTypes>
-							<Male>(-0.42,0.22)</Male>
-							<Female>(-0.42,0.22)</Female>
-							<Thin>(-0.48,0.22)</Thin>
-							<Hulk>(-0.33,0.22)</Hulk>
-							<Fat>(-0.33,0.22)</Fat>
+							<Thin>(-0.06,0)</Thin>
+							<Hulk>(0.09,0)</Hulk>
+							<Fat>(0.09,0)</Fat>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -1246,7 +956,6 @@
 			<li>
 				<!-- Torsos Behind-->
 				<debug>false</debug>
-				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -1259,11 +968,11 @@
 				<offsets>
 					<south>
 						<bodyTypes>
-							<Male>(-0.42,0.34)</Male>
-							<Female>(-0.42,0.24)</Female>
-							<Thin>(-0.42,0.34)</Thin>
-							<Hulk>(-0.42,0.34)</Hulk>
-							<Fat>(-0.425,0.30)</Fat>
+							<Male>(0,0.12)</Male>
+							<Female>(0,0.02)</Female>
+							<Thin>(0,0.12)</Thin>
+							<Hulk>(0,0.12)</Hulk>
+							<Fat>(-0.005,0.08)</Fat>
 						</bodyTypes>
 					</south>
 					<north/>
