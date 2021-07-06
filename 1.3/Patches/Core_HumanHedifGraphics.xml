@@ -7,6 +7,7 @@
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
+				<defaultOffset>Head</defaultOffset>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
@@ -366,7 +367,7 @@
 			<li>
 				<!-- Bird jaw ornament -->
 				<debug>false</debug>
-
+				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -402,7 +403,7 @@
 			<li>
 				<!-- Left Ear -->
 				<debug>false</debug>
-
+				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -492,7 +493,7 @@
 			<li>
 				<!-- Left Ear (Behind Head) -->
 				<debug>false</debug>
-
+				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -568,6 +569,7 @@
 				<!-- Right Ear -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
+				<defaultOffset>Head</defaultOffset>
 				<bodyPart>right ear</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
@@ -657,7 +659,7 @@
 			<li>
 				<!-- Right Ear (Behind Head) -->
 				<debug>false</debug>
-
+				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -732,7 +734,7 @@
 			<li>
 				<!-- Tails -->
 				<debug>false</debug>
-
+				<defaultOffset>Tail</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -813,7 +815,7 @@
 			<li>
 				<!-- Behind-body tails -->
 				<debug>false</debug>
-
+				<defaultOffset>Tail</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -855,7 +857,7 @@
 			<li>
 				<!-- Body-extending tails -->
 				<debug>false</debug>
-
+				<defaultOffset>Tail</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -893,6 +895,7 @@
 
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
+				<defaultOffset>Head</defaultOffset>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
@@ -935,6 +938,7 @@
 
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
+				<defaultOffset>Head</defaultOffset>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
@@ -977,6 +981,7 @@
 
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
+				<defaultOffset>Head</defaultOffset>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -1037,7 +1042,7 @@
 			<li>
 				<!-- Cobra Hood (Foreground) -->
 				<debug>false</debug>
-
+				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1075,7 +1080,7 @@
 			<li>
 				<!-- Cobra Hood (Background) -->
 				<debug>false</debug>
-
+				<defaultOffset>Head</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -1112,7 +1117,7 @@
 			<li>
 				<!-- Udders -->
 				<debug>false</debug>
-
+				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Waist</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1147,7 +1152,7 @@
 			<li>
 				<!-- Wings -->
 				<debug>false</debug>
-
+				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Arm</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1172,7 +1177,7 @@
 			<li>
 				<!-- Spines -->
 				<debug>false</debug>
-
+				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1206,7 +1211,7 @@
 			<li>
 				<!-- Torsos -->
 				<debug>false</debug>
-
+				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1241,7 +1246,7 @@
 			<li>
 				<!-- Torsos Behind-->
 				<debug>false</debug>
-
+				<defaultOffset>Center</defaultOffset>
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
