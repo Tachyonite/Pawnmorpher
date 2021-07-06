@@ -97,15 +97,6 @@ namespace Pawnmorph
 
             try
             {
-                ITabPatches.DoPrisonerPatch(harmonyInstance); 
-            }
-            catch (Exception e)
-            {
-                Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching prisoner tab!\n{e}");
-            }
-
-            try
-            {
                 PatchMods(harmonyInstance);
             }
             catch (Exception e)
