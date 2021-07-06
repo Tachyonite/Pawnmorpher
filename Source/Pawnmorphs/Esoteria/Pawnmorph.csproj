@@ -456,7 +456,6 @@
     <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
     <Compile Include="HPatches\IngestJobPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
-    <Compile Include="HPatches\ITabPatches.cs" />
     <Compile Include="HPatches\JobGiver_GetJoyPatches.cs" />
     <Compile Include="HPatches\MentalBreakPatches.cs" />
     <Compile Include="HPatches\NativeVerbPatches.cs" />
