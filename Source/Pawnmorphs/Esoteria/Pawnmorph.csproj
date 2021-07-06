@@ -468,7 +468,6 @@
     <Compile Include="HPatches\PawnCompPatches.cs" />
     <Compile Include="HPatches\PawnObserverPatches.cs" />
     <Compile Include="HPatches\PawnPatches.cs" />
-    <Compile Include="HPatches\PlantGrowingPatches.cs" />
     <Compile Include="HPatches\PlantPatches.cs" />
     <Compile Include="HPatches\PortraitCachePatches.cs" />
     <Compile Include="HPatches\ProductionCompPatches.cs" />
