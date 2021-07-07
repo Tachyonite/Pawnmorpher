@@ -243,7 +243,10 @@ namespace Pawnmorph
             //down/death thoughts 
             methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
 
-            AddJobGiverMethods(methodsToPatch); 
+            AddJobGiverMethods(methodsToPatch);
+
+
+            AddDesignatorMethods(methodsToPatch); 
 
 
             //socialization 
@@ -274,12 +277,19 @@ namespace Pawnmorph
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
         }
 
+        private static void AddDesignatorMethods([NotNull] List<MethodInfo> methodsToPatch)
+        {
+            methodsToPatch.Add(typeof(Designator_ReleaseAnimalToWild).GetMethod(nameof(Designator.CanDesignateThing), BindingFlags.Instance | BindingFlags.Public));
+        }
+
         private static void AddJobGiverMethods( [NotNull] List<MethodInfo> methodsToPatch)
         {
 
             var method =
                 typeof(WorkGiver_ReleaseAnimalsToWild).GetMethod(nameof(WorkGiver_Scanner.HasJobOnThing), INSTANCE_FLAGS);
             methodsToPatch.Add(method); 
+
+            
         }
 
 

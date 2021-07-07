@@ -291,6 +291,7 @@ namespace Pawnmorph.Social
                 if (recruitee.needs.mood != null)
                     recruitee.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.RecruitedMe, recruiter);
                 QuestUtility.SendQuestTargetSignals(recruitee.questTags, "Recruited", recruitee.Named("SUBJECT"));
+                Find.ColonistBar?.MarkColonistsDirty();
             }
             else
             {

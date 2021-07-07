@@ -105,7 +105,7 @@ namespace Pawnmorph.DebugUtils
                 builder.AppendLine($"|\t{nameof(limitStat)}:{limitStat}");
                 builder.AppendLine($"|\t{nameof(limit)}:{limit}");
                 builder.AppendLine($"|\t{nameof(limitPercent)}:{limitPercent}");
-
+                builder.AppendLine($"|\t{nameof(Pawn.IsColonist)}:{pawn.IsColonist}");
             }
 
             Log.Message(builder.ToString()); 
