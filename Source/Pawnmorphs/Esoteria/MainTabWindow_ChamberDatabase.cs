@@ -177,7 +177,7 @@ namespace Pawnmorph
         /// </summary>
         public override void PreOpen()
         {
-            base.PostOpen();
+            base.PreOpen();
             _rowEntries.Clear();
         }
 
