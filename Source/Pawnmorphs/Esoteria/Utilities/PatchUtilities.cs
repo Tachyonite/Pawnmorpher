@@ -233,6 +233,8 @@ namespace Pawnmorph.Utilities
         /// <summary>
         /// Determines whether this method has the given type signature 
         /// </summary>
+        /// Determines whether this method has the given type signature
+        /// Note: this only checks the parameters not the return type, that must be checked separately 
         /// <param name="methodInfo">The method information.</param>
         /// <param name="types">The types.</param>
         /// <returns>

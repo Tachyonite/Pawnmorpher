@@ -232,7 +232,7 @@ namespace Pawnmorph
 
    
             //map pawns 
-            var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)));
+            var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)) || m.HasSignature(typeof(Faction), typeof(bool)));
             methodsToPatch.AddRange(methods); 
 
          
