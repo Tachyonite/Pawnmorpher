@@ -1027,7 +1027,7 @@ namespace Pawnmorph
         /// <returns></returns>
         public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName=null, string fixedLastName = null, Gender? fixedOriginalGender=null)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
+            PawnKindDef pawnKind = PawnKindDefOf.Villager;
 
             PawnKindDef kind = pawnKind;
             Faction faction = Faction.OfPlayer;
@@ -1047,7 +1047,7 @@ namespace Pawnmorph
         /// <returns></returns>
         public static (Pawn p1, Pawn p2) GenerateRandomUnmergedHuman(Pawn mergedAnimal)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
+            PawnKindDef pawnKind = PawnKindDefOf.Villager;
 
             PawnKindDef kind = pawnKind;
             Faction faction = Faction.OfPlayer;
