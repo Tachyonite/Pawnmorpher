@@ -96,7 +96,7 @@ namespace Pawnmorph.IncidentWorkers
         [NotNull]
         Pawn GenerateGordon(Pawn animal)
         {
-            PawnKindDef kind = PawnKindDefOf.Colonist; //TODO get these randomly ;
+            PawnKindDef kind = PawnKindDefOf.Colonist;
             Faction faction = Faction.OfPlayer;
             bool useFirst = Rand.Bool;
             string firstName, lastName;
