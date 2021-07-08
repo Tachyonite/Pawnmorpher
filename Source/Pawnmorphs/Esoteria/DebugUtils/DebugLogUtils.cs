@@ -261,15 +261,6 @@ namespace Pawnmorph.DebugUtils
             Log.Message($"{builder}");
         }
 
-
-      
-
-        [DebugOutput(MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
-        public static void OpenActionMenu()
-        {
-            Find.WindowStack.Add(new Pawnmorpher_DebugDialogue());
-        }
-
         private static void BuildGraphvizTree([NotNull] AnimalClassBase aBase, StringBuilder builder)
         {
             foreach (AnimalClassBase child in aBase.Children)
