@@ -13,6 +13,7 @@ namespace Pawnmorph
     /// comp for mutating things within a radius 
     /// </summary>
     public class CompMutagenicRadius : ThingComp
+    //TODO see if code can be reused (centrifuge, liquidslury, mutagenicstone, PMPlantUtilities...)
     {
         private const float LEAFLESS_PLANT_KILL_CHANCE = 0.09f;
         private const float MUTATE_IN_RADIUS_CHANCE = 0.50f;
