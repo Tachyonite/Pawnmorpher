@@ -251,10 +251,13 @@ namespace Pawnmorph.Hybrids
 
         private static AlienPartGenerator GenerateHybridGenerator(AlienPartGenerator human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
-            AlienPartGenerator gen = new AlienPartGenerator
+            AlienPartGenerator gen = new AlienPartGenerator //TODO use reflection to copy these fields? 
             {
                 alienbodytypes = human.alienbodytypes.MakeSafe().ToList(),
                 aliencrowntypes = human.aliencrowntypes.MakeSafe().ToList(),
+                offsetDefaults = human.offsetDefaults.MakeSafe().ToList(),
+                headOffset = human.headOffset,
+                headOffsetDirectional = human.headOffsetDirectional,
                 bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
                 alienProps = impliedRace
             };
@@ -326,11 +329,17 @@ namespace Pawnmorph.Hybrids
                     drawForFemale = addon.drawForFemale,
                     drawSize = addon.drawSize,
                     variantCount = addon.variantCount,
+                    defaultOffset = addon.defaultOffset,
+                    defaultOffsets = addon.defaultOffsets,
                     hediffGraphics = addon.hediffGraphics,
                     backstoryGraphics = addon.backstoryGraphics,
                     hiddenUnderApparelFor = addon.hiddenUnderApparelFor,
                     hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
-                    backstoryRequirement = addon.backstoryRequirement
+                    backstoryRequirement = addon.backstoryRequirement,
+                    drawRotated = addon.drawRotated,
+                    drawSizePortrait = addon.drawSizePortrait,
+                    scaleWithPawnDrawsize = addon.scaleWithPawnDrawsize,
+                    alignWithHead = addon.alignWithHead
                 };
 
                 if (headParts.Contains(temp.bodyPart))
@@ -385,7 +394,9 @@ namespace Pawnmorph.Hybrids
             {
                 portraitBodyTypes = human.portraitBodyTypes,
                 portraitCrownTypes = human.portraitCrownTypes,
-                crownTypes = human.crownTypes
+                crownTypes = human.crownTypes,
+                layerOffset = human.layerOffset,
+                offset = human.offset
             };
 
             if (human.bodyTypes != null)
