@@ -29,6 +29,20 @@ namespace Pawnmorph.Utilities
 
 
         /// <summary>
+        /// Determines whether this list is both non null and not empty.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="lst">The LST.</param>
+        /// <returns>
+        ///   <c>true</c> if this list is both non null and not empty; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsNonNullAndNonEmpty<T>([CanBeNull] this IReadOnlyList<T> lst)
+        {
+            if (lst == null) return false;
+            return lst.Count > 0; 
+        }
+
+        /// <summary>
         /// Adds the range to this linked list at the end of the list.
         /// </summary>
         /// <typeparam name="T"></typeparam>

@@ -35,6 +35,49 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString()); 
         }
 
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void CheckFormerHumanDoorPatches()
+        {
+            Map map = Find.CurrentMap;
+            if (map == null) return; 
+            ThingDef def = DefDatabase<ThingDef>.GetNamed("Door");
+
+            var actualDoor = map.listerThings.ThingsOfDef(def).FirstOrDefault(d => d.Faction == Faction.OfPlayer) as Building_Door;  
+
+
+            var pawnsOnMap = map.mapPawns.AllPawns.MakeSafe().Where(p => p.IsFormerHuman()).ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            if (pawnsOnMap.Count == 0)
+            {
+                Log.Message("no former humans on map to test");
+                return;
+            }
+
+            if (actualDoor == null)
+            {
+                Log.Message("please place a vanilla door down to test");
+                return; 
+            }
+            foreach (Pawn pawn in pawnsOnMap)
+            {
+                var sap = pawn.GetQuantizedSapienceLevel();
+                builder.AppendLine($"Testing: {pawn.Name}:{sap}");
+                var canPass = actualDoor.PawnCanOpen(pawn);
+                bool machinesLike;
+                if (!canPass)
+                {
+                    machinesLike = GenAI.MachinesLike(Faction.OfPlayer, pawn);
+                }
+                else machinesLike = true; 
+
+                builder.AppendLine($"{pawn.Name} canPass:{canPass} machinesLike:{machinesLike} blockedByFences(FHUtils){pawn.IsFenceBlocked()}");
+            }
+            Log.Message(builder.ToString());
+
+        }
+
         [DebugOutput(category = FH_CATEGORY)]
         static void PrintAnimalThinkTree()
         {

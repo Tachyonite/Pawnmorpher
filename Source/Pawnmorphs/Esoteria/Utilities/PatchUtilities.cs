@@ -48,10 +48,21 @@ namespace Pawnmorph.Utilities
             CanPassFencesMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.CanPassFences), AllFlags);
 
             _fenceBlockedTargetMethod = racePropType
-                                       .GetProperty(nameof(RaceProperties.CanPassFences),
+                                       .GetProperty(nameof(RaceProperties.FenceBlocked),
                                                     publicInstance)
                                        .GetMethod;
-            _canPassFenceTargetMethod = racePropType.GetProperty(nameof(RaceProperties.CanPassFences)).GetMethod; 
+            _canPassFenceTargetMethod = racePropType.GetProperty(nameof(RaceProperties.CanPassFences), publicInstance).GetMethod;
+
+            if (_fenceBlockedTargetMethod == null)
+            {
+                Log.Error($"unable to find {nameof(RaceProperties.FenceBlocked)}");
+            }
+
+            if (_canPassFenceTargetMethod == null)
+            {
+                Log.Error($"unable to find {nameof(RaceProperties.CanPassFences)}");
+            }
+
         }
 
 
@@ -226,19 +237,32 @@ namespace Pawnmorph.Utilities
         /// </summary>
         /// <param name="harmony"></param>
         /// <param name="targetMethod"></param>
-        public static void ILPatchCommonMethods([NotNull] this Harmony harmony, [NotNull] MethodInfo targetMethod)
+        public static void ILPatchCommonMethods([NotNull] this Harmony harmony, [NotNull] MethodInfo targetMethod, bool debug=false)
         {
             if (harmony == null) throw new ArgumentNullException(nameof(harmony));
             if (targetMethod == null) throw new ArgumentNullException(nameof(targetMethod));
 
             var hTs = new HarmonyMethod(CommonTranspiler);
+            var initDebug = Harmony.DEBUG; 
             try
             {
+                if (debug)
+                {
+                    Harmony.DEBUG = true;
+                }
+
                 harmony.Patch(targetMethod, transpiler: hTs);
             }
             catch (Exception e)
             {
                 Log.Error($"encountered {e.GetType().Name} while patching {targetMethod.Name}\n{e}");
+            }
+            finally
+            {
+                if (debug)
+                {
+                    Harmony.DEBUG = initDebug;
+                }
             }
         }
 
@@ -436,6 +460,8 @@ namespace Pawnmorph.Utilities
         }
 
 
+     
+
         /// <summary>
         /// substitutes all instances of RaceProps Humanlike, Animal, and Tooluser with their equivalent in FormerHumanUtilities
         /// </summary>
@@ -474,6 +500,14 @@ namespace Pawnmorph.Utilities
                     {
                         patched = true;
                         opI.operand = IsToolUserMethod;
+                    }else if (jMethod == _fenceBlockedTargetMethod)
+                    {
+                        patched = true;
+                        opI.operand = FenceBlockMethod; 
+                    }else if (jMethod == _canPassFenceTargetMethod)
+                    {
+                        patched = true;
+                        opI.operand = CanPassFencesMethod; 
                     }
                     else
                     {

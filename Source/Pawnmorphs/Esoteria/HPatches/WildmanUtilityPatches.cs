@@ -7,7 +7,6 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    [HarmonyPatch(typeof(WildManUtility))]
     static class WildmanUtilityPatches
     {
         [HarmonyPatch(nameof(WildManUtility.NonHumanlikeOrWildMan))]

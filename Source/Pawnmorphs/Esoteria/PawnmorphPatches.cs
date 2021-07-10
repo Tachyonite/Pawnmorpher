@@ -185,6 +185,7 @@ namespace Pawnmorph
         }
 
 
+
         static bool AnimalTabWorkerMethod(Pawn pawn)
         {
             return pawn.RaceProps.Animal || pawn.GetIntelligence() == Intelligence.Animal; 
@@ -207,12 +208,22 @@ namespace Pawnmorph
                 harmonyInstance.Patch(methodInfo, transpiler: new HarmonyMethod(tpMethod)); 
             }
 
-
-
         }
+
+        struct MethodInfoSt
+        {
+            public MethodInfo methodInfo;
+            public bool debug; 
+
+            public static implicit operator MethodInfoSt(MethodInfo info)
+            {
+                return new MethodInfoSt {methodInfo = info, debug = false};
+            }
+        }
+
         const BindingFlags INSTANCE_FLAGS = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
         const BindingFlags STATIC_FLAGS = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
-
+        private const BindingFlags ALL = INSTANCE_FLAGS | STATIC_FLAGS; 
         private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
         {
             var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public; 
@@ -221,19 +232,23 @@ namespace Pawnmorph
 
 
 
-            List<MethodInfo> methodsToPatch = new List<MethodInfo>(); 
+            List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>(); 
             
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod); 
 
-     
+            //wildman
+            AddWildmanMethods(methodsToPatch); 
+
+            //door 
+            methodsToPatch.Add(new MethodInfoSt(){methodInfo= typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), instanceFlags), debug=false});
 
    
             //map pawns 
             var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)) || m.HasSignature(typeof(Faction), typeof(bool)));
-            methodsToPatch.AddRange(methods); 
+            methodsToPatch.AddRange(methods.Select(m =>new MethodInfoSt(){methodInfo = m})); 
 
          
             //jobs and toils 
@@ -255,34 +270,41 @@ namespace Pawnmorph
 
 
             //now patch them 
-            foreach (MethodInfo methodInfo in methodsToPatch)
+            foreach (var methodInfo in methodsToPatch)
             {
-                if (methodInfo == null)
+                if (methodInfo.methodInfo == null)
                 {
                     Log.Warning($"encountered null in {nameof(MassPatchFormerHumanChecks)}!");
                     
                     continue;
                 }
-                harmonyInstance.ILPatchCommonMethods(methodInfo); 
+
+                harmonyInstance.ILPatchCommonMethods(methodInfo.methodInfo,methodInfo.debug); 
             }
 
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Patched:");
-            foreach (MethodInfo methodInfo in methodsToPatch)
+            foreach (var methodInfo in methodsToPatch)
             {
-                if(methodInfo == null) continue;
-                builder.AppendLine($"{methodInfo.Name}");
+                if(methodInfo.methodInfo == null) continue;
+                builder.AppendLine($"{methodInfo.methodInfo.Name}");
             }
             Log.Message(builder.ToString());
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
         }
 
-        private static void AddDesignatorMethods([NotNull] List<MethodInfo> methodsToPatch)
+        private static void AddWildmanMethods([NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+            var methods = typeof(WildManUtility).GetMethods(STATIC_FLAGS).Where(m => m.ReturnType == typeof(bool));
+            methodsToPatch.AddRange(methods.Select(m => new MethodInfoSt(){methodInfo = m})); 
+        }
+
+        private static void AddDesignatorMethods([NotNull] List<MethodInfoSt> methodsToPatch)
         {
             methodsToPatch.Add(typeof(Designator_ReleaseAnimalToWild).GetMethod(nameof(Designator.CanDesignateThing), BindingFlags.Instance | BindingFlags.Public));
         }
 
-        private static void AddJobGiverMethods( [NotNull] List<MethodInfo> methodsToPatch)
+        private static void AddJobGiverMethods( [NotNull] List<MethodInfoSt> methodsToPatch)
         {
 
             var method =
