@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
@@ -20,7 +21,27 @@ namespace Pawnmorph.DebugUtils
 {
     public static partial class DebugLogUtils
     {
-        private const string FH_CATEGORY = MAIN_CATEGORY_NAME +  "-Former Humans"; 
+        private const string FH_CATEGORY = MAIN_CATEGORY_NAME +  "-Former Humans";
+
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void LogFilthValues()
+        {
+            var map = Find.CurrentMap;
+            if (map == null) return;
+            var formerHumans = map.mapPawns?.AllPawns?.Where(m => m.IsFormerHuman() || m.GetSapienceState() != null);
+            
+            StringBuilder builder = new StringBuilder();
+
+            foreach (Pawn pawn in formerHumans.MakeSafe())
+            {
+                var baseStat = pawn.GetStatValue(StatDefOf.FilthRate);
+                var Adjusted = pawn.GetFilthStat();
+                builder.AppendLine($"{pawn.Name}[{pawn.GetQuantizedSapienceLevel()}] baseFilth:{baseStat} adjusted:{Adjusted}");
+            }
+
+            Log.Message(builder.ToString());
+        }
+
 
         [DebugOutput(category = FH_CATEGORY)]
         static void LogFormerHumanLordStatus()

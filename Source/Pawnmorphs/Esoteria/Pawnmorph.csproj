@@ -779,6 +779,7 @@
     <Compile Include="Utilities\HediffCompBase.cs" />
     <Compile Include="Utilities\HediffDefUtilities.cs" />
     <Compile Include="Utilities\LinqUtils.cs" />
+    <Compile Include="Utilities\MathUtilities.cs" />
     <Compile Include="Utilities\PatchUtilities.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\RWRaycast.cs" />

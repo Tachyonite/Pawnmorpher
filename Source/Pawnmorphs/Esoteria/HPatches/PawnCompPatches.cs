@@ -144,6 +144,56 @@ namespace Pawnmorph.HPatches
                 return true;
             }
         }
+
+
+        [HarmonyPatch(typeof(Pawn_FilthTracker), nameof(Pawn_FilthTracker.Notify_EnteredNewCell)), HarmonyDebug]
+
+        static class PawnFilthTrackerPatches
+        {
+            static void Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var rpFilthMethod = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.GetFilthStat),
+                                                                    BindingFlags.Static | BindingFlags.Public);
+
+                var filthField =
+                    typeof(StatDefOf).GetField(nameof(StatDefOf.FilthRate), BindingFlags.Public | BindingFlags.Static);
+                var filthCall =
+                    typeof(StatExtension).GetMethod(nameof(StatExtension.GetStatValue),
+                                                    BindingFlags.Public | BindingFlags.Static);
+
+                if (filthCall == null)
+                {
+                    Log.Error($"unable to find {nameof(StatExtension)}.{nameof(StatExtension.GetStatValue)}");
+                    return;
+                }
+
+                
+                var instArr = instructions.ToArray();
+
+                const int len = 3;
+                for (int i = 0; i < instArr.Length - len; i++)
+                {
+                    CodeInstruction  inst1, inst2, inst3;
+                    inst1 = instArr[i + 1];
+                    inst2 = instArr[i + 2];
+                    inst3 = instArr[i + 3]; 
+
+                    if (inst1.opcode != OpCodes.Ldsfld || (FieldInfo) inst1.operand != filthField)  continue;
+                    if(inst2.opcode != OpCodes.Ldc_I4_1) continue;
+                    if(inst3.opcode != OpCodes.Call || (MethodInfo) inst3.operand != filthCall) continue;
+
+                    inst1.opcode = OpCodes.Call;
+                    inst1.operand = rpFilthMethod;
+                    inst2.opcode = OpCodes.Nop;
+                    inst3.opcode = OpCodes.Nop; 
+
+
+                    break;
+                }
+
+            }
+        }
+
     }
 }
 #endif
