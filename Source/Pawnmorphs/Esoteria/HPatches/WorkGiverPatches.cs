@@ -22,7 +22,7 @@ namespace Pawnmorph.HPatches
 
         static class InteractionPatches
         {
-            [HarmonyPatch( typeof(WorkGiver_InteractAnimal),"CanInteractWithAnimal", new Type[] {typeof(Pawn), typeof(Pawn), typeof(string), typeof(bool), typeof(bool) , typeof(bool) }),
+            [HarmonyPatch( typeof(WorkGiver_InteractAnimal),"CanInteractWithAnimal", new Type[] {typeof(Pawn), typeof(Pawn), typeof(string), typeof(bool), typeof(bool) , typeof(bool) ,typeof(bool)}),
              HarmonyPrefix]
             static bool DontInteractSelfFix(ref bool __result, Pawn pawn, Pawn animal, ref string jobFailReason, bool forced, bool canInteractWhileSleeping, bool ignoreSkillRequirements)
             {
