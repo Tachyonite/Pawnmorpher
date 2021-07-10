@@ -708,7 +708,32 @@ namespace Pawnmorph
             return pawn.GetIntelligence() == Intelligence.Humanlike; 
         }
 
-     
+
+        /// <summary>
+        /// Determines whether this pawn is blocked by fences
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn is blocked by fences; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFenceBlocked([NotNull] this Pawn pawn)
+        {
+            return !pawn.IsHumanlike() && pawn.RaceProps.FenceBlocked; 
+        }
+
+
+        /// <summary>
+        /// Determines whether this pawn can pass through fences 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this this pawn can pass through fences otherwise, <c>false</c>.
+        /// </returns>
+        public static bool CanPassFences([NotNull] this Pawn pawn)
+        {
+            return !pawn.IsFenceBlocked();
+        }
+
         /// <summary>
         /// Determines whether this instance is an animal.
         /// </summary>

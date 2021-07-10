@@ -27,19 +27,31 @@ namespace Pawnmorph.Utilities
         static PatchUtilities()
         {
             fragments = new Dictionary<string, bool>();
-            System.Type fhUtilType = typeof(FormerHumanUtilities);
+            Type fhUtilType = typeof(FormerHumanUtilities);
+            Type racePropType = typeof(RaceProperties);
+            const BindingFlags publicInstance = BindingFlags.Public | BindingFlags.Instance;
+            const BindingFlags allFlags = publicInstance | BindingFlags.NonPublic | BindingFlags.Static; 
+
             IsAnimalMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsAnimal), new[] {typeof(Pawn)});
           
             IsHumanoidMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)});
             IsToolUserMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsToolUser), new []{typeof(Pawn)});
             _getRacePropsMethod = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod();
-            GetRacePropsMethod = _getRacePropsMethod; 
-            _getAnimalMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.Animal)).GetGetMethod();
+            GetRacePropsMethod = _getRacePropsMethod;
+            _getAnimalMethod = racePropType.GetProperty(nameof(RaceProperties.Animal)).GetGetMethod();
             RimworldIsAnimalMethod = _getAnimalMethod; 
-            _toolUserMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.ToolUser)).GetGetMethod();
-            _getHumanlikeMethod = typeof(RaceProperties).GetProperty(nameof(RaceProperties.Humanlike)).GetGetMethod();
-            AllFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static;
-            CommonTranspiler = typeof(PatchUtilities).GetMethod(nameof(SubstituteFormerHumanMethodsPatch)); 
+            _toolUserMethod = racePropType.GetProperty(nameof(RaceProperties.ToolUser)).GetGetMethod();
+            _getHumanlikeMethod = racePropType.GetProperty(nameof(RaceProperties.Humanlike)).GetGetMethod();
+            AllFlags = BindingFlags.NonPublic | publicInstance| BindingFlags.Static;
+            CommonTranspiler = typeof(PatchUtilities).GetMethod(nameof(SubstituteFormerHumanMethodsPatch));
+            FenceBlockMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsFenceBlocked),AllFlags);
+            CanPassFencesMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.CanPassFences), AllFlags);
+
+            _fenceBlockedTargetMethod = racePropType
+                                       .GetProperty(nameof(RaceProperties.CanPassFences),
+                                                    publicInstance)
+                                       .GetMethod;
+            _canPassFenceTargetMethod = racePropType.GetProperty(nameof(RaceProperties.CanPassFences)).GetMethod; 
         }
 
 
@@ -301,7 +313,28 @@ namespace Pawnmorph.Utilities
         [NotNull] private static readonly MethodInfo _getRacePropsMethod;
         [NotNull] private static readonly MethodInfo _getAnimalMethod;
         [NotNull] private static readonly MethodInfo _toolUserMethod;
-        [NotNull] private static readonly MethodInfo _getHumanlikeMethod; 
+        [NotNull] private static readonly MethodInfo _getHumanlikeMethod;
+        [NotNull] private static readonly MethodInfo _fenceBlockedTargetMethod;
+        [NotNull] private static readonly MethodInfo _canPassFenceTargetMethod; 
+        /// <summary>
+        /// Gets the fence block method.
+        /// </summary>
+        /// <value>
+        /// The fence block method.
+        /// </value>
+        [NotNull]
+        public static MethodInfo FenceBlockMethod { get; }
+
+        /// <summary>
+        /// Gets the can pass fences method.
+        /// </summary>
+        /// <value>
+        /// The can pass fences method.
+        /// </value>
+        [NotNull]
+        public static MethodInfo CanPassFencesMethod { get; }
+
+
         /// <summary>
         /// Gets method info for <see cref="FormerHumanUtilities.IsAnimal"/>
         /// </summary>
@@ -374,6 +407,14 @@ namespace Pawnmorph.Utilities
                     {
                         patched = true;
                         opI.operand = IsToolUserMethod;
+                    } else if (jMethod == _fenceBlockedTargetMethod)
+                    {
+                        patched = true;
+                        opI.operand = FenceBlockMethod; 
+                    }else if (jMethod == _canPassFenceTargetMethod)
+                    {
+                        patched = true;
+                        opI.operand = CanPassFencesMethod; 
                     }
                     else
                         patched = false;
