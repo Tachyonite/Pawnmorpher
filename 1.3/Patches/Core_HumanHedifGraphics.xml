@@ -660,6 +660,7 @@
 							<Female>(0,-0.06)</Female>
 							<Thin>(0,-0.02)</Thin>
 							<Fat>(0,-0.06)</Fat>
+							<Hulk>(0,-0.06)</Hulk>
 						</bodyTypes>
 					</south>
 					<north>
@@ -668,6 +669,7 @@
 							<Female>(0,-0.39)</Female>
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
+							<Hulk>(0,-0.39)</Hulk>
 						</bodyTypes>
 					</north>
 					<east>
@@ -700,7 +702,7 @@
 							<Female>(0,-0.22)</Female>
 							<Thin>(0,-0.18)</Thin>
 							<Fat>(0,-0.22)</Fat>
-							<Hulk>(0,-0.42)</Hulk>
+							<Hulk>(0,-0.22)</Hulk>
 						</bodyTypes>
 					</south>
 					<north>
@@ -709,6 +711,7 @@
 							<Female>(0,-0.39)</Female>
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
+							<Hulk>(0,-0.39)</Hulk>
 						</bodyTypes>
 					</north>
 					<east>
@@ -743,6 +746,7 @@
 							<Female>(0,-0.39)</Female>
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
+							<Hulk>(0,-0.39)</Hulk>
 						</bodyTypes>
 					</north>
 					<east>
