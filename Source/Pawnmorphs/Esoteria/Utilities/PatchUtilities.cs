@@ -45,8 +45,9 @@ namespace Pawnmorph.Utilities
             AllFlags = BindingFlags.NonPublic | publicInstance| BindingFlags.Static;
             CommonTranspiler = typeof(PatchUtilities).GetMethod(nameof(SubstituteFormerHumanMethodsPatch));
             FenceBlockMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsFenceBlocked),AllFlags);
+            RoamerMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsRoamer), BindingFlags.Static | BindingFlags.Public); 
             CanPassFencesMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.CanPassFences), AllFlags);
-
+            _roamerTargetMethod = racePropType.GetProperty(nameof(RaceProperties.Roamer), publicInstance).GetMethod; 
             _fenceBlockedTargetMethod = racePropType
                                        .GetProperty(nameof(RaceProperties.FenceBlocked),
                                                     publicInstance)
@@ -334,12 +335,24 @@ namespace Pawnmorph.Utilities
         /// </value>
         public static MethodInfo RimworldGetRaceMethod => _getRacePropsMethod;
 
+
+        /// <summary>
+        /// Gets the roamer method.
+        /// </summary>
+        /// <value>
+        /// The roamer method.
+        /// </value>
+        public static MethodInfo RoamerMethod { get; }
+        
+        
         [NotNull] private static readonly MethodInfo _getRacePropsMethod;
         [NotNull] private static readonly MethodInfo _getAnimalMethod;
         [NotNull] private static readonly MethodInfo _toolUserMethod;
         [NotNull] private static readonly MethodInfo _getHumanlikeMethod;
         [NotNull] private static readonly MethodInfo _fenceBlockedTargetMethod;
-        [NotNull] private static readonly MethodInfo _canPassFenceTargetMethod; 
+        [NotNull] private static readonly MethodInfo _canPassFenceTargetMethod;
+        [NotNull] private static readonly MethodInfo _roamerTargetMethod; 
+        
         /// <summary>
         /// Gets the fence block method.
         /// </summary>
@@ -419,7 +432,7 @@ namespace Pawnmorph.Utilities
                     var jMethod = opJ.operand as MethodInfo;
                     bool patched; 
                     //figure out which method, if any, we're going to be replacing 
-                    if (jMethod == _getHumanlikeMethod)
+                    if (jMethod == _getHumanlikeMethod) //TODO refactor this to be more general 
                     {
                         patched = true;
                         opI.operand = IsHumanoidMethod; 
@@ -439,6 +452,10 @@ namespace Pawnmorph.Utilities
                     {
                         patched = true;
                         opI.operand = CanPassFencesMethod; 
+                    }else if (jMethod == _roamerTargetMethod)
+                    {
+                        patched = true;
+                        opI.operand = RoamerMethod; 
                     }
                     else
                         patched = false;
@@ -508,6 +525,11 @@ namespace Pawnmorph.Utilities
                     {
                         patched = true;
                         opI.operand = CanPassFencesMethod; 
+                    }
+                    else if (jMethod == _roamerTargetMethod)
+                    {
+                        patched = true;
+                        opI.operand = RoamerMethod;
                     }
                     else
                     {

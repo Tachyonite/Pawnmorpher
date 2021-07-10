@@ -722,6 +722,16 @@ namespace Pawnmorph
             return !pawn.IsHumanlike() && pawn.RaceProps.FenceBlocked; 
         }
 
+        /// <summary>
+        /// If this pawn is a roamer or not.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public static bool IsRoamer([NotNull] this Pawn pawn)
+        {
+            return !pawn.IsHumanlike() && pawn.RaceProps.Roamer; 
+        }
+
 
         private const float FORMER_HUMAN_FILTH_ADJ = 0.75f; //at 0  former humans make the same filth as regular animals at 1 they make the same filth as humans 
         private const float ANIMALISTIC_FILTH_AMOUNT = 2; //animalistic humanoids make the same amount of filth as dogs 

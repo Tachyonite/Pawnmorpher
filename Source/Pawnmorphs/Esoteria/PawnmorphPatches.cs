@@ -267,6 +267,9 @@ namespace Pawnmorph
             //socialization 
             methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[]{typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool)}));
 
+            //roamer patches 
+            methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow),
+                                                                           staticFlags)); 
 
 
             //now patch them 
