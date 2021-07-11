@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -82,6 +83,7 @@ namespace Pawnmorph.Hediffs
         public void Restart()
         {
             Halted = false;
+            _mutationAdaptabilityCache = null; 
             _statAdjust = null; 
         }
 
@@ -149,9 +151,12 @@ namespace Pawnmorph.Hediffs
                 CheckIfHalted();
             }
 
-            if (Pawn.IsHashIntervalTick(60))
+            int tickRate = Pawn.SpawnedOrAnyParentSpawned ? 25 : 70; //prioritize updating spawned pawns over world pawns 
+
+            if (Pawn.IsHashIntervalTick(tickRate))
             {
                 _statAdjust = null; //only check the stat every so often, this is expensive 
+                _mutationAdaptabilityCache = null;
             }
         }
 
@@ -170,7 +175,7 @@ namespace Pawnmorph.Hediffs
 
         private float GetChanceMult()
         {
-            float sVal = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
+            float sVal = MutationAdaptability;
 
             float r = MutationUtilities.MaxMutationAdaptabilityValue - MutationUtilities.MinMutationAdaptabilityValue;
             sVal = Mathf.Abs(MutationUtilities.AverageMutationAdaptabilityValue - sVal)
@@ -211,6 +216,21 @@ namespace Pawnmorph.Hediffs
         }
 
 
+        private float? _mutationAdaptabilityCache;
+
+        float MutationAdaptability //should we make a central stat caching class? 
+        {
+            get
+            {
+                if (_mutationAdaptabilityCache == null)
+                {
+                    _mutationAdaptabilityCache = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability); 
+                }
+
+                return _mutationAdaptabilityCache.Value; 
+            }
+        }
+
         /// <summary>
         ///     get the change in severity per day
         /// </summary>
@@ -225,7 +245,7 @@ namespace Pawnmorph.Hediffs
             }
 
             if (Halted) return 0;
-            float statValue = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
+            float statValue = MutationAdaptability; 
             float maxSeverity = Mathf.Max(statValue + 1, 1);
             float minSeverity = Mathf.Min(statValue, 0); //have the stat influence how high or low the severity can be 
             float sMult = Props.statEffectMult * (statValue + 1);
