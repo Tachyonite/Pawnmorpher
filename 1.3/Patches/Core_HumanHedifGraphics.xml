@@ -234,6 +234,14 @@
 						</severity>
 					</EtherHuskyMuzzle>
 					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
+					<EtherLabradorRetrieverJaw>
+						<path>Parts/LabradorRetriever/LabradorRetriever_Jaw</path>
+						<severity>
+							<a0.5>Parts/LabradorRetriever/LabradorRetriever_Jaw</a0.5>
+							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
+							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
+						</severity>
+					</EtherLabradorRetrieverJaw>	
 					<EtherLynxJaw>
 						<path>Parts/Lynx/Lynx_Jaw</path>
 						<severity>
@@ -324,15 +332,7 @@
 							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
-					</EtherWargMuzzle>
-					<EtherLabradorRetrieverJaw>
-						<path>Parts/LabradorRetriever/LabradorRetriever</path>
-						<severity>
-							<a0.5>Parts/LabradorRetriever/LabradorRetriever_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherLabradorRetrieverJaw>			
+					</EtherWargMuzzle>		
 					<EtherWolfMuzzle>
 						<path>Parts/wolfface/wolfface</path>
 						<severity>
