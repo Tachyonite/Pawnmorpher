@@ -10,25 +10,25 @@ namespace Pawnmorph.Utilities
     public class Filter<T>
     {
         /// <summary>
-        /// the list of entries in the filter 
+        ///     the list of entries in the filter
         /// </summary>
-        [NotNull]
-        public List<T> filterList = new List<T>();
+        [NotNull] public List<T> filterList = new List<T>();
+
         /// <summary>
-        /// if this filter is a black list 
+        ///     if this filter is a black list
         /// </summary>
         public bool isBlackList = true;
 
         /// <summary>
-        /// returns true if the given element passes through the filter 
+        ///     returns true if the given element passes through the filter
         /// </summary>
         /// <param name="elem"></param>
         /// <returns></returns>
         public bool PassesFilter(T elem)
         {
-            var contains = filterList.Contains(elem);
+            bool contains = filterList.Contains(elem);
             if (isBlackList) return !contains;
-            return contains; 
+            return contains;
         }
     }
 }

@@ -6,12 +6,17 @@ using UnityEngine;
 namespace Pawnmorph.Utilities
 {
     /// <summary>
-    /// class for various math related utility functions 
+    ///     class for various math related utility functions
     /// </summary>
     public static class MathUtilities
     {
         /// <summary>
-        /// smoothstep interpolation 
+        ///     natural log of 2
+        /// </summary>
+        public const float LN2 = 0.69314718056f;
+
+        /// <summary>
+        ///     smoothstep interpolation
         /// </summary>
         /// <param name="edge0">The edge0.</param>
         /// <param name="edge1">The edge1.</param>
@@ -24,10 +29,5 @@ namespace Pawnmorph.Utilities
             // Evaluate polynomial
             return x * x * (3 - 2 * x);
         }
-
-        /// <summary>
-        /// natural log of 2 
-        /// </summary>
-        public const float LN2  = 0.69314718056f; 
     }
 }
