@@ -262,6 +262,11 @@
 		<comps>
 			<li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
 				<requiresTag>true</requiresTag>
+				<raceFilter>
+					<filterList>
+						<li>PM_Chaothrumbo</li>
+					</filterList>
+				</raceFilter>
 			</li>
 		</comps>
 	</ThingDef>
