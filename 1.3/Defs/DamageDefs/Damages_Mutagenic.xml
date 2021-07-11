@@ -14,7 +14,12 @@
 		<makesAnimalsFlee>true</makesAnimalsFlee>
 	</DamageDef>
 
-	<DamageDef>
+	<DamageDef Name="PM_MutagenCloudBase" Abstract="true">
+		<explosionCellFleck>BlastExtinguisher</explosionCellFleck>
+		<explosionColorEdge>(0.3, 1, 0.4, 0.05)</explosionColorEdge>
+	</DamageDef>
+
+	<DamageDef ParentName="PM_MutagenCloudBase">
 		<defName>MutagenCloud_Tiny</defName>
 		<label>mutagen cloud</label>
 		<workerClass>Pawnmorph.Damage.Worker_MutagenicInjury</workerClass>
@@ -38,7 +43,7 @@
 		</modExtensions>
 	</DamageDef>
 
-	<DamageDef>
+	<DamageDef ParentName="PM_MutagenCloudBase">
 		<defName>MutagenCloud</defName>
 		<label>mutagen cloud</label>
 		<workerClass>Pawnmorph.Damage.Worker_MutagenicInjury</workerClass>
@@ -62,7 +67,7 @@
 		</modExtensions>
 	</DamageDef>
 
-	<DamageDef>
+	<DamageDef ParentName="PM_MutagenCloudBase">
 		<defName>MutagenCloud_Large</defName>
 		<label>mutagen cloud</label>
 		<workerClass>Pawnmorph.Damage.Worker_MutagenicInjury</workerClass>
