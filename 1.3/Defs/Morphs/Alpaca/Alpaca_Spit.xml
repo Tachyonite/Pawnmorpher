@@ -23,6 +23,7 @@
 			<verbClass>Verb_MeleeApplyHediff</verbClass>
 			<bodypartTagTarget>SightSource</bodypartTagTarget>
 			<minIntelligence>ToolUser</minIntelligence>
+			<impactFleck>DustPuff</impactFleck>
 			<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
 		</verb>
 		<logEntryDef>SpitInMouth</logEntryDef>
