@@ -24,5 +24,10 @@ namespace Pawnmorph.Utilities
             // Evaluate polynomial
             return x * x * (3 - 2 * x);
         }
+
+        /// <summary>
+        /// natural log of 2 
+        /// </summary>
+        public const float LN2  = 0.69314718056f; 
     }
 }
