@@ -1,0 +1,64 @@
+<Defs>
+	<ThingDef ParentName="SerumBase">
+		<defName>MechaniteSlurry</defName>
+		<label>mechanite slurry</label>
+		<description>Mechanites suspended in an organic binding agent composes this pseudofluid. It is not recommended to ingest unless absolutely necesary, as it causes constant and rapid mutation.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Item/Drug/Slurry</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>200</WorkToMake>
+			<MarketValue>80</MarketValue>
+			<MutaniteConcentration>0.07</MutaniteConcentration>
+		</statBases>
+		<thingCategories>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>FullRandomTFAnyOutcome</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<effectWorking>Cook</effectWorking>
+			<soundWorking>Recipe_Brewing</soundWorking>
+			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+			<bulkRecipeCount>4</bulkRecipeCount>
+			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<TFMilk>5</TFMilk>
+			<TFEgg>2</TFEgg>
+		</costList>
+		<tickerType>Normal</tickerType>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosiveDamageType>MutagenCloud</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<preExplosionSpawnThingDef>PM_Filth_Slurry</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<wickTicks>
+					<min>30</min>
+					<max>60</max>
+				</wickTicks>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

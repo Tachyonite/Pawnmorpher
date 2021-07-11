@@ -488,7 +488,7 @@
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
 			<explosionEffect>ExtinguisherExplosion</explosionEffect>
 			<postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
-			<postExplosionSpawnChance>0.6</postExplosionSpawnChance>
+			<postExplosionSpawnChance>0.4</postExplosionSpawnChance>
 			<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
 			<explosionDamageFalloff>true</explosionDamageFalloff>
 		</projectile>
