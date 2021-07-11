@@ -418,6 +418,10 @@
 			<damageDef>MutagenCloud</damageDef>
 			<explosionDelay>100</explosionDelay>
 			<explosionDamageFalloff>true</explosionDamageFalloff>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+			<postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>0.2</postExplosionSpawnChance>
+			<postExplosionSpawnThingCount>2</postExplosionSpawnThingCount>
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
 		<raceBlackList>
@@ -440,6 +444,10 @@
 				<explosiveRadius>2.9</explosiveRadius>
 				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
 				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<explosionEffect>ExtinguisherExplosion</explosionEffect>
+				<postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>0.6</postExplosionSpawnChance>
+				<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
 				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
 				<wickTicks>
 					<min>30</min>
@@ -478,6 +486,10 @@
 			<soundExplode>Explosion_EMP</soundExplode>
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+			<postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>0.6</postExplosionSpawnChance>
+			<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
 			<explosionDamageFalloff>true</explosionDamageFalloff>
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
