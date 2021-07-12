@@ -773,6 +773,7 @@
     <Compile Include="User Interface\ButtonTexturesPM.cs" />
     <Compile Include="User Interface\Dialog_PartPicker.cs" />
     <Compile Include="User Interface\MutationData.cs" />
+    <Compile Include="Utilities\Cached.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
