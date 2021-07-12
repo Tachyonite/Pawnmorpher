@@ -72,7 +72,7 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///     <c>true</c> if [comp should remove]; otherwise, <c>false</c>.
         /// </value>
-        public override bool CompShouldRemove => SeverityChangePerDay() < 0 && parent.CurStageIndex == 0;
+        public override bool CompShouldRemove => ShouldRemove.Value;
 
         /// <summary>
         ///     Gets the change per day.
@@ -110,11 +110,13 @@ namespace Pawnmorph.Hediffs
         //TODO make some sort of unified caching system for stat lookups, easy way to cause lots of lag 
         private readonly Cached<float> StatAdjust;
         private readonly Cached<float> MutationAdaptability;
+        private readonly Cached<bool> ShouldRemove;
 
         public Comp_MutationSeverityAdjust()
         {
             StatAdjust = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
             MutationAdaptability = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutationAdaptability));
+            ShouldRemove = new Cached<bool>(() => parent.CurStageIndex == 0 && SeverityChangePerDay() < 0);
         }
 
         /// <summary>
@@ -158,6 +160,7 @@ namespace Pawnmorph.Hediffs
             {
                 StatAdjust.Recalculate();
                 MutationAdaptability.Recalculate();
+                ShouldRemove.Recalculate();
             }
         }
 
