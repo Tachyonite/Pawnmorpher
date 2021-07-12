@@ -21,12 +21,7 @@ namespace Pawnmorph.Hediffs
         private const float EPSILON = 0.001f;
         private bool _halted;
 
-        private float? _statAdjust;
-
         private int _curStageIndex = -1;
-
-
-        private float? _mutationAdaptabilityCache;
 
         private bool _checkForReversionHediff;
 
@@ -77,7 +72,7 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///     <c>true</c> if [comp should remove]; otherwise, <c>false</c>.
         /// </value>
-        public override bool CompShouldRemove => SeverityChangePerDay() < 0 && parent.CurStageIndex == 0;
+        public override bool CompShouldRemove => ShouldRemove.Value;
 
         /// <summary>
         ///     Gets the change per day.
@@ -86,21 +81,6 @@ namespace Pawnmorph.Hediffs
         ///     The change per day.
         /// </value>
         public float ChangePerDay => SeverityChangePerDay();
-
-        
-        //TODO make some sort of unified caching system for stat lookups, easy way to cause lots of lag 
-        private float StatAdjust
-        {
-            get
-            {
-                if (_statAdjust == null)
-                    _statAdjust =
-                        Pawn.GetStatValue(PMStatDefOf
-                                             .MutagenSensitivity); //make mutagen sensitivity influence how fast the adjustment works 
-
-                return _statAdjust.Value;
-            }
-        }
 
         [NotNull]
         private CompProperties_MutationSeverityAdjust Props
@@ -123,17 +103,20 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        // prioritize updating spawned pawns over world pawns 
         private int TickRate => Pawn.SpawnedOrAnyParentSpawned ? 25 : 70;
 
-        private float MutationAdaptability //should we make a central stat caching class? 
-        {
-            get
-            {
-                if (_mutationAdaptabilityCache == null)
-                    _mutationAdaptabilityCache = Pawn.GetStatValue(PMStatDefOf.MutationAdaptability);
+        // These values only get recalculated every so often because of how expensive they are to calculate
+        //TODO make some sort of unified caching system for stat lookups, easy way to cause lots of lag 
+        private readonly Cached<float> StatAdjust;
+        private readonly Cached<float> MutationAdaptability;
+        private readonly Cached<bool> ShouldRemove;
 
-                return _mutationAdaptabilityCache.Value;
-            }
+        public Comp_MutationSeverityAdjust()
+        {
+            StatAdjust = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
+            MutationAdaptability = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutationAdaptability));
+            ShouldRemove = new Cached<bool>(() => parent.CurStageIndex == 0 && SeverityChangePerDay() < 0);
         }
 
         /// <summary>
@@ -153,8 +136,7 @@ namespace Pawnmorph.Hediffs
         public override void CompPostMerged(Hediff other)
         {
             base.CompPostMerged(other);
-            Halted = false; //restart adjusting if halted 
-            _statAdjust = null;
+            Restart(); //restart adjusting if halted
         }
 
         /// <summary>
@@ -176,8 +158,9 @@ namespace Pawnmorph.Hediffs
 
             if (Pawn.IsHashIntervalTick(tickRate))
             {
-                _statAdjust = null; //only check the stat every so often, this is expensive 
-                _mutationAdaptabilityCache = null;
+                StatAdjust.Recalculate();
+                MutationAdaptability.Recalculate();
+                ShouldRemove.Recalculate();
             }
         }
 
@@ -195,8 +178,8 @@ namespace Pawnmorph.Hediffs
         public void Restart()
         {
             Halted = false;
-            _mutationAdaptabilityCache = null;
-            _statAdjust = null;
+            StatAdjust.Recalculate();
+            MutationAdaptability.Recalculate();
         }
 
         /// <summary>
@@ -213,7 +196,7 @@ namespace Pawnmorph.Hediffs
             }
 
             if (Halted) return 0;
-            float statValue = MutationAdaptability;
+            float statValue = MutationAdaptability.Value;
             float maxSeverity = Mathf.Max(statValue + 1, 1);
             float minSeverity = Mathf.Min(statValue, 0); //have the stat influence how high or low the severity can be 
             float sMult = Props.statEffectMult * (statValue + 1);
@@ -223,7 +206,7 @@ namespace Pawnmorph.Hediffs
             if (parent.Severity < minSeverity) sevPerDay = Mathf.Max(0, sevPerDay);
 
 
-            return sevPerDay * Mathf.Max(StatAdjust, 0); //take the mutagen sensitivity stat into account 
+            return sevPerDay * Mathf.Max(StatAdjust.Value, 0); //take the mutagen sensitivity stat into account 
         }
 
         private void CheckIfHalted()
@@ -248,7 +231,7 @@ namespace Pawnmorph.Hediffs
 
         private float GetChanceMult()
         {
-            float sVal = MutationAdaptability;
+            float sVal = MutationAdaptability.Value;
 
             float r = MutationUtilities.MaxMutationAdaptabilityValue - MutationUtilities.MinMutationAdaptabilityValue;
             sVal = Mathf.Abs(MutationUtilities.AverageMutationAdaptabilityValue - sVal)
