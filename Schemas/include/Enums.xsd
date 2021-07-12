@@ -184,4 +184,10 @@
             <xs:enumeration value="High" />
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="MemeCategory">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Normal" />
+            <xs:enumeration value="Structure" />
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>

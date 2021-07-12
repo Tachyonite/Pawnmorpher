@@ -5,7 +5,13 @@
     <xs:include schemaLocation="include/Enums.xsd" />
     <xs:include schemaLocation="include/CommonComplex.xsd" />
 
-    <xs:element name="Defs"></xs:element>
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PreceptDef" type="PreceptDef" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
 
     <xs:complexType name="PreceptDef">

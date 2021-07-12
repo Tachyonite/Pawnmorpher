@@ -41,4 +41,10 @@
             <xs:element name="groupLabel" type="xs:string" minOccurs="0" />
         </xs:all>
     </xs:complexType>
+    <xs:complexType name="IdeoWeaponClassPair">
+        <xs:all>
+            <xs:element name="noble" type="xs:string" />
+            <xs:element name="despised" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
 </xs:schema>
