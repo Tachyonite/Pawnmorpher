@@ -55,6 +55,10 @@
 					<max>60</max>
 				</wickTicks>
 			</li>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+			</li>
 		</comps>
+
 	</ThingDef>
 </Defs>

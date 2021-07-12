@@ -32,5 +32,10 @@
 			<Neutroamine>2</Neutroamine>
 			<Mutanite>2</Mutanite>
 		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+			</li>
+		</comps>
 	</ThingDef>
 </Defs>

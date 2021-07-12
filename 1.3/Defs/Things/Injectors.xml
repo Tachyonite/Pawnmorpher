@@ -42,6 +42,11 @@
                 5
             </MechaniteSlurry>
         </costList>
+        <comps>
+            <li Class="CompProperties_Drug">
+                <listOrder>1010</listOrder>
+            </li>
+        </comps>
     </ThingDef>
     <ThingDef ParentName="ArtifactBase">
         <defName>PM_ChaoThrumboGenome</defName>

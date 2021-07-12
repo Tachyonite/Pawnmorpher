@@ -31,7 +31,11 @@
 			<TFMilk>1</TFMilk>
 			<TFEgg>1</TFEgg>
 		</costList>
-		<comps></comps>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!--Coloration Pills-->
@@ -80,7 +84,11 @@
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</costList>
-
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!--Feral Pills-->
@@ -112,7 +120,11 @@
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</costList>
-
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!--Dry Pills-->
@@ -148,6 +160,11 @@
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!--Aspect Remover Pills-->
@@ -177,7 +194,11 @@
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</costList>
-
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!--Stabilizer Pills-->
@@ -269,10 +290,6 @@
 		<comps>
 			<li Class="CompProperties_Drug">
 				<listOrder>1000</listOrder>
-				<overdoseSeverityOffset>
-					<min>0.08</min>
-					<max>0.14</max>
-				</overdoseSeverityOffset>
 			</li>
 		</comps>
 	</ThingDef>
