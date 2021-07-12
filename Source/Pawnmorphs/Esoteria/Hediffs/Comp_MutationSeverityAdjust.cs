@@ -107,11 +107,13 @@ namespace Pawnmorph.Hediffs
         private int TickRate => Pawn.SpawnedOrAnyParentSpawned ? 25 : 70;
 
         // These values only get recalculated every so often because of how expensive they are to calculate
-        //TODO make some sort of unified caching system for stat lookups, easy way to cause lots of lag 
         private readonly Cached<float> StatAdjust;
         private readonly Cached<float> MutationAdaptability;
         private readonly Cached<bool> ShouldRemove;
 
+        /// <summary>
+        /// creates a new instance 
+        /// </summary>
         public Comp_MutationSeverityAdjust()
         {
             StatAdjust = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
