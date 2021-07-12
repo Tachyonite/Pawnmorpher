@@ -546,27 +546,27 @@
                                 <EtherSnakeTail>Parts/Cobra/Cobra_Tail</EtherSnakeTail>
                                 <EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
                             </hediffGraphics>
-                            <offsets>
-                                <south />
-                                <north>
-                                    <bodyTypes>
-                                        <Male>(0,0.20)</Male>
-                                        <Female>(0,0.16)</Female>
-                                        <Thin>(0,0.20)</Thin>
-                                        <Hulk>(0,0)</Hulk>
-                                        <Fat>(0,0.16)</Fat>
-                                    </bodyTypes>
-                                </north>
-                                <east>
-                                    <bodyTypes>
-                                        <Male>(-0.20,-0.02)</Male>
-                                        <Female>(-0.24,-0.09)</Female>
-                                        <Thin>(-0.25,-0.02)</Thin>
-                                        <Hulk>(-0.06,-0.23)</Hulk>
-                                        <Fat>(0.02,-0.05)</Fat>
-                                    </bodyTypes>
-                                </east>
-                            </offsets>
+							<offsets>
+								<south/>
+								<north>
+									<bodyTypes>
+										<Male>(0,-0.35)</Male>
+										<Female>(0,-0.39)</Female>
+										<Thin>(0,-0.35)</Thin>
+										<Fat>(0,-0.39)</Fat>
+										<Hulk>(0,-0.39)</Hulk>
+									</bodyTypes>
+								</north>
+								<east>
+									<bodyTypes>
+										<Male>(0.22,-0.24)</Male>
+										<Female>(0.18,-0.31)</Female>
+										<Thin>(0.17,-0.24)</Thin>
+										<Hulk>(0.36,-0.45)</Hulk>
+										<Fat>(0.44,-0.27)</Fat>
+									</bodyTypes>
+								</east>
+							</offsets>
                         </li>
                     </bodyAddons>
                 </alienPartGenerator>
