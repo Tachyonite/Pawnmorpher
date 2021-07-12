@@ -168,4 +168,20 @@
             <xs:enumeration value="YorkshireTerrier"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:simpleType name="Gender">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None" />
+            <xs:enumeration value="Male" />
+            <xs:enumeration value="Female" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PreceptImpact">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Low" />
+            <xs:enumeration value="Medium" />
+            <xs:enumeration value="High" />
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
