@@ -1,0 +1,74 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="ConstraintType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Equal" />
+            <xs:enumeration value="NotEqual" />
+            <xs:enumeration value="Less" />
+            <xs:enumeration value="Greater" />
+            <xs:enumeration value="LessOrEqual" />
+            <xs:enumeration value="GreaterOrEqual" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:complexType name="RulePack">
+        <xs:sequence>
+            <xs:element name="rulesStrings" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rulesFiles" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rulesRaw" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="Rule" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="include" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="Rule">
+        <xs:all>
+            <xs:element name="keyword" type="xs:string" minOccurs="0" />
+            <xs:element name="tag" type="xs:string" minOccurs="0" />
+            <xs:element name="requiredTag" type="xs:string" minOccurs="0" />
+            <xs:element name="usesLimit" type="xs:int" minOccurs="0" />
+            <xs:element name="constantConstraints">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="ConstantConstraint" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="ConstantConstraint">
+        <xs:all>
+            <xs:element name="key" type="xs:string" minOccurs="0" />
+            <xs:element name="value" type="xs:string" minOccurs="0" />
+            <xs:element name="type" type="ConstraintType" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+</xs:schema>
