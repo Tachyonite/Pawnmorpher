@@ -23,9 +23,6 @@ namespace Pawnmorph.Hediffs
 
         private int _curStageIndex = -1;
 
-        private bool _checkForReversionHediff;
-
-
         /// <summary>
         ///     Gets the natural severity limit.
         /// </summary>
@@ -64,8 +61,8 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        
-        
+
+
         /// <summary>
         ///     Gets a value indicating whether the parent hediff should be removed.
         /// </summary>
@@ -103,12 +100,15 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        // prioritize updating spawned pawns over world pawns 
-        private int TickRate => Pawn.SpawnedOrAnyParentSpawned ? 25 : 70;
+        // HediffComp_SeverityPerDay only updates severity once every 200 ticks so faster tickrates do nothing
+        // World pawns get a slower tickrate here so that large numbers of world morphs don't slow the game down
+        private int TickRate => Pawn.SpawnedOrAnyParentSpawned ? 200 : 600;
 
         // These values only get recalculated every so often because of how expensive they are to calculate
+        //TODO make some sort of unified caching system for stat lookups, easy way to cause lots of lag 
         private readonly Cached<float> StatAdjust;
         private readonly Cached<float> MutationAdaptability;
+        private readonly Cached<bool> IsReverting;
         private readonly Cached<bool> ShouldRemove;
 
         /// <summary>
@@ -118,7 +118,8 @@ namespace Pawnmorph.Hediffs
         {
             StatAdjust = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
             MutationAdaptability = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutationAdaptability));
-            ShouldRemove = new Cached<bool>(() => parent.CurStageIndex == 0 && SeverityChangePerDay() < 0);
+            IsReverting = new Cached<bool>(() => Pawn.health?.hediffSet?.HasHediff(MorphTransformationDefOf.PM_Reverting) == true);
+            ShouldRemove = new Cached<bool>(() => IsReverting.Value && parent.Severity <= 0);
         }
 
         /// <summary>
@@ -162,26 +163,29 @@ namespace Pawnmorph.Hediffs
             {
                 StatAdjust.Recalculate();
                 MutationAdaptability.Recalculate();
+                IsReverting.Recalculate();
                 ShouldRemove.Recalculate();
             }
         }
 
         /// <summary>
-        ///     Recalcs the adjust speed.
+        ///     manually purges all cached data to force the adjustment speed to be recalculated the next time it's called
         /// </summary>
         public void RecalcAdjustSpeed()
         {
-            _checkForReversionHediff = true;
+            StatAdjust.Recalculate();
+            MutationAdaptability.Recalculate();
+            IsReverting.Recalculate();
+            ShouldRemove.Recalculate();
         }
 
         /// <summary>
-        ///     Restarts this instance.
+        ///     restarts adjustment for this mutation if it was halted
         /// </summary>
         public void Restart()
         {
             Halted = false;
-            StatAdjust.Recalculate();
-            MutationAdaptability.Recalculate();
+            RecalcAdjustSpeed();
         }
 
         /// <summary>
@@ -190,13 +194,7 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public override float SeverityChangePerDay()
         {
-            if (_checkForReversionHediff || Pawn.IsHashIntervalTick(TickRate))
-            {
-                _checkForReversionHediff = false;
-                bool hasReversionHediff = Pawn.health?.hediffSet?.HasHediff(MorphTransformationDefOf.PM_Reverting) == true;
-                if (hasReversionHediff) return -1;
-            }
-
+            if (IsReverting.Value) return -1;
             if (Halted) return 0;
             float statValue = MutationAdaptability.Value;
             float maxSeverity = Mathf.Max(statValue + 1, 1);
