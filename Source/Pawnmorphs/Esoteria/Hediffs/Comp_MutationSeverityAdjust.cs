@@ -116,7 +116,7 @@ namespace Pawnmorph.Hediffs
             StatAdjust = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
             MutationAdaptability = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutationAdaptability));
             IsReverting = new Cached<bool>(() => Pawn.health?.hediffSet?.HasHediff(MorphTransformationDefOf.PM_Reverting) == true);
-            ShouldRemove = new Cached<bool>(() => parent.CurStageIndex == 0 && SeverityChangePerDay() < 0);
+            ShouldRemove = new Cached<bool>(() => IsReverting.Value && parent.Severity <= 0);
         }
 
         /// <summary>
