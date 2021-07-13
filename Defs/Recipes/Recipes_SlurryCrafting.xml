@@ -158,6 +158,9 @@
 		<products>
 			<ComponentIndustrial>2</ComponentIndustrial>
 		</products>
+		<recipeUsers>
+			<li>MutagenLab</li>
+		</recipeUsers>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>8</Crafting>
@@ -199,6 +202,9 @@
 		<products>
 			<MechSerumResurrectorTf>1</MechSerumResurrectorTf>
 		</products>
+		<recipeUsers>
+			<li>MutagenLab</li>
+		</recipeUsers>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>16</Crafting>
@@ -240,6 +246,9 @@
 		<products>
 			<MechSerumMutagenicHealer>1</MechSerumMutagenicHealer>
 		</products>
+		<recipeUsers>
+			<li>MutagenLab</li>
+		</recipeUsers>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>13</Crafting>
@@ -281,6 +290,9 @@
 		<products>
 			<MedicineUltratech>1</MedicineUltratech>
 		</products>
+		<recipeUsers>
+			<li>MutagenLab</li>
+		</recipeUsers>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>8</Crafting>

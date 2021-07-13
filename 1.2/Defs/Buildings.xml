@@ -46,13 +46,6 @@
 		<inspectorTabs>
 			<li>Pawnmorph.ITabs.InjectorBills</li>
 		</inspectorTabs>
-		<recipes>
-			<li>Make_ComponentsFromSlurry</li>
-			<li>Make_GenekitColorPicker</li>
-			<li>Make_ResurrectorFromMutonite</li>
-			<li>Make_HealerFromMutonite</li>
-			<li>Make_GlitterMedsFromMutonite</li>
-		</recipes>
 		<building>
 			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
 		</building>
