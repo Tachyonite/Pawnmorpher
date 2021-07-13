@@ -123,7 +123,7 @@ namespace Pawnmorph
                 }
 
 
-                __result = true;
+                __result = pawn.MentalState == null;
             }
         }
    
