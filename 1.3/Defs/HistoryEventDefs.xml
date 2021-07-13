@@ -1,0 +1,10 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/HistoryEventDef.xsd">
+    <HistoryEventDef>
+        <defName>PM_TransformedEvent</defName>
+        <label>transformed</label>
+    </HistoryEventDef>
+    <HistoryEventDef>
+        <defName>PM_Reverted</defName>
+        <label>reverted</label>
+    </HistoryEventDef>
+</Defs>
