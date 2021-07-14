@@ -111,6 +111,10 @@ namespace Pawnmorph.Hediffs
         private readonly Cached<bool> IsReverting;
         private readonly Cached<bool> ShouldRemove;
 
+        // The speed at which this particular mutation will revert, in severity-per-day.
+        // Only generated once so that it doesn't fluctuate during reversion
+        private readonly Lazy<float> RandReversionSpeed;
+
         /// <summary>
         /// creates a new instance 
         /// </summary>
@@ -120,6 +124,8 @@ namespace Pawnmorph.Hediffs
             MutationAdaptability = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutationAdaptability));
             IsReverting = new Cached<bool>(() => Pawn.health?.hediffSet?.HasHediff(MorphTransformationDefOf.PM_Reverting) == true);
             ShouldRemove = new Cached<bool>(() => IsReverting.Value && parent.Severity <= 0);
+
+            RandReversionSpeed = new Lazy<float>(GenerateRandomReversionSpeed);
         }
 
         /// <summary>
@@ -194,7 +200,11 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public override float SeverityChangePerDay()
         {
-            if (IsReverting.Value) return -1;
+            if (IsReverting.Value)
+            {
+                return RandReversionSpeed.Value;
+            }
+
             if (Halted) return 0;
             float statValue = MutationAdaptability.Value;
             float maxSeverity = Mathf.Max(statValue + 1, 1);
@@ -242,6 +252,24 @@ namespace Pawnmorph.Hediffs
             sVal *= -2 / r; //shift the range again to [0,1], where a default stat value is 0, and either min or max is 0 
             sVal = Mathf.Max(sVal, 0); //make sure it doesn't go below zero, can happen if the default is not the center point of min and max
             return sVal;
+        }
+
+        /// <summary>
+        /// Generates the random reversion speed.  Each mutation will have a different reversion speed so that they don't
+        /// all disappear at exactly the same time.  The distribution is weighted so that many mutations have similar speeds,
+        /// but a significant number of outliers are slower.  This means morphs will start losing mutations quickly, but the
+        /// remaining ones will stick around for a bit and take longer to fully revert.
+        /// (just for flavor, they'll still be reverted eventually).
+        /// 
+        /// Reversion speed must be at least 0.8f, or there's a possibility mutations could stick around even after
+        /// a full dose of reverter serum.
+        /// </summary>
+        /// <returns>The random reversion speed.</returns>
+        private static float GenerateRandomReversionSpeed()
+        {
+            // Clamp between 0.81 and 1.3 to ensure mutations aren't disappearing too quickly or too slowly
+            // The absoulute minimum is 0.8, but making it slightly higher here to avoid mutations surviving reversion due to rounding errors
+            return -Mathf.Clamp(RandUtilities.generateSkewNormalRandom(1.2f, 0.12f, -4f), 0.81f, 1.3f);
         }
     }
 
