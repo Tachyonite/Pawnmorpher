@@ -275,8 +275,22 @@ namespace Pawnmorph
         public static void CheckRace([NotNull] this Pawn pawn, bool addMissingMutations = true, bool displayNotifications=true)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-
-            if (pawn.ShouldBeConsideredHuman()) return;
+            if (!HybridsAreEnabledFor(pawn.def)) return; 
+            if (pawn.ShouldBeConsideredHuman())
+            {
+                if (pawn.def != ThingDefOf.Human)
+                {
+                    var morph = pawn.def.GetMorphOfRace();
+                    ThoughtDef reversionMemory = morph?.transformSettings?.revertedMemory;
+                    if (reversionMemory != null)
+                    {
+                        pawn.TryGainMemory(reversionMemory); 
+                    }
+                    RaceShiftUtilities.ChangePawnRace(pawn, ThingDefOf.Human); 
+                }
+                
+                return;
+            }
 
             MutationTracker mutTracker = pawn.GetMutationTracker();
 
