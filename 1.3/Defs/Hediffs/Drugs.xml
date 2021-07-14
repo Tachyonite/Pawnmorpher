@@ -10,7 +10,7 @@
         <isBad>false</isBad>
         <comps>
             <li Class="HediffCompProperties_SeverityPerDay">
-                <severityPerDay>-0.8</severityPerDay>
+                <severityPerDay>-0.4</severityPerDay>
             </li>
             <li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
                 <removeType>Pawnmorph.Hediffs.MorphTf</removeType>
