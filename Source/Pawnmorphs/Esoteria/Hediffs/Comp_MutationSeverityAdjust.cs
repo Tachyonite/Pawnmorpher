@@ -267,8 +267,9 @@ namespace Pawnmorph.Hediffs
         /// <returns>The random reversion speed.</returns>
         private static float GenerateRandomReversionSpeed()
         {
-            // Clamp between 0.8 and 1.3 to ensure mutations aren't disappearing too quickly or too slowly
-            return -Mathf.Clamp(RandUtilities.generateSkewNormalRandom(1.2f, 0.12f, -4f), 0.8f, 1.3f);
+            // Clamp between 0.81 and 1.3 to ensure mutations aren't disappearing too quickly or too slowly
+            // The absoulute minimum is 0.8, but making it slightly higher here to avoid mutations surviving reversion due to rounding errors
+            return -Mathf.Clamp(RandUtilities.generateSkewNormalRandom(1.2f, 0.12f, -4f), 0.81f, 1.3f);
         }
     }
 
