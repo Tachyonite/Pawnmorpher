@@ -1,0 +1,17 @@
+<Defs>
+    <ThoughtDef>
+        <defName>PM_JeleausThought</defName>
+        <workerClass>Pawnmorph.Thoughts.Worker_JealousMorph</workerClass>
+        <requiredTraits>
+            <li>Jealous</li>
+            <li>MutationAffinity</li>
+        </requiredTraits>
+        <stages>
+            <li>
+                <label>jealous non morph</label>
+                <description>TODO</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

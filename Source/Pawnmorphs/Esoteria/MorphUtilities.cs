@@ -11,6 +11,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using HarmonyLib;
+using HugsLib.Logs;
 using Pawnmorph.DefExtensions;
 
 namespace Pawnmorph
@@ -393,6 +394,20 @@ namespace Pawnmorph
             }
             _morphAssociationCache[transformationDef] = lst;
             return lst;
+        }
+
+        /// <summary>
+        /// Determines whether this instance is a morph.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is morph; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsMorph([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            return pawn.def.GetMorphOfRace() != null; 
         }
 
         /// <summary> Gets the amount of influence a pawn has that's still human.</summary>

@@ -761,6 +761,7 @@
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="Thoughts\Worker_JealousMorph.cs" />
     <Compile Include="Thoughts\Worker_MergedPawn.cs" />
     <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />
     <Compile Include="Thoughts\Worker_SapientNaked.cs" />
