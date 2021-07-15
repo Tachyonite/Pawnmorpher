@@ -5,19 +5,19 @@ using System;
 namespace Pawnmorph.Utilities
 {
     /// <summary>
-    ///     a collection of utilities around random functions
+    ///     A collection of utilities around random functions
     /// </summary>
     public static class RandUtilities
     {
         /// <summary>
         ///     Generate a random number according to a Gaussian distribution.
         /// </summary>
-        /// <param name="mu"> The mean.</param>
-        /// <param name="sigma">The Standard deviation.</param>
+        /// <param name="mu">The mean.</param>
+        /// <param name="sigma">The standard deviation.</param>
         public static float generateNormalRandom(float mu = 0, float sigma = 1)
         {
             if (sigma <= 0)
-                throw new ArgumentException("Standard deviation cannot be null");
+                throw new ArgumentException("Standard deviation cannot be negative");
 
             float rand1 = Rand.Range(0.0f, 1.0f);
             float rand2 = Rand.Range(0.0f, 1.0f);
@@ -25,6 +25,19 @@ namespace Pawnmorph.Utilities
             float n = Mathf.Sqrt(-2.0f * Mathf.Log(rand1)) * Mathf.Cos(2.0f * Mathf.PI * rand2);
 
             return mu + sigma * n;
+        }
+
+        /// <summary>
+        ///     Generate a random number according to an exponential distribution. 
+        /// </summary>
+        /// <param name="rate">The rate.</param>
+        public static float generateNormalRandom(float rate)
+        {
+            if (rate <= 0)
+                throw new ArgumentException("Rate cannot be negative");
+
+            float rand = Rand.Range(0.0f, 1.0f);
+            return Mathf.Log(1- rand)/(-rate);
         }
 
         /// <summary>
@@ -36,7 +49,7 @@ namespace Pawnmorph.Utilities
         public static float generateSkewNormalRandom(float loc, float scale, float shape)
         {
             if (scale <= 0)
-                throw new ArgumentException("Scale cannot be null");
+                throw new ArgumentException("Scale cannot be negative");
 
             float corr = shape / Mathf.Sqrt(1 + Mathf.Pow(shape, 2));
             float u0 = generateNormalRandom(0,1);
