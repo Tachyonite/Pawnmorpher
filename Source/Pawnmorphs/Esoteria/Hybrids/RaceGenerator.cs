@@ -83,6 +83,7 @@ namespace Pawnmorph.Hybrids
                 litterSizeCurve = human.litterSizeCurve,
                 lifeStageAges = MakeLifeStages(human.lifeStageAges, animal.lifeStageAges),
                 soundMeleeHitPawn = animal.soundMeleeHitPawn,
+                roamMtbDays = animal.roamMtbDays,
                 soundMeleeHitBuilding = animal.soundMeleeHitBuilding,
                 trainability = GetTrainability(animal.trainability),
                 soundMeleeMiss = animal.soundMeleeMiss,
