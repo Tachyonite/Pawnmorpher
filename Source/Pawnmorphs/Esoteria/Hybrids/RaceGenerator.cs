@@ -516,11 +516,12 @@ namespace Pawnmorph.Hybrids
         [NotNull]
         private static ThingDef_AlienRace GenerateImplicitRace([NotNull] ThingDef_AlienRace humanDef, [NotNull] MorphDef morph)
         {
+            ThingDef animal = morph.race;
             var impliedRace = new ThingDef_AlienRace
             {
                 defName = morph.defName + "Race_Implied", //most of these are guesses, should figure out what's safe to change and what isn't 
                 label = morph.label,
-                race = GenerateHybridProperties(humanDef.race, morph.race.race),
+                race = GenerateHybridProperties(humanDef.race, animal?.race),
                 thingCategories = humanDef.thingCategories,
                 thingClass = humanDef.thingClass,
                 category = humanDef.category,
@@ -529,20 +530,24 @@ namespace Pawnmorph.Hybrids
                 altitudeLayer = humanDef.altitudeLayer,
                 useHitPoints = humanDef.useHitPoints,
                 hasTooltip = humanDef.hasTooltip,
-                soundImpactDefault = morph.race.soundImpactDefault,
-                statBases = GenerateHybridStatModifiers(humanDef.statBases, morph.race.statBases, morph.raceSettings.statModifiers),
+                soundImpactDefault = animal?.soundImpactDefault ?? humanDef.soundImpactDefault,
+                statBases = GenerateHybridStatModifiers(humanDef.statBases, animal?.statBases, morph.raceSettings.statModifiers),
                 inspectorTabs = humanDef.inspectorTabs.ToList(), //do we want any custom tabs? 
                 comps = humanDef.comps.ToList(),
                 drawGUIOverlay = humanDef.drawGUIOverlay,
-                description = string.IsNullOrEmpty(morph.description) ? morph.race.description : morph.description,
+                description = string.IsNullOrEmpty(morph.description) ? animal?.description : morph.description,
                 modContentPack = morph.modContentPack,
                 inspectorTabsResolved = humanDef.inspectorTabsResolved?.ToList() ?? new List<InspectTabBase>(),
                 recipes = new List<RecipeDef>(humanDef.recipes.MakeSafe()), //this is where the surgery operations live
-                filth = morph.race.filth,
-                filthLeaving = morph.race.filthLeaving,
-                soundDrop = morph.race.soundDrop,
-                soundInteract = morph.race.soundInteract,
-                soundPickup = morph.race.soundPickup,
+                filth = animal?.filth ?? ThingDefOf.Human?.filth,
+                filthLeaving = animal?.filthLeaving ?? ThingDefOf.Human?.filthLeaving,
+                uiIcon = animal?.uiIcon,
+                uiIconOffset = animal?.uiIconOffset ?? default(Vector2),
+                uiIconScale = animal?.uiIconScale ?? 1,
+                uiIconColor = animal?.uiIconColor ?? Color.white,
+                soundDrop = animal?.soundDrop ?? humanDef.soundDrop,
+                soundInteract = animal?.soundInteract ?? humanDef.soundInteract,
+                soundPickup = animal?.soundPickup ?? humanDef.soundPickup,
                 socialPropernessMatters = humanDef.socialPropernessMatters,
                 stuffCategories = humanDef.stuffCategories?.ToList(),
                 designationCategory = humanDef.designationCategory,
@@ -550,9 +555,9 @@ namespace Pawnmorph.Hybrids
                 tradeability = humanDef.tradeability,
                 fillPercent = morph.raceSettings.coverPercent
             };
-            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(morph.race.tools.MakeSafe()));
+            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(animal.tools.MakeSafe()));
             var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance); 
-            var vLst = impliedRace.Verbs.MakeSafe().Concat(morph.race.Verbs.MakeSafe()).ToList();
+            var vLst = impliedRace.Verbs.MakeSafe().Concat(animal.Verbs.MakeSafe()).ToList();
 
             verbField.SetValue(impliedRace, vLst); 
 
