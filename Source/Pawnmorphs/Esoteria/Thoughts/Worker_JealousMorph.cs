@@ -19,6 +19,7 @@ namespace Pawnmorph.Thoughts
         /// <returns></returns>
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
+            if (p.IsFormerHuman()) return false; 
             var mT = p.Map?.GetComponent<MorphTracker>();
             if (mT == null) return false;
             return (!p.IsMorph() && mT.AnyMorphs);
