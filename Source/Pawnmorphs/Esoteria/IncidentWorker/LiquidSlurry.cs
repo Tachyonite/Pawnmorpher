@@ -70,7 +70,7 @@ namespace Pawnmorph.IncidentWorkers
 
         private const float REDUCE_PERCENT = MathUtilities.LN2 / (HALF_LIFE  / (GenTicks.TickRareInterval / 60f)); //the chance the filth with thin by itself per rare tick ( per 4.166666667s) 
         //half life in (real) seconds 
-        private const float HALF_LIFE = 120; 
+        private const float HALF_LIFE = 200; 
 
 
 
