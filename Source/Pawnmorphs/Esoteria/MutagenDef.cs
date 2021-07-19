@@ -168,6 +168,19 @@ namespace Pawnmorph
         {
             return MutagenCached.CanInfect(pawn); 
         }
+
+
+        /// <summary>
+        /// Determines whether this instance can infect the specified race.
+        /// </summary>
+        /// <param name="race">The definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can infect the specified race; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanInfect(ThingDef race)
+        {
+            return MutagenCached.CanInfect(race); 
+        }
     }
 
     /// <summary>

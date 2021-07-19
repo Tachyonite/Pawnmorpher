@@ -121,7 +121,7 @@ namespace Pawnmorph
         /// </summary>
         public override void CompTick()
         {
-            if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn)) return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
+            if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn.def)) return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
             if (InfluencesDirty)
             {
                 RecalcInfluences();
