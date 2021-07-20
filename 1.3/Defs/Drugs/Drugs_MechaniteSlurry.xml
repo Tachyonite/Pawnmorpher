@@ -30,6 +30,7 @@
 			<effectWorking>Cook</effectWorking>
 			<soundWorking>Recipe_Brewing</soundWorking>
 			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<workSkill>Intellectual</workSkill>
 			<recipeUsers>
 				<li>DrugLab</li>
 				<li>MutagenLab</li>

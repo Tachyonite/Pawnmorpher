@@ -234,6 +234,7 @@
 				<li>DrugLab</li>
 				<li>MutagenLab</li>
 			</recipeUsers>
+			<workSkill>Intellectual</workSkill>
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
