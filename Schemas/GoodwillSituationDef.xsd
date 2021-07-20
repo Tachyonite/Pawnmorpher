@@ -1,0 +1,33 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/SimpleCurve.xsd" />
+    <xs:include schemaLocation="include/Enums.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="GoodwillSituationDef" type="GoodwillSituationDef" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="GoodwillSituationDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="workerClass" type="CSType" minOccurs="0" />
+            <xs:element name="baseMaxGoodwill" type="xs:int" minOccurs="0" />
+            <xs:element name="meme" type="xs:string" minOccurs="0" />
+            <xs:element name="otherMeme" type="xs:string" minOccurs="0" />
+            <xs:element name="naturalGoodwillOffset" type="xs:string" minOccurs="0" />
+            <xs:element name="versusAll" type="xs:boolean" minOccurs="0" />
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+
+</xs:schema>
