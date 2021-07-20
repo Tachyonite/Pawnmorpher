@@ -572,7 +572,6 @@
                 </alienPartGenerator>
             </generalSettings>
             <graphicPaths Inherit="False"></graphicPaths>
-            <hairSettings></hairSettings>
             <thoughtSettings>
                 <cannotReceiveThoughts></cannotReceiveThoughts>
                 <canStillReceiveThoughts></canStillReceiveThoughts>

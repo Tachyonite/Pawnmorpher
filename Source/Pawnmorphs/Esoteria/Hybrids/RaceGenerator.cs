@@ -437,7 +437,7 @@ namespace Pawnmorph.Hybrids
             {
                 generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace),
                 graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph),
-                hairSettings = human.hairSettings,
+                styleSettings = human.styleSettings,
                 raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
                 relationSettings = human.relationSettings,
                 thoughtSettings = morph.raceSettings.GenerateThoughtSettings(human.thoughtSettings, morph)

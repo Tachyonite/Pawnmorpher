@@ -413,7 +413,7 @@ namespace Pawnmorph.Hybrids
                 story.bodyType = newBType; 
             }
 
-            if (oldRace.alienRace.hairSettings?.hasHair == true && race.alienRace.hairSettings?.hasHair == false)
+            if (oldRace.alienRace.styleSettings?[typeof(HairDef)] != null && race.alienRace.styleSettings?[typeof(HairDef)]== null)
             {
                 story.hairDef = HairDefOf.Shaved; 
             }
