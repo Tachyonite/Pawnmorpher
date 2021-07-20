@@ -72,9 +72,8 @@ namespace Pawnmorph.Utilities
         }
 
 
-        
         /// <summary>
-        /// prints a pretty tree 
+        ///     prints a pretty tree
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="root">The root.</param>
@@ -82,46 +81,21 @@ namespace Pawnmorph.Utilities
         /// <param name="toStringFunc">To string function.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">
-        /// root
-        /// or
-        /// getChildren
+        ///     root
+        ///     or
+        ///     getChildren
         /// </exception>
         public static string PrettyPrintTree<T>([NotNull] T root, [NotNull] GetChildrenAction<T> getChildren,
                                                 Func<T, string> toStringFunc = null)
         {
             if (root == null) throw new ArgumentNullException(nameof(root));
             if (getChildren == null) throw new ArgumentNullException(nameof(getChildren));
-            toStringFunc = toStringFunc ?? ((T f) => f.ToString());
-            StringBuilder builder = new StringBuilder();
-            string indent = "";
+            toStringFunc = toStringFunc ?? (f => f.ToString());
+            var builder = new StringBuilder();
+            var indent = "";
 
             PrettyPrintTreeWorker(root, getChildren, toStringFunc, builder, true, indent);
-            return builder.ToString(); 
-        }
-
-        static void PrettyPrintTreeWorker<T>([NotNull] T node, [NotNull] GetChildrenAction<T> getChildren,
-                                               [NotNull] Func<T, string> toStringFunc, StringBuilder builder, bool last, string indent)
-        {
-            builder.Append(indent);
-            if (last)
-            {
-                builder.Append("\\-");
-                indent += "  "; 
-            }
-            else
-            {
-                builder.Append("|-");
-                indent += "| "; 
-            }
-
-            builder.AppendLine(toStringFunc(node));
-
-            var lst = getChildren(node).MakeSafe().ToList();
-            for (int i = 0; i < lst.Count; i++)
-            {
-                var child = lst[i];
-                PrettyPrintTreeWorker<T>(child, getChildren, toStringFunc, builder, i == lst.Count - 1, indent); 
-            }
+            return builder.ToString();
         }
 
         /// <summary>add body part defs in to the given list in order of a 'randomized spread traversal' of the given body def</summary>
@@ -166,6 +140,32 @@ namespace Pawnmorph.Utilities
             foreach (T child in getChildren(node).MakeSafe()) PostorderWorker(child, getChildren, outList);
 
             outList.Add(node);
+        }
+
+        private static void PrettyPrintTreeWorker<T>([NotNull] T node, [NotNull] GetChildrenAction<T> getChildren,
+                                                     [NotNull] Func<T, string> toStringFunc, StringBuilder builder, bool last,
+                                                     string indent)
+        {
+            builder.Append(indent);
+            if (last)
+            {
+                builder.Append("\\-");
+                indent += "  ";
+            }
+            else
+            {
+                builder.Append("|-");
+                indent += "| ";
+            }
+
+            builder.AppendLine(toStringFunc(node));
+
+            List<T> lst = getChildren(node).MakeSafe().ToList();
+            for (var i = 0; i < lst.Count; i++)
+            {
+                T child = lst[i];
+                PrettyPrintTreeWorker(child, getChildren, toStringFunc, builder, i == lst.Count - 1, indent);
+            }
         }
 
         [NotNull]

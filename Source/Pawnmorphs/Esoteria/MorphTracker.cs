@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace Pawnmorph
         public event MorphCountChangedHandle MorphCountChanged;
 
         private Dictionary<MorphDef, int> _counterDict = new Dictionary<MorphDef, int>();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MorphTracker"/> class.
         /// </summary>
@@ -33,6 +35,23 @@ namespace Pawnmorph
         public MorphTracker(Map map) : base(map)
         {
         }
+
+        /// <summary>
+        /// Gets the total number of morphs on the map.
+        /// </summary>
+        /// <value>
+        /// The total number of morphs on the map
+        /// </value>
+        public int TotalMorphs { get; private set; }
+
+
+        /// <summary>
+        /// Gets a value indicating whether there are any morphs on the map 
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if there are any morphs on the map; otherwise, <c>false</c>.
+        /// </value>
+        public bool AnyMorphs => TotalMorphs > 0; 
 
         /// <summary> Notify this tracker that the pawn has spawned. </summary>
         public void NotifySpawned(Pawn pawn)
@@ -42,7 +61,8 @@ namespace Pawnmorph
             {
                 var i = _counterDict.TryGetValue(morph);
                 i++;
-                _counterDict[morph] = i; 
+                _counterDict[morph] = i;
+                TotalMorphs++;
                 MorphCountChanged?.Invoke(this, morph); 
             }
         }
@@ -73,7 +93,8 @@ namespace Pawnmorph
             if (morph != null)
             {
                 var i = _counterDict.TryGetValue(morph) - 1;
-                i = Mathf.Max(0, i); 
+                i = Mathf.Max(0, i);
+                TotalMorphs--;
                 _counterDict[morph] = i;
                 MorphCountChanged?.Invoke(this, morph); 
             }
@@ -87,7 +108,7 @@ namespace Pawnmorph
                 var i = _counterDict.TryGetValue(oldMorph) - 1;
                 i = Mathf.Max(0, i);
                 _counterDict[oldMorph] = i;
-
+                TotalMorphs--;
                 MorphCountChanged?.Invoke(this, oldMorph); 
             }
 
@@ -96,6 +117,7 @@ namespace Pawnmorph
             {
                 var i = _counterDict.TryGetValue(morph) + 1;
                 _counterDict[morph] = i;
+                TotalMorphs++;
                 MorphCountChanged?.Invoke(this, morph); 
             }
         }

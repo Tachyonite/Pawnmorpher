@@ -66,7 +66,7 @@ namespace Pawnmorph.DebugUtils
         {
             foreach ((string label, Action action)  in GenerateActions())
             {
-                DebugAction_NewTmp(label, action, false); 
+                DebugAction(label, action, false); 
             }
         }
 

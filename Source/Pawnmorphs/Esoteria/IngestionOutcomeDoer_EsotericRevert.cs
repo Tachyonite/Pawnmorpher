@@ -74,6 +74,7 @@ namespace Pawnmorph
 
             //add reversion hediff 
             var hDiff = HediffMaker.MakeHediff(MorphTransformationDefOf.PM_Reverting, pawn);
+            hDiff.Severity = 1;
             hediffs.AddDirect(hDiff);
 
 

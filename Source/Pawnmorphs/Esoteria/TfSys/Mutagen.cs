@@ -393,7 +393,7 @@ namespace Pawnmorph.TfSys
                 averageGaussian = influenceMutagen * def.transformedSapienceDropMean + influenceMood * (1 - mood);
             else //Mood having a higher impact when exceding the threshold.
                 averageGaussian = (1 - mood) / (1 - minimalMoodLowerSapience) * (influenceMutagen * def.transformedSapienceDropMean + influenceMood * (1 - mood));
-            return Mathf.Max(initialSapience - Mathf.Clamp(GaussianRandom.generateNormalRandom(averageGaussian, def.transformedSapienceDropStd), 0f, 0.9f), 0);
+            return Mathf.Max(initialSapience - Mathf.Clamp(RandUtilities.generateNormalRandom(averageGaussian, def.transformedSapienceDropStd), 0f, 0.9f), 0);
         }
     }
 

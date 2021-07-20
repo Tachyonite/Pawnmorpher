@@ -109,25 +109,28 @@ namespace Pawnmorph.Social
             else
             {
                 float num;
-                if (flag1)
+                if (initiator.InspirationDef == InspirationDefOf.Inspired_Taming)
                 {
-                    if (initiator.InspirationDef == InspirationDefOf.Inspired_Taming)
-                    {
-                        num = 1f;
-                        initiator.mindState.inspirationHandler.EndInspiration(InspirationDefOf.Inspired_Taming);
-                    }
-                    else
-                    {
-                        float statValue = initiator.GetStatValue(StatDefOf.TameAnimalChance);
-                        float x2 = recipient.IsWildMan() ? 0.2f : recipient.RaceProps.wildness;
-                        num = statValue * TameChanceFactorCurve_Wildness.Evaluate(x2);
-                        if (initiator.relations.DirectRelationExists(PawnRelationDefOf.Bond, recipient))
-                            num *= 4f;
-                    }
+                    num = 1f;
+                    initiator.mindState.inspirationHandler.EndInspiration(InspirationDefOf.Inspired_Taming);
                 }
                 else
                 {
-                    num = flag2 || DebugSettings.instantRecruit ? 1f : recipient.RecruitChanceFinalByPawn(initiator);
+                    num = initiator.GetStatValue(StatDefOf.TameAnimalChance);
+                    float x2 = (recipient.IsWildMan() ? 0.75f : recipient.RaceProps.wildness);
+                    num *= TameChanceFactorCurve_Wildness.Evaluate(x2);
+                    if (recipient.IsPrisonerInPrisonCell())
+                    {
+                        num *= 0.6f;
+                    }
+                    if (initiator.relations.DirectRelationExists(PawnRelationDefOf.Bond, recipient))
+                    {
+                        num *= 4f;
+                    }
+                    if (initiator.Ideo != null && initiator.Ideo.IsVeneratedAnimal(recipient))
+                    {
+                        num *= 2f;
+                    }
                 }
 
                 if (Rand.Chance(num))
@@ -172,7 +175,35 @@ namespace Pawnmorph.Social
             recipient.guest.SetLastRecruiterData(initiator, resistanceReduce);
         }
 
+        float GetRecruitChance(Pawn initiator, Pawn recipient)
+        {
+            float num;
+            if (initiator.InspirationDef == InspirationDefOf.Inspired_Taming)
+            {
+                num = 1f;
+                initiator.mindState.inspirationHandler.EndInspiration(InspirationDefOf.Inspired_Taming);
+            }
+            else
+            {
+                num = initiator.GetStatValue(StatDefOf.TameAnimalChance);
+                float x2 = (recipient.IsWildMan() ? 0.75f : recipient.RaceProps.wildness);
+                num *= TameChanceFactorCurve_Wildness.Evaluate(x2);
+                if (recipient.IsPrisonerInPrisonCell())
+                {
+                    num *= 0.6f;
+                }
+                if (initiator.relations?.DirectRelationExists(PawnRelationDefOf.Bond, recipient) == true)
+                {
+                    num *= 4f;
+                }
+                if (initiator.Ideo != null && initiator.Ideo.IsVeneratedAnimal(recipient))
+                {
+                    num *= 2f;
+                }
+            }
 
+            return num; 
+        }
         void PostInteracted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks)
         {
             if (extraSentencePacks == null) return;
@@ -260,6 +291,7 @@ namespace Pawnmorph.Social
                 if (recruitee.needs.mood != null)
                     recruitee.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.RecruitedMe, recruiter);
                 QuestUtility.SendQuestTargetSignals(recruitee.questTags, "Recruited", recruitee.Named("SUBJECT"));
+                Find.ColonistBar?.MarkColonistsDirty();
             }
             else
             {

@@ -1,0 +1,108 @@
+<Defs>
+	<ThingDef ParentName="MechSerumBase">
+		<defName>MechSerumMutagenicHealer</defName>
+		<label>mutagenic healer mech serum</label>
+		<description>A lesser version of the healer mech serum made from reprogrammed mutagenic mechanites. The mechanites will target and heal the single worst health condition affecting someone at any given time. Works even on health conditions that would otherwise be incurable, including reconstructing lost tissue and limbs. \n\nBecause some of the mechanites have leftover mutagenic programming, there is a high risk that the restored body part will end up mutated, regardless of any anti-mutagenic agent in the user's body.</description>
+		<graphicData>
+			<texPath>Things/Item/Special/MechSerumHealer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stackLimit>10</stackLimit>
+		<thingCategories>
+			<li>Items</li>
+		</thingCategories>
+		<statBases>
+			<MarketValue>1300</MarketValue>
+		</statBases>
+		<tradeability>Sellable</tradeability>
+		<comps>
+			<li Class="CompProperties_Usable">
+				<useJob>UseItem</useJob>
+				<useLabel>Use mutagenic healer mech serum</useLabel>
+				<useDuration>600</useDuration>
+			</li>
+			<li Class="CompProperties_UseEffect">
+				<compClass>Pawnmorph.Comp_MutagenicFixWorstCondition</compClass>
+			</li>
+			<li Class="CompProperties_UseEffect">
+				<compClass>CompUseEffect_DestroySelf</compClass>
+			</li>
+		</comps>
+		<thingSetMakerTags>
+			<li>RewardSpecial</li>
+		</thingSetMakerTags>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>HealerMutagen</mutagen>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="MechSerumBase">
+		<defName>MechSerumResurrectorTf</defName>
+		<label>transformative resurrector mech serum</label>
+		<description>Death is irrelevant.</description>
+		<graphicData>
+			<texPath>Things/Item/Special/MechSerumResurrector</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stackLimit>10</stackLimit>
+		<thingCategories>
+			<li>Items</li>
+		</thingCategories>
+		<statBases>
+			<MarketValue>1700</MarketValue>
+		</statBases>
+		<tradeability>Sellable</tradeability>
+		<comps>
+			<li Class="CompProperties_Usable">
+				<useJob>UseItem</useJob>
+				<useLabel>Use resurrector mech serum</useLabel>
+				<useDuration>0</useDuration>
+			</li>
+			<li Class="Pawnmorph.CompProperties_TransformableCorpse">
+				<fleshCorpsesOnly>true</fleshCorpsesOnly>
+				<nonDessicatedCorpsesOnly>true</nonDessicatedCorpsesOnly>
+			</li>
+			<li Class="Pawnmorph.CompProperties_TfResurrect" />
+			<li Class="Pawnmorph.ThingComps.ResurrectorTargetProperties">
+
+				<!-- can be set to either a black or white list of specific animals  -->
+				<animalFilter>
+					<isBlackList>true</isBlackList>
+					<filterList>
+						<li>Thrumbo</li>
+					</filterList>
+				</animalFilter>
+
+				<!-- the sapience level the tf'd pawn will have, default is random 
+				<forcedSapienceLevel>Sapient</forcedSapienceLevel>
+				-->
+
+				<!-- Can be set to 
+					None - pawns will never turn into chaomorphs 
+					Allowed - chaomorphs are allowed (default) 
+					Always - ressurected pawns will always turn into chaomorphs 
+				-->
+				<chaomorphSetting>Allowed</chaomorphSetting>
+
+				<!-- if true, dead morphs will turn into their respective animal first. 
+					If true and the pawn is a morph no other settings will be respected!
+				-->
+				<checkForMorphFirst>false</checkForMorphFirst>
+
+
+				<!-- can blacklist whole categories of morphs and their respective animals  -->
+				<morphCategoryFilter>
+					<isBlackList>true</isBlackList>
+					<filterList>
+						<li>Powerful</li>
+					</filterList>
+				</morphCategoryFilter>
+			</li>
+		</comps>
+		<thingSetMakerTags>
+			<li>RewardSpecial</li>
+		</thingSetMakerTags>
+	</ThingDef>
+</Defs>

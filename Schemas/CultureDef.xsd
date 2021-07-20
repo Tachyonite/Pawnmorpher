@@ -1,0 +1,75 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleCurve.xsd" />
+
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/Enums.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CultureDef" type="CultureDef" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="CultureDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+
+            <xs:element name="pawnNameMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="pawnNameMakerFemale" type="xs:string" minOccurs="0" />
+            <xs:element name="ideoNameMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="deityNameMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="deityTypeMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="leaderTitleMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="festivalNameMaker" type="xs:string" minOccurs="0" />
+
+            <xs:element name="thingStyleCategories" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="ThingStyleCategoryWithPriority" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="styleItemTags" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="StyleItemTagWeighted" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="preferredWeaponClasses" type="IdeoWeaponClassPair" minOccurs="0" />
+
+            <xs:element name="allowedPlaceTags" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="iconPath" type="xs:string" minOccurs="0" />
+            <xs:element name="iconColor" type="Color" minOccurs="0" />
+
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="ThingStyleCategoryWithPriority">
+        <xs:all>
+            <xs:element name="category" type="xs:string" />
+            <xs:element name="priority" type="xs:float" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="StyleItemTagWeighted">
+        <xs:all>
+            <xs:element name="tag" type="xs:string" />
+            <xs:element name="baseWeight" type="xs:float" />
+            <xs:element name="weightFactor" type="xs:float" />
+        </xs:all>
+    </xs:complexType>
+
+
+</xs:schema>

@@ -56,9 +56,9 @@ namespace Pawnmorph.Verbs
             }
             Vector3 drawPos = caster.DrawPos;
             Projectile projectile2 = (Projectile)GenSpawn.Spawn(projectile, resultingLine.Source, caster.Map);
-            if (verbProps.forcedMissRadius > 0.5f)
+            if (verbProps.ForcedMissRadius > 0.5f)
             {
-                float num = VerbUtility.CalculateAdjustedForcedMiss(verbProps.forcedMissRadius, currentTarget.Cell - caster.Position);
+                float num = VerbUtility.CalculateAdjustedForcedMiss(verbProps.ForcedMissRadius, currentTarget.Cell - caster.Position);
                 if (num > 0.5f)
                 {
                     int max = GenRadial.NumCellsInRadius(num);
@@ -75,7 +75,7 @@ namespace Pawnmorph.Verbs
                         {
                             projectileHitFlags &= ~ProjectileHitFlags.NonTargetPawns;
                         }
-                        projectile2.Launch(launcher, drawPos, c, currentTarget, projectileHitFlags, equipment);
+                        projectile2.Launch(launcher, drawPos, c, currentTarget, projectileHitFlags,true, equipment);
                         return true;
                     }
                 }
@@ -89,11 +89,11 @@ namespace Pawnmorph.Verbs
            
             if (currentTarget.Thing != null)
             {
-                projectile2.Launch(launcher, drawPos, currentTarget, currentTarget, projectileHitFlags4, equipment, targetCoverDef);
+                projectile2.Launch(launcher, drawPos, currentTarget, currentTarget, projectileHitFlags4, true, equipment, targetCoverDef);
             }
             else
             {
-                projectile2.Launch(launcher, drawPos, resultingLine.Dest, currentTarget, projectileHitFlags4, equipment, targetCoverDef);
+                projectile2.Launch(launcher, drawPos, resultingLine.Dest, currentTarget, projectileHitFlags4, true, equipment, targetCoverDef);
             }
             return true;
         }

@@ -1,5 +1,5 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
     <xs:element name="Defs">
         <xs:complexType>
             <xs:sequence>
@@ -37,11 +37,13 @@
             <xs:element name="basicMemberKind" type="xs:string" minOccurs="0"/>
             <xs:element name="startingResearchTags" type="ListOfStrings" minOccurs="0"/>
             <xs:element name="recipePrerequisiteTags" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="naturalEnemy" type="xs:boolean" minOccurs="0" />
             <xs:element name="rescueesCanJoin" type="xs:boolean" minOccurs="0"/>
             <xs:element name="pawnSingular" type="xs:string" minOccurs="0"/>
             <xs:element name="pawnsPlural" type="xs:string" minOccurs="0" />
             <xs:element name="leaderTitle" type="xs:string" minOccurs="0"/>
             <xs:element name="forageabilityFactor" type="xs:float" minOccurs="0"/>
+            <xs:element name="hostileToFactionlessHumanlikes" type="xs:boolean" minOccurs="0" />
             <xs:element name="maxPawnCostPerTotalPointsCurve" type="SimpleCurve" minOccurs="0"/>
             <xs:element name="requiredCountAtGameStart" type="xs:int" minOccurs="0"/>
             <xs:element name="maxCountAtGameStart" type="xs:int" minOccurs="0" />
@@ -49,16 +51,13 @@
             <xs:element name="settlementGenerationWeight" type="xs:float" minOccurs="0"/>
             <xs:element name="pawnNameMaker" type="xs:string" minOccurs="0"/>
             <xs:element name="techLevel" type="TechLevel" minOccurs="0"/>
-            <xs:element name="backstoryCategories" type="ListOfStrings" minOccurs="0"/>
-            <xs:element name="hairTags" type="ListOfStrings" minOccurs="0"/>
+            <xs:element name="backstoryCategories" type="ListOfStrings" minOccurs="0" />
             <xs:element name="apparelStuffFilter" type="ThingFilter" minOccurs="0"/>
             <xs:element name="caravanTraderKinds" type="ListOfStrings" minOccurs="0"/>
             <xs:element name="visitorTraderKinds" type="ListOfStrings" minOccurs="0"/>
             <xs:element name="baseTraderKinds" type="ListOfStrings" minOccurs="0"/>
-            <xs:element name="geneticVariance" type="xs:float" minOccurs="0"/>
-            <xs:element name="startingGoodwill" type="IntRange" minOccurs="0"/>
-            <xs:element name="mustStartOneEnemy" type="xs:boolean" minOccurs="0"/>
-            <xs:element name="naturalColonyGoodwill" type="IntRange" minOccurs="0"/>
+            <xs:element name="geneticVariance" type="xs:float" minOccurs="0" />
+            <xs:element name="mustStartOneEnemy" type="xs:boolean" minOccurs="0" />
             <xs:element name="goodwillDailyGain" type="xs:float" minOccurs="0"/>
             <xs:element name="goodwillDailyFall" type="xs:float" minOccurs="0"/>
             <xs:element name="permanentEnemy" type="xs:boolean" minOccurs="0"/>
@@ -70,6 +69,16 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="royalTitleInheritanceRelations" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="royalTitleInheritanceWorkerClass" type="CSType" minOccurs="0" />
+            <xs:element name="royalImplantRules" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="renounceTitleMessage" type="xs:string" minOccurs="0" />
+            <xs:element name="allowedCultures" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="requiredMemes" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="allowedMemes" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="disallowedMemes" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="disallowedPrecepts" type="ListOfStrings" minOccurs="0" />
+
             <!--TODO Finish this -->
         </xs:all>
         <xs:attribute name="ParentName" type="xs:string" use="optional" />
@@ -157,21 +166,6 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="QualityRange" > 
-        <xs:restriction base="xs:string">
-            <xs:pattern value="(Awful|Poor|Normal|Good|Excellent|Masterwork|Legendary)~(Awful|Poor|Normal|Good|Excellent|Masterwork|Legendary)"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="Vector2">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="FloatRange">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[+-]?([0-9]*[.])?[0-9]+~[+-]?([0-9]*[.])?[0-9]+"/>
-        </xs:restriction>
-    </xs:simpleType>
     <xs:simpleType name="TechLevel">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Undefined"/>
@@ -196,16 +190,6 @@
             <xs:enumeration value="MealSimple"/>
             <xs:enumeration value="MealFine"/>
             <xs:enumeration value="MealLavish"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="IntRange">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]+~[0-9]+"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="Color">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}(,[0-9]{1,3})?\)"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

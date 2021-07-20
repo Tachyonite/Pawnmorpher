@@ -152,16 +152,17 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Draws the GUI.
+        /// Draws the GUI.
         /// </summary>
         /// <param name="rect">The rect.</param>
         /// <param name="maxThresholdMarkers">The maximum threshold markers.</param>
         /// <param name="customMargin">The custom margin.</param>
         /// <param name="drawArrows">if set to <c>true</c> [draw arrows].</param>
         /// <param name="doTooltip">if set to <c>true</c> [do tooltip].</param>
-        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = 2147483647, float customMargin = -1,
+        /// <param name="rectForTooltip">The rect for tooltip.</param>
+        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1f,
                                        bool drawArrows = true,
-                                       bool doTooltip = true)
+                                       bool doTooltip = true, Rect? rectForTooltip = null)
         {
             if (threshPercents == null || _maxLevelCached == null)
             {
@@ -179,7 +180,7 @@ namespace Pawnmorph
                 }
             }
 
-            base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip);
+            base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip, rectForTooltip);
         }
 
         /// <summary>

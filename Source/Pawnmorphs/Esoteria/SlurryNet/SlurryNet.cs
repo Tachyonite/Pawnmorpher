@@ -3,7 +3,6 @@
 
 //code referenced from Vanilla Power Extended's gas network
 
-//TODO per tick production/consumption calc  
 
 using System;
 using System.Collections.Generic;

@@ -812,7 +812,7 @@ namespace Pawnmorph.User_Interface
             {
                 Mesh mesh2 = MeshPool.humanlikeHeadSet.MeshAt(previewRot);
                 Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
-                Material material = graphics.HeadMatAt_NewTemp(previewRot);
+                Material material = graphics.HeadMatAt(previewRot);
                 GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
 
                 Mesh hairMesh = graphics.HairMeshSet.MeshAt(previewRot);
@@ -841,7 +841,7 @@ namespace Pawnmorph.User_Interface
                 }
                 if (!isWearingHat)
                 {
-                    Material hairMat = graphics.HairMatAt_NewTemp(previewRot);
+                    Material hairMat = graphics.HairMatAt(previewRot);
                     GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
                 }
             }
@@ -859,7 +859,7 @@ namespace Pawnmorph.User_Interface
             ThingDef_AlienRace def = pawn.def as ThingDef_AlienRace;
             Vector2 hOffset = def != null ? def.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage).headOffset : Vector2.zero;
 
-            HarmonyPatches.DrawAddons(false, vector3, hOffset, pawn, quaternion, previewRot, false);
+            HarmonyPatches.DrawAddons( PawnRenderFlags.Clothes,  vector3, hOffset, pawn, quaternion, previewRot);
             if (toggleClothesEnabled)
             {
                 if (pawn.apparel != null)

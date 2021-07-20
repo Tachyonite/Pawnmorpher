@@ -1,0 +1,51 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/Enums.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RitualPatternDef" type="RitualPatternDef" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="RitualPatternDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="deescription" type="xs:string" minOccurs="0" />
+            <xs:element name="nameMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="ritualFreeStartIntervalDaysRange" type="FloatRange" minOccurs="0" />
+            <xs:element name="ritualObligationTargetFilter" type="xs:string" minOccurs="0" />
+            <xs:element name="ritualTargetFilter" type="xs:string" minOccurs="0" />
+            <xs:element name="ritualBehavior" type="xs:string" minOccurs="0" />
+            <xs:element name="ritualOutcomeEffect" type="xs:string" minOccurs="0" />
+            <xs:element name="ritualOnlyForIdeoMembers" type="xs:boolean" minOccurs="0" />
+            <xs:element name="canStartAnytime" type="xs:boolean" minOccurs="0" />
+            <xs:element name="alwaysStartAnytime" type="xs:boolean" minOccurs="0" />
+            <xs:element name="playsIdeoMusic" type="xs:boolean" minOccurs="0" />
+            <xs:element name="ignoreConsumableBuildingRequirement" type="xs:boolean" minOccurs="0" />
+            <xs:element name="mergeGizmosForObligations" type="xs:boolean" minOccurs="0" />
+            <xs:element name="minTechLevel" type="TechLevel" minOccurs="0" />
+            <xs:element name="maxTechLevel" type="TechLevel" minOccurs="0" />
+
+            <xs:element name="gracePeriodTicksSinceGameStarted" type="xs:int" minOccurs="0" />
+            <xs:element name="ritualExpectedDesc" type="xs:string" minOccurs="0" />
+            <xs:element name="ritualExpectedPostfix" type="xs:string" minOccurs="0" />
+            <xs:element name="shortDescOverride" type="xs:string" minOccurs="0" />
+            <xs:element name="descOverride" type="xs:string" minOccurs="0" />
+            <xs:element name="ritualExplanation" type="xs:string" minOccurs="0" />
+            <xs:element name="iconPathOverride" type="xs:string" minOccurs="0" />
+            <xs:element name="tags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="patternGroupTag" type="xs:string" minOccurs="0" />
+            <xs:element name="icon" type="xs:string" minOccurs="0" />
+
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+
+</xs:schema>

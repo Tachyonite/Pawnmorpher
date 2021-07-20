@@ -11,6 +11,8 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using HarmonyLib;
+using HugsLib.Logs;
+using Pawnmorph.DefExtensions;
 
 namespace Pawnmorph
 {
@@ -257,12 +259,10 @@ namespace Pawnmorph
         /// <returns>
         ///   <c>true</c> if the specified pawn is a chimera; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsChimera([NotNull] this Pawn pawn)
+        public static bool IsChaomorph([NotNull] this Pawn pawn)
         {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            //TODO use a mod extension so this isn't hard coded  
-            //hacky 
-            return pawn.def.label.Contains("chao");
+           if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+           return pawn.def?.GetModExtension<ChaomorphExtension>() != null; 
         }
 
         /// <summary>
@@ -276,8 +276,22 @@ namespace Pawnmorph
         public static void CheckRace([NotNull] this Pawn pawn, bool addMissingMutations = true, bool displayNotifications=true)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-
-            if (pawn.ShouldBeConsideredHuman()) return;
+            if (!HybridsAreEnabledFor(pawn.def)) return; 
+            if (pawn.ShouldBeConsideredHuman())
+            {
+                if (pawn.def != ThingDefOf.Human)
+                {
+                    var morph = pawn.def.GetMorphOfRace();
+                    ThoughtDef reversionMemory = morph?.transformSettings?.revertedMemory;
+                    if (reversionMemory != null)
+                    {
+                        pawn.TryGainMemory(reversionMemory); 
+                    }
+                    RaceShiftUtilities.ChangePawnRace(pawn, ThingDefOf.Human); 
+                }
+                
+                return;
+            }
 
             MutationTracker mutTracker = pawn.GetMutationTracker();
 
@@ -380,6 +394,20 @@ namespace Pawnmorph
             }
             _morphAssociationCache[transformationDef] = lst;
             return lst;
+        }
+
+        /// <summary>
+        /// Determines whether this instance is a morph.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified pawn is morph; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pawn</exception>
+        public static bool IsMorph([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            return pawn.def.GetMorphOfRace() != null; 
         }
 
         /// <summary> Gets the amount of influence a pawn has that's still human.</summary>
@@ -498,7 +526,7 @@ namespace Pawnmorph
             var morph = hInfluence as MorphDef;
             //if the highest influence isn't a morph pick a random morph from the animal class
             morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
-            if (morph.categories.Contains(MorphCategoryDefOf.Canid)) //TODO use the classes of these not the categories 
+            if (morph.categories.Contains(MorphCategoryDefOf.Canid)) //TODO Generalize this or just pick randomly, 
                 return MorphDefOfs.ChaofoxMorph;
             if (morph.categories.Contains(MorphCategoryDefOf.Reptile))
                 return MorphDefOfs.ChaodinoMorph;

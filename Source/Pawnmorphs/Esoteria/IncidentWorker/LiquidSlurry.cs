@@ -8,6 +8,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
 
 namespace Pawnmorph.IncidentWorkers
 {
@@ -21,6 +22,20 @@ namespace Pawnmorph.IncidentWorkers
         private const float EPSILON = 0.0001f;
         private const float MTTH_PLANT_MUTATE = 250;
         private static readonly float _p;
+        private const float THICKNESS_ADJ_VALUE = 0.6f; //the maximum amount thickness will reduce the potency of the mutagenic effect by 
+
+        private int MaxThickness => def.filth?.maxThickness ?? 1;
+
+        //the current adjustment value from the filth's thickness
+        float ThicknessAdj
+        {
+            get
+            {
+                var x = thickness / ((float) MaxThickness);
+                x = MathUtilities.SmoothStep(0, 1, x);
+                return Mathf.Lerp(THICKNESS_ADJ_VALUE, 1f, x); 
+            }
+        }
 
         [NotNull] private static readonly RWRaycastHit[] _buffer;
 
@@ -45,12 +60,25 @@ namespace Pawnmorph.IncidentWorkers
                         PMPlantUtilities.TryMutatePlant(plant);
                 }
             }
+
+            if (Rand.Chance(REDUCE_PERCENT))
+            {
+                ThinFilth();
+            }
+            
         }
+
+        private const float REDUCE_PERCENT = MathUtilities.LN2 / (HALF_LIFE  / (GenTicks.TickRareInterval / 60f)); //the chance the filth with thin by itself per rare tick ( per 4.166666667s) 
+        //half life in (real) seconds 
+        private const float HALF_LIFE = 200; 
+
+
+
         private void TryMutatePawn(Pawn pawn)
         {
 
             var hits = RWRaycast.RaycastAllNoAlloc(Map, Position, pawn.Position, _buffer, RaycastTargets.Impassible);
-
+            
 
             if (hits == 0)
             {
@@ -70,11 +98,11 @@ namespace Pawnmorph.IncidentWorkers
             var dist = (p0 - p1).magnitude + tHits * 1.5f;
 
             float rate = MUTAGENIC_BUILDUP_RATE / (Mathf.Pow(2, dist));
-
+            rate *= ThicknessAdj; 
 
             if (rate <= EPSILON) return;
 
-            MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, pawn, MUTAGENIC_BUILDUP_RATE);
+            MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, pawn, rate);
 
         }
 

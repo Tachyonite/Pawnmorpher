@@ -12,8 +12,7 @@ namespace Pawnmorph.Things
     /// class for the chaothrumbo with observation thoughts 
     /// </summary>
     /// <seealso cref="Verse.Pawn" />
-    /// <seealso cref="RimWorld.IThoughtGiver" />
-    public class Chaothrumbo : Pawn, IThoughtGiver
+    public class Chaothrumbo : Pawn, IObservedThoughtGiver
     {
         private static ThoughtDef _observationDef;
 
@@ -40,6 +39,29 @@ namespace Pawnmorph.Things
 
                 return _observationDef;
             }
+        }
+
+        /// <summary>
+        /// Gives the observed thought.
+        /// </summary>
+        /// <param name="observer">The observer.</param>
+        /// <returns></returns>
+        public Thought_Memory GiveObservedThought(Pawn observer)
+        {
+            var mem = (Memory_FactionObservation)ThoughtMaker.MakeThought(ObservationDef); //Note: we can separate out the different memories and get rid of the special memory 
+            //this may not work without further patching to PawnObserver.ObserveSurroundingThings() 
+            mem.ObservedThing = this;
+            return mem;
+        }
+
+        /// <summary>
+        /// Gives the observed history event.
+        /// </summary>
+        /// <param name="observer">The observer.</param>
+        /// <returns></returns>
+        public HistoryEventDef GiveObservedHistoryEvent(Pawn observer)
+        {
+            return null; //TODO figure out wtf HistoryEventDefs are 
         }
     }
 }

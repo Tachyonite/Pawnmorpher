@@ -16,7 +16,11 @@ namespace Pawnmorph.Hediffs
 
     public class Comp_ImmunizableMutation : HediffComp_Immunizable
     {
-        protected override float SeverityChangePerDay()
+        /// <summary>
+        /// gets the severity change per day 
+        /// </summary>
+        /// <returns></returns>
+        public override float SeverityChangePerDay()
         {
             var mult = Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
             var baseVal = base.SeverityChangePerDay();

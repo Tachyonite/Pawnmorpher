@@ -40,4 +40,9 @@
 			<xs:maxInclusive value="65535"/>
 		</xs:restriction>
 	</xs:simpleType>
+    <xs:simpleType name="CSType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="/^\S+$/"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>

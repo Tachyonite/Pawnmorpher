@@ -66,7 +66,7 @@ namespace Pawnmorph
         {
             var androidsIsLoaded = LoadedModManager.RunningMods.Any(m => m.PackageId == "Atlas.AndroidTiers");
 
-            //TODO make this a pop up 
+            //TODO make this a pop up like HugsLib's checker
             if (androidsIsLoaded)
             {
                 Log.Error("Android Tiers + Pawnmorpher detected. Please disable the AT 'hide inactive surrogates' mod option if former humans don't appear in your colonist bar or menu.");
@@ -191,7 +191,7 @@ namespace Pawnmorph
                 layerInvert = addon.layerInvert,
                 variantCount = addon.variantCount,
                 hediffGraphics = addon.hediffGraphics.MakeSafe().ToList(),
-                layerOffset = addon.layerOffset,
+                
                 hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
             };
 

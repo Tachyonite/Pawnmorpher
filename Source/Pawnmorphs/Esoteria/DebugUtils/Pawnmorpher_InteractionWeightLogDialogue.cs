@@ -49,13 +49,16 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString()); 
         }
 
+        /// <summary>
+        /// Does the listing items.
+        /// </summary>
         protected override void DoListingItems()
         {
             if (Current.ProgramState == ProgramState.Playing)
             {
                 foreach (PMInteractionDef pmInteractionDef in _interactionDefs)
                 {
-                    DebugAction_NewTmp(pmInteractionDef.defName, () => ListInteractionWeights(pmInteractionDef), false); 
+                    DebugAction(pmInteractionDef.defName, () => ListInteractionWeights(pmInteractionDef), false); 
                 }
             }
         }

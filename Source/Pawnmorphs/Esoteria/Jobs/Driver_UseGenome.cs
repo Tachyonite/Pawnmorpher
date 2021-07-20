@@ -84,8 +84,7 @@ namespace Pawnmorph.Jobs
             //just add to database, if not possible there is no recovery possible at this stage 
             //can add to database must be called by giver before hand
 
-            //TODO message 
-
+            
             if (mut == null)
             {
                 var aGenome = Genome.GetComp<AnimalGenomeStorageComp>();

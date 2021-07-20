@@ -135,12 +135,13 @@ namespace Pawnmorph
             _randomNameGenerators = new List<RulePackDef>();
             foreach (FactionDef factionDef in DefDatabase<FactionDef>.AllDefs)
             {
-                if (!factionDef.humanlikeFaction || factionDef.hidden || factionDef.pawnNameMaker == null) continue;
-                _randomNameGenerators.Add(factionDef.pawnNameMaker);
+                if (!factionDef.humanlikeFaction || factionDef.hidden || factionDef.factionNameMaker == null) continue;
+                _randomNameGenerators.Add(factionDef.factionNameMaker);
             }
-            
-            
 
+
+            _humanFilthAmount = ThingDefOf.Human.statBases?.FirstOrDefault(s => s.stat == StatDefOf.FilthRate)?.value
+                             ?? StatDefOf.FilthRate.defaultBaseValue; 
 
             Giver_RecruitSapientAnimal.ResetStaticData();
 
@@ -708,7 +709,87 @@ namespace Pawnmorph
             return pawn.GetIntelligence() == Intelligence.Humanlike; 
         }
 
-     
+
+        /// <summary>
+        /// Determines whether this pawn is blocked by fences
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this pawn is blocked by fences; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFenceBlocked([NotNull] this Pawn pawn)
+        {
+            return !pawn.IsHumanlike() && pawn.RaceProps.FenceBlocked; 
+        }
+
+        /// <summary>
+        /// If this pawn is a roamer or not.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public static bool IsRoamer([NotNull] this Pawn pawn)
+        {
+            return !pawn.IsHumanlike() && pawn.RaceProps.Roamer; 
+        }
+
+
+        private const float FORMER_HUMAN_FILTH_ADJ = 0.75f; //at 0  former humans make the same filth as regular animals at 1 they make the same filth as humans 
+        private const float ANIMALISTIC_FILTH_AMOUNT = 2; //animalistic humanoids make the same amount of filth as dogs 
+        private static readonly float _humanFilthAmount;
+
+        /// <summary>
+        /// Gets the filth stat, taking sapience into account.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
+        public static float GetFilthStat([NotNull] this Pawn pawn)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            float baseStatValue = pawn.GetStatValue(StatDefOf.FilthRate);
+            bool isFormerHuman = pawn.IsFormerHuman();
+            if (!isFormerHuman && pawn.RaceProps.Animal)
+            {
+                return baseStatValue;
+            }
+
+            var sapienceLevel = pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.Sapient;
+
+            var inSapLevel = Mathf.Min(4, (int) sapienceLevel);
+            float x, edge0,edge1;
+
+            if (isFormerHuman)
+            {
+                x = (4 - inSapLevel) / 4f;
+                edge0 = baseStatValue;
+                edge1 = Mathf.Lerp(baseStatValue, _humanFilthAmount, FORMER_HUMAN_FILTH_ADJ); //at FORMER_HUMAN_FILTH_ADJ = 0.5 this is the average between human and animal filth rates  
+                x = MathUtilities.SmoothStep(0,1,x);
+            }
+            else
+            {
+                x = inSapLevel / 4f; 
+                x = MathUtilities.SmoothStep(0, 1, x);
+                edge0 = _humanFilthAmount;
+                edge1 = ANIMALISTIC_FILTH_AMOUNT;
+            }
+
+            float statValue = Mathf.Lerp(edge0, edge1, x);  
+
+            return statValue; 
+
+        }
+
+        /// <summary>
+        /// Determines whether this pawn can pass through fences 
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>
+        ///   <c>true</c> if this this pawn can pass through fences otherwise, <c>false</c>.
+        /// </returns>
+        public static bool CanPassFences([NotNull] this Pawn pawn)
+        {
+            return !pawn.IsFenceBlocked();
+        }
+
         /// <summary>
         /// Determines whether this instance is an animal.
         /// </summary>
@@ -1027,7 +1108,7 @@ namespace Pawnmorph
         /// <returns></returns>
         public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName=null, string fixedLastName = null, Gender? fixedOriginalGender=null)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
+            PawnKindDef pawnKind = PawnKindDefOf.Villager;
 
             PawnKindDef kind = pawnKind;
             Faction faction = Faction.OfPlayer;
@@ -1047,7 +1128,7 @@ namespace Pawnmorph
         /// <returns></returns>
         public static (Pawn p1, Pawn p2) GenerateRandomUnmergedHuman(Pawn mergedAnimal)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.Villager; //TODO get these randomly 
+            PawnKindDef pawnKind = PawnKindDefOf.Villager;
 
             PawnKindDef kind = pawnKind;
             Faction faction = Faction.OfPlayer;

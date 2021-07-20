@@ -1,0 +1,83 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/SimpleCurve.xsd" />
+    <xs:include schemaLocation="include/Enums.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RitualOutcomeEffectDef" type="RitualOutcomeEffectDef" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="RitualOutcomeEffectDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="workerClass" type="CSType" minOccurs="0" />
+            <xs:element name="startingQuality" type="xs:float" minOccurs="0" />
+            <xs:element name="minQuality" type="xs:float" minOccurs="0" />
+            <xs:element name="maxQuality" type="xs:float" minOccurs="0" />
+            <xs:element name="memoryDef" type="xs:string" minOccurs="0" />
+
+            <xs:element name="outcomeChances" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="OutcomeChance" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="honorFromQuality" type="SimpleCurve" minOccurs="0" />
+            <xs:element name="extraPredictedOutcomeDescriptions" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="extraInfoLines" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="effecter" type="xs:string" minOccurs="0" />
+            <xs:element name="fleckDef" type="xs:string" minOccurs="0" />
+            <xs:element name="flecksPerCell" type="xs:int" minOccurs="0" />
+            <xs:element name="fleckRotationRange" type="FloatRange" minOccurs="0" />
+            <xs:element name="fleckScaleRange" type="FloatRange" minOccurs="0" />
+            <xs:element name="fleckVelocityAngle" type="FloatRange" minOccurs="0" />
+            <xs:element name="fleckVelocitySpeed" type="FloatRange" minOccurs="0" />
+            <xs:element name="filthDefToSpawn" type="xs:string" minOccurs="0" />
+            <xs:element name="filthCountToSpawn" type="IntRange" minOccurs="0" />
+            <xs:element name="comps">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="label" type="xs:string" minOccurs="0" />
+                                    <xs:element name="labelAbstract" type="xs:string" minOccurs="0" />
+                                    <xs:element name="qualityOffset" type="xs:float" minOccurs="0" />
+                                    <xs:any minOccurs="0" />
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="warnOnLowQuality" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowAttachableOutcome" type="xs:boolean" minOccurs="0" />
+
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="OutcomeChance">
+        <xs:all>
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="potentialExtraOutcomeDesc" type="xs:string" minOccurs="0" />
+            <xs:element name="chance" type="xs:float" minOccurs="0" />
+            <xs:element name="memory" type="xs:string" minOccurs="0" />
+            <xs:element name="positivityIndex" type="xs:int" minOccurs="0" />
+            <xs:element name="roleIdsNotGainingMemory" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="ideoCertaintyOffset" type="xs:float" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

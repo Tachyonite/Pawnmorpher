@@ -27,6 +27,6 @@ namespace Pawnmorph.Thoughts
         /// </summary>
         /// <param name="food">The food.</param>
         /// <param name="thoughts">The list of thoughts already added</param>
-        void ModifyThoughtsFromFood([NotNull] Thing food, [NotNull] List<ThoughtDef> thoughts); 
+        void ModifyThoughtsFromFood([NotNull] Thing food, [NotNull] List<FoodUtility.ThoughtFromIngesting> thoughts); 
     }
 }
