@@ -567,6 +567,7 @@
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="ProductionBoost.cs" />
+    <Compile Include="RecipeWorkers\TagAnimal.cs" />
     <Compile Include="SapienceState.cs" />
     <Compile Include="SapienceStateDef.cs" />
     <Compile Include="SapienceStateDefOf.cs" />

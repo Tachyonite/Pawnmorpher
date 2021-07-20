@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/recipes</xpath>
+        <value>
+            <li>PM_TagAnimal</li>
+        </value>
+    </Operation>
+</Patch>

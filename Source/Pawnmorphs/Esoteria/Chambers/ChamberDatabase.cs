@@ -20,8 +20,9 @@ namespace Pawnmorph.Chambers
     /// <seealso cref="RimWorld.Planet.WorldComponent" />
     public class ChamberDatabase : WorldComponent
     {
-        private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
-        private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
+        
+        const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
+        const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
 
         /// <summary>
         ///     translation label for the animal not taggable reason 

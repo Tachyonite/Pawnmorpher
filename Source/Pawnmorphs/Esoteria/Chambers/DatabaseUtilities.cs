@@ -82,6 +82,8 @@ namespace Pawnmorph.Chambers
         [NotNull]
         public static IReadOnlyList<PawnKindDef> PawnkindsWithMutations => _pawnKindsWithMutations;
 
+        private static ChamberDatabase DB => Find.World.GetComponent<ChamberDatabase>();
+
         /// <summary>
         ///     Gets all mutations that can be squired from the given animal.
         /// </summary>
@@ -182,7 +184,6 @@ namespace Pawnmorph.Chambers
             return animalRace.IsValidAnimal();
         }
 
-
         /// <summary>
         ///     Determines whether the specified morph is tagged.
         /// </summary>
@@ -209,6 +210,21 @@ namespace Pawnmorph.Chambers
 
             return false;
         }
+
+        /// <summary>
+        ///     Determines whether this instance is tagged.
+        /// </summary>
+        /// <param name="pkDef">The pk definition.</param>
+        /// <returns>
+        ///     <c>true</c> if the specified pk definition is tagged; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">pkDef</exception>
+        public static bool IsTagged([NotNull] this PawnKindDef pkDef)
+        {
+            if (pkDef == null) throw new ArgumentNullException(nameof(pkDef));
+            return DB.TaggedAnimals.Contains(pkDef);
+        }
+
 
         /// <summary>
         ///     Determines whether this instance is tagged.
@@ -293,7 +309,15 @@ namespace Pawnmorph.Chambers
         {
             if (db == null) throw new ArgumentNullException(nameof(db));
             if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
-            if (!db.CanAddToDatabase(pawnKind)) return false;
+            if (!db.CanAddToDatabase(pawnKind, out string reason))
+            {
+                if (displayMessageIfAdded)
+                {
+                    Messages.Message(reason, MessageTypeDefOf.RejectInput); 
+                }
+                
+                return false;
+            }
             db.AddToDatabase(pawnKind);
             if (displayMessageIfAdded)
                 Messages.Message(ANIMAL_ADDED_TO_DATABASE_MESSAGE.Translate(pawnKind), MessageTypeDefOf.PositiveEvent);
