@@ -440,6 +440,7 @@
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
     <Compile Include="Hediffs\WorkSettingsStage.cs" />
+    <Compile Include="HistoryEventUtilities.cs" />
     <Compile Include="HPatches\AIPatches.cs" />
     <Compile Include="HPatches\AnimalInteractionPatches.cs" />
     <Compile Include="HPatches\AnimalPenUtilityPatches.cs" />
@@ -554,6 +555,7 @@
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
+    <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />

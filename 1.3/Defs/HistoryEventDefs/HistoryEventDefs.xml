@@ -17,7 +17,7 @@
   </HistoryEventDef>
 
   <HistoryEventDef>
-    <defName>TranfromedFromFormerHuman</defName>
+    <defName>TransformedFromFormerHuman</defName>
     <label>transformed from fromer human</label>
   </HistoryEventDef>
 

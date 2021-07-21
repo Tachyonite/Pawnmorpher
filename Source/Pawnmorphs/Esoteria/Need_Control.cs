@@ -12,6 +12,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.InstinctUtilities;
+using static Pawnmorph.PMHistoryEventArgsNames;
 
 namespace Pawnmorph
 {
@@ -345,7 +346,7 @@ namespace Pawnmorph
             if (pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
 
             SapienceLevelChanged?.Invoke(this, pawn, _currentLevel);
-            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, pawn.Named(HistoryEventArgsNames.Subject), (int)oldLevel, (int)newLevel));
+            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, pawn.Named(HistoryEventArgsNames.Subject), oldLevel.Named(OLD_SAPIENCE_LEVEL), newLevel.Named(NEW_SAPIENCE_LEVEL)));
         }
     }
 }
