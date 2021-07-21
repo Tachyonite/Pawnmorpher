@@ -104,6 +104,212 @@
 
     <!-- venerated animal tranformed thought is persistant and in a different file -->
 
-    <!-- other thoughts -->
+    <!-- reversion thoughts -->
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_HumanPrimacyReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- use ANIMALKIND to refer to the venerated animal -->
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_VeneratedAnimalMorphed</defName>
+        <thoughtClass>Pawnmorph.Thoughts.VeneratedMutationMemory</thoughtClass>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- morphd thoughts -->
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristMorphed</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyMorphed</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyMorphed</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_HumanPrimacyMorphed</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- use ANIMALKIND to refer to the venerated animal -->
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_VeneratedAnimalMorphed</defName>
+        <thoughtClass>Pawnmorph.Thoughts.VeneratedMutationMemory</thoughtClass>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <!-- Reverted to human from morph -->
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristMorphedReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyMorphedReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristRevertedReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyMorphedReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_HumanPrimacyMorphedReverted</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- use ANIMALKIND to refer to the venerated animal -->
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_VeneratedAnimalMorphedReverted</defName>
+        <thoughtClass>Pawnmorph.Thoughts.VeneratedMutationMemory</thoughtClass>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>TODO</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 
 </Defs>
