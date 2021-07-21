@@ -7,7 +7,7 @@ using Verse;
 namespace Pawnmorph.Thoughts.Precept
 {
     /// <summary>
-    /// situational thought for former humans of an ideologie's venerated animal
+    ///     situational thought for former humans of an ideologie's venerated animal
     /// </summary>
     /// <seealso cref="RimWorld.Thought_Situational" />
     public class Thought_Precept_VeneratedFormerHuman : Thought_Situational
@@ -15,40 +15,38 @@ namespace Pawnmorph.Thoughts.Precept
         private const string ANIMAL_TAG = "ANIMAL";
         private const string PAWN_LABEL = "PAWN";
 
-        //TODO if this becomes a performance issue cache string per pawnkind & pawn, they won't change 
+        //Note if this becomes a performance issue cache string per pawnkind & pawn
 
         /// <summary>
-        /// Gets the capitalized label.
+        ///     Gets the capitalized label.
         /// </summary>
         /// <value>
-        /// The label cap.
+        ///     The label cap.
         /// </value>
         public override string LabelCap => FormatString(CurStage.LabelCap);
 
 
         /// <summary>
-        /// Gets the description.
+        ///     Gets the description.
         /// </summary>
         /// <value>
-        /// The description.
+        ///     The description.
         /// </value>
         public override string Description => FormatString(CurStage.description) + CausedByBeliefInPrecept;
 
-
-        string FormatString(string inStr)
-        {
-            return inStr.Formatted(pawn.kindDef.Named(ANIMAL_TAG), pawn.Named(PAWN_LABEL)).CapitalizeFirst();
-        }
-
         /// <summary>
-        /// gets the current internal state.
+        ///     gets the current internal state.
         /// </summary>
         /// <returns></returns>
         protected override ThoughtState CurrentStateInternal()
         {
-            return def.Worker.CurrentState(pawn); 
+            return def.Worker.CurrentState(pawn);
         }
 
 
+        private string FormatString(string inStr)
+        {
+            return inStr.Formatted(pawn.kindDef.Named(ANIMAL_TAG), pawn.Named(PAWN_LABEL)).CapitalizeFirst();
+        }
     }
 }
