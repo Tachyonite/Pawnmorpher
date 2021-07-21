@@ -345,7 +345,7 @@ namespace Pawnmorph
             if (pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
 
             SapienceLevelChanged?.Invoke(this, pawn, _currentLevel);
-            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, (int)oldLevel, (int)newLevel));
+            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, pawn.Named(HistoryEventArgsNames.Subject), (int)oldLevel, (int)newLevel));
         }
     }
 }
