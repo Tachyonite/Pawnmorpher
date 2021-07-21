@@ -16,15 +16,14 @@ namespace Pawnmorph
 
 
         /// <summary>
-        /// the argument for the old race of a pawn 
+        /// label for a new morph def
         /// </summary>
-        public const string OLD_RACE = "OldRace";
+        public const string NEW_MORPH = "NewMorph";
 
         /// <summary>
-        /// the argument for a new race 
+        /// label for an old morph def 
         /// </summary>
-        public const string NEW_RACE = "NewRace";
-
+        public const string OLD_MORPH = "OldMorph"; 
 
         /// <summary>
         /// label for a morph def
@@ -49,6 +48,11 @@ namespace Pawnmorph
         /// <summary>
         /// label for the faction responsible for some event 
         /// </summary>
-        public const string FACTION_RESPONSIBLE = "FactionResponsible"; 
+        public const string FACTION_RESPONSIBLE = "FactionResponsible";
+
+        /// <summary>
+        /// label for the transformed pawn
+        /// </summary>
+        public const string TRANSFORMED_PAWN = "TransformedPawn"; 
     }
 }

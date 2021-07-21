@@ -339,6 +339,10 @@ namespace Pawnmorph.TfSys
 
 
             TransformerUtility.CleanUpHumanPawnPostTf(animal, null); 
+            
+            //make sure to send the event before we destroy the animal 
+            SendReversionEvent(spawned, animal, null); 
+
             animal.Destroy();
             return true;
         }

@@ -13,6 +13,7 @@ using Verse;
 using HarmonyLib;
 using HugsLib.Logs;
 using Pawnmorph.DefExtensions;
+using static Pawnmorph.PMHistoryEventArgsNames;
 
 namespace Pawnmorph
 {
@@ -271,40 +272,53 @@ namespace Pawnmorph
         /// <param name="pawn">The pawn.</param>
         /// <param name="addMissingMutations">if true, any missing mutations from the highest morph influence will be added</param>
         /// <param name="displayNotifications">if set to <c>true</c> display race shift notifications.</param>
+        /// <param name="sendEvents">if set to <c>true</c> send events.</param>
         /// <exception cref="ArgumentNullException">pawn</exception>
         /// <exception cref="System.ArgumentNullException">pawn</exception>
-        public static void CheckRace([NotNull] this Pawn pawn, bool addMissingMutations = true, bool displayNotifications=true)
+        public static void CheckRace([NotNull] this Pawn pawn, bool addMissingMutations = true, bool displayNotifications = true,
+                                     bool sendEvents = true)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (!HybridsAreEnabledFor(pawn.def)) return; 
+            if (!HybridsAreEnabledFor(pawn.def)) return;
             if (pawn.ShouldBeConsideredHuman())
             {
                 if (pawn.def != ThingDefOf.Human)
                 {
-                    var morph = pawn.def.GetMorphOfRace();
+                    MorphDef morph = pawn.def.GetMorphOfRace();
                     ThoughtDef reversionMemory = morph?.transformSettings?.revertedMemory;
-                    if (reversionMemory != null)
-                    {
-                        pawn.TryGainMemory(reversionMemory); 
-                    }
-                    RaceShiftUtilities.ChangePawnRace(pawn, ThingDefOf.Human); 
+                    if (reversionMemory != null) pawn.TryGainMemory(reversionMemory);
+                    RaceShiftUtilities.ChangePawnRace(pawn, ThingDefOf.Human);
+                    if (morph != null)
+                        PMHistoryEventDefOf.Reverted.SendEvent(pawn.Named(HistoryEventArgsNames.Subject), morph.Named(MORPH));
+                    else
+                        Log.Warning($"reverting a non morph pawn {pawn.Name} to human");
                 }
-                
+
                 return;
             }
 
             MutationTracker mutTracker = pawn.GetMutationTracker();
 
-            var hInfluence = mutTracker.HighestInfluence;
+            AnimalClassBase hInfluence = mutTracker.HighestInfluence;
 
             if (hInfluence == null) return;
             float morphInfluence = mutTracker.GetDirectNormalizedInfluence(hInfluence);
             int morphInfluenceCount = mutTracker.Count();
-            var isBelowChimeraThreshold = morphInfluence < CHIMERA_THRESHOLD && morphInfluenceCount > 1;
+            bool isBelowChimeraThreshold = morphInfluence < CHIMERA_THRESHOLD && morphInfluenceCount > 1;
 
             MorphDef setMorph = GetMorphForPawn(pawn, isBelowChimeraThreshold, hInfluence, out MorphDef curMorph);
-            if (setMorph?.raceSettings?.PawnCanBecomeHybrid(pawn) == false) return; 
-            if (curMorph != setMorph && setMorph != null) RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
+            if (setMorph?.raceSettings?.PawnCanBecomeHybrid(pawn) == false) return;
+            if (curMorph != setMorph && setMorph != null)
+            {
+                RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
+                if (curMorph != null)
+                    PMHistoryEventDefOf.Transformed.SendEvent(pawn.Named(HistoryEventArgsNames.Subject),
+                                                              curMorph.Named(OLD_MORPH), setMorph.Named(NEW_MORPH));
+                else
+                    PMHistoryEventDefOf.Transformed.SendEvent(pawn.Named(HistoryEventArgsNames.Subject),
+                                                              setMorph.Named(NEW_MORPH)); 
+
+            }
         }
 
         [CanBeNull]

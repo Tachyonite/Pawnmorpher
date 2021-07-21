@@ -109,6 +109,11 @@ namespace Pawnmorph.TfSys
         public TaleDef tale;
 
         /// <summary>
+        /// if true, send transformation event
+        /// </summary>
+        public bool sendTransformationEvent = true; 
+
+        /// <summary>
         /// optional backstory override
         /// </summary>
         public BackstoryDef backstoryOverride; 

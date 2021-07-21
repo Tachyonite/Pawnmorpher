@@ -8,6 +8,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -361,6 +362,10 @@ namespace Pawnmorph
                     }
                 }
             }
+
+            //send the event 
+            PMHistoryEventDefOf.MutationGained.SendEvent(Pawn.Named(HistoryEventArgsNames.Subject),
+                                                         mutation.Named(PMHistoryEventArgsNames.MUTATION));
         }
 
         private void NotifyCompsRemoved(Hediff_AddedMutation mutation)
@@ -391,6 +396,9 @@ namespace Pawnmorph
                 }
             }
 
+            //send the event 
+            PMHistoryEventDefOf.MutationLost.SendEvent(Pawn.Named(HistoryEventArgsNames.Subject),
+                                                       mutation.Named(PMHistoryEventArgsNames.MUTATION));
 
         }
 
