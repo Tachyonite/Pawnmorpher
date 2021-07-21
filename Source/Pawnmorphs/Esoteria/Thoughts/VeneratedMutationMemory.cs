@@ -20,7 +20,10 @@ namespace Pawnmorph.Thoughts
         {
             return str.Formatted(str.Named(ThoughtLabels.VENERATED_ANIMAL)) + CausedByBeliefInPrecept; 
         }
-        
+
+        /// <summary>
+        /// Exposes the data.
+        /// </summary>
         public override void ExposeData()
         {
             base.ExposeData();

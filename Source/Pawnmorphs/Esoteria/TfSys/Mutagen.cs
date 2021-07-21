@@ -222,7 +222,7 @@ namespace Pawnmorph.TfSys
         {
 
             NamedArgument pArg, aArg;
-            pArg = originalPawn.Named(HistoryEventArgsNames.Subject);
+            pArg = originalPawn.Named(HistoryEventArgsNames.Doer);
             aArg = transformedPawn.Named(PMHistoryEventArgsNames.TRANSFORMED_PAWN);
             if (factionResponsible != null)
                 PMHistoryEventDefOf.TransformedFromFormerHuman.SendEvent(pArg, aArg,
@@ -243,7 +243,7 @@ namespace Pawnmorph.TfSys
         {
 
             NamedArgument pArg, aArg;
-            pArg = originalPawn.Named(HistoryEventArgsNames.Subject);
+            pArg = originalPawn.Named(HistoryEventArgsNames.Doer);
             aArg = transformedPawn.Named(PMHistoryEventArgsNames.TRANSFORMED_PAWN);
             if (factionResponsible != null)
                 PMHistoryEventDefOf.TransformedIntoFormerHuman.SendEvent(pArg, aArg,

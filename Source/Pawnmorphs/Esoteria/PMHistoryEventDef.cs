@@ -12,26 +12,30 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(PMHistoryEventDefOf));
         }
+        //Notes: 
+        //Doer: should refer to the pawn who the even is about
+        //Subject should refer to a thing the Doer sees or does something about 
+
 
         /// <summary>
         /// Whenever a mutation is gained
         /// </summary>
         /// args:
-        /// Subject(pawn)
+        /// Doer(pawn)
         /// Mutation(Mutation) 
         [NotNull]
         public static HistoryEventDef MutationGained;
 
         /// <summary> Whenever a mutation is lost </summary>
         /// args
-        /// Subject(Pawn)
+        /// Doer(Pawn)
         /// Mutation(Mutation)
         [NotNull]
         public static HistoryEventDef MutationLost;
 
         /// <summary> Whenever a pawn becomes a former human </summary>
         /// args:
-        /// Subject(pawn)
+        /// Doer(pawn)
         /// Animal(PawnkindDef)
         /// FactionResponsible(Faction) can be null
         [NotNull]
@@ -39,7 +43,7 @@ namespace Pawnmorph
 
         /// <summary> Whenever a pawn is no longer a former human </summary>
         /// args:
-        /// Subject(pawn)
+        /// Doer(pawn)
         /// Animal(PawnKindDef)
         /// FactionResponsible(Faction) can be null
         [NotNull]
@@ -49,7 +53,7 @@ namespace Pawnmorph
         /// Whenever a pawn is transformed into a morph
         /// </summary>
         /// args:
-        /// Subject(pawn)
+        /// Doer(pawn)
         /// OldMorph(MorphDef) can be null
         /// NewMorph(MorphDef)
         [NotNull]
@@ -59,7 +63,7 @@ namespace Pawnmorph
         /// Whenever a pawn is reverted
         /// </summary>
         /// args:
-        /// Subject(pawn)
+        /// Doer(pawn)
         /// Morph(morphDef)
         /// FactionResponsible(Faction) can be null
         [NotNull]
@@ -67,7 +71,7 @@ namespace Pawnmorph
 
         /// <summary> Whenever sapience level changes </summary>
         /// args:
-        /// Subject(pawn)
+        /// Doer(pawn)
         /// OldSapienceLevel(SapienceLevel)
         /// NewSapienceLevel(SapienceLevel)
         [NotNull]

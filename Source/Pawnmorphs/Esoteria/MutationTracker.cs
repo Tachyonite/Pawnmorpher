@@ -364,7 +364,7 @@ namespace Pawnmorph
             }
 
             //send the event 
-            PMHistoryEventDefOf.MutationGained.SendEvent(Pawn.Named(HistoryEventArgsNames.Subject),
+            PMHistoryEventDefOf.MutationGained.SendEvent(Pawn.Named(HistoryEventArgsNames.Doer),
                                                          mutation.Named(PMHistoryEventArgsNames.MUTATION));
         }
 
@@ -397,7 +397,7 @@ namespace Pawnmorph
             }
 
             //send the event 
-            PMHistoryEventDefOf.MutationLost.SendEvent(Pawn.Named(HistoryEventArgsNames.Subject),
+            PMHistoryEventDefOf.MutationLost.SendEvent(Pawn.Named(HistoryEventArgsNames.Doer),
                                                        mutation.Named(PMHistoryEventArgsNames.MUTATION));
 
         }
