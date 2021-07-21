@@ -1,0 +1,182 @@
+<Defs>
+    <ThingDef ParentName="AnimalThingBase">
+        <defName>PM_Chaothrumbo</defName>
+        <label>chaothrumbo</label>
+        <thingClass>Pawnmorph.Things.Chaothrumbo</thingClass>
+        <description>A terrifyingly massive type of former human, a chaothrumbo is a relentlessly tough being equipped with claws and horns, including an oversized thrumbo horn. An absolutely formidable foe, pray that it's on your side.</description>
+        <statBases>
+            <MoveSpeed>6.5</MoveSpeed>
+            <MarketValue>10000</MarketValue>
+            <ComfyTemperatureMin>-65</ComfyTemperatureMin>
+            <ComfyTemperatureMax>50</ComfyTemperatureMax>
+            <ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.50</ArmorRating_Heat>
+        </statBases>
+        <uiIconScale>1.75</uiIconScale>
+        <tools>
+            <li>
+                <label>horn</label>
+                <capacities>
+                    <li>Scratch</li>
+                    <li>Stab</li>
+                </capacities>
+                <power>40</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+            </li>
+            <li>
+                <capacities>
+                    <li>Bite</li>
+                </capacities>
+                <power>28</power>
+                <cooldownTime>2.3</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <chanceFactor>0.7</chanceFactor>
+            </li>
+            <li>
+                <label>left claws</label>
+                <capacities>
+                    <li>Scratch</li>
+                </capacities>
+                <power>19</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+            </li>
+            <li>
+                <label>right claws</label>
+                <capacities>
+                    <li>Scratch</li>
+                </capacities>
+                <power>19</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+            </li>
+            <li>
+                <label>head</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>17</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                <chanceFactor>0.2</chanceFactor>
+            </li>
+        </tools>
+        <race>
+            <body>QuadrupedAnimalWithHoovesAndHorn</body>
+            <herdMigrationAllowed>false</herdMigrationAllowed>
+            <baseBodySize>7</baseBodySize>
+            <baseHungerRate>3.5</baseHungerRate>
+            <baseHealthScale>8.0</baseHealthScale>
+            <foodType>OmnivoreAnimal, VegetarianRoughAnimal, DendrovoreAnimal</foodType>
+            <leatherDef>Leather_Thrumbo</leatherDef>
+            <trainability>Advanced</trainability>
+            <gestationPeriodDays>20000</gestationPeriodDays>
+            <manhunterOnDamageChance>1.00</manhunterOnDamageChance>
+            <fleshType>Chaomorph</fleshType>
+            <useMeatFrom>Chaocow</useMeatFrom>
+            <wildness>0.585</wildness>
+            <lifeExpectancy>220</lifeExpectancy>
+            <willNeverEat>
+                <li MayRequire="Ludeon.RimWorld.Royalty">Plant_TreeAnima</li>
+            </willNeverEat>
+            <lifeStageAges>
+                <li>
+                    <def>AnimalBaby</def>
+                    <minAge>0</minAge>
+                </li>
+                <li>
+                    <def>AnimalJuvenile</def>
+                    <minAge>2.0</minAge>
+                </li>
+                <li>
+                    <def>AnimalAdult</def>
+                    <minAge>4.0</minAge>
+                    <soundCall>Pawn_Thrumbo_Call</soundCall>
+                    <soundAngry>Pawn_Thrumbo_Angry</soundAngry>
+                    <soundWounded>Pawn_Thrumbo_Pain</soundWounded>
+                    <soundDeath>Pawn_Thrumbo_Death</soundDeath>
+                </li>
+            </lifeStageAges>
+            <soundMeleeHitPawn>Pawn_Melee_BigBash_HitPawn</soundMeleeHitPawn>
+            <soundMeleeHitBuilding>Pawn_Melee_BigBash_HitBuilding</soundMeleeHitBuilding>
+            <soundMeleeMiss>Pawn_Melee_BigBash_Miss</soundMeleeMiss>
+        </race>
+        <tradeTags>
+            <li>AnimalExotic</li>
+        </tradeTags>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                <transformedThought>PM_CThrumboTfThought</transformedThought>
+                <backstory>PM_ChaothrumboBackstory</backstory>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+    <PawnKindDef ParentName="AnimalKindBase">
+        <defName>PM_Chaothrumbo</defName>
+        <label>chaothrumbo</label>
+        <race>PM_Chaothrumbo</race>
+        <combatPower>700</combatPower>
+        <canArriveManhunter>false</canArriveManhunter>
+        <ecoSystemWeight>1</ecoSystemWeight>
+        <lifeStages>
+            <li>
+                <label>thrumbo calf</label>
+                <labelPlural>thrumbo calves</labelPlural>
+                <bodyGraphicData>
+                    <texPath>Mobs/Chaoferal/Chaothrumbo</texPath>
+                    <drawSize>2.5</drawSize>
+                    <shadowData>
+                        <volume>(0.4, 0.3, 0.3)</volume>
+                        <offset>(0,0,-0.2)</offset>
+                    </shadowData>
+                </bodyGraphicData>
+                <dessicatedBodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Thrumbo/Dessicated_Thrumb</texPath>
+                    <drawSize>2.5</drawSize>
+                </dessicatedBodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Mobs/Chaoferal/Chaothrumbo</texPath>
+                    <drawSize>8.0</drawSize>
+                    <shadowData>
+                        <volume>(0.7, 0.6, 0.4)</volume>
+                        <offset>(0,0,-0.25)</offset>
+                    </shadowData>
+                </bodyGraphicData>
+                <dessicatedBodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Thrumbo/Dessicated_Thrumbo</texPath>
+                    <drawSize>8.0</drawSize>
+                </dessicatedBodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Mobs/Chaoferal/Chaothrumbo</texPath>
+                    <drawSize>9.6</drawSize>
+                    <shadowData>
+                        <volume>(1, 0.8, 0.5)</volume>
+                        <offset>(0,0,-0.5)</offset>
+                    </shadowData>
+                </bodyGraphicData>
+                <dessicatedBodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Thrumbo/Dessicated_Thrumbo</texPath>
+                    <drawSize>9.6</drawSize>
+                </dessicatedBodyGraphicData>
+                <butcherBodyPart>
+                    <bodyPartGroup>HornAttackTool</bodyPartGroup>
+                    <thing>ThrumboHorn</thing>
+                </butcherBodyPart>
+            </li>
+        </lifeStages>
+        <modExtensions>
+            <li Class="Pawnmorph.Chambers.AnimalTfControllers.ChaoThrumbo"></li>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                <backstory>FormerHumanChaomorph</backstory>
+            </li>
+        </modExtensions>
+    </PawnKindDef>
+</Defs>

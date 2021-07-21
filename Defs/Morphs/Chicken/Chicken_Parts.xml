@@ -6,6 +6,7 @@
 		<defName>EtherBeak</defName>
 		<label>beak</label>
 		<description>The pointy beak of a chicken.</description>
+		<mutationTale>GrewBeak</mutationTale>
 		<parts>
 			<li>Jaw</li>
 		</parts>

@@ -23,7 +23,7 @@ namespace Pawnmorph.Aspects
         /// </summary>
         /// <param name="food">The food.</param>
         /// <param name="thoughts">The list of thoughts already added</param>
-        public void ModifyThoughtsFromFood(Thing food, List<ThoughtDef> thoughts)
+        public void ModifyThoughtsFromFood(Thing food, List<FoodUtility.ThoughtFromIngesting> thoughts)
         {
             var foodType = food.def.ingestible?.foodType ?? FoodTypeFlags.None;
 
@@ -31,7 +31,7 @@ namespace Pawnmorph.Aspects
             for (int i = thoughts.Count - 1; i >= 0; i--)
             {
                 var td = thoughts[i];
-                if (td == ThoughtDefOf.AteRawFood)
+                if (td.thought == ThoughtDefOf.AteRawFood)
                     thoughts.RemoveAt(i); //remove raw food thoughts 
             }
         }

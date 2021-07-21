@@ -6,4 +6,45 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="StatModifier">
+        <xs:all>
+            <xs:element name="stat" type="xs:string" />
+            <xs:element name="value" type="xs:float" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="StatModifiers">
+        <xs:sequence>
+            <xs:element name="li" type="StatModifier" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AbilityStatModifiers">
+        <xs:all>
+            <xs:element name="ability" type="xs:string" />
+            <xs:element name="modifiers">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="StatModifier" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="ApparelRequirement">
+        <xs:all>
+            <xs:element name="bodyPartGroupsMatchAny" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="requiredTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="allowedTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="requiredDefs" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="groupLabel" type="xs:string" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="IdeoWeaponClassPair">
+        <xs:all>
+            <xs:element name="noble" type="xs:string" />
+            <xs:element name="despised" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
 </xs:schema>

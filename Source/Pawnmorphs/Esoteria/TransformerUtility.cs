@@ -664,7 +664,7 @@ namespace Pawnmorph
         public static void TryGainMemory([NotNull] this Pawn pawn, Thought_Memory thought, Pawn otherPawn=null, bool respectTraits=true) //move extension methods elsewhere? 
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            if (respectTraits && !ThoughtUtility.CanGetThought_NewTemp(pawn, thought.def)) return; 
+            if (respectTraits && !ThoughtUtility.CanGetThought(pawn, thought.def)) return; 
 
 
             pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(thought, otherPawn);
@@ -691,8 +691,7 @@ namespace Pawnmorph
         /// <param name="map">The map.</param>
         public static void HandleTFWitnesses([NotNull] Pawn originalPawn, [NotNull] Pawn transformedPawn, IntVec3 location, [NotNull] Map map)
         {
-            return; //TODO re enable once all thoughts have been filled out
-
+            
             foreach (Pawn pObserver in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive.MakeSafe())
             {
                 if(pObserver == transformedPawn || pObserver == null || pObserver == originalPawn || pObserver.Map != map) continue;

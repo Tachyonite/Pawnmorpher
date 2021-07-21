@@ -90,7 +90,7 @@ namespace Pawnmorph
         {
             for (var i = 0; i < 200; i++)
             {
-                IntVec3 intVec = RCellFinder.FindSiegePositionFrom_NewTemp(DropCellFinder.FindRaidDropCenterDistant_NewTemp(map), map);
+                IntVec3 intVec = RCellFinder.FindSiegePositionFrom(DropCellFinder.FindRaidDropCenterDistant(map), map);
                 if (validator(intVec)) return intVec;
             }
 

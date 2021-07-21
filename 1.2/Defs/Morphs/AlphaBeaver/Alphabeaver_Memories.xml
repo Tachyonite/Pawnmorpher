@@ -1,0 +1,126 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>AlphabeaverTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>I have.. An unpleasant urge to chew on trees. It's very distracting.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>I have powerful teeth, and a powerful tail. I feel like I could build a dam by myself!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>How am I supothst to sthpeak with thethse giant teeth?! Let alone eat?!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>This is fantastic! But can I go any further with this...?</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>AlphabeaverRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to normal, but it feels like I have splinters in my gums...</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'll miss my fur coat. And being able to bite through wood.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to my old self! No more buck teeth for me!</description>
+                <baseMoodEffect>+10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>So close to my dream, and yet, so far...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlphabeaverJaw</defName>
+        <stages>
+            <li>
+                <label>Beaver face</label>
+                <description>That tree over there looks delicious...</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver face</label>
+                <description>I CAN EAT TREES!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver face</label>
+                <description>I CAN EAT TREES?!?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlphabeaverEar</defName>
+        <stages>
+            <li>
+                <label>Beaver ear</label>
+                <description>These ears are kind of weird.</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver ear</label>
+                <description>Can I hear underwater now?</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver ear</label>
+                <description>These ears are really weird, get them off!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherAlphabeaverTail</defName>
+        <stages>
+            <li>
+                <label>Beaver tail</label>
+                <description>Why is it so flat?</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver tail</label>
+                <description>Time to build a dam!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Beaver tail</label>
+                <description>I want to use this thing to slap whoever did this to me!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

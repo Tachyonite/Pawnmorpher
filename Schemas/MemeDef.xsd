@@ -1,0 +1,237 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleCurve.xsd" />
+    <xs:include schemaLocation="include/RUlePack.xsd" />
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/Enums.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+
+
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MemeDef" type="MemeDef" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="MemeDef">
+
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+
+            <xs:element name="iconPath" type="xs:string" minOccurs="0" />
+            <xs:element name="renderOrder" type="xs:int" minOccurs="0" />
+            <xs:element name="impact" type="xs:int" minOccurs="0" />
+            <xs:element name="category" type="MemeCategory" minOccurs="0" />
+            <xs:element name="groupDef" type="xs:string" minOccurs="0" />
+
+            <xs:element name="exclusionTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="requireOne" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="ListOfStrings" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="selectOneOrNone" type="PreceptsWithNoneChance" minOccurs="0" />
+            <xs:element name="requiredRituals" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="RequiredRitualAndBuilding" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="preferredWeaponClasses" type="IdeoWeaponClassPair" minOccurs="0" />
+
+            <xs:element name="randomizationSelectionWeightFactor" type="xs:float" minOccurs="0" />
+            <xs:element name="requireAnyRitualSeat" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="deityCount" type="IntRange" minOccurs="0" />
+            <xs:element name="allowedDuringTutorial" type="xs:boolean" minOccurs="0" />
+            <xs:element name="generalRules" type="RulePack" minOccurs="0" />
+
+            <xs:element name="descriptionMaker" type="IdeoDescriptionMaker" minOccurs="0" />
+            <xs:element name="deityNameMakerOverride" type="xs:string" minOccurs="0" />
+            <xs:element name="deityTypeMakerOverride" type="xs:string" minOccurs="0" />
+            <xs:element name="allowSymbolsFromDeity" type="xs:string" minOccurs="0" />
+            <xs:element name="symbolPackOverride" type="xs:string" minOccurs="0" />
+
+            <xs:element name="symbolPacks"  minOccurs="0" >
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="IdeoSymbolPack" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="fixedDeityNameTypes" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="DeityNameType" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="thingStyleCategories" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="ThingStyleCategoryWithPriority" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="ritualsToMake" type="IntRange" minOccurs="0" />
+            <xs:element name="replaceRitualsWithTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="replacementPatterns" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="consumableBuildings" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="replacementPatterns" type="ListOfStrings" minOccurs="0" />
+
+
+            <xs:element name="veneratedAnimalsCountOffset" type="xs:int" minOccurs="0" />
+            <xs:element name="veneratedAnimalsCountOverride" type="xs:int" minOccurs="0" />
+            
+            
+            <xs:element name="styleItemTags" minOccurs="0" > 
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="li" type="StyleItemTagWeighted" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+
+            <xs:element name="worshipRoomLabel" type="xs:string" minOccurs="0" />
+
+            <xs:element name="startingResearchProjects" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="addDesignators" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="addDesignatorGroups" type="ListOfStrings" minOccurs="0" />
+            
+            <xs:element name="apparelRequirements"  minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="PreceptApparelRequirement" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="agreeableTraits" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="disagreeableTraits" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="PreceptsWithNoneChance">
+        <xs:all>
+            <xs:element name="preceptThingPairs">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="PreceptThingPair" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="noneChance" type="xs:float" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="PreceptThingPair">
+        <xs:all>
+            <xs:element name="precept" type="xs:string" />
+            <xs:element name="thing" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="RequiredRitualAndBuilding">
+        <xs:all>
+            <xs:element name="precept" type="xs:string" />
+            <xs:element name="pattern" type="xs:string" />
+            <xs:element name="building" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="IdeoDescriptionMaker">
+        <xs:all>
+            <xs:element name="patterns">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="PatternEntry" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="rules" type="RulePack" minOccurs="0" />
+            <xs:element name="constants" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+
+    </xs:complexType>
+
+    <xs:complexType name="PatternEntry">
+        <xs:all>
+            <xs:element name="def" type="xs:string" />
+            <xs:element name="weight" type="xs:float" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="IdeoSymbolPack">
+        <xs:all>
+            <xs:element name="ideoName" type="xs:string" minOccurs="0" />
+            <xs:element name="theme" type="xs:string" minOccurs="0" />
+            <xs:element name="adjective" type="xs:string" minOccurs="0" />
+            <xs:element name="member" type="xs:string" minOccurs="0" />
+            <xs:element name="prefix" type="xs:boolean" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="DeityNameType">
+        <xs:all>
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="type" type="xs:string" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="ThingStyleCategoryWithPriority">
+        <xs:all>
+            <xs:element name="category" type="xs:string" />
+            <xs:element name="priority" type="xs:float" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="StyleItemTagWeighted">
+        <xs:all>
+            <xs:element name="tag" type="xs:string" />
+            <xs:element name="baseWeight" type="xs:float" />
+            <xs:element name="weightFactor" type="xs:float" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="PreceptApparelRequirement">
+        <xs:all>
+            <xs:element name="allowedFactionCategoryTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="disallowedFactionCategoryTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="anyMemeRequired" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="requirement" type="ApparelRequirement" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

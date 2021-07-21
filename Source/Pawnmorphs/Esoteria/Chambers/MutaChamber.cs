@@ -11,7 +11,6 @@ using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.User_Interface;
 using RimWorld;
-using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -23,24 +22,28 @@ namespace Pawnmorph.Chambers
     /// <seealso cref="Building_Casket" />
     public class MutaChamber : Building_Casket
     {
-        private const int REFUEL_CHECK_TIMER = 100; 
-        
+        private const int REFUEL_CHECK_TIMER = 100;
+
         private const float TF_ANIMAL_DURATION = 1.5f; //units are in days 
         private const float MIN_TRANSFORMATION_TIME = 0.5f * 60000; //minimum transformation time in ticks
         private const string PART_PICKER_GIZMO_LABEL = "PMPartPickerGizmo";
         private const string MERGING_GIZMO_LABEL = "PMMergeGizmo";
+        private const string DEBUG_FORCE_COMPLETION_GIZMO = "PMDebugForceChamberCompletion"; 
+
 
         private static List<PawnKindDef> _randomAnimalCache;
+
+        [NotNull] private readonly
+            static List<Pawn> _scratchList = new List<Pawn>();
+
         private int _timer = 0;
-        int _curMutationIndex = -1; 
+        private int _curMutationIndex = -1;
         private bool _initialized;
 
         private ChamberState _innerState = ChamberState.WaitingForPawn;
 
         private ChamberUse _currentUse;
 
-
-        
 
         private CompRefuelable _refuelable;
 
@@ -56,84 +59,23 @@ namespace Pawnmorph.Chambers
         private int _lastTotal = 0;
 
 
+        /// <summary>
+        /// The special thing that a tf is waiting on 
+        /// </summary>
+        private ThingDef _specialThing;
+
+        private PawnKindDef _lastTfRequest; 
         private Gizmo _debugFinishGizmo;
 
-
-        private ColorInt Clear { get; } = new ColorInt(0,0,0,0);
-        private ColorInt GlowColor { get; } = new ColorInt(0,255,0,255); 
-
-        [NotNull]
-        private IReadOnlyList<MutationDef> AnimalMutations => _targetAnimal?.GetAllMutationsFrom() ?? Array.Empty<MutationDef>();
-
-
-        /// <summary>
-        /// Ejects the contents.
-        /// </summary>
-        public override void EjectContents()
-        {
-            base.EjectContents();
-            ResetChamber();
-        }
-
         private CompPowerTrader _power;
-
-        bool HasPower
-        {
-            get { return PowerCompTrader.PowerOn; }
-        }
-
-        CompPowerTrader  PowerCompTrader
-        {
-            get
-            {
-                if (_power == null)
-                {
-                    _power = GetComp<CompPowerTrader>();
-                }
-
-                return _power; 
-            }
-        }
 
 
         private CompGlower _glower;
 
-        [CanBeNull]
-        CompGlower Glower
-        {
-            get
-            {
-                if (_glower == null)
-                {
-                    _glower = GetComp<CompGlower>();
-                }
+        private FillableBarDrawer _fillableDrawer;
 
-                return _glower; 
-            }
-        }
 
-        [NotNull]
-        Gizmo DebugFinishGizmo
-        {
-            get
-            {
-                if (_debugFinishGizmo == null)
-                {
-                    _debugFinishGizmo = new Command_Action()
-                    {
-                        defaultLabel = "Debug Finish Chamber",
-                        action = DebugFinishChamber
-                    };
-                }
-
-                return _debugFinishGizmo; 
-            }
-        }
-
-        private void DebugFinishChamber()
-        {
-            _timer = 0; 
-        }
+        private IReadOnlyAddedMutations _addedMutationData;
 
 
         /// <summary>
@@ -152,6 +94,60 @@ namespace Pawnmorph.Chambers
         /// </value>
         public bool WaitingForPawn =>
             _innerState == ChamberState.WaitingForPawn || _innerState == ChamberState.WaitingForPawnMerging;
+
+        /// <summary>
+        ///     Gets a value indicating whether this instance can accept pawns.
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if this instance can accept pawns; otherwise, <c>false</c>.
+        /// </value>
+        public bool CanAcceptPawns => WaitingForPawn && HasPower && HasFuel;
+
+
+        private ColorInt Clear { get; } = new ColorInt(0, 0, 0, 0);
+        private ColorInt GlowColor { get; } = new ColorInt(0, 255, 0, 255);
+
+        [NotNull]
+        private IReadOnlyList<MutationDef> AnimalMutations => _targetAnimal?.GetAllMutationsFrom() ?? Array.Empty<MutationDef>();
+
+        private bool HasPower => PowerCompTrader.PowerOn;
+
+        private CompPowerTrader PowerCompTrader
+        {
+            get
+            {
+                if (_power == null) _power = GetComp<CompPowerTrader>();
+
+                return _power;
+            }
+        }
+
+        [CanBeNull]
+        private CompGlower Glower
+        {
+            get
+            {
+                if (_glower == null) _glower = GetComp<CompGlower>();
+
+                return _glower;
+            }
+        }
+
+        [NotNull]
+        private Gizmo DebugFinishGizmo
+        {
+            get
+            {
+                if (_debugFinishGizmo == null)
+                    _debugFinishGizmo = new Command_Action
+                    {
+                        defaultLabel = "Debug Finish Chamber",
+                        action = DebugFinishChamber
+                    };
+
+                return _debugFinishGizmo;
+            }
+        }
 
         [NotNull]
         private CompRefuelable Refuelable
@@ -177,31 +173,18 @@ namespace Pawnmorph.Chambers
             }
         }
 
-        private FillableBarDrawer _fillableDrawer;
-
         [CanBeNull]
-        FillableBarDrawer FillableDrawer
+        private FillableBarDrawer FillableDrawer
         {
             get
             {
-                if (_fillableDrawer == null)
-                {
-                    _fillableDrawer = GetComp<FillableBarDrawer>();
-                }
+                if (_fillableDrawer == null) _fillableDrawer = GetComp<FillableBarDrawer>();
 
-                return _fillableDrawer; 
+                return _fillableDrawer;
             }
         }
 
-        private bool HasFuel => Refuelable.HasFuel; 
-
-        /// <summary>
-        /// Gets a value indicating whether this instance can accept pawns.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance can accept pawns; otherwise, <c>false</c>.
-        /// </value>
-        public bool CanAcceptPawns => WaitingForPawn && HasPower && HasFuel; 
+        private bool HasFuel => Refuelable.HasFuel;
 
         [NotNull]
         private Gizmo PartPickerGizmo
@@ -263,22 +246,25 @@ namespace Pawnmorph.Chambers
             }
         }
 
+        private float PercentDone => 1f - (float) _timer / _lastTotal;
+
         /// <summary>
         ///     Draws this instance.
         /// </summary>
         public override void Draw()
         {
-            
             FillableDrawer?.PreDraw();
             base.Draw();
-            
         }
 
-        int GetMutasilkAmountFrom(Apparel apparel)
+
+        /// <summary>
+        ///     Ejects the contents.
+        /// </summary>
+        public override void EjectContents()
         {
-            var matAmount = apparel.def.costList?.Select(s => s.count).Sum() ?? 10;
-            var amt = Mathf.RoundToInt(matAmount * (((float) apparel.HitPoints)) * 0.05f);
-            return Mathf.Min(amt, 75); 
+            base.EjectContents();
+            ResetChamber();
         }
 
         /// <summary>
@@ -287,40 +273,34 @@ namespace Pawnmorph.Chambers
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref _currentUse, "currentUse"); 
+            Scribe_Values.Look(ref _currentUse, "currentUse");
             Scribe_Values.Look(ref _innerState, "state");
             Scribe_Values.Look(ref _timer, "timer", -1);
             Scribe_Values.Look(ref _lastTotal, "lastTotal");
             Scribe_Defs.Look(ref _targetAnimal, "targetAnimal");
-            Scribe_Deep.Look(ref _addedMutationData, "addedMutationData"); 
+            Scribe_Defs.Look(ref _specialThing, "specialThing");
+            Scribe_Defs.Look(ref _lastTfRequest, "lastTfRequest");
+            Scribe_Deep.Look(ref _addedMutationData, "addedMutationData");
             Scribe_Values.Look(ref _curMutationIndex, "curMutationIndex");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (PowerCompTrader != null)
-                {
-                    PowerCompTrader.PowerOn = _innerState == ChamberState.Active; 
-                }
+                if (PowerCompTrader != null) PowerCompTrader.PowerOn = _innerState == ChamberState.Active;
 
-                if (Glower != null)
-                {
-                    Glower.Props.glowColor =_innerState == ChamberState.Active ? GlowColor : Clear;
-                }
+                if (Glower != null) Glower.Props.glowColor = _innerState == ChamberState.Active ? GlowColor : Clear;
             }
         }
 
 
-     
-
-
         /// <summary>
-        /// Finds the Mutachamber casket for.
+        ///     Finds the Mutachamber casket for.
         /// </summary>
         /// <param name="p">The p.</param>
         /// <param name="traveler">The traveler.</param>
         /// <param name="ignoreOtherReservations">if set to <c>true</c> [ignore other reservations].</param>
         /// <param name="use">The use.</param>
         /// <returns></returns>
-        public static MutaChamber FindMutaChamberFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false, ChamberUse? use = null)
+        public static MutaChamber FindMutaChamberFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false,
+                                                     ChamberUse? use = null)
         {
             IEnumerable<ThingDef> enumerable = from def in DefDatabase<ThingDef>.AllDefs
                                                where typeof(MutaChamber).IsAssignableFrom(def.thingClass)
@@ -331,7 +311,9 @@ namespace Pawnmorph.Chambers
                 {
                     int result;
                     var mutaChamber = (MutaChamber) x;
-                    if (mutaChamber.CanAcceptPawns && mutaChamber.Flickable.SwitchIsOn && (use == null || use == mutaChamber.CurrentUse))
+                    if (mutaChamber.CanAcceptPawns
+                     && mutaChamber.Flickable.SwitchIsOn
+                     && (use == null || use == mutaChamber.CurrentUse))
                     {
                         Pawn p2 = traveler;
                         LocalTargetInfo target = x;
@@ -354,6 +336,13 @@ namespace Pawnmorph.Chambers
             }
 
             return null;
+        }
+
+        [CanBeNull]
+        ChamberAnimalTfController GetCurrentTfController()
+        {
+            var ext = _lastTfRequest?.GetModExtension<ChamberAnimalTfController>();
+            return ext; 
         }
 
         /// <summary>
@@ -381,17 +370,17 @@ namespace Pawnmorph.Chambers
                 switch (_currentUse)
                 {
                     case ChamberUse.Mutation:
-                        
+
                     case ChamberUse.Tf:
                         jobStr = "EnterMutagenChamber".Translate();
                         break;
                     case ChamberUse.Merge:
-                        jobStr = "PMEnterMutagenChamberMerge".Translate(); 
+                        jobStr = "PMEnterMutagenChamberMerge".Translate();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-                   
+
                 Action jobAction = delegate
                 {
                     var job = new Job(jobDef, this);
@@ -401,6 +390,9 @@ namespace Pawnmorph.Chambers
             }
         }
 
+
+        
+
         /// <summary>
         ///     Gets the gizmos.
         /// </summary>
@@ -409,18 +401,13 @@ namespace Pawnmorph.Chambers
         {
             foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
 
-            if (DebugSettings.godMode && _innerState == ChamberState.Active)
-            {
-                yield return DebugFinishGizmo; 
-            }
+            if (DebugSettings.godMode && (_innerState == ChamberState.Active || _innerState == ChamberState.WaitingForSpecialThing)) yield return DebugFinishGizmo;
 
 
             if (_innerState != ChamberState.Idle) yield break;
             yield return PartPickerGizmo;
             yield return MergingGizmo;
         }
-
-        private float PercentDone => 1f - ((float) _timer) / _lastTotal; 
 
         /// <summary>
         ///     Gets the inspect string.
@@ -431,12 +418,15 @@ namespace Pawnmorph.Chambers
             base.GetInspectString();
             var stringBuilder = new StringBuilder();
             string inspectString = base.GetInspectString();
-            stringBuilder.Append(("PM" + _innerState).Translate() + " ");
+            if (_innerState != ChamberState.WaitingForSpecialThing && _specialThing != null)
+                stringBuilder.Append(("PM" + _innerState).Translate() + " ");
+            else
+                stringBuilder.AppendLine(("PM" + _innerState).Translate(_specialThing) + " ");
             stringBuilder.AppendLine(inspectString);
 
             if (_innerState == ChamberState.Active)
             {
-                float pDone = 1f - (float)_timer / _lastTotal;
+                float pDone = 1f - (float) _timer / _lastTotal;
                 string insString = "MutagenChamberProgress".Translate() + ": " + pDone.ToStringPercent() + " ";
                 insString = GetPawnInspectionString(insString);
 
@@ -445,25 +435,6 @@ namespace Pawnmorph.Chambers
 
 
             return stringBuilder.ToString().TrimEndNewlines();
-        }
-
-        private string GetPawnInspectionString(string insString)
-        {
-            var pawn = (Pawn)innerContainer.First();
-            switch (_currentUse)
-            {
-                case ChamberUse.Mutation:
-                    insString += "PMChamberAddingMutations".Translate();
-                    break;
-                case ChamberUse.Merge:
-                case ChamberUse.Tf:
-                    insString += "PMChamberTransforming".Translate(pawn, _targetAnimal);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            return insString;
         }
 
         /// <summary>
@@ -494,12 +465,8 @@ namespace Pawnmorph.Chambers
         {
             base.Tick();
 
-            if (!Refuelable.HasFuel)
-            {
-              
-                return;
-            }
-            
+            if (!Refuelable.HasFuel) return;
+
             if (_innerState != ChamberState.Active) return;
             if (_timer <= 0)
             {
@@ -510,16 +477,17 @@ namespace Pawnmorph.Chambers
                 catch (Exception e)
                 {
                     Log.Error($"unable to eject pawns from chamber!\ncaught exception {e.GetType().Name}\n{e}");
-                }//make sure an exception while ejecting a pawn doesn't put the chamber in a bad state 
-                _currentUse = ChamberUse.Tf;//this should be the default 
+                } //make sure an exception while ejecting a pawn doesn't put the chamber in a bad state 
+
+                _currentUse = ChamberUse.Tf; //this should be the default 
                 _innerState = ChamberState.WaitingForPawn;
                 _timer = 0;
                 return;
             }
 
-            if (PowerCompTrader?.PowerOn == false) return; 
+            if (PowerCompTrader?.PowerOn == false) return;
 
-            
+
             if (!Flickable.SwitchIsOn) return;
             Refuelable.Notify_UsedThisTick();
             _timer -= 1;
@@ -529,84 +497,51 @@ namespace Pawnmorph.Chambers
                     CheckMutationProgress();
                     break;
                 case ChamberUse.Tf:
-                    CheckTfMutationProgress(); 
+                    CheckTfMutationProgress();
                     break;
-                case ChamberUse.Merge: default:
+                case ChamberUse.Merge:
+                default:
                     break;
             }
-
-
         }
 
-        private void CheckTfMutationProgress()
+        /// <summary>
+        ///     Tries the accept special thing.
+        /// </summary>
+        /// <param name="deliveredThing">The delivered thing.</param>
+        public void TryAcceptSpecialThing([NotNull] Thing deliveredThing)
         {
-            if (AnimalMutations.Count == 0) return;
-
-            var mx = AnimalMutations.Count;
-            var idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
-            if (idx != _curMutationIndex)
+            if (_innerState != ChamberState.WaitingForSpecialThing)
             {
-                _curMutationIndex = idx; 
-                var pawn = innerContainer?.FirstOrDefault() as Pawn;
-                if (pawn == null) return;
-                var mut = AnimalMutations[idx];
-                var muts =  MutationUtilities.AddMutation(pawn, mut, ancillaryEffects: MutationUtilities.AncillaryMutationEffects.None);
-                foreach (Hediff_AddedMutation hediffAddedMutation in muts)
-                {
-                    var adjComp = hediffAddedMutation.SeverityAdjust; 
-                    if(adjComp != null)
-                    {
-                        hediffAddedMutation.Severity = adjComp.NaturalSeverityLimit; 
-                    }
-                }
+                Log.Error($"chamber was not waiting on anything but got {deliveredThing.Label}");
+                return; 
             }
+            if (deliveredThing.def != _specialThing)
+                Log.Error($"Chamber expected {_specialThing?.defName} but got {deliveredThing.Label}");
+
+            _innerState = ChamberState.Active;
+            SetActive();
+            deliveredThing.Destroy();
 
         }
 
-        void FinalizeMutations()
-        {
-            if (_addedMutationData == null) return;
-            var pawn = innerContainer?.FirstOrDefault() as Pawn;
-            if (pawn == null) return;
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is waiting on a special thing to start a transformation.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is waiting on a special thing; otherwise, <c>false</c>.
+        /// </value>
+        public bool WaitingOnSpecialThing => _innerState == ChamberState.WaitingForSpecialThing;
 
 
-            for (int i = _curMutationIndex + 1; i < _addedMutationData.Count; i++)
-            {
-                var mut = _addedMutationData[i];
-                ApplyMutationData(pawn, mut); 
-            }
-        }
-
-        private void CheckMutationProgress()
-        {
-            if (_addedMutationData == null) return;
-
-            
-            int mx = _addedMutationData.Count;
-            if (mx == 0) return; 
-            int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx - 1));
-            if (idx != _curMutationIndex)
-            {
-                var pawn = innerContainer?.FirstOrDefault() as Pawn;
-                if (pawn == null) return;
-
-                _curMutationIndex = idx;
-                IReadOnlyMutationData mutationData = _addedMutationData[_curMutationIndex];
-                ApplyMutationData(pawn, mutationData);
-            }
-        }
-
-        private void ApplyMutationData([NotNull] Pawn pawn, [NotNull] IReadOnlyMutationData mutationData)
-        {
-            if (mutationData.Part != null)
-            {
-                if (mutationData.Part.IsMissingAtAllIn(pawn)) return; 
-            }
-
-
-            mutationData.ApplyMutationData(pawn, MutationUtilities.AncillaryMutationEffects.HistoryOnly);
-        }
-
+        /// <summary>
+        /// Gets the special thing needed.
+        /// </summary>
+        /// <value>
+        /// The special thing needed.
+        /// </value>
+        public ThingDef SpecialThingNeeded => _specialThing; 
 
         /// <summary>
         ///     tries to accept a new thing into this chamber
@@ -616,8 +551,6 @@ namespace Pawnmorph.Chambers
         /// <returns></returns>
         public override bool TryAcceptThing(Thing thing, bool allowSpecialEffects = true)
         {
-
-
             if (base.TryAcceptThing(thing, allowSpecialEffects))
             {
                 var p = thing as Pawn;
@@ -627,11 +560,8 @@ namespace Pawnmorph.Chambers
                     return true;
                 }
 
-                var food = p.needs?.food;
-                if (food != null)
-                {
-                    food.CurLevel = food.MaxLevel; 
-                }
+                Need_Food food = p.needs?.food;
+                if (food != null) food.CurLevel = food.MaxLevel;
 
                 // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (_innerState)
@@ -642,7 +572,7 @@ namespace Pawnmorph.Chambers
                         break;
                     case ChamberState.WaitingForPawnMerging:
                         _innerState = ChamberState.Active;
-                        SetActive(); 
+                        SetActive();
                         StartMerging();
                         break;
                     default:
@@ -655,50 +585,109 @@ namespace Pawnmorph.Chambers
             return false;
         }
 
-        private void SetActive()
-        {
-            FillableDrawer?.Trigger();
-            PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
-            Glower?.UpdateLit(Map);
-
-            PowerCompTrader.PowerOn = true; 
-            if (Glower != null)
-            {
-                Glower.Props.glowColor = GlowColor;
-                Glower.UpdateLit(Map);
-                Log.Message($"{ThingID} {Glower.Glows}|{PowerCompTrader.PowerOn}");
-            }
-        }
-
-        void SetInactive()
-        {
-            PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
-            Glower?.UpdateLit(Map); 
-
-
-            PowerCompTrader.PowerOn = false; 
-            if (Glower != null)
-            {
-                Glower.Props.glowColor = Clear;
-                Glower.UpdateLit(Map);
-                Log.Message($"{ThingID} {Glower.Glows}|{PowerCompTrader.PowerOn}");
-            }
-        }
-
         private void AnimalChosen(PawnKindDef pawnkinddef)
         {
+            _lastTfRequest = pawnkinddef;
+            _currentUse = ChamberUse.Tf;
+
+            var controller = GetCurrentTfController();
+            if (controller != null)
+            {
+                var pawn = (Pawn) innerContainer.First();
+                var report = controller.CanInitiateTransformation(pawn, pawnkinddef, this);
+                if (!report)
+                {
+                    Messages.Message(report.reason, this, MessageTypeDefOf.RejectInput);
+                    return; 
+                }
+
+                var start = controller.InitiateTransformation(pawn, pawnkinddef, this);
+                _lastTotal = GetTransformationTime(start.duration);
+                _timer = _lastTotal;
+                _targetAnimal = start.pawnkindDef;
+                _specialThing = start.specialResource;
+                
+
+                if (_specialThing != null)
+                {
+                    _innerState = ChamberState.WaitingForSpecialThing;
+                }
+                else
+                {
+                    _innerState = ChamberState.Active; 
+                    SetActive();
+                }
+
+                SelectorComp.Enabled = false;
+                return; 
+            }
+
+
             _timer = GetTransformationTime(pawnkinddef);
             _lastTotal = _timer;
             _innerState = ChamberState.Active;
             _currentUse = ChamberUse.Tf;
             _targetAnimal = pawnkinddef;
 
+
+            
+
             SetActive();
 
             SelectorComp.Enabled = false;
         }
 
-      
+        private void ApplyMutationData([NotNull] Pawn pawn, [NotNull] IReadOnlyMutationData mutationData)
+        {
+            if (mutationData.Part != null)
+                if (mutationData.Part.IsMissingAtAllIn(pawn))
+                    return;
+
+
+            mutationData.ApplyMutationData(pawn, MutationUtilities.AncillaryMutationEffects.HistoryOnly);
+        }
+
+        private void CheckMutationProgress()
+        {
+            if (_addedMutationData == null) return;
+
+
+            int mx = _addedMutationData.Count;
+            if (mx == 0) return;
+            int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx - 1));
+            if (idx != _curMutationIndex)
+            {
+                var pawn = innerContainer?.FirstOrDefault() as Pawn;
+                if (pawn == null) return;
+
+                _curMutationIndex = idx;
+                IReadOnlyMutationData mutationData = _addedMutationData[_curMutationIndex];
+                ApplyMutationData(pawn, mutationData);
+            }
+        }
+
+        private void CheckTfMutationProgress()
+        {
+            if (AnimalMutations.Count == 0) return;
+
+            int mx = AnimalMutations.Count;
+            int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
+            if (idx != _curMutationIndex)
+            {
+                _curMutationIndex = idx;
+                var pawn = innerContainer?.FirstOrDefault() as Pawn;
+                if (pawn == null) return;
+                MutationDef mut = AnimalMutations[idx];
+                MutationResult muts =
+                    MutationUtilities.AddMutation(pawn, mut, ancillaryEffects: MutationUtilities.AncillaryMutationEffects.None);
+                foreach (Hediff_AddedMutation hediffAddedMutation in muts)
+                {
+                    Comp_MutationSeverityAdjust adjComp = hediffAddedMutation.SeverityAdjust;
+                    if (adjComp != null) hediffAddedMutation.Severity = adjComp.NaturalSeverityLimit;
+                }
+            }
+        }
+
 
         [DebugOutput(category = "Pawnmorpher")]
         private static void DBGGetAnimalTransformationTimes()
@@ -714,16 +703,17 @@ namespace Pawnmorph.Chambers
             Log.Message(builder.ToString());
         }
 
-        [NotNull]
-        private readonly
-            static List<Pawn> _scratchList = new List<Pawn>();  
+        private void DebugFinishChamber()
+        {
+            _innerState = ChamberState.Active; 
+            _timer = 0;
+        }
 
         private void EjectPawn()
         {
-            
             _scratchList.Clear();
             _scratchList.AddRange(innerContainer.OfType<Pawn>());
-            var pawn = _scratchList[0] as Pawn;
+            Pawn pawn = _scratchList[0];
             if (pawn == null)
             {
                 Log.Error("trying to eject empty muta chamber!");
@@ -740,16 +730,17 @@ namespace Pawnmorph.Chambers
                     FinalizeMutations();
                     break;
                 case ChamberUse.Merge:
-                    
-                    var otherPawn = (Pawn)_scratchList[1];
+
+                    Pawn otherPawn = _scratchList[1];
                     if (otherPawn == null)
                     {
                         Log.Error("merging but cannot find other pawn! aborting!");
                         tfRequest = null;
                         break;
                     }
+
                     SpawnSilkFor(pawn.apparel);
-                    SpawnSilkFor(otherPawn.apparel); 
+                    SpawnSilkFor(otherPawn.apparel);
 
 
                     tfRequest = new TransformationRequest(_targetAnimal, pawn, otherPawn)
@@ -763,7 +754,7 @@ namespace Pawnmorph.Chambers
                     mutagen = MutagenDefOf.MergeMutagen.MutagenCached;
                     break;
                 case ChamberUse.Tf:
-                    SpawnSilkFor(pawn.apparel); 
+                    SpawnSilkFor(pawn.apparel);
                     PawnKindDef animal = SelectorComp.ChosenKind;
                     if (animal == null) animal = GetRandomAnimal();
 
@@ -781,8 +772,9 @@ namespace Pawnmorph.Chambers
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            EjectContents();
 
+            EjectContents();
+            
             if (tfRequest == null) return;
 
 
@@ -797,46 +789,83 @@ namespace Pawnmorph.Chambers
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
             gComp.AddTransformedPawn(tfPawn);
             foreach (Pawn oPawn in tfPawn.OriginalPawns)
-            {
                 if (oPawn.Spawned)
                     oPawn.DeSpawn();
-            }
-
-        }
-
-        private void SpawnSilkFor([CanBeNull] Pawn_ApparelTracker apparel)
-        {
-            if (apparel == null) return;
 
 
-            int count = 0;
-            foreach (Apparel app in apparel.WornApparel)
+            if (_currentUse == ChamberUse.Tf)
             {
-                if(app == null) continue;
-                count += GetMutasilkAmountFrom(app); 
+                var oPawn = tfPawn.OriginalPawns.FirstOrDefault();
+                if (oPawn == null) return; 
+                var controller = _lastTfRequest?.GetModExtension<ChamberAnimalTfController>();
+                if (controller != null)
+                {
+                    controller.OnPawnEjects(oPawn, tfPawn.TransformedPawns.FirstOrDefault(), this); 
+                }
             }
-
-            var silk = ThingMaker.MakeThing(PMThingDefOf.Morphsilk);
-            silk.stackCount = count;
-            GenPlace.TryPlaceThing(silk, Position, Map, ThingPlaceMode.Near);
-            apparel.DestroyAll();
-        }
-
-        private void ResetChamber()
-        {
-            FillableDrawer?.Clear();
-            SelectorComp.Enabled = false;
-            _innerState = ChamberState.WaitingForPawn;
-            _currentUse = ChamberUse.Tf;
-            _addedMutationData = null;
-            _curMutationIndex = -1; 
         }
 
         private void EnterMergingIdle()
         {
             _innerState = ChamberState.WaitingForPawnMerging;
             _currentUse = ChamberUse.Merge;
-            SelectorComp.Enabled = false; 
+            SelectorComp.Enabled = false;
+        }
+
+        private void FinalizeMutations()
+        {
+            if (_addedMutationData == null) return;
+            var pawn = innerContainer?.FirstOrDefault() as Pawn;
+            if (pawn == null) return;
+
+
+            for (int i = _curMutationIndex + 1; i < _addedMutationData.Count; i++)
+            {
+                IReadOnlyMutationData mut = _addedMutationData[i];
+                ApplyMutationData(pawn, mut);
+            }
+        }
+
+        private int GetMutasilkAmountFrom(Apparel apparel)
+        {
+            int matAmount = apparel.def.costList?.Select(s => s.count).Sum() ?? 10;
+            int amt = Mathf.RoundToInt(matAmount * (float) apparel.HitPoints * 0.05f);
+            return Mathf.Min(amt, 75);
+        }
+
+        private int GetMutationDuration(IReadOnlyAddedMutations addedMutations)
+        {
+            const float averageValue = 10;
+            const float averageMaxPossible = 30;
+            float maxTime = 60000 * TF_ANIMAL_DURATION;
+            float minTime = 60000 * TF_ANIMAL_DURATION / 10;
+            float tValue = 0;
+
+            foreach (IReadOnlyMutationData mutation in addedMutations) tValue += mutation.Mutation.value;
+
+            tValue /= averageValue * averageMaxPossible;
+
+            float t = Mathf.Clamp(tValue * maxTime, minTime, maxTime);
+            return Mathf.RoundToInt(t);
+        }
+
+        private string GetPawnInspectionString(string insString)
+        {
+            var pawn = (Pawn) innerContainer.First();
+            switch (_currentUse)
+            {
+                case ChamberUse.Mutation:
+                    insString += "PMChamberAddingMutations".Translate();
+                    break;
+                case ChamberUse.Merge:
+                case ChamberUse.Tf:
+                    insString += "PMChamberTransforming".Translate(pawn, _targetAnimal);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return insString;
         }
 
         private PawnKindDef GetRandomAnimal()
@@ -854,10 +883,16 @@ namespace Pawnmorph.Chambers
             return Mathf.RoundToInt(Mathf.Max(time, MIN_TRANSFORMATION_TIME));
         }
 
+
+        int GetTransformationTime(float days)
+        {
+            return Mathf.RoundToInt(days * 60000); 
+        }
+
         private void Initialize()
         {
-           if(_innerState == ChamberState.Active) SetActive();
-           else SetInactive();
+            if (_innerState == ChamberState.Active) SetActive();
+            else SetInactive();
 
 
             SelectorComp.Enabled = Occupied && _innerState == ChamberState.Idle;
@@ -879,6 +914,64 @@ namespace Pawnmorph.Chambers
 
             dialogue.WindowClosed += WindowClosed;
             Find.WindowStack.Add(dialogue);
+        }
+
+        private void ResetChamber()
+        {
+            FillableDrawer?.Clear();
+            SelectorComp.Enabled = false;
+            _innerState = ChamberState.WaitingForPawn;
+            _currentUse = ChamberUse.Tf;
+            _addedMutationData = null;
+            _curMutationIndex = -1;
+        }
+
+        private void SetActive()
+        {
+            FillableDrawer?.Trigger();
+            PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
+            Glower?.UpdateLit(Map);
+
+            PowerCompTrader.PowerOn = true;
+            if (Glower != null)
+            {
+                Glower.Props.glowColor = GlowColor;
+                Glower.UpdateLit(Map);
+                Log.Message($"{ThingID} {Glower.Glows}|{PowerCompTrader.PowerOn}");
+            }
+        }
+
+        private void SetInactive()
+        {
+            PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
+            Glower?.UpdateLit(Map);
+
+
+            PowerCompTrader.PowerOn = false;
+            if (Glower != null)
+            {
+                Glower.Props.glowColor = Clear;
+                Glower.UpdateLit(Map);
+                Log.Message($"{ThingID} {Glower.Glows}|{PowerCompTrader.PowerOn}");
+            }
+        }
+
+        private void SpawnSilkFor([CanBeNull] Pawn_ApparelTracker apparel)
+        {
+            if (apparel == null) return;
+
+
+            var count = 0;
+            foreach (Apparel app in apparel.WornApparel)
+            {
+                if (app == null) continue;
+                count += GetMutasilkAmountFrom(app);
+            }
+
+            Thing silk = ThingMaker.MakeThing(PMThingDefOf.Morphsilk);
+            silk.stackCount = count;
+            GenPlace.TryPlaceThing(silk, Position, Map, ThingPlaceMode.Near);
+            apparel.DestroyAll();
         }
 
         private void StartMerging()
@@ -905,9 +998,6 @@ namespace Pawnmorph.Chambers
             SelectorComp.Enabled = false;
         }
 
-
-        private IReadOnlyAddedMutations _addedMutationData;
-
         private void WindowClosed(Dialog_PartPicker sender, IReadOnlyAddedMutations addedmutations)
         {
             sender.WindowClosed -= WindowClosed;
@@ -920,8 +1010,8 @@ namespace Pawnmorph.Chambers
             }
 
             if (addedmutations?.Any() != true) return;
-            
-            
+
+
             _addedMutationData = new AddedMutations(addedmutations);
             _timer = GetMutationDuration(addedmutations);
             _currentUse = ChamberUse.Mutation;
@@ -932,35 +1022,16 @@ namespace Pawnmorph.Chambers
 
             //remove any mutations left over 
             var pawn = innerContainer.FirstOrDefault() as Pawn;
-            if (pawn == null) return; 
+            if (pawn == null) return;
             foreach (IReadOnlyMutationData mData in _addedMutationData.Where(m => !m.Removing))
             {
                 var hediff =
                     pawn.health?.hediffSet?.hediffs?.FirstOrDefault(h => h.def == mData.Mutation && h.Part == mData.Part) as
-                        Hediff_AddedMutation; 
+                        Hediff_AddedMutation;
                 hediff?.MarkForRemoval();
             }
 
-            SelectorComp.Enabled = false; 
-        }
-
-        private int GetMutationDuration(IReadOnlyAddedMutations addedMutations)
-        {
-            const float averageValue = 10;
-            const float averageMaxPossible = 30;
-            float maxTime = 60000 * TF_ANIMAL_DURATION;
-            float minTime = 60000 * TF_ANIMAL_DURATION / 10; 
-            float tValue = 0;
-
-            foreach (IReadOnlyMutationData mutation in addedMutations)
-            {
-                tValue += mutation.Mutation.value; 
-            }
-
-            tValue /= (averageValue * averageMaxPossible);
-
-            var t = Mathf.Clamp(tValue * maxTime, minTime, maxTime);
-            return Mathf.RoundToInt(t);
+            SelectorComp.Enabled = false;
         }
 
         private enum ChamberState
@@ -968,7 +1039,8 @@ namespace Pawnmorph.Chambers
             WaitingForPawn,
             WaitingForPawnMerging,
             Idle,
-            Active
+            Active,
+            WaitingForSpecialThing
         }
     }
 }

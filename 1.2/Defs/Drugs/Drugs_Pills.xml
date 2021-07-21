@@ -1,0 +1,362 @@
+<Defs>
+	<!--Production Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>UdderPill</defName>
+		<label>mutapill, booster</label>
+		<description>A pill to boost production mutations. Side effects may include increased discomfort, hair growth, hunger, coma, and in rare cases, fiery explosions.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Pills1</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddAspect">
+					<aspectDef>Productive</aspectDef>
+					<increaseStage>true</increaseStage>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+			<TFMilk>1</TFMilk>
+			<TFEgg>1</TFEgg>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--Coloration Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>ColorsPill</defName>
+		<label>mutapill, rgb</label>
+		<description>A pill that induces a random change in genes affecting pigmentation that accompanies other mutations.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Pills3</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddRandomAspect">
+					<entries>
+						<li>
+							<aspect>ColorationNatural</aspect>
+							<chance>0.0015</chance>
+						</li>
+						<li>
+							<aspect>ColorationAlbinism</aspect>
+							<chance>0.00075</chance>
+						</li>
+						<li>
+							<aspect>ColorationMelanism</aspect>
+							<chance>0.00075</chance>
+						</li>
+						<li>
+							<aspect>ColorationUnnatural</aspect>
+							<chance>0.0005</chance>
+						</li>
+					</entries>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--Feral Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>FeralPill</defName>
+		<label>mutapill, feral</label>
+		<description>A pill to tip the scales on morphs that are reeling, but did not change fully. Use this if you really, really want a pawn to be an animal instead of a human.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Pillbox_1</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_CompleteTF">
+					<mustBeReeling>true</mustBeReeling>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--Dry Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>DryPills</defName>
+		<label>mutapill, dry</label>
+		<description>A pill that stops pawns with mutations producing any resources. A preventative measure for becoming etherbroken/bonded.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/pills-26</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddAspect">
+					<aspectDef>MutagenInfused</aspectDef>
+					<stage>2</stage>
+					<!-- the dry aspect is the third stage -->
+					<force>true</force>
+					<!-- this means if the pawn has either of the other 2 stages, force the aspect to the 'dry' stage-->
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--Aspect Remover Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>AspectReverterPills</defName>
+		<label>mutapill, X-aspect</label>
+		<description>A pill that removes all aspects from a mutated pawn, but does not remove any mutations. A cure-all for your etherbroken/bonded pawns — but does not prevent getting them again. It's a good idea to follow this up with a dry mutapill if you want to avoid getting etherbroken/bonded again.\n\nCaution, also negates booster pills and resets production to a non-boosted state.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/pills-28</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_RemoveAspects"></li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>RandomTransformerChemical</chemical>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--Stabilizer Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>MutagenStabiliser</defName>
+		<label>mutapill, stabiliser</label>
+		<description>These pills will neutralize any active mechanites in the body and prevent mutations for five days.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/pills2</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<statBases>
+			<WorkToMake>600</WorkToMake>
+			<MarketValue>18</MarketValue>
+			<Mass>0.005</Mass>
+			<Flammability>0.7</Flammability>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>StabiliserHigh</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>Stabilisation</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>2</Neutroamine>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+				<overdoseSeverityOffset>
+					<min>0.08</min>
+					<max>0.14</max>
+				</overdoseSeverityOffset>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="PM_PillBase">
+		<defName>MutagenAccelerator</defName>
+		<label>mutapill, accelerator</label>
+		<description>These pills will enhance any active mechanites in the body and greatly increase the rate of mutation for five days. It also increases the likelihood of a pawn fully transforming.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/pills-27</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<statBases>
+			<WorkToMake>600</WorkToMake>
+			<MarketValue>18</MarketValue>
+			<Mass>0.005</Mass>
+			<Flammability>0.7</Flammability>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AcceleratorHigh</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>Stabilisation</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>1</Neutroamine>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+				<overdoseSeverityOffset>
+					<min>0.08</min>
+					<max>0.14</max>
+				</overdoseSeverityOffset>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<HediffDef>
+		<defName>StabiliserHigh</defName>
+		<description>This pawn has been stabilised against further mutations. This lasts for five days, and the pawn cannot receive additional mutations in this timeframe.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>mutagen stabilised</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.18</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
+				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
+			</li>
+
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>-1.5</MutagenSensitivity>
+					<TransformationSensitivity>-1.5</TransformationSensitivity>
+					<MutationHaltChance>1</MutationHaltChance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>AcceleratorHigh</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>mutagen accelerated</label>
+		<description>This pawn's mutations are appearing at an accelerated rate.</description>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.18</severityPerDay>
+			</li>
+			<li>
+				<compClass>Pawnmorph.Hediffs.Comp_RestartMutationProgression</compClass>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>2</MutagenSensitivity>
+					<TransformationSensitivity>0.2</TransformationSensitivity>
+					<MutationHaltChance>-1</MutationHaltChance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

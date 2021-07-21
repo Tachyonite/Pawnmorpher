@@ -9,7 +9,6 @@
 		<workerClass>Pawnmorph.IncidentWorkers.MutagenicFallout</workerClass>
 		<gameCondition>MutagenicFallout</gameCondition>
 		<letterLabel>Mutagenic fallout</letterLabel>
-		<letterText>An unknown source far away has released a plume of mutagenic mechanites into the air, which are now passing over the area. Anyone outside will slowly mutate, and as the number of mechanites in their system increases, the mutations will increase in severity. It can last from a few days to over a season.</letterText>
 		<letterDef>ThreatSmall</letterDef>
 		<baseChance>0.15</baseChance>
 		<earliestDay>20</earliestDay>
@@ -28,6 +27,7 @@
 		<label>mutagenic fallout</label>
 		<description>A plume of mutagenic mechanites from some distant source is slowly settling over this entire region. Any living thing not under a roof will be slowly mutated, and may eventually become animals.</description>
 		<endMessage>The worst of the toxic fallout has settled.</endMessage>
+		<letterText>An unknown source far away has released a plume of mutagenic mechanites into the air, which are now passing over the area. \n\nAnyone outside will slowly mutate, and as the number of mechanites in their system increases, the mutations will increase in severity. \n\nIt can last from a few days to over a season.</letterText>
 		<canBePermanent>true</canBePermanent>
 	</GameConditionDef>
 	

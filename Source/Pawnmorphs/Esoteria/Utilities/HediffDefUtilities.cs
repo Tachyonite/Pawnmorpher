@@ -18,18 +18,11 @@ namespace Pawnmorph.Utilities
         public static IEnumerable<HediffGiver> GetAllHediffGivers([NotNull] this HediffDef hediffDef)
         {
             if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
-            foreach (var giver in hediffDef.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-            {
-                yield return giver; 
-            }
+            foreach (HediffGiver giver in hediffDef.hediffGivers ?? Enumerable.Empty<HediffGiver>()) yield return giver;
 
-            foreach (var stage in hediffDef.stages ?? Enumerable.Empty<HediffStage>())
-            {
-                foreach (var giver in stage.hediffGivers ?? Enumerable.Empty<HediffGiver>())
-                {
-                    yield return giver;
-                }
-            }
+            foreach (HediffStage stage in hediffDef.stages ?? Enumerable.Empty<HediffStage>())
+            foreach (HediffGiver giver in stage.hediffGivers ?? Enumerable.Empty<HediffGiver>())
+                yield return giver;
         }
     }
 }

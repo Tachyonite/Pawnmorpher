@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+<ScenPartDef>
+    <defName>PawnmorpherPlayerFaction</defName>
+    <label>Player faction</label>
+    <category>Fixed</category>
+    <scenPartClass>ScenPart_PlayerFaction</scenPartClass>
+    <summaryPriority>1000</summaryPriority>
+  </ScenPartDef>
+	
+  <ScenarioDef>
+    <defName>Escaped Morphs</defName>
+    <label>Escaped Morphs</label>
+    <description>The four of you have escaped from the genetics lab as it burned to the ground, carrying only what you could grab on the way out. You're all changed, but finally free. How you'll survive now is up to you.</description>
+    <scenario>
+      <summary>Four escaped mutants - a twist on the usual Rimworld experience -- your starting mutations matter!</summary>
+      <playerFaction>
+        <def>PawnmorpherPlayerFaction</def>
+        <factionDef>PawnmorpherPlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+
+        <!-- Config pages -->
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>4</pawnCount>
+          <pawnChoiceCount>8</pawnChoiceCount>
+        </li>
+
+        <!-- Player starting stuff spawn method-->
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>Standing</method>
+        </li>
+
+        <!-- Player pawns modifiers -->
+        
+		<li Class="ScenPart_SetNeedLevel">
+			<def>SetNeedLevel</def>
+			<visible>false</visible>
+			<context>PlayerStarter</context>
+			<chance>1.0</chance>
+			<need>Food</need>
+			<levelRange>
+				<min>0.3</min>
+				<max>0.8</max>
+			</levelRange>
+		</li>
+        
+        <!-- Player starting things -->
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>500</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>20</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>20</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>30</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_BoltActionRifle</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Mutarifle</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_Revolver</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MeleeWeapon_MutaniteSpear</thingDef>
+          <stuff>Plasteel</stuff>
+        </li>
+		<li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Apparel_AdvancedHelmet</thingDef>
+		  <stuff>Plasteel</stuff>
+        </li>
+		<li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Apparel_SimpleHelmet</thingDef>
+		  <stuff>Steel</stuff>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <count>2</count>
+          <bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
+        </li>
+
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>WoodLog</thingDef>
+          <count>500</count>
+        </li>      
+        
+		<!-- Game start dialog -->
+		<li Class="ScenPart_GameStartDialog">
+			<def>GameStartDialog</def>
+			<text>None of you dared to look behind to the plumes of ash and biomatter rising from the genetics lab. All of you were free, but not everyone could be saved. Now, changed for better or worse, how are you going to cope with a new life in an unknown land?</text>
+			<closeSound>GameStartSting</closeSound>
+		</li>
+        
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+  <FactionDef ParentName="PlayerFactionBase">
+    <defName>PawnmorpherPlayerColony</defName>
+    <label>Free Morphs</label>
+    <description>A colony of recently-escaped morphs.</description>
+    <isPlayer>true</isPlayer>
+    <basicMemberKind>Morph</basicMemberKind>
+    <pawnSingular>morph</pawnSingular>
+    <pawnsPlural>morphs</pawnsPlural>
+    <techLevel>Industrial</techLevel>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>MutantWanderer</li>
+          <li>FreeMutant</li>
+          <li>Outlander</li>
+        </categories>
+      </li>
+    </backstoryFilters>
+    <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
+    <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
+		<factionNameMaker>NamerFactionOutlander</factionNameMaker>
+    <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
+    <geneticVariance>1</geneticVariance>
+		<startingResearchTags>
+			<li>ClassicStart</li>
+		</startingResearchTags>
+		<hairTags>
+			<li>Urban</li>
+			<li>Rural</li>
+		</hairTags>
+		<apparelStuffFilter>
+			<thingDefs>
+				<li>Synthread</li>
+				<li>Cloth</li>
+				<li>Morphsilk</li>
+			</thingDefs>
+		</apparelStuffFilter>
+  </FactionDef>
+  
+  
+  <PawnKindDef Abstract="True" Name="PawnmorpherBasePlayerPawnKind">
+    <race>Human</race>
+    <combatPower>30</combatPower>
+    <isFighter>false</isFighter>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <forceNormalGearQuality>true</forceNormalGearQuality>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="PawnmorpherBasePlayerPawnKind">
+    <defName>Morph</defName>
+    <label>morph</label>
+    <defaultFactionType>PawnmorpherPlayerColony</defaultFactionType>
+    <chemicalAddictionChance>0.06</chemicalAddictionChance>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.3</apparelAllowHeadgearChance>
+    <apparelMoney>
+      <min>350</min>
+      <max>600</max>
+    </apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <techHediffsChance>0.03</techHediffsChance>
+    <techHediffsMoney>
+      <min>50</min>
+      <max>800</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Poor</li>
+      <li>Simple</li>
+    </techHediffsTags>
+	
+    <modExtensions>
+      <li Class="Pawnmorph.MorphPawnKindExtension">
+        <morphs>
+          <li>BoarMorph</li>
+          <li>CatMorph</li>
+          <li>FoxMorph</li>
+          <li>CowMorph</li>
+          <li>SheepMorph</li>
+          <li>BoomalopeMorph</li>
+          <li>DeerMorph</li>
+          <li>PigMorph</li>
+          <li>IguanaMorph</li>
+          <li>SnakeMorph</li>
+          <li>BearMorph</li>
+          <li>HuskyMorph</li>
+          <li>ChookMorph</li>
+          <li>RatMorph</li>
+          <li>MonkeyMorph</li>
+          <li>HareMorph</li>
+          <li>SquirrelMorph</li>
+          <li>WolfMorph</li>
+        </morphs>
+        <hediffRange>0~10</hediffRange>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+</Defs>

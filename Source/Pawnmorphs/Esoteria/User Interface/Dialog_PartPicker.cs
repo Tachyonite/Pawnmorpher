@@ -102,11 +102,17 @@ namespace Pawnmorph.User_Interface
         private Pawn pawn;
         private List<Hediff_AddedMutation> pawnCurrentMutations;
         private static List<HediffInitialState> cachedInitialHediffs;
-        private static Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef;
-        private static Dictionary<BodyPartDef, List<MutationLayer>> cachedMutationLayersByPartDef;
-        private static List<BodyPartRecord> cachedMutableParts;
-        private static List<BodyPartRecord> cachedMutableCoreParts;
-        private static List<BodyPartRecord> cachedMutableSkinParts;
+
+        [NotNull] private static readonly Dictionary<BodyPartDef, List<MutationDef>> cachedMutationDefsByPartDef =
+            new Dictionary<BodyPartDef, List<MutationDef>>();
+        [NotNull]
+        private static readonly Dictionary<BodyPartDef, List<MutationLayer>> cachedMutationLayersByPartDef = new Dictionary<BodyPartDef, List<MutationLayer>>();
+        [NotNull]
+        private static readonly List<BodyPartRecord> cachedMutableParts = new List<BodyPartRecord>();
+        [NotNull]
+        private static readonly List<BodyPartRecord> cachedMutableCoreParts = new List<BodyPartRecord>();
+        [NotNull]
+        private static readonly List<BodyPartRecord> cachedMutableSkinParts = new List<BodyPartRecord>(); 
         private static BodyTypeDef initialBodyType;
         private static string initialCrownType;
         private static string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
@@ -129,6 +135,102 @@ namespace Pawnmorph.User_Interface
             }
         }
 
+        static void SetMutationPartDefsCache()
+        {
+            cachedMutationLayersByPartDef.Clear();
+            foreach (MutationDef allMutation in MutationDef.AllMutations)
+            {
+                var layer = allMutation.RemoveComp?.layer;
+                if(layer == null) continue;
+                if(allMutation.parts == null || allMutation.parts.Count == 0) continue;
+                foreach (BodyPartDef part in allMutation.parts)
+                {
+                    if (!cachedMutationLayersByPartDef.TryGetValue(part, out var lst))
+                    {
+                        lst = new List<MutationLayer>();
+                        cachedMutationLayersByPartDef[part] = lst; 
+                    }
+                    if(lst.Contains(layer.Value)) continue;
+                    lst.Add(layer.Value); 
+                }
+            }
+        }
+
+        static Dialog_PartPicker()
+        {
+            SetMutationPartDefsCache();
+
+          
+
+        }
+
+        void SetCaches()
+        {
+            cachedMutableParts.Clear();
+            cachedMutableCoreParts.Clear();
+            cachedMutableSkinParts.Clear();
+            cachedMutationDefsByPartDef.Clear();
+            foreach (BodyPartRecord record in pawn.RaceProps.body.AllParts)
+            {
+
+
+                foreach (MutationDef mutation in MutationDef.AllMutations)
+                {
+                    if(mutation.parts == null) continue;
+                    var layer = mutation.RemoveComp?.layer; 
+                    foreach (BodyPartDef mutationPart in mutation.parts)
+                    {
+                        if (mutationPart == record.def)
+                        {
+                            if(!cachedMutableParts.Contains(record))
+                                cachedMutableParts.Add(record);
+
+                            switch (layer)
+                            {
+                                case MutationLayer.Core:
+                                    if(!cachedMutableCoreParts.Contains(record)) cachedMutableCoreParts.Add(record);
+                                    break;
+                                case MutationLayer.Skin:
+                                    if (!cachedMutableSkinParts.Contains(record)) cachedMutableSkinParts.Add(record); 
+                                    break;
+                                case null:
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                            
+                            break;
+
+                            
+                        } 
+                    }
+                }
+
+
+            }
+
+
+            foreach (MutationDef mutation in MutationDef.AllMutations)
+            {
+                if(mutation.parts == null || mutation.parts.Count == 0) continue;
+
+                foreach (BodyPartDef mutationPart in mutation.parts)
+                {
+
+                    if (!cachedMutationDefsByPartDef.TryGetValue(mutationPart, out var lst))
+                    {
+                        lst = new List<MutationDef>();
+                        cachedMutationDefsByPartDef[mutationPart] = lst; 
+                    }
+                    if(!lst.Contains(mutation))
+                        lst.Add(mutation);
+                }
+            }
+
+
+        }
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Dialog_PartPicker"/> class.
         /// </summary>
@@ -143,17 +245,9 @@ namespace Pawnmorph.User_Interface
             // Settting flags for this window. 
             forcePause = true;
 
-            // Storing these here to (probably) save a few cycles while caching.
-            List<BodyPartRecord> allPawnParts = pawn.RaceProps.body.AllParts;
-            List<MutationDef> allMutationDefs = DefDatabase<MutationDef>.AllDefs.ToList();
-
-            // Cache various information so we don't have to constantly look it up elsewhere. This does present the chance for a data desync, but unless the def database gets updated mid-game, I can't think of a case where this could occur atm.
-            cachedMutationDefsByPartDef = allMutationDefs.SelectMany(m => m.parts).Distinct().Select(k => new { k, v = allMutationDefs.Where(m => m.parts.Contains(k)).ToList()}).ToDictionary(x => x.k, x => x.v);
-            cachedMutationLayersByPartDef = cachedMutationDefsByPartDef.Keys.Select(k => new { k, v = cachedMutationDefsByPartDef[k].Select(n => n.RemoveComp.layer).Distinct().ToList()}).ToDictionary(x => x.k, x => x.v);
-            cachedMutableParts = allPawnParts.Where(m => allMutationDefs.SelectMany(n => n.parts).Distinct().Contains(m.def)).ToList();
-            cachedMutableCoreParts = allPawnParts.Where(m => allMutationDefs.Where(n => n.RemoveComp.layer == MutationLayer.Core).SelectMany(o => o.parts).Distinct().Contains(m.def)).ToList();
-            cachedMutableSkinParts = allPawnParts.Where(m => allMutationDefs.Where(n => n.RemoveComp.layer == MutationLayer.Skin).SelectMany(o => o.parts).Distinct().Contains(m.def)).ToList();
-
+         
+            SetCaches();
+        
             // Initial caching of the mutations currently affecting the pawn and their initial hediff list.
             cachedInitialHediffs = pawn.health.hediffSet.hediffs.Select(h => new HediffInitialState(h, h.Severity, (h as Hediff_AddedMutation)?.ProgressionHalted ?? false)).ToList();
             initialBodyType = pawn.story.bodyType;
@@ -397,7 +491,7 @@ namespace Pawnmorph.User_Interface
                 foreach (MutationLayer layer in cachedMutationLayersByPartDef[parts.FirstOrDefault().def])
                 {
                     mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == layer).ToList();
-                    buttonLabel = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.Def.LabelCap).Distinct()))}";
+                    buttonLabel = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({m.Def.classInfluence.label.CapitalizeFirst()})").Distinct()))}";
                     DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
                 }
             }
@@ -414,7 +508,7 @@ namespace Pawnmorph.User_Interface
                     mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == MutationLayer.Core).ToList();
                     layer = MutationLayer.Core;
                 }
-                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => m.Def.LabelCap).Distinct()))}";
+                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({m.Def.classInfluence.label.CapitalizeFirst()})").Distinct()))}";
                 DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
             }
         }
@@ -463,7 +557,7 @@ namespace Pawnmorph.User_Interface
                         recachePreview = true;
                         RecachePawnMutations();
                     }
-                    options.Add(new FloatMenuOption(mutationDef.LabelCap, addMutation));
+                    options.Add(new FloatMenuOption($"{mutationDef.LabelCap} ({mutationDef.classInfluence.label.CapitalizeFirst()})", addMutation));
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
@@ -601,15 +695,14 @@ namespace Pawnmorph.User_Interface
             {
                 if (entry.removing)
                 {
-                    summaryBuilder.AppendLine(REMOVING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), pawn.Named("PAWN"), entry.part.Named("PART")));
+                    summaryBuilder.AppendLine(REMOVING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), pawn.Named("PAWN"), entry.part.Label.Named("PART")));
                 }
                 else
                 {
                     string isHaltedTxt = (entry.isHalted ? HALTED_MUTATION_DESC.Translate().RawText : "");
 
-                    var addStr = ADDING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), entry.part.Named("PART"), pawn.Named("PAWN"),
+                    var addStr = ADDING_MUTATION_DESC.Translate(entry.mutation.Named("MUTATION"), entry.part.Label.Named("PART"), pawn.Named("PAWN"),
                                                                 entry.severity.ToString("n2").Named("SEVERITY"))
-                               + "."
                                + isHaltedTxt;
 
                     summaryBuilder.AppendLine(addStr);
@@ -617,27 +710,28 @@ namespace Pawnmorph.User_Interface
                 summaryBuilder.AppendLine();
             }
 
-            
-
             // Draw modification summary description.
             Rect summaryMenuSectionRect = new Rect(inRect.x, inRect.y, inRect.width, (inRect.height - SPACER_SIZE) / 2);
-            Rect summaryOutRect = summaryMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
+            Widgets.DrawMenuSection(summaryMenuSectionRect);
+
+            Rect summaryMenuTitleRect = summaryMenuSectionRect.ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
+            float titleHeight = Text.CalcHeight(SUMMARY_TITLE_LOC_STRING.Translate(), summaryMenuTitleRect.width);
+            Widgets.Label(new Rect(summaryMenuTitleRect.x, summaryMenuTitleRect.y, summaryMenuTitleRect.width, titleHeight), SUMMARY_TITLE_LOC_STRING.Translate());
+            GUI.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            Widgets.DrawLineHorizontal(summaryMenuTitleRect.x, titleHeight + summaryMenuTitleRect.y, summaryMenuTitleRect.width);
+            titleHeight += 1f;
+            GUI.color = Color.white;
+
+            Rect summaryOutRect = new Rect(summaryMenuSectionRect.x, summaryMenuSectionRect.y + titleHeight, summaryMenuSectionRect.width, summaryMenuSectionRect.height - titleHeight).ContractedBy(MENU_SECTION_CONSTRICTION_SIZE);
             Rect summaryViewRect = new Rect(summaryOutRect.x, summaryOutRect.y, summaryScrollSize.x, summaryScrollSize.y);
             float summaryCurY = summaryOutRect.y;
-            Widgets.DrawMenuSection(summaryMenuSectionRect);
             Widgets.BeginScrollView(summaryOutRect, ref summaryScrollPos, summaryViewRect);
-            Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(SUMMARY_TITLE_LOC_STRING.Translate(), summaryViewRect.width)), SUMMARY_TITLE_LOC_STRING.Translate());
-            summaryCurY += Text.CalcHeight(SUMMARY_TITLE_LOC_STRING.Translate(), summaryViewRect.width);
-            GUI.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-            Widgets.DrawLineHorizontal(summaryViewRect.x, summaryCurY, summaryOutRect.width);
-            summaryCurY += 1f;
-            GUI.color = Color.white;
             string summaryText = summaryBuilder.ToString();
             Widgets.Label(new Rect(summaryViewRect.x, summaryCurY, summaryViewRect.width, Text.CalcHeight(summaryText, summaryViewRect.width)), summaryText);
             summaryCurY += Text.CalcHeight(summaryText, summaryViewRect.width);
             if (Event.current.type == EventType.Layout)
             {
-                summaryScrollSize.y = summaryCurY - summaryViewRect.y;
+                summaryScrollSize.y = summaryCurY - summaryViewRect.y - titleHeight;
                 summaryScrollSize.x = summaryOutRect.width - (summaryScrollSize.y > summaryOutRect.height ? 16f : 0f);
             }
             Widgets.EndScrollView();
@@ -718,7 +812,7 @@ namespace Pawnmorph.User_Interface
             {
                 Mesh mesh2 = MeshPool.humanlikeHeadSet.MeshAt(previewRot);
                 Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
-                Material material = graphics.HeadMatAt_NewTemp(previewRot);
+                Material material = graphics.HeadMatAt(previewRot);
                 GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
 
                 Mesh hairMesh = graphics.HairMeshSet.MeshAt(previewRot);
@@ -747,7 +841,7 @@ namespace Pawnmorph.User_Interface
                 }
                 if (!isWearingHat)
                 {
-                    Material hairMat = graphics.HairMatAt_NewTemp(previewRot);
+                    Material hairMat = graphics.HairMatAt(previewRot);
                     GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
                 }
             }
@@ -765,7 +859,7 @@ namespace Pawnmorph.User_Interface
             ThingDef_AlienRace def = pawn.def as ThingDef_AlienRace;
             Vector2 hOffset = def != null ? def.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage).headOffset : Vector2.zero;
 
-            HarmonyPatches.DrawAddons(false, vector3, hOffset, pawn, quaternion, previewRot, false);
+            HarmonyPatches.DrawAddons( PawnRenderFlags.Clothes,  vector3, hOffset, pawn, quaternion, previewRot);
             if (toggleClothesEnabled)
             {
                 if (pawn.apparel != null)

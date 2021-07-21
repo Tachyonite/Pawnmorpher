@@ -1,0 +1,58 @@
+<Defs>
+	<ChemicalDef>
+		<defName>RandomTransformerChemical</defName>
+		<label>mutaserum</label>
+		<addictionHediff>SerumAddiction</addictionHediff>
+		<canBinge>false</canBinge>
+	</ChemicalDef>
+	
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_TransformerSerums</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>serumdrunk</label>
+		<description>This person is under the strange effects of mechanite serum. They will require more (which will change them), but failure to keep them sated will push them over the edge.</description>
+		<listPriority>45</listPriority>
+		<fallPerDay>0.15</fallPerDay>
+	</NeedDef>
+	
+	<HediffDef ParentName="AddictionBase">
+		<defName>SerumAddiction</defName>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<label>serum addiction</label>
+		<description>This pawn is now addicted to serums, and will require them on a regular basis. If they go into withdrawal, they may have concerning mental breaks.</description>
+		<causesNeed>Chemical_TransformerSerums</causesNeed>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0333</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>withdrawal</label>
+				<painFactor>1</painFactor>
+				<hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
+				<socialFightChanceFactor>25</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_Food</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+				<statOffsets>
+					<GlobalLearningFactor>-0.9</GlobalLearningFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

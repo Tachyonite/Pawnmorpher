@@ -9,23 +9,23 @@ namespace Pawnmorph.Utilities
     public class HediffCompBase<T> : HediffComp where T : HediffCompProperties
     {
         /// <summary>
-        /// Gets the props.
+        ///     Gets the props.
         /// </summary>
         /// <value>
-        /// The props.
+        ///     The props.
         /// </value>
-        public T Props => (T) props; 
+        public T Props => (T) props;
     }
 
     /// <summary> Convenient base class for comp properties that know their comp type. </summary>
-    public class HediffCompPropertiesBase<T> : HediffCompProperties where T: HediffComp
+    public class HediffCompPropertiesBase<T> : HediffCompProperties where T : HediffComp
     {
         /// <summary>
-        /// create a new instance of this type 
+        ///     create a new instance of this type
         /// </summary>
         public HediffCompPropertiesBase()
         {
-            compClass = typeof(T); 
+            compClass = typeof(T);
         }
     }
 }

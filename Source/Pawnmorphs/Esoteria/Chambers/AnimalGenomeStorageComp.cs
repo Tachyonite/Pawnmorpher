@@ -17,6 +17,14 @@ namespace Pawnmorph.Chambers
         private AnimalGenomeStorageCompProps Props => (AnimalGenomeStorageCompProps) props;
 
         /// <summary>
+        /// Gets a value indicating whether this instance is consumed on use.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [consumed on use]; otherwise, <c>false</c>.
+        /// </value>
+        public bool ConsumedOnUse => Props?.consumedOnUse ?? true; 
+
+        /// <summary>
         /// Gets the animal this holds the genome for.
         /// </summary>
         /// <value>
@@ -44,6 +52,7 @@ namespace Pawnmorph.Chambers
             JobFailReason.Clear();
 
             var wComp = Find.World.GetComponent<ChamberDatabase>();
+
             if (selPawn.WorkTypeIsDisabled(WorkTypeDefOf.Research) || selPawn.WorkTagIsDisabled(WorkTags.Intellectual))
             {
                 JobFailReason.Is("WillNever".Translate("Research".TranslateSimple().UncapitalizeFirst()));
@@ -61,9 +70,9 @@ namespace Pawnmorph.Chambers
                 else
                     JobFailReason.Is("Reserved".Translate());
             }
-            else if (!CanAdd)
+            else if (!wComp.CanAddToDatabase(Props.animal, out string reason))
             {
-                JobFailReason.Is(CANNOT_STORE_ANIMAL.Translate(Props.animal.Named("ANIMAL")));
+                JobFailReason.Is(reason);
             }
 
             HaulAIUtility.PawnCanAutomaticallyHaul(selPawn, parent, true);
@@ -114,6 +123,11 @@ namespace Pawnmorph.Chambers
     /// <seealso cref="Verse.CompProperties" />
     public class AnimalGenomeStorageCompProps : CompProperties
     {
+        /// <summary>
+        /// if this thing is consumed on use
+        /// </summary>
+        public bool consumedOnUse = true; 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AnimalGenomeStorageCompProps"/> class.
         /// </summary>

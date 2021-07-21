@@ -1,0 +1,137 @@
+<Patch>
+    <Operation Class="PatchOperationInsert">
+        <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes/li[@Class="ThinkNode_QueuedJob"]</xpath>
+        <order>Append</order>
+        <value>
+            <!-- Wait if drafted -->
+            <li Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
+                <mustBeColonist>true</mustBeColonist>
+                <subNodes>
+                    <li Class="ThinkNode_Tagger">
+                        <tagToGive>DraftedOrder</tagToGive>
+                        <subNodes>
+                            <li Class="JobGiver_MoveToStandable" />
+                            <li Class="JobGiver_Orders" />
+                        </subNodes>
+                    </li>
+                </subNodes>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes</xpath>
+        <order>Prepend</order>
+        <value>
+            <!-- do lovin -->
+            <li Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
+                <mustBeColonist>true</mustBeColonist>
+                <subNodes>
+                    <li Class="ThinkNode_ConditionalLyingDown">
+                        <subNodes>
+                            <li Class="ThinkNode_ChancePerHour_Lovin">
+                                <subNodes>
+                                    <li Class="ThinkNode_Tagger">
+                                        <tagToGive>SatisfyingNeeds</tagToGive>
+                                        <subNodes>
+                                            <li Class="JobGiver_DoLovin" />
+                                        </subNodes>
+                                    </li>
+                                </subNodes>
+                            </li>
+                        </subNodes>
+                    </li>
+                </subNodes>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationInsert">
+        <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalHasFaction"][1]</xpath>
+        <order>Append</order>
+        <value>
+            <!-- Lord directives (high priority) -->
+            <li Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
+                <mustBeColonist>true</mustBeColonist>
+                <subNodes>
+                    <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
+                        <dutyHook>HighPriority</dutyHook>
+                        <subNodes>
+                            <li Class="ThinkNode_Subtree">
+                                <treeDef>LordDuty</treeDef>
+                            </li>
+                        </subNodes>
+                    </li>
+                </subNodes>
+            </li>
+
+            <!-- Hooks -->
+            <li Class="ThinkNode_SubtreesByTag">
+                <insertTag>Animal_PostDuty</insertTag>
+            </li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationInsert">
+        <xpath>/Defs/ThinkTreeDef[defName="Animal"]/thinkRoot/subNodes/li[@Class="ThinkNode_SubtreesByTag"][1]</xpath>
+        <order>Prepend</order>
+        <value>
+            <!-- If on colonist team, do forced and emergency work -->
+            <li Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
+                <mustBeColonist>true</mustBeColonist>
+                <subNodes>
+
+                    <!-- Emergency work -->
+                    <li Class="JobGiver_Work">
+                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                        <emergency>true</emergency>
+                    </li>
+
+                    <!-- sapient animal hook  -->
+                    <li Class="ThinkNode_SubtreesByTag">
+                        <insertTag>SapientAnimal_EmergencyWork</insertTag>
+                    </li>
+                    <!-- Lord directives (medium priority) -->
+                    <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
+                        <dutyHook>MediumPriority</dutyHook>
+                        <subNodes>
+                            <li Class="ThinkNode_Subtree">
+                                <treeDef>LordDuty</treeDef>
+                            </li>
+                        </subNodes>
+                    </li>
+                </subNodes>
+            </li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationSequence">
+        <operations>
+            <li Class="PatchOperationInsert">
+                <xpath>/Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalPawnKind" and subNodes/li/treeDef="MainWildManBehaviorCore"]</xpath>
+                <order>Prepend</order>
+                <value>
+                    <li Class="ThinkNode_Subtree">
+                        <treeDef>AnimalisticColonist</treeDef>
+                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                    </li>
+                </value>
+            </li>
+            <!-- TODO, patch wildman core instead -->
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalPawnKind"]/subNodes/li/treeDef[text()="MainWildManBehaviorCore"]</xpath>
+                <value>
+                    <treeDef>MainWildManBehaviorCoreFixed</treeDef>
+                </value>
+            </li>
+        </operations>
+    </Operation>
+
+
+    <!-- for debugging only, should be removed before release 
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/WorkGiverDef[defName="Train"]/giverClass[text()="WorkGiver_Train"]</xpath>
+        <value>
+            <giverClass> Pawnmorph.DebugUtils.DBG_TrainingWorkGiver</giverClass>
+        </value>
+    </Operation> -->
+
+</Patch>

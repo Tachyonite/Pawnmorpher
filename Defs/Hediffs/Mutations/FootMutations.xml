@@ -248,4 +248,107 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherLargeAvianFoot</defName>
+		<label>ratite</label>
+		<description>A large avian foot.</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<classInfluence>Ratite</classInfluence>
+		<mutationTale>FeetBecomeTalons</mutationTale>
+		<mutationMemory>AvianFootMemory</mutationMemory>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>scaly</labelOverride>
+				<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<labelOverride>toe-foot</labelOverride>
+				<description>[PAWN_nameDef]'s toes have become long, thick and scaly.</description>
+				<stopChance>0.3</stopChance>
+				<partEfficiencyOffset>0.04</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.0</minSeverity>
+				<description>[PAWN_nameDef]'s foot has been replaced with an avian-looking claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>manipulative avian</labelOverride>
+				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws. The talons are sharp and can be quite dangerous in a fight.</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<statOffsets>
+					<MeleeDodgeChance>5</MeleeDodgeChance>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>avian claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>8.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherWebbedAvianFoot</defName>
+		<label>webbed avian</label>
+		<description>A webbed avian foot.</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<classInfluence>Anseriform</classInfluence>
+		<mutationTale>FeetBecomeTalons</mutationTale>
+		<mutationMemory>AvianFootMemory</mutationMemory>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>scaly</labelOverride>
+				<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<labelOverride>toe-foot</labelOverride>
+				<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.0</minSeverity>
+				<description>[PAWN_nameDef]'s foot has been replaced with a webbed avian-looking claw. The webbing makes it harder to walk.</description>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>manipulative avian</labelOverride>
+				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws with webbing between them.</description>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

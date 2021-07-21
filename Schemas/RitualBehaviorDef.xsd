@@ -1,0 +1,131 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/SimpleCurve.xsd" />
+    <xs:include schemaLocation="include/Enums.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RitualBehaviorDef" type="RitualBehaviorDef" minOccurs="0" maxOccurs="unbounded" />
+
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="RitualBehaviorDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="workerClass" type="CSType" minOccurs="0" />
+            <xs:element name="roles" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="RitualRole" maxOccurs="unbounded" minOccurs="1" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="stages" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="RitualStage" maxOccurs="unbounded" minOccurs="1" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="durationTicks" type="IntRange" minOccurs="0" />
+            <xs:element name="preceptRequirements" type="AbstractType" minOccurs="0" />
+            <xs:element name="cancellationTriggers" type="AbstractType" minOccurs="0" />
+
+
+            <xs:element name="useVisualEffectsFromRoleIdIdeo" type="xs:string" minOccurs="0" />
+
+            <xs:element name="displayOrder" type="xs:int" minOccurs="0" />
+
+
+            <xs:element name="letterTitle" type="xs:string" minOccurs="0" />
+            <xs:element name="letterText" type="xs:string" minOccurs="0" />
+            <xs:element name="spectatorsLabel" type="xs:string" minOccurs="0" />
+            <xs:element name="spectatorGerund" type="xs:string" minOccurs="0" />
+
+            <xs:element name="soundDefsPerEnhancerCount" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="maxEnhancerDistance" type="xs:int" minOccurs="0" />
+
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="RitualRole">
+        <xs:sequence>
+            <xs:element name="label" type="xs:string" minOccurs="1" />
+            <xs:element name="categoryLabel" type="xs:string" minOccurs="0" />
+            <xs:element name="missingDesc" type="xs:string" minOccurs="0" />
+            <xs:element name="noCandidatesGizmoDesc" type="xs:string" minOccurs="0" />
+            <xs:element name="id" type="xs:string" minOccurs="1" />
+            <xs:element name="precept" type="xs:string" minOccurs="1" />
+            <xs:element name="required" type="xs:boolean" minOccurs="0" />
+            <xs:element name="maxCount" type="xs:int" minOccurs="0" />
+            <xs:element name="substitutable" type="xs:boolean" minOccurs="0" />
+            <xs:element name="ignoreBleeding" type="xs:boolean" minOccurs="0" />
+            <xs:element name="countsAsParticipant" type="xs:boolean" minOccurs="0" />
+            <xs:element name="addToLord" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowNonAggroMentalState" type="xs:boolean" minOccurs="0" />
+            <xs:element name="defaultForSelectedColonist" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowOtherIdeos" type="xs:boolean" minOccurs="0" />
+            <xs:any />
+        </xs:sequence>
+        <xs:attribute name="Class" type="CSType" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="RitualStage">
+        <xs:all>
+            <xs:element name="parent" type="xs:string" minOccurs="0" />
+            <xs:element name="defaultDuty" type="xs:string" minOccurs="0" />
+
+            <xs:element name="endTriggers" minOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="AbstractType" minOccurs="1" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+
+            <xs:element name="failTriggers" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="AbstractType" minOccurs="1" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="preAction" type="AbstractType" minOccurs="0" />
+            <xs:element name="postAction" type="AbstractType" minOccurs="0" />
+            <xs:element name="interruptedAction" type="AbstractType" minOccurs="0" />
+            <xs:element name="pawnLeaveAction" type="AbstractType" minOccurs="0" />
+            <xs:element name="spectatorFilter" type="RitualSpectorFilter" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="AbstractType">
+        <xs:sequence>
+            <xs:any />
+        </xs:sequence>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="RitualSpectorFilter">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string" />
+            <xs:any />
+        </xs:sequence>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:schema>

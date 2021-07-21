@@ -371,7 +371,7 @@ namespace Pawnmorph
                 }
 
                 //now add the favor to pawn2 
-                rTracker2.SetFavor_NewTemp(faction, favor);
+                rTracker2.SetFavor(faction, favor);
             }
         }
 

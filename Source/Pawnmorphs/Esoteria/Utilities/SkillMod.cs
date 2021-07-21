@@ -7,16 +7,19 @@ using UnityEngine;
 namespace Pawnmorph.Utilities
 {
     /// <summary>
-    /// represents a modification to a pawn's skills
+    ///     represents a modification to a pawn's skills
     /// </summary>
     public class SkillMod
     {
         /// <summary>The skill definition to affect</summary>
         public SkillDef skillDef;
+
         /// <summary>The added xp</summary>
         public float addedXp;
+
         /// <summary>The passion offset </summary>
         public int passionOffset;
+
         /// <summary>The forced passion</summary>
         public Passion? forcedPassion;
 
@@ -27,7 +30,7 @@ namespace Pawnmorph.Utilities
 
             int nP = (int) oldPassion + passionOffset;
             nP = Mathf.Clamp(nP, 0, 2);
-            return (Passion) nP; 
+            return (Passion) nP;
         }
     }
 }

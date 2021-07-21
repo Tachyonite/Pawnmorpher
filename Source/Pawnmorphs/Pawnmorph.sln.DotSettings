@@ -444,6 +444,7 @@ last updated $CURRENT_MONTH$/$CURRENT_DAY$/$CURRENT_YEAR$  $CURRENT_TIME$</s:Str
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Chaomeld/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=chaomorph/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=chaomorphs/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Chaothrumbo/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Chrono/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Cloner/@EntryIndexedValue">True</s:Boolean>
 	
@@ -535,6 +536,7 @@ last updated $CURRENT_MONTH$/$CURRENT_DAY$/$CURRENT_YEAR$  $CURRENT_TIME$</s:Str
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Postorder/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Preorder/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Prosthetics/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Raomer/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=reacher/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Recalc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=resurrector/@EntryIndexedValue">True</s:Boolean>
@@ -562,6 +564,7 @@ last updated $CURRENT_MONTH$/$CURRENT_DAY$/$CURRENT_YEAR$  $CURRENT_TIME$</s:Str
 	
 	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=theata/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Thrumbo/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Trainability/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Transpiler/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Warg/@EntryIndexedValue">True</s:Boolean>

@@ -1,0 +1,45 @@
+<Defs>
+    <RecipeDef>
+        <defName>PMMake_Hazsilk</defName>
+        <label>make hazskilk</label>
+        <description>Turn morphsilk into hazsilk with stabilizer.</description>
+        <jobString>creating hazsilk</jobString>
+        <effectWorking>Cook</effectWorking>
+        <soundWorking>Recipe_Brewing</soundWorking>
+        <workAmount>200</workAmount>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Morphsilk</li>
+                    </thingDefs>
+                </filter>
+                <count>60</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>MutagenStabiliser</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <recipeUsers>
+            <li>MutagenLab</li>
+        </recipeUsers>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>MechaniteSlurry</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <PM_Hazsilk>60</PM_Hazsilk>
+        </products>
+        <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
+        <skillRequirements>
+            <Crafting>3</Crafting>
+        </skillRequirements>
+        <workSkill>Crafting</workSkill>
+    </RecipeDef>
+</Defs>

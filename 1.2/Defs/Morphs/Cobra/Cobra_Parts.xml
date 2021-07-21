@@ -1,0 +1,201 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="SnakePart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>SnakeMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="SnakePart">
+		<defName>EtherSnakeJaw</defName>
+		<label>fanged snout</label>
+		<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite.</description>
+		<initialSeverity>0</initialSeverity>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>unfamiliar</label>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.50</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<SocialImpact>-0.10</SocialImpact>
+				</statOffsets>
+			</li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<SocialImpact>-0.10</SocialImpact>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>venom-fangs</label>
+						<capacities>
+							<li>ToxicBite</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>2</cooldownTime>
+						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+					</li>
+					<li>
+						<label>muta-fangs</label>
+						<capacities>
+							<li>MutagenicStab</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>2</cooldownTime>
+						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="SnakePart">
+		<defName>EtherSnakeHood</defName>
+		<description>A large swooping hood engulfs [PAWN_nameDef]'s head, making them look rather intimidating.</description>
+		<label>cobra hood</label>
+		<stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
+		<parts>
+			<li>Skull</li>
+		</parts>
+		<!--Needs Stats-->
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef Name="SnakeTail" ParentName="SnakePart">
+		<defName>EtherSnakeTail</defName>
+		<label>snake tail</label>
+		<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+			<li>TailLeg</li>
+		</parts>
+		<stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>unfamiliar</label>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="SnakePart">
+		<defName>EtherSnakeHand</defName>
+		<label>naga claws</label>
+		<description>Paradoxically, [PAWN_nameDef]'s hands are covered in scales, clawed and very finely moveable for intricate manipulations.</description>
+		<parts>
+			<li>Hand</li>
+		</parts>
+		<stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>naga claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="SnakePart">
+		<defName>EtherSnakeEye</defName>
+		<label>elapine eye</label>
+		<description>[PAWN_nameDef]'s eyes have turned a glaring yellow, and their pupils have become small, vertical slits.</description>
+		<parts>
+			<li>Eye</li>
+		</parts>
+		<stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

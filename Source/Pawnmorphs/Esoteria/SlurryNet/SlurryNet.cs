@@ -3,7 +3,6 @@
 
 //code referenced from Vanilla Power Extended's gas network
 
-//TODO per tick production/consumption calc  
 
 using System;
 using System.Collections.Generic;
@@ -388,8 +387,8 @@ namespace Pawnmorph.SlurryNet
 
 
 #if DEBUG
-        public Color _color = Random.ColorHSV(0, 1, 1, 1, 1, 1, 1, 1);
-        [NotNull] public CellBoolDrawer _drawer;
+        internal Color _color = Random.ColorHSV(0, 1, 1, 1, 1, 1, 1, 1);
+        [NotNull] internal CellBoolDrawer _drawer;
 #endif
 
         /// <summary>

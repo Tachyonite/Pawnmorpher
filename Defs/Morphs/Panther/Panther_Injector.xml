@@ -5,10 +5,8 @@
 		<description>A mutagenic injector filled with mechanites and panther DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>PawnmorphPantherTF</li>
-					</hediffDefs>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PawnmorphPantherTF</hediffDef>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>

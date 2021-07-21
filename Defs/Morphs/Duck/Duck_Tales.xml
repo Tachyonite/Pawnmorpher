@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TaleDef ParentName="MutationTaleBase">
+    <defName>GrewDuckBeak</defName>
+    <label>grew a beak</label>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[PAWN_nameDef]'s lips hardening into a beak</li>
+        <li>tale_noun->[PAWN_nameDef]'s face growing into a flat avian beak</li>
+        <li>image->[PAWN_nameFull] yells becoming quacking [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] begins to quack involuntarily [circumstance_group]</li>
+        <li>desc_sentence->[PAWN_pronoun] lets out a few sad quacks.</li>
+        <li>desc_sentence->[PAWN_pronoun] rubs [PAWN_possessive] new beak.</li>
+        <li>desc_sentence->[PAWN_pronoun] quacks and tries to pull the beak off.</li>
+        <li>desc_sentence->[PAWN_pronoun] quacks absentmindedly.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+</Defs>

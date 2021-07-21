@@ -161,12 +161,9 @@ namespace Pawnmorph.TfSys
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
             float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
 
-           
-
-            
             GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
-            FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel); //use a normal distribution? 
+            FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel);
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
 
@@ -198,7 +195,7 @@ namespace Pawnmorph.TfSys
             if (request.tale != null) // If a tale was provided, push it to the tale recorder.
                 TaleRecorder.RecordTale(request.tale, original, animalToSpawn);
 
-            Faction oFaction = original.FactionOrExtraMiniOrHomeFaction;
+            Faction oFaction = original.Faction; //can't figure out what happened to FactionOrExtraMiniOrHomeFaction, needs further investigation 
             Map oMap = original.Map;
 
 

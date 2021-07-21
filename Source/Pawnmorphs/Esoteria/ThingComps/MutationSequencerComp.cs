@@ -33,7 +33,7 @@ namespace Pawnmorph.ThingComps
         public new void Used(Pawn worker)
         {
             if (!this.CanUseNow)
-                Log.Error("Used while CanUseNow is false.", false);
+                Log.Error("Used while CanUseNow is false.");
             this.lastScanTick = (float)Find.TickManager.TicksGame;
             this.lastUserSpeed = 1f;
             if (this.Props.scanSpeedStat != null)

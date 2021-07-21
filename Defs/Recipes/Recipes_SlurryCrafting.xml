@@ -31,6 +31,7 @@
 			<li>MutagenLab</li>
 		</recipeUsers>
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
 	<RecipeDef>
 		<defName>Make_SlurryFromMutoniteBulk</defName>
@@ -64,6 +65,7 @@
 			<li>MutagenLab</li>
 		</recipeUsers>
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
 	<RecipeDef>
 		<defName>Make_SlurryFromChaobulbs</defName>
@@ -97,7 +99,9 @@
 			<li>MutagenLab</li>
 		</recipeUsers>
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
+
 	<RecipeDef>
 		<defName>Make_SlurryFromChaobulbsBulk</defName>
 		<label>make slurry from chaobulbs x4</label>
@@ -158,11 +162,14 @@
 		<products>
 			<ComponentIndustrial>2</ComponentIndustrial>
 		</products>
+		<recipeUsers>
+			<li>MutagenLab</li>
+		</recipeUsers>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>8</Crafting>
 		</skillRequirements>
-		<workSkill>Crafting</workSkill>
+		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
 	<RecipeDef>
 		<defName>Make_ResurrectorFromMutonite</defName>
@@ -199,11 +206,14 @@
 		<products>
 			<MechSerumResurrectorTf>1</MechSerumResurrectorTf>
 		</products>
+		<recipeUsers>
+			<li>MutagenLab</li>
+		</recipeUsers>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>16</Crafting>
 		</skillRequirements>
-		<workSkill>Crafting</workSkill>
+		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
 	<RecipeDef>
 		<defName>Make_HealerFromMutonite</defName>
@@ -240,11 +250,14 @@
 		<products>
 			<MechSerumMutagenicHealer>1</MechSerumMutagenicHealer>
 		</products>
+		<recipeUsers>
+			<li>MutagenLab</li>
+		</recipeUsers>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>13</Crafting>
 		</skillRequirements>
-		<workSkill>Crafting</workSkill>
+		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
 	<RecipeDef>
 		<defName>Make_GlitterMedsFromMutonite</defName>
@@ -281,11 +294,14 @@
 		<products>
 			<MedicineUltratech>1</MedicineUltratech>
 		</products>
+		<recipeUsers>
+			<li>MutagenLab</li>
+		</recipeUsers>
 		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
 		<skillRequirements>
 			<Crafting>8</Crafting>
 		</skillRequirements>
-		<workSkill>Crafting</workSkill>
+		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
 	<!--RecipeDef>
 		<defName>Make_Morphskilk</defName>

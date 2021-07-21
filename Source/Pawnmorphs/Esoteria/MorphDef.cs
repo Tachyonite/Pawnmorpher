@@ -22,12 +22,14 @@ namespace Pawnmorph
         ///     The categories that the morph belongs to. <br />
         ///     For example, a Pigmorph belongs to the Farm and Production morph groups.
         /// </summary>
+        [CanBeNull]
         public List<MorphCategoryDef> categories = new List<MorphCategoryDef>();
 
         /// <summary>
         ///     The creature this race is a morph of.<br />
         ///     For example, a Wargmorph's race should be Warg.
         /// </summary>
+        [CanBeNull]
         public ThingDef race;
 
         /// <summary>
@@ -36,6 +38,7 @@ namespace Pawnmorph
         /// these are a list of animals that are associated with this morph but who don't influence the hybrid race
         /// transformation targets 
         /// setting this is useful for getting mutations for animals that don't have morphs yet
+        [CanBeNull]
         public List<ThingDef> associatedAnimals = new List<ThingDef>();  
 
         /// <summary>
@@ -122,6 +125,49 @@ namespace Pawnmorph
         /// <summary> Gets an enumerable collection of all the morph type's defs.</summary>
         [NotNull]
         public static IEnumerable<MorphDef> AllDefs => DefDatabase<MorphDef>.AllDefs;
+
+        private bool _checkAssociatedAnimals;
+
+        /// <summary>
+        /// Gets all associated animals.
+        /// </summary>
+        /// <value>
+        /// All associated animals.
+        /// </value>
+        public IReadOnlyList<ThingDef> AllAssociatedAnimals
+        {
+            get
+            {
+                if (associatedAnimals == null)
+                {
+                    associatedAnimals = new List<ThingDef>();
+                }
+
+                if (!_checkAssociatedAnimals)
+                {
+                    _checkAssociatedAnimals = true; 
+                    if (race != null && !associatedAnimals.Contains(race)) associatedAnimals.Add(race); 
+                }
+
+                return associatedAnimals; 
+            }
+        }
+
+        /// <summary>
+        /// Gets the categories.
+        /// </summary>
+        /// <value>
+        /// The categories.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<MorphCategoryDef> Categories
+        {
+            get
+            {
+                if (categories == null) return Array.Empty<MorphCategoryDef>();
+                return categories; 
+            }
+        }
 
 
         /// <summary>Gets the collection of all mutations associated with this morph def</summary>
@@ -345,8 +391,6 @@ namespace Pawnmorph
             {
                 _allAssociatedMutations = GetAllAssociatedMutations().Distinct().ToList(); 
             }
-
-            //TODO patch explicit race based on hybrid race settings? 
         }
 
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>

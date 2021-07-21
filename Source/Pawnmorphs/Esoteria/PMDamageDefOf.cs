@@ -11,6 +11,12 @@ namespace Pawnmorph
     [DefOf]
     public static class PMDamageDefOf
     {
+
+        /// <summary>
+        /// The mutagen cloud (used with small explosions and spills like pipes) 
+        /// </summary>
+        [NotNull] public static DamageDef MutagenCloud_Tiny;
+
         /// <summary>
         /// The mutagen cloud (used with regular explosions like grenades) 
         /// </summary>

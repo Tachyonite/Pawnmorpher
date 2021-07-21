@@ -13,18 +13,26 @@
 			<!-- Iguana -->
 			<!-- Tortoise -->
 		<!-- Avian (feathers) -->
-			<!-- Cassowary -->
-			<!-- Emu -->
-			<!-- Ostrich -->
-			<!-- Turkey -->
-			<!-- Chicken -->
+            <!-- Ratite -->
+			    <!-- Cassowary -->
+			    <!-- Emu -->
+			    <!-- Ostrich -->
+            <!-- Galliform -->
+			    <!-- Turkey -->
+			    <!-- Chicken -->
+            <!-- Anseriform -->
+			    <!-- Duck -->
+			    <!-- Goose -->
 		<!-- Ungulate (unguligrade & hide) -->
 			<!-- Odd-toed ungulate (hoof) -->
 				<!-- Horse -->
 			<!-- Even-toed ungulate (cloven hoof) -->
+			    <!-- Fur-covered ungulates -->
+					<!-- Caprid -->
+						<!-- Ibex -->
+						<!-- Goat -->
 				<!-- Wool-covered ungulates -->
 					<!-- Ovid -->
-						<!-- Ibex -->
 						<!-- Sheep -->
 				<!-- Hide-covered ungulates -->
 					<!-- Bovid -->
@@ -116,6 +124,24 @@
     </Pawnmorph.AnimalClassDef>
 
     <Pawnmorph.AnimalClassDef>
+        <defName>Ratite</defName>
+        <label>ratite</label>
+        <parent>Avian</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Galliform</defName>
+        <label>galliform</label>
+        <parent>Avian</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Anseriform</defName>
+        <label>anseriform</label>
+        <parent>Avian</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
         <defName>Ungulate</defName>
         <label>ungulate</label>
         <parent>Animal</parent>
@@ -146,9 +172,21 @@
     </Pawnmorph.AnimalClassDef>
 	
     <Pawnmorph.AnimalClassDef>
+        <defName>FurryUngulate</defName>
+        <label>furry even-toed ungulate</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
         <defName>Ovid</defName>
         <label>ovid</label>
         <parent>WoollyUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
+        <defName>Caprid</defName>
+        <label>caprid</label>
+        <parent>FurryUngulate</parent>
     </Pawnmorph.AnimalClassDef>
 
     <Pawnmorph.AnimalClassDef>

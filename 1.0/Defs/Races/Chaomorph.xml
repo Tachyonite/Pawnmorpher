@@ -1102,7 +1102,7 @@
 
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>Chaodino</defName>
-		<label>chaodino</label>
+		<label>Chaodino</label>
 		<race>Chaodino</race>
 		<combatPower>210</combatPower>
 		<ecoSystemWeight>1.1</ecoSystemWeight>
@@ -1321,7 +1321,7 @@
 	<ThingDef ParentName="ChaomorphBaseDerived">
 		<!-- ChaomeldDog was missing a thingDef, most values are taken from ChaomeldCow and will need tweaking -->
 		<defName>ChaomeldDog</defName>
-		<label>chaomeld</label>
+		<label>Chaomeld</label>
 		<description>A fusion of two morphs, who first begin their transformation inside a mutagenic chamber, which one is then siphoned to and melded with another. They share two minds, yet one body -- so while they have higher consciousness it may take some time for them to get used to their new arragement. Chaodogs produce mutagenic milk.</description>
 		<statBases>
 			<MoveSpeed>5</MoveSpeed>
@@ -1426,7 +1426,7 @@
 
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>ChaomeldDog</defName>
-		<label>chaomeld</label>
+		<label>Chaomeld</label>
 		<race>Chaomeld</race>
 		<combatPower>180</combatPower>
 		<ecoSystemWeight>1.1</ecoSystemWeight>
@@ -1682,7 +1682,7 @@
 
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>ChaomeldDragon</defName>
-		<label>chaomeld</label>
+		<label>Chaomeld</label>
 		<race>Chaomeld</race>
 		<combatPower>180</combatPower>
 		<ecoSystemWeight>1.1</ecoSystemWeight>
@@ -1894,7 +1894,7 @@
 
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>ChaomeldCow</defName>
-		<label>chaomeld</label>
+		<label>Chaomeld</label>
 		<race>Chaomeld</race>
 		<combatPower>180</combatPower>
 		<ecoSystemWeight>1.1</ecoSystemWeight>
@@ -2117,7 +2117,7 @@
 
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>ChaofusionRhino</defName>
-		<label>chaofusion</label>
+		<label>Chaofusion</label>
 		<race>ChaofusionRhino</race>
 		<combatPower>300</combatPower>
 		<ecoSystemWeight>1.1</ecoSystemWeight>

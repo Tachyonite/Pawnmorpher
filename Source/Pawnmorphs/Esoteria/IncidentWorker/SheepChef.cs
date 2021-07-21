@@ -49,10 +49,11 @@ namespace Pawnmorph.IncidentWorkers
             GenSpawn.Spawn(pawn, loc, map, Rot4.Random);
             pawn.SetFaction(Faction.OfPlayer);
             var oPawn = GenerateGordon(pawn);
-
+            
 
             FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn);
 
+            pawn.Name = oPawn.Name ?? pawn.Name; 
             if (pawn.story != null)
             {
                 pawn.story.adulthood = PMBackstoryDefOf.PM_SheepChef.backstory; 
@@ -95,11 +96,11 @@ namespace Pawnmorph.IncidentWorkers
         [NotNull]
         Pawn GenerateGordon(Pawn animal)
         {
-            PawnKindDef kind = PawnKindDefOf.Colonist; //TODO get these randomly ;
+            PawnKindDef kind = PawnKindDefOf.Colonist;
             Faction faction = Faction.OfPlayer;
             bool useFirst = Rand.Bool;
             string firstName, lastName;
-            firstName = lastName = null;
+            firstName = lastName = "";
             if (useFirst)
                 firstName = "Gordon";
             else
@@ -111,14 +112,16 @@ namespace Pawnmorph.IncidentWorkers
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                                                   fixedChronologicalAge: chronoAge,
-                                                  fixedBiologicalAge: convertedAge, fixedBirthName: firstName,
+                                                  fixedBiologicalAge: convertedAge, fixedBirthName:firstName,
                                                   fixedLastName: lastName, fixedGender: Gender.Male, forcedTraits: ForcedTraits) {ForcedTraits = ForcedTraits, ValidatorPreGear = GordenValidator};
             
+
+
             
             Pawn lPawn = PawnGenerator.GeneratePawn(local);
 
-           
-          
+            var name = lPawn.Name as NameTriple;
+            lPawn.Name = new NameTriple(firstName, name?.Nick ?? firstName, lastName); 
 
 
             if (!BackstoryDatabase.TryGetWithIdentifier("chef", out Backstory back))

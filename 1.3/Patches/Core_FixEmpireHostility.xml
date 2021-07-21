@@ -1,0 +1,14 @@
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Royalty</li>
+        </mods>
+        <match Class="PatchOperationAdd">
+            <xpath>/Defs/FactionDef[defName="Empire"]/permanentEnemyToEveryoneExcept</xpath>
+            <value>
+                <li>PawnmorpherPlayerColony</li>
+                <li>PawnmorpherEnclave</li>
+            </value>
+        </match>
+    </Operation>
+</Patch>

@@ -82,6 +82,7 @@
             <li>MechaniteSlurry</li>
           </thingDefs>
         </fuelFilter>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
         <initialFuelPercent>0</initialFuelPercent>
       </li>
       <li>

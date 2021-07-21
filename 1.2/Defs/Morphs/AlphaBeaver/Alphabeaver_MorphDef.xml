@@ -1,0 +1,25 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>AlphabeaverMorph</defName>
+		<label>alphabeavermorph</label>
+		<description>Usually called 'beavermorphs', these morphs are well adapted to completing construction projects ahead of schedule, and felling any trees or plants in their way. Their accurate teeth can be useful in a variety of architectural projects, as can their tail.</description>
+		<race>Alphabeaver</race>
+		<classification>Rodent</classification>
+		<categories>
+			<li>Cold</li>
+			<li>Crafter</li>
+			<li>Rodent</li>
+		</categories>
+		<fullTransformation>PawnmorphAlphabeaverTF</fullTransformation>
+		<partialTransformation>PawnmorphAlphabeaverTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(105,78,68)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>AlphabeaverTransformationMemory</transformationMemory>
+			<revertedMemory>AlphabeaverRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

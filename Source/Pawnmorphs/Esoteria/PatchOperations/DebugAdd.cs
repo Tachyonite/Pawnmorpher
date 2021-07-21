@@ -6,7 +6,7 @@ using System.Linq;
 using System.Xml;
 using JetBrains.Annotations;
 using Verse;
-
+#pragma warning disable CS0649
 namespace Pawnmorph.PatchOperations
 {
     /// <summary>
@@ -67,3 +67,5 @@ namespace Pawnmorph.PatchOperations
         }
     }
 }
+
+#pragma warning restore CS0649

@@ -1,0 +1,17 @@
+<Defs>
+	<ThingDef ParentName="InjectorBase">
+		<defName>AlphabeaverTransformer</defName>
+		<label>mutasyringe, alphabeaver</label>
+		<description>A mutagenic injector filled with mechanites and alphabeaver DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphAlphabeaverTF</li>
+					</hediffDefs>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>	
+	</ThingDef>
+</Defs>

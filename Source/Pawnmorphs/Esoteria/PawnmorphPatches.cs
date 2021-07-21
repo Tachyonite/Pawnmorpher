@@ -78,6 +78,15 @@ namespace Pawnmorph
 
             try
             {
+                PawnObserverPatches.PreformPatches(harmonyInstance); 
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Pawnmorpher: unable to patch pawn observer:\n{e}");
+            }
+
+            try
+            {
                 DoAnimalPatches(harmonyInstance); 
             }
             catch (Exception e)
@@ -85,15 +94,6 @@ namespace Pawnmorph
                 Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching animal tab worker\n{e}");
             }
 
-
-            try
-            {
-                ITabPatches.DoPrisonerPatch(harmonyInstance); 
-            }
-            catch (Exception e)
-            {
-                Log.Error($"Pawnmorpher: encountered {e.GetType().Name} while patching prisoner tab!\n{e}");
-            }
 
             try
             {
@@ -185,6 +185,7 @@ namespace Pawnmorph
         }
 
 
+
         static bool AnimalTabWorkerMethod(Pawn pawn)
         {
             return pawn.RaceProps.Animal || pawn.GetIntelligence() == Intelligence.Animal; 
@@ -207,10 +208,22 @@ namespace Pawnmorph
                 harmonyInstance.Patch(methodInfo, transpiler: new HarmonyMethod(tpMethod)); 
             }
 
-
-
         }
 
+        struct MethodInfoSt
+        {
+            public MethodInfo methodInfo;
+            public bool debug; 
+
+            public static implicit operator MethodInfoSt(MethodInfo info)
+            {
+                return new MethodInfoSt {methodInfo = info, debug = false};
+            }
+        }
+
+        const BindingFlags INSTANCE_FLAGS = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+        const BindingFlags STATIC_FLAGS = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
+        private const BindingFlags ALL = INSTANCE_FLAGS | STATIC_FLAGS; 
         private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
         {
             var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public; 
@@ -219,19 +232,23 @@ namespace Pawnmorph
 
 
 
-            List<MethodInfo> methodsToPatch = new List<MethodInfo>(); 
+            List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>(); 
             
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod); 
 
-     
+            //wildman
+            AddWildmanMethods(methodsToPatch); 
+
+            //door 
+            methodsToPatch.Add(new MethodInfoSt(){methodInfo= typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), instanceFlags), debug=false});
 
    
             //map pawns 
-            var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)));
-            methodsToPatch.AddRange(methods); 
+            var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)) || m.HasSignature(typeof(Faction), typeof(bool)));
+            methodsToPatch.AddRange(methods.Select(m =>new MethodInfoSt(){methodInfo = m})); 
 
          
             //jobs and toils 
@@ -241,38 +258,69 @@ namespace Pawnmorph
             //down/death thoughts 
             methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
 
+            AddJobGiverMethods(methodsToPatch);
+
+
+            AddDesignatorMethods(methodsToPatch); 
+
 
             //socialization 
             methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[]{typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool)}));
 
+            //roamer patches 
+            methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow),
+                                                                           staticFlags)); 
+
 
             //now patch them 
-            foreach (MethodInfo methodInfo in methodsToPatch)
+            foreach (var methodInfo in methodsToPatch)
             {
-                if (methodInfo == null)
+                if (methodInfo.methodInfo == null)
                 {
                     Log.Warning($"encountered null in {nameof(MassPatchFormerHumanChecks)}!");
                     
                     continue;
                 }
-                harmonyInstance.ILPatchCommonMethods(methodInfo); 
+
+                harmonyInstance.ILPatchCommonMethods(methodInfo.methodInfo,methodInfo.debug); 
             }
 
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Patched:");
-            foreach (MethodInfo methodInfo in methodsToPatch)
+            foreach (var methodInfo in methodsToPatch)
             {
-                if(methodInfo == null) continue;
-                builder.AppendLine($"{methodInfo.Name}");
+                if(methodInfo.methodInfo == null) continue;
+                builder.AppendLine($"{methodInfo.methodInfo.Name}");
             }
             Log.Message(builder.ToString());
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
         }
 
+        private static void AddWildmanMethods([NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+            var methods = typeof(WildManUtility).GetMethods(STATIC_FLAGS).Where(m => m.ReturnType == typeof(bool));
+            methodsToPatch.AddRange(methods.Select(m => new MethodInfoSt(){methodInfo = m})); 
+        }
+
+        private static void AddDesignatorMethods([NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+            methodsToPatch.Add(typeof(Designator_ReleaseAnimalToWild).GetMethod(nameof(Designator.CanDesignateThing), BindingFlags.Instance | BindingFlags.Public));
+        }
+
+        private static void AddJobGiverMethods( [NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+
+            var method =
+                typeof(WorkGiver_ReleaseAnimalsToWild).GetMethod(nameof(WorkGiver_Scanner.HasJobOnThing), INSTANCE_FLAGS);
+            methodsToPatch.Add(method); 
+
+            
+        }
+
 
         private static void PatchCaravanUI([NotNull] Harmony harmInstance)
         {
-            //TODO make patch utilities for mass patching delegates 
+           
             var cUIType = typeof(CaravanUIUtility);
             var flg = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance;
 
@@ -368,7 +416,7 @@ namespace Pawnmorph
         
         [NotNull] private static FoodModifierComparer ModComparer { get; } = new FoodModifierComparer();
 
-        public static void ThoughtsFromIngestingPostfix(Pawn ingester, Thing foodSource, ref List<ThoughtDef> __result)
+        public static void ThoughtsFromIngestingPostfix(Pawn ingester, Thing foodSource, ref List<FoodUtility.ThoughtFromIngesting> __result)
         {
             ApplyMorphFoodThoughts(ingester, foodSource, __result);
 
@@ -400,8 +448,10 @@ namespace Pawnmorph
 
         }
 
-        private static void ApplyMorphFoodThoughts(Pawn ingester, Thing foodSource, List<ThoughtDef> foodThoughts)
+        private static void ApplyMorphFoodThoughts(Pawn ingester, Thing foodSource, List<FoodUtility.ThoughtFromIngesting> foodThoughts)
         {
+            var meatSource = FoodUtility.GetMeatSourceCategory(foodSource.def); 
+            //TODO figure out precept 
             if (RaceGenerator.TryGetMorphOfRace(ingester.def, out MorphDef morphDef))
             {
                 AteThought cannibalThought = morphDef.raceSettings?.thoughtSettings?.ateAnimalThought;
@@ -411,13 +461,18 @@ namespace Pawnmorph
 
                 if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
                 {
-                    foodThoughts.Add(cannibalThought.thought);
+                    TryAddIngestThought(ingester, cannibalThought.thought, null, foodThoughts, foodSource.def, meatSource); 
                     return;
                 }
 
                 ThingDef comp = foodSource.TryGetComp<CompIngredients>()
                                          ?.ingredients?.FirstOrDefault(def => def == morphDef.race.race.meatDef);
-                if (comp != null && !cannibal) foodThoughts.Add(cannibalThought.ingredientThought);
+                if (comp != null && !cannibal)
+                {
+
+                    TryAddIngestThought(ingester, cannibalThought.ingredientThought, null, foodThoughts, foodSource.def, meatSource);
+
+                }
             }
             else
             {
@@ -425,7 +480,32 @@ namespace Pawnmorph
                 if (fHStatus == null || fHStatus == SapienceLevel.PermanentlyFeral) return;
 
                 ThoughtDef thought = GetCannibalThought(ingester, foodSource);
-                if (thought != null) foodThoughts.Add(thought);
+                if (thought != null)
+                {
+                    TryAddIngestThought(ingester, thought, null, foodThoughts, foodSource.def, meatSource);
+
+                }
+            }
+
+        }
+
+        private static void TryAddIngestThought(Pawn ingester, ThoughtDef def, Precept fromPrecept, List<FoodUtility.ThoughtFromIngesting> ingestThoughts, ThingDef foodDef, MeatSourceCategory meatSourceCategory)
+        {
+            FoodUtility.ThoughtFromIngesting thoughtFromIngesting = new FoodUtility.ThoughtFromIngesting
+            {
+                thought = def, fromPrecept = fromPrecept
+            };
+            FoodUtility.ThoughtFromIngesting item = thoughtFromIngesting;
+            if (ingester?.story?.traits != null)
+            {
+                if (!ingester.story.traits.IsThoughtFromIngestionDisallowed(def, foodDef, meatSourceCategory))
+                {
+                    ingestThoughts.Add(item);
+                }
+            }
+            else
+            {
+                ingestThoughts.Add(item);
             }
         }
 

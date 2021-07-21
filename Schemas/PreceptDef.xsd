@@ -1,0 +1,221 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleCurve.xsd" />
+
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/Enums.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PreceptDef" type="PreceptDef" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="PreceptDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="preceptClass" type="CSType" minOccurs="0" />
+            <xs:element name="comps" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="description" minOccurs="0" />
+                                    <xs:any />
+                                </xs:sequence>
+                                <xs:attribute name="Class" type="CSType" use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="abilityStatFactors" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="AbilityStatModifiers" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="statOffsets" type="StatModifiers" minOccurs="0" />
+            <xs:element name="statFactors" type="StatModifier" minOccurs="0" />
+            <xs:element name="selectionWeight" type="xs:float" minOccurs="0" />
+            <xs:element name="opposedWorkTypes" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="impact" type="PreceptImpact" minOccurs="0" />
+            <xs:element name="associatedMemes" minOccurs="0" type="ListOfStrings" />
+            <xs:element name="conflictingMemes" minOccurs="0" type="ListOfStrings" />
+            <xs:element name="requiredMemes" minOccurs="0" type="ListOfStrings" />
+
+            <xs:element name="visible" type="xs:boolean" minOccurs="0" />
+            <xs:element name="listedForRoles" type="xs:boolean" minOccurs="0" />
+            <xs:element name="takeNameFrom" type="xs:string" minOccurs="0" />
+            <xs:element name="alsoAdds" type="xs:string" minOccurs="0" />
+            <xs:element name="maxCount" type="xs:int" minOccurs="0" />
+            <xs:element name="exclusionTags" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="allowDuplicates" type="xs:boolean" minOccurs="0" />
+            <xs:element name="ignoreLimitsInEditMode" type="xs:boolean" minOccurs="0" />
+            <xs:element name="canUseAlreadyUsedThingDef" type="xs:boolean" minOccurs="0" />
+            <xs:element name="classic" type="xs:boolean" minOccurs="0" />
+            <xs:element name="defaultSelectionWeight" type="xs:float" minOccurs="0" />
+            <xs:element name="allowedForNPCFactions" type="xs:boolean" minOccurs="0" />
+            <xs:element name="countsTowardsPreceptLimit" type="xs:boolean" minOccurs="0" />
+            <xs:element name="canGenerateAsSpecialPrecept" type="xs:boolean" minOccurs="0" />
+
+            <xs:element name="nameMaker" type="xs:string" minOccurs="0" />
+            <xs:element name="nameMaxLength" type="xs:int" minOccurs="0" />
+
+            <xs:element name="preceptInstanceCountCurve" type="SimpleCurve" minOccurs="0" />
+            <xs:element name="ritualPatternBase" type="xs:string" minOccurs="0" />
+
+            <xs:element name="receivesExpectationsQualityOffset" type="xs:boolean" minOccurs="0" />
+            <xs:element name="usesIdeoVisualEffects" type="xs:boolean" minOccurs="0" />
+
+            <xs:element name="buildingDefChances" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="buildingMinExpectations" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="buildingRoomRequirements" type="ListOfRoomRequirements" minOccurs="0" />
+            <xs:element name="buildingRoomRequirementsFixed" type="ListOfRoomRequirements" minOccurs="0" />
+
+            <xs:element name="buildingRoomRequirementsFixed" type="SimpleCurve" minOccurs="0" />
+            <xs:element name="leaderRole" type="xs:boolean" minOccurs="0" />
+            <xs:element name="activationBelieverCount" type="xs:int" minOccurs="0" />
+            <xs:element name="deactivationBelieverCount" type="xs:int" minOccurs="0" />
+
+            <xs:element name="roleRequirements" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="RoleRequirement" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="leaderRole" type="WorkTags" minOccurs="0" />
+            <xs:element name="roleRequiredWorkTags" type="WorkTags" minOccurs="0" />
+            <xs:element name="roleRequiredWorkTagAny" type="WorkTags" minOccurs="0" />
+
+            <xs:element name="roleRequirements" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="PreceptApparelRequirement" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="roleApparelRequirementCountCurve" type="SimpleCurve" minOccurs="0" />
+            <xs:element name="grantedAbilities" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="roleEffects">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="RoleRequirement" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="roleTags" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="iconPath" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="restrictToSupremeGenderChance" type="xs:float" minOccurs="0" />
+            <xs:element name="certaintyLossFactor" type="xs:float" minOccurs="0" />
+            <xs:element name="convertPowerFactor" type="xs:float" minOccurs="0" />
+            <xs:element name="expectationsOffset" type="xs:int" minOccurs="0" />
+
+            <xs:element name="createsRoleEmptyThought" type="xs:boolean" minOccurs="0" />
+            <xs:element name="disallowLoggingCamps" type="xs:boolean" minOccurs="0" />
+            <xs:element name="disallowMiningCamps" type="xs:boolean" minOccurs="0" />
+            <xs:element name="disallowHuntingCamps" type="xs:boolean" minOccurs="0" />
+            <xs:element name="disallowFarmingCamps" type="xs:boolean" minOccurs="0" />
+            <xs:element name="approvesOfSlavery" type="xs:boolean" minOccurs="0" />
+            <xs:element name="prefersNudity" type="xs:boolean" minOccurs="0" />
+            <xs:element name="genderPrefersNudity" type="Gender" minOccurs="0" />
+            <xs:element name="useChoicesFromBuildingDefs" type="xs:boolean" minOccurs="0" />
+            <xs:element name="displayOrderInImpact" type="xs:int" minOccurs="0" />
+            <xs:element name="displayOrderInIssue" type="xs:int" minOccurs="0" />
+
+            <xs:element name="proselytizes" type="xs:boolean" minOccurs="0" />
+            <xs:element name="requiredScars" type="xs:int" minOccurs="0" />
+            <xs:element name="approvesOfCharity" type="xs:boolean" minOccurs="0" />
+            <xs:element name="blindPawnChance" type="xs:float" minOccurs="0" />
+            <xs:element name="approvesOfBlindness" type="xs:boolean" minOccurs="0" />
+            <xs:element name="canRemoveInUI" type="xs:boolean" minOccurs="0" />
+            <xs:element name="prefersDarkness" type="xs:boolean" minOccurs="0" />
+            <xs:element name="disableCrampedRoomThoughts" type="xs:boolean" minOccurs="0" />
+            <xs:element name="blindPsychicSensitivityOffset" type="xs:float" minOccurs="0" />
+            <xs:element name="defaultDrugPolicyOverride" type="xs:string" minOccurs="0" />
+            <xs:element name="warnPlayerOnDesignateChopTree" type="xs:boolean" minOccurs="0" />
+            <xs:element name="warnPlayerOnDesignateMine" type="xs:boolean" minOccurs="0" />
+            <xs:element name="willingToConstructOtherIdeoBuildables" type="xs:boolean" minOccurs="0" />
+            <xs:element name="biosculpterPodCycleSpeedFactor" type="xs:float" minOccurs="0" />
+            <xs:element name="prefersSlabBed" type="xs:boolean" minOccurs="0" />
+            <xs:element name="tipLabelOverride" type="xs:string" minOccurs="0" />
+            <xs:element name="capitalizeAsTitle" type="xs:boolean" minOccurs="0" />
+            <xs:element name="ignoreNameUniqueness" type="xs:boolean" minOccurs="0" />
+            <xs:element name="extraTextPawnDeathLetter" type="xs:string" minOccurs="0" />
+            <xs:element name="apparelPreceptSwapDef" type="xs:string" minOccurs="0" />
+            <xs:element name="worker" type="CSType" minOccurs="0" />
+
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="RoleRequirement">
+        <xs:sequence>
+            <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:any />
+        </xs:sequence>
+        <xs:attribute name="Class" type="CSType" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="RoomRequirement">
+        <xs:sequence>
+            <xs:element name="disablingPrecepts" minOccurs="0" type="ListOfStrings" maxOccurs="1" />
+            <xs:element name="labelKey" minOccurs="0" maxOccurs="1" type="xs:string" />
+            <xs:any />
+        </xs:sequence>
+        <xs:attribute name="Class" type="CSType" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="ListOfRoomRequirements">
+        <xs:sequence>
+            <xs:element name="li" type="RoomRequirement" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="PreceptApparelRequirement">
+        <xs:all>
+            <xs:element name="allowedFactionCategoryTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="disallowedFactionCategoryTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="anyMemeRequired" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="requirement" type="ApparelRequirement" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="RoleEffect">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="label" type="xs:string" maxOccurs="1" />
+                <xs:element name="labelKey" type="xs:string" maxOccurs="1" />
+                <xs:any />
+            </xs:sequence>
+            <xs:attribute name="Class" type="CSType" use="required" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

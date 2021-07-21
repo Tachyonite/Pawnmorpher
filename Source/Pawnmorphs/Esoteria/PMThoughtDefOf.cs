@@ -67,6 +67,7 @@ namespace Pawnmorph
         public static ThoughtDef PM_WitnessedAllyTf;
         public static ThoughtDef PM_WitnessedNonAllyTf;
         public static ThoughtDef PM_WitnessedRivalTf;
-        public static ThoughtDef PM_WitnessedFriendTf; 
+        public static ThoughtDef PM_WitnessedFriendTf;
+
     }
 }

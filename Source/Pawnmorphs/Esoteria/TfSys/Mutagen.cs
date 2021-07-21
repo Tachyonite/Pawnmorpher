@@ -18,6 +18,20 @@ namespace Pawnmorph.TfSys
     /// </summary>
     public abstract class Mutagen
     {
+        /// <summary>
+        /// the influence of mood on the sapience level drop.
+        /// </summary>
+        private const float influenceMood = 0.4f;
+
+        /// <summary>
+        /// the influence of mutagen on the sapience level drop.
+        /// </summary>
+        private const float influenceMutagen = 0.6f;
+
+        /// <summary>
+        /// minimal value of mood so the formula determining the sapiance only considers mood.
+        /// </summary>
+        private const float minimalMoodLowerSapience = 0.85f;
 
         //do this here so all the derived code doesn't have to         
         /// <summary>Gets the game comp.</summary>
@@ -316,6 +330,15 @@ namespace Pawnmorph.TfSys
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
             if (request == null) throw new ArgumentNullException(nameof(request));
+            var fhSettings = transformedPawn.def.GetModExtension<FormerHumanSettings>();
+            if (fhSettings != null)
+            {
+                if (fhSettings.transformedThought != null)
+                {
+                    transformedPawn.TryGainMemory(fhSettings.transformedThought); 
+                }
+            }
+
             List<Aspect> aspects = new List<Aspect>();
             foreach (AspectGiver aspectGiver in def.tfAspectGivers.MakeSafe())
             {
@@ -364,7 +387,13 @@ namespace Pawnmorph.TfSys
             if (sTracker?.CurrentState == null) initialSapience = 1;
             else initialSapience = sTracker.Sapience;
 
-            return Mathf.Max(initialSapience - Mathf.Max(def.transformedSapienceDrop.RandomInRange, 0), 0); 
+            float mood = original.needs.mood.CurInstantLevel;
+            float averageGaussian = 0;
+            if (mood < minimalMoodLowerSapience)
+                averageGaussian = influenceMutagen * def.transformedSapienceDropMean + influenceMood * (1 - mood);
+            else //Mood having a higher impact when exceding the threshold.
+                averageGaussian = (1 - mood) / (1 - minimalMoodLowerSapience) * (influenceMutagen * def.transformedSapienceDropMean + influenceMood * (1 - mood));
+            return Mathf.Max(initialSapience - Mathf.Clamp(RandUtilities.generateNormalRandom(averageGaussian, def.transformedSapienceDropStd), 0f, 0.9f), 0);
         }
     }
 

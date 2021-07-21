@@ -25,6 +25,16 @@ namespace Pawnmorph.DefExtensions
         public float selectionWeight;
 
         /// <summary>
+        /// if this chaomorph can be stored in the genebank 
+        /// </summary>
+        public bool storable;
+
+        /// <summary>
+        /// if this chaomorph can be tagged 
+        /// </summary>
+        public bool taggable; 
+
+        /// <summary>
         /// The pawn kind definition
         /// </summary>
         [CanBeNull]

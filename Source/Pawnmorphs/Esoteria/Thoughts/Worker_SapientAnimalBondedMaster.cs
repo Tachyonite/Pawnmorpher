@@ -7,10 +7,36 @@ using Verse;
 
 namespace Pawnmorph.Thoughts
 {
+
+    /// <summary>
+    /// abstract base class for both the sapient animal bonded master and bonded non master thoughts 
+    /// </summary>
+    /// <seealso cref="RimWorld.ThoughtWorker" />
+    public abstract class Worker_SapientAnimalBondedBase : ThoughtWorker
+    {
+        /// <summary>
+        /// Determines whether [is valid relation] [the specified relation].
+        /// </summary>
+        /// <param name="relation">The relation.</param>
+        /// <returns>
+        ///   <c>true</c> if [is valid relation] [the specified relation]; otherwise, <c>false</c>.
+        /// </returns>
+        protected bool IsValidRelation(DirectPawnRelation relation)
+        {
+            var otherPawn = relation?.otherPawn;
+            if (otherPawn == null) return false;
+            if (otherPawn.RaceProps?.Animal == true) return false; //ignore bonds to former humans 
+            if (otherPawn.Dead) return false;
+            return relation.def == PawnRelationDefOf.Bond; 
+        }
+
+
+    }
+
     /// <summary>
     /// 
     /// </summary>
-    public class Worker_SapientAnimalBondedMaster : ThoughtWorker
+    public class Worker_SapientAnimalBondedMaster : Worker_SapientAnimalBondedBase
     {
         /// <summary>
         /// gets the current state .
@@ -28,11 +54,10 @@ namespace Pawnmorph.Thoughts
             bool masterToBondedPawn = false;
             foreach (DirectPawnRelation relationsDirectRelation in p.relations.DirectRelations)
             {
-                if(relationsDirectRelation.def != PawnRelationDefOf.Bond) continue;
-                if (relationsDirectRelation.otherPawn?.RaceProps.Animal == true) continue; //ignore bonds to former humans 
-
+               if(!IsValidRelation(relationsDirectRelation)) continue;
+                Pawn otherPawn = relationsDirectRelation.otherPawn;
                 isBonded = true;//we can have only 1 bonded relationship 
-                masterToBondedPawn = relationsDirectRelation.otherPawn == p.playerSettings?.RespectedMaster; 
+                masterToBondedPawn = otherPawn == p.playerSettings?.RespectedMaster; 
                 break;
             }
 
@@ -50,7 +75,7 @@ namespace Pawnmorph.Thoughts
     /// <summary>
     /// 
     /// </summary>
-    public class Worker_SapientAnimalBondedNonMaster : ThoughtWorker
+    public class Worker_SapientAnimalBondedNonMaster : Worker_SapientAnimalBondedBase
     {
 
         /// <summary>
@@ -68,9 +93,7 @@ namespace Pawnmorph.Thoughts
             bool masterToBondedPawn = false;
             foreach (DirectPawnRelation relationsDirectRelation in p.relations.DirectRelations)
             {
-                if (relationsDirectRelation.def != PawnRelationDefOf.Bond) continue;
-                if(relationsDirectRelation.otherPawn?.RaceProps.Animal == true) continue; //ignore bonds to animals
-
+                if (!IsValidRelation(relationsDirectRelation))  continue;
                 isBonded = true;//we can have only 1 bonded relationship 
                 masterToBondedPawn = relationsDirectRelation.otherPawn == p.playerSettings?.RespectedMaster;
                 break;

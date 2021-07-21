@@ -1,7 +1,7 @@
 <Defs>
     <HediffDef>
         <defName>PM_Reverting</defName>
-        <description>TODO</description>
+        <description>This pawn is slowly reverting to human.</description>
         <hediffClass>HediffWithComps</hediffClass>
         <label>mutagen reversion</label>
         <defaultLabelColor>(179,86,132)</defaultLabelColor>
