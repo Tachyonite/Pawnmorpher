@@ -747,6 +747,8 @@
     <Compile Include="Thoughts\IThoughtTransferWorker.cs" />
     <Compile Include="Thoughts\Memory_FactionObservation.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
+    <Compile Include="Thoughts\Precept\Thought_Precept_VeneratedFormerHuman.cs" />
+    <Compile Include="Thoughts\Precept\Worker_VeneratedFormerHuman.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
     <Compile Include="Thoughts\SapienceMemory.cs" />

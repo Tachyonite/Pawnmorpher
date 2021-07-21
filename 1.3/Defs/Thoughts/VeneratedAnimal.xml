@@ -3,6 +3,12 @@
         <workerClass>Pawnmorph.Thoughts.Worker_IsVeneratedAnimal</workerClass>
     </ThoughtDef>
 
+    <!-- abstract def for all venerated former human thought specific to a precept -->
+    <ThoughtDef ParentName="FH_PersistentThought" Name="FH_VeneratedAnimal_PreceptSpecific" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Precept.Worker_VeneratedFormerHuman</workerClass>
+        <thoughtClass>Pawnmorph.Thoughts.Precept.Thought_Precept_VeneratedFormerHuman</thoughtClass>
+    </ThoughtDef>
+
     <ThoughtDef ParentName="FH_VeneratedAnimalBase">
         <defName>FH_PersistentThoughtDefault</defName>
         <nullifyingTraits>
