@@ -64,7 +64,8 @@ namespace Pawnmorph.HPatches
                 pawn.timetable = null;
                 pawn.style = null; 
                 pawn.workSettings = null;
-                pawn.outfits = null; 
+                pawn.outfits = null;
+                pawn.surroundings = null; 
                 var saComp = pawn.GetComp<Comp_SapientAnimal>();
                 if (saComp != null)
                 {
@@ -106,7 +107,8 @@ namespace Pawnmorph.HPatches
                 pawn.timetable = pawn.timetable ?? new Pawn_TimetableTracker(pawn);
                 pawn.style = pawn.style ?? new Pawn_StyleTracker(pawn);
                 pawn.ideo = pawn.ideo ?? new Pawn_IdeoTracker(pawn);
-                pawn.styleObserver = pawn.styleObserver ?? new Pawn_StyleObserverTracker(pawn); 
+                pawn.styleObserver = pawn.styleObserver ?? new Pawn_StyleObserverTracker(pawn);
+                pawn.surroundings = pawn.surroundings ?? new Pawn_SurroundingsTracker(pawn);
                 Comp_SapientAnimal nComp = pawn.GetComp<Comp_SapientAnimal>();
                 bool addedComp = false;
                 
