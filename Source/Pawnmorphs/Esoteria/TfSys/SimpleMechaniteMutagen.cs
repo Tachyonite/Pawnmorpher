@@ -335,19 +335,34 @@ namespace Pawnmorph.TfSys
             spawned.Faction?.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
 
             ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus);
-            spawned.health.AddHediff(MorphTransformationDefOf.StabiliserHigh); //add stabilizer on reversion 
-
-
-            TransformerUtility.CleanUpHumanPawnPostTf(animal, null); 
-            
-            //make sure to send the event before we destroy the animal 
-            SendReversionEvent(spawned, animal, null); 
+            DoPostReversionEffects(spawned, animal);
 
             animal.Destroy();
             return true;
         }
 
-        private void SetHumanoidSapience([NotNull] Pawn humanoid, [NotNull] Pawn animal)
+        /// <summary>
+        /// preforms effects on either the original or transformed pawn after all core reversion effects are completed but before transformed pawn is cleaned up and destroyed 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="animal">The animal.</param>
+        protected virtual void DoPostReversionEffects(Pawn original, Pawn animal)
+        {
+            original.health.AddHediff(MorphTransformationDefOf.StabiliserHigh); //add stabilizer on reversion 
+
+
+            TransformerUtility.CleanUpHumanPawnPostTf(animal, null);
+
+            //make sure to send the event before we destroy the animal 
+            SendReversionEvent(original, animal, null);
+        }
+
+        /// <summary>
+        /// Sets the humanoid sapience upon reversion.
+        /// </summary>
+        /// <param name="humanoid">The humanoid.</param>
+        /// <param name="animal">The animal.</param>
+        protected virtual void SetHumanoidSapience([NotNull] Pawn humanoid, [NotNull] Pawn animal)
         {
             PawnComponentsUtility.AddAndRemoveDynamicComponents(humanoid);
             try
