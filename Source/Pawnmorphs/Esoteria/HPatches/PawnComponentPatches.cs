@@ -47,6 +47,7 @@ namespace Pawnmorph.HPatches
                 pawn.ownership?.UnclaimAll();
                 pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
                 pawn.workSettings?.DisableAll();
+                pawn.ideo = null; 
                 pawn.ownership = null;
                 pawn.drafter = null;
                 pawn.apparel = null;
@@ -59,7 +60,9 @@ namespace Pawnmorph.HPatches
                 pawn.story = null;
                 pawn.abilities = null; 
                 pawn.skills = null;
-                pawn.timetable = null; 
+                pawn.styleObserver = null; 
+                pawn.timetable = null;
+                pawn.style = null; 
                 pawn.workSettings = null;
                 pawn.outfits = null; 
                 var saComp = pawn.GetComp<Comp_SapientAnimal>();
@@ -100,7 +103,10 @@ namespace Pawnmorph.HPatches
                 pawn.outfits = pawn.outfits ?? new Pawn_OutfitTracker(pawn); 
                 pawn.guilt = pawn.guilt ?? new Pawn_GuiltTracker(pawn); 
                 pawn.foodRestriction = pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(pawn); 
-                pawn.timetable = pawn.timetable ?? new Pawn_TimetableTracker(pawn); 
+                pawn.timetable = pawn.timetable ?? new Pawn_TimetableTracker(pawn);
+                pawn.style = pawn.style ?? new Pawn_StyleTracker(pawn);
+                pawn.ideo = pawn.ideo ?? new Pawn_IdeoTracker(pawn);
+                pawn.styleObserver = pawn.styleObserver ?? new Pawn_StyleObserverTracker(pawn); 
                 Comp_SapientAnimal nComp = pawn.GetComp<Comp_SapientAnimal>();
                 bool addedComp = false;
                 
