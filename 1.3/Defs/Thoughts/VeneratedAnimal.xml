@@ -10,7 +10,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="FH_VeneratedAnimalBase">
-        <defName>FH_PersistentThoughtDefault</defName>
+        <defName>FH_PersistentThoughtVeneratedAnimal</defName>
         <nullifyingTraits>
             <li>BodyPurist</li>
             <li>MutationAffinity</li>
@@ -58,7 +58,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="FH_VeneratedAnimalBase">
-        <defName>FH_PersistentThoughtMA</defName> <!-- mutation affinity -->
+        <defName>FH_PersistentThoughtMAVeneratedAnimal</defName> <!-- mutation affinity -->
         <requiredTraits>
             <li>MutationAffinity</li>
         </requiredTraits>
@@ -105,7 +105,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="FH_VeneratedAnimalBase">
-        <defName>FH_PersistentThoughtBP</defName> <!-- body purist-->
+        <defName>FH_PersistentThoughtBPVeneratedAnimal</defName> <!-- body purist-->
         <requiredTraits>
             <li>BodyPurist</li>
         </requiredTraits>
@@ -142,7 +142,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="FH_VeneratedAnimalBase">
-        <defName>FH_PersistentThoughtPW</defName> <!-- primal wish -->
+        <defName>FH_PersistentThoughtPWVeneratedAnimal</defName> <!-- primal wish -->
         <stages>
             <li>
                 <label>primal wish fulfilled (venerated animal)</label>
