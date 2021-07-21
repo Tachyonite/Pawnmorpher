@@ -12,7 +12,7 @@ using static Pawnmorph.DebugUtils.DebugLogUtils;
 namespace Pawnmorph.GraphicSys
 {
     /// <summary>
-    /// comp for storing the initial graphics settings of a pawn for use latter
+    ///     comp for storing the initial graphics settings of a pawn for use latter
     /// </summary>
     /// <seealso cref="Verse.ThingComp" />
     public class InitialGraphicsComp : ThingComp
@@ -27,6 +27,11 @@ namespace Pawnmorph.GraphicSys
         private Color _hairColorSecond;
         private Color _hairColor;
         private string _crownType;
+        private StyleInfo _styleInfo = new StyleInfo();
+
+        private HairDef _hairDef;
+
+        private BodyTypeDef _body;
 
         /// <summary>Gets the draw size.</summary>
         /// <value>The size of the custom draw.</value>
@@ -53,7 +58,7 @@ namespace Pawnmorph.GraphicSys
         }
 
         /// <summary>
-        /// Gets a value indicating whether [fix gender post spawn].
+        ///     Gets a value indicating whether [fix gender post spawn].
         /// </summary>
         /// <value><c>true</c> if [fix gender post spawn]; otherwise, <c>false</c>.</value>
         public bool FixGenderPostSpawn
@@ -90,6 +95,7 @@ namespace Pawnmorph.GraphicSys
                 return _hairColor;
             }
         }
+
         /// <summary>Gets the skin color second.</summary>
         /// <value>The skin color second.</value>
         public Color SkinColorSecond
@@ -126,40 +132,35 @@ namespace Pawnmorph.GraphicSys
         }
 
         /// <summary>
-        /// Gets the initial body type of this pawn
+        ///     Gets the initial body type of this pawn
         /// </summary>
         /// <value>
-        /// The type of the body.
+        ///     The type of the body.
         /// </value>
         [NotNull]
         public BodyTypeDef BodyType
         {
             get
             {
-                if (!_scanned)
-                {
-                    ScanGraphics();
-                }
+                if (!_scanned) ScanGraphics();
 
-                return _body; 
+                return _body;
             }
         }
 
-        private HairDef _hairDef;
-
         /// <summary>
-        /// Gets the initial hair definition.
+        ///     Gets the initial hair definition.
         /// </summary>
         /// <value>
-        /// The hair definition.
+        ///     The hair definition.
         /// </value>
         public HairDef HairDef
         {
             get
             {
-                if(!_scanned)
+                if (!_scanned)
                     ScanGraphics();
-                return _hairDef; 
+                return _hairDef;
             }
         }
 
@@ -185,8 +186,6 @@ namespace Pawnmorph.GraphicSys
             Assert(parent is Pawn, "parent is Pawn");
         }
 
-        private BodyTypeDef _body; 
-
         /// <summary>expose data.</summary>
         public override void PostExposeData()
         {
@@ -202,18 +201,14 @@ namespace Pawnmorph.GraphicSys
             Scribe_Values.Look(ref _scanned, nameof(_scanned));
             Scribe_Defs.Look(ref _body, nameof(_body));
             Scribe_Defs.Look(ref _hairDef, nameof(_hairDef));
-
+            Scribe_Deep.Look(ref _styleInfo, "styleInfo");
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (_skinColor == Color.clear)
-                {
-                    _skinColor = PawnSkinColors.GetSkinColor(Pawn.story.melanin); 
-                }
-                if(_body == null)
-                {
-                    _body = Pawn.story.bodyType; 
-                }
+                if (_skinColor == Color.clear) _skinColor = PawnSkinColors.GetSkinColor(Pawn.story.melanin);
+                if (_body == null) _body = Pawn.story.bodyType;
+                if(_styleInfo == null) _styleInfo = new StyleInfo();
+                
             }
         }
 
@@ -242,10 +237,14 @@ namespace Pawnmorph.GraphicSys
             comp.SetHairColor(HairColor, HairColorSecond);
             comp.crownType = CrownType;
 
-            Pawn_StoryTracker story = ((Pawn)parent).story;
+            var pawn = (Pawn) parent;
+            Pawn_StoryTracker story = pawn.story;
             story.hairColor = HairColor;
             story.hairDef = HairDef;
-            story.bodyType = BodyType; 
+            story.bodyType = BodyType;
+
+            Pawn_StyleTracker styleTracker = pawn.style;
+            if (styleTracker != null) _styleInfo.Restore(styleTracker);
         }
 
         private void ScanGraphics()
@@ -257,13 +256,70 @@ namespace Pawnmorph.GraphicSys
             _customDrawSize = comp.customDrawSize;
             _customPortraitDrawSize = comp.customPortraitDrawSize;
             _fixedGenderPostSpawn = comp.fixGenderPostSpawn;
-            _skinColor = comp.GetSkinColor() ?? Color.white; 
+            _skinColor = comp.GetSkinColor() ?? Color.white;
             _hairDef = Pawn.story.hairDef;
             _skinColorSecond = comp.GetSkinColor(false) ?? Color.white;
-            _hairColorSecond = comp.ColorChannels.TryGetValue("hair")?.second ?? Color.white; 
+            _hairColorSecond = comp.ColorChannels.TryGetValue("hair")?.second ?? Color.white;
             _crownType = comp.crownType;
             _hairColor = Pawn.story.hairColor;
-            _body = Pawn.story.bodyType; 
+            _body = Pawn.story.bodyType;
+
+            var styleTracker = Pawn.style;
+            if (styleTracker != null)
+            {
+                _styleInfo.Scan(styleTracker); 
+            }
+        }
+
+        private class StyleInfo : IExposable
+        {
+             BeardDef beardDef;
+
+
+             HairDef nextHairDef;
+
+             BeardDef nextBeardDef;
+
+             TattooDef nextFaceTattooDef;
+
+             TattooDef nextBodyTatooDef;
+
+             TattooDef faceTattoo;
+
+            private TattooDef bodyTattoo;
+
+
+            public void ExposeData()
+            {
+                Scribe_Defs.Look(ref beardDef, nameof(beardDef));
+                Scribe_Defs.Look(ref nextHairDef, nameof(nextHairDef));
+                Scribe_Defs.Look(ref nextBeardDef, nameof(nextBeardDef));
+                Scribe_Defs.Look(ref nextBodyTatooDef, nameof(nextBodyTatooDef));
+                Scribe_Defs.Look(ref faceTattoo, nameof(faceTattoo));
+                Scribe_Defs.Look(ref bodyTattoo, nameof(bodyTattoo));
+            }
+
+            public void Restore([NotNull] Pawn_StyleTracker styleTracker)
+            {
+                styleTracker.beardDef = beardDef;
+                styleTracker.nextHairDef = nextHairDef;
+                styleTracker.nextBeardDef = nextBeardDef;
+                styleTracker.nextFaceTattooDef = nextFaceTattooDef;
+                styleTracker.nextBodyTatooDef = nextBodyTatooDef;
+                styleTracker.FaceTattoo = faceTattoo;
+                styleTracker.BodyTattoo = bodyTattoo;
+            }
+
+            public void Scan([NotNull] Pawn_StyleTracker styleTracker)
+            {
+                beardDef = styleTracker.beardDef;
+                nextHairDef = styleTracker.nextHairDef;
+                nextBeardDef = styleTracker.nextBeardDef;
+                nextFaceTattooDef = styleTracker.nextFaceTattooDef;
+                nextBodyTatooDef = styleTracker.nextBodyTatooDef;
+                faceTattoo = styleTracker.FaceTattoo;
+                bodyTattoo = styleTracker.BodyTattoo; 
+            }
         }
     }
 }
