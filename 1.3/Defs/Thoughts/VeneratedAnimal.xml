@@ -1,0 +1,181 @@
+<Defs>
+    <ThoughtDef ParentName="FH_PersistentThought" Name="FH_VeneratedAnimalBase" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Worker_IsVeneratedAnimal</workerClass>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_VeneratedAnimalBase">
+        <defName>FH_PersistentThoughtDefault</defName>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+            <li>MutationAffinity</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>changed (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>lingering instinct (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>conflicted mind (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>hard to think... (venerated animal)</label>
+                <description>TODO</description>
+            </li>
+            <li>
+                <label>feral animal (venerated animal)</label>
+                <description>...food?</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>... (venerated animal)</label>
+                <description>Food!</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert>
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_VeneratedAnimalBase">
+        <defName>FH_PersistentThoughtMA</defName> <!-- mutation affinity -->
+        <requiredTraits>
+            <li>MutationAffinity</li>
+        </requiredTraits>
+        <stages>
+            <li>
+                <label>changed (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>lingering instinct (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>conflicted mind (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+            <li>
+                <label>hard to think... (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>6</baseMoodEffect>
+            </li>
+            <li>
+                <label>feral animal (venerated animal) </label>
+                <description>...food?</description>
+            </li>
+            <li>
+                <label>...</label>
+                <description>Food!</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert>
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_VeneratedAnimalBase">
+        <defName>FH_PersistentThoughtBP</defName> <!-- body purist-->
+        <requiredTraits>
+            <li>BodyPurist</li>
+        </requiredTraits>
+        <stages>
+            <li>
+                <label>changed (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>-20</baseMoodEffect>
+            </li>
+            <li>
+                <label>lingering instinct (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+            <li>
+                <label>conflicted mind (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hard to think... (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>feral animal (venerated animal)</label>
+                <description>...food?</description>
+            </li>
+            <li>
+                <label>...</label>
+                <description>Food!</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_VeneratedAnimalBase">
+        <defName>FH_PersistentThoughtPW</defName> <!-- primal wish -->
+        <stages>
+            <li>
+                <label>primal wish fulfilled (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>lingering instinct (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>conflicted mind (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>15</baseMoodEffect>
+            </li>
+            <li>
+                <label>hard to think... (venerated animal)</label>
+                <description>TODO</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>feral animal (venerated animal)</label>
+                <description>...food?</description>
+            </li>
+            <li>
+                <label>... (venerated animal)</label>
+                <description>Food!</description>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+</Defs>
