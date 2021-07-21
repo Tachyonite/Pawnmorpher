@@ -1,6 +1,7 @@
 ﻿// MutationMemory.cs created by Iron Wolf for Pawnmorph on 09/16/2019 2:47 PM
 // last updated 09/16/2019  2:47 PM
 
+using System;
 using RimWorld;
 using UnityEngine;
 
@@ -17,14 +18,24 @@ namespace Pawnmorph.Thoughts
         {
             get
             {
-                int maxStage = def.stages.Count - 1;
+                try
+                {
 
-                MutationOutlook mutationOutlook = pawn.GetMutationOutlook();
+                    int maxStage = def.stages.Count - 1;
 
-                if (mutationOutlook == MutationOutlook.PrimalWish && maxStage < (int) MutationOutlook.PrimalWish)
-                    mutationOutlook = MutationOutlook.Furry; //use the furry stage if the primal wish stage isn't there 
+                    MutationOutlook mutationOutlook = pawn.GetMutationOutlook();
 
-                return Mathf.Min(maxStage, (int) mutationOutlook);
+                    if (mutationOutlook == MutationOutlook.PrimalWish && maxStage < (int) MutationOutlook.PrimalWish)
+                        mutationOutlook = MutationOutlook.Furry; //use the furry stage if the primal wish stage isn't there 
+
+                    return Mathf.Min(maxStage, (int) mutationOutlook);
+                }
+                catch(ArgumentNullException argEx)
+                {
+                    throw new
+                        ArgumentException($"{def?.defName ?? "NULL THOUGHT"} encountered exception while getting the current stag index",
+                                          argEx); 
+                }
             }
         }
     }
