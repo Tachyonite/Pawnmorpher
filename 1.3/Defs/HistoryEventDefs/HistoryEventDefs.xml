@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HistoryEventDef>
+    <defName>MutationGained</defName>
+    <label>mutation gained</label>
+  </HistoryEventDef>
+  
+  <HistoryEventDef>
+    <defName>MutationLost</defName>
+    <label>mutation lost</label>
+  </HistoryEventDef>
+  
+  <HistoryEventDef>
+    <defName>TransformedIntoFormerHuman</defName>
+    <label>transformed into former human</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>TranfromedFromFormerHuman</defName>
+    <label>transformed from fromer human</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>Transformed</defName>
+    <label>transformed</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>Reverted</defName>
+    <label>reverted</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>SapienceLevelChanged</defName>
+    <label>sapience level changed</label>
+  </HistoryEventDef>
+
+</Defs>

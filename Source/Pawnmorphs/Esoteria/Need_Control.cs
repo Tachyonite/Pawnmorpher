@@ -239,8 +239,9 @@ namespace Pawnmorph
                 SapienceLevel sLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
                 if (sLevel != _currentLevel)
                 {
+                    SapienceLevel oldLevel = _currentLevel;
                     _currentLevel = sLevel;
-                    OnSapienceLevelChanges();
+                    OnSapienceLevelChanges(oldLevel, sLevel);
                 }
             }
         }
@@ -316,13 +317,14 @@ namespace Pawnmorph
             SapienceLevel cLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
             if (_currentLevel != cLevel)
             {
+                SapienceLevel oldLevel = _currentLevel;
                 _currentLevel = cLevel;
-                OnSapienceLevelChanges();
+                OnSapienceLevelChanges(oldLevel, cLevel);
             }
         }
 
 
-        private void OnSapienceLevelChanges()
+        private void OnSapienceLevelChanges(SapienceLevel oldLevel, SapienceLevel newLevel)
         {
             SapienceTracker fTracker = pawn.GetSapienceTracker();
             if (fTracker == null)
@@ -343,6 +345,7 @@ namespace Pawnmorph
             if (pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
 
             SapienceLevelChanged?.Invoke(this, pawn, _currentLevel);
+            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, (int)oldLevel, (int)newLevel));
         }
     }
 }
