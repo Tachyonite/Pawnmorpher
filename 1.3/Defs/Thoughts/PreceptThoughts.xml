@@ -106,27 +106,6 @@
 
     <!-- reversion thoughts -->
 
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
-        <defName>PM_FleshPuristReverted</defName>
-        <stages>
-            <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
-
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
-        <defName>PM_NaturePrimacyReverted</defName>
-        <stages>
-            <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
 
     <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
         <defName>PM_FleshPuristReverted</defName>
@@ -162,7 +141,7 @@
 
     <!-- use ANIMALKIND to refer to the venerated animal -->
     <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
-        <defName>PM_VeneratedAnimalMorphed</defName>
+        <defName>PM_VeneratedAnimalReverted</defName>
         <thoughtClass>Pawnmorph.Thoughts.VeneratedMutationMemory</thoughtClass>
         <stages>
             <li>
@@ -177,28 +156,6 @@
 
     <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
         <defName>PM_FleshPuristMorphed</defName>
-        <stages>
-            <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
-
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
-        <defName>PM_NaturePrimacyMorphed</defName>
-        <stages>
-            <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
-
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
-        <defName>PM_FleshPuristReverted</defName>
         <stages>
             <li>
                 <label>mutated</label>
@@ -278,16 +235,6 @@
         </stages>
     </ThoughtDef>
 
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
-        <defName>PM_NaturePrimacyMorphedReverted</defName>
-        <stages>
-            <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
     <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
         <defName>PM_HumanPrimacyMorphedReverted</defName>
         <stages>
