@@ -33,7 +33,7 @@ namespace Pawnmorph
         /// <summary>
         /// priority of this aspect, lower priorities should show up first in the Mutation ITab
         /// </summary>
-        public int Priority => def.priority;  
+        public int Priority => def?.priority ?? 0;  
         private AspectTracker _tracker;
 
 
