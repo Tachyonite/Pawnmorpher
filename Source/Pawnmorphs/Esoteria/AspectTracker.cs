@@ -42,7 +42,7 @@ namespace Pawnmorph
         /// </summary>
         public event AspectRemovedHandle AspectRemoved;
 
-
+        [NotNull]
         private readonly List<Aspect> _rmCache = new List<Aspect>();
         private List<Aspect> _aspects = new List<Aspect>();
 
@@ -187,7 +187,7 @@ namespace Pawnmorph
                 }
                 catch (Exception e)
                 {
-                    Log.Error($"caught {e.GetType().Name} while ticking {affinity.def.defName}\n{e}");
+                    Log.Error($"caught {e.GetType().Name} while ticking {affinity?.def?.defName ?? "NULL ASPECT"}\n{e}");
                     _aspects.RemoveAt(index);
                 }
             }
