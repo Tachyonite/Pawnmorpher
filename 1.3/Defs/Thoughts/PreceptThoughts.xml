@@ -10,36 +10,46 @@
         <stages>
             <li>
                 <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
-            </li>
-            <!-- optional for all thoughts in this file 
-            <li>
-                <label>mutated(MA)</label>
-                <description>TODO</description>
+                <description>My body is tainted by grotesque mutations.</description>
                 <baseMoodEffect>-8</baseMoodEffect>
             </li>
             <li>
-                <label>mutated(BP)</label>
-                <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <label>mutated</label>
+                <description>I shouldn't be as carefree about these changes as I am.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
+            <li>
+                <label>mutated</label>
+                <description>These abhorrent mutations are an unholy stain on my humanity!</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+			<!--
             <li>
                 <label>mutated(PW)</label>
                 <description>TODO</description>
                 <baseMoodEffect>-8</baseMoodEffect>
             </li>
-        -->
+			-->
         </stages>
     </ThoughtDef>
 
     <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
         <defName>PM_NaturePrimacyMutated</defName>
         <stages>
-            <li>
+            <li> <!-- Base pawn -->
                 <label>mutated</label>
-                <description>TODO</description>
+                <description>I feel closer to nature with these mutations.</description>
                 <baseMoodEffect>8</baseMoodEffect>
+            </li>
+			<li> <!-- MA -->
+                <label>mutated</label>
+                <description>I am one with nature. I feel intimately connected with the world around me like this.</description>
+                <baseMoodEffect>15</baseMoodEffect>
+            </li>
+            <li> <!-- BP -->
+                <label>mutated</label>
+                <description>As much as I feel tainted by them, I am more connected to nature with these changes.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -47,10 +57,20 @@
     <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
         <defName>PM_HumanPrimacyMutated</defName>
         <stages>
-            <li>
+            <li> <!-- Base pawn -->
                 <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <description>I feel less than human like this.</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+			<li> <!-- MA -->
+                <label>mutated</label>
+                <description>I shouldn't be as carefree about these changes as I am.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li> <!-- BP -->
+                <label>mutated</label>
+                <description>I am stained by the tarnish of animalism on my human form.</description>
+                <baseMoodEffect>-15</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -60,10 +80,25 @@
         <defName>PM_GainedVeneratedMutation</defName>
         <thoughtClass>Pawnmorph.Thoughts.VeneratedMutationMemory</thoughtClass>
         <stages>
-            <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+            <li> <!-- Base pawn -->
+                <label>venerated {ANIMALKIND} mutation</label>
+                <description>It's certainly eye-catching.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+			<li> <!-- MA -->
+                <label>venerated {ANIMALKIND} mutation</label>
+                <description>If I change enough, will people venerate me?.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li> <!-- BP -->
+                <label>venerated {ANIMALKIND} mutation</label>
+                <description>I venerate them, I don't necessarily want to *be* them!</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+			<li> <!-- PW -->
+                <label>venerated {ANIMALKIND} mutation</label>
+                <description>When I change enough, people will venerate *me*.</description>
+                <baseMoodEffect>15</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -74,9 +109,19 @@
         <defName>PM_FleshPuristTransformed</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <label>purist transformed</label>
+                <description>My pure body is permanently stained by this horrific transformation!</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+            <li>
+                <label>purist transformed</label>
+                <description>I feel so different. Can I still be pure like this? Surely not...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>purist transformed</label>
+                <description>UNCLEAN! UNCLEAN! UNCLEAN!</description>
+                <baseMoodEffect>-25</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -85,9 +130,19 @@
         <defName>PM_NaturePrimacyTransformed</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <label>naturist transformed</label>
+                <description>A little on the extreme side, but if this is what must be done for nature to be prime, then I am all for it.</description>
+                <baseMoodEffect>15</baseMoodEffect>
+            </li>
+            <li>
+                <label>naturist transformed</label>
+                <description>I am more than one with nature, I *am* nature.</description>
+                <baseMoodEffect>25</baseMoodEffect>
+            </li>
+            <li>
+                <label>naturist transformed</label>
+                <description>Sure, I'm part of nature now, but what if nature thinks we're impostors? I'm not sold...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -95,9 +150,19 @@
         <defName>PM_HumanPrimacyTransformed</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <label>primist transformed</label>
+                <description>Well, there go my weekend plans for BEING A PURE HUMAN BEING.</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+            <li>
+                <label>primist transformed</label>
+                <description>I feel so very different. I'm surely impure like this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>primist transformed</label>
+                <description>I am a HUMAN BEING, not an animal, this is the unholiest thing I can imagine.</description>
+                <baseMoodEffect>-25</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -111,9 +176,9 @@
         <defName>PM_FleshPuristReverted</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <label>reverted</label>
+                <description>My flesh is restored. I am once again clean.</description>
+                <baseMoodEffect>8</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -122,9 +187,9 @@
         <defName>PM_NaturePrimacyReverted</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <label>reverted</label>
+                <description>But at last I felt closer to nature...</description>
+                <baseMoodEffect>-8</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -132,8 +197,8 @@
         <defName>PM_HumanPrimacyReverted</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
+                <label>reverted</label>
+                <description>Humanity can conquer any adversity, including not being human. Checkmate, nature.</description>
                 <baseMoodEffect>8</baseMoodEffect>
             </li>
         </stages>
@@ -145,9 +210,9 @@
         <thoughtClass>Pawnmorph.Thoughts.VeneratedMutationMemory</thoughtClass>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <label>venerated {ANIMALKIND} reverted</label>
+                <description>I am no longer protected by my ideology.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -158,9 +223,9 @@
         <defName>PM_FleshPuristMorphed</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <label>morphed</label>
+                <description>My body is cursed and animalistic.</description>
+                <baseMoodEffect>-15</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -169,8 +234,8 @@
         <defName>PM_NaturePrimacyMorphed</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
+                <label>morphed</label>
+                <description>My body is a temple to nature.</description>
                 <baseMoodEffect>8</baseMoodEffect>
             </li>
         </stages>
@@ -179,9 +244,9 @@
         <defName>PM_HumanPrimacyMorphed</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <label>morphed</label>
+                <description>My body is cursed and animalistic.</description>
+                <baseMoodEffect>-15</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -192,8 +257,8 @@
         <thoughtClass>Pawnmorph.Thoughts.VeneratedMutationMemory</thoughtClass>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
+                <label>venerated {ANIMALKIND} morph</label>
+                <description>I am blessed to become closer to the wonderful {ANIMALKIND}.</description>
                 <baseMoodEffect>8</baseMoodEffect>
             </li>
         </stages>
@@ -206,9 +271,9 @@
         <defName>PM_FleshPuristMorphedReverted</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <label>reverted</label>
+                <description>My pure flesh is restored.</description>
+                <baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -217,20 +282,20 @@
         <defName>PM_NaturePrimacyMorphedReverted</defName>
         <stages>
             <li>
-                <label>mutated</label>
+                <label>reverted</label>
                 <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
 
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase"> <!-- what does this even do lol -->
         <defName>PM_FleshPuristRevertedReverted</defName>
         <stages>
             <li>
                 <label>mutated</label>
                 <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -239,9 +304,9 @@
         <defName>PM_HumanPrimacyMorphedReverted</defName>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <label>reverted</label>
+                <description>My humanity is restored.</description>
+                <baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -252,9 +317,9 @@
         <thoughtClass>Pawnmorph.Thoughts.VeneratedMutationMemory</thoughtClass>
         <stages>
             <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <label>reverted from venerated morph</label>
+                <description>I could have had a higher social status for that...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
