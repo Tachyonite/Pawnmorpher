@@ -17,28 +17,28 @@
         </nullifyingTraits>
         <stages>
             <li>
-                <label>changed (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>-5</baseMoodEffect>
+                <label>changed (venerated)</label>
+                <description>A bit extreme, but at least I feel safe like this around my fellow ideoligion members.</description>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
-                <label>lingering instinct (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>-3</baseMoodEffect>
-            </li>
-            <li>
-                <label>conflicted mind (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
-            </li>
-            <li>
-                <label>hard to think... (venerated animal)</label>
-                <description>TODO</description>
-            </li>
-            <li>
-                <label>feral animal (venerated animal)</label>
-                <description>...food?</description>
+                <label>lingering instinct (venerated)</label>
+                <description>Everyone likes me, they really like me! Not sure why I should care about being like this...</description>
                 <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>conflicted mind (venerated)</label>
+                <description>This is good...right, yes...</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hard to think (venerated)</label>
+                <description>I like the attention...</description>
+				<baseMoodEffect>15</baseMoodEffect>
+            </li>
+            <li>
+                <label>feral animal (venerated)</label>
+                <description>...food?</description>
             </li>
             <li>
                 <label>... (venerated animal)</label>
@@ -64,27 +64,27 @@
         </requiredTraits>
         <stages>
             <li>
-                <label>changed (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>1</baseMoodEffect>
+                <label>changed (venerated)</label>
+                <description>Look at me, I am venerated now.</description>
+                <baseMoodEffect>5</baseMoodEffect>
             </li>
             <li>
-                <label>lingering instinct (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>2</baseMoodEffect>
+                <label>lingering instinct (venerated)</label>
+                <description>More patting, yes. It just feels right.</description>
+                <baseMoodEffect>8</baseMoodEffect>
             </li>
             <li>
-                <label>conflicted mind (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>4</baseMoodEffect>
+                <label>conflicted mind (venerated)</label>
+                <description>I love the attention...</description>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
-                <label>hard to think... (venerated animal)</label>
-                <description>TODO</description>
+                <label>hard to think (venerated)</label>
+                <description>What is...worship...?</description>
                 <baseMoodEffect>6</baseMoodEffect>
             </li>
             <li>
-                <label>feral animal (venerated animal) </label>
+                <label>feral animal (venerated) </label>
                 <description>...food?</description>
             </li>
             <li>
@@ -111,27 +111,27 @@
         </requiredTraits>
         <stages>
             <li>
-                <label>changed (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>-20</baseMoodEffect>
-            </li>
-            <li>
-                <label>lingering instinct (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>-15</baseMoodEffect>
-            </li>
-            <li>
-                <label>conflicted mind (venerated animal)</label>
-                <description>TODO</description>
+                <label>changed (venerated)</label>
+                <description>Venerate me all you want you twisted weirdos, I just want to be human again.</description>
                 <baseMoodEffect>-10</baseMoodEffect>
             </li>
             <li>
-                <label>hard to think... (venerated animal)</label>
-                <description>TODO</description>
+                <label>lingering instinct (venerated)</label>
+                <description>Ugh, I can hear the whispered thoughts of instinct nibbling at my brain. And stop patting me!</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+            <li>
+                <label>conflicted mind (venerated)</label>
+                <description>Ghh...I'm human...I'm human...leave me alone...</description>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hard to think (venerated)</label>
+                <description>I'm hu...man...I think...no...wrong...</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
-                <label>feral animal (venerated animal)</label>
+                <label>feral animal (venerated)</label>
                 <description>...food?</description>
             </li>
             <li>
@@ -145,31 +145,31 @@
         <defName>FH_PersistentThoughtPWVeneratedAnimal</defName> <!-- primal wish -->
         <stages>
             <li>
-                <label>primal wish fulfilled (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>5</baseMoodEffect>
+                <label>primal wish fulfilled (venerated)</label>
+                <description>I am your god now, and I want nothing less than the respect I deserve.</description>
+                <baseMoodEffect>30</baseMoodEffect>
             </li>
             <li>
-                <label>lingering instinct (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>10</baseMoodEffect>
+                <label>lingering instinct (venerated)</label>
+                <description>I am your god, so give me pats and treats.</description>
+                <baseMoodEffect>30</baseMoodEffect>
             </li>
             <li>
-                <label>conflicted mind (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>15</baseMoodEffect>
+                <label>conflicted mind (venerated)</label>
+                <description>I'm ok...with this life...</description>
+                <baseMoodEffect>30</baseMoodEffect>
             </li>
             <li>
-                <label>hard to think... (venerated animal)</label>
-                <description>TODO</description>
-                <baseMoodEffect>5</baseMoodEffect>
+                <label>hard to think (venerated)</label>
+                <description>I can finally...relax and...enjoy life...</description>
+                <baseMoodEffect>30</baseMoodEffect>
             </li>
             <li>
-                <label>feral animal (venerated animal)</label>
+                <label>feral animal (venerated)</label>
                 <description>...food?</description>
             </li>
             <li>
-                <label>... (venerated animal)</label>
+                <label>... (venerated)</label>
                 <description>Food!</description>
             </li>
         </stages>

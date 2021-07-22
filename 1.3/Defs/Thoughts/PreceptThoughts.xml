@@ -176,9 +176,9 @@
         <defName>PM_FleshPuristReverted</defName>
         <stages>
             <li>
-                <label>reverted</label>
-                <description>My flesh is restored. I am once again clean.</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <label>purist reverted</label>
+                <description>Their flesh is restored. They are once again clean.</description>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -187,9 +187,9 @@
         <defName>PM_NaturePrimacyReverted</defName>
         <stages>
             <li>
-                <label>reverted</label>
+                <label>naturist reverted</label>
                 <description>But at last I felt closer to nature...</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -197,9 +197,9 @@
         <defName>PM_HumanPrimacyReverted</defName>
         <stages>
             <li>
-                <label>reverted</label>
+                <label>primist reverted</label>
                 <description>Humanity can conquer any adversity, including not being human. Checkmate, nature.</description>
-                <baseMoodEffect>8</baseMoodEffect>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -211,8 +211,8 @@
         <stages>
             <li>
                 <label>venerated {ANIMALKIND} reverted</label>
-                <description>I am no longer protected by my ideology.</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <description>It might be for the best, but having more {ANIMALKIND}s around was nice.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -283,7 +283,7 @@
         <stages>
             <li>
                 <label>reverted</label>
-                <description>TODO</description>
+                <description>I am no longer a holy middle point between human and nature.</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
