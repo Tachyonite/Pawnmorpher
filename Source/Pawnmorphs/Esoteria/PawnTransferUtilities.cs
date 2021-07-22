@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Thoughts;
@@ -17,8 +18,19 @@ namespace Pawnmorph
     /// <summary>
     ///     static container for functions that transfer stuff between pawns
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class PawnTransferUtilities
     {
+
+        static PawnTransferUtilities()
+        {
+            _ideoInternalFieldInfo = typeof(Pawn_IdeoTracker).GetField("ideo", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (_ideoInternalFieldInfo == null)
+            {
+                Log.Error("unable to get internal field \"ideo\" from Pawn_IdeoTracker");
+            }
+        }
+
         /// <summary>
         ///     the method to use when transferring skill passions
         /// </summary>
@@ -145,6 +157,9 @@ namespace Pawnmorph
         }
 
 
+        [NotNull]
+        private static readonly FieldInfo _ideoInternalFieldInfo; 
+
         /// <summary>
         /// Transfers the ideo from the original pawn onto the transfer pawn
         /// </summary>
@@ -165,8 +180,9 @@ namespace Pawnmorph
             if (originalIdeoT?.Ideo == null || transferIdeoT == null) return;
 
 
-            transferIdeoT.SetIdeo(original.Ideo); 
-
+            //need to do this with reflection 
+            //do not want to cause additional effects, just swap the values out from under the tracker with the minimum amount of changes 
+            _ideoInternalFieldInfo.SetValue(transferIdeoT, originalIdeoT.Ideo); 
         }
 
         /// <summary>
