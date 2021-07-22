@@ -140,7 +140,7 @@ namespace Pawnmorph.Hybrids
             for (int i = 0; i < human.Count; i++)
             {
                 int j = (int) (convert * i);
-
+                j = Mathf.Min(j, animal.Count - 1); 
                 var hStage = human[i];
                 var aStage = animal[j];
 
