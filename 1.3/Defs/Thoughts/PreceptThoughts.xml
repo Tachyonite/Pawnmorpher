@@ -289,17 +289,6 @@
         </stages>
     </ThoughtDef>
 
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase"> <!-- what does this even do lol -->
-        <defName>PM_FleshPuristRevertedReverted</defName>
-        <stages>
-            <li>
-                <label>mutated</label>
-                <description>TODO</description>
-                <baseMoodEffect>5</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
-
     <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
         <defName>PM_HumanPrimacyMorphedReverted</defName>
         <stages>
