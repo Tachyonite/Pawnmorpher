@@ -144,6 +144,31 @@ namespace Pawnmorph
 
         }
 
+
+        /// <summary>
+        /// Transfers the ideo from the original pawn onto the transfer pawn
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transferPawn">The transfer pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        /// original
+        /// or
+        /// transferPawn
+        /// </exception>
+        public static void TransferIdeo([NotNull] Pawn original, [NotNull] Pawn transferPawn)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
+
+            Pawn_IdeoTracker originalIdeoT = original.ideo;
+            Pawn_IdeoTracker transferIdeoT = transferPawn.ideo;
+            if (originalIdeoT?.Ideo == null || transferIdeoT == null) return;
+
+
+            transferIdeoT.SetIdeo(original.Ideo); 
+
+        }
+
         /// <summary>
         /// tries to get the equivalent body part record in the other body def 
         /// </summary>

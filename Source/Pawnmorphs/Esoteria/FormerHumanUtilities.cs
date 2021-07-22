@@ -1209,6 +1209,7 @@ namespace Pawnmorph
             PawnTransferUtilities.TransferQuestRelations(original, transformedPawn); 
 
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
+            if (ModLister.IdeologyInstalled) PawnTransferUtilities.TransferIdeo(original, transformedPawn); 
         }
 
         /// <summary>
