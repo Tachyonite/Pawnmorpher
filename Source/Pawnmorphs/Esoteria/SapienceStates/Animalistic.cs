@@ -155,6 +155,10 @@ namespace Pawnmorph.SapienceStates
                 Pawn.drafter = null; 
             }
 
+            Pawn.ideo = null;
+            Pawn.style = null;
+            Pawn.styleObserver = null; 
+
             IntVec3 pawnPosition = Pawn.Position;
             if (Pawn.Map != null)
             {
