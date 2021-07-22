@@ -1,0 +1,20 @@
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Ideology</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <success>Always</success>
+            <operations>
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/PreceptDef[defName="AnimalVenerated"]/comps</xpath>
+                    <value>
+                        <li Class="Pawnmorph.PreceptComps.VeneratedAnimalMutationThought">
+                            <thoughtDef>PM_GainedVeneratedMutation</thoughtDef>
+                        </li>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>
