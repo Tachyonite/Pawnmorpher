@@ -18,22 +18,24 @@ namespace Pawnmorph
     /// </summary>
     public static class PMThoughtUtilities
     {
-
         /// <summary>
-        /// Creates the venerated animal memory, setting the venerated animal tag as required 
+        ///     Creates the venerated animal memory, setting the venerated animal tag as required
         /// </summary>
         /// <param name="def">The definition.</param>
         /// <param name="animalDef">The animal definition.</param>
         /// <param name="fromPrecept">From precept.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">
-        /// def
-        /// or
-        /// animalDef
+        ///     def
+        ///     or
+        ///     animalDef
         /// </exception>
-        /// <exception cref="ArgumentException">unable to convert {def.defName}'s thought to {nameof(MutationMemory_VeneratedAnimal)} - def</exception>
+        /// <exception cref="ArgumentException">
+        ///     unable to convert {def.defName}'s thought to
+        ///     {nameof(MutationMemory_VeneratedAnimal)} - def
+        /// </exception>
         public static MutationMemory_VeneratedAnimal CreateVeneratedAnimalMemory(
-            [NotNull] ThoughtDef def, [NotNull] ThingDef animalDef, [CanBeNull] RimWorld.Precept fromPrecept)
+            [NotNull] ThoughtDef def, [NotNull] ThingDef animalDef, [CanBeNull] Precept fromPrecept)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
             if (animalDef == null) throw new ArgumentNullException(nameof(animalDef));
@@ -41,13 +43,9 @@ namespace Pawnmorph
             {
                 MutationMemory_VeneratedAnimal mem;
                 if (fromPrecept == null)
-                {
-                    mem = (MutationMemory_VeneratedAnimal)ThoughtMaker.MakeThought(def);
-                }
+                    mem = (MutationMemory_VeneratedAnimal) ThoughtMaker.MakeThought(def);
                 else
-                {
-                    mem = (MutationMemory_VeneratedAnimal)ThoughtMaker.MakeThought(def, fromPrecept);
-                }
+                    mem = (MutationMemory_VeneratedAnimal) ThoughtMaker.MakeThought(def, fromPrecept);
 
                 mem.veneratedAnimalLabel = animalDef.LabelCap;
                 return mem;

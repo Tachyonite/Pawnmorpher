@@ -558,6 +558,7 @@
     <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
+    <Compile Include="PMIdeoUtilities.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />
     <Compile Include="PMPawnKindDefOf.cs" />
@@ -570,6 +571,7 @@
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
+    <Compile Include="PreceptComps\SelfTookMemoryThought_MemeOverride.cs" />
     <Compile Include="PreceptComps\VeneratedAnimalMutationThought.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />

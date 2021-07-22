@@ -16,6 +16,9 @@ namespace Pawnmorph.PreceptComps
     /// <seealso cref="RimWorld.PreceptComp" />
     public class VeneratedAnimalMutationThought : PreceptComp
     {
+
+
+
         /// <summary>
         ///     The thought definition to give
         /// </summary>
