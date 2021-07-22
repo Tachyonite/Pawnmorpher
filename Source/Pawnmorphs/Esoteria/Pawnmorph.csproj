@@ -382,6 +382,7 @@
     <Compile Include="DefExtensions\InstinctEffector.cs" />
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
+    <Compile Include="DefExtensions\MemeRestriction.cs" />
     <Compile Include="DefExtensions\MorphRestriction.cs" />
     <Compile Include="DefExtensions\MutagenicBuildupSourceSettings.cs" />
     <Compile Include="DefExtensions\MutagenExtension.cs" />
