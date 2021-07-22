@@ -8,9 +8,9 @@
         </requiredTraits>
         <stages>
             <li>
-                <label>jealous non morph</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <label>jealous non-morph</label>
+                <description>Other people are mutated and I'm not yet. It's not fair!</description>
+                <baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
