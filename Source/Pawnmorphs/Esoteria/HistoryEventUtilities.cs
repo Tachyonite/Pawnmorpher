@@ -148,5 +148,42 @@ namespace Pawnmorph
             return historyEvent; 
 
         }
+
+
+        /// <summary>
+        /// Gets the argument.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ev">The ev.</param>
+        /// <param name="label">The label.</param>
+        /// <returns></returns>
+        public static T GetArg<T>(this HistoryEvent ev, string label)
+        {
+            return ev.args.GetArg<T>(label);
+        }
+
+        /// <summary>
+        /// Tries to get the given argument.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ev">The ev.</param>
+        /// <param name="label">The label.</param>
+        /// <param name="val">The value.</param>
+        /// <returns></returns>
+        public static bool TryGetArg<T>(this HistoryEvent ev, string label, out T val)
+        {
+            return ev.args.TryGetArg(label, out val); 
+        }
+
+
+        /// <summary>
+        /// Gets the doer. the pawn the event pertains 
+        /// </summary>
+        /// <param name="ev">The ev.</param>
+        /// <returns></returns>
+        public static Pawn GetDoer( this HistoryEvent ev)
+        {
+            return ev.args.GetArg<Pawn>(HistoryEventArgsNames.Doer); 
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Pawnmorph.Thoughts.Precept
     /// <seealso cref="RimWorld.Thought_Situational" />
     public class Thought_Precept_VeneratedFormerHuman : Thought_Situational
     {
-        private const string ANIMAL_TAG = "ANIMAL";
+        private const string ANIMAL_TAG = "ANIMALKIND";
         private const string PAWN_LABEL = "PAWN";
 
         //Note if this becomes a performance issue cache string per pawnkind & pawn

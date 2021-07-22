@@ -1,9 +1,11 @@
 ﻿// PMThoughtUtilities.cs modified by Iron Wolf for Pawnmorph on 12/02/2019 9:48 AM
 // last updated 12/02/2019  9:48 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Thoughts.Precept;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -16,6 +18,48 @@ namespace Pawnmorph
     /// </summary>
     public static class PMThoughtUtilities
     {
+
+        /// <summary>
+        /// Creates the venerated animal memory, setting the venerated animal tag as required 
+        /// </summary>
+        /// <param name="def">The definition.</param>
+        /// <param name="animalDef">The animal definition.</param>
+        /// <param name="fromPrecept">From precept.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// def
+        /// or
+        /// animalDef
+        /// </exception>
+        /// <exception cref="ArgumentException">unable to convert {def.defName}'s thought to {nameof(MutationMemory_VeneratedAnimal)} - def</exception>
+        public static MutationMemory_VeneratedAnimal CreateVeneratedAnimalMemory(
+            [NotNull] ThoughtDef def, [NotNull] ThingDef animalDef, [CanBeNull] RimWorld.Precept fromPrecept)
+        {
+            if (def == null) throw new ArgumentNullException(nameof(def));
+            if (animalDef == null) throw new ArgumentNullException(nameof(animalDef));
+            try
+            {
+                MutationMemory_VeneratedAnimal mem;
+                if (fromPrecept == null)
+                {
+                    mem = (MutationMemory_VeneratedAnimal)ThoughtMaker.MakeThought(def);
+                }
+                else
+                {
+                    mem = (MutationMemory_VeneratedAnimal)ThoughtMaker.MakeThought(def, fromPrecept);
+                }
+
+                mem.veneratedAnimalLabel = animalDef.LabelCap;
+                return mem;
+            }
+            catch (InvalidCastException e)
+            {
+                throw new
+                    ArgumentException($"unable to convert {def.defName}'s thought to {nameof(MutationMemory_VeneratedAnimal)}",
+                                      nameof(def), e);
+            }
+        }
+
         /// <summary>
         ///     get the substitute thought for the given pawn
         /// </summary>
