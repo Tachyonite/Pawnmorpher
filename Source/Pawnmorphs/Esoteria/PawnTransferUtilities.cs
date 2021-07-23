@@ -70,11 +70,13 @@ namespace Pawnmorph
 
 
         [NotNull] private static readonly FieldInfo _ideoInternalFieldInfo;
-
+        [NotNull] private static readonly FieldInfo _ideoCertaintyField; 
         static PawnTransferUtilities()
         {
             _ideoInternalFieldInfo = typeof(Pawn_IdeoTracker).GetField("ideo", BindingFlags.NonPublic | BindingFlags.Instance);
+            _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("cetainty", BindingFlags.NonPublic | BindingFlags.Instance);
             if (_ideoInternalFieldInfo == null) Log.Error("unable to get internal field \"ideo\" from Pawn_IdeoTracker");
+            if(_ideoCertaintyField == null) Log.Error("unable to find certainty field in Pawn_IdeoTracker");
         }
 
         /// <summary>
@@ -309,6 +311,8 @@ namespace Pawnmorph
             //need to do this with reflection 
             //do not want to cause additional effects, just swap the values out from under the tracker with the minimum amount of changes 
             _ideoInternalFieldInfo.SetValue(transferIdeoT, originalIdeoT.Ideo);
+            _ideoCertaintyField.SetValue(transferIdeoT, originalIdeoT.Certainty); 
+
         }
 
         /// <summary>
