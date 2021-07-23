@@ -14,7 +14,7 @@
     </IssueDef>
 
     <IssueDef>
-        <defName>PM_Transformation</defName>
+        <defName>PM_Reversion</defName>
         <label>reversion</label>
         <iconPath>UI/Issues/MeatEating</iconPath>
         <!-- TODO repalce graphics -->
