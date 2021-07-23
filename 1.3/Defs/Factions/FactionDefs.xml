@@ -32,6 +32,10 @@
                 <li>Morphsilk</li>
             </thingDefs>
         </apparelStuffFilter>
+        <disallowedMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </disallowedMemes>
     </FactionDef>
 
 
@@ -136,6 +140,10 @@
             </li>
         </pawnGroupMakers>
         <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+        <disallowedMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </disallowedMemes>
     </FactionDef>
 
     <FactionDef ParentName="PawnmorpherEnclaveBase">
