@@ -27,7 +27,10 @@ namespace Pawnmorph.Thoughts
 
                     if (mutationOutlook == MutationOutlook.PrimalWish && maxStage < (int) MutationOutlook.PrimalWish)
                         mutationOutlook = MutationOutlook.Furry; //use the furry stage if the primal wish stage isn't there 
-
+                    if (mutationOutlook == MutationOutlook.Transhumanist && maxStage < (int) MutationOutlook.Transhumanist)
+                    {
+                        mutationOutlook = MutationOutlook.Neutral; 
+                    } 
                     return Mathf.Min(maxStage, (int) mutationOutlook);
                 }
                 catch(ArgumentNullException argEx)
