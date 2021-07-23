@@ -55,11 +55,6 @@ namespace Pawnmorph
             PostorderTreeInternal = TreeUtilities.Postorder<AnimalClassBase>(AnimalClassDefOf.Animal, c => c.Children);
             PreorderTreeInternal = TreeUtilities.Preorder<AnimalClassBase>(AnimalClassDefOf.Animal, c => c.Children).ToList();
 
-
-            string treeStr =
-                TreeUtilities.PrettyPrintTree<AnimalClassBase>(AnimalClassDefOf.Animal, a => a.Children, a => ((Def) a).defName);
-
-            Log.Message(treeStr); //print a pretty tree c: 
         }
 
         private static List<AnimalClassBase> PreorderTreeInternal { get; }
