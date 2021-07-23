@@ -1,3 +1,35 @@
 <Defs>
-	
+    <!-- 
+    <PreceptDef>
+        <defName>PM_MutationsAbhorrent</defName>
+        <issue>MeatEating</issue>
+        <label>abhorrent</label>
+        <description>Eating meat of any kind is deeply evil.</description>
+        <impact>High</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+        <exclusionTags>
+            <li>MeatEatingBadCannibalGood</li>
+            <li>InsectMeatEatingLoved</li>
+        </exclusionTags>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+        </conflictingMemes>
+        <associatedMemes>
+            <li>AnimalPersonhood</li>
+            <li>FleshPurity</li>
+        </associatedMemes>
+        <disallowHuntingCamps>true</disallowHuntingCamps>
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>AteMeat</eventDef>
+                <thought>AteMeat_Abhorrent</thought>
+            </li>
+            <li Class="PreceptComp_KnowsMemoryThought">
+                <eventDef>AteMeat</eventDef>
+                <thought>AteMeat_Know_Abhorrent</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+    -->
 </Defs>
