@@ -75,7 +75,7 @@ namespace Pawnmorph
         static PawnTransferUtilities()
         {
             _ideoInternalFieldInfo = typeof(Pawn_IdeoTracker).GetField("ideo", BindingFlags.NonPublic | BindingFlags.Instance);
-            _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("cetainty", BindingFlags.NonPublic | BindingFlags.Instance);
+            _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("certainty", BindingFlags.NonPublic | BindingFlags.Instance);
             if (_ideoInternalFieldInfo == null) Log.Error("unable to get internal field \"ideo\" from Pawn_IdeoTracker");
             if (_ideoCertaintyField == null) Log.Error("unable to find certainty field in Pawn_IdeoTracker");
         }
