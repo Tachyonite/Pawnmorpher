@@ -296,7 +296,7 @@ namespace Pawnmorph
         ///     or
         ///     transferPawn
         /// </exception>
-        public static void TransferIdeo([NotNull] Pawn original, [NotNull] Pawn transferPawn)
+        public static void TransferIdeo([NotNull] Pawn original, [NotNull] Pawn transferPawn, bool transferRoles=true)
         {
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
@@ -311,8 +311,43 @@ namespace Pawnmorph
             //need to do this with reflection 
             //do not want to cause additional effects, just swap the values out from under the tracker with the minimum amount of changes 
             _ideoInternalFieldInfo.SetValue(transferIdeoT, originalIdeoT.Ideo);
-            _ideoCertaintyField.SetValue(transferIdeoT, originalIdeoT.Certainty); 
+            _ideoCertaintyField.SetValue(transferIdeoT, originalIdeoT.Certainty);
 
+            if (transferRoles)
+            {
+                TransferIdeoRoles(original, transferPawn); 
+            }
+
+        }
+
+        /// <summary>
+        /// Transfers the ideo roles.
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transferPawn">The transfer pawn.</param>
+        public static void TransferIdeoRoles([NotNull] Pawn original, [NotNull] Pawn transferPawn)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
+
+            var ideoOT = original.ideo;
+            var ideoTT = transferPawn.ideo;
+
+            if (ideoOT?.Ideo == null || ideoTT?.Ideo == null) return; 
+
+            if (ideoOT.Ideo != ideoTT.Ideo)
+            {
+                Log.Warning($"trying to transfer roles from {original.Label} to {transferPawn.Label} but they do not have the same ideo!");
+                return;
+            }
+
+            Ideo ideo = ideoOT.Ideo;
+            var oRole =ideo.GetRole(original);
+            var tRole = ideo.GetRole(transferPawn);
+            if (oRole == tRole) return;
+            tRole?.Notify_PawnUnassigned(transferPawn);
+            oRole?.Notify_PawnUnassigned(original);
+            oRole?.Assign(transferPawn, false); 
         }
 
         /// <summary>
