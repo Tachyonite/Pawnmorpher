@@ -119,41 +119,7 @@
     </scenario>
   </ScenarioDef>
 
-  <FactionDef ParentName="PlayerFactionBase">
-    <defName>PawnmorpherPlayerColony</defName>
-    <label>Free Morphs</label>
-    <description>A colony of recently-escaped morphs.</description>
-    <isPlayer>true</isPlayer>
-    <basicMemberKind>Morph</basicMemberKind>
-    <pawnSingular>morph</pawnSingular>
-    <pawnsPlural>morphs</pawnsPlural>
-    <techLevel>Industrial</techLevel>
-    <backstoryFilters>
-      <li>
-        <categories>
-          <li>MutantWanderer</li>
-          <li>FreeMutant</li>
-          <li>Outlander</li>
-        </categories>
-      </li>
-    </backstoryFilters>
-    <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
-    <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
-    <factionNameMaker>NamerFactionOutlander</factionNameMaker>
-    <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
-    <geneticVariance>1</geneticVariance>
-    <startingResearchTags>
-      <li>ClassicStart</li>
-    </startingResearchTags>
-    <apparelStuffFilter>
-      <thingDefs>
-        <li>Synthread</li>
-        <li>Cloth</li>
-        <li>Morphsilk</li>
-      </thingDefs>
-    </apparelStuffFilter>
-  </FactionDef>
-
+ 
 
   <PawnKindDef Abstract="True" Name="PawnmorpherBasePlayerPawnKind">
     <race>Human</race>

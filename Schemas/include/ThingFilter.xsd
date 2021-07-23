@@ -1,0 +1,38 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="SimpleTypes.xsd" />
+    <xs:include schemaLocation="Enums.xsd" />
+    <xs:include schemaLocation="CommonComplex.xsd" />
+
+    <xs:complexType name="ThingFilter">
+        <xs:all>
+            <xs:element name="allowedHitPointsPercent" type="FloatRange" minOccurs="0" />
+            <xs:element name="allowedHitPointsConfigurable" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowedQualities" type="QualityRange" minOccurs="0" />
+            <xs:element name="allowedQualitiesConfigurable" type="xs:boolean" minOccurs="0" />
+            <xs:element name="customSummary" type="xs:string" minOccurs="0" />
+
+            <xs:element name="thingDefs" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="categories" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="tradeTagsToAllow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="tradeTagsToDisallow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="thingSetMakerTagsToAllow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="thingSetMakerTagsToDisallow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="disallowedCategories" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="specialFiltersToAllow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="specialFiltersToDisallow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="stuffCategoriesToAllow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="allowAllWhoCanMake" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="disallowWorsePreferability" type="FoodPreferability" minOccurs="0" />
+            <xs:element name="disallowInedibleByHuman" type="xs:boolean" minOccurs="0" />
+            <xs:element name="disallowNotEverStorable" type="xs:boolean" minOccurs="0" />
+
+            <xs:element name="allowWithComp" type="CSType" minOccurs="0" />
+            <xs:element name="disallowWithComp" type="CSType" minOccurs="0" />
+
+            <xs:element name="disallowCheaperThan" type="xs:float" minOccurs="0" />
+            <xs:element name="disallowedThingDefs" type="ListOfStrings" minOccurs="0" />
+
+        </xs:all>
+    </xs:complexType>
+</xs:schema>
