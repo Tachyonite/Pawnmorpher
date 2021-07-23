@@ -70,13 +70,14 @@ namespace Pawnmorph
 
 
         [NotNull] private static readonly FieldInfo _ideoInternalFieldInfo;
-        [NotNull] private static readonly FieldInfo _ideoCertaintyField; 
+        [NotNull] private static readonly FieldInfo _ideoCertaintyField;
+
         static PawnTransferUtilities()
         {
             _ideoInternalFieldInfo = typeof(Pawn_IdeoTracker).GetField("ideo", BindingFlags.NonPublic | BindingFlags.Instance);
             _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("cetainty", BindingFlags.NonPublic | BindingFlags.Instance);
             if (_ideoInternalFieldInfo == null) Log.Error("unable to get internal field \"ideo\" from Pawn_IdeoTracker");
-            if(_ideoCertaintyField == null) Log.Error("unable to find certainty field in Pawn_IdeoTracker");
+            if (_ideoCertaintyField == null) Log.Error("unable to find certainty field in Pawn_IdeoTracker");
         }
 
         /// <summary>
@@ -291,12 +292,13 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="original">The original.</param>
         /// <param name="transferPawn">The transfer pawn.</param>
+        /// <param name="transferRoles">if set to <c>true</c> [transfer roles].</param>
         /// <exception cref="ArgumentNullException">
         ///     original
         ///     or
         ///     transferPawn
         /// </exception>
-        public static void TransferIdeo([NotNull] Pawn original, [NotNull] Pawn transferPawn, bool transferRoles=true)
+        public static void TransferIdeo([NotNull] Pawn original, [NotNull] Pawn transferPawn, bool transferRoles = true)
         {
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
@@ -313,16 +315,14 @@ namespace Pawnmorph
             _ideoInternalFieldInfo.SetValue(transferIdeoT, originalIdeoT.Ideo);
             _ideoCertaintyField.SetValue(transferIdeoT, originalIdeoT.Certainty);
 
-            if (transferRoles)
-            {
-                TransferIdeoRoles(original, transferPawn); 
-            }
-
+            if (transferRoles) TransferIdeoRoles(original, transferPawn);
         }
 
         /// <summary>
-        /// Transfers the ideo roles.
+        ///     Transfers the ideo roles from the original pawn and transfer pawn
         /// </summary>
+        /// transfers ideology roles from the original pawn onto the transfer pawn 
+        /// they must have the same ideology to begin with 
         /// <param name="original">The original.</param>
         /// <param name="transferPawn">The transfer pawn.</param>
         public static void TransferIdeoRoles([NotNull] Pawn original, [NotNull] Pawn transferPawn)
@@ -330,10 +330,10 @@ namespace Pawnmorph
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
 
-            var ideoOT = original.ideo;
-            var ideoTT = transferPawn.ideo;
+            Pawn_IdeoTracker ideoOT = original.ideo;
+            Pawn_IdeoTracker ideoTT = transferPawn.ideo;
 
-            if (ideoOT?.Ideo == null || ideoTT?.Ideo == null) return; 
+            if (ideoOT?.Ideo == null || ideoTT?.Ideo == null) return;
 
             if (ideoOT.Ideo != ideoTT.Ideo)
             {
@@ -342,12 +342,12 @@ namespace Pawnmorph
             }
 
             Ideo ideo = ideoOT.Ideo;
-            var oRole =ideo.GetRole(original);
-            var tRole = ideo.GetRole(transferPawn);
+            Precept_Role oRole = ideo.GetRole(original);
+            Precept_Role tRole = ideo.GetRole(transferPawn);
             if (oRole == tRole) return;
             tRole?.Notify_PawnUnassigned(transferPawn);
             oRole?.Notify_PawnUnassigned(original);
-            oRole?.Assign(transferPawn, false); 
+            oRole?.Assign(transferPawn, false);
         }
 
         /// <summary>
