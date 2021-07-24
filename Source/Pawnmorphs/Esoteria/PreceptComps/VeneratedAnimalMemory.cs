@@ -14,10 +14,13 @@ namespace Pawnmorph.PreceptComps
     ///     precept comp for giving a thought based on a venerated animal mutation
     /// </summary>
     /// <seealso cref="RimWorld.PreceptComp" />
-    public class VeneratedAnimalMutationThought : PreceptComp
+    public class VeneratedAnimalMemory : PreceptComp
     {
 
-
+        /// <summary>
+        /// The history event to look for
+        /// </summary>
+        public HistoryEventDef historyEvent; 
 
         /// <summary>
         ///     The thought definition to give
@@ -34,7 +37,10 @@ namespace Pawnmorph.PreceptComps
             foreach (string configError in base.ConfigErrors(parent)) yield return configError;
 
             if (thoughtDef == null) yield return "no thought def set";
+            if (historyEvent == null) yield return "no historyEvent set";
         }
+
+
 
         /// <summary>
         /// called when a pawn with an ideo with the given precept takes an action or has an action done to them 
@@ -47,7 +53,7 @@ namespace Pawnmorph.PreceptComps
             base.Notify_MemberTookAction(ev, precept, canApplySelfTookThoughts);
             if (!canApplySelfTookThoughts) return; 
 
-            if (ev.def != PMHistoryEventDefOf.MutationGained && ev.def != PMHistoryEventDefOf.MutationLost) return;
+            if (ev.def != historyEvent) return;
 
 
             Pawn dooer = ev.GetDoer();

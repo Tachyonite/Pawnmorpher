@@ -573,7 +573,7 @@
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
     <Compile Include="PreceptComps\SelfTookMemoryThought_MemeOverride.cs" />
-    <Compile Include="PreceptComps\VeneratedAnimalMutationThought.cs" />
+    <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />
     <Compile Include="RoleRequirement\BaseRoleRequirement.cs" />
