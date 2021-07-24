@@ -4,7 +4,7 @@
         <defName>PM_MutationsAbhorrent</defName>
         <issue>PM_Mutation</issue>
         <label>abhorrent</label>
-        <description>TODO</description>
+        <description>The physical alteration of the human form via mutagens is a digusting practice that violates the body and invites unwanted animal impulses.</description>
         <impact>Medium</impact>
         <displayOrderInIssue>20</displayOrderInIssue>
         <displayOrderInImpact>1000</displayOrderInImpact>
@@ -51,7 +51,18 @@
         <defName>PM_MutationsDisliked</defName>
         <issue>PM_Mutation</issue>
         <label>disliked</label>
-        <description>TODO</description>
+        <description>People should not alter their body with dangerous and untested mutagens that cannot be easily reversed.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+    </PreceptDef>
+	
+    <PreceptDef>
+        <defName>PM_MutationsDisliked</defName>
+        <issue>PM_Mutation</issue>
+        <label>neutral</label>
+        <description>Alteration of the body via mutagens is a part of life on this world. Those affected by it should be neither hated nor praised. Anyone choosing to alter their form is doing so at their own risk.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
         <impact>Medium</impact>
         <displayOrderInIssue>20</displayOrderInIssue>
@@ -61,8 +72,8 @@
     <PreceptDef>
         <defName>PM_MutationsLoved</defName>
         <issue>PM_Mutation</issue>
-        <label>loved</label>
-        <description>TODO</description>
+        <label>desirable</label>
+        <description>The human form is limiting, and the power of mutagens will enable people to advance themselves and become who they want to be.</description>
         <impact>Medium</impact>
         <displayOrderInIssue>20</displayOrderInIssue>
         <displayOrderInImpact>1000</displayOrderInImpact>
@@ -100,7 +111,7 @@
     <PreceptDef ParentName="PM_TfPreceptBase">
         <defName>PM_TransformationAbhorrent</defName>
         <label>abhorrent</label>
-        <description>TODO</description>
+        <description>Changing a person into an animal is a crime against nature and must be avoided at all costs. It is a truly despicable act that violates several human rights.</description>
         <conflictingMemes>
             <li>NaturePrimacy</li>
         </conflictingMemes>
@@ -121,17 +132,25 @@
             </li>
         </comps>
     </PreceptDef>
+	
     <PreceptDef ParentName="PM_TfPreceptBase">
         <defName>PM_TransformationDisliked</defName>
         <label>disliked</label>
-        <description>TODO</description>
+        <description>A person becoming an animal is undesirable and is a violation of bodily autonomy.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+    </PreceptDef>
+	
+    <PreceptDef ParentName="PM_TfPreceptBase">
+        <defName>PM_TransformationDisliked</defName>
+        <label>neutral</label>
+        <description>There are many trials on this world, and becoming an animal via mutagens is one of them. We should neither object to or venerate those whom this happens to.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
     </PreceptDef>
 
 
     <PreceptDef ParentName="PM_TfPreceptBase">
         <defName>PM_TransformationLoved</defName>
-        <label>loved</label>
+        <label>desirable</label>
         <description>TODO</description>
         <conflictingMemes>
             <li>FleshPurity</li>
