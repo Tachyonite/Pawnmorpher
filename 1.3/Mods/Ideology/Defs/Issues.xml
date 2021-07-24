@@ -3,20 +3,17 @@
         <defName>PM_Mutation</defName>
         <label>mutation</label>
         <iconPath>UI/Precepts/MutationPrecept</iconPath>
-        <!-- TODO repalce graphics -->
     </IssueDef>
 
     <IssueDef>
         <defName>PM_Transformation</defName>
         <label>transformation</label>
         <iconPath>UI/Precepts/TransformationPrecept</iconPath>
-        <!-- TODO repalce graphics -->
     </IssueDef>
 
     <IssueDef>
         <defName>PM_Reversion</defName>
         <label>reversion</label>
         <iconPath>UI/Precepts/ReversionPrecept</iconPath>
-        <!-- TODO repalce graphics -->
     </IssueDef>
 </Defs>
