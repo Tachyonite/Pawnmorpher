@@ -1,0 +1,68 @@
+<Defs>
+    <ThoughtDef Name="PM_Precept_FormerHumanBase" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Precept.PWorker_FormerHuman</workerClass>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanBase">
+        <defName>PM_Precept_SapientAnimalNakedDisliked</defName>
+        <stages>
+            <li>
+                <label>naked</label>
+                <description>I know I'm covered in fur but...c'mon!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <!--  you can now add varients for different sapient levels like in the example -->
+            <li>
+                <label>naked</label>
+                <description>It would help if I could put something on, even just to pretend...</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+            <li>
+                <label>naked</label>
+                <description>Why do I feel weird out and about? Oh! Clothes!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>naked</label>
+                <description>There's no other option, right?</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>naked</label>
+                <description>Clothes?</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanBase">
+        <defName>PM_Precept_SapientAnimalNakedLiked</defName>
+        <stages>
+            <li>
+                <label>happily nude</label>
+                <description>Eh, I'm covered in fur, I don't care. This is more natural!</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>happily nude</label>
+                <description>Nothin' between me and the world, it's just right.</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+            <li>
+                <label>happily nude</label>
+                <description>There's no other option right?</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>happily nude</label>
+                <description>Why would they want to put stuff over their fur...</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>happily nude</label>
+                <description>Clothes?</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

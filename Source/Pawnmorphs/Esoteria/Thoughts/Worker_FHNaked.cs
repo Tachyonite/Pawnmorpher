@@ -26,6 +26,9 @@ namespace Pawnmorph.Thoughts
             //don't check apparel because rimworld thinks animals are wearing pants 
             SapienceLevel? st = p.GetQuantizedSapienceLevel(); //don't check if they're  
             if (st == null || p.GetSapienceState()?.StateDef != SapienceStateDefOf.FormerHuman) return false;
+
+            if (ModsConfig.IdeologyActive) return false; 
+
             int idx = Mathf.Min(def.stages.Count - 1,
                                 (int) st.Value); //make sure it's a valid index for the stage array in the def 
             return ThoughtState.ActiveAtStage(idx);

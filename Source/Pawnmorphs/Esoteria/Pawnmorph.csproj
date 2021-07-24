@@ -480,6 +480,7 @@
     <Compile Include="HPatches\ThingOwnerUtilityPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\ThoughtWorkerPatches.cs" />
     <Compile Include="HPatches\ToilsLayDownPatches.cs" />
     <Compile Include="HPatches\VerbTrackerPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
@@ -758,6 +759,7 @@
     <Compile Include="Thoughts\Memory_FactionObservation.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\Precept\MutationMemory_VeneratedAnimal.cs" />
+    <Compile Include="Thoughts\Precept\PWorker_FormerHuman.cs" />
     <Compile Include="Thoughts\ThoughtLabels.cs" />
     <Compile Include="Thoughts\Precept\Thought_Precept_VeneratedFormerHuman.cs" />
     <Compile Include="Thoughts\Precept\Worker_VeneratedFormerHuman.cs" />

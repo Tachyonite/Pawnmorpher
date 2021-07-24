@@ -1,0 +1,68 @@
+<Defs>
+    <ThingDef ParentName="TFItemBase">
+        <defName>Glowvine</defName>
+        <label>glowvine seedpod</label>
+        <description>TODO.</description>
+        <graphicData>
+            <texPath>Plants/Items/GlowvineFruit</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>TFMilk</chemical>
+				<addictiveness>0.010</addictiveness>
+				<minToleranceToAddict>0.15</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<thingCategories Inherit="False">
+			<li>PlantMatter</li>
+			<li>Drugs</li>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>StabiliserLow</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+			<foodType>Seed</foodType>
+			<preferability>NeverForNutrition</preferability>
+		</ingestible>
+		<statBases Inherit="False">
+			<MarketValue>7</MarketValue>
+			<Mass>0.045</Mass>
+			<Flammability>0.2</Flammability>
+			<Nutrition>0.0</Nutrition>
+			<MutaniteConcentration>0.012</MutaniteConcentration>
+		</statBases>
+	</ThingDef>
+	
+	<HediffDef>
+		<defName>StabiliserLow</defName>
+		<description>This pawn genome is slightly stabilised against further mutations. This lasts for a day.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>TODO</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>-0.5</MutagenSensitivity>
+					<TransformationSensitivity>-0.5</TransformationSensitivity>
+					<MutationHaltChance>0.25</MutationHaltChance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

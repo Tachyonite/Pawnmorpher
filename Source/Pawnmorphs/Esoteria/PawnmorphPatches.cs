@@ -123,8 +123,8 @@ namespace Pawnmorph
                 Log.Error($"Pawnmorpher cannot preform debugging patches! caught {e.GetType().Name}\n{e}");
             }
 
-            ConversionUtilityPatches.PreformPatches(harmonyInstance); 
-
+            ConversionUtilityPatches.PreformPatches(harmonyInstance);
+            ThoughtWorkerPatches.DoPatches(harmonyInstance); 
         }
 
         private static void PatchMods([NotNull] Harmony harmonyInstance)

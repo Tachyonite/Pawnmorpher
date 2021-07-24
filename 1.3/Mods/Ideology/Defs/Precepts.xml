@@ -59,12 +59,13 @@
     </PreceptDef>
 	
     <PreceptDef>
-        <defName>PM_MutationsDisliked</defName>
+        <defName>PM_MutationsNeutral</defName>
         <issue>PM_Mutation</issue>
         <label>neutral</label>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
         <description>Alteration of the body via mutagens is a part of life on this world. Those affected by it should be neither hated nor praised. Anyone choosing to alter their form is doing so at their own risk.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
-        <impact>Medium</impact>
+        <impact>Low</impact>
         <displayOrderInIssue>20</displayOrderInIssue>
         <displayOrderInImpact>1000</displayOrderInImpact>
     </PreceptDef>
@@ -141,8 +142,10 @@
     </PreceptDef>
 	
     <PreceptDef ParentName="PM_TfPreceptBase">
-        <defName>PM_TransformationDisliked</defName>
+        <defName>PM_TransformationNeutral</defName>
         <label>neutral</label>
+        <impact>Low</impact>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
         <description>There are many trials on this world, and becoming an animal via mutagens is one of them. We should neither object to or venerate those whom this happens to.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
     </PreceptDef>
@@ -174,6 +177,8 @@
     <PreceptDef ParentName="PM_ReversionPreceptBase">
         <defName>PM_ReversionNeutral</defName>
         <label>neutral</label>
+        <impact>Low</impact>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
         <description>Reverting a morph or animal back to a human should be done when possible, but we shouldn't go to any great lengths to do.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
     </PreceptDef>

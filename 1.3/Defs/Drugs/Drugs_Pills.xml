@@ -237,7 +237,7 @@
 			<workSkill>Intellectual</workSkill>
 		</recipeMaker>
 		<costList>
-			<MechaniteSlurry>1</MechaniteSlurry>
+			<Antigen>1</Antigen>
 			<Neutroamine>2</Neutroamine>
 		</costList>
 		<comps>
@@ -301,7 +301,7 @@
 		<label>mutapill, intelliboost</label>
 		<description>A pill to help former humans regain their sapience very slowly. They do not revert them though.</description>
 		<graphicData>
-			<texPath>Things/Item/Drug/Pillbox_1</texPath>
+			<texPath>Things/Item/Drug/intelliboost</texPath>
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
@@ -323,7 +323,8 @@
 			</recipeUsers>
 		</recipeMaker>
 		<costList>
-			<MechaniteSlurry>1</MechaniteSlurry>
+			<Antigen>1</Antigen>
+			<Neutroamine>2</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -399,7 +400,7 @@
         <stages>
 			<li>
 				<statOffsets>
-                    <SapienceRecoverFactor>0.1</SapienceRecoverFactor>
+                    <SapienceRecoverFactor>0.2</SapienceRecoverFactor>
                 </statOffsets>
 			</li>
         </stages>
