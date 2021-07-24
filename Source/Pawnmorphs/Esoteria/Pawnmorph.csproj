@@ -480,6 +480,7 @@
     <Compile Include="HPatches\ThingOwnerUtilityPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\ThoughtWorkerPatches.cs" />
     <Compile Include="HPatches\ToilsLayDownPatches.cs" />
     <Compile Include="HPatches\VerbTrackerPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
