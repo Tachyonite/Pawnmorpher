@@ -1,35 +1,196 @@
-<Defs>
-    <!-- 
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/PreceptDef.xsd">
+    <!-- Mutations  -->
     <PreceptDef>
         <defName>PM_MutationsAbhorrent</defName>
-        <issue>MeatEating</issue>
+        <issue>PM_Mutation</issue>
         <label>abhorrent</label>
-        <description>Eating meat of any kind is deeply evil.</description>
-        <impact>High</impact>
+        <description>TODO</description>
+        <impact>Medium</impact>
         <displayOrderInIssue>20</displayOrderInIssue>
         <displayOrderInImpact>1000</displayOrderInImpact>
-        <exclusionTags>
-            <li>MeatEatingBadCannibalGood</li>
-            <li>InsectMeatEatingLoved</li>
-        </exclusionTags>
-        <conflictingMemes>
-            <li>HumanPrimacy</li>
-        </conflictingMemes>
         <associatedMemes>
-            <li>AnimalPersonhood</li>
+            <li>HumanPrimacy</li>
             <li>FleshPurity</li>
         </associatedMemes>
-        <disallowHuntingCamps>true</disallowHuntingCamps>
         <comps>
-            <li Class="PreceptComp_SelfTookMemoryThought">
-                <eventDef>AteMeat</eventDef>
-                <thought>AteMeat_Abhorrent</thought>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>MutationGained</eventDef>
+                <thought>PM_FleshPuristMutated</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyMutated</thought>
+                    </li>
+                </entries>
             </li>
-            <li Class="PreceptComp_KnowsMemoryThought">
-                <eventDef>AteMeat</eventDef>
-                <thought>AteMeat_Know_Abhorrent</thought>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>Transformed</eventDef>
+                <thought>PM_FleshPuristMorphed</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_NaturePrimacyMorphed</thought>
+                    </li>
+                </entries>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>Reverted</eventDef>
+                <thought>PM_FleshPuristMorphedReverted</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyMorphedReverted</thought>
+                    </li>
+                </entries>
             </li>
         </comps>
     </PreceptDef>
-    -->
+
+
+    <PreceptDef>
+        <defName>PM_MutationsDisliked</defName>
+        <issue>PM_Mutation</issue>
+        <label>disliked</label>
+        <description>TODO</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+    </PreceptDef>
+
+    <PreceptDef>
+        <defName>PM_MutationsLoved</defName>
+        <issue>PM_Mutation</issue>
+        <label>loved</label>
+        <description>TODO</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+        <associatedMemes>
+            <li>NaturePrimacy</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>MutationGained</eventDef>
+                <thought>PM_NaturePrimacyMutated</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>Transformed</eventDef>
+                <thought>PM_NaturePrimacyMorphed</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>Reverted</eventDef>
+                <thought>PM_NaturePrimacyMorphedReverted</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+    <!-- Transformation -->
+
+    <PreceptDef Name="PM_TfPreceptBase" Abstract="true">
+        <issue>PM_Transformation</issue>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_TfPreceptBase">
+        <defName>PM_TransformationAbhorrent</defName>
+        <label>abhorrent</label>
+        <description>TODO</description>
+        <conflictingMemes>
+            <li>NaturePrimacy</li>
+        </conflictingMemes>
+        <associatedMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </associatedMemes>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>TransformedIntoFormerHuman</eventDef>
+                <thought>PM_FleshPuristTransformed</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyTransformed</thought>
+                    </li>
+                </entries>
+            </li>
+        </comps>
+    </PreceptDef>
+    <PreceptDef ParentName="PM_TfPreceptBase">
+        <defName>PM_TransformationDisliked</defName>
+        <label>disliked</label>
+        <description>TODO</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+    </PreceptDef>
+
+
+    <PreceptDef ParentName="PM_TfPreceptBase">
+        <defName>PM_TransformationLoved</defName>
+        <label>loved</label>
+        <description>TODO</description>
+        <conflictingMemes>
+            <li>FleshPurity</li>
+            <li>HumanPrimacy</li>
+            <li>Transhumanist</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>TransformedIntoFormerHuman</eventDef>
+                <thought>PM_NaturePrimacyTransformed</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+    <!-- Reversion -->
+
+    <PreceptDef Name="PM_ReversionPreceptBase" Abstract="true">
+        <issue>PM_Reversion</issue>
+        <impact>Medium</impact>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_ReversionPreceptBase">
+        <defName>PM_ReversionNeutral</defName>
+        <label>neutral</label>
+        <description>TODO</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_ReversionPreceptBase">
+        <defName>PM_ReversionLiked</defName>
+        <label>liked</label>
+        <description>TODO</description>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>TransformedFromFormerHuman</eventDef>
+                <thought>PM_FleshPuristTransformed</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyReverted</thought>
+                    </li>
+                </entries>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_ReversionPreceptBase">
+        <defName>PM_ReversionHated</defName>
+        <label>disliked</label>
+        <description>TODO</description>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+            <li>Transhumanist</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>TransformedFromFormerHuman</eventDef>
+                <thought>PM_NaturePrimacyMorphedReverted</thought>
+            </li>
+        </comps>
+    </PreceptDef>
 </Defs>

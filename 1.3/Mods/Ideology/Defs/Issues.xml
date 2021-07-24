@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/IssueDef.xsd">
     <IssueDef>
-        <defName>PM_MutatioNIssue</defName>
+        <defName>PM_Mutation</defName>
         <label>mutation</label>
         <iconPath>UI/Issues/MeatEating</iconPath>
         <!-- TODO repalce graphics -->
