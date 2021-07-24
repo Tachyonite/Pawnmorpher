@@ -294,6 +294,43 @@
 			</li>
 		</comps>
 	</ThingDef>
+	
+	<!--Sapience Pills-->
+	<ThingDef ParentName="PM_PillBase">
+		<defName>SapiencePill</defName>
+		<label>mutapill, intelliboost</label>
+		<description>A pill to help former humans regain their sapience very slowly. They do not revert them though.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Pillbox_1</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>SapiencePillSapienceIncrease</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>Reversion</researchPrerequisite>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
 
 	<HediffDef>
 		<defName>StabiliserHigh</defName>
@@ -351,4 +388,26 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
+    <HediffDef>
+        <defName>SapiencePillSapienceIncrease</defName>
+        <label>humanizing</label>
+        <description>[PAWN_nameDef]'s sapience is slowly increasing to a human level, thanks to the administration of intelliboost pills.</description>
+        <hediffClass>Pawnmorph.Hediffs.SimpleDescriptiveHediff</hediffClass>
+        <minSeverity>0</minSeverity>
+        <initialSeverity>1</initialSeverity>
+        <stages>
+			<li>
+				<statOffsets>
+                    <SapienceRecoverFactor>0.1</SapienceRecoverFactor>
+                </statOffsets>
+			</li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.07</severityPerDay>
+            </li>
+        </comps>
+    </HediffDef>
+	
 </Defs>
