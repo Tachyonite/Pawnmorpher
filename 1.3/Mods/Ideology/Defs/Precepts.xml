@@ -59,7 +59,7 @@
     </PreceptDef>
 	
     <PreceptDef>
-        <defName>PM_MutationsDisliked</defName>
+        <defName>PM_MutationsNeutral</defName>
         <issue>PM_Mutation</issue>
         <label>neutral</label>
         <description>Alteration of the body via mutagens is a part of life on this world. Those affected by it should be neither hated nor praised. Anyone choosing to alter their form is doing so at their own risk.</description>
@@ -141,7 +141,7 @@
     </PreceptDef>
 	
     <PreceptDef ParentName="PM_TfPreceptBase">
-        <defName>PM_TransformationDisliked</defName>
+        <defName>PM_TransformationNeutral</defName>
         <label>neutral</label>
         <description>There are many trials on this world, and becoming an animal via mutagens is one of them. We should neither object to or venerate those whom this happens to.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
