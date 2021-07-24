@@ -108,4 +108,63 @@
             </li>
         </modExtensions>
     </ThingDef>
+	
+	<ThingDef ParentName="PlantBase">
+		<defName>Plant_Glowvine</defName>
+		<label>glowvine</label>
+		<description>A mutagen-infused plant that sprouts odd blue bulbs.</description>
+		<statBases>
+			<MaxHitPoints>85</MaxHitPoints>
+			<Beauty>4</Beauty>
+			<Nutrition>0.18</Nutrition>
+		</statBases>
+		<graphicData>
+			<texPath>Plants/Glowvine</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+		</graphicData>
+		<selectable>true</selectable>
+		<neverMultiSelect>false</neverMultiSelect>
+		<fillPercent>0.20</fillPercent>
+		<pathCost>30</pathCost>
+		<plant>
+			<fertilityMin>0.5</fertilityMin>
+			<fertilitySensitivity>0.5</fertilitySensitivity>
+			<growDays>6</growDays>
+			<leaflessGraphicPath>Plants/Leafless/Glowvine</leaflessGraphicPath>
+			<immatureGraphicPath>Plants/Leafless/Glowvine</immatureGraphicPath>
+			<harvestYield>10</harvestYield>
+			<harvestWork>250</harvestWork>
+			<harvestTag>Standard</harvestTag>
+			<wildClusterRadius>5</wildClusterRadius>
+			<wildClusterWeight>250</wildClusterWeight>
+			<visualSizeRange>0.95~1.7</visualSizeRange>
+			<topWindExposure>0.3</topWindExposure>
+			<wildOrder>2</wildOrder>
+		</plant>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				1 is a high priority so this plant take precidence over Chaobulb 
+				-->
+				<priority>1</priority>
+				<!-- if true the source plant must be something that can be havested -->
+				<mustBeHarvestable>true</mustBeHarvestable>
+
+				<sourcePlantFilter>
+					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
+					<filterList> <!-- glowvine will only come from healroot  -->
+						<li>Plant_Healroot</li>
+						<li>Plant_HealrootWild</li>
+					</filterList>
+				</sourcePlantFilter>
+
+				<!-- 
+					other fields not used here 
+					mustBeTree - source plant must be a tree 
+				-->
+			</li>
+		</modExtensions>
+	</ThingDef>
 </Defs>
