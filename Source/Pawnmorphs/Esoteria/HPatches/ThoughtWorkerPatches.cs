@@ -47,6 +47,7 @@ namespace Pawnmorph.HPatches
         }
 
 
+        [NotNull]
         static IEnumerable<Type> AllPreceptNudityThoughts
         {
             get
@@ -57,10 +58,11 @@ namespace Pawnmorph.HPatches
                 var precepts = DefDatabase<PreceptDef>.AllDefs.Where(p => p.issue == maleNudity || p.issue == femaleNudity);
                 var comps = precepts.SelectMany(p => p.comps.OfType<PreceptComp_SituationalThought>());
                 var types = comps.Select(t => t.thought.workerClass);
-                return types; 
+                return types.Distinct(); 
             }
         }
 
+        [NotNull]
 
         static IEnumerable<MethodInfo> AllNormalMethods
         {
@@ -72,7 +74,7 @@ namespace Pawnmorph.HPatches
             }
         }
 
-
+        [NotNull]
         static IEnumerable<MethodInfo> AllSocialMethods
         {
             get
@@ -84,14 +86,22 @@ namespace Pawnmorph.HPatches
         }
 
 
-        static void DisableFormerHumanThoughtNormal(Pawn p, ref bool __result)
+        static void DisableFormerHumanThoughtNormal(Pawn p, ref ThoughtState __result)
         {
-            __result = __result && !p.IsFormerHuman(); 
+            if (__result.Active && p.IsFormerHuman())
+            {
+                __result = false; 
+            }
+
+            
         }
 
-        static void DisableFormerHumanThoughtSocial(Pawn p, Pawn otherPawn, ref bool __result)
+        static void DisableFormerHumanThoughtSocial(Pawn p, Pawn otherPawn, ref ThoughtState __result)
         {
-            __result = __result && !otherPawn.IsFormerHuman();
+            if (__result.Active && otherPawn?.IsFormerHuman() == true)
+            {
+                __result = false; 
+            }
         }
 
     }

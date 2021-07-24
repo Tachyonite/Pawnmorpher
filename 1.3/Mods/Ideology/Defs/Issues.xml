@@ -16,4 +16,11 @@
         <label>reversion</label>
         <iconPath>UI/Precepts/ReversionPrecept</iconPath>
     </IssueDef>
+
+    <IssueDef>
+        <defName>PM_FormerHuman_Nudity</defName>
+        <label>former human clothing</label>
+        <iconPath>UI/Issues/Nudity_Male</iconPath>
+    </IssueDef>
+
 </Defs>
