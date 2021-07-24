@@ -151,7 +151,7 @@
     <PreceptDef ParentName="PM_TfPreceptBase">
         <defName>PM_TransformationLoved</defName>
         <label>desirable</label>
-        <description>TODO</description>
+        <description>Nature claims those whom it needs. With the power of mutagens, we are able to become one with nature by becoming animals themselves.</description>
         <conflictingMemes>
             <li>FleshPurity</li>
             <li>HumanPrimacy</li>
@@ -174,14 +174,14 @@
     <PreceptDef ParentName="PM_ReversionPreceptBase">
         <defName>PM_ReversionNeutral</defName>
         <label>neutral</label>
-        <description>TODO</description>
+        <description>Reverting a morph or animal back to a human should be done when possible, but we shouldn't go to any great lengths to do.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
     </PreceptDef>
 
     <PreceptDef ParentName="PM_ReversionPreceptBase">
         <defName>PM_ReversionLiked</defName>
         <label>liked</label>
-        <description>TODO</description>
+        <description>Reverting people is a noble goal and one we should take extra measures to do when possible.</description>
         <comps>
             <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
                 <eventDef>TransformedFromFormerHuman</eventDef>
@@ -199,7 +199,7 @@
     <PreceptDef ParentName="PM_ReversionPreceptBase">
         <defName>PM_ReversionHated</defName>
         <label>disliked</label>
-        <description>TODO</description>
+        <description>Reversion goes against the will of nature, we should let the chips fall where they may.</description>
         <conflictingMemes>
             <li>HumanPrimacy</li>
             <li>FleshPurity</li>
