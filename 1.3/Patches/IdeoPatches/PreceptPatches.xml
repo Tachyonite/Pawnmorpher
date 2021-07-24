@@ -4,7 +4,6 @@
             <li>Ideology</li>
         </mods>
         <match Class="PatchOperationSequence">
-            <success>Always</success>
             <operations>
                 <li Class="PatchOperationAdd">
                     <xpath>/Defs/PreceptDef[defName="AnimalVenerated"]/comps</xpath>
@@ -25,6 +24,20 @@
                             <thoughtDef>PM_VeneratedAnimalReverted</thoughtDef>
                             <historyEvent>TransformedFromFormerHuman</historyEvent>
                         </li>
+                    </value>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/MemeDef[defName="Transhumanist" or defName="FleshPurity"]/disagreeableTraits</xpath>
+                    <value>
+                        <li>MutationAffinity</li>
+                    </value>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/MemeDef[defName="HumanPrimacy"]</xpath>
+                    <value>
+                        <disagreeableTraits>
+                            <li>MutationAffinity</li>
+                        </disagreeableTraits>
                     </value>
                 </li>
             </operations>
