@@ -24,14 +24,9 @@
 		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>FullRandomTF</li>
-					</hediffDefs>
-					<hediffDefsComplete>
-						<li>FullRandomTFAnyOutcome</li>
-					</hediffDefsComplete>
-					<severity>1</severity>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>StabiliserLow</hediffDef>
+					<severity>1.0</severity>
 				</li>
 			</outcomeDoers>
 			<foodType>Seed</foodType>
@@ -45,4 +40,29 @@
 			<MutaniteConcentration>0.012</MutaniteConcentration>
 		</statBases>
 	</ThingDef>
+	
+	<HediffDef>
+		<defName>StabiliserLow</defName>
+		<description>This pawn genome is slightly stabilised against further mutations. This lasts for a day.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>TODO</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>-0.5</MutagenSensitivity>
+					<TransformationSensitivity>-0.5</TransformationSensitivity>
+					<MutationHaltChance>0.25</MutationHaltChance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
 </Defs>
