@@ -547,6 +547,22 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString());
         }
 
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        static void GetHistoryEventInfo()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (HistoryEventDef historyEventDef in HistoryEventUtilities.AllCustomEvents)
+            {
+                var count = Find.HistoryEventsManager.GetRecentCountWithinTicks(historyEventDef, int.MaxValue);
+                builder.AppendLine($"{historyEventDef.defName}:{count}"); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
+
         /// <summary>Prints out all MutationDef's labels and descriptions (Including stages).</summary>
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void LogAllMutationLabelsAndDescriptions()
