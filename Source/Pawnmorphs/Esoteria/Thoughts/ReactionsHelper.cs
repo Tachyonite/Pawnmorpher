@@ -100,11 +100,13 @@ namespace Pawnmorph.Thoughts
         /// <summary>
         /// call when the original pawn transforms into the transformedPawn
         /// </summary>
+        /// note: this does nothing if ideology is active, instead reaction thoughts are given by precepts instead 
         /// <param name="original">The original.</param>
         /// <param name="transformedPawn">The transformed pawn.</param>
         /// <param name="reactionStatus">The reaction status.</param>
         public static void OnPawnTransforms(Pawn original, Pawn transformedPawn, FormerHumanReactionStatus reactionStatus = FormerHumanReactionStatus.Wild)
         {
+            if (ModsConfig.IdeologyActive) return; 
             HandleColonistReactions(original, transformedPawn, reactionStatus, EventType.Transformation);
 
             HandleRelatedPawnsReaction(original, transformedPawn, EventType.Transformation);
@@ -115,11 +117,13 @@ namespace Pawnmorph.Thoughts
         /// <summary>
         /// call when a pawn is reverted from an animal to handle giving the correct thoughts to colonists
         /// </summary>
+        /// note: this does nothing if ideology is active, instead reaction thoughts are given by precepts instead 
         /// <param name="originalPawn">The original pawn.</param>
         /// <param name="animalPawn">The animal pawn.</param>
         /// <param name="reactionStatus">The reaction status of the original pawn</param>
         public static void OnPawnReverted(Pawn originalPawn, Pawn animalPawn, FormerHumanReactionStatus reactionStatus = FormerHumanReactionStatus.Wild)
         {
+            if (ModsConfig.IdeologyActive) return;
             HandleColonistReactions(originalPawn, animalPawn, reactionStatus, EventType.Reverted);
             HandleRelatedPawnsReaction(originalPawn, animalPawn, EventType.Reverted);
         }
@@ -127,6 +131,7 @@ namespace Pawnmorph.Thoughts
         /// <summary>
         /// call when an animal goes permanently feral to handle giving the correct thoughts to colonists
         /// </summary>
+        /// note: this does nothing if ideology is active, instead reaction thoughts are given by precepts instead 
         /// <param name="originalPawn">The original pawn.</param>
         /// <param name="animalPawn">The animal pawn.</param>
         /// <param name="reactionStatus">The reaction status.</param>
@@ -135,6 +140,7 @@ namespace Pawnmorph.Thoughts
         /// animalPawn</exception>
         public static void OnPawnPermFeral([NotNull] Pawn originalPawn, [NotNull] Pawn animalPawn, FormerHumanReactionStatus reactionStatus = FormerHumanReactionStatus.Wild)
         {
+            if (ModsConfig.IdeologyActive) return; 
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
             if (animalPawn == null) throw new ArgumentNullException(nameof(animalPawn));
             if(originalPawn.Faction == Faction.OfPlayer || animalPawn.Faction == Faction.OfPlayer) //only give thoughts to colonists if the original pawn or animal is part of the player faction 
