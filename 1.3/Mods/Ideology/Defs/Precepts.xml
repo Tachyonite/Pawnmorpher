@@ -56,6 +56,12 @@
         <impact>Medium</impact>
         <displayOrderInIssue>20</displayOrderInIssue>
         <displayOrderInImpact>1000</displayOrderInImpact>
+		<comps>
+            <li Class="Pawnmorph.PreceptComps.PMPreceptComp_KnowsMemoryThought">
+                <eventDef>Transformed</eventDef>
+                <thought>DefaultTransformationReaction</thought>
+            </li>
+        </comps>
     </PreceptDef>
 	
     <PreceptDef>
@@ -139,6 +145,12 @@
         <label>disliked</label>
         <description>A person becoming an animal is undesirable and is a violation of bodily autonomy.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
+		<comps>
+			<li Class="Pawnmorph.PreceptComps.PMPreceptComp_KnowsMemoryThought">
+				<eventDef>TransformedIntoFormerHuman</eventDef>
+				<thought>DefaultPermanentlyFeralReaction</thought>
+			</li>
+		</comps>
     </PreceptDef>
 	
     <PreceptDef ParentName="PM_TfPreceptBase">
@@ -198,6 +210,10 @@
                     </li>
                 </entries>
             </li>
+			<li Class="Pawnmorph.PreceptComps.PMPreceptComp_KnowsMemoryThought">
+				<eventDef>TransformedFromFormerHuman</eventDef>
+				<thought>DefaultRevertedPawnReaction</thought>
+			</li>
         </comps>
     </PreceptDef>
 

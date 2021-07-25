@@ -23,16 +23,16 @@ namespace Pawnmorph.PreceptComps
 
             if (victimPawn == member)
                 return;
-            
-            int stage = 3;
+
+            int stage = 0;
             if (!member.IsColonist)
-                stage = 3;
-            else if (member.IsColonist && victimPawn.IsColonist)
                 stage = 0;
-            else if (victimPawn.IsPrisonerOfColony)
+            else if (victimPawn.IsColonist)
                 stage = 1;
-            else if (victimPawn.guest?.HostFaction == Faction.OfPlayer)
+            else if (victimPawn.IsPrisonerOfColony)
                 stage = 2;
+            else if (victimPawn.guest?.HostFaction == Faction.OfPlayer)
+                stage = 3;
 
             Thought_Memory thought_Memory = ThoughtMaker.MakeThought(thought, precept);
             thought_Memory.SetForcedStage(Math.Min(stage, thought.stages.Count - 1));
