@@ -2,9 +2,9 @@
     <ThoughtDef Name="PM_Precept_GuestTfBase">
         <durationDays>10</durationDays>
     </ThoughtDef>
-    <!-- transformation liked -->
+
     <ThoughtDef ParentName="PM_Precept_GuestTfBase">
-        <defName>PM_TfLikedPrecept_TransformationReaction</defName>
+        <defName>PM_TfLovedPrecept_TransformationReaction</defName>
         <stages>
             <li>
                 <label>transformed wild pawn</label>
@@ -29,7 +29,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="PM_Precept_GuestTfBase">
-        <defName>PM_TfLikedPrecept_MergedThought</defName>
+        <defName>PM_TfLovedPrecept_MergedThought</defName>
         <stages>
             <li>
                 <label>wild pawn merged</label>
@@ -57,7 +57,7 @@
 
 
     <ThoughtDef ParentName="PM_Precept_GuestTfBase">
-        <defName>PM_TfLikedPrecept_RevertedPawnReaction</defName>
+        <defName>PM_ReversionHatedPrecept_RevertedPawnReaction</defName>
         <stages>
             <li>
                 <label>wild pawn reverted</label>
@@ -83,7 +83,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="PM_Precept_GuestTfBase">
-        <defName>PM_TfLikedPrecept_PermanentlyFeralReaction</defName>
+        <defName>PM_TfLovedPrecept_PermanentlyFeralReaction</defName>
         <stages>
             <li>
                 <label>wild pawn permanently feral</label>

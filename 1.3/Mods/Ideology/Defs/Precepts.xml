@@ -56,14 +56,30 @@
         <impact>Medium</impact>
         <displayOrderInIssue>20</displayOrderInIssue>
         <displayOrderInImpact>1000</displayOrderInImpact>
-		<comps>
-    <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
-                <eventDef>Transformed</eventDef>
-                <thought>DefaultTransformationReaction</thought>
+        <comps> <!-- disliked only get thoughts for not being human -->
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>Morphed</eventDef>
+                <thought>PM_FleshPuristMorphed</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_NaturePrimacyMorphed</thought>
+                    </li>
+                </entries>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>DeMorphed</eventDef>
+                <thought>PM_FleshPuristMorphedReverted</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyMorphedReverted</thought>
+                    </li>
+                </entries>
             </li>
         </comps>
     </PreceptDef>
-	
+
     <PreceptDef>
         <defName>PM_MutationsNeutral</defName>
         <issue>PM_Mutation</issue>
@@ -128,7 +144,7 @@
         </associatedMemes>
         <comps>
             <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
-                <eventDef>Morphed</eventDef>
+                <eventDef>Transformed</eventDef>
                 <thought>PM_FleshPuristTransformed</thought>
                 <entries>
                     <li>
@@ -137,22 +153,26 @@
                     </li>
                 </entries>
             </li>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Transformed</eventDef>
+                <thought>DefaultTransformationReaction</thought>
+            </li>
         </comps>
     </PreceptDef>
-	
+
     <PreceptDef ParentName="PM_TfPreceptBase">
         <defName>PM_TransformationDisliked</defName>
         <label>disliked</label>
         <description>A person becoming an animal is undesirable and is a violation of bodily autonomy.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
-		<comps>
-    <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
-        <eventDef>Transformed</eventDef>
-				<thought>DefaultPermanentlyFeralReaction</thought>
-			</li>
-		</comps>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Transformed</eventDef>
+                <thought>DefaultTransformationReaction</thought>
+            </li>
+        </comps>
     </PreceptDef>
-	
+
     <PreceptDef ParentName="PM_TfPreceptBase">
         <defName>PM_TransformationNeutral</defName>
         <label>neutral</label>
@@ -176,6 +196,10 @@
             <li Class="PreceptComp_SelfTookMemoryThought">
                 <eventDef>Transformed</eventDef>
                 <thought>PM_NaturePrimacyTransformed</thought>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Transformed</eventDef>
+                <thought>PM_TfLovedPrecept_TransformationReaction</thought>
             </li>
         </comps>
     </PreceptDef>
@@ -212,8 +236,8 @@
             </li>
             <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
                 <eventDef>Reverted</eventDef>
-				<thought>DefaultRevertedPawnReaction</thought>
-			</li>
+                <thought>DefaultRevertedPawnReaction</thought>
+            </li>
         </comps>
     </PreceptDef>
 
@@ -230,6 +254,10 @@
             <li Class="PreceptComp_SelfTookMemoryThought">
                 <eventDef>Reverted</eventDef>
                 <thought>PM_NaturePrimacyMorphedReverted</thought>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Reverted</eventDef>
+                <thought>PM_ReversionHatedPrecept_RevertedPawnReaction</thought>
             </li>
         </comps>
     </PreceptDef>
