@@ -373,6 +373,7 @@
     <Compile Include="DebugUtils\IDebugString.cs" />
     <Compile Include="DebugUtils\LogLevel.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="DefExtensions\AdditionalPlantInfo.cs" />
     <Compile Include="DefExtensions\AspectGiverExtension.cs" />
     <Compile Include="DefExtensions\AspectRestriction.cs" />
     <Compile Include="DefExtensions\ChaomorphExtension.cs" />
@@ -749,6 +750,7 @@
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
     <Compile Include="Things\Chaothrumbo.cs" />
+    <Compile Include="Things\ExpandedPlant.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
