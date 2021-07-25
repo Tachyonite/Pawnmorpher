@@ -381,6 +381,14 @@ namespace Pawnmorph
 
                 foreach (QuestPart questPart in qPs) questPart?.ReplacePawnReferences(original, transferPawn);
             }
+            
+            
+            foreach (TransportShip ship in Find.TransportShipManager.AllTransportShips)
+            {
+                var shuttle = ship.shipThing.TryGetComp<CompShuttle>();
+                shuttle?.requiredPawns.Replace(original, transferPawn);
+            }
+
         }
 
         /// <summary>
