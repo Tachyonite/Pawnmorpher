@@ -67,6 +67,18 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void LogSapienceWillBonuses()
+        {
+            StringBuilder builder = new StringBuilder();
+           for(float f =0; f <=1; f+=0.05f)
+            {
+                builder.AppendLine($"{f}[{FormerHumanUtilities.GetQuantizedSapienceLevel(f)}]:{FormerHumanUtilities.GetSapienceWillDebuff(f)}");
+            }
+
+            Log.Message(builder.ToString());
+        }
+
         [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         public static void LogDatabaseInfo()
         {
