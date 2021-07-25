@@ -46,10 +46,10 @@
 								</xs:complexType>
 							</xs:element>
 						</xs:all>
-						<xs:attribute name="ParentName" type="AbstractThoughts" use="optional" />
+						<xs:attribute name="ParentName" type="xs:string" use="optional" />
 						<xs:attribute name="Abstract" type="xs:boolean" use="optional" />
 						<xs:attribute name="Name" type="xs:string" use="optional" />
-						<xs:attribute name="Class" type="ThoughtDefClasses" use="optional" />
+						<xs:attribute name="Class" type="xs:string" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
