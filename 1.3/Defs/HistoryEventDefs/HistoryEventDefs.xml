@@ -12,22 +12,22 @@
   </HistoryEventDef>
   
   <HistoryEventDef>
-    <defName>TransformedIntoFormerHuman</defName>
+    <defName>Transformed</defName>
     <label>transformed into former human</label>
   </HistoryEventDef>
 
   <HistoryEventDef>
-    <defName>TransformedFromFormerHuman</defName>
+    <defName>Reverted</defName>
     <label>transformed from fromer human</label>
   </HistoryEventDef>
 
   <HistoryEventDef>
-    <defName>Transformed</defName>
+    <defName>Morphed</defName>
     <label>transformed</label>
   </HistoryEventDef>
 
   <HistoryEventDef>
-    <defName>Reverted</defName>
+    <defName>DeMorphed</defName>
     <label>reverted</label>
   </HistoryEventDef>
 

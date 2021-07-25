@@ -39,7 +39,7 @@ namespace Pawnmorph
         /// Animal(PawnkindDef)
         /// FactionResponsible(Faction) can be null
         [NotNull]
-        public static HistoryEventDef TransformedIntoFormerHuman;
+        public static HistoryEventDef Transformed;
 
         /// <summary> Whenever a pawn is no longer a former human </summary>
         /// args:
@@ -47,7 +47,7 @@ namespace Pawnmorph
         /// Animal(PawnKindDef)
         /// FactionResponsible(Faction) can be null
         [NotNull]
-        public static HistoryEventDef TransformedFromFormerHuman;
+        public static HistoryEventDef Reverted;
 
         /// <summary>
         /// Whenever a pawn is transformed into a morph
@@ -57,7 +57,7 @@ namespace Pawnmorph
         /// OldMorph(MorphDef) can be null
         /// NewMorph(MorphDef)
         [NotNull]
-        public static HistoryEventDef Transformed;
+        public static HistoryEventDef Morphed;
 
         /// <summary>
         /// Whenever a pawn is reverted
@@ -67,7 +67,7 @@ namespace Pawnmorph
         /// Morph(morphDef)
         /// FactionResponsible(Faction) can be null
         [NotNull]
-        public static HistoryEventDef Reverted;
+        public static HistoryEventDef DeMorphed;
 
         /// <summary> Whenever sapience level changes </summary>
         /// args:

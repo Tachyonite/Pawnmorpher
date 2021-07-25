@@ -57,7 +57,7 @@
         <displayOrderInIssue>20</displayOrderInIssue>
         <displayOrderInImpact>1000</displayOrderInImpact>
 		<comps>
-            <li Class="Pawnmorph.PreceptComps.PMPreceptComp_KnowsMemoryThought">
+    <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
                 <eventDef>Transformed</eventDef>
                 <thought>DefaultTransformationReaction</thought>
             </li>
@@ -128,7 +128,7 @@
         </associatedMemes>
         <comps>
             <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
-                <eventDef>TransformedIntoFormerHuman</eventDef>
+                <eventDef>Transformed</eventDef>
                 <thought>PM_FleshPuristTransformed</thought>
                 <entries>
                     <li>
@@ -146,8 +146,8 @@
         <description>A person becoming an animal is undesirable and is a violation of bodily autonomy.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
 		<comps>
-			<li Class="Pawnmorph.PreceptComps.PMPreceptComp_KnowsMemoryThought">
-				<eventDef>TransformedIntoFormerHuman</eventDef>
+    <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+        <eventDef>Transformed</eventDef>
 				<thought>DefaultPermanentlyFeralReaction</thought>
 			</li>
 		</comps>
@@ -174,7 +174,7 @@
         </conflictingMemes>
         <comps>
             <li Class="PreceptComp_SelfTookMemoryThought">
-                <eventDef>TransformedIntoFormerHuman</eventDef>
+                <eventDef>Transformed</eventDef>
                 <thought>PM_NaturePrimacyTransformed</thought>
             </li>
         </comps>
@@ -201,7 +201,7 @@
         <description>Reverting people is a noble goal and one we should take extra measures to do when possible.</description>
         <comps>
             <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
-                <eventDef>TransformedFromFormerHuman</eventDef>
+                <eventDef>Reverted</eventDef>
                 <thought>PM_FleshPuristTransformed</thought>
                 <entries>
                     <li>
@@ -210,8 +210,8 @@
                     </li>
                 </entries>
             </li>
-			<li Class="Pawnmorph.PreceptComps.PMPreceptComp_KnowsMemoryThought">
-				<eventDef>TransformedFromFormerHuman</eventDef>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Reverted</eventDef>
 				<thought>DefaultRevertedPawnReaction</thought>
 			</li>
         </comps>
@@ -228,7 +228,7 @@
         </conflictingMemes>
         <comps>
             <li Class="PreceptComp_SelfTookMemoryThought">
-                <eventDef>TransformedFromFormerHuman</eventDef>
+                <eventDef>Reverted</eventDef>
                 <thought>PM_NaturePrimacyMorphedReverted</thought>
             </li>
         </comps>
