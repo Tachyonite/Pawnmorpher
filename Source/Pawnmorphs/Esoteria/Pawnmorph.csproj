@@ -338,6 +338,7 @@
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="ChaomorphType.cs" />
     <Compile Include="ChaomorphUtilities.cs" />
+    <Compile Include="ColonyRelation.cs" />
     <Compile Include="ColorGenerator_HSL.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompMutagenicRadius.cs" />
@@ -573,7 +574,7 @@
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
-    <Compile Include="PreceptComps\PMPreceptComp_KnowsMemoryThought.cs" />
+    <Compile Include="PreceptComps\GiveRelationDependentThought.cs" />
     <Compile Include="PreceptComps\SelfTookMemoryThought_MemeOverride.cs" />
     <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
     <Compile Include="ProductionBoost.cs" />
