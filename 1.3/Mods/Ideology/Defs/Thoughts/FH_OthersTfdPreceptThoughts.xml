@@ -25,6 +25,19 @@
                 <description>TODO</description>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
+            <!-- these are optional for all these thougths 
+            <li>
+                <label>transformed slave</label>
+                <description>TODO</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li> if omitted guilty prisoners get the default prisoner thought 
+                <label>transformed guilty prisoner</label>
+                <description>TODO</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+                
+            -->
         </stages>
     </ThoughtDef>
 
