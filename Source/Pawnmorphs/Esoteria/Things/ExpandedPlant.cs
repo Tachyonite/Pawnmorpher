@@ -1,6 +1,7 @@
 ﻿// ExpandedPlant.cs created by Iron Wolf for Pawnmorph on 07/25/2021 6:39 PM
 // last updated 07/25/2021  6:39 PM
 
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using RimWorld;
@@ -33,7 +34,6 @@ namespace Pawnmorph.Things
             }
         }
 
-
         /// <summary>
         ///     Gets the leafless temperature thresh.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Pawnmorph.Things
             get
             {
                 var num = 8f;
-                return this.HashOffset() * 0.01f % num - num + DynMaxOptimalGrowthTemperature;
+                return this.HashOffset() * 0.01f % num - num + DynMaxLeaflessTemperature;
             }
         }
 
@@ -79,6 +79,59 @@ namespace Pawnmorph.Things
                 if (!GenTemperature.TryGetTemperatureForCell(Position, Map, out float tempResult)) return 1f;
                 return GrowthRateFactorFor_Temperature(tempResult);
             }
+        }
+
+        /// <summary>
+        ///     Gets the inspect string.
+        /// </summary>
+        /// <returns></returns>
+        public override string GetInspectString()
+        {
+            var stringBuilder = new StringBuilder();
+            if (def.plant.showGrowthInInspectPane)
+            {
+                if (LifeStage == PlantLifeStage.Growing)
+                {
+                    stringBuilder.AppendLine("PercentGrowth".Translate(GrowthPercentString));
+                    stringBuilder.AppendLine("GrowthRate".Translate() + ": " + GrowthRate.ToStringPercent());
+                    if (!Blighted)
+                    {
+                        if (Resting) stringBuilder.AppendLine("PlantResting".Translate());
+                        if (!HasEnoughLightToGrow)
+                            stringBuilder.AppendLine("PlantNeedsLightLevel".Translate()
+                                                   + ": "
+                                                   + def.plant.growMinGlow.ToStringPercent());
+                        float growthRateFactor_Temperature = DynGrowthRateFactor_Temperature;
+                        if (growthRateFactor_Temperature < 0.99f)
+                        {
+                            if (Mathf.Approximately(growthRateFactor_Temperature, 0f)
+                             || !PlantUtility.GrowthSeasonNow(Position, Map))
+                                stringBuilder.AppendLine("OutOfIdealTemperatureRangeNotGrowing".Translate());
+                            else
+                                stringBuilder.AppendLine("OutOfIdealTemperatureRange".Translate(Mathf
+                                                                                               .Max(1,
+                                                                                                    Mathf
+                                                                                                       .RoundToInt(growthRateFactor_Temperature
+                                                                                                                 * 100f))
+                                                                                               .ToString()));
+                        }
+                    }
+                }
+                else if (LifeStage == PlantLifeStage.Mature)
+                {
+                    if (HarvestableNow)
+                        stringBuilder.AppendLine("ReadyToHarvest".Translate());
+                    else
+                        stringBuilder.AppendLine("Mature".Translate());
+                }
+
+                if (DyingBecauseExposedToLight) stringBuilder.AppendLine("DyingBecauseExposedToLight".Translate());
+                if (Blighted) stringBuilder.AppendLine("Blighted".Translate() + " (" + Blight.Severity.ToStringPercent() + ")");
+            }
+
+            string text = InspectStringPartsFromComps();
+            if (!text.NullOrEmpty()) stringBuilder.Append(text);
+            return stringBuilder.ToString().TrimEndNewlines();
         }
 
         /// <summary>
