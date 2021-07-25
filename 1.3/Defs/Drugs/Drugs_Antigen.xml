@@ -49,7 +49,7 @@
 	
 	<HediffDef>
 		<defName>AntigenEffective</defName>
-		<description>TODO (around a hour). </description>
+		<description>TODO (around a hour).</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>antigen effective</label>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
