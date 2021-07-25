@@ -17,11 +17,10 @@
 		</thingCategories>
 		<ingestible>
 			<drugCategory>Medical</drugCategory>
-			<!--To Change please -->
 			<outcomeDoers>
 				<li Class="IngestionOutcomeDoer_GiveHediff">
-					<hediffDef>StabiliserHigh</hediffDef>
-					<severity>1.0</severity>
+					<hediffDef>AntigenEffective</hediffDef>
+					<severity>0.04</severity>
 				</li>
 			</outcomeDoers>
 		</ingestible>
@@ -47,5 +46,24 @@
 			</li>
 		</comps>
 	</ThingDef>
+	
+	<HediffDef>
+		<defName>AntigenEffective</defName>
+		<description>TODO (around a hour). </description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>antigen effective</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
+				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
+			</li>
+		</comps>
+	</HediffDef>
 	
 </Defs>
