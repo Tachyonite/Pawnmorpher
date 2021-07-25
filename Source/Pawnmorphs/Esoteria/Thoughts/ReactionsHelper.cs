@@ -140,7 +140,6 @@ namespace Pawnmorph.Thoughts
         /// animalPawn</exception>
         public static void OnPawnPermFeral([NotNull] Pawn originalPawn, [NotNull] Pawn animalPawn, FormerHumanReactionStatus reactionStatus = FormerHumanReactionStatus.Wild)
         {
-            if (ModsConfig.IdeologyActive) return; 
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
             if (animalPawn == null) throw new ArgumentNullException(nameof(animalPawn));
             if(originalPawn.Faction == Faction.OfPlayer || animalPawn.Faction == Faction.OfPlayer) //only give thoughts to colonists if the original pawn or animal is part of the player faction 
@@ -221,6 +220,8 @@ namespace Pawnmorph.Thoughts
         private static void HandleColonistReactions(Pawn original, Pawn transformedPawn, FormerHumanReactionStatus reactionStatus, EventType type,
                                                     IEnumerable<Pawn> pawns = null)
         {
+            
+
             pawns = pawns
                  ?? PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
                                .Where(p => p != original); //use all colonists except the original pawn as the default 
@@ -252,6 +253,7 @@ namespace Pawnmorph.Thoughts
 
             foreach (Pawn reactor in pawns)
             {
+                if(type == EventType.PermanentlyFeral && ModsConfig.IdeologyActive && reactor.Ideo?.HasPositionOn(PMIssueDefOf.PM_SapienceLoss) == true) continue; //don't give default thoughts to pawns whos ideo handles reversion thoughts 
                 if(reactor == transformedPawn) continue; //make sure pawns don't react to themselves as if they were a different pawn 
                 ThoughtDef opinionThought = GetOpinionThought(original, reactor, type);
                 ThoughtDef def;

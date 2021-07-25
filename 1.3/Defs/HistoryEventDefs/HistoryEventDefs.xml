@@ -36,4 +36,9 @@
     <label>sapience level changed</label>
   </HistoryEventDef>
 
+  <HistoryEventDef>
+    <defName>PermanentlyFeral</defName>
+    <label>permanently feral</label>
+  </HistoryEventDef>
+
 </Defs>

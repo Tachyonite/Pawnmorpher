@@ -23,4 +23,10 @@
         <iconPath>UI/Issues/Nudity_Male</iconPath>
     </IssueDef>
 
+    <IssueDef>
+        <defName>PM_SapienceLoss</defName>
+        <label>sapience loss</label>
+        <iconPath>UI/Issues/Nudity_Male</iconPath>
+    </IssueDef>
+
 </Defs>

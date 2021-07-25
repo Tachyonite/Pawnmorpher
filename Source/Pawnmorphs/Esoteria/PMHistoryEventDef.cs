@@ -77,5 +77,14 @@ namespace Pawnmorph
         [NotNull]
         public static HistoryEventDef SapienceLevelChanged;
 
+        /// <summary>
+        /// when a former human goes permanently feral
+        /// </summary>
+        /// args: 
+        /// Doer(pawn) the pawn that went permanently feral 
+        [NotNull]
+        public static HistoryEventDef PermanentlyFeral; 
+
+
     }
 }
