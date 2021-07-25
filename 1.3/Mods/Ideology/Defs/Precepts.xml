@@ -24,7 +24,7 @@
                 </entries>
             </li>
             <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
-                <eventDef>Transformed</eventDef>
+                <eventDef>Morphed</eventDef>
                 <thought>PM_FleshPuristMorphed</thought>
                 <entries>
                     <li>
@@ -34,7 +34,7 @@
                 </entries>
             </li>
             <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
-                <eventDef>Reverted</eventDef>
+                <eventDef>DeMorphed</eventDef>
                 <thought>PM_FleshPuristMorphedReverted</thought>
                 <entries>
                     <li>
@@ -97,11 +97,11 @@
                 <thought>PM_NaturePrimacyMutated</thought>
             </li>
             <li Class="PreceptComp_SelfTookMemoryThought">
-                <eventDef>Transformed</eventDef>
+                <eventDef>Morphed</eventDef>
                 <thought>PM_NaturePrimacyMorphed</thought>
             </li>
             <li Class="PreceptComp_SelfTookMemoryThought">
-                <eventDef>Reverted</eventDef>
+                <eventDef>DeMorphed</eventDef>
                 <thought>PM_NaturePrimacyMorphedReverted</thought>
             </li>
         </comps>
@@ -128,7 +128,7 @@
         </associatedMemes>
         <comps>
             <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
-                <eventDef>Transformed</eventDef>
+                <eventDef>Morphed</eventDef>
                 <thought>PM_FleshPuristTransformed</thought>
                 <entries>
                     <li>
