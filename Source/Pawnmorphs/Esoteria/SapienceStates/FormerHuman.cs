@@ -159,6 +159,7 @@ namespace Pawnmorph.SapienceStates
                 case SapienceLevel.MostlyFeral:
                 case SapienceLevel.Feral:
                     AddSapientAnimalComponents();//ferals need to keep them so stuff doesn't break, like relationships 
+                    RemoveNonFeralComps(); 
                     break;
                 case SapienceLevel.PermanentlyFeral:
                     RemoveSapientAnimalComponents(); //actually removing the components seems to break stuff for some reason 
@@ -168,12 +169,18 @@ namespace Pawnmorph.SapienceStates
             }
         }
 
+        private void RemoveNonFeralComps()
+        {
+            Pawn.ideo = null;
+        }
+
         private void RemoveSapientAnimalComponents()
         {
-            if (Pawn?.drafter == null) return;
+
 
             //remove the drafter component if the animal is now feral 
-            Pawn.drafter.Drafted = false;
+            if (Pawn?.drafter != null) 
+                Pawn.drafter.Drafted = false;
 
             if (Pawn.MapHeld != null)
             {
