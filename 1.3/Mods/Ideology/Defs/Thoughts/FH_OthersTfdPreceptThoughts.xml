@@ -44,24 +44,35 @@
         <stages>
             <li>
                 <label>wild pawn merged</label>
-                <description>TODO</description>
+                <description>They will feel less lonely in nature now.</description>
+				<baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>colonist merged</label>
                 <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <baseMoodEffect>2</baseMoodEffect>
 
             </li>
             <li>
                 <label>prisoner merged</label>
                 <description>TODO</description>
-                <baseMoodEffect>-4</baseMoodEffect>
+                <baseMoodEffect>3</baseMoodEffect>
 
             </li>
             <li>
                 <label>guest merged</label>
                 <description>TODO</description>
-                <baseMoodEffect>-8</baseMoodEffect>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave merged</label>
+                <description>TODO</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner merged</label>
+                <description>TODO</description>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -90,31 +101,51 @@
                 <description>They should remain as they were.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
+			<li>
+                <label>slave reverted</label>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner reverted</label>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
         </stages>
     </ThoughtDef>
 
     <ThoughtDef ParentName="PM_Precept_GuestTfBase">
         <defName>PM_SapienceLossLikedPrecept_PermanentlyFeralReaction</defName>
         <stages>
-            <li>
-                <label>wild pawn permanently feral</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+			<li>
+				<label>wild pawn permanently feral</label>
+                <description>They are one with the natural world now.</description>
+				<baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>colonist permanently feral</label>
-                <description>TODO</description>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <description>They are now forever freed from responsabilities.</description>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>prisoner permanently feral</label>
-                <description>Did we really expect to turn them back?</description>
-                <visible>true</visible>
+                <description>Our prisoners now understand the greatness of the natural world.</description>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>guest permanently feral</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <description>We welcomed our guests to the natural world, and now they feel home.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>slave permanently feral</label>
+                <description>Being one with the natural world made them totally free.</description>
+				<baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>guilty prisoner permanently feral</label>
+                <description>They took the wrong path, but now they will follow the path of the natural world.</description>
+				<baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -122,26 +153,36 @@
     <ThoughtDef ParentName="PM_Precept_GuestTfBase">
         <defName>PM_SapienceLossAbhorrentPrecept_PermanentlyFeralReaction</defName>
         <stages>
-            <li>
-                <label>wild pawn permanently feral</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+			<li>
+				<label>wild pawn permanently feral</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>colonist permanently feral</label>
-                <description>TODO</description>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <description>TODO.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>prisoner permanently feral</label>
-                <description>Did we really expect to turn them back?</description>
-                <visible>true</visible>
+                <description>TODO.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>guest permanently feral</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <description>TODO.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
-        </stages>
+            <li>
+                <label>slave permanently feral</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>guilty prisoner permanently feral</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+            </li>        
+		</stages>
     </ThoughtDef>
 </Defs>

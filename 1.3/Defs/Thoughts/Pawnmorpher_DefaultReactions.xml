@@ -29,6 +29,16 @@
                 <description>Someone came to our colony, and we betrayed that trust.</description>
 				<baseMoodEffect>-2</baseMoodEffect>
             </li>
+			<li>
+                <label>slave guest</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner guest</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
         </stages>
     </ThoughtDef>
 
@@ -55,6 +65,16 @@
                 <label>guest merged</label>
                 <description>Someone came to our colony for hospitality, and now they're an abomination.</description>
                 <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave guest</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner guest</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -83,6 +103,16 @@
                 <description>A guest is human again. Hopefully they'll trust us again, eventually.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
+			<li>
+                <label>slave guest</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner guest</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
         </stages>
     </ThoughtDef>
 
@@ -108,6 +138,16 @@
                 <label>guest permanently feral</label>
                 <description>Uh, whoops...</description>
                 <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave guest</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner guest</label>
+                <description>TODO.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
