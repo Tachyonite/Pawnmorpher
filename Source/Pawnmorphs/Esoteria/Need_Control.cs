@@ -32,6 +32,21 @@ namespace Pawnmorph
 
         private static HashSet<ThingDef> _enabledRaces;
 
+        private SapienceTracker _tracker;
+
+        SapienceTracker Tracker
+        {
+            get
+            {
+                if (_tracker == null)
+                {
+                    _tracker = pawn.GetSapienceTracker();
+                }
+
+                return _tracker; 
+            }
+        }
+
         /// <summary>
         ///     Occurs when the sapience level changes .
         /// </summary>
@@ -244,6 +259,15 @@ namespace Pawnmorph
                     SapienceLevel oldLevel = _currentLevel;
                     _currentLevel = sLevel;
                     OnSapienceLevelChanges(oldLevel, sLevel);
+                }
+
+                if (sLevel != SapienceLevel.Sapient)
+                {
+                    SapienceTracker sapienceTracker = Tracker;
+                    if (sapienceTracker != null && sapienceTracker.CurrentState == null)
+                    {
+                        sapienceTracker.EnterState(SapienceStateDefOf.Animalistic, CurLevel);
+                    }
                 }
             }
         }
