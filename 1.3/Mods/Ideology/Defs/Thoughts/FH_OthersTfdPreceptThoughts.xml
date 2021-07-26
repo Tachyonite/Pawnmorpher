@@ -14,7 +14,7 @@
             <li>
                 <label>transformed colonist</label>
                 <description>They are closer to nature now.</description>
-                <baseMoodEffect>2</baseMoodEffect>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>transformed prisoner</label>
@@ -29,7 +29,7 @@
             <li>
                 <label>transformed slave</label>
                 <description>A gift to the natural world.</description>
-				<baseMoodEffect>1</baseMoodEffect>
+				<baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>transformed guilty prisoner</label>
@@ -44,35 +44,35 @@
         <stages>
             <li>
                 <label>wild pawn merged</label>
-                <description>They will feel less lonely in nature now.</description>
+                <description>They will feel less lonely now.</description>
 				<baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>colonist merged</label>
-                <description>TODO</description>
-                <baseMoodEffect>2</baseMoodEffect>
+                <description>One of our own colonist participated into a successful science experiment!</description>
+                <baseMoodEffect>3</baseMoodEffect>
 
             </li>
             <li>
                 <label>prisoner merged</label>
-                <description>TODO</description>
+                <description>They were not punished, but blessed by science!</description>
                 <baseMoodEffect>3</baseMoodEffect>
 
             </li>
             <li>
                 <label>guest merged</label>
-                <description>TODO</description>
+                <description>We welcome heartily guests to our experiments.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
 			<li>
                 <label>slave merged</label>
-                <description>TODO</description>
-                <baseMoodEffect>3</baseMoodEffect>
+                <description>Slaves make perfect test subjects!</description>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
 			<li>
                 <label>guilty prisoner merged</label>
-                <description>TODO</description>
-                <baseMoodEffect>3</baseMoodEffect>
+                <description>They were wrong, but they redeem themselves by helping science!</description>
+                <baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -125,7 +125,7 @@
             <li>
                 <label>colonist permanently feral</label>
                 <description>They are now forever freed from responsabilities.</description>
-                <baseMoodEffect>2</baseMoodEffect>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>prisoner permanently feral</label>
@@ -140,7 +140,7 @@
             <li>
                 <label>slave permanently feral</label>
                 <description>Being one with the natural world made them totally free.</description>
-				<baseMoodEffect>1</baseMoodEffect>
+				<baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>guilty prisoner permanently feral</label>
@@ -155,32 +155,32 @@
         <stages>
 			<li>
 				<label>wild pawn permanently feral</label>
-                <description>TODO.</description>
+                <description>Alone in the wild, how can they survive now?</description>
 				<baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>colonist permanently feral</label>
-                <description>TODO.</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <description>We did everything we could... I am sorry.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
                 <label>prisoner permanently feral</label>
-                <description>TODO.</description>
+                <description>Letting our captives lose their humanity is a crime we should feel guilty of.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>guest permanently feral</label>
-                <description>TODO.</description>
+                <description>What their friends will think of us now? This is horrible.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>slave permanently feral</label>
-                <description>TODO.</description>
+                <description>They are now forever enslaved in anto animal form... This is inhumane.</description>
 				<baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>guilty prisoner permanently feral</label>
-                <description>TODO.</description>
+                <description>They needed to be punished for their crimes, NOT to be deprived from their humanity.</description>
 				<baseMoodEffect>-3</baseMoodEffect>
             </li>        
 		</stages>
