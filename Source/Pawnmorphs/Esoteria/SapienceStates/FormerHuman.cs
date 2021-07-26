@@ -157,6 +157,8 @@ namespace Pawnmorph.SapienceStates
                 case SapienceLevel.Conflicted:
                 case SapienceLevel.MostlySapient:
                 case SapienceLevel.MostlyFeral:
+                    AddSapientAnimalComponents(); 
+                    break;
                 case SapienceLevel.Feral:
                     AddSapientAnimalComponents();//ferals need to keep them so stuff doesn't break, like relationships 
                     RemoveNonFeralComps(); 

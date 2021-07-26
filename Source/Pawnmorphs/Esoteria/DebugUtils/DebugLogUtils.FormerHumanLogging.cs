@@ -43,6 +43,18 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void CheckFormerHumanIdeoStatus()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (Pawn pawn in Find.CurrentMap.mapPawns.AllPawns.Where(p => p.IsSapientFormerHuman()))
+            {
+                builder.AppendLine($"{pawn.Label} {pawn.ideo == null} {pawn.Ideo == null}"); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
         [DebugOutput(category = FH_CATEGORY)]
         static void LogFormerHumanLordStatus()
         {
