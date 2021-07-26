@@ -57,7 +57,7 @@ namespace Pawnmorph.PreceptComps
         {
             var pk = historyEvent.GetArg<MorphDef>(reversion
                                                           ? PMHistoryEventArgsNames.OLD_MORPH
-                                                          : PMHistoryEventArgsNames.MORPH);
+                                                          : PMHistoryEventArgsNames.NEW_MORPH);
 
             if (ideo.IsVeneratedAnimal(pk.race)) return pk.race;
             return null; 
