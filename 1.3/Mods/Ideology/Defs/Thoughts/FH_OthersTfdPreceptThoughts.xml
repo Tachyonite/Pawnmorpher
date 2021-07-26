@@ -8,36 +8,34 @@
         <stages>
             <li>
                 <label>transformed wild pawn</label>
-                <description>TODO</description>
+                <description>Now they have truly returned to nature.</description>
+				<baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>transformed colonist</label>
-                <description>TODO</description>
-                <baseMoodEffect>-4</baseMoodEffect>
+                <description>They are closer to nature now.</description>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>transformed prisoner</label>
-                <description>TODO</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <description>Our prisoners should bend the knee to the natural world in their own form.</description>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>transformed guest</label>
-                <description>TODO</description>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <description>Our guests are guests of the natural world, and they should look the part.</description>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
-            <!-- these are optional for all these thougths 
             <li>
                 <label>transformed slave</label>
-                <description>TODO</description>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <description>A gift to the natural world.</description>
+				<baseMoodEffect>1</baseMoodEffect>
             </li>
-            <li> if omitted guilty prisoners get the default prisoner thought 
+            <li>
                 <label>transformed guilty prisoner</label>
-                <description>TODO</description>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <description>Those that wrong us will serve the natural world once more.</description>
+				<baseMoodEffect>5</baseMoodEffect>
             </li>
-                
-            -->
         </stages>
     </ThoughtDef>
 
@@ -74,23 +72,23 @@
         <stages>
             <li>
                 <label>wild pawn reverted</label>
-                <description>TODO</description>
-                <baseMoodEffect>3</baseMoodEffect>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>colonist reverted</label>
-                <description>TODO</description>
-                <baseMoodEffect>5</baseMoodEffect>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
                 <label>prisoner reverted</label>
-                <description>TODO</description>
-                <baseMoodEffect>1</baseMoodEffect>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>guest reverted</label>
-                <description>TODO</description>
-                <baseMoodEffect>3</baseMoodEffect>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
