@@ -58,15 +58,10 @@ namespace Pawnmorph.PreceptComps
 
 
             Pawn dooer = ev.GetDoer();
-            var mut = ev.GetArg<Hediff_AddedMutation>(PMHistoryEventArgsNames.MUTATION);
 
             Ideo ideo = dooer.Ideo;
             if (ideo == null) return;
-            ThingDef animal = null;
-            foreach (ThingDef thingDef in ideo.VeneratedAnimals.MakeSafe())
-                if (mut.Def.AssociatedAnimals.Contains(thingDef))
-                    animal = thingDef;
-
+            ThingDef animal = GetAnimal(ev, ideo);
             if (animal == null) return;
 
             MutationMemory_VeneratedAnimal thought = PMThoughtUtilities.CreateVeneratedAnimalMemory(thoughtDef, animal, precept);
