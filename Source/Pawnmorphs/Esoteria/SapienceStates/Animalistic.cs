@@ -163,7 +163,7 @@ namespace Pawnmorph.SapienceStates
             if (Pawn.Map != null)
             {
                 
-                Pawn.apparel?.DropAll(pawnPosition, Pawn.Faction != Faction.OfPlayer); 
+                Pawn.apparel?.DropAll(pawnPosition, Pawn.Faction != Faction.OfPlayer, false); 
                 Pawn.equipment?.DropAllEquipment(pawnPosition, Pawn.Faction == Faction.OfPlayer);
             }
             else
