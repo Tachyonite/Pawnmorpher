@@ -9,7 +9,7 @@
     <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
         <defName>PM_FormerHumanNudityDisliked</defName>
         <label>disliked</label>
-        <description>TODO</description>
+        <description>They can't do anything about it, but it doesn't mean we have to be ok with it.</description>
         <associatedMemes>
             <li>HumanPrimacy</li>
         </associatedMemes>
@@ -26,7 +26,7 @@
         <defName>PM_FormerHumanNudityNeutral</defName>
         <label>neutral</label>
         <impact>Low</impact>
-        <description>TODO</description>
+        <description>It is up to the individual as to whether they think fur is an adequate covering.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
         <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
         <associatedMemes>
@@ -37,7 +37,7 @@
     <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
         <defName>PM_FormerHumanNudityLiked</defName>
         <label>liked</label>
-        <description>TODO</description>
+        <description>Former humans should be as the animals are, clothes are unnecessary.</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
         <countsTowardsPreceptLimit>true</countsTowardsPreceptLimit>
         <associatedMemes>
