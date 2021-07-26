@@ -219,7 +219,8 @@ namespace Pawnmorph
         public static bool IsEnabledFor([NotNull] Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            return pawn.GetSapienceState() != null && EnabledRaces.Contains(pawn.def);
+
+            return (pawn.GetSapienceState() != null || pawn.RaceProps.Humanlike ) && EnabledRaces.Contains(pawn.def);
         }
 
         /// <summary>
