@@ -289,7 +289,7 @@ namespace Pawnmorph
                     if (reversionMemory != null) pawn.TryGainMemory(reversionMemory);
                     RaceShiftUtilities.ChangePawnRace(pawn, ThingDefOf.Human);
                     if (morph != null)
-                        PMHistoryEventDefOf.Reverted.SendEvent(pawn.Named(HistoryEventArgsNames.Doer), morph.Named(MORPH));
+                        PMHistoryEventDefOf.DeMorphed.SendEvent(pawn.Named(HistoryEventArgsNames.Doer), morph.Named(MORPH));
                     else
                         Log.Warning($"reverting a non morph pawn {pawn.Name} to human");
                 }
@@ -312,10 +312,10 @@ namespace Pawnmorph
             {
                 RaceShiftUtilities.ChangePawnToMorph(pawn, setMorph, addMissingMutations, displayNotifications);
                 if (curMorph != null)
-                    PMHistoryEventDefOf.Transformed.SendEvent(pawn.Named(HistoryEventArgsNames.Doer),
+                    PMHistoryEventDefOf.Morphed.SendEvent(pawn.Named(HistoryEventArgsNames.Doer),
                                                               curMorph.Named(OLD_MORPH), setMorph.Named(NEW_MORPH));
                 else
-                    PMHistoryEventDefOf.Transformed.SendEvent(pawn.Named(HistoryEventArgsNames.Doer),
+                    PMHistoryEventDefOf.Morphed.SendEvent(pawn.Named(HistoryEventArgsNames.Doer),
                                                               setMorph.Named(NEW_MORPH)); 
 
             }

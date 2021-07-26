@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -54,5 +55,29 @@ namespace Pawnmorph
             return false; 
 
         }
+
+
+        /// <summary>
+        /// Determines whether the ideology has a position on the given issue.
+        /// </summary>
+        /// <param name="ideo">The ideo.</param>
+        /// <param name="issue">The issue.</param>
+        /// <returns>
+        ///   <c>true</c> if the ideology has a position on the given issue; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool HasPositionOn([NotNull] this Ideo ideo, [NotNull] IssueDef issue)
+        {
+            if (ideo == null) throw new ArgumentNullException(nameof(ideo));
+            if (issue == null) throw new ArgumentNullException(nameof(issue));
+
+            foreach (Precept precept in ideo.PreceptsListForReading.MakeSafe())
+            {
+                if (precept?.def?.issue == issue) return true;
+            }
+
+            return false; 
+        }
+
+
     }
 }

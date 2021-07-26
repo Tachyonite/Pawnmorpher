@@ -59,6 +59,35 @@ namespace Pawnmorph.PreceptComps
         }
 
         /// <summary>
+        ///     called when a member takes a specific action
+        /// </summary>
+        /// <param name="ev">The ev.</param>
+        /// <param name="precept">The precept.</param>
+        /// <param name="canApplySelfTookThoughts">if set to <c>true</c> [can apply self took thoughts].</param>
+        public override void Notify_MemberTookAction(HistoryEvent ev, Precept precept, bool canApplySelfTookThoughts)
+        {
+            if (ev.def != eventDef || !canApplySelfTookThoughts)
+                return;
+            var p = ev.args.GetArg<Pawn>(HistoryEventArgsNames.Doer);
+            if (p.needs == null
+             || p.needs.mood == null
+             || onlyForNonSlaves && p.IsSlave
+             || thought.minExpectationForNegativeThought != null
+             && ExpectationsUtility.CurrentExpectationFor(p).order < thought.minExpectationForNegativeThought.order)
+                return;
+            Thought_Memory newThought = ThoughtMaker.MakeThought(GetBestThoughtFor(p), precept);
+            Pawn animal;
+            if (newThought is Thought_KilledInnocentAnimal killedInnocentAnimal
+             && ev.args.TryGetArg(HistoryEventArgsNames.Victim, out animal))
+                killedInnocentAnimal.SetAnimal(animal);
+            Corpse corpse;
+            if (newThought is Thought_MemoryObservation memoryObservation
+             && ev.args.TryGetArg(HistoryEventArgsNames.Subject, out corpse))
+                memoryObservation.Target = corpse;
+            p.needs.mood.thoughts.memories.TryGainMemory(newThought);
+        }
+
+        /// <summary>
         ///     Determines whether this instance can give the given thought to the pawn
         /// </summary>
         /// <param name="pawn">The pawn.</param>
@@ -71,6 +100,11 @@ namespace Pawnmorph.PreceptComps
             return tDef.IsValidFor(pawn);
         }
 
+        /// <summary>
+        /// Gets the best thought for.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns></returns>
         protected ThoughtDef GetBestThoughtFor(Pawn pawn)
         {
             if (!CachedList.TryGetMemeVariant(pawn, out ThoughtDef tDef, CanGiveThought)) return thought;

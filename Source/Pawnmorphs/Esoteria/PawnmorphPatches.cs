@@ -245,7 +245,7 @@ namespace Pawnmorph
             AddWildmanMethods(methodsToPatch); 
 
             //door 
-            methodsToPatch.Add(new MethodInfoSt(){methodInfo= typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), instanceFlags), debug=false});
+            methodsToPatch.Add(new MethodInfoSt(){methodInfo= typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), instanceFlags)});
 
    
             //map pawns 
@@ -263,8 +263,12 @@ namespace Pawnmorph
             AddJobGiverMethods(methodsToPatch);
 
 
-            AddDesignatorMethods(methodsToPatch); 
+            AddDesignatorMethods(methodsToPatch);
+            AddThoughtWorkerPatches(methodsToPatch);
 
+            AddRitualPatches(methodsToPatch); 
+
+            methodsToPatch.Add(typeof(RitualRoleAssignments).GetMethod(nameof(RitualRoleAssignments.PawnNotAssignableReason), staticFlags));
 
             //socialization 
             methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[]{typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool)}));
@@ -296,6 +300,47 @@ namespace Pawnmorph
             }
             Log.Message(builder.ToString());
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
+        }
+
+        private static void AddRitualPatches([NotNull]List<MethodInfoSt> methodsToPatch)
+        {
+            var tp = typeof(Precept_Ritual);
+            var methods = tp.GetNestedTypes(ALL)
+                            .Where(t => t.IsCompilerGenerated())
+                            .SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
+                            .Where(m => m.HasSignature(typeof(Pawn), typeof(bool), typeof(bool)))
+                            .ToList();
+
+           
+
+
+            methodsToPatch.AddRange(methods.Select(m => (MethodInfoSt) m));
+            methodsToPatch.Add(typeof(RitualRoleAssignments).GetMethod(nameof(RitualRoleAssignments.CanEverSpectate), INSTANCE_FLAGS));
+
+            AddRolePatches(methodsToPatch);
+        }
+
+        private static void AddRolePatches([NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+            var types = new Type[]
+            {
+                typeof(RitualRoleColonist),
+                typeof(RitualRoleWarden),
+                typeof(RitualRoleConvertee)
+            };
+
+            var methods = types.Select(t => t.GetMethod(nameof(RitualRole.AppliesToPawn), INSTANCE_FLAGS))
+                               .Where(m => !m.IsAbstract)
+                               .Select(m => (MethodInfoSt) m);
+            methodsToPatch.AddRange(methods); 
+
+        }
+
+
+
+        private static void AddThoughtWorkerPatches([NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+            methodsToPatch.Add(typeof(ThoughtWorker_Precept_IdeoDiversity_Uniform).GetMethod("ShouldHaveThought", INSTANCE_FLAGS));
         }
 
         private static void AddWildmanMethods([NotNull] List<MethodInfoSt> methodsToPatch)

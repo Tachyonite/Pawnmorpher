@@ -347,6 +347,10 @@ namespace Pawnmorph
 
             SapienceLevelChanged?.Invoke(this, pawn, _currentLevel);
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, pawn.Named(HistoryEventArgsNames.Doer), oldLevel.Named(OLD_SAPIENCE_LEVEL), newLevel.Named(NEW_SAPIENCE_LEVEL)));
+            if (_currentLevel == SapienceLevel.PermanentlyFeral)
+            {
+                PMHistoryEventDefOf.PermanentlyFeral.SendEvent(pawn.Named(HistoryEventArgsNames.Doer)); 
+            }
         }
     }
 }

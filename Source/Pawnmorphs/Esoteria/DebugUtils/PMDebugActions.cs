@@ -46,6 +46,19 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugAction(category=PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void EnableMutationTrackerLogging(Pawn p)
+        {
+            var comp = p?.GetMutationTracker();
+            if (comp != null)
+            {
+                
+                comp.debug = !comp.debug;
+
+                Log.Message($"logging {(comp.debug ? "enabled" : "disabled")} for {p.Label}");
+            } 
+        }
+
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
         static void GiveBuildupToAllPawns()
         {

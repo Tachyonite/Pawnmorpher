@@ -338,6 +338,7 @@
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="ChaomorphType.cs" />
     <Compile Include="ChaomorphUtilities.cs" />
+    <Compile Include="ColonyRelation.cs" />
     <Compile Include="ColorGenerator_HSL.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompMutagenicRadius.cs" />
@@ -372,6 +373,7 @@
     <Compile Include="DebugUtils\IDebugString.cs" />
     <Compile Include="DebugUtils\LogLevel.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="DefExtensions\AdditionalPlantInfo.cs" />
     <Compile Include="DefExtensions\AspectGiverExtension.cs" />
     <Compile Include="DefExtensions\AspectRestriction.cs" />
     <Compile Include="DefExtensions\ChaomorphExtension.cs" />
@@ -562,6 +564,7 @@
     <Compile Include="PMHistoryEventDef.cs" />
     <Compile Include="PMIdeoUtilities.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
+    <Compile Include="PMIssueDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />
     <Compile Include="PMPawnKindDefOf.cs" />
     <Compile Include="PMPlantUtilities.cs" />
@@ -573,8 +576,10 @@
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
+    <Compile Include="PreceptComps\GiveRelationDependentThought.cs" />
     <Compile Include="PreceptComps\SelfTookMemoryThought_MemeOverride.cs" />
     <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
+    <Compile Include="PreceptComps\VeneratedMutation.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />
     <Compile Include="RoleRequirement\BaseRoleRequirement.cs" />
@@ -745,6 +750,7 @@
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
     <Compile Include="Things\Chaothrumbo.cs" />
+    <Compile Include="Things\ExpandedPlant.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />

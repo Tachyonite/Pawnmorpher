@@ -225,11 +225,11 @@ namespace Pawnmorph.TfSys
             pArg = originalPawn.Named(HistoryEventArgsNames.Doer);
             aArg = transformedPawn.Named(PMHistoryEventArgsNames.TRANSFORMED_PAWN);
             if (factionResponsible != null)
-                PMHistoryEventDefOf.TransformedFromFormerHuman.SendEvent(pArg, aArg,
+                PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg,
                                                                          factionResponsible.Named(PMHistoryEventArgsNames
                                                                                                      .FACTION_RESPONSIBLE));
             else
-                PMHistoryEventDefOf.TransformedFromFormerHuman.SendEvent(pArg, aArg);
+                PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg);
 
 
         }
@@ -246,11 +246,11 @@ namespace Pawnmorph.TfSys
             pArg = originalPawn.Named(HistoryEventArgsNames.Doer);
             aArg = transformedPawn.Named(PMHistoryEventArgsNames.TRANSFORMED_PAWN);
             if (factionResponsible != null)
-                PMHistoryEventDefOf.TransformedIntoFormerHuman.SendEvent(pArg, aArg,
+                PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg,
                                                                          factionResponsible.Named(PMHistoryEventArgsNames
                                                                                                      .FACTION_RESPONSIBLE));
             else
-                PMHistoryEventDefOf.TransformedIntoFormerHuman.SendEvent(pArg, aArg); 
+                PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg); 
         }
 
         /// <summary>

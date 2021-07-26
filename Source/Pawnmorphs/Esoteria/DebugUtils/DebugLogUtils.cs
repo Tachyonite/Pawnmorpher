@@ -67,6 +67,18 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void LogSapienceWillBonuses()
+        {
+            StringBuilder builder = new StringBuilder();
+           for(float f =0; f <=1; f+=0.05f)
+            {
+                builder.AppendLine($"{f}[{FormerHumanUtilities.GetQuantizedSapienceLevel(f)}]:{FormerHumanUtilities.GetSapienceWillDebuff(f)}");
+            }
+
+            Log.Message(builder.ToString());
+        }
+
         [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         public static void LogDatabaseInfo()
         {
@@ -546,6 +558,22 @@ namespace Pawnmorph.DebugUtils
             }
             Log.Message(builder.ToString());
         }
+
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
+        static void GetHistoryEventInfo()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (HistoryEventDef historyEventDef in HistoryEventUtilities.AllCustomEvents)
+            {
+                var count = Find.HistoryEventsManager.GetRecentCountWithinTicks(historyEventDef, int.MaxValue);
+                builder.AppendLine($"{historyEventDef.defName}:{count}"); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
+
 
         /// <summary>Prints out all MutationDef's labels and descriptions (Including stages).</summary>
         [DebugOutput(category = MAIN_CATEGORY_NAME)]

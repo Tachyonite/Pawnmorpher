@@ -2,6 +2,8 @@
 // last updated 07/21/2021  4:33 PM
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -11,8 +13,27 @@ namespace Pawnmorph
     /// <summary>
     /// 
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class HistoryEventUtilities
     {
+
+        /// <summary>
+        /// Gets all custom events in this mod 
+        /// </summary>
+        /// <value>
+        /// All custom events.
+        /// </value>
+        [NotNull]
+        public static IReadOnlyList<HistoryEventDef> AllCustomEvents { get; }
+
+        static HistoryEventUtilities()
+        {
+            var mod = PMHistoryEventDefOf.MutationLost.modContentPack;
+
+
+            AllCustomEvents = DefDatabase<HistoryEventDef>.AllDefsListForReading.Where(h => h.modContentPack == mod).ToList(); 
+        }
+
 
         /// <summary>
         /// Converts an enum to named argument .
@@ -79,7 +100,7 @@ namespace Pawnmorph
         public static HistoryEvent SendEvent([NotNull] this HistoryEventDef def)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            var historyEvent = new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged); 
+            var historyEvent = new HistoryEvent(def); 
             Find.HistoryEventsManager.RecordEvent(historyEvent);
             return historyEvent; 
 
@@ -94,7 +115,7 @@ namespace Pawnmorph
         public static HistoryEvent SendEvent([NotNull] this HistoryEventDef def, NamedArgument arg1)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            var historyEvent = new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, arg1);
+            var historyEvent = new HistoryEvent(def, arg1);
             Find.HistoryEventsManager.RecordEvent(historyEvent);
             return historyEvent; 
         }
@@ -110,7 +131,7 @@ namespace Pawnmorph
         public static HistoryEvent SendEvent([NotNull] this HistoryEventDef def, NamedArgument arg1, NamedArgument arg2)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            var historyEvent = new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, arg1, arg2);
+            var historyEvent = new HistoryEvent(def, arg1, arg2);
             Find.HistoryEventsManager.RecordEvent(historyEvent);
             return historyEvent; 
         }
@@ -127,7 +148,7 @@ namespace Pawnmorph
         public static HistoryEvent SendEvent([NotNull] this HistoryEventDef def, NamedArgument arg1, NamedArgument arg2, NamedArgument arg3)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            var historyEvent = new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, arg1, arg3);
+            var historyEvent = new HistoryEvent(def, arg1, arg3);
             Find.HistoryEventsManager.RecordEvent(historyEvent);
             return historyEvent; 
         }
@@ -142,7 +163,7 @@ namespace Pawnmorph
         public static HistoryEvent SendEvent([NotNull] this HistoryEventDef def, params NamedArgument[] namedArgs)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            var historyEvent = new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged) {args = new SignalArgs(namedArgs)};
+            var historyEvent = new HistoryEvent(def) {args = new SignalArgs(namedArgs)};
 
             Find.HistoryEventsManager.RecordEvent(historyEvent);
             return historyEvent; 

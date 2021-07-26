@@ -1,6 +1,7 @@
 ﻿// PMUtilities.cs created by Iron Wolf for Pawnmorph on 09/15/2019 7:38 PM
 // last updated 09/15/2019  7:38 PM
 
+using System;
 using JetBrains.Annotations;
 using RimWorld;
 using RimWorld.Planet;
@@ -51,6 +52,31 @@ namespace Pawnmorph
             if (PawnGenerator.IsBeingGenerated(pawn)) return true; 
             if (pawn.health == null || pawn.mindState?.inspirationHandler == null || pawn.needs == null) return true;
             return false; 
+        }
+
+        /// <summary>
+        /// Gets the relation of this pawn to the given faction
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="faction">The faction.</param>
+        /// <returns></returns>
+        public static ColonyRelation GetRelation([NotNull] this Pawn pawn, [CanBeNull] Faction faction=null)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            faction = faction ?? Faction.OfPlayer;
+            if (pawn.Faction == faction) return ColonyRelation.Colonist;
+            if (pawn.IsPrisoner && pawn.guest?.HostFaction == faction)
+            {
+                
+                return pawn.guilt?.IsGuilty == true? ColonyRelation.PrisonerGuilty :  ColonyRelation.Prisoner;
+            }
+            if (pawn.IsSlave && pawn.guest?.HostFaction == faction) return ColonyRelation.Slave;
+            if (pawn.Faction != null && faction.AllyOrNeutralTo(pawn.Faction))
+            {
+                return ColonyRelation.Ally;
+            }
+
+            return ColonyRelation.Wild;
         }
 
         /// <summary>

@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Thoughts.Precept;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -14,7 +15,7 @@ namespace Pawnmorph.PreceptComps
     ///     precept comp for giving a thought based on a venerated animal mutation
     /// </summary>
     /// <seealso cref="RimWorld.PreceptComp" />
-    public class VeneratedAnimalMemory : PreceptComp
+    public abstract class VeneratedAnimalMemory : PreceptComp
     {
 
         /// <summary>
@@ -71,5 +72,17 @@ namespace Pawnmorph.PreceptComps
             MutationMemory_VeneratedAnimal thought = PMThoughtUtilities.CreateVeneratedAnimalMemory(thoughtDef, animal, precept);
             dooer.TryGainMemory(thought);
         }
+
+
+        /// <summary>
+        /// Gets the animal from the given history event .
+        /// </summary>
+        /// <param name="historyEvent">The history event.</param>
+        /// <param name="ideo">The ideo.</param>
+        /// <returns>
+        /// the animal from the event. if null the thought will not be given
+        /// </returns>
+        [CanBeNull]
+        protected abstract ThingDef GetAnimal(in HistoryEvent historyEvent, [NotNull] Ideo ideo); 
     }
 }
