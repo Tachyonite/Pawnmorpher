@@ -33,9 +33,11 @@ namespace Pawnmorph.PreceptComps
         /// <param name="member">The member.</param>
         public override void Notify_MemberWitnessedAction(HistoryEvent ev, Precept precept, Pawn member)
         {
+            
+
             if (ev.def != eventDef)
                 return;
-
+            
             Pawn victimPawn;
             bool flag = ev.args.TryGetArg(HistoryEventArgsNames.Doer, out victimPawn);
             if (!flag) //In case something goes wrong. But it should not.
@@ -53,7 +55,7 @@ namespace Pawnmorph.PreceptComps
             
             Thought_Memory thought_Memory = ThoughtMaker.MakeThought(thought, precept);
             thought_Memory.SetForcedStage(Math.Min(stage, thought.stages.Count - 1));
-
+            member.TryGainMemory(thought_Memory); 
         }
     }
 }

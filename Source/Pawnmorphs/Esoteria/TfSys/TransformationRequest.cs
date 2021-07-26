@@ -65,6 +65,7 @@ namespace Pawnmorph.TfSys
             minSeverity = 0;
             forcedFaction = default;
             factionResponsible = null;
+            sendTransformationEvent = true; 
         }
 
         /// <summary>
@@ -85,7 +86,8 @@ namespace Pawnmorph.TfSys
             this.maxSeverity = 1;
             minSeverity = 0;
             forcedFaction = default;
-            factionResponsible = null; 
+            factionResponsible = null;
+            sendTransformationEvent = true; 
         }
 
         /// <summary>

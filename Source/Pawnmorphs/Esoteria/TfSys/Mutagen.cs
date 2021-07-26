@@ -379,6 +379,7 @@ namespace Pawnmorph.TfSys
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
             if (request == null) throw new ArgumentNullException(nameof(request));
             var fhSettings = transformedPawn.def.GetModExtension<FormerHumanSettings>();
+            
             if (fhSettings != null)
             {
                 if (fhSettings.transformedThought != null)
