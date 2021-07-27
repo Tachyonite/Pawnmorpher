@@ -1,0 +1,48 @@
+<Defs>
+    <ThingDef ParentName="TFItemBase">
+        <defName>Chaobulb</defName>
+        <label>chaobulb seedpod</label>
+        <description>A bulbous, warty-looking seed pod from a chaovine. Orange in colour and pungent in smell, it is said to be uncomfortably delicious, and leaves a fuzzy aftertaste in the mouth. Said to have mutagenic properties, often used by tribes to connect with nature and bring out their inner warrior animal.</description>
+        <graphicData>
+            <texPath>Plants/Items/ChaobulbFruit</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>TFMilk</chemical>
+				<addictiveness>0.010</addictiveness>
+				<minToleranceToAddict>0.15</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<thingCategories Inherit="False">
+			<li>PlantMatter</li>
+			<li>Drugs</li>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>FullRandomTF</li>
+					</hediffDefs>
+					<hediffDefsComplete>
+						<li>FullRandomTFAnyOutcome</li>
+					</hediffDefsComplete>
+					<severity>1</severity>
+				</li>
+			</outcomeDoers>
+			<foodType>Seed</foodType>
+			<preferability>NeverForNutrition</preferability>
+		</ingestible>
+		<statBases Inherit="False">
+			<MarketValue>7</MarketValue>
+			<Mass>0.045</Mass>
+			<Flammability>0.2</Flammability>
+			<Nutrition>0.0</Nutrition>
+			<MutaniteConcentration>0.012</MutaniteConcentration>
+		</statBases>
+	</ThingDef>
+</Defs>
