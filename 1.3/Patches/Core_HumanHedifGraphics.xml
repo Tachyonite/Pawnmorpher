@@ -651,6 +651,7 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
+				<drawForFemale>true</drawForFemale> <!--Leave this here, it is hacky but necessary-->
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<PM_HellhoundTail>Parts/COMBINATIONS/Hellhound/Hellhound_Tail</PM_HellhoundTail>
