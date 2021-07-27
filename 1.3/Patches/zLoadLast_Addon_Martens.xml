@@ -37,7 +37,7 @@
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[(bodyPart="Tail" or bodyPart="tail") and layerOffset=-0.29]/hediffGraphics</xpath>
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[(bodyPart="Tail" or bodyPart="tail") and drawForFemale="true"]/hediffGraphics</xpath>
 					<value>
 						<EtherMartenTail>Parts/Marten/Marten_Tail</EtherMartenTail>
 					</value>
@@ -252,7 +252,7 @@
 								<li>Jaw</li>
 							</parts>
 							<stages>
-								<li>
+								<li Class="Pawnmorph.Hediffs.MutationStage">
 									<capMods>
 										<li>
 											<capacity>Talking</capacity>
@@ -264,7 +264,7 @@
 										</li>
 									</capMods>
 								</li>
-								<li>
+								<li Class="Pawnmorph.Hediffs.MutationStage">
 									<minSeverity>1</minSeverity>
 									<capMods>
 										<li>
@@ -308,7 +308,7 @@
 								<li>Ear</li>
 							</parts>
 							<stages>
-								<li>
+								<li Class="Pawnmorph.Hediffs.MutationStage">
 									<partEfficiencyOffset>0.10</partEfficiencyOffset>
 								</li>
 							</stages>
@@ -320,9 +320,10 @@
 							<description>A long fluffy marten tail. It's great for helping [PAWN_nameDef] keep [PAWN_objective] balance.</description>
 							<parts>
 								<li>Tail</li>
+								<li>MorphTail</li>
 							</parts>
 							<stages>
-								<li>
+								<li Class="Pawnmorph.Hediffs.MutationStage">
 									<capMods>
 										<li>
 											<capacity>Moving</capacity>
