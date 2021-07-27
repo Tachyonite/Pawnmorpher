@@ -1,0 +1,234 @@
+<Defs>
+	<ThingDef Name="TFItemBase" ParentName="OrganicProductBase" Abstract="True">
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>20</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+		</comps>
+		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
+		<thingCategories>
+			<li>AnimalProductRaw</li>
+			<li>Drugs</li>
+		</thingCategories>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<ingestible>
+			<drugCategory>Social</drugCategory>
+			<preferability>DesperateOnly</preferability>
+			<foodType>AnimalProduct, Fluid</foodType>
+			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+		</ingestible>
+		<statBases>
+			<MarketValue>7</MarketValue>
+			<Mass>0.045</Mass>
+			<Flammability>0.2</Flammability>
+			<Nutrition>0.05</Nutrition>
+			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+			<MutaniteConcentration>0.02</MutaniteConcentration>
+		</statBases>
+	</ThingDef>
+
+	<!-- ========== CowMorph Milk ========== -->
+
+	<ThingDef ParentName="TFItemBase">
+		<defName>TFMilk</defName>
+		<label>cowmorph milk</label>
+		<description>Milk from a cowmorph. Smells odd, but not off. Saturated with mutagenic mechanites. Drinking this will confer bovine mutations.</description>
+		<graphicData>
+			<texPath>Things/Item/Resource/Milk</texPath>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>TFMilk</chemical>
+				<addictiveness>0.010</addictiveness>
+				<minToleranceToAddict>0.15</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphCowTFPartial</li>
+					</hediffDefs>
+					<hediffDefsComplete>
+						<li>PawnmorphCowTF</li>
+					</hediffDefsComplete>
+					<severity>1</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ChemicalDef>
+		<defName>TFMilk</defName>
+		<label>cowmorph milk</label>
+		<addictionHediff>TFMilkAddiction</addictionHediff>
+	</ChemicalDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_TFMilk</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>cowmorph milk</label>
+		<description>This person is under the strange effects of cowmorph milk. They will require more (which will change them), but failure to keep them sated will push them over the edge.</description>
+		<listPriority>45</listPriority>
+		<fallPerDay>0.15</fallPerDay>
+	</NeedDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>TFMilkAddiction</defName>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<label>milk addiction</label>
+		<description>This person has a developed a dependancy on morph milk. Take care to not let them go without it, as withdrawal symtoms risk them transforming into a cow.</description>
+		<causesNeed>Chemical_TFMilk</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0333</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
+				<socialFightChanceFactor>25</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
+						<pawnkinds>
+							<li>Cow</li>
+						</pawnkinds>
+						<tale>TransformationCow</tale>
+						<forceGender>Female</forceGender>
+						<forceGenderChance>70</forceGenderChance>
+					</li>
+				</hediffGivers>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_Food</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+				<statOffsets>
+					<GlobalLearningFactor>-0.9</GlobalLearningFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- ========== ChookMorph Eggs ========== -->
+
+	<ThingDef ParentName="TFItemBase">
+		<defName>TFEgg</defName>
+		<label>chookmorph egg</label>
+		<description>A strange egg usually laid by a chookmorph. It's basically a normal egg, but saturated with mutagenic mechanites. Eating them will transfer chicken-based mutations to the imbiber.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Item/Resource/TFEgg</texPath>
+			<color>(245,245,245)</color>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>TFEgg</chemical>
+				<addictiveness>0.10</addictiveness>
+				<minToleranceToAddict>0.15</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphChickenTFPartial</li>
+					</hediffDefs>
+					<hediffDefsComplete>
+						<li>PawnmorphChickenTF</li>
+					</hediffDefsComplete>
+					<severity>1</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ChemicalDef>
+		<defName>TFEgg</defName>
+		<label>chookmorph egg</label>
+		<addictionHediff>TFEggAddiction</addictionHediff>
+	</ChemicalDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_TFEgg</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>chookmorph egg</label>
+		<description>This person is under the strange effects of chookmorph eggs. They will require more (which will change them), but failure to keep them sated will push them over the edge.</description>
+		<listPriority>45</listPriority>
+		<fallPerDay>0.15</fallPerDay>
+	</NeedDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>TFEggAddiction</defName>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<label>egg addiction</label>
+		<description>This person has a developed a dependancy on chook eggs. Take care to not let them go without it, as withdrawal symtoms risk them transforming into a chicken.</description>
+		<causesNeed>Chemical_TFEgg</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0333</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
+				<socialFightChanceFactor>25</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
+						<pawnkinds>
+							<li>Chicken</li>
+						</pawnkinds>
+						<tale>TransformationChicken</tale>
+						<forceGender>Female</forceGender>
+						<forceGenderChance>70</forceGenderChance>
+					</li>
+				</hediffGivers>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_Food</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+				<statOffsets>
+					<GlobalLearningFactor>-0.9</GlobalLearningFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

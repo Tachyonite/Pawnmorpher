@@ -1,0 +1,91 @@
+<Defs>
+	<ThingDef Name="TFItemBase" ParentName="OrganicProductBase" Abstract="True">
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>20</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+		</comps>
+		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
+		<thingCategories>
+			<li>AnimalProductRaw</li>
+			<li>Drugs</li>
+		</thingCategories>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<ingestible>
+			<drugCategory>Social</drugCategory>
+			<preferability>DesperateOnly</preferability>
+			<foodType>AnimalProduct, Fluid</foodType>
+			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+		</ingestible>
+		<statBases>
+			<MarketValue>7</MarketValue>
+			<Mass>0.045</Mass>
+			<Flammability>0.2</Flammability>
+			<Nutrition>0.05</Nutrition>
+			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+			<MutaniteConcentration>0.02</MutaniteConcentration>
+		</statBases>
+	</ThingDef>
+
+	<!-- ========== CowMorph Milk ========== -->
+
+	<ThingDef ParentName="TFItemBase">
+		<defName>TFMilk</defName>
+		<label>cowmorph milk</label>
+		<description>Milk from a cowmorph. Smells odd, but not off. Saturated with mutagenic mechanites. Drinking this will confer bovine mutations.</description>
+		<graphicData>
+			<texPath>Things/Item/Resource/Milk</texPath>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphCowTFPartial</li>
+					</hediffDefs>
+					<hediffDefsComplete>
+						<li>PawnmorphCowTF</li>
+					</hediffDefsComplete>
+					<severity>1</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- ========== ChookMorph Eggs ========== -->
+
+	<ThingDef ParentName="TFItemBase">
+		<defName>TFEgg</defName>
+		<label>chookmorph egg</label>
+		<description>A strange egg usually laid by a chookmorph. It's basically a normal egg, but saturated with mutagenic mechanites. Eating them will transfer chicken-based mutations to the imbiber.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Item/Resource/TFEgg</texPath>
+			<color>(245,245,245)</color>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphChickenTFPartial</li>
+					</hediffDefs>
+					<hediffDefsComplete>
+						<li>PawnmorphChickenTF</li>
+					</hediffDefsComplete>
+					<severity>1</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+</Defs>
