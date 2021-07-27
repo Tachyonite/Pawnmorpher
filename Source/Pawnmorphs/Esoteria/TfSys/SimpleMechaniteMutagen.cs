@@ -444,7 +444,7 @@ namespace Pawnmorph.TfSys
                 return animalToSpawn;
             }
 
-            return (Pawn) GenSpawn.Spawn(animalToSpawn, original.PositionHeld, original.MapHeld);
+            return (Pawn) GenSpawn.Spawn(animalToSpawn, original.GetCorrectPosition(), original.GetCorrectMap());
         }
     }
 }
