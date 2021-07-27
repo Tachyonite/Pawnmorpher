@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
@@ -44,13 +45,14 @@ namespace Pawnmorph.HPatches
         }
 
 
-        [HarmonyPatch(typeof(Pawn_InteractionsTracker))]
-        [HarmonyPatch(nameof(Pawn_InteractionsTracker.TryInteractWith))]
+        [HarmonyPatch(typeof(Pawn_InteractionsTracker), nameof(Pawn_InteractionsTracker.TryInteractWith))]
         private static class TryInteractWithPatch
         {
             [HarmonyPostfix]
-            private static void AddInteractionThoughts([NotNull] Pawn recipient, [NotNull] InteractionDef intDef, bool __result)
+            private static void AddInteractionThoughts(Pawn ___pawn, [NotNull] Pawn recipient, [NotNull] InteractionDef intDef, bool __result)
             {
+
+
                 if (!__result) return;
                 if ((recipient.IsFormerHuman() || recipient.GetSapienceState()?.StateDef == SapienceStateDefOf.Animalistic)
                  && recipient.needs?.mood != null)
@@ -70,40 +72,27 @@ namespace Pawnmorph.HPatches
                     //social thoughts to? 
                     recipient.TryGainMemory(memory);
                 }
+
+                
             }
 
             [HarmonyPrefix]
             private static bool SubstituteInteraction(Pawn recipient, ref InteractionDef intDef, Pawn ___pawn)
             {
+
+                
+
                 var ext = intDef.GetModExtension<InteractionGroupExtension>();
                 InteractionDef alt = ext?.TryGetAlternativeFor(___pawn, recipient);
                 if (alt != null)
                 {
-                    if (DebugLogUtils.ShouldLog(LogLevel.Messages))
-                    {
+                    
                         string msg = $"substituting {alt.defName} for {intDef.defName} on {___pawn.Name} -> {recipient.Name}";
                         Log.Message(msg);
-                    }
+                    
 
 
                     intDef = alt;
-                }
-
-                return true;
-            }
-        }
-
-        [HarmonyPatch(typeof(InteractionUtility))]
-        [HarmonyPatch(nameof(InteractionUtility.CanReceiveRandomInteraction))]
-        private static class SapientAnimalsRandomInteractionPatch
-        {
-            [HarmonyPrefix]
-            private static bool SapientAnimalPatch([NotNull] Pawn p, ref bool __result)
-            {
-                if (p.IsFormerHuman() && p.needs?.mood != null)
-                {
-                    __result = InteractionUtility.CanReceiveInteraction(p) && !p.Downed && !p.InAggroMentalState;
-                    return false;
                 }
 
                 return true;
@@ -149,6 +138,89 @@ namespace Pawnmorph.HPatches
             }
         }
 
+        [NotNull]
+        private static readonly List<Pawn> _workingList = new List<Pawn>();
+
+#if true
+
+       
+
+        [NotNull]
+        private static readonly StringBuilder _dbgBuilder = new StringBuilder();
+        [HarmonyPatch(typeof(Pawn_InteractionsTracker), "TryInteractRandomly")]
+        static class DebugInteractionPatch
+        {
+            static void Postfix(Pawn_InteractionsTracker __instance, Pawn ___pawn,ref  bool __result)
+            {
+                _workingList.Clear();
+                _dbgBuilder.Clear();
+                if (___pawn?.IsFormerHuman() == true)
+                {
+                    if (InteractionUtility.CanInitiateRandomInteraction(___pawn) && !__instance.InteractedTooRecentlyToInteract())
+                    {
+                        List<Pawn> collection = ___pawn.Map?.mapPawns?.SpawnedPawnsInFaction(___pawn.Faction);
+                        if ((collection?.Count ?? 0) == 0)
+                        {
+                            return; 
+                        }
+
+                        _workingList.AddRange(collection);
+                        List<InteractionDef> allDefsListForReading = DefDatabase<InteractionDef>.AllDefsListForReading;
+                        for (int i = 0; i < _workingList.Count; i++)
+                        {
+                            Pawn p = _workingList[i];
+                            if (p != ___pawn)  
+                            {
+                                if (__instance.CanInteractNowWith(p))
+                                {
+                                    if (InteractionUtility.CanReceiveRandomInteraction(p))
+                                    {
+                                        if (!___pawn.HostileTo(p))
+                                        {
+                                            var tups = allDefsListForReading
+                                                      .Select((InteractionDef x) => (x, GetWeight(x, p)))
+                                                      .Where(t => t.Item2 > 0); 
+
+                                            var elem = tups.TryRandomElementByWeight(t => t.Item2, out var selTup);
+
+                                            if (elem)
+                                            {
+                                                __result = __instance.TryInteractWith(p, selTup.x); 
+                                                break;
+                                            }
+
+                                        }
+                                        else { }
+                                    }
+                                    else
+                                    {
+                                    }
+                                }
+                                else
+                                {
+                                }
+                            }
+                        }
+
+                        float GetWeight(InteractionDef x, Pawn p)
+                        {
+                            return (!__instance.CanInteractNowWith(p, x)) ? 0f : x.Worker.RandomSelectionWeight(___pawn, p);
+                        }
+
+             
+                        
+                        if(_dbgBuilder.Length > 0)
+                            Log.Message(_dbgBuilder.ToString());
+
+                    }
+
+                    if(__result) Log.Warning($"{___pawn.Name} interacted!");
+                }
+
+
+            }
+        }
+#endif
 
         [HarmonyPatch(typeof(InteractionWorker_Suppress), "Interacted")]
         private static class ResistanceSapienceInfluenceSuppression

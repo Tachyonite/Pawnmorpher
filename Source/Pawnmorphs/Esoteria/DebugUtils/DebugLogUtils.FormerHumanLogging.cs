@@ -55,6 +55,45 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString()); 
         }
 
+        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
+        static void CheckFHInteraction()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            var prop = typeof(Pawn_InteractionsTracker).GetProperty("CurrentSocialMode",
+                                                                    BindingFlags.NonPublic
+                                                                  | BindingFlags.Public
+                                                                  | BindingFlags.Instance);
+            if (prop == null) Log.Error("unable to find property"); 
+
+            foreach (Pawn formerHuman in FormerHumanUtilities.AllMaps_FormerHumans)
+            {
+                var interaction = formerHuman.interactions; 
+                if(interaction == null) continue;
+                var mp = formerHuman.Map; 
+                if(mp == null) continue;
+
+                builder.AppendLine($"{formerHuman.Label}: can interact {InteractionUtility.CanInitiateInteraction(formerHuman)} can interact randomly {InteractionUtility.CanInitiateRandomInteraction(formerHuman)} can receive random interaction {InteractionUtility.CanReceiveRandomInteraction(formerHuman)}, blocked {formerHuman.IsInteractionBlocked(null, true, true)}");
+                builder.AppendLine($"mode {prop.GetValue(interaction)}"); 
+
+                //foreach (Pawn pawn in mp.mapPawns.AllPawns.Where(p => p.RaceProps.Humanlike))
+                //{
+                //    var pInteractor = pawn.interactions; 
+                //    if(pInteractor == null) continue;
+                //    builder.AppendLine($"\t\tCanInteractWith {pawn.Label}={interaction.CanInteractNowWith(pawn)}");
+
+                //    foreach (InteractionDef interactionDef in DefDatabase<InteractionDef>.AllDefs)
+                //    {
+                //        builder.AppendLine($"\t\t{interactionDef}[{pawn.Label}]={interaction.CanInteractNowWith(pawn, interactionDef)}");
+                //    }
+
+                //}
+            }
+
+            Log.Message(builder.ToString());
+
+        }
+
         [DebugOutput(category = FH_CATEGORY)]
         static void LogFormerHumanLordStatus()
         {
