@@ -81,6 +81,7 @@
 			<lifeExpectancy>220</lifeExpectancy>
 			<willNeverEat>
 				<li MayRequire="Ludeon.RimWorld.Royalty">Plant_TreeAnima</li>
+				<li MayRequire="Ludeon.RimWorld.Ideology">Plant_TreeGauranlen</li>
 			</willNeverEat>
 			<lifeStageAges>
 				<li>
