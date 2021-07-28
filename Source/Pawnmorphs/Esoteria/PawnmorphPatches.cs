@@ -271,7 +271,7 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod("Tick_CheckStartMarriageCeremony", INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod("CheckAppendBondedAnimalDiedInfo", INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod(nameof(Pawn_RelationsTracker.Notify_RescuedBy), INSTANCE_FLAGS));
-
+            
             AddJobGiverMethods(methodsToPatch);
 
 
@@ -324,6 +324,9 @@ namespace Pawnmorph
                             .ToList();
 
            
+            //ritual outcomes 
+            methodsToPatch.Add(typeof(RitualOutcomeComp_ParticipantCount).GetMethod("Counts", INSTANCE_FLAGS));
+
 
 
             methodsToPatch.AddRange(methods.Select(m => (MethodInfoSt) m));
