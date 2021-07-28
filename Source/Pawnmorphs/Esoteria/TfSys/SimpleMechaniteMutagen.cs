@@ -204,8 +204,7 @@ namespace Pawnmorph.TfSys
             ApplyPostTfEffects(original, spawnedAnimal, request);
 
 
-            TransformerUtility
-               .DBGCleanUpHumanPawnPostTf(original, request.cause, true ,spawnedAnimal); //now clean up the original pawn (remove apparel, drop'em, ect) 
+            TransformerUtility.CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
 
 
             //notify the faction that their member has been transformed 

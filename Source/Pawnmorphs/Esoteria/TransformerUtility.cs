@@ -560,11 +560,11 @@ namespace Pawnmorph
             originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
 
             //remove any jobs the pawn may be doing 
-            if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null)
-            {
-                originalPawn.jobs.ClearQueuedJobs();
-                originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced); 
-            }
+            //if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null) this causes former humans to sometimes despawn and I don't know why 
+            //{
+            //    originalPawn.jobs.ClearQueuedJobs();
+            //    originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced); 
+            //}
 
 
 
@@ -647,16 +647,16 @@ namespace Pawnmorph
                 Log.Error($"tfdPawn no longer spawned A");
 
             //remove any jobs the pawn may be doing 
-            if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null)
-            {
-                originalPawn.jobs.ClearQueuedJobs(); //clearing the job queue and/or ending current job causes the tf'd pawn to despawn and I have no idea why 
-                originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
+            //if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null)
+            //{
+            //    originalPawn.jobs.ClearQueuedJobs(); //clearing the job queue and/or ending current job causes the tf'd pawn to despawn and I have no idea why 
+            //    originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
 
 
-                if (!tfdPawn.Spawned)
-                    Log.Error($"tfdPawn no longer spawned B");
+            //    if (!tfdPawn.Spawned)
+            //        Log.Error($"tfdPawn no longer spawned B");
 
-            }
+            //}
 
 
 
