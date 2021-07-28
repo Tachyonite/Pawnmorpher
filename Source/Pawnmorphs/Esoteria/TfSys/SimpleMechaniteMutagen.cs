@@ -433,35 +433,24 @@ namespace Pawnmorph.TfSys
 
         private static Pawn SpawnAnimal(Pawn original, Pawn animalToSpawn)
         {
-            if(!original.Spawned)
-                Log.Error($"{original.Name} is not spawned!");
-
+       
             if (original.IsCaravanMember())
             {
                 original.GetCaravan().AddPawn(animalToSpawn, true);
                 Find.WorldPawns.PassToWorld(animalToSpawn);
-                Log.Message("original is caravan pawn");
                 return animalToSpawn;
             }
 
             if (original.IsWorldPawn())
             {
                 Find.WorldPawns.PassToWorld(animalToSpawn);
-                Log.Message("original is world pawn");
                 return animalToSpawn;
             }
 
             Map correctMap = original.Map;
-            if(correctMap == null) Log.Error($"trying to spawn non world caravan pwan with no map");
             IntVec3 loc = original.GetCorrectPosition();
-
-            Log.Message($"spawning {original.Name} at {correctMap?.uniqueID ?? -1} at pos {loc}");
-
-            var p =  (Pawn)GenSpawn.Spawn(animalToSpawn, loc, correctMap);
-
-            Log.Message($"spawned {p.Name} {p.Map?.uniqueID ?? -1} {p.Position}");
-
-            return p; 
+            var p = (Pawn) GenSpawn.Spawn(animalToSpawn, loc, correctMap);
+            return p;
         }
     }
 }
