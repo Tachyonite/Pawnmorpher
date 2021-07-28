@@ -153,7 +153,6 @@ namespace Pawnmorph.TfSys
 
 
 
-
             animalToSpawn.needs.food.CurLevel =
                 original.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
             animalToSpawn.needs.rest.CurLevel =
@@ -166,6 +165,8 @@ namespace Pawnmorph.TfSys
             FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel);
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
+
+           
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
             Map correctMap = original.GetCorrectMap();
@@ -198,12 +199,14 @@ namespace Pawnmorph.TfSys
             Faction oFaction = original.Faction; //can't figure out what happened to FactionOrExtraMiniOrHomeFaction, needs further investigation 
             Map oMap = original.Map;
 
-
+          
             //apply any other post tf effects 
-            ApplyPostTfEffects(original, animalToSpawn, request);
+            ApplyPostTfEffects(original, spawnedAnimal, request);
+
 
             TransformerUtility
-               .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
+               .DBGCleanUpHumanPawnPostTf(original, request.cause, true ,spawnedAnimal); //now clean up the original pawn (remove apparel, drop'em, ect) 
+
 
             //notify the faction that their member has been transformed 
             oFaction?.Notify_MemberTransformed(original, animalToSpawn, oMap == null, oMap);
@@ -216,7 +219,7 @@ namespace Pawnmorph.TfSys
 
             DebugLogUtils.Assert(!PrisonBreakUtility.CanParticipateInPrisonBreak(original),
                                  $"{original.Name} has been cleaned up and de-spawned but can still participate in prison breaks");
-
+           
 
             return inst;
         }
@@ -431,20 +434,35 @@ namespace Pawnmorph.TfSys
 
         private static Pawn SpawnAnimal(Pawn original, Pawn animalToSpawn)
         {
+            if(!original.Spawned)
+                Log.Error($"{original.Name} is not spawned!");
+
             if (original.IsCaravanMember())
             {
                 original.GetCaravan().AddPawn(animalToSpawn, true);
                 Find.WorldPawns.PassToWorld(animalToSpawn);
+                Log.Message("original is caravan pawn");
                 return animalToSpawn;
             }
 
             if (original.IsWorldPawn())
             {
                 Find.WorldPawns.PassToWorld(animalToSpawn);
+                Log.Message("original is world pawn");
                 return animalToSpawn;
             }
 
-            return (Pawn) GenSpawn.Spawn(animalToSpawn, original.GetCorrectPosition(), original.GetCorrectMap());
+            Map correctMap = original.Map;
+            if(correctMap == null) Log.Error($"trying to spawn non world caravan pwan with no map");
+            IntVec3 loc = original.GetCorrectPosition();
+
+            Log.Message($"spawning {original.Name} at {correctMap?.uniqueID ?? -1} at pos {loc}");
+
+            var p =  (Pawn)GenSpawn.Spawn(animalToSpawn, loc, correctMap);
+
+            Log.Message($"spawned {p.Name} {p.Map?.uniqueID ?? -1} {p.Position}");
+
+            return p; 
         }
     }
 }

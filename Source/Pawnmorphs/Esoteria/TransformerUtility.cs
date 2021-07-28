@@ -532,7 +532,7 @@ namespace Pawnmorph
 
 
 
-            HandleApparelAndEquipment(originalPawn, caravan); 
+            //HandleApparelAndEquipment(originalPawn, caravan); 
             if (cause != null)
                 originalPawn
                    .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
@@ -546,8 +546,8 @@ namespace Pawnmorph
             {
                 Pawn carryingPawn = originalPawn.CarriedBy;
                 Thing outPawn;
-                carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct,
-                                                              out outPawn); // ...drop them so they can be removed.
+               // carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct,
+               //                                               out outPawn); // ...drop them so they can be removed.
             }
 
             if (originalPawn.IsPrisoner)
@@ -581,6 +581,106 @@ namespace Pawnmorph
             foreach (Pawn animalPawn in PawnsFinder.AllMapsWorldAndTemporary_Alive.Where(IsMasterOfOriginal))
                 animalPawn.playerSettings.Master = null; //set to null, these animals don't have a master anymore 
         }
+
+        /// <summary>
+        /// Cleans up all references to the original human pawn after creating the animal pawn. <br />
+        /// This does not call Pawn.DeSpawn.
+        /// </summary>
+        /// <param name="originalPawn">The original pawn.</param>
+        /// <param name="cause">The cause.</param>
+        /// <param name="removeMentalStates">if set to <c>true</c> [remove mental states].</param>
+        /// <exception cref="ArgumentNullException">originalPawn</exception>
+        internal static void DBGCleanUpHumanPawnPostTf([NotNull] Pawn originalPawn, [CanBeNull] Hediff cause, bool removeMentalStates, Pawn tfdPawn)
+        {
+            if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
+
+            
+
+            Caravan caravan = originalPawn.GetCaravan();
+            caravan?.RemovePawn(originalPawn);
+            caravan?.Notify_PawnRemoved(originalPawn);
+
+
+           
+
+            if (originalPawn.InMentalState)
+            {
+                originalPawn?.mindState?.mentalStateHandler?.Reset();
+            }
+
+
+          
+
+            HandleApparelAndEquipment(originalPawn, caravan); 
+            if (cause != null)
+                originalPawn
+                   .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
+
+           
+            originalPawn.health.surgeryBills?.Clear(); //if this pawn has any additional surgery bills, get rid of them 
+
+            if (originalPawn.ownership.OwnedBed != null) // If the original pawn owned a bed somewhere...
+                originalPawn.ownership.UnclaimBed(); // ...unclaim it.
+
+         
+
+            if (originalPawn.CarriedBy != null) // If the original pawn was being carried when they transformed...
+            {
+                Pawn carryingPawn = originalPawn.CarriedBy;
+                Thing outPawn;
+                 carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct,
+                                                               out outPawn); // ...drop them so they can be removed.
+                
+
+            }
+
+
+
+            if (originalPawn.IsPrisoner)
+                HandlePrisoner(originalPawn);
+
+
+            // Make sure any current lords know they can't use this pawn anymore.
+            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+
+            if (!tfdPawn.Spawned)
+                Log.Error($"tfdPawn no longer spawned A");
+
+            //remove any jobs the pawn may be doing 
+            if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null)
+            {
+                originalPawn.jobs.ClearQueuedJobs(); //clearing the job queue and/or ending current job causes the tf'd pawn to despawn and I have no idea why 
+                originalPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
+
+
+                if (!tfdPawn.Spawned)
+                    Log.Error($"tfdPawn no longer spawned B");
+
+            }
+
+
+
+            if (originalPawn.Faction != Faction.OfPlayer) return; //past here is only relevant for colonists 
+
+
+          
+
+            bool IsMasterOfOriginal(Pawn animalPawn) //function to find all animals our pawn is a master of 
+            {
+                if (animalPawn.playerSettings != null) return animalPawn.playerSettings.Master == originalPawn;
+
+                return false;
+            }
+
+          
+
+
+            foreach (Pawn animalPawn in PawnsFinder.AllMapsWorldAndTemporary_Alive.Where(IsMasterOfOriginal))
+                animalPawn.playerSettings.Master = null; //set to null, these animals don't have a master anymore 
+
+         
+        }
+
 
         static void HandlePrisoner(Pawn pawn)
         {
