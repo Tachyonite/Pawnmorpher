@@ -293,7 +293,7 @@ namespace Pawnmorph.Hediffs
         protected virtual void OnStageChanged([CanBeNull] HediffStage currentStage)
         {
             ResetPossibleMutations();
-            TryGiveTransformations();
+            //TryGiveTransformations();
             if(CurStage is IExecutableStage execStage)
             {
                 Pedantic($"Executing {execStage.GetType().Name} on {def.defName}");

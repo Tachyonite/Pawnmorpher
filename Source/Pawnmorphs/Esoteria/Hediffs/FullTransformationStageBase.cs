@@ -26,7 +26,7 @@ namespace Pawnmorph.Hediffs
         public float forceGenderChance = 50f;
 
         private float changeChance = -1;
-
+        private bool _ran; 
         /// <summary>
         /// Gets the pawn kind definition to turn the given pawn into
         /// </summary>
@@ -61,6 +61,13 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public bool TransformPawn(Pawn pawn, Hediff cause)
         {
+            if (_ran)
+            {
+                Log.Error("ran transform on the same pawn multiple times");
+                return false; 
+            }
+            else _ran = true; 
+
             var mutagen = cause?.def?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
             var request = new TransformationRequest(GetPawnKindDefFor(pawn), pawn)
             {
