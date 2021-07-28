@@ -1,6 +1,8 @@
 ﻿// ExpandedPlant.cs created by Iron Wolf for Pawnmorph on 07/25/2021 6:39 PM
 // last updated 07/25/2021  6:39 PM
 
+using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
@@ -30,7 +32,7 @@ namespace Pawnmorph.Things
             {
                 if (Blighted) return 0f;
                 if (Spawned && !PlantUtility.GrowthSeasonNow(Position, Map)) return 0f;
-                return GrowthRateFactor_Fertility * DynGrowthRateFactor_Temperature * GrowthRateFactor_Light;
+                return GrowthRateFactor_Fertility * DynGrowthRateFactor_Temperature;
             }
         }
 
@@ -81,6 +83,120 @@ namespace Pawnmorph.Things
             }
         }
 
+        private List<ThingComp> _newComps;
+
+        List<ThingComp> NewComps
+        {
+            get
+            {
+                if (_newComps == null)
+                {
+                    //need to do this reflection horribleness because of hard coded growth suppression in winter 
+                    var fld = typeof(ThingWithComps).GetField("comps", BindingFlags.Instance | BindingFlags.NonPublic);
+                    _newComps = (List<ThingComp>) fld.GetValue(this); 
+                }
+
+                return _newComps;
+            }
+        }
+
+        /// <summary>
+        /// performs a long tick.
+        /// </summary>
+        public override void TickLong() //need this copy-paste nonsense because of hardcoded growth suppression in winter 
+        {
+            CheckTemperatureMakeLeafless();
+            if (Destroyed) return;
+
+            if (NewComps != null)
+            {
+                int i = 0;
+                for (int count = NewComps.Count; i < count; i++)
+                {
+                    NewComps[i].CompTickLong();
+                }
+            }
+
+            float num = growthInt;
+            bool num2 = LifeStage == PlantLifeStage.Mature;
+            growthInt += GrowthPerTick * 2000f;
+            if (growthInt > 1f) growthInt = 1f;
+            if ((!num2 && LifeStage == PlantLifeStage.Mature || (int) (num * 10f) != (int) (growthInt * 10f))
+             && CurrentlyCultivated()) Map.mapDrawer.MapMeshDirty(Position, MapMeshFlag.Things);
+
+
+            unlitTicks = 0;
+            ageInt += 2000;
+            if (Dying)
+            {
+                Map map = Map;
+                bool isCrop = IsCrop;
+                bool harvestableNow = HarvestableNow;
+                bool dyingBecauseExposedToLight = DyingBecauseExposedToLight;
+                int num3 = Mathf.CeilToInt(CurrentDyingDamagePerTick * 2000f);
+                TakeDamage(new DamageInfo(DamageDefOf.Rotting, num3));
+                if (Destroyed)
+                {
+                    if (isCrop
+                     && def.plant.Harvestable
+                     && MessagesRepeatAvoider.MessageShowAllowed("MessagePlantDiedOfRot-" + def.defName, 240f))
+                    {
+                        string key = harvestableNow ? "MessagePlantDiedOfRot_LeftUnharvested" :
+                                     !dyingBecauseExposedToLight ? "MessagePlantDiedOfRot" :
+                                     "MessagePlantDiedOfRot_ExposedToLight";
+                        Messages.Message(key.Translate(GetCustomLabelNoCount(false)), new TargetInfo(Position, map),
+                                         MessageTypeDefOf.NegativeEvent);
+                    }
+
+                    return;
+                }
+            }
+
+            cachedLabelMouseover = null;
+            if (def.plant.dropLeaves)
+            {
+                var moteLeaf = MoteMaker.MakeStaticMote(Vector3.zero, Map, ThingDefOf.Mote_Leaf) as MoteLeaf;
+                if (moteLeaf != null)
+                {
+                    float num4 = def.plant.visualSizeRange.LerpThroughRange(growthInt);
+                    float treeHeight = def.graphicData.drawSize.x * num4;
+                    Vector3 vector = Rand.InsideUnitCircleVec3 * LeafSpawnRadius;
+                    moteLeaf.Initialize(Position.ToVector3Shifted() + Vector3.up * Rand.Range(LeafSpawnYMin, LeafSpawnYMax) + vector + Vector3.forward * def.graphicData.shadowData.offset.z,
+                                        Rand.Value * 2000.TicksToSeconds(), vector.z > 0f, treeHeight);
+                }
+            }
+        }
+
+        private string cachedLabelMouseover;
+        private static float LeafSpawnYMin = 0.3f;
+        private static float LeafSpawnYMax = 1f;
+        private static float LeafSpawnRadius = 0.4f;
+        /// <summary>
+        /// Gets the  mouseover label.
+        /// </summary>
+        /// <value>
+        /// The label mouseover.
+        /// </value>
+        public override string LabelMouseover  //need this copy pate nonsense because of the nonsense in LongTick 
+        {
+            get
+            {
+                if (cachedLabelMouseover == null)
+                {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.Append(def.LabelCap);
+                    stringBuilder.Append(" (" + "PercentGrowth".Translate(GrowthPercentString));
+                    if (Dying)
+                    {
+                        stringBuilder.Append(", " + "DyingLower".Translate());
+                    }
+                    stringBuilder.Append(")");
+                    cachedLabelMouseover = stringBuilder.ToString();
+                }
+                return cachedLabelMouseover;
+            }
+        }
+
         /// <summary>
         ///     Gets the inspect string.
         /// </summary>
@@ -97,10 +213,6 @@ namespace Pawnmorph.Things
                     if (!Blighted)
                     {
                         if (Resting) stringBuilder.AppendLine("PlantResting".Translate());
-                        if (!HasEnoughLightToGrow)
-                            stringBuilder.AppendLine("PlantNeedsLightLevel".Translate()
-                                                   + ": "
-                                                   + def.plant.growMinGlow.ToStringPercent());
                         float growthRateFactor_Temperature = DynGrowthRateFactor_Temperature;
                         if (growthRateFactor_Temperature < 0.99f)
                         {
