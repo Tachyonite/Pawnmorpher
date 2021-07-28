@@ -70,7 +70,7 @@
 			<preferability>NeverForNutrition</preferability>
 		</ingestible>
 		<statBases Inherit="False">
-			<MarketValue>7</MarketValue>
+			<MarketValue>8</MarketValue>
 			<Mass>0.045</Mass>
 			<Flammability>0.2</Flammability>
 			<Nutrition>0.0</Nutrition>
