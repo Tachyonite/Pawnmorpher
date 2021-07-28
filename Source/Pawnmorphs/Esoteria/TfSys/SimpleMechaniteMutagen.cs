@@ -447,9 +447,14 @@ namespace Pawnmorph.TfSys
                 return animalToSpawn;
             }
 
-            Map correctMap = original.Map;
+            Map correctMap = original.GetCorrectMap();
             IntVec3 loc = original.GetCorrectPosition();
             var p = (Pawn) GenSpawn.Spawn(animalToSpawn, loc, correctMap);
+            if (p == null)
+            {
+                Log.Error($"unable to spawn pawn {animalToSpawn.Name}!");
+                return animalToSpawn;
+            }
             return p;
         }
     }
