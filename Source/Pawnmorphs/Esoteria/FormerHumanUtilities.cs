@@ -500,10 +500,10 @@ namespace Pawnmorph
         public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName = null, string fixedLastName = null,
                                                    Gender? fixedOriginalGender = null)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.Villager;
+            PawnKindDef pawnKind = PawnKindDefOf.SpaceRefugee;
 
             PawnKindDef kind = pawnKind;
-            Faction faction = Faction.OfPlayer;
+            Faction faction = DownedRefugeeQuestUtility.GetRandomFactionForRefugee();
             float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
