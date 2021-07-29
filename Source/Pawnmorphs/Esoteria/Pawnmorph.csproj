@@ -583,6 +583,8 @@
     <Compile Include="PreceptComps\VeneratedMutation.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />
+    <Compile Include="Rituals\AttachableOutcomeEffectWorkers\AddRandomVeneratedMutation.cs" />
+    <Compile Include="Rituals\RoleTags.cs" />
     <Compile Include="RoleRequirement\BaseRoleRequirement.cs" />
     <Compile Include="RoleRequirement\FormerHuman.cs" />
     <Compile Include="SapienceState.cs" />
