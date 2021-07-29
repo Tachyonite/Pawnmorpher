@@ -1,6 +1,6 @@
 <LanguageData>
 	<PawnmorpherModName>Pawnmorpher</PawnmorpherModName>
-	<enableFalloutCheckboxLabel>Enable Mutagenic Fallout (Work In Progress)</enableFalloutCheckboxLabel>
+	<enableFalloutCheckboxLabel>Enable Mutagenic Fallout</enableFalloutCheckboxLabel>
 	<enableFalloutCheckboxTooltip>Toggles a special fallout event that can spawn and mutate exposed pawns.</enableFalloutCheckboxTooltip>
 	<enableMutagenLeakCheckboxLabel>Enable Mutagenic Leaks</enableMutagenLeakCheckboxLabel>
 	<enableMutagenLeakCheckboxTooltip>Toggles a special event where slurry pipes can explode and leak slurry.</enableMutagenLeakCheckboxTooltip>

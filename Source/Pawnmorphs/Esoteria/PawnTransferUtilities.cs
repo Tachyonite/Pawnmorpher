@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Thoughts;
@@ -17,6 +18,7 @@ namespace Pawnmorph
     /// <summary>
     ///     static container for functions that transfer stuff between pawns
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class PawnTransferUtilities
     {
         /// <summary>
@@ -66,6 +68,38 @@ namespace Pawnmorph
 
         [NotNull] private static readonly List<Faction> _facScratchList = new List<Faction>();
 
+
+        [NotNull] private static readonly FieldInfo _ideoInternalFieldInfo;
+        [NotNull] private static readonly FieldInfo _ideoCertaintyField;
+
+        static PawnTransferUtilities()
+        {
+            _ideoInternalFieldInfo = typeof(Pawn_IdeoTracker).GetField("ideo", BindingFlags.NonPublic | BindingFlags.Instance);
+            _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("certainty", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (_ideoInternalFieldInfo == null) Log.Error("unable to get internal field \"ideo\" from Pawn_IdeoTracker");
+            if (_ideoCertaintyField == null) Log.Error("unable to find certainty field in Pawn_IdeoTracker");
+        }
+
+        /// <summary>
+        ///     tries to get the equivalent body part record in the other body def
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <param name="otherDef">The other definition.</param>
+        /// <returns>the equivalent body part record in the other body def if it exists, null otherwise</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     record
+        ///     or
+        ///     otherDef
+        /// </exception>
+        [CanBeNull]
+        public static BodyPartRecord GetRecord([NotNull] BodyPartRecord record, [NotNull] BodyDef otherDef)
+        {
+            if (record == null) throw new ArgumentNullException(nameof(record));
+            if (otherDef == null) throw new ArgumentNullException(nameof(otherDef));
+            PartAddress pAddr = record.GetAddress();
+            return otherDef.GetRecordAt(pAddr);
+        }
+
         /// <summary>
         ///     Merges the skills from the given original pawns into the given meld
         /// </summary>
@@ -104,183 +138,6 @@ namespace Pawnmorph
                 sk.Level = skVal;
                 sk.passion = passion;
             }
-        }
-
-        /// <summary>
-        /// Transfers the quest relations from the original pawn onto the transfer pawn 
-        /// </summary>
-        /// <param name="original">The original.</param>
-        /// <param name="transferPawn">The transfer pawn.</param>
-        /// <exception cref="ArgumentNullException">
-        /// original
-        /// or
-        /// transferPawn
-        /// </exception>
-        public static void TransferQuestRelations([NotNull] Pawn original, [NotNull] Pawn transferPawn)
-        {
-            if (original == null) throw new ArgumentNullException(nameof(original));
-            if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
-
-            if (original.questTags != null)
-            {
-                transferPawn.questTags = transferPawn.questTags ?? new List<string>();
-                foreach (string originalQuestTag in original.questTags)
-                {
-                    transferPawn.questTags.Add(originalQuestTag); 
-                }
-                original.questTags.Clear();
-            }
-            
-            var qM = Find.QuestManager;
-            
-            
-            
-            foreach (Quest quest in qM.QuestsListForReading)
-            {
-                var qPs = quest.PartsListForReading;
-
-                foreach (QuestPart questPart in qPs) questPart?.ReplacePawnReferences(original, transferPawn);
-            }
-
-        }
-
-        /// <summary>
-        /// tries to get the equivalent body part record in the other body def 
-        /// </summary>
-        /// <param name="record">The record.</param>
-        /// <param name="otherDef">The other definition.</param>
-        /// <returns>the equivalent body part record in the other body def if it exists, null otherwise</returns>
-        /// <exception cref="ArgumentNullException">
-        /// record
-        /// or
-        /// otherDef
-        /// </exception>
-        [CanBeNull]
-        public static BodyPartRecord GetRecord([NotNull] BodyPartRecord record, [NotNull] BodyDef otherDef)
-        {
-            if (record == null) throw new ArgumentNullException(nameof(record));
-            if (otherDef == null) throw new ArgumentNullException(nameof(otherDef));
-            var pAddr = record.GetAddress();
-            return otherDef.GetRecordAt(pAddr); 
-        }
-
-        /// <summary>
-        /// Transfers the hediffs from pawn1 onto pawn2 
-        /// </summary>
-        /// <param name="pawn1">The pawn1.</param>
-        /// <param name="pawn2">The pawn2.</param>
-        /// <param name="selector">The selector.</param>
-        /// <param name="transferFunc">The transfer function.</param>
-        public static void TransferHediffs([NotNull] Pawn pawn1, [NotNull] Pawn pawn2,  [NotNull] Func<Hediff, bool> selector, [NotNull] Func<BodyPartRecord, BodyPartRecord> transferFunc)
-        {
-            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
-            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
-            if (selector == null) throw new ArgumentNullException(nameof(selector));
-            if (transferFunc == null) throw new ArgumentNullException(nameof(transferFunc));
-
-            var health1 = pawn1.health;
-            var health2 = pawn2.health;
-
-            var tHediffs = health1?.hediffSet?.hediffs?.Where(selector);
-            foreach (Hediff hediff in tHediffs.MakeSafe())
-            {
-
-                BodyPartRecord otherRecord;
-                if (hediff.Part == null) otherRecord = null;
-                else
-                    otherRecord = transferFunc(hediff.Part); 
-
-                if(otherRecord == null && hediff.Part != null) continue;
-
-                if(health2.hediffSet.HasHediff(hediff.def, otherRecord)) continue;
-                
-                var newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
-                health2.AddHediff(newHediff); 
-
-
-            }
-
-
-        }
-
-        /// <summary>
-        /// Transfers the hediffs from pawn1 onto pawn2 
-        /// </summary>
-        /// <param name="pawn1">The pawn1.</param>
-        /// <param name="pawn2">The pawn2.</param>
-        /// <param name="selector">The selector.</param>
-        /// <exception cref="ArgumentNullException">
-        /// pawn1
-        /// or
-        /// pawn2
-        /// </exception>
-        public static void TransferHediffs([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, [NotNull] Func<Hediff, bool> selector)
-        {
-            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
-            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
-            var otherDef = pawn2.RaceProps.body;
-
-            TransferHediffs(pawn1, pawn2, selector, r => GetRecord(r, otherDef)); 
-
-        }
-
-        static bool DefaultThoughtSelector(Pawn pawn, Thought_Memory mem)
-        {
-            return mem.def.IsValidFor(pawn); 
-        }
-
-
-        /// <summary>
-        /// Transfers thoughts from pawn1 onto pawn2.
-        /// </summary>
-        /// <param name="pawn1">The pawn to transfer thoughts from.</param>
-        /// <param name="pawn2">The pawn to transfer thoughts onto.</param>
-        /// <param name="selector">The selector function. default just checks that the memory is valid for pawn2</param>
-        /// <exception cref="ArgumentNullException">
-        /// pawn1
-        /// or
-        /// pawn2
-        /// </exception>
-        public static void TransferThoughts([NotNull] Pawn pawn1, [NotNull] Pawn pawn2,
-                                            [CanBeNull] Func<Thought_Memory, bool> selector = null)
-        {
-            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
-            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
-            selector = selector ?? (t => DefaultThoughtSelector(pawn2, t)); 
-            var thoughtHandler1 = pawn1.needs?.mood?.thoughts;
-            var thoughtHandler2 = pawn2.needs?.mood?.thoughts;
-
-            if (thoughtHandler2?.memories == null || thoughtHandler1?.memories == null) return;
-
-            foreach (Thought_Memory memory in thoughtHandler1.memories.Memories.MakeSafe())
-            {
-                if(!selector(memory)) continue;
-
-                var sameMemory = thoughtHandler2.memories.Memories.MakeSafe().FirstOrDefault(m => m.def == memory.def); 
-                if(sameMemory != null) continue;
-
-                var worker = memory.def?.modExtensions?.OfType<IThoughtTransferWorker>().FirstOrDefault();
-
-                Thought_Memory newMemory;
-                if (worker != null)
-                {
-                    if (!worker.ShouldTransfer(pawn1, pawn2, memory)) continue;
-                    newMemory = worker.CreateNewThought(pawn1, pawn2, memory);
-                }
-                else
-                {
-                    newMemory = ThoughtMaker.MakeThought(memory.def, memory.CurStageIndex);
-                }
-
-                
-                if(memory.otherPawn == null)
-                    thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
-
-                newMemory.age = memory.age;
-                newMemory.moodPowerFactor = memory.moodPowerFactor; 
-            }
-
-
         }
 
 
@@ -376,6 +233,165 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        ///     Transfers the hediffs from pawn1 onto pawn2
+        /// </summary>
+        /// <param name="pawn1">The pawn1.</param>
+        /// <param name="pawn2">The pawn2.</param>
+        /// <param name="selector">The selector.</param>
+        /// <param name="transferFunc">The transfer function.</param>
+        public static void TransferHediffs([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, [NotNull] Func<Hediff, bool> selector,
+                                           [NotNull] Func<BodyPartRecord, BodyPartRecord> transferFunc)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+            if (transferFunc == null) throw new ArgumentNullException(nameof(transferFunc));
+
+            Pawn_HealthTracker health1 = pawn1.health;
+            Pawn_HealthTracker health2 = pawn2.health;
+
+            IEnumerable<Hediff> tHediffs = health1?.hediffSet?.hediffs?.Where(selector);
+            foreach (Hediff hediff in tHediffs.MakeSafe())
+            {
+                BodyPartRecord otherRecord;
+                if (hediff.Part == null) otherRecord = null;
+                else
+                    otherRecord = transferFunc(hediff.Part);
+
+                if (otherRecord == null && hediff.Part != null) continue;
+
+                if (health2.hediffSet.HasHediff(hediff.def, otherRecord)) continue;
+
+                Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
+                health2.AddHediff(newHediff);
+            }
+        }
+
+        /// <summary>
+        ///     Transfers the hediffs from pawn1 onto pawn2
+        /// </summary>
+        /// <param name="pawn1">The pawn1.</param>
+        /// <param name="pawn2">The pawn2.</param>
+        /// <param name="selector">The selector.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     pawn1
+        ///     or
+        ///     pawn2
+        /// </exception>
+        public static void TransferHediffs([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, [NotNull] Func<Hediff, bool> selector)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            BodyDef otherDef = pawn2.RaceProps.body;
+
+            TransferHediffs(pawn1, pawn2, selector, r => GetRecord(r, otherDef));
+        }
+
+        /// <summary>
+        ///     Transfers the ideo from the original pawn onto the transfer pawn
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transferPawn">The transfer pawn.</param>
+        /// <param name="transferRoles">if set to <c>true</c> [transfer roles].</param>
+        /// <exception cref="ArgumentNullException">
+        ///     original
+        ///     or
+        ///     transferPawn
+        /// </exception>
+        public static void TransferIdeo([NotNull] Pawn original, [NotNull] Pawn transferPawn, bool transferRoles = true)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
+
+
+            Pawn_IdeoTracker originalIdeoT = original.ideo;
+            Pawn_IdeoTracker transferIdeoT = transferPawn.ideo;
+
+            if (originalIdeoT?.Ideo == null || transferIdeoT == null) return;
+
+
+            //need to do this with reflection 
+            //do not want to cause additional effects, just swap the values out from under the tracker with the minimum amount of changes 
+            _ideoInternalFieldInfo.SetValue(transferIdeoT, originalIdeoT.Ideo);
+            _ideoCertaintyField.SetValue(transferIdeoT, originalIdeoT.Certainty);
+
+            if (transferRoles) TransferIdeoRoles(original, transferPawn);
+        }
+
+        /// <summary>
+        ///     Transfers the ideo roles from the original pawn and transfer pawn
+        /// </summary>
+        /// transfers ideology roles from the original pawn onto the transfer pawn 
+        /// they must have the same ideology to begin with 
+        /// <param name="original">The original.</param>
+        /// <param name="transferPawn">The transfer pawn.</param>
+        public static void TransferIdeoRoles([NotNull] Pawn original, [NotNull] Pawn transferPawn)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
+
+            Pawn_IdeoTracker ideoOT = original.ideo;
+            Pawn_IdeoTracker ideoTT = transferPawn.ideo;
+
+            if (ideoOT?.Ideo == null || ideoTT?.Ideo == null) return;
+
+            if (ideoOT.Ideo != ideoTT.Ideo)
+            {
+                Log.Warning($"trying to transfer roles from {original.Label} to {transferPawn.Label} but they do not have the same ideo!");
+                return;
+            }
+
+            Ideo ideo = ideoOT.Ideo;
+            Precept_Role oRole = ideo.GetRole(original);
+            Precept_Role tRole = ideo.GetRole(transferPawn);
+            if (oRole == tRole) return;
+            tRole?.Notify_PawnUnassigned(transferPawn);
+            oRole?.Notify_PawnUnassigned(original);
+            oRole?.Assign(transferPawn, false);
+        }
+
+        /// <summary>
+        ///     Transfers the quest relations from the original pawn onto the transfer pawn
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="transferPawn">The transfer pawn.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     original
+        ///     or
+        ///     transferPawn
+        /// </exception>
+        public static void TransferQuestRelations([NotNull] Pawn original, [NotNull] Pawn transferPawn)
+        {
+            if (original == null) throw new ArgumentNullException(nameof(original));
+            if (transferPawn == null) throw new ArgumentNullException(nameof(transferPawn));
+
+            if (original.questTags != null)
+            {
+                transferPawn.questTags = transferPawn.questTags ?? new List<string>();
+                foreach (string originalQuestTag in original.questTags) transferPawn.questTags.Add(originalQuestTag);
+                original.questTags.Clear();
+            }
+
+            QuestManager qM = Find.QuestManager;
+
+
+            foreach (Quest quest in qM.QuestsListForReading)
+            {
+                List<QuestPart> qPs = quest.PartsListForReading;
+
+                foreach (QuestPart questPart in qPs) questPart?.ReplacePawnReferences(original, transferPawn);
+            }
+            
+            
+            foreach (TransportShip ship in Find.TransportShipManager.AllTransportShips)
+            {
+                var shuttle = ship.shipThing.TryGetComp<CompShuttle>();
+                shuttle?.requiredPawns.Replace(original, transferPawn);
+            }
+
+        }
+
+        /// <summary>
         ///     Transfers the relations from pawn1 to pawn2
         /// </summary>
         /// <param name="pawn1">The original.</param>
@@ -435,7 +451,7 @@ namespace Pawnmorph
                                                               .ToList())
                 {
                     if (pawnRelationDef.def.implied) continue;
-                    
+
                     rel2.RemoveDirectRelation(pawnRelationDef.def, pawn1);
                     rel2.AddDirectRelation(pawnRelationDef.def, pawn2);
                 }
@@ -539,6 +555,58 @@ namespace Pawnmorph
             }
         }
 
+
+        /// <summary>
+        ///     Transfers thoughts from pawn1 onto pawn2.
+        /// </summary>
+        /// <param name="pawn1">The pawn to transfer thoughts from.</param>
+        /// <param name="pawn2">The pawn to transfer thoughts onto.</param>
+        /// <param name="selector">The selector function. default just checks that the memory is valid for pawn2</param>
+        /// <exception cref="ArgumentNullException">
+        ///     pawn1
+        ///     or
+        ///     pawn2
+        /// </exception>
+        public static void TransferThoughts([NotNull] Pawn pawn1, [NotNull] Pawn pawn2,
+                                            [CanBeNull] Func<Thought_Memory, bool> selector = null)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            selector = selector ?? (t => DefaultThoughtSelector(pawn2, t));
+            ThoughtHandler thoughtHandler1 = pawn1.needs?.mood?.thoughts;
+            ThoughtHandler thoughtHandler2 = pawn2.needs?.mood?.thoughts;
+
+            if (thoughtHandler2?.memories == null || thoughtHandler1?.memories == null) return;
+
+            foreach (Thought_Memory memory in thoughtHandler1.memories.Memories.MakeSafe())
+            {
+                if (!selector(memory)) continue;
+
+                Thought_Memory sameMemory = thoughtHandler2.memories.Memories.MakeSafe().FirstOrDefault(m => m.def == memory.def);
+                if (sameMemory != null) continue;
+
+                IThoughtTransferWorker worker = memory.def?.modExtensions?.OfType<IThoughtTransferWorker>().FirstOrDefault();
+
+                Thought_Memory newMemory;
+                if (worker != null)
+                {
+                    if (!worker.ShouldTransfer(pawn1, pawn2, memory)) continue;
+                    newMemory = worker.CreateNewThought(pawn1, pawn2, memory);
+                }
+                else
+                {
+                    newMemory = ThoughtMaker.MakeThought(memory.def, memory.CurStageIndex);
+                }
+
+
+                if (memory.otherPawn == null)
+                    thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
+
+                newMemory.age = memory.age;
+                newMemory.moodPowerFactor = memory.moodPowerFactor;
+            }
+        }
+
         /// <summary>
         ///     move all mutation related traits from the original pawn to the transformed pawn if they are sapient
         /// </summary>
@@ -560,7 +628,7 @@ namespace Pawnmorph
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
 
             if (transformedPawn.story?.traits == null) return;
-            if (originalPawn.story?.traits?.allTraits == null) return; 
+            if (originalPawn.story?.traits?.allTraits == null) return;
             List<TraitDef>
                 tTraits = originalPawn.story.traits.allTraits.Select(t => t.def)
                                       .Where(selector)
@@ -572,6 +640,11 @@ namespace Pawnmorph
                 var newTrait = new Trait(mutationTrait, trait.Degree, true);
                 transformedPawn.story.traits.GainTrait(newTrait);
             }
+        }
+
+        private static bool DefaultThoughtSelector(Pawn pawn, Thought_Memory mem)
+        {
+            return mem.def.IsValidFor(pawn);
         }
 
 

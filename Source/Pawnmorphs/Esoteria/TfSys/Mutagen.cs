@@ -213,6 +213,47 @@ namespace Pawnmorph.TfSys
 
 
         /// <summary>
+        /// Sends the reversion event.
+        /// </summary>
+        /// <param name="originalPawn">The pawn.</param>
+        /// <param name="transformedPawn">The animal definition.</param>
+        /// <param name="factionResponsible">The faction responsible.</param>
+        protected void SendReversionEvent(Pawn originalPawn,Pawn transformedPawn, [CanBeNull] Faction factionResponsible)
+        {
+
+            NamedArgument pArg, aArg;
+            pArg = originalPawn.Named(HistoryEventArgsNames.Doer);
+            aArg = transformedPawn.Named(PMHistoryEventArgsNames.TRANSFORMED_PAWN);
+            if (factionResponsible != null)
+                PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg,
+                                                                         factionResponsible.Named(PMHistoryEventArgsNames
+                                                                                                     .FACTION_RESPONSIBLE));
+            else
+                PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg);
+
+
+        }
+        /// <summary>
+        /// Sends the transformed event.
+        /// </summary>
+        /// <param name="originalPawn">The pawn.</param>
+        /// <param name="transformedPawn">The animal definition.</param>
+        /// <param name="factionResponsible">The faction responsible.</param>
+        protected void SendTransformedEvent(Pawn originalPawn, Pawn transformedPawn, [CanBeNull] Faction factionResponsible)
+        {
+
+            NamedArgument pArg, aArg;
+            pArg = originalPawn.Named(HistoryEventArgsNames.Doer);
+            aArg = transformedPawn.Named(PMHistoryEventArgsNames.TRANSFORMED_PAWN);
+            if (factionResponsible != null)
+                PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg,
+                                                                         factionResponsible.Named(PMHistoryEventArgsNames
+                                                                                                     .FACTION_RESPONSIBLE));
+            else
+                PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg); 
+        }
+
+        /// <summary>
         /// Gets the manhunter chance for the given request 
         /// </summary>
         /// <param name="request">The request.</param>
@@ -325,12 +366,20 @@ namespace Pawnmorph.TfSys
         /// <param name="original">The original.</param>
         /// <param name="transformedPawn">The transformed pawn.</param>
         /// <param name="request">The transformation request</param>
+        /// <exception cref="ArgumentNullException">
+        /// original
+        /// or
+        /// transformedPawn
+        /// or
+        /// request
+        /// </exception>
         protected virtual void ApplyPostTfEffects([NotNull] Pawn original, [NotNull] Pawn transformedPawn, [NotNull] TransformationRequest request)
         {
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (transformedPawn == null) throw new ArgumentNullException(nameof(transformedPawn));
             if (request == null) throw new ArgumentNullException(nameof(request));
             var fhSettings = transformedPawn.def.GetModExtension<FormerHumanSettings>();
+            
             if (fhSettings != null)
             {
                 if (fhSettings.transformedThought != null)
@@ -369,6 +418,8 @@ namespace Pawnmorph.TfSys
             }
 
 
+            if(request.sendTransformationEvent)
+                SendTransformedEvent(original, transformedPawn, request.factionResponsible); 
         }
 
 

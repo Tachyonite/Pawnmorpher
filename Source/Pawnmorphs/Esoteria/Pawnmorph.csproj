@@ -338,6 +338,7 @@
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
     <Compile Include="ChaomorphType.cs" />
     <Compile Include="ChaomorphUtilities.cs" />
+    <Compile Include="ColonyRelation.cs" />
     <Compile Include="ColorGenerator_HSL.cs" />
     <Compile Include="CompEtherExplosive.cs" />
     <Compile Include="CompMutagenicRadius.cs" />
@@ -372,6 +373,7 @@
     <Compile Include="DebugUtils\IDebugString.cs" />
     <Compile Include="DebugUtils\LogLevel.cs" />
     <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="DefExtensions\AdditionalPlantInfo.cs" />
     <Compile Include="DefExtensions\AspectGiverExtension.cs" />
     <Compile Include="DefExtensions\AspectRestriction.cs" />
     <Compile Include="DefExtensions\ChaomorphExtension.cs" />
@@ -382,6 +384,7 @@
     <Compile Include="DefExtensions\InstinctEffector.cs" />
     <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
     <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
+    <Compile Include="DefExtensions\MemeRestriction.cs" />
     <Compile Include="DefExtensions\MorphRestriction.cs" />
     <Compile Include="DefExtensions\MutagenicBuildupSourceSettings.cs" />
     <Compile Include="DefExtensions\MutagenExtension.cs" />
@@ -440,11 +443,13 @@
     <Compile Include="Hediffs\TransformationStage.cs" />
     <Compile Include="Hediffs\TransformationStageBase.cs" />
     <Compile Include="Hediffs\WorkSettingsStage.cs" />
+    <Compile Include="HistoryEventUtilities.cs" />
     <Compile Include="HPatches\AIPatches.cs" />
     <Compile Include="HPatches\AnimalInteractionPatches.cs" />
     <Compile Include="HPatches\AnimalPenUtilityPatches.cs" />
     <Compile Include="HPatches\ApparelUtilityPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
+    <Compile Include="HPatches\ConversionUtilityPatches.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DoorPatches.cs" />
@@ -474,9 +479,11 @@
     <Compile Include="HPatches\ProductionCompPatches.cs" />
     <Compile Include="HPatches\RelationshipPatches.cs" />
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
+    <Compile Include="HPatches\StylePatches.cs" />
     <Compile Include="HPatches\ThingOwnerUtilityPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\ThoughtWorkerPatches.cs" />
     <Compile Include="HPatches\ToilsLayDownPatches.cs" />
     <Compile Include="HPatches\VerbTrackerPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
@@ -554,7 +561,11 @@
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
+    <Compile Include="PMHistoryEventArgsNames.cs" />
+    <Compile Include="PMHistoryEventDef.cs" />
+    <Compile Include="PMIdeoUtilities.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
+    <Compile Include="PMIssueDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />
     <Compile Include="PMPawnKindDefOf.cs" />
     <Compile Include="PMPlantUtilities.cs" />
@@ -566,8 +577,14 @@
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
+    <Compile Include="PreceptComps\GiveRelationDependentThought.cs" />
+    <Compile Include="PreceptComps\SelfTookMemoryThought_MemeOverride.cs" />
+    <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
+    <Compile Include="PreceptComps\VeneratedMutation.cs" />
     <Compile Include="ProductionBoost.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />
+    <Compile Include="RoleRequirement\BaseRoleRequirement.cs" />
+    <Compile Include="RoleRequirement\FormerHuman.cs" />
     <Compile Include="SapienceState.cs" />
     <Compile Include="SapienceStateDef.cs" />
     <Compile Include="SapienceStateDefOf.cs" />
@@ -734,6 +751,7 @@
     <Compile Include="TfSys\TransformedStatus.cs" />
     <Compile Include="ThingDef_TaggingBullet.cs" />
     <Compile Include="Things\Chaothrumbo.cs" />
+    <Compile Include="Things\ExpandedPlant.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
@@ -747,6 +765,11 @@
     <Compile Include="Thoughts\IThoughtTransferWorker.cs" />
     <Compile Include="Thoughts\Memory_FactionObservation.cs" />
     <Compile Include="Thoughts\MutationMemory.cs" />
+    <Compile Include="Thoughts\Precept\MutationMemory_VeneratedAnimal.cs" />
+    <Compile Include="Thoughts\Precept\PWorker_FormerHuman.cs" />
+    <Compile Include="Thoughts\ThoughtLabels.cs" />
+    <Compile Include="Thoughts\Precept\Thought_Precept_VeneratedFormerHuman.cs" />
+    <Compile Include="Thoughts\Precept\Worker_VeneratedFormerHuman.cs" />
     <Compile Include="Thoughts\ReactionsHelper.cs" />
     <Compile Include="Thoughts\RelationshipDefExtension.cs" />
     <Compile Include="Thoughts\SapienceMemory.cs" />
@@ -763,6 +786,7 @@
     <Compile Include="Thoughts\Worker_HasMutations.cs" />
     <Compile Include="Thoughts\MorphMemory.cs" />
     <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="Thoughts\Worker_IsVeneratedAnimal.cs" />
     <Compile Include="Thoughts\Worker_JealousMorph.cs" />
     <Compile Include="Thoughts\Worker_MergedPawn.cs" />
     <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />

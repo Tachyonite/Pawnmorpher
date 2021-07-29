@@ -8,6 +8,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -17,6 +18,9 @@ namespace Pawnmorph
     /// <summary> Tracker comp for tracking the current influence a pawn has of a given morph. </summary>
     public class MutationTracker : ThingComp, IEnumerable<KeyValuePair<AnimalClassBase, float>>, IRaceChangeEventReceiver
     {
+
+        internal bool debug; 
+
 
         [NotNull] private readonly List<Hediff_AddedMutation> _mutationList = new List<Hediff_AddedMutation>();
 
@@ -278,7 +282,7 @@ namespace Pawnmorph
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             _mutationList.Add(mutation);
 
-            InfluencesDirty = true; 
+            InfluencesDirty = true;
 
             NotifyCompsAdded(mutation);
         }
@@ -361,10 +365,15 @@ namespace Pawnmorph
                     }
                 }
             }
+
+            //send the event 
+            PMHistoryEventDefOf.MutationGained.SendEvent(Pawn.Named(HistoryEventArgsNames.Doer),
+                                                         mutation.Named(PMHistoryEventArgsNames.MUTATION));
         }
 
         private void NotifyCompsRemoved(Hediff_AddedMutation mutation)
         {
+            if(debug) Log.Message($"{parent.Label}: added mutation {mutation.Label}");
             foreach (ThingComp parentAllComp in parent.AllComps)
             {
                 if (parentAllComp == this) continue;
@@ -390,7 +399,11 @@ namespace Pawnmorph
                     }
                 }
             }
+            if (debug) Log.Message($"{parent.Label}: sending event for {mutation.Label}");
 
+            //send the event 
+            PMHistoryEventDefOf.MutationLost.SendEvent(Pawn.Named(HistoryEventArgsNames.Doer),
+                                                       mutation.Named(PMHistoryEventArgsNames.MUTATION));
 
         }
 

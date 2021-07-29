@@ -211,8 +211,8 @@
 			<Nutrition>0.18</Nutrition>
 		</statBases>
 		<graphicData>
-			<texPath>Plants/Glowvine/Glowvine</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Plants/Glowvine</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
 		</graphicData>
 		<selectable>true</selectable>
 		<neverMultiSelect>false</neverMultiSelect>
@@ -222,8 +222,8 @@
 			<fertilityMin>0.5</fertilityMin>
 			<fertilitySensitivity>0.5</fertilitySensitivity>
 			<growDays>6</growDays>
-			<leaflessGraphicPath>Plants/Glowvine/GlowvineBarren</leaflessGraphicPath>
-			<immatureGraphicPath>Plants/Glowvine/Glowvine</immatureGraphicPath>
+			<leaflessGraphicPath>Plants/Leafless/Glowvine</leaflessGraphicPath>
+			<immatureGraphicPath>Plants/Leafless/Glowvine</immatureGraphicPath>
 			<harvestYield>10</harvestYield>
 			<harvestWork>250</harvestWork>
 			<harvestTag>Standard</harvestTag>

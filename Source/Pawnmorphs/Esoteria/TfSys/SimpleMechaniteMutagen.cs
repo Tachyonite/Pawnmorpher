@@ -153,7 +153,6 @@ namespace Pawnmorph.TfSys
 
 
 
-
             animalToSpawn.needs.food.CurLevel =
                 original.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
             animalToSpawn.needs.rest.CurLevel =
@@ -166,6 +165,8 @@ namespace Pawnmorph.TfSys
             FormerHumanUtilities.InitializeTransformedPawn(original, animalToSpawn, sapienceLevel);
 
             Pawn spawnedAnimal = SpawnAnimal(original, animalToSpawn); // Spawns the animal into the map.
+
+           
 
             ReactionsHelper.OnPawnTransforms(original, animalToSpawn, reactionStatus); //this needs to happen before MakeSapientAnimal because that removes relations 
             Map correctMap = original.GetCorrectMap();
@@ -198,12 +199,13 @@ namespace Pawnmorph.TfSys
             Faction oFaction = original.Faction; //can't figure out what happened to FactionOrExtraMiniOrHomeFaction, needs further investigation 
             Map oMap = original.Map;
 
-
+          
             //apply any other post tf effects 
-            ApplyPostTfEffects(original, animalToSpawn, request);
+            ApplyPostTfEffects(original, spawnedAnimal, request);
 
-            TransformerUtility
-               .CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
+
+            TransformerUtility.CleanUpHumanPawnPostTf(original, request.cause); //now clean up the original pawn (remove apparel, drop'em, ect) 
+
 
             //notify the faction that their member has been transformed 
             oFaction?.Notify_MemberTransformed(original, animalToSpawn, oMap == null, oMap);
@@ -216,7 +218,7 @@ namespace Pawnmorph.TfSys
 
             DebugLogUtils.Assert(!PrisonBreakUtility.CanParticipateInPrisonBreak(original),
                                  $"{original.Name} has been cleaned up and de-spawned but can still participate in prison breaks");
-
+           
 
             return inst;
         }
@@ -335,15 +337,34 @@ namespace Pawnmorph.TfSys
             spawned.Faction?.Notify_MemberReverted(spawned, animal, spawned.Map == null, spawned.Map);
 
             ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus);
-            spawned.health.AddHediff(MorphTransformationDefOf.StabiliserHigh); //add stabilizer on reversion 
+            DoPostReversionEffects(spawned, animal);
 
-
-            TransformerUtility.CleanUpHumanPawnPostTf(animal, null); 
             animal.Destroy();
             return true;
         }
 
-        private void SetHumanoidSapience([NotNull] Pawn humanoid, [NotNull] Pawn animal)
+        /// <summary>
+        /// preforms effects on either the original or transformed pawn after all core reversion effects are completed but before transformed pawn is cleaned up and destroyed 
+        /// </summary>
+        /// <param name="original">The original.</param>
+        /// <param name="animal">The animal.</param>
+        protected virtual void DoPostReversionEffects(Pawn original, Pawn animal)
+        {
+            original.health.AddHediff(MorphTransformationDefOf.StabiliserHigh); //add stabilizer on reversion 
+
+
+            TransformerUtility.CleanUpHumanPawnPostTf(animal, null);
+
+            //make sure to send the event before we destroy the animal 
+            SendReversionEvent(original, animal, null);
+        }
+
+        /// <summary>
+        /// Sets the humanoid sapience upon reversion.
+        /// </summary>
+        /// <param name="humanoid">The humanoid.</param>
+        /// <param name="animal">The animal.</param>
+        protected virtual void SetHumanoidSapience([NotNull] Pawn humanoid, [NotNull] Pawn animal)
         {
             PawnComponentsUtility.AddAndRemoveDynamicComponents(humanoid);
             try
@@ -412,6 +433,7 @@ namespace Pawnmorph.TfSys
 
         private static Pawn SpawnAnimal(Pawn original, Pawn animalToSpawn)
         {
+       
             if (original.IsCaravanMember())
             {
                 original.GetCaravan().AddPawn(animalToSpawn, true);
@@ -425,7 +447,15 @@ namespace Pawnmorph.TfSys
                 return animalToSpawn;
             }
 
-            return (Pawn) GenSpawn.Spawn(animalToSpawn, original.PositionHeld, original.MapHeld);
+            Map correctMap = original.GetCorrectMap();
+            IntVec3 loc = original.GetCorrectPosition();
+            var p = (Pawn) GenSpawn.Spawn(animalToSpawn, loc, correctMap);
+            if (p == null)
+            {
+                Log.Error($"unable to spawn pawn {animalToSpawn.Name}!");
+                return animalToSpawn;
+            }
+            return p;
         }
     }
 }

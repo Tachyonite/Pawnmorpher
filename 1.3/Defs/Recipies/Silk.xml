@@ -2,24 +2,24 @@
     <RecipeDef>
         <defName>PMMake_Hazsilk</defName>
         <label>make hazskilk</label>
-        <description>Turn morphsilk into hazsilk with stabilizer.</description>
+        <description>Turn cloth into hazsilk using antigen.</description>
         <jobString>creating hazsilk</jobString>
         <effectWorking>Cook</effectWorking>
         <soundWorking>Recipe_Brewing</soundWorking>
-        <workAmount>200</workAmount>
+        <workAmount>2500</workAmount>
         <ingredients>
             <li>
                 <filter>
                     <thingDefs>
-                        <li>Morphsilk</li>
+                        <li>Cloth</li>
                     </thingDefs>
                 </filter>
-                <count>60</count>
+                <count>30</count>
             </li>
             <li>
                 <filter>
                     <thingDefs>
-                        <li>MutagenStabiliser</li>
+                        <li>Antigen</li>
                     </thingDefs>
                 </filter>
                 <count>1</count>
@@ -34,7 +34,139 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <PM_Hazsilk>60</PM_Hazsilk>
+            <PM_Hazsilk>30</PM_Hazsilk>
+        </products>
+        <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
+        <skillRequirements>
+            <Crafting>3</Crafting>
+        </skillRequirements>
+        <workSkill>Crafting</workSkill>
+    </RecipeDef>
+	
+	<RecipeDef>
+        <defName>PMMake_HazsilkBulk</defName>
+        <label>make hazskilk x4</label>
+        <description>Turn cloth into hazsilk using antigen.</description>
+        <jobString>creating hazsilk x4</jobString>
+        <effectWorking>Cook</effectWorking>
+        <soundWorking>Recipe_Brewing</soundWorking>
+        <workAmount>10000</workAmount>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Cloth</li>
+                    </thingDefs>
+                </filter>
+                <count>120</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Antigen</li>
+                    </thingDefs>
+                </filter>
+                <count>4</count>
+            </li>
+        </ingredients>
+        <recipeUsers>
+            <li>MutagenLab</li>
+        </recipeUsers>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>MechaniteSlurry</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <PM_Hazsilk>120</PM_Hazsilk>
+        </products>
+        <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
+        <skillRequirements>
+            <Crafting>3</Crafting>
+        </skillRequirements>
+        <workSkill>Crafting</workSkill>
+    </RecipeDef>
+	
+	<RecipeDef>
+        <defName>PMMake_Morphsilk</defName>
+        <label>make morphsilk</label>
+        <description>Turn cloth into morphskilk using mechanite slurry.</description>
+        <jobString>creating morphsilk</jobString>
+        <effectWorking>Cook</effectWorking>
+        <soundWorking>Recipe_Brewing</soundWorking>
+        <workAmount>2500</workAmount>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>MechaniteSlurry</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Cloth</li>
+                    </thingDefs>
+                </filter>
+                <count>30</count>
+            </li>
+        </ingredients>
+        <recipeUsers>
+            <li>MutagenLab</li>
+        </recipeUsers>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>MechaniteSlurry</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Morphsilk>30</Morphsilk>
+        </products>
+        <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
+        <skillRequirements>
+            <Crafting>3</Crafting>
+        </skillRequirements>
+        <workSkill>Crafting</workSkill>
+    </RecipeDef>
+	
+	<RecipeDef>
+        <defName>PMMake_MorphsilkBulk</defName>
+        <label>make morphsilk x4</label>
+        <description>Turn cloth into morphskilk using mechanite slurry.</description>
+        <jobString>creating morphsilk x4</jobString>
+        <effectWorking>Cook</effectWorking>
+        <soundWorking>Recipe_Brewing</soundWorking>
+        <workAmount>10000</workAmount>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>MechaniteSlurry</li>
+                    </thingDefs>
+                </filter>
+                <count>4</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Cloth</li>
+                    </thingDefs>
+                </filter>
+                <count>120</count>
+            </li>
+        </ingredients>
+        <recipeUsers>
+            <li>MutagenLab</li>
+        </recipeUsers>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>MechaniteSlurry</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Morphsilk>120</Morphsilk>
         </products>
         <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
         <skillRequirements>

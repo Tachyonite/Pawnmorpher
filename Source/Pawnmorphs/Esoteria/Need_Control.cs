@@ -12,6 +12,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.InstinctUtilities;
+using static Pawnmorph.PMHistoryEventArgsNames;
 
 namespace Pawnmorph
 {
@@ -30,6 +31,21 @@ namespace Pawnmorph
         public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel sapienceLevel);
 
         private static HashSet<ThingDef> _enabledRaces;
+
+        private SapienceTracker _tracker;
+
+        SapienceTracker Tracker
+        {
+            get
+            {
+                if (_tracker == null)
+                {
+                    _tracker = pawn.GetSapienceTracker();
+                }
+
+                return _tracker; 
+            }
+        }
 
         /// <summary>
         ///     Occurs when the sapience level changes .
@@ -218,7 +234,8 @@ namespace Pawnmorph
         public static bool IsEnabledFor([NotNull] Pawn pawn)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            return pawn.GetSapienceState() != null && EnabledRaces.Contains(pawn.def);
+
+            return (pawn.GetSapienceState() != null || pawn.RaceProps.Humanlike ) && EnabledRaces.Contains(pawn.def);
         }
 
         /// <summary>
@@ -239,8 +256,18 @@ namespace Pawnmorph
                 SapienceLevel sLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
                 if (sLevel != _currentLevel)
                 {
+                    SapienceLevel oldLevel = _currentLevel;
                     _currentLevel = sLevel;
-                    OnSapienceLevelChanges();
+                    OnSapienceLevelChanges(oldLevel, sLevel);
+                }
+
+                if (sLevel != SapienceLevel.Sapient)
+                {
+                    SapienceTracker sapienceTracker = Tracker;
+                    if (sapienceTracker != null && sapienceTracker.CurrentState == null)
+                    {
+                        sapienceTracker.EnterState(SapienceStateDefOf.Animalistic, CurLevel);
+                    }
                 }
             }
         }
@@ -316,13 +343,14 @@ namespace Pawnmorph
             SapienceLevel cLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(CurLevel);
             if (_currentLevel != cLevel)
             {
+                SapienceLevel oldLevel = _currentLevel;
                 _currentLevel = cLevel;
-                OnSapienceLevelChanges();
+                OnSapienceLevelChanges(oldLevel, cLevel);
             }
         }
 
 
-        private void OnSapienceLevelChanges()
+        private void OnSapienceLevelChanges(SapienceLevel oldLevel, SapienceLevel newLevel)
         {
             SapienceTracker fTracker = pawn.GetSapienceTracker();
             if (fTracker == null)
@@ -343,6 +371,11 @@ namespace Pawnmorph
             if (pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
 
             SapienceLevelChanged?.Invoke(this, pawn, _currentLevel);
+            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, pawn.Named(HistoryEventArgsNames.Doer), oldLevel.Named(OLD_SAPIENCE_LEVEL), newLevel.Named(NEW_SAPIENCE_LEVEL)));
+            if (_currentLevel == SapienceLevel.PermanentlyFeral)
+            {
+                PMHistoryEventDefOf.PermanentlyFeral.SendEvent(pawn.Named(HistoryEventArgsNames.Doer)); 
+            }
         }
     }
 }

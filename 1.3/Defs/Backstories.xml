@@ -16,7 +16,7 @@
         <defName>PM_ChaothrumboBackstory</defName>
         <title>chaothrumbo</title>
         <titleShort>chaothrumbo</titleShort>
-        <baseDescription>TODO</baseDescription>
+        <baseDescription>[PAWN_nameDef] was transformed into a titanic chaomorph known as a chaothrumbo.</baseDescription>
         <workAllows>
             <li>PlantWork</li>
         </workAllows>

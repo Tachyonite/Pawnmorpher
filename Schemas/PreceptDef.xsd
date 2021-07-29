@@ -20,6 +20,7 @@
             <xs:element name="label" type="xs:string" minOccurs="0" />
             <xs:element name="description" type="xs:string" minOccurs="0" />
             <xs:element name="preceptClass" type="CSType" minOccurs="0" />
+            <xs:element name="issue" type="xs:string" minOccurs="0" />
             <xs:element name="comps" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
@@ -27,7 +28,7 @@
                             <xs:complexType>
                                 <xs:sequence>
                                     <xs:element name="description" minOccurs="0" />
-                                    <xs:any />
+                                    <xs:any maxOccurs="unbounded" processContents="lax" />
                                 </xs:sequence>
                                 <xs:attribute name="Class" type="CSType" use="required" />
                             </xs:complexType>
@@ -119,7 +120,7 @@
             <xs:element name="roleApparelRequirementCountCurve" type="SimpleCurve" minOccurs="0" />
             <xs:element name="grantedAbilities" type="ListOfStrings" minOccurs="0" />
 
-            <xs:element name="roleEffects">
+            <xs:element name="roleEffects" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="li" type="RoleRequirement" minOccurs="1" maxOccurs="unbounded" />

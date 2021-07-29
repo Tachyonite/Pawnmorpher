@@ -28,7 +28,7 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(typeof(PenFoodCalculator), "ProcessCell")]
         private static class PenGuiPatch
         {
-            private static void Transpiler(IEnumerable<CodeInstruction> instructions)
+            private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 MethodInfo callMethod =
                     typeof(PenPatches).GetMethod("ShouldIncludeIntoPen", BindingFlags.Static | BindingFlags.NonPublic);
@@ -59,6 +59,8 @@ namespace Pawnmorph.HPatches
                     inst2.opcode = OpCodes.Nop;
                     break;
                 }
+
+                return instArr;
             }
         }
 

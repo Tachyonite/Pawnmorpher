@@ -907,7 +907,7 @@ namespace Pawnmorph
             if (traits == null) return MutationOutlook.Neutral;
             if (traits.HasTrait(PMTraitDefOf.MutationAffinity)) return MutationOutlook.Furry;
             if (traits.HasTrait(TraitDefOf.BodyPurist)) return MutationOutlook.BodyPurist;
-
+            if (traits.HasTrait(TraitDefOf.Transhumanist)) return MutationOutlook.Transhumanist; 
             
 
             return MutationOutlook.Neutral;

@@ -33,6 +33,7 @@
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
+	
 	<RecipeDef>
 		<defName>Make_SlurryFromMutoniteBulk</defName>
 		<label>make slurry from mutanite x4</label>

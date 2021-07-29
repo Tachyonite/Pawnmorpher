@@ -155,11 +155,15 @@ namespace Pawnmorph.SapienceStates
                 Pawn.drafter = null; 
             }
 
+            Pawn.ideo = null;
+            Pawn.style = null;
+            Pawn.styleObserver = null; 
+
             IntVec3 pawnPosition = Pawn.Position;
             if (Pawn.Map != null)
             {
                 
-                Pawn.apparel?.DropAll(pawnPosition, Pawn.Faction != Faction.OfPlayer); 
+                Pawn.apparel?.DropAll(pawnPosition, Pawn.Faction != Faction.OfPlayer, false); 
                 Pawn.equipment?.DropAllEquipment(pawnPosition, Pawn.Faction == Faction.OfPlayer);
             }
             else

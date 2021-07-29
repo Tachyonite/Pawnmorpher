@@ -9,7 +9,7 @@ namespace Pawnmorph
     /// <seealso cref="Verse.ModSettings" />
     public class PawnmorpherSettings : ModSettings
     {
-        private const bool DEFAULT_FALLOUT_SETTING = false;
+        private const bool DEFAULT_FALLOUT_SETTING = true;
 
         /// <summary>
         /// if the mutagen ship part should be enabled 

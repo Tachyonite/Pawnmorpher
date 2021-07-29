@@ -23,6 +23,10 @@ namespace Pawnmorph
         /// <summary>
         /// the pawn wants to be a full animal 
         /// </summary>
-        PrimalWish
+        PrimalWish,
+        /// <summary>
+        /// for a transhumanist pawn
+        /// </summary>
+        Transhumanist
     }
 }

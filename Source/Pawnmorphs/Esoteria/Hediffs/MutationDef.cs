@@ -104,6 +104,26 @@ namespace Pawnmorph.Hediffs
 
         [Unsaved] private bool? _isRestricted;
 
+        [Unsaved] private List<ThingDef> _associatedAnimals;
+
+
+        /// <summary>
+        ///     Gets the animals associated with this mutation animals.
+        /// </summary>
+        /// <value>
+        ///     The associated animals.
+        /// </value>
+        public IReadOnlyList<ThingDef> AssociatedAnimals
+        {
+            get
+            {
+                return _associatedAnimals
+                    ?? (_associatedAnimals = MorphDef.AllDefs.Where(m => m.IsAnAssociatedMutation(this))
+                                                     .SelectMany(m => m.AllAssociatedAnimals)
+                                                     .ToList());
+            }
+        }
+
         /// <summary>
         ///     returns a full, detailed, representation of the object in string form
         /// </summary>

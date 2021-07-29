@@ -1,0 +1,56 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/PreceptDef.xsd">
+    <PreceptDef Abstract="true" Name="PM_Precept_FormerHumanNudityBase">
+        <issue>PM_FormerHuman_Nudity</issue>
+        <impact>Medium</impact>
+        <displayOrderInImpact>750</displayOrderInImpact>
+        <displayOrderInIssue>120</displayOrderInIssue>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
+        <defName>PM_FormerHumanNudityDisliked</defName>
+        <label>disliked</label>
+        <description>They can't do anything about it, but it doesn't mean we have to be ok with it.</description>
+        <associatedMemes>
+            <li>HumanPrimacy</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>NaturePrimacy</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_Precept_SapientAnimalNakedDisliked</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+    <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
+        <defName>PM_FormerHumanNudityNeutral</defName>
+        <label>neutral</label>
+        <impact>Low</impact>
+        <description>It is up to the individual as to whether they think fur is an adequate covering.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
+        <associatedMemes>
+            <li>NaturePrimacy</li>
+        </associatedMemes>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
+        <defName>PM_FormerHumanNudityLiked</defName>
+        <label>liked</label>
+        <description>Former humans should be as the animals are, clothes are unnecessary.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+        <countsTowardsPreceptLimit>true</countsTowardsPreceptLimit>
+        <associatedMemes>
+            <li>NaturePrimacy</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_Precept_SapientAnimalNakedLiked</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+</Defs>

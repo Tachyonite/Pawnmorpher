@@ -1,0 +1,69 @@
+<Defs>
+	<ThingDef ParentName="SerumBase">
+		<defName>Antigen</defName>
+		<label>antigen</label>
+		<description>A concentration of antigenic mechanites that have been distilled to remove any traces of mutagenic contamination. Can be used in production of many mutagen-neutralising or reversing agents.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Item/Drug/Antigen</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>200</WorkToMake>
+			<MarketValue>90</MarketValue>
+			<MutaniteConcentration>0</MutaniteConcentration>
+		</statBases>
+		<thingCategories>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AntigenEffective</hediffDef>
+					<severity>0.04</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<effectWorking>Cook</effectWorking>
+			<soundWorking>Recipe_Brewing</soundWorking>
+			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<workSkill>Intellectual</workSkill>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+			<bulkRecipeCount>4</bulkRecipeCount>
+			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Glowvine>10</Glowvine>
+		</costList>
+		<tickerType>Normal</tickerType>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<HediffDef>
+		<defName>AntigenEffective</defName>
+		<description>antigenic</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>antigen effective</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
+				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
+			</li>
+		</comps>
+	</HediffDef>
+	
+</Defs>

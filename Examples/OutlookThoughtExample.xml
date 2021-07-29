@@ -23,6 +23,9 @@
             <li>
                 <label>Primal Wish (if not used MA stage will be used)</label>
             </li>
+            <li>
+                <label>(v1.3 only)Transhumanist. will use the normal pawn thought if this is ommited</label>
+            </li>
         </stages>
     </ThoughtDef>
 </Defs>

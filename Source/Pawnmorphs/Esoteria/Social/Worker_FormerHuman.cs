@@ -17,7 +17,7 @@ namespace Pawnmorph.Social
     /// <seealso cref="RimWorld.InteractionWorker" />
     public class Worker_FormerHuman : InteractionWorker
     {
-        private const float BASE_INTERACTION_CHANCE = 99999;
+        private const float BASE_INTERACTION_CHANCE = 1;
 
         /// <summary>
         ///     Gets the base interaction chance.
@@ -79,7 +79,7 @@ namespace Pawnmorph.Social
 
             float retVal = GetInteractionWeight(initiator, recipient, relationRestriction, mustBeColonist);
 
-            Debug.Log($"Interaction weight for {initiator.Name} => {recipient.Name} is {retVal}");
+            Log.Message($"Interaction weight for {initiator.Name} => {recipient.Name} is {retVal}");
 
             return retVal;
         }
