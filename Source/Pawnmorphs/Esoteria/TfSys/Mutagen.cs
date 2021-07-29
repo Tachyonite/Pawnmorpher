@@ -320,7 +320,7 @@ namespace Pawnmorph.TfSys
         /// </returns>
         public virtual bool CanTransform(Pawn pawn)
         {
-            return CanInfect(pawn) && pawn.Map != null; 
+            return CanInfect(pawn); 
         }
         /// <summary>
         /// Determines whether this instance can transform the specified race definition.
