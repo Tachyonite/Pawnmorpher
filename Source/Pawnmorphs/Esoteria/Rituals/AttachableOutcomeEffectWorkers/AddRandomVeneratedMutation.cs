@@ -109,7 +109,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
         /// <returns></returns>
         protected virtual int GetMutationCount([NotNull] Pawn pawn, [NotNull] OutcomeChance outcomeChance)
         {
-            return outcomeChance.positivityIndex;
+            return outcomeChance.positivityIndex * Rand.Range(1, 3); 
         }
 
 
@@ -159,7 +159,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
             if (role == null) enumer = jobRitual.assignments.Participants.Where(p => MutagenDefOf.defaultMutagen.CanInfect(p));
             else
                 enumer = (jobRitual.assignments?.AssignedPawns(role)).MakeSafe();
-            int take = Mathf.Max(0, outcome.positivityIndex);
+            int take = Mathf.Max(0, outcome.positivityIndex * Rand.Range(1, 5));
             if (take == 0) return Enumerable.Empty<Pawn>();
             return enumer.Take(take);
         }
