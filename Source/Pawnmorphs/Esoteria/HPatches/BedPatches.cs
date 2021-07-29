@@ -36,6 +36,7 @@ namespace Pawnmorph.HPatches
         {
             if (!__result)
             {
+                if (__instance.Map == null) return; 
                 __result = __instance.def.building?.bed_humanlike == false && __instance.Position.IsInPrisonCell(__instance.Map); 
             }
         }
