@@ -82,7 +82,7 @@
 		<label>Targeted serums</label>
 		<description>Using some more advanced techniques, we can target two distinct types of mutation — production and combat.  Production can be used to make pawns more useful, allowing them to produce milk, eggs and other items.</description>
 		<baseCost>1500</baseCost>
-		<techLevel>Spacer</techLevel>
+		<techLevel>Industrial</techLevel>
 		<tab>Pawnmorpher</tab>
 		<researchViewX>2.00</researchViewX>
 		<researchViewY>1.40</researchViewY>
@@ -152,7 +152,7 @@
 		<defName>Injectors</defName>
 		<label>Injectors</label>
 		<description>Isolating the actual genomes of the mechanites involved allows us to create distinct strains of mutagens for specific animals. However, in order to isolate the genome a given animal, the genetic structure of said animal will need to be sequenced from live specimens and stored in a database to cross-reference it. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to a morphsilk tape-based genebank.</description>
-		<baseCost>1000</baseCost>
+		<baseCost>1500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<tab>Pawnmorpher</tab>
 		<researchViewX>3.00</researchViewX>
