@@ -28,8 +28,8 @@
                     <thingDefs>
                         <li>Mutanite</li>
                     </thingDefs>
-                    <count>1</count>
                 </filter>
+                <count>1</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
