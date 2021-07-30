@@ -277,7 +277,7 @@
 				<!-- there is no Pawn_subjective case to use-->
 				<minSeverity>0.6</minSeverity>
 				<label>contorted</label>
-				<description>The first joint of each of [PAWN_nameDef]'s fingers have shortend and reversed directions. The joint unfurls when [Pawn_pronoun] unclenches [PAWN_possessive] hands, bringing [PAWN_possessive] new claws to bear.</description>
+				<description>The first joint of each of [PAWN_nameDef]'s fingers have shortend and reversed directions. The joint unfurls when [PAWN_pronoun] unclenches [PAWN_possessive] hands, bringing [PAWN_possessive] new claws to bear.</description>
 				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
