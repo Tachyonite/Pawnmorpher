@@ -44,7 +44,7 @@
     <ThingDef ParentName="TFItemBase">
         <defName>Glowvine</defName>
         <label>glowvine seedpod</label>
-        <description>TODO.</description>
+					<description>seedpod from a mutated healroot plant. Can be refined into anti-mutagenic drugs</description>
         <graphicData>
             <texPath>Plants/Items/GlowvineFruit</texPath>
             <graphicClass>Graphic_StackCount</graphicClass>
