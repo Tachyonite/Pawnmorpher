@@ -6,5 +6,9 @@
         <effectDesc>some pawns will be given mutations from one of your venerated animals</effectDesc>
         <letterInfoText>{Count} {Member} were affected by the ritual</letterInfoText>
         <onlyPositiveOutcomes>true</onlyPositiveOutcomes>
+        <requiredMemeAny>
+            <li>AnimalPersonhood</li>
+            <li>NaturePrimacy</li>
+        </requiredMemeAny>
     </RitualAttachableOutcomeEffectDef>
 </Defs>
