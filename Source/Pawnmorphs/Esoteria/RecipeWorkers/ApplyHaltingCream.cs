@@ -2,7 +2,9 @@
 // last updated 07/30/2021  7:52 AM
 
 using System.Collections.Generic;
+using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.RecipeWorkers
@@ -14,6 +16,9 @@ namespace Pawnmorph.RecipeWorkers
     /// <seealso cref="Pawnmorph.RecipeWorkers.ApplyToMutatedPart" />
     public class ApplyHaltingCream : ApplyToMutatedPart
     {
+        private const float MIN_BOUND = 0f;
+        private const float MAX_BOUND = 6f; 
+
         /// <summary>
         /// applies the effect onto the given mutation. can be called multiple times on the same pawn 
         /// </summary>
@@ -27,8 +32,15 @@ namespace Pawnmorph.RecipeWorkers
             
             var haltComp = mutation.SeverityAdjust;
             if (haltComp == null) return;
+
+            float sk = (medSkill - MIN_BOUND) / (MAX_BOUND - MIN_BOUND);
+            sk = Mathf.Clamp(sk, 0, 1); 
+            sk = MathUtilities.SmoothStep(0, 1, sk);
+            sk = sk * 0.5f + 0.1f; //10% chance to 60% chance to halt a mutation depending on level 
+            
+
             if(!haltComp.Halted)
-                haltComp.Halted = Rand.Value < 0.3f; //TODO use medskill to give a better chance of halting
+                haltComp.Halted = Rand.Value < sk; 
 
 
 
