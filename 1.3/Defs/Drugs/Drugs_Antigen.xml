@@ -70,7 +70,7 @@
 	<ThingDef ParentName="MedicineBase">
 		<defName>PM_HaltCream</defName>
 		<label>halt cream</label>
-		<description>TODO</description>
+		<description>a balm that when applied to a mutation has a chance to halt it's progression</description>
 		<graphicData> <!-- TODO replace herbal medicen graphics with custom one -->
 			<texPath>Things/Item/Resource/Medicine/MedicineHerbal</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -78,7 +78,7 @@
 		</graphicData>
 		<techLevel>Neolithic</techLevel>
 		<statBases>
-			<MarketValue>10</MarketValue>
+			<MarketValue>40</MarketValue>
 			<Mass>0.35</Mass>
 			<Flammability>1.3</Flammability>
 			<DeteriorationRate>6</DeteriorationRate>
@@ -86,12 +86,13 @@
 		<tickerType>Rare</tickerType>
 		<costList>
 			<MedicineHerbal>1</MedicineHerbal>
-			<Cloth>2</Cloth>
 			<Antigen>1</Antigen>
 		</costList>
 		<recipeMaker>
 			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 			<workSkill>Intellectual</workSkill>
+			<productCount>3</productCount>
+			<workAmount>400</workAmount>
 			<recipeUsers>
 				<li>DrugLab</li>
 			</recipeUsers>

@@ -2,6 +2,7 @@
 // last updated 07/30/2021  7:52 AM
 
 using System.Collections.Generic;
+using System.Linq;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -17,7 +18,19 @@ namespace Pawnmorph.RecipeWorkers
     public class ApplyHaltingCream : ApplyToMutatedPart
     {
         private const float MIN_BOUND = 0f;
-        private const float MAX_BOUND = 6f; 
+        private const float MAX_BOUND = 6f;
+
+        /// <summary>
+        /// Gets the parts to apply on.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="recipe">The recipe.</param>
+        /// <returns></returns>
+        public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe)
+        {
+            if(pawn?.health?.hediffSet == null) return Enumerable.Empty<BodyPartRecord>();
+            return base.GetPartsToApplyOn(pawn, recipe).Where(r => r.def.IsSkinCovered(r, pawn.health.hediffSet));
+        }
 
         /// <summary>
         /// applies the effect onto the given mutation. can be called multiple times on the same pawn 
