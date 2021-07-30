@@ -1,0 +1,26 @@
+<Defs>
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>PM_ApplyHaltCream</defName>
+        <label>apply halt cream</label>
+        <description>Apply halt cream to a mutation</description>
+        <workerClass>Pawnmorph.RecipeWorkers.ApplyHaltingCream</workerClass>
+        <jobString>Applying halt cream.</jobString>
+        <workAmount>1000</workAmount>
+        <surgerySuccessChanceFactor>1.2</surgerySuccessChanceFactor>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>PM_HaltCream</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>PM_HaltCream</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+</Defs>

@@ -5,4 +5,10 @@
             <li>PM_TagAnimal</li>
         </value>
     </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[@Name="BasePawn"]/recipes</xpath>
+        <value>
+            <li>PM_ApplyHaltCream</li>
+        </value>
+    </Operation>
 </Patch>

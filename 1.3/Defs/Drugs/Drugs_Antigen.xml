@@ -65,5 +65,38 @@
 			</li>
 		</comps>
 	</HediffDef>
+
+
+	<ThingDef ParentName="MedicineBase">
+		<defName>PM_HaltCream</defName>
+		<label>halt cream</label>
+		<description>TODO</description>
+		<graphicData> <!-- TODO replace herbal medicen graphics with custom one -->
+			<texPath>Things/Item/Resource/Medicine/MedicineHerbal</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.85</drawSize>
+		</graphicData>
+		<techLevel>Neolithic</techLevel>
+		<statBases>
+			<MarketValue>10</MarketValue>
+			<Mass>0.35</Mass>
+			<Flammability>1.3</Flammability>
+			<DeteriorationRate>6</DeteriorationRate>
+		</statBases>
+		<tickerType>Rare</tickerType>
+		<costList>
+			<MedicineHerbal>1</MedicineHerbal>
+			<Cloth>2</Cloth>
+			<Antigen>1</Antigen>
+		</costList>
+		<recipeMaker>
+			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<workSkill>Intellectual</workSkill>
+			<recipeUsers>
+				<li>DrugLab</li>
+			</recipeUsers>
+			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
 	
 </Defs>
