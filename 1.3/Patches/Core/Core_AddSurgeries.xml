@@ -6,7 +6,7 @@
         </value>
     </Operation>
     <Operation Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[@Name="BasePawn"]/recipes</xpath>
+        <xpath>/Defs/ThingDef[defName="Human"]/recipes</xpath>
         <value>
             <li>PM_ApplyHaltCream</li>
         </value>
