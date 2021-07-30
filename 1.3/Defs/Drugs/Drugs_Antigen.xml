@@ -2,7 +2,7 @@
 	<ThingDef ParentName="SerumBase">
 		<defName>Antigen</defName>
 		<label>antigen</label>
-		<description>A concentration of antigenic mechanites that have been distilled to remove any traces of mutagenic contamination. Can be used in production of many mutagen-neutralising or reversing agents.</description>
+		<description>A concentration of antigenic mechanites that have been distilled to remove any traces of mutagenic contamination but offers no long term protection. Can be used in production of many mutagen-neutralising or reversing agents.</description>
 		<graphicData>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<texPath>Things/Item/Drug/Antigen</texPath>
