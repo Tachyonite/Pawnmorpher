@@ -68,7 +68,7 @@
 		<label>Booster lozenges</label>
 		<description>We can now press some mutagen into booster pills that will enhance production for our chook/cowmorphs.</description>
 		<baseCost>800</baseCost>
-		<techLevel>Spacer</techLevel>
+		<techLevel>Industrial</techLevel>
 		<tab>Pawnmorpher</tab>
 		<researchViewX>2.00</researchViewX>
 		<researchViewY>0.70</researchViewY>
