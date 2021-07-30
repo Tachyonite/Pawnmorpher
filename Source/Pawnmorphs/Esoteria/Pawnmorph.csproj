@@ -758,6 +758,7 @@
     <Compile Include="Things\Chaothrumbo.cs" />
     <Compile Include="Things\ExpandedPlant.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
+    <Compile Include="ThinkNodes\ConditionalAnimalisticHumanlike.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
     <Compile Include="ThinkNodes\ConditionalSapientAnimal.cs" />
