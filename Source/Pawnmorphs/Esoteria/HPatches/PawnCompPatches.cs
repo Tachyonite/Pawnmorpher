@@ -41,6 +41,8 @@ namespace Pawnmorph.HPatches
 
         private static bool MoodIsEnabled([NotNull] Pawn pawn)
         {
+            if ((pawn.IsPrisoner && PMNeedDefOf.Joy.neverOnPrisoner) || (pawn.IsSlave && PMNeedDefOf.Joy.neverOnSlave)) return false; 
+
             bool val;
             SapienceLevel? qSapience = pawn.GetQuantizedSapienceLevel();
             if (!pawn.HasSapienceState() || qSapience == null)
@@ -93,7 +95,7 @@ namespace Pawnmorph.HPatches
                     return;
                 }
 
-                bool isColonist = ___pawn.Faction?.IsPlayer == true;
+                bool isColonist = (___pawn.Faction?.IsPlayer == true);
 
                 bool moodIsEnabled = MoodIsEnabled(___pawn);
                 if (nd == PMNeedDefOf.Joy && isColonist)
