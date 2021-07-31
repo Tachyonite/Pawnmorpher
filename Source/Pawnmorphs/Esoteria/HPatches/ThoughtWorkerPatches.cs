@@ -61,6 +61,22 @@ namespace Pawnmorph.HPatches
             }
         }
 
+
+        [HarmonyPatch(typeof(ThoughtWorker_Cold), "CurrentStateInternal")]
+        static class FixThoughtWorkerCold
+        {
+            static bool Prefix(Pawn p, ref ThoughtState __result)
+            {
+                if (p.IsAnimal() || (ModsConfig.IdeologyActive && p.Ideo == null))
+                {
+                    __result = false;
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
         [NotNull]
         static IEnumerable<Type> AllPreceptNudityThoughts
         {
