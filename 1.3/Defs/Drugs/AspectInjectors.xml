@@ -36,8 +36,8 @@
 
     <ThingDef ParentName="PM_AspectInjectorBase">
         <defName>PM_ParagonInjector</defName>
-        <label>TODO</label>
-        <description>TODO</description>
+        <label>paragon injector</label>
+        <description>a special injector that causes mutations to adapt much better then normal</description>
         <graphicData>
             <texPath>Things/Item/Special/MechSerumHealer</texPath>
             <graphicClass>Graphic_Single</graphicClass>
