@@ -40,4 +40,34 @@ namespace Pawnmorph.HPatches
             return codes; 
         }
     }
+
+    static class InjectJobDriverPatches
+    {
+        [HarmonyPatch(typeof(JobDriver_Ingest), "MakeNewToils")]
+        static class AddCleanupToilPatch
+        {
+            static IEnumerable<Toil> Postfix(IEnumerable<Toil> __result, JobDriver_Ingest __instance)
+            {
+                foreach (Toil toil in __result)
+                {
+                    yield return toil;
+                }
+
+                var eatenThing = __instance?.job?.GetTarget(TargetIndex.A).Thing;
+                if (__instance?.pawn?.IsAnimal() != false) yield break;
+
+                if (eatenThing == null || eatenThing.Destroyed) yield break;
+                yield return new Toil()
+                {
+                    initAction = Cleanup
+                }; 
+                void Cleanup()
+                {
+                    if (eatenThing == null || eatenThing.Destroyed) return;
+                    if (!(eatenThing is Plant)) return; 
+                    eatenThing.Destroy(); //if a former human carries off a plant make sure it is destroyed when they finish eating it 
+                }
+            }
+        }
+    }
 }
