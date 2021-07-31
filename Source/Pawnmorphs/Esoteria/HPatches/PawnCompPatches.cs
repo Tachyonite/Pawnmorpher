@@ -37,29 +37,31 @@ namespace Pawnmorph.HPatches
             return ext; 
         }
 
-
-
-        private static bool MoodIsEnabled([NotNull] Pawn pawn)
+        static bool CheckNeed(Pawn pawn, NeedDef nd)
         {
-            NeedDef joy = PMNeedDefOf.Joy;
-            if ((pawn.IsPrisoner && joy.neverOnPrisoner) || (pawn.IsSlave && joy.neverOnSlave)) return false; 
+            if ((pawn.IsPrisoner && nd.neverOnPrisoner) || (pawn.IsSlave && nd.neverOnSlave)) return false;
+            if (nd.colonistsOnly && pawn.Faction != Faction.OfPlayer) return false; 
 
-            if(joy.nullifyingPrecepts != null)
+            if (nd.nullifyingPrecepts != null)
             {
-                if (pawn.Ideo != null && pawn.Ideo.PreceptsListForReading.Any(p => joy.nullifyingPrecepts.Contains(p.def)))
-                    return false; 
+                if (pawn.Ideo != null && pawn.Ideo.PreceptsListForReading.Any(p => nd.nullifyingPrecepts.Contains(p.def)))
+                    return false;
             }
 
+            return true; 
+        }
+
+
+        private static bool IsSapientOrAnimilistic(Pawn pawn)
+        {
             bool val;
             SapienceLevel? qSapience = pawn.GetQuantizedSapienceLevel();
             if (!pawn.HasSapienceState() || qSapience == null)
                 val = pawn.RaceProps.Humanlike;
             else val = qSapience.Value < SapienceLevel.Feral;
-
-            //Log.Message($"mood is enabled for {pawn.LabelShort}: {val}");
-
             return val;
         }
+
         private static FieldInfo DefField { get; } = typeof(Thing).GetField(nameof(Thing.def));
         private static FieldInfo PawnField { get; } = typeof(Pawn_TrainingTracker).GetField("pawn");
 
@@ -103,17 +105,18 @@ namespace Pawnmorph.HPatches
                 }
 
                 bool isColonist = (___pawn.Faction?.IsPlayer == true);
+                
 
-                bool moodIsEnabled = MoodIsEnabled(___pawn);
+                
                 if (nd == PMNeedDefOf.Joy && isColonist)
-                    __result = moodIsEnabled;
+                    __result = CheckNeed(___pawn, PMNeedDefOf.Joy);
 
-                if (moodIsEnabled)
+                if (IsSapientOrAnimilistic(___pawn))
                 {
                     var defExt = GetSapientAnimalNeed(nd);
                     if (defExt != null)
                     {
-                        __result = !defExt.mustBeColonist || ___pawn.IsColonist;
+                        __result = CheckNeed(___pawn, nd); 
                     }
                 }
 
