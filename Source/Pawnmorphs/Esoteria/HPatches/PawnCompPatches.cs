@@ -41,7 +41,14 @@ namespace Pawnmorph.HPatches
 
         private static bool MoodIsEnabled([NotNull] Pawn pawn)
         {
-            if ((pawn.IsPrisoner && PMNeedDefOf.Joy.neverOnPrisoner) || (pawn.IsSlave && PMNeedDefOf.Joy.neverOnSlave)) return false; 
+            NeedDef joy = PMNeedDefOf.Joy;
+            if ((pawn.IsPrisoner && joy.neverOnPrisoner) || (pawn.IsSlave && joy.neverOnSlave)) return false; 
+
+            if(joy.nullifyingPrecepts != null)
+            {
+                if (pawn.Ideo != null && pawn.Ideo.PreceptsListForReading.Any(p => joy.nullifyingPrecepts.Contains(p.def)))
+                    return false; 
+            }
 
             bool val;
             SapienceLevel? qSapience = pawn.GetQuantizedSapienceLevel();
