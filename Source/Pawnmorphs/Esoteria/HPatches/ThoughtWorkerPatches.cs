@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -86,7 +87,7 @@ namespace Pawnmorph.HPatches
                 var femaleNudity = DefDatabase<IssueDef>.GetNamed("Nudity_Female");
 
                 var precepts = DefDatabase<PreceptDef>.AllDefs.Where(p => p.issue == maleNudity || p.issue == femaleNudity);
-                var comps = precepts.SelectMany(p => p.comps.OfType<PreceptComp_SituationalThought>());
+                var comps = precepts.SelectMany(p => p.comps.MakeSafe().OfType<PreceptComp_SituationalThought>());
                 var types = comps.Select(t => t.thought.workerClass);
                 return types.Distinct(); 
             }
