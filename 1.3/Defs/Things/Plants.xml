@@ -112,9 +112,9 @@
 
     <ThingDef Name="GlowVineBase" ParentName="PlantBase" Abstract="true">
         <thingClass>Pawnmorph.Things.ExpandedPlant</thingClass>
-        <plants>
+        <plant>
             <growDays>15</growDays>
-        </plants>
+        </plant>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.AdditionalPlantInfo">
                 <minGrowthTemperature>-20</minGrowthTemperature>
