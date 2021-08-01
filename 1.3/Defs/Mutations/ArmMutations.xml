@@ -15,7 +15,7 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>changing</label>
-				<description>[PAWN_nameDef]'s significantly stiffer and visibly longer then before </description>
+				<description>[PAWN_nameDef]'s arm significantly stiffer and visibly longer then before </description>
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
