@@ -146,6 +146,9 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
             return rTup.Item2.AllAssociatedMutations;
         }
 
+        [NotNull]
+        private readonly List<Pawn> _scratchList = new List<Pawn>();  
+
         /// <summary>
         ///     Gets the targets to add mutations onto
         /// </summary>
@@ -159,11 +162,42 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
             if (role == null) enumer = jobRitual.assignments.Participants.Where(p => MutagenDefOf.defaultMutagen.CanInfect(p));
             else
                 enumer = (jobRitual.assignments?.AssignedPawns(role)).MakeSafe();
-            int take = Mathf.Max(0, outcome.positivityIndex * Rand.Range(1, 5));
-            if (take == 0) return Enumerable.Empty<Pawn>();
-            return enumer.Take(take);
+            int take = Mathf.Max(0, outcome.positivityIndex * Rand.Range(1, 2));
+            if (take == 0) yield break;
+
+            _scratchList.Clear();
+            _scratchList.AddRange(enumer);
+
+            var i = 0;
+            while (i < take && _scratchList.Count > 0)
+            {
+                Pawn r =
+                    _scratchList.RandomElementByWeight(p =>
+                                                           GetSelectionWeight(p,
+                                                                              jobRitual
+                                                                                 .Ritual
+                                                                                 .ideo)); //make it more likely non mutated pawns are chosen 
+                _scratchList.Remove(r);
+                i++;
+                yield return r;
+            }
         }
 
+
+        float GetSelectionWeight([NotNull] Pawn p, [NotNull] Ideo ideo)
+        {
+            float count = 1;
+            var mutations = (p.health?.hediffSet?.hediffs).MakeSafe().OfType<Hediff_AddedMutation>();
+            foreach (Hediff_AddedMutation mutation in mutations)
+            {
+                if (ideo.VeneratedAnimals.Any(a => a.TryGetBestMorphOfAnimal()?.IsAnAssociatedMutation(mutation) == true))
+                {
+                    count++;
+                }
+            }
+
+            return 1 / count; 
+        }
 
         /// <summary>
         ///     Initializes the ritual effects. called when starting to process the effects of this ritual
