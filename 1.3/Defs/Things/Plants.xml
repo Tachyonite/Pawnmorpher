@@ -112,6 +112,9 @@
 
     <ThingDef Name="GlowVineBase" ParentName="PlantBase" Abstract="true">
         <thingClass>Pawnmorph.Things.ExpandedPlant</thingClass>
+        <plants>
+            <growDays>15</growDays>
+        </plants>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.AdditionalPlantInfo">
                 <minGrowthTemperature>-20</minGrowthTemperature>
@@ -144,7 +147,6 @@
         <plant>
             <fertilityMin>0.9</fertilityMin>
             <fertilitySensitivity>1</fertilitySensitivity>
-            <growDays>21</growDays>
             <dieIfNoSunlight>false</dieIfNoSunlight>
             <dieIfLeafless>false</dieIfLeafless>
             <leaflessGraphicPath>Plants/Leafless/Glowvine</leaflessGraphicPath>
@@ -213,7 +215,6 @@
         <plant>
             <fertilityMin>0.9</fertilityMin>
             <fertilitySensitivity>1</fertilitySensitivity>
-            <growDays>21</growDays>
             <dieIfNoSunlight>false</dieIfNoSunlight>
             <dieIfLeafless>false</dieIfLeafless>
             <leaflessGraphicPath>Plants/Leafless/Glowvine</leaflessGraphicPath>
