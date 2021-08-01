@@ -1,7 +1,7 @@
 <Defs>
     <RecipeDef Name="PM_AspectInjectorRecipeBase" Abstract="True">
 
-        <jobString>crafting injector.</jobString>
+        <jobString>make injector</jobString>
         <effectWorking>Cook</effectWorking>
         <soundWorking>Recipe_Brewing</soundWorking>
         <workAmount>2000</workAmount>
@@ -49,8 +49,8 @@
 
     <RecipeDef ParentName="PM_AspectInjectorRecipeBase">
         <defName>PM_MakeParagonInjector</defName>
-        <label>TODO</label>
-        <description>TODO</description>
+        <label>make paragon injector</label>
+        <description>Make an injector which gives stronger mutations.</description>
         <products>
             <PM_ParagonInjector>1</PM_ParagonInjector>
         </products>

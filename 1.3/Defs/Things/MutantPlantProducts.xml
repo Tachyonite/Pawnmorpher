@@ -82,7 +82,7 @@
 		<defName>StabiliserLow</defName>
 		<description>This pawn genome is slightly stabilised against further mutations. This lasts for a day.</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<label>TODO</label>
+		<label>mutations slowed</label>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<maxSeverity>1.0</maxSeverity>
