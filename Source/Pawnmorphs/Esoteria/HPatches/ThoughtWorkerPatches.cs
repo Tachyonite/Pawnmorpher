@@ -26,6 +26,8 @@ namespace Pawnmorph.HPatches
         {
             try
             {
+                if (!ModsConfig.IdeologyActive) return; 
+                
                 BindingFlags stBindingFlags = BindingFlags.NonPublic | BindingFlags.Static;
                 var normalPatchMethod = typeof(ThoughtWorkerPatches).GetMethod("DisableFormerHumanThoughtNormal", stBindingFlags);
                 var socialPatchMethod = typeof(ThoughtWorkerPatches).GetMethod("DisableFormerHumanThoughtSocial", stBindingFlags);
