@@ -13,16 +13,6 @@
             <MarketValue>1500</MarketValue>
         </statBases>
         <tradeability>Sellable</tradeability>
-        <comps>
-            <li Class="CompProperties_Usable">
-                <useJob>UseItem</useJob>
-                <useLabel>Use mutagenic healer mech serum</useLabel>
-                <useDuration>600</useDuration>
-            </li>
-            <li Class="CompProperties_UseEffect">
-                <compClass>CompUseEffect_DestroySelf</compClass>
-            </li>
-        </comps>
         <thingSetMakerTags>
             <li>RewardSpecial</li>
         </thingSetMakerTags>
@@ -39,13 +29,13 @@
         <label>paragon injector</label>
         <description>a special injector that causes mutations to adapt much better then normal</description>
         <graphicData>
-            <texPath>Things/Item/Special/MechSerumHealer</texPath>
+            <texPath>Things/Item/Drug/ParagonInjector</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <comps>
             <li Class="CompProperties_Usable">
                 <useJob>UseItem</useJob>
-                <useLabel>Use mutagenic healer mech serum</useLabel>
+                <useLabel>Use a paragon injector</useLabel>
                 <useDuration>600</useDuration>
             </li>
             <li Class="Pawnmorph.ThingComps.AddAspectEffectProps">
