@@ -183,12 +183,6 @@ namespace Pawnmorph.HPatches
                 InteractionDef alt = ext?.TryGetAlternativeFor(___pawn, recipient);
                 if (alt != null)
                 {
-                    
-                        string msg = $"substituting {alt.defName} for {intDef.defName} on {___pawn.Name} -> {recipient.Name}";
-                        Log.Message(msg);
-                    
-
-
                     intDef = alt;
                 }
 
@@ -311,7 +305,6 @@ namespace Pawnmorph.HPatches
 
                     }
 
-                    if(__result) Log.Warning($"{___pawn.Name} interacted!");
                 }
 
 
