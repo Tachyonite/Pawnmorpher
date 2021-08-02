@@ -98,6 +98,12 @@ namespace Pawnmorph
 
         }
 
+        [NotNull]
+        private static readonly Dictionary<Ideo, Dictionary<MutationDef, bool>> _veneratedCache =
+            new Dictionary<Ideo, Dictionary<MutationDef, bool>>(); 
+
+
+
 
         /// <summary>
         ///     Gets the minimum mutation adaptability stat value.
@@ -168,6 +174,98 @@ namespace Pawnmorph
 
         private const float MARKET_VALUE_PER_VALUE = 1;
 
+        /// <summary>
+        /// Determines whether this mutation is venerated by the specified ideology.
+        /// </summary>
+        /// <param name="mutation">The mutation.</param>
+        /// <param name="ideo">The ideo.</param>
+        /// <returns>
+        ///   <c>true</c> if this mutation is venerated by the specified ideology; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// mutation
+        /// or
+        /// ideo
+        /// </exception>
+        public static bool IsVeneratedBy([NotNull] this MutationDef mutation, [NotNull] Ideo ideo)
+        {
+            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+            if (ideo == null) throw new ArgumentNullException(nameof(ideo));
+
+            if (!_veneratedCache.TryGetValue(ideo, out Dictionary<MutationDef, bool> dict))
+            {
+                dict = new Dictionary<MutationDef, bool>();
+                _veneratedCache[ideo] = dict;
+            }
+
+            if (!dict.TryGetValue(mutation, out bool val))
+            {
+                val = ideo.VeneratedAnimals.MakeSafe()
+                          .Any(a => a.TryGetBestMorphOfAnimal()?.IsAnAssociatedMutation(mutation) == true);
+                dict[mutation] = val;
+            }
+
+            return val;
+        }
+
+        /// <summary>
+        /// Determines whether this mutation is venerated by the specified ideology.
+        /// </summary>
+        /// <param name="mutation">The mutation.</param>
+        /// <param name="ideo">The ideo.</param>
+        /// <returns>
+        ///   <c>true</c> if this mutation is venerated by the specified ideology; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// mutation
+        /// or
+        /// ideo
+        /// </exception>
+        public static bool IsVeneratedBy([NotNull] this Hediff_AddedMutation mutation, [NotNull] Ideo ideo)
+        {
+            return IsVeneratedBy(mutation.Def, ideo); 
+        }
+
+
+        /// <summary>
+        /// Clears the mutation ideo cache.
+        /// </summary>
+        public static void ClearMutationIdeoCache()
+        {
+            _veneratedCache.Clear();
+            
+        }
+
+        /// <summary>
+        /// Clears the mutation ideo cache of the specified ideology .
+        /// </summary>
+        /// <param name="ideo">The ideo.</param>
+        public static void ClearMutationIdeoCache(Ideo ideo)
+        {
+            if (ideo == null)
+            {
+                ClearMutationIdeoCache();
+            }
+            else if(_veneratedCache.ContainsKey(ideo))
+            {
+                _veneratedCache.Remove(ideo); 
+            }
+        }
+
+        /// <summary>
+        /// Gets all mutations on the given pawn
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">p</exception>
+        [NotNull]
+        public static IEnumerable<Hediff_AddedMutation> GetAllMutations([NotNull] this Pawn p)
+        {
+            if (p == null) throw new ArgumentNullException(nameof(p));
+            var mTracker = p.GetMutationTracker(false);
+            if (mTracker != null) return mTracker.AllMutations;
+            return (p.health?.hediffSet?.hediffs?.OfType<Hediff_AddedMutation>()) ?? Enumerable.Empty<Hediff_AddedMutation>();
+        }
 
         /// <summary>
         /// Gets the market value for this mutation.
@@ -878,6 +976,8 @@ namespace Pawnmorph
             return _mutationsByParts.TryGetValue(bodyPartDef) ?? Enumerable.Empty<MutationDef>();
         }
 
+
+
         /// <summary>
         ///     try to get the mutation tracker on this pawn, null if the pawn does not have a tracker
         /// </summary>
@@ -887,7 +987,7 @@ namespace Pawnmorph
         [CanBeNull]
         public static MutationTracker GetMutationTracker([NotNull] this Pawn pawn, bool warnOnFail = true)
         {
-            var comp = pawn.GetComp<MutationTracker>();
+            var comp = CompCacher<MutationTracker>.GetCompCached(pawn); 
             if (comp == null && warnOnFail) Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
             return comp;
         }

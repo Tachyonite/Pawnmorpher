@@ -774,6 +774,9 @@
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\Precept\MutationMemory_VeneratedAnimal.cs" />
     <Compile Include="Thoughts\Precept\PWorker_FormerHuman.cs" />
+    <Compile Include="Thoughts\Precept\Worker_FormerHuman_Social.cs" />
+    <Compile Include="Thoughts\Precept\Worker_HasMutations_Social.cs" />
+    <Compile Include="Thoughts\Precept\Worker_VeneratedMutation_Social.cs" />
     <Compile Include="Thoughts\ThoughtLabels.cs" />
     <Compile Include="Thoughts\Precept\Thought_Precept_VeneratedFormerHuman.cs" />
     <Compile Include="Thoughts\Precept\Worker_VeneratedFormerHuman.cs" />
