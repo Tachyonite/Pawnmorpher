@@ -255,7 +255,7 @@ namespace Pawnmorph.Hybrids
             }
             else
             {
-                mTracker.needsRaceCompCheck = true; 
+                mTracker.SetNeedsRaceCheck(); 
             }
 
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 

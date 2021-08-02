@@ -1,6 +1,7 @@
 ﻿// PawnPatches.cs created by Iron Wolf for Pawnmorph on 02/19/2020 5:41 PM
 // last updated 04/26/2020  9:22 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
@@ -117,22 +118,48 @@ namespace Pawnmorph.HPatches
 
         }
 
+        //hacky way to make sure the race comp check always happens after all comps have finished ticking 
+        internal static void QueueRaceCheck(Pawn p)
+        {
+            if (_needsChecking != null)
+            {
+                Log.Error($"trying to queue a race check before the previous has finished! this should not happen\nnew check pawn {p.Name} previous pawn: {_needsChecking.Name}");
+                return; 
+            }
+            _needsChecking = p; 
+        }
+
+       
+        
+        private static Pawn _needsChecking; 
+
+
+
         //this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
         [HarmonyPatch(nameof(Pawn.Tick)), HarmonyPostfix]
-        static void RunRaceCompCheck([NotNull] Pawn __instance)
+        static void RunRaceCompCheck( Pawn __instance)
         {
-
-            //only check every so often 
-            if (!__instance.IsHashIntervalTick(60)) return; 
-
-
-            var mTracker = __instance.GetComp<MorphTrackingComp>();
-            if (mTracker?.needsRaceCompCheck == true)
+            try
             {
-                RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
-                mTracker.needsRaceCompCheck = false; 
-            }
+                if (_needsChecking == null) return;
 
+                if (_needsChecking.Destroyed) //maybe overcautious check 
+                {
+                    _needsChecking = null;
+                    return;
+                }
+
+                if (_needsChecking != __instance) return;
+
+                RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
+
+                _needsChecking = null;
+            }
+            catch (Exception e)
+            {
+                Log.Error($"unable to perform race check on pawn {__instance?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
+                throw;
+            }
         }
 
         [HarmonyPatch(nameof(Pawn.GetGizmos))]
