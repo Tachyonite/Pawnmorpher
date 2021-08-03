@@ -23,4 +23,28 @@
             </thingDefs>
         </fixedIngredientFilter>
     </RecipeDef>
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>PM_ApplyAdaptionCream</defName>
+        <label>apply adaption cream</label>
+        <description>Apply adaption cream to a mutation</description>
+        <workerClass>Pawnmorph.RecipeWorkers.ApplyAdaptationCream</workerClass>
+        <jobString>Applying adaption cream.</jobString>
+        <workAmount>1300</workAmount>
+        <surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>PM_AdaptionCream</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>PM_AdaptionCream</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
 </Defs>

@@ -34,7 +34,7 @@ namespace Pawnmorph.RecipeWorkers
             Init(pawn, billDoer, l);
             foreach (Hediff hediff in hediffs)
             {
-                if (hediff.Part != part || !(hediff is Hediff_AddedMutation mutation)) continue;
+                if (hediff.Part != part || !(hediff is Hediff_AddedMutation mutation) || !CanApplyOnMutation(mutation, recipe)) continue;
                 ApplyOnMutation(pawn, billDoer, mutation, l);
             }
 
@@ -86,9 +86,23 @@ namespace Pawnmorph.RecipeWorkers
             {
                 var record = mutation.Part; 
                 if(record == null || recordsRead.Contains(record)) continue;
+                if(!CanApplyOnMutation(mutation, recipe)) continue;
                 recordsRead.Add(record);
                 yield return record; 
             }
+        }
+
+        /// <summary>
+        /// Determines whether this instance with can be applied on the given mutation 
+        /// </summary>
+        /// <param name="mutation">The mutation.</param>
+        /// <param name="recipe">The recipe.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance be applied on the given mutation otherwise, <c>false</c>.
+        /// </returns>
+        protected virtual bool CanApplyOnMutation([NotNull] Hediff_AddedMutation mutation, [NotNull] RecipeDef recipe)
+        {
+            return true; 
         }
 	}
 }

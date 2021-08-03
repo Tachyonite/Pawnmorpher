@@ -23,6 +23,35 @@ namespace Pawnmorph.Hediffs
 
         private int _curStageIndex = -1;
 
+        private float _offset; 
+
+        public float SeverityOffset
+        {
+            get => _offset;
+            set => _offset = Mathf.Clamp(value, -1, 1);
+        }
+
+        private const string ADAPTED = "PMMutationAdaptedGreater";
+
+        private static string _cachedTranslation;
+
+        static string CachedTranslationStr
+        {
+            get
+            {
+                if (_cachedTranslation == null) _cachedTranslation = ADAPTED.Translate();
+                return _cachedTranslation; 
+            }
+        }
+
+        /// <summary>
+        /// Gets the comp label in brackets extra.
+        /// </summary>
+        /// <value>
+        /// The comp label in brackets extra.
+        /// </value>
+        public override string CompLabelInBracketsExtra => _offset > 0.1f ? CachedTranslationStr : "";
+
         /// <summary>
         ///     Gets the natural severity limit.
         /// </summary>
@@ -136,6 +165,7 @@ namespace Pawnmorph.Hediffs
             base.CompExposeData();
             Scribe_Values.Look(ref _halted, nameof(_halted));
             Scribe_Values.Look(ref _curStageIndex, nameof(_curStageIndex));
+            Scribe_Values.Look(ref _offset, nameof(SeverityOffset));
         }
 
         /// <summary>
@@ -207,8 +237,8 @@ namespace Pawnmorph.Hediffs
 
             if (Halted) return 0;
             float statValue = MutationAdaptability.Value;
-            float maxSeverity = Mathf.Max(statValue + 1, 1);
-            float minSeverity = Mathf.Min(statValue, 0); //have the stat influence how high or low the severity can be 
+            float maxSeverity = Mathf.Max(statValue + SeverityOffset, 1);
+            float minSeverity = Mathf.Min(statValue + SeverityOffset, 0); //have the stat influence how high or low the severity can be 
             float sMult = Props.statEffectMult * (statValue + 1);
             float sevPerDay = base.SeverityChangePerDay() * sMult;
             //make sure the severity can only stay between the max and min 

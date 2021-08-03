@@ -583,6 +583,7 @@
     <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
     <Compile Include="PreceptComps\VeneratedMutation.cs" />
     <Compile Include="ProductionBoost.cs" />
+    <Compile Include="RecipeWorkers\ApplyAdaptationCream.cs" />
     <Compile Include="RecipeWorkers\ApplyHaltingCream.cs" />
     <Compile Include="RecipeWorkers\ApplyToMutatedPart.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />

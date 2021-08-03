@@ -11,7 +11,7 @@
         <defaultBaseValue>0</defaultBaseValue>
         <hideAtValue>0</hideAtValue>
         <minValue>-2</minValue> <!-- allow negative values for pawns that get worse with mutation over time (hidden stages with severity less then 0?) -->
-        <maxValue>2</maxValue>
+        <maxValue>3</maxValue>
         <toStringStyle>PercentZero</toStringStyle>
         <displayPriorityInCategory>75</displayPriorityInCategory>
     </StatDef>
