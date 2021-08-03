@@ -55,7 +55,13 @@
 				<label>adapted</label>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
+				<minSeverity>1.5</minSeverity> <!-- adaption cream -->
+				<!-- only pawns with the Paragon aspect can get this stage -->
+				<labelOverride>handpaw</labelOverride>
+				<description>Further adaptation to this paw has allowed it to become dextrous again, and with even finer manipulation than a regular hand.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity> <!-- paragon  -->
 				<!-- only pawns with the Paragon aspect can get this stage -->
 				<labelOverride>dextrous handpaw</labelOverride>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
