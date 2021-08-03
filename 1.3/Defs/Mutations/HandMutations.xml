@@ -316,13 +316,13 @@
 				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
 				<labelOverride>feline handpaw</labelOverride>
 				<partEfficiencyOffset>0</partEfficiencyOffset>
-				<description>Further adaption to this handpaw have increased the flexibility and precision of the digits, allowing [PAWN_nameDef] to use [PAWN_pronoun] claws as delicately as [PAWN_pronoun] would fingers.  The paw now functions about as well as a hand again, as long as [PAWN_nameDef] is careful not to squeeze too hard.</description>
+				<description>Further adaption to this handpaw have increased the flexibility and precision of the digits, allowing [PAWN_nameDef] to use [PAWN_possessive] claws as delicately as [PAWN_pronoun] would fingers.  The paw now functions about as well as a hand again, as long as [PAWN_nameDef] is careful not to squeeze too hard.</description>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>2.5</minSeverity>
 				<labelOverride>dextrous feline handpaw</labelOverride>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<description>Even further adaption to this handpaw have given [PAWN_nameDef] a remarkable deftness with [PAWN_possessive] claw-tipped fingers.  They can rend [PAWN_possessive] foes with a swipe, and yet when working on delicate tasks they're even more gentle and precise than ordinary fingers would be.</description>
+				<description>Even further adaption to this handpaw have given [PAWN_nameDef] a remarkable deftness with [PAWN_possessive] claw-tipped fingers.  The claws can rend [PAWN_possessive] foes with a swipe, and yet when working on delicate tasks they're even more gentle and precise than ordinary fingers would be.</description>
 			</li>
 		</stages>
 		<comps>
@@ -373,6 +373,7 @@
 				<partEfficiencyOffset>-0.85</partEfficiencyOffset>
 				<!-- almost useless nub -->
 			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity> <!-- adaption cream -->
 				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
 				<label>feather fingers</label>
@@ -380,7 +381,7 @@
 				<description>Further adaption to this wingtip has given [PAWN_nameDef] several stiff feathers that [PAWN_pronoun] can manipulate.  [PAWN_pronoun] can use them sort of like fingers, but being nothing more than feathers they have a hard time really grasping anything.</description>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
+				<minSeverity>2.5</minSeverity> <!-- Paragon -->
 				<label>paragon</label>
 				<description>Even further adaption has rendered [PAWN_nameDef]'s feather fingers remarkably stiff and flexible, and they now work almost as well as actual fingers.  [PAWN_nameDef] looks a lot like a cartoon character when [PAWN_pronoun] picks things up, but it's a small price to pay to have working hands again.</description>
 				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
