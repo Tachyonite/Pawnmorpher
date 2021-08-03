@@ -119,7 +119,7 @@
             <li Class="Pawnmorph.DefExtensions.AdditionalPlantInfo">
                 <minGrowthTemperature>-20</minGrowthTemperature>
                 <minOptimalGrowthTemperature>0</minOptimalGrowthTemperature>
-                <maxOptimalGrowthTemperature>15</maxOptimalGrowthTemperature>
+                <maxOptimalGrowthTemperature>17</maxOptimalGrowthTemperature>
                 <maxGrowthTemperature>30</maxGrowthTemperature>
                 <minLeaflessTemperature>-200</minLeaflessTemperature>
                 <maxLeaflessTemperature>-2</maxLeaflessTemperature>
