@@ -62,6 +62,10 @@ namespace Pawnmorph.HPatches
             if (sTracker?.CurrentState != null)
             {
                 __result = __instance.Faction == Faction.OfPlayer && sTracker.CurrentIntelligence == Intelligence.Humanlike;
+                if (__result && __instance.guest?.IsSlave == true)
+                {
+                    __result = __instance.guest.SlaveIsSecure; 
+                }
                 return false;
             }
 
