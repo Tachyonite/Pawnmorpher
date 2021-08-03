@@ -229,11 +229,17 @@ namespace Pawnmorph.Utilities
         }
 
         /// <summary>
-        ///     patch the given method,  replacing all instances of RaceProps.Animal/Tooluser/Humanlike
-        ///     with the FormerHumanUtilities equivalents
+        /// patch the given method,  replacing all instances of RaceProps.Animal/Tooluser/Humanlike
+        /// with the FormerHumanUtilities equivalents
         /// </summary>
-        /// <param name="harmony"></param>
-        /// <param name="targetMethod"></param>
+        /// <param name="harmony">The harmony.</param>
+        /// <param name="targetMethod">The target method.</param>
+        /// <param name="debug">if set to <c>true</c> [debug].</param>
+        /// <exception cref="ArgumentNullException">
+        /// harmony
+        /// or
+        /// targetMethod
+        /// </exception>
         public static void ILPatchCommonMethods([NotNull] this Harmony harmony, [NotNull] MethodInfo targetMethod,
                                                 bool debug = false)
         {

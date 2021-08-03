@@ -397,6 +397,7 @@
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TFTransferable.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
+    <Compile Include="DefExtensions\VeneratedAnimalMutationThought_TransferWorker.cs" />
     <Compile Include="Designations\RecruitSapientFormerHuman.cs" />
     <Compile Include="Dialogs\ColonistColorPicker.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />

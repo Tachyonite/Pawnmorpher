@@ -589,6 +589,7 @@ namespace Pawnmorph
         /// <param name="originalPawn">The original pawn.</param>
         /// <param name="cause">The cause.</param>
         /// <param name="removeMentalStates">if set to <c>true</c> [remove mental states].</param>
+        /// <param name="tfdPawn">The TFD pawn.</param>
         /// <exception cref="ArgumentNullException">originalPawn</exception>
         internal static void DBGCleanUpHumanPawnPostTf([NotNull] Pawn originalPawn, [CanBeNull] Hediff cause, bool removeMentalStates, Pawn tfdPawn)
         {

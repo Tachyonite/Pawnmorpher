@@ -35,7 +35,6 @@ namespace Pawnmorph.Hediffs
             yield break;
         }
 
-        private bool _ran; 
 
         /// <summary>The description</summary>
         public string description;

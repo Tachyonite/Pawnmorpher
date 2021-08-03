@@ -147,12 +147,13 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
         }
 
         [NotNull]
-        private readonly List<Pawn> _scratchList = new List<Pawn>();  
+        private readonly List<Pawn> _scratchList = new List<Pawn>();
 
         /// <summary>
-        ///     Gets the targets to add mutations onto
+        /// Gets the targets to add mutations onto
         /// </summary>
         /// <param name="jobRitual">The job ritual.</param>
+        /// <param name="outcome">The outcome.</param>
         /// <returns></returns>
         [NotNull]
         protected virtual IEnumerable<Pawn> GetTargets([NotNull] LordJob_Ritual jobRitual, [NotNull] OutcomeChance outcome)

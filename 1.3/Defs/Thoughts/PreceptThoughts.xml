@@ -1,9 +1,17 @@
 <Defs>
+
+
     <!-- Mutated -->
 
     <ThoughtDef Name="PM_PreceptStaticThoughtsBase" Abstract="true">
         <durationDays>5</durationDays>
         <thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+    </ThoughtDef>
+    <ThoughtDef Name="PM_Precept_VeneratedMutationBase" ParentName="PM_PreceptStaticThoughtsBase" Abstract="true">
+        <thoughtClass>Pawnmorph.Thoughts.Precept.MutationMemory_VeneratedAnimal</thoughtClass>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.VeneratedAnimalMutationThought_TransferWorker" />
+        </modExtensions>
     </ThoughtDef>
     <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
         <defName>PM_FleshPuristMutated</defName>
@@ -76,9 +84,8 @@
     </ThoughtDef>
 
     <!-- use ANIMALKIND to refer to the venerated animal -->
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+    <ThoughtDef ParentName="PM_Precept_VeneratedMutationBase">
         <defName>PM_GainedVeneratedMutation</defName>
-        <thoughtClass>Pawnmorph.Thoughts.Precept.MutationMemory_VeneratedAnimal</thoughtClass>
         <stages>
             <li> <!-- Base pawn -->
                 <label>venerated {ANIMALKIND} mutation</label>
@@ -205,9 +212,8 @@
     </ThoughtDef>
 
     <!-- use ANIMALKIND to refer to the venerated animal -->
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+    <ThoughtDef ParentName="PM_Precept_VeneratedMutationBase">
         <defName>PM_VeneratedAnimalReverted</defName>
-        <thoughtClass>Pawnmorph.Thoughts.Precept.MutationMemory_VeneratedAnimal</thoughtClass>
         <stages>
             <li>
                 <label>venerated {ANIMALKIND} reverted</label>
@@ -252,9 +258,8 @@
     </ThoughtDef>
 
     <!-- use ANIMALKIND to refer to the venerated animal -->
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+    <ThoughtDef ParentName="PM_Precept_VeneratedMutationBase">
         <defName>PM_VeneratedAnimalMorphed</defName>
-        <thoughtClass>Pawnmorph.Thoughts.Precept.MutationMemory_VeneratedAnimal</thoughtClass>
         <stages>
             <li>
                 <label>venerated {ANIMALKIND} morph</label>
@@ -301,9 +306,8 @@
     </ThoughtDef>
 
     <!-- use ANIMALKIND to refer to the venerated animal -->
-    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+    <ThoughtDef ParentName="PM_Precept_VeneratedMutationBase">
         <defName>PM_VeneratedAnimalMorphedReverted</defName>
-        <thoughtClass>Pawnmorph.Thoughts.Precept.MutationMemory_VeneratedAnimal</thoughtClass>
         <stages>
             <li>
                 <label>reverted from venerated morph</label>
