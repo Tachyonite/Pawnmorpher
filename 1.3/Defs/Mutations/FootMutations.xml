@@ -31,7 +31,7 @@
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
+				<minSeverity>1.5</minSeverity>
 				<labelOverride>footpaw</labelOverride>
 				<description>[PAWN_nameDef]'s foot resebles a mix of an animalistic paw and a normal foot, gaining the strengths of each while inheriting none of their weaknesses.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
@@ -78,7 +78,7 @@
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
+				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
 				<description>[PAWN_nameDef]'s foot has been replaced by a cloven hoof. [PAWN_pronoun] is quite adept at using it and is far quicker than [PAWN_pronoun] used to be.</description>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
@@ -125,7 +125,7 @@
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
+				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
 				<description>[PAWN_nameDef]'s foot has been replaced by a hoof. [PAWN_pronoun] is quite adept at using it and is far quicker than [PAWN_pronoun] used to be.</description>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
@@ -172,7 +172,7 @@
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
+				<minSeverity>1.5</minSeverity>
 				<labelOverride>hoof-foot</labelOverride>
 				<description>While still resembling a pig-like trotter, certain humanoid elements have returned to this foot, giving them better balance and dexterity compared to a normal pig's foot.</description>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
@@ -216,7 +216,7 @@
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
+				<minSeverity>1.5</minSeverity>
 				<labelOverride>manipulative avian</labelOverride>
 				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
@@ -280,7 +280,7 @@
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
+				<minSeverity>1.5</minSeverity>
 				<labelOverride>manipulative avian</labelOverride>
 				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws. The talons are sharp and can be quite dangerous in a fight.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
@@ -340,7 +340,7 @@
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
+				<minSeverity>1.5</minSeverity>
 				<labelOverride>manipulative avian</labelOverride>
 				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws with webbing between them.</description>
 			</li>
