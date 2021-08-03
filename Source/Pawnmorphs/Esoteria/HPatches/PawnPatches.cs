@@ -121,18 +121,14 @@ namespace Pawnmorph.HPatches
         //hacky way to make sure the race comp check always happens after all comps have finished ticking 
         internal static void QueueRaceCheck(Pawn p)
         {
-            if (_needsChecking != null)
-            {
-                Log.Error($"trying to queue a race check before the previous has finished! this should not happen\nnew check pawn {p.Name} previous pawn: {_needsChecking.Name}");
-                return; 
-            }
-            _needsChecking = p; 
+            _waitingQueue.AddLast(p);
         }
 
-       
-        
-        private static Pawn _needsChecking; 
 
+        [NotNull]
+        private static readonly LinkedList<Pawn> _waitingQueue = new LinkedList<Pawn>(); //need to use a list because unspawned pawns may be queued 
+
+        
 
 
         //this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
@@ -141,19 +137,28 @@ namespace Pawnmorph.HPatches
         {
             try
             {
-                if (_needsChecking == null) return;
-
-                if (_needsChecking.Destroyed) //maybe overcautious check 
+                var node = _waitingQueue.First;
+                
+                while (node != null)
                 {
-                    _needsChecking = null;
-                    return;
+                    var next = node.Next;
+                    if(node.Value == __instance) break;
+                    if (node.Value == null || node.Value.Destroyed)
+                    {
+                        _waitingQueue.Remove(node); 
+                    }
+
+                    node = next; 
                 }
 
-                if (_needsChecking != __instance) return;
+                if (node != null)
+                {
+                    _waitingQueue.Remove(node);
+                    RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
+                    
+                }
 
-                RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
-
-                _needsChecking = null;
+                
             }
             catch (Exception e)
             {
@@ -162,6 +167,7 @@ namespace Pawnmorph.HPatches
             }
         }
 
+        
         [HarmonyPatch(nameof(Pawn.GetGizmos))]
         [HarmonyPostfix]
         static IEnumerable<Gizmo> GetGizmosPatch(IEnumerable<Gizmo> __result, [NotNull]  Pawn __instance)
