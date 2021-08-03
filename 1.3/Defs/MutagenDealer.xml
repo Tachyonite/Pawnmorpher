@@ -190,6 +190,13 @@
 				</countRange>
 			</li>
 
+			<!-- aspect injectors -->
+			<li Class="StockGenerator_Tag">
+				<tradeTag>AspectInjectors</tradeTag>
+				<thingDefCountRange>0~2</thingDefCountRange>
+				<countRange>1~1</countRange>
+			</li>
+
 			<li Class="StockGenerator_BuyTradeTag">
 				<tag>Art</tag>
 			</li>
@@ -351,6 +358,13 @@
 					<min>1</min>
 					<max>20</max>
 				</countRange>
+			</li>
+
+			<!-- aspect injectors -->
+			<li Class="StockGenerator_Tag">
+				<tradeTag>AspectInjectors</tradeTag>
+				<thingDefCountRange>2~8</thingDefCountRange>
+				<countRange>1~3</countRange>
 			</li>
 
 			<li Class="StockGenerator_BuyTradeTag">
