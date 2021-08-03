@@ -102,12 +102,12 @@
 				<label>adapted</label>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
+				<minSeverity>1.5</minSeverity> <!-- Adaption cream -->
 				<label>flexible</label>
 				<partEfficiencyOffset>+0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.99</minSeverity>
+				<minSeverity>2.5</minSeverity> <!-- Paragon -->
 				<label>paragon</label>
 				<partEfficiencyOffset>+0.2</partEfficiencyOffset>
 			</li>

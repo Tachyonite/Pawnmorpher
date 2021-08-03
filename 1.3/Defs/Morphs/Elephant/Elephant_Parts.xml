@@ -159,15 +159,6 @@
 				<description>Further mutation has caused several stubby fingers to grow from this stump.  They look strangely elephantine, but additional adaptions to the fingers have left them as dextrous as a human hand.</description>
 				<partEfficiencyOffset>0</partEfficiencyOffset>
 			</li>
-		
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
-				<label>adapted</label>
-				<minSeverity>1</minSeverity>
-			</li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
