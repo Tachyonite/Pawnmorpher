@@ -138,11 +138,6 @@
 		<description>Massive, clawed paws that belong on a bear rather than a human.  They are deadly in a fight, but are rather useless at fine manipulation.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
-			</li>
-		</stages>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0</minSeverity>
 				<partEfficiencyOffset>0</partEfficiencyOffset>
 				<labelOverride>clawed</labelOverride>
@@ -209,6 +204,9 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 		<parts>
