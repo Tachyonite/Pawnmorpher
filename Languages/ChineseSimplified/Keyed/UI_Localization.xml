@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <TabMutations>变异</TabMutations>
+  <MorphsITabHeader>变形</MorphsITabHeader>
+  <TraitsITabHeader>外貌</TraitsITabHeader>
+  <ProductionITabHeader>产出</ProductionITabHeader>
+  <MutationLogButtonText>日志</MutationLogButtonText>
+  <MutationLogHeader>变异记录</MutationLogHeader>
+  <PPRemivingMutationDesc>从{PAWN_nameDef}的{PART}中移除{MUTATION}突变。</PPRemivingMutationDesc>
+  <PPAddingMutationDesc>在{PAWN_nameDef}的{PART}上添加{MUTATION}突变，严重程度为{SEVERITY}。</PPAddingMutationDesc>
+  <PPNewMutationIsHalted>它将不会进一步发展。</PPNewMutationIsHalted>
+  <PMPartPickerGizmo>诱变选择器</PMPartPickerGizmo>
+</LanguageData>

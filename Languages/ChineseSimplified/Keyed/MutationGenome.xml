@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <GenomeLabel>{MUTATION}基因组</GenomeLabel>
+  <GenomeDesc>提供信息的基因组{MUTATION}.</GenomeDesc>
+  <PMApplyGenome>使用{0}基因组。</PMApplyGenome>
+  <PMNoMutationBenchAvailable>没有可用的诱变试验台。</PMNoMutationBenchAvailable>
+  <PMNoStorageAvailableForGenome>在分室数据库中没有足够的空间放置{0}。</PMNoStorageAvailableForGenome>
+</LanguageData>
