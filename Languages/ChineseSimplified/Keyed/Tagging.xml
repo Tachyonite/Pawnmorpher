@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <PMTagGizmoLabel>标记动物</PMTagGizmoLabel>
+  <PMTagGizmoDescription>标记一个动物</PMTagGizmoDescription>
+  <CannotTagFormerHuman>由于机械污染，这只动物无法被标记。</CannotTagFormerHuman>
+  <PMMutationTagged>突变 "{mutation}" 从{animal}中测序出来。</PMMutationTagged>
+  <PMNothingTaggable>{animal}没有什么值得记录的。</PMNothingTaggable>
+  <PMMutationNotEnoughSpace>{animal}有可以记录的突变，但没有足够的空间来存储它们。</PMMutationNotEnoughSpace>
+  <PMAnimalAddedToDatabase>{animal}添加到基因库数据库中。</PMAnimalAddedToDatabase>
+  <PMMutationNotTaggable>{0}不可标记。</PMMutationNotTaggable>
+  <PMMutationRestricted>{0}受到限制。</PMMutationRestricted>
+  <MutationAddedToDatabase>{Mutation}添加到基因库。</MutationAddedToDatabase>
+</LanguageData>

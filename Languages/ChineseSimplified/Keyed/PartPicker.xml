@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <PartPickerMenuTitle>变异配置菜单</PartPickerMenuTitle>
+  <NoMutationsOnPart>无</NoMutationsOnPart>
+  <EditParams>详情...</EditParams>
+  <IsPaused>暂停进度？</IsPaused>
+  <ToggleClothes>切换衣服的可见性</ToggleClothes>
+  <RotCW>顺时针旋转</RotCW>
+  <RotCCW>逆时针旋转</RotCCW>
+  <CrownLabel>王权</CrownLabel>
+  <BodyLabel>身体</BodyLabel>
+  <SkinSync>同步皮肤</SkinSync>
+  <DoSymmetry>同步 L/R</DoSymmetry>
+  <SummaryTitle>概要</SummaryTitle>
+  <SummaryAddedMutation>增加\"[MUTATION_NAME]\"突变到[PAWN_nameDef]的[MUTATION_PART]，其严重程度为[MUTATION_SEVERITY]。</SummaryAddedMutation>
+  <SummaryHaltedMutation>它将不会进一步发展。</SummaryHaltedMutation>
+  <SummaryRemovedMutation>从[PAWN_nameDef]的[MUTATION_PART]中删除"[MUTATION_NAME]\"突变。</SummaryRemovedMutation>
+  <PartDescTitle>变异描述</PartDescTitle>
+  <ApplyButtonText>应用</ApplyButtonText>
+  <ResetButtonText>重置</ResetButtonText>
+  <CancelButtonText>撤销</CancelButtonText>
+  <Skin>皮肤</Skin>
+  <Core>核心</Core>
+</LanguageData>

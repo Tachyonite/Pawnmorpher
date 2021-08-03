@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <PMDBTaggedAnimal>标记动物</PMDBTaggedAnimal>
+  <PMDBTaggedMutations>标记变异</PMDBTaggedMutations>
+  <PMGenebankTotalColumnHeader>存储空间使用</PMGenebankTotalColumnHeader>
+  <PMGenebankRemoveColumnHeader>从数据库删除</PMGenebankRemoveColumnHeader>
+  <PMGeneBankAnimalDefHeader>动物</PMGeneBankAnimalDefHeader>
+  <PMGenebankMutationDefInfoColumnHeader>变异</PMGenebankMutationDefInfoColumnHeader>
+  <PMGenebankHeader>基因库储存</PMGenebankHeader>
+  <PMGenebankAvailableHeader>可用存储</PMGenebankAvailableHeader>
+  <PMGenebankTotalHeader>储存总量</PMGenebankTotalHeader>
+</LanguageData>
