@@ -154,9 +154,18 @@
 				<label>unfamiliar</label>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<minSeverity>0.99</minSeverity>
 				<label>adapted</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity> <!-- Adaption Cream -->
+				<label>enhanced</label>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity> <!-- Paragon -->
+				<label>paragon</label>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
 		</stages>
 		<comps>
