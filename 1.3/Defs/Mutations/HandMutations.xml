@@ -56,16 +56,16 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity> <!-- adaption cream -->
-				<!-- only pawns with the Paragon aspect can get this stage -->
+				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
 				<labelOverride>handpaw</labelOverride>
-				<description>Further adaptation to this paw has allowed it to become dextrous again, and with even finer manipulation than a regular hand.</description>
+				<description>Further adaptation to this paw has caused the digits to lengthen and gain flexibility again.  The long nails tend to snag on gloves, but otherwise [PAWN_nameDef] can use this handpaw about as well as a regular hand.</description>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>2.5</minSeverity> <!-- paragon  -->
 				<!-- only pawns with the Paragon aspect can get this stage -->
 				<labelOverride>dextrous handpaw</labelOverride>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<description>Further adaptation to this paw has allowed it to become dextrous again, and with even finer manipulation than a regular hand.</description>
+				<description>Even further adaptation to this handpaw has given [PAWN_nameDef] incredibly fine motor control over [PAWN_possessive] paw-fingers.  [PAWN_pronoun] can grasp and manipulate things with [PAWN_possessive] nails more precisely than [PAWN_pronoun] ever could with regular fingers.</description>
 			</li>
 		</stages>
 		<comps>
@@ -156,11 +156,18 @@
 				<label>adapted</label>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
+				<minSeverity>1.5</minSeverity> <!-- adaption cream -->
+				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+				<labelOverride>handhoof</labelOverride>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description>Further adaptation has resulted in the hoof splitting apart and growing into two hoof-tipped fingers and a thumb.  They look strange, but they give [PAWN_nameDef] better manipulation than a regular hoof would.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
 				<!-- only pawns with the Paragon aspect can get this stage -->
 				<labelOverride>dextrous handhoof</labelOverride>
 				<partEfficiencyOffset>0</partEfficiencyOffset>
-				<description>Further adaptation to this hoof has restored the fingers to a more anthropomorphic state, restoring dexterity.</description>
+				<description>Even further adaptation to this handhoof has increased the flexibility of the hoof-fingers to the point where they function about as well as an ordinary hand.</description>
 			</li>
 		</stages>
 		<comps>
@@ -227,11 +234,18 @@
 				<label>adapted</label>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
+				<minSeverity>1.5</minSeverity> <!-- adaption cream -->
+				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+				<labelOverride>handtrotter</labelOverride>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+				<description>Further adaptation has resulted in the trotter growing out into two hoof-tipped fingers and a thumb.  They look strange, but they give [PAWN_nameDef] better manipulation than a regular trotter would.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
 				<!-- only pawns with the Paragon aspect can get this stage -->
 				<labelOverride>dextrous handtrotter</labelOverride>
 				<partEfficiencyOffset>0</partEfficiencyOffset>
-				<description>Further adaptation to this hoof has restored the fingers to a more anthropomorphic state, restoring dexterity.</description>
+				<description>Even further adaptation to this handtrotter has increased the flexability of the hoof-fingers to the point where they function about as well as an ordinary hand.</description>
 			</li>
 		</stages>
 		<comps>
@@ -298,9 +312,17 @@
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
+				<minSeverity>1.5</minSeverity> <!-- adaption cream -->
+				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+				<labelOverride>feline handpaw</labelOverride>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Further adaption to this handpaw have increased the flexibility and precision of the digits, allowing [PAWN_nameDef] to use [PAWN_possessive] claws as delicately as [PAWN_pronoun] would fingers.  The paw now functions about as well as a hand again, as long as [PAWN_nameDef] is careful not to squeeze too hard.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
+				<labelOverride>dextrous feline handpaw</labelOverride>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<description>[PAWN_nameDef]'s hands have become quite catlike, granting [PAWN_objective] both vicious claws to rend [PAWN_possessive] foes with and suprising grace and dexterity when working on mundane tasks.</description>
+				<description>Even further adaption to this handpaw have given [PAWN_nameDef] a remarkable deftness with [PAWN_possessive] claw-tipped fingers.  The claws can rend [PAWN_possessive] foes with a swipe, and yet when working on delicate tasks they're even more gentle and precise than ordinary fingers would be.</description>
 			</li>
 		</stages>
 		<comps>
@@ -349,14 +371,21 @@
 				<minSeverity>1</minSeverity>
 				<label>adjusted</label>
 				<partEfficiencyOffset>-0.85</partEfficiencyOffset>
-				<!-- still not quite as good as hands-->
+				<!-- almost useless nub -->
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
+				<minSeverity>1.5</minSeverity> <!-- adaption cream -->
+				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+				<label>feather fingers</label>
+				<partEfficiencyOffset>-0.45</partEfficiencyOffset>
+				<description>Further adaption to this wingtip has given [PAWN_nameDef] several stiff feathers that [PAWN_pronoun] can manipulate.  [PAWN_pronoun] can use them sort of like fingers, but being nothing more than feathers they have a hard time really grasping anything.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity> <!-- Paragon -->
 				<label>paragon</label>
-				<description>[PAWN_nameDef]'s fingers have turned into large, dexterous feathers.</description>
+				<description>Even further adaption has rendered [PAWN_nameDef]'s feather fingers remarkably stiff and flexible, and they now work almost as well as actual fingers.  [PAWN_nameDef] looks a lot like a cartoon character when [PAWN_pronoun] picks things up, but it's a small price to pay to have working hands again.</description>
 				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
-				<!-- still not quite as good as hands-->
+				<!-- still not quite as good as hands -->
 			</li>
 		</stages>
 		<comps>
