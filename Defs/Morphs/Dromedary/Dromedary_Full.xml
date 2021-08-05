@@ -1,7 +1,8 @@
 <Defs>
 	<HediffDef ParentName="NewAspectedMorphParent">
-		<defName>PawnmorphCaribouTF</defName>
-		<label>cariboumorph</label>
+		<defName>PawnmorphDromedaryTF</defName>
+		<label>dromedarymorph</label>
+		<description>This person has mechanites in their blood that are slowly mutating them into an dromedarymorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more dromedary than human.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>
@@ -14,7 +15,7 @@
 					</li>
 				</capMods>
 				<pawnkinds>
-					<li>Caribou</li>
+					<li>Dromedary</li>
 				</pawnkinds>
 				<transformationTale>TransformationCanid</transformationTale>
 			</li>
@@ -59,7 +60,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<morph>CaribouMorph</morph>
+				<morph>DromedaryMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>

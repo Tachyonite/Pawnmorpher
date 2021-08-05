@@ -1,7 +1,8 @@
 <Defs>
-	<HediffDef ParentName="NewPartialMorphParent">
-		<defName>PawnmorphCaribouTFPartial</defName>
-		<label>cariboumorph partial</label>
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
+		<defName>PawnmorphGazelleTFPartial</defName>
+		<label>gazellemorph partial</label>
+		<description>This person has mechanites in their blood that are providing them with gazell-esque mutations.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
@@ -20,7 +21,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<morph>CaribouMorph</morph>
+				<morph>GazelleMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>
