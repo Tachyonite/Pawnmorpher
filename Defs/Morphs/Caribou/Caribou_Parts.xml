@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
 		<defName>EtherCaribouJaw</defName>
-		<label>!!!EtherCaribouJaw needs a label!!!</label>
-		<description>!!!EtherCaribouJaw needs a description!!!</description>
+		<label>caribou snout</label>
+		<description>TODO</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -62,8 +62,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
 		<defName>EtherCaribouEar</defName>
-		<label>!!!EtherCaribouEar needs a label!!!</label>
-		<description>!!!EtherCaribouEar needs a description!!!</description>
+		<label>caribou ear</label>
+		<description>TODO</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
@@ -73,11 +73,12 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
 		<defName>EtherCaribouTail</defName>
-		<label>!!!EtherCaribouTail needs a label!!!</label>
-		<description>!!!EtherCaribouTail needs a description!!!</description>
+		<label>caribou tail</label>
+		<description>TODO</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<mutationMemory>EtherCaribouTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -85,7 +86,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
 		<defName>EtherCaribouAntlers</defName>
 		<label>caribou antlers</label>
-		<description>!!!EtherCaribouAntlers needs a description!!!</description>
+		<description>TODO</description>
 		<parts>
 			<li>Skull</li>
 		</parts>

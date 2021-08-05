@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CapybaraPart">
 		<defName>EtherCapybaraJaw</defName>
-		<label>!!!EtherCapybaraJaw needs a label!!!</label>
-		<description>!!!EtherCapybaraJaw needs a description!!!</description>
+		<label>capybara snout</label>
+		<description>TODO</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -63,8 +63,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CapybaraPart">
 		<defName>EtherCapybaraEar</defName>
-		<label>!!!EtherCapybaraEar needs a label!!!</label>
-		<description>!!!EtherCapybaraEar needs a description!!!</description>
+		<label>capybara ear</label>
+		<description>TODO</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
@@ -74,11 +74,12 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CapybaraPart">
 		<defName>EtherCapybaraTail</defName>
-		<label>!!!EtherCapybaraTail needs a label!!!</label>
-		<description>!!!EtherCapybaraTail needs a description!!!</description>
+		<label>capybara tail</label>
+		<description>TODO</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

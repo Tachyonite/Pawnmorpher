@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="DromedaryPart">
 		<defName>EtherDromedaryJaw</defName>
-		<label>!!!EtherDromedaryJaw needs a label!!!</label>
-		<description>!!!EtherDromedaryJaw needs a description!!!</description>
+		<label>dromedary snout</label>
+		<description>TODO</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -62,8 +62,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="DromedaryPart">
 		<defName>EtherDromedaryEar</defName>
-		<label>!!!EtherDromedaryEar needs a label!!!</label>
-		<description>!!!EtherDromedaryEar needs a description!!!</description>
+		<label>dromedary ear</label>
+		<description>TODO</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
@@ -73,8 +73,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="DromedaryPart">
 		<defName>EtherDromedaryTail</defName>
-		<label>!!!EtherDromedaryTail needs a label!!!</label>
-		<description>!!!EtherDromedaryTail needs a description!!!</description>
+		<label>dromedary tail</label>
+		<description>TODO</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>

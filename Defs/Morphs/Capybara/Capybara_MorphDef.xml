@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>CapybaraMorph</defName>
 		<label>capybaramorph</label>
-		<description>!!!CapybaraMorph needs a description!!!</description>
+		<description>TODO</description>
 		<race>Capybara</race>
 		<classification>Rodent</classification>
 		<categories>

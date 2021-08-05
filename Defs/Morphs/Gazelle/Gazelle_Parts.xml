@@ -5,8 +5,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
 		<defName>EtherGazelleJaw</defName>
-		<label>!!!EtherGazelleJaw needs a label!!!</label>
-		<description>!!!EtherGazelleJaw needs a description!!!</description>
+		<label>gazelle snout</label>
+		<description>TODO</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -62,8 +62,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
 		<defName>EtherGazelleEar</defName>
-		<label>!!!EtherGazelleEar needs a label!!!</label>
-		<description>!!!EtherGazelleEar needs a description!!!</description>
+		<label>gazelle ear</label>
+		<description>TODO</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
@@ -72,8 +72,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
 		<defName>EtherGazelleTail</defName>
-		<label>!!!EtherGazelleTail needs a label!!!</label>
-		<description>!!!EtherGazelleTail needs a description!!!</description>
+		<label>gazelle tail</label>
+		<description>TODO</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
@@ -83,7 +83,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
 		<defName>EtherGazelleAntlers</defName>
 		<label>gazelle antlers</label>
-		<description>!!!EtherGazelleAntlers needs a description!!!</description>
+		<description>TODO</description>
 		<parts>
 			<li>Skull</li>
 		</parts>

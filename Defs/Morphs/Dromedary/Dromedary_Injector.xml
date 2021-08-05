@@ -5,10 +5,8 @@
 		<description>A mutagenic injector filled with mechanites and dromedary DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>PawnmorphDromedaryTF</li>
-					</hediffDefs>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PawnmorphDromedaryTF</hediffDef>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>

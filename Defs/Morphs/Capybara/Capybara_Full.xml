@@ -17,7 +17,7 @@
 				<pawnkinds>
 					<li>Capybara</li>
 				</pawnkinds>
-				<transformationTale>TransformationCanid</transformationTale>
+				<transformationTale>TransformationMisc</transformationTale>
 			</li>
 			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
