@@ -480,7 +480,7 @@ namespace Pawnmorph.Hybrids
                 {
                     val = Mathf.Lerp(val, animalModifier.value, 0.5f); //average the 2 
                 }
-                else val = animalModifier.value;
+                else val = (animalModifier.value + animalModifier.stat.defaultBaseValue) / 2.0f;
 
                 valDict[animalModifier.stat] = val;
             }
