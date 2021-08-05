@@ -33,7 +33,7 @@
         <label>paragon injector</label>
         <description>a special injector that causes mutations to adapt much better then normal</description>
         <graphicData>
-            <texPath>Things/Item/Drug/ParagonInjector</texPath>
+            <texPath>Things/Item/Drug/ParagonSerum</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <comps>

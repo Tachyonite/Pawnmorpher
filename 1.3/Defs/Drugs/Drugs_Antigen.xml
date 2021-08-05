@@ -72,7 +72,7 @@
 		<label>halt cream</label>
 		<description>a balm that when applied to a mutation has a chance to halt it's progression</description>
 		<graphicData> <!-- TODO replace herbal medicen graphics with custom one -->
-			<texPath>Things/Item/Resource/Medicine/MedicineHerbal</texPath>
+			<texPath>Things/Item/Resource/Drug/HaltingCream</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.85</drawSize>
 		</graphicData>
@@ -104,7 +104,7 @@
 		<description>a balm that when applied to a mutation has a chance to halt it's progression</description>
 		<graphicData>
 			<!-- TODO replace herbal medicen graphics with custom one -->
-			<texPath>Things/Item/Resource/Medicine/MedicineHerbal</texPath>
+			<texPath>Things/Item/Resource/Drug/AdaptionCream</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.85</drawSize>
 		</graphicData>
