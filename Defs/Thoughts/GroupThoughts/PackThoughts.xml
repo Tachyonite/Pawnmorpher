@@ -145,5 +145,22 @@
             </li>
         </stages>
     </ThoughtDef>
+    
+    <ThoughtDef ParentName="SleptThoughtBase">
+        <defName>PM_PackMindedAscetic</defName>
+        
+        <stages>
+            <li>
+                <label>ascetic slept alone</label>
+                <description>I had to sleep in a room by myself, away from my pack.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+            <li>
+                <label>ascetic slept with pack</label>
+                <description>I was able to share a barrack with my pack. It was nice and cozy together.</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 
 </Defs>

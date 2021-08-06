@@ -27,28 +27,44 @@ namespace Pawnmorph.HPatches
 
             var group = actor.def.GetMorphOfRace()?.@group;
             if (group == null) return;
-            Building_Bed building_Bed = null; 
-            int? scoreStageIndex = null;
 
+            // Replace the vanilla bedroom thoughts with morph-specific thoughts
+            memories.RemoveMemoriesOfDef(ThoughtDefOf.SleptInBedroom);
+            memories.RemoveMemoriesOfDef(ThoughtDefOf.SleptInBarracks);
 
-            if (group.bedroomThoughtReplacement != null && memories.GetFirstMemoryOfDef(ThoughtDefOf.SleptInBedroom) != null)
+            // More or less duplicating the vanilla logic here.  It sucks, but some of the the bedroom levels don't leave memories (and ascetics never have bedroom thoughts)
+            // so we can't rely on there being an existing thought to tell us what to use.
+            Building_Bed building_Bed = actor.CurrentBed();
+            if (building_Bed != null && building_Bed == actor.ownership.OwnedBed && !building_Bed.ForPrisoners)
             {
-                building_Bed = actor.CurrentBed();
-                scoreStageIndex =
-                    RoomStatDefOf.Impressiveness.GetScoreStageIndex(building_Bed.GetRoom().GetStat(RoomStatDefOf.Impressiveness)); 
-                memories.RemoveMemoriesOfDef(ThoughtDefOf.SleptInBedroom);
-                var mem = ThoughtMaker.MakeThought(group.bedroomThoughtReplacement, scoreStageIndex.Value); 
-                memories.TryGainMemory(mem);
-            }
 
-            if (group.barrakThoughtReplacement != null && memories.GetFirstMemoryOfDef(ThoughtDefOf.SleptInBarracks) != null)
-            {
-                building_Bed = building_Bed ?? actor.CurrentBed(); //only do this if it wasn't done previously 
-                scoreStageIndex = scoreStageIndex ??
-                    RoomStatDefOf.Impressiveness.GetScoreStageIndex(building_Bed.GetRoom().GetStat(RoomStatDefOf.Impressiveness));
-                memories.RemoveMemoriesOfDef(ThoughtDefOf.SleptInBarracks);
-                var mem = ThoughtMaker.MakeThought(group.barrakThoughtReplacement, scoreStageIndex.Value);
-                memories.TryGainMemory(mem); 
+                RoomRoleDef roomRole = building_Bed.GetRoom(RegionType.Set_All).Role;
+
+                //Ascetics have a different thought that doesn't take room quality into account
+                if (actor.story.traits.HasTrait(TraitDefOf.Ascetic))
+                {
+                    if (roomRole == RoomRoleDefOf.Bedroom)
+                    {
+                        memories.TryGainMemory(ThoughtMaker.MakeThought(group.asceticRoomThought, 0));
+                    }
+                    else if (roomRole == RoomRoleDefOf.Barracks)
+                    {
+                        memories.TryGainMemory(ThoughtMaker.MakeThought(group.asceticRoomThought, 1));
+                    }
+                }
+                else
+                {
+                    int scoreStageIndex = RoomStatDefOf.Impressiveness.GetScoreStageIndex(building_Bed.GetRoom().GetStat(RoomStatDefOf.Impressiveness));
+                    if (roomRole == RoomRoleDefOf.Bedroom)
+                    {
+                        memories.TryGainMemory(ThoughtMaker.MakeThought(group.bedroomThoughtReplacement, scoreStageIndex));
+                    }
+                    else if (roomRole == RoomRoleDefOf.Barracks)
+                    {
+                        memories.TryGainMemory(ThoughtMaker.MakeThought(group.barrakThoughtReplacement, scoreStageIndex));
+                    }
+                }
+
             }
 
         }

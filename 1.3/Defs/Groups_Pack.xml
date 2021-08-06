@@ -5,6 +5,7 @@
 		<aspectDef>CanidMind</aspectDef>
 		<barrakThoughtReplacement>PM_PackMindedBarrack</barrakThoughtReplacement>
 		<bedroomThoughtReplacement>PM_PackMindedBedroom</bedroomThoughtReplacement>
+		<asceticRoomThought>PM_PackMindedAscetic</asceticRoomThought>
 	</Pawnmorph.MorphGroupDef>
 	
     <Pawnmorph.AspectDef ParentName="MorphGroupAspectBase">
