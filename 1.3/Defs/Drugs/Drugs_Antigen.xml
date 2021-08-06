@@ -71,9 +71,9 @@
 		<defName>PM_HaltCream</defName>
 		<label>halt cream</label>
 		<description>a balm that when applied to a mutation has a chance to halt it's progression</description>
-		<graphicData> <!-- TODO replace herbal medicen graphics with custom one -->
-			<texPath>Things/Item/Resource/Drug/HaltingCream</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+		<graphicData>
+			<texPath>Things/Item/Drug/HaltingCream</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>0.85</drawSize>
 		</graphicData>
 		<techLevel>Neolithic</techLevel>
@@ -103,9 +103,8 @@
 		<label>adaption cream</label>
 		<description>a balm that when applied to a mutation has a chance to halt it's progression</description>
 		<graphicData>
-			<!-- TODO replace herbal medicen graphics with custom one -->
-			<texPath>Things/Item/Resource/Drug/AdaptionCream</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Item/Drug/AdaptionCream</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>0.85</drawSize>
 		</graphicData>
 		<techLevel>Industrial</techLevel>
