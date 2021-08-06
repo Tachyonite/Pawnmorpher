@@ -5,6 +5,7 @@
 		<aspectDef>HerdMind</aspectDef>
 		<barrakThoughtReplacement>PM_HerdMindedBarrack</barrakThoughtReplacement>
 		<bedroomThoughtReplacement>PM_HerdMindedBedroom</bedroomThoughtReplacement>
+		<asceticRoomThought>PM_HerdMindedAscetic</asceticRoomThought>
 	</Pawnmorph.MorphGroupDef>
 	
     <Pawnmorph.AspectDef ParentName="MorphGroupAspectBase">

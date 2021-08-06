@@ -146,5 +146,21 @@
             </li>
         </stages>
     </ThoughtDef>
-
+    
+    <ThoughtDef ParentName="SleptThoughtBase">
+        <defName>PM_HerdMindedAscetic</defName>
+        
+        <stages>
+            <li>
+                <label>ascetic slept alone</label>
+                <description>I had to sleep in a room by myself, away from the safety of my herd.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+            <li>
+                <label>ascetic slept with herd</label>
+                <description>I was able to share a barrack with my herd. It felt safe and comfy.</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 </Defs>
