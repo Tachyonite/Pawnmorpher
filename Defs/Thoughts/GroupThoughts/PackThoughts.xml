@@ -57,7 +57,7 @@
             </li>
             <li>
                 <label>slightly impressive bedroom</label>
-                <description>I had to sleep on my own in a slightly impressive bedroom. It was alright, but I miss my pack.</description>
+                <description>I had to sleep on my own in a slightly impressive bedroom. It was alright, but I'd prefer to sleep with my pack.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
@@ -140,7 +140,7 @@
             </li>
             <li>
                 <label>wondrously impressive barrack</label>
-                <description>The pack got share a barrack that was simply wondrous. I could just stay here with my pack forever.</description>
+                <description>The pack got to share a barrack that was simply wondrous. I could just stay here with my pack forever.</description>
                 <baseMoodEffect>8</baseMoodEffect>
             </li>
         </stages>
