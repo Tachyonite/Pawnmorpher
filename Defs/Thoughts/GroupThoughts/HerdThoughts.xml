@@ -47,14 +47,14 @@
             <li>
                 <label>mediocre bedroom</label>
                 <description>I had to sleep in a room all by myself, away from the safety of the herd.</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>-4</baseMoodEffect>
 
             </li>
             <!-- mediocre -->
             <li>
                 <label>decent bedroom</label>
                 <description>I had to sleep in a room all by myself, away from the safety of the herd.</description>
-                <baseMoodEffect>-4</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>slightly impressive bedroom</label>
