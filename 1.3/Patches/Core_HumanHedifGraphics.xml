@@ -382,42 +382,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherWolfMuzzle>
-					<EtherCapybaraJaw>
-						<path>Parts/Capybara/Capybara_Jaw</path>
-						<severity>
-							<a0.5>Parts/Capybara/Capybara_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherCapybaraJaw>
-					<EtherCaribouJaw>
-						<path>Parts/Caribou/Caribou_Jaw</path>
-						<severity>
-							<a0.5>Parts/Caribou/Caribou_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherCaribouJaw>
-					<EtherDromedaryJaw>
-						<path>Parts/Dromedary/Dromedary_Jaw</path>
-						<severity>
-							<a0.5>Parts/Dromedary/Dromedary_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherDromedaryJaw>
-					<EtherGazelleJaw>
-						<path>Parts/Gazelle/Gazelle_Jaw</path>
-						<severity>
-							<a0.5>Parts/Gazelle/Gazelle_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherGazelleJaw>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -494,10 +458,6 @@
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left</EtherWolfEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
-					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left</EtherCapybaraEar>
-					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Left</EtherCaribouEar>
-					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left</EtherDromedaryEar>
-					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left</EtherGazelleEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -559,10 +519,6 @@
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left_Behind</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left_Behind</EtherWolfEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
-					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left_Behind</EtherCapybaraEar>
-					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Left_Behind</EtherCaribouEar>
-					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Left_Behind</EtherDromedaryEar>
-					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Left_Behind</EtherGazelleEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -624,10 +580,6 @@
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right</EtherWolfEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
-					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right</EtherCapybaraEar>
-					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Right</EtherCaribouEar>
-					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right</EtherDromedaryEar>
-					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right</EtherGazelleEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -689,10 +641,6 @@
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right_Behind</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right_Behind</EtherWolfEar>
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
-					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right_Behind</EtherCapybaraEar>
-					<EtherCaribouEar>Parts/Caribou/Caribou_Ear_Right_Behind</EtherCaribouEar>
-					<EtherDromedaryEar>Parts/Dromedary/Dromedary_Ear_Right_Behind</EtherDromedaryEar>
-					<EtherGazelleEar>Parts/Gazelle/Gazelle_Ear_Right_Behind</EtherGazelleEar>
 				</hediffGraphics>
 			</li>
 			<li>
@@ -746,9 +694,6 @@
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
-					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
-					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
-					<EtherGazelleTail>Parts/Gazelle/Gazelle_Tail</EtherGazelleTail>
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -914,8 +859,6 @@
 						</severity>
 					</EtherGoatHorns>
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
-					<EtherCaribouAntlers>Parts/Caribou/Caribou_Antlers</EtherCaribouAntlers>
-					<EtherGazelleAntlers>Parts/Gazelle/Gazelle_Antlers</EtherGazelleAntlers>
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 				</hediffGraphics>
 			</li>
