@@ -41,6 +41,18 @@ namespace Pawnmorph.HPatches
             }
         }
 
+        [HarmonyPatch(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer)), HarmonyPrefix]
+        static bool FixNonAggressiveRoamer(Pawn __instance, ref bool __result)
+        {
+            if (__instance.IsHumanlike())
+            {
+                __result = false;
+                return false;
+            }
+
+            return true; 
+        }
+
 
         [HarmonyPatch("CheckForDisturbedSleep"), HarmonyPrefix]
         static bool FixDisturbedSleep(Pawn source, Pawn __instance)
