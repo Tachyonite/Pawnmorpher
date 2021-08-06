@@ -78,6 +78,7 @@
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
+			<li>MorphTail</li>
 		</parts>
 		<mutationMemory>EtherDromedaryTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
