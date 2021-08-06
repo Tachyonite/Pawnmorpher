@@ -51,7 +51,8 @@ namespace Pawnmorph
             IEnumerable<ThoughtDef> MorphGroupThoughtSelectorFunc(MorphGroupDef group)
             {
                 if (group?.barrakThoughtReplacement != null) yield return group.barrakThoughtReplacement;
-                if (group?.bedroomThoughtReplacement != null) yield return group.bedroomThoughtReplacement; 
+                if (group?.bedroomThoughtReplacement != null) yield return group.bedroomThoughtReplacement;
+                if (group?.asceticRoomThought != null) yield return group.asceticRoomThought;
             }
 
             //get all sleeping thoughts for morph groups 

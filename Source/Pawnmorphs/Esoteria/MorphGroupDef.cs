@@ -30,7 +30,12 @@ namespace Pawnmorph
         /// <summary>
         /// The bedroom thought replacement
         /// </summary>
-        [CanBeNull] public ThoughtDef bedroomThoughtReplacement; 
+        [CanBeNull] public ThoughtDef bedroomThoughtReplacement;
+        /// <summary>
+        /// The room thought for ascetics
+        /// </summary>
+        [CanBeNull] public ThoughtDef asceticRoomThought;
+
 
         /// <summary>
         /// Gets the animal races in this morph group
