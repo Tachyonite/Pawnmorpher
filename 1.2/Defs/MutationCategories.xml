@@ -50,9 +50,4 @@
 		<restricted>true</restricted>
 		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
-
-	<Pawnmorph.MutationCategoryDef>
-		<defName>PM_ChamberFailures</defName>
-		<restricted>true</restricted>
-	</Pawnmorph.MutationCategoryDef>
 </Defs>
