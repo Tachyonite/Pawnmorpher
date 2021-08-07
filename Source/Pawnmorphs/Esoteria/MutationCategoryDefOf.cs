@@ -15,10 +15,5 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(MutationCategoryDefOf));
         }
-
-        /// <summary>
-        /// mutation category containing all mutations that can result from failed chamber tf 
-        /// </summary>
-        public static MutationCategoryDef PM_ChamberFailures; 
     }
 }
