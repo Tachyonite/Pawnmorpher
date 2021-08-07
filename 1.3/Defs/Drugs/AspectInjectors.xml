@@ -31,7 +31,7 @@
     <ThingDef ParentName="PM_AspectInjectorBase">
         <defName>PM_ParagonInjector</defName>
         <label>paragon injector</label>
-        <description>a special injector that causes mutations to adapt much better then normal</description>
+        <description>A special injector that causes mutations to adapt much better then normal.</description>
         <graphicData>
             <texPath>Things/Item/Drug/ParagonSerum</texPath>
             <graphicClass>Graphic_Single</graphicClass>
