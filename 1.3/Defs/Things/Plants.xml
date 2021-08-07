@@ -130,7 +130,7 @@
     <ThingDef ParentName="GlowVineBase">
         <defName>Plant_Glowvine</defName>
         <label>glowvine</label>
-        <description>A mutagen-infused plant that sprouts odd blue bulbs.</description>
+        <description>A mutagen-infused plant that sprouts odd blue bulbs. NOTE: The stat panel lies, this plant will only grow at 0-15 degrees C (32-59F).</description>
         <statBases>
             <MaxHitPoints>50</MaxHitPoints>
             <Beauty>10</Beauty>
