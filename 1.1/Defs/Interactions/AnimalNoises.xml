@@ -1,0 +1,343 @@
+<Defs>
+	<InteractionDef>
+		<defName>PawnmorphMoo</defName>
+		<label>moo</label>
+		<workerClass>Pawnmorph.InteractionWorker_Moo</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Moo</symbol>
+		<initiatorThought>PawnmorphMoo</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+		<recipientThought>PawnmorphMoo</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] mooed at [RECIPIENT_nameDef] to [askedaboutme].</li>
+				
+				<li>talkedabout(p=4)->mooed at</li>
+				<li>talkedabout->let out a sudden moo to</li>
+				<li>talkedabout->tried to speak, but fell to a moo</li>
+				<li>talkedabout->loudly mooed towards</li>
+				<li>talkedabout->snorted and mooed to</li>
+				<li>talkedabout->quietly mooed at</li>
+				<li>talkedabout->moaned like a cow at</li>
+
+				<li>askedabout->milk</li>
+				<li>askedabout->eating grass</li>
+				<li>askedabout->chewing cud</li>
+				<li>askedabout->dairy farms</li>
+
+				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
+				<li>askedaboutme->change [INITIATOR_objective] back</li>
+				<li>askedaboutme->give [INITIATOR_objective] hay</li>
+				<li>askedaboutme->give [INITIATOR_objective] a bell</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<ThoughtDef>
+		<defName>PawnmorphMoo</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>moo</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<InteractionDef>
+		<defName>PawnmorphBleat</defName>
+		<label>baa</label>
+		<workerClass>Pawnmorph.InteractionWorker_Bleat</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Bleat</symbol>
+		<initiatorThought>PawnmorphBleat</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+		<recipientThought>PawnmorphBleat</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] bleated at [RECIPIENT_nameDef] to [askedaboutme].</li>
+				<li>r_logentry->[INITIATOR_nameDef] baa'd at [RECIPIENT_nameDef] to [askedaboutme].</li>
+
+				<li>talkedabout(p=4)->bleated at</li>
+				<li>talkedabout->let out a sudden baa to</li>
+				<li>talkedabout->let out a sudden bleat to</li>
+				<li>talkedabout->tried to speak, but let a bleat slip out</li>
+				<li>talkedabout->loudly baa'd towards</li>
+				<li>talkedabout->snorted and bleated to</li>
+				<li>talkedabout->quietly baa'd at</li>
+
+				<li>askedabout->shearing [INITIATOR_objective]</li>
+				<li>askedabout->wool</li>
+				<li>askedabout->eating grass</li>
+				<li>askedabout->joining a flock</li>
+				<li>askedabout->ewes</li>
+				<li>askedabout->chewing cud</li>
+				<li>askedabout->rams</li>
+				<li>askedabout->horns</li>
+				<li>askedabout->fleece</li>
+				<li>askedabout->spinning wheels</li>
+
+				<li>askedaboutme->shear [INITIATOR_objective]</li>
+				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
+				<li>askedaboutme->change [INITIATOR_objective] back</li>
+				<li>askedaboutme->give [INITIATOR_objective] clippers</li>
+				<li>askedaboutme->give [INITIATOR_objective] a shave</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<ThoughtDef>
+		<defName>PawnmorphBleat</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>bleat</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<InteractionDef>
+		<defName>PawnmorphBok</defName>
+		<label>cluck</label>
+		<workerClass>Pawnmorph.InteractionWorker_Bok</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Bok</symbol>
+		<initiatorThought>PawnmorphBok</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+		<recipientThought>PawnmorphBok</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+
+				<li>talkedabout(p=4)->clucked at</li>
+				<li>talkedabout->bokked at</li>
+				<li>talkedabout->squacked at</li>
+				<li>talkedabout->crowed to</li>
+				<li>talkedabout->cawed at</li>
+				<li>talkedabout->talked about eggs with</li>
+				<li>talkedabout->chatted about plumage styling tips with</li>
+				<li>talkedabout->preened [INITIATOR_objective] feathers towards</li>
+
+				<li>askedabout->laying eggs for [RECIPIEN_objective]</li>
+				<li>askedabout->collecting eggs</li>
+				<li>askedabout->battery farms</li>
+				<li>askedabout->free-range living</li>
+				<li>askedabout->roosters</li>
+				<li>askedabout->eggs</li>
+				<li>askedabout->hens</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<ThoughtDef>
+		<defName>PawnmorphBok</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>cluck</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<InteractionDef>
+		<defName>PawnmorphYip</defName>
+		<label>yip</label>
+		<workerClass>Pawnmorph.InteractionWorker_Yip</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Yip</symbol>
+		<initiatorThought>PawnmorphYip</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+		<recipientThought>PawnmorphYip</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+
+				<li>talkedabout(p=4)->yipped at</li>
+				<li>talkedabout->yapped at</li>
+				<li>talkedabout->barked to</li>
+				<li>talkedabout->sniffed</li>
+				<li>talkedabout->yipped to</li>
+				<li>talkedabout->gekkered at</li>
+				<li>talkedabout->talked about chickens with</li>
+				<li>talkedabout->swayed [INITIATOR_possessive] tail for</li>
+
+				<li>askedabout->patting [INITIATOR_possessive] fur</li>
+				<li>askedabout->vixens</li>
+				<li>askedabout->chicken hunting</li>
+				<li>askedabout->climbing fences</li>
+				<li>askedabout->chasing mice</li>
+				<li>askedabout->jumping into snow</li>
+				<li>askedabout->life in dens</li>
+				<li>askedabout->the evolution of thumbs</li>
+				<li>askedabout->digging holes</li>
+				<li>askedabout->paws</li>
+				<li>askedabout->delicious smells</li>
+				<li>askedabout->strange scents</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<ThoughtDef>
+		<defName>PawnmorphYip</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>yip</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<InteractionDef>
+		<defName>PawnmorphBark</defName>
+		<label>bark</label>
+		<workerClass>Pawnmorph.InteractionWorker_Bark</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Bark</symbol>
+		<initiatorThought>PawnmorphBark</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+		<recipientThought>PawnmorphBark</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+
+				<li>talkedabout(p=4)->barked at</li>
+				<li>talkedabout->woofed at</li>
+				<li>talkedabout->arfed to</li>
+				<li>talkedabout->howled at</li>
+				<li>talkedabout->ruffed at</li>
+				<li>talkedabout->growled at</li>
+				<li>talkedabout->sniffed</li>
+				<li>talkedabout->wagged [INITIATOR_possessive] tail at</li>
+
+				<li>askedabout->patting [INITIATOR_possessive] fur</li>
+				<li>askedabout->dogs</li>
+				<li>askedabout->alphas and betas, in a non-redpilled way</li>
+				<li>askedabout->wolves</li>
+				<li>askedabout->wolfpacks</li>
+				<li>askedabout->sniffing a sensitive place</li>
+				<li>askedabout->sniffing garbage</li>
+				<li>askedabout->eating garbage</li>
+				<li>askedabout->sleeping in a kennel</li>
+				<li>askedabout->the moon</li>
+				<li>askedabout->bones</li>
+				<li>askedabout->fetch</li>
+				<li>askedabout->rolling over</li>
+				<li>askedabout->belly rubs</li>
+				<li>askedabout->licking [INITIATOR_possessive]</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<ThoughtDef>
+		<defName>PawnmorphBark</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>bark</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<InteractionDef>
+		<defName>PawnmorphMeow</defName>
+		<label>meow</label>
+		<workerClass>Pawnmorph.InteractionWorker_Meow</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Meow</symbol>
+		<initiatorThought>PawnmorphMeow</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+		<recipientThought>PawnmorphMeow</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [miscabout].</li>
+
+				<li>talkedabout(p=4)->meowed at</li>
+				<li>talkedabout->mewed at</li>
+				<li>talkedabout->purred to</li>
+				<li>talkedabout->licked at</li>
+				<li>talkedabout->yawned at</li>
+				<li>talkedabout->meowed [advb] at</li>
+				<li>talkedabout->sniffed</li>
+				<li>talkedabout->flicked [INITIATOR_possessive] tail at</li>
+				<li>talkedabout->did an UwU face to</li>
+
+				<li>askedabout->patting [INITIATOR_possessive] fur</li>
+				<li>askedabout->cats</li>
+				<li>askedabout->lions</li>
+				<li>askedabout->mice</li>
+				<li>askedabout->mouse traps</li>
+				<li>askedabout->birds</li>
+				<li>askedabout->cleaning [INITIATOR_possessive]self</li>
+				<li>askedabout->a ban on belly rubs</li>
+				
+				<li>advb->hungrily</li>
+				<li>advb->plaintively</li>
+				<li>advb->fearfully</li>
+				<li>advb->protectively</li>
+				<li>advb->affectionately</li>
+				<li>advb->trustingly</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<ThoughtDef>
+		<defName>PawnmorphMeow</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>meow</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>
