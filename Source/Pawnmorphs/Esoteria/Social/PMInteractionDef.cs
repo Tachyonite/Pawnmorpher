@@ -20,6 +20,10 @@ namespace Pawnmorph.Social
         /// </summary>
         public class Weights
         {
+            /// <summary>At least one of these mutations is required for this interaction to trigger.</summary>
+            public HashSet<HediffDef> requiredMutationsAny = new HashSet<HediffDef>();
+            /// <summary>All of these mutations are required before this interaction triggers.</summary>
+            public HashSet<HediffDef> requiredMutationsAll = new HashSet<HediffDef>();
             /// <summary>The mutation weights</summary>
             public Dictionary<HediffDef, float> mutationWeights = new Dictionary<HediffDef, float>();
             /// <summary>The morph weights</summary>
@@ -33,10 +37,13 @@ namespace Pawnmorph.Social
             /// <returns></returns>
             public float GetTotalWeight(Pawn pawn)
             {
-                IEnumerable<HediffDef> hediffs = pawn.health.hediffSet.hediffs.Select(h => h.def);
+                HashSet<HediffDef> hediffs = pawn.health.hediffSet.hediffs.Select(h => h.def).ToHashSet();
 
                 float total = 0;
                 var hasMutation = false;
+
+                if (requiredMutationsAny.Count > 0 && !requiredMutationsAny.Any(hediffs.Contains)) return 0;
+                if (!requiredMutationsAll.IsSubsetOf(hediffs)) return 0;
 
                 foreach (HediffDef hediffDef in hediffs)
                     if (mutationWeights.TryGetValue(hediffDef, out float v))
