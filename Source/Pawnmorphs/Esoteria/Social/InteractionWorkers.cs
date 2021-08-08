@@ -18,7 +18,7 @@ namespace Pawnmorph.Social
         /// <returns></returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
-            return  GetBaseWeight(initiator, recipient); 
+            return GetBaseWeight(initiator, recipient); 
         }
     }
     
@@ -35,10 +35,7 @@ namespace Pawnmorph.Social
         /// <returns></returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
-            float weight ;
-
-            weight = initiator.story.traits.HasTrait(TraitDefOf.Kind) ? 0.01f : 0;
-
+            float weight = initiator.story.traits.HasTrait(TraitDefOf.Kind) ? 0.01f : 0;
             return weight * GetBaseWeight(initiator, recipient); 
         }
     }
@@ -73,7 +70,9 @@ namespace Pawnmorph.Social
         /// <returns></returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
-            return 0.007f * NegativeInteractionUtility.NegativeInteractionChanceFactor(initiator, recipient) * GetBaseWeight(initiator, recipient) ;
+            return 0.007f
+                * NegativeInteractionUtility.NegativeInteractionChanceFactor(initiator, recipient)
+                * GetBaseWeight(initiator, recipient) ;
         }
     }
 
