@@ -221,65 +221,6 @@
 	</ThoughtDef>
 	
 	<InteractionDef>
-		<defName>PawnmorphBark</defName>
-		<label>bark</label>
-		<workerClass>Pawnmorph.InteractionWorker_Bark</workerClass>
-		<symbol>Things/Mote/SpeechSymbols/Bark</symbol>
-		<initiatorThought>PawnmorphBark</initiatorThought>
-		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
-		<initiatorXpGainAmount>4</initiatorXpGainAmount>
-		<recipientThought>PawnmorphBark</recipientThought>
-		<logRulesInitiator>
-			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
-
-				<li>talkedabout(p=4)->barked at</li>
-				<li>talkedabout->woofed at</li>
-				<li>talkedabout->arfed to</li>
-				<li>talkedabout->howled at</li>
-				<li>talkedabout->ruffed at</li>
-				<li>talkedabout->growled at</li>
-				<li>talkedabout->sniffed</li>
-				<li>talkedabout->wagged [INITIATOR_possessive] tail at</li>
-
-				<li>askedabout->patting [INITIATOR_possessive] fur</li>
-				<li>askedabout->dogs</li>
-				<li>askedabout->alphas and betas, in a non-redpilled way</li>
-				<li>askedabout->wolves</li>
-				<li>askedabout->wolfpacks</li>
-				<li>askedabout->sniffing a sensitive place</li>
-				<li>askedabout->sniffing garbage</li>
-				<li>askedabout->eating garbage</li>
-				<li>askedabout->sleeping in a kennel</li>
-				<li>askedabout->the moon</li>
-				<li>askedabout->bones</li>
-				<li>askedabout->fetch</li>
-				<li>askedabout->rolling over</li>
-				<li>askedabout->belly rubs</li>
-				<li>askedabout->licking [INITIATOR_possessive]</li>
-
-			</rulesStrings>
-		</logRulesInitiator>
-	</InteractionDef>
-
-	<ThoughtDef>
-		<defName>PawnmorphBark</defName>
-		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
-		<stackLimit>300</stackLimit>
-		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
-		<nullifyingTraits>
-			<li>Psychopath</li>
-		</nullifyingTraits>
-		<stages>
-			<li>
-				<label>bark</label>
-				<baseOpinionOffset>0.1</baseOpinionOffset>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<InteractionDef>
 		<defName>PawnmorphMeow</defName>
 		<label>meow</label>
 		<workerClass>Pawnmorph.InteractionWorker_Meow</workerClass>

@@ -17,7 +17,7 @@
 				<li>r_logentry->[INITIATOR_nameDef] [adverb] told [RECIPIENT_nameDef] [topic].</li>
 
 				<li>goodboi(initiator_gender==Male,p=4)->good boy</li>
-				<li>goodboi(initiator_gender==Femalep=4)->good girl</li>
+				<li>goodboi(initiator_gender==Female,p=4)->good girl</li>
 				
 				<li>actionpart->patted</li>
 				<li>actionpart->petted</li>
