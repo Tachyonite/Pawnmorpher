@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MultiplayerAPI">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -506,7 +505,6 @@
     <Compile Include="IngestionOutcomeDoer_AddRandomAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
-    <Compile Include="InteractionWorker_Bleat.cs" />
     <Compile Include="IPMThingComp.cs" />
     <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
@@ -664,10 +662,6 @@
     <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="IngestionOutcomeDoer_BoostSeverity.cs" />
     <Compile Include="IngestionOutcomeDoer_AddAspect.cs" />
-    <Compile Include="InteractionWorker_Bark.cs" />
-    <Compile Include="InteractionWorker_Bok.cs" />
-    <Compile Include="InteractionWorker_Meow.cs" />
-    <Compile Include="InteractionWorker_Yip.cs" />
     <Compile Include="IRaceChangeEventReceiver.cs" />
     <Compile Include="ITab_Pawn_Mutations.cs" />
     <Compile Include="Jobs\Driver_LayEgg.cs" />
@@ -735,7 +729,6 @@
     <Compile Include="HediffComp_Remove.cs" />
     <Compile Include="HediffComp_Single.cs" />
     <Compile Include="HediffComp_TerrainBasedMorph.cs" />
-    <Compile Include="InteractionWorker_Moo.cs" />
     <Compile Include="CompProperties_MutagenicRadius.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />
     <Compile Include="PawnmorphHediffGiverUtility.cs" />
@@ -832,6 +825,12 @@
     <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
     <Compile Include="Work\Giver_WorkAtSequencer.cs" />
+    <Compile Include="Social\InteractionWorker_Bark.cs" />
+    <Compile Include="Social\InteractionWorker_Bleat.cs" />
+    <Compile Include="Social\InteractionWorker_Bok.cs" />
+    <Compile Include="Social\InteractionWorker_Meow.cs" />
+    <Compile Include="Social\InteractionWorker_Moo.cs" />
+    <Compile Include="Social\InteractionWorker_Yip.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
