@@ -345,6 +345,7 @@
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.18</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
 			</li>
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
 				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
