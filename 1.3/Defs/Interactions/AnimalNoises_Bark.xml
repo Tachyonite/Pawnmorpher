@@ -413,8 +413,6 @@
 				
 				<li>refusal->refusal</li>
 				<li>refusal->unwillingness</li>
-				<li>refusal->aversion</li>
-				<li>refusal->hesitancy</li>
 				
 				<li>canineinsult->a female dog</li>
 				<li>canineinsult->a cat</li>
@@ -448,7 +446,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+		
 	
 	<!-- Kind words -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
