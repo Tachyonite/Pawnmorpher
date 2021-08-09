@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <Defs>
 	
 	<Pawnmorph.Social.PMInteractionWeightsDef>
-	    <defName>PMInteractionWeights_Canine</defName>
+		<defName>PMInteractionWeights_Canine</defName>
 		<requiredMutationsAny>
 			<li>EtherHuskyMuzzle</li>
 			<li>EtherLabradorRetrieverJaw</li>
@@ -93,15 +94,13 @@
 		</morphWeights>
 	</Pawnmorph.Social.PMInteractionWeightsDef>
 	
+	
 	<!-- Chitchat -->
-	<Pawnmorph.Social.PMInteractionDef>
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
 		<defName>PMBark_Chitchat</defName>
 		<label>bark</label>
-		<workerClass>Pawnmorph.Social.InteractionWorker_Chitchat</workerClass>
 		<symbol>Things/Mote/SpeechSymbols/Bark</symbol>
 		<initiatorThought>PawnmorphBark</initiatorThought>
-		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
-		<initiatorXpGainAmount>4</initiatorXpGainAmount>
 		<recipientThought>PawnmorphBark</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -136,7 +135,8 @@
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
 	</Pawnmorph.Social.PMInteractionDef>
-	<ThoughtDef ParentName="PMAnimalNoise_Chitchat">
+	
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
 		<defName>PawnmorphBark</defName> <!-- keeping def name for compatibility reasons -->
 		<stages>
 			<li>
@@ -146,13 +146,11 @@
 		</stages>
 	</ThoughtDef>
 	
+	
 	<!-- Slights -->
-	<Pawnmorph.Social.PMInteractionDef>
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMBark_Slight</defName>
-		<label>slighting bark</label>
-		<workerClass>Pawnmorph.Social.InteractionWorker_Slight</workerClass>
-		<symbol>Things/Mote/SpeechSymbols/Slight</symbol>
-		<socialFightBaseChance>0.005</socialFightBaseChance>
+		<label>growl</label>
 		<recipientThought>PMBark_Slight</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -188,7 +186,8 @@
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
 	</Pawnmorph.Social.PMInteractionDef>
-	<ThoughtDef ParentName="PMAnimalNoise_Slight">
+	
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
 		<defName>PMBark_Slight</defName>
 		<stages>
 			<li>
@@ -200,12 +199,9 @@
 
 
 	<!-- Insults -->
-	<Pawnmorph.Social.PMInteractionDef>
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMBark_Insult</defName>
 		<label>snarl</label>
-		<workerClass>Pawnmorph.Social.InteractionWorker_Insult</workerClass>
-		<symbol>Things/Mote/SpeechSymbols/Insult</symbol>
-		<socialFightBaseChance>0.04</socialFightBaseChance>
 		<recipientThought>PMBark_Insult</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -250,7 +246,8 @@
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
 	</Pawnmorph.Social.PMInteractionDef>
-	<ThoughtDef ParentName="PMAnimalNoise_Insult">
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
 		<defName>PMBark_Insult</defName>
 		<stages>
 			<li>
@@ -260,6 +257,7 @@
 		</stages>
 		<thoughtToMake>PMBark_InsultedMood</thoughtToMake>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
 		<defName>PMBark_InsultedMood</defName>
 		<stages>
