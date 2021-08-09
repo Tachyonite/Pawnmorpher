@@ -33,6 +33,9 @@ namespace Pawnmorph.Social
         /// <summary>The weights applied based on the recipients's mutations</summary>
         public PMInteractionWeightsDef recipientWeights;
 
+        /// <summary>An additional multiplier on the weight of the interaction</summary>
+        public float weightMultiplier = 1f;
+
         /// <summary>if both the initiator and recipient need to have non-zero weights for the resultant weight to be non zero </summary>
         public bool requiresBoth;
 

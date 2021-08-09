@@ -297,6 +297,7 @@
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
 		<recipientWeights>PMInteractionWeights_Canine</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
 		<requiresBoth>true</requiresBoth>
 	</Pawnmorph.Social.PMInteractionDef>
 	
