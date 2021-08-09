@@ -1,24 +1,16 @@
 <Defs>
 
-	<ThoughtDef Abstract="true">
-		<defName>PMAnimalNoise_Chitchat</defName>
+	<ThoughtDef Name="PMAnimalNoise_Chitchat" Abstract="true">
 		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
 		<stackLimit>300</stackLimit>
 		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
 		<nullifyingTraits>
 			<li>Psychopath</li>
 		</nullifyingTraits>
-		<stages>
-			<li>
-				<label>animal noises</label>
-				<baseOpinionOffset>0.66</baseOpinionOffset>
-			</li>
-		</stages>
 	</ThoughtDef>
 
 	
-	<ThoughtDef Abstract="true">
-		<defName>PMAnimalNoise_DeepTalk</defName>
+	<ThoughtDef Name="PMAnimalNoise_DeepTalk" Abstract="true">
 		<thoughtClass>Thought_MemorySocial</thoughtClass>
 		<durationDays>20</durationDays>
 		<stackLimit>300</stackLimit>
@@ -35,8 +27,7 @@
 		</stages>
 	</ThoughtDef>
 	
-	<ThoughtDef Abstract="true">
-		<defName>PMAnimalNoise_Slighted</defName>
+	<ThoughtDef Name="PMAnimalNoise_Slight" Abstract="true">
 		<thoughtClass>Thought_MemorySocial</thoughtClass>
 		<durationDays>20</durationDays>
 		<stackLimit>300</stackLimit>
@@ -50,8 +41,7 @@
 		</stages>
 	</ThoughtDef>
 	
-	<ThoughtDef Abstract="true">
-		<defName>PMAnimalNoise_Insulted</defName>
+	<ThoughtDef Name="PMAnimalNoise_Insult" Abstract="true">
 		<thoughtClass>Thought_MemorySocial</thoughtClass>
 		<durationDays>20</durationDays>
 		<stackLimit>300</stackLimit>
@@ -65,8 +55,7 @@
 		</stages>
 		<thoughtToMake>PMAnimalNoise_InsultedMood</thoughtToMake>
 	</ThoughtDef>
-	<ThoughtDef>
-		<defName>PMAnimalNoise_InsultedMood</defName>
+	<ThoughtDef Name="PMAnimalNoise_InsultedMood" Abstract="true">
 		<durationDays>2</durationDays>
 		<stackLimit>10</stackLimit>
 		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
@@ -79,8 +68,7 @@
 		</stages>
 	</ThoughtDef>
 	
-	<ThoughtDef Abstract="true">
-		<defName>PMAnimalNoise_KindWords</defName>
+	<ThoughtDef Name="PMAnimalNoise_KindWords" Abstract="true">
 		<showBubble>true</showBubble>
 		<thoughtClass>Thought_MemorySocial</thoughtClass>
 		<durationDays>20</durationDays>
@@ -95,8 +83,7 @@
 		</stages>
 		<thoughtToMake>PMAnimalNoise_KindWordsMood</thoughtToMake>
 	</ThoughtDef>
-	<ThoughtDef>
-		<defName>PMAnimalNoise_KindWordsMood</defName>
+	<ThoughtDef Name="PMAnimalNoise_KindWordsMood" Abstract="true">
 		<durationDays>2</durationDays>
 		<stackLimit>10</stackLimit>
 		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>

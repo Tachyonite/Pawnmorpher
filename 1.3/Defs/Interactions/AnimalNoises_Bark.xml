@@ -1,7 +1,7 @@
 <Defs>
 	
-	<InteractionDef Abstract="true">
-		<defName>PawnmorphBarkBase</defName>
+	<Pawnmorph.Social.PMInteractionDef Name="PMBark_Base" Abstract="true">
+		<defName>PMBark_Base</defName>
 		<initiatorWeights>
 			<requiredMutationsAny>
 				<li>EtherHuskyMuzzle</li>
@@ -78,7 +78,7 @@
 					<value>1</value>
 				</li>
 				<li>
-					<key>LabMorph</key>
+					<key>LabradorRetrieverMorph</key>
 					<value>1</value>
 				</li>
 				<li>
@@ -97,10 +97,10 @@
 			<requiresBoth>false</requiresBoth>
 		</initiatorWeights>
 		<requiresBoth>false</requiresBoth>
-	</InteractionDef>
+	</Pawnmorph.Social.PMInteractionDef>
 	
-	<InteractionDef Parent="PawnmorphBarkBase">
-		<defName>PawnmorphBark</defName>
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMBark_Base">
+		<defName>PMBark_Chitchat</defName>
 		<label>bark</label>
 		<workerClass>Pawnmorph.Social.InteractionWorker_Chitchat</workerClass>
 		<symbol>Things/Mote/SpeechSymbols/Bark</symbol>
@@ -140,9 +140,9 @@
 
 			</rulesStrings>
 		</logRulesInitiator>
-	</InteractionDef>
+	</Pawnmorph.Social.PMInteractionDef>
 
-	<ThoughtDef Parent="PMAnimalNoise_Chitchat">
+	<ThoughtDef ParentName="PMAnimalNoise_Chitchat">
 		<defName>PawnmorphBark</defName> <!-- keeping def name for compatibility reasons -->
 		<stages>
 			<li>
