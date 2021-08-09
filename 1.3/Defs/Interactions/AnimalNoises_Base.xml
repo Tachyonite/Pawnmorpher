@@ -33,12 +33,6 @@
 		<stackLimit>300</stackLimit>
 		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
 		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
-		<stages>
-			<li>
-				<label>slighting animal noises</label>
-				<baseOpinionOffset>-5</baseOpinionOffset>
-			</li>
-		</stages>
 	</ThoughtDef>
 	
 	<ThoughtDef Name="PMAnimalNoise_Insult" Abstract="true">
@@ -47,25 +41,11 @@
 		<stackLimit>300</stackLimit>
 		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
 		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
-		<stages>
-			<li>
-				<label>insulting animal noises</label>
-				<baseOpinionOffset>-15</baseOpinionOffset>
-			</li>
-		</stages>
-		<thoughtToMake>PMAnimalNoise_InsultedMood</thoughtToMake>
 	</ThoughtDef>
 	<ThoughtDef Name="PMAnimalNoise_InsultedMood" Abstract="true">
 		<durationDays>2</durationDays>
 		<stackLimit>10</stackLimit>
 		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
-		<stages>
-			<li>
-				<label>insulted</label>
-				<description>I've been directly insulted! What an awful person!</description>
-				<baseMoodEffect>-5</baseMoodEffect>
-			</li>
-		</stages>
 	</ThoughtDef>
 	
 	<ThoughtDef Name="PMAnimalNoise_KindWords" Abstract="true">

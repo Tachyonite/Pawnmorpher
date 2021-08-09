@@ -10,7 +10,7 @@
 				<li>EtherWolfMuzzle</li>
 				<li>EtherArcticWolfJaw</li>
 			</requiredMutationsAny>
-			<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2.  A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle.  A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
+			<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle. A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
 			<mutationWeights>
 				
 				<!-- Muzzles -->
@@ -99,6 +99,7 @@
 		<requiresBoth>false</requiresBoth>
 	</Pawnmorph.Social.PMInteractionDef>
 	
+	<!-- Chitchat -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMBark_Base">
 		<defName>PMBark_Chitchat</defName>
 		<label>bark</label>
@@ -118,7 +119,6 @@
 				<li>talkedabout->arfed to</li>
 				<li>talkedabout->howled at</li>
 				<li>talkedabout->ruffed at</li>
-				<li>talkedabout->growled at</li>
 				<li>talkedabout->sniffed</li>
 				<li>talkedabout->wagged [INITIATOR_possessive] tail at</li>
 
@@ -141,7 +141,6 @@
 			</rulesStrings>
 		</logRulesInitiator>
 	</Pawnmorph.Social.PMInteractionDef>
-
 	<ThoughtDef ParentName="PMAnimalNoise_Chitchat">
 		<defName>PawnmorphBark</defName> <!-- keeping def name for compatibility reasons -->
 		<stages>
@@ -151,5 +150,127 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMBark_Base">
+		<defName>PMBark_Slight</defName>
+		<label>slighting bark</label>
+		<workerClass>Pawnmorph.Social.InteractionWorker_Slight</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Slight</symbol>
+		<socialFightBaseChance>0.005</socialFightBaseChance>
+		<recipientThought>PMBark_Slight</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [growledat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [growledabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[caninecharacteristic]</li>
+				
+				<li>growledat->growled at</li>
+				<li>growledat->bared [INITIATOR_possessive] teeth at</li>
+				<li>growledat->barked aggressively at</li>
+				<li>growledat->yapped annoyingly at</li>
+								
+				<li>growledabout->growled about</li>
+				<li>growledabout->barked about</li>
+				<li>growledabout->woofed unhappily about</li>
+				<li>growledabout->bared [INITIATOR_possessive] teeth because of</li>
+				
+				<li>caninecharacteristic->scent</li>
+				<li>caninecharacteristic->body language</li>
+				<li>caninecharacteristic->lack of treats</li>
+				<li>caninecharacteristic->refusal to take [INITIATOR_objective] on walkies</li>
+				<li>caninecharacteristic->unwillingness to give [INITIATOR_objective] headpats</li>
+				<li>annoyingbehavior->tried to sniff [RECIPIENT_nameDef] in a sensitive place</li>
+				<li>annoyingbehavior->annoyingly licked [RECIPIENT_nameDef] face</li>
+				<li>annoyingbehavior->drooled on [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+	</Pawnmorph.Social.PMInteractionDef>
+	<ThoughtDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMBark_Slight</defName>
+		<stages>
+			<li>
+				<label>growl</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMBark_Base">
+		<defName>PMBark_Insult</defName>
+		<label>snarl</label>
+		<workerClass>Pawnmorph.Social.InteractionWorker_Insult</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Insult</symbol>
+		<socialFightBaseChance>0.04</socialFightBaseChance>
+		<recipientThought>PMBark_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(p=3)->[INITIATOR_nameDef] [snarledat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [snarledabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [canineinsult].</li>
+
+				<li>comparedtargetto->called [target]</li>
+				<li>comparedtargetto->compared [target] to</li>
+				<li>comparedtargetto->growled that [target] was</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[caninecharacteristic]</li>
+				
+				<li>snarledat->snarled at</li>
+				<li>snarledat->snarled and nipped</li>
+				<li>snarledat->tried to bite</li>
+				<li>snarledat->aggressively bared [INITIATOR_possessive] fangs at</li>
+				<li>snarledat->barked aggressively at</li>
+				
+				<li>snarledabout->snarled about</li>
+				<li>snarledabout->barked aggressively about</li>
+				<li>snarledabout->tried to bite [RECIPIENT_nameDef] because of</li>
+				<li>snarledabout->bared [INITIATOR_possessive] fangs over</li>
+				
+				<li>caninecharacteristic->scent</li>
+				<li>caninecharacteristic->body language</li>
+				<li>caninecharacteristic->lack of treats</li>
+				<li>caninecharacteristic->refusal to take [INITIATOR_objective] on walkies</li>
+				<li>caninecharacteristic->unwillingness to give [INITIATOR_objective] headpats</li>
+				
+				<li>canineinsult->a female dog</li>
+				<li>canineinsult->a cat</li>
+				<li>canineinsult->a veterinarian</li>
+				<li>canineinsult->a gnawed bone</li>
+				<li>canineinsult->a chewtoy</li>
+				<li>canineinsult->kibble</li>
+			</rulesStrings>
+		</logRulesInitiator>
+	</Pawnmorph.Social.PMInteractionDef>
+	<ThoughtDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBark_Insult</defName>
+		<stages>
+			<li>
+				<label>snarl</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMBark_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMBark_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>snarled at</label>
+				<description>I've been snarled at! What an awful canine!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 </Defs>
