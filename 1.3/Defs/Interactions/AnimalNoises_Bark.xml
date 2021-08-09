@@ -188,6 +188,7 @@
 				<li>caninelife->mutations</li>
 				<li>caninelife->broken claws</li>
 				<li>caninelife->what a tail feels like</li>
+				<li>caninelife->colorblindness</li>
 				<li>caninelife->reversion serums</li>
 				
 			</rulesStrings>
@@ -252,6 +253,7 @@
 				<li>caninelife->mutations</li>
 				<li>caninelife->broken claws</li>
 				<li>caninelife->what a tail feels like</li>
+				<li>caninelife->colorblindness</li>
 				<li>caninelife->reversion serums</li>
 				
 				<li>secretcaninelife->brushy brushy</li>
@@ -342,8 +344,15 @@
 				<li>caninecharacteristic->scent</li>
 				<li>caninecharacteristic->body language</li>
 				<li>caninecharacteristic->lack of treats</li>
-				<li>caninecharacteristic->refusal to take [INITIATOR_objective] on walkies</li>
-				<li>caninecharacteristic->unwillingness to give [INITIATOR_objective] headpats</li>
+				<li>caninecharacteristic->[refusal] to take [INITIATOR_objective] on walkies</li>
+				<li>caninecharacteristic->[refusal] to give [INITIATOR_objective] headpats</li>
+				<li>caninecharacteristic->[refusal] to let [INITIATOR_objective] sniff [RECIPIENT_objective]</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				<li>refusal->aversion</li>
+				<li>refusal->hesitancy</li>
+				
 				<li>annoyingbehavior->tried to sniff [RECIPIENT_nameDef] in a sensitive place</li>
 				<li>annoyingbehavior->annoyingly licked [RECIPIENT_nameDef] face</li>
 				<li>annoyingbehavior->drooled on [RECIPIENT_nameDef]</li>
@@ -398,8 +407,14 @@
 				<li>caninecharacteristic->scent</li>
 				<li>caninecharacteristic->body language</li>
 				<li>caninecharacteristic->lack of treats</li>
-				<li>caninecharacteristic->refusal to take [INITIATOR_objective] on walkies</li>
-				<li>caninecharacteristic->unwillingness to give [INITIATOR_objective] headpats</li>
+				<li>caninecharacteristic->[refusal] to take [INITIATOR_objective] on walkies</li>
+				<li>caninecharacteristic->[refusal] to give [INITIATOR_objective] headpats</li>
+				<li>caninecharacteristic->[refusal] to let [INITIATOR_objective] sniff [RECIPIENT_objective]</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				<li>refusal->aversion</li>
+				<li>refusal->hesitancy</li>
 				
 				<li>canineinsult->a female dog</li>
 				<li>canineinsult->a cat</li>
@@ -430,6 +445,84 @@
 				<label>snarled at</label>
 				<description>I've been snarled at! What an awful canine!</description>
 				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMBark_KindWords</defName>
+		<label>kind licks</label>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMBark_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [caninecompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [caninecompliment].</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[caninecharacteristic]</li>
+				
+				<li>caninecharacteristic->scent</li>
+				<li>caninecharacteristic->body language</li>
+				<li>caninecharacteristic->treats</li>
+				<li>caninecharacteristic->headpat technique</li>
+				<li>caninecharacteristic->wonderful scritches</li>
+				
+				<li>complimented->ruffed happily about</li>
+				<li>complimented->woofed approvingly of</li>
+				<li>complimented->wagged [INITIATOR_possessive] tail at</li>
+				<li>complimented->licked [RECIPIENT_nameDef] because of</li>
+				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
+				
+				<li>kindbehavior->[adv] licked</li>
+				<li>kindbehavior->[adv] nuzzled</li>
+				<li>kindbehavior->[adv] ruffed at</li>
+				<li>kindbehavior->wagged [INITIATOR_possessive] tail at</li>
+				
+				<li>adv->kindly</li>
+				<li>adv->affectionately</li>
+				<li>adv->appreciatively</li>
+				<li>adv->happily</li>
+				
+				<li>caninecompliment->[adj] crunchybone</li>
+				<li>caninecompliment->[adj] deerheart</li>
+				<li>caninecompliment->[adj] sweetliver</li>
+				<li>caninecompliment->[adj] lambshank</li>
+				<li>caninecompliment->[adj] rabbit</li>
+				
+				<li>adj->wonderful</li>
+				<li>adj->delightful</li>
+				<li>adj->amazing</li>
+				<li>adj->sweet</li>
+				<li>adj->lovely</li>
+				<li>adj->delicious</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMBark_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind licks</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMBark_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMBark_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind licks</label>
+				<description>I've been given a kind lick! What a nice canine!</description>
+				<baseMoodEffect>5</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
