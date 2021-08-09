@@ -147,6 +147,170 @@
 	</ThoughtDef>
 	
 	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMBark_DeepTalk</defName>
+		<label>deep bark</label>
+		<initiatorThought>PMBark_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMBark_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [caninelife] with [RECIPIENT_nameDef].</li>
+
+				<li>talkedabout->talked in depth about</li>
+				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
+				<li>talkedabout->discussed the topic of</li>
+				<li>talkedabout->had a heartfelt conversation about</li>
+				<li>talkedabout->talked quietly about</li>
+				<li>talkedabout->talked deeply about</li>
+				<li>talkedabout->told a heartfelt story about</li>
+				<li>talkedabout->shared an embarassing story about</li>
+
+				<li>caninelife->being a canine morph</li>
+				<li>caninelife->becoming a canine morph</li>
+				<li>caninelife->shedding</li>
+				<li>caninelife->headpats</li>
+				<li>caninelife->ear scritches</li>
+				<li>caninelife->bones</li>
+				<li>caninelife->getting brushed</li>
+				<li>caninelife->going for a walk</li>
+				<li>caninelife->chew toys</li>
+				<li>caninelife->chasing things</li>
+				<li>caninelife->fetch</li>
+				<li>caninelife->paw maintenence</li>
+				<li>caninelife->stronger senses</li>
+				<li>caninelife->interesting scents</li>
+				<li>caninelife->gross scents</li>
+				<li>caninelife->raw meat</li>
+				<li>caninelife->hunting instincts</li>
+				<li>caninelife->pack life</li>
+				<li>caninelife->resisting instinct</li>
+				<li>caninelife->mutations</li>
+				<li>caninelife->broken claws</li>
+				<li>caninelife->what a tail feels like</li>
+				<li>caninelife->reversion serums</li>
+				
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMBark_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep bark</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- An extra form of deep talk that only happens between two canine morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMBark_DeepTalkCanine</defName>
+		<label>deep bark canine</label>
+		<initiatorThought>PMBark_DeepTalkCanineMemory</initiatorThought>
+		<recipientThought>PMBark_DeepTalkCanineMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [caninetopic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [caninetopic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [caninebehavior].</li>
+
+				<li>talkedabout->communicated thoughts about</li>
+				<li>talkedabout->exchanged thoughts about</li>
+				<li>talkedabout->exchanged ideas about</li>
+				<li>talkedabout->shared views on</li>
+				<li>talkedabout->discussed the topic of</li>
+				<li>talkedabout->had a heartfelt conversation about</li>
+				<li>talkedabout->talked quietly about</li>
+				<li>talkedabout->talked deeply about</li>
+				<li>talkedabout->connected on the topic of</li>
+				
+				<li>caninetopic->[caninelife]</li>
+				<li>caninetopic->[secretcaninelife]</li>
+
+				<li>caninelife->being canine morphs</li>
+				<li>caninelife->becoming canine morphs</li>
+				<li>caninelife->shedding</li>
+				<li>caninelife->headpats</li>
+				<li>caninelife->ear scritches</li>
+				<li>caninelife->bones</li>
+				<li>caninelife->getting brushed</li>
+				<li>caninelife->going for a walk</li>
+				<li>caninelife->chew toys</li>
+				<li>caninelife->chasing things</li>
+				<li>caninelife->fetch</li>
+				<li>caninelife->paw maintenence</li>
+				<li>caninelife->stronger senses</li>
+				<li>caninelife->interesting scents</li>
+				<li>caninelife->gross scents</li>
+				<li>caninelife->raw meat</li>
+				<li>caninelife->hunting instincts</li>
+				<li>caninelife->pack life</li>
+				<li>caninelife->resisting instinct</li>
+				<li>caninelife->mutations</li>
+				<li>caninelife->broken claws</li>
+				<li>caninelife->what a tail feels like</li>
+				<li>caninelife->reversion serums</li>
+				
+				<li>secretcaninelife->brushy brushy</li>
+				<li>secretcaninelife->walkies</li>
+				<li>secretcaninelife->collars</li>
+				<li>secretcaninelife->the dangers of mailmen</li>
+				<li>secretcaninelife->evil veterinarians</li>
+				<li>secretcaninelife->being in a pack together</li>
+				<li>secretcaninelife->being packmates</li>
+				<li>secretcaninelife->hunting together</li>
+				<li>secretcaninelife->hunting [prey]</li>
+				<li>secretcaninelife->chasing [prey]</li>
+				<li>secretcaninelife->marking territory</li>
+				<li>secretcaninelife->rolling in smelly things</li>
+				<li>secretcaninelife->the secret scritching spot that causes leg kicks</li>
+				<li>secretcaninelife->mates</li>
+				
+				<li>prey(p=10)->[preyanimal]</li>
+				<li>prey->[preymorph]</li>
+				
+				<li>preyanimal->deer</li>
+				<li>preyanimal->elk</li>
+				<li>preyanimal->moose</li>
+				<li>preyanimal->rabbits</li>
+				<li>preyanimal->squirrels</li>
+				<li>preyanimal->chickens</li>
+				<li>preyanimal->sheep</li>
+				<li>preyanimal->goats</li>
+				
+				<li>preymorph->deermorphs</li>
+				<li>preymorph->rabbitmorphs</li>
+				<li>preymorph->chookmorphs</li>
+				<li>preymorph->squirrelmorphs</li>
+				<li>preymorph->sheepmorphs</li>
+				<li>preymorph->goatmorphs</li>
+				
+				<li>caninebehavior->exchanged sniffs with [RECIPIENT_nameDef]</li>
+				<li>caninebehavior->and [RECIPIENT_nameDef] compared scents</li>
+				<li>caninebehavior->and [RECIPIENT_nameDef] gave each other face licks</li>
+				<li>caninebehavior->shared mutual nuzzles with [RECIPIENT_nameDef]</li>
+				<li>caninebehavior->and [RECIPIENT_nameDef] gave each other mutual headpats</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Canine</recipientWeights>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMBark_DeepTalkCanineMemory</defName>
+		<stages>
+			<li>
+				<label>shared experience</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
 	<!-- Slights -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMBark_Slight</defName>
