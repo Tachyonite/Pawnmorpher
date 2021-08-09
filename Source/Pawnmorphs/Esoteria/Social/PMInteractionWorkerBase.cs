@@ -46,9 +46,7 @@ namespace Pawnmorph.Social
             if (Def.requiresBoth && (initiatorWeight <= 0 || recipientWeight <= 0))
                 return 0;
 
-            return initiatorWeight + recipientWeight; 
-
-
+            return (initiatorWeight + recipientWeight) * Def.weightMultiplier;
         }
     }
 }
