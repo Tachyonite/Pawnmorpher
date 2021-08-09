@@ -1,4 +1,73 @@
 <Defs>
+
+	<!-- This Def defines how PM-specific interactions are weighted based on mutations -->
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Headpats</defName>
+		
+		<!-- Required mutations or morphs can be set using the requiredMutationsAny, requiredMutationsAll, and restrictedToMorphs fields.  If these requirements are not met, the weight will always be zero.  Don't forget to also give the mutations/morphs weights below! -->
+		<!--
+		<requiredMutationsAny>  At least one of these mutations is required
+			<li>ExampleMutation</li>
+			<li>ExampleMutation</li>
+		</requiredMutationsAny>
+		<requiredMutationsAll>  All of these mutations are required
+			<li>ExampleMutation3</li>
+			<li>ExampleMutation4</li>
+		</requiredMutationsAll>
+		<restrictedToMorphs>   The pawn must be one of these kinds of morph
+			<li>Morph1</li>
+			<li>Morph2</li>
+		</requiredMutationsAll>
+		-->
+		
+		<!-- These weights are added based on all the mutations a pawn has.  If a pawn has a mutation more than once (e.g. two paws), each instance adds the specified weight value -->
+		<mutationWeights>
+			<li>
+				<key>EtherHuskyMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherWargMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherFoxMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherCatMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherWolfMuzzle</key>
+				<value>0.5</value>
+			</li>
+		</mutationWeights>
+		<!-- These weights are added if the pawn is one of the specified morphs -->
+		<morphWeights>
+			<li>
+				<key>HuskyMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>FoxMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>WolfMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>CatMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>WargMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+
 	<InteractionDef Class="Pawnmorph.Social.PMInteractionDef">
 		<defName>PMCanidHeadpats</defName>
 		<label>changes comforted</label>
@@ -56,66 +125,19 @@
 		</logRulesInitiator>
 		
 		<!--
-	worker class must be one of 
-	Pawnmorph.Social.InteractionWorker_Chitchat
-	''	InteractionWorker_KindWords
-		InteractionWorker_Slight 
-		InteractionWorker_Insult
-	
-	these workers are designed to mimic the workers of the same name in the base game with the additional mutation/morph checks 
--->
-		<recipientWeights> <!-- recipient weights has the same fields as initiator and it works the same way-->
-			<mutationWeights>
-				<li>
-					<key>EtherHuskyMuzzle</key>
-					<value>0.5</value>
-				</li>
-				<li>
-					<key>EtherWargMuzzle</key>
-					<value>0.5</value>
-				</li>
-				<li>
-					<key>EtherFoxMuzzle</key>
-					<value>0.5</value>
-				</li>
-				<li>
-					<key>EtherCatMuzzle</key>
-					<value>0.5</value>
-				</li>
-				<li>
-					<key>EtherWolfMuzzle</key>
-					<value>0.5</value>
-				</li>
-			</mutationWeights>
-			<morphWeights>
-				<li>
-					<key>HuskyMorph</key>
-					<value>1</value>
-				</li>
-				<li>
-					<key>FoxMorph</key>
-					<value>1</value>
-				</li>
-				<li>
-					<key>WolfMorph</key>
-					<value>1</value>
-				</li>
-				<li>
-					<key>CatMorph</key>
-					<value>1</value>
-				</li>
-				<li>
-					<key>WargMorph</key>
-					<value>1</value>
-				</li>
-			</morphWeights>
-			<requiresBoth>false</requiresBoth>
-		</recipientWeights>
+			worker class must be one of 
+			Pawnmorph.Social.InteractionWorker_Chitchat
+			''	InteractionWorker_KindWords
+				InteractionWorker_Slight 
+				InteractionWorker_Insult
+			
+			these workers are designed to mimic the workers of the same name in the base game with the additional mutation/morph checks 
+		-->
+		<!-- The initiatorWeights and recipientWeights fields control how the weights change based on the mutations of the initiator and recipient pawn, respectively.  If both are present, the weights are added together -->
+		<recipientWeights>PMInteractionWeights_Headpats</recipientWeights>
 
-		<!-- the total weight is the sum of all satisfied weight conditions on -->
-
-		<requiresBoth>false</requiresBoth>
 		<!-- if set to true then both the recipient and initiator must have a nonzero weight for the interaction to happen-->
+		<requiresBoth>false</requiresBoth>
 	</InteractionDef>
 	
 	<ThoughtDef>

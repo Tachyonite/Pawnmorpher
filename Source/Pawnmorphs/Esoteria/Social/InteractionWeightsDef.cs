@@ -45,7 +45,10 @@ namespace Pawnmorph.Social
             if (requiredMutationsAll != null && !requiredMutationsAll.All(hediffs.Contains)) return 0;
             if (restrictedToMorphs != null && !restrictedToMorphs.Contains(morphDef)) return 0;
 
-            return hediffs.Sum(m => mutationWeights.TryGetValue(m, 0)) + morphWeights.TryGetValue(morphDef, 0);
+            float weightFromMutations = hediffs.Sum(m => mutationWeights.TryGetValue(m, 0));
+            float weightFromMorph = (morphDef != null) ? morphWeights.TryGetValue(morphDef, 0) : 0;
+
+            return weightFromMutations + weightFromMorph;
         }
     }
 }

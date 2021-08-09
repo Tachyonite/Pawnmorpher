@@ -1,106 +1,100 @@
 <Defs>
 	
-	<Pawnmorph.Social.PMInteractionDef Name="PMBark_Base" Abstract="true">
-		<defName>PMBark_Base</defName>
-		<initiatorWeights>
-			<requiredMutationsAny>
-				<li>EtherHuskyMuzzle</li>
-				<li>EtherLabradorRetrieverJaw</li>
-				<li>EtherWargMuzzle</li>
-				<li>EtherWolfMuzzle</li>
-				<li>EtherArcticWolfJaw</li>
-			</requiredMutationsAny>
-			<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle. A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
-			<mutationWeights>
-				
-				<!-- Muzzles -->
-				<li>
-					<key>EtherHuskyMuzzle</key>
-					<value>0.5</value>
-				</li>
-				<li>
-					<key>EtherLabradorRetrieverJaw</key>
-					<value>0.5</value>
-				</li>
-				<li>
-					<key>EtherWargMuzzle</key>
-					<value>0.5</value>
-				</li>
-				<li>
-					<key>EtherWolfMuzzle</key>
-					<value>0.5</value>
-				</li>
-				<li>
-					<key>EtherArcticWolfJaw</key>
-					<value>0.5</value>
-				</li>
-				
-				<!-- Ears -->
-				<li>
-					<key>EtherHuskyEar</key>
-					<value>0.125</value>
-				</li>
-				<li>
-					<key>EtherLabradorRetrieverEar</key>
-					<value>0.125</value>
-				</li>
-				<li>
-					<key>EtherWargEar</key>
-					<value>0.125</value>
-				</li>
-				<li>
-					<key>EtherWolfEar</key>
-					<value>0.125</value>
-				</li>
-				
-				<!-- Tails -->
-				<li>
-					<key>EtherHuskyTail</key>
-					<value>0.25</value>
-				</li>
-				<li>
-					<key>EtherLabradorRetrieverTail</key>
-					<value>0.25</value>
-				</li>
-				<li>
-					<key>EtherWargTail</key>
-					<value>0.25</value>
-				</li>
-				<li>
-					<key>EtherWolfTail</key>
-					<value>0.25</value>
-				</li>
-				
-			</mutationWeights>
-			<morphWeights>
-				<li>
-					<key>HuskyMorph</key>
-					<value>1</value>
-				</li>
-				<li>
-					<key>LabradorRetrieverMorph</key>
-					<value>1</value>
-				</li>
-				<li>
-					<key>WargMorph</key>
-					<value>1</value>
-				</li>
-				<li>
-					<key>WolfMorph</key>
-					<value>1</value>
-				</li>
-				<li>
-					<key>ArcticWolfMorph</key>
-					<value>1</value>
-				</li>
-			</morphWeights>
-			<requiresBoth>false</requiresBoth>
-		</initiatorWeights>
-		<requiresBoth>false</requiresBoth>
-	</Pawnmorph.Social.PMInteractionDef>
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+	    <defName>PMInteractionWeights_Canine</defName>
+		<requiredMutationsAny>
+			<li>EtherHuskyMuzzle</li>
+			<li>EtherLabradorRetrieverJaw</li>
+			<li>EtherWargMuzzle</li>
+			<li>EtherWolfMuzzle</li>
+			<li>EtherArcticWolfJaw</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle. A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherHuskyMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherLabradorRetrieverJaw</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherWargMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherWolfMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherArcticWolfJaw</key>
+				<value>0.5</value>
+			</li>
+			
+			<!-- Ears -->
+			<li>
+				<key>EtherHuskyEar</key>
+				<value>0.125</value>
+			</li>
+			<li>
+				<key>EtherLabradorRetrieverEar</key>
+				<value>0.125</value>
+			</li>
+			<li>
+				<key>EtherWargEar</key>
+				<value>0.125</value>
+			</li>
+			<li>
+				<key>EtherWolfEar</key>
+				<value>0.125</value>
+			</li>
+			
+			<!-- Tails -->
+			<li>
+				<key>EtherHuskyTail</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherLabradorRetrieverTail</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherWargTail</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherWolfTail</key>
+				<value>0.25</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>HuskyMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>LabradorRetrieverMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>WargMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>WolfMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>ArcticWolfMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
 	
 	<!-- Chitchat -->
-	<Pawnmorph.Social.PMInteractionDef ParentName="PMBark_Base">
+	<Pawnmorph.Social.PMInteractionDef>
 		<defName>PMBark_Chitchat</defName>
 		<label>bark</label>
 		<workerClass>Pawnmorph.Social.InteractionWorker_Chitchat</workerClass>
@@ -140,6 +134,7 @@
 
 			</rulesStrings>
 		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	<ThoughtDef ParentName="PMAnimalNoise_Chitchat">
 		<defName>PawnmorphBark</defName> <!-- keeping def name for compatibility reasons -->
@@ -152,7 +147,7 @@
 	</ThoughtDef>
 	
 	<!-- Slights -->
-	<Pawnmorph.Social.PMInteractionDef ParentName="PMBark_Base">
+	<Pawnmorph.Social.PMInteractionDef>
 		<defName>PMBark_Slight</defName>
 		<label>slighting bark</label>
 		<workerClass>Pawnmorph.Social.InteractionWorker_Slight</workerClass>
@@ -191,6 +186,7 @@
 				<li>annoyingbehavior->drooled on [RECIPIENT_nameDef]</li>
 			</rulesStrings>
 		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	<ThoughtDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMBark_Slight</defName>
@@ -204,7 +200,7 @@
 
 
 	<!-- Insults -->
-	<Pawnmorph.Social.PMInteractionDef ParentName="PMBark_Base">
+	<Pawnmorph.Social.PMInteractionDef>
 		<defName>PMBark_Insult</defName>
 		<label>snarl</label>
 		<workerClass>Pawnmorph.Social.InteractionWorker_Insult</workerClass>
@@ -252,6 +248,7 @@
 				<li>canineinsult->kibble</li>
 			</rulesStrings>
 		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	<ThoughtDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMBark_Insult</defName>
