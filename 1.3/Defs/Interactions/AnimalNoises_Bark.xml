@@ -151,6 +151,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMBark_DeepTalk</defName>
 		<label>deep bark</label>
+		<symbol>Things/Mote/SpeechSymbols/Bark_DeepTalk</symbol>
 		<initiatorThought>PMBark_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMBark_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
@@ -210,6 +211,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMBark_DeepTalkCanine</defName>
 		<label>deep bark canine</label>
+		<symbol>Things/Mote/SpeechSymbols/Bark_DeepTalk</symbol>
 		<initiatorThought>PMBark_DeepTalkCanineMemory</initiatorThought>
 		<recipientThought>PMBark_DeepTalkCanineMemory</recipientThought>
 		<logRulesInitiator>
@@ -318,6 +320,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMBark_Slight</defName>
 		<label>growl</label>
+		<symbol>Things/Mote/SpeechSymbols/Bark_Slight</symbol>
 		<recipientThought>PMBark_Slight</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -374,6 +377,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMBark_Insult</defName>
 		<label>snarl</label>
+		<symbol>Things/Mote/SpeechSymbols/Bark_Insult</symbol>
 		<recipientThought>PMBark_Insult</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -450,6 +454,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
 		<defName>PMBark_KindWords</defName>
 		<label>kind licks</label>
+		<symbol>Things/Mote/SpeechSymbols/Bark_KindWords</symbol>
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMBark_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
