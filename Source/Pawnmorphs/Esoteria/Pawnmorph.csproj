@@ -829,7 +829,6 @@
     <Compile Include="Social\InteractionWorker_Bok.cs" />
     <Compile Include="Social\InteractionWorker_Meow.cs" />
     <Compile Include="Social\InteractionWorker_Moo.cs" />
-    <Compile Include="Social\InteractionWorker_Yip.cs" />
     <Compile Include="Social\InteractionWeightsDef.cs" />
   </ItemGroup>
   <ItemGroup>
