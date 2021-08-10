@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Vulpine</defName>
+		<requiredMutationsAny>
+			<li>EtherArcticFoxMuzzle</li>
+			<li>EtherFennecFoxMuzzle</li>
+			<li>EtherFoxMuzzle</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to yap as a human with just a muzzle. A muzzled human will yip half as often as chatting and a full morph will yip twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherArcticFoxMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherFennecFoxMuzzle</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherFoxMuzzle</key>
+				<value>0.5</value>
+			</li>
+			
+			<!-- Ears -->
+			<li>
+				<key>EtherArcticFoxEar</key>
+				<value>0.125</value>
+			</li>
+			<li>
+				<key>EtherFennecFoxEar</key>
+				<value>0.125</value>
+			</li>
+			<li>
+				<key>EtherFoxEar</key>
+				<value>0.125</value>
+			</li>
+			
+			<!-- Tails -->
+			<li>
+				<key>EtherArcticFluffyTail</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherFennecFluffyTail</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherFluffyTail</key>
+				<value>0.25</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>ArcticFoxMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>FennecFoxMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>FoxMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMYip_Chitchat</defName>
+		<label>yip</label>
+		<symbol>Things/Mote/SpeechSymbols/Yip</symbol>
+		<initiatorThought>PawnmorphYip</initiatorThought>
+		<recipientThought>PawnmorphYip</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+
+				<li>talkedabout(p=4)->yipped at</li>
+				<li>talkedabout->yapped at</li>
+				<li>talkedabout->yipped to</li>
+				<li>talkedabout->sniffed</li>
+				<li>talkedabout->yipped to</li>
+				<li>talkedabout->talked about chickens with</li>
+
+				<li>askedabout->patting [INITIATOR_possessive] fur</li>
+				<li>askedabout->vixens</li>
+				<li>askedabout->chicken hunting</li>
+				<li>askedabout->climbing fences</li>
+				<li>askedabout->chasing mice</li>
+				<li>askedabout->jumping into snow</li>
+				<li>askedabout->life in dens</li>
+				<li>askedabout->the evolution of thumbs</li>
+				<li>askedabout->digging holes</li>
+				<li>askedabout->paws</li>
+				<li>askedabout->delicious smells</li>
+				<li>askedabout->strange scents</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Vulpine</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PawnmorphYip</defName> <!-- keeping def name for compatibility reasons -->
+		<stages>
+			<li>
+				<label>yip</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMYip_DeepTalk</defName>
+		<label>deep yip</label>
+		<initiatorThought>PMYip_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMYip_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [vulpinelife] with [RECIPIENT_nameDef].</li>
+
+				<li>talkedabout->talked in depth about</li>
+				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
+				<li>talkedabout->discussed the topic of</li>
+				<li>talkedabout->had a heartfelt conversation about</li>
+				<li>talkedabout->talked quietly about</li>
+				<li>talkedabout->talked deeply about</li>
+				<li>talkedabout->told a heartfelt story about</li>
+				<li>talkedabout->shared an embarassing story about</li>
+
+				<li>vulpinelife->being a vulpine morph</li>
+				<li>vulpinelife->becoming a vulpine morph</li>
+				<li>vulpinelife->shedding</li>
+				<li>vulpinelife->headpats</li>
+				<li>vulpinelife->ear scritches</li>
+				<li>vulpinelife->mice</li>
+				<li>vulpinelife->getting brushed</li>
+				<li>vulpinelife->screeching</li>
+				<li>vulpinelife->jumping into snow</li>
+				<li>vulpinelife->stereotypes on stealing</li>
+				<li>vulpinelife->eating rodents</li>
+				<li>vulpinelife->hunting instincts</li>
+				<li>vulpinelife->paw maintenence</li>
+				<li>vulpinelife->stronger senses</li>
+				<li>vulpinelife->interesting scents</li>
+				<li>vulpinelife->gross scents</li>
+				<li>vulpinelife->resisting instinct</li>
+				<li>vulpinelife->mutations</li>
+				<li>vulpinelife->broken claws</li>
+				<li>vulpinelife->what a tail feels like</li>
+				<li>vulpinelife->colorblindness</li>
+				<li>vulpinelife->reversion serums</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Vulpine</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMYip_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep yip</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- An extra form of deep talk that only happens between two vulpine morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMYip_DeepTalkVulpine</defName>
+		<label>deep yip vulpine</label>
+		<initiatorThought>PMYip_DeepTalkVulpineMemory</initiatorThought>
+		<recipientThought>PMYip_DeepTalkVulpineMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [vulpinetopic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [vulpinetopic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [vulpinebehavior].</li>
+
+				<li>talkedabout->communicated thoughts about</li>
+				<li>talkedabout->exchanged thoughts about</li>
+				<li>talkedabout->exchanged ideas about</li>
+				<li>talkedabout->shared views on</li>
+				<li>talkedabout->discussed the topic of</li>
+				<li>talkedabout->had a heartfelt conversation about</li>
+				<li>talkedabout->talked quietly about</li>
+				<li>talkedabout->talked deeply about</li>
+				<li>talkedabout->connected on the topic of</li>
+				
+				<li>vulpinetopic(p=2)->[vulpinelife]</li>
+				<li>vulpinetopic->[secretvulpinelife]</li>
+
+				<li>vulpinelife->being vulpine morphs</li>
+				<li>vulpinelife->becoming vulpine morphs</li>
+				<li>vulpinelife->shedding</li>
+				<li>vulpinelife->headpats</li>
+				<li>vulpinelife->ear scritches</li>
+				<li>vulpinelife->mice</li>
+				<li>vulpinelife->getting brushed</li>
+				<li>vulpinelife->the meaning of different fox noises</li>
+				<li>vulpinelife->jumping into snow</li>
+				<li>vulpinelife->stereotypes on stealing</li>
+				<li>vulpinelife->eating rodents</li>
+				<li>vulpinelife->hunting instincts</li>
+				<li>vulpinelife->paw maintenence</li>
+				<li>vulpinelife->stronger senses</li>
+				<li>vulpinelife->interesting scents</li>
+				<li>vulpinelife->gross scents</li>
+				<li>vulpinelife->resisting instinct</li>
+				<li>vulpinelife->mutations</li>
+				<li>vulpinelife->broken claws</li>
+				<li>vulpinelife->what a tail feels like</li>
+				<li>vulpinelife->colorblindness</li>
+				<li>vulpinelife->reversion serums</li>
+				
+				<li>secretvulpinelife->brushy brushy</li>
+				<li>secretvulpinelife->growing multiple tails</li>
+				<li>secretvulpinelife->digging hidden dens</li>
+				<li>secretvulpinelife->secret fox magic</li>
+				<li>secretvulpinelife->disguising themselves as humans</li>
+				<li>secretvulpinelife->foxfire</li>
+				<li>secretvulpinelife->hunting [prey]</li>
+				<li>secretvulpinelife->stealing [prey]</li>
+				<li>secretvulpinelife->caching dead [prey]</li>
+				<li>secretvulpinelife->fox musk</li>
+				<li>secretvulpinelife->screeching contests</li>
+				<li>secretvulpinelife->comparing ear sizes</li>
+				<li>secretvulpinelife->mates</li>
+				
+				<li>prey(p=10)->[preyanimal]</li>
+				<li>prey->[preymorph]</li>
+				
+				<li>preyanimal->mice</li>
+				<li>preyanimal->rats</li>
+				<li>preyanimal->rabbits</li>
+				<li>preyanimal->squirrels</li>
+				<li>preyanimal->chickens</li>
+				
+				<li>preymorph->ratmorphs</li>
+				<li>preymorph->rabbitmorphs</li>
+				<li>preymorph->squirrelmorphs</li>
+				<li>preymorph->chookmorphs</li>
+				
+				<li>vulpinebehavior->exchanged sniffs with [RECIPIENT_nameDef]</li>
+				<li>vulpinebehavior->and [RECIPIENT_nameDef] compared scents</li>
+				<li>vulpinebehavior->and [RECIPIENT_nameDef] gave each other face licks</li>
+				<li>vulpinebehavior->shared mutual nuzzles with [RECIPIENT_nameDef]</li>
+				<li>vulpinebehavior->and [RECIPIENT_nameDef] gave each other mutual headpats</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Vulpine</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Vulpine</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMYip_DeepTalkVulpineMemory</defName>
+		<stages>
+			<li>
+				<label>shared experience</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMYip_Slight</defName>
+		<label>gekker</label>
+		<recipientThought>PMYip_Slight</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [gekkeredat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [gekkeredabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[vulpinecharacteristic]</li>
+				
+				<li>gekkeredat->gekkered at</li>
+				<li>gekkeredat->bared [INITIATOR_possessive] teeth at</li>
+				<li>gekkeredat->yipped aggressively at</li>
+				<li>gekkeredat->yapped annoyingly at</li>
+								
+				<li>gekkeredabout->gekkered about</li>
+				<li>gekkeredabout->yapped angrily about</li>
+				<li>gekkeredabout->bared [INITIATOR_possessive] teeth because of</li>
+				
+				<li>vulpinecharacteristic->scent</li>
+				<li>vulpinecharacteristic->body language</li>
+				<li>vulpinecharacteristic->loud noises</li>
+				<li>vulpinecharacteristic->lack of treats</li>
+				<li>vulpinecharacteristic->[refusal] to give [INITIATOR_objective] ear rubs</li>
+				<li>vulpinecharacteristic->[refusal] to give [INITIATOR_objective] headpats</li>
+				<li>vulpinecharacteristic->[refusal] to let [INITIATOR_objective] sniff [RECIPIENT_objective]</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				
+				<li>annoyingbehavior->tried to sniff [RECIPIENT_nameDef] in a sensitive place</li>
+				<li>annoyingbehavior->annoyingly licked [RECIPIENT_nameDef] face</li>
+				<li>annoyingbehavior->annoyingly mouthed [RECIPIENT_nameDef]'s hand</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Vulpine</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMYip_Slight</defName>
+		<stages>
+			<li>
+				<label>gekker</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMYip_Insult</defName>
+		<label>screech</label>
+		<recipientThought>PMYip_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(p=3)->[INITIATOR_nameDef] [screechedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [screechedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [vulpineinsult].</li>
+
+				<li>comparedtargetto->called [target] a</li>
+				<li>comparedtargetto->compared [target] to a</li>
+				<li>comparedtargetto->gekkered that [target] was a</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[vulpinecharacteristic]</li>
+				
+				<li>screechedat->screeched at</li>
+				<li>screechedat->screeched and nipped</li>
+				<li>screechedat->gave a full-faced screech to</li>
+				
+				<li>screechedabout->screeched about</li>
+				<li>screechedabout->gekkered angrily about</li>
+				<li>screechedabout->tried to bite [RECIPIENT_nameDef] because of</li>
+				<li>screechedabout->screeched in [RECIPIENT_nameDef] face over</li>
+				<li>screechedabout->bared [INITIATOR_possessive] fangs over</li>
+				
+				<li>vulpinecharacteristic->scent</li>
+				<li>vulpinecharacteristic->body language</li>
+				<li>vulpinecharacteristic->loud noises</li>
+				<li>vulpinecharacteristic->lack of treats</li>
+				<li>vulpinecharacteristic->[refusal] to give [INITIATOR_objective] ear rubs</li>
+				<li>vulpinecharacteristic->[refusal] to give [INITIATOR_objective] headpats</li>
+				<li>vulpinecharacteristic->[refusal] to let [INITIATOR_objective] sniff [RECIPIENT_objective]</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				
+				<li>vulpineinsult->foxhound</li>
+				<li>vulpineinsult->fox hunter</li>
+				<li>vulpineinsult->weasel</li>
+				<li>vulpineinsult->wolf</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Vulpine</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMYip_Insult</defName>
+		<stages>
+			<li>
+				<label>screech</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMYip_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMYip_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>screeched at</label>
+				<description>I've been screeched at! What an awful fox!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMYip_KindWords</defName>
+		<label>kind licks</label>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMYip_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [vulpinecompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [vulpinecompliment].</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[vulpinecharacteristic]</li>
+				
+				<li>vulpinecharacteristic->scent</li>
+				<li>vulpinecharacteristic->body language</li>
+				<li>vulpinecharacteristic->treats</li>
+				<li>vulpinecharacteristic->headpat technique</li>
+				<li>vulpinecharacteristic->wonderful scritches</li>
+				
+				<li>complimented->yipped happily about</li>
+				<li>complimented->yapped approvingly of</li>
+				<li>complimented->swished [INITIATOR_possessive] tail at</li>
+				<li>complimented->licked [RECIPIENT_nameDef] because of</li>
+				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
+				
+				<li>kindbehavior->[adv] licked</li>
+				<li>kindbehavior->[adv] nuzzled</li>
+				<li>kindbehavior->[adv] yipped at</li>
+				<li>kindbehavior->swished [INITIATOR_possessive] tail at</li>
+				
+				<li>adv->kindly</li>
+				<li>adv->affectionately</li>
+				<li>adv->appreciatively</li>
+				<li>adv->happily</li>
+				
+				<li>vulpinecompliment->[adj] rabbitheart</li>
+				<li>vulpinecompliment->[adj] chickenliver</li>
+				<li>vulpinecompliment->[adj] mouse</li>
+				<li>vulpinecompliment->[adj] blackberry</li>
+				<li>vulpinecompliment->[adj] grape</li>
+				
+				<li>adj->wonderful</li>
+				<li>adj->delightful</li>
+				<li>adj->amazing</li>
+				<li>adj->sweet</li>
+				<li>adj->lovely</li>
+				<li>adj->delicious</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Vulpine</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMYip_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind licks</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMYip_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMYip_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind licks</label>
+				<description>I've been given a kind lick! What a nice fox!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>
