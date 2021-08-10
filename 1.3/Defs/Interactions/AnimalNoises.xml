@@ -165,62 +165,6 @@
 	</ThoughtDef>
 	
 	<InteractionDef>
-		<defName>PawnmorphYip</defName>
-		<label>yip</label>
-		<workerClass>Pawnmorph.InteractionWorker_Yip</workerClass>
-		<symbol>Things/Mote/SpeechSymbols/Yip</symbol>
-		<initiatorThought>PawnmorphYip</initiatorThought>
-		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
-		<initiatorXpGainAmount>4</initiatorXpGainAmount>
-		<recipientThought>PawnmorphYip</recipientThought>
-		<logRulesInitiator>
-			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
-
-				<li>talkedabout(p=4)->yipped at</li>
-				<li>talkedabout->yapped at</li>
-				<li>talkedabout->barked to</li>
-				<li>talkedabout->sniffed</li>
-				<li>talkedabout->yipped to</li>
-				<li>talkedabout->gekkered at</li>
-				<li>talkedabout->talked about chickens with</li>
-				<li>talkedabout->swayed [INITIATOR_possessive] tail for</li>
-
-				<li>askedabout->patting [INITIATOR_possessive] fur</li>
-				<li>askedabout->vixens</li>
-				<li>askedabout->chicken hunting</li>
-				<li>askedabout->climbing fences</li>
-				<li>askedabout->chasing mice</li>
-				<li>askedabout->jumping into snow</li>
-				<li>askedabout->life in dens</li>
-				<li>askedabout->the evolution of thumbs</li>
-				<li>askedabout->digging holes</li>
-				<li>askedabout->paws</li>
-				<li>askedabout->delicious smells</li>
-				<li>askedabout->strange scents</li>
-
-			</rulesStrings>
-		</logRulesInitiator>
-	</InteractionDef>
-
-	<ThoughtDef>
-		<defName>PawnmorphYip</defName>
-		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
-		<stackLimit>300</stackLimit>
-		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
-		<nullifyingTraits>
-			<li>Psychopath</li>
-		</nullifyingTraits>
-		<stages>
-			<li>
-				<label>yip</label>
-				<baseOpinionOffset>0.1</baseOpinionOffset>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<InteractionDef>
 		<defName>PawnmorphMeow</defName>
 		<label>meow</label>
 		<workerClass>Pawnmorph.InteractionWorker_Meow</workerClass>
