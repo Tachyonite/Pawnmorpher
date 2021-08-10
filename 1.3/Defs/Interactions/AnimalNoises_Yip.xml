@@ -120,6 +120,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMYip_DeepTalk</defName>
 		<label>deep yip</label>
+		<symbol>Things/Mote/SpeechSymbols/Yip_DeepTalk</symbol>
 		<initiatorThought>PMYip_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMYip_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
@@ -177,6 +178,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMYip_DeepTalkVulpine</defName>
 		<label>deep yip vulpine</label>
+		<symbol>Things/Mote/SpeechSymbols/Yip_DeepTalk</symbol>
 		<initiatorThought>PMYip_DeepTalkVulpineMemory</initiatorThought>
 		<recipientThought>PMYip_DeepTalkVulpineMemory</recipientThought>
 		<logRulesInitiator>
@@ -277,6 +279,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMYip_Slight</defName>
 		<label>gekker</label>
+		<symbol>Things/Mote/SpeechSymbols/Yip_Slight</symbol>
 		<recipientThought>PMYip_Slight</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -333,6 +336,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMYip_Insult</defName>
 		<label>screech</label>
+		<symbol>Things/Mote/SpeechSymbols/Yip_Insult</symbol>
 		<recipientThought>PMYip_Insult</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -407,6 +411,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
 		<defName>PMYip_KindWords</defName>
 		<label>kind licks</label>
+		<symbol>Things/Mote/SpeechSymbols/Yip_KindWords</symbol>
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMYip_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
