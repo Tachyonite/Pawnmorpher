@@ -228,7 +228,7 @@
 				<li>talkedabout->talked deeply about</li>
 				<li>talkedabout->connected on the topic of</li>
 				
-				<li>caninetopic->[caninelife]</li>
+				<li>caninetopic(p=2)->[caninelife]</li>
 				<li>caninetopic->[secretcaninelife]</li>
 
 				<li>caninelife->being canine morphs</li>
@@ -350,8 +350,6 @@
 				
 				<li>refusal->refusal</li>
 				<li>refusal->unwillingness</li>
-				<li>refusal->aversion</li>
-				<li>refusal->hesitancy</li>
 				
 				<li>annoyingbehavior->tried to sniff [RECIPIENT_nameDef] in a sensitive place</li>
 				<li>annoyingbehavior->annoyingly licked [RECIPIENT_nameDef] face</li>

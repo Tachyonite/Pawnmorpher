@@ -65,6 +65,12 @@
 				<li>insult->complained that [RECIPIENT_nameDef] stinks like a wet dog</li>
 				<li>insult->threatened to clip a leash on [RECIPIENT_nameDef]</li>
 				<li>insult->threatened [RECIPIENT_nameDef] with a rolled up newspaper</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				
+				<li>insultingjoketopics->eating garbage</li>
+				<li>insultingjoketopics->fire hydrants</li>
+				<li>insultingjoketopics->dogs and legs</li>
+				<li>insultingjoketopics->rolling over</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Canine</recipientWeights>
