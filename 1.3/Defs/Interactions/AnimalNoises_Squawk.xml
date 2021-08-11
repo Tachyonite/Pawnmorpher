@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Avian</defName>
+		<requiredMutationsAny>
+			<li>EtherTurkeyBeak</li>
+			<li>EtherCassowaryBeak</li>
+			<li>EtherOstrichBeak</li>
+			<li>EtherEmuBeak</li>
+			<li>EtherGooseBeak</li>
+			<li>EtherDuckBeak</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle. A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherTurkeyBeak</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherCassowaryBeak</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherOstrichBeak</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherEmuBeak</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherGooseBeak</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherDuckBeak</key>
+				<value>0.5</value>
+			</li>
+			
+			<!-- Tails -->
+			<li>
+				<key>EtherGooseTailfeathers</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherDuckTailfeathers</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherCassowaryTailfeathers</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherEmuTailfeathers</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherOstrichTailfeathers</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherTurkeyTailfeathers</key>
+				<value>0.25</value>
+			</li>
+
+			<!-- Wings -->
+			<li>
+				<key>EtherWing</key>
+				<value>0.125</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>CassowaryMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>OstrichMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>EmuMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>DuckMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>GooseMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>TurkeyMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMSquawk_Chitchat</defName>
+		<label>squawk</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk</symbol>
+		<initiatorThought>PMSquawk_ChitchatMemory</initiatorThought>
+		<recipientThought>PMSquawk_ChitchatMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+
+				<li>talkedabout(p=4)->bokked at</li>
+				<li>talkedabout->clicked at</li>
+				<li>talkedabout->squawked to</li>
+				<li>talkedabout->chirped at</li>
+				<li>talkedabout->quacked about</li>
+				<li>talkedabout->gobbled about</li>
+				<li>talkedabout->honked at</li>
+				<li>talkedabout->turned [INITIATOR_possessive] head at</li>
+				<li>talkedabout->shook [INITIATOR_possessive] tail at</li>
+
+				<li>askedabout->preening [INITIATOR_possessive] feathers</li>
+				<li>askedabout->chickens</li>
+				<li>askedabout->emus</li>
+				<li>askedabout->cassowaries</li>
+				<li>askedabout->ostriches</li>
+				<li>askedabout->turkeys</li>
+				<li>askedabout->ducks</li>
+				<li>askedabout->geese</li>
+				<li>askedabout->birds</li>
+				<li>askedabout->flock formations</li>
+				<li>askedabout->seeds</li>
+				<li>askedabout->perches</li>
+				<li>askedabout->roosting</li>
+				<li>askedabout->coops</li>
+				<li>askedabout->nesting</li>
+				<li>askedabout->ants</li>
+				<li>askedabout->shiny things</li>
+				<li>askedabout->head scratches</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PMSquawk_ChitchatMemory</defName>
+		<stages>
+			<li>
+				<label>squawk</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMSquawk_DeepTalk</defName>
+		<label>deep squawk</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_DeepTalk</symbol>
+		<initiatorThought>PMSquawk_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMSquawk_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [birdlife] with [RECIPIENT_nameDef].</li>
+
+				<li>talkedabout->talked in depth about</li>
+				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
+				<li>talkedabout->discussed the topic of</li>
+				<li>talkedabout->had a heartfelt conversation about</li>
+				<li>talkedabout->talked quietly about</li>
+				<li>talkedabout->talked deeply about</li>
+				<li>talkedabout->told a heartfelt story about</li>
+				<li>talkedabout->shared an embarassing story about</li>
+
+				<li>birdlife->being a avian morph</li>
+				<li>birdlife->becoming a avian morph</li>
+				<li>birdlife->molting</li>
+				<li>birdlife->head scratches</li>
+				<li>birdlife->preening</li>
+				<li>birdlife->beak polishing</li>
+				<li>birdlife->talon care</li>
+				<li>birdlife->roosting</li>
+				<li>birdlife->singing</li>
+				<li>birdlife->chasing things</li>
+				<li>birdlife->squawking</li>
+				<li>birdlife->stronger sight</li>
+				<li>birdlife->nictitating membranes</li>
+				<li>birdlife->tastiest seeds</li>
+				<li>birdlife->manipulating with wings</li>
+				<li>birdlife->flocking</li>
+				<li>birdlife->head stabilization</li>
+				<li>birdlife->hackle feather grooming</li>
+				<li>birdlife->shiny things</li>
+				<li>birdlife->mutations</li>
+				<li>birdlife->broken talons</li>
+				<li>birdlife->ultraviolet color</li>
+				<li>birdlife->reversion serums</li>
+				
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMSquawk_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep bok</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- An extra form of deep talk that only happens between two avian morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMSquawk_DeepTalkAvian</defName>
+		<label>deep squawk with avian</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_DeepTalk</symbol>
+		<initiatorThought>PMSquawk_DeepTalkAvianMemory</initiatorThought>
+		<recipientThought>PMSquawk_DeepTalkAvianMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [birdtopic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [birdtopic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [birdbehavior].</li>
+
+				<li>talkedabout->communicated thoughts about</li>
+				<li>talkedabout->exchanged thoughts about</li>
+				<li>talkedabout->exchanged ideas about</li>
+				<li>talkedabout->shared views on</li>
+				<li>talkedabout->discussed the topic of</li>
+				<li>talkedabout->had a heartfelt conversation about</li>
+				<li>talkedabout->talked quietly about</li>
+				<li>talkedabout->talked deeply about</li>
+				<li>talkedabout->connected on the topic of</li>
+				
+				<li>birdtopic(p=2)->[birdlife]</li>
+				<li>birdtopic->[secretbirdlife]</li>
+
+				<li>birdlife->being avian morphs</li>
+				<li>birdlife->becoming avian morphs</li>
+				<li>birdlife->molting</li>
+				<li>birdlife->head scratches</li>
+				<li>birdlife->preening</li>
+				<li>birdlife->beak polishing</li>
+				<li>birdlife->talon care</li>
+				<li>birdlife->roosting</li>
+				<li>birdlife->singing</li>
+				<li>birdlife->chasing things</li>
+				<li>birdlife->squawking</li>
+				<li>birdlife->stronger sight</li>
+				<li>birdlife->nictitating membranes</li>
+				<li>birdlife->tastiest seeds</li>
+				<li>birdlife->manipulating with wings</li>
+				<li>birdlife->flocking</li>
+				<li>birdlife->head stabilization</li>
+				<li>birdlife->hackle feather grooming</li>
+				<li>birdlife->shiny things</li>
+				<li>birdlife->mutations</li>
+				<li>birdlife->broken talons</li>
+				<li>birdlife->ultraviolet color</li>
+				<li>birdlife->reversion serums</li>
+				
+				<li>secretbirdlife->squawking, quacking and honking</li>
+				<li>secretbirdlife->bird anatomy</li>
+				<li>secretbirdlife->keeping a clean nest</li>
+				<li>secretbirdlife->the prettiest feather colors</li>
+				<li>secretbirdlife->being in a flock together</li>
+				<li>secretbirdlife->being birds of a feather</li>
+				<li>secretbirdlife->foraging</li>
+				<li>secretbirdlife->finding worms</li>
+				<li>secretbirdlife->the pecking order</li>
+				<li>secretbirdlife->anting</li>
+				<li>secretbirdlife->nesting</li>
+				<li>secretbirdlife->mating calls</li>
+				<li>secretbirdlife->the best crowing spots</li>
+				
+				<li>birdbehavior->tapped beaks with [RECIPIENT_nameDef]</li>
+				<li>birdbehavior->bumped heads with [RECIPIENT_nameDef]</li>
+				<li>birdbehavior->and [RECIPIENT_nameDef] brushed against each other</li>
+				<li>birdbehavior->shook wings with [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Avian</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMSquawk_DeepTalkAvianMemory</defName>
+		<stages>
+			<li>
+				<label>birds of a feather</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMSquawk_Slight</defName>
+		<label>avian slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_Slight</symbol>
+		<recipientThought>PMSquawk_SlightMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [squawkedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [squawkedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[aviancharacteristic]</li>
+				
+				<li>squawkedat->squawked at</li>
+				<li>squawkedat->hissed at</li>
+				<li>squawkedat->gobbled angrily at</li>
+				<li>squawkedat->crowed aggressively at</li>
+				<li>squawkedat->squawked annoyingly at</li>
+				<li>squawkedat->honked aggressively at</li>
+								
+				<li>squawkedabout->squawked about</li>
+				<li>squawkedabout->chirped about</li>
+				<li>squawkedabout->quacked unhappily about</li>
+				<li>squawkedabout->hissed because of</li>
+				<li>squawkedabout->honked because of</li>
+				
+				<li>aviancharacteristic->eye contact</li>
+				<li>aviancharacteristic->body language</li>
+				<li>aviancharacteristic->cleanliness</li>
+				<li>aviancharacteristic->fashion sense</li>
+				<li>aviancharacteristic->voice</li>
+				<li>aviancharacteristic->[refusal] to scratch [INITIATOR_objective] on the head</li>
+				<li>aviancharacteristic->[refusal] to scratch [INITIATOR_possessive] wing</li>
+				<li>aviancharacteristic->[refusal] to let [INITIATOR_objective] perch on [RECIPIENT_possessive] shoulder</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				<li>refusal->aversion</li>
+				<li>refusal->hesitancy</li>
+				
+				<li>annoyingbehavior->tried to preen [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->squawked loudly in [RECIPIENT_nameDef] face</li>
+				<li>annoyingbehavior->preened a feather and tossed it on [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMSquawk_SlightMemory</defName>
+		<stages>
+			<li>
+				<label>squawk</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMSquawk_Insult</defName>
+		<label>avian insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_Insult</symbol>
+		<recipientThought>PMSquawk_InsultMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(p=3)->[INITIATOR_nameDef] [squawkedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [squawkedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [avianinsult].</li>
+
+				<li>comparedtargetto->called [target]</li>
+				<li>comparedtargetto->compared [target] to</li>
+				<li>comparedtargetto->hissed that [target] was</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[aviancharacteristic]</li>
+				
+				<li>squawkedat->squawked at</li>
+				<li>squawkedat->hissed at</li>
+				<li>squawkedat->crowed aggressively at</li>
+				<li>squawkedat->squawked annoyingly at</li>
+								
+				<li>squawkedabout->squawked about</li>
+				<li>squawkedabout->chirped about</li>
+				<li>squawkedabout->bokked unhappily about</li>
+				<li>squawkedabout->hissed because of</li>
+				
+				<li>aviancharacteristic->eye contact</li>
+				<li>aviancharacteristic->body language</li>
+				<li>aviancharacteristic->cleanliness</li>
+				<li>aviancharacteristic->fashion sense</li>
+				<li>aviancharacteristic->voice</li>
+				<li>aviancharacteristic->[refusal] to scratch [INITIATOR_objective] on the head</li>
+				<li>aviancharacteristic->[refusal] to scratch [INITIATOR_possessive] wing</li>
+				<li>aviancharacteristic->[refusal] to let [INITIATOR_objective] ride [RECIPIENT_possessive] shoulder</li>
+				<li>aviancharacteristic->[refusal] to compliment [INITIATOR_possessive] feathers</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				
+				<li>avianinsult->a loose twig</li>
+				<li>avianinsult->a worm</li>
+				<li>avianinsult->a late bird</li>
+				<li>avianinsult->a feather duster</li>
+				<li>avianinsult->a dinosaur</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMSquawk_InsultMemory</defName>
+		<stages>
+			<li>
+				<label>squawked at</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMSquawk_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMSquawk_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>squawked at</label>
+				<description>I've been squawked at! What an awful bird!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMSquawk_KindWords</defName>
+		<label>kind chirps</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMSquawk_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] chirped loudly comparing [RECIPIENT_nameDef] to a [aviancompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [aviancompliment].</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[aviancharacteristic]</li>
+				
+				<li>aviancharacteristic->hygeine</li>
+				<li>aviancharacteristic->body language</li>
+				<li>aviancharacteristic->seeds</li>
+				<li>aviancharacteristic->head scratching technique</li>
+				<li>aviancharacteristic->fashion sense</li>
+				<li>aviancharacteristic->voice</li>
+				<li>aviancharacteristic->shiny thing collection</li>
+				
+				<li>complimented->cawed happily about</li>
+				<li>complimented->chirped approvingly of</li>
+				<li>complimented->shook [INITIATOR_possessive] tailfeathers at</li>
+				<li>complimented->wiggled because of</li>
+				
+				<li>kindbehavior->[adv] wiggled</li>
+				<li>kindbehavior->[adv] chirped at</li>
+				<li>kindbehavior->shook [INITIATOR_possessive] tailfeathers at</li>
+				
+				<li>adv->kindly</li>
+				<li>adv->affectionately</li>
+				<li>adv->appreciatively</li>
+				<li>adv->happily</li>
+				
+				<li>aviancompliment->[adj] roost</li>
+				<li>aviancompliment->[adj] seed</li>
+				<li>aviancompliment->[adj] shiny thing</li>
+				<li>aviancompliment->[adj] twig</li>
+				<li>aviancompliment->[adj] feather</li>
+				
+				<li>adj->wonderful</li>
+				<li>adj->delightful</li>
+				<li>adj->amazing</li>
+				<li>adj->flourescent</li>
+				<li>adj->lovely</li>
+				<li>adj->beautiful</li>
+				<li>adj->sparkly</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMSquawk_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind chirp</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMSquawk_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMSquawk_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind chirp</label>
+				<description>I've been complimented! What a nice bird!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>
