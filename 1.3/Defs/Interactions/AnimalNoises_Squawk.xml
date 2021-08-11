@@ -160,6 +160,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMSquawk_DeepTalk</defName>
 		<label>deep squawk</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_DeepTalk</symbol>
 		<initiatorThought>PMSquawk_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMSquawk_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
@@ -218,6 +219,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMSquawk_DeepTalkAvian</defName>
 		<label>deep squawk with avian</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_DeepTalk</symbol>
 		<initiatorThought>PMSquawk_DeepTalkAvianMemory</initiatorThought>
 		<recipientThought>PMSquawk_DeepTalkAvianMemory</recipientThought>
 		<logRulesInitiator>
@@ -304,6 +306,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMSquawk_Slight</defName>
 		<label>avian slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_Slight</symbol>
 		<recipientThought>PMSquawk_SlightMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -368,6 +371,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMSquawk_Insult</defName>
 		<label>avian insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_Insult</symbol>
 		<recipientThought>PMSquawk_InsultMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -445,6 +449,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
 		<defName>PMSquawk_KindWords</defName>
 		<label>kind chirps</label>
+		<symbol>Things/Mote/SpeechSymbols/Squawk_KindWords</symbol>
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMSquawk_KindWordsMemory</recipientThought>
 		<logRulesInitiator>

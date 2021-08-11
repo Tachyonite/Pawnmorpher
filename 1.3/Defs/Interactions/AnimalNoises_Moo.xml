@@ -358,7 +358,7 @@
 		<stages>
 			<li>
 				<label>mooed at</label>
-				<description>I've been mooed at! What an awful cow!</description>
+				<description>I've been insultingly mooed at! What an awful cow!</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
