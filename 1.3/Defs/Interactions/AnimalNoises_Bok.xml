@@ -91,6 +91,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMBok_ChookDeepTalk</defName>
 		<label>deep bok</label>
+		<symbol>Things/Mote/SpeechSymbols/Bok_DeepTalk</symbol>
 		<initiatorThought>PMBok_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMBok_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
@@ -106,8 +107,8 @@
 				<li>talkedabout->told a heartfelt story about</li>
 				<li>talkedabout->shared an embarassing story about</li>
 
-				<li>birdlife->being chookmorphs</li>
-				<li>birdlife->becoming chookmorphs</li>
+				<li>birdlife->being a chookmorph</li>
+				<li>birdlife->becoming a chookmorph</li>
 				<li>birdlife->molting</li>
 				<li>birdlife->comb care</li>
 				<li>birdlife->preening</li>
@@ -149,6 +150,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMBok_ChookDeepTalkAvian</defName>
 		<label>deep bok with chook</label>
+		<symbol>Things/Mote/SpeechSymbols/Bok_DeepTalk</symbol>
 		<initiatorThought>PMBok_DeepTalkAvianMemory</initiatorThought>
 		<recipientThought>PMBok_DeepTalkAvianMemory</recipientThought>
 		<logRulesInitiator>
@@ -237,6 +239,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMBok_ChookSlight</defName>
 		<label>chookmorph slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Bok_Slight</symbol>
 		<recipientThought>PMBok_Slight</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -296,6 +299,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMBok_ChookInsult</defName>
 		<label>chook insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Bok_Insult</symbol>
 		<recipientThought>PMBok_Insult</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -372,6 +376,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
 		<defName>PMBok_ChookKindWords</defName>
 		<label>kind boks</label>
+		<symbol>Things/Mote/SpeechSymbols/Bok_KindWords</symbol>
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMBok_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
