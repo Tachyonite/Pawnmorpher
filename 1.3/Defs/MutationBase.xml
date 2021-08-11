@@ -8,7 +8,7 @@
 			<solid>true</solid>
 		</addedPartProps>
 		<isBad>false</isBad>
-		<maxSeverity>2</maxSeverity> <!-- the custom severity per day comp on most mutations will limit this to 1 for most pawns  -->
+		<maxSeverity>3</maxSeverity> <!-- the custom severity per day comp on most mutations will limit this to 1 for most pawns  -->
 		<minSeverity>-2</minSeverity>
 		<initialSeverity>0</initialSeverity>
 	</Pawnmorph.Hediffs.MutationDef>
