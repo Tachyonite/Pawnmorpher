@@ -88,6 +88,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMMoo_DeepTalk</defName>
 		<label>deep moo</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_DeepTalk</symbol>
 		<initiatorThought>PMMoo_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMMoo_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
@@ -145,6 +146,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMMoo_DeepTalkCow</defName>
 		<label>deep moo with cow</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_DeepTalk</symbol>
 		<initiatorThought>PMMoo_DeepTalkCowMemory</initiatorThought>
 		<recipientThought>PMMoo_DeepTalkCowMemory</recipientThought>
 		<logRulesInitiator>
@@ -163,7 +165,7 @@
 				<li>talkedabout->talked deeply about</li>
 				<li>talkedabout->connected on the topic of</li>
 				
-				<li>cowtopic->[cowlife]</li>
+				<li>cowtopic(p=2)->[cowlife]</li>
 				<li>cowtopic->[secretcowlife]</li>
 
 				<li>cowlife->becoming a cowmorph</li>
@@ -230,6 +232,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMMoo_Slight</defName>
 		<label>cow slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_Slight</symbol>
 		<recipientThought>PMMoo_Slight</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -289,7 +292,8 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMMoo_Insult</defName>
 		<label>cow insult</label>
-		<recipientThought>PMMoo_Insult</recipientThought>
+		<symbol>Things/Mote/SpeechSymbols/Moo_Insult</symbol>
+		<recipientThought>PMMoo_InsultMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry(p=3)->[INITIATOR_nameDef] [mooedat] [RECIPIENT_nameDef].</li>
@@ -339,7 +343,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 
 	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
-		<defName>PMMoo_Insult</defName>
+		<defName>PMMoo_InsultMemory</defName>
 		<stages>
 			<li>
 				<label>mooed at</label>
@@ -365,6 +369,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
 		<defName>PMMoo_KindWords</defName>
 		<label>kind moos</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_KindWords</symbol>
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMMoo_KindWordsMemory</recipientThought>
 		<logRulesInitiator>

@@ -169,7 +169,7 @@
 				<li>talkedabout->talked deeply about</li>
 				<li>talkedabout->connected on the topic of</li>
 				
-				<li>birdtopic->[birdlife]</li>
+				<li>birdtopic(p=2)->[birdlife]</li>
 				<li>birdtopic->[secretbirdlife]</li>
 
 				<li>birdlife->being chookmorphs</li>
@@ -240,7 +240,7 @@
 		<defName>PMBok_ChookSlight</defName>
 		<label>chookmorph slight</label>
 		<symbol>Things/Mote/SpeechSymbols/Bok_Slight</symbol>
-		<recipientThought>PMBok_Slight</recipientThought>
+		<recipientThought>PMBok_SlightMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [squawkedat] [RECIPIENT_nameDef].</li>
@@ -285,7 +285,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 	
 	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
-		<defName>PMBok_Slight</defName>
+		<defName>PMBok_SlightMemory</defName>
 		<stages>
 			<li>
 				<label>bukaw</label>
@@ -300,7 +300,7 @@
 		<defName>PMBok_ChookInsult</defName>
 		<label>chook insult</label>
 		<symbol>Things/Mote/SpeechSymbols/Bok_Insult</symbol>
-		<recipientThought>PMBok_Insult</recipientThought>
+		<recipientThought>PMBok_InsultMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry(p=3)->[INITIATOR_nameDef] [squawkedat] [RECIPIENT_nameDef].</li>
@@ -350,7 +350,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 
 	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
-		<defName>PMBok_Insult</defName>
+		<defName>PMBok_InsultMemory</defName>
 		<stages>
 			<li>
 				<label>crowed at</label>

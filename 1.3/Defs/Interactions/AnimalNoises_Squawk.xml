@@ -175,8 +175,8 @@
 				<li>talkedabout->told a heartfelt story about</li>
 				<li>talkedabout->shared an embarassing story about</li>
 
-				<li>birdlife->being avian morphs</li>
-				<li>birdlife->becoming avian morphs</li>
+				<li>birdlife->being a avian morph</li>
+				<li>birdlife->becoming a avian morph</li>
 				<li>birdlife->molting</li>
 				<li>birdlife->head scratches</li>
 				<li>birdlife->preening</li>
@@ -236,7 +236,7 @@
 				<li>talkedabout->talked deeply about</li>
 				<li>talkedabout->connected on the topic of</li>
 				
-				<li>birdtopic->[birdlife]</li>
+				<li>birdtopic(p=2)->[birdlife]</li>
 				<li>birdtopic->[secretbirdlife]</li>
 
 				<li>birdlife->being avian morphs</li>
@@ -304,7 +304,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMSquawk_Slight</defName>
 		<label>avian slight</label>
-		<recipientThought>PMSquawk_Slight</recipientThought>
+		<recipientThought>PMSquawk_SlightMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [squawkedat] [RECIPIENT_nameDef].</li>
@@ -354,7 +354,7 @@
 
 
 	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
-		<defName>PMSquawk_Slight</defName>
+		<defName>PMSquawk_SlightMemory</defName>
 		<stages>
 			<li>
 				<label>squawk</label>
@@ -368,7 +368,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMSquawk_Insult</defName>
 		<label>avian insult</label>
-		<recipientThought>PMSquawk_Insult</recipientThought>
+		<recipientThought>PMSquawk_InsultMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry(p=3)->[INITIATOR_nameDef] [squawkedat] [RECIPIENT_nameDef].</li>
@@ -419,7 +419,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 
 	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
-		<defName>PMSquawk_Insult</defName>
+		<defName>PMSquawk_InsultMemory</defName>
 		<stages>
 			<li>
 				<label>squawked at</label>
