@@ -236,10 +236,9 @@ namespace Pawnmorph.Hediffs
             }
 
             if (Halted) return 0;
-            float statValue = MutationAdaptability.Value + SeverityOffset;
-            float maxSeverity = Mathf.Max(statValue, 1);
-            float minSeverity = Mathf.Min(statValue, 0); //have the stat influence how high or low the severity can be 
-            float sMult = Props.statEffectMult * (statValue + 1);
+            float maxSeverity = EffectiveMax;
+            float minSeverity = Mathf.Min(EffectiveMax, 0); //have the stat influence how high or low the severity can be 
+            float sMult = Props.statEffectMult * (EffectiveMax + 1);
             float sevPerDay = base.SeverityChangePerDay() * sMult;
             //make sure the severity can only stay between the max and min 
             if (parent.Severity > maxSeverity) sevPerDay = Mathf.Min(0, sevPerDay);
@@ -248,6 +247,9 @@ namespace Pawnmorph.Hediffs
 
             return sevPerDay * Mathf.Max(StatAdjust.Value, 0); //take the mutagen sensitivity stat into account 
         }
+
+
+        internal float EffectiveMax => Mathf.Max(MutationAdaptability.Value, 1) + SeverityOffset;
 
         private void CheckIfHalted()
         {
