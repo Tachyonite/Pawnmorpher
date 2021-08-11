@@ -89,26 +89,12 @@
 		<stackLimit>300</stackLimit>
 		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
 		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
-		<stages>
-			<li>
-				<label>kind animal noises</label>
-				<baseOpinionOffset>15</baseOpinionOffset>
-			</li>
-		</stages>
-		<thoughtToMake>PMAnimalNoise_KindWordsMood</thoughtToMake>
 	</ThoughtDef>
 	
 	<ThoughtDef Name="PMAnimalNoise_KindWordsMood" Abstract="true">
 		<durationDays>2</durationDays>
 		<stackLimit>10</stackLimit>
 		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
-		<stages>
-			<li>
-				<label>kind words</label>
-				<description>I've been bestowed with kind words! What a nice person!</description>
-				<baseMoodEffect>5</baseMoodEffect>
-			</li>
-		</stages>
 	</ThoughtDef>
 
 </Defs>
