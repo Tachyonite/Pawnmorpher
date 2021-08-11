@@ -73,6 +73,16 @@
 		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PawnmorphMoo</defName> <!-- keeping def name for compatibility reasons -->
+		<stages>
+			<li>
+				<label>moo</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 	
 	<!-- Deep talk -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">

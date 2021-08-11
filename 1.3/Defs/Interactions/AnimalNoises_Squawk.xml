@@ -104,8 +104,8 @@
 		<defName>PMSquawk_Chitchat</defName>
 		<label>squawk</label>
 		<symbol>Things/Mote/SpeechSymbols/Squawk</symbol>
-		<initiatorThought>PawnmorphSquawk</initiatorThought>
-		<recipientThought>PawnmorphSquawk</recipientThought>
+		<initiatorThought>PMSquawk_ChitchatMemory</initiatorThought>
+		<recipientThought>PMSquawk_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
@@ -146,7 +146,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 
 	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
-		<defName>PawnmorphSquawk</defName>
+		<defName>PMSquawk_ChitchatMemory</defName>
 		<stages>
 			<li>
 				<label>squawk</label>
