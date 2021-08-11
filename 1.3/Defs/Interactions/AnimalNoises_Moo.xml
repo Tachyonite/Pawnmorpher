@@ -376,7 +376,6 @@
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] chirped loudly comparing [RECIPIENT_nameDef] to a [cowcompliment].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [cowcompliment].</li>
 				
 				<li>characteristic->[PersonalCharacteristic]</li>
@@ -390,13 +389,13 @@
 				
 				<li>complimented->mooed happily about</li>
 				<li>complimented->mooed approvingly of</li>
-				<li>complimented->wagged [INITIATOR_possessive] tail at</li>
-				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
+				<li>complimented->swished [INITIATOR_possessive] tail at</li>
+				<li>complimented->nosed [RECIPIENT_nameDef] because of</li>
 				
 				<li>kindbehavior->[adv] sung a [adj] moo</li>
-				<li>kindbehavior->[adv] nuzzled</li>
+				<li>kindbehavior->[adv] nosed</li>
 				<li>kindbehavior->[adv] mooed at</li>
-				<li>kindbehavior->shook [INITIATOR_possessive] tail at</li>
+				<li>kindbehavior->swished [INITIATOR_possessive] tail at</li>
 				
 				<li>adv->kindly</li>
 				<li>adv->affectionately</li>

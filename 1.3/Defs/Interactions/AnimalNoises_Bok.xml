@@ -397,14 +397,12 @@
 				
 				<li>complimented->bokked happily about</li>
 				<li>complimented->crowed approvingly of</li>
-				<li>complimented->shook [INITIATOR_possessive] tail at</li>
+				<li>complimented->shook [INITIATOR_possessive] tailfeathes at</li>
 				<li>complimented->wiggled because of</li>
-				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
 				
 				<li>kindbehavior->[adv] wiggled</li>
-				<li>kindbehavior->[adv] nuzzled</li>
 				<li>kindbehavior->[adv] bokked at</li>
-				<li>kindbehavior->shook [INITIATOR_possessive] tail at</li>
+				<li>kindbehavior->shook [INITIATOR_possessive] tailfeathers at</li>
 				
 				<li>adv->kindly</li>
 				<li>adv->affectionately</li>
