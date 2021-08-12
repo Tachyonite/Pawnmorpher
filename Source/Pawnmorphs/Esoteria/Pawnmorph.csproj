@@ -503,6 +503,7 @@
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_AddRandomAspect.cs" />
+    <Compile Include="IngestionOutcomeDoer_GiveHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="IPMThingComp.cs" />
