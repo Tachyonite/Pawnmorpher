@@ -41,6 +41,42 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherAlpacaSnout>
+					<EtherGazelleJaw>
+						<path>Parts/Gazelle/Gazelle_Jaw</path>
+						<severity>
+							<a0.5>Parts/Gazelle/Gazelle_Jaw</a0.5>
+							<a0.3>Parts/Partials/PartialMuzzle/PartialSnoutOvine</a0.3>
+							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
+							<a0.0>Parts/None/None</a0.0>
+						</severity>
+					</EtherGazelleJaw>
+					<EtherCapybaraJaw>
+						<path>Parts/Capybara/Capybara_Jaw</path>
+						<severity>
+							<a0.5>Parts/Capybara/Capybara_Jaw</a0.5>
+							<a0.3>Parts/Partials/PartialMuzzle/PartialSnoutOvine</a0.3>
+							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
+							<a0.0>Parts/None/None</a0.0>
+						</severity>
+					</EtherCapybaraJaw>
+					<EtherCaribouJaw>
+						<path>Parts/Caribou/Caribou_Jaw</path>
+						<severity>
+							<a0.5>Parts/Caribou/Caribou_Jaw</a0.5>
+							<a0.3>Parts/Partials/PartialMuzzle/PartialSnoutOvine</a0.3>
+							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
+							<a0.0>Parts/None/None</a0.0>
+						</severity>
+					</EtherCaribouJaw>
+					<EtherDromedaryJaw>
+						<path>Parts/Dromedary/Dromedary_Jaw</path>
+						<severity>
+							<a0.5>Parts/Dromedary/Dromedary_Jaw</a0.5>
+							<a0.3>Parts/Partials/PartialMuzzle/PartialSnoutOvine</a0.3>
+							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
+							<a0.0>Parts/None/None</a0.0>
+						</severity>
+					</EtherDromedaryJaw>
 					<EtherArcticWolfJaw>
 						<path>Parts/wolfface/wolfface</path>
 						<severity>
@@ -439,6 +475,31 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
+					<EtherGazelleEar>
+						<path>Parts/Gazelle/Gazelle_Ear_Left</path>
+						<severity>
+							<a1.0>Parts/Gazelle/Gazelle_Ear_Left</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
+						</severity>
+					</EtherGazelleEar>
+
+					<EtherCaribouEar>
+						<path>Parts/Caribou/Caribou_Ear_Left</path>
+						<severity>
+							<a1.0>Parts/Caribou/Caribou_Ear_Left</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
+						</severity>
+					</EtherCaribouEar>
+
+					<EtherDromedaryEar>
+						<path>Parts/Dromedary/Dromedary_Ear_Left</path>
+						<severity>
+							<a1.0>Parts/Dromedary/Dromedary_Ear_Left</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
+						</severity>
+					</EtherDromedaryEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left</EtherCapybaraEar>
+
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Left</EtherHorseEar>
 					<EtherHuskyEar>Parts/Husky/Husky_Ear_Left</EtherHuskyEar>
@@ -479,6 +540,31 @@
 					<EtherDeerEar>Parts/Deer/Deer_Ear_Left_Behind</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left_Behind</EtherDonkeyEar>
 					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Left_Behind</EtherElephantEar>
+					<EtherGazelleEar>
+						<path>Parts/Gazelle/Gazelle_Ear_Left_Behind</path>
+						<severity>
+							<a1.0>Parts/Gazelle/Gazelle_Ear_Left_Behind</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
+						</severity>
+					</EtherGazelleEar>
+
+					<EtherCaribouEar>
+						<path>Parts/Caribou/Caribou_Ear_Left_Behind</path>
+						<severity>
+							<a1.0>Parts/Caribou/Caribou_Ear_Left_Behind</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
+						</severity>
+					</EtherCaribouEar>
+
+					<EtherDromedaryEar>
+						<path>Parts/Dromedary/Dromedary_Ear_Left_Behind</path>
+						<severity>
+							<a1.0>Parts/Dromedary/Dromedary_Ear_Left_Behind</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
+						</severity>
+					</EtherDromedaryEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left_Behind</EtherCapybaraEar>
+
 					<EtherFoxEar>
 						<path>Parts/FoxUpdated/RedFox_Ear_Left_Behind</path>
 						<severity>
@@ -561,6 +647,31 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
+					<EtherGazelleEar>
+						<path>Parts/Gazelle/Gazelle_Ear_Right</path>
+						<severity>
+							<a1.0>Parts/Gazelle/Gazelle_Ear_Right</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
+						</severity>
+					</EtherGazelleEar>
+
+					<EtherCaribouEar>
+						<path>Parts/Caribou/Caribou_Ear_Right</path>
+						<severity>
+							<a1.0>Parts/Caribou/Caribou_Ear_Right</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
+						</severity>
+					</EtherCaribouEar>
+
+					<EtherDromedaryEar>
+						<path>Parts/Dromedary/Dromedary_Ear_Right</path>
+						<severity>
+							<a1.0>Parts/Dromedary/Dromedary_Ear_Right</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
+						</severity>
+					</EtherDromedaryEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right</EtherCapybaraEar>
+
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Right</EtherHorseEar>
 					<EtherHuskyEar>Parts/Husky/Husky_Ear_Right</EtherHuskyEar>
@@ -622,6 +733,31 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
+					<EtherGazelleEar>
+						<path>Parts/Gazelle/Gazelle_Ear_Right_Behind</path>
+						<severity>
+							<a1.0>Parts/Gazelle/Gazelle_Ear_Right_Behind</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
+						</severity>
+					</EtherGazelleEar>
+
+					<EtherCaribouEar>
+						<path>Parts/Caribou/Caribou_Ear_Right_Behind</path>
+						<severity>
+							<a1.0>Parts/Caribou/Caribou_Ear_Right_Behind</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
+						</severity>
+					</EtherCaribouEar>
+
+					<EtherDromedaryEar>
+						<path>Parts/Dromedary/Dromedary_Ear_Right_Behind</path>
+						<severity>
+							<a1.0>Parts/Dromedary/Dromedary_Ear_Right_Behind</a1.0>
+							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
+						</severity>
+					</EtherDromedaryEar>
+					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right_Behind</EtherCapybaraEar>
+
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Right_Behind</EtherHorseEar>
 					<EtherHuskyEar>Parts/Husky/Husky_Ear_Right_Behind</EtherHuskyEar>
@@ -694,6 +830,11 @@
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
+					<EtherGazelleTail>Parts/Gazelle/Gazelle_Tail</EtherGazelleTail>
+					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
+					<EtherCapybaraTail>Parts/Capybara/Capybara_Tail</EtherCapybaraTail>
+					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
+
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -859,6 +1000,9 @@
 						</severity>
 					</EtherGoatHorns>
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
+					<EtherGazelleAntlers>Parts/Gazelle/Gazelle_Antlers</EtherGazelleAntlers>
+					<EtherCaribouAntlers>Parts/Caribou/Caribou_Antlers</EtherCaribouAntlers>
+
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 				</hediffGraphics>
 			</li>

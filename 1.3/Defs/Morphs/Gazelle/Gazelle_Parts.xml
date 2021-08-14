@@ -1,12 +1,12 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="CaribouPart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>CaribouMorph</classInfluence>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="GazellePart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>GazelleMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
-		<defName>EtherCaribouJaw</defName>
-		<label>caribou snout</label>
-		<description>TODO</description>
+	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
+		<defName>EtherGazelleJaw</defName>
+		<label>gazelle snout</label>
+		<description>[PAWN_namdDef]'s face has pushed out into a muzzle like that on a gazelle</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -60,33 +60,59 @@
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
-		<defName>EtherCaribouEar</defName>
-		<label>caribou ear</label>
-		<description>TODO</description>
+	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
+		<defName>EtherGazelleEar</defName>
+		<label>gazelle ear</label>
+		<description>[PAWN_nameDef]'s ears have grown into long, pointed, gazelle ears</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
 		</parts>
-		<mutationMemory>EtherCaribouEar</mutationMemory>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pointed</labelOverride>
+				<minSeverity>0</minSeverity>
+				<description>[PAWN_nameDef]'s ears are growing longer</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<partEfficiencyOffset>0.3</partEfficiencyOffset>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.8</severityPerDay>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
-		<defName>EtherCaribouTail</defName>
-		<label>caribou tail</label>
-		<description>TODO</description>
+	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
+		<defName>EtherGazelleTail</defName>
+		<label>gazelle tail</label>
+		<description>[PAWN_nameDef] has a small gazelle tail</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
 			<li>MorphTail</li>
 		</parts>
-		<mutationMemory>EtherCaribouTail</mutationMemory>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.01</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
-		<defName>EtherCaribouAntlers</defName>
-		<label>caribou antlers</label>
-		<description>TODO</description>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
+		<defName>EtherGazelleAntlers</defName>
+		<label>gazelle antlers</label>
+		<description>[PAWN_nameDef] has grown large, graceful, gazelle horns</description>
 		<parts>
 			<li>Skull</li>
 		</parts>
@@ -113,21 +139,17 @@
 		<initialSeverity>0.1</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>TODO</label>
-				<statOffsets>
-					<SocialImpact>+0.02</SocialImpact>
-				</statOffsets>
+				<label>small nubs</label>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.3</minSeverity>
-				<label>TODO</label>
+				<label>small horns</label>
 				<statOffsets>
 					<SocialImpact>+0.07</SocialImpact>
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.7</minSeverity>
-				<label>TODO</label>
 				<statOffsets>
 					<SocialImpact>+0.15</SocialImpact>
 				</statOffsets>
