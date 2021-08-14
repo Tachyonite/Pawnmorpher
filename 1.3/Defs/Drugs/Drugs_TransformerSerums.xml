@@ -1,4 +1,26 @@
 <Defs>
+	<ThingDef Abstract="true" ParentName="SerumBase" Name="BaseicTransformerBase">
+		<statBases>
+			<WorkToMake>300</WorkToMake>
+			<MarketValue>100</MarketValue>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>SerumSynthesis</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>2</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+
 	<ThingDef Abstract="true" ParentName="SerumBase" Name="TransformerBase">
 		<statBases>
 			<WorkToMake>400</WorkToMake>
@@ -20,7 +42,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="TransformerBase">
+	<ThingDef ParentName="BaseicTransformerBase">
 		<defName>RandomTransformer</defName>
 		<label>mutaserum</label>
 		<description>A serum filled with mechanites and animal DNA that causes random mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
