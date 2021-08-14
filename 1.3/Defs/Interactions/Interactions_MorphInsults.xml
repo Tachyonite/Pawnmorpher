@@ -449,7 +449,7 @@
 		<recipientWeights>PMInteractionWeights_Boom</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	
-	<!-- Insults aimed at porcines -->
+	<!-- Insults aimed at suids -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMOink_DirectedInsult</defName>
 		<label>directed pig insult</label>
@@ -502,5 +502,70 @@
 			</rulesStrings>
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Suid</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<!-- Insults aimed at chaomorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMChao_DirectedInsult</defName>
+		<label>directed chao insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [chaocharictaristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [insult].</li>
+
+				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
+
+				<li>insulted(p=3)->insulted</li>
+				<li>insulted->openly insulted</li>
+				<li>insulted->loudly insulted</li>
+				<li>insulted->flagrantly insulted</li>
+				<li>insulted->directly insulted</li>
+				<li>insulted->viciously insulted</li>
+				<li>insulted->flagrantly disrespected</li>
+				<li>insulted->slandered</li>
+				<li>insulted->hurled invective about</li>
+				<li>insulted->derided</li>
+
+				<li>chaocharictaristic->smell</li>
+				<li>chaocharictaristic->stench</li>
+				<li>chaocharictaristic->weird noises</li>
+				<li>chaocharictaristic->mismatched body</li>
+				<li>chaocharictaristic->warped body</li>
+				<li>chaocharictaristic->freakish appearance</li>
+				<li>chaocharictaristic->jumbled-up organs</li>
+
+				<li>insultcomparison->zoo</li>
+				<li>insultcomparison->one-[man] biology exhibit</li>
+				<li>insultcomparison->one-[man] farm</li>
+				<li>insultcomparison->walking see-n-say</li>
+				<li>insultcomparison->frankenstein's monster</li>
+				<li>insultcomparison->supermarket meat department</li>
+				<li>insultcomparison->all-in-one breakfast dispenser</li>
+				<li>insultcomparison->chimera</li>
+				<li>insultcomparison->freak of nature</li>
+				<li>insultcomparison->mutagen addict</li>
+				<li>insultcomparison->evolutionary mistake</li>
+				<li>insultcomparison->pile of animal parts</li>
+				<li>insultcomparison->animal grab bag</li>
+				<li>insultcomparison->[man]-[Animal]-[Animal]</li>
+				
+				<li>man(initiator_gender==Male)->man</li>
+				<li>man(initiator_gender==Female)->woman</li>
+
+				<li>insult->remarked that [RECIPIENT_nameDef] looks like a cross between a [Animal], a [Animal], and a [Animal]</li>
+				<li>insult->told [RECIPIENT_nameDef] to stop making so many different animal sounds</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->an explosion in the taxonomy department</li>
+				<li>insultingjoketopics->leftover animal parts</li>
+				<li>insultingjoketopics->unlikely conceptions</li>
+				<li>insultingjoketopics->swimming in mutaslurry</li>
+				<li>insultingjoketopics->man-bear-pigs</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Chao</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 </Defs>
