@@ -134,6 +134,7 @@ namespace Pawnmorph
         /// <value>
         /// All associated animals.
         /// </value>
+        [NotNull]
         public IReadOnlyList<ThingDef> AllAssociatedAnimals
         {
             get
