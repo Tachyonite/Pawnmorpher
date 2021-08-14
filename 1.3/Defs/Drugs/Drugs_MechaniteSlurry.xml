@@ -8,8 +8,8 @@
 			<texPath>Things/Item/Drug/Slurry</texPath>
 		</graphicData>
 		<statBases>
-			<WorkToMake>200</WorkToMake>
-			<MarketValue>80</MarketValue>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>55</MarketValue>
 			<MutaniteConcentration>0.07</MutaniteConcentration>
 		</statBases>
 		<thingCategories>

@@ -8,8 +8,8 @@
 			<texPath>Things/Item/Drug/Antigen</texPath>
 		</graphicData>
 		<statBases>
-			<WorkToMake>200</WorkToMake>
-			<MarketValue>90</MarketValue>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>100</MarketValue>
 			<MutaniteConcentration>0</MutaniteConcentration>
 		</statBases>
 		<thingCategories>
@@ -78,7 +78,7 @@
 		</graphicData>
 		<techLevel>Neolithic</techLevel>
 		<statBases>
-			<MarketValue>40</MarketValue>
+			<MarketValue>50</MarketValue>
 			<Mass>0.35</Mass>
 			<Flammability>1.3</Flammability>
 			<DeteriorationRate>6</DeteriorationRate>
@@ -98,6 +98,7 @@
 			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 		</recipeMaker>
 	</ThingDef>
+	
 	<ThingDef ParentName="MedicineBase">
 		<defName>PM_AdaptionCream</defName>
 		<label>adaption cream</label>
@@ -109,7 +110,7 @@
 		</graphicData>
 		<techLevel>Industrial</techLevel>
 		<statBases>
-			<MarketValue>100</MarketValue>
+			<MarketValue>50</MarketValue>
 			<Mass>0.35</Mass>
 			<Flammability>1.3</Flammability>
 			<DeteriorationRate>6</DeteriorationRate>

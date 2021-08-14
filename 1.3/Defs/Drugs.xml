@@ -9,8 +9,8 @@
 			<li>Injector</li>
 		</thingCategories>
 		<statBases>
-			<WorkToMake>800</WorkToMake>
-			<MarketValue>500</MarketValue>
+			<WorkToMake>4000</WorkToMake>
+			<MarketValue>400</MarketValue>
 			<Mass>0.01</Mass>
 		</statBases>
 		<techLevel>Ultra</techLevel>
@@ -28,6 +28,7 @@
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>3</MechaniteSlurry>
+			<Neutroamine>4</Neutroamine>
 		</costList>
 					<comps>
 						<li Class="CompProperties_Drug">
