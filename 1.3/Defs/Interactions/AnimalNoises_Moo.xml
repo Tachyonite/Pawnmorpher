@@ -51,6 +51,7 @@
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
 				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] mooed at [RECIPIENT_nameDef] to [askedaboutme].</li>
 
 				<li>talkedabout(p=4)->mooed at</li>
 				<li>talkedabout->whined at</li>
@@ -62,12 +63,19 @@
 				<li>askedabout->milk</li>
 				<li>askedabout->hooves</li>
 				<li>askedabout->oats</li>
-				<li>askedabout->grass</li>
 				<li>askedabout->herds</li>
 				<li>askedabout->horns</li>
 				<li>askedabout->stables</li>
 				<li>askedabout->hay</li>
 				<li>askedabout->snout pats</li>
+				<li>askedabout->eating grass</li>
+				<li>askedabout->chewing cud</li>
+				<li>askedabout->dairy farms</li>
+
+				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
+				<li>askedaboutme->change [INITIATOR_objective] back</li>
+				<li>askedaboutme->give [INITIATOR_objective] hay</li>
+				<li>askedaboutme->give [INITIATOR_objective] a bell</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>

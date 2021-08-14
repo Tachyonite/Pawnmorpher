@@ -52,11 +52,16 @@
 				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
 
 				<li>talkedabout(p=4)->bokked at</li>
-				<li>talkedabout->bokked at</li>
+				<li>talkedabout->clucked at</li>
 				<li>talkedabout->crowed to</li>
 				<li>talkedabout->clucked at</li>
 				<li>talkedabout->turned [INITIATOR_possessive] head at</li>
 				<li>talkedabout->shook [INITIATOR_possessive] tail at</li>
+				<li>talkedabout->squawcked at</li>
+				<li>talkedabout->cawed at</li>
+				<li>talkedabout->talked about eggs with</li>
+				<li>talkedabout->chatted about plumage styling tips with</li>
+				<li>talkedabout->preened [INITIATOR_objective] feathers towards</li>
 
 				<li>askedabout->preening [INITIATOR_possessive] feathers</li>
 				<li>askedabout->chickens</li>
@@ -70,7 +75,13 @@
 				<li>askedabout->nesting</li>
 				<li>askedabout->eggs</li>
 				<li>askedabout->head scratches</li>
-
+				<li>askedabout->laying eggs for [RECIPIENT_objective]</li>
+				<li>askedabout->collecting eggs</li>
+				<li>askedabout->battery farms</li>
+				<li>askedabout->free-range living</li>
+				<li>askedabout->roosters</li>
+				<li>askedabout->eggs</li>
+				<li>askedabout->hens</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Chook</initiatorWeights>
