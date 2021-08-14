@@ -316,7 +316,7 @@
 		<recipientWeights>PMInteractionWeights_Chook</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	
-		<!-- Insults aimed at SheepMorphs -->
+	<!-- Insults aimed at SheepMorphs -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMBleat_DirectedInsult</defName>
 		<label>directed sheep insult</label>
@@ -351,12 +351,16 @@
 				<li>ovinecharacteristic->size</li>
 				<li>ovinecharacteristic->[refusal] to stop shaving around [INITIATOR_objective]</li>
 
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+
 				<li>insultcomparison->ugly sweater</li>
 				<li>insultcomparison->lintball</li>
 				<li>insultcomparison->wooly goat</li>
 				<li>insultcomparison->sweatshop supplier</li>
 				<li>insultcomparison->lamb sauce</li>
 				<li>insultcomparison->wolf in sheep's clothing</li>
+				<li>insultcomparison->sheep in wolf's clothing</li>
 				<li>insultcomparison->hay muncher</li>
 				<li>insultcomparison->cotton plant</li>
 
@@ -368,6 +372,7 @@
 
 				<li>insultingjoketopics->sheep stuck on their backs</li>
 				<li>insultingjoketopics->shepherds</li>
+				<li>insultingjoketopics->sheepdogs</li>
 				<li>insultingjoketopics->herding animals</li>
 				<li>insultingjoketopics->wolves and sheep</li>
 				<li>insultingjoketopics->aggressive rams</li>
