@@ -40,7 +40,7 @@
 			      <li>MechaniteSlurry</li>
 				</disallowedThingDefs>
 			</filter>
-			<count>1.0</count>
+			<count>0.5</count>
 		  </li>
 		</ingredients>
 		<workAmount>400</workAmount>
@@ -66,7 +66,7 @@
 			      <li>MechaniteSlurry</li>
 				</disallowedThingDefs>
 			</filter>
-			<count>4.0</count>
+			<count>2.0</count>
 		  </li>
 		</ingredients>
 		<workAmount>1600</workAmount>
