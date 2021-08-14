@@ -79,9 +79,14 @@
 				<li>askedabout->collecting eggs</li>
 				<li>askedabout->battery farms</li>
 				<li>askedabout->free-range living</li>
+				<li>askedabout->alternative livestock</li>
+				<li>askedabout->chicken rights</li>
+				<li>askedabout->cannibalism</li>
+				<li>askedabout->egg substitutes</li>
 				<li>askedabout->roosters</li>
 				<li>askedabout->eggs</li>
 				<li>askedabout->hens</li>
+				<li>askedabout->whether [RECIPIENT_pronoun] eats chicken</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Chook</initiatorWeights>
@@ -130,12 +135,15 @@
 				<li>birdlife->chasing things</li>
 				<li>birdlife->clucking</li>
 				<li>birdlife->alarm calls</li>
-				<li>birdlife->tastiest seeds</li>
+				<li>birdlife->the tastiest seeds</li>
 				<li>birdlife->nictitating membranes</li>
 				<li>birdlife->manipulating with wings</li>
 				<li>birdlife->resisting instinct</li>
 				<li>birdlife->head stabilization</li>
 				<li>birdlife->hackle feather grooming</li>
+				<li>birdlife->alternative livestock</li>
+				<li>birdlife->chicken rights</li>
+				<li>birdlife->whether eating chookmorph meat is cannibalism</li>
 				<li>birdlife->mutations</li>
 				<li>birdlife->broken talons</li>
 				<li>birdlife->peripheral vision</li>
@@ -223,6 +231,7 @@
 				<li>secretbirdlife->sunbathing</li>
 				<li>secretbirdlife->mating calls</li>
 				<li>secretbirdlife->the best crowing spots</li>
+				<li>secretbirdlife->the guilty pleasure of fried chicken</li>
 				
 				<li>birdbehavior->tapped beaks with [RECIPIENT_nameDef]</li>
 				<li>birdbehavior->and [RECIPIENT_nameDef] brushed against each other</li>

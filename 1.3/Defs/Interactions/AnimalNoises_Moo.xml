@@ -71,6 +71,12 @@
 				<li>askedabout->eating grass</li>
 				<li>askedabout->chewing cud</li>
 				<li>askedabout->dairy farms</li>
+				<li>askedabout->factory farming</li>
+				<li>askedabout->alternative livestock</li>
+				<li>askedabout->cow rights</li>
+				<li>askedabout->almond milk</li>
+				<li>askedabout->cannibalism</li>
+				<li>askedabout->whether [RECIPIENT_pronoun] eats steak</li>
 
 				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
 				<li>askedaboutme->change [INITIATOR_objective] back</li>
@@ -130,11 +136,13 @@
 				<li>cowlife->milking gloves</li>
 				<li>cowlife->grass</li>
 				<li>cowlife->carrots</li>
+				<li>cowlife->alternative livestock</li>
+				<li>cowlife->cow rights</li>
+				<li>cowlife->whether eating cowmorph meat is cannibalism</li>
 				<li>cowlife->mutations</li>
 				<li>cowlife->living with hooves</li>
 				<li>cowlife->peripheral vision</li>
 				<li>cowlife->reversion serums</li>
-				
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
@@ -212,6 +220,7 @@
 				<li>secretcowlife->freedom</li>
 				<li>secretcowlife->bulls</li>
 				<li>secretcowlife->the best sun basking spots</li>
+				<li>secretcowlife->how steak actually tastes pretty good</li>
 				
 				<li>cowbehavior->snorted understandingly at [RECIPIENT_nameDef]</li>
 				<li>cowbehavior->mooed in unison with [RECIPIENT_nameDef]</li>
