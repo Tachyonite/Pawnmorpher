@@ -163,12 +163,21 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
             if (role == null) enumer = jobRitual.assignments.Participants.Where(p => MutagenDefOf.defaultMutagen.CanInfect(p));
             else
                 enumer = (jobRitual.assignments?.AssignedPawns(role)).MakeSafe();
-            int take = Mathf.Max(0, outcome.positivityIndex * Rand.Range(1, 2));
-            if (take == 0) yield break;
 
             _scratchList.Clear();
             _scratchList.AddRange(enumer);
+            float maxOutcome = jobRitual?.Ritual?.def?.ritualPatternBase?.ritualOutcomeEffect?.outcomeChances
+                                       ?.MaxBy(c => c.positivityIndex)
+                                       ?.positivityIndex
+                            ?? 1f;
+            maxOutcome = Mathf.Max(maxOutcome, 1);
+            float outcomeAdj = outcome.positivityIndex
+                             / (maxOutcome * 1.3f);
+            int max = Mathf.CeilToInt(_scratchList.Count * Rand.Range(0.1f + outcomeAdj, 0.4f + outcomeAdj));
+            int take = Mathf.Max(0, max);
+            if (take == 0) yield break;
 
+         
             var i = 0;
             while (i < take && _scratchList.Count > 0)
             {
