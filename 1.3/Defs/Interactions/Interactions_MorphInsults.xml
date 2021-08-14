@@ -316,10 +316,70 @@
 		<recipientWeights>PMInteractionWeights_Chook</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	
+		<!-- Insults aimed at SheepMorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBleat_DirectedInsult</defName>
+		<label>directed sheep insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [ovinecharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
+
+				<li>insulted(p=3)->insulted</li>
+				<li>insulted->openly insulted</li>
+				<li>insulted->loudly insulted</li>
+				<li>insulted->flagrantly insulted</li>
+				<li>insulted->directly insulted</li>
+				<li>insulted->viciously insulted</li>
+				<li>insulted->flagrantly disrespected</li>
+				<li>insulted->slandered</li>
+				<li>insulted->hurled invective about</li>
+				<li>insulted->derided</li>
+
+				<li>ovinecharacteristic->wool</li>
+				<li>ovinecharacteristic->horns</li>
+				<li>ovinecharacteristic->eyes</li>
+				<li>ovinecharacteristic->retangular pupils</li>
+				<li>ovinecharacteristic->hooves</li>
+				<li>ovinecharacteristic->bleating</li>
+				<li>ovinecharacteristic->heat</li>
+				<li>ovinecharacteristic->size</li>
+				<li>ovinecharacteristic->[refusal] to stop shaving around [INITIATOR_objective]</li>
+
+				<li>insultcomparison->ugly sweater</li>
+				<li>insultcomparison->lintball</li>
+				<li>insultcomparison->wooly goat</li>
+				<li>insultcomparison->sweatshop supplier</li>
+				<li>insultcomparison->lamb sauce</li>
+				<li>insultcomparison->wolf in sheep's clothing</li>
+				<li>insultcomparison->hay muncher</li>
+				<li>insultcomparison->cotton plant</li>
+
+				<li>insult->complained that [RECIPIENT_possessive] wool gets in the way</li>
+				<li>insult->suggested that [RECIPIENT_nameDef] baa more quietly</li>
+				<li>insult->yelled at [RECIPIENT_nameDef] to stop shaving around [INITIATOR_objective]</li>
+				<li>insult->insinuated that [RECIPIENT_nameDef] does not think for [RECIPIENT_objective]self</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->sheep stuck on their backs</li>
+				<li>insultingjoketopics->shepherds</li>
+				<li>insultingjoketopics->herding animals</li>
+				<li>insultingjoketopics->wolves and sheep</li>
+				<li>insultingjoketopics->aggressive rams</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Sheep</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
 	<!-- Insults aimed at boomalopes -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMBoom_DirectedInsult</defName>
-		<label>boomalope insult</label>
+		<label>directed boomalope insult</label>
 		<recipientThought>PMTalk_Insult</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
