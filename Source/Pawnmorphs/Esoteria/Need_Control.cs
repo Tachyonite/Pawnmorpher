@@ -77,7 +77,13 @@ namespace Pawnmorph
             if (tracker == null) return;
             tracker.AspectAdded += OnAspectAdded;
             tracker.AspectRemoved += AspectRemoved;
+            tracker.AspectStageChanged += OnAspectStageChanged;
             _subscribed = true; 
+        }
+
+        private void OnAspectStageChanged(AspectTracker sender, Aspect aspect, int laststage)
+        {
+            ResetCaches();
         }
 
         private void OnAspectAdded(AspectTracker sender, Aspect _)
@@ -299,11 +305,8 @@ namespace Pawnmorph
             {
                 if (_limit == null)
                 {
-                    if (_maxLevelCached == null)
-                    {
-                        return pawn.GetStatValue(PMStatDefOf.SapienceLimit) * AVERAGE_MAX_SAPIENCE;
-                    }
-                    _limit = pawn.GetStatValue(PMStatDefOf.SapienceLimit) * (_maxLevelCached.Value) ; 
+                   
+                    _limit = pawn.GetStatValue(PMStatDefOf.SapienceLimit) * MaxLevel; 
                 }
 
                 return _limit.Value; 
