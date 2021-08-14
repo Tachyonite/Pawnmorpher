@@ -1,8 +1,8 @@
 <Defs>
-	<ThingDef Abstract="true" ParentName="SerumBase" Name="BaseicTransformerBase">
+	<ThingDef Abstract="true" ParentName="SerumBase" Name="BasicTransformerBase">
 		<statBases>
-			<WorkToMake>300</WorkToMake>
-			<MarketValue>100</MarketValue>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>120</MarketValue>
 		</statBases>
 		<recipeMaker>
 			<researchPrerequisite>SerumSynthesis</researchPrerequisite>
@@ -42,7 +42,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseicTransformerBase">
+	<ThingDef ParentName="BasicTransformerBase">
 		<defName>RandomTransformer</defName>
 		<label>mutaserum</label>
 		<description>A serum filled with mechanites and animal DNA that causes random mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
