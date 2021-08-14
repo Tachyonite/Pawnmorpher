@@ -10,6 +10,7 @@
 		<thingCategories>
 			<li>AnimalProductRaw</li>
 			<li>Drugs</li>
+			<li>RawMutagen</li>
 		</thingCategories>
 		<socialPropernessMatters>false</socialPropernessMatters>
 		<ingestible>
@@ -24,7 +25,7 @@
 			<Flammability>0.2</Flammability>
 			<Nutrition>0.05</Nutrition>
 			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
-			<MutaniteConcentration>0.02</MutaniteConcentration>
+			<MutaniteConcentration>0.2</MutaniteConcentration>
 		</statBases>
 	</ThingDef>
 

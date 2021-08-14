@@ -1,140 +1,78 @@
 <Defs>
-	<RecipeDef>
-		<defName>Make_SlurryFromMutonite</defName>
-		<label>make slurry from mutanite</label>
-		<description>Break down a hunk of mutanite into a vial of slurry.</description>
-		<jobString>Refining slurry from mutanite.</jobString>
+	<RecipeDef Name="Make_SlurryBase" Abstract="True">
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
-		<workAmount>2000</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Mutanite</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Mutanite</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<MechaniteSlurry>1</MechaniteSlurry>
-		</products>
 		<recipeUsers>
 			<li>DrugLab</li>
 			<li>MutagenLab</li>
 		</recipeUsers>
 		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 		<workSkill>Intellectual</workSkill>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredientValueGetterClass>Pawnmorph.IngredientValueGetter_Mutanite</ingredientValueGetterClass>
+		<fixedIngredientFilter>
+		  <categories>
+            <li>RawMutagen</li>
+          </categories>
+		  <disallowedThingDefs>
+			<li>Antigen</li>
+			<li>Glowvine</li>
+			<li>MechaniteSlurry</li>
+		  </disallowedThingDefs>
+		</fixedIngredientFilter>
 	</RecipeDef>
 	
-	<RecipeDef>
-		<defName>Make_SlurryFromMutoniteBulk</defName>
-		<label>make slurry from mutanite x4</label>
-		<description>Break down in bulk mutanite into 4 vials of slurry.</description>
-		<jobString>Refining 4 slurry from mutanite.</jobString>
-		<effectWorking>Cook</effectWorking>
-		<soundWorking>Recipe_Brewing</soundWorking>
-		<workAmount>8000</workAmount>
-		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+	<RecipeDef ParentName="Make_SlurryBase">
+		<defName>Make_Slurry</defName>
+		<label>make slurry from mutagens</label>
+		<description>Make slurry using mechanites from different mutagens.</description>
+		<jobString>Refining slurry.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Mutanite</li>
-					</thingDefs>
-				</filter>
-				<count>4</count>
-			</li>
+		  <li>
+			<filter>
+				<categories>
+				  <li>RawMutagen</li>
+				</categories>
+			    <disallowedThingDefs>
+				  <li>Antigen</li>
+				  <li>Glowvine</li>
+			      <li>MechaniteSlurry</li>
+				</disallowedThingDefs>
+			</filter>
+			<count>1.0</count>
+		  </li>
 		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Mutanite</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<MechaniteSlurry>4</MechaniteSlurry>
-		</products>
-		<recipeUsers>
-			<li>DrugLab</li>
-			<li>MutagenLab</li>
-		</recipeUsers>
-		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
-		<workSkill>Intellectual</workSkill>
-	</RecipeDef>
-	<RecipeDef>
-		<defName>Make_SlurryFromChaobulbs</defName>
-		<label>make slurry from chaobulbs</label>
-		<description>Extract the active mechanites from chaobulb seedpods into slurry.</description>
-		<jobString>Refining slurry from chaobulbs.</jobString>
-		<effectWorking>Cook</effectWorking>
-		<soundWorking>Recipe_Brewing</soundWorking>
-		<workAmount>1000</workAmount>
-		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Chaobulb</li>
-					</thingDefs>
-				</filter>
-				<count>5</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Chaobulb</li>
-			</thingDefs>
-		</fixedIngredientFilter>
+		<workAmount>400</workAmount>
 		<products>
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</products>
-		<recipeUsers>
-			<li>DrugLab</li>
-			<li>MutagenLab</li>
-		</recipeUsers>
-		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
-		<workSkill>Intellectual</workSkill>
 	</RecipeDef>
-
-	<RecipeDef>
-		<defName>Make_SlurryFromChaobulbsBulk</defName>
-		<label>make slurry from chaobulbs x4</label>
-		<description>Bulk extract the active mechanites from chaobulb seedpods into slurry.</description>
-		<jobString>Refining 4 slurry from chaobulbs.</jobString>
-		<effectWorking>Cook</effectWorking>
-		<soundWorking>Recipe_Brewing</soundWorking>
-		<workAmount>4000</workAmount>
-		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+	
+	<RecipeDef ParentName="Make_SlurryBase">
+		<defName>Make_SlurryBulk</defName>
+		<label>make slurry from mutagens x4</label>
+		<description>Make slurry using mechanites from different mutagens.</description>
+		<jobString>Refining 4 slurry.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Chaobulb</li>
-					</thingDefs>
-				</filter>
-				<count>20</count>
-			</li>
+		  <li>
+			<filter>
+				<categories>
+				  <li>RawMutagen</li>
+				</categories>
+			    <disallowedThingDefs>
+				  <li>Antigen</li>
+				  <li>Glowvine</li>
+			      <li>MechaniteSlurry</li>
+				</disallowedThingDefs>
+			</filter>
+			<count>4.0</count>
+		  </li>
 		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Chaobulb</li>
-			</thingDefs>
-		</fixedIngredientFilter>
+		<workAmount>1600</workAmount>
 		<products>
 			<MechaniteSlurry>4</MechaniteSlurry>
 		</products>
-		<recipeUsers>
-			<li>DrugLab</li>
-			<li>MutagenLab</li>
-		</recipeUsers>
-		<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 	</RecipeDef>
 	
 	<RecipeDef>
