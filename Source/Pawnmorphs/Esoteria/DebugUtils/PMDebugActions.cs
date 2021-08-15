@@ -334,7 +334,7 @@ namespace Pawnmorph.DebugUtils
             if (pawn == null) return;
 
 
-            var mutations = morph?.AllAssociatedMutations;
+            IEnumerable<MutationDef> mutations = morph?.AllAssociatedMutations;
             if (mutations == null)
                 mutations = DefDatabase<MutationDef>.AllDefs;
 

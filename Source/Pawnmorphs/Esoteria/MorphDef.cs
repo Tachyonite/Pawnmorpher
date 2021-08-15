@@ -174,7 +174,7 @@ namespace Pawnmorph
         /// <summary>Gets the collection of all mutations associated with this morph def</summary>
         /// <value>All associated mutations.</value>
         [NotNull]
-        public IEnumerable<MutationDef> AllAssociatedMutations
+        public IReadOnlyList<MutationDef> AllAssociatedMutations
         {
             get
             {

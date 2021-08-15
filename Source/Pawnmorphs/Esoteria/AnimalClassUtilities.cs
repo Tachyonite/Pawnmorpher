@@ -75,7 +75,7 @@ namespace Pawnmorph
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">animalClass</exception>
         [NotNull]
-        public static IEnumerable<MutationDef> GetAllMutationIn([NotNull] this AnimalClassDef animalClass)
+        public static IReadOnlyList<MutationDef> GetAllMutationIn([NotNull] this AnimalClassDef animalClass)
         {
             if (animalClass == null) throw new ArgumentNullException(nameof(animalClass));
             if (_mutationClassCache.TryGetValue(animalClass, out List<MutationDef> mutations))
@@ -202,7 +202,7 @@ namespace Pawnmorph
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">animalClass</exception>
         [NotNull]
-        public static IEnumerable<MutationDef> GetAllMutationIn([NotNull] this AnimalClassBase animalClass)
+        public static IReadOnlyList<MutationDef> GetAllMutationIn([NotNull] this AnimalClassBase animalClass)
         {
             if (animalClass == null) throw new ArgumentNullException(nameof(animalClass));
             if (animalClass is AnimalClassDef aClass)

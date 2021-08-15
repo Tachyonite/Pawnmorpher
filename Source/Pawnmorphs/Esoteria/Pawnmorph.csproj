@@ -411,6 +411,7 @@
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutagenicInfecter.cs" />
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
+    <Compile Include="Hediffs\CompRemoveNonPart.cs" />
     <Compile Include="Hediffs\Comp_RestartMutationProgression.cs" />
     <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
     <Compile Include="Hediffs\FullTransformationStage.cs" />
@@ -418,6 +419,7 @@
     <Compile Include="Hediffs\Giver_MutationClass.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\IInitializable.cs" />
+    <Compile Include="Hediffs\ITfHediffObserverComp.cs" />
     <Compile Include="Hediffs\IRaceMutationRetriever.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
     <Compile Include="Hediffs\MorphTransformationStage.cs" />

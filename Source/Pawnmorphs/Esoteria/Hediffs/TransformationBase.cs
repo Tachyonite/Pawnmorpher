@@ -26,7 +26,28 @@ namespace Pawnmorph.Hediffs
         private int _curIndex;
         private int _curMutationIndex;
 
+        private List<ITfHediffObserverComp> _observerComps;
 
+
+        /// <summary>
+        /// all observer comps to notify when adding mutations and visiting parts to add mutations onto.
+        /// </summary>
+        /// <value>
+        /// The observer comps.
+        /// </value>
+        [NotNull]
+        protected IReadOnlyList<ITfHediffObserverComp> ObserverComps
+        {
+            get
+            {
+                if (_observerComps == null)
+                {
+                    _observerComps = comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList();
+                }
+
+                return _observerComps;
+            }
+        }
         /// <summary>
         /// Gets a value indicating whether this transformation hediff blocks the race checking 
         /// </summary>
@@ -214,6 +235,11 @@ namespace Pawnmorph.Hediffs
                 var adjComp = mutation.TryGetComp<Comp_MutationSeverityAdjust>();
                 adjComp?.Restart();
             }
+
+            foreach (ITfHediffObserverComp comp in ObserverComps)
+            {
+                comp.Init();
+            }
         }
 
         private int _lastStageIndex = -1; 
@@ -299,6 +325,11 @@ namespace Pawnmorph.Hediffs
                 Pedantic($"Executing {execStage.GetType().Name} on {def.defName}");
                 execStage.EnteredStage(this); 
             }
+
+            foreach (ITfHediffObserverComp comp in ObserverComps)
+            {
+                comp.StageChanged();
+            }
         }
 
         /// <summary>
@@ -361,15 +392,21 @@ namespace Pawnmorph.Hediffs
                 //add whole body mutations 
                 int mutationsAdded=0;
 
+                foreach (ITfHediffObserverComp comp in ObserverComps)
+                {
+                    comp.Observe(null); //call observers in case there is anything they do with whole body slots 
+                }
+
                 for (var index = 0; index < _wholeBodyParts.Count; index++)
                 {
                     MutationEntry mutationEntry = _wholeBodyParts[index];
                     if (Rand.Value < mutationEntry.addChance)
                     {
-                        MutationUtilities.AddMutation(pawn, mutationEntry.mutation);
-                        var mutagen = def.GetMutagenDef();
-                        mutagen.TryApplyAspects(pawn);
-                        mutationsAdded++;
+                        MutationResult m = MutationUtilities.AddMutation(pawn, mutationEntry.mutation);
+                        if (m) NotifyObserversMutationsAdded(m);
+                        MutagenDef mutagen = def.GetMutagenDef();
+                       mutagen.TryApplyAspects(pawn);
+                       mutationsAdded++;
                     }
 
                     if (mutationsAdded >= MinMutationsPerCheck) break;
@@ -379,6 +416,17 @@ namespace Pawnmorph.Hediffs
                     OnMutationsAdded(mutationsAdded); 
             }
             
+        }
+
+        private void NotifyObserversMutationsAdded(MutationResult m)
+        {
+            foreach (ITfHediffObserverComp comp in ObserverComps)
+            {
+                foreach (Hediff_AddedMutation mutation in m)
+                {
+                    comp.MutationAdded(mutation);
+                }
+            }
         }
 
         /// <summary>
@@ -436,7 +484,14 @@ namespace Pawnmorph.Hediffs
                     break;
                 }
 
+                //call the observers before anything else. they may add/remove/change mutations on this part on their own 
+                foreach (ITfHediffObserverComp comp in ObserverComps)
+                {
+                    comp.Observe(part);
+                }
+
                 var lst = _scratchDict.TryGetValue(part.def);
+
 
                 if (lst == null) //end check early if there are no parts that can be added 
                 {
@@ -458,9 +513,11 @@ namespace Pawnmorph.Hediffs
                     }
                     else if (Rand.Value < mutation.addChance)
                     {
-                        var result = MutationUtilities.AddMutation(pawn, mutation.mutation, part);
+                        MutationResult result = MutationUtilities.AddMutation(pawn, mutation.mutation, part);
                         if(result) //make sure the mutation was actually added before doing this 
                         {
+                            NotifyObserversMutationsAdded(result);
+
                             mutationsAdded = NewMethod(mutationsAdded);
                         }
                     }
@@ -538,6 +595,11 @@ namespace Pawnmorph.Hediffs
                     {
                         _wholeBodyParts.Add(availableMutation); 
                     }
+                }
+
+                foreach (ITfHediffObserverComp comp in ObserverComps)
+                {
+                    comp.Init();
                 }
             }
             catch (NullReferenceException e)
