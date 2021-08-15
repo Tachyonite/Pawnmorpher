@@ -311,7 +311,7 @@
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [complained] at [RECIPIENT_nameDef].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [complained] about [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
 				<li>target(p=4)->[RECIPIENT_nameDef]</li>
 				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
@@ -365,9 +365,9 @@
 				<li>refusal->refusal</li>
 				<li>refusal->unwillingness</li>
 				
-				<li>annoyingbehavior->tried to sniff [RECIPIENT_nameDef] in a sensitive place</li>
-				<li>annoyingbehavior->annoyingly licked [RECIPIENT_nameDef] face</li>
-				<li>annoyingbehavior->annoyingly mouthed [RECIPIENT_nameDef]'s hand</li>
+				<li>annoyingbehavior->made strange gurgling noises as some part of [INITIATOR_possessive] chaobiology settled down, grossing out [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->burped repeatedly as [INITIATOR_possessive] mismatched digestive system worked out some kinks, to the disgust of [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->began to groom [INITIATOR_possessive] own mutated biology like a [Animal] in front of [RECIPIENT_nameDef]</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
