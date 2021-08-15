@@ -43,11 +43,11 @@ namespace Pawnmorph.HPatches
                 //Ascetics have a different thought that doesn't take room quality into account
                 if (actor.story.traits.HasTrait(TraitDefOf.Ascetic))
                 {
-                    if (roomRole == RoomRoleDefOf.Bedroom)
+                    if (roomRole == RoomRoleDefOf.Bedroom && group.asceticRoomThought != null)
                     {
                         memories.TryGainMemory(ThoughtMaker.MakeThought(group.asceticRoomThought, 0));
                     }
-                    else if (roomRole == RoomRoleDefOf.Barracks)
+                    else if (roomRole == RoomRoleDefOf.Barracks && group.asceticRoomThought != null)
                     {
                         memories.TryGainMemory(ThoughtMaker.MakeThought(group.asceticRoomThought, 1));
                     }
@@ -55,11 +55,11 @@ namespace Pawnmorph.HPatches
                 else
                 {
                     int scoreStageIndex = RoomStatDefOf.Impressiveness.GetScoreStageIndex(building_Bed.GetRoom().GetStat(RoomStatDefOf.Impressiveness));
-                    if (roomRole == RoomRoleDefOf.Bedroom)
+                    if (roomRole == RoomRoleDefOf.Bedroom && group.bedroomThoughtReplacement != null)
                     {
                         memories.TryGainMemory(ThoughtMaker.MakeThought(group.bedroomThoughtReplacement, scoreStageIndex));
                     }
-                    else if (roomRole == RoomRoleDefOf.Barracks)
+                    else if (roomRole == RoomRoleDefOf.Barracks && group.barrakThoughtReplacement != null)
                     {
                         memories.TryGainMemory(ThoughtMaker.MakeThought(group.barrakThoughtReplacement, scoreStageIndex));
                     }
