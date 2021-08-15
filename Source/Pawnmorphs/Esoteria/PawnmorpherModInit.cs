@@ -182,12 +182,13 @@ namespace Pawnmorph
 
             var severityLst =
                 new List<AlienPartGenerator.BodyAddonHediffSeverityGraphic>();
-            foreach (MutationStage stage in mutationStages)
+            for (var index = mutationStages.Count - 1; index >= 0; index--)
             {
+                MutationStage stage = mutationStages[index];
                 MutationGraphicsData
                     graphic = stage.graphics.MakeSafe()
                                    .FirstOrDefault(s => s.anchorID
-                                                     == anchorID); //fill the severity graphics if they are present in acceding order 
+                                                     == anchorID); //fill the severity graphics if they are present in descending order 
                 if (graphic != null)
                     severityLst.Add(new AlienPartGenerator.BodyAddonHediffSeverityGraphic
                     {

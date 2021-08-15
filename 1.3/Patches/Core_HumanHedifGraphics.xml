@@ -469,14 +469,6 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
-					<EtherGazelleEar>
-						<path>Parts/Gazelle/Gazelle_Ear_Left</path>
-						<severity>
-							<a1.0>Parts/Gazelle/Gazelle_Ear_Left</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
-						</severity>
-					</EtherGazelleEar>
-
 					<EtherCaribouEar>
 						<path>Parts/Caribou/Caribou_Ear_Left</path>
 						<severity>
@@ -535,13 +527,7 @@
 					<EtherDeerEar>Parts/Deer/Deer_Ear_Left_Behind</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left_Behind</EtherDonkeyEar>
 					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Left_Behind</EtherElephantEar>
-					<EtherGazelleEar>
-						<path>Parts/Gazelle/Gazelle_Ear_Left_Behind</path>
-						<severity>
-							<a1.0>Parts/Gazelle/Gazelle_Ear_Left_Behind</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
-						</severity>
-					</EtherGazelleEar>
+
 
 					<EtherCaribouEar>
 						<path>Parts/Caribou/Caribou_Ear_Left_Behind</path>
@@ -643,14 +629,6 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
-					<EtherGazelleEar>
-						<path>Parts/Gazelle/Gazelle_Ear_Right</path>
-						<severity>
-							<a1.0>Parts/Gazelle/Gazelle_Ear_Right</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
-						</severity>
-					</EtherGazelleEar>
-
 					<EtherCaribouEar>
 						<path>Parts/Caribou/Caribou_Ear_Right</path>
 						<severity>
@@ -730,14 +708,6 @@
 							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
 						</severity>
 					</EtherFennecFoxEar>
-					<EtherGazelleEar>
-						<path>Parts/Gazelle/Gazelle_Ear_Right_Behind</path>
-						<severity>
-							<a1.0>Parts/Gazelle/Gazelle_Ear_Right_Behind</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
-						</severity>
-					</EtherGazelleEar>
-
 					<EtherCaribouEar>
 						<path>Parts/Caribou/Caribou_Ear_Right_Behind</path>
 						<severity>
