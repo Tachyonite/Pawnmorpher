@@ -955,9 +955,10 @@
 					<PM_HellhoundHeadspike>Parts/COMBINATIONS/Hellhound/Hellhound_Headspikes</PM_HellhoundHeadspike>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Skullspikes -->
 				<debug>false</debug>
+				<anchorID>Skullspike</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -968,9 +969,10 @@
 					<EtherIguanaHorns>Parts/Iguana/Iguana_Spines</EtherIguanaHorns>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Horns -->
 				<debug>false</debug>
+				<anchorID>Horns</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -1005,9 +1007,10 @@
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Cobra Hood (Foreground) -->
 				<debug>false</debug>
+				<anchorID>CobraHood</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -1022,9 +1025,10 @@
 					<EtherSnakeHood>Parts/Cobra/Cobra_Hood</EtherSnakeHood>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Cobra Hood (Background) -->
 				<debug>false</debug>
+				<anchorID>CobraHoodBackground</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -1038,8 +1042,9 @@
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Udders -->
+				<anchorID>Udders</anchorID>
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>Waist</bodyPart>
@@ -1069,11 +1074,12 @@
 					</east>
 				</offsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Wings -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>Arm</bodyPart>
+				<anchorID>Wings</anchorID>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawnInBed>false</drawnInBed>
 				<hediffGraphics>
@@ -1093,9 +1099,10 @@
 					</east>
 				</offsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Spines -->
 				<debug>false</debug>
+				<anchorID>Spines</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1116,9 +1123,10 @@
 					</east>
 				</offsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Torsos -->
 				<debug>false</debug>
+				<anchorID>Torso</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -1142,9 +1150,10 @@
 					</east>
 				</offsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Torsos Behind-->
 				<debug>false</debug>
+				<anchorID>TorsoBehind</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>

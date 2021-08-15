@@ -86,7 +86,6 @@ namespace Pawnmorph
 
                 List<MutationStage> mutationStages = new List<MutationStage>();
                 List<string> anchors = new List<string>();
-                StringBuilder builder = new StringBuilder(); 
                 //now go throw all mutations and any with graphics 
                 foreach (MutationDef mutation in MutationDef.AllMutations)
                 {
@@ -96,7 +95,6 @@ namespace Pawnmorph
                             .Concat(mStages.SelectMany(s => s.graphics.MakeSafe().Select(g => g.anchorID))); //all anchor ids in those stages 
                     anchors.Clear();
                     anchors.AddRange(lq.Distinct()); //make sure the list is distinct 
-                    builder.AppendLine($"searching anchors:[{string.Join(",", anchors)}] in {mutation.defName}");
 
                     foreach (var anchor in anchors)
                     {
@@ -117,14 +115,11 @@ namespace Pawnmorph
                             if (hediffGraphic == null) continue;
                             if (addon.hediffGraphics == null) addon.hediffGraphics = new List<HediffGraphic>();
 
-                            builder.AppendLine($"loaded hediff graphics on {anchor} for {mutation.defName}");
                             addon.hediffGraphics.Add(hediffGraphic);
                             AppendPools(hediffGraphic, addon); 
                         }
                     }
                 }
-
-                Log.Message(builder.ToString()); 
 
 
 
