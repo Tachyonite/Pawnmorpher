@@ -31,7 +31,14 @@ namespace Pawnmorph
         [NotNull] private static readonly Dictionary<AnimalClassBase, float> _trickleCache = new Dictionary<AnimalClassBase, float>();
         [NotNull] private static readonly List<AnimalClassBase> _pickedInfluencesCache = new List<AnimalClassBase>();
         [NotNull] private static readonly List<AnimalClassBase> _removeList = new List<AnimalClassBase>();
+
+        [NotNull] private static readonly Dictionary<AnimalClassBase, IReadOnlyList<ThingDef>> _associatedAnimalsCached =
+            new Dictionary<AnimalClassBase, IReadOnlyList<ThingDef>>(); 
+
+        const float BASE_ASSOCIATED_ANIMAL_BONUS_MUL = 0.25f;
+        private const float FALL_OFF = 1.2f; 
         
+
         static AnimalClassUtilities()
         {
             foreach (AnimalClassDef animalClassDef in DefDatabase<AnimalClassDef>.AllDefs)
@@ -83,6 +90,110 @@ namespace Pawnmorph
             _mutationClassCache[animalClass] = mutations;
             return mutations; 
         }
+
+
+
+        /// <summary>
+        /// Gets the associated animal bonus.
+        /// </summary>
+        /// <param name="mDef">The m definition.</param>
+        /// <param name="targetAnimal">The target animal.</param>
+        /// <param name="maxHeight">The maximum height.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// mDef
+        /// or
+        /// targetAnimal
+        /// </exception>
+        public static float GetAssociatedAnimalBonus([NotNull] this MorphDef mDef, [NotNull] ThingDef targetAnimal, int maxHeight=int.MaxValue)
+        {
+            if (mDef == null) throw new ArgumentNullException(nameof(mDef));
+            if (targetAnimal == null) throw new ArgumentNullException(nameof(targetAnimal));
+
+            if (mDef.AllAssociatedAnimals.Contains(targetAnimal)) return BASE_ASSOCIATED_ANIMAL_BONUS_MUL + 1;
+            int i = 0;
+            AnimalClassBase aC = mDef.ParentClass;
+            float bonus = BASE_ASSOCIATED_ANIMAL_BONUS_MUL; 
+            while (aC != null && i < maxHeight)
+            {
+                bonus /= FALL_OFF;
+                if (aC.GetAssociatedAnimals().Contains(targetAnimal))
+                {
+                    return bonus + 1; 
+                }
+
+                aC = aC.ParentClass;
+                i++; 
+            }
+
+            return 1;
+        }
+
+        /// <summary>
+        /// Gets a list of all animals 'adjacent' to this morph.
+        /// </summary>
+        /// <param name="mDef">The morph definition definition.</param>
+        /// <param name="height">how many parents up to look for adjacent animals</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">mDef</exception>
+        /// <exception cref="ArgumentOutOfRangeException">height &lt; 0</exception>
+        /// get a list of all animals 'adjacent' to this morph by getting all associated animals for this morph and
+        /// all animals associated with it's 'height''th parent class
+        public static IReadOnlyList<ThingDef> GetAdjacentAnimals([NotNull] this MorphDef mDef, int height=1)
+        {
+            if (mDef == null) throw new ArgumentNullException(nameof(mDef));
+            if (height < 0) throw new ArgumentOutOfRangeException(nameof(height));
+            if (height == 0) return mDef.AllAssociatedAnimals;
+
+            var i = 0;
+            AnimalClassBase aClass = mDef;
+
+            while (i < height)
+            {
+                AnimalClassDef nextClass = aClass.ParentClass;
+                i++;
+                if (nextClass == null) return GetAssociatedAnimals(aClass);
+            }
+
+            return GetAssociatedAnimals(aClass);
+        }
+
+        /// <summary>
+        /// Gets the associated animals for the given animal class 
+        /// </summary>
+        /// <param name="animalClass">The animal class.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">animalClass</exception>
+        [NotNull]
+        public static IReadOnlyList<ThingDef> GetAssociatedAnimals([NotNull] this AnimalClassBase animalClass)
+        {
+            if (animalClass == null) throw new ArgumentNullException(nameof(animalClass));
+
+            if (_associatedAnimalsCached.TryGetValue(animalClass, out var lst)) return lst;
+
+            if (animalClass is MorphDef mD)
+            {
+                _associatedAnimalsCached[animalClass] = mD.AllAssociatedAnimals;
+                return mD.AllAssociatedAnimals; 
+            }
+
+            List<ThingDef> newLst = new List<ThingDef>();
+
+            foreach (AnimalClassBase child in animalClass.Children)
+            {
+                foreach (ThingDef animal in GetAssociatedAnimals(child))
+                {
+                    if (!newLst.Contains(animal))
+                        newLst.Add(animal); 
+                }
+            }
+
+            _associatedAnimalsCached[animalClass] = newLst;
+            return newLst; 
+
+        }
+
+        
 
         /// <summary>
         /// Gets all mutation in this class 

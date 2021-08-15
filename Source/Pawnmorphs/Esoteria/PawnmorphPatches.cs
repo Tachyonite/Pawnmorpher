@@ -124,7 +124,8 @@ namespace Pawnmorph
             }
 
             ConversionUtilityPatches.PreformPatches(harmonyInstance);
-            ThoughtWorkerPatches.DoPatches(harmonyInstance); 
+            ThoughtWorkerPatches.DoPatches(harmonyInstance);
+            InteractionPatches.PatchDelegateMethods(harmonyInstance); 
         }
 
         private static void PatchMods([NotNull] Harmony harmonyInstance)

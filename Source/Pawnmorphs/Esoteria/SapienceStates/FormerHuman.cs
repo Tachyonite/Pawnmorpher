@@ -160,6 +160,7 @@ namespace Pawnmorph.SapienceStates
                     AddSapientAnimalComponents(); 
                     break;
                 case SapienceLevel.Feral:
+                    MakeFeral();
                     AddSapientAnimalComponents();//ferals need to keep them so stuff doesn't break, like relationships 
                     RemoveNonFeralComps(); 
                     break;

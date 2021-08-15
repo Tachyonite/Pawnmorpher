@@ -295,6 +295,7 @@ namespace Pawnmorph
                 UndoEffectsOfStage(def.stages[lastStage]);
 
             CalculateSkillChanges();
+            Tracker?.Notify_StageChanged(this, lastStage); 
         }
 
         /// <summary>

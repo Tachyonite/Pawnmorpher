@@ -1,15 +1,19 @@
 ﻿// InteractionPatches.cs modified by Iron Wolf for Pawnmorph on 12/10/2019 6:31 PM
 // last updated 12/10/2019  6:31 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -24,6 +28,130 @@ namespace Pawnmorph.HPatches
         static InteractionPatches()
         {
             _pawnNeedField = typeof(Need).GetField("pawn", BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+
+        internal static void PatchDelegateMethods([NotNull] Harmony harInstance)
+        {
+            if (harInstance == null) throw new ArgumentNullException(nameof(harInstance));
+
+            try
+            {
+                Type mainType = typeof(Toils_Interpersonal);
+                var nTypes = mainType
+                            .GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Public)
+                            .Where(t => t.IsCompilerGenerated()
+                                              && t.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+                                                  .Any(m => m.Name.Contains("TryTrain")));
+                
+
+        
+               
+
+                MethodInfo transpiler =
+                    typeof(InteractionPatches).GetMethod(nameof(TrainingTranspiler),
+                                                         BindingFlags.Static | BindingFlags.NonPublic);
+
+
+                IEnumerable<MethodInfo> methods = nTypes.SelectMany(t => t.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic)
+                                                       .Where(m => m.ReturnType == typeof(void) && !m.IsAbstract && !m.IsConstructor && m.Name.Contains("TryTrain")));
+                foreach (MethodInfo method in methods)
+                {
+                    harInstance.Patch(method, transpiler: new HarmonyMethod(transpiler));
+                    
+                }
+          
+            }
+            catch (Exception e)
+            {
+                Log.Error($"unable to patch interaction delegates!\n{e}");
+            }
+        }
+
+        static float GetEffectiveTamingStatFor(Pawn initiator, Pawn recipient)
+        {
+            if (initiator == null)
+            {
+                Log.Error("unable to get initiator for effective stat patch!");
+                return 1; 
+            }
+
+            float sVal = initiator.GetStatValue(StatDefOf.TameAnimalChance); 
+
+            if (recipient == null)
+            {
+                Log.ErrorOnce($"unable to recipient for {initiator.Name} interaction!", initiator.GetHashCode());
+                return sVal;
+            }
+
+            var morph = initiator.def.GetMorphOfRace();
+            if (morph != null)
+                sVal *= morph.GetAssociatedAnimalBonus(recipient.def, 2);
+            return sVal; 
+        }
+
+        static float GetEffectiveTrainingStatFor(Pawn initiator, Pawn recipient)
+        {
+            if (initiator == null)
+            {
+                Log.Error("unable to get initiator for effective stat patch!");
+                return 1;
+            }
+
+            float sVal = initiator.GetStatValue(StatDefOf.TrainAnimalChance);
+
+            if (recipient == null)
+            {
+                Log.ErrorOnce($"unable to recipient for {initiator.Name} training interaction!", initiator.GetHashCode());
+                return sVal;
+            }
+
+            var morph = initiator.def.GetMorphOfRace();
+            if (morph != null)
+                sVal *= morph.GetAssociatedAnimalBonus(recipient.def, 2);
+            return sVal;
+        }
+
+
+        static IEnumerable<CodeInstruction> TrainingTranspiler(IEnumerable<CodeInstruction> instructions)
+        {
+
+            FieldInfo statFld =
+                typeof(StatDefOf).GetField(nameof(StatDefOf.TrainAnimalChance), BindingFlags.Static | BindingFlags.Public);
+            MethodInfo extCallMethod =
+                typeof(StatExtension).GetMethod(nameof(StatExtension.GetStatValue),
+                                                BindingFlags.Static | BindingFlags.Public);
+
+            var subMethod =
+                typeof(InteractionPatches).GetMethod(nameof(GetEffectiveTrainingStatFor),
+                                                     BindingFlags.Static | BindingFlags.NonPublic);
+
+
+            var insArr = instructions.ToArray();
+            const int len = 4; 
+
+
+            CodeInstruction[] subArr = new CodeInstruction[len];
+            for (int i = 0; i < insArr.Length - len; i++)
+            {
+                for (int j = 0; j < len; j++)
+                {
+                    subArr[j] = insArr[i + j]; 
+                }
+
+                if(subArr[0].opcode != OpCodes.Ldloc_0) continue;
+                if (subArr[1].opcode != OpCodes.Ldsfld || (FieldInfo) subArr[1].operand != statFld)  continue;
+                if(subArr[2].opcode != OpCodes.Ldc_I4_1) continue;
+                if(subArr[3].opcode != OpCodes.Call || (MethodInfo) subArr[3].operand != extCallMethod) continue;
+
+                insArr[i + 1].opcode = OpCodes.Ldloc_1;
+                insArr[i + 1].operand = null;
+                insArr[i + 2].operand = null;
+                insArr[i + 2].opcode = OpCodes.Nop;
+                insArr[i + 3].operand = subMethod; 
+                break;
+            }
+
+            return insArr;
         }
 
         private static float GetEffectiveNeed(Need_Suppression need)
@@ -43,6 +171,51 @@ namespace Pawnmorph.HPatches
             float s = FormerHumanUtilities.GetSapienceWillDebuff(qSapience.Value) + 1;
 
             return p.guest.resistance - mulVal * s;
+        }
+
+        [HarmonyPatch(typeof(InteractionWorker_RecruitAttempt), nameof(InteractionWorker_RecruitAttempt.Interacted))]
+        static class TamePatch
+        {
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instruction)
+            {
+                var instLst = instruction.ToList();
+
+                FieldInfo statFld =
+                    typeof(StatDefOf).GetField(nameof(StatDefOf.TameAnimalChance), BindingFlags.Static | BindingFlags.Public);
+                MethodInfo extCallMethod =
+                    typeof(StatExtension).GetMethod(nameof(StatExtension.GetStatValue),
+                                                    BindingFlags.Static | BindingFlags.Public);
+
+                var subMethod =
+                    typeof(InteractionPatches).GetMethod(nameof(GetEffectiveTamingStatFor),
+                                                         BindingFlags.Static | BindingFlags.NonPublic); 
+
+                const int len = 4;
+                CodeInstruction[] subArr = new CodeInstruction[len];
+                
+                for (int i = 0; i < instLst.Count - len; i++)
+                {
+                    for (int j = 0; j < len; j++)
+                    {
+                        subArr[j] = instLst[i + j];
+                    }
+
+                    if(subArr[0].opcode != OpCodes.Ldarg_1) continue;
+                    if(subArr[1].opcode != OpCodes.Ldsfld || (FieldInfo) subArr[1].operand != statFld) continue;
+                    if(subArr[2].opcode != OpCodes.Ldc_I4_1) continue;
+                    if(subArr[3].opcode != OpCodes.Call || (MethodInfo) subArr[3].operand != extCallMethod) continue;
+
+                    instLst[i + 1].opcode = OpCodes.Ldarg_2;
+                    instLst[i + 1].operand = null;
+                    instLst[i + 2].opcode = OpCodes.Call;
+                    instLst[i + 2].operand = subMethod;
+                    instLst[i + 3].opcode = OpCodes.Nop;
+                    instLst[i + 3].operand = null;
+                    break;
+                  
+                }
+                return instLst;
+            }
         }
 
         [HarmonyPatch(typeof(Pawn_RelationsTracker), nameof(Pawn_RelationsTracker.CompatibilityWith))]

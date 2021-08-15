@@ -506,6 +506,7 @@
     <Compile Include="IngestionOutcomeDoer_GiveHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="IngredientValueGetter_Mutanite.cs" />
     <Compile Include="IPMThingComp.cs" />
     <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />

@@ -116,8 +116,10 @@ namespace Pawnmorph.SapienceStates
 
         private void InitMostlyFeralComps()
         {
+            MakeFeral();
             AddMostlyFeralComps();
             AddHumanlikeComps();
+            
 
             var onMap = Pawn.Map != null;
             if (onMap)

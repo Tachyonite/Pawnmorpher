@@ -1,12 +1,9 @@
 ﻿// DebugLogUtils.FormerHumanLogging.cs created by Iron Wolf for Pawnmorph on //2020 
 // last updated 03/01/2020  10:28 AM
 
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
@@ -14,7 +11,6 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using Verse.AI;
-using Verse.AI.Group;
 
 #pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
@@ -44,110 +40,27 @@ namespace Pawnmorph.DebugUtils
 
 
         [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
-        static void CheckFormerHumanIdeoStatus()
+        static void GetFormerHumanResponsibility()
         {
-            StringBuilder builder = new StringBuilder();
-            foreach (Pawn pawn in Find.CurrentMap.mapPawns.AllPawns.Where(p => p.IsSapientFormerHuman()))
+            var mp = Find.CurrentMap;
+            if (mp == null) return;
+            var allFhs = FormerHumanUtilities.AllMaps_FormerHumans;
+            var worldComp = Find.World.GetComponent<PawnmorphGameComp>();
+            if (worldComp == null) return;
+            StringBuilder sBuilder = new StringBuilder();
+            foreach (Pawn formerHuman in allFhs)
             {
-                builder.AppendLine($"{pawn.Label} {pawn.ideo == null} {pawn.Ideo == null}"); 
-            }
-
-            Log.Message(builder.ToString()); 
-        }
-
-        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
-        static void CheckFHInteraction()
-        {
-            StringBuilder builder = new StringBuilder();
-
-            var prop = typeof(Pawn_InteractionsTracker).GetProperty("CurrentSocialMode",
-                                                                    BindingFlags.NonPublic
-                                                                  | BindingFlags.Public
-                                                                  | BindingFlags.Instance);
-            if (prop == null) Log.Error("unable to find property"); 
-
-            foreach (Pawn formerHuman in FormerHumanUtilities.AllMaps_FormerHumans)
-            {
-                var interaction = formerHuman.interactions; 
-                if(interaction == null) continue;
-                var mp = formerHuman.Map; 
-                if(mp == null) continue;
-
-                builder.AppendLine($"{formerHuman.Label}: can interact {InteractionUtility.CanInitiateInteraction(formerHuman)} can interact randomly {InteractionUtility.CanInitiateRandomInteraction(formerHuman)} can receive random interaction {InteractionUtility.CanReceiveRandomInteraction(formerHuman)}, blocked {formerHuman.IsInteractionBlocked(null, true, true)}");
-                builder.AppendLine($"mode {prop.GetValue(interaction)}"); 
-
-                //foreach (Pawn pawn in mp.mapPawns.AllPawns.Where(p => p.RaceProps.Humanlike))
-                //{
-                //    var pInteractor = pawn.interactions; 
-                //    if(pInteractor == null) continue;
-                //    builder.AppendLine($"\t\tCanInteractWith {pawn.Label}={interaction.CanInteractNowWith(pawn)}");
-
-                //    foreach (InteractionDef interactionDef in DefDatabase<InteractionDef>.AllDefs)
-                //    {
-                //        builder.AppendLine($"\t\t{interactionDef}[{pawn.Label}]={interaction.CanInteractNowWith(pawn, interactionDef)}");
-                //    }
-
-                //}
-            }
-
-            Log.Message(builder.ToString());
-
-        }
-
-        [DebugOutput(category = FH_CATEGORY)]
-        static void LogFormerHumanLordStatus()
-        {
-            StringBuilder builder = new StringBuilder();
-
-            foreach (Pawn pawn in PawnsFinder.AllMaps_FreeColonists.Where(p => p.IsFormerHuman()))
-            {
-                builder.AppendLine($"{pawn.Name}-{(pawn.GetLord()?.CurLordToil?.GetType().Name).ToStringSafe()}"); 
-            }
-
-            Log.Message(builder.ToString()); 
-        }
-
-        [DebugOutput(category = FH_CATEGORY, onlyWhenPlaying = true)]
-        static void CheckFormerHumanDoorPatches()
-        {
-            Map map = Find.CurrentMap;
-            if (map == null) return; 
-            ThingDef def = DefDatabase<ThingDef>.GetNamed("Door");
-
-            var actualDoor = map.listerThings.ThingsOfDef(def).FirstOrDefault(d => d.Faction == Faction.OfPlayer) as Building_Door;  
-
-
-            var pawnsOnMap = map.mapPawns.AllPawns.MakeSafe().Where(p => p.IsFormerHuman()).ToList();
-
-            StringBuilder builder = new StringBuilder();
-
-            if (pawnsOnMap.Count == 0)
-            {
-                Log.Message("no former humans on map to test");
-                return;
-            }
-
-            if (actualDoor == null)
-            {
-                Log.Message("please place a vanilla door down to test");
-                return; 
-            }
-            foreach (Pawn pawn in pawnsOnMap)
-            {
-                var sap = pawn.GetQuantizedSapienceLevel();
-                builder.AppendLine($"Testing: {pawn.Name}:{sap}");
-                var canPass = actualDoor.PawnCanOpen(pawn);
-                bool machinesLike;
-                if (!canPass)
+                var tf = worldComp.GetTransformedPawnContaining(formerHuman)?.pawn;
+                if (tf == null)
                 {
-                    machinesLike = GenAI.MachinesLike(Faction.OfPlayer, pawn);
+                    sBuilder.AppendLine($"{formerHuman.Name}:Wild");
                 }
-                else machinesLike = true; 
-
-                builder.AppendLine($"{pawn.Name} canPass:{canPass} machinesLike:{machinesLike} blockedByFences(FHUtils){pawn.IsFenceBlocked()}");
+                else
+                {
+                    sBuilder.AppendLine($"{formerHuman.Name}:{tf.FactionResponsible?.Name ?? "Wild"}");
+                }
             }
-            Log.Message(builder.ToString());
-
+            Log.Message(sBuilder.ToString());
         }
 
         [DebugOutput(category = FH_CATEGORY)]

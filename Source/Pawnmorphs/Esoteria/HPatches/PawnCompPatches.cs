@@ -108,7 +108,7 @@ namespace Pawnmorph.HPatches
                 
 
                 
-                if (nd == PMNeedDefOf.Joy && isColonist)
+                if (nd == PMNeedDefOf.Joy && isColonist && IsSapientOrAnimilistic(___pawn))
                     __result = CheckNeed(___pawn, PMNeedDefOf.Joy);
 
                 if (IsSapientOrAnimilistic(___pawn))

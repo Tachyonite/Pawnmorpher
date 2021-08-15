@@ -53,10 +53,11 @@
 			<StuffPower_Insulation_Heat>0</StuffPower_Insulation_Heat>
 			<SharpDamageMultiplier>1</SharpDamageMultiplier>
 			<BluntDamageMultiplier>1</BluntDamageMultiplier>
+			<MutaniteConcentration>1</MutaniteConcentration>
 		</statBases>
 		<useHitPoints>false</useHitPoints>
 		<thingCategories>
-			<li>ResourcesRaw</li>
+			<li>RawMutagen</li>
 		</thingCategories>
 		<stuffProps>
 			<commonality>0.05</commonality>

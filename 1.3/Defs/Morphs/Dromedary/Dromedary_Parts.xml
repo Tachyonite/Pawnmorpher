@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="DromedaryPart">
 		<defName>EtherDromedaryJaw</defName>
 		<label>dromedary snout</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef]'s face has pushed out into a long camel muzzle</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<stages>
 			<li>
@@ -63,18 +63,37 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="DromedaryPart">
 		<defName>EtherDromedaryEar</defName>
 		<label>dromedary ear</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef]'s ears have grown into camel ears</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
 		</parts>
 		<mutationMemory>EtherDromedaryEar</mutationMemory>
+
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pointed</labelOverride>
+				<minSeverity>0</minSeverity>
+				<description>[PAWN_nameDef]'s ears are growing longer</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<partEfficiencyOffset>0.3</partEfficiencyOffset>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.8</severityPerDay>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="DromedaryPart">
 		<defName>EtherDromedaryTail</defName>
 		<label>dromedary tail</label>
-		<description>TODO</description>
+		<description>[PAWN_nameDef] has a long thin camel tail</description>
 		<mutationTale>GrewTail</mutationTale>
 		<parts>
 			<li>Tail</li>
