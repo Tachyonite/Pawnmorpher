@@ -191,7 +191,6 @@
 				<li>caninelife->what a tail feels like</li>
 				<li>caninelife->colorblindness</li>
 				<li>caninelife->reversion serums</li>
-				
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
@@ -270,6 +269,8 @@
 				<li>secretcaninelife->chasing [prey]</li>
 				<li>secretcaninelife->marking territory</li>
 				<li>secretcaninelife->rolling in smelly things</li>
+				<li>secretcaninelife->howling techniques</li>
+				<li>secretcaninelife->why wolves howl</li>
 				<li>secretcaninelife->the secret scritching spot that causes leg kicks</li>
 				<li>secretcaninelife->mates</li>
 				
@@ -297,6 +298,7 @@
 				<li>caninebehavior->and [RECIPIENT_nameDef] gave each other face licks</li>
 				<li>caninebehavior->shared mutual nuzzles with [RECIPIENT_nameDef]</li>
 				<li>caninebehavior->and [RECIPIENT_nameDef] gave each other mutual headpats</li>
+				<li>caninebehavior->shared a howl with [RECIPIENT_nameDef]</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
@@ -357,6 +359,7 @@
 				<li>annoyingbehavior->tried to sniff [RECIPIENT_nameDef] in a sensitive place</li>
 				<li>annoyingbehavior->annoyingly licked [RECIPIENT_nameDef] face</li>
 				<li>annoyingbehavior->drooled on [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->loudly howled while [RECIPIENT_nameDef] covered [RECIPIENT_possessive] ears</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>

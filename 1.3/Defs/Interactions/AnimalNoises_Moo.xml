@@ -51,6 +51,7 @@
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
 				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] mooed at [RECIPIENT_nameDef] to [askedaboutme].</li>
 
 				<li>talkedabout(p=4)->mooed at</li>
 				<li>talkedabout->whined at</li>
@@ -62,12 +63,25 @@
 				<li>askedabout->milk</li>
 				<li>askedabout->hooves</li>
 				<li>askedabout->oats</li>
-				<li>askedabout->grass</li>
 				<li>askedabout->herds</li>
 				<li>askedabout->horns</li>
 				<li>askedabout->stables</li>
 				<li>askedabout->hay</li>
 				<li>askedabout->snout pats</li>
+				<li>askedabout->eating grass</li>
+				<li>askedabout->chewing cud</li>
+				<li>askedabout->dairy farms</li>
+				<li>askedabout->factory farming</li>
+				<li>askedabout->alternative livestock</li>
+				<li>askedabout->cow rights</li>
+				<li>askedabout->almond milk</li>
+				<li>askedabout->cannibalism</li>
+				<li>askedabout->whether [RECIPIENT_pronoun] eats steak</li>
+
+				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
+				<li>askedaboutme->change [INITIATOR_objective] back</li>
+				<li>askedaboutme->give [INITIATOR_objective] hay</li>
+				<li>askedaboutme->give [INITIATOR_objective] a bell</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
@@ -122,11 +136,13 @@
 				<li>cowlife->milking gloves</li>
 				<li>cowlife->grass</li>
 				<li>cowlife->carrots</li>
+				<li>cowlife->alternative livestock</li>
+				<li>cowlife->cow rights</li>
+				<li>cowlife->whether eating cowmorph meat is cannibalism</li>
 				<li>cowlife->mutations</li>
 				<li>cowlife->living with hooves</li>
 				<li>cowlife->peripheral vision</li>
 				<li>cowlife->reversion serums</li>
-				
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
@@ -204,6 +220,7 @@
 				<li>secretcowlife->freedom</li>
 				<li>secretcowlife->bulls</li>
 				<li>secretcowlife->the best sun basking spots</li>
+				<li>secretcowlife->how steak actually tastes pretty good</li>
 				
 				<li>cowbehavior->snorted understandingly at [RECIPIENT_nameDef]</li>
 				<li>cowbehavior->mooed in unison with [RECIPIENT_nameDef]</li>
@@ -272,6 +289,7 @@
 				<li>annoyingbehavior->stomped dust on [RECIPIENT_nameDef]</li>
 				<li>annoyingbehavior->mooed loudly in [RECIPIENT_nameDef] face</li>
 				<li>annoyingbehavior->flicked [INITIATOR_possessive] tail towards [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->regurgitated and began chewing a wad of cud, grossing out [RECIPIENT_nameDef]</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>

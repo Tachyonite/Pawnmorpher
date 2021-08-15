@@ -827,7 +827,6 @@
     <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
     <Compile Include="Work\Giver_WorkAtSequencer.cs" />
-    <Compile Include="Social\InteractionWorker_Bleat.cs" />
     <Compile Include="Social\InteractionWeightsDef.cs" />
   </ItemGroup>
   <ItemGroup>
