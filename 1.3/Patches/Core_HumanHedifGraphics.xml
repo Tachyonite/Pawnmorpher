@@ -2,9 +2,10 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons</xpath>
 		<value>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Muzzles -->
 				<debug>false</debug>
+				<anchorID>Muzzle</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -41,15 +42,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherAlpacaSnout>
-					<EtherGazelleJaw>
-						<path>Parts/Gazelle/Gazelle_Jaw</path>
-						<severity>
-							<a0.5>Parts/Gazelle/Gazelle_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialSnoutOvine</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherGazelleJaw>
 					<EtherCapybaraJaw>
 						<path>Parts/Capybara/Capybara_Jaw</path>
 						<severity>
@@ -420,9 +412,10 @@
 					</EtherWolfMuzzle>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Bird jaw ornament -->
 				<debug>false</debug>
+				<anchorID>BirdJawOrnament</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -435,10 +428,11 @@
 					<EtherCassowaryBeak>Parts/Cassowary/Cassowary_Ornament</EtherCassowaryBeak>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Left Ear -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
+				<anchorID>LeftEar</anchorID>
 				<bodyPart>left ear</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -521,11 +515,12 @@
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Left Ear (Behind Head) -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
+				<anchorID>LeftEarBehind</anchorID>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
@@ -607,13 +602,14 @@
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Ear -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
+				<anchorID>RightEar</anchorID>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
@@ -693,12 +689,13 @@
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Ear (Behind Head) -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>right ear</bodyPart>
 				<alignWithHead>true</alignWithHead>
+				<anchorID>RightEarBehindHead</anchorID>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -779,9 +776,10 @@
 					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Tails -->
 				<debug>false</debug>
+				<anchorID>Tail</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -866,10 +864,11 @@
 					</east>
 				</offsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Behind-body tails -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
+				<anchorID>BehindBodyTail</anchorID>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
@@ -908,7 +907,7 @@
 					</east>
 				</offsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Body-extending tails -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
@@ -917,12 +916,11 @@
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
+				<anchorID>BodyExtendingTail</anchorID>
 				<hediffGraphics>
-					<EtherSnakeTail>Parts/Cobra/Cobra_Tail</EtherSnakeTail>
-					<EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
 				</hediffGraphics>
 				<offsets>
-					<south/>
+					<south></south>
 					<north>
 						<bodyTypes>
 							<Male>(0,-0.35)</Male>
@@ -943,9 +941,10 @@
 					</east>
 				</offsets>
 			</li>
-			<li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Headspikes -->
 				<debug>false</debug>
+				<anchorID>Headspikes</anchorID>
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>

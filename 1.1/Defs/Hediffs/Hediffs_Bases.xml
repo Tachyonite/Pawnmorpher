@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/HediffDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/HediffDef.xsd">
 	<HediffDef Abstract="true" Name="MorphParent">
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
 		<defaultLabelColor>(77,68,179)</defaultLabelColor>

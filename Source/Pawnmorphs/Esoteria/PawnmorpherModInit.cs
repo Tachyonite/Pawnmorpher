@@ -14,6 +14,7 @@ using Verse;
 using RimWorld;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
+using UnityEngine;
 
 //just a typedef to shorten long type name 
 using HediffGraphic = AlienRace.AlienPartGenerator.BodyAddonHediffGraphic; 
@@ -72,19 +73,20 @@ namespace Pawnmorph
                 Dictionary<string, TaggedBodyAddon> dict = new Dictionary<string, TaggedBodyAddon>();
                 foreach (TaggedBodyAddon tAddon in bodyAddons.OfType<TaggedBodyAddon>())
                 {
-                    if (tAddon.anchorId == null)
+                    if (tAddon.anchorID == null)
                     {
                         Log.Error($"encountered tagged body addon with null anchorID!");
                     }
-                    else if (dict.ContainsKey(tAddon.anchorId))
+                    else if (dict.ContainsKey(tAddon.anchorID))
                     {
                         Log.Error($"encountered duplicate tagged body addon with anchor id \"{dict}\"!");
                     }
-                    else dict[tAddon.anchorId] = tAddon;
+                    else dict[tAddon.anchorID] = tAddon;
                 }
 
                 List<MutationStage> mutationStages = new List<MutationStage>();
-                List<string> anchors = new List<string>(); 
+                List<string> anchors = new List<string>();
+                StringBuilder builder = new StringBuilder(); 
                 //now go throw all mutations and any with graphics 
                 foreach (MutationDef mutation in MutationDef.AllMutations)
                 {
@@ -94,10 +96,11 @@ namespace Pawnmorph
                             .Concat(mStages.SelectMany(s => s.graphics.MakeSafe().Select(g => g.anchorID))); //all anchor ids in those stages 
                     anchors.Clear();
                     anchors.AddRange(lq.Distinct()); //make sure the list is distinct 
-
+                    builder.AppendLine($"searching anchors:[{string.Join(",", anchors)}] in {mutation.defName}");
 
                     foreach (var anchor in anchors)
                     {
+                        
                         mutationStages.Clear();
                         mutationStages.AddRange(mutation.stages.MakeSafe() //grab all mutations stages with graphics that pertain to this a
                                                         .OfType<MutationStage>()
@@ -113,11 +116,16 @@ namespace Pawnmorph
                             HediffGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
                             if (hediffGraphic == null) continue;
                             if (addon.hediffGraphics == null) addon.hediffGraphics = new List<HediffGraphic>();
+
+                            builder.AppendLine($"loaded hediff graphics on {anchor} for {mutation.defName}");
                             addon.hediffGraphics.Add(hediffGraphic);
+                            AppendPools(hediffGraphic, addon); 
                         }
                     }
                 }
-          
+
+                Log.Message(builder.ToString()); 
+
 
 
             }
@@ -125,6 +133,31 @@ namespace Pawnmorph
             {
                 Log.Error($"unable to inject mutation graphics! \n{e}");
             }
+        }
+
+        private static void AppendPools(HediffGraphic hediffGraphic, TaggedBodyAddon bodyAddon)
+        {
+            while (
+                ContentFinder<Texture2D>.Get(hediffGraphic.path + (hediffGraphic.variantCount == 0 ? "" : hediffGraphic.variantCount.ToString()) + "_north",
+                                             false)
+             != null)
+                hediffGraphic.variantCount++;
+            Log.Message($"Variants found for {hediffGraphic.path}: {hediffGraphic.variantCount}");
+            if (hediffGraphic.variantCount == 0)
+                Log.Warning($"No hediff graphics found at {hediffGraphic.path} for hediff {hediffGraphic.hediff} in");
+
+            if (hediffGraphic.severity != null)
+                foreach (AlienPartGenerator.BodyAddonHediffSeverityGraphic bahsg in hediffGraphic.severity)
+                {
+                    while (
+                        ContentFinder<Texture2D>
+                           .Get(bahsg.path + (bahsg.variantCount == 0 ? "" : bahsg.variantCount.ToString()) + "_north", false)
+                     != null)
+                        bahsg.variantCount++;
+                    Log.Message($"Variants found for {bahsg.path} at severity {bahsg.severity}: {bahsg.variantCount}");
+                    if (bahsg.variantCount == 0)
+                        Log.Warning($"No hediff graphics found at {bahsg.path} at severity {bahsg.severity} for hediff {hediffGraphic.hediff} in ");
+                }
         }
 
         private static HediffGraphic GenerateGraphicsFor([NotNull] List<MutationStage> mutationStages, [NotNull] MutationDef mutation, string anchorID)

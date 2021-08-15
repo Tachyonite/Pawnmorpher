@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="SnakePart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>SnakeMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -7,6 +7,9 @@
 		<label>fanged snout</label>
 		<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite.</description>
 		<initialSeverity>0</initialSeverity>
+		<graphics>
+			<Muzzle>Parts/Cobra/Cobra_Jaw</Muzzle>
+		</graphics>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -111,6 +114,9 @@
 			<li>MorphTail</li>
 			<li>TailLeg</li>
 		</parts>
+		<graphics>
+			<BodyExtendingTail>Parts/Cobra/Cobra_Tail</BodyExtendingTail>
+		</graphics>
 		<stages>
             <li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>unfamiliar</label>
