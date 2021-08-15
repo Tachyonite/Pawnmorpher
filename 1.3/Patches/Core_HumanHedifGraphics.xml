@@ -1340,6 +1340,26 @@
 				<inFrontOfBody>false</inFrontOfBody>
 				<hediffGraphics></hediffGraphics>
 			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Left Eye -->
+				<path>Parts/None/None</path>
+				<anchorID>LeftEye</anchorID>
+				<bodyPart>left eye</bodyPart>
+				<alignWithHead>true</alignWithHead>
+				<inFrontOfBody>true</inFrontOfBody>
+				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics></hediffGraphics>
+			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Right Eye -->
+				<path>Parts/None/None</path>
+				<bodyPart>right eye</bodyPart>
+				<anchorID>RightEye</anchorID>
+				<alignWithHead>true</alignWithHead>
+				<inFrontOfBody>true</inFrontOfBody>
+				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics></hediffGraphics>
+			</li>
 		</value>
 	</Operation>
 </Patch>
