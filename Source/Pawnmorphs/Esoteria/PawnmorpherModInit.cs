@@ -137,7 +137,7 @@ namespace Pawnmorph
                                              false)
              != null)
                 hediffGraphic.variantCount++;
-            Log.Message($"Variants found for {hediffGraphic.path}: {hediffGraphic.variantCount}");
+            //Log.Message($"Variants found for {hediffGraphic.path}: {hediffGraphic.variantCount}");
             if (hediffGraphic.variantCount == 0)
                 Log.Warning($"No hediff graphics found at {hediffGraphic.path} for hediff {hediffGraphic.hediff} in");
 
@@ -149,7 +149,7 @@ namespace Pawnmorph
                            .Get(bahsg.path + (bahsg.variantCount == 0 ? "" : bahsg.variantCount.ToString()) + "_north", false)
                      != null)
                         bahsg.variantCount++;
-                    Log.Message($"Variants found for {bahsg.path} at severity {bahsg.severity}: {bahsg.variantCount}");
+                    //Log.Message($"Variants found for {bahsg.path} at severity {bahsg.severity}: {bahsg.variantCount}");
                     if (bahsg.variantCount == 0)
                         Log.Warning($"No hediff graphics found at {bahsg.path} at severity {bahsg.severity} for hediff {hediffGraphic.hediff} in ");
                 }

@@ -1147,6 +1147,199 @@
 					<east/>
 				</offsets>
 			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Male Left Arm -->
+				<path>Parts/None/None</path>
+				<anchorID>LeftArm</anchorID>
+				<bodyPart>left arm</bodyPart>
+				<offsets>
+					<east>
+						<layerOffset>-0.1</layerOffset>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</east>
+					<west>
+						<layerOffset>-0.1</layerOffset>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</west>
+					<north>
+						<layerOffset>-0.1</layerOffset>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</north>
+					<south>
+						<layerOffset>-0.1</layerOffset>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</south>
+				</offsets>
+
+				<inFrontOfBody>true</inFrontOfBody>
+				<hediffGraphics></hediffGraphics>
+			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Male Left Arm (Behind Body) -->
+				<path>Parts/None/None</path>
+				<anchorID>LeftArmBehind</anchorID>
+				<bodyPart>left arm</bodyPart>
+				<offsets>
+					<east>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</east>
+					<west>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</west>
+					<north>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</north>
+					<south>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</south>
+				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
+				<hediffGraphics></hediffGraphics>
+			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Male Right Arm -->
+				<path>Parts/None/None</path>
+				<anchorID>RightArm</anchorID>
+				<bodyPart>right arm</bodyPart>
+				<offsets>
+					<east>
+						<layerOffset>-0.1</layerOffset>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</east>
+					<west>
+						<layerOffset>-0.1</layerOffset>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</west>
+					<north>
+						<layerOffset>-0.1</layerOffset>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</north>
+					<south>
+						<layerOffset>-0.1</layerOffset>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</south>
+				</offsets>
+				<inFrontOfBody>true</inFrontOfBody>
+				<hediffGraphics></hediffGraphics>
+			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Male Right Arm (Behind Body) -->
+				<path>Parts/None/None</path>
+				<anchorID>RightArmBehind</anchorID>
+				<bodyPart>right arm</bodyPart>
+				<offsets>
+					<east>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</east>
+					<west>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</west>
+					<north>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</north>
+					<south>
+						<bodyTypes>
+							<Male>(0,0)</Male>
+							<Female>(0,0)</Female>
+							<Thin>(-0,0)</Thin>
+							<Hulk>(-0,0)</Hulk>
+							<Fat>(-0,0)</Fat>
+						</bodyTypes>
+					</south>
+				</offsets>
+				<inFrontOfBody>false</inFrontOfBody>
+				<hediffGraphics></hediffGraphics>
+			</li>
 		</value>
 	</Operation>
 </Patch>
