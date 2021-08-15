@@ -8,6 +8,7 @@ using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -66,6 +67,12 @@ namespace Pawnmorph.Hediffs
 
 
         /// <summary>
+        /// The graphics for this mutation 
+        /// </summary>
+        [CanBeNull]
+        public List<MutationGraphicsData> graphics = new List<MutationGraphicsData>(); 
+
+        /// <summary>
         /// The abstract 'value' of this mutation, can be negative or zero if the mutation is in general negative 
         /// </summary>
         public int value; 
@@ -106,7 +113,7 @@ namespace Pawnmorph.Hediffs
 
         [Unsaved] private List<ThingDef> _associatedAnimals;
 
-
+        
         /// <summary>
         ///     Gets the animals associated with this mutation animals.
         /// </summary>

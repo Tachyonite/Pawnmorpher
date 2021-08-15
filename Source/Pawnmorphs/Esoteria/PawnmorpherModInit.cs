@@ -8,6 +8,7 @@ using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Verse;
 using RimWorld;
@@ -29,10 +30,10 @@ namespace Pawnmorph
         {
             try
             {
-                GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static); 
+                GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
 
 
-
+                InjectGraphics(); 
                 NotifySettingsChanged();
                 GenerateImplicitRaces();
                 TransferPatchesToExplicitRaces();
@@ -55,6 +56,120 @@ namespace Pawnmorph
             {
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
             }
+        }
+
+        private static void InjectGraphics()
+        {
+            try
+            {
+                var human = (ThingDef_AlienRace) ThingDefOf.Human;
+
+                var bodyAddons = human
+                                .alienRace.generalSettings.alienPartGenerator
+                                .bodyAddons;
+
+                //make a dict while checking for duplicates 
+                Dictionary<string, TaggedBodyAddon> dict = new Dictionary<string, TaggedBodyAddon>();
+                foreach (TaggedBodyAddon tAddon in bodyAddons.OfType<TaggedBodyAddon>())
+                {
+                    if (tAddon.anchorId == null)
+                    {
+                        Log.Error($"encountered tagged body addon with null anchorID!");
+                    }
+                    else if (dict.ContainsKey(tAddon.anchorId))
+                    {
+                        Log.Error($"encountered duplicate tagged body addon with anchor id \"{dict}\"!");
+                    }
+                    else dict[tAddon.anchorId] = tAddon;
+                }
+
+                List<MutationStage> mutationStages = new List<MutationStage>();
+                List<string> anchors = new List<string>(); 
+                //now go throw all mutations and any with graphics 
+                foreach (MutationDef mutation in MutationDef.AllMutations)
+                {
+                    var mStages = mutation.stages.MakeSafe().OfType<MutationStage>(); //all mutation stages in this mutation 
+                    var lq = mutation.graphics.MakeSafe()
+                            .Select(g => g.anchorID)
+                            .Concat(mStages.SelectMany(s => s.graphics.MakeSafe().Select(g => g.anchorID))); //all anchor ids in those stages 
+                    anchors.Clear();
+                    anchors.AddRange(lq.Distinct()); //make sure the list is distinct 
+
+
+                    foreach (var anchor in anchors)
+                    {
+                        mutationStages.Clear();
+                        mutationStages.AddRange(mutation.stages.MakeSafe() //grab all mutations stages with graphics that pertain to this a
+                                                        .OfType<MutationStage>()
+                                                        .Where(m => m.graphics.MakeSafe()
+                                                                     .Any(s => s.anchorID == anchor)));
+
+                        if (!dict.TryGetValue(anchor, out TaggedBodyAddon addon))
+                        {
+                            Log.Error($"unable to find body addon on human with anchor id \"{anchor}\"!");
+                        }
+                        else
+                        {
+                            HediffGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
+                            if (hediffGraphic == null) continue;
+                            if (addon.hediffGraphics == null) addon.hediffGraphics = new List<HediffGraphic>();
+                            addon.hediffGraphics.Add(hediffGraphic);
+                        }
+                    }
+                }
+          
+
+
+            }
+            catch (Exception e)
+            {
+                Log.Error($"unable to inject mutation graphics! \n{e}");
+            }
+        }
+
+        private static HediffGraphic GenerateGraphicsFor([NotNull] List<MutationStage> mutationStages, [NotNull] MutationDef mutation, string anchorID)
+        {
+            List<MutationGraphicsData> mainData = mutation.graphics.MakeSafe().Where(g => g.anchorID == anchorID).ToList();
+            List<(string path, float minSeverity)> stageData = mutationStages.Where(s => !s.graphics.NullOrEmpty())
+                                                                             .SelectMany(s => s.graphics.Where(g => g.anchorID
+                                                                                                                 == anchorID)
+                                                                                               .Select(g => (g.path,
+                                                                                                             s.minSeverity)))
+                                                                             .ToList();
+
+            string mainPath = mainData.FirstOrDefault()?.path ?? stageData.FirstOrDefault().path; //get the main path 
+            //either the path in the main data or the fist severity graphic 
+            if (mainPath == null)
+            {
+                Log.Error($"found invalid graphic data in {mutation.defName}! unable to find data for anchor \"{anchorID}\"");
+                return null;
+            }
+
+
+            var hGraphic = new HediffGraphic
+            {
+                hediff = mutation,
+                path = mainPath
+            };
+
+            var severityLst =
+                new List<AlienPartGenerator.BodyAddonHediffSeverityGraphic>();
+            foreach (MutationStage stage in mutationStages)
+            {
+                MutationGraphicsData
+                    graphic = stage.graphics.MakeSafe()
+                                   .FirstOrDefault(s => s.anchorID
+                                                     == anchorID); //fill the severity graphics if they are present in acceding order 
+                if (graphic != null)
+                    severityLst.Add(new AlienPartGenerator.BodyAddonHediffSeverityGraphic
+                    {
+                        path = graphic.path,
+                        severity = stage.minSeverity
+                    });
+            }
+
+            hGraphic.severity = severityLst;
+            return hGraphic; 
         }
 
         private static void SetupInjectors()
