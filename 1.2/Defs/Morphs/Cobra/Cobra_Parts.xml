@@ -114,9 +114,6 @@
 			<li>MorphTail</li>
 			<li>TailLeg</li>
 		</parts>
-		<graphics>
-			<BodyExtendingTail>Parts/Cobra/Cobra_Tail</BodyExtendingTail>
-		</graphics>
 		<stages>
             <li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>unfamiliar</label>
