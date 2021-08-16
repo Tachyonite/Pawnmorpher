@@ -11,6 +11,7 @@ Assemblies/Pawnmorph.xml
 *.user
 *.userosscache
 *.sln.docstates
+*.csproj.user
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
