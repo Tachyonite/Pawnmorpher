@@ -1,0 +1,131 @@
+<Defs>
+    <HediffDef ParentName="InfectionBase">
+        <defName>PM_Mutarabies</defName>
+        <label>mutarabies</label>
+        <labelNoun>mutarabies</labelNoun>
+        <description>This animal has been infected with a highly-contageous disease known as mutarabies. Afflicted animals are driven insane and compelled to seek out and attack humans. Horrifyingly, bites from them will infect their victims with mutarabies as well, causing those victims to rapidly transform into mutarabid animals themselves.
+
+Mutarabies is not actually a form of rabies, but rather an infection of highly unstable mutagenic mechanites. Thankfully, the instability of the mechanites means mutarabies is much less lethal than ordinary rabies. Infected animals' immune systems will gradually adapt and purge the mechanites from their blood within a few days, leaving them confused but otherwise unharmed.
+
+Victims who have been bitten but not yet fully transformed can be easily cured with standard medicine as long as they get prompt medical treatment. Fully-transformed victims will regain their sanity once their body fights off the mechanites, but the transformation can only be reversed with reverter serum.
+
+A single dose of stabilizer can also be administered to mutarabid animals to immediately cure the disease.</description>
+        <makesSickThought>true</makesSickThought>
+        <tendable>false</tendable>
+        <hediffClass>HediffWithComps</hediffClass>
+        <!--<defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>-->
+        <makesAlert>true</makesAlert>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <comps>
+        <initialSeverity>1</initialSeverity>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <!-- Disappears after 4 days -->
+                <severityPerDay>-0.25</severityPerDay>
+            </li>
+            <li Class="HediffCompProperties_CauseMentalState">
+                <animalMentalState>ManhunterPermanent</animalMentalState>
+                <animalMentalStateAlias>Manhunter</animalMentalStateAlias>
+                <humanMentalState>Berserk</humanMentalState>
+                <letterDef>ThreatSmall</letterDef>
+                <mtbDaysToCauseMentalState>0.01</mtbDaysToCauseMentalState>
+                <endMentalStateOnCure>true</true>
+            </li>
+        </comps>
+    </HediffDef>
+    
+    <HediffDef ParentName="InfectionBase">
+        <defName>PM_MutarabiesBite</defName>
+        <label>mutarabies bite</label>
+        <labelNoun>mutarabies bite</labelNoun>
+        <description>This pawn has been bitten by an animal infected with mutarabies. Highly unstable mutagenic mechanites are now swarming through their body, seeking to transform them into a mutarabid animal themselves. Additional bites from mutarabid animals will rapidly cause this disease to progress, but prompt medical care can easily halt or even reverse it.
+
+Mutarabies progresses through four stages. At first, victims will display bouts of delirium and confusion as the mechanites colonise their body. Next, the disease will begin to mutate their bodies, causing them to develop animal-like features as they slowly transform into the same kind of animal that bit them. Third, once the disease reaches their brain, they will rapidly become aggressive and hostile as it drives them mad. Finally, if left untreated, the unfortunate victim will fully transform into a mutarabid animal themselves.
+
+Mutarabies progresses quickly and will easily overwhelm the immune system if left untreated, but it is particularly easy to treat with standard medical care. A single dose of stabilizer will also immediately cure the disease and render the pawn immune to reinfection for as long as it lasts. Infected victims should be treated as soon as possible, or isolated to prevent them from hurting others if that isn't an option.</description>
+        <makesSickThought>true</makesSickThought>
+        <tendable>true</tendable>
+        <hediffClass>Pawnmorph.Hediffs.MorphDisease</hediffClass>
+        <makesAlert>true</makesAlert>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <comps>
+            <!--
+                50%-100% tend quality - the infection regresses and disappears
+                25%-50% tend quality - the infection progresses, but slower than immunity
+                0-25% tend quality - the infection progresses faster than immunity
+                
+                An infected pawn will succumb within a day and a half of being bitten without treatment
+            -->
+            <li Class="HediffCompProperties_TendDuration">
+                <baseTendDurationHours>12</baseTendDurationHours>
+                <severityPerDayTended>-1.33</severityPerDayTended>
+            </li>
+            <li Class="Pawnmorph.Hediffs.CompProps_ImmunizableMutation">
+                <severityPerDayNotImmune>0.66</severityPerDayNotImmune>
+                <immunityPerDaySick>0.33</immunityPerDaySick>
+                <severityPerDayImmune>-1</severityPerDayImmune>
+                <immunityPerDayNotSick>-0.80</immunityPerDayNotSick>
+            </li>
+        </comps>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+                <label>delirious</label>
+                <vomitMtbDays>0.25</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>1</meanMutationsPerDay>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+                <minSeverity>0.25</minSeverity>
+                <label>mutating</label>
+                <vomitMtbDays>1.5</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.2</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>3</meanMutationsPerDay>
+                <addChance>1</addChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+                <minSeverity>0.75</minSeverity>
+                <label>berserk</label>
+                <lifeThreatening>true</lifeThreatening>
+                <vomitMtbDays>0.75</vomitMtbDays>
+                <painOffset>0.05</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>6</meanMutationsPerDay>
+                <addChance>1</addChance>
+                <letterDef>ThreatSmall</letterDef>
+                <letterText>[PAWN_nameDef] has a severe mutarabies infection.  [PAWN_pronoun] is likely to become aggressive and will soon transform into a mutarabid animal if they don't get medical treatment very soon.  Either give them treatment, administer a stabilizer, or isolate them so that they don't harm anyone after they tranform.</letterText>
+                <letterLabel>[PAWN_nameDef] is going mutarabid</letterLabel>
+            </li>
+            <li Class="Pawnmorph.Hediffs.FullTransformationStage">
+                <minSeverity>0.999</minSeverity>
+                <label>rabid</label>
+                <forceGender>Switch</forceGender>
+                <forceGenderChance>25</forceGenderChance>
+                <pawnkinds>
+                    <li>Chaocow</li>
+                    <li>Chaofox</li>
+                    <li>Chaodino</li>
+                </pawnkinds>
+                <transformationTale>TransformationMisc</transformationTale>
+                <changeChance>100</changeChance>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>
