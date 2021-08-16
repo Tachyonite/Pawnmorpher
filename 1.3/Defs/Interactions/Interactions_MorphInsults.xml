@@ -504,6 +504,178 @@
 		<recipientWeights>PMInteractionWeights_Suid</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	
+		<!-- Insults aimed at rodents -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMSqueak_DirectedInsult</defName>
+		<label>directed rodent insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
+
+				<li>insulted(p=3)->insulted</li>
+				<li>insulted->openly insulted</li>
+				<li>insulted->loudly insulted</li>
+				<li>insulted->flagrantly insulted</li>
+				<li>insulted->directly insulted</li>
+				<li>insulted->viciously insulted</li>
+				<li>insulted->flagrantly disrespected</li>
+				<li>insulted->slandered</li>
+				<li>insulted->hurled invective about</li>
+				<li>insulted->derided</li>
+
+				<li>rodentcharacteristic->tail</li>
+				<li>rodentcharacteristic->short stature</li>
+				<li>rodentcharacteristic->beady eyes</li>
+				<li>rodentcharacteristic->twitchy nose</li>
+				<li>rodentcharacteristic->ratty appearance</li>
+				<li>rodentcharacteristic->size</li>
+				<li>rodentcharacteristic->twitchy mannerisms</li>
+				<li>rodentcharacteristic->[refusal] to stay still</li>
+
+				<li>insultcomparison->cheese gnawer</li>
+				<li>insultcomparison->tree muncher</li>
+				<li>insultcomparison->nut</li>
+				<li>insultcomparison->thief</li>
+				<li>insultcomparison->pest</li>
+				<li>insultcomparison->squeaky toy</li>
+				<li>insultcomparison->shrimp</li>
+
+				<li>insult->complained that [RECIPIENT_possessive] is too jumpy</li>
+				<li>insult->said [RECIPIENT_nameDef] is disgusting</li>
+				<li>insult->mockingly called [RECIPIENT_nameDef] cute</li>
+				<li>insult->aggressively called [RECIPIENT_nameDef] "nuts"</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->mousetraps</li>
+				<li>insultingjoketopics->rodents dumpster diving</li>
+				<li>insultingjoketopics->rat poison</li>
+				<li>insultingjoketopics->trash-eating rodents</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Rodent</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<!-- Insults aimed at raccoonmorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMChitter_DirectedInsult</defName>
+		<label>directed raccoon insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
+
+				<li>insulted(p=3)->insulted</li>
+				<li>insulted->openly insulted</li>
+				<li>insulted->loudly insulted</li>
+				<li>insulted->flagrantly insulted</li>
+				<li>insulted->directly insulted</li>
+				<li>insulted->viciously insulted</li>
+				<li>insulted->flagrantly disrespected</li>
+				<li>insulted->slandered</li>
+				<li>insulted->hurled invective about</li>
+				<li>insulted->derided</li>
+
+				<li>rodentcharacteristic->tail</li>
+				<li>rodentcharacteristic->short stature</li>
+				<li>rodentcharacteristic->bad breath</li>
+				<li>rodentcharacteristic->twitchy nose</li>
+				<li>rodentcharacteristic->conniving hands</li>
+				<li>rodentcharacteristic->ratty appearance</li>
+				<li>rodentcharacteristic->size</li>
+				<li>rodentcharacteristic->twitchy mannerisms</li>
+
+				<li>insultcomparison->trash bandit</li>
+				<li>insultcomparison->trash panda</li>
+				<li>insultcomparison->garbage snatcher</li>
+				<li>insultcomparison->fugitive</li>
+				<li>insultcomparison->thief</li>
+				<li>insultcomparison->pest</li>
+				<li>insultcomparison->furry burglar</li>
+				<li>insultcomparison->squeaky toy</li>
+				<li>insultcomparison->fur cap</li>
+
+				<li>insult->accused [RECIPIENT_possessive] of stealing something</li>
+				<li>insult->said [RECIPIENT_nameDef] is disgusting</li>
+				<li>insult->mockingly called [RECIPIENT_nameDef] cute</li>
+				<li>insult->pulled [RECIPIENT_nameDef] back by [RECIPIENT_possessive] tail</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->fugitives</li>
+				<li>insultingjoketopics->raccoons dumpster diving</li>
+				<li>insultingjoketopics->feral raccoons</li>
+				<li>insultingjoketopics->rabies</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Rodent</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<!-- Insults aimed at alphabeavermorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBeaverGrunt_DirectedInsult</defName>
+		<label>directed beaver insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
+
+				<li>insulted(p=3)->insulted</li>
+				<li>insulted->openly insulted</li>
+				<li>insulted->loudly insulted</li>
+				<li>insulted->flagrantly insulted</li>
+				<li>insulted->directly insulted</li>
+				<li>insulted->viciously insulted</li>
+				<li>insulted->flagrantly disrespected</li>
+				<li>insulted->slandered</li>
+				<li>insulted->hurled invective about</li>
+				<li>insulted->derided</li>
+
+				<li>rodentcharacteristic->tail</li>
+				<li>rodentcharacteristic->short stature</li>
+				<li>rodentcharacteristic->beady eyes</li>
+				<li>rodentcharacteristic->twitchy nose</li>
+				<li>rodentcharacteristic->ratty appearance</li>
+				<li>rodentcharacteristic->size</li>
+				<li>rodentcharacteristic->twitchy mannerisms</li>
+				<li>rodentcharacteristic->[refusal] to stay still</li>
+
+				<li>insultcomparison->river polluter</li>
+				<li>insultcomparison->tree muncher</li>
+				<li>insultcomparison->giant termite</li>
+				<li>insultcomparison->tree plague</li>
+				<li>insultcomparison->pest</li>
+				<li>insultcomparison->squeaky toy</li>
+				<li>insultcomparison->shrimp</li>
+
+				<li>insult->complained that [RECIPIENT_possessive] is too jumpy</li>
+				<li>insult->accused [RECIPIENT_nameDef] of gnawing [INITIATOR_possessive] stuff</li>
+				<li>insult->said [RECIPIENT_possessive] tail is weird</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->alphabeaver dams</li>
+				<li>insultingjoketopics->trees being inedible</li>
+				<li>insultingjoketopics->alphabeaver tails</li>
+				<li>insultingjoketopics->alphabeavers clearing out all trees</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Rodent</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
 	<!-- Insults aimed at chaomorphs -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMChao_DirectedInsult</defName>
