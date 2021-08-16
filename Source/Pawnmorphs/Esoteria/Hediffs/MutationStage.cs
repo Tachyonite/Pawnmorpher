@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Pawnmorph.GraphicSys;
 using RimWorld;
 using Verse;
 
@@ -46,6 +47,11 @@ namespace Pawnmorph.Hediffs
         /// The skip aspects
         /// </summary>
         public List<AspectEntry> skipAspects;
+
+        /// <summary>
+        /// The graphic for this stage 
+        /// </summary>
+        public List<MutationGraphicsData> graphics; 
 
         /// <summary>
         /// Gets the skip aspects.

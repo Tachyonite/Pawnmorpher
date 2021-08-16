@@ -75,6 +75,9 @@
 		<defName>EtherIguanaTail</defName>
 		<label>iguana tail</label>
 		<description>A spiney green tail.</description>
+		<graphics>
+			<BodyExtendingTail>Parts/iguanaface/iguanatail</BodyExtendingTail>
+		</graphics>
 		<parts>
 			<li>Tail</li>
 			<li>MorphTail</li>

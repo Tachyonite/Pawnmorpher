@@ -405,6 +405,8 @@
     <Compile Include="FormerHumans\ISapientVariantHolder.cs" />
     <Compile Include="FormerHumans\SapientVariants.cs" />
     <Compile Include="FormerHumanUtilities.cs" />
+    <Compile Include="Graphics\MutationGraphicsData.cs" />
+    <Compile Include="Graphics\TaggedBodyAddon.cs" />
     <Compile Include="HairDefOf.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
     <Compile Include="Hediffs\CompProps_ImmunizableMutation.cs" />
