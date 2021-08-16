@@ -40,7 +40,7 @@
 				<labelOverride>sturdy wing</labelOverride>
 				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, but several adaptions have stiffened the hollow bones.  They're stronger than before, but still not as good as a regular arm.</description>
 				<statOffsets>
-					<CarryingCapacity>-0.15</CarryingCapacity>
+					<CarryingCapacity>-0.10</CarryingCapacity>
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage"> <!-- Paragon -->
