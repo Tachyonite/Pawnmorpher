@@ -1,0 +1,289 @@
+<Defs>
+
+    <HediffDef Name="PMMutagenicBuildupWBase" ParentName="MutagenicBuildupBase" Abstract="true">
+        <makesSickThought>true</makesSickThought>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <taleOnVisible>MutationToxicityRevealed</taleOnVisible>
+        <stages>
+            <li>
+                <label>initial</label>
+                <becomeVisible>false</becomeVisible>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>initial</label>
+                <minSeverity>0.04</minSeverity>
+                <painOffset>0.1</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>70</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>minor</label>
+                <minSeverity>0.2</minSeverity>
+                <painOffset>0.2</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>140</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>moderate</label>
+                <minSeverity>0.40</minSeverity>
+                <vomitMtbDays>5</vomitMtbDays>
+                <painOffset>0.3</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>300</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>serious</label>
+                <minSeverity>0.60</minSeverity>
+                <vomitMtbDays>1</vomitMtbDays>
+                <painOffset>0.4</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>500</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>extreme</label>
+                <minSeverity>0.80</minSeverity>
+                <vomitMtbDays>0.5</vomitMtbDays>
+                <painOffset>0.6</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.50</setMax>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>600</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <minSeverity>0.85</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.8</painOffset>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>900</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphFullTfStage">
+                <minSeverity>0.99</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.9</painOffset>
+                <morph>Animal</morph>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+        </stages>
+    </HediffDef>
+
+
+    <HediffDef ParentName="PMMutagenicBuildupWBase">
+        <defName>MutagenicBuildup_Weapon</defName>
+		<description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
+                <recoveryTime>43.25</recoveryTime>
+                <peakSeverity>0.05</peakSeverity>
+            </li>
+        </comps>
+    </HediffDef>
+
+    <HediffDef ParentName="PMMutagenicBuildupWBase">
+        <defName>MutagenicBuildup_SmallExplosion</defName>
+		<description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
+                <recoveryTime>70.75</recoveryTime>
+                <peakSeverity>0.12</peakSeverity>
+            </li>
+        </comps>
+    </HediffDef>
+    <HediffDef ParentName="PMMutagenicBuildupWBase">
+        <defName>MutagenicBuildup_LargeExplosion</defName>
+		<description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
+                <recoveryTime>150.25</recoveryTime>
+                <peakSeverity>0.45</peakSeverity>
+            </li>
+        </comps>
+    </HediffDef>
+
+
+    <!-- storm buildup  -->
+    <HediffDef ParentName="MutagenicBuildupBase">
+        <defName>MutagenicBuildup</defName>
+		<description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <makesSickThought>true</makesSickThought>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <taleOnVisible>MutationToxicityRevealed</taleOnVisible>
+        <comps>
+            <li Class="HediffCompProperties_Immunizable">
+                <severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <label>initial</label>
+                <becomeVisible>false</becomeVisible>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>initial</label>
+                <minSeverity>0.04</minSeverity>
+                <painOffset>0.1</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>4</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>minor</label>
+                <minSeverity>0.2</minSeverity>
+                <painOffset>0.2</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>10</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>moderate</label>
+                <minSeverity>0.40</minSeverity>
+                <vomitMtbDays>5</vomitMtbDays>
+                <painOffset>0.3</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>60</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>serious</label>
+                <minSeverity>0.60</minSeverity>
+                <vomitMtbDays>1</vomitMtbDays>
+                <painOffset>0.4</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>380</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <label>extreme</label>
+                <minSeverity>0.80</minSeverity>
+                <vomitMtbDays>0.5</vomitMtbDays>
+                <painOffset>0.6</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.50</setMax>
+                    </li>
+                </capMods>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>400</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+                <minSeverity>0.85</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.8</painOffset>
+                <morph>Animal</morph>
+                <meanMutationsPerDay>500</meanMutationsPerDay>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+            <li Class="Pawnmorph.Hediffs.RandomMorphFullTfStage">
+                <minSeverity>0.99</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.9</painOffset>
+                <morph>Animal</morph>
+                <categoryBlackList>
+                    <li>Powerful</li>
+                    <li>Chimera</li>
+                </categoryBlackList>
+            </li>
+        </stages>
+
+    </HediffDef>
+</Defs>
