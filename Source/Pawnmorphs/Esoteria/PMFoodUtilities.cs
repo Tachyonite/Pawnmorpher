@@ -24,8 +24,18 @@ namespace Pawnmorph
 
         [NotNull] private static readonly HashSet<Thing> filtered = new HashSet<Thing>();
 
+        [NotNull]
         private static readonly Dictionary<Ideo, List<IFoodPreferenceAdjustor>> _ideoAdjustorCache =
             new Dictionary<Ideo, List<IFoodPreferenceAdjustor>>();
+
+        /// <summary>
+        /// Clears the caches used to find food preferability 
+        /// </summary>
+        public static void ClearCaches()
+        {
+            _ideoAdjustorCache.Clear();
+            
+        }
 
         [NotNull]
         private static IReadOnlyList<IFoodPreferenceAdjustor> GetAdjustors([NotNull] Ideo ideo)

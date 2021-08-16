@@ -49,7 +49,7 @@ namespace Pawnmorph.PreceptComps
             if ((foodType & FoodTypeFlags.Corpse) != 0 && (eaterPref & FoodTypeFlags.Corpse) != 0)
                 return FoodPreferability.RawTasty;
 
-            FoodTypeFlags grazeTag = FoodTypeFlags.Plant | FoodTypeFlags.DendrovoreAnimal | FoodTypeFlags.Seed;
+            FoodTypeFlags grazeTag = FoodTypeFlags.Plant | FoodTypeFlags.DendrovoreAnimal | FoodTypeFlags.Seed ;
             if ((foodType & grazeTag & eaterPref) != 0) return FoodPreferability.RawTasty;
 
             return null;
