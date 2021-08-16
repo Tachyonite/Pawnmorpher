@@ -46,7 +46,7 @@ namespace Pawnmorph.DebugUtils
 
         }
 
-        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMap)]
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
         static void MassChaoTfPawns()
         {
             var curMap = Find.CurrentMap;

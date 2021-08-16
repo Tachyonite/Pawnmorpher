@@ -32,6 +32,7 @@ namespace Pawnmorph
         [NotNull]
         private static readonly float[] _totals ; 
 
+
         /// <summary>
         /// Gets the chaomorphs of the given type 
         /// </summary>
@@ -52,22 +53,39 @@ namespace Pawnmorph
         [CanBeNull]
         public static ThingDef GetRandomChaomorph(ChaomorphType type)
         {
-            float rN = Rand.Range(0, _totals[((int) type)]);
+            float rN = Rand.Range(0, _totals[(int) type]);
             ThingDef selectedChaomorph = null;
-            foreach (ThingDef chaomorph in _randomChaomorphArrCache[((int) type)])
+            foreach (ThingDef chaomorph in _randomChaomorphArrCache[(int) type])
             {
-                var ext = _cachedExtensions[chaomorph];
+                ChaomorphExtension ext = _cachedExtensions[chaomorph];
                 if (rN <= ext.selectionWeight)
                 {
-                    selectedChaomorph = chaomorph; 
+                    selectedChaomorph = chaomorph;
                     break;
                 }
 
-                rN -= ext.selectionWeight; 
+                rN -= ext.selectionWeight;
             }
 
             return selectedChaomorph; 
 
+        }
+
+        /// <summary>
+        /// Gets a random chaomorph pawnkind def.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>the pawnkind def, null if none is available</returns>
+        [CanBeNull]
+        public static PawnKindDef GetRandomChaomorphPK(ChaomorphType type)
+        {
+            ThingDef thingDef = GetRandomChaomorph(type);
+            if (thingDef == null) return null;
+            foreach (PawnKindDef pkDef in DefDatabase<PawnKindDef>.AllDefs)
+                if (pkDef.race == thingDef)
+                    return pkDef; //handle multiple pawnkinds per chaomorph? 
+
+            return null; 
         }
 
         /// <summary>

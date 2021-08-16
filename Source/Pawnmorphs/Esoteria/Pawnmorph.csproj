@@ -418,6 +418,7 @@
     <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
     <Compile Include="Hediffs\FullTransformationStage.cs" />
     <Compile Include="Hediffs\FullTransformationStageBase.cs" />
+    <Compile Include="Hediffs\Giver_ChaomorphTf.cs" />
     <Compile Include="Hediffs\Giver_MutationClass.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\IInitializable.cs" />
