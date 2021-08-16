@@ -9,7 +9,7 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_DynamicTf" />
     /// <seealso cref="Pawnmorph.Hediffs.FullTransformationStageBase" />
-    public class HediffStage_FullTF_Dynamic : FullTransformationStageBase
+    public class HediffStage_Transformation_Dynamic : FullTransformationStageBase
     {
         /// <summary>
         /// Gets the pawn kind definition to turn the given pawn into
