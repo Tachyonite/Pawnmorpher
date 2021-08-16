@@ -534,28 +534,39 @@
 				<li>rodentcharacteristic->beady eyes</li>
 				<li>rodentcharacteristic->twitchy nose</li>
 				<li>rodentcharacteristic->ratty appearance</li>
+				<li>rodentcharacteristic->squeaky voice</li>
 				<li>rodentcharacteristic->size</li>
 				<li>rodentcharacteristic->twitchy mannerisms</li>
-				<li>rodentcharacteristic->[refusal] to stay still</li>
-
+				<li>rodentcharacteristic->inability to sit still</li>
+				<li>rodentcharacteristic->cooking skill</li>
+				
 				<li>insultcomparison->cheese gnawer</li>
-				<li>insultcomparison->tree muncher</li>
 				<li>insultcomparison->nut</li>
 				<li>insultcomparison->thief</li>
 				<li>insultcomparison->pest</li>
 				<li>insultcomparison->squeaky toy</li>
 				<li>insultcomparison->shrimp</li>
+				<li>insultcomparison->plauge rat</li>
+				<li>insultcomparison->sewer dweller</li>
 
 				<li>insult->complained that [RECIPIENT_possessive] is too jumpy</li>
 				<li>insult->said [RECIPIENT_nameDef] is disgusting</li>
 				<li>insult->mockingly called [RECIPIENT_nameDef] cute</li>
 				<li>insult->aggressively called [RECIPIENT_nameDef] "nuts"</li>
+				<li>insult->accused [RECIPIENT_nameDef] of spreading [disease]</li>
 				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				
+				<li>disease->plauge</li>
+				<li>disease->malaria</li>
+				<li>disease->the flu</li>
+				<li>disease->food poisoning</li>
 
 				<li>insultingjoketopics->mousetraps</li>
-				<li>insultingjoketopics->rodents dumpster diving</li>
+				<li>insultingjoketopics->hoarding nuts</li>
+				<li>insultingjoketopics->dumpster diving</li>
 				<li>insultingjoketopics->rat poison</li>
 				<li>insultingjoketopics->trash-eating rodents</li>
+				<li>insultingjoketopics->[disease]</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Rodent</recipientWeights>
@@ -589,7 +600,9 @@
 				<li>rodentcharacteristic->tail</li>
 				<li>rodentcharacteristic->short stature</li>
 				<li>rodentcharacteristic->bad breath</li>
+				<li>rodentcharacteristic->bandit mask</li>
 				<li>rodentcharacteristic->twitchy nose</li>
+				<li>rodentcharacteristic->ring tail</li>
 				<li>rodentcharacteristic->conniving hands</li>
 				<li>rodentcharacteristic->ratty appearance</li>
 				<li>rodentcharacteristic->size</li>
@@ -604,20 +617,21 @@
 				<li>insultcomparison->furry burglar</li>
 				<li>insultcomparison->squeaky toy</li>
 				<li>insultcomparison->fur cap</li>
+				<li>insultcomparison->rocket</li>
 
-				<li>insult->accused [RECIPIENT_possessive] of stealing something</li>
+				<li>insult->accused [RECIPIENT_nameDef] of stealing something</li>
 				<li>insult->said [RECIPIENT_nameDef] is disgusting</li>
 				<li>insult->mockingly called [RECIPIENT_nameDef] cute</li>
 				<li>insult->pulled [RECIPIENT_nameDef] back by [RECIPIENT_possessive] tail</li>
 				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
 
 				<li>insultingjoketopics->fugitives</li>
-				<li>insultingjoketopics->raccoons dumpster diving</li>
+				<li>insultingjoketopics->dumpster diving</li>
 				<li>insultingjoketopics->feral raccoons</li>
 				<li>insultingjoketopics->rabies</li>
 			</rulesStrings>
 		</logRulesInitiator>
-		<recipientWeights>PMInteractionWeights_Rodent</recipientWeights>
+		<recipientWeights>PMInteractionWeights_Raccoon</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 
 	<!-- Insults aimed at alphabeavermorphs -->
@@ -649,31 +663,37 @@
 				<li>rodentcharacteristic->short stature</li>
 				<li>rodentcharacteristic->beady eyes</li>
 				<li>rodentcharacteristic->twitchy nose</li>
-				<li>rodentcharacteristic->ratty appearance</li>
+				<li>rodentcharacteristic->buck teeth</li>
 				<li>rodentcharacteristic->size</li>
 				<li>rodentcharacteristic->twitchy mannerisms</li>
-				<li>rodentcharacteristic->[refusal] to stay still</li>
+				<li>rodentcharacteristic->inability to sit still</li>
+				<li>rodentcharacteristic->eating habits</li>
+				<li>rodentcharacteristic->construction skill</li>
+				<li>rodentcharacteristic->woodcutting skill</li>
 
 				<li>insultcomparison->river polluter</li>
 				<li>insultcomparison->tree muncher</li>
 				<li>insultcomparison->giant termite</li>
 				<li>insultcomparison->tree plague</li>
+				<li>insultcomparison->lumberjack</li>
+				<li>insultcomparison->chainsaw</li>
 				<li>insultcomparison->pest</li>
 				<li>insultcomparison->squeaky toy</li>
 				<li>insultcomparison->shrimp</li>
 
-				<li>insult->complained that [RECIPIENT_possessive] is too jumpy</li>
+				<li>insult->complained that [RECIPIENT_nameDef] is too jumpy</li>
 				<li>insult->accused [RECIPIENT_nameDef] of gnawing [INITIATOR_possessive] stuff</li>
-				<li>insult->said [RECIPIENT_possessive] tail is weird</li>
+				<li>insult->said [RECIPIENT_nameDef]'s tail is weird</li>
 				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
 
-				<li>insultingjoketopics->alphabeaver dams</li>
+				<li>insultingjoketopics->dam permits</li>
 				<li>insultingjoketopics->trees being inedible</li>
+				<li>insultingjoketopics->high-fiber diets</li>
 				<li>insultingjoketopics->alphabeaver tails</li>
-				<li>insultingjoketopics->alphabeavers clearing out all trees</li>
+				<li>insultingjoketopics->clearcutting forests</li>
 			</rulesStrings>
 		</logRulesInitiator>
-		<recipientWeights>PMInteractionWeights_Rodent</recipientWeights>
+		<recipientWeights>PMInteractionWeights_Beaver</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	
 	<!-- Insults aimed at chaomorphs -->

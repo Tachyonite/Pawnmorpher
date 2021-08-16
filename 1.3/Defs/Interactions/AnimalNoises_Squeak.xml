@@ -9,7 +9,7 @@
 			<li>EtherRatSnout</li>
 			<li>EtherSquirrelJaw</li>
 		</requiredMutationsAny>
-		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle. A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to squeak as a human with just a muzzle. A muzzled human will squeak half as often as chatting and a full morph will squeak twice as often as chatting -->
 		<mutationWeights>
 			<!-- Muzzles -->
 			<li>
@@ -69,9 +69,9 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
 		<defName>PMSqueak_Chitchat</defName>
 		<label>squeak</label>
-		<symbol>Things/Mote/SpeechSymbols/Bark</symbol>
-		<initiatorThought>PawnmorphSqueak</initiatorThought>
-		<recipientThought>PawnmorphSqueak</recipientThought>
+		<symbol>Things/Mote/SpeechSymbols/Squeak</symbol>
+		<initiatorThought>PMSqueak_ChitchatMemory</initiatorThought>
+		<recipientThought>PMSqueak_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
@@ -106,7 +106,7 @@
 
 
 	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
-		<defName>PawnmorphSqueak</defName>
+		<defName>PMSqueak_ChitchatMemory</defName>
 		<stages>
 			<li>
 				<label>squeak</label>
@@ -120,6 +120,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMSqueak_DeepTalk</defName>
 		<label>deep squeak</label>
+		<symbol>Things/Mote/SpeechSymbols/Squeak_DeepTalk</symbol>
 		<initiatorThought>PMSqueak_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMSqueak_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
@@ -173,6 +174,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMSqueak_DeepTalkRodent</defName>
 		<label>deep squeak with rodent</label>
+		<symbol>Things/Mote/SpeechSymbols/Squeak_DeepTalk</symbol>
 		<initiatorThought>PMSqueak_DeepTalkRodentMemory</initiatorThought>
 		<recipientThought>PMSqueak_DeepTalkRodentMemory</recipientThought>
 		<logRulesInitiator>
@@ -194,8 +196,8 @@
 				<li>rodenttopic->[rodentlife]</li>
 				<li>rodenttopic->[secretrodentlife]</li>
 
-				<li>rodentlife->becoming a rodent morph</li>
-				<li>rodentlife->being a rodent morph</li>
+				<li>rodentlife->becoming rodent morphs</li>
+				<li>rodentlife->being rodent morphs</li>
 				<li>rodentlife->keeping hands</li>
 				<li>rodentlife->cheese</li>
 				<li>rodentlife->nuts</li>
@@ -226,6 +228,9 @@
 				<li>secretrodentlife->shiny hoarding</li>
 				<li>secretrodentlife->food caching</li>
 				<li>secretrodentlife->the best hiding spots</li>
+				<li>secretrodentlife->plague cauldrons</li>
+				<li>secretrodentlife->rats with horns</li>
+				<li>secretrodentlife->the secret rodent undercity</li>
 				
 				<li>rodentbehavior->squeaked understandingly at [RECIPIENT_nameDef]</li>
 				<li>rodentbehavior->chittered with [RECIPIENT_nameDef]</li>
@@ -253,6 +258,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMSqueak_Slight</defName>
 		<label>rodent slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Squeak_Slight</symbol>
 		<recipientThought>PMSqueak_Slight</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -286,10 +292,10 @@
 				
 				<li>refusal->refusal</li>
 				<li>refusal->unwillingness</li>
-				<li>refusal->aversion</li>
-				<li>refusal->hesitancy</li>
 				
-				<li>annoyingbehavior->tail got in the way of [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->nearly tripped [RECIPIENT_nameDef] with [INITIATOR_possessive] tail</li>
+				<li>annoyingbehavior->tripped [RECIPIENT_nameDef] with [INITIATOR_possessive] tail</li>
+				<li>annoyingbehavior->loudly gnawed on something, annoying [RECIPIENT_nameDef]</li>
 				<li>annoyingbehavior->made a high pitched squeak at [RECIPIENT_nameDef]</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -311,6 +317,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMSqueak_Insult</defName>
 		<label>rodent insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Squeak_Insult</symbol>
 		<recipientThought>PMSqueak_Insult</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
@@ -377,7 +384,7 @@
 		<stages>
 			<li>
 				<label>squeaked at</label>
-				<description>I've been squeaked at! What an awful rodent!</description>
+				<description>I've been rudely squeaked at! What an awful rodent!</description>
 				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
@@ -388,6 +395,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
 		<defName>PMSqueak_KindWords</defName>
 		<label>kind squeaks</label>
+		<symbol>Things/Mote/SpeechSymbols/Squeak_KindWords</symbol>
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMSqueak_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
