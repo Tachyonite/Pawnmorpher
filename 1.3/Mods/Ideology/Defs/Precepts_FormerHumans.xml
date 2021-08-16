@@ -8,7 +8,7 @@
 
     <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
         <defName>PM_FormerHumanNudityDisliked</defName>
-        <label>disliked</label>
+        <label>humanlike</label>
         <description>They can't do anything about it, but it doesn't mean we have to be ok with it.</description>
         <associatedMemes>
             <li>HumanPrimacy</li>
@@ -19,6 +19,18 @@
         <comps>
             <li Class="PreceptComp_SituationalThought">
                 <thought>PM_Precept_SapientAnimalNakedDisliked</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanHunted</eventDef>
+                <thought>SapientAnimalHuntingMemory</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanGrazed</eventDef>
+                <thought>PM_Precept_SapientAnimalGrazingMemoryDisliked</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanAteCorpse</eventDef>
+                <thought>PM_Precept_FormerHumanAteCorpseHumanlike</thought>
             </li>
         </comps>
     </PreceptDef>
@@ -32,12 +44,26 @@
         <associatedMemes>
             <li>NaturePrimacy</li>
         </associatedMemes>
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanHunted</eventDef>
+                <thought>SapientAnimalHuntingMemory</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanGrazed</eventDef>
+                <thought>PM_Precept_SapientAnimalGrazingMemoryDisliked</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanAteCorpse</eventDef>
+                <thought>PM_Precept_FormerHumanAteCorpseHumanlike</thought>
+            </li>
+        </comps>
     </PreceptDef>
 
     <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
         <defName>PM_FormerHumanNudityLiked</defName>
-        <label>liked</label>
-        <description>Former humans should be as the animals are, clothes are unnecessary.</description>
+        <label>animalistic</label>
+        <description>TODO</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
         <countsTowardsPreceptLimit>true</countsTowardsPreceptLimit>
         <associatedMemes>
@@ -49,6 +75,53 @@
         <comps>
             <li Class="PreceptComp_SituationalThought">
                 <thought>PM_Precept_SapientAnimalNakedLiked</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanHunted</eventDef>
+                <thought>PM_Precept_SapientAnimalHuntingMemoryLiked</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanGrazed</eventDef>
+                <thought>PM_Precept_SapientAnimalGrazingMemoryLiked</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanAteCorpse</eventDef>
+                <thought>PM_Precept_FormerHumanAteCorpseStronglyAnimallike</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
+        <defName>PM_FormerHuman_StronglyAnimalistic</defName>
+        <label>strongly animalistic</label>
+        <description>Former humans should be as the animals are</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+        <countsTowardsPreceptLimit>true</countsTowardsPreceptLimit>
+
+        <associatedMemes>
+            <li>NaturePrimacy</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_Precept_SapientAnimalNakedLiked</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanHunted</eventDef>
+                <thought>PM_Precept_SapientAnimalHuntingMemoryDesired</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanGrazed</eventDef>
+                <thought>PM_Precept_SapientAnimalGrazingMemoryDesired</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>FormerHumanAteCorpse</eventDef>
+                <thought>PM_Precept_FormerHumanAteCorpseStronglyAnimallike</thought>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.FeralFoodAdjustor"> 
+
             </li>
         </comps>
     </PreceptDef>
