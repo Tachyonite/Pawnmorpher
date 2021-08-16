@@ -377,7 +377,7 @@
 				<minSeverity>1.5</minSeverity> <!-- adaption cream -->
 				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
 				<label>feather fingers</label>
-				<partEfficiencyOffset>-0.45</partEfficiencyOffset>
+				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
 				<description>Further adaption to this wingtip has given [PAWN_nameDef] several stiff feathers that [PAWN_pronoun] can manipulate.  [PAWN_pronoun] can use them sort of like fingers, but being nothing more than feathers they have a hard time really grasping anything.</description>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

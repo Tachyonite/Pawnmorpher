@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.DefExtensions
@@ -38,7 +39,12 @@ namespace Pawnmorph.DefExtensions
         /// The pawn kind definition
         /// </summary>
         [CanBeNull]
-        public PawnKindDef pawnKindDef; 
+        public PawnKindDef pawnKindDef;
 
+
+        /// <summary>
+        /// optional tale for when a pawn tf into this kind of chaomorph 
+        /// </summary>
+        [CanBeNull] public TaleDef customTfTale; 
     }
 }

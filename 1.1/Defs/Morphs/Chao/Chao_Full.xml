@@ -16,7 +16,7 @@
 				</capMods>
 				<hediffGivers>
 					<li Class="Pawnmorph.HediffGiver_TF">
-						<hediff>TransformedHuman</hediff>
+						<hediff>TransformedHuman</hediff> <!--TODO need to get the list of pawnkinds to tf into using the ChaomorphExtension added onto chaomorph defs  -->
 						<forceGender>Switch</forceGender>
 						<forceGenderChance>25</forceGenderChance>
 						<pawnkinds>

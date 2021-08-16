@@ -3,6 +3,9 @@
 
 namespace Pawnmorph
 {
+    //TODO is this ok to be an enum or should we make it a def? 
+    //who else would need to make different kinds of chaomorphs? 
+
     /// <summary>
     /// the types of chaomorphs 
     /// </summary>

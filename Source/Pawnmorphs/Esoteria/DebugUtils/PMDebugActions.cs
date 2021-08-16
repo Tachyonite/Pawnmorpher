@@ -46,6 +46,34 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void MassChaoTfPawns()
+        {
+            var curMap = Find.CurrentMap;
+            if (curMap == null) return;
+            var hediffDef = MorphTransformationDefOf.FullRandomTFAnyOutcome;
+            var mutagen = hediffDef.GetMutagenDef();
+            List<Pawn> lst = new List<Pawn>(); 
+            foreach (Pawn pawn in curMap.mapPawns.AllPawns)
+            {
+                if(!mutagen.CanTransform(pawn)) continue;
+                var health = pawn.health?.hediffSet;
+                if(health == null) continue;
+                lst.Add(pawn); 
+                if (health.HasHediff(hediffDef))
+                {
+                    continue;
+                }
+
+                health.AddDirect(HediffMaker.MakeHediff(hediffDef, pawn)); 
+            }
+
+            foreach (Pawn pawn in lst)
+            {
+                ForceTransformation(pawn); 
+            }
+        }
+
         [DebugAction(category=PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void EnableMutationTrackerLogging(Pawn p)
         {

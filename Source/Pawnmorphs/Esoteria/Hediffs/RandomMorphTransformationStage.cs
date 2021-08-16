@@ -36,6 +36,11 @@ namespace Pawnmorph.Hediffs
         public AnimalClassBase morph;
 
         /// <summary>
+        /// how far up the class tree to take mutations from 
+        /// </summary>
+        public int height; 
+
+        /// <summary>
         /// if true, this stage can give restricted mutations 
         /// </summary>
         public bool allowRestricted; 
@@ -70,6 +75,7 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        
         /// <summary>
         /// how fast the mutation types change 
         /// </summary>
@@ -100,15 +106,50 @@ namespace Pawnmorph.Hediffs
            try
            {
                var rMorph = AllMorphs.RandomElement();
-               foreach (MutationDef rMorphAllAssociatedMutation in rMorph.AllAssociatedMutations) //get all mutations from the randomly picked morph 
+
+
+
+               IReadOnlyList<MutationDef> allMutations;
+
+               HashSet<BodyPartDef> chosenParts = new HashSet<BodyPartDef>();  
+               if (height > 0)
                {
-                    if(!allowRestricted && rMorphAllAssociatedMutation.IsRestricted) continue;
+                   AnimalClassBase cBase = rMorph;
+                   int i = 0;
+                   while (cBase != null && i < height)
+                   {
+                       var parent = cBase.ParentClass; 
+                       if(parent == null) break;
+                       i++;
+                       cBase = parent; 
+                   }
+
+                   cBase = cBase ?? rMorph; 
+                   allMutations = cBase.GetAllMutationIn();
+               }else 
+                    allMutations = rMorph.AllAssociatedMutations;
+
+               List<BodyPartDef> partDefsScratch = new List<BodyPartDef>(); 
+
+               foreach (MutationDef mutation in allMutations) //get all mutations from the randomly picked morph 
+               {
+                   partDefsScratch.Clear();
+                    if(!allowRestricted && mutation.IsRestricted) continue;
+
+                    if (!mutation.parts.NullOrEmpty() && Rand.Chance(0.9f))
+                    {
+                        partDefsScratch.AddRange(mutation.parts.Where(p => !chosenParts.Contains(p)));
+                        if(partDefsScratch.Count == 0) continue;
+
+                        var rPart = partDefsScratch.RandomElement();
+                        chosenParts.Add(rPart);
+                    }     
 
                    var mEntry = new MutationEntry
                    {
-                       addChance = rMorphAllAssociatedMutation.defaultAddChance,
-                       blocks = rMorphAllAssociatedMutation.defaultBlocks,
-                       mutation = rMorphAllAssociatedMutation
+                       addChance = mutation.defaultAddChance,
+                       blocks = mutation.defaultBlocks,
+                       mutation = mutation
                    };
                    lst.Add(mEntry); 
                }
