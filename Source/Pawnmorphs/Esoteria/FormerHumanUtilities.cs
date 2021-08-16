@@ -752,11 +752,16 @@ namespace Pawnmorph
         /// <summary>
         ///     Gives the sapient animal the hunting thought.
         /// </summary>
+        /// note: this always gives the default thoughts, the caller should
+        /// first check if ideology is active and if the pawns ideo should override these 
         /// <param name="sapientAnimal">The sapient animal.</param>
         /// <param name="prey">The prey.</param>
         public static void GiveSapientAnimalHuntingThought([NotNull] Pawn sapientAnimal, [NotNull] Pawn prey)
         {
             ThoughtDef thoughtDef;
+
+            
+
 
             if (sapientAnimal.GetMutationOutlook() == MutationOutlook.PrimalWish)
                 thoughtDef = PMThoughtDefOf.SapientAnimalHuntingMemoryPrimalWish;

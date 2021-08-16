@@ -499,6 +499,7 @@
     <Compile Include="ICustomVerb.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IEquipmentGizmo.cs" />
+    <Compile Include="IFoodPreferenceAdjustor.cs" />
     <Compile Include="IMentalStateRecoveryReceiver.cs" />
     <Compile Include="IncidentWorker\LiquidSlurry.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
@@ -584,6 +585,7 @@
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
+    <Compile Include="PreceptComps\FeralFoodAdjustor.cs" />
     <Compile Include="PreceptComps\GiveRelationDependentThought.cs" />
     <Compile Include="PreceptComps\SelfTookMemoryThought_MemeOverride.cs" />
     <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
@@ -630,6 +632,7 @@
     <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\MutationSequencerComp.cs" />
     <Compile Include="ThingComps\MutationSequencerProps.cs" />
+    <Compile Include="ThingComps\PlantIngesterListener.cs" />
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\SlurryFueled.cs" />

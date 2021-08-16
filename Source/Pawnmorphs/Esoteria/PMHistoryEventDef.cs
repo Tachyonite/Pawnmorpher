@@ -83,7 +83,34 @@ namespace Pawnmorph
         /// args: 
         /// Doer(pawn) the pawn that went permanently feral 
         [NotNull]
-        public static HistoryEventDef PermanentlyFeral; 
+        public static HistoryEventDef PermanentlyFeral;
+
+
+        /// <summary>
+        /// event for when a former human hunts another animal either due to hunger or as a mental break 
+        /// </summary>
+        /// args:
+        /// Doer(pawn) the pawn that hunted
+        /// VICTIM(pawn) what the pawn hunted 
+        [NotNull]
+        public static HistoryEventDef FormerHumanHunted;
+
+        /// <summary>
+        /// event for when a former human grazes (eats either live plants, seeds or trees)
+        /// </summary>
+        /// args:
+        /// Doer(pawn) the pawn that grazed
+        /// VICTIM(Thing) the thing the pawn ate 
+        [NotNull]
+        public static HistoryEventDef FormerHumanGrazed;
+
+        /// <summary>
+        /// event for when a former human eats a raw corpse 
+        /// </summary>
+        /// args:
+        /// Doer(pawn) 
+        public static HistoryEventDef FormerHumanAteCorpse; 
+
 
 
     }

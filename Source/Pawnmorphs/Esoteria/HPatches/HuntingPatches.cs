@@ -23,8 +23,19 @@ namespace Pawnmorph.HPatches
                 if (!__instance.pawn.IsFormerHuman() || __instance.pawn?.needs?.mood == null ) yield break;
                 yield return Toils_General.Do(() =>
                 {
-                    FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn,
-                                                                         __instance.Prey);
+
+                    
+                    var ideo = __instance.pawn.Ideo;
+                    if (!ModsConfig.IdeologyActive || ideo?.HasPositionOn(PMIssueDefOf.PM_FormerHuman_Nudity) != true) //if no ideo or the ideo doesn't care use the defaults 
+                    {
+                        FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn,
+                                                                             __instance.Prey);
+                    }
+
+                    PMHistoryEventDefOf.FormerHumanHunted.SendEvent(__instance.pawn.Named(HistoryEventArgsNames.Doer),
+                                                                    __instance.Prey.Named(HistoryEventArgsNames.Victim)); 
+
+
                 });
  
             }
