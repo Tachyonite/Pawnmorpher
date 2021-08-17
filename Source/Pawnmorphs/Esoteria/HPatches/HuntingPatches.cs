@@ -1,6 +1,7 @@
 ﻿// HuntingPatches.cs modified by Iron Wolf for Pawnmorph on 12/15/2019 7:40 AM
 // last updated 12/15/2019  7:40 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
@@ -18,14 +19,42 @@ namespace Pawnmorph.HPatches
         {
             static IEnumerable<Toil> Postfix(IEnumerable<Toil> values, [NotNull] JobDriver_PredatorHunt __instance)
             {
-                foreach (Toil toil in values) yield return toil;
 
-                if (!__instance.pawn.IsFormerHuman() || __instance.pawn?.needs?.mood == null ) yield break;
-                yield return Toils_General.Do(() =>
+                Toil lastToil = null; 
+
+                foreach (Toil toil in values)
                 {
-                    FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn,
-                                                                         __instance.Prey);
+                    lastToil = toil; 
+                    
+                    yield return toil;
+                }
+
+
+
+                if (!__instance.pawn.IsFormerHuman() || __instance.pawn?.needs?.mood == null  || lastToil == null) yield break;
+
+
+                bool passed = false;
+
+                lastToil.finishActions = lastToil.finishActions ?? new List<Action>(); 
+
+                lastToil.finishActions.Add(() =>
+                {
+                    if (passed) return;
+                    passed = true; 
+                    var ideo = __instance.pawn.Ideo;
+                    if (!ModsConfig.IdeologyActive || ideo?.HasPositionOn(PMIssueDefOf.PM_FormerHuman_Nudity) != true) //if no ideo or the ideo doesn't care use the defaults 
+                    {
+                        FormerHumanUtilities.GiveSapientAnimalHuntingThought(__instance.pawn,
+                                                                             __instance.Prey);
+                    }
+
+                    PMHistoryEventDefOf.FormerHumanHunted.SendEvent(__instance.pawn.Named(HistoryEventArgsNames.Doer),
+                                                                    __instance.Prey.Named(HistoryEventArgsNames.Victim));
+
+
                 });
+
  
             }
 
