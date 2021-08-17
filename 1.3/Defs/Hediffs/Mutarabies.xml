@@ -16,12 +16,11 @@ A single dose of stabilizer can also be administered to mutarabid animals to imm
         <!--<defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>-->
         <makesAlert>true</makesAlert>
         <scenarioCanAdd>true</scenarioCanAdd>
-        <comps>
         <initialSeverity>1</initialSeverity>
         <comps>
-            <li Class="HediffCompProperties_SeverityPerDay">
-                <!-- Disappears after 4 days -->
-                <severityPerDay>-0.25</severityPerDay>
+            <li Class="HediffCompProperties_Disappears">
+                <!-- Disappears after 2-4 days -->
+                <disappearsAfterTicks>120000~240000</disappearsAfterTicks>
             </li>
             <li Class="HediffCompProperties_CauseMentalState">
                 <animalMentalState>ManhunterPermanent</animalMentalState>
@@ -29,7 +28,20 @@ A single dose of stabilizer can also be administered to mutarabid animals to imm
                 <humanMentalState>Berserk</humanMentalState>
                 <letterDef>ThreatSmall</letterDef>
                 <mtbDaysToCauseMentalState>0.01</mtbDaysToCauseMentalState>
-                <endMentalStateOnCure>true</true>
+                <endMentalStateOnCure>true</endMentalStateOnCure>
+            </li>
+            <li Class="HediffCompProperties_VerbGiver">
+                <tools>
+                    <li>
+                        <label>rabid fangs</label>
+                        <capacities>
+                            <li>MutarabidBite</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>2</cooldownTime>
+                        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                    </li>
+                </tools>
             </li>
         </comps>
     </HediffDef>
@@ -45,7 +57,7 @@ Mutarabies progresses through four stages. At first, victims will display bouts 
 Mutarabies progresses quickly and will easily overwhelm the immune system if left untreated, but it is particularly easy to treat with standard medical care. A single dose of stabilizer will also immediately cure the disease and render the pawn immune to reinfection for as long as it lasts. Infected victims should be treated as soon as possible, or isolated to prevent them from hurting others if that isn't an option.</description>
         <makesSickThought>true</makesSickThought>
         <tendable>true</tendable>
-        <hediffClass>Pawnmorph.Hediffs.MorphDisease</hediffClass>
+        <hediffClass>Pawnmorph.Hediffs.Hediff_DynamicTF</hediffClass>
         <makesAlert>true</makesAlert>
         <scenarioCanAdd>true</scenarioCanAdd>
         <comps>
@@ -89,7 +101,6 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
                     </li>
                 </capMods>
                 <meanMutationsPerDay>10</meanMutationsPerDay>
-                <addChance>1</addChance>
             </li>
             <li Class="Pawnmorph.Hediffs.HediffStage_Mutation_Dynamic">
                 <minSeverity>0.75</minSeverity>
@@ -104,7 +115,6 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
                     </li>
                 </capMods>
                 <meanMutationsPerDay>30</meanMutationsPerDay>
-                <addChance>1</addChance>
                 <mentalStateGivers>
                     <li>
                         <mentalState>Berserk</mentalState>
@@ -112,7 +122,7 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
                     </li>
                 </mentalStateGivers>
                 <letterDef>ThreatSmall</letterDef>
-                <letterText>[PAWN_nameDef] has a severe mutarabies infection.  [PAWN_pronoun] is likely to become aggressive and will soon transform into a mutarabid animal if they don't get medical treatment very soon.  Either give them treatment, administer a stabilizer, or isolate them so that they don't harm anyone after they tranform.</letterText>
+                <letterText>[PAWN_nameDef] has a severe mutarabies infection.  [PAWN_pronoun] is likely to become aggressive and will soon transform into a mutarabid animal if [PAWN_pronoun] doesn't get medical treatment very soon.  Either give [PAWN_objective] treatment, administer a stabilizer, or isolate [PAWN_objective] so that [PAWN_pronoun] can't harm anyone after [PAWN_pronoun] transforms.</letterText>
                 <letterLabel>[PAWN_nameDef] is going mutarabid</letterLabel>
             </li>
             <li Class="Pawnmorph.Hediffs.HediffStage_Transformation_Dynamic">

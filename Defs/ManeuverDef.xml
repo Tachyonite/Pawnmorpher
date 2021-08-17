@@ -52,5 +52,19 @@
         <combatLogRulesDeflect>Maneuver_Poke_MeleeDeflect</combatLogRulesDeflect>
         <combatLogRulesMiss>Maneuver_Poke_MeleeMiss</combatLogRulesMiss>
         <combatLogRulesDodge>Maneuver_Poke_MeleeDodge</combatLogRulesDodge>
-      </ManeuverDef>
+    </ManeuverDef>
+      
+    <ManeuverDef>
+        <defName>MutarabidBite</defName>
+        <requiredCapacity>MutarabidBite</requiredCapacity>
+        <verb>
+            <verbClass>Verb_MeleeAttackDamage</verbClass>
+            <meleeDamageDef>MutarabidBite</meleeDamageDef>
+        </verb>
+        <logEntryDef>MeleeAttack</logEntryDef>
+        <combatLogRulesHit>Maneuver_Bite_MeleeHit</combatLogRulesHit>
+        <combatLogRulesDeflect>Maneuver_Bite_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Bite_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Bite_MeleeDodge</combatLogRulesDodge>
+    </ManeuverDef>
 </Defs>
