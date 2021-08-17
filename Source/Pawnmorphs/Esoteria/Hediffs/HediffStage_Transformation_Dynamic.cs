@@ -30,6 +30,7 @@ namespace Pawnmorph.Hediffs
                 return;
             }
 
+            // TODO figure out a better way to do this so we don't have to leverage the fullTF hediff
             var transformer = tfHediff.MorphDef?.fullTransformation?.GetAllTransformers().FirstOrDefault();
             if (transformer == null)
             {

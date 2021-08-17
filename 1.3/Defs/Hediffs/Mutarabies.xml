@@ -68,7 +68,7 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
             </li>
         </comps>
         <stages>
-            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+            <li>
                 <label>delirious</label>
                 <vomitMtbDays>0.25</vomitMtbDays>
                 <capMods>
@@ -77,26 +77,23 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
                         <offset>-0.1</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>1</meanMutationsPerDay>
             </li>
-            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation_Dynamic">
                 <minSeverity>0.25</minSeverity>
                 <label>mutating</label>
-                <vomitMtbDays>1.5</vomitMtbDays>
+                <vomitMtbDays>0.75</vomitMtbDays>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
                         <offset>-0.2</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>3</meanMutationsPerDay>
+                <meanMutationsPerDay>10</meanMutationsPerDay>
                 <addChance>1</addChance>
             </li>
-            <li Class="Pawnmorph.Hediffs.MorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation_Dynamic">
                 <minSeverity>0.75</minSeverity>
-                <label>berserk</label>
+                <label>rabid</label>
                 <lifeThreatening>true</lifeThreatening>
                 <vomitMtbDays>0.75</vomitMtbDays>
                 <painOffset>0.05</painOffset>
@@ -106,25 +103,22 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
                         <offset>-0.05</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>6</meanMutationsPerDay>
+                <meanMutationsPerDay>30</meanMutationsPerDay>
                 <addChance>1</addChance>
+                <mentalStateGivers>
+                    <li>
+                        <mentalState>Berserk</mentalState>
+                        <mtbDays>0.1</mtbDays>
+                    </li>
+                </mentalStateGivers>
                 <letterDef>ThreatSmall</letterDef>
                 <letterText>[PAWN_nameDef] has a severe mutarabies infection.  [PAWN_pronoun] is likely to become aggressive and will soon transform into a mutarabid animal if they don't get medical treatment very soon.  Either give them treatment, administer a stabilizer, or isolate them so that they don't harm anyone after they tranform.</letterText>
                 <letterLabel>[PAWN_nameDef] is going mutarabid</letterLabel>
             </li>
-            <li Class="Pawnmorph.Hediffs.FullTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Transformation_Dynamic">
                 <minSeverity>0.999</minSeverity>
-                <label>rabid</label>
-                <forceGender>Switch</forceGender>
-                <forceGenderChance>25</forceGenderChance>
-                <pawnkinds>
-                    <li>Chaocow</li>
-                    <li>Chaofox</li>
-                    <li>Chaodino</li>
-                </pawnkinds>
-                <transformationTale>TransformationMisc</transformationTale>
-                <changeChance>100</changeChance>
+                <label>transformation</label>
+                <transformationChance>1</transformationChance>
             </li>
         </stages>
     </HediffDef>
