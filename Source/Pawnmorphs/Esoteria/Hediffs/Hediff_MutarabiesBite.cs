@@ -16,7 +16,7 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public override bool TryMergeWith(Hediff other)
         {
-            if (other is MutagenicBuildup buildup)
+            if (other is Hediff_MutarabiesBite buildup)
             {
                 Severity += other.Severity;
                 foreach (HediffComp hediffComp in comps)

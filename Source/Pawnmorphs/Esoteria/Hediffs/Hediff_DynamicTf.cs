@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -52,6 +53,22 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        /// <summary>
+        /// Creates a debug string for this hediff 
+        /// </summary>
+        /// <returns></returns>
+        public override string DebugString()
+        {
+            StringBuilder builder = new StringBuilder(base.DebugString());
+            builder.AppendLine($"{nameof(Hediff_DynamicTf)}: ");
+            builder.AppendLine($"  MorphDef: {MorphDef.defName}");
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Save/Loads data.
+        /// </summary>
         public override void ExposeData()
         {
             Scribe_Defs.Look(ref morphDef, nameof(morphDef));

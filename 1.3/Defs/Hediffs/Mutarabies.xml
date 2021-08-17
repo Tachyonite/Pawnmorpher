@@ -66,7 +66,7 @@ A single dose of stabilizer can also be administered to mutarabid animals to imm
         <workerClass>Pawnmorph.Damage.DamageWorker_MutarabidBite</workerClass>
         <modExtensions>
             <li Class="Pawnmorph.Damage.MutagenicDamageExtension">
-                <severityPerDamage>0.03</severityPerDamage>
+                <severityPerDamage>0.0033</severityPerDamage>
                 <mutagenicBuildup>PM_MutarabiesBite</mutagenicBuildup>
                 <reduceValue>0.25</reduceValue>
             </li>
@@ -91,6 +91,7 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
         <hediffClass>Pawnmorph.Hediffs.Hediff_MutarabiesBite</hediffClass>
         <makesAlert>true</makesAlert>
         <scenarioCanAdd>true</scenarioCanAdd>
+        <maxSeverity>1</maxSeverity>
         <comps>
             <!--
                 50%-100% tend quality - the infection regresses and disappears
@@ -111,8 +112,9 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
             </li>
         </comps>
         <stages>
-            <li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Descriptive">
                 <label>delirious</label>
+                <description>This person is showing signs of delirum as the mutarabies infection takes hold. They should be given prompt medical attention, or they will turn into a mutarabid animal themselves.</description>
                 <vomitMtbDays>0.25</vomitMtbDays>
                 <capMods>
                     <li>
@@ -124,6 +126,7 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
             <li Class="Pawnmorph.Hediffs.HediffStage_Mutation_Dynamic">
                 <minSeverity>0.25</minSeverity>
                 <label>mutating</label>
+                <description>The mutarabies infection has taken hold and this person has begun to mutate. They should be given prompt medical attention, or they will turn into a mutarabid animal themselves.</description>
                 <vomitMtbDays>0.75</vomitMtbDays>
                 <capMods>
                     <li>
@@ -136,6 +139,7 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
             <li Class="Pawnmorph.Hediffs.HediffStage_Mutation_Dynamic">
                 <minSeverity>0.75</minSeverity>
                 <label>rabid</label>
+                <description>The mutarabies infection has reached this person's brain and has begun to drive them mad, and they are dangerously close to transforming into a mutarabid animal.  If they cannot be tended or stabilized immediately, they should be quarantined to prevent them from attacking others after they transform.</description>
                 <lifeThreatening>true</lifeThreatening>
                 <vomitMtbDays>0.75</vomitMtbDays>
                 <painOffset>0.05</painOffset>
@@ -149,7 +153,7 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
                 <mentalStateGivers>
                     <li>
                         <mentalState>Berserk</mentalState>
-                        <mtbDays>0.1</mtbDays>
+                        <mtbDays>0.35</mtbDays>
                     </li>
                 </mentalStateGivers>
                 <letterDef>ThreatSmall</letterDef>
