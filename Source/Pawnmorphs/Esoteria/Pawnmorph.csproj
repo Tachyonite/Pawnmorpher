@@ -434,7 +434,6 @@
     <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\Comp_MutationTagger.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
-    <Compile Include="Hediffs\PersistentMorphTf.cs" />
     <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
     <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
