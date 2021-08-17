@@ -1,11 +1,9 @@
-﻿using System.Linq;
-using Pawnmorph.TfSys;
-using Verse;
+﻿using Verse;
 
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    /// A TF hediff type where the morph/animal type can be changed dynamically
+    /// A TF hediff type where the morph type can be changed dynamically
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
     public class Hediff_DynamicTf : MorphTf
@@ -19,47 +17,19 @@ namespace Pawnmorph.Hediffs
         /// <value>
         /// The MorphDef
         /// </value>
-        public MorphDef MorphDef => morphDef;
-
-        public override bool ShouldRemove => MutationStatValue <= 0;
-
-        /// <summary>
-        /// Initializes this instance to use the given morphDef
-        /// </summary>
-        /// <param name="morphDef">The morphDef to use.</param>
-        public void Initialize(MorphDef morphDef)
+        public MorphDef MorphDef
         {
-            this.morphDef = morphDef;
-            ResetMutationCaches();
-        }
-
-        /// <summary>
-        ///     Called when the stage changes.
-        /// </summary>
-        /// <param name="currentStage">The last stage.</param>
-        protected override void OnStageChanged(HediffStage currentStage)
-        {
-            base.OnStageChanged(currentStage);
-            if (currentStage == def.stages[def.stages.Count - 1]) DoTf();
-        }
-
-        private void DoTf()
-        {
-            if (kind == null)
+            get { return morphDef; }
+            set
             {
-                _chosenKind = DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal).RandomElement();
-            }
-            var tfRequest = new TransformationRequest(_chosenKind, pawn);
-            var res = MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest);
-            if (res != null)
-            {
-                Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(res); 
+                morphDef = value;
+                ResetMutationCaches();
             }
         }
 
         public override void ExposeData()
         {
-            Scribe_Defs.Look(ref morphDef, "chosenKind");
+            Scribe_Defs.Look(ref morphDef, nameof(morphDef));
             base.ExposeData();
         }
     }
