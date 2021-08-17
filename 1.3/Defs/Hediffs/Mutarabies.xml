@@ -45,6 +45,37 @@ A single dose of stabilizer can also be administered to mutarabid animals to imm
             </li>
         </comps>
     </HediffDef>
+      
+    <ManeuverDef>
+        <defName>MutarabidBite</defName>
+        <requiredCapacity>MutarabidBite</requiredCapacity>
+        <verb>
+            <verbClass>Verb_MeleeAttackDamage</verbClass>
+            <meleeDamageDef>MutarabidBite</meleeDamageDef>
+        </verb>
+        <logEntryDef>MeleeAttack</logEntryDef>
+        <combatLogRulesHit>Maneuver_Bite_MeleeHit</combatLogRulesHit>
+        <combatLogRulesDeflect>Maneuver_Bite_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Bite_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Bite_MeleeDodge</combatLogRulesDodge>
+    </ManeuverDef>
+    
+    <DamageDef ParentName="Bite">
+        <defName>MutarabidBite</defName>
+        <label>mutarabid bite</label>
+        <workerClass>Pawnmorph.Damage.DamageWorker_MutarabidBite</workerClass>
+        <modExtensions>
+            <li Class="Pawnmorph.Damage.MutagenicDamageExtension">
+                <severityPerDamage>0.03</severityPerDamage>
+                <mutagenicBuildup>PM_MutarabiesBite</mutagenicBuildup>
+                <reduceValue>0.25</reduceValue>
+            </li>
+        </modExtensions>
+    </DamageDef>
+
+    <ToolCapacityDef>
+        <defName>MutarabidBite</defName>
+    </ToolCapacityDef>
     
     <HediffDef ParentName="InfectionBase">
         <defName>PM_MutarabiesBite</defName>
