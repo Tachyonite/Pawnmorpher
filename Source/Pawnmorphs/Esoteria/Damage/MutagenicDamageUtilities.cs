@@ -131,6 +131,9 @@ namespace Pawnmorph.Damage
             Log.Message($"original damage:{damage}, reducedDamage{info.Amount}, severity:{severityToAdd}");
 
             pawn.health.AddHediff(hediff, null, info, result);
+
+            if (hediff is IOnApplyViaAttack callback)
+                callback.OnApplyViaAttack(info);
         }
     }
 }
