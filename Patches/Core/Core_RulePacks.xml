@@ -17,7 +17,7 @@
             <li Class="Pawnmorph.DefExtensions.SapientRulePackVariant">
                 <variants>
                     <sapient>MostlySapientAnimalRecruitRejected</sapient>
-                    <mostlySapient>MostlySapientAnimalRecruitSuccess</mostlySapient>
+                    <mostlySapient>MostlySapientAnimalRecruitRejected</mostlySapient>
                 </variants>
             </li>
         </value>
