@@ -268,6 +268,7 @@ namespace Pawnmorph
             //interaction patch 
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
+            methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod(nameof(Pawn_InteractionsTracker.SocialFightPossible), INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod("TryInteractWith", INSTANCE_FLAGS));
 
             //relations
