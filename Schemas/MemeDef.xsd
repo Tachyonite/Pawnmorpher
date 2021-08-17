@@ -132,6 +132,7 @@
                 </xs:complexType>
             </xs:element>
             
+            <xs:element name="preventApparelRequirements" type="xs:boolean" minOccurs="0" />
         </xs:all>
         <xs:attribute name="Name" type="xs:string" use="optional" />
         <xs:attribute name="ParentName" type="xs:string" use="optional" />
