@@ -842,6 +842,7 @@
     <Compile Include="Hediffs\HediffStage_TransformationBase.cs" />
     <Compile Include="Hediffs\HediffStage_MutationBase.cs" />
     <Compile Include="Hediffs\HediffStage_MutagenicBase.cs" />
+    <Compile Include="Hediffs\Hediff_Descriptive.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
