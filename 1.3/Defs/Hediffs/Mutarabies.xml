@@ -57,7 +57,7 @@ Mutarabies progresses through four stages. At first, victims will display bouts 
 Mutarabies progresses quickly and will easily overwhelm the immune system if left untreated, but it is particularly easy to treat with standard medical care. A single dose of stabilizer will also immediately cure the disease and render the pawn immune to reinfection for as long as it lasts. Infected victims should be treated as soon as possible, or isolated to prevent them from hurting others if that isn't an option.</description>
         <makesSickThought>true</makesSickThought>
         <tendable>true</tendable>
-        <hediffClass>Pawnmorph.Hediffs.Hediff_DynamicTF</hediffClass>
+        <hediffClass>Pawnmorph.Hediffs.Hediff_MutarabiesBite</hediffClass>
         <makesAlert>true</makesAlert>
         <scenarioCanAdd>true</scenarioCanAdd>
         <comps>
@@ -100,7 +100,7 @@ Mutarabies progresses quickly and will easily overwhelm the immune system if lef
                         <offset>-0.2</offset>
                     </li>
                 </capMods>
-                <meanMutationsPerDay>10</meanMutationsPerDay>
+                <meanMutationsPerDay>15</meanMutationsPerDay>
             </li>
             <li Class="Pawnmorph.Hediffs.HediffStage_Mutation_Dynamic">
                 <minSeverity>0.75</minSeverity>
