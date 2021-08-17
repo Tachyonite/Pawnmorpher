@@ -76,12 +76,7 @@
 			<xs:element name="li" type="StatModifier" />
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="StatModifier">
-		<xs:sequence>
-			<xs:element name="stat" type="xs:string" />
-			<xs:element name="value" type="xs:float" />
-		</xs:sequence>
-	</xs:complexType>
+
 	<xs:complexType name="HybridThoughtSettings">
 		<xs:sequence>
 			<xs:element name="replacerList" minOccurs="0" maxOccurs="1">
