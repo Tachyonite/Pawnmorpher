@@ -44,7 +44,7 @@
     <DamageDef ParentName="Bite">
         <defName>MutarabidBite</defName>
         <label>mutarabid bite</label>
-        <workerClass>Pawnmorph.Damage.Worker_MutarabidBite</workerClass>
+        <workerClass>Pawnmorph.Damage.DamageWorker_MutarabidBite</workerClass>
         <modExtensions>
             <li Class="Pawnmorph.Damage.MutagenicDamageExtension">
                 <severityPerDamage>0.03</severityPerDamage>

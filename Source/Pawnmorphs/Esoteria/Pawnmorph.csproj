@@ -835,6 +835,7 @@
     <Compile Include="Hediffs\Hediff_DynamicTf.cs" />
     <Compile Include="Hediffs\IOnApplyViaAttack.cs" />
     <Compile Include="Hediffs\Hediff_MutarabiesBite.cs" />
+    <Compile Include="Damage\DamageWorker_MutarabidBite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
