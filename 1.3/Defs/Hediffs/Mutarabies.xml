@@ -1,5 +1,5 @@
 <Defs>
-    <HediffDef ParentName="InfectionBase">
+    <HediffDef>
         <defName>PM_Mutarabies</defName>
         <label>mutarabies</label>
         <labelNoun>mutarabies</labelNoun>
@@ -11,12 +11,25 @@ Victims who have been bitten but not yet fully transformed can be easily cured w
 
 A single dose of stabilizer can also be administered to mutarabid animals to immediately cure the disease.</description>
         <makesSickThought>true</makesSickThought>
+        <isBad>true</isBad>
         <tendable>false</tendable>
         <hediffClass>HediffWithComps</hediffClass>
-        <!--<defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>-->
+        <defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
         <makesAlert>true</makesAlert>
         <scenarioCanAdd>true</scenarioCanAdd>
         <initialSeverity>1</initialSeverity>
+        <hediffGivers>
+            <li Class="HediffGiver_Refresh">
+                <hediff>PM_MutarabiesJaw</hediff>
+                <partsToAffect>
+                    <li>Jaw</li>
+                    <li>AnimalJaw</li>
+                    <li>InsectMouth</li>
+                    <li>SnakeMouth</li>
+                    <li>Beak</li>
+                </partsToAffect>
+            </li>
+        </hediffGivers>
         <comps>
             <li Class="HediffCompProperties_Disappears">
                 <!-- Disappears after 2-4 days -->
@@ -30,6 +43,24 @@ A single dose of stabilizer can also be administered to mutarabid animals to imm
                 <mtbDaysToCauseMentalState>0.01</mtbDaysToCauseMentalState>
                 <endMentalStateOnCure>true</endMentalStateOnCure>
             </li>
+        </comps>
+    </HediffDef>
+    
+    <HediffDef>
+        <defName>PM_MutarabiesJaw</defName>
+        <label>rabid bite</label>
+        <labelNoun>rabid bite</labelNoun>
+        <description>This person or animal is foaming at the mouth with mutarabies mechanites.  If they bite someone, it's very likely the victim will be infected with mutarabies.</description>
+        <tendable>false</tendable>
+        <hediffClass>HediffWithComps</hediffClass>
+        <makesAlert>false</makesAlert>
+        <initialSeverity>1</initialSeverity>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <!-- Disappears rapidly if not maintained by the mutarabies hediff -->
+                <disappearsAfterTicks>600~600</disappearsAfterTicks>
+            </li>
+            <li Class="HediffCompProperties_DisappearsOnDeath" />
             <li Class="HediffCompProperties_VerbGiver">
                 <tools>
                     <li>
@@ -66,9 +97,9 @@ A single dose of stabilizer can also be administered to mutarabid animals to imm
         <workerClass>Pawnmorph.Damage.DamageWorker_MutarabidBite</workerClass>
         <modExtensions>
             <li Class="Pawnmorph.Damage.MutagenicDamageExtension">
-                <severityPerDamage>0.0033</severityPerDamage>
+                <severityPerDamage>0.00133</severityPerDamage>
                 <mutagenicBuildup>PM_MutarabiesBite</mutagenicBuildup>
-                <reduceValue>0.25</reduceValue>
+                <reduceValue>0.75</reduceValue>
             </li>
         </modExtensions>
     </DamageDef>
@@ -81,7 +112,7 @@ A single dose of stabilizer can also be administered to mutarabid animals to imm
         <defName>PM_MutarabiesBite</defName>
         <label>mutarabies bite</label>
         <labelNoun>mutarabies bite</labelNoun>
-        <description>This pawn has been bitten by an animal infected with mutarabies. Highly unstable mutagenic mechanites are now swarming through their body, seeking to transform them into a mutarabid animal themselves. Additional bites from mutarabid animals will rapidly cause this disease to progress, but prompt medical care can easily halt or even reverse it.
+        <description>This pawn has been bitten by an animal infected with mutarabies. Highly unstable mutagenic mechanites are now swarming through their body, seeking to transform them into a mutarabid animal as well. Additional bites from mutarabid animals will rapidly cause this disease to progress, but prompt medical care can easily halt or even reverse it.
 
 Mutarabies progresses through four stages. At first, victims will display bouts of delirium and confusion as the mechanites colonise their body. Next, the disease will begin to mutate their bodies, causing them to develop animal-like features as they slowly transform into the same kind of animal that bit them. Third, once the disease reaches their brain, they will rapidly become aggressive and hostile as it drives them mad. Finally, if left untreated, the unfortunate victim will fully transform into a mutarabid animal themselves.
 
