@@ -839,6 +839,9 @@
     <Compile Include="Hediffs\Composable\TFTypes.cs" />
     <Compile Include="Hediffs\Composable\TFGenderSettings.cs" />
     <Compile Include="Hediffs\Composable\TFMiscSettings.cs" />
+    <Compile Include="Hediffs\HediffStage_TransformationBase.cs" />
+    <Compile Include="Hediffs\HediffStage_MutationBase.cs" />
+    <Compile Include="Hediffs\HediffStage_MutagenicBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
