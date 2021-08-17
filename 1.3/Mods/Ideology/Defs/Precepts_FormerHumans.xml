@@ -86,7 +86,7 @@
             </li>
             <li Class="PreceptComp_SelfTookMemoryThought">
                 <eventDef>FormerHumanAteCorpse</eventDef>
-                <thought>PM_Precept_FormerHumanAteCorpseStronglyAnimallike</thought>
+                <thought>PM_Precept_FormerHumanAteCorpseAnimallike</thought>
             </li>
         </comps>
     </PreceptDef>
