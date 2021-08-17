@@ -832,9 +832,17 @@
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
     <Compile Include="Work\Giver_WorkAtSequencer.cs" />
     <Compile Include="Social\InteractionWeightsDef.cs" />
+    <Compile Include="Hediffs\Hediff_MutagenicBase.cs" />
+    <Compile Include="Hediffs\Composable\MutSpreadOrder.cs" />
+    <Compile Include="Hediffs\Composable\MutRate.cs" />
+    <Compile Include="Hediffs\Composable\MutTypes.cs" />
+    <Compile Include="Hediffs\Composable\TFTypes.cs" />
+    <Compile Include="Hediffs\Composable\TFGenderSettings.cs" />
+    <Compile Include="Hediffs\Composable\TFMiscSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Hediffs\Composable\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
