@@ -23,9 +23,9 @@ namespace Pawnmorph.HPatches
                                                     [NotNull] MemoryThoughtHandler __instance)
             {
                 //if ideo is active handle ate corpse memory 
-                if (newThought.def == ThoughtDefOf.AteCorpse && ModsConfig.IdeologyActive && __instance.pawn.IsFormerHuman())
+                if (newThought.sourcePrecept == null && newThought.def == ThoughtDefOf.AteCorpse && ModsConfig.IdeologyActive && __instance.pawn.IsFormerHuman())
                 {
-                    PMHistoryEventDefOf.FormerHumanGrazed.SendEvent(__instance.pawn.Named(HistoryEventArgsNames.Doer));
+                    PMHistoryEventDefOf.FormerHumanAteCorpse.SendEvent(__instance.pawn.Named(HistoryEventArgsNames.Doer));
                     if (__instance.pawn.Ideo?.HasPositionOn(PMIssueDefOf.PM_FormerHuman_Nudity) == true)
                     {
                         return false; //don't give the standard or substituted thought, the precept will handle this
