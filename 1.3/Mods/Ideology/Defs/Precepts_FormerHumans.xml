@@ -93,7 +93,7 @@
 
     <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
         <defName>PM_FormerHuman_StronglyAnimalistic</defName>
-        <label>strongly animalistic</label>
+        <label>Strongly Animalistic</label>
         <description>Former humans should be as the animals are</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
         <countsTowardsPreceptLimit>true</countsTowardsPreceptLimit>
