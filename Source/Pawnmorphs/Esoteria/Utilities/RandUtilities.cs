@@ -83,5 +83,24 @@ namespace Pawnmorph.Utilities
         {
             return Rand.MTBEventOccurs(days, 60000f, checkDuration);
         }
+
+        /// <summary>
+        /// Rounds a float up or down at random, based on how close it is to either side.
+        /// 
+        /// 1.5 has a 50% chance of rounding up or down
+        /// 1.1 has a 90% chance of rounding down and 10% of rounding up
+        /// </summary>
+        /// <returns>The rounded float.</returns>
+        /// <param name="f">The float to round.</param>
+        public static int RandRound(float f)
+        {
+            int baseVal = Mathf.FloorToInt(f);
+
+            float remainder = f - baseVal;
+            if (Rand.Value < remainder)
+                baseVal++;
+
+            return baseVal;
+        }
     }
 }

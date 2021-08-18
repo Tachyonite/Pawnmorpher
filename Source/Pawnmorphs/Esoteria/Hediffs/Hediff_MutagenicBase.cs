@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -34,6 +38,41 @@ namespace Pawnmorph.Hediffs
         // Used to force-remove the hediff
         private bool forceRemove;
 
+        [Unsaved] private List<ITfHediffObserverComp> observerCompsCache;
+
+        /// <summary>
+        /// All observer comps to notify when adding mutations and visiting parts to add mutations onto.
+        /// </summary>
+        /// <value>
+        /// The observer comps.
+        /// </value>
+        [NotNull]
+        protected IReadOnlyList<ITfHediffObserverComp> ObserverComps
+        {
+            get
+            {
+                if (observerCompsCache == null)
+                    observerCompsCache = comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList();
+
+                return observerCompsCache;
+            }
+        }
+
+        /// <summary>
+        /// Called after this hediff is added to the pawn
+        /// </summary>
+        /// <param name="dinfo">The damage info.</param>
+        public override void PostAdd(DamageInfo? dinfo)
+        {
+            base.PostAdd(dinfo);
+
+            // If we somehow got a pawn that can't be mutated just remove the hediff
+            // This is because AndroidTiers was giving android mutations because reasons
+            if (!def.GetMutagenDef().CanInfect(pawn))
+                MarkForRemoval();
+        }
+
+
         /// <summary>
         /// Ticks this instance.
         /// </summary>
@@ -45,6 +84,9 @@ namespace Pawnmorph.Hediffs
             if (CurStageIndex != cachedStageIndex)
             {
                 UpdateCachedStage();
+
+                foreach (var comp in ObserverComps)
+                    comp.StageChanged();
 
                 // Only try to transform the pawn when entering a transformation stage
                 // NOTE: This triggers regardless of whether the stages are increasing or decreasing.
@@ -72,12 +114,21 @@ namespace Pawnmorph.Hediffs
 
             // MutationRates can request multiple muations be added at once,
             // but we'll queue them up so they only happen once a second
-            queuedMutations += stage.MutationRate.GetMutationsToAdd(this);
+            queuedMutations += stage.MutationRate.GetMutationsPerSecond(this);
 
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
             {
+                // This shouldn't ever happen, but added here just in case
+                if (spreadManager == null)
+                {
+                    Log.Error($"SpreadManager for hediff {def.defName} was null while trying to mutate {pawn.Name}");
+                    ResetSpreadManager();
+                }
+
                 BodyPartRecord bodyPart = spreadManager.GetCurrentPart();
+
+
 
                 //TODO
                 queuedMutations--;
@@ -119,7 +170,7 @@ namespace Pawnmorph.Hediffs
                 if (!(oldStage is HediffStage_Mutation oldMutStage
                         && newMutStage.SpreadOrder.EquivalentTo(oldMutStage.SpreadOrder)))
                 {
-                    spreadManager = newMutStage.SpreadOrder.GetSpreadManager(this);
+                    ResetSpreadManager();
                 }
             }
             else if (cachedStage is HediffStage_Transformation)
@@ -129,6 +180,46 @@ namespace Pawnmorph.Hediffs
             else
             {
                 cachedStageType = StageType.None;
+            }
+        }
+
+        /// <summary>
+        /// Resets the spread manager because something caused the current one to be invalid.
+        /// Call this when the SpreadOrder changes (due to a stage change, or because something
+        /// that the spread order relies on has changed)
+        /// </summary>
+        private void ResetSpreadManager()
+        {
+            if (cachedStage is HediffStage_Mutation mutStage)
+            {
+                spreadManager = mutStage.SpreadOrder.GetSpreadManager(this);
+                // Let the observers know we've reset our spreading
+                foreach (var comp in ObserverComps)
+                    comp.Init();
+            }
+            else
+            {
+                spreadManager = null;
+            }
+        }
+
+        /// <summary>
+        /// The severity of this hediff 
+        /// </summary>
+        /// <value>The severity.</value>
+        public override float Severity {
+            get { return base.Severity; }
+            set
+            {
+                // Severity changes can potential queue up mutations
+                if (cachedStage is HediffStage_Mutation mutStage)
+                {
+                    float diff = value - base.Severity;
+                    queuedMutations += mutStage.MutationRate.GetMutationsPerSeverity(this, diff);
+                    // Severity loss can cancel queued mutations but it should never go below 0
+                    queuedMutations = Math.Max(queuedMutations, 0);
+                }
+                base.Severity = value;
             }
         }
 
