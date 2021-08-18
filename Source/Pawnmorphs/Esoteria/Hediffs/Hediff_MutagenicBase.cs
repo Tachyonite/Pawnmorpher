@@ -24,6 +24,7 @@ namespace Pawnmorph.Hediffs
         [Unsaved] private HediffStage cachedStage;
         [Unsaved] private StageType cachedStageType;
 
+
         // The number of queued up mutations to add over the next few ticks
         private int queuedMutations;
 
@@ -55,6 +56,8 @@ namespace Pawnmorph.Hediffs
 
         /// <summary>
         /// Checks if we should add mutations, and if so does
+        /// Mutations are queued up and added one at a time to smooth out mutation rate when there are
+        /// large spikes (e.g. severity-based MutationRates)
         /// </summary>
         protected virtual void CheckAndAddMutations()
         {
@@ -71,6 +74,8 @@ namespace Pawnmorph.Hediffs
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
             {
+
+
                 //TODO
                 queuedMutations--;
             }
@@ -81,7 +86,16 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         protected virtual void CheckAndDoTransformation()
         {
-            //TODO
+            if (!(cachedStage is HediffStage_Transformation stage))
+            {
+                Log.Error($"Hediff {def.defName} tried to transform {pawn.Name} but stage {cachedStageIndex} ({cachedStage.label}) is not a transformation stage");
+                return;
+            }
+
+            if (stage.TFChance.ShouldTransform(this))
+            {
+                //TODO
+            }
         }
 
         /// <summary>
