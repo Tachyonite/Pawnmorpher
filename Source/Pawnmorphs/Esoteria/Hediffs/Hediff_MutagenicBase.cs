@@ -114,7 +114,7 @@ namespace Pawnmorph.Hediffs
 
             // MutationRates can request multiple muations be added at once,
             // but we'll queue them up so they only happen once a second
-            queuedMutations += stage.MutationRate.GetMutationsPerSecond(this);
+            QueueUpMutations(stage.MutationRate.GetMutationsPerSecond(this));
 
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
@@ -184,11 +184,24 @@ namespace Pawnmorph.Hediffs
         }
 
         /// <summary>
+        /// Queues up a number of mutations to be added to the pawn.  Negative amounts
+        /// can cancel out queued up mutations but won't remove already-existing mutations.
+        /// </summary>
+        /// <param name="mutations">Mutations.</param>
+        protected void QueueUpMutations(int mutations)
+        {
+            queuedMutations += mutations;
+            // Negative mutation counts can cancel already-queued mutations but should never go below 0
+            queuedMutations = Math.Max(queuedMutations, 0);
+
+        }
+
+        /// <summary>
         /// Resets the spread manager because something caused the current one to be invalid.
         /// Call this when the SpreadOrder changes (due to a stage change, or because something
         /// that the spread order relies on has changed)
         /// </summary>
-        private void ResetSpreadManager()
+        protected void ResetSpreadManager()
         {
             if (cachedStage is HediffStage_Mutation mutStage)
             {
@@ -215,9 +228,8 @@ namespace Pawnmorph.Hediffs
                 if (cachedStage is HediffStage_Mutation mutStage)
                 {
                     float diff = value - base.Severity;
-                    queuedMutations += mutStage.MutationRate.GetMutationsPerSeverity(this, diff);
-                    // Severity loss can cancel queued mutations but it should never go below 0
-                    queuedMutations = Math.Max(queuedMutations, 0);
+                    int mutations = mutStage.MutationRate.GetMutationsPerSeverity(this, diff);
+                    QueueUpMutations(mutations);
                 }
                 base.Severity = value;
             }
