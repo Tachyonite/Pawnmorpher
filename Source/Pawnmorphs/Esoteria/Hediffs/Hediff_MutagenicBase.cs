@@ -19,11 +19,15 @@ namespace Pawnmorph.Hediffs
         }
 
         // Cache the stage index and stage, because CurStage/CurStageIndex both
-        // calculate it every time they're called
+        // calculate it every time they're called and it can get expensive
         private int cachedStageIndex = -1;
         [Unsaved] private HediffStage cachedStage;
         [Unsaved] private StageType cachedStageType;
 
+        // The number of queued up mutations to add over the next few ticks
+        private int queuedMutations;
+
+        // Used to force-remove the hediff
         private bool forceRemove;
 
         /// <summary>
@@ -33,15 +37,13 @@ namespace Pawnmorph.Hediffs
         {
             base.Tick();
 
-            int stageIndex = CurStageIndex;
-            if (stageIndex != cachedStageIndex)
+            // Handle stage transitions
+            if (CurStageIndex != cachedStageIndex)
             {
-                cachedStageIndex = stageIndex;
-                cachedStage = def?.stages?[stageIndex];
+                UpdateCachedStage();
 
                 // Only try to transform the pawn when entering a transformation stage
                 // NOTE: This triggers regardless of whether the stages are increasing or decreasing.
-                // Keep that in mind when adding a transformation stage to a hediff that can do both.
                 // TODO immunity
                 if (cachedStageType == StageType.Transformation)
                     CheckAndDoTransformation();
@@ -56,7 +58,22 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         protected virtual void CheckAndAddMutations()
         {
-            //TODO
+            if (!(cachedStage is HediffStage_Mutation stage))
+            {
+                Log.Error($"Hediff {def.defName} tried to mutate {pawn.Name} but stage {cachedStageIndex} ({cachedStage.label}) is not a mutation stage");
+                return;
+            }
+
+            // MutationRates can request multiple muations be added at once,
+            // but we'll queue them up so they only happen once a second
+            queuedMutations += stage.MutationRate.GetMutationsToAdd(this);
+
+            // Add a queued mutation, if any are waiting
+            if (queuedMutations > 0)
+            {
+                //TODO
+                queuedMutations--;
+            }
         }
 
         /// <summary>
@@ -144,6 +161,7 @@ namespace Pawnmorph.Hediffs
             base.ExposeData();
             Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), -1);
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove));
+            Scribe_Values.Look(ref queuedMutations, nameof(queuedMutations));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
