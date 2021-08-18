@@ -843,7 +843,8 @@
     <Compile Include="Hediffs\HediffStage_Mutation.cs" />
     <Compile Include="Hediffs\HediffStage_MutagenicBase.cs" />
     <Compile Include="Hediffs\Hediff_Descriptive.cs" />
-    <Compile Include="Hediffs\HediffDef_Mutagenic.cs" />
+    <Compile Include="Hediffs\Composable\TFChance.cs" />
+    <Compile Include="Hediffs\Composable\TFCallback.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
