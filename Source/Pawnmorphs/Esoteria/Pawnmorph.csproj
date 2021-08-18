@@ -839,10 +839,11 @@
     <Compile Include="Hediffs\Composable\TFTypes.cs" />
     <Compile Include="Hediffs\Composable\TFGenderSettings.cs" />
     <Compile Include="Hediffs\Composable\TFMiscSettings.cs" />
-    <Compile Include="Hediffs\HediffStage_TransformationBase.cs" />
-    <Compile Include="Hediffs\HediffStage_MutationBase.cs" />
+    <Compile Include="Hediffs\HediffStage_Transformation.cs" />
+    <Compile Include="Hediffs\HediffStage_Mutation.cs" />
     <Compile Include="Hediffs\HediffStage_MutagenicBase.cs" />
     <Compile Include="Hediffs\Hediff_Descriptive.cs" />
+    <Compile Include="Hediffs\HediffDef_Mutagenic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
