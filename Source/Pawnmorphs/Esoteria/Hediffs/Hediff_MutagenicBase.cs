@@ -1,4 +1,6 @@
-﻿using Verse;
+﻿using System.Collections.Generic;
+using Pawnmorph.Hediffs.Composable;
+using Verse;
 
 namespace Pawnmorph.Hediffs
 {
@@ -24,9 +26,10 @@ namespace Pawnmorph.Hediffs
         [Unsaved] private HediffStage cachedStage;
         [Unsaved] private StageType cachedStageType;
 
-
         // The number of queued up mutations to add over the next few ticks
         private int queuedMutations;
+        // A utility class to handle the order of how to spread mutations
+        private SpreadManager spreadManager;
 
         // Used to force-remove the hediff
         private bool forceRemove;
@@ -74,7 +77,7 @@ namespace Pawnmorph.Hediffs
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
             {
-
+                BodyPartRecord bodyPart = spreadManager.GetCurrentPart();
 
                 //TODO
                 queuedMutations--;
@@ -103,15 +106,30 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         private void UpdateCachedStage()
         {
+            var oldStage = cachedStage;
+
             cachedStageIndex = CurStageIndex;
             cachedStage = def?.stages?[cachedStageIndex];
 
-            if (cachedStage is HediffStage_Mutation)
+            if (cachedStage is HediffStage_Mutation newMutStage)
+            {
                 cachedStageType = StageType.Mutation;
+
+                // Reset the spread manager, but only if the new stage uses a different spread order
+                if (!(oldStage is HediffStage_Mutation oldMutStage
+                        && newMutStage.SpreadOrder.EquivalentTo(oldMutStage.SpreadOrder)))
+                {
+                    spreadManager = newMutStage.SpreadOrder.GetSpreadManager(this);
+                }
+            }
             else if (cachedStage is HediffStage_Transformation)
+            {
                 cachedStageType = StageType.Transformation;
+            }
             else
+            {
                 cachedStageType = StageType.None;
+            }
         }
 
         /// <summary>

@@ -14,6 +14,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// A callback that's called on the transformed pawn after a full transformation
         /// </summary>
         /// <param name="pawn">The post-tf Pawn.</param>
+        /// <param name="parentHediff">The hediff doing the transformation.</param>
         public abstract void PostTransformation(Pawn pawn, Hediff_MutagenicBase parentHediff);
     }
 
@@ -29,6 +30,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// A callback that's called on the transformed pawn after a full transformation
         /// </summary>
         /// <param name="pawn">The post-tf Pawn.</param>
+        /// <param name="parentHediff">The hediff doing the transformation.</param>
         public override void PostTransformation(Pawn pawn, Hediff_MutagenicBase parentHediff)
         {
             if (bodyPartsToAffect != null)
@@ -58,6 +60,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// A callback that's called on the transformed pawn after a full transformation
         /// </summary>
         /// <param name="pawn">The post-tf Pawn.</param>
+        /// <param name="parentHediff">The hediff doing the transformation.</param>
         public override void PostTransformation(Pawn pawn, Hediff_MutagenicBase parentHediff)
         {
             pawn.mindState.mentalStateHandler.TryStartMentalState(mentalState, "MentalStateReason_Hediff".Translate(parentHediff.Label));
