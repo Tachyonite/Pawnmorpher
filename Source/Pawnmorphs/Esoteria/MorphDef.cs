@@ -97,6 +97,39 @@ namespace Pawnmorph
 
         [Unsaved] private List<MutationDef> _allAssociatedMutations;
 
+        [Unsaved] private List<PawnKindDef> _primaryPawnKindDefs;
+        [Unsaved] private List<PawnKindDef> _secondaryPawnKindDefs; 
+
+
+        /// <summary>
+        /// Gets the pawnKindDefs for which the PawnKindDef.race field is equal to <see cref="race"/>
+        /// </summary>
+        /// <value>
+        /// The primary feral pawn kinds.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<PawnKindDef> PrimaryFeralPawnKinds {
+            get
+            {
+                if (_primaryPawnKindDefs == null) return Array.Empty<PawnKindDef>();
+                return _primaryPawnKindDefs; 
+            } }
+
+
+        /// <summary>
+        /// Gets the secondary pawnkind defs for which their race field is equal to <see cref="race"/> or one of <see cref="AllAssociatedAnimals"/>.
+        /// </summary>
+        /// <value>
+        /// The secondary primary pawn kinds.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<PawnKindDef> SecondaryPrimaryPawnKinds {
+            get
+            {
+                if (_secondaryPawnKindDefs == null) return Array.Empty<PawnKindDef>();
+                return _secondaryPawnKindDefs; 
+            } }
+        
         /// <summary>
         ///     Gets the children.
         /// </summary>
@@ -392,6 +425,15 @@ namespace Pawnmorph
             {
                 _allAssociatedMutations = GetAllAssociatedMutations().Distinct().ToList(); 
             }
+
+            if (associatedAnimals == null)
+            {
+
+            }
+
+            _primaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race).ToList();
+            _secondaryPawnKindDefs =
+                DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race || AllAssociatedAnimals.Contains(p.race)).ToList();
         }
 
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>
