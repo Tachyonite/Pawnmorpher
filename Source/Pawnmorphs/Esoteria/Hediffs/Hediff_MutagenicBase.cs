@@ -119,6 +119,7 @@ namespace Pawnmorph.Hediffs
 
             // MutationRates can request multiple muations be added at once,
             // but we'll queue them up so they only happen once a second
+            //TODO mutagen sensitivity
             QueueUpMutations(stage.MutationRate.GetMutationsPerSecond(this));
 
             // Add a queued mutation, if any are waiting
@@ -131,7 +132,7 @@ namespace Pawnmorph.Hediffs
                     ResetSpreadManager();
                 }
 
-                BodyPartRecord bodyPart = spreadManager.GetCurrentPart();
+                BodyPartRecord bodyPart = spreadManager.GetCurrentEntry();
 
 
 
@@ -306,6 +307,7 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), -1);
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove));
             Scribe_Values.Look(ref queuedMutations, nameof(queuedMutations));
+            Scribe_Deep.Look(ref spreadManager, nameof(queuedMutations));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

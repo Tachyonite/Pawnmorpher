@@ -90,48 +90,16 @@ namespace Pawnmorph.Hediffs.Composable
     /// A class to handle the stateful part of managing spread order.
     /// Gets saved and loaded with the Hediff class.
     /// 
-    /// Don't add any logic to this class, since instances regularly gets thrown away and recreated.
-    /// Instead, add the logic to the MutSpreadOrder that creates it.
+    /// Don't add any logic to this class, since instances regularly gets thrown
+    /// away and recreated. Instead, add the logic to the MutSpreadOrder that
+    /// creates it.
     /// </summary>
-    public sealed class SpreadManager : IExposable
+    public sealed class SpreadManager : Checklist<BodyPartRecord>
     {
-        private List<BodyPartRecord> parts;
-        private int bpIndex;
+        public SpreadManager() { }
 
-        public SpreadManager(List<BodyPartRecord> parts)
-        {
-            this.parts = parts;
-        }
+        public SpreadManager(List<BodyPartRecord> parts) : base(parts) { }
 
-        /// <summary>
-        /// Gets the the spread order to use for adding mutations
-        /// </summary>
-        public BodyPartRecord GetCurrentPart()
-        {
-            if (parts == null)
-            {
-                Log.Error("SpreadManager had no parts list");
-            }
-
-            // Use modulus here so we wrap around to the beginning after checking the whole body
-            return parts[bpIndex % parts.Count];
-        }
-
-        /// <summary>
-        /// Marks the current part as finished and advances the spread to the next part
-        /// </summary>
-        public void MoveToNextPart()
-        {
-            bpIndex++;
-        }
-
-        /// <summary>
-        /// Exposes data to be saved/loaded from XML upon saving the game
-        /// </summary>
-        public void ExposeData()
-        {
-            Scribe_Collections.Look(ref parts, nameof(parts), LookMode.BodyPart);
-            Scribe_Values.Look(ref bpIndex, nameof(bpIndex));
-        }
+        public override LookMode LookMode => LookMode.BodyPart;
     }
 }
