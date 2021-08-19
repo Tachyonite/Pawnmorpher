@@ -845,6 +845,7 @@
     <Compile Include="Hediffs\Hediff_Descriptive.cs" />
     <Compile Include="Hediffs\Composable\TFChance.cs" />
     <Compile Include="Hediffs\Composable\TFCallback.cs" />
+    <Compile Include="Utilities\MultiDict.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
