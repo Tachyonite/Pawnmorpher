@@ -72,6 +72,14 @@ namespace Pawnmorph.Hediffs
                 MarkForRemoval();
         }
 
+        /// <summary>
+        /// Called when afte the hediff is removed.
+        /// </summary>
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+            pawn.CheckRace();
+        }
 
         /// <summary>
         /// Ticks this instance.
@@ -83,10 +91,7 @@ namespace Pawnmorph.Hediffs
             // Handle stage transitions
             if (CurStageIndex != cachedStageIndex)
             {
-                UpdateCachedStage();
-
-                foreach (var comp in ObserverComps)
-                    comp.StageChanged();
+                OnStageChanged();
 
                 // Only try to transform the pawn when entering a transformation stage
                 // NOTE: This triggers regardless of whether the stages are increasing or decreasing.
@@ -155,7 +160,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Updates the cached stage values
         /// </summary>
-        private void UpdateCachedStage()
+        private void OnStageChanged()
         {
             var oldStage = cachedStage;
 
@@ -181,6 +186,9 @@ namespace Pawnmorph.Hediffs
             {
                 cachedStageType = StageType.None;
             }
+
+            foreach (var comp in ObserverComps)
+                comp.StageChanged();
         }
 
         /// <summary>
@@ -238,6 +246,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// How much the severity of this hediff is changing per day (used for certain components)
         /// This is somewhat expensive to calculate, so call sparingly.
+        /// TODO do we still need this?
         /// </summary>
         /// <value>The severity label.</value>
         public float SeverityChangePerDay
@@ -300,7 +309,7 @@ namespace Pawnmorph.Hediffs
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                UpdateCachedStage();
+                OnStageChanged();
             }
         }
     }
