@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -10,12 +12,22 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public abstract class MutTypes
     {
+        protected const float EPSILON = 0.000001f;
+
         /// <summary>
         /// Gets the list of available mutations.
         /// </summary>
         /// <returns>The mutations.</returns>
         /// <param name="hediff">Hediff.</param>
         public abstract IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff);
+
+        /// <summary>
+        /// Chechs whether this MutationStage is equivalent to another
+        /// (meaning they produce the same cachedStage)
+        /// </summary>
+        /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+        /// <param name="other">The other MutTypes.</param>
+        public abstract bool EquivalentTo(MutTypes other);
     }
 
     /// <summary>
@@ -32,6 +44,18 @@ namespace Pawnmorph.Hediffs.Composable
             return DefDatabase<MutationDef>.AllDefs
                     .Select(m => MutationEntry.FromMutation(m, chance));
         }
+
+        /// <summary>
+        /// Chechs whether this MutationStage is equivalent to another
+        /// (meaning they produce the same list of mutations)
+        /// </summary>
+        /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+        /// <param name="other">The other MutTypes.</param>
+        public override bool EquivalentTo(MutTypes other)
+        {
+            return other is MutTypes_All otherAll
+                    && Math.Abs(chance - otherAll.chance) < EPSILON;
+        }
     }
 
     /// <summary>
@@ -45,6 +69,19 @@ namespace Pawnmorph.Hediffs.Composable
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
             return mutations.Select(m => MutationEntry.FromMutation(m, chance));
+        }
+
+        /// <summary>
+        /// Chechs whether this MutationStage is equivalent to another
+        /// (meaning they produce the same list of mutations)
+        /// </summary>
+        /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+        /// <param name="other">The other MutTypes.</param>
+        public override bool EquivalentTo(MutTypes other)
+        {
+            return other is MutTypes_List otherList
+                    && mutations.Equals(otherList.mutations)
+                    && Math.Abs(chance - otherList.chance) < EPSILON;
         }
     }
 
@@ -61,6 +98,19 @@ namespace Pawnmorph.Hediffs.Composable
             return morphDef.AllAssociatedMutations
                     .Select(m => MutationEntry.FromMutation(m, chance));
         }
+
+        /// <summary>
+        /// Chechs whether this MutationStage is equivalent to another
+        /// (meaning they produce the same list of mutations)
+        /// </summary>
+        /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+        /// <param name="other">The other MutTypes.</param>
+        public override bool EquivalentTo(MutTypes other)
+        {
+            return other is MutTypes_Morph otherMorph
+                    && morphDef.Equals(otherMorph.morphDef)
+                    && Math.Abs(chance - otherMorph.chance) < EPSILON;
+        }
     }
 
     /// <summary>
@@ -75,6 +125,19 @@ namespace Pawnmorph.Hediffs.Composable
         {
             return classDef.GetAllMutationIn()
                     .Select(m => MutationEntry.FromMutation(m, chance));
+        }
+
+        /// <summary>
+        /// Chechs whether this MutationStage is equivalent to another
+        /// (meaning they produce the same list of mutations)
+        /// </summary>
+        /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+        /// <param name="other">The other MutTypes.</param>
+        public override bool EquivalentTo(MutTypes other)
+        {
+            return other is MutTypes_Class otherClass
+                    && classDef.Equals(otherClass.classDef)
+                    && Math.Abs(chance - otherClass.chance) < EPSILON;
         }
     }
 
@@ -93,6 +156,18 @@ namespace Pawnmorph.Hediffs.Composable
             return hediff.TryGetComp<HediffComp_MutationType>()
                     .GetMutations()
                     .Select(m => MutationEntry.FromMutation(m, chance));
+        }
+
+        /// <summary>
+        /// Chechs whether this MutationStage is equivalent to another
+        /// (meaning they produce the same list of mutations)
+        /// </summary>
+        /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+        /// <param name="other">The other MutTypes.</param>
+        public override bool EquivalentTo(MutTypes other)
+        {
+            return other is MutTypes_FromComp otherComp
+                    && Math.Abs(chance - otherComp.chance) < EPSILON;
         }
     }
 }

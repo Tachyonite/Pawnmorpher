@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
+using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -34,6 +35,8 @@ namespace Pawnmorph.Hediffs
         private int queuedMutations;
         // A utility class to handle the order of how to spread mutations
         private SpreadManager spreadManager;
+        // A cache of all the mutations to add
+        private MutationCache mutationCache = new MutationCache();
 
         // Used to force-remove the hediff
         private bool forceRemove;
@@ -172,11 +175,20 @@ namespace Pawnmorph.Hediffs
             {
                 cachedStageType = StageType.Mutation;
 
-                // Reset the spread manager, but only if the new stage uses a different spread order
-                if (!(oldStage is HediffStage_Mutation oldMutStage
-                        && newMutStage.SpreadOrder.EquivalentTo(oldMutStage.SpreadOrder)))
+                // Reset the spread manager and mutation cache, but only if the
+                // new stage ones are different
+                // TODO - this feels crunchy.  Perhaps they should be hediff-wide?
+                if (oldStage is HediffStage_Mutation oldMutStage)
+                {
+                    if (!newMutStage.SpreadOrder.EquivalentTo(oldMutStage.SpreadOrder))
+                        ResetSpreadManager();
+                    if (!newMutStage.MutationTypes.EquivalentTo(oldMutStage.MutationTypes))
+                        RefreshMutationCache();
+                }
+                else
                 {
                     ResetSpreadManager();
+                    RefreshMutationCache();
                 }
             }
             else if (cachedStage is HediffStage_Transformation)
@@ -222,6 +234,24 @@ namespace Pawnmorph.Hediffs
             else
             {
                 spreadManager = null;
+            }
+        }
+
+        /// <summary>
+        /// Refreshes the mutation cache.  Call this when the list of possible mutations change
+        /// (usually because of a stage change, or because the dynamic mutation comp changes)
+        /// </summary>
+        protected void RefreshMutationCache()
+        {
+            if (cachedStage is HediffStage_Mutation mutStage)
+            {
+                var mutations = mutStage.MutationTypes.GetMutations(this);
+                mutationCache.ReloadMutations(mutations);
+                //TODO update mutation checklist
+            }
+            else
+            {
+                mutationCache.ClearMutations();
             }
         }
 
@@ -307,7 +337,8 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), -1);
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove));
             Scribe_Values.Look(ref queuedMutations, nameof(queuedMutations));
-            Scribe_Deep.Look(ref spreadManager, nameof(queuedMutations));
+            Scribe_Deep.Look(ref spreadManager, nameof(spreadManager));
+            Scribe_Deep.Look(ref mutationCache, nameof(mutationCache));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
