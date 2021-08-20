@@ -18,12 +18,13 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         /// <returns>The mutation entry.</returns>
         /// <param name="mutation">Mutation.</param>
-        public static MutationEntry FromMutation(MutationDef mutation)
+        /// <param name="chanceMult">A multiplier on the add chance</param>
+        public static MutationEntry FromMutation(MutationDef mutation, float chanceMult = 1f)
         {
             return new MutationEntry()
             {
                 mutation = mutation,
-                addChance = mutation.defaultAddChance,
+                addChance = mutation.defaultAddChance * chanceMult,
                 blocks = mutation.defaultBlocks
             };
         }

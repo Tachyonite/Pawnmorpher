@@ -98,7 +98,7 @@ namespace Pawnmorph.Hediffs.Composable
     {
         public SpreadManager() { }
 
-        public SpreadManager(List<BodyPartRecord> parts) : base(parts) { }
+        public SpreadManager(IEnumerable<BodyPartRecord> parts) : base(parts) { }
 
         public override LookMode LookMode => LookMode.BodyPart;
     }

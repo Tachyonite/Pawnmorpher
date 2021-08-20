@@ -846,11 +846,14 @@
     <Compile Include="Hediffs\Composable\TFChance.cs" />
     <Compile Include="Hediffs\Composable\TFCallback.cs" />
     <Compile Include="Utilities\MultiDict.cs" />
-    <Compile Include="Hediffs\Composable\Checklist.cs" />
+    <Compile Include="Hediffs\Utility\Checklist.cs" />
+    <Compile Include="Hediffs\Utility\MutationCache.cs" />
+    <Compile Include="Hediffs\HediffComp_MutationType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
     <Folder Include="Hediffs\Composable\" />
+    <Folder Include="Hediffs\Utility\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">

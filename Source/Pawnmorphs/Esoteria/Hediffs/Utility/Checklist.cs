@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
-namespace Pawnmorph.Hediffs.Composable
+namespace Pawnmorph.Hediffs.Utility
 {
 
     /// <summary>
@@ -20,9 +21,9 @@ namespace Pawnmorph.Hediffs.Composable
         // empty constructor for loading purposes
         protected Checklist() { }
 
-        protected Checklist(List<T> list)
+        protected Checklist(IEnumerable<T> list)
         {
-            this.list = list;
+            this.list = list.ToList();
         }
 
         /// <summary>
