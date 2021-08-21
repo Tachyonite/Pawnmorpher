@@ -152,7 +152,7 @@ namespace Pawnmorph.Hediffs.Composable
 
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
-            return hediff.TryGetComp<HediffComp_MutationType>()
+            return hediff.TryGetComp<HediffComp_MutTypeBase>()
                     .GetMutations()
                     .Select(m => MutationEntry.FromMutation(m, chance));
         }

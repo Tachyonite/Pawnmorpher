@@ -848,7 +848,11 @@
     <Compile Include="Utilities\MultiDict.cs" />
     <Compile Include="Hediffs\Utility\Checklist.cs" />
     <Compile Include="Hediffs\Utility\MutationCache.cs" />
-    <Compile Include="Hediffs\HediffComp_MutationType.cs" />
+    <Compile Include="Hediffs\HediffComp_MutTypeBase.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_Morph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomMorph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomClassMorph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomAnyMorph.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />

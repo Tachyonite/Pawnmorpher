@@ -1,0 +1,51 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
+using Pawnmorph.Utilities;
+using Verse;
+
+namespace Pawnmorph.Hediffs
+{
+    /// <summary>
+    /// A simple HediffComp_MutType that selects mutations and TFs from a specific
+    /// morph def defined in the XML.
+    /// </summary>
+    /// <seealso cref="Pawnmorph.Hediffs.HediffComp_MutTypeBase"/>
+    public class HediffComp_MutType_Morph : HediffComp_MutTypeBase
+    {
+        public class Properties : HediffCompPropertiesBase<HediffComp_MutType_Morph>
+        {
+            [UsedImplicitly] public MorphDef morphDef;
+
+            public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+            {
+                foreach (var error in base.ConfigErrors(parentDef))
+                    yield return error;
+                if (morphDef == null)
+                    yield return "HediffComp_MutType_Morph morphDef is null!";
+            }
+        }
+
+        public Properties Props => (Properties)props;
+
+        /// <summary>
+        /// Returns a list of mutations all MutTypes_FromComp stages will use
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        public override IEnumerable<MutationDef> GetMutations()
+        {
+            return Props.morphDef.AllAssociatedMutations;
+        }
+
+        /// <summary>
+        /// Gets the TF.
+        /// </summary>
+        /// <returns>The TF.</returns>
+        public override IEnumerable<PawnKindDef> GetTFs()
+        {
+            var animals = Props.morphDef.AllAssociatedAnimals;
+            return DefDatabase<PawnKindDef>.AllDefs
+                    .Where(p => animals.Contains(p.race));
+        }
+    }
+}

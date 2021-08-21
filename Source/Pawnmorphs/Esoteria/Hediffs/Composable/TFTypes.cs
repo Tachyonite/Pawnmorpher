@@ -138,7 +138,7 @@ namespace Pawnmorph.Hediffs.Composable
     {
         public override IEnumerable<PawnKindDef> GetTFs(Hediff_MutagenicBase hediff)
         {
-            return hediff.TryGetComp<HediffComp_MutationType>()
+            return hediff.TryGetComp<HediffComp_MutTypeBase>()
                     .GetTFs();
         }
 
