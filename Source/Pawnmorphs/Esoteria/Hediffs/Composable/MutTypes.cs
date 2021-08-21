@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -22,8 +21,8 @@ namespace Pawnmorph.Hediffs.Composable
         public abstract IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff);
 
         /// <summary>
-        /// Chechs whether this MutationStage is equivalent to another
-        /// (meaning they produce the same cachedStage)
+        /// Chechs whether this MutTypes is equivalent to another
+        /// (meaning they produce the same list of mutations)
         /// </summary>
         /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
         /// <param name="other">The other MutTypes.</param>
@@ -46,7 +45,7 @@ namespace Pawnmorph.Hediffs.Composable
         }
 
         /// <summary>
-        /// Chechs whether this MutationStage is equivalent to another
+        /// Chechs whether this MutTypes is equivalent to another
         /// (meaning they produce the same list of mutations)
         /// </summary>
         /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
@@ -72,7 +71,7 @@ namespace Pawnmorph.Hediffs.Composable
         }
 
         /// <summary>
-        /// Chechs whether this MutationStage is equivalent to another
+        /// Chechs whether this MutTypes is equivalent to another
         /// (meaning they produce the same list of mutations)
         /// </summary>
         /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
@@ -100,7 +99,7 @@ namespace Pawnmorph.Hediffs.Composable
         }
 
         /// <summary>
-        /// Chechs whether this MutationStage is equivalent to another
+        /// Chechs whether this MutTypes is equivalent to another
         /// (meaning they produce the same list of mutations)
         /// </summary>
         /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
@@ -128,7 +127,7 @@ namespace Pawnmorph.Hediffs.Composable
         }
 
         /// <summary>
-        /// Chechs whether this MutationStage is equivalent to another
+        /// Chechs whether this MutTypes is equivalent to another
         /// (meaning they produce the same list of mutations)
         /// </summary>
         /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
@@ -159,7 +158,7 @@ namespace Pawnmorph.Hediffs.Composable
         }
 
         /// <summary>
-        /// Chechs whether this MutationStage is equivalent to another
+        /// Chechs whether this MutTypes is equivalent to another
         /// (meaning they produce the same list of mutations)
         /// </summary>
         /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
