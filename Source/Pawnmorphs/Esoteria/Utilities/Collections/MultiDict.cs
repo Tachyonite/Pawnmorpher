@@ -7,7 +7,7 @@ namespace Pawnmorph.Utilities.Collections
     /// A simple multi-value dictionary implementation that maps one key to multiple values
     /// Uses lists internally, so is not particularly efficient for large numbers of values on one key
     /// </summary>
-    public class MultiDict<K, V>// : IDictionary<K, IEnumerable<V>>
+    public class MultiDict<K, V>
     {
         private readonly Dictionary<K, List<V>> dict = new Dictionary<K, List<V>>();
 

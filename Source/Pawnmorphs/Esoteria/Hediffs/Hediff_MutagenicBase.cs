@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
 using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.Utilities;
+using Pawnmorph.Utilities.Collections;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -33,10 +34,9 @@ namespace Pawnmorph.Hediffs
 
         // The number of queued up mutations to add over the next few ticks
         private int queuedMutations;
-        // A utility class to handle the order of how to spread mutations
-        private SpreadManager spreadManager;
-        // A cache of all the mutations to add
-        private MutationCache mutationCache = new MutationCache();
+
+        // A utility class to handle iterating over both body parts and mutations
+        private BodyMutationManager bodyMutationManager = new BodyMutationManager();
 
         // Used to force-remove the hediff
         private bool forceRemove;
@@ -128,16 +128,6 @@ namespace Pawnmorph.Hediffs
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
             {
-                // This shouldn't ever happen, but added here just in case
-                if (spreadManager == null)
-                {
-                    Log.Error($"SpreadManager for hediff {def.defName} was null while trying to mutate {pawn.Name}");
-                    ResetSpreadManager();
-                }
-
-                BodyPartRecord bodyPart = spreadManager.GetCurrentEntry();
-
-
 
                 //TODO
                 queuedMutations--;
@@ -176,19 +166,18 @@ namespace Pawnmorph.Hediffs
                 cachedStageType = StageType.Mutation;
 
                 // Reset the spread manager and mutation cache, but only if the
-                // new stage ones are different
-                // TODO - this feels crunchy.  Perhaps they should be hediff-wide?
+                // ones in the new stage are different
                 if (oldStage is HediffStage_Mutation oldMutStage)
                 {
                     if (!newMutStage.SpreadOrder.EquivalentTo(oldMutStage.SpreadOrder))
-                        ResetSpreadManager();
+                        ResetSpreadList();
                     if (!newMutStage.MutationTypes.EquivalentTo(oldMutStage.MutationTypes))
-                        RefreshMutationCache();
+                        ResetMutationList();
                 }
                 else
                 {
-                    ResetSpreadManager();
-                    RefreshMutationCache();
+                    ResetSpreadList();
+                    ResetMutationList();
                 }
             }
             else if (cachedStage is HediffStage_Transformation)
@@ -214,44 +203,39 @@ namespace Pawnmorph.Hediffs
             queuedMutations += mutations;
             // Negative mutation counts can cancel already-queued mutations but should never go below 0
             queuedMutations = Math.Max(queuedMutations, 0);
-
         }
 
         /// <summary>
-        /// Resets the spread manager because something caused the current one to be invalid.
-        /// Call this when the SpreadOrder changes (due to a stage change, or because something
-        /// that the spread order relies on has changed)
+        /// Resets the spread list because something caused the current one to be invalid.
+        /// Call this when SpreadOrder changes (usually due to a stage change).
         /// </summary>
-        protected void ResetSpreadManager()
+        protected void ResetSpreadList()
         {
             if (cachedStage is HediffStage_Mutation mutStage)
             {
-                spreadManager = mutStage.SpreadOrder.GetSpreadManager(this);
+                var spreadList = mutStage.SpreadOrder.GetSpreadList(this);
+                bodyMutationManager.ResetSpreadList(spreadList);
+
                 // Let the observers know we've reset our spreading
                 foreach (var comp in ObserverComps)
                     comp.Init();
             }
-            else
-            {
-                spreadManager = null;
-            }
         }
 
         /// <summary>
-        /// Refreshes the mutation cache.  Call this when the list of possible mutations change
-        /// (usually because of a stage change, or because the dynamic mutation comp changes)
+        /// Resets the mutation list because something caused the current one to be invalid.
+        /// Call this when MutationTypes changes, or something it relies on does.
         /// </summary>
-        protected void RefreshMutationCache()
+        protected void ResetMutationList()
         {
             if (cachedStage is HediffStage_Mutation mutStage)
             {
                 var mutations = mutStage.MutationTypes.GetMutations(this);
-                mutationCache.ReloadMutations(mutations);
-                //TODO update mutation checklist
-            }
-            else
-            {
-                mutationCache.ClearMutations();
+                bodyMutationManager.ResetMutationList(mutations);
+
+                // Let the observers know we've reset our mutation types
+                foreach (var comp in ObserverComps)
+                    comp.Init();
             }
         }
 
@@ -259,7 +243,8 @@ namespace Pawnmorph.Hediffs
         /// The severity of this hediff 
         /// </summary>
         /// <value>The severity.</value>
-        public override float Severity {
+        public override float Severity
+        {
             get { return base.Severity; }
             set
             {
@@ -271,25 +256,6 @@ namespace Pawnmorph.Hediffs
                     QueueUpMutations(mutations);
                 }
                 base.Severity = value;
-            }
-        }
-
-        /// <summary>
-        /// How much the severity of this hediff is changing per day (used for certain components)
-        /// This is somewhat expensive to calculate, so call sparingly.
-        /// TODO do we still need this?
-        /// </summary>
-        /// <value>The severity label.</value>
-        public float SeverityChangePerDay
-        {
-            get
-            {
-                float gainRate = 0f;
-                gainRate += this.TryGetComp<Comp_ImmunizableMutation>()?.SeverityChangePerDay() ?? 0f;
-                gainRate += this.TryGetComp<HediffComp_Immunizable>()?.SeverityChangePerDay() ?? 0f;
-                gainRate += this.TryGetComp<HediffComp_SeverityPerDay>()?.SeverityChangePerDay() ?? 0f;
-                gainRate += this.TryGetComp<HediffComp_TendDuration>()?.SeverityChangePerDay() ?? 0f;
-                return gainRate;
             }
         }
 
@@ -337,8 +303,7 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), -1);
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove));
             Scribe_Values.Look(ref queuedMutations, nameof(queuedMutations));
-            Scribe_Deep.Look(ref spreadManager, nameof(spreadManager));
-            Scribe_Deep.Look(ref mutationCache, nameof(mutationCache));
+            Scribe_Deep.Look(ref bodyMutationManager, nameof(bodyMutationManager));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

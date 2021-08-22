@@ -847,19 +847,18 @@
     <Compile Include="Hediffs\Hediff_Descriptive.cs" />
     <Compile Include="Hediffs\Composable\TFChance.cs" />
     <Compile Include="Hediffs\Composable\TFCallback.cs" />
-    <Compile Include="Utilities\MultiDict.cs" />
-    <Compile Include="Hediffs\Utility\Checklist.cs" />
-    <Compile Include="Hediffs\Utility\MutationCache.cs" />
     <Compile Include="Hediffs\HediffComp_MutTypeBase.cs" />
     <Compile Include="Hediffs\HediffComp_MutType_Morph.cs" />
     <Compile Include="Hediffs\HediffComp_MutType_RandomMorph.cs" />
     <Compile Include="Hediffs\HediffComp_MutType_RandomClassMorph.cs" />
     <Compile Include="Hediffs\HediffComp_MutType_RandomAnyMorph.cs" />
+    <Compile Include="Hediffs\Utility\BodyMutationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
     <Folder Include="Hediffs\Composable\" />
     <Folder Include="Hediffs\Utility\" />
+    <Folder Include="Utilities\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">

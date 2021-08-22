@@ -31,20 +31,39 @@ namespace Pawnmorph.Utilities.Collections
         public abstract LookMode LookMode { get; }
 
         /// <summary>
+        /// Whether or not we've reached the end of the list
+        /// </summary>
+        /// <return>true if we have a current entry, false otherwise</return>
+        public T Entry
+        {
+            get
+            {
+                if (list == null)
+                {
+                    Log.Error("Checklist had no parts list");
+                    return default(T);
+                }
+
+                if (!HasEntry)
+                    return default(T);
+                return list[index];
+            }
+        }
+
+        /// <summary>
+        /// Whether or not we've reached the end of the list
+        /// </summary>
+        /// <value><c>true</c> if has entry; otherwise, <c>false</c>.</value>
+        public bool HasEntry => index < list.Count;
+
+        /// <summary>
         /// Gets the current entry in this checklist, or the default value if
         /// we reached the end
         /// </summary>
+        /// <returns>The current entry</returns>
         public T GetCurrentEntry()
         {
-            if (list == null)
-            {
-                Log.Error("Checklist had no parts list");
-                return default(T);
-            }
-
-            if (index >= list.Count)
-                return default(T);
-            return list[index];
+            return Entry;
         }
 
         /// <summary>
@@ -54,7 +73,7 @@ namespace Pawnmorph.Utilities.Collections
         public bool NextEntry()
         {
             index++;
-            return index < list.Count;
+            return HasEntry;
         }
 
         /// <summary>
@@ -65,9 +84,12 @@ namespace Pawnmorph.Utilities.Collections
         /// <summary>
         /// Advances the checklist to the next entry, or resets it if we reached the end
         /// </summary>
-        public void NextEntryOrReset()
+        /// <returns>true if there was a next entry, false if the checklist reset</returns>
+        public bool NextEntryOrReset()
         {
-            if (!NextEntry()) Reset();
+            bool next = NextEntry();
+            if (!next) Reset();
+            return next;
         }
 
         /// <summary>

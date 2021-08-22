@@ -2,6 +2,7 @@
 using System.Linq;
 using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.Utilities;
+using Pawnmorph.Utilities.Collections;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -15,7 +16,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// Gets the the spread manager that will be used to control the spread order
         /// </summary>
         /// <param name="hediff">The hediff doing the transformation.</param>
-        public abstract SpreadManager GetSpreadManager(Hediff_MutagenicBase hediff);
+        public abstract IEnumerable<BodyPartRecord> GetSpreadList(Hediff_MutagenicBase hediff);
 
         /// <summary>
         /// Determines whether the given MutSpreadOrder creates spread orders equivalent
@@ -36,10 +37,9 @@ namespace Pawnmorph.Hediffs.Composable
         /// Gets the the spread manager that will be used to control the spread order
         /// </summary>
         /// <param name="hediff">The hediff doing the transformation.</param>
-        public override SpreadManager GetSpreadManager(Hediff_MutagenicBase hediff)
+        public override IEnumerable<BodyPartRecord> GetSpreadList(Hediff_MutagenicBase hediff)
         {
-            var bodyParts = hediff.pawn.RaceProps.body.AllParts.InRandomOrder().ToList();
-            return new SpreadManager(bodyParts);
+            return hediff.pawn.RaceProps.body.AllParts.InRandomOrder();
         }
 
         /// <summary>
@@ -65,11 +65,11 @@ namespace Pawnmorph.Hediffs.Composable
         /// Gets the the spread manager that will be used to control the spread order
         /// </summary>
         /// <param name="hediff">The hediff doing the transformation.</param>
-        public override SpreadManager GetSpreadManager(Hediff_MutagenicBase hediff)
+        public override IEnumerable<BodyPartRecord> GetSpreadList(Hediff_MutagenicBase hediff)
         {
             var bodyParts = new List<BodyPartRecord>();
             hediff.pawn.RaceProps.body.RandomizedSpreadOrder(bodyParts);
-            return new SpreadManager(bodyParts);
+            return bodyParts;
         }
 
         /// <summary>
@@ -82,25 +82,5 @@ namespace Pawnmorph.Hediffs.Composable
         {
             return other is MutSpreadOrder_RandomSpread;
         }
-    }
-
-    //TODO SpreadFromPart
-    //TODO SpreadFromInjury
-
-    /// <summary>
-    /// A class to handle the stateful part of managing spread order.
-    /// Gets saved and loaded with the Hediff class.
-    /// 
-    /// Don't add any logic to this class, since instances regularly gets thrown
-    /// away and recreated. Instead, add the logic to the MutSpreadOrder that
-    /// creates it.
-    /// </summary>
-    public sealed class SpreadManager : Checklist<BodyPartRecord>
-    {
-        public SpreadManager() { }
-
-        public SpreadManager(IEnumerable<BodyPartRecord> parts) : base(parts) { }
-
-        public override LookMode LookMode => LookMode.BodyPart;
     }
 }
