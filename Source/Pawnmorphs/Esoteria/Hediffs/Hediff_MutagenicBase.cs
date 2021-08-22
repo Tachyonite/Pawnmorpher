@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
     /// Abstract base class for all hediffs that cause mutations and transformation
+    /// 
+    /// TODO - single comps
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_Descriptive" />
@@ -39,24 +41,18 @@ namespace Pawnmorph.Hediffs
         // Used to force-remove the hediff
         private bool forceRemove;
 
-        [Unsaved] private List<ITfHediffObserverComp> observerCompsCache;
+        // Mutation sensitivity of the pawn.  Fetched only intermittently because it's expensive to calculate.
+        [Unsaved] private readonly Cached<float> mutagenSensitivity;
+        public float MutagenSensitivity => mutagenSensitivity.Value;
 
-        /// <summary>
-        /// All observer comps to notify when adding mutations and visiting parts to add mutations onto.
-        /// </summary>
-        /// <value>
-        /// The observer comps.
-        /// </value>
-        [NotNull]
-        protected IReadOnlyList<ITfHediffObserverComp> ObserverComps
+        // The list of observer comps
+        [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
+        public IEnumerable<ITfHediffObserverComp> ObserverComps => observerComps.Value;
+
+        protected Hediff_MutagenicBase()
         {
-            get
-            {
-                if (observerCompsCache == null)
-                    observerCompsCache = comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList();
-
-                return observerCompsCache;
-            }
+            mutagenSensitivity = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
+            observerComps = new Lazy<List<ITfHediffObserverComp>>(() => comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList());
         }
 
         /// <summary>
@@ -101,8 +97,12 @@ namespace Pawnmorph.Hediffs
                     CheckAndDoTransformation();
             }
 
-            if (cachedStageType == StageType.Mutation && pawn.IsHashIntervalTick(60))
-                CheckAndAddMutations();
+            if (pawn.IsHashIntervalTick(60))
+            {
+                mutagenSensitivity.Recalculate();
+                if (cachedStageType == StageType.Mutation && Immune)
+                    CheckAndAddMutations();
+            }
         }
 
         /// <summary>
@@ -140,7 +140,6 @@ namespace Pawnmorph.Hediffs
         /// <returns>A mutation result describing the mutation(s) added, if any</returns>
         protected MutationResult TryMutate()
         {
-            //TODO observers
             do
             {
                 var bodyPart = bodyMutationManager.BodyPart;
@@ -151,6 +150,10 @@ namespace Pawnmorph.Hediffs
                     ResetSpreadList();
                     return MutationResult.Empty;
                 }
+
+                // Notify the observers first, since they may add/remove/change mutations
+                foreach (var observer in ObserverComps)
+                    observer.Observe(bodyPart);
 
                 // Check all mutations in order until we add one
                 do
@@ -166,6 +169,12 @@ namespace Pawnmorph.Hediffs
                     {
                         var mutationResult = MutationUtilities.AddMutation(pawn, mutation.mutation, bodyPart);
                         def.GetMutagenDef().TryApplyAspects(pawn);
+
+                        // Notify the observers of any added mutations
+                        foreach (var observer in ObserverComps)
+                            foreach (var added in mutationResult)
+                                observer.MutationAdded(added);
+
                         return mutationResult;
                     }
 
