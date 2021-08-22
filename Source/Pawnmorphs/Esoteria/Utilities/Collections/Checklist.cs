@@ -56,10 +56,22 @@ namespace Pawnmorph.Utilities.Collections
         }
 
         /// <summary>
-        /// Whether or not we've reached the end of the list
+        /// Whether we still have a current entry or we've reached the end of the list
+        /// </summary>
+        /// <value><c>true</c> if there's at least one entry left in the list; otherwise, <c>false</c>.</value>
+        public bool HasEntry => index < list.Count;
+
+        /// <summary>
+        /// The index of the current entry
+        /// </summary>
+        /// <value>The index.</value>
+        public int Index => index;
+
+        /// <summary>
+        /// The total number of entries
         /// </summary>
         /// <value><c>true</c> if has entry; otherwise, <c>false</c>.</value>
-        public bool HasEntry => index < list.Count;
+        public int Count => list.Count;
 
         /// <summary>
         /// Advances the checklist to the next entry

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Pawnmorph.Utilities;
 using Pawnmorph.Utilities.Collections;
 using Verse;
@@ -139,6 +140,19 @@ namespace Pawnmorph.Hediffs.Utility
             {
                 RegenerateBodyPartMutationCache();
             }
+        }
+
+        /// <summary>
+        /// Generates a debug string indicating the status of the mutation manager
+        /// </summary>
+        /// <returns>The debug string.</returns>
+        public string DebugString()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("  BodyMutationManager");
+            builder.AppendLine($"    Next Body Part: {spreadList?.Entry?.def?.defName} ({spreadList.Index + 1}/{spreadList.Count})");
+            builder.AppendLine($"    Next Mutation: {bodyPartMutationList?.Entry?.mutation?.defName} ({bodyPartMutationList.Index + 1}/{bodyPartMutationList.Count})");
+            return builder.ToString();
         }
     }
 }

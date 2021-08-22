@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -41,14 +42,29 @@ namespace Pawnmorph.Hediffs
         // Used to force-remove the hediff
         private bool forceRemove;
 
+
         // Mutation sensitivity of the pawn.  Fetched only intermittently because it's expensive to calculate.
         [Unsaved] private readonly Cached<float> mutagenSensitivity;
+
+        /// <summary>
+        /// Gets the mutagen sensitivity.
+        /// </summary>
+        /// <value>The mutagen sensitivity.</value>
         public float MutagenSensitivity => mutagenSensitivity.Value;
+
 
         // The list of observer comps
         [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
+
+        /// <summary>
+        /// Gets the observer comps.
+        /// </summary>
+        /// <value>The observer comps.</value>
         public IEnumerable<ITfHediffObserverComp> ObserverComps => observerComps.Value;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Pawnmorph.Hediffs.Hediff_MutagenicBase"/> class.
+        /// </summary>
         public Hediff_MutagenicBase()
         {
             mutagenSensitivity = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
@@ -368,6 +384,32 @@ namespace Pawnmorph.Hediffs
             {
                 OnStageChanged();
             }
+        }
+
+        /// <summary>
+        /// Creates a debug string for this hediff 
+        /// </summary>
+        /// <returns></returns>
+        public override string DebugString()
+        {
+            StringBuilder builder = new StringBuilder(base.DebugString());
+            builder.AppendLine($"{nameof(TransformationBase)}:");
+
+            if (cachedStageType == StageType.Mutation)
+            {
+                builder.AppendLine("Mutation Stage");
+                builder.Append(bodyMutationManager.DebugString());
+            }
+            else if (cachedStageType == StageType.Transformation)
+            {
+                builder.AppendLine("Transformation Stage");
+            }
+            else
+            {
+                builder.AppendLine("Other Stage");
+            }
+
+            return builder.ToString();
         }
     }
 }
