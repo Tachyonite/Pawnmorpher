@@ -66,5 +66,4 @@ namespace Pawnmorph.Hediffs.Composable
             pawn.mindState.mentalStateHandler.TryStartMentalState(mentalState, "MentalStateReason_Hediff".Translate(parentHediff.Label));
         }
     }
-    }
 }

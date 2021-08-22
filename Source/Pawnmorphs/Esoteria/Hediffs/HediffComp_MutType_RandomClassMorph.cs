@@ -38,7 +38,7 @@ namespace Pawnmorph.Hediffs
         /// <returns>The morph def.</returns>
         protected override MorphDef GetMorphDef()
         {
-            return Props.animalClassDef.GetAllMorphsInClass
+            return Props.animalClassDef.GetAllMorphsInClass()
                     .Where(d => Props.allowRestricted || !d.Restricted)
                     .RandomElement();
         }
