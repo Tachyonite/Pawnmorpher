@@ -834,6 +834,7 @@
     <Compile Include="Social\InteractionWeightsDef.cs" />
     <Compile Include="Utilities\Collections\Checklist.cs" />
     <Compile Include="Utilities\Collections\MultiDict.cs" />
+    <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
