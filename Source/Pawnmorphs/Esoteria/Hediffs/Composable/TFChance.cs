@@ -1,6 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
-using RimWorld;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 using Verse;
 
@@ -27,10 +25,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// Whether or not to transform the pawn.  Checked only upon entering a stage.
         /// </summary>
         /// <param name="hediff">The hediff doing the transformation.</param>
-        public override bool ShouldTransform(Hediff_MutagenicBase hediff)
-        {
-            return true;
-        }
+        public override bool ShouldTransform(Hediff_MutagenicBase hediff) => true;
     }
 
     /// <summary>
@@ -59,7 +54,7 @@ namespace Pawnmorph.Hediffs.Composable
             float tfChance = chance;
 
             if (respectSensitivity)
-                tfChance *= hediff.pawn.GetStatValue(PMStatDefOf.TransformationSensitivity) / 100f;
+                tfChance *= hediff.TransformationSensitivity;
 
             tfChance = Mathf.Clamp(tfChance, 0f, 1f);
             return Rand.Value < tfChance;
@@ -87,7 +82,7 @@ namespace Pawnmorph.Hediffs.Composable
             float tfChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance;
 
             if (respectSensitivity)
-                tfChance *= hediff.pawn.GetStatValue(PMStatDefOf.TransformationSensitivity) / 100;
+                tfChance *= hediff.TransformationSensitivity;
 
             tfChance = Mathf.Clamp(tfChance, 0f, 1f);
             return Rand.Value < tfChance;

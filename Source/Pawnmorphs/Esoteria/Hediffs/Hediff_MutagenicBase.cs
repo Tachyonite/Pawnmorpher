@@ -42,19 +42,24 @@ namespace Pawnmorph.Hediffs
         // Used to force-remove the hediff
         private bool forceRemove;
 
-
-        // Mutation sensitivity of the pawn.  Fetched only intermittently because it's expensive to calculate.
+        // Sensitivity stats of the pawn.  Fetched only intermittently because they're expensive to calculate.
         [Unsaved] private readonly Cached<float> mutagenSensitivity;
-
-        /// <summary>
-        /// Gets the mutagen sensitivity.
-        /// </summary>
-        /// <value>The mutagen sensitivity.</value>
-        public float MutagenSensitivity => mutagenSensitivity.Value;
-
+        [Unsaved] private readonly Cached<float> transformationSensitivity;
 
         // The list of observer comps
         [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
+
+        /// <summary>
+        /// Gets the mutagen sensitivity sensitivity of the pawn
+        /// </summary>
+        /// <value>The mutagen sensitivity.</value>
+        public virtual float MutagenSensitivity => mutagenSensitivity.Value / 100f; // TODO check if this division is needed
+
+        /// <summary>
+        /// Gets the transformation sensitivity of the pawn.
+        /// </summary>
+        /// <value>The transformation sensitivity.</value>
+        public virtual float TransformationSensitivity => transformationSensitivity.Value / 100f;
 
         /// <summary>
         /// Gets the observer comps.
@@ -62,12 +67,11 @@ namespace Pawnmorph.Hediffs
         /// <value>The observer comps.</value>
         public IEnumerable<ITfHediffObserverComp> ObserverComps => observerComps.Value;
 
-
         /// <summary>
         /// Whether or not this hediff is currently blocking race checks
         /// </summary>
         /// <value><c>true</c> if blocks race check; otherwise, <c>false</c>.</value>
-        bool BlocksRaceCheck => cachedStageType == StageType.Mutation;
+        public bool BlocksRaceCheck => cachedStageType == StageType.Mutation;
 
 
         /// <summary>
@@ -76,6 +80,7 @@ namespace Pawnmorph.Hediffs
         public Hediff_MutagenicBase()
         {
             mutagenSensitivity = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
+            transformationSensitivity = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.TransformationSensitivity));
             observerComps = new Lazy<List<ITfHediffObserverComp>>(() => comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList());
         }
 

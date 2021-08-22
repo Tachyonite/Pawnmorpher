@@ -1,7 +1,5 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Pawnmorph.Utilities;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -53,6 +51,11 @@ namespace Pawnmorph.Hediffs.Composable
         [UsedImplicitly] public float meanMutationsPerDay;
 
         /// <summary>
+        /// Whether or not the mutation rate is affected by mutagen sensitivity
+        /// </summary>
+        [UsedImplicitly] public bool affectedBySensitivity = true;
+
+        /// <summary>
         /// How many mutations to queue up for the next second.
         /// 
         /// Called once a second by Hediff_MutagenicBase.  Queued up mutations will
@@ -62,8 +65,12 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">Hediff.</param>
         public override int GetMutationsPerSecond(Hediff_MutagenicBase hediff)
         {
+            float mutations = meanMutationsPerDay;
+            if (affectedBySensitivity)
+                mutations *= hediff.MutagenSensitivity;
+
             //Don't worry about division by zero, MTBEventOccurs handles positive infinity
-            if (Rand.MTBEventOccurs(1f / meanMutationsPerDay, 60000, 60))
+            if (Rand.MTBEventOccurs(1f / mutations, 60000, 60))
                 return 1;
 
             return 0;
@@ -89,6 +96,11 @@ namespace Pawnmorph.Hediffs.Composable
         [UsedImplicitly] public float standardDeviation;
 
         /// <summary>
+        /// Whether or not the mutation rate is affected by mutagen sensitivity
+        /// </summary>
+        [UsedImplicitly] public bool affectedBySensitivity = true;
+
+        /// <summary>
         /// How many mutations to queue up for a given severity change.  Note that severity
         /// changes can be negative, and negative mutations are allowed.
         /// (negative mutations can cancel queued mutations but won't remove existing ones)
@@ -101,10 +113,16 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="sevChange">How much severity changed by.</param>
         public override int GetMutationsPerSeverity(Hediff_MutagenicBase hediff, float sevChange)
         {
-            // Apply severity change after the random generation so that the standard devation is scaled as well
-            float actualMutations = sevChange * RandUtilities.generateNormalRandom(meanMutationsPerSeverity, standardDeviation);
 
-            return RandUtilities.RandRound(actualMutations);
+            float mutations = RandUtilities.generateNormalRandom(meanMutationsPerSeverity, standardDeviation);
+
+            // Apply severity and sensitivity scaling after the random generation so
+            // that deviation is scaled as well
+            mutations *= sevChange;
+            if (affectedBySensitivity)
+                mutations *= hediff.MutagenSensitivity;
+
+            return RandUtilities.RandRound(mutations);
         }
     }
 }
