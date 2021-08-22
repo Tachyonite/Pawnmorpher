@@ -110,7 +110,7 @@
             </li>
             <li Class="PreceptComp_SelfTookMemoryThought">
                 <eventDef>FormerHumanHunted</eventDef>
-                <thought>PM_Precept_SapientAnimalHuntingMemoryDesired</thought>
+                <thought>PM_Precept_SapientAnimalHuntingMemoryStronglyAnimallike</thought>
             </li>
             <li Class="PreceptComp_SelfTookMemoryThought">
                 <eventDef>FormerHumanGrazed</eventDef>
