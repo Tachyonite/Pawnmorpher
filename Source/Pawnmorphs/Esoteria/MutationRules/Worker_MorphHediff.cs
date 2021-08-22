@@ -48,7 +48,7 @@ namespace Pawnmorph.MutationRules
 
             foreach (var hediff in pawn.health.hediffSet.hediffs.MakeSafe())
             {
-                if (ConditionList.ContainsHediff(hediff) && hediff is IMutationHediff mutHediff)
+                if (ConditionList.ContainsHediff(hediff) && hediff is IMutagenicHediff mutHediff)
                 {
                     mutHediff.MarkForRemoval(); //don't directly remove them, but mark them for removal so they can be removed
                 }   

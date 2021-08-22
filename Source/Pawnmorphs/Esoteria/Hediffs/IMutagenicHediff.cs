@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface for all hediffs that can possibly cause mutations
     /// </summary>
-    public interface IMutationHediff
+    public interface IMutagenicHediff
     {
         /// <summary>
         /// Whether or not this hediff is currently blocking race checks

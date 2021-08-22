@@ -42,7 +42,7 @@ namespace Pawnmorph
         {
             if (mustBeReeling)
             {
-                var tfHediff = hediff as IMutationHediff;
+                var tfHediff = hediff as IMutagenicHediff;
                 // TODO this should probably be changed to CurrentStageHasTransformations
                 if (tfHediff?.CurrentStageHasMutations != false) return false; 
             }
