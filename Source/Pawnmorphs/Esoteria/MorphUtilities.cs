@@ -461,7 +461,7 @@ namespace Pawnmorph
         /// <summary>checks if the hybrid system is enabled for the given race def.</summary>
         /// <param name="raceDef">The race definition.</param>
         /// <returns></returns>
-        public static bool HybridsAreEnabledFor(ThingDef raceDef)
+        public static bool HybridsAreEnabledFor(this ThingDef raceDef)
         {
             if (raceDef == ThingDefOf.Human) return true;
             return raceDef.IsHybridRace();
@@ -507,11 +507,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsHybridRace([NotNull] this ThingDef raceDef)
         {
-            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefs)
-                if (raceDef == morphDef.hybridRaceDef)
-                    return true;
-
-            return false;
+            return raceDef.GetMorphOfRace() != null;
         }
 
         /// <summary> Get whether or not the given pawn should still be considered 'human'. </summary>
