@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Verse;
 
 namespace Pawnmorph.Utilities.Collections
 {
@@ -17,7 +18,7 @@ namespace Pawnmorph.Utilities.Collections
         /// </summary>
         /// <param name="key">Key.</param>
         public ICollection<V> this[K key] {
-            get => dict[key] ?? Enumerable.Empty<V>().ToList();
+            get => dict.TryGetValue(key, Enumerable.Empty<V>().ToList());
             set {
                 var val = value?.ToList();
                 if (val != null && val.Count > 0)
