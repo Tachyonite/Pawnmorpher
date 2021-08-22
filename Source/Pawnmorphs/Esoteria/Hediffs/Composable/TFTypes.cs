@@ -32,6 +32,11 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFTypes_All : TFTypes
     {
+        /// <summary>
+        /// Gets the list of available pawnkinds to TF into.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<PawnKindDef> GetTFs(Hediff_MutagenicBase hediff)
         {
             return DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal);
@@ -54,8 +59,16 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFTypes_List : TFTypes
     {
-        [UsedImplicitly] List<PawnKindDef> animals;
+        /// <summary>
+        /// The list of PawnKindDefs that this TF can potentially transform into.
+        /// </summary>
+        [UsedImplicitly] public List<PawnKindDef> animals;
 
+        /// <summary>
+        /// Gets the list of available pawnkinds to TF into.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<PawnKindDef> GetTFs(Hediff_MutagenicBase hediff)
         {
             return animals;
@@ -79,13 +92,19 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFTypes_Morph : TFTypes
     {
-        [UsedImplicitly] MorphDef morphDef;
+        /// <summary>
+        /// The morph def to get potential animal forms from.
+        /// </summary>
+        [UsedImplicitly] public MorphDef morphDef;
 
+        /// <summary>
+        /// Gets the list of available pawnkinds to TF into.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<PawnKindDef> GetTFs(Hediff_MutagenicBase hediff)
         {
-            var animals = morphDef.AllAssociatedAnimals;
-            return DefDatabase<PawnKindDef>.AllDefs
-                    .Where(p => animals.Contains(p.race));
+            return morphDef.PrimaryFeralPawnKinds;
         }
 
         /// <summary>
@@ -106,13 +125,21 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFTypes_Class : TFTypes
     {
-        [UsedImplicitly] AnimalClassDef classDef;
+        /// <summary>
+        /// The class def to get potential animals from.
+        /// </summary>
+        [UsedImplicitly] public AnimalClassDef classDef;
 
+        /// <summary>
+        /// Gets the list of available pawnkinds to TF into.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<PawnKindDef> GetTFs(Hediff_MutagenicBase hediff)
         {
-            var animals = classDef.GetAssociatedAnimals();
-            return DefDatabase<PawnKindDef>.AllDefs
-                    .Where(p => animals.Contains(p.race));
+            return classDef.GetAllMorphsInClass()
+                    .SelectMany(m => m.PrimaryFeralPawnKinds)
+                    .Distinct();
         }
 
         /// <summary>
@@ -136,6 +163,11 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFTypes_FromComp : TFTypes
     {
+        /// <summary>
+        /// Gets the list of available pawnkinds to TF into.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<PawnKindDef> GetTFs(Hediff_MutagenicBase hediff)
         {
             return hediff.TryGetComp<HediffComp_MutTypeBase>()

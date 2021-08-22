@@ -13,12 +13,11 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.HediffComp_MutTypeBase_Dynamic"/>
     public class HediffComp_MutType_RandomAnyMorph : HediffComp_MutTypeBase_Dynamic
     {
-        public class Properties : HediffCompPropertiesBase<HediffComp_MutType_RandomAnyMorph>
-        {
-            [UsedImplicitly] public bool allowRestricted = false;
-        }
-
-        public Properties Props => (Properties)props;
+        /// <summary>
+        /// Gets the hediff comp properties.
+        /// </summary>
+        /// <value>The properties.</value>
+        public HediffCompProperties_MutType_RandomAnyMorph Props => (HediffCompProperties_MutType_RandomAnyMorph)props;
 
         /// <summary>
         /// Gets the morph def.
@@ -30,5 +29,16 @@ namespace Pawnmorph.Hediffs
                     .Where(d => Props.allowRestricted || !d.Restricted)
                     .RandomElement();
         }
+    }
+
+    /// <summary>
+    /// Hediff comp properties for HediffComp_MutType_RandomAnyMorph
+    /// </summary>
+    public class HediffCompProperties_MutType_RandomAnyMorph : HediffCompPropertiesBase<HediffComp_MutType_RandomAnyMorph>
+    {
+        /// <summary>
+        /// Whether or not restricted morph defs can be selected
+        /// </summary>
+        [UsedImplicitly] public bool allowRestricted = false;
     }
 }

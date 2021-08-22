@@ -136,7 +136,7 @@ namespace Pawnmorph.Hediffs
             // MutationRates can request multiple muations be added at once,
             // but we'll queue them up so they only happen once a second
             //TODO mutagen sensitivity
-            QueueUpMutations(stage.MutationRate.GetMutationsPerSecond(this));
+            QueueUpMutations(stage.mutationRate.GetMutationsPerSecond(this));
 
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
@@ -221,7 +221,7 @@ namespace Pawnmorph.Hediffs
                 return;
             }
 
-            if (stage.TFChance.ShouldTransform(this))
+            if (stage.tfChance.ShouldTransform(this))
             {
                 //TODO
             }
@@ -245,9 +245,9 @@ namespace Pawnmorph.Hediffs
                 // ones in the new stage are different
                 if (oldStage is HediffStage_Mutation oldMutStage)
                 {
-                    if (!newMutStage.SpreadOrder.EquivalentTo(oldMutStage.SpreadOrder))
+                    if (!newMutStage.spreadOrder.EquivalentTo(oldMutStage.spreadOrder))
                         ResetSpreadList();
-                    if (!newMutStage.MutationTypes.EquivalentTo(oldMutStage.MutationTypes))
+                    if (!newMutStage.mutationTypes.EquivalentTo(oldMutStage.mutationTypes))
                         ResetMutationList();
                 }
                 else
@@ -289,7 +289,7 @@ namespace Pawnmorph.Hediffs
         {
             if (cachedStage is HediffStage_Mutation mutStage)
             {
-                var spreadList = mutStage.SpreadOrder.GetSpreadList(this);
+                var spreadList = mutStage.spreadOrder.GetSpreadList(this);
                 bodyMutationManager.ResetSpreadList(spreadList);
 
                 // Let the observers know we've reset our spreading
@@ -306,7 +306,7 @@ namespace Pawnmorph.Hediffs
         {
             if (cachedStage is HediffStage_Mutation mutStage)
             {
-                var mutations = mutStage.MutationTypes.GetMutations(this);
+                var mutations = mutStage.mutationTypes.GetMutations(this);
                 bodyMutationManager.ResetMutationList(mutations);
 
                 // Let the observers know we've reset our mutation types
@@ -328,7 +328,7 @@ namespace Pawnmorph.Hediffs
                 if (cachedStage is HediffStage_Mutation mutStage)
                 {
                     float diff = value - base.Severity;
-                    int mutations = mutStage.MutationRate.GetMutationsPerSeverity(this, diff);
+                    int mutations = mutStage.mutationRate.GetMutationsPerSeverity(this, diff);
                     QueueUpMutations(mutations);
                 }
                 base.Severity = value;

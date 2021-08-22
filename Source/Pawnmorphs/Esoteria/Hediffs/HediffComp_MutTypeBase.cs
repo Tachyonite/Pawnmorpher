@@ -39,6 +39,9 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.Composable.TFTypes_FromComp"/>
     public abstract class HediffComp_MutTypeBase_Dynamic : HediffComp_MutTypeBase
     {
+        /// <summary>
+        /// The morph def.
+        /// </summary>
         protected MorphDef morphDef;
 
         /// <summary>
@@ -92,10 +95,11 @@ namespace Pawnmorph.Hediffs
         /// <returns>The debug string.</returns>
         public override string CompDebugString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(base.CompDebugString());
-            stringBuilder.AppendLine("MorphDef: " + morphDef.defName);
-            return stringBuilder.ToString();
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine(base.CompDebugString());
+            builder.AppendLine("  MutType_Dynamic");
+            builder.AppendLine($"    Current Morph Def: {morphDef.defName}");
+            return builder.ToString();
         }
     }
 }

@@ -10,6 +10,10 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     public class MutationEntry : IExposable
     {
+        /// <summary>
+        /// The default add chance for a MutationEntry if one isn't supplied
+        /// TODO - should this just be 1f?
+        /// </summary>
         public const float DEFAULT_ADD_CHANCE = 0.76f;
 
         /// <summary>
@@ -44,6 +48,9 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public bool blocks;
 
+        /// <summary>
+        /// Exposes the data to be Saved/Loaded from XML.
+        /// </summary>
         public void ExposeData()
         {
             Scribe_Defs.Look(ref mutation, nameof(mutation));

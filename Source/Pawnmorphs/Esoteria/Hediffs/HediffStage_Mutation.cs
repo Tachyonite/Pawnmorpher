@@ -11,24 +11,20 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.IDescriptiveHediff" />
     /// <seealso cref="Verse.Hediff" />
     public class HediffStage_Mutation : HediffStage_MutagenicBase
-    {
-        [UsedImplicitly] private MutSpreadOrder spreadOrder;
-        [UsedImplicitly] private MutRate mutationRate;
-        [UsedImplicitly] private MutTypes mutationTypes;
-
+    {   
         /// <summary>
         /// Controls the order that mutations spread over the body
         /// </summary>
-        public MutSpreadOrder SpreadOrder => spreadOrder;
+        [UsedImplicitly] public MutSpreadOrder spreadOrder;
 
         /// <summary>
         /// Controls how fast mutations are added
         /// </summary>
-        public MutRate MutationRate => mutationRate;
+        [UsedImplicitly] public MutRate mutationRate;
 
         /// <summary>
         /// Controls what kinds of mutations can be added
         /// </summary>
-        public MutTypes MutationTypes => mutationTypes;
+        [UsedImplicitly] public MutTypes mutationTypes;
     }
 }

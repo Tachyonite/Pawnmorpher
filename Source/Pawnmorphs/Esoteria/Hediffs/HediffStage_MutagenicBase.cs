@@ -12,8 +12,15 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_MutagenicBase" />
     public abstract class HediffStage_MutagenicBase : HediffStage, IDescriptiveStage
     {
-        [UsedImplicitly] private string description;
-        [UsedImplicitly] private string labelOverride;
+        /// <summary>
+        /// The description.
+        /// </summary>
+        [UsedImplicitly] public string description;
+
+        /// <summary>
+        /// The label override.
+        /// </summary>
+        [UsedImplicitly] public string labelOverride;
 
         /// <summary>
         /// Gets the description override.

@@ -24,8 +24,15 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFCallback_AddHediff : TFCallback
     {
-        [UsedImplicitly] HediffDef hediff;
-        [UsedImplicitly] List<BodyPartRecord> bodyPartsToAffect;
+        /// <summary>
+        /// The hediff to add.
+        /// </summary>
+        [UsedImplicitly] public HediffDef hediff;
+
+        /// <summary>
+        /// The body parts to affect.  All specified body parts will be affected, if present.
+        /// </summary>
+        [UsedImplicitly] public List<BodyPartRecord> bodyPartsToAffect;
 
         /// <summary>
         /// A callback that's called on the transformed pawn after a full transformation
@@ -55,7 +62,10 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFCallback_AddMentalState : TFCallback
     {
-        [UsedImplicitly] MentalStateDef mentalState;
+        /// <summary>
+        /// The mental state to add.
+        /// </summary>
+        [UsedImplicitly] public MentalStateDef mentalState;
 
         /// <summary>
         /// A callback that's called on the transformed pawn after a full transformation

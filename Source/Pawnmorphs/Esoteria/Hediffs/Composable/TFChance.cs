@@ -39,8 +39,16 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFChance_Random : TFChance
     {
-        [UsedImplicitly] float chance;
-        [UsedImplicitly] bool respectSensitivity = true;
+        /// <summary>
+        /// The chance of a transformation.
+        /// </summary>
+        [UsedImplicitly] public float chance;
+
+        /// <summary>
+        /// Whether or not transformation sensitivity is respected.
+        /// If true, the chance will be multiplied by the sensitivity stat
+        /// </summary>
+        [UsedImplicitly] public bool respectSensitivity = true;
 
         /// <summary>
         /// Whether or not to transform the pawn.  Checked only upon entering a stage.
@@ -64,7 +72,11 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class TFChance_BySetting : TFChance
     {
-        [UsedImplicitly] bool respectSensitivity = true;
+        /// <summary>
+        /// Whether or not transformation sensitivity is respected.
+        /// If true, the chance will be multiplied by the sensitivity stat
+        /// </summary>
+        [UsedImplicitly] public bool respectSensitivity = true;
 
         /// <summary>
         /// Whether or not to transform the pawn.  Checked only upon entering a stage.

@@ -47,7 +47,10 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class MutRate_MutationsPerDay : MutRate
     {
-        [UsedImplicitly] private float meanMutationsPerDay;
+        /// <summary>
+        /// The mean number of mutations per day. (1/the MTB of individual mutation events)
+        /// </summary>
+        [UsedImplicitly] public float meanMutationsPerDay;
 
         /// <summary>
         /// How many mutations to queue up for the next second.
@@ -72,8 +75,18 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class MutRate_MutationsPerSevChange : MutRate
     {
-        [UsedImplicitly] private float meanMutationsPerSeverity;
-        [UsedImplicitly] private float standardDeviation;
+        /// <summary>
+        /// The mean number of mutations gained per point of severity.
+        /// Diseases usually have 1 severity
+        /// </summary>
+        [UsedImplicitly] public float meanMutationsPerSeverity;
+
+        /// <summary>
+        /// The standard deviation of the mutations generated.
+        /// ~68% of the time, the value will be within +/- one standard deviation of the mean
+        /// ~95% of the time, the value will be within +/- two standard deviations of the mean
+        /// </summary>
+        [UsedImplicitly] public float standardDeviation;
 
         /// <summary>
         /// How many mutations to queue up for a given severity change.  Note that severity
@@ -88,8 +101,8 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="sevChange">How much severity changed by.</param>
         public override int GetMutationsPerSeverity(Hediff_MutagenicBase hediff, float sevChange)
         {
-            float expectedMutations = meanMutationsPerSeverity * sevChange;
-            float actualMutations = RandUtilities.generateNormalRandom(expectedMutations, standardDeviation);
+            // Apply severity change after the random generation so that the standard devation is scaled as well
+            float actualMutations = sevChange * RandUtilities.generateNormalRandom(meanMutationsPerSeverity, standardDeviation);
 
             return RandUtilities.RandRound(actualMutations);
         }

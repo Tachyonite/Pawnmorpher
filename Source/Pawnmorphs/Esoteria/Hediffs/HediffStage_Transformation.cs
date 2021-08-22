@@ -14,35 +14,29 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_MutagenicBase" />
     public class HediffStage_Transformation : HediffStage_MutagenicBase
     {
-        [UsedImplicitly] private TFChance tfChance;
-        [UsedImplicitly] private TFTypes tfTypes;
-        [UsedImplicitly] private TFGenderSelector tfGenderSelector;
-        [UsedImplicitly] private TFMiscSettings tfSettings;
-        [UsedImplicitly] private List<TFCallback> tfCallbacks;
-
         /// <summary>
         /// Controls the chance of a full transformation
         /// </summary>
-        public TFChance TFChance => tfChance;
+        [UsedImplicitly] public TFChance tfChance;
 
         /// <summary>
         /// Controls what kind of animals transformations can result in
         /// </summary>
-        public TFTypes TFTypes => tfTypes;
+        [UsedImplicitly] public TFTypes tfTypes;
 
         /// <summary>
         /// Controls the gender of the post-transformation pawn
         /// </summary>
-        public TFGenderSelector TFGenderSelector => tfGenderSelector;
+        [UsedImplicitly] public TFGenderSelector tfGenderSelector;
 
         /// <summary>
         /// Controls miscellaneous settings related to full transformations
         /// </summary>
-        public TFMiscSettings TFMiscSettings => tfSettings;
+        [UsedImplicitly] public TFMiscSettings tfSettings;
 
         /// <summary>
         /// Callbacks called on the transformed pawn to perform additional behavior
         /// </summary>
-        public List<TFCallback> TFCallbacks => tfCallbacks;
+        [UsedImplicitly] public List<TFCallback> tfCallbacks;
     }
 }

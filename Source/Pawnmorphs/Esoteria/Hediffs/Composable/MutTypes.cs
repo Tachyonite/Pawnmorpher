@@ -11,6 +11,9 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public abstract class MutTypes
     {
+        /// <summary>
+        /// The epsilon for chance comparison.
+        /// </summary>
         protected const float EPSILON = 0.000001f;
 
         /// <summary>
@@ -35,9 +38,16 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class MutTypes_All : MutTypes
     {
-        // Low chance by default for any one mutation
-        [UsedImplicitly] float chance = 0.1f;
+        /// <summary>
+        /// The chance any particular mutation will be added (as a multiplier of the default chance).
+        /// </summary>
+        [UsedImplicitly] public float chance = 0.1f; // Low chance by default since this is for chaotic mutations
 
+        /// <summary>
+        /// Gets the list of available mutations.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
             return DefDatabase<MutationDef>.AllDefs
@@ -62,9 +72,21 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class MutTypes_List : MutTypes
     {
-        [UsedImplicitly] List<MutationDef> mutations;
-        [UsedImplicitly] float chance = 1f;
+        /// <summary>
+        /// The list of mutations to add.
+        /// </summary>
+        [UsedImplicitly] public List<MutationDef> mutations;
 
+        /// <summary>
+        /// The chance any particular mutation will be added (as a multiplier of the default chance).
+        /// </summary>
+        [UsedImplicitly] public float chance = 1f;
+
+        /// <summary>
+        /// Gets the list of available mutations.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
             return mutations.Select(m => MutationEntry.FromMutation(m, chance));
@@ -89,9 +111,21 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class MutTypes_Morph : MutTypes
     {
-        [UsedImplicitly] MorphDef morphDef;
-        [UsedImplicitly] float chance = 1f;
+        /// <summary>
+        /// The morph def to select mutations from.
+        /// </summary>
+        [UsedImplicitly] public MorphDef morphDef;
 
+        /// <summary>
+        /// The chance any particular mutation will be added (as a multiplier of the default chance).
+        /// </summary>
+        [UsedImplicitly] public float chance = 1f;
+
+        /// <summary>
+        /// Gets the list of available mutations.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
             return morphDef.AllAssociatedMutations
@@ -117,9 +151,21 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class MutTypes_Class : MutTypes
     {
-        [UsedImplicitly] AnimalClassDef classDef;
-        [UsedImplicitly] float chance = 1f;
+        /// <summary>
+        /// The class def to select mutations from
+        /// </summary>
+        [UsedImplicitly] public AnimalClassDef classDef;
 
+        /// <summary>
+        /// The chance any particular mutation will be added (as a multiplier of the default chance).
+        /// </summary>
+        [UsedImplicitly] public float chance = 1f;
+
+        /// <summary>
+        /// Gets the list of available mutations.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
             return classDef.GetAllMutationIn()
@@ -148,8 +194,16 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public class MutTypes_FromComp : MutTypes
     {
-        [UsedImplicitly] float chance = 1f;
+        /// <summary>
+        /// The chance any particular mutation will be added (as a multiplier of the default chance).
+        /// </summary>
+        [UsedImplicitly] public float chance = 1f;
 
+        /// <summary>
+        /// Gets the list of available mutations.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
             return hediff.TryGetComp<HediffComp_MutTypeBase>()
