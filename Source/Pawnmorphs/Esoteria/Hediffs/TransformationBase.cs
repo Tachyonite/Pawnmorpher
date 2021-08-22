@@ -332,7 +332,15 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///   <c>true</c> if there are any mutations in the current stage; otherwise, <c>false</c>.
         /// </value>
-        public bool AnyMutationsInCurrentStage => AnyMutationsInStage(CurStage); 
+        public virtual bool CurrentStageHasMutations => AnyMutationsInStage(CurStage);
+
+        /// <summary>
+        /// Gets a value indicating whether there are any transformations in the current stage.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if there are any transformations in the current stage; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool CurrentStageHasTransformation => CurStage is FullTransformationStageBase;
 
         private void AddMutations()
         {
