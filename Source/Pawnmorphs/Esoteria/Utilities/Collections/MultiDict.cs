@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Verse;
 
 namespace Pawnmorph.Utilities.Collections
 {
@@ -7,7 +8,7 @@ namespace Pawnmorph.Utilities.Collections
     /// A simple multi-value dictionary implementation that maps one key to multiple values
     /// Uses lists internally, so is not particularly efficient for large numbers of values on one key
     /// </summary>
-    public class MultiDict<K, V>// : IDictionary<K, IEnumerable<V>>
+    public class MultiDict<K, V>
     {
         private readonly Dictionary<K, List<V>> dict = new Dictionary<K, List<V>>();
 
@@ -16,9 +17,11 @@ namespace Pawnmorph.Utilities.Collections
         /// null collection deletes the key
         /// </summary>
         /// <param name="key">Key.</param>
-        public ICollection<V> this[K key] {
-            get => dict[key] ?? Enumerable.Empty<V>().ToList();
-            set {
+        public ICollection<V> this[K key]
+        {
+            get => dict.TryGetValue(key, Enumerable.Empty<V>().ToList());
+            set
+            {
                 var val = value?.ToList();
                 if (val != null && val.Count > 0)
                     dict[key] = val;
