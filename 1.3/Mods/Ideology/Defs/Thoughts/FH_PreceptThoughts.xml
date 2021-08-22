@@ -74,7 +74,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="PM_Precept_FormerHumanMemoryBase">
-        <defName>PM_Precept_SapientAnimalHuntingMemoryLiked</defName> <!-- this is for hunting out of necessity (like starving) not for the hunting mental break-->
+        <defName>PM_Precept_SapientAnimalHuntingMemoryAnimallike</defName> <!-- this is for hunting out of necessity (like starving) not for the hunting mental break-->
 
         <stages>
             <!-- using primal wish for now, might need rewording -->
@@ -274,7 +274,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="PM_Precept_FormerHumanMemoryBase">
-        <defName>PM_Precept_SapientAnimalGrazingMemoryLiked</defName> <!-- this is for hunting out of necessity for the  animalistic precept-->
+        <defName>PM_Precept_SapientAnimalGrazingMemoryAnimallike</defName> <!-- this is for hunting out of necessity for the  animalistic precept-->
         <stages>
             <li>
                 <label>grazed</label>
@@ -304,7 +304,7 @@
     </ThoughtDef>
 
     <ThoughtDef ParentName="PM_Precept_FormerHumanMemoryBase">
-        <defName>PM_Precept_SapientAnimalGrazingMemoryDesired</defName> <!-- this is for grazing for the strongly animalistic precept, they will graze more often, not necessarily just when starving -->
+        <defName>PM_Precept_SapientAnimalGrazingMemoryStronglyAnimallike</defName> <!-- this is for grazing for the strongly animalistic precept, they will graze more often, not necessarily just when starving -->
         <stages>
             <li>
                 <label>grazed</label>
