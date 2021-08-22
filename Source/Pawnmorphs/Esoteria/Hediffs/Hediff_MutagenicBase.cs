@@ -128,10 +128,57 @@ namespace Pawnmorph.Hediffs
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
             {
-
-                //TODO
+                var result = TryMutate();
                 queuedMutations--;
             }
+        }
+
+        /// <summary>
+        /// Tries to apply the current mutation to the current body part.
+        /// If it succeeds, or the mutation is non-blocking, advances the list of
+        /// mutations. If all mutations have been applied, advanceds the list of
+        /// body parts and resets the mutation list.
+        /// </summary>
+        /// <returns>A mutation result describing the mutation(s) added, if any</returns>
+        protected MutationResult TryMutate()
+        {
+            //TODO observers
+            do
+            {
+                var bodyPart = bodyMutationManager.BodyPart;
+                if (!pawn.RaceProps.body.AllParts.Contains(bodyPart))
+                {
+                    // If the pawn's race changes the mutation order may no longer be valid 
+                    // Reset it and try again later
+                    ResetSpreadList();
+                    return MutationResult.Empty;
+                }
+
+                // Check all mutations in order until we add one
+                do
+                {
+                    var mutation = bodyMutationManager.Mutation;
+
+                    // Check if the mutation can actually be added 
+                    if (!mutation.mutation.CanApplyMutations(pawn, bodyPart))
+                        continue;
+
+                    // Add the mutation (and aspects) if we succeed in the random chance
+                    if (Rand.Value < mutation.addChance)
+                    {
+                        var mutationResult = MutationUtilities.AddMutation(pawn, mutation.mutation, bodyPart);
+                        def.GetMutagenDef().TryApplyAspects(pawn);
+                        return mutationResult;
+                    }
+
+                    // If the mutation blocks, bail now so we can try to add it again next time.
+                    if (mutation.blocks)
+                        return MutationResult.Empty;
+                } while (bodyMutationManager.NextMutation());
+            } while (bodyMutationManager.NextBodyPart());
+
+            // If we iterate through the entire body and mutation list, we're done
+            return MutationResult.Empty;
         }
 
         /// <summary>
@@ -245,10 +292,10 @@ namespace Pawnmorph.Hediffs
         /// <value>The severity.</value>
         public override float Severity
         {
-            get { return base.Severity; }
+            get => base.Severity;
             set
             {
-                // Severity changes can potential queue up mutations
+                // Severity changes can potentially queue up mutations
                 if (cachedStage is HediffStage_Mutation mutStage)
                 {
                     float diff = value - base.Severity;
@@ -285,10 +332,12 @@ namespace Pawnmorph.Hediffs
         public override bool ShouldRemove => forceRemove || base.ShouldRemove;
 
         /// <summary>
-        /// Marks this hediff removal.
+        /// Marks this hediff for removal.
+        /// 
+        /// This is needed because Rimworld is touchy about removing hediffs. Rather than doing
+        /// it manually, you should call this instead. The HediffTracker will safely remove this
+        /// hediff at the beginning of the next tick.
         /// </summary>
-        /// this is needed because Rimworld is touchy about removing hediffs. best to not do it manually and call this,
-        /// the HediffTracker will then remove this hediff next tick once all hediffs are no longer running any code 
         public void MarkForRemoval()
         {
             forceRemove = true;
