@@ -194,6 +194,9 @@ namespace Pawnmorph.Hediffs
                             foreach (var added in mutationResult)
                                 observer.MutationAdded(added);
 
+                        // Move to the next mutation for next time
+                        bodyMutationManager.NextMutation();
+
                         return mutationResult;
                     }
 
@@ -393,7 +396,7 @@ namespace Pawnmorph.Hediffs
         public override string DebugString()
         {
             StringBuilder builder = new StringBuilder(base.DebugString());
-            builder.AppendLine($"{nameof(TransformationBase)}:");
+            builder.AppendLine($"{nameof(Hediff_MutagenicBase)}:");
 
             if (cachedStageType == StageType.Mutation)
             {

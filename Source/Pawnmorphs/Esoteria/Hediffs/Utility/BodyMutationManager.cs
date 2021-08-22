@@ -62,13 +62,12 @@ namespace Pawnmorph.Hediffs.Utility
         }
 
         /// <summary>
-        /// Iterates to the next mutation in the list.  If there are no more mutations,
-        /// return false (and resets the mutation list)
+        /// Iterates to the next mutation in the list.  If there are no more mutations, return false
         /// </summary>
         /// <returns><c>true</c>, if there is a next body part, <c>false</c> if the list reset.</returns>
         public bool NextMutation()
         {
-            return bodyPartMutationList?.NextEntryOrReset() ?? false;
+            return bodyPartMutationList?.NextEntry() ?? false;
         }
 
         /// <summary>
