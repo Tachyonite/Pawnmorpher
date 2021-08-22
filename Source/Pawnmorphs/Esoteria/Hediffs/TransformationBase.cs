@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
@@ -17,7 +16,7 @@ namespace Pawnmorph.Hediffs
     /// <summary>abstract base class for all transformation hediffs</summary>
     /// <seealso cref="Pawnmorph.IDescriptiveHediff" />
     /// <seealso cref="Verse.Hediff" />
-    public abstract class TransformationBase : HediffWithComps, IDescriptiveHediff
+    public abstract class TransformationBase : HediffWithComps, IDescriptiveHediff, IMutationHediff
     {
 
         
