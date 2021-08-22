@@ -838,6 +838,7 @@
     <Compile Include="Utilities\Collections\MultiDict.cs" />
     <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
     <Compile Include="Hediffs\IMutationHediff.cs" />
+    <Compile Include="Hediffs\Hediff_Descriptive.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
