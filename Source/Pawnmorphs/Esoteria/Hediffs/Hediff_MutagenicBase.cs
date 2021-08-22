@@ -49,7 +49,7 @@ namespace Pawnmorph.Hediffs
         [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
         public IEnumerable<ITfHediffObserverComp> ObserverComps => observerComps.Value;
 
-        protected Hediff_MutagenicBase()
+        public Hediff_MutagenicBase()
         {
             mutagenSensitivity = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
             observerComps = new Lazy<List<ITfHediffObserverComp>>(() => comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList());
@@ -92,15 +92,14 @@ namespace Pawnmorph.Hediffs
 
                 // Only try to transform the pawn when entering a transformation stage
                 // NOTE: This triggers regardless of whether the stages are increasing or decreasing.
-                // TODO immunity
-                if (cachedStageType == StageType.Transformation)
+                if (cachedStageType == StageType.Transformation && !this.IsImmune())
                     CheckAndDoTransformation();
             }
 
             if (pawn.IsHashIntervalTick(60))
             {
                 mutagenSensitivity.Recalculate();
-                if (cachedStageType == StageType.Mutation && Immune)
+                if (cachedStageType == StageType.Mutation && !this.IsImmune())
                     CheckAndAddMutations();
             }
         }
@@ -154,6 +153,10 @@ namespace Pawnmorph.Hediffs
                 // Notify the observers first, since they may add/remove/change mutations
                 foreach (var observer in ObserverComps)
                     observer.Observe(bodyPart);
+
+                // Skip this body part if it has no mutations
+                if (!bodyMutationManager.HasMutations())
+                    continue;
 
                 // Check all mutations in order until we add one
                 do

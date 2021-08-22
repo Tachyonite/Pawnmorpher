@@ -62,16 +62,6 @@ namespace Pawnmorph.Utilities.Collections
         public bool HasEntry => index < list.Count;
 
         /// <summary>
-        /// Gets the current entry in this checklist, or the default value if
-        /// we reached the end
-        /// </summary>
-        /// <returns>The current entry</returns>
-        public T GetCurrentEntry()
-        {
-            return Entry;
-        }
-
-        /// <summary>
         /// Advances the checklist to the next entry
         /// </summary>
         /// <returns>true if more entries exist, false if the checklist is finished</returns>

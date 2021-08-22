@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Utilities;
 using Pawnmorph.Utilities.Collections;
@@ -37,6 +38,15 @@ namespace Pawnmorph.Hediffs.Utility
         /// </summary>
         /// <value>The mutation.</value>
         public MutationEntry Mutation => bodyPartMutationList?.Entry;
+
+        /// <summary>
+        /// Whether or not the current body part has any remaining mutations
+        /// </summary>
+        /// <returns><c>true</c>, if there is a next body part, <c>false</c> if the list reset.</returns>
+        public bool HasMutations()
+        {
+            return bodyPartMutationList.HasEntry;
+        }
 
         /// <summary>
         /// Iterates to the next body part in the list.  If there are no more body parts,
