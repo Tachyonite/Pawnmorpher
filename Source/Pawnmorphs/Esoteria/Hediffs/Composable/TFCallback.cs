@@ -17,6 +17,13 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="pawn">The post-tf Pawn.</param>
         /// <param name="parentHediff">The hediff doing the transformation.</param>
         public abstract void PostTransformation(Pawn pawn, Hediff_MutagenicBase parentHediff);
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
     }
 
     /// <summary>

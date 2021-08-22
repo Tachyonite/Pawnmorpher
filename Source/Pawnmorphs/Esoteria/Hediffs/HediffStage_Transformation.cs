@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
+using Verse;
 
 namespace Pawnmorph.Hediffs
 {
@@ -38,5 +41,43 @@ namespace Pawnmorph.Hediffs
         /// Callbacks called on the transformed pawn to perform additional behavior
         /// </summary>
         [UsedImplicitly] public List<TFCallback> tfCallbacks;
+
+        /// <summary>
+        /// Returns a debug string displayed when inspecting hediffs in dev mode
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine("--" + tfChance);
+            string text = tfChance.DebugString(hediff);
+            if (!text.NullOrEmpty())
+                stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
+
+            stringBuilder.AppendLine("--" + tfTypes);
+            text = tfTypes.DebugString(hediff);
+            if (!text.NullOrEmpty())
+                stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
+
+            stringBuilder.AppendLine("--" + tfGenderSelector);
+            text = tfGenderSelector.DebugString(hediff);
+            if (!text.NullOrEmpty())
+                stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
+
+            stringBuilder.AppendLine("--" + tfSettings);
+            text = tfSettings.DebugString(hediff);
+            if (!text.NullOrEmpty())
+                stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
+
+            //TODO
+            //stringBuilder.AppendLine("--" + tfCallbacks);
+            //text = tfCallbacks.DebugString(hediff);
+            //if (!text.NullOrEmpty())
+                //stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
+
+            return stringBuilder.ToString();
+        }
     }
 }

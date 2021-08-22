@@ -83,6 +83,7 @@ namespace Pawnmorph.Hediffs.Utility
         {
             this.mutations = mutations.ToList();
             RegenerateBodyPartMutationCache();
+            ResetBodyPartMutationList();
         }
 
         /// <summary>

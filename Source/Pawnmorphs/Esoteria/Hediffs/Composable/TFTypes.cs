@@ -24,6 +24,13 @@ namespace Pawnmorph.Hediffs.Composable
         /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
         /// <param name="other">The other TFTypes.</param>
         public abstract bool EquivalentTo(TFTypes other);
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
     }
 
     /// <summary>
@@ -118,6 +125,13 @@ namespace Pawnmorph.Hediffs.Composable
             return other is TFTypes_Morph otherMorph
                     && morphDef.Equals(otherMorph.morphDef);
         }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff) => $"MorphDef: {morphDef.defName}";
     }
 
     /// <summary>
@@ -153,6 +167,13 @@ namespace Pawnmorph.Hediffs.Composable
             return other is TFTypes_Class otherClass
                     && classDef.Equals(otherClass.classDef);
         }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff) => $"ClassDef: {classDef.defName}";
     }
 
     /// <summary>

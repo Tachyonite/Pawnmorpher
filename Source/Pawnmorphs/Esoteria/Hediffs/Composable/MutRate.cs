@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Text;
+using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -37,6 +38,13 @@ namespace Pawnmorph.Hediffs.Composable
         {
             return 0;
         }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
     }
 
     /// <summary>
@@ -74,6 +82,20 @@ namespace Pawnmorph.Hediffs.Composable
                 return 1;
 
             return 0;
+        }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"Mutations/Day: {meanMutationsPerDay}");
+            if (affectedBySensitivity)
+                builder.AppendLine($"Mutations/Day w/ Sensitivity: {meanMutationsPerDay * hediff.MutagenSensitivity}");
+            return builder.ToString();
         }
     }
 
@@ -123,6 +145,21 @@ namespace Pawnmorph.Hediffs.Composable
                 mutations *= hediff.MutagenSensitivity;
 
             return RandUtilities.RandRound(mutations);
+        }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"Mutations/Severity: {meanMutationsPerSeverity}");
+            builder.AppendLine($"Standard Deviation: {standardDeviation}");
+            if (affectedBySensitivity)
+                builder.AppendLine($"Mutations/Severity w/ Sensitivity: {meanMutationsPerSeverity * hediff.MutagenSensitivity}");
+            return builder.ToString();
         }
     }
 }

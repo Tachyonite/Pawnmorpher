@@ -1,5 +1,8 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.Text;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
+using Verse;
 
 namespace Pawnmorph.Hediffs
 {
@@ -26,5 +29,32 @@ namespace Pawnmorph.Hediffs
         /// Controls what kinds of mutations can be added
         /// </summary>
         [UsedImplicitly] public MutTypes mutationTypes;
+
+        /// <summary>
+        /// Returns a debug string displayed when inspecting hediffs in dev mode
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine("--" + spreadOrder);
+            string text = spreadOrder.DebugString(hediff);
+            if (!text.NullOrEmpty())
+                stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
+
+            stringBuilder.AppendLine("--" + mutationRate);
+            text = mutationRate.DebugString(hediff);
+            if (!text.NullOrEmpty())
+                stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
+
+            stringBuilder.AppendLine("--" + mutationTypes);
+            text = mutationTypes.DebugString(hediff);
+            if (!text.NullOrEmpty())
+                stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
+
+            return stringBuilder.ToString();
+        }
     }
 }

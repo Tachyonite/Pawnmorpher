@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Text;
+using JetBrains.Annotations;
 using UnityEngine;
 using Verse;
 
@@ -14,6 +15,13 @@ namespace Pawnmorph.Hediffs.Composable
         /// </summary>
         /// <param name="hediff">The hediff doing the transformation.</param>
         public abstract bool ShouldTransform(Hediff_MutagenicBase hediff);
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
     }
 
     /// <summary>
@@ -43,7 +51,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// Whether or not transformation sensitivity is respected.
         /// If true, the chance will be multiplied by the sensitivity stat
         /// </summary>
-        [UsedImplicitly] public bool respectSensitivity = true;
+        [UsedImplicitly] public bool affectedBySensitivity = true;
 
         /// <summary>
         /// Whether or not to transform the pawn.  Checked only upon entering a stage.
@@ -53,11 +61,25 @@ namespace Pawnmorph.Hediffs.Composable
         {
             float tfChance = chance;
 
-            if (respectSensitivity)
+            if (affectedBySensitivity)
                 tfChance *= hediff.TransformationSensitivity;
 
             tfChance = Mathf.Clamp(tfChance, 0f, 1f);
             return Rand.Value < tfChance;
+        }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"Chance: {chance.ToStringPercent()}");
+            if (affectedBySensitivity)
+                builder.AppendLine($"Chance w/ Sensitivity: {(chance * hediff.TransformationSensitivity).ToStringPercent()}");
+            return builder.ToString();
         }
     }
 
@@ -71,7 +93,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// Whether or not transformation sensitivity is respected.
         /// If true, the chance will be multiplied by the sensitivity stat
         /// </summary>
-        [UsedImplicitly] public bool respectSensitivity = true;
+        [UsedImplicitly] public bool affectedBySensitivity = true;
 
         /// <summary>
         /// Whether or not to transform the pawn.  Checked only upon entering a stage.
@@ -81,11 +103,26 @@ namespace Pawnmorph.Hediffs.Composable
         {
             float tfChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance;
 
-            if (respectSensitivity)
+            if (affectedBySensitivity)
                 tfChance *= hediff.TransformationSensitivity;
 
             tfChance = Mathf.Clamp(tfChance, 0f, 1f);
             return Rand.Value < tfChance;
+        }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder builder = new StringBuilder();
+            float chance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance;
+            builder.AppendLine($"Chance: {chance.ToStringPercent()}");
+            if (affectedBySensitivity)
+                builder.AppendLine($"Chance w/ Sensitivity: {(chance * hediff.TransformationSensitivity).ToStringPercent()}");
+            return builder.ToString();
         }
     }
 }

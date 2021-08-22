@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Verse;
 
@@ -30,6 +31,13 @@ namespace Pawnmorph.Hediffs.Composable
         /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
         /// <param name="other">The other MutTypes.</param>
         public abstract bool EquivalentTo(MutTypes other);
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
     }
 
     /// <summary>
@@ -65,6 +73,13 @@ namespace Pawnmorph.Hediffs.Composable
             return other is MutTypes_All otherAll
                     && Math.Abs(chance - otherAll.chance) < EPSILON;
         }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff) => $"Chance: {chance.ToStringPercent()}";
     }
 
     /// <summary>
@@ -104,6 +119,13 @@ namespace Pawnmorph.Hediffs.Composable
                     && mutations.Equals(otherList.mutations)
                     && Math.Abs(chance - otherList.chance) < EPSILON;
         }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff) => $"Chance: {chance.ToStringPercent()}";
     }
 
     /// <summary>
@@ -143,6 +165,19 @@ namespace Pawnmorph.Hediffs.Composable
             return other is MutTypes_Morph otherMorph
                     && morphDef.Equals(otherMorph.morphDef)
                     && Math.Abs(chance - otherMorph.chance) < EPSILON;
+        }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"MorphDef: {morphDef.defName}");
+            builder.AppendLine($"Chance: {chance.ToStringPercent()}");
+            return builder.ToString();
         }
     }
 
@@ -184,6 +219,19 @@ namespace Pawnmorph.Hediffs.Composable
                     && classDef.Equals(otherClass.classDef)
                     && Math.Abs(chance - otherClass.chance) < EPSILON;
         }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"ClassDef: {classDef.defName}");
+            builder.AppendLine($"Chance: {chance.ToStringPercent()}");
+            return builder.ToString();
+        }
     }
 
     /// <summary>
@@ -222,5 +270,12 @@ namespace Pawnmorph.Hediffs.Composable
             return other is MutTypes_FromComp otherComp
                     && Math.Abs(chance - otherComp.chance) < EPSILON;
         }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff) => $"Chance: {chance.ToStringPercent()}";
     }
 }

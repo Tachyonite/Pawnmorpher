@@ -53,13 +53,13 @@ namespace Pawnmorph.Hediffs
         /// Gets the mutagen sensitivity sensitivity of the pawn
         /// </summary>
         /// <value>The mutagen sensitivity.</value>
-        public virtual float MutagenSensitivity => mutagenSensitivity.Value / 100f; // TODO check if this division is needed
+        public virtual float MutagenSensitivity => mutagenSensitivity.Value;
 
         /// <summary>
         /// Gets the transformation sensitivity of the pawn.
         /// </summary>
         /// <value>The transformation sensitivity.</value>
-        public virtual float TransformationSensitivity => transformationSensitivity.Value / 100f;
+        public virtual float TransformationSensitivity => transformationSensitivity.Value;
 
         /// <summary>
         /// Gets the observer comps.
@@ -411,14 +411,18 @@ namespace Pawnmorph.Hediffs
             StringBuilder builder = new StringBuilder(base.DebugString());
             builder.AppendLine($"{nameof(Hediff_MutagenicBase)}:");
 
-            if (cachedStageType == StageType.Mutation)
+            if (cachedStage is HediffStage_Mutation mutationStage)
             {
                 builder.AppendLine("Mutation Stage");
+                builder.AppendLine("  MutagenSensitivity: " + MutagenSensitivity.ToStringPercent());
                 builder.Append(bodyMutationManager.DebugString());
+                builder.Append(mutationStage.DebugString(this));
             }
-            else if (cachedStageType == StageType.Transformation)
+            else if (cachedStage is HediffStage_Transformation transformationStage)
             {
                 builder.AppendLine("Transformation Stage");
+                builder.AppendLine("  TransformationSensitivity: " + TransformationSensitivity);
+                builder.Append(transformationStage.DebugString(this));
             }
             else
             {

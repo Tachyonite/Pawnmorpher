@@ -46,10 +46,9 @@ namespace Pawnmorph.Hediffs
         /// <returns>The debug string.</returns>
         public override string CompDebugString()
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine(base.CompDebugString());
-            builder.AppendLine("  MutType_Morph");
-            builder.AppendLine($"    Morph Def: {Props.morphDef.defName}");
+            StringBuilder builder = new StringBuilder(base.CompDebugString());
+            builder.AppendLine("MutType_Morph");
+            builder.AppendLine($"  Morph Def: {Props.morphDef.defName}");
             return builder.ToString();
         }
     }

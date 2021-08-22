@@ -13,6 +13,13 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="pawn">The pawn to transform.</param>
         /// <param name="hediff">The TFing hediff.</param>
         public abstract void GetGender(Pawn pawn, Hediff_MutagenicBase hediff);
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
     }
 
     /// <summary>

@@ -25,6 +25,13 @@ namespace Pawnmorph.Hediffs.Composable
         /// </summary>
         /// <param name="other">The other spread order.</param>
         public abstract bool EquivalentTo(MutSpreadOrder other);
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
     }
 
     /// <summary>
