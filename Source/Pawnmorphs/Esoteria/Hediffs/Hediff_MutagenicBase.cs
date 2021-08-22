@@ -16,7 +16,7 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_Descriptive" />
-    public class Hediff_MutagenicBase : Hediff_Descriptive
+    public class Hediff_MutagenicBase : Hediff_Descriptive, IMutationHediff
     {
         // Used to track what kind of stage we're in, so we don't have to check
         // every tick
@@ -61,6 +61,14 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         /// <value>The observer comps.</value>
         public IEnumerable<ITfHediffObserverComp> ObserverComps => observerComps.Value;
+
+
+        /// <summary>
+        /// Whether or not this hediff is currently blocking race checks
+        /// </summary>
+        /// <value><c>true</c> if blocks race check; otherwise, <c>false</c>.</value>
+        bool BlocksRaceCheck => cachedStageType == StageType.Mutation;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Pawnmorph.Hediffs.Hediff_MutagenicBase"/> class.

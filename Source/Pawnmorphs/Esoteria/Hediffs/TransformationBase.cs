@@ -17,7 +17,7 @@ namespace Pawnmorph.Hediffs
     /// <summary>abstract base class for all transformation hediffs</summary>
     /// <seealso cref="Pawnmorph.IDescriptiveHediff" />
     /// <seealso cref="Verse.Hediff" />
-    public abstract class TransformationBase : HediffWithComps, IDescriptiveHediff
+    public abstract class TransformationBase : HediffWithComps, IDescriptiveHediff, IMutationHediff
     {
 
         
