@@ -17,9 +17,14 @@ namespace Pawnmorph.Utilities.Collections
         private List<T> list;
         private int index;
 
-        // empty constructor for loading purposes
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         protected Checklist() { }
 
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         protected Checklist(IEnumerable<T> list)
         {
             this.list = list.ToList();
@@ -28,7 +33,7 @@ namespace Pawnmorph.Utilities.Collections
         /// <summary>
         /// The look mode used to save and load the collection entries.
         /// </summary>
-        public abstract LookMode LookMode { get; }
+        protected abstract LookMode LookMode { get; }
 
         /// <summary>
         /// Gets the current entry in this checklist, or the default value if
@@ -94,10 +99,20 @@ namespace Pawnmorph.Utilities.Collections
     /// </summary>
     public sealed class ValueChecklist<T> : Checklist<T>
     {
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         public ValueChecklist() { }
+
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         public ValueChecklist(IEnumerable<T> list) : base(list) { }
 
-        public override LookMode LookMode => LookMode.Value;
+        /// <summary>
+        /// The look mode used to save and load the collection entries.
+        /// </summary>
+        protected override LookMode LookMode => LookMode.Value;
     }
 
     /// <summary>
@@ -110,10 +125,20 @@ namespace Pawnmorph.Utilities.Collections
     /// </summary>
     public sealed class DefChecklist<T> : Checklist<T> where T : Def
     {
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         public DefChecklist() { }
+
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         public DefChecklist(IEnumerable<T> list) : base (list) { }
 
-        public override LookMode LookMode => LookMode.Def;
+        /// <summary>
+        /// The look mode used to save and load the collection entries.
+        /// </summary>
+        protected override LookMode LookMode => LookMode.Def;
     }
 
     /// <summary>
@@ -126,10 +151,20 @@ namespace Pawnmorph.Utilities.Collections
     /// </summary>
     public sealed class IExposableChecklist<T> : Checklist<T> where T : IExposable
     {
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         public IExposableChecklist() { }
+
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         public IExposableChecklist(IEnumerable<T> list) : base(list) { }
 
-        public override LookMode LookMode => LookMode.Deep;
+        /// <summary>
+        /// The look mode used to save and load the collection entries.
+        /// </summary>
+        protected override LookMode LookMode => LookMode.Deep;
     }
 
     /// <summary>
@@ -142,10 +177,20 @@ namespace Pawnmorph.Utilities.Collections
     /// </summary>
     public sealed class ILoadReferenceableChecklist<T> : Checklist<T> where T : ILoadReferenceable
     {
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         public ILoadReferenceableChecklist() { }
+
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         public ILoadReferenceableChecklist(IEnumerable<T> list) : base(list) { }
 
-        public override LookMode LookMode => LookMode.Reference;
+        /// <summary>
+        /// The look mode used to save and load the collection entries.
+        /// </summary>
+        protected override LookMode LookMode => LookMode.Reference;
     }
 
     /// <summary>
@@ -158,10 +203,20 @@ namespace Pawnmorph.Utilities.Collections
     /// </summary>
     public sealed class BodyPartChecklist : Checklist<BodyPartRecord>
     {
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         public BodyPartChecklist() { }
+
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         public BodyPartChecklist(IEnumerable<BodyPartRecord> list) : base(list) { }
 
-        public override LookMode LookMode => LookMode.BodyPart;
+        /// <summary>
+        /// The look mode used to save and load the collection entries.
+        /// </summary>
+        protected override LookMode LookMode => LookMode.BodyPart;
     }
 
     /// <summary>
@@ -174,10 +229,20 @@ namespace Pawnmorph.Utilities.Collections
     /// </summary>
     public sealed class TargetInfoChecklist : Checklist<TargetInfo>
     {
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         public TargetInfoChecklist() { }
+
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         public TargetInfoChecklist(IEnumerable<TargetInfo> list) : base(list) { }
 
-        public override LookMode LookMode => LookMode.TargetInfo;
+        /// <summary>
+        /// The look mode used to save and load the collection entries.
+        /// </summary>
+        protected override LookMode LookMode => LookMode.TargetInfo;
     }
 
     /// <summary>
@@ -190,10 +255,20 @@ namespace Pawnmorph.Utilities.Collections
     /// </summary>
     public sealed class LocalTargetInfoChecklist : Checklist<LocalTargetInfo>
     {
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         public LocalTargetInfoChecklist() { }
+
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         public LocalTargetInfoChecklist(IEnumerable<LocalTargetInfo> list) : base(list) { }
 
-        public override LookMode LookMode => LookMode.LocalTargetInfo;
+        /// <summary>
+        /// The look mode used to save and load the collection entries.
+        /// </summary>
+        protected override LookMode LookMode => LookMode.LocalTargetInfo;
     }
 
     /// <summary>
@@ -206,9 +281,19 @@ namespace Pawnmorph.Utilities.Collections
     /// </summary>
     public sealed class GlobalTargetInfoChecklist : Checklist<GlobalTargetInfo>
     {
+        /// <summary>
+        /// Initializes a new empty checklist
+        /// </summary>
         public GlobalTargetInfoChecklist() { }
+
+        /// <summary>
+        /// Initializes a new checklist with the given list
+        /// </summary>
         public GlobalTargetInfoChecklist(IEnumerable<GlobalTargetInfo> list) : base(list) { }
 
-        public override LookMode LookMode => LookMode.GlobalTargetInfo;
+        /// <summary>
+        /// The look mode used to save and load the collection entries.
+        /// </summary>
+        protected override LookMode LookMode => LookMode.GlobalTargetInfo;
     }
 }
