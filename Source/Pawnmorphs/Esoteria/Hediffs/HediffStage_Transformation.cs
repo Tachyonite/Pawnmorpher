@@ -16,7 +16,7 @@ namespace Pawnmorph.Hediffs
     {
         [UsedImplicitly] private TFChance tfChance;
         [UsedImplicitly] private TFTypes tfTypes;
-        [UsedImplicitly] private TFGenderSettings tfGenderSettings;
+        [UsedImplicitly] private TFGenderSelector tfGenderSelector;
         [UsedImplicitly] private TFMiscSettings tfSettings;
         [UsedImplicitly] private List<TFCallback> tfCallbacks;
 
@@ -33,7 +33,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Controls the gender of the post-transformation pawn
         /// </summary>
-        public TFGenderSettings TFGenderSettings => tfGenderSettings;
+        public TFGenderSelector TFGenderSelector => tfGenderSelector;
 
         /// <summary>
         /// Controls miscellaneous settings related to full transformations

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -12,8 +12,19 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_MutagenicBase" />
     public abstract class HediffStage_MutagenicBase : HediffStage, IDescriptiveStage
     {
-        //TODO
-        public string DescriptionOverride => throw new NotImplementedException();
-        public string LabelOverride => throw new NotImplementedException();
+        [UsedImplicitly] private string description;
+        [UsedImplicitly] private string labelOverride;
+
+        /// <summary>
+        /// Gets the description override.
+        /// </summary>
+        /// <value>The description override.</value>
+        public string DescriptionOverride => description;
+
+        /// <summary>
+        /// Gets the label override.
+        /// </summary>
+        /// <value>The label override.</value>
+        public string LabelOverride => labelOverride;
     }
 }

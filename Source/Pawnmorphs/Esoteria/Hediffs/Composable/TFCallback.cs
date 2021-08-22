@@ -7,6 +7,7 @@ namespace Pawnmorph.Hediffs.Composable
 {
     /// <summary>
     /// A callback that's called on the transformed pawn after a full transformation
+    /// TODO - these can probably just be comps
     /// </summary>
     public abstract class TFCallback
     {

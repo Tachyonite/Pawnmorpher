@@ -58,7 +58,6 @@ namespace Pawnmorph.Hediffs.Composable
     /// A simple spread order that uses a "spreading" order from a random part
     /// Suitable for more directed sources of mutation, like injectors
     /// </summary>
-    /// <param name="hediff">The hediff doing the transformation.</param>
     public class MutSpreadOrder_RandomSpread : MutSpreadOrder
     {
         /// <summary>

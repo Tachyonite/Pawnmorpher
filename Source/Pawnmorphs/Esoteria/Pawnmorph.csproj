@@ -841,7 +841,7 @@
     <Compile Include="Hediffs\Composable\MutRate.cs" />
     <Compile Include="Hediffs\Composable\MutTypes.cs" />
     <Compile Include="Hediffs\Composable\TFTypes.cs" />
-    <Compile Include="Hediffs\Composable\TFGenderSettings.cs" />
+    <Compile Include="Hediffs\Composable\TFGenderSelector.cs" />
     <Compile Include="Hediffs\Composable\TFMiscSettings.cs" />
     <Compile Include="Hediffs\HediffStage_Transformation.cs" />
     <Compile Include="Hediffs\HediffStage_Mutation.cs" />

@@ -13,20 +13,7 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Hediffs.HediffComp_MutTypeBase"/>
     public class HediffComp_MutType_Morph : HediffComp_MutTypeBase
     {
-        public class Properties : HediffCompPropertiesBase<HediffComp_MutType_Morph>
-        {
-            [UsedImplicitly] public MorphDef morphDef;
-
-            public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
-            {
-                foreach (var error in base.ConfigErrors(parentDef))
-                    yield return error;
-                if (morphDef == null)
-                    yield return "HediffComp_MutType_Morph morphDef is null!";
-            }
-        }
-
-        public Properties Props => (Properties)props;
+        public HediffCompProperties_MutType_Morph Props => (HediffCompProperties_MutType_Morph)props;
 
         /// <summary>
         /// Returns a list of mutations all MutTypes_FromComp stages will use
@@ -46,6 +33,19 @@ namespace Pawnmorph.Hediffs
             var animals = Props.morphDef.AllAssociatedAnimals;
             return DefDatabase<PawnKindDef>.AllDefs
                     .Where(p => animals.Contains(p.race));
+        }
+    }
+
+    public class HediffCompProperties_MutType_Morph : HediffCompPropertiesBase<HediffComp_MutType_Morph>
+    {
+        [UsedImplicitly] public MorphDef morphDef;
+
+        public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            foreach (var error in base.ConfigErrors(parentDef))
+                yield return error;
+            if (morphDef == null)
+                yield return "HediffComp_MutType_Morph morphDef is null!";
         }
     }
 }

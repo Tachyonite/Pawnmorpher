@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Hediffs.Composable;
 using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.Utilities;
-using Pawnmorph.Utilities.Collections;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -15,7 +13,7 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_Descriptive" />
-    public abstract class Hediff_MutagenicBase : Hediff_Descriptive
+    public class Hediff_MutagenicBase : Hediff_Descriptive
     {
         // Used to track what kind of stage we're in, so we don't have to check
         // every tick
