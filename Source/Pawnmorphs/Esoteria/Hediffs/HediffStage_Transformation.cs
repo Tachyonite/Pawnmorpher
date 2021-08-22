@@ -51,22 +51,22 @@ namespace Pawnmorph.Hediffs
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendLine("--" + tfChance);
+            stringBuilder.AppendLine("--" + tfChance.GetType().Name);
             string text = tfChance.DebugString(hediff);
             if (!text.NullOrEmpty())
                 stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
 
-            stringBuilder.AppendLine("--" + tfTypes);
+            stringBuilder.AppendLine("--" + tfTypes.GetType().Name);
             text = tfTypes.DebugString(hediff);
             if (!text.NullOrEmpty())
                 stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
 
-            stringBuilder.AppendLine("--" + tfGenderSelector);
+            stringBuilder.AppendLine("--" + tfGenderSelector.GetType().Name);
             text = tfGenderSelector.DebugString(hediff);
             if (!text.NullOrEmpty())
                 stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
 
-            stringBuilder.AppendLine("--" + tfSettings);
+            stringBuilder.AppendLine("--" + tfSettings.GetType().Name);
             text = tfSettings.DebugString(hediff);
             if (!text.NullOrEmpty())
                 stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));

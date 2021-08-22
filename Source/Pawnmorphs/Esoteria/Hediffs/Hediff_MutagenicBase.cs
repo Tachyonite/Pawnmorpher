@@ -413,20 +413,20 @@ namespace Pawnmorph.Hediffs
 
             if (cachedStage is HediffStage_Mutation mutationStage)
             {
-                builder.AppendLine("Mutation Stage");
+                builder.AppendLine("  Mutation Stage");
                 builder.AppendLine("  MutagenSensitivity: " + MutagenSensitivity.ToStringPercent());
                 builder.Append(bodyMutationManager.DebugString());
                 builder.Append(mutationStage.DebugString(this));
             }
             else if (cachedStage is HediffStage_Transformation transformationStage)
             {
-                builder.AppendLine("Transformation Stage");
+                builder.AppendLine("  Transformation Stage");
                 builder.AppendLine("  TransformationSensitivity: " + TransformationSensitivity);
                 builder.Append(transformationStage.DebugString(this));
             }
             else
             {
-                builder.AppendLine("Other Stage");
+                builder.AppendLine("  Other Stage");
             }
 
             return builder.ToString();

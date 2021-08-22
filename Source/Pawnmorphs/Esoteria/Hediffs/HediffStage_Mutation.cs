@@ -39,17 +39,17 @@ namespace Pawnmorph.Hediffs
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendLine("--" + spreadOrder);
+            stringBuilder.AppendLine("--" + spreadOrder.GetType().Name);
             string text = spreadOrder.DebugString(hediff);
             if (!text.NullOrEmpty())
                 stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
 
-            stringBuilder.AppendLine("--" + mutationRate);
+            stringBuilder.AppendLine("--" + mutationRate.GetType().Name);
             text = mutationRate.DebugString(hediff);
             if (!text.NullOrEmpty())
                 stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
 
-            stringBuilder.AppendLine("--" + mutationTypes);
+            stringBuilder.AppendLine("--" + mutationTypes.GetType().Name);
             text = mutationTypes.DebugString(hediff);
             if (!text.NullOrEmpty())
                 stringBuilder.AppendLine(text.TrimEndNewlines().Indented("  "));
