@@ -7,28 +7,28 @@
         <defName>PM_Precept_SapientAnimalNakedDisliked</defName>
         <stages>
             <li>
-                <label>naked</label>
+                <label>naked</label> <!-- Sapient -->
                 <description>I know I'm covered in fur but...c'mon!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <!--  you can now add varients for different sapient levels like in the example -->
             <li>
-                <label>naked</label>
+                <label>naked</label> <!-- Mostly Sapient -->
                 <description>It would help if I could put something on, even just to pretend...</description>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
             <li>
-                <label>naked</label>
+                <label>naked</label> <!-- Conflicted -->
                 <description>Why do I feel weird out and about? Oh! Clothes!</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>naked</label>
+                <label>naked</label> <!-- Mostly Feral -->
                 <description>There's no other option, right?</description>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
             <li>
-                <label>naked</label>
+                <label>naked</label> <!-- Feral -->
                 <description>Clothes?</description>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
