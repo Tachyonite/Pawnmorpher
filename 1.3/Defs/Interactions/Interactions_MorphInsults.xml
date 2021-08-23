@@ -23,64 +23,6 @@
 		</stages>
 	</ThoughtDef>
 	
-	<!-- insults directed at canine morphs -->
-	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
-		<defName>PMTalk_CanineInsult</defName>
-		<label>canine insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
-		<logRulesInitiator>
-			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [caninecharacteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
-
-				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
-				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
-
-				<li>insulted(p=3)->insulted</li>
-				<li>insulted->openly insulted</li>
-				<li>insulted->loudly insulted</li>
-				<li>insulted->flagrantly insulted</li>
-				<li>insulted->directly insulted</li>
-				<li>insulted->viciously insulted</li>
-				<li>insulted->flagrantly disrespected</li>
-				<li>insulted->slandered</li>
-				<li>insulted->hurled invective about</li>
-				<li>insulted->derided</li>
-				
-				<li>caninecharacteristic->stench</li>
-				<li>caninecharacteristic->shedding</li>
-				<li>caninecharacteristic->drooling</li>
-				<li>caninecharacteristic->incessent barking</li>
-				<li>caninecharacteristic->incessent howling</li>
-				<li>caninecharacteristic->gross eating habits</li>
-				<li>caninecharacteristic->disgusting dog behavior</li>
-				<li>caninecharacteristic->fleas</li>
-				
-				<li>insultcomparison->stinking mutt</li>
-				<li>insultcomparison->lapdog</li>
-				<li>insultcomparison->dumb dog</li>
-				<li>insultcomparison->poodle</li>
-				<li>insultcomparison->glorified pet</li>
-				<li>insultcomparison->mangy fleabag</li>
-				<li>insultcomparison->werewolf</li>
-				
-				<li>insult->complained that [RECIPIENT_nameDef] stinks like a wet dog</li>
-				<li>insult->threatened to clip a leash on [RECIPIENT_nameDef]</li>
-				<li>insult->threatened [RECIPIENT_nameDef] with a rolled up newspaper</li>
-				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
-				
-				<li>insultingjoketopics->eating garbage</li>
-				<li>insultingjoketopics->fire hydrants</li>
-				<li>insultingjoketopics->dogs and legs</li>
-				<li>insultingjoketopics->rolling over</li>
-				<li>insultingjoketopics->werewolves</li>
-				<li>insultingjoketopics->full moons</li>
-			</rulesStrings>
-		</logRulesInitiator>
-		<recipientWeights>PMInteractionWeights_Canine</recipientWeights>
-	</Pawnmorph.Social.PMInteractionDef>
-	
 	<!-- insults directed at vulpine morphs -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMTalk_VulpineInsult</defName>

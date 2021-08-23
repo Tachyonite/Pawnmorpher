@@ -103,33 +103,49 @@
 		<initiatorThought>PawnmorphBark</initiatorThought>
 		<recipientThought>PawnmorphBark</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [barkedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout(p=4)->barked at</li>
-				<li>talkedabout->woofed at</li>
-				<li>talkedabout->arfed to</li>
-				<li>talkedabout->howled at</li>
-				<li>talkedabout->ruffed at</li>
-				<li>talkedabout->sniffed</li>
-				<li>talkedabout->wagged [INITIATOR_possessive] tail at</li>
+				<li>barkedat(p=4)->barked at</li>
+				<li>barkedat->woofed at</li>
+				<li>barkedat->arfed to</li>
+				<li>barkedat->howled at</li>
+				<li>barkedat->ruffed at</li>
+				<li>barkedat->sniffed</li>
+				<li>barkedat->wagged [INITIATOR_possessive] tail at</li>
 
-				<li>askedabout->patting [INITIATOR_possessive] fur</li>
-				<li>askedabout->dogs</li>
-				<li>askedabout->alphas and betas, in a non-redpilled way</li>
-				<li>askedabout->wolves</li>
-				<li>askedabout->wolfpacks</li>
-				<li>askedabout->sniffing a sensitive place</li>
-				<li>askedabout->sniffing garbage</li>
-				<li>askedabout->eating garbage</li>
-				<li>askedabout->sleeping in a kennel</li>
-				<li>askedabout->the moon</li>
-				<li>askedabout->bones</li>
-				<li>askedabout->fetch</li>
-				<li>askedabout->rolling over</li>
-				<li>askedabout->belly rubs</li>
-				<li>askedabout->licking [INITIATOR_possessive]</li>
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->barkedabout</li>
+				
+				<li>barkedabout->barked about</li>
+				<li>barkedabout->woofed about</li>
+				<li>barkedabout->ruffed about</li>
+				<li>barkedabout->arfed about</li>
+
+				<li>topic(p=2)->caninetopic</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>caninetopic->headpats</li>
+				<li>caninetopic->dogs</li>
+				<li>caninetopic->alphas and betas, in a non-redpilled way</li>
+				<li>caninetopic->wolves</li>
+				<li>caninetopic->wolf packs</li>
+				<li>caninetopic->sniffing a sensitive place</li>
+				<li>caninetopic->sniffing garbage</li>
+				<li>caninetopic->eating garbage</li>
+				<li>caninetopic->sleeping in a kennel</li>
+				<li>caninetopic->the moon</li>
+				<li>caninetopic->bones</li>
+				<li>caninetopic->fetch</li>
+				<li>caninetopic->rolling over</li>
+				<li>caninetopic->belly rubs</li>
+				<li>caninetopic->licking</li>
 
 			</rulesStrings>
 		</logRulesInitiator>
@@ -155,17 +171,14 @@
 		<initiatorThought>PMBark_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMBark_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [caninelife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->caninelife</li>
+				<li>topic->[DeepMorphTopic]</li>
 
 				<li>caninelife->being a canine morph</li>
 				<li>caninelife->becoming a canine morph</li>
@@ -185,12 +198,9 @@
 				<li>caninelife->raw meat</li>
 				<li>caninelife->hunting instincts</li>
 				<li>caninelife->pack life</li>
-				<li>caninelife->resisting instinct</li>
-				<li>caninelife->mutations</li>
 				<li>caninelife->broken claws</li>
 				<li>caninelife->what a tail feels like</li>
 				<li>caninelife->colorblindness</li>
-				<li>caninelife->reversion serums</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
@@ -214,23 +224,17 @@
 		<initiatorThought>PMBark_DeepTalkCanineMemory</initiatorThought>
 		<recipientThought>PMBark_DeepTalkCanineMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [caninetopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [caninetopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [caninebehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [caninebehavior].</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
-				
-				<li>caninetopic(p=2)->[caninelife]</li>
-				<li>caninetopic->[secretcaninelife]</li>
+				<li>topic(p=2)->[caninelife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretcaninelife]</li>
 
 				<li>caninelife->being canine morphs</li>
 				<li>caninelife->becoming canine morphs</li>
@@ -250,12 +254,9 @@
 				<li>caninelife->raw meat</li>
 				<li>caninelife->hunting instincts</li>
 				<li>caninelife->pack life</li>
-				<li>caninelife->resisting instinct</li>
-				<li>caninelife->mutations</li>
 				<li>caninelife->broken claws</li>
 				<li>caninelife->what a tail feels like</li>
 				<li>caninelife->colorblindness</li>
-				<li>caninelife->reversion serums</li>
 				
 				<li>secretcaninelife->brushy brushy</li>
 				<li>secretcaninelife->walkies</li>
@@ -279,6 +280,7 @@
 				
 				<li>preyanimal->deer</li>
 				<li>preyanimal->elk</li>
+				<li>preyanimal->caribou</li>
 				<li>preyanimal->moose</li>
 				<li>preyanimal->rabbits</li>
 				<li>preyanimal->squirrels</li>
@@ -287,6 +289,7 @@
 				<li>preyanimal->goats</li>
 				
 				<li>preymorph->deermorphs</li>
+				<li>preymorph->cariboumorphs</li>
 				<li>preymorph->rabbitmorphs</li>
 				<li>preymorph->chookmorphs</li>
 				<li>preymorph->squirrelmorphs</li>
@@ -311,7 +314,7 @@
 		<defName>PMBark_DeepTalkCanineMemory</defName>
 		<stages>
 			<li>
-				<label>shared experience</label>
+				<label>packmates</label>
 				<baseOpinionOffset>20</baseOpinionOffset>
 			</li>
 		</stages>
@@ -333,7 +336,7 @@
 				<li>target(p=4)->[RECIPIENT_nameDef]</li>
 				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[caninecharacteristic]</li>
 				
 				<li>growledat->growled at</li>
@@ -395,7 +398,7 @@
 				<li>target(p=4)->[RECIPIENT_nameDef]</li>
 				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[caninecharacteristic]</li>
 				
 				<li>snarledat->snarled at</li>
@@ -461,36 +464,37 @@
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMBark_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [PersonalCharacteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [caninecompliment].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [caninecompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] to a [caninecompliment].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[caninecharacteristic]</li>
 				
+				<li>comparedtargetto->called [RECIPIENT_nameDef]</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to</li>
+				<li>comparedtargetto->ruffed that [RECIPIENT_nameDef] was</li>
+
 				<li>caninecharacteristic->scent</li>
 				<li>caninecharacteristic->body language</li>
 				<li>caninecharacteristic->treats</li>
 				<li>caninecharacteristic->headpat technique</li>
 				<li>caninecharacteristic->wonderful scritches</li>
 				
-				<li>complimented->ruffed happily about</li>
-				<li>complimented->woofed approvingly of</li>
-				<li>complimented->wagged [INITIATOR_possessive] tail at</li>
-				<li>complimented->licked [RECIPIENT_nameDef] because of</li>
-				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
+				<li>complimentedtargets->ruffed happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->woofed approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->wagged [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->licked [RECIPIENT_nameDef] because of [RECIPIENT_pronoun]</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_pronoun]</li>
 				
-				<li>kindbehavior->[adv] licked</li>
-				<li>kindbehavior->[adv] nuzzled</li>
-				<li>kindbehavior->[adv] ruffed at</li>
+				<li>kindbehavior->[KindAdverb] licked</li>
+				<li>kindbehavior->[KindAdverb] nuzzled</li>
+				<li>kindbehavior->[KindAdverb] ruffed at</li>
 				<li>kindbehavior->wagged [INITIATOR_possessive] tail at</li>
-				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->happily</li>
 				
 				<li>caninecompliment->[adj] crunchybone</li>
 				<li>caninecompliment->[adj] deerheart</li>
@@ -498,11 +502,7 @@
 				<li>caninecompliment->[adj] lambshank</li>
 				<li>caninecompliment->[adj] rabbit</li>
 				
-				<li>adj->wonderful</li>
-				<li>adj->delightful</li>
-				<li>adj->amazing</li>
-				<li>adj->sweet</li>
-				<li>adj->lovely</li>
+				<li>adj(p=8)->[KindAdj]</li>
 				<li>adj->delicious</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -530,4 +530,53 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	
+	<!-- insults directed at canine morphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBark_DirectedInsult</defName>
+		<label>directed canine insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [caninecharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedTargetTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>caninecharacteristic->stench</li>
+				<li>caninecharacteristic->shedding</li>
+				<li>caninecharacteristic->drooling</li>
+				<li>caninecharacteristic->incessent barking</li>
+				<li>caninecharacteristic->incessent howling</li>
+				<li>caninecharacteristic->gross eating habits</li>
+				<li>caninecharacteristic->disgusting dog behavior</li>
+				<li>caninecharacteristic->fleas</li>
+				
+				<li>insultcomparison->a stinking mutt</li>
+				<li>insultcomparison->a lapdog</li>
+				<li>insultcomparison->a dumb dog</li>
+				<li>insultcomparison->a poodle</li>
+				<li>insultcomparison->a glorified pet</li>
+				<li>insultcomparison->a mangy fleabag</li>
+				<li>insultcomparison->a werewolf</li>
+
+				<li>insult(p=4)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->complained that [RECIPIENT_nameDef] stinks like a wet dog</li>
+				<li>insult->threatened to clip a leash on [RECIPIENT_nameDef]</li>
+				<li>insult->threatened [RECIPIENT_nameDef] with a rolled up newspaper</li>
+				<li>insult->mockingly called [RECIPIENT_nameDef] a bad dog</li>
+				
+				<li>insultingjoketopics->eating garbage</li>
+				<li>insultingjoketopics->fire hydrants</li>
+				<li>insultingjoketopics->dogs and legs</li>
+				<li>insultingjoketopics->rolling over</li>
+				<li>insultingjoketopics->werewolves</li>
+				<li>insultingjoketopics->full moons</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Canine</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
 </Defs>
