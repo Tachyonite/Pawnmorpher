@@ -278,7 +278,7 @@ namespace Pawnmorph.Hediffs
             var request = new TransformationRequest(pawnKind, pawn)
             {
                 forcedGender = gender,
-                forcedGenderChance = 1f,
+                forcedGenderChance = 100f,
                 cause = this,
                 tale = tfSettings.tfTale,
                 manhunterSettingsOverride = tfSettings.manhunterSettings,
@@ -292,6 +292,7 @@ namespace Pawnmorph.Hediffs
             {
                 var comp = Find.World.GetComponent<PawnmorphGameComp>();
                 comp.AddTransformedPawn(transformedPawn);
+                //TODO callbacks
                 return true;
             }
 
