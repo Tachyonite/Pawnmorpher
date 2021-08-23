@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Reptile</defName>
+		<requiredMutationsAny>
+			<li>EtherIguanaSnout</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to yap as a human with just a muzzle. A muzzled human will hiss half as often as chatting and a full morph will hiss twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherIguanaSnout</key>
+				<value>0.5</value>
+			</li>
+
+			<!-- Hands -->
+			<li>
+				<key>EtherIguanaHand</key>
+				<value>0.125</value>
+			</li>
+
+			<!-- Hood -->
+			<li>
+				<key>EtherIguanaHorns</key>
+				<value>0.125</value>
+			</li>
+			
+			<!-- Tails -->
+			<li>
+				<key>EtherIguanaTail</key>
+				<value>0.5</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>IguanaMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMReptileHiss_Chitchat</defName>
+		<label>hiss</label>
+		<symbol>Things/Mote/SpeechSymbols/ReptileHiss</symbol>
+		<initiatorThought>PawnmorphReptileHiss</initiatorThought>
+		<recipientThought>PawnmorphReptileHiss</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+
+				<li>talkedabout(p=4)->hissed at</li>
+				<li>talkedabout->shook [INITIATOR_possessive] tail at</li>
+				<li>talkedabout->hissed to</li>
+				<li>talkedabout->opened [INITIATOR_possessive] mouth at</li>
+				<li>talkedabout->shook [INITIATOR_possessive] tail to</li>
+				<li>talkedabout->stared at</li>
+				<li>talkedabout->talked about reptiles with</li>
+
+				<li>askedabout->scales</li>
+				<li>askedabout->lettuce</li>
+				<li>askedabout->mealworms</li>
+				<li>askedabout->scales</li>
+				<li>askedabout->lizards</li>
+				<li>askedabout->sun basking</li>
+				<li>askedabout->claws</li>
+				<li>askedabout->reptile teeth</li>
+				<li>askedabout->iguanas</li>
+				<li>askedabout->spines</li>
+				<li>askedabout->strange scents</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Reptile</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PawnmorphReptileHiss</defName> <!-- keeping def name for compatibility reasons -->
+		<stages>
+			<li>
+				<label>hiss</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMReptileHiss_DeepTalk</defName>
+		<label>deep hiss</label>
+		<symbol>Things/Mote/SpeechSymbols/ReptileHiss_DeepTalk</symbol>
+		<initiatorThought>PMReptileHiss_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMReptileHiss_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [reptilelife] with [RECIPIENT_nameDef].</li>
+
+				<li>talkedabout->talked in depth about</li>
+				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
+				<li>talkedabout->discussed the topic of</li>
+				<li>talkedabout->had a heartfelt conversation about</li>
+				<li>talkedabout->talked quietly about</li>
+				<li>talkedabout->talked deeply about</li>
+				<li>talkedabout->told a heartfelt story about</li>
+				<li>talkedabout->shared an embarassing story about</li>
+
+				<li>reptilelife->being an iguana morph</li>
+				<li>reptilelife->becoming an iguana morph</li>
+				<li>reptilelife->shedding</li>
+				<li>reptilelife->sun basking</li>
+				<li>reptilelife->resting</li>
+				<li>reptilelife->mealworms</li>
+				<li>reptilelife->having scales</li>
+				<li>reptilelife->hissing</li>
+				<li>reptilelife->eating insects</li>
+				<li>reptilelife->eating lettuce</li>
+				<li>reptilelife->hunting instincts</li>
+				<li>reptilelife->claw maintenence</li>
+				<li>reptilelife->iguana spines</li>
+				<li>reptilelife->interesting scents</li>
+				<li>reptilelife->spines</li>
+				<li>reptilelife->resisting instinct</li>
+				<li>reptilelife->mutations</li>
+				<li>reptilelife->broken claws</li>
+				<li>reptilelife->what having a tail feels like</li>
+				<li>reptilelife->reversion serums</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Reptile</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMReptileHiss_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep hiss</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- An extra form of deep talk that only happens between two iguana morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMReptileHiss_DeepTalkReptile</defName>
+		<label>deep hiss reptile</label>
+		<symbol>Things/Mote/SpeechSymbols/ReptileHiss_DeepTalk</symbol>
+		<initiatorThought>PMReptileHiss_DeepTalkReptileMemory</initiatorThought>
+		<recipientThought>PMReptileHiss_DeepTalkReptileMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [reptiletopic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [reptiletopic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [reptilebehavior].</li>
+
+				<li>talkedabout->communicated thoughts about</li>
+				<li>talkedabout->exchanged thoughts about</li>
+				<li>talkedabout->exchanged ideas about</li>
+				<li>talkedabout->shared views on</li>
+				<li>talkedabout->discussed the topic of</li>
+				<li>talkedabout->had a heartfelt conversation about</li>
+				<li>talkedabout->talked quietly about</li>
+				<li>talkedabout->talked deeply about</li>
+				<li>talkedabout->connected on the topic of</li>
+				
+				<li>reptiletopic(p=2)->[reptilelife]</li>
+				<li>reptiletopic->[secretreptilelife]</li>
+
+				<li>reptilelife->being an iguana morph</li>
+				<li>reptilelife->becoming an iguana morph</li>
+				<li>reptilelife->shedding</li>
+				<li>reptilelife->sun basking</li>
+				<li>reptilelife->resting</li>
+				<li>reptilelife->mealworms</li>
+				<li>reptilelife->having scales</li>
+				<li>reptilelife->hissing</li>
+				<li>reptilelife->eating insects</li>
+				<li>reptilelife->eating lettuce</li>
+				<li>reptilelife->hunting instincts</li>
+				<li>reptilelife->claw maintenence</li>
+				<li>reptilelife->iguana spines</li>
+				<li>reptilelife->interesting scents</li>
+				<li>reptilelife->spines</li>
+				<li>reptilelife->resisting instinct</li>
+				<li>reptilelife->mutations</li>
+				<li>reptilelife->broken claws</li>
+				<li>reptilelife->what having a tail feels like</li>
+				<li>reptilelife->reversion serums</li>
+				
+				<li>secretreptilelife->basking spots</li>
+				<li>secretreptilelife->best insect flavors</li>
+				<li>secretreptilelife->foraging</li>
+				<li>secretreptilelife->cleaning scales</li>
+				<li>secretreptilelife->spine sharpening</li>
+				<li>secretreptilelife->communicating with body language</li>
+				<li>secretreptilelife->finding [preyanimal]</li>
+				<li>secretreptilelife->eating [preyanimal]</li>
+				<li>secretreptilelife->getting used to lizard legs</li>
+				<li>secretreptilelife->smelling with tongues</li>
+				<li>secretreptilelife->practicing tail control</li>
+				<li>secretreptilelife->nictitating membranes</li>
+				<li>secretreptilelife->the dewlap</li>
+				<li>secretreptilelife->ambush hunting</li>
+				
+				<li>preyanimal->mealworms</li>
+				<li>preyanimal->lettuce</li>
+				<li>preyanimal->fruit</li>
+				<li>preyanimal->vegetables</li>
+				<li>preyanimal->flowers</li>
+				
+				<li>reptilebehavior->stared understandingly with [RECIPIENT_nameDef]</li>
+				<li>reptilebehavior->and [RECIPIENT_nameDef] briefly looked at eachother</li>
+				<li>reptilebehavior->and [RECIPIENT_nameDef] slowly swished tails at eachother</li>
+				<li>reptilebehavior->shared nuzzles with [RECIPIENT_nameDef]</li>
+				<li>reptilebehavior->and [RECIPIENT_nameDef] stared at eachother for a while</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Reptile</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Reptile</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMReptileHiss_DeepTalkReptileMemory</defName>
+		<stages>
+			<li>
+				<label>shared experience</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMReptileHiss_Slight</defName>
+		<label>gekker</label>
+		<symbol>Things/Mote/SpeechSymbols/ReptileHiss_Slight</symbol>
+		<recipientThought>PMReptileHiss_Slight</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [hissedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [hissedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[reptilecharacteristic]</li>
+				
+				<li>hissedat->hissed at</li>
+				<li>hissedat->aggressively opened [INITIATOR_possessive] mouth at</li>
+				<li>hissedat->hissed aggressively at</li>
+				<li>hissedat->twitched [INITIATOR_possessive] tail annoyingly at</li>
+				<li>hissedat->flared [INITIATOR_possessive] dewlap at</li>
+								
+				<li>hissedabout->hissed about</li>
+				<li>hissedabout->hissed angrily about</li>
+				<li>hissedabout->aggressively opened [INITIATOR_possessive] mouth because of</li>
+				<li>hissedabout->flared [INITIATOR_possessive] dewlap because of</li>
+				
+				<li>reptilecharacteristic->scent</li>
+				<li>reptilecharacteristic->body language</li>
+				<li>reptilecharacteristic->loud noises</li>
+				<li>reptilecharacteristic->sudden movements</li>
+				<li>reptilecharacteristic->[refusal] to give [INITIATOR_objective] a mealworm</li>
+				<li>reptilecharacteristic->[refusal] to help [INITIATOR_objective] shed</li>
+				<li>reptilecharacteristic->[refusal] to let [INITIATOR_objective] stare at [RECIPIENT_objective]</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				
+				<li>annoyingbehavior->stared annoyingly at [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->looked at [RECIPIENT_nameDef] in a way [RECIPIENT_possessive] could not understand</li>
+				<li>annoyingbehavior->annoyingly booped [INITIATOR_possessive] snout against [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Reptile</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMReptileHiss_Slight</defName>
+		<stages>
+			<li>
+				<label>hiss</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMReptileHiss_Insult</defName>
+		<label>screech</label>
+		<symbol>Things/Mote/SpeechSymbols/ReptileHiss_Insult</symbol>
+		<recipientThought>PMReptileHiss_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(p=3)->[INITIATOR_nameDef] [screechedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [screechedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [reptileinsult].</li>
+
+				<li>comparedtargetto->called [target] a</li>
+				<li>comparedtargetto->compared [target] to a</li>
+				<li>comparedtargetto->hissed that [target] was a</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[reptilecharacteristic]</li>
+				
+				<li>screechedat->hissed at</li>
+				<li>screechedat->screeched at</li>
+				<li>screechedat->hissed and aggressively shook [INITIATOR_possessive] tail at</li>
+				<li>screechedat->flared [INITIATOR_possessive] dewlap at</li>
+				
+				<li>screechedabout->hissed about</li>
+				<li>screechedabout->hissed angrily about</li>
+				<li>screechedabout->hissed at [RECIPIENT_nameDef] because of</li>
+				<li>screechedabout->hissed in [RECIPIENT_nameDef] face over</li>
+				<li>screechedabout->opened [INITIATOR_possessive] mouth aggressively over</li>
+				<li>screechedabout->flared [RECIPIENT_possessive] dewlap because of</li>
+				
+				<li>reptilecharacteristic->scent</li>
+				<li>reptilecharacteristic->body language</li>
+				<li>reptilecharacteristic->loud noises</li>
+				<li>reptilecharacteristic->sudden movements</li>
+				<li>reptilecharacteristic->[refusal] to give [INITIATOR_objective] a mealworm</li>
+				<li>reptilecharacteristic->[refusal] to help [INITIATOR_objective] shed</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				
+				<li>reptileinsult->mammal</li>
+				<li>reptileinsult->warmblood</li>
+				<li>reptileinsult->insect</li>
+				<li>reptileinsult->noisemaker</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Reptile</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMReptileHiss_Insult</defName>
+		<stages>
+			<li>
+				<label>hissed</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMReptileHiss_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMReptileHiss_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>hissed at</label>
+				<description>I've been hissed at! What an awful lizard!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMReptileHiss_KindWords</defName>
+		<label>kind hiss</label>
+		<symbol>Things/Mote/SpeechSymbols/ReptileHiss_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMReptileHiss_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [reptilecompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [reptilecompliment].</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[reptilecharacteristic]</li>
+				
+				<li>reptilecharacteristic->scent</li>
+				<li>reptilecharacteristic->body language</li>
+				<li>reptilecharacteristic->treats</li>
+				<li>reptilecharacteristic->scale petting technique</li>
+				<li>reptilecharacteristic->treats</li>
+				
+				<li>complimented->smiled happily about</li>
+				<li>complimented->smiled approvingly of</li>
+				<li>complimented->purred happily about</li>
+				<li>complimented->swished [INITIATOR_possessive] tail at</li>
+				<li>complimented->gave [RECIPIENT_nameDef] an approving look because of</li>
+				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
+				
+				<li>kindbehavior->[adv] licked</li>
+				<li>kindbehavior->[adv] smiled at</li>
+				<li>kindbehavior->[adv] nuzzled</li>
+				<li>kindbehavior->swished [INITIATOR_possessive] tail at</li>
+				
+				<li>adv->kindly</li>
+				<li>adv->affectionately</li>
+				<li>adv->appreciatively</li>
+				<li>adv->happily</li>
+				
+				<li>reptilecompliment->[adj] mealworm</li>
+				<li>reptilecompliment->[adj] strawberry</li>
+				<li>reptilecompliment->[adj] cabbage</li>
+				<li>reptilecompliment->[adj] leaf</li>
+				<li>reptilecompliment->[adj] dandelion</li>
+				
+				<li>adj->wonderful</li>
+				<li>adj->delightful</li>
+				<li>adj->amazing</li>
+				<li>adj->sweet</li>
+				<li>adj->lovely</li>
+				<li>adj->delicious</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Reptile</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMReptileHiss_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind smile</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMReptileHiss_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMReptileHiss_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind smile</label>
+				<description>I've been given a kind smile! What a nice reptile!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>
