@@ -833,7 +833,7 @@
     <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
     <Compile Include="Work\Giver_WorkAtSequencer.cs" />
-    <Compile Include="Social\InteractionWeightsDef.cs" />
+    <Compile Include="Social\PMInteractionWeightsDef.cs" />
     <Compile Include="Utilities\Collections\Checklist.cs" />
     <Compile Include="Utilities\Collections\MultiDict.cs" />
     <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
