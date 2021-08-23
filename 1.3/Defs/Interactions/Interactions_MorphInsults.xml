@@ -695,6 +695,7 @@
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Beaver</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
+	
 	<!-- Insults aimed at nagas -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMSnakeHiss_DirectedInsult</defName>
@@ -736,6 +737,8 @@
 				<li>rodentcharacteristic->skin shedding</li>
 
 				<li>insultcomparison->angry noodle</li>
+				<li>insultcomparison->danger noodle</li>
+				<li>insultcomparison->nope rope</li>
 				<li>insultcomparison->toilet dweller</li>
 				<li>insultcomparison->rat eater</li>
 				<li>insultcomparison->venom spitter</li>
@@ -816,7 +819,8 @@
 				<li>insult->said [RECIPIENT_nameDef] looks creepy</li>
 				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
 
-				<li>insultingjoketopics->lizards being unevolved</li>
+				<li>insultingjoketopics->asteroids and dinosaurs</li>
+				<li>insultingjoketopics->unevolved lizards</li>
 				<li>insultingjoketopics->lizards eating bugs</li>
 				<li>insultingjoketopics->cold blooded animals</li>
 				<li>insultingjoketopics->iguanas falling out of trees</li>

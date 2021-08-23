@@ -52,8 +52,8 @@
 		<defName>PMSnakeHiss_Chitchat</defName>
 		<label>hiss</label>
 		<symbol>Things/Mote/SpeechSymbols/SnakeHiss</symbol>
-		<initiatorThought>PawnmorphSnakeHiss</initiatorThought>
-		<recipientThought>PawnmorphSnakeHiss</recipientThought>
+		<initiatorThought>PMSnakeHiss_ChitchatMemory</initiatorThought>
+		<recipientThought>PMSnakeHiss_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
@@ -85,7 +85,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 	
 	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
-		<defName>PawnmorphSnakeHiss</defName> <!-- keeping def name for compatibility reasons -->
+		<defName>PMSnakeHiss_ChitchatMemory</defName>
 		<stages>
 			<li>
 				<label>hiss</label>
@@ -122,6 +122,7 @@
 				<li>snakelife->coiling</li>
 				<li>snakelife->mice</li>
 				<li>snakelife->getting used to not having legs</li>
+				<li>snakelife->naga hands</li>
 				<li>snakelife->tongue flicking</li>
 				<li>snakelife->hissing</li>
 				<li>snakelife->venom</li>
@@ -179,13 +180,14 @@
 				<li>snaketopic(p=2)->[snakelife]</li>
 				<li>snaketopic->[secretsnakelife]</li>
 
-				<li>snakelife->being a naga</li>
-				<li>snakelife->becoming a naga</li>
+				<li>snakelife->being nagas</li>
+				<li>snakelife->becoming nagas</li>
 				<li>snakelife->shedding</li>
 				<li>snakelife->slithering</li>
 				<li>snakelife->coiling</li>
 				<li>snakelife->mice</li>
 				<li>snakelife->getting used to not having legs</li>
+				<li>snakelife->naga hands</li>
 				<li>snakelife->tongue flicking</li>
 				<li>snakelife->hissing</li>
 				<li>snakelife->venom</li>
@@ -209,11 +211,14 @@
 				<li>secretsnakelife->venom spitting</li>
 				<li>secretsnakelife->cobra hood cleaning</li>
 				<li>secretsnakelife->hunting [prey]</li>
+				<li>secretsnakelife->swallowing [prey] whole</li>
 				<li>secretsnakelife->getting used to having fangs</li>
 				<li>secretsnakelife->smelling with tongues</li>
 				<li>secretsnakelife->practicing tail control</li>
 				<li>secretsnakelife->nictitating membranes</li>
 				<li>secretsnakelife->ambush hunting</li>
+				<li>secretsnakelife->the serpent gods</li>
+				<li>secretsnakelife->human sacrifice</li>
 				
 				<li>prey(p=10)->[preyanimal]</li>
 				<li>prey->[preymorph]</li>
@@ -322,9 +327,9 @@
 				<li>r_logentry->[INITIATOR_nameDef] [screechedabout] [target]'s [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [snakeinsult].</li>
 
-				<li>comparedtargetto->called [target] a</li>
-				<li>comparedtargetto->compared [target] to a</li>
-				<li>comparedtargetto->hissed that [target] was a</li>
+				<li>comparedtargetto->called [target]</li>
+				<li>comparedtargetto->compared [target] to</li>
+				<li>comparedtargetto->hissed that [target] was</li>
 
 				<li>target(p=4)->[RECIPIENT_nameDef]</li>
 				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
@@ -356,10 +361,11 @@
 				<li>snakeinsult->breakfast</li>
 				<li>snakeinsult->lunch</li>
 				<li>snakeinsult->dinner</li>
-				<li>snakeinsult->warmblood</li>
-				<li>snakeinsult->rat</li>
-				<li>snakeinsult->mouse</li>
-				<li>snakeinsult->chicken</li>
+				<li>snakeinsult->a warmblood</li>
+				<li>snakeinsult->a smoothskin</li>
+				<li>snakeinsult->a rat</li>
+				<li>snakeinsult->a mouse</li>
+				<li>snakeinsult->a chicken</li>
 				<li>snakeinsult->prey</li>
 			</rulesStrings>
 		</logRulesInitiator>

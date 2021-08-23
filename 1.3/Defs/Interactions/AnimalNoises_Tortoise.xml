@@ -46,8 +46,8 @@
 		<defName>PMTortoiseHiss_Chitchat</defName>
 		<label>hiss</label>
 		<symbol>Things/Mote/SpeechSymbols/TortoiseHiss</symbol>
-		<initiatorThought>PawnmorphTortoiseHiss</initiatorThought>
-		<recipientThought>PawnmorphTortoiseHiss</recipientThought>
+		<initiatorThought>PMTortoiseHiss_ChitchatMemory</initiatorThought>
+		<recipientThought>PMTortoiseHiss_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
@@ -78,7 +78,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 	
 	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
-		<defName>PawnmorphTortoiseHiss</defName> <!-- keeping def name for compatibility reasons -->
+		<defName>PMTortoiseHiss_ChitchatMemory</defName>
 		<stages>
 			<li>
 				<label>hiss</label>
@@ -169,8 +169,8 @@
 				<li>reptiletopic(p=2)->[reptilelife]</li>
 				<li>reptiletopic->[secretreptilelife]</li>
 
-				<li>reptilelife->being a tortoise morph</li>
-				<li>reptilelife->becoming a tortoise morph</li>
+				<li>reptilelife->being tortoise morphs</li>
+				<li>reptilelife->becoming tortoise morphs</li>
 				<li>reptilelife->having a big shell</li>
 				<li>reptilelife->resting</li>
 				<li>reptilelife->lettuce</li>
@@ -195,17 +195,22 @@
 				<li>secretreptilelife->getting used to a giant shell</li>
 				<li>secretreptilelife->adapting to slow movement</li>
 				<li>secretreptilelife->shell polishing</li>
-				<li>secretreptilelife->finding [preyanimal]</li>
-				<li>secretreptilelife->eating [preyanimal]</li>
+				<li>secretreptilelife->finding [food]</li>
+				<li>secretreptilelife->eating [food]</li>
 				<li>secretreptilelife->keeping balance on two legs</li>
 				<li>secretreptilelife->smelling with tongues</li>
 				<li>secretreptilelife->nictitating membranes</li>
+				<li>secretreptilelife->invulnerability</li>
+				<li>secretreptilelife->going manhunter</li>
+				<li>secretreptilelife->the wise ratmorph</li>
+				<li>secretreptilelife->sewer ooze</li>
 				
-				<li>preyanimal->plants</li>
-				<li>preyanimal->lettuce</li>
-				<li>preyanimal->fruit</li>
-				<li>preyanimal->vegetables</li>
-				<li>preyanimal->flowers</li>
+				<li>food->plants</li>
+				<li>food->lettuce</li>
+				<li>food->fruit</li>
+				<li>food->vegetables</li>
+				<li>food->flowers</li>
+				<li>food(p=0.1->pizza</li>
 				
 				<li>reptilebehavior->stared understandingly with [RECIPIENT_nameDef]</li>
 				<li>reptilebehavior->and [RECIPIENT_nameDef] briefly looked at eachother</li>
@@ -297,7 +302,7 @@
 			<rulesStrings>
 				<li>r_logentry(p=3)->[INITIATOR_nameDef] [screechedat] [RECIPIENT_nameDef].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [screechedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [snakeinsult].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [tortiseinsult].</li>
 
 				<li>comparedtargetto->called [target] a</li>
 				<li>comparedtargetto->compared [target] to a</li>
@@ -307,7 +312,7 @@
 				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
 				
 				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[snakecharacteristic]</li>
+				<li>characteristic->[tortisecharacteristic]</li>
 				
 				<li>screechedat->hissed at</li>
 				<li>screechedat->screeched at</li>
@@ -319,20 +324,21 @@
 				<li>screechedabout->hissed and extended [INITIATOR_possessive] neck over</li>
 				<li>screechedabout->fell over because of</li>
 				
-				<li>snakecharacteristic->scent</li>
-				<li>snakecharacteristic->body language</li>
-				<li>snakecharacteristic->loud noises</li>
-				<li>snakecharacteristic->sudden movements</li>
-				<li>snakecharacteristic->[refusal] to give [INITIATOR_objective] a mealworm</li>
-				<li>snakecharacteristic->[refusal] to help [INITIATOR_objective] shed</li>
+				<li>tortisecharacteristic->scent</li>
+				<li>tortisecharacteristic->body language</li>
+				<li>tortisecharacteristic->loud noises</li>
+				<li>tortisecharacteristic->sudden movements</li>
+				<li>tortisecharacteristic->[refusal] to give [INITIATOR_objective] a mealworm</li>
+				<li>tortisecharacteristic->[refusal] to help [INITIATOR_objective] shed</li>
 				
 				<li>refusal->refusal</li>
 				<li>refusal->unwillingness</li>
 				
-				<li>snakeinsult->mammal</li>
-				<li>snakeinsult->warmblood</li>
-				<li>snakeinsult->hare</li>
-				<li>snakeinsult->cheetah</li>
+				<li>tortiseinsult->mammal</li>
+				<li>tortiseinsult->warmblood</li>
+				<li>tortiseinsult->smoothskin</li>
+				<li>tortiseinsult->hare</li>
+				<li>tortiseinsult->cheetah</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Tortoise</initiatorWeights>

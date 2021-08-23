@@ -46,8 +46,8 @@
 		<defName>PMReptileHiss_Chitchat</defName>
 		<label>hiss</label>
 		<symbol>Things/Mote/SpeechSymbols/ReptileHiss</symbol>
-		<initiatorThought>PawnmorphReptileHiss</initiatorThought>
-		<recipientThought>PawnmorphReptileHiss</recipientThought>
+		<initiatorThought>PMReptileHiss_ChitchatMemory</initiatorThought>
+		<recipientThought>PMReptileHiss_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
@@ -78,7 +78,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 	
 	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
-		<defName>PawnmorphReptileHiss</defName> <!-- keeping def name for compatibility reasons -->
+		<defName>PMReptileHiss_ChitchatMemory</defName>
 		<stages>
 			<li>
 				<label>hiss</label>
@@ -170,8 +170,8 @@
 				<li>reptiletopic(p=2)->[reptilelife]</li>
 				<li>reptiletopic->[secretreptilelife]</li>
 
-				<li>reptilelife->being an iguana morph</li>
-				<li>reptilelife->becoming an iguana morph</li>
+				<li>reptilelife->being iguana morphs</li>
+				<li>reptilelife->becoming iguana morphs</li>
 				<li>reptilelife->shedding</li>
 				<li>reptilelife->sun basking</li>
 				<li>reptilelife->resting</li>
@@ -205,6 +205,8 @@
 				<li>secretreptilelife->nictitating membranes</li>
 				<li>secretreptilelife->the dewlap</li>
 				<li>secretreptilelife->ambush hunting</li>
+				<li>secretreptilelife->superiority over the smoothskins</li>
+				<li>secretreptilelife->ancient jungle temples</li>
 				
 				<li>preyanimal->mealworms</li>
 				<li>preyanimal->lettuce</li>
