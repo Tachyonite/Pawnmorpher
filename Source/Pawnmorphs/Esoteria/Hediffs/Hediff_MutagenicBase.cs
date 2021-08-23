@@ -280,7 +280,9 @@ namespace Pawnmorph.Hediffs
                 forcedGender = gender,
                 forcedGenderChance = 1f,
                 cause = this,
-                //tale = tale,
+                tale = tfSettings.tfTale,
+                manhunterSettingsOverride = tfSettings.manhunterSettings,
+                forcedSapienceLevel = tfSettings.forcedSapience,
                 transformedTick = Find.TickManager?.TicksAbs
             };
 
