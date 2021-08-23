@@ -36,21 +36,42 @@ namespace Pawnmorph.Utilities.Collections
         protected abstract LookMode LookMode { get; }
 
         /// <summary>
-        /// Gets the current entry in this checklist, or the default value if
-        /// we reached the end
+        /// Whether or not we've reached the end of the list
         /// </summary>
-        public T GetCurrentEntry()
+        /// <return>true if we have a current entry, false otherwise</return>
+        public T Entry
         {
-            if (list == null)
+            get
             {
-                Log.Error("Checklist had no parts list");
-                return default(T);
-            }
+                if (list == null)
+                {
+                    Log.Error("Checklist had no parts list");
+                    return default(T);
+                }
 
-            if (index >= list.Count)
-                return default(T);
-            return list[index];
+                if (!HasEntry)
+                    return default(T);
+                return list[index];
+            }
         }
+
+        /// <summary>
+        /// Whether we still have a current entry or we've reached the end of the list
+        /// </summary>
+        /// <value><c>true</c> if there's at least one entry left in the list; otherwise, <c>false</c>.</value>
+        public bool HasEntry => index < list.Count;
+
+        /// <summary>
+        /// The index of the current entry
+        /// </summary>
+        /// <value>The index.</value>
+        public int Index => index;
+
+        /// <summary>
+        /// The total number of entries
+        /// </summary>
+        /// <value><c>true</c> if has entry; otherwise, <c>false</c>.</value>
+        public int Count => list.Count;
 
         /// <summary>
         /// Advances the checklist to the next entry
@@ -59,7 +80,7 @@ namespace Pawnmorph.Utilities.Collections
         public bool NextEntry()
         {
             index++;
-            return index < list.Count;
+            return HasEntry;
         }
 
         /// <summary>
@@ -70,9 +91,12 @@ namespace Pawnmorph.Utilities.Collections
         /// <summary>
         /// Advances the checklist to the next entry, or resets it if we reached the end
         /// </summary>
-        public void NextEntryOrReset()
+        /// <returns>true if there was a next entry, false if the checklist reset</returns>
+        public bool NextEntryOrReset()
         {
-            if (!NextEntry()) Reset();
+            bool next = NextEntry();
+            if (!next) Reset();
+            return next;
         }
 
         /// <summary>
@@ -133,7 +157,7 @@ namespace Pawnmorph.Utilities.Collections
         /// <summary>
         /// Initializes a new checklist with the given list
         /// </summary>
-        public DefChecklist(IEnumerable<T> list) : base (list) { }
+        public DefChecklist(IEnumerable<T> list) : base(list) { }
 
         /// <summary>
         /// The look mode used to save and load the collection entries.

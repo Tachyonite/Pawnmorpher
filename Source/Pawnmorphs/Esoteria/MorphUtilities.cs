@@ -451,7 +451,7 @@ namespace Pawnmorph
         public static MorphTransformationTypes GetTransformationType([NotNull] this HediffDef inst)
         {
             if (inst == null) throw new ArgumentNullException(nameof(inst));
-            if (!typeof(TransformationBase).IsAssignableFrom(inst.hediffClass)) return 0;
+            if (!(inst.hediffClass is IMutagenicHediff)) return 0;
 
             var comp = inst.CompProps<HediffCompProperties_Single>();
             return comp == null ? MorphTransformationTypes.Full : MorphTransformationTypes.Partial;

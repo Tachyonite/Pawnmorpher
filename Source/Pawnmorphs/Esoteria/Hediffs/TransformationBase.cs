@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
@@ -17,7 +16,7 @@ namespace Pawnmorph.Hediffs
     /// <summary>abstract base class for all transformation hediffs</summary>
     /// <seealso cref="Pawnmorph.IDescriptiveHediff" />
     /// <seealso cref="Verse.Hediff" />
-    public abstract class TransformationBase : HediffWithComps, IDescriptiveHediff
+    public abstract class TransformationBase : Hediff_Descriptive, IMutagenicHediff
     {
 
         
@@ -86,23 +85,6 @@ namespace Pawnmorph.Hediffs
         }
 
         /// <summary>
-        ///     Gets the description.
-        /// </summary>
-        /// <value>
-        ///     The description.
-        /// </value>
-        public virtual string Description
-        {
-            get
-            {
-                if (CurStage is IDescriptiveStage dStage)
-                    return string.IsNullOrEmpty(dStage.DescriptionOverride) ? def.description : dStage.DescriptionOverride;
-
-                return def.description;
-            }
-        }
-
-        /// <summary>
         /// the expected number of mutations to happen in a single day 
         /// </summary>
         public abstract float MeanMutationsPerDay { get; }
@@ -134,16 +116,10 @@ namespace Pawnmorph.Hediffs
         {
             get
             {
-                string label; 
-                if (CurStage is IDescriptiveStage dStage)
-                    label = string.IsNullOrEmpty(dStage.LabelOverride) ? base.LabelBase : dStage.LabelOverride;
-                else
-                    label = base.LabelBase;
+                string label = base.LabelBase;
 
                 if(SingleComp != null)
-                {
-                    label = $"{label}x{SingleComp.stacks}";
-                }
+                    label = $"{label} x{SingleComp.stacks}";
 
                 return label; 
 
@@ -356,7 +332,15 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///   <c>true</c> if there are any mutations in the current stage; otherwise, <c>false</c>.
         /// </value>
-        public bool AnyMutationsInCurrentStage => AnyMutationsInStage(CurStage); 
+        public virtual bool CurrentStageHasMutations => AnyMutationsInStage(CurStage);
+
+        /// <summary>
+        /// Gets a value indicating whether there are any transformations in the current stage.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if there are any transformations in the current stage; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool CurrentStageHasTransformation => CurStage is FullTransformationStageBase;
 
         private void AddMutations()
         {
