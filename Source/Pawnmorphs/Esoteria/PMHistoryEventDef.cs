@@ -38,6 +38,7 @@ namespace Pawnmorph
         /// Doer(pawn)
         /// Animal(PawnkindDef)
         /// FactionResponsible(Faction) can be null
+        /// Source(MutagenDef) the mutagen that caused the transformation 
         [NotNull]
         public static HistoryEventDef Transformed;
 
@@ -46,6 +47,7 @@ namespace Pawnmorph
         /// Doer(pawn)
         /// Animal(PawnKindDef)
         /// FactionResponsible(Faction) can be null
+        /// Source(MutagenDef) the mutagen that caused the reversion 
         [NotNull]
         public static HistoryEventDef Reverted;
 

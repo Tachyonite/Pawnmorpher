@@ -5,7 +5,7 @@ namespace Pawnmorph.Hediffs
     /// <summary>
     /// A class for hediff with description tooltips.  Used as a base for all
     /// Pawnmorpher hediffs, but also usable by itself if you just want to add
-    /// custom description tooltips to a hediff.
+    /// custom description tooltips/label overrides to a hediff.
     /// </summary>
     public class Hediff_Descriptive : HediffWithComps, IDescriptiveHediff
     {
@@ -21,10 +21,6 @@ namespace Pawnmorph.Hediffs
             {
                 if (CurStage is IDescriptiveStage dStage && !dStage.DescriptionOverride.NullOrEmpty())
                     return dStage.DescriptionOverride;
-
-                //TODO check this doesn't get rendered twice
-                if (!def.overrideTooltip.NullOrEmpty())
-                    return def.overrideTooltip;
 
                 return def.description;
             }

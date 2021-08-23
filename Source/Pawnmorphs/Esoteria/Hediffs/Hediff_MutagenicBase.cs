@@ -16,7 +16,7 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_Descriptive" />
-    public class Hediff_MutagenicBase : Hediff_Descriptive, IMutationHediff
+    public class Hediff_MutagenicBase : Hediff_Descriptive, IMutagenicHediff
     {
         // Used to track what kind of stage we're in, so we don't have to check
         // every tick
@@ -71,7 +71,28 @@ namespace Pawnmorph.Hediffs
         /// Whether or not this hediff is currently blocking race checks
         /// </summary>
         /// <value><c>true</c> if blocks race check; otherwise, <c>false</c>.</value>
-        public bool BlocksRaceCheck => cachedStageType == StageType.Mutation;
+        public bool BlocksRaceCheck => CurrentStageHasMutations;
+
+        /// <summary>
+        /// Gets a value indicating whether there are any mutations in the current stage.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if there are any mutations in the current stage; otherwise, <c>false</c>.
+        /// </value>
+        public bool CurrentStageHasMutations => cachedStageType == StageType.Mutation;
+
+        /// <summary>
+        /// Gets a value indicating whether there are any transformations in the current stage.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if there are any transformations in the current stage; otherwise, <c>false</c>.
+        /// </value>
+        public bool CurrentStageHasTransformation => cachedStageType == StageType.Transformation;
+
+        /// <summary>
+        /// Controls whether or not this hediff gets removed 
+        /// </summary>
+        public override bool ShouldRemove => forceRemove || base.ShouldRemove;
 
 
         /// <summary>
@@ -367,11 +388,6 @@ namespace Pawnmorph.Hediffs
                 return null;
             }
         }
-
-        /// <summary>
-        /// Controls whether or not this hediff gets removed 
-        /// </summary>
-        public override bool ShouldRemove => forceRemove || base.ShouldRemove;
 
         /// <summary>
         /// Marks this hediff for removal.

@@ -17,9 +17,11 @@ namespace Pawnmorph.Utilities.Collections
         /// null collection deletes the key
         /// </summary>
         /// <param name="key">Key.</param>
-        public ICollection<V> this[K key] {
+        public ICollection<V> this[K key]
+        {
             get => dict.TryGetValue(key, Enumerable.Empty<V>().ToList());
-            set {
+            set
+            {
                 var val = value?.ToList();
                 if (val != null && val.Count > 0)
                     dict[key] = val;

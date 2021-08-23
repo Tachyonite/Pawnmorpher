@@ -157,7 +157,7 @@ namespace Pawnmorph.Utilities.Collections
         /// <summary>
         /// Initializes a new checklist with the given list
         /// </summary>
-        public DefChecklist(IEnumerable<T> list) : base (list) { }
+        public DefChecklist(IEnumerable<T> list) : base(list) { }
 
         /// <summary>
         /// The look mode used to save and load the collection entries.

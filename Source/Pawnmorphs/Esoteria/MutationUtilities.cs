@@ -201,7 +201,7 @@ namespace Pawnmorph
             if (!dict.TryGetValue(mutation, out bool val))
             {
                 val = ideo.VeneratedAnimals.MakeSafe()
-                          .Any(a => a.TryGetBestMorphOfAnimal()?.IsAnAssociatedMutation(mutation) == true);
+                          .Any(a => a.TryGetBestMorphOfAnimal() == mutation.classInfluence);
                 dict[mutation] = val;
             }
 

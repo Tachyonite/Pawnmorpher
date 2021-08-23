@@ -856,7 +856,7 @@
     <Compile Include="Hediffs\HediffComp_MutType_RandomAnyMorph.cs" />
     <Compile Include="Hediffs\Utility\BodyMutationManager.cs" />
     <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
-    <Compile Include="Hediffs\IMutationHediff.cs" />
+    <Compile Include="Hediffs\IMutagenicHediff.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
