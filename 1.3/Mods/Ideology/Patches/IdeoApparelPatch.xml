@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Apparel_Robe" or defName="Apparel_Burka"]/apparel/bodyPartGroups</xpath>
+        <value>
+            <li>PM_LargeTail</li>
+        </value>
+    </Operation>
+</Patch>

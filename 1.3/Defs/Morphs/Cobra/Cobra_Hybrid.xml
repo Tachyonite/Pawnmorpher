@@ -425,7 +425,9 @@
                     <def>TailLeg</def>
                     <coverage>0.14</coverage>
                     <height>Bottom</height>
-
+                    <groups>
+                        <li>PM_LargeTail</li>
+                    </groups>
                 </li>
             </parts>
         </corePart>

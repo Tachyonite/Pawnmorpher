@@ -1,0 +1,135 @@
+<Defs>
+    <ThingDef Name="PM_NagaClothingBase" ParentName="ApparelMakeableBase" Abstract="true">
+        <apparel>
+            <bodyPartGroups>
+                <li>PM_TailLeg</li>
+            </bodyPartGroups>
+            <layers>
+                <li>OnSkin</li>
+            </layers>
+            <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+        </apparel>
+        <thingCategories>
+            <li>Apparel</li>
+        </thingCategories>
+        <colorGenerator Class="ColorGenerator_StandardApparel" />
+
+    </ThingDef>
+
+    <ThingDef Name="PM_NagaArmorBase" ParentName="ArmorMachineableBase" Abstract="true">
+        <apparel>
+            <bodyPartGroups>
+                <li>PM_TailLeg</li>
+            </bodyPartGroups>
+            <layers>
+                <li>OnSkin</li>
+            </layers>
+            <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+        </apparel>
+        <thingCategories>
+            <li>Apparel</li>
+        </thingCategories>
+        <colorGenerator Class="ColorGenerator_StandardApparel" />
+
+    </ThingDef>
+
+    <ThingDef ParentName="PM_NagaClothingBase">
+        <defName>PM_NagaSock</defName>
+        <label>naga pants</label>
+        <description>simple cloth or leather 'sock' covering a large tail</description>
+        <recipeMaker>
+            <researchPrerequisite>ComplexClothing</researchPrerequisite>
+        </recipeMaker>
+        <graphicData>
+            <texPath>Things/Pawn/Humanlike/Apparel/Pants/Pants</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <costStuffCount>40</costStuffCount>
+        <stuffCategories>
+            <li>Fabric</li>
+            <li>Leathery</li>
+        </stuffCategories>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <WorkToMake>1600</WorkToMake>
+            <Mass>0.5</Mass>
+            <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.20</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0.08</StuffEffectMultiplierInsulation_Heat>
+            <EquipDelay>2</EquipDelay>
+        </statBases>
+
+        <apparel>
+            <tags>
+                <li>IndustrialBasic</li>
+            </tags>
+        </apparel>
+        <defaultOutfitTags>
+            <li>Worker</li>
+            <li>Soldier</li>
+        </defaultOutfitTags>
+    </ThingDef>
+
+
+    <ThingDef ParentName="PM_NagaArmorBase">
+        <defName>PM_FlakTail</defName>
+        <label>flak sock</label>
+        <description>an 'sock' made of chainmail and kevlar going over a large tail. While it's not as good as solid armor, it offers effective protection against all manner of attacks while remaining quite comfortable.</description>
+        <recipeMaker>
+            <researchPrerequisite>FlakArmor</researchPrerequisite>
+            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+            <skillRequirements>
+                <Crafting>4</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <graphicData>
+            <texPath>Things/Pawn/Humanlike/Apparel/FlakPants/FlakPants</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>0.90</drawSize>
+        </graphicData>
+        <statBases>
+            <WorkToMake>9000</WorkToMake>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Mass>4</Mass>
+            <Flammability>0.6</Flammability>
+            <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.10</ArmorRating_Heat>
+            <Insulation_Cold>3.5</Insulation_Cold>
+            <Insulation_Heat>1</Insulation_Heat>
+            <EquipDelay>5</EquipDelay>
+        </statBases>
+        <equippedStatOffsets>
+            <MoveSpeed>-0.12</MoveSpeed>
+        </equippedStatOffsets>
+        <thingCategories>
+            <li>ApparelArmor</li>
+        </thingCategories>
+        <costList>
+            <Cloth>30</Cloth>
+            <Steel>60</Steel>
+            <ComponentIndustrial>1</ComponentIndustrial>
+        </costList>
+        <apparel>
+            <layers>
+                <li>Middle</li>
+            </layers>
+            <tags>
+                <li>IndustrialMilitaryBasic</li>
+            </tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+        </apparel>
+        <colorGenerator Class="ColorGenerator_Options">
+            <options>
+                <li>
+                    <only>(0.44,0.44,0.44)</only>
+                </li>
+                <li>
+                    <only>(0.62,0.62,0.62)</only>
+                </li>
+            </options>
+        </colorGenerator>
+    </ThingDef>
+</Defs>
