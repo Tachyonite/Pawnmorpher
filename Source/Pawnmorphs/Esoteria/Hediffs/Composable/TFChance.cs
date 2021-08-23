@@ -101,7 +101,8 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The hediff doing the transformation.</param>
         public override bool ShouldTransform(Hediff_MutagenicBase hediff)
         {
-            float tfChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance;
+            // The setting is [0 - 100] rather than [0 - 1], so scale it down
+            float tfChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance / 100f;
 
             if (affectedBySensitivity)
                 tfChance *= hediff.TransformationSensitivity;
@@ -118,7 +119,7 @@ namespace Pawnmorph.Hediffs.Composable
         public override string DebugString(Hediff_MutagenicBase hediff)
         {
             StringBuilder builder = new StringBuilder();
-            float chance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance;
+            float chance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance / 100f;
             builder.AppendLine($"Chance: {chance.ToStringPercent()}");
             if (affectedBySensitivity)
                 builder.AppendLine($"Chance w/ Sensitivity: {(chance * hediff.TransformationSensitivity).ToStringPercent()}");

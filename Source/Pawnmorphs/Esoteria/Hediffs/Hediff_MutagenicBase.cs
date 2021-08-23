@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Hediffs.Composable;
 using Pawnmorph.Hediffs.Utility;
+using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -169,7 +171,6 @@ namespace Pawnmorph.Hediffs
 
             // MutationRates can request multiple muations be added at once,
             // but we'll queue them up so they only happen once a second
-            //TODO mutagen sensitivity
             QueueUpMutations(stage.mutationRate.GetMutationsPerSecond(this));
 
             // Add a queued mutation, if any are waiting
@@ -257,8 +258,42 @@ namespace Pawnmorph.Hediffs
 
             if (stage.tfChance.ShouldTransform(this))
             {
-                //TODO
+                PawnKindDef pawnKind = stage.tfTypes.GetTF(this);
+                TFGender gender = stage.tfGenderSelector.GetGender(this);
+
+                TryTransformPawn(pawnKind, gender, stage.tfSettings);
             }
+        }
+
+        /// <summary>
+        /// Attempts to transform the pawn.
+        /// </summary>
+        /// <param name="pawnKind">The pawnkind to transform the pawn into</param>
+        /// <param name="gender">The gender of the post-transformation pawn</param>
+        /// <param name="tfSettings">additional miscellaneous transformation settings</param>
+        /// <returns><c>true</c> if the transformation succeeded, <c>false</c> otherwise.</returns>
+        protected bool TryTransformPawn(PawnKindDef pawnKind, TFGender gender, TFMiscSettings tfSettings)
+        {
+            var mutagen = def.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
+            var request = new TransformationRequest(pawnKind, pawn)
+            {
+                forcedGender = gender,
+                forcedGenderChance = 1f,
+                cause = this,
+                //tale = tale,
+                transformedTick = Find.TickManager?.TicksAbs
+            };
+
+            var transformedPawn = mutagen.MutagenCached.Transform(request);
+
+            if (transformedPawn != null)
+            {
+                var comp = Find.World.GetComponent<PawnmorphGameComp>();
+                comp.AddTransformedPawn(transformedPawn);
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
