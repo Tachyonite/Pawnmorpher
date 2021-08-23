@@ -696,6 +696,205 @@
 		<recipientWeights>PMInteractionWeights_Beaver</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	
+	<!-- Insults aimed at nagas -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMSnakeHiss_DirectedInsult</defName>
+		<label>directed naga insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
+
+				<li>insulted(p=3)->insulted</li>
+				<li>insulted->openly insulted</li>
+				<li>insulted->loudly insulted</li>
+				<li>insulted->flagrantly insulted</li>
+				<li>insulted->directly insulted</li>
+				<li>insulted->viciously insulted</li>
+				<li>insulted->flagrantly disrespected</li>
+				<li>insulted->slandered</li>
+				<li>insulted->hurled invective about</li>
+				<li>insulted->derided</li>
+
+				<li>rodentcharacteristic->tail</li>
+				<li>rodentcharacteristic->venom</li>
+				<li>rodentcharacteristic->snake eyes</li>
+				<li>rodentcharacteristic->creepy tail</li>
+				<li>rodentcharacteristic->scary fangs</li>
+				<li>rodentcharacteristic->size</li>
+				<li>rodentcharacteristic->lack of legs</li>
+				<li>rodentcharacteristic->frightening behavior</li>
+				<li>rodentcharacteristic->slithery mannerisms</li>
+				<li>rodentcharacteristic->eating habits</li>
+				<li>rodentcharacteristic->lisp</li>
+				<li>rodentcharacteristic->combat skill</li>
+				<li>rodentcharacteristic->hunting skill</li>
+				<li>rodentcharacteristic->skin shedding</li>
+
+				<li>insultcomparison->angry noodle</li>
+				<li>insultcomparison->danger noodle</li>
+				<li>insultcomparison->nope rope</li>
+				<li>insultcomparison->toilet dweller</li>
+				<li>insultcomparison->rat eater</li>
+				<li>insultcomparison->venom spitter</li>
+				<li>insultcomparison->lab monster</li>
+				<li>insultcomparison->soulless supersoldier</li>
+				<li>insultcomparison->killing machine</li>
+				<li>insultcomparison->reptile exhibit</li>
+				<li>insultcomparison->creep</li>
+				<li>insultcomparison->horror</li>
+
+				<li>insult->complained that [RECIPIENT_nameDef] moves around creepily</li>
+				<li>insult->accused [RECIPIENT_nameDef] of being nothing but a super soldier</li>
+				<li>insult->said [RECIPIENT_nameDef] keeps getting in the way</li>
+				<li>insult->accused [RECIPIENT_nameDef] of being inhumane</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->snakes swallowing food whole</li>
+				<li>insultingjoketopics->snakes being found in toilets</li>
+				<li>insultingjoketopics->improperly making an 's' sound</li>
+				<li>insultingjoketopics->not having legs</li>
+				<li>insultingjoketopics->snake pits</li>
+				<li>insultingjoketopics->naga soldiers</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Snake</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<!-- Insults aimed at reptile morphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMReptileHiss_DirectedInsult</defName>
+		<label>directed reptile insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
+
+				<li>insulted(p=3)->insulted</li>
+				<li>insulted->openly insulted</li>
+				<li>insulted->loudly insulted</li>
+				<li>insulted->flagrantly insulted</li>
+				<li>insulted->directly insulted</li>
+				<li>insulted->viciously insulted</li>
+				<li>insulted->flagrantly disrespected</li>
+				<li>insulted->slandered</li>
+				<li>insulted->hurled invective about</li>
+				<li>insulted->derided</li>
+
+				<li>rodentcharacteristic->tail</li>
+				<li>rodentcharacteristic->scales</li>
+				<li>rodentcharacteristic->beady eyes</li>
+				<li>rodentcharacteristic->wrinkly-looking face</li>
+				<li>rodentcharacteristic->creepy appearance</li>
+				<li>rodentcharacteristic->size</li>
+				<li>rodentcharacteristic->slow mannerisms</li>
+				<li>rodentcharacteristic->strange staring habits</li>
+				<li>rodentcharacteristic->eating habits</li>
+				<li>rodentcharacteristic->skin shedding</li>
+				<li>rodentcharacteristic->dewlap</li>
+
+				<li>insultcomparison->elder</li>
+				<li>insultcomparison->dinosaur</li>
+				<li>insultcomparison->worm eater</li>
+				<li>insultcomparison->cold blooded freak</li>
+				<li>insultcomparison->lab monster</li>
+				<li>insultcomparison->lizard brain</li>
+				<li>insultcomparison->reptile exhibit</li>
+				<li>insultcomparison->creep</li>
+				<li>insultcomparison->horror</li>
+				<li>insultcomparison->designer bag</li>
+
+				<li>insult->complained that [RECIPIENT_nameDef] moves around creepily</li>
+				<li>insult->rudely called [RECIPIENT_nameDef] a scaled freak</li>
+				<li>insult->said [RECIPIENT_nameDef] looks creepy</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->asteroids and dinosaurs</li>
+				<li>insultingjoketopics->unevolved lizards</li>
+				<li>insultingjoketopics->lizards eating bugs</li>
+				<li>insultingjoketopics->cold blooded animals</li>
+				<li>insultingjoketopics->iguanas falling out of trees</li>
+				<li>insultingjoketopics->slow lizards</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Reptile</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<!-- Insults aimed at tortoisemorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMTortoiseHiss_DirectedInsult</defName>
+		<label>directed tortoise insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
+				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
+
+				<li>insulted(p=3)->insulted</li>
+				<li>insulted->openly insulted</li>
+				<li>insulted->loudly insulted</li>
+				<li>insulted->flagrantly insulted</li>
+				<li>insulted->directly insulted</li>
+				<li>insulted->viciously insulted</li>
+				<li>insulted->flagrantly disrespected</li>
+				<li>insulted->slandered</li>
+				<li>insulted->hurled invective about</li>
+				<li>insulted->derided</li>
+
+				<li>rodentcharacteristic->tail</li>
+				<li>rodentcharacteristic->scales</li>
+				<li>rodentcharacteristic->beady eyes</li>
+				<li>rodentcharacteristic->wrinkly-looking face</li>
+				<li>rodentcharacteristic->creepy appearance</li>
+				<li>rodentcharacteristic->size</li>
+				<li>rodentcharacteristic->slow mannerisms</li>
+				<li>rodentcharacteristic->slow movement</li>
+				<li>rodentcharacteristic->strange staring habits</li>
+				<li>rodentcharacteristic->eating habits</li>
+				<li>rodentcharacteristic->massive shell</li>
+
+				<li>insultcomparison->elder</li>
+				<li>insultcomparison->dinosaur</li>
+				<li>insultcomparison->slowpoke</li>
+				<li>insultcomparison->cold blooded freak</li>
+				<li>insultcomparison->lab monster</li>
+				<li>insultcomparison->lizard brain</li>
+				<li>insultcomparison->reptile exhibit</li>
+				<li>insultcomparison->creep</li>
+				<li>insultcomparison->turtle soup</li>
+				<li>insultcomparison->mutant</li>
+				<li>insultcomparison->sewer monster</li>
+
+				<li>insult->complained that [RECIPIENT_nameDef] moves around creepily</li>
+				<li>insult->rudely called [RECIPIENT_nameDef] a scaled freak</li>
+				<li>insult->called [RECIPIENT_nameDef] the distraction when discussing combat tactics</li>
+				<li>insult->said [RECIPIENT_nameDef] looks creepy</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->mutant sewer turtles</li>
+				<li>insultingjoketopics->tortoises being stuck on their backs</li>
+				<li>insultingjoketopics->cold blooded animals</li>
+				<li>insultingjoketopics->the slow movement of tortoises</li>
+				<li>insultingjoketopics->turtle races</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Tortoise</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
 	<!-- Insults aimed at chaomorphs -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMChao_DirectedInsult</defName>
