@@ -111,6 +111,7 @@
 		<initiatorThought>PMBoom_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMBoom_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
 				<li>PMInteractionRules_DeepTalk</li>
 			</include>
 			<rulesStrings>

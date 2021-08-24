@@ -23,11 +23,8 @@ namespace Pawnmorph.Social
             if (!(Worker is PMInteractionWorkerBase))
                 yield return "Worker type is not derived from " + nameof(PMInteractionWorkerBase);
 
-            if (initiatorWeights == null)
-                yield return "Initator weights are not defined";
-
-            if (recipientWeights == null)
-                yield return "Recipient weights are not defined";
+            if (initiatorWeights == null && recipientWeights == null)
+                yield return "Neither initator nor recipient weights are defined";
         }
 
         /// <summary>The weights applied based on the initator's mutations</summary>

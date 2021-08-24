@@ -395,7 +395,7 @@
 				
 				<li>complimentedtargets->chittered happily about [RECIPIENT_nameDef]'s</li>
 				<li>complimentedtargets->chittered approvingly of [RECIPIENT_nameDef]'s</li>
-				<li>complimentedtargets->wagged [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s/li>
+				<li>complimentedtargets->wagged [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
 				<li>complimentedtargets->chirped happily because of [RECIPIENT_nameDef]'s</li>
 				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
 				
