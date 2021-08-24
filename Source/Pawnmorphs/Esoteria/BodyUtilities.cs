@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -13,10 +15,141 @@ namespace Pawnmorph
     /// <summary>
     /// a collection of various body related utilities 
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class BodyUtilities
     {
         [NotNull] private static readonly Dictionary<BodyPartRecord, PartAddress> _internDict =
             new Dictionary<BodyPartRecord, PartAddress>();
+
+
+        [NotNull] private static readonly Dictionary<BodyPartGroupDef, BodyPartGroupExtension> _extCache;
+
+        [NotNull] private static readonly Dictionary<BodyDef, List<BodyPartGroupDef>> _groinPartsCache =
+            new Dictionary<BodyDef, List<BodyPartGroupDef>>();
+
+
+        [NotNull]
+        private static IReadOnlyList<BodyPartGroupDef> GetGroinPartsFor([NotNull] BodyDef bDef)
+        {
+            if (_groinPartsCache.TryGetValue(bDef, out List<BodyPartGroupDef> lst)) return lst;
+
+            lst = bDef.AllParts.SelectMany(r => r.groups.MakeSafe()).Where(pg => pg.CountsAsGroin()).Distinct().ToList();
+            _groinPartsCache[bDef] = lst;
+            return lst;
+        }
+
+
+        static BodyUtilities()
+        {
+            _extCache = new Dictionary<BodyPartGroupDef, BodyPartGroupExtension>();
+
+            foreach (BodyPartGroupDef bGroup in DefDatabase<BodyPartGroupDef>.AllDefs)
+            {
+                var ext = bGroup.GetModExtension<BodyPartGroupExtension>();
+                if (ext != null) _extCache[bGroup] = ext;
+            }
+        }
+
+
+        /// <summary>
+        /// Tries to get extra body part group properties on this instance .
+        /// </summary>
+        /// <param name="def">The definition.</param>
+        /// <returns>the extra properties, null if it has none </returns>
+        [CanBeNull]
+        public static BodyPartGroupExtension TryGetExtraProperties([NotNull] this BodyPartGroupDef def)
+        {
+            return _extCache.TryGetValue(def); 
+        }
+
+
+        /// <summary>
+        /// if this body part group def counts as a groin for nudity checks.
+        /// </summary>
+        /// <param name="def">The definition.</param>
+        /// <returns></returns>
+        public static bool CountsAsGroin([NotNull] this BodyPartGroupDef def)
+        {
+            return def == BodyPartGroupDefOf.Legs || def.TryGetExtraProperties()?.countsAsGroin == true; 
+        }
+
+        /// <summary>
+        /// the different parts of the body that can be considered nude for various checks 
+        /// </summary>
+        [Flags]
+        public enum NudityValues
+        {
+            /// <summary>
+            /// The groin is covered
+            /// </summary>
+            Groin = 1,
+            /// <summary>
+            /// The torso is covered 
+            /// </summary>
+            Torso = 1 << 1,
+            /// <summary>
+            /// The head is covered 
+            /// </summary>
+            Head = 1 << 2,
+
+            /// <summary>
+            /// The groin or chest
+            /// </summary>
+            GroinOrChest = Torso | Groin,
+            /// <summary>
+            /// groin head or face group 
+            /// </summary>
+            GroinHeadOrFace = Groin | Torso | Head,
+            /// <summary>
+            /// everything is covered 
+            /// </summary>
+            All = ~0
+        }
+
+
+
+
+        /// <summary>
+        /// get what parts are nude on the given pawn.
+        /// </summary>
+        /// <param name="p">The pawn.</param>
+        /// <returns></returns>
+        public static NudityValues GetNudityValues(Pawn p)
+        {
+            Pawn_ApparelTracker apparelTracker = p.apparel;
+            if (apparelTracker == null) return 0;
+            List<Apparel> wornApparel = apparelTracker.WornApparel;
+            NudityValues retVal = 0;
+            IReadOnlyList<BodyPartGroupDef> groinList = GetGroinPartsFor(p.RaceProps.body);
+
+            bool eyesCovered=false, upperHeadCovered=false; 
+
+            foreach (Apparel apparel in wornApparel)
+            {
+                if (p.kindDef.apparelRequired != null && p.kindDef.apparelRequired.Contains(apparel.def)) continue;
+
+                var pgGroups = apparel.def.apparel?.bodyPartGroups; 
+                if(pgGroups == null) continue;
+                foreach (BodyPartGroupDef apparelGroup in pgGroups)
+                {     if (apparelGroup == BodyPartGroupDefOf.Torso)
+                        retVal |= NudityValues.Torso;
+                    else if (groinList.Contains(apparelGroup)) retVal |= NudityValues.Groin;
+                    else if (apparelGroup == BodyPartGroupDefOf.FullHead)
+                    {
+                        retVal |= NudityValues.Head;
+                    }else if ((retVal & NudityValues.Head) == 0)
+                    {
+                        if (apparelGroup == BodyPartGroupDefOf.Eyes) eyesCovered = true; 
+                        else if (apparelGroup == BodyPartGroupDefOf.UpperHead) upperHeadCovered = true;
+                        if (eyesCovered && upperHeadCovered) retVal |= NudityValues.Head; 
+                    }
+                }
+                
+            }
+
+            return retVal;
+        }
+
 
         /// <summary>
         ///     Gets the part address for this body part record.

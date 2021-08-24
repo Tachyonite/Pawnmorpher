@@ -280,23 +280,15 @@ namespace Pawnmorph.Hybrids
         {
             Pawn_ApparelTracker apparel = pawn.apparel;
             if (apparel == null) return;
-            
+
             _apparelCache.Clear();
-            _apparelCache.AddRange(apparel.WornApparel.MakeSafe());
+            _apparelCache.AddRange(apparel.WornApparel);
 
-
-            foreach (Apparel ap in _apparelCache) //use a copy so we can remove them safely while iterating 
+            foreach (Apparel a in _apparelCache)
             {
-                if (!ApparelUtility.HasPartsToWear(pawn, ap.def))
+                if (!ApparelUtility.HasPartsToWear(pawn, a.def))
                 {
-                    if (DebugLogUtils.ShouldLog(LogLevel.Messages))
-                        Log.Message($"removing {ap.Label}");
-
-                    if (apparel.TryDrop(ap))
-                    {
-                        
-                        apparel.Remove(ap); 
-                    }
+                    apparel.TryDrop(a);
                 }
             }
         }

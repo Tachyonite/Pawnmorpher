@@ -374,6 +374,7 @@
     <Compile Include="DefExtensions\AdditionalPlantInfo.cs" />
     <Compile Include="DefExtensions\AspectGiverExtension.cs" />
     <Compile Include="DefExtensions\AspectRestriction.cs" />
+    <Compile Include="DefExtensions\BodyPartGroupExtension.cs" />
     <Compile Include="DefExtensions\ChaomorphExtension.cs" />
     <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
     <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
