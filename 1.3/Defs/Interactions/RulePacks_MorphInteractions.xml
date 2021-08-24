@@ -18,7 +18,7 @@
 				<li>CommentedAbout->made a comment about</li>
 				<li>CommentedAbout->commented about</li>
 				<li>CommentedAbout->told a joke about</li>
-				
+
 				<li>MorphTopic->mutations</li>
 				<li>MorphTopic->transformation</li>
 				<li>MorphTopic->mutagen</li>
@@ -36,6 +36,9 @@
 	<RulePackDef>
 		<defName>PMInteractionRules_DeepTalk</defName>
 		<rulePack>
+			<include>
+				<li>PMInteractionRules_Misc</li>
+			</include>
 			<rulesStrings>
 				<li>DeepTalkedAbout->talked in depth about</li>
 				<li>DeepTalkedAbout->shared [INITIATOR_possessive] experiences with</li>
@@ -45,7 +48,7 @@
 				<li>DeepTalkedAbout->talked deeply about</li>
 				<li>DeepTalkedAbout->told a heartfelt story about</li>
 				<li>DeepTalkedAbout->shared an embarassing story about</li>
-				
+
 				<li>DeepMorphTopic->living with mutations</li>
 				<li>DeepMorphTopic->living as an animal</li>
 				<li>DeepMorphTopic->mutagenic autonomy</li>
@@ -58,14 +61,26 @@
 		</rulePack>
 	</RulePackDef>
 	
+	<!-- Common rules for slights -->
+	<RulePackDef>
+		<defName>PMInteractionRules_Slight</defName>
+		<rulePack>
+			<include>
+				<li>PMInteractionRules_Misc</li>
+			</include>
+			<rulesStrings>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
 	<!-- Common rules for insults -->
 	<RulePackDef>
 		<defName>PMInteractionRules_Insult</defName>
 		<rulePack>
+			<include>
+				<li>PMInteractionRules_Misc</li>
+			</include>
 			<rulesStrings>
-				<li>ComparedTargetTo->called [RECIPIENT_nameDef]</li>
-				<li>ComparedTargetTo->compared [RECIPIENT_nameDef] to</li>
-
 				<li>Insulted(p=3)->insulted</li>
 				<li>Insulted->openly insulted</li>
 				<li>Insulted->loudly insulted</li>
@@ -76,9 +91,6 @@
 				<li>Insulted->slandered</li>
 				<li>Insulted->hurled invective about</li>
 				<li>Insulted->derided</li>
-				
-				<li>Refusal->refusal</li>
-				<li>Refusal->unwillingness</li>
 			</rulesStrings>
 		</rulePack>
 	</RulePackDef>
@@ -87,23 +99,26 @@
 	<RulePackDef>
 		<defName>PMInteractionRules_KindWords</defName>
 		<rulePack>
+			<include>
+				<li>PMInteractionRules_Misc</li>
+			</include>
 			<rulesStrings>
 				<li>KindAdverb->kindly</li>
 				<li>KindAdverb->affectionately</li>
 				<li>KindAdverb->appreciatively</li>
 				<li>KindAdverb->happily</li>
 
-				<li>MaybeKindAdv-></li>				
+				<li>MaybeKindAdv-></li>
 				<li>MaybeKindAdv->[KindAdverb]</li>
-				
+
 				<li>KindAdj->wonderful</li>
 				<li>KindAdj->delightful</li>
 				<li>KindAdj->amazing</li>
 				<li>KindAdj->sweet</li>
 				<li>KindAdj->lovely</li>
 				<li>KindAdj->great</li>
-				
-				<li>MaybeKindAdj-></li>				
+
+				<li>MaybeKindAdj-></li>
 				<li>MaybeKindAdj->[KindAdj]</li>
 			</rulesStrings>
 		</rulePack>
@@ -114,6 +129,18 @@
 		<defName>PMInteractionRules_Misc</defName>
 		<rulePack>
 			<rulesStrings>
+				<li>ComparedRecipientTo->called [Target]</li>
+				<li>ComparedRecipientTo->compared [Target] to</li>
+
+				<li>ComparedTargetTo->called [Target]</li>
+				<li>ComparedTargetTo->compared [Target] to</li>
+
+				<li>Target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>Target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+
+				<li>Refusal->refusal</li>
+				<li>Refusal->unwillingness</li>
+
 				<li>Man(initiator_gender==Male)->man</li>
 				<li>Man(initiator_gender==Female)->woman</li>
 			</rulesStrings>

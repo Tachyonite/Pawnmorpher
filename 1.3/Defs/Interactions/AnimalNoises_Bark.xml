@@ -146,7 +146,6 @@
 				<li>animaltopic->rolling over</li>
 				<li>animaltopic->belly rubs</li>
 				<li>animaltopic->licking</li>
-
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
@@ -330,26 +329,23 @@
 		<recipientThought>PMBark_Slight</recipientThought>
 		<logRulesInitiator>
 			<include>
-				<li>PMInteractionRules_Insult</li>
+				<li>PMInteractionRules_Slight</li>
 			</include>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
 				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
 				<li>noisedat->growled at</li>
 				<li>noisedat->bared [INITIATOR_possessive] teeth at</li>
 				<li>noisedat->barked aggressively at</li>
 				<li>noisedat->yapped annoyingly at</li>
-								
+
 				<li>noisedabout->growled about</li>
 				<li>noisedabout->barked about</li>
 				<li>noisedabout->woofed unhappily about</li>
 				<li>noisedabout->bared [INITIATOR_possessive] teeth because of</li>
-				
+
 				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[animalcharacteristic]</li>
 				
@@ -392,33 +388,30 @@
 			</include>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
 				<li>comparedtargetto->[ComparedTargetTo]</li>
 				<li>comparedtargetto->[noisedtargetwas]</li>
 				
-				<li>noisedtargetwas->growled that [target] was</li>
-				<li>noisedtargetwas->barked that [target] was</li>
-				<li>noisedtargetwas->snarled that [target] was</li>
+				<li>noisedtargetwas->growled that [Target] was</li>
+				<li>noisedtargetwas->barked that [Target] was</li>
+				<li>noisedtargetwas->snarled that [Target] was</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
 				<li>noisedat->snarled at</li>
 				<li>noisedat->snarled and nipped</li>
 				<li>noisedat->tried to bite</li>
 				<li>noisedat->aggressively bared [INITIATOR_possessive] fangs at</li>
 				<li>noisedat->barked aggressively at</li>
-				
+
 				<li>noisedabout->snarled about</li>
 				<li>noisedabout->barked aggressively about</li>
 				<li>noisedabout->tried to bite [RECIPIENT_nameDef] because of</li>
 				<li>noisedabout->bared [INITIATOR_possessive] fangs over</li>
-				
+
 				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[animalcharacteristic]</li>
-				
+
 				<li>animalcharacteristic->scent</li>
 				<li>animalcharacteristic->body language</li>
 				<li>animalcharacteristic->lack of treats</li>
@@ -479,8 +472,7 @@
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>comparedtargetto->called [RECIPIENT_nameDef]</li>
-				<li>comparedtargetto->compared [RECIPIENT_nameDef] to</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
 				<li>comparedtargetto->ruffed that [RECIPIENT_nameDef] was</li>
 
 				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
@@ -550,7 +542,7 @@
 			</include>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [ComparedTargetTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
 
 				<li>animalcharacteristic->stench</li>

@@ -244,11 +244,11 @@
 		<recipientThought>PMBeaver_Slight</recipientThought>
 		<logRulesInitiator>
 			<include>
-				<li>PMInteractionRules_Insult</li>
+				<li>PMInteractionRules_Slight</li>
 			</include>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
 				<li>target(p=4)->[RECIPIENT_nameDef]</li>
@@ -308,15 +308,15 @@
 			</include>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
 				<li>comparedtargetto->[ComparedTargetTo]</li>
 				<li>comparedtargetto->[noisedtargetwas]</li>
 				
-				<li>noisedtargetwas->squeaked that [target] was</li>
-				<li>noisedtargetwas->grunted that [target] was</li>
-				<li>noisedtargetwas->barked that [target] was</li>
+				<li>noisedtargetwas->squeaked that [Target] was</li>
+				<li>noisedtargetwas->grunted that [Target] was</li>
+				<li>noisedtargetwas->barked that [Target] was</li>
 
 				<li>target(p=4)->[RECIPIENT_nameDef]</li>
 				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
@@ -395,9 +395,8 @@
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>comparedtargetto->called [RECIPIENT_nameDef]</li>
-				<li>comparedtargetto->compared [RECIPIENT_nameDef] to</li>
-				<li>comparedtargetto->ruffed that [RECIPIENT_nameDef] was</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->squeaked that [RECIPIENT_nameDef] was</li>
 
 				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[animalcharacteristic]</li>
@@ -469,7 +468,7 @@
 			</include>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [ComparedTargetTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
 
 				<li>animalcharacteristic->tail</li>
