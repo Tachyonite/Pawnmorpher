@@ -6,7 +6,7 @@
                 <label>Became squirrelmorph</label>
                 <description>Does anyone have any acorns?</description>
                 <visible>true</visible>
-                <baseMoodEffect>0</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>Became squirrelmorph</label>

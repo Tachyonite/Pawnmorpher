@@ -6,7 +6,7 @@
                 <label>Became ratmorph</label>
                 <description>I feel like a lab rat... literally!</description>
                 <visible>true</visible>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>Became ratmorph</label>
