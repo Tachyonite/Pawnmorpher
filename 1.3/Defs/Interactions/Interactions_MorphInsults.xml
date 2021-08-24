@@ -201,66 +201,6 @@
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Avian</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
-	<!-- Insults aimed at boomalopes -->
-	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
-		<defName>PMBoom_DirectedInsult</defName>
-		<label>directed boomalope insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
-		<logRulesInitiator>
-			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [boomcharacteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
-
-				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
-				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
-
-				<li>insulted(p=3)->insulted</li>
-				<li>insulted->openly insulted</li>
-				<li>insulted->loudly insulted</li>
-				<li>insulted->flagrantly insulted</li>
-				<li>insulted->directly insulted</li>
-				<li>insulted->viciously insulted</li>
-				<li>insulted->flagrantly disrespected</li>
-				<li>insulted->slandered</li>
-				<li>insulted->hurled invective about</li>
-				<li>insulted->derided</li>
-
-				<li>boomcharacteristic->chemical cysts</li>
-				<li>boomcharacteristic->weird ears</li>
-				<li>boomcharacteristic->tendency to leak chemfuel</li>
-				<li>boomcharacteristic->rancid chemical smell</li>
-				<li>boomcharacteristic->sloshing noises</li>
-				<li>boomcharacteristic->instability</li>
-				<li>boomcharacteristic->volitility</li>
-				<li>boomcharacteristic->explosive personality</li>
-
-				<li>insultcomparison->ticking time bomb</li>
-				<li>insultcomparison->suicide bomber</li>
-				<li>insultcomparison->oil well</li>
-				<li>insultcomparison->gas pump</li>
-				<li>insultcomparison->chemfuel dispenser</li>
-				<li>insultcomparison->stick of dynamite</li>
-				<li>insultcomparison->fire hazard</li>
-				<li>insultcomparison->explosion hazard</li>
-				<li>insultcomparison->red barrel</li>
-				<li>insultcomparison->genetic experiment gone wrong</li>
-
-				<li>insult->complained about [RECIPIENT_nameDef]'s constant chemfuel leaks</li>
-				<li>insult->mockingly made an explosion noise at [RECIPIENT_nameDef]</li>
-				<li>insult->loudly asked for someone to check the firefoam poppers as [RECIPIENT_nameDef] walked by</li>
-				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
-
-				<li>insultingjoketopics->guided munitions</li>
-				<li>insultingjoketopics->suicide bombers</li>
-				<li>insultingjoketopics->explosions</li>
-				<li>insultingjoketopics->oil barons</li>
-				<li>insultingjoketopics->forest fires</li>
-				<li>insultingjoketopics->firefighting</li>
-			</rulesStrings>
-		</logRulesInitiator>
-		<recipientWeights>PMInteractionWeights_Boom</recipientWeights>
-	</Pawnmorph.Social.PMInteractionDef>
 	
 	<!-- Insults aimed at suids -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">

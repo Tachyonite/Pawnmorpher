@@ -314,7 +314,7 @@
 		<defName>PMBark_DeepTalkCanineMemory</defName>
 		<stages>
 			<li>
-				<label>packmates</label>
+				<label>packchat</label>
 				<baseOpinionOffset>20</baseOpinionOffset>
 			</li>
 		</stages>
