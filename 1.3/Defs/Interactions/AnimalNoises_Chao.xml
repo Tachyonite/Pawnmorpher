@@ -607,7 +607,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMChao_DirectedInsult</defName>
 		<label>directed chao insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
+		<recipientThought>Insulted</recipientThought>
 		<logRulesInitiator>
 			<include>
 				<li>PMInteractionRules_Insult</li>

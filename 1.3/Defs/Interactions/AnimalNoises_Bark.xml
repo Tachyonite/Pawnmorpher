@@ -470,7 +470,11 @@
 				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
 				<li>comparedtargetto->[ComparedRecipientTo]</li>
-				<li>comparedtargetto->ruffed that [RECIPIENT_nameDef] was</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->ruffed that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->yipped that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->woofed that [RECIPIENT_nameDef] was</li>
 
 				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[animalcharacteristic]</li>
@@ -500,6 +504,8 @@
 				
 				<li>adj(p=8)->[KindAdj]</li>
 				<li>adj->delicious</li>
+				<li>adj->tasty</li>
+				<li>adj->savory</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Canine</initiatorWeights>
