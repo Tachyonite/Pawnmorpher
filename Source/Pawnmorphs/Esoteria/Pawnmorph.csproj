@@ -839,6 +839,7 @@
     <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
     <Compile Include="Hediffs\IMutagenicHediff.cs" />
     <Compile Include="Hediffs\Hediff_Descriptive.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
