@@ -398,7 +398,7 @@
 				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
 				<li>comparedtargetto->[ComparedRecipientTo]</li>
-				<li>comparedtargetto->ruffed that [RECIPIENT_nameDef] was</li>
+				<li>comparedtargetto->bleated that [RECIPIENT_nameDef] was</li>
 
 				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[animalcharacteristic]</li>

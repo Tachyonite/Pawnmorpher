@@ -40,12 +40,17 @@
 		<initiatorThought>PMChao_ChitchatMemory</initiatorThought>
 		<recipientThought>PMChao_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-                <li>talkedabout(p=2)->[animalnoised] at</li>
-                <li>talkedabout->[animalnoise]-[animalnoised] at</li>
+                <li>noisedat(p=2)->[animalnoised] at</li>
+                <li>noisedat->[animalnoise]-[animalnoised] at</li>
 
 				<li>animalnoise->bark</li>
 				<li>animalnoise->whuff</li>
@@ -77,21 +82,26 @@
 				<li>animalnoised->oinked</li>
 				<li>animalnoised->whinnied</li>
 
-                <li>askedabout->mutagen</li>
-                <li>askedabout->mutaslurry</li>
-                <li>askedabout->mutanite</li>
-                <li>askedabout->animals</li>
-                <li>askedabout->chimeras</li>
-                <li>askedabout->change</li>
-                <li>askedabout->chaos theory</li>
-                <li>askedabout->DNA testing</li>
-                <li>askedabout->conflicting instincts</li>
-                <li>askedabout->different senses</li>
-                <li>askedabout->sensory overload</li>
-                <li>askedabout->unconventional livestock</li>
-                <li>askedabout->production mutations</li>
-                <li>askedabout->Edward</li>
-                <li>askedabout->reverter serum</li>
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->[animalnoised] about</li>
+                <li>noisedabout->[animalnoise]-[animalnoised] about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+                <li>animaltopic->animals</li>
+                <li>animaltopic->chimeras</li>
+                <li>animaltopic->hybrids</li>
+                <li>animaltopic->chaobeasts</li>
+                <li>animaltopic->change</li>
+                <li>animaltopic->chaos theory</li>
+                <li>animaltopic->strange animal noises</li>
+                <li>animaltopic->DNA testing</li>
+                <li>animaltopic->conflicting instincts</li>
+                <li>animaltopic->different senses</li>
+                <li>animaltopic->sensory overload</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
@@ -116,40 +126,38 @@
 		<initiatorThought>PMChao_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMChao_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [chaolife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
 
-				<li>chaolife->being a chaomorph</li>
-				<li>chaolife->becoming a chaomorph</li>
-				<li>chaolife->shedding</li>
-				<li>chaolife->headpats</li>
-				<li>chaolife->ear scritches</li>
-				<li>chaolife->different senses</li>
-				<li>chaolife->conflicting mutations</li>
-				<li>chaolife->incompatable biologies</li>
-				<li>chaolife->confusing instincts</li>
-				<li>chaolife->fur, feather, and scale cleaning</li>
-				<li>chaolife->mutagens</li>
-				<li>chaolife->experimental mutagens</li>
-				<li>chaolife->unstable mechanites</li>
-				<li>chaolife->mad science</li>
-				<li>chaolife->human experimentation</li>
-				<li>chaolife->the ethics of mutation</li>
-				<li>chaolife->the health risks of mutation</li>
-				<li>chaolife->the different categories of chaomorphs</li>
-				<li>chaolife->how many different animals [INITIATOR_nameDef] is</li>
-				<li>chaolife->chaotaxonomy</li>
-				<li>chaolife->chookcow ranching</li>
-				<li>chaolife->what science has done</li>
+				<li>animallife->being a chaomorph</li>
+				<li>animallife->becoming a chaomorph</li>
+				<li>animallife->shedding and molting</li>
+				<li>animallife->headpats</li>
+				<li>animallife->ear scritches</li>
+				<li>animallife->different senses</li>
+				<li>animallife->conflicting mutations</li>
+				<li>animallife->incompatable biologies</li>
+                <li>animallife->awkward mutation combinations</li>
+				<li>animallife->confusing instincts</li>
+				<li>animallife->fur, feather, and scale cleaning</li>
+				<li>animallife->experimental mutagens</li>
+				<li>animallife->unstable mechanites</li>
+				<li>animallife->mad science</li>
+				<li>animallife->human experimentation</li>
+				<li>animallife->the ethics of mutation</li>
+				<li>animallife->the health risks of mutation</li>
+				<li>animallife->the different categories of chaomorphs</li>
+				<li>animallife->how many different animals [INITIATOR_nameDef] is</li>
+				<li>animallife->chaotaxonomy</li>
+				<li>animallife->chookcow ranching</li>
+				<li>animallife->what science has done</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
@@ -174,67 +182,62 @@
 		<initiatorThought>PMChao_DeepTalkChaoMemory</initiatorThought>
 		<recipientThought>PMChao_DeepTalkChaoMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [chaotopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [chaotopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [chaobehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
-				
-				<li>chaotopic(p=2)->[chaolife]</li>
-				<li>chaotopic->[secretchaolife]</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>chaolife->being chaomorphs</li>
-				<li>chaolife->becoming chaomorphs</li>
-				<li>chaolife->shedding</li>
-				<li>chaolife->headpats</li>
-				<li>chaolife->ear scritches</li>
-				<li>chaolife->different senses</li>
-				<li>chaolife->conflicting mutations</li>
-				<li>chaolife->incompatable biologies</li>
-				<li>chaolife->confusing instincts</li>
-				<li>chaolife->fur, feather, and scale cleaning</li>
-				<li>chaolife->mutagens</li>
-				<li>chaolife->experimental mutagens</li>
-				<li>chaolife->unstable mechanites</li>
-				<li>chaolife->mad science</li>
-				<li>chaolife->human experimentation</li>
-				<li>chaolife->the ethics of mutation</li>
-				<li>chaolife->the health risks of mutation</li>
-				<li>chaolife->the different categories of chaomorphs</li>
-				<li>chaolife->how many different animals [INITIATOR_nameDef] is</li>
-				<li>chaolife->how many different animals [RECIPIENT_nameDef] is</li>
-				<li>chaolife->chaotaxonomy</li>
-				<li>chaolife->chookcow ranching</li>
-				<li>chaolife->what science has done</li>
+				<li>animallife->being chaomorphs</li>
+				<li>animallife->becoming chaomorphs</li>
+				<li>animallife->shedding and molting</li>
+				<li>animallife->headpats</li>
+				<li>animallife->ear scritches</li>
+				<li>animallife->different senses</li>
+				<li>animallife->conflicting mutations</li>
+				<li>animallife->incompatable biologies</li>
+                <li>animallife->awkward mutation combinations</li>
+				<li>animallife->confusing instincts</li>
+				<li>animallife->fur, feather, and scale cleaning</li>
+				<li>animallife->experimental mutagens</li>
+				<li>animallife->unstable mechanites</li>
+				<li>animallife->mad science</li>
+				<li>animallife->human experimentation</li>
+				<li>animallife->the ethics of mutation</li>
+				<li>animallife->the health risks of mutation</li>
+				<li>animallife->the different categories of chaomorphs</li>
+				<li>animallife->how many different animals they each are</li>
+				<li>animallife->chaotaxonomy</li>
+				<li>animallife->chookcow ranching</li>
+				<li>animallife->what science has done</li>
 				
-				<li>secretchaolife->brushy brushy</li>
-				<li>secretchaolife->comparing mutations</li>
-				<li>secretchaolife->being crimes against nature</li>
-				<li>secretchaolife->wondering what chaomeat tastes like</li>
-				<li>secretchaolife->the legend of chookcow gryphons</li>
-				<li>secretchaolife->how chaofoxes can secretly fly</li>
-				<li>secretchaolife->hunting [prey]</li>
-				<li>secretchaolife->chasing [prey]</li>
-				<li>secretchaolife->running away from [pred]</li>
-				<li>secretchaolife->being eaten by [pred]</li>
-				<li>secretchaolife->pouring slurry into the water supply</li>
-				<li>secretchaolife->embracing change</li>
-				<li>secretchaolife->merging together</li>
-				<li>secretchaolife->forced evolution</li>
-				<li>secretchaolife->worshipping the chao-gods</li>
-				<li>secretchaolife->chaocults</li>
-				<li>secretchaolife->the chao-god Yaaap, Herald of the Flock</li>
-				<li>secretchaolife->the chao-god Pheo, Shaper of Images</li>
-				<li>secretchaolife->the chao-god Iron, The Architect</li>
+				<li>secretanimallife->brushy brushy</li>
+				<li>secretanimallife->comparing mutations</li>
+				<li>secretanimallife->being crimes against nature</li>
+				<li>secretanimallife->wondering what chaomeat tastes like</li>
+				<li>secretanimallife->the legend of chookcow gryphons</li>
+				<li>secretanimallife->how chaofoxes can secretly fly</li>
+				<li>secretanimallife->the land speed of an unladen chaodino</li>
+				<li>secretanimallife->hunting [prey]</li>
+				<li>secretanimallife->chasing [prey]</li>
+				<li>secretanimallife->running away from [pred]</li>
+				<li>secretanimallife->being eaten by [pred]</li>
+				<li>secretanimallife->the uncomfortable sensation of wanting to hunt yourself</li>
+				<li>secretanimallife->embracing change</li>
+				<li>secretanimallife->merging together</li>
+				<li>secretanimallife->forced evolution</li>
+				<li>secretanimallife->pouring slurry into the water supply</li>
+				<li>secretanimallife->worshipping the chao-gods</li>
+				<li>secretanimallife->chaocults</li>
+				<li>secretanimallife->the chao-god Yaaap, Herald of the Flock</li>
+				<li>secretanimallife->the chao-god Pheo, Shaper of Images</li>
+				<li>secretanimallife->the chao-god Iron, The Architect</li>
 				
 				<li>prey(p=10)->[preyanimal]</li>
 				<li>prey->[preymorph]</li>
@@ -279,9 +282,9 @@
 				<li>predmorph->bearmorphs</li>
 				<li>predmorph->thrumbomorphs</li>
 				
-				<li>chaobehavior->exchanged sniffs with [RECIPIENT_nameDef]</li>
-				<li>chaobehavior->and [RECIPIENT_nameDef] compared notes on mutations</li>
-				<li>chaobehavior->and [RECIPIENT_nameDef] shared understanding looks</li>
+				<li>animalbehavior->exchanged sniffs with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] compared notes on mutations</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] shared understanding looks</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
@@ -310,15 +313,9 @@
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [complained] at [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [complained] about [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complained] about [Target]'s [characteristic].</li>
 				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[chaocharacteristic]</li>
-				
 				<li>complained(p=2)->[noised]</li>
 				<li>complained->[noise]-[noised]</li>
 				
@@ -350,20 +347,20 @@
 				<li>noised->screeched</li>
 				<li>noised->squealed</li>
 				
-				<li>chaocharacteristic->scent</li>
-				<li>chaocharacteristic->body language</li>
-				<li>chaocharacteristic->loud noises</li>
-				<li>chaocharacteristic->animal handling skill</li>
-				<li>chaocharacteristic->normal body</li>
-				<li>chaocharacteristic->working organs</li>
-				<li>chaocharacteristic->functioning biology</li>
-				<li>chaocharacteristic->matching limbs</li>
-				<li>chaocharacteristic->stable gait</li>
-				<li>chaocharacteristic->lack of ethics</li>
-				<li>chaocharacteristic->penchant for mad science</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->animal handling skill</li>
+				<li>animalcharacteristic->normal body</li>
+				<li>animalcharacteristic->working organs</li>
+				<li>animalcharacteristic->functioning biology</li>
+				<li>animalcharacteristic->matching limbs</li>
+				<li>animalcharacteristic->stable gait</li>
+				<li>animalcharacteristic->lack of ethics</li>
+				<li>animalcharacteristic->penchant for mad science</li>
 				
 				<li>annoyingbehavior->made strange gurgling noises as some part of [INITIATOR_possessive] chaobiology settled down, grossing out [RECIPIENT_nameDef]</li>
 				<li>annoyingbehavior->burped repeatedly as [INITIATOR_possessive] mismatched digestive system worked out some kinks, to the disgust of [RECIPIENT_nameDef]</li>
@@ -400,7 +397,7 @@
 				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
 				
 				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[chaocharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
 				<li>complained->[noised]</li>
 				<li>complained->[noise]-[noised]</li>
@@ -435,17 +432,17 @@
 				<li>noises->screeches</li>
 				<li>noises->screams</li>
 				
-				<li>chaocharacteristic->scent</li>
-				<li>chaocharacteristic->body language</li>
-				<li>chaocharacteristic->loud noises</li>
-				<li>chaocharacteristic->animal handling skill</li>
-				<li>chaocharacteristic->working organs</li>
-				<li>chaocharacteristic->normal body</li>
-				<li>chaocharacteristic->functioning biology</li>
-				<li>chaocharacteristic->matching limbs</li>
-				<li>chaocharacteristic->stable gait</li>
-				<li>chaocharacteristic->lack of ethics</li>
-				<li>chaocharacteristic->penchant for mad science</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->animal handling skill</li>
+				<li>animalcharacteristic->working organs</li>
+				<li>animalcharacteristic->normal body</li>
+				<li>animalcharacteristic->functioning biology</li>
+				<li>animalcharacteristic->matching limbs</li>
+				<li>animalcharacteristic->stable gait</li>
+				<li>animalcharacteristic->lack of ethics</li>
+				<li>animalcharacteristic->penchant for mad science</li>
 				
 				<li>chaoscreech->tried to [noise] at [RECIPIENT_nameDef] only to devolve into a series of [noises]</li>
 				<li>chaoscreech->made several rapid-fire [noises] at [RECIPIENT_nameDef]</li>
@@ -490,40 +487,41 @@
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMChao_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [chaocompliment].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [chaocompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[chaocharacteristic]</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noised] that [RECIPIENT_nameDef] was</li>
+				<li>comparedtargetto->[noise]-[noised] that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>chaocharacteristic->scent</li>
-				<li>chaocharacteristic->body language</li>
-				<li>chaocharacteristic->normal body</li>
-				<li>chaocharacteristic->working organs</li>
-				<li>chaocharacteristic->functioning biology</li>
-				<li>chaocharacteristic->matching limbs</li>
-				<li>chaocharacteristic->stable gait</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->normal body</li>
+				<li>animalcharacteristic->working organs</li>
+				<li>animalcharacteristic->functioning biology</li>
+				<li>animalcharacteristic->matching limbs</li>
+				<li>animalcharacteristic->stable gait</li>
 				
-				<li>complimented->[adv] [noised] at</li>
-				<li>complimented->[adv] [noise]-[noised] at</li>
+				<li>complimented->[MaybeKindAdv] [noised] at</li>
+				<li>complimented->[MaybeKindAdv] [noise]-[noised] at</li>
 				
-				<li>kindbehavior->[adv] [noised] at</li>
-				<li>kindbehavior->[adv] [noise]-[noised] at</li>
-				<li>kindbehavior->[adv] [behaviored]</li>
-				<li>kindbehavior->[adv] [behavior]-[behaviored]</li>
-				<li>kindbehavior->[adv] [noised] and [behaviored]</li>
-				<li>kindbehavior->[adv] [noise]-[noised] and [behaviored]</li>
-				<li>kindbehavior->[adv] [noised] and [behavior]-[behaviored]</li>
-				<li>kindbehavior->[adv] [noise]-[noised] and [behavior]-[behaviored]</li>
-				<li>kindbehavior->[adv] fluffed [INITIATOR_possessive] fur-feathers at</li>
-				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->happily</li>
+				<li>kindbehavior->[noised] at</li>
+				<li>kindbehavior->[noise]-[noised] at</li>
+				<li>kindbehavior->[behaviored]</li>
+				<li>kindbehavior->[behavior]-[behaviored]</li>
+				<li>kindbehavior->[noised] and [behaviored]</li>
+				<li>kindbehavior->[noise]-[noised] and [behaviored]</li>
+				<li>kindbehavior->[noised] and [behavior]-[behaviored]</li>
+				<li>kindbehavior->[noise]-[noised] and [behavior]-[behaviored]</li>
+				<li>kindbehavior->fluffed [INITIATOR_possessive] fur-feathers at</li>
 				
 				<li>noise->wuff</li>
 				<li>noise->purr</li>
@@ -559,30 +557,24 @@
 				<li>behaviored->fluttered</li>
 				<li>behaviored->wagged</li>
 								
-				<li>chaocharacteristic->scent</li>
-				<li>chaocharacteristic->body language</li>
-				<li>chaocharacteristic->loud noises</li>
-				<li>chaocharacteristic->animal handling skill</li>
-				<li>chaocharacteristic->working organs</li>
-				<li>chaocharacteristic->normal body</li>
-				<li>chaocharacteristic->functioning biology</li>
-				<li>chaocharacteristic->matching limbs</li>
-				<li>chaocharacteristic->stable gait</li>
-				<li>chaocharacteristic->lack of ethics</li>
-				<li>chaocharacteristic->penchant for mad science</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->animal handling skill</li>
+				<li>animalcharacteristic->working organs</li>
+				<li>animalcharacteristic->normal body</li>
+				<li>animalcharacteristic->functioning biology</li>
+				<li>animalcharacteristic->matching limbs</li>
+				<li>animalcharacteristic->stable gait</li>
+				<li>animalcharacteristic->good sense of ethics</li>
+				<li>animalcharacteristic->restraint from mad science</li>
 				
-				<li>chaocompliment->[adj] zookeeper</li>
-				<li>chaocompliment->[adj] animal handler</li>
-				<li>chaocompliment->[adj] scritcher</li>
-				<li>chaocompliment->[adj] noserubber</li>
-				<li>chaocompliment->[adj] headpatter</li>
-				<li>chaocompliment->[adj] earscritcher</li>
-				
-				<li>adj->wonderful</li>
-				<li>adj->delightful</li>
-				<li>adj->amazing</li>
-				<li>adj->sweet</li>
-				<li>adj->lovely</li>
+				<li>compliment->a [KindAdj] zookeeper</li>
+				<li>compliment->a [KindAdj] animal handler</li>
+				<li>compliment->a [KindAdj] scritcher</li>
+				<li>compliment->a [KindAdj] noserubber</li>
+				<li>compliment->a [KindAdj] headpatter</li>
+				<li>compliment->a [KindAdj] earscritcher</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
@@ -609,4 +601,61 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at chaomorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMChao_DirectedInsult</defName>
+		<label>directed chao insult</label>
+		<recipientThought>PMTalk_Insult</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->smell</li>
+				<li>animalcharacteristic->stench</li>
+				<li>animalcharacteristic->weird noises</li>
+				<li>animalcharacteristic->mismatched body</li>
+				<li>animalcharacteristic->warped body</li>
+				<li>animalcharacteristic->freakish appearance</li>
+				<li>animalcharacteristic->jumbled-up organs</li>
+
+				<li>insultcomparison->zoo</li>
+				<li>insultcomparison->one-[Man] biology exhibit</li>
+				<li>insultcomparison->one-[Man] farm</li>
+				<li>insultcomparison->walking see-n-say</li>
+				<li>insultcomparison->frankenstein's monster</li>
+				<li>insultcomparison->supermarket meat department</li>
+				<li>insultcomparison->all-in-one breakfast dispenser</li>
+				<li>insultcomparison->chimera</li>
+				<li>insultcomparison->freak of nature</li>
+				<li>insultcomparison->mutagen addict</li>
+				<li>insultcomparison->evolutionary mistake</li>
+				<li>insultcomparison->pile of animal parts</li>
+				<li>insultcomparison->animal grab bag</li>
+				<li>insultcomparison->[Man]-[Animal]-[Animal]</li>
+				
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->remarked that [RECIPIENT_nameDef] looks like a cross between a [Animal], a [Animal], and a [Animal]</li>
+				<li>insult->told [RECIPIENT_nameDef] to stop making so many different animal sounds</li>
+				<li>insult->said [RECIPIENT_nameDef] looks so much like a chaofox that they should put a saddle on [RECIPIENT_objective]</li>
+				<li>insult->said [RECIPIENT_nameDef] looks so much like a chaocow that they should put [RECIPIENT_objective] in a barn stall</li>
+				<li>insult->said [RECIPIENT_nameDef] looks so much like a chaodino that they should get an egg box ready</li>
+
+				<li>insultingjoketopics->an explosion in the taxonomy department</li>
+				<li>insultingjoketopics->leftover animal parts</li>
+				<li>insultingjoketopics->unlikely conceptions</li>
+				<li>insultingjoketopics->swimming in mutaslurry</li>
+				<li>insultingjoketopics->man-bear-pigs</li>
+				<li>insultingjoketopics->someone named Edward</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Chao</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
 </Defs>
