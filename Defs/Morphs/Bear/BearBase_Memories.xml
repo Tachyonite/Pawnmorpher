@@ -60,19 +60,19 @@
                 <label>Bear face</label>
                 <description>Table manners are going to be hard like this.</description>
                 <visible>true</visible>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Bear face</label>
                 <description>ROAR! Awesome, time to raid the freezer!</description>
                 <visible>true</visible>
-                <baseMoodEffect>4</baseMoodEffect>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>Bear face</label>
                 <description>I'm a hideous roaring monster!</description>
                 <visible>true</visible>
-                <baseMoodEffect>-4</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -90,13 +90,13 @@
                 <label>Bear ears</label>
                 <description>They're small and round, not all that impressive.</description>
                 <visible>true</visible>
-                <baseMoodEffect>0</baseMoodEffect>
+                <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>Bear ears</label>
                 <description>Egh, they're so furry and awful.</description>
                 <visible>true</visible>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -108,19 +108,19 @@
                 <label>Tiny tail</label>
                 <description>If I had to get a tail, why wasn't it something cool at least?</description>
                 <visible>true</visible>
-                <baseMoodEffect>0</baseMoodEffect>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Tiny tail</label>
                 <description>As far as tails go, this is not that impressive.</description>
                 <visible>true</visible>
-                <baseMoodEffect>0</baseMoodEffect>
+                <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>Tiny tail</label>
                 <description>At least I can hide it.</description>
                 <visible>true</visible>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

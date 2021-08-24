@@ -19,7 +19,7 @@
 				<layer>Skin</layer>
 			</li>
 			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
-				<mtb>60</mtb>
+				<mtb>2</mtb>
 				<maxTreeSearchDepth>1</maxTreeSearchDepth>
 			</li>
 		</comps>

@@ -6,13 +6,13 @@
                 <label>Became rhinomorph</label>
                 <description>I feel so heavy, and this horn is really something else.</description>
                 <visible>true</visible>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>Became rhinomorph</label>
                 <description>I'm a huge war machine, this is incredible!</description>
                 <visible>true</visible>
-                <baseMoodEffect>5</baseMoodEffect>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>Became rhinomorph</label>
