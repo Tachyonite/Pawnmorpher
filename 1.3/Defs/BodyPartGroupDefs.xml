@@ -3,7 +3,7 @@
         <defName>PM_TailLeg</defName>
         <labelShort>tail leg</labelShort>
         <modExtensions>
-            <li Class="Pawnmorph.BodyPartGroupExtension.BodyPartGroupExtension">
+            <li Class="Pawnmorph.DefExtensions.BodyPartGroupExtension">
                 <countsAsGroin>true</countsAsGroin>
             </li>
         </modExtensions>
