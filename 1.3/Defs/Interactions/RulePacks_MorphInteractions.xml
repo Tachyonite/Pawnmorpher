@@ -76,6 +76,9 @@
 				<li>Insulted->slandered</li>
 				<li>Insulted->hurled invective about</li>
 				<li>Insulted->derided</li>
+				
+				<li>Refusal->refusal</li>
+				<li>Refusal->unwillingness</li>
 			</rulesStrings>
 		</rulePack>
 	</RulePackDef>
