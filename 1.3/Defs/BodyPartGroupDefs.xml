@@ -1,7 +1,11 @@
 <Defs>
     <BodyPartGroupDef>
-        <defName>PM_LargeTail</defName>
-        <labelShort>large tail</labelShort>
-
+        <defName>PM_TailLeg</defName>
+        <labelShort>tail leg</labelShort>
+        <modExtensions>
+            <li Class="Pawnmorph.BodyPartGroupExtension.BodyPartGroupExtension">
+                <countsAsGroin>true</countsAsGroin>
+            </li>
+        </modExtensions>
     </BodyPartGroupDef>
 </Defs>

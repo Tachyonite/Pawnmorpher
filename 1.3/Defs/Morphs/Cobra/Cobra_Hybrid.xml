@@ -426,7 +426,7 @@
                     <customLabel>tail</customLabel>
                     <coverage>0.14</coverage>
                     <groups>
-                        <li>PM_LargeTail</li>
+                        <li>PM_TailLeg</li>
                     </groups>
                 </li>
             </parts>
