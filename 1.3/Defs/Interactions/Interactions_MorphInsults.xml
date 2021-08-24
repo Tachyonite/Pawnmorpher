@@ -201,69 +201,6 @@
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Avian</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
-
-	<!-- Insults aimed at ChookMorphs -->
-	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
-		<defName>PMBok_DirectedChookInsult</defName>
-		<label>directed chook insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
-		<logRulesInitiator>
-			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [aviancharacteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
-
-				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
-				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
-
-				<li>insulted(p=3)->insulted</li>
-				<li>insulted->openly insulted</li>
-				<li>insulted->loudly insulted</li>
-				<li>insulted->flagrantly insulted</li>
-				<li>insulted->directly insulted</li>
-				<li>insulted->viciously insulted</li>
-				<li>insulted->flagrantly disrespected</li>
-				<li>insulted->slandered</li>
-				<li>insulted->hurled invective about</li>
-				<li>insulted->derided</li>
-
-				<li>aviancharacteristic->feathers</li>
-				<li>aviancharacteristic->beak</li>
-				<li>aviancharacteristic->comb</li>
-				<li>aviancharacteristic->fashion sense</li>
-				<li>aviancharacteristic->voice</li>
-				<li>aviancharacteristic->head stabilization</li>
-				<li>aviancharacteristic->egg laying</li>
-				<li>aviancharacteristic->rigid eyes</li>
-				<li>aviancharacteristic->head bobbing</li>
-				<li>aviancharacteristic->lack of ears</li>
-				<li>aviancharacteristic->twitchy behavior</li>
-				<li>aviancharacteristic->egg quality</li>
-				<li>aviancharacteristic->[refusal] to stop talking about eggs</li>
-
-				<li>insultcomparison->bird brain</li>
-				<li>insultcomparison->battery hen</li>
-				<li>insultcomparison->fowl person</li>
-				<li>insultcomparison->feather duster</li>
-				<li>insultcomparison->main dish</li>
-				<li>insultcomparison->rat with wings</li>
-				<li>insultcomparison->cat's dinner</li>
-				<li>insultcomparison->nutrient dispenser</li>
-
-				<li>insult->complained that [RECIPIENT_nameDef] is too loud</li>
-				<li>insult->suggested that [RECIPIENT_nameDef] stop twitching [RECIPIENT_possessive] head so much</li>
-				<li>insult->yelled at [RECIPIENT_nameDef] to stop preening around [RECIPIENT_objective]</li>
-				<li>insult->shook his arms and made bokking noises towards [RECIPIENT_nameDef]</li>
-				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
-
-				<li>insultingjoketopics->chickens and road safety</li>
-				<li>insultingjoketopics->cowardice</li>
-				<li>insultingjoketopics->an egg pun</li>
-			</rulesStrings>
-		</logRulesInitiator>
-		<recipientWeights>PMInteractionWeights_Chook</recipientWeights>
-	</Pawnmorph.Social.PMInteractionDef>
-	
 	<!-- Insults aimed at boomalopes -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMBoom_DirectedInsult</defName>

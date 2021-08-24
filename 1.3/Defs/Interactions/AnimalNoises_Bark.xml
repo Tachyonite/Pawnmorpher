@@ -381,7 +381,7 @@
 		<defName>PMBark_Insult</defName>
 		<label>snarl</label>
 		<symbol>Things/Mote/SpeechSymbols/Bark_Insult</symbol>
-		<recipientThought>PMBark_Insult</recipientThought>
+		<recipientThought>PMBark_InsultMemory</recipientThought>
 		<logRulesInitiator>
 			<include>
 				<li>PMInteractionRules_Insult</li>
@@ -431,7 +431,7 @@
 	</Pawnmorph.Social.PMInteractionDef>
 	
 	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
-		<defName>PMBark_Insult</defName>
+		<defName>PMBark_InsultMemory</defName>
 		<stages>
 			<li>
 				<label>snarl</label>
@@ -575,4 +575,5 @@
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Canine</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
+
 </Defs>
