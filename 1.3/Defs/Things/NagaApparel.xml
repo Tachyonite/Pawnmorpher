@@ -2,7 +2,7 @@
     <ThingDef Name="PM_NagaClothingBase" ParentName="ApparelMakeableBase" Abstract="true">
         <apparel>
             <bodyPartGroups>
-                <li>PM_TailLeg</li>
+                <li>PM_LargeTail</li>
             </bodyPartGroups>
             <layers>
                 <li>OnSkin</li>
@@ -19,7 +19,7 @@
     <ThingDef Name="PM_NagaArmorBase" ParentName="ArmorMachineableBase" Abstract="true">
         <apparel>
             <bodyPartGroups>
-                <li>PM_TailLeg</li>
+                <li>PM_LargeTail</li>
             </bodyPartGroups>
             <layers>
                 <li>OnSkin</li>
@@ -63,11 +63,11 @@
             <tags>
                 <li>IndustrialBasic</li>
             </tags>
+            <defaultOutfitTags>
+                <li>Worker</li>
+                <li>Soldier</li>
+            </defaultOutfitTags>
         </apparel>
-        <defaultOutfitTags>
-            <li>Worker</li>
-            <li>Soldier</li>
-        </defaultOutfitTags>
     </ThingDef>
 
 
