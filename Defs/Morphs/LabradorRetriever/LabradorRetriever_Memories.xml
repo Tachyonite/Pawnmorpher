@@ -41,7 +41,7 @@
             <li>
                 <label>reverted</label>
                 <description>Thank goodness...I don't think I could cope with that much happiness.</description>
-                <baseMoodEffect>+5</baseMoodEffect>
+                <baseMoodEffect>+10</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
