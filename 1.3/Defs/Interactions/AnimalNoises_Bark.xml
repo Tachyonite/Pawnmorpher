@@ -415,12 +415,9 @@
 				<li>animalcharacteristic->scent</li>
 				<li>animalcharacteristic->body language</li>
 				<li>animalcharacteristic->lack of treats</li>
-				<li>animalcharacteristic->[refusal] to take [INITIATOR_objective] on walkies</li>
-				<li>animalcharacteristic->[refusal] to give [INITIATOR_objective] headpats</li>
-				<li>animalcharacteristic->[refusal] to let [INITIATOR_objective] sniff [RECIPIENT_objective]</li>
-				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>animalcharacteristic->[Refusal] to take [INITIATOR_objective] on walkies</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] headpats</li>
+				<li>animalcharacteristic->[Refusal] to let [INITIATOR_objective] sniff [RECIPIENT_objective]</li>
 				
 				<li>insult->a female dog</li>
 				<li>insult->a cat</li>
