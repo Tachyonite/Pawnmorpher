@@ -1,33 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Defs>
-	
-	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
-		<defName>PMTalk_Insult</defName>
-		<stages>
-			<li>
-				<label>insult</label>
-				<baseOpinionOffset>-15</baseOpinionOffset>
-			</li>
-		</stages>
-		<thoughtToMake>PMTalk_InsultedMood</thoughtToMake>
-	</ThoughtDef>
-	
-	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
-		<defName>PMTalk_InsultedMood</defName>
-		<stages>
-			<li>
-				<label>insulted</label>
-				<description>I've been directly insulted! What an awful person!</description>
-				<baseMoodEffect>-5</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
+
 	<!-- insults directed at vulpine morphs -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMTalk_VulpineInsult</defName>
 		<label>vulpine insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
+		<recipientThought>Insulted</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [vulpinecharacteristic].</li>
@@ -82,7 +60,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMSquawk_DirectedInsult</defName>
 		<label>directed avian insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
+		<recipientThought>Insulted</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [aviancharacteristic].</li>
@@ -147,7 +125,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMOink_DirectedInsult</defName>
 		<label>directed pig insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
+		<recipientThought>Insulted</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [pigcharacteristic].</li>
@@ -202,7 +180,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMSqueak_DirectedInsult</defName>
 		<label>directed rodent insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
+		<recipientThought>Insulted</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
@@ -270,7 +248,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMReptileHiss_DirectedInsult</defName>
 		<label>directed reptile insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
+		<recipientThought>Insulted</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
@@ -334,7 +312,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMTortoiseHiss_DirectedInsult</defName>
 		<label>directed tortoise insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
+		<recipientThought>Insulted</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [rodentcharacteristic].</li>
