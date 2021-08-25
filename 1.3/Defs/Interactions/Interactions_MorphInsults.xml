@@ -121,61 +121,6 @@
 		<recipientWeights>PMInteractionWeights_Avian</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
 	
-	<!-- Insults aimed at suids -->
-	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
-		<defName>PMOink_DirectedInsult</defName>
-		<label>directed pig insult</label>
-		<recipientThought>Insulted</recipientThought>
-		<logRulesInitiator>
-			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [pigcharacteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
-
-				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
-				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
-
-				<li>insulted(p=3)->insulted</li>
-				<li>insulted->openly insulted</li>
-				<li>insulted->loudly insulted</li>
-				<li>insulted->flagrantly insulted</li>
-				<li>insulted->directly insulted</li>
-				<li>insulted->viciously insulted</li>
-				<li>insulted->flagrantly disrespected</li>
-				<li>insulted->slandered</li>
-				<li>insulted->hurled invective about</li>
-				<li>insulted->derided</li>
-
-				<li>pigcharacteristic->smell</li>
-				<li>pigcharacteristic->bristles</li>
-				<li>pigcharacteristic->nose</li>
-				<li>pigcharacteristic->floppy ears</li>
-				<li>pigcharacteristic->snout</li>
-				<li>pigcharacteristic->tiny tail</li>
-				<li>pigcharacteristic->weight</li>
-
-				<li>insultcomparison->bunch of bacon</li>
-				<li>insultcomparison->bunch of sausage</li>
-				<li>insultcomparison->long pork</li>
-				<li>insultcomparison->tub of lard</li>
-				<li>insultcomparison->truffle-o-meter</li>
-				<li>insultcomparison->organ doner</li>
-				<li>insultcomparison->vegetable-to-meat factory</li>
-				<li>insultcomparison->farm animal</li>
-				<li>insultcomparison->slob</li>
-
-				<li>insult->told [RECIPIENT_nameDef] to go roll in mud</li>
-				<li>insult->yelled at [RECIPIENT_nameDef] to stop squealing</li>
-				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
-
-				<li>insultingjoketopics->30-50 feral hogs</li>
-				<li>insultingjoketopics->overweight people</li>
-				<li>insultingjoketopics->big bad wolfmorphs</li>
-			</rulesStrings>
-		</logRulesInitiator>
-		<recipientWeights>PMInteractionWeights_Suid</recipientWeights>
-	</Pawnmorph.Social.PMInteractionDef>
-	
 		<!-- Insults aimed at rodents -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMSqueak_DirectedInsult</defName>
