@@ -625,20 +625,20 @@
 				<li>animalcharacteristic->freakish appearance</li>
 				<li>animalcharacteristic->jumbled-up organs</li>
 
-				<li>insultcomparison->zoo</li>
-				<li>insultcomparison->one-[Man] biology exhibit</li>
-				<li>insultcomparison->one-[Man] farm</li>
-				<li>insultcomparison->walking see-n-say</li>
-				<li>insultcomparison->frankenstein's monster</li>
-				<li>insultcomparison->supermarket meat department</li>
-				<li>insultcomparison->all-in-one breakfast dispenser</li>
-				<li>insultcomparison->chimera</li>
-				<li>insultcomparison->freak of nature</li>
-				<li>insultcomparison->mutagen addict</li>
-				<li>insultcomparison->evolutionary mistake</li>
-				<li>insultcomparison->pile of animal parts</li>
-				<li>insultcomparison->animal grab bag</li>
-				<li>insultcomparison->[Man]-[Animal]-[Animal]</li>
+				<li>insultcomparison->a zoo</li>
+				<li>insultcomparison->a one-[Man] biology exhibit</li>
+				<li>insultcomparison->a one-[Man] farm</li>
+				<li>insultcomparison->a walking see-n-say</li>
+				<li>insultcomparison->a frankenstein's monster</li>
+				<li>insultcomparison->a supermarket meat department</li>
+				<li>insultcomparison->an all-in-one breakfast dispenser</li>
+				<li>insultcomparison->a chimera</li>
+				<li>insultcomparison->a freak of nature</li>
+				<li>insultcomparison->a mutagen addict</li>
+				<li>insultcomparison->an evolutionary mistake</li>
+				<li>insultcomparison->a pile of animal parts</li>
+				<li>insultcomparison->an animal grab bag</li>
+				<li>insultcomparison->a [Man]-[Animal]-[Animal]</li>
 				
 				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
 				<li>insult->remarked that [RECIPIENT_nameDef] looks like a cross between a [Animal], a [Animal], and a [Animal]</li>

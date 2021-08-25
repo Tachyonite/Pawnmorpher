@@ -483,15 +483,15 @@
 				<li>animalcharacteristic->construction skill</li>
 				<li>animalcharacteristic->woodcutting skill</li>
 
-				<li>insultcomparison->river polluter</li>
-				<li>insultcomparison->tree muncher</li>
-				<li>insultcomparison->giant termite</li>
-				<li>insultcomparison->tree plague</li>
-				<li>insultcomparison->lumberjack</li>
-				<li>insultcomparison->chainsaw</li>
-				<li>insultcomparison->pest</li>
-				<li>insultcomparison->squeaky toy</li>
-				<li>insultcomparison->shrimp</li>
+				<li>insultcomparison->a river polluter</li>
+				<li>insultcomparison->a tree muncher</li>
+				<li>insultcomparison->a giant termite</li>
+				<li>insultcomparison->a tree plague</li>
+				<li>insultcomparison->a lumberjack</li>
+				<li>insultcomparison->a chainsaw</li>
+				<li>insultcomparison->a pest</li>
+				<li>insultcomparison->a squeaky toy</li>
+				<li>insultcomparison->a shrimp</li>
 
 				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
 				<li>insult->complained that [RECIPIENT_nameDef] is too jumpy</li>
