@@ -1,0 +1,10 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BearJawBase">
+		<defName>EtherPolarBearMuzzle</defName>
+		<classInfluence>PolarBearMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
+		<defName>EtherPolarBearFur</defName>
+		<classInfluence>PolarBearMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
