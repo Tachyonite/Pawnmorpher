@@ -77,65 +77,6 @@
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Vulpine</recipientWeights>
 	</Pawnmorph.Social.PMInteractionDef>
-	
-	<!-- Insults aimed at cows -->
-	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
-		<defName>PMMoo_DirectedInsult</defName>
-		<label>directed cow insult</label>
-		<recipientThought>PMTalk_Insult</recipientThought>
-		<logRulesInitiator>
-			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [insulted] [RECIPIENT_nameDef]'s [cowcharacteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insultcomparison].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
-
-				<li>comparedtargetto->called [RECIPIENT_nameDef] a</li>
-				<li>comparedtargetto->compared [RECIPIENT_nameDef] to a</li>
-
-				<li>insulted(p=3)->insulted</li>
-				<li>insulted->openly insulted</li>
-				<li>insulted->loudly insulted</li>
-				<li>insulted->flagrantly insulted</li>
-				<li>insulted->directly insulted</li>
-				<li>insulted->viciously insulted</li>
-				<li>insulted->flagrantly disrespected</li>
-				<li>insulted->slandered</li>
-				<li>insulted->hurled invective about</li>
-				<li>insulted->derided</li>
-
-				<li>cowcharacteristic->fur</li>
-				<li>cowcharacteristic->horns</li>
-				<li>cowcharacteristic->tail</li>
-				<li>cowcharacteristic->milk quality</li>
-				<li>cowcharacteristic->kibble breath</li>
-				<li>cowcharacteristic->big head</li>
-				<li>cowcharacteristic->stench</li>
-				<li>cowcharacteristic->[refusal] to stop mooing</li>
-
-				<li>insultcomparison->hay muncher</li>
-				<li>insultcomparison->steer</li>
-				<li>insultcomparison->hoof head</li>
-				<li>insultcomparison->heifer</li>
-				<li>insultcomparison->one person dairy farm</li>
-				<li>insultcomparison->milk courier</li>
-				<li>insultcomparison->nutrient dispenser</li>
-				<li>insultcomparison->hay processor</li>
-				<li>insultcomparison->dairy mascot</li>
-
-				<li>insult->complained that [RECIPIENT_nameDef] stomps too much</li>
-				<li>insult->yelled at [RECIPIENT_nameDef] to stop mooing</li>
-				<li>insult->tried to sneak behind and push [RECIPIENT_nameDef] over</li>
-				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
-
-				<li>insultingjoketopics->the size of cows</li>
-				<li>insultingjoketopics->steaks</li>
-				<li>insultingjoketopics->lactose intolerance</li>
-				<li>insultingjoketopics->an udder pun</li>
-				<li>insultingjoketopics->spherical cows</li>
-			</rulesStrings>
-		</logRulesInitiator>
-		<recipientWeights>PMInteractionWeights_Cow</recipientWeights>
-	</Pawnmorph.Social.PMInteractionDef>
 
 	<!-- Insults aimed at avians -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
