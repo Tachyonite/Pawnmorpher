@@ -283,7 +283,7 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<healthOffset>4</healthOffset>
+				<healthOffset>8</healthOffset>
 				<statOffsets>
 					<CarryingCapacity>20</CarryingCapacity>
 				</statOffsets>
@@ -291,7 +291,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>paragon</label>
 				<minSeverity>2</minSeverity>
-				<healthOffset>10</healthOffset>
+				<healthOffset>20</healthOffset>
 				<statOffsets>
 					<CarryingCapacity>25</CarryingCapacity>
 				</statOffsets>

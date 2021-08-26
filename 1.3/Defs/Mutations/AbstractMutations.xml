@@ -11,7 +11,7 @@
                 <labelOverride>growing</labelOverride>
                 <painOffset>0.1</painOffset>
                 <minSeverity>0.1</minSeverity>
-                <healthOffset>0.5</healthOffset>
+                <healthOffset>1</healthOffset>
                 <statOffsets>
                     <CarryingCapacity>5</CarryingCapacity>
                 </statOffsets>
@@ -20,14 +20,14 @@
                 <labelOverride>growing</labelOverride>
                 <painOffset>0.05</painOffset>
                 <minSeverity>0.5</minSeverity>
-                <healthOffset>1</healthOffset>
+                <healthOffset>2</healthOffset>
                 <statOffsets>
                     <CarryingCapacity>10</CarryingCapacity>
                 </statOffsets>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>1</minSeverity>
-                <healthOffset>2</healthOffset>
+                <healthOffset>4</healthOffset>
                 <statOffsets>
                     <CarryingCapacity>15</CarryingCapacity>
                 </statOffsets>

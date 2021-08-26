@@ -104,7 +104,7 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<description>[PAWN_nameDef]'s spine has externalized and widened into a hardened shell. While great for shielding [PAWN_objective]self from stray bullets, it's fuzed nature does limit mobility somewhat.</description>
-				<healthOffset>10</healthOffset>
+				<healthOffset>12</healthOffset>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
