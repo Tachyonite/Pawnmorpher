@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="WargPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>WargMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -151,6 +151,62 @@
 						<offset>0.01</offset>
 					</li>
 				</capMods>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_StrongTorsoBase">
+		<defName>PM_WargChest</defName>
+		<classInfluence>WargMorph</classInfluence>
+		<stages Inherit="false">
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>growing</labelOverride>
+				<painOffset>0.1</painOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>growing</labelOverride>
+				<painOffset>0.1</painOffset>
+				<minSeverity>0.1</minSeverity>
+				<healthOffset>0.5</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>1</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>growing</labelOverride>
+				<painOffset>0.05</painOffset>
+				<minSeverity>0.5</minSeverity>
+				<healthOffset>1</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>5</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<healthOffset>2</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>10</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<healthOffset>2</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>15</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<healthOffset>2</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>17</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2</minSeverity>
+				<healthOffset>4</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>20</CarryingCapacity>
+				</statOffsets>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
