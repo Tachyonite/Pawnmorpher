@@ -158,7 +158,6 @@
 		<initiatorThought>PMTortoiseHiss_DeepTalkTortoiseMemory</initiatorThought>
 		<recipientThought>PMTortoiseHiss_DeepTalkTortoiseMemory</recipientThought>
 		<logRulesInitiator>
-			<rulesStrings>
 			<include>
 				<li>PMInteractionRules_DeepTalk</li>
 			</include>
