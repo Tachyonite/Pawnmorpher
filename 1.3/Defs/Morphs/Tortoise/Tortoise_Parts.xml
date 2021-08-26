@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="TortoisePart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>TortoiseMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -96,7 +96,7 @@
 			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-	
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
 		<defName>EtherTortoiseShell</defName>
 		<label>shell</label>
@@ -104,12 +104,13 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<description>[PAWN_nameDef]'s spine has externalized and widened into a hardened shell. While great for shielding [PAWN_objective]self from stray bullets, it's fuzed nature does limit mobility somewhat.</description>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.05</offset>
-						</li>
-					</capMods>
+				<healthOffset>10</healthOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
 				<statOffsets>
 					<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
 					<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
