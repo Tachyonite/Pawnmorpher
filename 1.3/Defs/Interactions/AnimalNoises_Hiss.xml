@@ -436,7 +436,7 @@
 				<li>complimented->purred happily about [RECIPIENT_nameDef]'s</li>
 				<li>complimented->purred approvingly of [RECIPIENT_nameDef]'s</li>
 				<li>complimented->swished [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
-				<li>complimented->gave [RECIPIENT_nameDef] an approving look because of [RECIPIENT_nameDef]'s</li>
+				<li>complimented->gave [RECIPIENT_nameDef] an approving look because of [RECIPIENT_possessive]</li>
 				<li>complimented->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
 				<li>complimented->[KindAdverb] swayed back and forth because of [RECIPIENT_nameDef]'s</li>
 				

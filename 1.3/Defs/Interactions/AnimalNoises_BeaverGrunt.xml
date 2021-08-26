@@ -412,7 +412,7 @@
 				<li>complimentedtargets->grunted approvingly of [RECIPIENT_nameDef]'s</li>
 				<li>complimentedtargets->grunted happily because of [RECIPIENT_nameDef]'s</li>
 				<li>complimentedtargets->barked happily because of [RECIPIENT_nameDef]'s</li>
-				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [INITIATOR_possessive]</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
 				
 				<li>kindbehavior->[KindAdverb] rubbed their hands</li>
 				<li>kindbehavior->[KindAdverb] nuzzled</li>
