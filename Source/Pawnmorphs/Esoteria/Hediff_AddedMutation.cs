@@ -65,6 +65,20 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Gets the current mutation stage. null if the hediff has no stages or the current stage is not a mutation stage
+        /// </summary>
+        /// <value>
+        /// The current mutation stage.
+        /// </value>
+        [CanBeNull] 
+        public MutationStage CurrentMutationStage {
+            get
+            {
+                if (Def.stages.NullOrEmpty()) return null;
+                return Def.CachedMutationStages[CurStageIndex]; 
+            } }
+
+        /// <summary>
         /// Gets the influence this mutation confers 
         /// </summary>
         /// <value>

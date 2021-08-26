@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
@@ -141,25 +142,26 @@ namespace Pawnmorph
         /// <param name="p">The p.</param>
         /// <param name="record">The record.</param>
         /// <returns></returns>
-        public static float GetPartMaxHealth( [NotNull] BodyPartRecord record, [NotNull] Pawn p)
+        public static float GetPartMaxHealth([NotNull] BodyPartRecord record, [NotNull] Pawn p)
         {
             if (p == null) throw new ArgumentNullException(nameof(p));
             if (record == null) throw new ArgumentNullException(nameof(record));
 
-            var mTracker = p.GetMutationTracker();//use mTracker so we only check mutations, a bit faster 
+            MutationTracker mTracker = p.GetMutationTracker(); //use mTracker so we only check mutations, a bit faster 
             if (mTracker == null) return record.def.hitPoints;
-            float offset=0; 
+            float offset = 0;
             foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
             {
-                if(mutation.Part != record) continue;
-                var mStage = mutation.Def.CachedMutationStages[mutation.CurStageIndex];
+                if (mutation.Part != record) continue;
+                MutationStage mStage = mutation.CurrentMutationStage;
                 if (mStage == null) continue;
 
-                offset += mStage.healthOffset; 
-
+                offset += mStage.healthOffset;
             }
 
-            return offset * p.HealthScale + record.def.GetMaxHealth(p); //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
+            return
+                offset * p.HealthScale
+              + record.def.GetMaxHealth(p); //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
         }
 
 
