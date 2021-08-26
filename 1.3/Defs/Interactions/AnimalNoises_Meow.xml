@@ -122,10 +122,9 @@
 				<li>talkedabout->[TalkedAbout]</li>
 				<li>talkedabout->[noisedabout]</li>
 				
-				<li>noisedabout->barked about</li>
-				<li>noisedabout->woofed about</li>
-				<li>noisedabout->ruffed about</li>
-				<li>noisedabout->arfed about</li>
+				<li>noisedabout->meowed about</li>
+				<li>noisedabout->mewed about</li>
+				<li>noisedabout->purred about</li>
 
 				<li>topic(p=2)->[animaltopic]</li>
 				<li>topic->[MorphTopic]</li>

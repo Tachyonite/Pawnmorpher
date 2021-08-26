@@ -488,8 +488,8 @@
 				<li>complimentedtargets->ruffed happily about [RECIPIENT_nameDef]'s</li>
 				<li>complimentedtargets->woofed approvingly of [RECIPIENT_nameDef]'s</li>
 				<li>complimentedtargets->wagged [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
-				<li>complimentedtargets->licked [RECIPIENT_nameDef] because of [RECIPIENT_pronoun]</li>
-				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_pronoun]</li>
+				<li>complimentedtargets->licked [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
 				
 				<li>kindbehavior->[KindAdverb] licked</li>
 				<li>kindbehavior->[KindAdverb] nuzzled</li>
