@@ -50,6 +50,7 @@
                     <xs:sequence>
                         <xs:element name="li" type="HediffStage" maxOccurs="unbounded" />
                     </xs:sequence>
+                    <xs:attribute name="Inherit" type="xs:boolean" use="optional" />
                 </xs:complexType>
             </xs:element>
             <xs:element name="spawnThingOnRemoved" type="xs:string" minOccurs="0"/>
