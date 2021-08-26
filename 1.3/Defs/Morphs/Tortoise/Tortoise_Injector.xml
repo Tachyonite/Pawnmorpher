@@ -1,0 +1,15 @@
+<Defs>
+	<ThingDef ParentName="InjectorBase">
+		<defName>TortoiseTransformer</defName>
+		<label>mutasyringe, tortoise</label>
+		<description>A mutagenic injector filled with mechanites and tortoise DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PawnmorphTortoiseTF</hediffDef>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>	
+	</ThingDef>
+</Defs>
