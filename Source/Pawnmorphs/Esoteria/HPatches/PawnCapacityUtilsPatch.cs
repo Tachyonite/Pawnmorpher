@@ -3,6 +3,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Emit;
 using HarmonyLib;
 using UnityEngine;
 using Verse;
@@ -102,5 +104,35 @@ namespace Pawnmorph.HPatches
             return num; 
         }
 
+
+        [HarmonyPatch(typeof(PawnCapacityUtility), nameof(PawnCapacityUtility.CalculatePartEfficiency))]
+        static class GetPartEfficiencyFix
+        {
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
+            {
+                var lst = insts.ToList();
+
+
+                const int len = 5;
+                CodeInstruction[] subArr = new CodeInstruction[len];
+                for(int i=0; i < lst.Count - len; i++)
+                {
+                    for (int j = 0; j < len; j++)
+                    {
+                        subArr[j] = lst[i + j]; 
+                    }
+
+                    if(subArr[0].opcode != OpCodes.Div) continue;
+                    if(subArr[1].opcode != OpCodes.Stloc_S) continue;
+                    if(subArr[2].opcode != OpCodes.Ldloc_S) continue;
+                    if(subArr[3].opcode != OpCodes.Ldc_R4) continue;
+                    if(subArr[4].opcode != OpCodes.Beq_S) continue;
+                    subArr[4].opcode = OpCodes.Ble_Un;
+                    break;
+                }
+
+                return lst; 
+            }
+        }
     }
 }
