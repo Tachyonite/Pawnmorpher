@@ -107,38 +107,53 @@
 		<initiatorThought>PMSquawk_ChitchatMemory</initiatorThought>
 		<recipientThought>PMSquawk_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout(p=4)->bokked at</li>
-				<li>talkedabout->clicked at</li>
-				<li>talkedabout->squawked to</li>
-				<li>talkedabout->chirped at</li>
-				<li>talkedabout->quacked about</li>
-				<li>talkedabout->gobbled about</li>
-				<li>talkedabout->honked at</li>
-				<li>talkedabout->turned [INITIATOR_possessive] head at</li>
-				<li>talkedabout->shook [INITIATOR_possessive] tail at</li>
+				<li>noisedat(p=4)->bokked at</li>
+				<li>noisedat->clicked at</li>
+				<li>noisedat->squawked to</li>
+				<li>noisedat->chirped at</li>
+				<li>noisedat->quacked about</li>
+				<li>noisedat->gobbled about</li>
+				<li>noisedat->honked at</li>
+				<li>noisedat->turned [INITIATOR_possessive] head at</li>
+				<li>noisedat->shook [INITIATOR_possessive] tail at</li>
 
-				<li>askedabout->preening [INITIATOR_possessive] feathers</li>
-				<li>askedabout->chickens</li>
-				<li>askedabout->emus</li>
-				<li>askedabout->cassowaries</li>
-				<li>askedabout->ostriches</li>
-				<li>askedabout->turkeys</li>
-				<li>askedabout->ducks</li>
-				<li>askedabout->geese</li>
-				<li>askedabout->birds</li>
-				<li>askedabout->flock formations</li>
-				<li>askedabout->seeds</li>
-				<li>askedabout->perches</li>
-				<li>askedabout->roosting</li>
-				<li>askedabout->coops</li>
-				<li>askedabout->nesting</li>
-				<li>askedabout->ants</li>
-				<li>askedabout->shiny things</li>
-				<li>askedabout->head scratches</li>
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->squawked about</li>
+				<li>noisedabout->chirped about</li>
+				<li>noisedabout->bokked about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->preening [INITIATOR_possessive] feathers</li>
+				<li>animaltopic->chickens</li>
+				<li>animaltopic->emus</li>
+				<li>animaltopic->cassowaries</li>
+				<li>animaltopic->ostriches</li>
+				<li>animaltopic->turkeys</li>
+				<li>animaltopic->ducks</li>
+				<li>animaltopic->geese</li>
+				<li>animaltopic->birds</li>
+				<li>animaltopic->flock formations</li>
+				<li>animaltopic->seeds</li>
+				<li>animaltopic->perches</li>
+				<li>animaltopic->roosting</li>
+				<li>animaltopic->coops</li>
+				<li>animaltopic->nesting</li>
+				<li>animaltopic->ants</li>
+				<li>animaltopic->shiny things</li>
+				<li>animaltopic->head scratches</li>
 
 			</rulesStrings>
 		</logRulesInitiator>
@@ -164,42 +179,37 @@
 		<initiatorThought>PMSquawk_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMSquawk_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [birdlife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
 
-				<li>birdlife->being a avian morph</li>
-				<li>birdlife->becoming a avian morph</li>
-				<li>birdlife->molting</li>
-				<li>birdlife->head scratches</li>
-				<li>birdlife->preening</li>
-				<li>birdlife->beak polishing</li>
-				<li>birdlife->talon care</li>
-				<li>birdlife->roosting</li>
-				<li>birdlife->singing</li>
-				<li>birdlife->chasing things</li>
-				<li>birdlife->squawking</li>
-				<li>birdlife->stronger sight</li>
-				<li>birdlife->nictitating membranes</li>
-				<li>birdlife->tastiest seeds</li>
-				<li>birdlife->manipulating with wings</li>
-				<li>birdlife->flocking</li>
-				<li>birdlife->head stabilization</li>
-				<li>birdlife->hackle feather grooming</li>
-				<li>birdlife->shiny things</li>
-				<li>birdlife->mutations</li>
-				<li>birdlife->broken talons</li>
-				<li>birdlife->ultraviolet color</li>
-				<li>birdlife->reversion serums</li>
-				
+				<li>animallife->being a avian morph</li>
+				<li>animallife->becoming a avian morph</li>
+				<li>animallife->molting</li>
+				<li>animallife->head scratches</li>
+				<li>animallife->preening</li>
+				<li>animallife->beak polishing</li>
+				<li>animallife->talon care</li>
+				<li>animallife->roosting</li>
+				<li>animallife->singing</li>
+				<li>animallife->chasing things</li>
+				<li>animallife->squawking</li>
+				<li>animallife->stronger sight</li>
+				<li>animallife->nictitating membranes</li>
+				<li>animallife->tastiest seeds</li>
+				<li>animallife->manipulating with wings</li>
+				<li>animallife->flocking</li>
+				<li>animallife->head stabilization</li>
+				<li>animallife->hackle feather grooming</li>
+				<li>animallife->shiny things</li>
+				<li>animallife->broken talons</li>
+				<li>animallife->ultraviolet color</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
@@ -223,61 +233,53 @@
 		<initiatorThought>PMSquawk_DeepTalkAvianMemory</initiatorThought>
 		<recipientThought>PMSquawk_DeepTalkAvianMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [birdtopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [birdtopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [birdbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
-				
-				<li>birdtopic(p=2)->[birdlife]</li>
-				<li>birdtopic->[secretbirdlife]</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>birdlife->being avian morphs</li>
-				<li>birdlife->becoming avian morphs</li>
-				<li>birdlife->molting</li>
-				<li>birdlife->head scratches</li>
-				<li>birdlife->preening</li>
-				<li>birdlife->beak polishing</li>
-				<li>birdlife->talon care</li>
-				<li>birdlife->roosting</li>
-				<li>birdlife->singing</li>
-				<li>birdlife->chasing things</li>
-				<li>birdlife->squawking</li>
-				<li>birdlife->stronger sight</li>
-				<li>birdlife->nictitating membranes</li>
-				<li>birdlife->tastiest seeds</li>
-				<li>birdlife->manipulating with wings</li>
-				<li>birdlife->flocking</li>
-				<li>birdlife->head stabilization</li>
-				<li>birdlife->hackle feather grooming</li>
-				<li>birdlife->shiny things</li>
-				<li>birdlife->mutations</li>
-				<li>birdlife->broken talons</li>
-				<li>birdlife->ultraviolet color</li>
-				<li>birdlife->reversion serums</li>
+				<li>animallife->being avian morphs</li>
+				<li>animallife->becoming avian morphs</li>
+				<li>animallife->molting</li>
+				<li>animallife->head scratches</li>
+				<li>animallife->preening</li>
+				<li>animallife->beak polishing</li>
+				<li>animallife->talon care</li>
+				<li>animallife->roosting</li>
+				<li>animallife->singing</li>
+				<li>animallife->chasing things</li>
+				<li>animallife->squawking</li>
+				<li>animallife->stronger sight</li>
+				<li>animallife->nictitating membranes</li>
+				<li>animallife->tastiest seeds</li>
+				<li>animallife->manipulating with wings</li>
+				<li>animallife->flocking</li>
+				<li>animallife->head stabilization</li>
+				<li>animallife->hackle feather grooming</li>
+				<li>animallife->shiny things</li>
+				<li>animallife->broken talons</li>
+				<li>animallife->ultraviolet color</li>
 				
-				<li>secretbirdlife->squawking, quacking and honking</li>
-				<li>secretbirdlife->bird anatomy</li>
-				<li>secretbirdlife->keeping a clean nest</li>
-				<li>secretbirdlife->the prettiest feather colors</li>
-				<li>secretbirdlife->being in a flock together</li>
-				<li>secretbirdlife->being birds of a feather</li>
-				<li>secretbirdlife->foraging</li>
-				<li>secretbirdlife->finding worms</li>
-				<li>secretbirdlife->the pecking order</li>
-				<li>secretbirdlife->anting</li>
-				<li>secretbirdlife->nesting</li>
-				<li>secretbirdlife->mating calls</li>
-				<li>secretbirdlife->the best crowing spots</li>
+				<li>secretanimallife->squawking, quacking and honking</li>
+				<li>secretanimallife->bird anatomy</li>
+				<li>secretanimallife->keeping a clean nest</li>
+				<li>secretanimallife->the prettiest feather colors</li>
+				<li>secretanimallife->being in a flock together</li>
+				<li>secretanimallife->being birds of a feather</li>
+				<li>secretanimallife->foraging</li>
+				<li>secretanimallife->finding worms</li>
+				<li>secretanimallife->the pecking order</li>
+				<li>secretanimallife->anting</li>
+				<li>secretanimallife->nesting</li>
+				<li>secretanimallife->mating calls</li>
+				<li>secretanimallife->the best crowing spots</li>
 				
 				<li>birdbehavior->tapped beaks with [RECIPIENT_nameDef]</li>
 				<li>birdbehavior->bumped heads with [RECIPIENT_nameDef]</li>
@@ -309,43 +311,38 @@
 		<symbol>Things/Mote/SpeechSymbols/Squawk_Slight</symbol>
 		<recipientThought>PMSquawk_SlightMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [squawkedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [squawkedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[aviancharacteristic]</li>
-				
-				<li>squawkedat->squawked at</li>
-				<li>squawkedat->hissed at</li>
-				<li>squawkedat->gobbled angrily at</li>
-				<li>squawkedat->crowed aggressively at</li>
-				<li>squawkedat->squawked annoyingly at</li>
-				<li>squawkedat->honked aggressively at</li>
+				<li>noisedat->squawked at</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->gobbled angrily at</li>
+				<li>noisedat->crowed aggressively at</li>
+				<li>noisedat->squawked annoyingly at</li>
+				<li>noisedat->honked aggressively at</li>
 								
-				<li>squawkedabout->squawked about</li>
-				<li>squawkedabout->chirped about</li>
-				<li>squawkedabout->quacked unhappily about</li>
-				<li>squawkedabout->hissed because of</li>
-				<li>squawkedabout->honked because of</li>
+				<li>noisedabout->squawked about</li>
+				<li>noisedabout->chirped about</li>
+				<li>noisedabout->quacked unhappily about</li>
+				<li>noisedabout->hissed because of</li>
+				<li>noisedabout->honked because of</li>
 				
-				<li>aviancharacteristic->eye contact</li>
-				<li>aviancharacteristic->body language</li>
-				<li>aviancharacteristic->cleanliness</li>
-				<li>aviancharacteristic->fashion sense</li>
-				<li>aviancharacteristic->voice</li>
-				<li>aviancharacteristic->[refusal] to scratch [INITIATOR_objective] on the head</li>
-				<li>aviancharacteristic->[refusal] to scratch [INITIATOR_possessive] wing</li>
-				<li>aviancharacteristic->[refusal] to let [INITIATOR_objective] perch on [RECIPIENT_possessive] shoulder</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
-				<li>refusal->aversion</li>
-				<li>refusal->hesitancy</li>
+				<li>animalcharacteristic->eye contact</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->cleanliness</li>
+				<li>animalcharacteristic->fashion sense</li>
+				<li>animalcharacteristic->voice</li>
+				<li>animalcharacteristic->[Refusal] to scratch [INITIATOR_objective] on the head</li>
+				<li>animalcharacteristic->[Refusal] to scratch [INITIATOR_possessive] wing</li>
+				<li>animalcharacteristic->[Refusal] to let [INITIATOR_objective] perch on [RECIPIENT_possessive] shoulder</li>
 				
 				<li>annoyingbehavior->tried to preen [RECIPIENT_nameDef]</li>
 				<li>annoyingbehavior->squawked loudly in [RECIPIENT_nameDef] face</li>
@@ -374,49 +371,50 @@
 		<symbol>Things/Mote/SpeechSymbols/Squawk_Insult</symbol>
 		<recipientThought>PMSquawk_InsultMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry(p=3)->[INITIATOR_nameDef] [squawkedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [squawkedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [avianinsult].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
-				<li>comparedtargetto->called [target]</li>
-				<li>comparedtargetto->compared [target] to</li>
-				<li>comparedtargetto->hissed that [target] was</li>
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->squawked that [Target] was</li>
+				<li>noisedtargetwas->hissed that [Target] was</li>
+				<li>noisedtargetwas->honked that [Target] was</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[aviancharacteristic]</li>
-				
-				<li>squawkedat->squawked at</li>
-				<li>squawkedat->hissed at</li>
-				<li>squawkedat->crowed aggressively at</li>
-				<li>squawkedat->squawked annoyingly at</li>
+				<li>noisedat->squawked at</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->honked at</li>
+				<li>noisedat->crowed aggressively at</li>
+				<li>noisedat->squawked annoyingly at</li>
 								
-				<li>squawkedabout->squawked about</li>
-				<li>squawkedabout->chirped about</li>
-				<li>squawkedabout->bokked unhappily about</li>
-				<li>squawkedabout->hissed because of</li>
+				<li>noisedabout->squawked about</li>
+				<li>noisedabout->chirped about</li>
+				<li>noisedabout->bokked unhappily about</li>
+				<li>noisedabout->hissed because of</li>
 				
-				<li>aviancharacteristic->eye contact</li>
-				<li>aviancharacteristic->body language</li>
-				<li>aviancharacteristic->cleanliness</li>
-				<li>aviancharacteristic->fashion sense</li>
-				<li>aviancharacteristic->voice</li>
-				<li>aviancharacteristic->[refusal] to scratch [INITIATOR_objective] on the head</li>
-				<li>aviancharacteristic->[refusal] to scratch [INITIATOR_possessive] wing</li>
-				<li>aviancharacteristic->[refusal] to let [INITIATOR_objective] ride [RECIPIENT_possessive] shoulder</li>
-				<li>aviancharacteristic->[refusal] to compliment [INITIATOR_possessive] feathers</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->eye contact</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->cleanliness</li>
+				<li>animalcharacteristic->fashion sense</li>
+				<li>animalcharacteristic->voice</li>
+				<li>animalcharacteristic->[Refusal] to scratch [INITIATOR_objective] on the head</li>
+				<li>animalcharacteristic->[Refusal] to scratch [INITIATOR_possessive] wing</li>
+				<li>animalcharacteristic->[Refusal] to let [INITIATOR_objective] ride [RECIPIENT_possessive] shoulder</li>
+				<li>animalcharacteristic->[Refusal] to compliment [INITIATOR_possessive] feathers</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
-				
-				<li>avianinsult->a loose twig</li>
-				<li>avianinsult->a worm</li>
-				<li>avianinsult->a late bird</li>
-				<li>avianinsult->a feather duster</li>
-				<li>avianinsult->a dinosaur</li>
+				<li>insult->a loose twig</li>
+				<li>insult->a worm</li>
+				<li>insult->a late bird</li>
+				<li>insult->a feather duster</li>
+				<li>insult->a dinosaur</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
@@ -453,50 +451,46 @@
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMSquawk_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] chirped loudly comparing [RECIPIENT_nameDef] to a [aviancompliment].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [aviancompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[aviancharacteristic]</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
 				
-				<li>aviancharacteristic->hygeine</li>
-				<li>aviancharacteristic->body language</li>
-				<li>aviancharacteristic->seeds</li>
-				<li>aviancharacteristic->head scratching technique</li>
-				<li>aviancharacteristic->fashion sense</li>
-				<li>aviancharacteristic->voice</li>
-				<li>aviancharacteristic->shiny thing collection</li>
+				<li>noisedtargetwas->chirpped that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->cawed that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->gobbled that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>complimented->cawed happily about</li>
-				<li>complimented->chirped approvingly of</li>
-				<li>complimented->shook [INITIATOR_possessive] tailfeathers at</li>
-				<li>complimented->wiggled because of</li>
+				<li>animalcharacteristic->hygeine</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->seeds</li>
+				<li>animalcharacteristic->head scratching technique</li>
+				<li>animalcharacteristic->fashion sense</li>
+				<li>animalcharacteristic->voice</li>
+				<li>animalcharacteristic->shiny thing collection</li>
 				
-				<li>kindbehavior->[adv] wiggled</li>
-				<li>kindbehavior->[adv] chirped at</li>
+				<li>complimentedtargets->cawed happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->chirped approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->shook [INITIATOR_possessive] tailfeathers at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->wiggled because of [RECIPIENT_nameDef]'s</li>
+				
+				<li>kindbehavior->[KindAdverb] wiggled</li>
+				<li>kindbehavior->[KindAdverb] chirped at</li>
 				<li>kindbehavior->shook [INITIATOR_possessive] tailfeathers at</li>
 				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->happily</li>
-				
-				<li>aviancompliment->[adj] roost</li>
-				<li>aviancompliment->[adj] seed</li>
-				<li>aviancompliment->[adj] shiny thing</li>
-				<li>aviancompliment->[adj] twig</li>
-				<li>aviancompliment->[adj] feather</li>
-				
-				<li>adj->wonderful</li>
-				<li>adj->delightful</li>
-				<li>adj->amazing</li>
-				<li>adj->flourescent</li>
-				<li>adj->lovely</li>
-				<li>adj->beautiful</li>
-				<li>adj->sparkly</li>
+				<li>aviancompliment->a [KindAdj] roost</li>
+				<li>aviancompliment->a [KindAdj] seed</li>
+				<li>aviancompliment->a [KindAdj] shiny thing</li>
+				<li>aviancompliment->a [KindAdj] twig</li>
+				<li>aviancompliment->a [KindAdj] feather</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Avian</initiatorWeights>
@@ -523,4 +517,58 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+
+	<!-- Insults aimed at avians -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMSquawk_DirectedInsult</defName>
+		<label>directed avian insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->feathers</li>
+				<li>animalcharacteristic->beak</li>
+				<li>animalcharacteristic->obsession with shiny objects</li>
+				<li>animalcharacteristic->voice</li>
+				<li>animalcharacteristic->head stabilization</li>
+				<li>animalcharacteristic->feather dust</li>
+				<li>animalcharacteristic->screaming</li>
+				<li>animalcharacteristic->rigid eyes</li>
+				<li>animalcharacteristic->big eyes</li>
+				<li>animalcharacteristic->head bobbing</li>
+				<li>animalcharacteristic->lack of ears</li>
+				<li>animalcharacteristic->twitchy behavior</li>
+				<li>animalcharacteristic->[refusal] to squawk somewhere else</li>
+				<li>animalcharacteristic->[refusal] to sit still</li>
+
+				<li>insultcomparison->a bird brain</li>
+				<li>insultcomparison->a poultry farm</li>
+				<li>insultcomparison->a chicken</li>
+				<li>insultcomparison->a feather duster</li>
+				<li>insultcomparison->pillow stuffing</li>
+				<li>insultcomparison->a winged raccoon</li>
+				<li>insultcomparison->a rat with wings</li>
+				<li>insultcomparison->a cat's dinner</li>
+				<li>insultcomparison->a seed-eater</li>
+
+                <li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->complained that [RECIPIENT_nameDef] is too loud</li>
+				<li>insult->suggested that [RECIPIENT_nameDef] stop twitching [RECIPIENT_possessive] head so much</li>
+				<li>insult->yelled at [RECIPIENT_nameDef] to stop preening around [RECIPIENT_objective]</li>
+
+				<li>insultingjoketopics->a golden egg</li>
+				<li>insultingjoketopics->clear windows</li>
+				<li>insultingjoketopics->hunting</li>
+				<li>insultingjoketopics->mockingbirds</li>
+				<li>insultingjoketopics->travelling south in Decembary</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Avian</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
 </Defs>

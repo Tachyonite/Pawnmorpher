@@ -94,37 +94,53 @@
 		<initiatorThought>PawnmorphMeow</initiatorThought>
 		<recipientThought>PawnmorphMeow</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout(p=4)->meowed at</li>
-				<li>talkedabout->mewed at</li>
-				<li>talkedabout->purred to</li>
-				<li>talkedabout->licked at</li>
-				<li>talkedabout->yawned at</li>
-				<li>talkedabout->meowed [advb] at</li>
-				<li>talkedabout->sniffed</li>
-				<li>talkedabout->flicked [INITIATOR_possessive] tail at</li>
-				<li>talkedabout->did an UwU face to</li>
 
-				<li>askedabout->patting [INITIATOR_possessive] fur</li>
-				<li>askedabout->cats</li>
-				<li>askedabout->lions</li>
-				<li>askedabout->mice</li>
-				<li>askedabout->mouse traps</li>
-				<li>askedabout->birds</li>
-				<li>askedabout->cleaning [INITIATOR_possessive]self</li>
-				<li>askedabout->a ban on belly rubs</li>
-				<li>askedabout->laser pointers</li>
-				<li>askedabout->bits of string</li>
-				<li>askedabout->milk</li>
-				<li>askedabout->napping in the sun</li>
+				<li>noisedat(p=4)->meowed at</li>
+				<li>noisedat->mewed at</li>
+				<li>noisedat->purred to</li>
+				<li>noisedat->licked at</li>
+				<li>noisedat->yawned at</li>
+				<li>noisedat->meowed [advb] at</li>
+				<li>noisedat->sniffed</li>
+				<li>noisedat->flicked [INITIATOR_possessive] tail at</li>
+				<li>noisedat->did an UwU face to</li>
 				
 				<li>advb->happily</li>
 				<li>advb->protectively</li>
 				<li>advb->affectionately</li>
 				<li>advb->trustingly</li>
+
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->meowed about</li>
+				<li>noisedabout->mewed about</li>
+				<li>noisedabout->purred about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->patting [INITIATOR_possessive] fur</li>
+				<li>animaltopic->cats</li>
+				<li>animaltopic->lions</li>
+				<li>animaltopic->mice</li>
+				<li>animaltopic->mouse traps</li>
+				<li>animaltopic->birds</li>
+				<li>animaltopic->cleaning [INITIATOR_possessive]self</li>
+				<li>animaltopic->a ban on belly rubs</li>
+				<li>animaltopic->laser pointers</li>
+				<li>animaltopic->bits of string</li>
+				<li>animaltopic->milk</li>
+				<li>animaltopic->napping in the sun</li>
 
 			</rulesStrings>
 		</logRulesInitiator>
@@ -150,43 +166,38 @@
 		<initiatorThought>PMMeow_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMMeow_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [felinelife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
 
-				<li>felinelife->being a feline morph</li>
-				<li>felinelife->becoming a feline morph</li>
-				<li>felinelife->shedding</li>
-				<li>felinelife->gentle petting</li>
-				<li>felinelife->head bunting</li>
-				<li>felinelife->chasing mice</li>
-				<li>felinelife->watching birds</li>
-				<li>felinelife->raw meat</li>
-				<li>felinelife->hunting instincts</li>
-				<li>felinelife->broken claws</li>
-				<li>felinelife->claw sharpening</li>
-				<li>felinelife->sensitive bellies</li>
-				<li>felinelife->being indecisive about being inside or outside</li>
-				<li>felinelife->sitting in high places</li>
-				<li>felinelife->sleeping all the time</li>
-				<li>felinelife->sitting in boxes</li>
-				<li>felinelife->playing with your food</li>				
-				<li>felinelife->getting brushed</li>
-				<li>felinelife->paw maintenence</li>
-				<li>felinelife->stronger senses</li>
-				<li>felinelife->resisting instinct</li>
-				<li>felinelife->mutations</li>
-				<li>felinelife->what a tail feels like</li>
-				<li>felinelife->colorblindness</li>
-				<li>felinelife->reversion serums</li>
+				<li>animallife->being a feline morph</li>
+				<li>animallife->becoming a feline morph</li>
+				<li>animallife->shedding</li>
+				<li>animallife->gentle petting</li>
+				<li>animallife->head bunting</li>
+				<li>animallife->chasing mice</li>
+				<li>animallife->watching birds</li>
+				<li>animallife->raw meat</li>
+				<li>animallife->hunting instincts</li>
+				<li>animallife->broken claws</li>
+				<li>animallife->claw sharpening</li>
+				<li>animallife->sensitive bellies</li>
+				<li>animallife->being indecisive about being inside or outside</li>
+				<li>animallife->sitting in high places</li>
+				<li>animallife->sleeping all the time</li>
+				<li>animallife->sitting in boxes</li>
+				<li>animallife->playing with your food</li>				
+				<li>animallife->getting brushed</li>
+				<li>animallife->paw maintenence</li>
+				<li>animallife->stronger senses</li>
+				<li>animallife->what a tail feels like</li>
+				<li>animallife->colorblindness</li>
 				
 			</rulesStrings>
 		</logRulesInitiator>
@@ -211,69 +222,60 @@
 		<initiatorThought>PMMeow_DeepTalkFelineMemory</initiatorThought>
 		<recipientThought>PMMeow_DeepTalkFelineMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [felinetopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [felinetopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [felinebehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
-				
-				<li>felinetopic(p=2)->[felinelife]</li>
-				<li>felinetopic->[secretfelinelife]</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>felinelife->being feline morphs</li>
-				<li>felinelife->becoming feline morphs</li>
-				<li>felinelife->shedding</li>
-				<li>felinelife->gentle petting</li>
-				<li>felinelife->head bunting</li>
-				<li>felinelife->chasing mice</li>
-				<li>felinelife->watching birds</li>
-				<li>felinelife->raw meat</li>
-				<li>felinelife->hunting instincts</li>
-				<li>felinelife->broken claws</li>
-				<li>felinelife->claw sharpening</li>
-				<li>felinelife->sensitive bellies</li>
-				<li>felinelife->being indecisive about being inside or outside</li>
-				<li>felinelife->sitting in high places</li>
-				<li>felinelife->sleeping all the time</li>
-				<li>felinelife->sitting in boxes</li>
-				<li>felinelife->playing with your food</li>				
-				<li>felinelife->getting brushed</li>
-				<li>felinelife->paw maintenence</li>
-				<li>felinelife->stronger senses</li>
-				<li>felinelife->resisting instinct</li>
-				<li>felinelife->mutations</li>
-				<li>felinelife->what a tail feels like</li>
-				<li>felinelife->colorblindness</li>
-				<li>felinelife->reversion serums</li>
+				<li>animallife->being feline morphs</li>
+				<li>animallife->becoming feline morphs</li>
+				<li>animallife->shedding</li>
+				<li>animallife->gentle petting</li>
+				<li>animallife->head bunting</li>
+				<li>animallife->chasing mice</li>
+				<li>animallife->watching birds</li>
+				<li>animallife->raw meat</li>
+				<li>animallife->hunting instincts</li>
+				<li>animallife->broken claws</li>
+				<li>animallife->claw sharpening</li>
+				<li>animallife->sensitive bellies</li>
+				<li>animallife->being indecisive about being inside or outside</li>
+				<li>animallife->sitting in high places</li>
+				<li>animallife->sleeping all the time</li>
+				<li>animallife->sitting in boxes</li>
+				<li>animallife->playing with your food</li>				
+				<li>animallife->getting brushed</li>
+				<li>animallife->paw maintenence</li>
+				<li>animallife->stronger senses</li>
+				<li>animallife->what a tail feels like</li>
+				<li>animallife->colorblindness</li>
 				
-				<li>secretfelinelife->hairballs</li>
-				<li>secretfelinelife->self-grooming</li>
-				<li>secretfelinelife->catnip</li>
-				<li>secretfelinelife->litterboxes</li>
-				<li>secretfelinelife->annoying dogmorphs</li>
-				<li>secretfelinelife->half-empty food bowls</li>
-				<li>secretfelinelife->hunting [prey]</li>
-				<li>secretfelinelife->pouncing on [prey]</li>
-				<li>secretfelinelife->fits and sits</li>
-				<li>secretfelinelife->knocking things over</li>
-				<li>secretfelinelife->zoomies</li>
-				<li>secretfelinelife->meowing at 3 AM</li>
-				<li>secretfelinelife->intentionally getting in people's way</li>
-				<li>secretfelinelife->intentionally baiting bellyrubs</li>
-				<li>secretfelinelife->being fuzzy jerks</li>
-				<li>secretfelinelife->enjoying murdering small animals</li>
-				<li>secretfelinelife->secretly caring about others</li>
-				<li>secretfelinelife->pretending not to like people</li>
-				<li>secretfelinelife->sitting on the cat hater</li>
+				<li>secretanimallife->hairballs</li>
+				<li>secretanimallife->self-grooming</li>
+				<li>secretanimallife->catnip</li>
+				<li>secretanimallife->litterboxes</li>
+				<li>secretanimallife->annoying dogmorphs</li>
+				<li>secretanimallife->half-empty food bowls</li>
+				<li>secretanimallife->hunting [prey]</li>
+				<li>secretanimallife->pouncing on [prey]</li>
+				<li>secretanimallife->fits and sits</li>
+				<li>secretanimallife->knocking things over</li>
+				<li>secretanimallife->zoomies</li>
+				<li>secretanimallife->meowing at 3 AM</li>
+				<li>secretanimallife->intentionally getting in people's way</li>
+				<li>secretanimallife->intentionally baiting bellyrubs</li>
+				<li>secretanimallife->being fuzzy jerks</li>
+				<li>secretanimallife->enjoying murdering small animals</li>
+				<li>secretanimallife->secretly caring about others</li>
+				<li>secretanimallife->pretending not to like people</li>
+				<li>secretanimallife->sitting on the cat hater</li>
 				
 				<li>prey(p=10)->[preyanimal]</li>
 				<li>prey->[preymorph]</li>
@@ -324,25 +326,22 @@
 	<!-- Slights -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMMeow_Slight</defName>
-		<label>growl</label>
+		<label>yowl</label>
 		<symbol>Things/Mote/SpeechSymbols/Meow_Slight</symbol>
 		<recipientThought>PMMeow_Slight</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [yowledat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [yowledabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[felinecharacteristic]</li>
-				
-				<li>yowledat->yowled at</li>
-				<li>yowledat->gave a warning meow to</li>
-				<li>yowledat->meowed [advb] at</li>
-				<li>yowledat->flicked [INITIATOR_possessive] tail with annoyance at</li>
+				<li>noisedat->yowled at</li>
+				<li>noisedat->gave a warning meow to</li>
+				<li>noisedat->meowed [advb] at</li>
+				<li>noisedat->flicked [INITIATOR_possessive] tail with annoyance at</li>
 				
 				<li>advb->hungrily</li>
 				<li>advb->plaintively</li>
@@ -350,21 +349,21 @@
 				<li>advb->loudly</li>
 				<li>advb->repeatedly</li>
 								
-				<li>yowledabout->yowled about</li>
-				<li>yowledabout->meowed unhappily about</li>
-				<li>yowledabout->had a long-winded meow session about</li>
-				<li>yowledabout->gave a warning meow over</li>
-				<li>yowledabout->flicked [INITIATOR_possessive] tail with annoyance over</li>
+				<li>noisedabout->yowled about</li>
+				<li>noisedabout->meowed unhappily about</li>
+				<li>noisedabout->had a long-winded meow session about</li>
+				<li>noisedabout->gave a warning meow over</li>
+				<li>noisedabout->flicked [INITIATOR_possessive] tail with annoyance over</li>
 				
-				<li>felinecharacteristic->scent</li>
-				<li>felinecharacteristic->getting too close</li>
-				<li>felinecharacteristic->uninvited bellyrubs</li>
-				<li>felinecharacteristic->[refusal] to refill [INITIATOR_possessive] plate</li>
-				<li>felinecharacteristic->[refusal] to pay attention to [INITIATOR_objective]</li>
-				<li>felinecharacteristic->[refusal] to open the door for the [num] time</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->getting too close</li>
+				<li>animalcharacteristic->uninvited bellyrubs</li>
+				<li>animalcharacteristic->[Refusal] to refill [INITIATOR_possessive] plate</li>
+				<li>animalcharacteristic->[Refusal] to pay attention to [INITIATOR_objective]</li>
+				<li>animalcharacteristic->[Refusal] to open the door for the [num] time</li>
 				
 				<li>num->third</li>
 				<li>num->fourth</li>
@@ -397,56 +396,56 @@
 		<symbol>Things/Mote/SpeechSymbols/Meow_Insult</symbol>
 		<recipientThought>PMMeow_Insult</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry(p=3)->[INITIATOR_nameDef] [hissedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [hissedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [felineinsult].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
-				<li>comparedtargetto->called [target] a</li>
-				<li>comparedtargetto->compared [target] to a</li>
-				<li>comparedtargetto->yowled that [target] was a</li>
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->meowed that [Target] was</li>
+				<li>noisedtargetwas->yowled that [Target] was</li>
+				<li>noisedtargetwas->hissed that [Target] was</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->hissed and swiped at</li>
+				<li>noisedat->tried to swipe</li>
+				<li>noisedat->gave a warning meow at</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[felinecharacteristic]</li>
+				<li>noisedabout->hissed about</li>
+				<li>noisedabout->meowed aggressively about</li>
+				<li>noisedabout->swiped at [RECIPIENT_nameDef] over</li>
+				<li>noisedabout->tried to claw [RECIPIENT_nameDef] over</li>
 				
-				<li>hissedat->hissed at</li>
-				<li>hissedat->hissed and swiped at</li>
-				<li>hissedat->tried to swipe</li>
-				<li>hissedat->gave a warning meow at</li>
-				
-				<li>hissedabout->hissed about</li>
-				<li>hissedabout->meowed aggressively about</li>
-				<li>hissedabout->swiped at [RECIPIENT_nameDef] over</li>
-				<li>hissedabout->tried to claw [RECIPIENT_nameDef] over</li>
-				
-				<li>felinecharacteristic->scent</li>
-				<li>felinecharacteristic->getting too close</li>
-				<li>felinecharacteristic->uninvited bellyrubs</li>
-				<li>felinecharacteristic->[refusal] to refill [INITIATOR_possessive] plate</li>
-				<li>felinecharacteristic->[refusal] to pay attention to [INITIATOR_objective]</li>
-				<li>felinecharacteristic->[refusal] to open the door for the [num] time</li>
-				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->getting too close</li>
+				<li>animalcharacteristic->uninvited bellyrubs</li>
+				<li>animalcharacteristic->[Refusal] to refill [INITIATOR_possessive] plate</li>
+				<li>animalcharacteristic->[Refusal] to pay attention to [INITIATOR_objective]</li>
+				<li>animalcharacteristic->[Refusal] to open the door for the [num] time</li>
 				
 				<li>num->third</li>
 				<li>num->fourth</li>
 				<li>num->fifth</li>
 				<li>num->sixth</li>
 				
-				<li>felineinsult(p=3)->[felineinsultsubj]</li>
-				<li>felineinsult->[adj] [felineinsultsubj]</li>
+				<li>insult->a [maybeadj] dog</li>
+				<li>insult->a [maybeadj] vacuum cleaner</li>
+				<li>insult->a [maybeadj] spray bottle</li>
+				<li>insult->a [maybeadj] chronic bellyrubber</li>
+				<li>insult->a [maybeadj] scratching post</li>
+				<li>insult->a [maybeadj] litterbox</li>
+				<li>insult->a [maybeadj] cucumber</li>
 				
-				<li>felineinsultsubj->dog</li>
-				<li>felineinsultsubj->vacuum cleaner</li>
-				<li>felineinsultsubj->spray bottle</li>
-				<li>felineinsultsubj->chronic bellyrubber</li>
-				<li>felineinsultsubj->scratching post</li>
-				<li>felineinsultsubj->litterbox</li>
-				<li>felineinsultsubj->cucumber</li>
+				<li>maybeadj(p=3)-></li>
+				<li>maybeadj->[adj]</li>
 				
 				<li>adj->stinking</li>
 				<li>adj->smelly</li>
@@ -491,50 +490,47 @@
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMMeow_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [felinecompliment].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [felinecompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[felinecharacteristic]</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
 				
-				<li>felinecharacteristic->scent</li>
-				<li>felinecharacteristic->respect for boundaries</li>
-				<li>felinecharacteristic->resisting the temptation to give belly rubs</li>
-				<li>felinecharacteristic->slow-blink technique</li>
-				<li>felinecharacteristic->punctual food delivery</li>
+				<li>noisedtargetwas->meowed that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->mewed that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->purred that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>complimented->meowed [adv] about</li>
-				<li>complimented->mewed [adv] of</li>
-				<li>complimented->purred about</li>
-				<li>complimented->[adv] head bunted [RECIPIENT_nameDef] because of</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->respect for boundaries</li>
+				<li>animalcharacteristic->resisting the temptation to give belly rubs</li>
+				<li>animalcharacteristic->slow-blink technique</li>
+				<li>animalcharacteristic->punctual food delivery</li>
 				
-				<li>kindbehavior->[adv] purred</li>
-				<li>kindbehavior->[adv] meowed</li>
-				<li>kindbehavior->[adv] head bunted</li>
-				<li>kindbehavior->[adv] rubbed against</li>
+				<li>complimentedtargets->meowed [KindAdverb] about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->mewed [KindAdverb] of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->purred about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->[KindAdverb] head bunted [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
 				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->approvingly</li>
-				<li>adv->happily</li>
+				<li>kindbehavior->[KindAdverb] purred</li>
+				<li>kindbehavior->[KindAdverb] meowed</li>
+				<li>kindbehavior->[KindAdverb] head bunted</li>
+				<li>kindbehavior->[KindAdverb] rubbed against</li>
 				
-				<li>felinecompliment(p=3)->[felinecomplimentsubj]</li>
-				<li>felinecompliment->[adj] [felinecomplimentsubj]</li>
+				<li>compliment(p=3)->a [complimentsubj]</li>
+				<li>compliment->a [KindAdj] [complimentsubj]</li>
 				
-				<li>felinecomplimentsubj->mouse</li>
-				<li>felinecomplimentsubj->feather toy</li>
-				<li>felinecomplimentsubj->milk saucer</li>
-				<li>felinecomplimentsubj->foodbringer</li>
-				
-				<li>adj->wonderful</li>
-				<li>adj->delightful</li>
-				<li>adj->amazing</li>
-				<li>adj->sweet</li>
-				<li>adj->lovely</li>
+				<li>complimentsubj->mouse</li>
+				<li>complimentsubj->feather toy</li>
+				<li>complimentsubj->milk saucer</li>
+				<li>complimentsubj->foodbringer</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Feline</initiatorWeights>
@@ -561,4 +557,55 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	
+	<!-- insults directed at feline morphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMMeow_DirectedInsult</defName>
+		<label>directed feline insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->shedding</li>
+				<li>animalcharacteristic->aloofness</li>
+				<li>animalcharacteristic->hairballs</li>
+				<li>animalcharacteristic->preference for hunting small animals</li>
+				<li>animalcharacteristic->tendency to play with [RECIPIENT_possessive] food</li>
+				<li>animalcharacteristic->incessent meowing</li>
+				<li>animalcharacteristic->claw-sharpening habit</li>
+				<li>animalcharacteristic->gross eating habits</li>
+				<li>animalcharacteristic->tendency to lick [RECIPIENT_objective]self</li>
+				
+				<li>insultcomparison->a furry psycopath</li>
+				<li>insultcomparison->a murder machine</li>
+				<li>insultcomparison->a bird-killer</li>
+				<li>insultcomparison->a barn cat</li>
+				<li>insultcomparison->a lazy bum</li>
+				<li>insultcomparison->a bear trap</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->told [RECIPIENT_nameDef] to sharpen [RECIPIENT_possessive] claws somewhere else</li>
+				<li>insult->mockingly asked if [RECIPIENT_nameDef] is litterbox trained</li>
+				<li>insult->threatened [RECIPIENT_nameDef] with a spray bottle</li>
+				<li>insult->mockingly called [RECIPIENT_nameDef] a bad dog</li>
+				
+				<li>insultingjoketopics->litterboxes</li>
+				<li>insultingjoketopics->cats and dogs</li>
+				<li>insultingjoketopics->laser pointers</li>
+				<li>insultingjoketopics->cats knocking thing over</li>
+				<li>insultingjoketopics->cardboard boxes</li>
+				<li>insultingjoketopics->chasing mice</li>
+				<li>insultingjoketopics->the absence of songbirds</li>
+				<li>insultingjoketopics->cheezburgers</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Feline</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
 </Defs>

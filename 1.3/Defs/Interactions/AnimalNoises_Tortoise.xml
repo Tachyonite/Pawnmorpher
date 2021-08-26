@@ -49,29 +49,41 @@
 		<initiatorThought>PMTortoiseHiss_ChitchatMemory</initiatorThought>
 		<recipientThought>PMTortoiseHiss_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout(p=4)->hissed at</li>
-				<li>talkedabout->shook [INITIATOR_possessive] tail at</li>
-				<li>talkedabout->hissed to</li>
-				<li>talkedabout->opened [INITIATOR_possessive] mouth at</li>
-				<li>talkedabout->shook [INITIATOR_possessive] tail to</li>
-				<li>talkedabout->stared at</li>
-				<li>talkedabout->talked about tortoises with</li>
+				<li>noisedat(p=4)->hissed at</li>
+				<li>noisedat->shook [INITIATOR_possessive] tail at</li>
+				<li>noisedat->hissed to</li>
+				<li>noisedat->opened [INITIATOR_possessive] mouth at</li>
+				<li>noisedat->shook [INITIATOR_possessive] tail to</li>
+				<li>noisedat->stared at</li>
 
-				<li>askedabout->scales</li>
-				<li>askedabout->lettuce</li>
-				<li>askedabout->tortoise shells</li>
-				<li>askedabout->scales</li>
-				<li>askedabout->tortoises</li>
-				<li>askedabout->sun basking</li>
-				<li>askedabout->claws</li>
-				<li>askedabout->reptile teeth</li>
-				<li>askedabout->the difference between turtles and tortoises</li>
-				<li>askedabout->tortoise beaks</li>
-				<li>askedabout->strange scents</li>
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->hissed about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->scales</li>
+				<li>animaltopic->lettuce</li>
+				<li>animaltopic->tortoise shells</li>
+				<li>animaltopic->scales</li>
+				<li>animaltopic->tortoises</li>
+				<li>animaltopic->sun basking</li>
+				<li>animaltopic->claws</li>
+				<li>animaltopic->reptile teeth</li>
+				<li>animaltopic->the difference between turtles and tortoises</li>
+				<li>animaltopic->tortoise beaks</li>
+				<li>animaltopic->strange scents</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Tortoise</initiatorWeights>
@@ -96,37 +108,32 @@
 		<initiatorThought>PMTortoiseHiss_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMTortoiseHiss_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [reptilelife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
 
-				<li>reptilelife->being a tortoise morph</li>
-				<li>reptilelife->becoming a tortoise morph</li>
-				<li>reptilelife->having a big shell</li>
-				<li>reptilelife->resting</li>
-				<li>reptilelife->lettuce</li>
-				<li>reptilelife->having scales</li>
-				<li>reptilelife->hissing</li>
-				<li>reptilelife->foraging</li>
-				<li>reptilelife->eating lettuce</li>
-				<li>reptilelife->eating plants</li>
-				<li>reptilelife->shell cleaning</li>
-				<li>reptilelife->restricted movement</li>
-				<li>reptilelife->interesting scents</li>
-				<li>reptilelife->lizard hands</li>
-				<li>reptilelife->resisting instinct</li>
-				<li>reptilelife->mutations</li>
-				<li>reptilelife->shell cracks</li>
-				<li>reptilelife->what having a tail feels like</li>
-				<li>reptilelife->reversion serums</li>
+				<li>animallife->being a tortoise morph</li>
+				<li>animallife->becoming a tortoise morph</li>
+				<li>animallife->having a big shell</li>
+				<li>animallife->resting</li>
+				<li>animallife->lettuce</li>
+				<li>animallife->having scales</li>
+				<li>animallife->hissing</li>
+				<li>animallife->foraging</li>
+				<li>animallife->eating lettuce</li>
+				<li>animallife->eating plants</li>
+				<li>animallife->shell cleaning</li>
+				<li>animallife->restricted movement</li>
+				<li>animallife->interesting scents</li>
+				<li>animallife->lizard hands</li>
+				<li>animallife->shell cracks</li>
+				<li>animallife->what having a tail feels like</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Tortoise</initiatorWeights>
@@ -152,70 +159,62 @@
 		<recipientThought>PMTortoiseHiss_DeepTalkTortoiseMemory</recipientThought>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [reptiletopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [reptiletopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [reptilebehavior].</li>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
-				
-				<li>reptiletopic(p=2)->[reptilelife]</li>
-				<li>reptiletopic->[secretreptilelife]</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>reptilelife->being tortoise morphs</li>
-				<li>reptilelife->becoming tortoise morphs</li>
-				<li>reptilelife->having a big shell</li>
-				<li>reptilelife->resting</li>
-				<li>reptilelife->lettuce</li>
-				<li>reptilelife->having scales</li>
-				<li>reptilelife->hissing</li>
-				<li>reptilelife->foraging</li>
-				<li>reptilelife->eating lettuce</li>
-				<li>reptilelife->eating plants</li>
-				<li>reptilelife->shell cleaning</li>
-				<li>reptilelife->restricted movement</li>
-				<li>reptilelife->interesting scents</li>
-				<li>reptilelife->lizard hands</li>
-				<li>reptilelife->resisting instinct</li>
-				<li>reptilelife->mutations</li>
-				<li>reptilelife->shell cracks</li>
-				<li>reptilelife->what having a tail feels like</li>
-				<li>reptilelife->reversion serums</li>
+				<li>animallife->being tortoise morphs</li>
+				<li>animallife->becoming tortoise morphs</li>
+				<li>animallife->having a big shell</li>
+				<li>animallife->resting</li>
+				<li>animallife->lettuce</li>
+				<li>animallife->having scales</li>
+				<li>animallife->hissing</li>
+				<li>animallife->foraging</li>
+				<li>animallife->eating lettuce</li>
+				<li>animallife->eating plants</li>
+				<li>animallife->shell cleaning</li>
+				<li>animallife->restricted movement</li>
+				<li>animallife->interesting scents</li>
+				<li>animallife->lizard hands</li>
+				<li>animallife->shell cracks</li>
+				<li>animallife->what having a tail feels like</li>
 				
-				<li>secretreptilelife->basking spots</li>
-				<li>secretreptilelife->hiding in shells</li>
-				<li>secretreptilelife->foraging</li>
-				<li>secretreptilelife->getting used to a giant shell</li>
-				<li>secretreptilelife->adapting to slow movement</li>
-				<li>secretreptilelife->shell polishing</li>
-				<li>secretreptilelife->finding [food]</li>
-				<li>secretreptilelife->eating [food]</li>
-				<li>secretreptilelife->keeping balance on two legs</li>
-				<li>secretreptilelife->smelling with tongues</li>
-				<li>secretreptilelife->nictitating membranes</li>
-				<li>secretreptilelife->invulnerability</li>
-				<li>secretreptilelife->going manhunter</li>
-				<li>secretreptilelife->the wise ratmorph</li>
-				<li>secretreptilelife->sewer ooze</li>
+				<li>secretanimallife->basking spots</li>
+				<li>secretanimallife->hiding in shells</li>
+				<li>secretanimallife->foraging</li>
+				<li>secretanimallife->getting used to a giant shell</li>
+				<li>secretanimallife->adapting to slow movement</li>
+				<li>secretanimallife->shell polishing</li>
+				<li>secretanimallife->finding [food]</li>
+				<li>secretanimallife->eating [food]</li>
+				<li>secretanimallife->keeping balance on two legs</li>
+				<li>secretanimallife->smelling with tongues</li>
+				<li>secretanimallife->nictitating membranes</li>
+				<li>secretanimallife->invulnerability</li>
+				<li>secretanimallife->going manhunter</li>
+				<li>secretanimallife->the wise ratmorph</li>
+				<li>secretanimallife->sewer ooze</li>
 				
 				<li>food->plants</li>
 				<li>food->lettuce</li>
 				<li>food->fruit</li>
 				<li>food->vegetables</li>
 				<li>food->flowers</li>
-				<li>food(p=0.1->pizza</li>
+				<li>food(p=0.1)->pizza</li>
 				
-				<li>reptilebehavior->stared understandingly with [RECIPIENT_nameDef]</li>
-				<li>reptilebehavior->and [RECIPIENT_nameDef] briefly looked at eachother</li>
-				<li>reptilebehavior->shared nuzzles with [RECIPIENT_nameDef]</li>
-				<li>reptilebehavior->and [RECIPIENT_nameDef] stared at eachother for a while</li>
+				<li>animalbehavior->stared understandingly with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] briefly looked at eachother</li>
+				<li>animalbehavior->shared nuzzles with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] stared at eachother for a while</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Tortoise</initiatorWeights>
@@ -242,36 +241,33 @@
 		<symbol>Things/Mote/SpeechSymbols/TortoiseHiss_Slight</symbol>
 		<recipientThought>PMTortoiseHiss_Slight</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [hissedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [hissedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[reptilecharacteristic]</li>
-				
-				<li>hissedat->hissed at</li>
-				<li>hissedat->aggressively opened [INITIATOR_possessive] mouth at</li>
-				<li>hissedat->hissed aggressively at</li>
-				<li>hissedat->quickly hid into [INITIATOR_possessive] shell at</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->aggressively opened [INITIATOR_possessive] mouth at</li>
+				<li>noisedat->hissed aggressively at</li>
+				<li>noisedat->quickly hid into [INITIATOR_possessive] shell at</li>
 								
-				<li>hissedabout->hissed about</li>
-				<li>hissedabout->hissed angrily about</li>
-				<li>hissedabout->aggressively opened [INITIATOR_possessive] mouth because of</li>
+				<li>noisedabout->hissed about</li>
+				<li>noisedabout->hissed angrily about</li>
+				<li>noisedabout->aggressively opened [INITIATOR_possessive] mouth because of</li>
 				
-				<li>reptilecharacteristic->scent</li>
-				<li>reptilecharacteristic->body language</li>
-				<li>reptilecharacteristic->loud noises</li>
-				<li>reptilecharacteristic->sudden movements</li>
-				<li>reptilecharacteristic->[refusal] to give [INITIATOR_objective] a treat</li>
-				<li>reptilecharacteristic->[refusal] to help [INITIATOR_objective] shed</li>
-				<li>reptilecharacteristic->[refusal] to let [INITIATOR_objective] stare at [RECIPIENT_objective]</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->sudden movements</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a treat</li>
+				<li>animalcharacteristic->[Refusal] to help [INITIATOR_objective] shed</li>
+				<li>animalcharacteristic->[Refusal] to let [INITIATOR_objective] stare at [RECIPIENT_objective]</li>
 				
 				<li>annoyingbehavior->stared annoyingly at [RECIPIENT_nameDef]</li>
 				<li>annoyingbehavior->looked at [RECIPIENT_nameDef] in a way [RECIPIENT_possessive] could not understand</li>
@@ -299,46 +295,45 @@
 		<symbol>Things/Mote/SpeechSymbols/TortoiseHiss_Insult</symbol>
 		<recipientThought>PMTortoiseHiss_Insult</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry(p=3)->[INITIATOR_nameDef] [screechedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [screechedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [tortiseinsult].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
-				<li>comparedtargetto->called [target] a</li>
-				<li>comparedtargetto->compared [target] to a</li>
-				<li>comparedtargetto->hissed that [target] was a</li>
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->hissed that [Target] was</li>
+				<li>noisedtargetwas->screeched that [Target] was</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->screeched at</li>
+				<li>noisedat->hissed and aggressively shook [INITIATOR_possessive] tail at</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[tortisecharacteristic]</li>
+				<li>noisedabout->hissed about</li>
+				<li>noisedabout->hissed angrily about</li>
+				<li>noisedabout->hid into [INITIATOR_possessive] shell because of</li>
+				<li>noisedabout->hissed and extended [INITIATOR_possessive] neck over</li>
+				<li>noisedabout->fell over because of</li>
 				
-				<li>screechedat->hissed at</li>
-				<li>screechedat->screeched at</li>
-				<li>screechedat->hissed and aggressively shook [INITIATOR_possessive] tail at</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->sudden movements</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a mealworm</li>
+				<li>animalcharacteristic->[Refusal] to help [INITIATOR_objective] shed</li>
 				
-				<li>screechedabout->hissed about</li>
-				<li>screechedabout->hissed angrily about</li>
-				<li>screechedabout->hid into [INITIATOR_possessive] shell because of</li>
-				<li>screechedabout->hissed and extended [INITIATOR_possessive] neck over</li>
-				<li>screechedabout->fell over because of</li>
-				
-				<li>tortisecharacteristic->scent</li>
-				<li>tortisecharacteristic->body language</li>
-				<li>tortisecharacteristic->loud noises</li>
-				<li>tortisecharacteristic->sudden movements</li>
-				<li>tortisecharacteristic->[refusal] to give [INITIATOR_objective] a mealworm</li>
-				<li>tortisecharacteristic->[refusal] to help [INITIATOR_objective] shed</li>
-				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
-				
-				<li>tortiseinsult->mammal</li>
-				<li>tortiseinsult->warmblood</li>
-				<li>tortiseinsult->smoothskin</li>
-				<li>tortiseinsult->hare</li>
-				<li>tortiseinsult->cheetah</li>
+				<li>insult->a mammal</li>
+				<li>insult->a warmblood</li>
+				<li>insult->a smoothskin</li>
+				<li>insult->a hare</li>
+				<li>insult->a cheetah</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Tortoise</initiatorWeights>
@@ -375,48 +370,44 @@
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMTortoiseHiss_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [reptilecompliment].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [reptilecompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[reptilecharacteristic]</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
 				
-				<li>reptilecharacteristic->scent</li>
-				<li>reptilecharacteristic->body language</li>
-				<li>reptilecharacteristic->treats</li>
-				<li>reptilecharacteristic->scale petting technique</li>
-				<li>reptilecharacteristic->treats</li>
+				<li>noisedtargetwas->hissed that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>complimented->smiled happily about</li>
-				<li>complimented->smiled approvingly of</li>
-				<li>complimented->swished [INITIATOR_possessive] tail at</li>
-				<li>complimented->gave [RECIPIENT_nameDef] an approving look because of</li>
-				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->treats</li>
+				<li>animalcharacteristic->scale petting technique</li>
+				<li>animalcharacteristic->steadiness</li>
 				
-				<li>kindbehavior->[adv] nuzzled</li>
-				<li>kindbehavior->[adv] smiled at</li>
+				<li>complimentedtargets->smiled happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->smiled approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->swished [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->gave [RECIPIENT_nameDef] an approving look because of [RECIPIENT_possessive]</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
+				
+				<li>kindbehavior->[KindAdverb] nuzzled</li>
+				<li>kindbehavior->[KindAdverb] smiled at</li>
 				<li>kindbehavior->wagged [INITIATOR_possessive] tail at</li>
 				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->happily</li>
-				
-				<li>reptilecompliment->[adj] lettuce</li>
-				<li>reptilecompliment->[adj] strawberry</li>
-				<li>reptilecompliment->[adj] cabbage</li>
-				<li>reptilecompliment->[adj] leaf</li>
-				<li>reptilecompliment->[adj] dandelion</li>
-				<li>reptilecompliment->[adj] patient person</li>
-				
-				<li>adj->wonderful</li>
-				<li>adj->delightful</li>
-				<li>adj->amazing</li>
-				<li>adj->sweet</li>
-				<li>adj->lovely</li>
+				<li>reptilecompliment->a [KindAdj] lettuce leaf</li>
+				<li>reptilecompliment->a [KindAdj] strawberry</li>
+				<li>reptilecompliment->a [KindAdj] cabbage leaf</li>
+				<li>reptilecompliment->a [KindAdj] leaf</li>
+				<li>reptilecompliment->a [KindAdj] dandelion</li>
+				<li>reptilecompliment->a [KindAdj] patient person</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Tortoise</initiatorWeights>
@@ -443,4 +434,60 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+
+	<!-- Insults aimed at tortoisemorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMTortoiseHiss_DirectedInsult</defName>
+		<label>directed tortoise insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->tail</li>
+				<li>animalcharacteristic->scales</li>
+				<li>animalcharacteristic->beady eyes</li>
+				<li>animalcharacteristic->wrinkly-looking face</li>
+				<li>animalcharacteristic->creepy appearance</li>
+				<li>animalcharacteristic->size</li>
+				<li>animalcharacteristic->slow mannerisms</li>
+				<li>animalcharacteristic->slow movement</li>
+				<li>animalcharacteristic->strange staring habits</li>
+				<li>animalcharacteristic->eating habits</li>
+				<li>animalcharacteristic->massive shell</li>
+
+				<li>insultcomparison->an elder</li>
+				<li>insultcomparison->a dinosaur</li>
+				<li>insultcomparison->a slowpoke</li>
+				<li>insultcomparison->a cold blooded freak</li>
+				<li>insultcomparison->a lab monster</li>
+				<li>insultcomparison->a lizard brain</li>
+				<li>insultcomparison->a reptile exhibit</li>
+				<li>insultcomparison->a creep</li>
+				<li>insultcomparison->turtle soup</li>
+				<li>insultcomparison->a mutant</li>
+				<li>insultcomparison->a sewer monster</li>
+
+				<li>insult->complained that [RECIPIENT_nameDef] moves around creepily</li>
+				<li>insult->rudely called [RECIPIENT_nameDef] a scaled freak</li>
+				<li>insult->called [RECIPIENT_nameDef] the distraction when discussing combat tactics</li>
+				<li>insult->said [RECIPIENT_nameDef] looks creepy</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->mutant sewer turtles</li>
+				<li>insultingjoketopics->tortoises being stuck on their backs</li>
+				<li>insultingjoketopics->cold blooded animals</li>
+				<li>insultingjoketopics->the slow movement of tortoises</li>
+				<li>insultingjoketopics->turtle races</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Tortoise</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
 </Defs>

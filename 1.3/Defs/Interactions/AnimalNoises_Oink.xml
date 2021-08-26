@@ -59,37 +59,52 @@
 		<initiatorThought>PMOink_ChitchatMemory</initiatorThought>
 		<recipientThought>PMOink_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout(p=4)->oinked at</li>
-				<li>talkedabout->grunted at</li>
-				<li>talkedabout->whined at</li>
-				<li>talkedabout->snorted at</li>
-				<li>talkedabout->twitched [INITIATOR_possessive] tail at</li>
+				<li>noisedat(p=4)->oinked at</li>
+				<li>noisedat->grunted at</li>
+				<li>noisedat->whined at</li>
+				<li>noisedat->squealed at</li>
+				<li>noisedat->snorted at</li>
+				<li>noisedat->twitched [INITIATOR_possessive] tail at</li>
 				
-				<li>askedabout->pigs</li>
-				<li>askedabout->boars</li>
-				<li>askedabout->hogs</li>
-				<li>askedabout->mud</li>
-				<li>askedabout->stables</li>
-				<li>askedabout->vegetables</li>
-				<li>askedabout->oats</li>
-				<li>askedabout->mushrooms</li>
-				<li>askedabout->bristles</li>
-				<li>askedabout->tusks</li>
-				<li>askedabout->trotters</li>
-				<li>askedabout->weight loss</li>
-				<li>askedabout->medical research</li>
-				<li>askedabout->organ xenotransplantation</li>
-                <li>askedabout->factory farming</li>
-				<li>askedabout->alternative livestock</li>
-				<li>askedabout->pig rights</li>
-				<li>askedabout->meat subtitutes</li>
-				<li>askedabout->cannibalism</li>
-				<li>askedabout->bacon</li>
-				<li>askedabout->whether [RECIPIENT_pronoun] eats pork</li>
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->oinked about</li>
+				<li>noisedabout->grunted about</li>
+				<li>noisedabout->snorted about</li>
+				<li>noisedabout->squealed about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->pigs</li>
+				<li>animaltopic->boars</li>
+				<li>animaltopic->hogs</li>
+				<li>animaltopic->mud</li>
+				<li>animaltopic->stables</li>
+				<li>animaltopic->vegetables</li>
+				<li>animaltopic->oats</li>
+				<li>animaltopic->mushrooms</li>
+				<li>animaltopic->bristles</li>
+				<li>animaltopic->tusks</li>
+				<li>animaltopic->trotters</li>
+				<li>animaltopic->weight loss</li>
+				<li>animaltopic->medical research</li>
+				<li>animaltopic->organ xenotransplantation</li>
+                <li>animaltopic->factory farming</li>
+				<li>animaltopic->pig rights</li>
+				<li>animaltopic->meat subtitutes</li>
+				<li>animaltopic->cannibalism</li>
+				<li>animaltopic->bacon</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
@@ -114,38 +129,33 @@
 		<initiatorThought>PMOink_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMOink_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [piglife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
 
-				<li>piglife->becoming a suidmorph</li>
-				<li>piglife->being a suidmorph</li>
-				<li>piglife->having trotters</li>
-				<li>piglife->being brushed</li>
-				<li>piglife->mudbaths</li>
-				<li>piglife->truffle hunting</li>
-				<li>piglife->trotting</li>
-				<li>piglife->bristle brushing</li>
-				<li>piglife->snout pats</li>
-				<li>piglife->trotter care</li>
-				<li>piglife->carrots</li>
-				<li>piglife->potatos</li>
-				<li>piglife->mushrooms</li>
-				<li>piglife->alternative livestock</li>
-				<li>piglife->pig rights</li>
-				<li>piglife->whether eating pigmorph meat is cannibalism</li>
-				<li>piglife->mutations</li>
-				<li>piglife->living with trotters</li>
-				<li>piglife->peripheral vision</li>
-				<li>piglife->reversion serums</li>
+				<li>animallife->becoming a suidmorph</li>
+				<li>animallife->being a suidmorph</li>
+				<li>animallife->having trotters</li>
+				<li>animallife->being brushed</li>
+				<li>animallife->mudbaths</li>
+				<li>animallife->truffle hunting</li>
+				<li>animallife->trotting</li>
+				<li>animallife->bristle brushing</li>
+				<li>animallife->snout pats</li>
+				<li>animallife->trotter care</li>
+				<li>animallife->carrots</li>
+				<li>animallife->potatos</li>
+				<li>animallife->mushrooms</li>
+				<li>animallife->pig rights</li>
+				<li>animallife->whether eating pigmorph meat is cannibalism</li>
+				<li>animallife->living with trotters</li>
+				<li>animallife->peripheral vision</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
@@ -169,63 +179,54 @@
 		<initiatorThought>PMOink_DeepTalkPigMemory</initiatorThought>
 		<recipientThought>PMOink_DeepTalkPigMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [pigtopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [pigtopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [pigbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
-				
-				<li>pigtopic(p=2)->[piglife]</li>
-				<li>pigtopic->[secretpiglife]</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>piglife->becoming suidmorphs</li>
-				<li>piglife->being suidmorphs</li>
-				<li>piglife->having trotters</li>
-				<li>piglife->being brushed</li>
-				<li>piglife->mudbaths</li>
-				<li>piglife->truffle hunting</li>
-				<li>piglife->trotting</li>
-				<li>piglife->bristle brushing</li>
-				<li>piglife->snout pats</li>
-				<li>piglife->trotter care</li>
-				<li>piglife->carrots</li>
-				<li>piglife->potatos</li>
-				<li>piglife->mushrooms</li>
-				<li>piglife->alternative livestock</li>
-				<li>piglife->pig rights</li>
-				<li>piglife->whether eating pigmorph meat is cannibalism</li>
-				<li>piglife->mutations</li>
-				<li>piglife->living with trotters</li>
-				<li>piglife->peripheral vision</li>
-				<li>piglife->reversion serums</li>
+				<li>animallife->becoming suidmorphs</li>
+				<li>animallife->being suidmorphs</li>
+				<li>animallife->having trotters</li>
+				<li>animallife->being brushed</li>
+				<li>animallife->mudbaths</li>
+				<li>animallife->truffle hunting</li>
+				<li>animallife->trotting</li>
+				<li>animallife->bristle brushing</li>
+				<li>animallife->snout pats</li>
+				<li>animallife->trotter care</li>
+				<li>animallife->carrots</li>
+				<li>animallife->potatos</li>
+				<li>animallife->mushrooms</li>
+				<li>animallife->pig rights</li>
+				<li>animallife->whether eating pigmorph meat is cannibalism</li>
+				<li>animallife->living with trotters</li>
+				<li>animallife->peripheral vision</li>
 				
-				<li>secretpiglife->oinking</li>
-				<li>secretpiglife->truffle hunting techniques</li>
-				<li>secretpiglife->bristle maintainance</li>
-				<li>secretpiglife->the uses of pig bristles</li>
-				<li>secretpiglife->rolling in mud</li>
-				<li>secretpiglife->weight loss techniques</li>
-				<li>secretpiglife->the merits and drawbacks of various construction materials</li>
-				<li>secretpiglife->house construction techniques</li>
-				<li>secretpiglife->how having four legs is good, but two legs are better</li>
-				<li>secretpiglife->how some morphs are more equal than others</li>
-				<li>secretpiglife->starting a revolution</li>
-				<li>secretpiglife->having a taste for pork</li>
-				<li>secretpiglife->having a taste for human flesh</li>
+				<li>secretanimallife->oinking</li>
+				<li>secretanimallife->truffle hunting techniques</li>
+				<li>secretanimallife->bristle maintainance</li>
+				<li>secretanimallife->the uses of pig bristles</li>
+				<li>secretanimallife->rolling in mud</li>
+				<li>secretanimallife->weight loss techniques</li>
+				<li>secretanimallife->the merits and drawbacks of various construction materials</li>
+				<li>secretanimallife->house construction techniques</li>
+				<li>secretanimallife->how having four legs is good, but two legs are better</li>
+				<li>secretanimallife->how some morphs are more equal than others</li>
+				<li>secretanimallife->starting a revolution</li>
+				<li>secretanimallife->having a taste for pork</li>
+				<li>secretanimallife->having a taste for human flesh</li>
 				
-				<li>pigbehavior->snorted understandingly at [RECIPIENT_nameDef]</li>
-				<li>pigbehavior->oinked in unison with [RECIPIENT_nameDef]</li>
-				<li>pigbehavior->and [RECIPIENT_nameDef] gave eachother a warming look</li>
-				<li>pigbehavior->hoof bumped with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->snorted understandingly at [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->oinked in unison with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] gave eachother a warming look</li>
+				<li>animalbehavior->hoof bumped with [RECIPIENT_nameDef]</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
@@ -252,34 +253,31 @@
 		<symbol>Things/Mote/SpeechSymbols/Oink_Slight</symbol>
 		<recipientThought>PMOink_Slight</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [oinkedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [oinkedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[pigcharacteristic]</li>
-				
-				<li>oinkedat->oinked at</li>
-				<li>oinkedat->squealed at</li>
-				<li>oinkedat->snorted aggressively at</li>
-				<li>oinkedat->snorted annoyingly at</li>
+				<li>noisedat->oinked at</li>
+				<li>noisedat->squealed at</li>
+				<li>noisedat->snorted aggressively at</li>
+				<li>noisedat->snorted annoyingly at</li>
 								
-				<li>oinkedabout->oinked about</li>
-				<li>oinkedabout->grunted about</li>
-				<li>oinkedabout->squealed about</li>
-				<li>oinkedabout->snorted unhappily about</li>
+				<li>noisedabout->oinked about</li>
+				<li>noisedabout->grunted about</li>
+				<li>noisedabout->squealed about</li>
+				<li>noisedabout->snorted unhappily about</li>
 				
-				<li>pigcharacteristic->body language</li>
-				<li>pigcharacteristic->sudden movement</li>
-				<li>pigcharacteristic->[refusal] to give [INITIATOR_objective] a carrot</li>
-				<li>pigcharacteristic->[refusal] to brush [INITIATOR_objective]</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->sudden movement</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a carrot</li>
+				<li>animalcharacteristic->[Refusal] to brush [INITIATOR_objective]</li>
 				
 				<li>annoyingbehavior->shook off some dried mud that landed on [RECIPIENT_nameDef]</li>
 				<li>annoyingbehavior->oinked loudly in [RECIPIENT_nameDef] face</li>
@@ -306,45 +304,45 @@
 		<symbol>Things/Mote/SpeechSymbols/Oink_Insult</symbol>
 		<recipientThought>PMOink_InsultMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry(p=3)->[INITIATOR_nameDef] [oinkedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [oinkedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [piginsult].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
-				<li>comparedtargetto->called [target]</li>
-				<li>comparedtargetto->compared [target] to</li>
-				<li>comparedtargetto->oinked that [target] was</li>
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->oinked that [Target] was</li>
+				<li>noisedtargetwas->squealed that [Target] was</li>
+				<li>noisedtargetwas->snorted that [Target] was</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[pigcharacteristic]</li>
-				
-				<li>oinkedat->squealed aggressively at</li>
-				<li>oinkedat->screached at</li>
-				<li>oinkedat->screamed at</li>
+				<li>noisedat->squealed aggressively at</li>
+				<li>noisedat->screached at</li>
+				<li>noisedat->screamed at</li>
 								
-				<li>oinkedabout->oinked about</li>
-				<li>oinkedabout->squealed about</li>
-				<li>oinkedabout->screached about</li>
-				<li>oinkedabout->squealed loudly because of</li>
+				<li>noisedabout->oinked about</li>
+				<li>noisedabout->squealed about</li>
+				<li>noisedabout->screached about</li>
+				<li>noisedabout->squealed loudly because of</li>
 				
-				<li>pigcharacteristic->body language</li>
-				<li>pigcharacteristic->sudden movement</li>
-				<li>pigcharacteristic->[refusal] to give [INITIATOR_objective] a carrot</li>
-				<li>pigcharacteristic->[refusal] to brush [INITIATOR_objective]</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->sudden movement</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a carrot</li>
+				<li>animalcharacteristic->[Refusal] to brush [INITIATOR_objective]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
-				
-				<li>piginsult->a hoghunter</li>
-				<li>piginsult->a sausage-eater</li>
-				<li>piginsult->long pork</li>
-				<li>piginsult->a wolf</li>
-				<li>piginsult->a cougar</li>
-				<li>piginsult->a bear</li>
-				<li>piginsult->a predator</li>
+				<li>insult->a hoghunter</li>
+				<li>insult->a sausage-eater</li>
+				<li>insult->long pork</li>
+				<li>insult->a wolf</li>
+				<li>insult->a cougar</li>
+				<li>insult->a bear</li>
+				<li>insult->a predator</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
@@ -387,39 +385,27 @@
 				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [pigcompliment].</li>
 				
 				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[pigcharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>pigcharacteristic->brushing technique</li>
-				<li>pigcharacteristic->snout patting technique</li>
-				<li>pigcharacteristic->body language</li>
-				<li>pigcharacteristic->sugar cubes</li>
-				<li>pigcharacteristic->brushing technique</li>
+				<li>animalcharacteristic->brushing technique</li>
+				<li>animalcharacteristic->snout patting technique</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->sugar cubes</li>
+				<li>animalcharacteristic->brushing technique</li>
 				
-				<li>complimented->oinked happily about</li>
-				<li>complimented->oinked approvingly of</li>
-				<li>complimented->wiggled [INITIATOR_possessive] tail at</li>
-				<li>complimented->nosed [RECIPIENT_nameDef] because of</li>
+				<li>complimentedtargets->oinked happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->oinked approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->wiggled [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->nosed [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
 				
-				<li>kindbehavior->[adv] nosed</li>
-				<li>kindbehavior->[adv] oinked at</li>
+				<li>kindbehavior->[KindAdverb] nosed</li>
+				<li>kindbehavior->[KindAdverb] oinked at</li>
 				<li>kindbehavior->wiggled [INITIATOR_possessive] tail at</li>
 				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->happily</li>
-				
-				<li>pigcompliment->[adj] carrot</li>
-				<li>pigcompliment->[adj] potato</li>
-				<li>pigcompliment->[adj] truffle</li>
-				<li>pigcompliment->[adj] mud puddle</li>
-				
-				<li>adj->wonderful</li>
-				<li>adj->delightful</li>
-				<li>adj->amazing</li>
-				<li>adj->sweet</li>
-				<li>adj->lovely</li>
-				<li>adj->beautiful</li>
+				<li>pigcompliment->a [KindAdj] carrot</li>
+				<li>pigcompliment->a [KindAdj] potato</li>
+				<li>pigcompliment->a [KindAdj] truffle</li>
+				<li>pigcompliment->a [KindAdj] mud puddle</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
@@ -446,4 +432,49 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at suids -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMOink_DirectedInsult</defName>
+		<label>directed pig insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->smell</li>
+				<li>animalcharacteristic->bristles</li>
+				<li>animalcharacteristic->nose</li>
+				<li>animalcharacteristic->floppy ears</li>
+				<li>animalcharacteristic->snout</li>
+				<li>animalcharacteristic->tiny tail</li>
+				<li>animalcharacteristic->weight</li>
+
+				<li>insultcomparison->bacon</li>
+				<li>insultcomparison->sausage</li>
+				<li>insultcomparison->long pork</li>
+				<li>insultcomparison->a tub of lard</li>
+				<li>insultcomparison->a truffle-o-meter</li>
+				<li>insultcomparison->an organ doner</li>
+				<li>insultcomparison->a vegetable-to-meat factory</li>
+				<li>insultcomparison->a farm animal</li>
+				<li>insultcomparison->a slob</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->told [RECIPIENT_nameDef] to go roll in mud</li>
+				<li>insult->yelled at [RECIPIENT_nameDef] to stop squealing</li>
+
+				<li>insultingjoketopics->30-50 feral hogs</li>
+				<li>insultingjoketopics->overweight people</li>
+				<li>insultingjoketopics->big bad wolfmorphs</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Suid</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
 </Defs>

@@ -73,32 +73,48 @@
 		<initiatorThought>PMSqueak_ChitchatMemory</initiatorThought>
 		<recipientThought>PMSqueak_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout(p=4)->squeaked at</li>
-				<li>talkedabout->chittered at</li>
-				<li>talkedabout->squeaked to</li>
-				<li>talkedabout->twitched [INITIATOR_possessive] whiskers at</li>
+				<li>noisedat(p=4)->squeaked at</li>
+				<li>noisedat->chittered at</li>
+				<li>noisedat->squeaked to</li>
+				<li>noisedat->twitched [INITIATOR_possessive] whiskers at</li>
 
-				<li>askedabout->self cleaning</li>
-				<li>askedabout->rodents</li>
-				<li>askedabout->crafting</li>
-				<li>askedabout->nesting</li>
-				<li>askedabout->trash</li>
-				<li>askedabout->garbage</li>
-				<li>askedabout->whiskers</li>
-				<li>askedabout->shiny things</li>
-				<li>askedabout->cleaning</li>
-				<li>askedabout->something to chew on</li>
-				<li>askedabout->gnawing habits</li>
-				<li>askedabout->cheese</li>
-				<li>askedabout->nuts</li>
-				<li>askedabout->trees</li>
-				<li>askedabout->kibble</li>
-				<li>askedabout->head pats</li>
-				<li>askedabout->back pets</li>
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->barked about</li>
+				<li>noisedabout->woofed about</li>
+				<li>noisedabout->ruffed about</li>
+				<li>noisedabout->arfed about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->self cleaning</li>
+				<li>animaltopic->rodents</li>
+				<li>animaltopic->crafting</li>
+				<li>animaltopic->nesting</li>
+				<li>animaltopic->trash</li>
+				<li>animaltopic->garbage</li>
+				<li>animaltopic->whiskers</li>
+				<li>animaltopic->shiny things</li>
+				<li>animaltopic->cleaning</li>
+				<li>animaltopic->something to chew on</li>
+				<li>animaltopic->gnawing habits</li>
+				<li>animaltopic->cheese</li>
+				<li>animaltopic->nuts</li>
+				<li>animaltopic->trees</li>
+				<li>animaltopic->kibble</li>
+				<li>animaltopic->head pats</li>
+				<li>animaltopic->back pets</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Rodent</initiatorWeights>
@@ -124,37 +140,31 @@
 		<initiatorThought>PMSqueak_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMSqueak_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [rodentlife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
 
-				<li>rodentlife->becoming a rodent morph</li>
-				<li>rodentlife->being a rodent morph</li>
-				<li>rodentlife->keeping hands</li>
-				<li>rodentlife->cheese</li>
-				<li>rodentlife->nuts</li>
-				<li>rodentlife->trash</li>
-				<li>rodentlife->size</li>
-				<li>rodentlife->leftovers</li>
-				<li>rodentlife->trees</li>
-				<li>rodentlife->tail care</li>
-				<li>rodentlife->shiny things</li>
-				<li>rodentlife->tastiest leftovers</li>
-				<li>rodentlife->incisors</li>
-				<li>rodentlife->hiding</li>
-				<li>rodentlife->crafting</li>
-				<li>rodentlife->mutations</li>
-				<li>rodentlife->night vision</li>
-				<li>rodentlife->reversion serums</li>
-				
+				<li>animallife->becoming a rodent morph</li>
+				<li>animallife->being a rodent morph</li>
+				<li>animallife->keeping hands</li>
+				<li>animallife->cheese</li>
+				<li>animallife->nuts</li>
+				<li>animallife->trash</li>
+				<li>animallife->size</li>
+				<li>animallife->leftovers</li>
+				<li>animallife->trees</li>
+				<li>animallife->tail care</li>
+				<li>animallife->shiny things</li>
+				<li>animallife->incisors</li>
+				<li>animallife->hiding</li>
+				<li>animallife->crafting</li>
+				<li>animallife->night vision</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Rodent</initiatorWeights>
@@ -178,63 +188,54 @@
 		<initiatorThought>PMSqueak_DeepTalkRodentMemory</initiatorThought>
 		<recipientThought>PMSqueak_DeepTalkRodentMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [rodenttopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [rodenttopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [rodentbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
-				
-				<li>rodenttopic->[rodentlife]</li>
-				<li>rodenttopic->[secretrodentlife]</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>rodentlife->becoming rodent morphs</li>
-				<li>rodentlife->being rodent morphs</li>
-				<li>rodentlife->keeping hands</li>
-				<li>rodentlife->cheese</li>
-				<li>rodentlife->nuts</li>
-				<li>rodentlife->trash</li>
-				<li>rodentlife->size</li>
-				<li>rodentlife->leftovers</li>
-				<li>rodentlife->trees</li>
-				<li>rodentlife->tail care</li>
-				<li>rodentlife->shiny things</li>
-				<li>rodentlife->tastiest leftovers</li>
-				<li>rodentlife->incisors</li>
-				<li>rodentlife->hiding</li>
-				<li>rodentlife->crafting</li>
-				<li>rodentlife->mutations</li>
-				<li>rodentlife->night vision</li>
-				<li>rodentlife->reversion serums</li>
+				<li>animallife->becoming rodent morphs</li>
+				<li>animallife->being rodent morphs</li>
+				<li>animallife->keeping hands</li>
+				<li>animallife->cheese</li>
+				<li>animallife->nuts</li>
+				<li>animallife->trash</li>
+				<li>animallife->size</li>
+				<li>animallife->leftovers</li>
+				<li>animallife->trees</li>
+				<li>animallife->tail care</li>
+				<li>animallife->shiny things</li>
+				<li>animallife->incisors</li>
+				<li>animallife->hiding</li>
+				<li>animallife->crafting</li>
+				<li>animallife->night vision</li>
 				
-				<li>secretrodentlife->sneaking</li>
-				<li>secretrodentlife->traps</li>
-				<li>secretrodentlife->midnight walks</li>
-				<li>secretrodentlife->cheese types</li>
-				<li>secretrodentlife->chewing things</li>
-				<li>secretrodentlife->digging holes</li>
-				<li>secretrodentlife->treehouses</li>
-				<li>secretrodentlife->running on all fours</li>
-				<li>secretrodentlife->dumpster diving</li>
-				<li>secretrodentlife->fur care</li>
-				<li>secretrodentlife->shiny hoarding</li>
-				<li>secretrodentlife->food caching</li>
-				<li>secretrodentlife->the best hiding spots</li>
-				<li>secretrodentlife->plague cauldrons</li>
-				<li>secretrodentlife->rats with horns</li>
-				<li>secretrodentlife->the secret rodent undercity</li>
+				<li>secretanimallife->sneaking</li>
+				<li>secretanimallife->traps</li>
+				<li>secretanimallife->midnight walks</li>
+				<li>secretanimallife->cheese types</li>
+				<li>secretanimallife->chewing things</li>
+				<li>secretanimallife->digging holes</li>
+				<li>secretanimallife->treehouses</li>
+				<li>secretanimallife->running on all fours</li>
+				<li>secretanimallife->dumpster diving</li>
+				<li>secretanimallife->fur care</li>
+				<li>secretanimallife->shiny hoarding</li>
+				<li>secretanimallife->food caching</li>
+				<li>secretanimallife->the best hiding spots</li>
+				<li>secretanimallife->plague cauldrons</li>
+				<li>secretanimallife->rats with horns</li>
+				<li>secretanimallife->the secret rodent undercity</li>
 				
-				<li>rodentbehavior->squeaked understandingly at [RECIPIENT_nameDef]</li>
-				<li>rodentbehavior->chittered with [RECIPIENT_nameDef]</li>
-				<li>rodentbehavior->and [RECIPIENT_nameDef] twitched their whiskers at eachother</li>
+				<li>animalbehavior->squeaked understandingly at [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->chittered with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] twitched their whiskers at eachother</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Rodent</initiatorWeights>
@@ -261,37 +262,34 @@
 		<symbol>Things/Mote/SpeechSymbols/Squeak_Slight</symbol>
 		<recipientThought>PMSqueak_Slight</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [squeakedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [squeakedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[rodentcharacteristic]</li>
-				
-				<li>squeakedat->hissed at</li>
-				<li>squeakedat->chittered at</li>
-				<li>squeakedat->squeaked aggressively at</li>
-				<li>squeakedat->squeaked annoyingly at</li>
-				<li>squeakedat->chittered aggressively at</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->chittered at</li>
+				<li>noisedat->squeaked aggressively at</li>
+				<li>noisedat->squeaked annoyingly at</li>
+				<li>noisedat->chittered aggressively at</li>
 								
-				<li>squeakedabout->squeaked about</li>
-				<li>squeakedabout->chittered about</li>
-				<li>squeakedabout->squeaked unhappily about</li>
-				<li>squeakedabout->squeaked because of</li>
-				<li>squeakedabout->chittered because of</li>
+				<li>noisedabout->squeaked about</li>
+				<li>noisedabout->chittered about</li>
+				<li>noisedabout->squeaked unhappily about</li>
+				<li>noisedabout->squeaked because of</li>
+				<li>noisedabout->chittered because of</li>
 				
-				<li>rodentcharacteristic->visible disgust</li>
-				<li>rodentcharacteristic->opinion on animal trapping</li>
-				<li>rodentcharacteristic->[refusal] to give [INITIATOR_objective] some leftovers</li>
-				<li>rodentcharacteristic->[refusal] to pet [INITIATOR_objective]</li>
-				<li>rodentcharacteristic->[refusal] to let [INITIATOR_objective] ride on [RECIPIENT_possessive]</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>animalcharacteristic->visible disgust at [INITIATOR_objective]</li>
+				<li>animalcharacteristic->opinion on animal trapping</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] some leftovers</li>
+				<li>animalcharacteristic->[Refusal] to pet [INITIATOR_objective]</li>
+				<li>animalcharacteristic->[eRfusal] to let [INITIATOR_objective] ride on [RECIPIENT_possessive]</li>
 				
 				<li>annoyingbehavior->nearly tripped [RECIPIENT_nameDef] with [INITIATOR_possessive] tail</li>
 				<li>annoyingbehavior->tripped [RECIPIENT_nameDef] with [INITIATOR_possessive] tail</li>
@@ -320,42 +318,38 @@
 		<symbol>Things/Mote/SpeechSymbols/Squeak_Insult</symbol>
 		<recipientThought>PMSqueak_Insult</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry(p=3)->[INITIATOR_nameDef] [squeakedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [squeakedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [rodentinsult].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
-				<li>comparedtargetto->called [target]</li>
-				<li>comparedtargetto->compared [target] to</li>
-				<li>comparedtargetto->squeaked that [target] was</li>
-
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[rodentcharacteristic]</li>
-				
-				<li>squeakedat->hissed at</li>
-				<li>squeakedat->chittered at</li>
-				<li>squeakedat->squeaked aggressively at</li>
-				<li>squeakedat->squeaked annoyingly at</li>
-				<li>squeakedat->chittered aggressively at</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->chittered at</li>
+				<li>noisedat->squeaked aggressively at</li>
+				<li>noisedat->squeaked annoyingly at</li>
+				<li>noisedat->chittered aggressively at</li>
 								
-				<li>squeakedabout->squeaked about</li>
-				<li>squeakedabout->chittered about</li>
-				<li>squeakedabout->squeaked unhappily about</li>
-				<li>squeakedabout->squeaked because of</li>
-				<li>squeakedabout->chittered because of</li>
+				<li>noisedabout->squeaked about</li>
+				<li>noisedabout->chittered about</li>
+				<li>noisedabout->squeaked unhappily about</li>
+				<li>noisedabout->squeaked because of</li>
+				<li>noisedabout->chittered because of</li>
 				
-				<li>rodentcharacteristic->body language</li>
-				<li>rodentcharacteristic->opinion on animal trapping</li>
-				<li>rodentcharacteristic->[refusal] to give [INITIATOR_objective] some leftovers</li>
-				<li>rodentcharacteristic->[refusal] to pet [INITIATOR_objective]</li>
-				<li>rodentcharacteristic->[refusal] to let [INITIATOR_objective] ride on [RECIPIENT_possessive]</li>
-				<li>rodentcharacteristic->height</li>
-				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->opinion on animal trapping</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] some leftovers</li>
+				<li>animalcharacteristic->[Refusal] to pet [INITIATOR_objective]</li>
+				<li>animalcharacteristic->[Refusal] to let [INITIATOR_objective] ride on [RECIPIENT_possessive]</li>
+				<li>animalcharacteristic->height</li>
 				
 				<li>rodentinsult->a rotten wad</li>
 				<li>rodentinsult->a tree stump</li>
@@ -399,50 +393,51 @@
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMSqueak_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] chirped loudly comparing [RECIPIENT_nameDef] to a [rodentcompliment].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [rodentcompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[rodentcharacteristic]</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
 				
-				<li>rodentcharacteristic->teeth</li>
-				<li>rodentcharacteristic->scent</li>
-				<li>rodentcharacteristic->sheen</li>
-				<li>rodentcharacteristic->warmth</li>
-				<li>rodentcharacteristic->shiny thing collection</li>
+				<li>noisedtargetwas->squeaked that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->chittered that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>complimented->squeaked happily about</li>
-				<li>complimented->squeaked approvingly of</li>
-				<li>complimented->shook [INITIATOR_possessive] tail at</li>
-				<li>complimented->chirped happily because of</li>
-				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
+				<li>animalcharacteristic->teeth</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->sheen</li>
+				<li>animalcharacteristic->warmth</li>
+				<li>animalcharacteristic->shiny thing collection</li>
 				
-				<li>kindbehavior->[adv] rubbed their hands</li>
-				<li>kindbehavior->[adv] nuzzled</li>
-				<li>kindbehavior->[adv] squeaked at</li>
+				<li>complimentedtargets->squeaked happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->squeaked approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->shook [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->chirped happily because of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive</li>
+				
+				<li>kindbehavior->[KindAdverb] rubbed their hands at</li>
+				<li>kindbehavior->[KindAdverb] nuzzled</li>
+				<li>kindbehavior->[KindAdverb] squeaked at</li>
+				<li>kindbehavior->[KindAdverb] licked</li>
 				<li>kindbehavior->wagged [INITIATOR_possessive] tail at</li>
 				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->happily</li>
+				<li>compliment->[adj] cheese</li>
+				<li>compliment->a [adj] nut</li>
+				<li>compliment->a [adj] tree</li>
+				<li>compliment->a [adj] peanut</li>
+				<li>compliment->[adj] leftovers</li>
 				
-				<li>rodentcompliment->[adj] cheese</li>
-				<li>rodentcompliment->[adj] nut</li>
-				<li>rodentcompliment->[adj] tree</li>
-				<li>rodentcompliment->[adj] peanut</li>
-				<li>rodentcompliment->[adj] leftover</li>
-				
-				<li>adj->wonderful</li>
-				<li>adj->delightful</li>
-				<li>adj->amazing</li>
+				<li>adj(p=8)->[KindAdj]</li>
+				<li>adj->delicious</li>
+				<li>adj->tasty</li>
 				<li>adj->savory</li>
-				<li>adj->lovely</li>
-				<li>adj->beautiful</li>
-				<li>adj->shiny</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Rodent</initiatorWeights>
@@ -469,4 +464,63 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at rodents -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMSqueak_DirectedInsult</defName>
+		<label>directed rodent insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->tail</li>
+				<li>animalcharacteristic->short stature</li>
+				<li>animalcharacteristic->beady eyes</li>
+				<li>animalcharacteristic->twitchy nose</li>
+				<li>animalcharacteristic->ratty appearance</li>
+				<li>animalcharacteristic->squeaky voice</li>
+				<li>animalcharacteristic->size</li>
+				<li>animalcharacteristic->twitchy mannerisms</li>
+				<li>animalcharacteristic->inability to sit still</li>
+				<li>animalcharacteristic->cooking skill</li>
+				
+				<li>insultcomparison->cheese gnawer</li>
+				<li>insultcomparison->nut</li>
+				<li>insultcomparison->thief</li>
+				<li>insultcomparison->pest</li>
+				<li>insultcomparison->squeaky toy</li>
+				<li>insultcomparison->shrimp</li>
+				<li>insultcomparison->plauge rat</li>
+				<li>insultcomparison->sewer dweller</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->complained that [RECIPIENT_possessive] is too jumpy</li>
+				<li>insult->said [RECIPIENT_nameDef] is disgusting</li>
+				<li>insult->mockingly called [RECIPIENT_nameDef] cute</li>
+				<li>insult->aggressively called [RECIPIENT_nameDef] "nuts"</li>
+				<li>insult->accused [RECIPIENT_nameDef] of spreading [disease]</li>
+				
+				<li>insultingjoketopics->mousetraps</li>
+				<li>insultingjoketopics->hoarding nuts</li>
+				<li>insultingjoketopics->dumpster diving</li>
+				<li>insultingjoketopics->rat poison</li>
+				<li>insultingjoketopics->trash-eating rodents</li>
+				<li>insultingjoketopics->[disease]</li>
+				
+				<li>disease->plauge</li>
+				<li>disease->malaria</li>
+				<li>disease->the flu</li>
+				<li>disease->food poisoning</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Rodent</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
 </Defs>

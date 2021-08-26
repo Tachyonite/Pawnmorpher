@@ -55,30 +55,45 @@
 		<initiatorThought>PMSnakeHiss_ChitchatMemory</initiatorThought>
 		<recipientThought>PMSnakeHiss_ChitchatMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout(p=4)->hissed at</li>
-				<li>talkedabout->shook [INITIATOR_possessive] tail at</li>
-				<li>talkedabout->hissed to</li>
-				<li>talkedabout->flicked [INITIATOR_possessive] tongue at</li>
-				<li>talkedabout->flicked [INITIATOR_possessive] tongue to</li>
-				<li>talkedabout->slithered by</li>
-				<li>talkedabout->talked about snakes with</li>
+				<li>noisedat(p=4)->hissed at</li>
+				<li>noisedat->shook [INITIATOR_possessive] tail at</li>
+				<li>noisedat->hissed to</li>
+				<li>noisedat->flicked [INITIATOR_possessive] tongue at</li>
+				<li>noisedat->flicked [INITIATOR_possessive] tongue to</li>
+				<li>noisedat->slithered by</li>
 
-				<li>askedabout->scales</li>
-				<li>askedabout->mice</li>
-				<li>askedabout->scavenging eggs</li>
-				<li>askedabout->legs</li>
-				<li>askedabout->snake tongues</li>
-				<li>askedabout->slithering</li>
-				<li>askedabout->combat mutations</li>
-				<li>askedabout->venom</li>
-				<li>askedabout->nagas</li>
-				<li>askedabout->naga hands</li>
-				<li>askedabout->long tails</li>
-				<li>askedabout->strange scents</li>
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->hissed about</li>
+				<li>noisedabout->ssspoke about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->snakes</li>
+				<li>animaltopic->cobras</li>
+				<li>animaltopic->scales</li>
+				<li>animaltopic->mice</li>
+				<li>animaltopic->scavenging eggs</li>
+				<li>animaltopic->legs</li>
+				<li>animaltopic->snake tongues</li>
+				<li>animaltopic->slithering</li>
+				<li>animaltopic->combat mutations</li>
+				<li>animaltopic->venom</li>
+				<li>animaltopic->nagas</li>
+				<li>animaltopic->naga hands</li>
+				<li>animaltopic->long tails</li>
+				<li>animaltopic->strange scents</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Snake</initiatorWeights>
@@ -103,41 +118,37 @@
 		<initiatorThought>PMSnakeHiss_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMSnakeHiss_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [snakelife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
 
-				<li>snakelife->being a naga</li>
-				<li>snakelife->becoming a naga</li>
-				<li>snakelife->shedding</li>
-				<li>snakelife->slithering</li>
-				<li>snakelife->coiling</li>
-				<li>snakelife->mice</li>
-				<li>snakelife->getting used to not having legs</li>
-				<li>snakelife->naga hands</li>
-				<li>snakelife->tongue flicking</li>
-				<li>snakelife->hissing</li>
-				<li>snakelife->venom</li>
-				<li>snakelife->eating rodents</li>
-				<li>snakelife->hunting instincts</li>
-				<li>snakelife->claw maintenence</li>
-				<li>snakelife->stronger senses</li>
-				<li>snakelife->interesting scents</li>
-				<li>snakelife->better vision</li>
-				<li>snakelife->resisting instinct</li>
-				<li>snakelife->mutations</li>
-				<li>snakelife->broken claws</li>
-				<li>snakelife->what a snake tail feels like</li>
-				<li>snakelife->ultraviolet vision</li>
-				<li>snakelife->reversion serums</li>
+				<li>animallife->being a naga</li>
+				<li>animallife->becoming a naga</li>
+				<li>animallife->shedding</li>
+				<li>animallife->slithering</li>
+				<li>animallife->coiling</li>
+				<li>animallife->mice</li>
+				<li>animallife->getting used to not having legs</li>
+				<li>animallife->naga hands</li>
+				<li>animallife->tongue flicking</li>
+				<li>animallife->hissing</li>
+				<li>animallife->venom</li>
+				<li>animallife->eating rodents</li>
+				<li>animallife->hunting instincts</li>
+				<li>animallife->claw maintenence</li>
+				<li>animallife->stronger senses</li>
+				<li>animallife->interesting scents</li>
+				<li>animallife->better vision</li>
+				<li>animallife->broken claws</li>
+				<li>animallife->what a snake tail feels like</li>
+				<li>animallife->thermal senses</li>
+				<li>animallife->ultraviolet vision</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Snake</initiatorWeights>
@@ -162,63 +173,55 @@
 		<initiatorThought>PMSnakeHiss_DeepTalkSnakeMemory</initiatorThought>
 		<recipientThought>PMSnakeHiss_DeepTalkSnakeMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [snaketopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [snaketopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [snakebehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
-				
-				<li>snaketopic(p=2)->[snakelife]</li>
-				<li>snaketopic->[secretsnakelife]</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>snakelife->being nagas</li>
-				<li>snakelife->becoming nagas</li>
-				<li>snakelife->shedding</li>
-				<li>snakelife->slithering</li>
-				<li>snakelife->coiling</li>
-				<li>snakelife->mice</li>
-				<li>snakelife->getting used to not having legs</li>
-				<li>snakelife->naga hands</li>
-				<li>snakelife->tongue flicking</li>
-				<li>snakelife->hissing</li>
-				<li>snakelife->venom</li>
-				<li>snakelife->eating rodents</li>
-				<li>snakelife->hunting instincts</li>
-				<li>snakelife->claw maintenence</li>
-				<li>snakelife->stronger senses</li>
-				<li>snakelife->interesting scents</li>
-				<li>snakelife->better vision</li>
-				<li>snakelife->resisting instinct</li>
-				<li>snakelife->mutations</li>
-				<li>snakelife->broken claws</li>
-				<li>snakelife->what a snake tail feels like</li>
-				<li>snakelife->ultraviolet vision</li>
-				<li>snakelife->reversion serums</li>
+				<li>animallife->being nagas</li>
+				<li>animallife->becoming nagas</li>
+				<li>animallife->shedding</li>
+				<li>animallife->slithering</li>
+				<li>animallife->coiling</li>
+				<li>animallife->mice</li>
+				<li>animallife->getting used to not having legs</li>
+				<li>animallife->naga hands</li>
+				<li>animallife->tongue flicking</li>
+				<li>animallife->hissing</li>
+				<li>animallife->venom</li>
+				<li>animallife->eating rodents</li>
+				<li>animallife->hunting instincts</li>
+				<li>animallife->claw maintenence</li>
+				<li>animallife->stronger senses</li>
+				<li>animallife->interesting scents</li>
+				<li>animallife->better vision</li>
+				<li>animallife->broken claws</li>
+				<li>animallife->what a snake tail feels like</li>
+				<li>animallife->thermal senses</li>
+				<li>animallife->ultraviolet vision</li>
 				
-				<li>secretsnakelife->basking spots</li>
-				<li>secretsnakelife->slithering through tight spots</li>
-				<li>secretsnakelife->stealing eggs</li>
-				<li>secretsnakelife->not wearing pants</li>
-				<li>secretsnakelife->venom spitting</li>
-				<li>secretsnakelife->cobra hood cleaning</li>
-				<li>secretsnakelife->hunting [prey]</li>
-				<li>secretsnakelife->swallowing [prey] whole</li>
-				<li>secretsnakelife->getting used to having fangs</li>
-				<li>secretsnakelife->smelling with tongues</li>
-				<li>secretsnakelife->practicing tail control</li>
-				<li>secretsnakelife->nictitating membranes</li>
-				<li>secretsnakelife->ambush hunting</li>
-				<li>secretsnakelife->the serpent gods</li>
-				<li>secretsnakelife->human sacrifice</li>
+				<li>secretanimallife->basking spots</li>
+				<li>secretanimallife->slithering through tight spots</li>
+				<li>secretanimallife->stealing eggs</li>
+				<li>secretanimallife->not wearing pants</li>
+				<li>secretanimallife->venom spitting</li>
+				<li>secretanimallife->cobra hood cleaning</li>
+				<li>secretanimallife->hunting [prey]</li>
+				<li>secretanimallife->swallowing [prey] whole</li>
+				<li>secretanimallife->getting used to having fangs</li>
+				<li>secretanimallife->smelling with tongues</li>
+				<li>secretanimallife->practicing tail control</li>
+				<li>secretanimallife->nictitating membranes</li>
+				<li>secretanimallife->ambush hunting</li>
+				<li>secretanimallife->the serpent gods</li>
+				<li>secretanimallife->human sacrifice</li>
 				
 				<li>prey(p=10)->[preyanimal]</li>
 				<li>prey->[preymorph]</li>
@@ -261,44 +264,42 @@
 	<!-- Slights -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMSnakeHiss_Slight</defName>
-		<label>gekker</label>
+		<label>hiss slight</label>
 		<symbol>Things/Mote/SpeechSymbols/SnakeHiss_Slight</symbol>
 		<recipientThought>PMSnakeHiss_Slight</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [gekkeredat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [gekkeredabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
-
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[snakecharacteristic]</li>
-				
-				<li>gekkeredat->hissed at</li>
-				<li>gekkeredat->bared [INITIATOR_possessive] fangs at</li>
-				<li>gekkeredat->hissed aggressively at</li>
-				<li>gekkeredat->shook [INITIATOR_possessive] tail annoyingly at</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->bared [INITIATOR_possessive] fangs at</li>
+				<li>noisedat->hissed aggressively at</li>
+				<li>noisedat->shook [INITIATOR_possessive] tail annoyingly at</li>
 								
-				<li>gekkeredabout->hissed about</li>
-				<li>gekkeredabout->hissed angrily about</li>
-				<li>gekkeredabout->bared [INITIATOR_possessive] fangs because of</li>
+				<li>noisedabout->hissed about</li>
+				<li>noisedabout->hissed angrily about</li>
+				<li>noisedabout->bared [INITIATOR_possessive] fangs because of</li>
 				
-				<li>snakecharacteristic->scent</li>
-				<li>snakecharacteristic->body language</li>
-				<li>snakecharacteristic->loud noises</li>
-				<li>snakecharacteristic->sudden movements</li>
-				<li>snakecharacteristic->[refusal] to give [INITIATOR_objective] a live mouse</li>
-				<li>snakecharacteristic->[refusal] to help [INITIATOR_objective] shed</li>
-				<li>snakecharacteristic->[refusal] to let [INITIATOR_objective] sense [RECIPIENT_objective] with [INITIATOR_possessive] tongue</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->sudden movements</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a live mouse</li>
+				<li>animalcharacteristic->[Refusal] to help [INITIATOR_objective] shed</li>
+				<li>animalcharacteristic->[Refusal] to let [INITIATOR_objective] sense [RECIPIENT_objective] with [INITIATOR_possessive] tongue</li>
 				
 				<li>annoyingbehavior->tried to sense [RECIPIENT_nameDef] with [INITIATOR_possessive] tongue</li>
 				<li>annoyingbehavior->annoyingly slithered against [RECIPIENT_nameDef]</li>
 				<li>annoyingbehavior->annoyingly booped [INITIATOR_possessive] snout against [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->spread [INITIATOR_possessive] hood threateningly at [RECIPIENT_nameDef]</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Snake</initiatorWeights>
@@ -318,55 +319,58 @@
 	<!-- Insults -->
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMSnakeHiss_Insult</defName>
-		<label>screech</label>
+		<label>hiss insult</label>
 		<symbol>Things/Mote/SpeechSymbols/SnakeHiss_Insult</symbol>
 		<recipientThought>PMSnakeHiss_Insult</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry(p=3)->[INITIATOR_nameDef] [screechedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [screechedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [snakeinsult].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
-				<li>comparedtargetto->called [target]</li>
-				<li>comparedtargetto->compared [target] to</li>
-				<li>comparedtargetto->hissed that [target] was</li>
-
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
 				
+				<li>noisedtargetwas->hissed that [Target] was</li>
+				<li>noisedtargetwas->sssaid that [Target] was</li>
+
 				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[snakecharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>screechedat->hissed at</li>
-				<li>screechedat->screeched at</li>
-				<li>screechedat->hissed and aggressively shook [INITIATOR_possessive] tail at</li>
+				<li>noisedat->hissed at</li>
+				<li>noisedat->spit at</li>
+				<li>noisedat->hissed and aggressively shook [INITIATOR_possessive] tail at</li>
 				
-				<li>screechedabout->hissed about</li>
-				<li>screechedabout->hissed angrily about</li>
-				<li>screechedabout->hissed and bared fangs at [RECIPIENT_nameDef] because of</li>
-				<li>screechedabout->hissed in [RECIPIENT_nameDef] face over</li>
-				<li>screechedabout->bared [INITIATOR_possessive] fangs over</li>
+				<li>noisedabout->hissed about</li>
+				<li>noisedabout->hissed angrily about</li>
+				<li>noisedabout->spit angrily about</li>
+				<li>noisedabout->hissed and bared fangs at [RECIPIENT_nameDef] because of</li>
+				<li>noisedabout->hissed in [RECIPIENT_nameDef] face over</li>
+				<li>noisedabout->bared [INITIATOR_possessive] fangs over</li>
 				
-				<li>snakecharacteristic->scent</li>
-				<li>snakecharacteristic->body language</li>
-				<li>snakecharacteristic->loud noises</li>
-				<li>snakecharacteristic->sudden movements</li>
-				<li>snakecharacteristic->[refusal] to give [INITIATOR_objective] a live mouse</li>
-				<li>snakecharacteristic->[refusal] to help [INITIATOR_objective] shed</li>
-				<li>snakecharacteristic->[refusal] to let [INITIATOR_objective] sense [RECIPIENT_objective] with [INITIATOR_possessive] tongue</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->sudden movements</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a live mouse</li>
+				<li>animalcharacteristic->[Refusal] to help [INITIATOR_objective] shed</li>
+				<li>animalcharacteristic->[Refusal] to let [INITIATOR_objective] sense [RECIPIENT_objective] with [INITIATOR_possessive] tongue</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
-				
-				<li>snakeinsult->breakfast</li>
-				<li>snakeinsult->lunch</li>
-				<li>snakeinsult->dinner</li>
-				<li>snakeinsult->a warmblood</li>
-				<li>snakeinsult->a smoothskin</li>
-				<li>snakeinsult->a rat</li>
-				<li>snakeinsult->a mouse</li>
-				<li>snakeinsult->a chicken</li>
-				<li>snakeinsult->prey</li>
+				<li>insult->breakfast</li>
+				<li>insult->lunch</li>
+				<li>insult->dinner</li>
+				<li>insult->a warmblood</li>
+				<li>insult->a smoothskin</li>
+				<li>insult->a rat</li>
+				<li>insult->a mouse</li>
+				<li>insult->a chicken</li>
+				<li>insult->prey</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Snake</initiatorWeights>
@@ -403,50 +407,56 @@
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMSnakeHiss_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [snakecompliment].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [snakecompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[snakecharacteristic]</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
 				
-				<li>snakecharacteristic->scent</li>
-				<li>snakecharacteristic->body language</li>
-				<li>snakecharacteristic->treats</li>
-				<li>snakecharacteristic->tail petting technique</li>
-				<li>snakecharacteristic->combat skill</li>
+				<li>noisedtargetwas->hissed that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->sssaid that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>complimented->hissed happily about</li>
-				<li>complimented->hissed approvingly of</li>
-				<li>complimented->purred happily about</li>
-				<li>complimented->purred approvingly of</li>
-				<li>complimented->swished [INITIATOR_possessive] tail at</li>
-				<li>complimented->gave [RECIPIENT_nameDef] an approving look because of</li>
-				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
-				<li>complimented->[adv] swayed back and forth because of</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->treats</li>
+				<li>animalcharacteristic->warmth</li>
+				<li>animalcharacteristic->tail petting technique</li>
+				<li>animalcharacteristic->combat skill</li>
 				
-				<li>kindbehavior->[adv] licked</li>
-				<li>kindbehavior->[adv] nuzzled</li>
-				<li>kindbehavior->[adv] hissed at</li>
+				<li>complimented->hissed happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimented->hissed approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimented->purred happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimented->purred approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimented->swished [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimented->gave [RECIPIENT_nameDef] an approving look because of [RECIPIENT_possessive]</li>
+				<li>complimented->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
+				<li>complimented->[KindAdverb] swayed back and forth because of [RECIPIENT_nameDef]'s</li>
+				
+				<li>kindbehavior->[KindAdverb] licked</li>
+				<li>kindbehavior->[KindAdverb] nuzzled</li>
+				<li>kindbehavior->[KindAdverb] hissed at</li>
 				<li>kindbehavior->swished [INITIATOR_possessive] tail at</li>
 				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->happily</li>
+				<li>snakecompliment->a [adj] snake</li>
+				<li>snakecompliment->a [adj] rabbit</li>
+				<li>snakecompliment->a [adj] mouse</li>
+				<li>snakecompliment->a [adj] chicken</li>
+				<li>snakecompliment->a [adj] fighter</li>
+				<li>snakecompliment->a [adj] warm rock</li>
+				<li>snakecompliment->a [adj] heatlamp</li>
 				
-				<li>snakecompliment->[adj] snake</li>
-				<li>snakecompliment->[adj] rabbit</li>
-				<li>snakecompliment->[adj] mouse</li>
-				<li>snakecompliment->[adj] chicken</li>
-				<li>snakecompliment->[adj] fighter</li>
-				
+				<li>adj(p=8)->[KindAdj]</li>
+				<li>adj->delicious</li>
 				<li>adj->tasty</li>
-				<li>adj->delightful</li>
 				<li>adj->savory</li>
-				<li>adj->sweet</li>
 				<li>adj->scrumptious</li>
 				<li>adj->delicious</li>
 			</rulesStrings>
@@ -475,4 +485,65 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at nagas -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMSnakeHiss_DirectedInsult</defName>
+		<label>directed naga insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->tail</li>
+				<li>animalcharacteristic->venom</li>
+				<li>animalcharacteristic->snake eyes</li>
+				<li>animalcharacteristic->creepy tail</li>
+				<li>animalcharacteristic->scary fangs</li>
+				<li>animalcharacteristic->size</li>
+				<li>animalcharacteristic->lack of legs</li>
+				<li>animalcharacteristic->frightening behavior</li>
+				<li>animalcharacteristic->slithery mannerisms</li>
+				<li>animalcharacteristic->eating habits</li>
+				<li>animalcharacteristic->lisp</li>
+				<li>animalcharacteristic->combat skill</li>
+				<li>animalcharacteristic->hunting skill</li>
+				<li>animalcharacteristic->skin shedding</li>
+
+				<li>insultcomparison->an angry noodle</li>
+				<li>insultcomparison->a danger noodle</li>
+				<li>insultcomparison->a nope rope</li>
+				<li>insultcomparison->a toilet dweller</li>
+				<li>insultcomparison->a rat eater</li>
+				<li>insultcomparison->a venom spitter</li>
+				<li>insultcomparison->a lab monster</li>
+				<li>insultcomparison->a soulless supersoldier</li>
+				<li>insultcomparison->a killing machine</li>
+				<li>insultcomparison->a reptile exhibit</li>
+				<li>insultcomparison->a creep</li>
+				<li>insultcomparison->a horror</li>
+
+                <li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->complained that [RECIPIENT_nameDef] moves around creepily</li>
+				<li>insult->accused [RECIPIENT_nameDef] of being nothing but a super soldier</li>
+				<li>insult->called [RECIPIENT_nameDef] cold and unfeeling</li>
+				<li>insult->said [RECIPIENT_nameDef] keeps getting in the way</li>
+				<li>insult->accused [RECIPIENT_nameDef] of being inhumane</li>
+
+				<li>insultingjoketopics->snakes swallowing food whole</li>
+				<li>insultingjoketopics->snakes being found in toilets</li>
+				<li>insultingjoketopics->improperly making an 's' sound</li>
+				<li>insultingjoketopics->not having legs</li>
+				<li>insultingjoketopics->snake pits</li>
+				<li>insultingjoketopics->naga soldiers</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Snake</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
 </Defs>
