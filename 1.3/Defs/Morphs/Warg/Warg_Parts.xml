@@ -181,13 +181,6 @@
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<healthOffset>2</healthOffset>
-				<statOffsets>
-					<CarryingCapacity>10</CarryingCapacity>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
 				<healthOffset>2</healthOffset>
 				<statOffsets>
@@ -195,7 +188,7 @@
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
+				<minSeverity>1.5</minSeverity>
 				<healthOffset>2</healthOffset>
 				<statOffsets>
 					<CarryingCapacity>17</CarryingCapacity>
