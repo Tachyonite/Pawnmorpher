@@ -11,7 +11,7 @@
                     <li>
                         <!-- Normal fights, ranged with melee mix-ins -->
                         <kindDef>Combat</kindDef>
-                        <commonality>1000</commonality>
+                        <commonality>15</commonality> <!-- As common as heavy weapons raids -->
                         <options>
                             <Muta_Mercenary_Rocket>5</Muta_Mercenary_Rocket>
                             <Muta_Grenadier_Destructive>5</Muta_Grenadier_Destructive>
