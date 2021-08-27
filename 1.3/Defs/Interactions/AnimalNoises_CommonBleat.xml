@@ -218,8 +218,8 @@
 				<li>topic->[DeepMorphTopic]</li>
 				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>animallife->becoming an ungulate morph</li>
-				<li>animallife->being an ungulate morph</li>
+				<li>animallife->becoming ungulate morphs</li>
+				<li>animallife->being ungulate morphs</li>
 				<li>animallife->hoof hands</li>
 				<li>animallife->ungulates</li>
 				<li>animallife->bleating</li>
@@ -244,25 +244,39 @@
 				<li>secretanimallife->freedom</li>
 				<li>secretanimallife->brushing techniques</li>
 				<li>secretanimallife->antler polishing</li>
+				<li>secretanimallife->antler shedding</li>
 				<li>secretanimallife->fur care</li>
-				<li>secretanimallife->ethics of hunting</li>
+				<li>secretanimallife->the ethics of hunting</li>
 				<li>secretanimallife->smelling predators</li>
 				<li>secretanimallife->sprinting techniques</li>
-				<li>secretanimallife->avoiding hunting [predators]</li>
+				<li>secretanimallife->avoiding [predators]</li>
 				<li>secretanimallife->survival skills</li>
                 <li>secretanimallife->accidentally bumping antlers into things</li>
 				<li>secretanimallife->animal friends</li>
+				<li>secretanimallife->forming an anti-predator coalition</li>
+				<li>secretanimallife->picking up psychic transmissions via antlers</li>
 				
+                <li>predators(p=10)->[predanimals]</li>
+                <li>predators->[predmorphs]</li>
+
+                <li>predanimals->lions</li>
+                <li>predanimals->tigers</li>
+                <li>predanimals->wolves</li>
+                <li>predanimals->panthers</li>
+                <li>predanimals->cougers</li>
+                <li>predanimals->bears</li>
+                <li>predanimals->wargs</li>
+                
+                <li>predmorphs->humans</li>
+                <li>predmorphs->wolfmorphs</li>
+                <li>predmorphs->panthermorphs</li>
+                <li>predmorphs->cougermorphs</li>
+                <li>predmorphs->bearmorphs</li>
+                <li>predmorphs->wargmorphs</li>
+                
 				<li>ungulatebehavior->bleated understandingly at [RECIPIENT_nameDef]</li>
 				<li>ungulatebehavior->bleated with [RECIPIENT_nameDef]</li>
 				<li>ungulatebehavior->and [RECIPIENT_nameDef] bumped heads and nuzzled</li>
-
-                <li>predators->lions</li>
-                <li>predators->tigers</li>
-                <li>predators->humans</li>
-                <li>predators->wolves</li>
-                <li>predators->panthers</li>
-                <li>predators->wargs</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Ungulate</initiatorWeights>
@@ -435,7 +449,6 @@
 				
 				<li>noisedtargetwas->bleated that [RECIPIENT_nameDef] was</li>
 				<li>noisedtargetwas->bellowed that [RECIPIENT_nameDef] was</li>
-				<li>noisedtargetwas->bellowed that [RECIPIENT_nameDef] was</li>
 
 				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
 				<li>characteristic->[animalcharacteristic]</li>
@@ -527,6 +540,7 @@
 				<li>insultcomparison->a dumb animal</li>
 				<li>insultcomparison->a nature reserve</li>
 				<li>insultcomparison->a tick feeder</li>
+				<li>insultcomparison->venison</li>
 
 				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
 				<li>insult->accused [RECIPIENT_nameDef] of eating a document</li>
@@ -541,6 +555,7 @@
 				<li>insultingjoketopics->trophy hunting</li>
 				<li>insultingjoketopics->animals frolicking</li>
                 <li>insultingjoketopics->antler sawing</li>
+                <li>insultingjoketopics->deer in rut</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Ungulate</recipientWeights>

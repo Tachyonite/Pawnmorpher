@@ -186,8 +186,8 @@
 				<li>topic->[DeepMorphTopic]</li>
 				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>animallife->becoming a goat morph</li>
-				<li>animallife->being a goat morph</li>
+				<li>animallife->becoming goat morphs</li>
+				<li>animallife->being goat morphs</li>
 				<li>animallife->hoof hands</li>
 				<li>animallife->goats</li>
 				<li>animallife->bleating</li>
@@ -226,6 +226,9 @@
 				<li>secretanimallife->climbing hills</li>
                 <li>secretanimallife->climbing cliffs</li>
 				<li>secretanimallife->goat towers</li>
+				<li>secretanimallife->stylish goatees</li>
+				<li>secretanimallife->unusually long tongues</li>
+				<li>secretanimallife->bugs in the reality simulation</li>
 				
 				<li>ungulatebehavior->bleated understandingly at [RECIPIENT_nameDef]</li>
 				<li>ungulatebehavior->bleated with [RECIPIENT_nameDef]</li>
@@ -481,6 +484,7 @@
 				<li>animalcharacteristic->blank stare</li>
 				<li>animalcharacteristic->hooves</li>
 				<li>animalcharacteristic->tendancy to scream</li>
+				<li>animalcharacteristic->orney attitude</li>
 				<li>animalcharacteristic->ears</li>
 				<li>animalcharacteristic->smell</li>
 				<li>animalcharacteristic->goatee</li>
@@ -510,6 +514,7 @@
                 <li>insultingjoketopics->horns getting stuck together</li>
 				<li>insultingjoketopics->goats falling off cliffs</li>
                 <li>insultingjoketopics->scaring goats</li>
+                <li>insultingjoketopics->fainting goats</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<recipientWeights>PMInteractionWeights_Goat</recipientWeights>
