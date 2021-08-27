@@ -51,7 +51,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
 		<defName>PMGoatBleat_Chitchat</defName>
 		<label>bleat</label>
-		<symbol>Things/Mote/SpeechSymbols/GoatBleat</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Goat</symbol>
 		<initiatorThought>PawnmorphGoatBleat</initiatorThought>
 		<recipientThought>PawnmorphGoatBleat</recipientThought>
 		<logRulesInitiator>
@@ -118,7 +118,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMGoatBleat_DeepTalk</defName>
 		<label>deep bleat</label>
-		<symbol>Things/Mote/SpeechSymbols/GoatBleat_DeepTalk</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Goat_DeepTalk</symbol>
 		<initiatorThought>PMGoatBleat_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMGoatBleat_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
@@ -170,7 +170,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMGoatBleat_DeepTalkUngulate</defName>
 		<label>deep bleat with ungulate</label>
-		<symbol>Things/Mote/SpeechSymbols/GoatBleat_DeepTalk</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Goat_DeepTalk</symbol>
 		<initiatorThought>PMGoatBleat_DeepTalkUngulateMemory</initiatorThought>
 		<recipientThought>PMGoatBleat_DeepTalkUngulateMemory</recipientThought>
 		<logRulesInitiator>
@@ -256,7 +256,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMGoatBleat_Slight</defName>
 		<label>ungulate slight</label>
-		<symbol>Things/Mote/SpeechSymbols/GoatBleat_Slight</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Goat_Slight</symbol>
 		<recipientThought>PMGoatBleat_Slight</recipientThought>
 		<logRulesInitiator>
 			<include>
@@ -312,7 +312,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMGoatBleat_Insult</defName>
 		<label>ungulate insult</label>
-		<symbol>Things/Mote/SpeechSymbols/GoatBleat_Insult</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Goat_Insult</symbol>
 		<recipientThought>PMGoatBleat_Insult</recipientThought>
 		<logRulesInitiator>
 			<include>
@@ -388,7 +388,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
 		<defName>PMGoatBleat_KindWords</defName>
 		<label>kind bleats</label>
-		<symbol>Things/Mote/SpeechSymbols/GoatBleat_KindWords</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Goat_KindWords</symbol>
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMGoatBleat_KindWordsMemory</recipientThought>
 		<logRulesInitiator>

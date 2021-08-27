@@ -86,7 +86,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
 		<defName>PMCommonBleat_Chitchat</defName>
 		<label>bleat</label>
-		<symbol>Things/Mote/SpeechSymbols/CommonBleat</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Ungulate</symbol>
 		<initiatorThought>PawnmorphCommonBleat</initiatorThought>
 		<recipientThought>PawnmorphCommonBleat</recipientThought>
 		<logRulesInitiator>
@@ -152,7 +152,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMCommonBleat_DeepTalk</defName>
 		<label>deep bleat</label>
-		<symbol>Things/Mote/SpeechSymbols/CommonBleat_DeepTalk</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Ungulate_DeepTalk</symbol>
 		<initiatorThought>PMCommonBleat_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMCommonBleat_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
@@ -202,7 +202,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
 		<defName>PMCommonBleat_DeepTalkUngulate</defName>
 		<label>deep bleat with ungulate</label>
-		<symbol>Things/Mote/SpeechSymbols/CommonBleat_DeepTalk</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Ungulate_DeepTalk</symbol>
 		<initiatorThought>PMCommonBleat_DeepTalkUngulateMemory</initiatorThought>
 		<recipientThought>PMCommonBleat_DeepTalkUngulateMemory</recipientThought>
 		<logRulesInitiator>
@@ -300,7 +300,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
 		<defName>PMCommonBleat_Slight</defName>
 		<label>ungulate slight</label>
-		<symbol>Things/Mote/SpeechSymbols/CommonBleat_Slight</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Ungulate_Slight</symbol>
 		<recipientThought>PMCommonBleat_Slight</recipientThought>
 		<logRulesInitiator>
 			<include>
@@ -356,7 +356,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
 		<defName>PMCommonBleat_Insult</defName>
 		<label>ungulate insult</label>
-		<symbol>Things/Mote/SpeechSymbols/CommonBleat_Insult</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Ungulate_Insult</symbol>
 		<recipientThought>PMCommonBleat_Insult</recipientThought>
 		<logRulesInitiator>
 			<include>
@@ -432,7 +432,7 @@
 	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
 		<defName>PMCommonBleat_KindWords</defName>
 		<label>kind bleats</label>
-		<symbol>Things/Mote/SpeechSymbols/CommonBleat_KindWords</symbol>
+		<symbol>Things/Mote/SpeechSymbols/Ungulate_KindWords</symbol>
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMCommonBleat_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
