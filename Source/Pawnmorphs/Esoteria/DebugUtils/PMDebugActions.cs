@@ -112,6 +112,19 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void AdaptAllMutations(Pawn p)
+        {
+            var mTracker = p?.GetMutationTracker();
+            if (mTracker == null) return;
+            foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
+            {
+                var sevAdj = mutation.SeverityAdjust; 
+                if(sevAdj == null) continue;
+                mutation.Severity = sevAdj.NaturalSeverityLimit; 
+            }
+        }
+
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
         static void TagAllAnimals()
         {

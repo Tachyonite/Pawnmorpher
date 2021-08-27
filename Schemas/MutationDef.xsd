@@ -50,6 +50,7 @@
                     <xs:sequence>
                         <xs:element name="li" type="HediffStage" maxOccurs="unbounded" />
                     </xs:sequence>
+                    <xs:attribute name="Inherit" type="xs:boolean" use="optional" />
                 </xs:complexType>
             </xs:element>
             <xs:element name="spawnThingOnRemoved" type="xs:string" minOccurs="0"/>
@@ -82,6 +83,7 @@
             <xs:element name="labelOverride" minOccurs="0" type="xs:string" />
             <xs:element name="description" minOccurs="0" type="xs:string" />
             <xs:element name="painOffset" type="xs:float" minOccurs="0" />
+            <xs:element name="healthOffset" type="xs:float" minOccurs="0" />
             <xs:element name="graphics" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>

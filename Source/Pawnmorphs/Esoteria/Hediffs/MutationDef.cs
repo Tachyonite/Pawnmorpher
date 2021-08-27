@@ -21,6 +21,9 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.HediffDef" />
     public class MutationDef : HediffDef, IDebugString
     {
+        [Unsaved()]
+        private MutationStage[] _cachedMutationStages; 
+        
         /// <summary>
         ///     list of body parts this mutation can be added to
         /// </summary>
@@ -130,6 +133,16 @@ namespace Pawnmorph.Hediffs
                                                      .ToList());
             }
         }
+
+        /// <summary>
+        /// Gets the cached mutation stages. this is the same size as stages but pre cast to <see cref="MutationStage"/> if a particular stage is not
+        /// a MutationsStage then the corresponding entry in this list is null 
+        /// </summary>
+        /// <value>
+        /// The cached mutation stages.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<MutationStage> CachedMutationStages => _cachedMutationStages ?? Array.Empty<MutationStage>();
 
         /// <summary>
         ///     returns a full, detailed, representation of the object in string form
@@ -274,6 +287,21 @@ namespace Pawnmorph.Hediffs
                 parts.Clear();
                 parts.AddRange(_tmpPartLst);
 
+            }
+
+
+            if (stages.NullOrEmpty())
+            {
+                _cachedMutationStages = Array.Empty<MutationStage>();
+            }
+            else
+            {
+                int count = stages.Count;
+                _cachedMutationStages = new MutationStage[count];
+                for (int i = 0; i < stages.Count; i++)
+                {
+                    _cachedMutationStages[i] = stages[i] as MutationStage; 
+                }
             }
         }
 

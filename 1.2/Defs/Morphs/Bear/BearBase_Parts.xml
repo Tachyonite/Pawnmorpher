@@ -1,0 +1,164 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="BearPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>Bear</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="BearJawBase">
+		<label>ursine muzzle</label>
+		<description>The ferocious muzzle of a bear.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>bestial</label>
+				<minSeverity>-0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.70</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.80</offset>
+					</li>
+				</capMods>
+				<description>[PAWN_nameDef]'s face has become a ursine massive snout, with teeth pointed to suit. This makes speaking much more difficult, yet eating is easier.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.10</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.60</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.80</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>adapted</label>
+				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				<minSeverity>1</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.12</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.80</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>paragon</label>
+				<minSeverity>1.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.80</offset>
+					</li>
+				</capMods>
+				<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit, making eating easier. Oddly, this doesn't seem to impact [PAWN_possessive] ability to talk.</description>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
+		<defName>EtherBearEar</defName>
+		<label>ursine</label>
+		<description>Rounded, fuzzy ears sit atop [PAWN_nameDef]'s head. They're very slightly better at hearing than a human's ears.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+		</stages>
+		<parts>
+			<li>Ear</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
+		<defName>EtherBearTail</defName>
+		<label>bear tail</label>
+		<description>A short tail, like that of a bear. Not much of a tail, really.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.005</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
+		<defName>EtherBearPawHand</defName>
+		<label>huge paw</label>
+		<description>Massive, clawed and deadly paws have replaced the finer thumbed hands of a human. While less useful for manipulation, they make [PAWN_nameDef] a beast in a fight.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>tip</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+		<parts>
+			<li>Hand</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -1,0 +1,75 @@
+<Defs>
+	<AlienRace.BackstoryDef>
+		<defName>WolfmorphAlphaGeneral</defName>
+		<title>pack alpha</title>
+		<titleShort>alpha wolf</titleShort>
+		<baseDescription>[PAWN_nameDef] was part of a disproven study into the dominance heirarchy in wolf packs. When the study went underground, it took [PAWN_nameDef]'s humanity and made [PAWN_objective] an alpha.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Hulk</bodyTypeFemale>
+		<bodyTypeMale>Hulk</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Melee</defName>
+				<amount>5</amount>
+			</li>
+			<li>
+				<defName>Social</defName>
+				<amount>3</amount>
+			</li>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>-2</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>8~8</hediffRange>
+				<morphs>
+					<li>ArcticWolfMorph</li>
+					<li>WolfMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.BackstoryDef>
+
+	<AlienRace.BackstoryDef>
+		<defName>WolfmorphBetaGeneral</defName>
+		<title>pack beta</title>
+		<titleShort>beta wolf</titleShort>
+		<baseDescription>[PAWN_nameDef] was part of a disproven study into the dominance heirarchy in wolf packs. When the study went underground, it took [PAWN_nameDef]'s humanity and made [PAWN_objective] a lesser member, a beta.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+		<bodyTypeMale>Thin</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Melee</defName>
+				<amount>2</amount>
+			</li>
+			<li>
+				<defName>Social</defName>
+				<amount>-2</amount>
+			</li>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>2</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>2~6</hediffRange>
+				<morphs>
+					<li>ArcticWolfMorph</li>
+					<li>WolfMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.BackstoryDef>
+</Defs>

@@ -28,6 +28,11 @@ namespace Pawnmorph.Hediffs
         public string description;
 
         /// <summary>
+        /// the max health offset of this particular part 
+        /// </summary>
+        public float healthOffset = 0; 
+
+        /// <summary>
         /// The label override
         /// </summary>
         public string labelOverride;
