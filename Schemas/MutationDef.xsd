@@ -130,6 +130,14 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="statFactors" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any processContents="lax" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
             <xs:element name="aspectGivers" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
