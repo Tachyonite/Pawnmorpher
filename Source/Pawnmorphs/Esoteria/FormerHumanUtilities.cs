@@ -75,6 +75,11 @@ namespace Pawnmorph
 
         [NotNull] private static readonly List<BodyPartRecord> _brScratchList = new List<BodyPartRecord>();
 
+
+        [NotNull] private static readonly List<PawnKindDef> _allRegularFormerHumanPawnKinds;
+        
+
+
         static FormerHumanUtilities()
         {
             var values = new[]
@@ -131,7 +136,26 @@ namespace Pawnmorph
                              ?? StatDefOf.FilthRate.defaultBaseValue;
 
             Giver_RecruitSapientAnimal.ResetStaticData();
+
+
+            _allRegularFormerHumanPawnKinds =
+                DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.RaceProps?.Animal == true
+                                                                       && p.race.GetModExtension<ChaomorphExtension>() == null
+                                                                       && p.race.GetModExtension<FormerHumanSettings>()
+                                                                          ?.neverFormerHuman
+                                                                       != true)
+                                        .ToList(); 
         }
+
+
+        /// <summary>
+        /// a list of all pawnkind defs that can be former humans .
+        /// </summary>
+        /// <value>
+        /// All regular former human pawnkind defs.
+        /// </value>
+        [NotNull]
+        public static IReadOnlyList<PawnKindDef> AllRegularFormerHumanPawnkindDefs => _allRegularFormerHumanPawnKinds; 
 
         /// <summary>
         ///     the base chance for a neutral or hostile pawn to go manhunter when transformed

@@ -74,6 +74,20 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        private static void TransformPawnIntoRandomAnimal(Pawn p)
+        {
+            MutagenDef mutagen = MutagenDefOf.defaultMutagen;
+            if (p == null || !mutagen.CanTransform(p)) return;
+
+            PawnKindDef rPK = FormerHumanUtilities.AllRegularFormerHumanPawnkindDefs.RandomElement();
+            var newRequest = new TransformationRequest(rPK, p, SapienceLevel.Sapient);
+            var tfPawn = mutagen.MutagenCached.Transform(newRequest);
+            if (tfPawn == null) return; 
+            var wComp = Find.World.GetComponent<PawnmorphGameComp>();
+            wComp.AddTransformedPawn(tfPawn); 
+        }
+
         [DebugAction(category=PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void EnableMutationTrackerLogging(Pawn p)
         {
