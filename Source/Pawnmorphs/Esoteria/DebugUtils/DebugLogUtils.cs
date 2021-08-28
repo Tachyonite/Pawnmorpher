@@ -105,6 +105,33 @@ namespace Pawnmorph.DebugUtils
             }
         }
 
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void ListMorphInfo()
+        {
+
+            StringBuilder builder = new StringBuilder(); 
+            var morphsByMod = MorphDef.AllDefs.GroupBy(m => m.modContentPack);
+            List<ThingDef> tmpLst = new List<ThingDef>(); 
+            foreach (IGrouping<ModContentPack, MorphDef> morphByMod in morphsByMod)
+            {
+                const string mainSep = "----------";
+                const string lineSep = "\t-";
+                builder.AppendLine($"{mainSep}{morphByMod.Key.Name}{mainSep}");
+
+                foreach (MorphDef morph in morphByMod)
+                {
+                    builder.AppendLine($"{morph}:{morph.race.label}");
+                    tmpLst.Clear();
+                    tmpLst.AddRange(morph.AllAssociatedAnimals.Where(r => r != morph.race));
+                    if(tmpLst.Count > 0)
+                        builder.AppendLine(lineSep + string.Join(",", tmpLst.Select(a => a.label))); 
+                    
+                }
+            }
+
+            Log.Message(builder.ToString());
+        }
+
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void FindMissingMutationDescriptions()
