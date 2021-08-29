@@ -4,10 +4,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
+using Pawnmorph.DebugUtils;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.Utilities.PatchUtilities;
+
 #pragma warning disable 1591
 namespace Pawnmorph.HPatches
 {
@@ -105,31 +109,47 @@ namespace Pawnmorph.HPatches
         }
 
 
-        //[HarmonyPatch(typeof(PawnCapacityUtility), nameof(PawnCapacityUtility.CalculatePartEfficiency))]
+        [HarmonyPatch(typeof(PawnCapacityUtility), nameof(PawnCapacityUtility.CalculatePartEfficiency))]
         static class GetPartEfficiencyFix
         {
             static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
             {
-                var lst = insts.ToList();
-
+                List<CodeInstruction> lst = insts.ToList();
 
                 const int len = 5;
-                CodeInstruction[] subArr = new CodeInstruction[len];
-                for(int i=0; i < lst.Count - len; i++)
+                var subArr = new CodeInstruction[len];
+                var pattern = new ValueTuple<OpCode, OpCodeOperand?>[]
                 {
-                    for (int j = 0; j < len; j++)
-                    {
-                        subArr[j] = lst[i + j]; 
-                    }
+                    (OpCodes.Ldarg_1, null), //part 
+                    (OpCodes.Ldfld,
+                     new OpCodeOperand(typeof(BodyPartRecord).GetField(nameof(BodyPartRecord.def),
+                                                                       BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Ldarg_0, null), //hediff set 
+                    (OpCodes.Ldfld,
+                     new OpCodeOperand(typeof(HediffSet).GetField(nameof(HediffSet.pawn),
+                                                                  BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Callvirt,
+                     new OpCodeOperand(typeof(BodyPartDef).GetMethod(nameof(BodyPartDef.GetMaxHealth),
+                                                                     BindingFlags.Public | BindingFlags.Instance)))
+                };
 
-                    if(subArr[0].opcode != OpCodes.Div) continue;
-                    if(subArr[1].opcode != OpCodes.Stloc_S) continue;
-                    if(subArr[2].opcode != OpCodes.Ldloc_S) continue;
-                    if(subArr[3].opcode != OpCodes.Ldc_R4) continue;
-                    if(subArr[4].opcode != OpCodes.Beq_S) continue;
-                    subArr[4].opcode = OpCodes.Ble_Un;
+                MethodInfo subMethod =
+                    typeof(BodyUtilities).GetMethod(nameof(BodyUtilities.GetPartMaxHealth),
+                                                    BindingFlags.Public | BindingFlags.Static);
+
+                for (var i = 0; i < lst.Count - len; i++)
+                {
+                    for (var j = 0; j < len; j++) subArr[j] = lst[i + j];
+
+                    if (!subArr.MatchesPattern(pattern)) continue;
+
+                    lst[i + 1].opcode = OpCodes.Nop;
+                    lst[i + 1].operand = null;
+                    lst[i + 4].opcode = OpCodes.Call;
+                    lst[i + 4].operand = subMethod;
                     break;
                 }
+
 
                 return lst; 
             }

@@ -48,6 +48,9 @@ namespace Pawnmorph.HPatches
                     i1.operand = null;
                     i4.opcode = OpCodes.Call;
                     i4.operand = subMethod; 
+
+                    //BodyUtilities.GetPartMaxHeath arguments must be in order (BodyPartRecord, Pawn) 
+                    //first push part the pawn onto the stack 
                 }
 
                 return list; 
