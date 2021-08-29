@@ -225,8 +225,9 @@
 		</costList>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
-					<animalClass>Powerful</animalClass>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<morphCategory>Powerful</morphCategory>
+					<fullTf>true</fullTf>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>
