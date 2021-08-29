@@ -105,7 +105,7 @@ namespace Pawnmorph.HPatches
         }
 
 
-        [HarmonyPatch(typeof(PawnCapacityUtility), nameof(PawnCapacityUtility.CalculatePartEfficiency))]
+        //[HarmonyPatch(typeof(PawnCapacityUtility), nameof(PawnCapacityUtility.CalculatePartEfficiency))]
         static class GetPartEfficiencyFix
         {
             static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
