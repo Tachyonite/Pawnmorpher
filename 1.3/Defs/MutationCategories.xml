@@ -25,6 +25,18 @@
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef>
+		<defName>Crafter</defName>
+		<label>crafter</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Social</defName>
+		<label>social</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
 		<defName>Productive</defName>
 		<label>productive</label>
 		<genomeProvider>true</genomeProvider>

@@ -316,6 +316,17 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void ListMutationsPerCategory()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (MutationCategoryDef def in DefDatabase<MutationCategoryDef>.AllDefsListForReading)
+            {
+                builder.AppendLine($"{def.defName}:[{string.Join(",", def.AllMutations.Select(m => m.defName))}]"); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void LogMutationValue()

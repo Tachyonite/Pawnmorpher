@@ -1,0 +1,23 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>RhinocerosMorph</defName>
+		<label>rhinomorph</label>
+		<description>!!!RhinocerosMorph needs a description!!!</description>
+		<race>Rhinoceros</race>
+		<classification>ThickHide</classification>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<fullTransformation>PawnmorphRhinocerosTF</fullTransformation>
+		<partialTransformation>PawnmorphRhinocerosTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(140,140,140)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>RhinocerosTransformationMemory</transformationMemory>
+			<revertedMemory>RhinocerosRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

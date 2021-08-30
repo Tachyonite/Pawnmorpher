@@ -23,6 +23,7 @@ namespace Pawnmorph.Hediffs
 
         bool CanTag(MutationDef mDef)
         {
+            if (mDef.IsRestricted) return false; 
             var curve = Curve;
             float chance; 
             if (curve != null)
