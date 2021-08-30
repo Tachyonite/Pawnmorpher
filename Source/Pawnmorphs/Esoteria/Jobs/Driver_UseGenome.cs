@@ -106,7 +106,7 @@ namespace Pawnmorph.Jobs
                 return;
             }
 
-            wComp.AddToDatabase(mutationToAdd);
+            wComp.AddToDatabase(mutationToAdd, LogFailMode.Warning);
             if (consumedOnUse)
                 Genome.Destroy();
         }
