@@ -284,12 +284,7 @@ namespace Pawnmorph.Chambers
                 return false;
             }
 
-            if (mutationDef.IsRestricted)
-            {
-                reason = RESTRICTED_MUTATION.Translate(mutationDef);
-                return false;
-            }
-
+            
             if (StoredMutations.Contains(mutationDef))
             {
                 reason = ALREADY_TAGGED_REASON.Translate(mutationDef);

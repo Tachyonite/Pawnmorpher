@@ -7,6 +7,7 @@ using Pawnmorph.Chambers;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.ThingComps;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -81,7 +82,7 @@ namespace Pawnmorph.Jobs
         private void ApplyGenome()
         {
             var db = Find.World.GetComponent<ChamberDatabase>();
-            MutationGenomeStorage mutationComp = Genome.GetComp<MutationGenomeStorage>();
+            var mutationComp = Genome.GetComp<MutationGenomeStorage>();
 
             if (mutationComp == null)
             {
@@ -101,8 +102,9 @@ namespace Pawnmorph.Jobs
                 // Don't check CanAddToDatabase here, since that will fail even if the database is just out of power or storage space.
                 // Instead, explicitly check for taggable mutations that haven't been added yet.
                 // If we're out of power/space, the call to TryAddToDatabase will fail and display the appropriate fail message.
-                List<MutationDef> validMutations = mutationComp.Mutation.AllMutations
-                        .Where(m => m.IsTaggable())
+                MutationCategoryDef mCategory = mutationComp.Mutation;
+                List<MutationDef> validMutations = mCategory.AllMutations
+                        .Where(CanBeAdded)
                         .Where(m => !db.StoredMutations.Contains(m))
                         .ToList();
 
@@ -112,7 +114,19 @@ namespace Pawnmorph.Jobs
                     return;
                 }
 
-                bool added = db.TryAddToDatabase(validMutations.RandomElementWithFallback());
+            
+                bool CanBeAdded(MutationDef mDef) 
+                {
+                    if (mDef.IsRestricted) //if the mutation is restricted, make sure the genome is for one of the restricted categories 
+                    {
+                        return mDef.categories?.Contains(mCategory) == true; 
+                    }
+
+                    return true; 
+                }
+
+
+                bool added = db.TryAddToDatabase(validMutations.RandomElement());
                 if (mutationComp.Mutation.genomeConsumedOnUse && added)
                     Genome.Destroy();
             }
