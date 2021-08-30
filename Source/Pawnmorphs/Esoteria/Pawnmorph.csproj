@@ -361,6 +361,7 @@
     <Compile Include="DebugUtils\DebugLogUtils.Aliens.cs" />
     <Compile Include="DebugUtils\DebugMenu_AddMutation.cs" />
     <Compile Include="DebugUtils\DebugMenu_AddMutations.cs" />
+    <Compile Include="DebugUtils\LogFailMode.cs" />
     <Compile Include="DebugUtils\PMDebugActions.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />

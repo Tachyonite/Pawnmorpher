@@ -38,6 +38,28 @@ namespace Pawnmorph.DebugUtils
 
         private const string STORAGE_SPACE_HEADER = "DefName,Storage Space Required, Value";
 
+
+        [DebuggerHidden]
+        public static void LogFail(this LogFailMode mode, string message)
+        {
+            switch (mode)
+            {
+                case LogFailMode.Silent:
+                    break;
+                case LogFailMode.Log:
+                    Log.Message(message);
+                    break;
+                case LogFailMode.Warning:
+                    Log.Warning(message);
+                    break;
+                case LogFailMode.Error:
+                    Log.Error(message);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+            }
+        }
+
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void LogStorageSpaceRequirementRange()
         {

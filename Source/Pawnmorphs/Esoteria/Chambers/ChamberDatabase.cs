@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
@@ -145,19 +146,25 @@ namespace Pawnmorph.Chambers
 
 
         /// <summary>
-        ///     Adds the mutation to the database
+        /// Adds the mutation to the database
         /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="failMode">The fail mode.</param>
+        /// <exception cref="ArgumentNullException">mutationDef</exception>
         /// Note: this does
         /// <b>not</b>
         /// check if there is enough space to add the mutation or if it is restricted, use
         /// <see cref="CanAddToDatabase(Pawnmorph.Hediffs.MutationDef)" />
         /// to check
-        /// <param name="mutationDef">The mutation definition.</param>
-        /// <exception cref="ArgumentNullException">mutationDef</exception>
-        public void AddToDatabase([NotNull] MutationDef mutationDef)
+        public void AddToDatabase([NotNull] MutationDef mutationDef, LogFailMode failMode=LogFailMode.Silent)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (_storedMutations.Contains(mutationDef)) return;
+            if (_storedMutations.Contains(mutationDef))
+            {
+                string message = $"unable to add {mutationDef.defName} to the database as it is already stored";
+                failMode.LogFail(message); 
+                return;
+            }
             _storedMutations.Add(mutationDef);
 
             if (_usedStorageCache != null) _usedStorageCache += mutationDef.GetRequiredStorage();
@@ -165,19 +172,26 @@ namespace Pawnmorph.Chambers
 
 
         /// <summary>
-        ///     Adds the pawnkind to the database directly.
+        /// Adds the pawnkind to the database directly.
         /// </summary>
+        /// <param name="pawnKind">Kind of the pawn.</param>
+        /// <param name="failMode">The fail mode.</param>
+        /// <exception cref="ArgumentNullException">pawnKind</exception>
         /// note: this function does
         /// <b>not</b>
         /// check if the database can store the given pawnKind, use
         /// <see cref="CanAddToDatabase(PawnKindDef)" />
         /// to safely add to the database
-        /// <param name="pawnKind">Kind of the pawn.</param>
-        /// <exception cref="ArgumentNullException">pawnKind</exception>
-        public void AddToDatabase([NotNull] PawnKindDef pawnKind)
+        public void AddToDatabase([NotNull] PawnKindDef pawnKind, LogFailMode failMode= LogFailMode.Silent)
         {
             if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
-            if (_taggedSpecies.Contains(pawnKind)) return;
+            if (_taggedSpecies.Contains(pawnKind))
+            {
+
+                string message = $"cannot store {pawnKind.label} as it is already stored in the database";
+                failMode.LogFail(message);
+                return;
+            }
             if (!pawnKind.race.IsValidAnimal())
             {
                 DebugLogUtils.Warning($"trying to enter invalid animal {pawnKind.defName} to the chamber database");

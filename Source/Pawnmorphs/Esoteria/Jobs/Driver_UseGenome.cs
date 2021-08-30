@@ -4,6 +4,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Chambers;
+using Pawnmorph.DebugUtils;
+using Pawnmorph.Hediffs;
 using Pawnmorph.ThingComps;
 using RimWorld;
 using Verse;
@@ -77,36 +79,35 @@ namespace Pawnmorph.Jobs
         private void ApplyGenome()
         {
             var wComp = Find.World.GetComponent<ChamberDatabase>();
-            var mut = Genome.GetComp<MutationGenomeStorage>()?.Mutation;
+            MutationCategoryDef mut = Genome.GetComp<MutationGenomeStorage>()?.Mutation;
 
-            bool consumedOnUse = true; 
+            var consumedOnUse = true;
 
             //just add to database, if not possible there is no recovery possible at this stage 
             //can add to database must be called by giver before hand
 
-            
+
             if (mut == null)
             {
                 var aGenome = Genome.GetComp<AnimalGenomeStorageComp>();
                 if (aGenome == null) return;
                 consumedOnUse = aGenome.ConsumedOnUse;
-                wComp.AddToDatabase(aGenome.Animal);
+                wComp.AddToDatabase(aGenome.Animal, LogFailMode.Warning);
+                if (consumedOnUse) Genome.Destroy();
                 return;
             }
-            else
-            {
-                consumedOnUse = mut.genomeConsumedOnUse; 
-            }
-            
-            var mutationToAdd = mut.AllMutations.Where(m => wComp.CanAddToDatabase(m)).RandomElementWithFallback();
+
+            consumedOnUse = mut.genomeConsumedOnUse;
+
+            MutationDef mutationToAdd = mut.AllMutations.Where(m => wComp.CanAddToDatabase(m)).RandomElementWithFallback();
             if (mutationToAdd == null)
             {
-                Log.Error($"tried to use a genome with no addable mutations!");
+                Log.Error("tried to use a genome with no addable mutations!");
                 return;
             }
 
             wComp.AddToDatabase(mutationToAdd);
-            if(consumedOnUse)
+            if (consumedOnUse)
                 Genome.Destroy();
         }
     }
