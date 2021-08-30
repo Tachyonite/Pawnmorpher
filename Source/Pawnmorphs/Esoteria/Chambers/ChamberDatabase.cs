@@ -22,21 +22,20 @@ namespace Pawnmorph.Chambers
     public class ChamberDatabase : WorldComponent
     {
         
-        const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
-        const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
-
-        /// <summary>
-        ///     translation label for the animal not taggable reason 
-        /// </summary>
-        public const string ANIMAL_NOT_TAGGABLE = "AnimalNotTaggable";
-
-        private const string NOT_VALID_ANIMAL = "NotValidAnimal";
-
+        private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
+        private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
 
         /// <summary>
         ///     translation string for not enough free power
         /// </summary>
         public const string NOT_ENOUGH_POWER = "PMDatabaseWithoutPower";
+
+        /// <summary>
+        ///     translation label for the animal not taggable reason 
+        /// </summary>
+        public const string ANIMAL_TOO_CHAOTIC_REASON = "AnimalNotTaggable";
+
+        private const string NOT_VALID_ANIMAL_REASON = "NotValidAnimal";
 
         private const string NOT_TAGGABLE = "PMMutationNotTaggable";
         private const string RESTRICTED_MUTATION = "PMMutationRestricted";
@@ -258,9 +257,9 @@ namespace Pawnmorph.Chambers
             else if (TaggedAnimals.Contains(pawnKind))
                 reason = ALREADY_TAGGED_REASON.Translate(pawnKind);
             else if (DatabaseUtilities.IsChao(pawnKind.race))
-                reason = ANIMAL_NOT_TAGGABLE.Translate(pawnKind);
+                reason = ANIMAL_TOO_CHAOTIC_REASON.Translate(pawnKind);
             else if (!pawnKind.race.IsValidAnimal())
-                reason = NOT_VALID_ANIMAL.Translate(pawnKind);
+                reason = NOT_VALID_ANIMAL_REASON.Translate(pawnKind);
             else reason = "";
 
             return string.IsNullOrEmpty(reason);
@@ -282,19 +281,24 @@ namespace Pawnmorph.Chambers
             if (FreeStorage < mutationDef.GetRequiredStorage())
             {
                 reason = NOT_ENOUGH_STORAGE_REASON.Translate(mutationDef, DatabaseUtilities.GetStorageString(mutationDef.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
-
                 return false;
             }
 
             if (!CanTag)
             {
-                reason = NOT_TAGGABLE.Translate(mutationDef);
+                reason = NOT_ENOUGH_POWER.Translate();
                 return false;
             }
 
             if (mutationDef.IsRestricted)
             {
                 reason = RESTRICTED_MUTATION.Translate(mutationDef);
+                return false;
+            }
+
+            if (StoredMutations.Contains(mutationDef))
+            {
+                reason = ALREADY_TAGGED_REASON.Translate(mutationDef);
                 return false;
             }
 

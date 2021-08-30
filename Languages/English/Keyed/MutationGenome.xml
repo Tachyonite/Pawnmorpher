@@ -1,7 +1,7 @@
 <LanguageData>
     <GenomeLabel>{MUTATION} genome</GenomeLabel>
     <!-- TODO -->
-    <GenomeDesc>Genome that provides information for {MUTATION}.</GenomeDesc>
+    <GenomeDesc>Genome that provides information for a {MUTATION} mutation.</GenomeDesc>
     <PMApplyGenome>Use {0} genome.</PMApplyGenome>
     <PMNoMutationBenchAvailable>No mutation bench is available.</PMNoMutationBenchAvailable>
 
