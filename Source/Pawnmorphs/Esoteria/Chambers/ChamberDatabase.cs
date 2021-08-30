@@ -212,12 +212,7 @@ namespace Pawnmorph.Chambers
         /// <exception cref="ArgumentNullException">mutationDef</exception>
         public bool CanAddToDatabase([NotNull] MutationDef mutationDef)
         {
-            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (mutationDef.GetRequiredStorage() > FreeStorage) return false;
-            if (!CanTag)
-                return false;
-            if (_storedMutations.Contains(mutationDef)) return false;
-            return !mutationDef.IsRestricted;
+            return CanAddToDatabase(mutationDef, out _);
         }
 
         /// <summary>
@@ -230,8 +225,7 @@ namespace Pawnmorph.Chambers
         /// <exception cref="ArgumentNullException">kindDef</exception>
         public bool CanAddToDatabase([NotNull] PawnKindDef kindDef)
         {
-            if (kindDef == null) throw new ArgumentNullException(nameof(kindDef));
-            return kindDef.GetRequiredStorage() > FreeStorage && kindDef.race.IsValidAnimal();
+            return CanAddToDatabase(kindDef, out _);
         }
 
 
