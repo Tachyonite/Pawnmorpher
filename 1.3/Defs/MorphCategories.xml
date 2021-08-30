@@ -3,6 +3,7 @@
 
 	<Pawnmorph.MorphCategoryDef>
 		<defName>Arid</defName>
+
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef>
@@ -31,18 +32,22 @@
 
 	<Pawnmorph.MorphCategoryDef>
 		<defName>Combat</defName>
+		<associatedMutationCategory>Combat</associatedMutationCategory>
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef>
 		<defName>Crafter</defName>
+		<associatedMutationCategory>Crafter</associatedMutationCategory>
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef>
 		<defName>Production</defName>
+		<associatedMutationCategory>Productive</associatedMutationCategory>
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef>
 		<defName>Social</defName>
+		<associatedMutationCategory>Social</associatedMutationCategory>
 	</Pawnmorph.MorphCategoryDef>
 
 	<!-- ======= Genus ======= -->
