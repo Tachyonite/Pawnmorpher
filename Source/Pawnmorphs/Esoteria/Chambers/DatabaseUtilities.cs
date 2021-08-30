@@ -195,7 +195,7 @@ namespace Pawnmorph.Chambers
         public static bool IsTaggable([NotNull] this MutationDef mutationDef)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            return mutationDef.IsRestricted;
+            return !mutationDef.IsRestricted;
         }
 
 
