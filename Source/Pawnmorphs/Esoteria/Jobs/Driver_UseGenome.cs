@@ -119,7 +119,7 @@ namespace Pawnmorph.Jobs
                 {
                     if (mDef.IsRestricted) //if the mutation is restricted, make sure the genome is for one of the restricted categories 
                     {
-                        return mDef.categories?.Contains(mCategory) == true; 
+                        return mCategory.restricted && mDef.categories?.Contains(mCategory) == true; 
                     }
 
                     return true; 
