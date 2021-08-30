@@ -186,6 +186,20 @@ namespace Pawnmorph.Chambers
         }
 
         /// <summary>
+        ///     Determines whether this instance is taggable.
+        /// </summary>
+        /// <param name="mutationDef">The mutation def.</param>
+        /// <returns>
+        ///     <c>true</c> if the specified animal race is taggable; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsTaggable([NotNull] this MutationDef mutationDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            return mutationDef.IsRestricted;
+        }
+
+
+        /// <summary>
         ///     Determines whether the specified morph is tagged.
         /// </summary>
         /// <param name="mDef">The m definition.</param>
@@ -274,7 +288,7 @@ namespace Pawnmorph.Chambers
         [NotNull]
         public static IEnumerable<MutationDef> Taggable([NotNull] this IEnumerable<MutationDef> mutationDefs)
         {
-            return mutationDefs.Where(m => !m.IsRestricted);
+            return mutationDefs.Where(m => m.IsTaggable());
         }
 
         /// <summary>

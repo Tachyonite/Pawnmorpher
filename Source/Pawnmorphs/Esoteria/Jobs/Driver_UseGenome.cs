@@ -20,6 +20,8 @@ namespace Pawnmorph.Jobs
     /// <seealso cref="Verse.AI.JobDriver" />
     public class Driver_UseGenome : JobDriver
     {
+        private const string NO_MORE_MUTATIONS_MESSAGE = "PMNoMoreMutations";
+
         const TargetIndex MUTAGEN_BENCH_INDEX = TargetIndex.A;
         const TargetIndex GENOME_INDEX = TargetIndex.B;
         private const TargetIndex HAUL_INDEX = TargetIndex.C;
@@ -83,31 +85,35 @@ namespace Pawnmorph.Jobs
 
             if (mutationComp == null)
             {
-                var aGenome = Genome.GetComp<AnimalGenomeStorageComp>();
-                if (aGenome == null)
+                var animalComp = Genome.GetComp<AnimalGenomeStorageComp>();
+                if (animalComp == null)
                 {
-                    Log.Error("Tried to use a genome with no mutaiton or animal storage comp!");
+                    Log.Error("Tried to use a genome with no mutation or animal genome comp!");
                     return;
                 }
 
-                bool added = db.TryAddToDatabase(aGenome.Animal);
-                if (aGenome.ConsumedOnUse && added)
+                bool added = db.TryAddToDatabase(animalComp.Animal);
+                if (animalComp.ConsumedOnUse && added)
                     Genome.Destroy();
             }
             else
             {
-                MutationDef mutationToAdd = mutationComp.Mutation.AllMutations
-                        .Where(db.CanAddToDatabase)
-                        .RandomElementWithFallback();
+                // Don't check CanAddToDatabase here, since that will fail even if the database is just out of power or storage space.
+                // Instead, explicitly check for taggable mutations that haven't been added yet.
+                // If we're out of power/space, the call to TryAddToDatabase will fail and display the appropriate fail message.
+                List<MutationDef> validMutations = mutationComp.Mutation.AllMutations
+                        .Where(m => m.IsTaggable())
+                        .Where(m => !db.StoredMutations.Contains(m))
+                        .ToList();
 
-                if (mutationToAdd == null)
+                if (validMutations.Count == 0)
                 {
-                    Log.Error("Tried to use a genome with no addable mutations!");
+                    Messages.Message(NO_MORE_MUTATIONS_MESSAGE.Translate(Genome), MessageTypeDefOf.RejectInput);
                     return;
                 }
 
-                bool added = db.TryAddToDatabase(mutationToAdd);
-                if (mut.genomeConsumedOnUse && added)
+                bool added = db.TryAddToDatabase(validMutations.RandomElementWithFallback());
+                if (mutationComp.Mutation.genomeConsumedOnUse && added)
                     Genome.Destroy();
             }
         }

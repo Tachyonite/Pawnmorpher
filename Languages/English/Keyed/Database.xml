@@ -7,4 +7,5 @@
     <PMMutationNotTaggable>{0} is not taggable.</PMMutationNotTaggable>
     <PMMutationRestricted>{0} is a restricted mutation.</PMMutationRestricted>
     <AnimalAddedToDatabase>{0} added to database.</AnimalAddedToDatabase>
+    <PMNoMoreMutations>All {0} mutations have already been tagged.</PMNoMoreMutations>
 </LanguageData>
