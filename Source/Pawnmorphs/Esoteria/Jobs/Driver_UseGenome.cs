@@ -78,37 +78,38 @@ namespace Pawnmorph.Jobs
 
         private void ApplyGenome()
         {
-            var wComp = Find.World.GetComponent<ChamberDatabase>();
-            MutationCategoryDef mut = Genome.GetComp<MutationGenomeStorage>()?.Mutation;
+            var db = Find.World.GetComponent<ChamberDatabase>();
+            MutationGenomeStorage mutationComp = Genome.GetComp<MutationGenomeStorage>();
 
-            var consumedOnUse = true;
-
-            //just add to database, if not possible there is no recovery possible at this stage 
-            //can add to database must be called by giver before hand
-
-
-            if (mut == null)
+            if (mutationComp == null)
             {
                 var aGenome = Genome.GetComp<AnimalGenomeStorageComp>();
-                if (aGenome == null) return;
-                consumedOnUse = aGenome.ConsumedOnUse;
-                wComp.AddToDatabase(aGenome.Animal, LogFailMode.Warning);
-                if (consumedOnUse) Genome.Destroy();
-                return;
+                if (aGenome == null)
+                {
+                    Log.Error("Tried to use a genome with no mutaiton or animal storage comp!");
+                    return;
+                }
+
+                bool added = db.TryAddToDatabase(aGenome.Animal);
+                if (aGenome.ConsumedOnUse && added)
+                    Genome.Destroy();
             }
-
-            consumedOnUse = mut.genomeConsumedOnUse;
-
-            MutationDef mutationToAdd = mut.AllMutations.Where(m => wComp.CanAddToDatabase(m)).RandomElementWithFallback();
-            if (mutationToAdd == null)
+            else
             {
-                Log.Error("tried to use a genome with no addable mutations!");
-                return;
-            }
+                MutationDef mutationToAdd = mutationComp.Mutation.AllMutations
+                        .Where(db.CanAddToDatabase)
+                        .RandomElementWithFallback();
 
-            wComp.AddToDatabase(mutationToAdd);
-            if (consumedOnUse)
-                Genome.Destroy();
+                if (mutationToAdd == null)
+                {
+                    Log.Error("Tried to use a genome with no addable mutations!");
+                    return;
+                }
+
+                bool added = db.TryAddToDatabase(mutationToAdd);
+                if (mut.genomeConsumedOnUse && added)
+                    Genome.Destroy();
+            }
         }
     }
 }
