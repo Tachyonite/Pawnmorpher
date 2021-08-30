@@ -173,63 +173,7 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
-        static void CheckMorphTagStatus()
-        {
-
-            StringBuilder builder = new StringBuilder();
-            foreach (MorphDef morph in MorphDef.AllDefs)
-            {
-                builder.AppendLine($"{morph.defName} is tagged: {morph.IsTagged()}");
-            }
-
-            Log.Message(builder.ToString());
-        }
-
-
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        public static void GetMutationsWithStages()
-        {
-            List<MutationDef> allMutations = MutationDef.AllMutations.ToList();
-
-
-            if (allMutations.Count == 0)
-            {
-                Log.Message("no mutations with multiple stages");
-                return;
-            }
-
-            var infoLst = new List<HediffStageInfo>();
-
-
-            foreach (MutationDef mutation in allMutations)
-            {
-                List<HediffStage> stages = mutation.stages;
-                if (stages == null) continue;
-                float severityPerDay = mutation.CompProps<CompProperties_MutationSeverityAdjust>()?.severityPerDay ?? 0;
-
-                if (severityPerDay <= 0)
-                    continue; //productive mutations don't progress like the others 
-
-
-                for (var index = 0; index < stages.Count; index++)
-                {
-                    HediffStage hediffStage = stages[index];
-                    var stageInfo = new HediffStageInfo
-                    {
-                        defName = mutation.defName,
-                        minSeverity = hediffStage.minSeverity,
-                        severityPerDay = severityPerDay,
-                        stageIndex = index
-                    };
-                    infoLst.Add(stageInfo);
-                }
-            }
-
-            string outStr = infoLst.Select(s => s.ToString()).Join(delimiter:"\n");
-            Log.Message($"Mutation Stage Info:\n{HediffStageInfo.Header}\n{outStr}");
-        }
-
+  
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void GetSpreadingMutationStats()
@@ -349,37 +293,6 @@ namespace Pawnmorph.DebugUtils
         }
 
 
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        private static void FindMutaniteCommonalityOnMap()
-        {
-            List<Thing> mineablesOnMap = Find.CurrentMap.listerThings.AllThings
-                                             .Where(t => t.def.building?.mineableThing != null)
-                                             .ToList();
-            List<Thing> mutaniteOnMap = mineablesOnMap.Where(t => t.def.defName == "Mutonite")
-                                                      .ToList();
-            ThingCategoryDef chunkCat = ThingCategoryDefOf.Chunks;
-
-            List<Thing> totalOres = mineablesOnMap.Where(t => !chunkCat.ContainedInThisOrDescendant(t.def.building.mineableThing))
-                                                  .ToList();
-
-            Log.Message($"Mutonite:{mutaniteOnMap.Count}\tOres:{totalOres.Count}\tAll Chunks:{mineablesOnMap.Count}");
-        }
-
-        [DebugOutput(category = MAIN_CATEGORY_NAME)]
-        private static void GetNonMutationMutations()
-        {
-            var builder = new StringBuilder();
-            foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefs.Where(d => typeof(Hediff_AddedMutation)
-                                                                                    .IsAssignableFrom(d.hediffClass)))
-            {
-                if (hediffDef is MutationDef) continue;
-                builder.AppendLine(hediffDef.defName);
-            }
-
-            string msg = builder.Length > 0 ? builder.ToString() : $"all mutations use {nameof(MutationDef)} c:";
-            Log.Message(msg);
-        }
-
 
         [DebugOutput(category = MAIN_CATEGORY_NAME, onlyWhenPlaying = true)]
         private static void GetPawnsNewInfluence()
@@ -455,43 +368,9 @@ namespace Pawnmorph.DebugUtils
             Log.Message(builder.ToString());
         }
 
+        
+        
 
-        [DebugOutput(MAIN_CATEGORY_NAME, true)]
-        private static void LogMissingMutationStages()
-        {
-            var builder = new StringBuilder();
-            List<string> needsStages = new List<string>(),
-                         needsParagonStage = new List<string>(),
-                         needsAfflictedStage = new List<string>();
-
-
-            foreach (MutationDef allMutation in MutationDef.AllMutations)
-            {
-                if (allMutation.stages == null || allMutation.stages.Count == 0)
-                {
-                    needsStages.Add(allMutation.defName);
-                    continue;
-                }
-
-                bool hasAfflicted = false, hasParagon = false;
-
-                foreach (HediffStage allMutationStage in allMutation.stages)
-                {
-                    if (allMutationStage.minSeverity < 0) hasAfflicted = true;
-                    if (allMutationStage.minSeverity > 1) hasParagon = true;
-                }
-
-                if (!hasParagon)
-                    needsParagonStage.Add(allMutation.defName);
-                if (!hasAfflicted) needsAfflictedStage.Add(allMutation.defName);
-            }
-
-            builder.AppendLine($"Needs Stages:\n{needsStages.Join(delimiter: "\n")}");
-            builder.AppendLine($"\nNeeds Paragon Stages:\n{needsParagonStage.Join(delimiter: "\n")}");
-            builder.AppendLine($"\nNeeds Afflicted Stages:\n{needsAfflictedStage.Join(delimiter: "\n")}");
-
-            Log.Message(builder.ToString());
-        }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void MaximumMutationPointsForHumans()
