@@ -52,6 +52,11 @@ namespace Pawnmorph.Hediffs.Composable
         [UsedImplicitly] public float chance = 0.1f; // Low chance by default since this is for chaotic mutations
 
         /// <summary>
+        /// Whether or not restricted mutations can be selected
+        /// </summary>
+        [UsedImplicitly] public bool allowRestricted = false;
+
+        /// <summary>
         /// Gets the list of available mutations.
         /// </summary>
         /// <returns>The mutations.</returns>
@@ -59,6 +64,7 @@ namespace Pawnmorph.Hediffs.Composable
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
             return DefDatabase<MutationDef>.AllDefs
+                    .Where(m => allowRestricted || !m.IsRestricted)
                     .Select(m => MutationEntry.FromMutation(m, chance));
         }
 

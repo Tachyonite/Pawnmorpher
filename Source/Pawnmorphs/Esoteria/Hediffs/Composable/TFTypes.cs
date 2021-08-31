@@ -26,6 +26,22 @@ namespace Pawnmorph.Hediffs.Composable
     }
 
     /// <summary>
+    /// A simple TFTypes that allows a transformation into a random chaomorph
+    /// </summary>
+    public class TFTypes_Chao : TFTypes
+    {
+        /// <summary>
+        /// Gets a pawn kind to transform the pawn into
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
+        public override PawnKindDef GetTF(Hediff_MutagenicBase hediff)
+        {
+            return ChaomorphUtilities.GetRandomChaomorphPK(ChaomorphType.Chaomorph);
+        }
+    }
+
+    /// <summary>
     /// A simple TFTypes that allows a transformation into ALL THE ANIMALS _O/
     /// Good for chaotic mutations.
     /// </summary>
@@ -38,8 +54,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">Hediff.</param>
         public override PawnKindDef GetTF(Hediff_MutagenicBase hediff)
         {
-            return DefDatabase<PawnKindDef>.AllDefs
-                    .Where(p => p.RaceProps.Animal)
+            return FormerHumanUtilities.AllRegularFormerHumanPawnkindDefs
                     .RandomElement();
         }
     }
