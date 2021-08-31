@@ -23,7 +23,7 @@
 				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  It'll take some time for [PAWN_objective] to get used to them again.</description>
 				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
 				<statFactors>
-					<CarryingCapacity>-0.3</CarryingCapacity>
+					<CarryingCapacity>0.3</CarryingCapacity>
 				</statFactors>
 				<minSeverity>0.5</minSeverity>
 			</li>
@@ -32,7 +32,7 @@
 				<label>wing</label>
 				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  [PAWN_pronoun] has adapted to using them, but the hollow bones limit [PAWN_possessive] ability to lift heavy things.</description>
 				<statFactors>
-					<CarryingCapacity>-0.3</CarryingCapacity>
+					<CarryingCapacity>0.3</CarryingCapacity>
 				</statFactors>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage"> <!-- adaption cream -->
@@ -40,7 +40,7 @@
 				<labelOverride>sturdy wing</labelOverride>
 				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, but several adaptions have stiffened the hollow bones.  They're stronger than before, but still not as good as a regular arm.</description>
 				<statFactors>
-					<CarryingCapacity>-0.10</CarryingCapacity>
+					<CarryingCapacity>0.10</CarryingCapacity>
 				</statFactors>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage"> <!-- Paragon -->
