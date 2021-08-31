@@ -16,8 +16,8 @@ namespace Pawnmorph.HPatches
         {
             private static void Postfix(Thing ownerEquipment, DamageDef damageDef, ref float __result, Tool __instance)
             {
-                if (!__instance.IsNaturalWeapon()) return;
-                if (!(ownerEquipment.ParentHolder is Pawn pawn)) return;
+                if (__instance?.IsNaturalWeapon() != true) return;
+                if (!(ownerEquipment?.ParentHolder is Pawn pawn)) return;
                 __result *= pawn.GetStatValue(PMStatDefOf.PM_NaturalMeleeEffectiveness);
             }
         }
