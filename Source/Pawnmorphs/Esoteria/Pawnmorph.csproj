@@ -599,6 +599,7 @@
     <Compile Include="RecipeWorkers\ApplyHaltingCream.cs" />
     <Compile Include="RecipeWorkers\ApplyToMutatedPart.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />
+    <Compile Include="RestrictionLevel.cs" />
     <Compile Include="Rituals\AttachableOutcomeEffectWorkers\AddRandomVeneratedMutation.cs" />
     <Compile Include="Rituals\RoleTags.cs" />
     <Compile Include="RoleRequirement\BaseRoleRequirement.cs" />
